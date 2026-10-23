@@ -1,0 +1,257 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-HealthLake-DataTransformationProfile",
+  "type": "AWS::HealthLake::DataTransformationProfile",
+  "time": "2026-10-21T16:05:03.879Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ProfileId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ProfileName",
+      "/properties/SourceFormat",
+      "/properties/Source",
+      "/properties/KmsKeyId",
+      "/properties/ProfileDescription"
+    ],
+    "definitions": {
+      "ExistingVersionedProfileSource": {
+        "additionalProperties": false,
+        "description": "Create the profile by cloning a specific version of an existing profile.",
+        "properties": {
+          "ProfileId": {
+            "description": "The unique identifier of the source profile to clone.",
+            "type": "string"
+          },
+          "Version": {
+            "description": "The version number of the source profile to clone.",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "ProfileId",
+          "Version"
+        ],
+        "type": "object"
+      },
+      "ProfileMappingSource": {
+        "additionalProperties": false,
+        "description": "Create the profile from raw Velocity template mapping content.",
+        "properties": {
+          "ProfileMapping": {
+            "additionalProperties": false,
+            "description": "Map of template file paths to their Velocity template content.",
+            "patternProperties": {
+              "^.+$": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "ProfileMapping"
+        ],
+        "type": "object"
+      },
+      "Source": {
+        "additionalProperties": false,
+        "description": "The source from which to create the profile's initial template content. Exactly one of the members must be specified. Use StarterProfile (C-CDA only), ProfileMapping (C-CDA or CSV), or ExistingVersionedProfileId to clone an existing profile. Each produces a published profile.",
+        "properties": {
+          "ExistingVersionedProfileId": {
+            "$ref": "#/definitions/ExistingVersionedProfileSource"
+          },
+          "ProfileMapping": {
+            "$ref": "#/definitions/ProfileMappingSource"
+          },
+          "StarterProfile": {
+            "$ref": "#/definitions/StarterProfileSource"
+          }
+        },
+        "type": "object"
+      },
+      "StarterProfileSource": {
+        "additionalProperties": false,
+        "description": "Create the profile from a predefined starter profile of transformation templates.",
+        "properties": {
+          "StarterProfileName": {
+            "description": "The name of the starter profile to seed the profile from.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "StarterProfileName"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with the profile.",
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Creates a Data Transformation Profile in AWS HealthLake that converts healthcare data from a source format (such as C-CDA or CSV) into FHIR R4. A profile is immutable once created; to change its template content, replace the resource. Only its tags can be updated in place.",
+    "documentationUrl": "https://docs.aws.amazon.com/healthlake/latest/devguide/",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "healthlake:CreateDataTransformationProfile",
+          "healthlake:GetDataTransformationProfile",
+          "healthlake:TagResource",
+          "healthlake:ListTagsForResource",
+          "kms:DescribeKey",
+          "kms:CreateGrant",
+          "kms:GenerateDataKey",
+          "kms:Decrypt"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "healthlake:DeleteDataTransformationProfile",
+          "healthlake:GetDataTransformationProfile"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "SourceFormat": {
+              "enum": [
+                "CCDA",
+                "CSV"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "SourceFormat"
+          ]
+        },
+        "permissions": [
+          "healthlake:ListDataTransformationProfiles"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "healthlake:GetDataTransformationProfile",
+          "healthlake:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "healthlake:GetDataTransformationProfile",
+          "healthlake:TagResource",
+          "healthlake:UntagResource",
+          "healthlake:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the data transformation profile.",
+        "pattern": "^arn:aws(-[a-z]+)*:healthlake:[a-z0-9-]+:[0-9]{12}:dataTransformationProfile/[a-f0-9]{32}$",
+        "type": "string"
+      },
+      "KmsKeyId": {
+        "description": "The identifier (key ID or ARN) of a customer-managed KMS key used to encrypt the profile's template content at rest. If omitted, an AWS owned key is used.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "type": "string"
+      },
+      "ProfileDescription": {
+        "description": "A human-readable description of the profile's purpose.",
+        "maxLength": 1000,
+        "minLength": 0,
+        "type": "string"
+      },
+      "ProfileId": {
+        "description": "The unique, server-generated identifier of the profile (32-character lowercase hexadecimal).",
+        "maxLength": 32,
+        "minLength": 32,
+        "pattern": "^[a-f0-9]{32}$",
+        "type": "string"
+      },
+      "ProfileName": {
+        "description": "The human-readable name of the profile.",
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Source": {
+        "$ref": "#/definitions/Source"
+      },
+      "SourceFormat": {
+        "description": "The source format that this profile converts from.",
+        "enum": [
+          "CCDA",
+          "CSV"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this profile.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "TargetFormat": {
+        "description": "The target format that this profile converts to. Always FHIR_R4.",
+        "enum": [
+          "FHIR_R4"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/ProfileId",
+      "/properties/TargetFormat"
+    ],
+    "required": [
+      "ProfileName",
+      "SourceFormat"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "healthlake:TagResource",
+        "healthlake:UntagResource",
+        "healthlake:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::HealthLake::DataTransformationProfile",
+    "writeOnlyProperties": [
+      "/properties/Source",
+      "/properties/KmsKeyId"
+    ]
+  }
+}

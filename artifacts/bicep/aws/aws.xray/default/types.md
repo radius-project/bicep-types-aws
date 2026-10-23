@@ -1,25 +1,36 @@
 # AWS.XRay @ default
 
 ## Resource AWS.XRay/Group@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.XRay/GroupProperties](#awsxraygroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.XRay/ResourcePolicy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.XRay/ResourcePolicyProperties](#awsxrayresourcepolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.XRay/SamplingRule@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.XRay/SamplingRuleProperties](#awsxraysamplingruleproperties) (Identifier): properties of the resource
+
+## Resource AWS.XRay/TransactionSearchConfig@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.XRay/TransactionSearchConfigProperties](#awsxraytransactionsearchconfigproperties) (Identifier): properties of the resource
 
 ## AWS.XRay/GroupProperties
 ### Properties
@@ -44,10 +55,20 @@
 * **SamplingRuleUpdate**: [SamplingRuleUpdate](#samplingruleupdate)
 * **Tags**: [Tag](#tag)[]
 
+## AWS.XRay/TransactionSearchConfigProperties
+### Properties
+* **AccountId**: string (ReadOnly, Identifier)
+* **IndexingPercentage**: int
+
 ## InsightsConfiguration
 ### Properties
 * **InsightsEnabled**: bool: Set the InsightsEnabled value to true to enable insights or false to disable insights.
 * **NotificationsEnabled**: bool: Set the NotificationsEnabled value to true to enable insights notifications. Notifications can only be enabled on a group with InsightsEnabled set to true.
+
+## SamplingRateBoost
+### Properties
+* **CooldownWindowMinutes**: int (Required): Time window (in minutes) in which only one sampling rate boost can be triggered. After a boost occurs, no further boosts are allowed until the next window.
+* **MaxRate**: int (Required): The maximum sampling rate X-Ray will apply when it detects anomalies. X-Ray determines the appropriate rate between your baseline and the maximum, depending on anomaly activity.
 
 ## SamplingRule
 ### Properties
@@ -60,6 +81,7 @@
 * **ResourceARN**: string (Required): Matches the ARN of the AWS resource on which the service runs.
 * **RuleARN**: string (Identifier)
 * **RuleName**: string
+* **SamplingRateBoost**: [SamplingRateBoost](#samplingrateboost)
 * **ServiceName**: string (Required): Matches the name that the service uses to identify itself in segments.
 * **ServiceType**: string (Required): Matches the origin that the service uses to identify its type in segments.
 * **URLPath**: string (Required): Matches the path from a request URL.
@@ -88,6 +110,7 @@
 * **ResourceARN**: string: Matches the ARN of the AWS resource on which the service runs.
 * **RuleARN**: string (Identifier)
 * **RuleName**: string
+* **SamplingRateBoost**: [SamplingRateBoost](#samplingrateboost)
 * **ServiceName**: string: Matches the name that the service uses to identify itself in segments.
 * **ServiceType**: string: Matches the origin that the service uses to identify its type in segments.
 * **URLPath**: string: Matches the path from a request URL.

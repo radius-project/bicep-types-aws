@@ -1,63 +1,72 @@
 # AWS.S3 @ default
 
 ## Resource AWS.S3/AccessGrant@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.S3/AccessGrantProperties](#awss3accessgrantproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.S3/AccessGrantsInstance@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.S3/AccessGrantsInstanceProperties](#awss3accessgrantsinstanceproperties) (Identifier): properties of the resource
 
 ## Resource AWS.S3/AccessGrantsLocation@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.S3/AccessGrantsLocationProperties](#awss3accessgrantslocationproperties) (Identifier): properties of the resource
+* **properties**: [AWS.S3/AccessGrantsLocationProperties](#awss3accessgrantslocationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.S3/AccessPoint@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.S3/AccessPointProperties](#awss3accesspointproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.S3/Bucket@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.S3/BucketProperties](#awss3bucketproperties) (Identifier): properties of the resource
 
 ## Resource AWS.S3/BucketPolicy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.S3/BucketPolicyProperties](#awss3bucketpolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.S3/MultiRegionAccessPointPolicy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.S3/MultiRegionAccessPointPolicyProperties](#awss3multiregionaccesspointpolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.S3/StorageLens@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.S3/StorageLensProperties](#awss3storagelensproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.S3/StorageLensGroup@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -87,6 +96,7 @@
 * **ActivityMetrics**: [ActivityMetrics](#activitymetrics)
 * **AdvancedCostOptimizationMetrics**: [AdvancedCostOptimizationMetrics](#advancedcostoptimizationmetrics)
 * **AdvancedDataProtectionMetrics**: [AdvancedDataProtectionMetrics](#advanceddataprotectionmetrics)
+* **AdvancedPerformanceMetrics**: [AdvancedPerformanceMetrics](#advancedperformancemetrics)
 * **BucketLevel**: [BucketLevel](#bucketlevel) (Required)
 * **DetailedStatusCodesMetrics**: [DetailedStatusCodesMetrics](#detailedstatuscodesmetrics)
 * **StorageLensGroupLevel**: [StorageLensGroupLevel](#storagelensgrouplevel)
@@ -103,6 +113,10 @@
 ### Properties
 * **IsEnabled**: bool: Specifies whether advanced data protection metrics are enabled or disabled.
 
+## AdvancedPerformanceMetrics
+### Properties
+* **IsEnabled**: bool: Specifies whether the Advanced Performance Metrics is enabled or disabled.
+
 ## AnalyticsConfiguration
 ### Properties
 * **Id**: string (Required): The ID that identifies the analytics configuration.
@@ -118,6 +132,14 @@
 * **MatchAnyTag**: [Tag](#tag)[]
 * **MatchObjectAge**: [MatchObjectAge](#matchobjectage)
 * **MatchObjectSize**: [MatchObjectSize](#matchobjectsize)
+
+## AnnotationTableConfiguration
+### Properties
+* **ConfigurationState**: string (Required): Specifies whether the annotation table configuration is enabled or disabled.
+* **EncryptionConfiguration**: [MetadataTableEncryptionConfiguration](#metadatatableencryptionconfiguration) (WriteOnly): The encryption configuration for the annotation table. To encrypt your annotation table with server-side encryption using AWS Key Management Service (AWS KMS) keys (SSE-KMS), set ``SseAlgorithm`` to ``aws:kms``. You must also set ``KmsKeyArn`` to the ARN of a customer managed KMS key in the same Region where your general purpose bucket is located.
+* **Role**: string: The ARN of the IAM role that grants Amazon S3 Metadata permission to read annotations from your bucket.
+* **TableArn**: string (ReadOnly): The Amazon Resource Name (ARN) for the annotation table.
+* **TableName**: string (ReadOnly): The name of the annotation table.
 
 ## AWS.S3/AccessGrantProperties
 ### Properties
@@ -137,14 +159,14 @@
 * **AccessGrantsInstanceArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the specified Access Grants instance.
 * **AccessGrantsInstanceId**: string (ReadOnly): A unique identifier for the specified access grants instance.
 * **IdentityCenterArn**: string: The Amazon Resource Name (ARN) of the specified AWS Identity Center.
-* **Tags**: [Tag](#tag)[] (WriteOnly)
+* **Tags**: [Tag](#tag)[]
 
 ## AWS.S3/AccessGrantsLocationProperties
 ### Properties
 * **AccessGrantsLocationArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the specified Access Grants location.
 * **AccessGrantsLocationId**: string (ReadOnly, Identifier): The unique identifier for the specified Access Grants location.
-* **IamRoleArn**: string: The Amazon Resource Name (ARN) of the access grant location's associated IAM role.
-* **LocationScope**: string: Descriptor for where the location actually points
+* **IamRoleArn**: string (Required): The Amazon Resource Name (ARN) of the access grant location's associated IAM role.
+* **LocationScope**: string (Required): Descriptor for where the location actually points
 * **Tags**: [Tag](#tag)[]
 
 ## AWS.S3/AccessPointProperties
@@ -157,6 +179,7 @@
 * **NetworkOrigin**: string (ReadOnly): Indicates whether this Access Point allows access from the public Internet. If VpcConfiguration is specified for this Access Point, then NetworkOrigin is VPC, and the Access Point doesn't allow access from the public Internet. Otherwise, NetworkOrigin is Internet, and the Access Point allows access from the public Internet, subject to the Access Point and bucket access policies.
 * **Policy**: [AccessPoint_Policy](#accesspointpolicy): The Access Point Policy you want to apply to this access point.
 * **PublicAccessBlockConfiguration**: [PublicAccessBlockConfiguration](#publicaccessblockconfiguration): The PublicAccessBlock configuration that you want to apply to this Access Point. You can enable the configuration options in any combination. For more information about when Amazon S3 considers a bucket or object public, see https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status 'The Meaning of Public' in the Amazon Simple Storage Service Developer Guide.
+* **Tags**: [Tag](#tag)[]: An arbitrary set of tags (key-value pairs) for this S3 Access Point.
 * **VpcConfiguration**: [VpcConfiguration](#vpcconfiguration): If you include this field, Amazon S3 restricts access to this Access Point to requests from the specified Virtual Private Cloud (VPC).
 
 ## AWS.S3/BucketPolicyProperties
@@ -166,6 +189,7 @@
 
 ## AWS.S3/BucketProperties
 ### Properties
+* **AbacStatus**: string: The ABAC status of the general purpose bucket. When ABAC is enabled for the general purpose bucket, you can use tags to manage access to the general purpose buckets as well as for cost tracking purposes. When ABAC is disabled for the general purpose buckets, you can only use tags for cost tracking purposes. For more information, see [Using tags with S3 general purpose buckets](https://docs.aws.amazon.com/AmazonS3/latest/userguide/buckets-tagging.html).
 * **AccelerateConfiguration**: [AccelerateConfiguration](#accelerateconfiguration): Configures the transfer acceleration state for an Amazon S3 bucket. For more information, see [Amazon S3 Transfer Acceleration](https://docs.aws.amazon.com/AmazonS3/latest/dev/transfer-acceleration.html) in the *Amazon S3 User Guide*.
 * **AccessControl**: string (WriteOnly): This is a legacy property, and it is not recommended for most use cases. A majority of modern use cases in Amazon S3 no longer require the use of ACLs, and we recommend that you keep ACLs disabled. For more information, see [Controlling object ownership](https://docs.aws.amazon.com//AmazonS3/latest/userguide/about-object-ownership.html) in the *Amazon S3 User Guide*.
   A canned access control list (ACL) that grants predefined permissions to the bucket. For more information about canned ACLs, see [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl) in the *Amazon S3 User Guide*.
@@ -174,22 +198,28 @@
 * **AnalyticsConfigurations**: [AnalyticsConfiguration](#analyticsconfiguration)[]: Specifies the configuration and any analyses for the analytics filter of an Amazon S3 bucket.
 * **Arn**: string (ReadOnly)
 * **BucketEncryption**: [BucketEncryption](#bucketencryption): Specifies default encryption for a bucket using server-side encryption with Amazon S3-managed keys (SSE-S3), AWS KMS-managed keys (SSE-KMS), or dual-layer server-side encryption with KMS-managed keys (DSSE-KMS). For information about the Amazon S3 default encryption feature, see [Amazon S3 Default Encryption for S3 Buckets](https://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-encryption.html) in the *Amazon S3 User Guide*.
-* **BucketName**: string (Identifier): A name for the bucket. If you don't specify a name, AWS CloudFormation generates a unique ID and uses that ID for the bucket name. The bucket name must contain only lowercase letters, numbers, periods (.), and dashes (-) and must follow [Amazon S3 bucket restrictions and limitations](https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html). For more information, see [Rules for naming Amazon S3 buckets](https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html#bucketnamingrules) in the *Amazon S3 User Guide*. 
+* **BucketName**: string (Identifier): A name for the bucket. If you don't specify a name, AWS CloudFormation generates a unique ID and uses that ID for the bucket name. The bucket name must contain only lowercase letters, numbers, periods (.), and dashes (-) and must follow [Amazon S3 bucket restrictions and limitations](https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html). For more information, see [Rules for naming Amazon S3 buckets](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html) in the *Amazon S3 User Guide*. 
   If you specify a name, you can't perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you need to replace the resource, specify a new name.
+* **BucketNamePrefix**: string (WriteOnly)
+* **BucketNamespace**: string (WriteOnly)
 * **CorsConfiguration**: [CorsConfiguration](#corsconfiguration): Describes the cross-origin access configuration for objects in an Amazon S3 bucket. For more information, see [Enabling Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) in the *Amazon S3 User Guide*.
 * **DomainName**: string (ReadOnly)
 * **DualStackDomainName**: string (ReadOnly)
 * **IntelligentTieringConfigurations**: [IntelligentTieringConfiguration](#intelligenttieringconfiguration)[]: Defines how Amazon S3 handles Intelligent-Tiering storage.
-* **InventoryConfigurations**: [InventoryConfiguration](#inventoryconfiguration)[]: Specifies the inventory configuration for an Amazon S3 bucket. For more information, see [GET Bucket inventory](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETInventoryConfig.html) in the *Amazon S3 API Reference*.
+* **InventoryConfigurations**: [InventoryConfiguration](#inventoryconfiguration)[]: Specifies the S3 Inventory configuration for an Amazon S3 bucket. For more information, see [GET Bucket inventory](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETInventoryConfig.html) in the *Amazon S3 API Reference*.
 * **LifecycleConfiguration**: [LifecycleConfiguration](#lifecycleconfiguration): Specifies the lifecycle configuration for objects in an Amazon S3 bucket. For more information, see [Object Lifecycle Management](https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html) in the *Amazon S3 User Guide*.
 * **LoggingConfiguration**: [LoggingConfiguration](#loggingconfiguration): Settings that define where logs are stored.
+* **MetadataConfiguration**: [MetadataConfiguration](#metadataconfiguration): The S3 Metadata configuration for a general purpose bucket.
+* **MetadataTableConfiguration**: [MetadataTableConfiguration](#metadatatableconfiguration): The metadata table configuration of an S3 general purpose bucket.
 * **MetricsConfigurations**: [MetricsConfiguration](#metricsconfiguration)[]: Specifies a metrics configuration for the CloudWatch request metrics (specified by the metrics configuration ID) from an Amazon S3 bucket. If you're updating an existing metrics configuration, note that this is a full replacement of the existing metrics configuration. If you don't include the elements you want to keep, they are erased. For more information, see [PutBucketMetricsConfiguration](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTMetricConfiguration.html).
 * **NotificationConfiguration**: [NotificationConfiguration](#notificationconfiguration): Configuration that defines how Amazon S3 handles bucket notifications.
-* **ObjectLockConfiguration**: [ObjectLockConfiguration](#objectlockconfiguration): This operation is not supported by directory buckets.
+* **ObjectLockConfiguration**: [ObjectLockConfiguration](#objectlockconfiguration): This operation is not supported for directory buckets.
   Places an Object Lock configuration on the specified bucket. The rule specified in the Object Lock configuration will be applied by default to every new object placed in the specified bucket. For more information, see [Locking Objects](https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html). 
    +  The ``DefaultRetention`` settings require both a mode and a period.
   +  The ``DefaultRetention`` period can be either ``Days`` or ``Years`` but you must select one. You cannot specify ``Days`` and ``Years`` at the same time.
   +  You can enable Object Lock for new or existing buckets. For more information, see [Configuring Object Lock](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-configure.html).
+  
+   You must URL encode any signed header values that contain spaces. For example, if your header value is ``my file.txt``, containing two spaces after ``my``, you must URL encode this value to ``my%20%20file.txt``.
 * **ObjectLockEnabled**: bool: Indicates whether this bucket has an Object Lock configuration enabled. Enable ``ObjectLockEnabled`` when you apply ``ObjectLockConfiguration`` to a bucket.
 * **OwnershipControls**: [OwnershipControls](#ownershipcontrols): Configuration that defines how Amazon S3 handles Object Ownership rules.
 * **PublicAccessBlockConfiguration**: [PublicAccessBlockConfiguration](#publicaccessblockconfiguration): Configuration that defines how Amazon S3 handles public access.
@@ -224,6 +254,11 @@
 ### Properties
 * **Arn**: string (Required)
 
+## BlockedEncryptionTypes
+### Properties
+* **EncryptionType**: string[]: The object encryption type that you want to block or unblock for an Amazon S3 general purpose bucket.
+  Currently, this parameter only supports blocking or unblocking server side encryption with customer-provided keys (SSE-C). For more information about SSE-C, see [Using server-side encryption with customer-provided keys (SSE-C)](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerSideEncryptionCustomerKeys.html).
+
 ## BucketEncryption
 ### Properties
 * **ServerSideEncryptionConfiguration**: [ServerSideEncryptionRule](#serversideencryptionrule)[] (Required): Specifies the default server-side-encryption configuration.
@@ -233,6 +268,7 @@
 * **ActivityMetrics**: [ActivityMetrics](#activitymetrics)
 * **AdvancedCostOptimizationMetrics**: [AdvancedCostOptimizationMetrics](#advancedcostoptimizationmetrics)
 * **AdvancedDataProtectionMetrics**: [AdvancedDataProtectionMetrics](#advanceddataprotectionmetrics)
+* **AdvancedPerformanceMetrics**: [AdvancedPerformanceMetrics](#advancedperformancemetrics)
 * **DetailedStatusCodesMetrics**: [DetailedStatusCodesMetrics](#detailedstatuscodesmetrics)
 * **PrefixLevel**: [PrefixLevel](#prefixlevel)
 
@@ -253,7 +289,7 @@
 ### Properties
 * **AllowedHeaders**: string[]: Headers that are specified in the ``Access-Control-Request-Headers`` header. These headers are allowed in a preflight OPTIONS request. In response to any preflight OPTIONS request, Amazon S3 returns any requested headers that are allowed.
 * **AllowedMethods**: string[] (Required): An HTTP method that you allow the origin to run.
-  *Allowed values*: ``GET`` | ``PUT`` | ``HEAD`` | ``POST`` | ``DELETE``
+ *Allowed values*: ``GET`` | ``PUT`` | ``HEAD`` | ``POST`` | ``DELETE``
 * **AllowedOrigins**: string[] (Required): One or more origins you want customers to be able to access the bucket from.
 * **ExposedHeaders**: string[]: One or more headers in the response that you want customers to be able to access from their applications (for example, from a JavaScript ``XMLHttpRequest`` object).
 * **Id**: string: A unique identifier for this rule. The value must be no more than 255 characters.
@@ -268,16 +304,24 @@
 ### Properties
 * **CloudWatchMetrics**: [CloudWatchMetrics](#cloudwatchmetrics)
 * **S3BucketDestination**: [S3BucketDestination](#s3bucketdestination)
+* **StorageLensTableDestination**: [StorageLensTableDestination](#storagelenstabledestination)
+
+## DefaultEventHold
+### Properties
+* **Days**: int: The number of days that you want to specify for the default event hold duration. Valid values are ``1`` to ``36500`` days. You must specify either ``Days`` or ``Years``, but not both.
+* **Years**: int: The number of years that you want to specify for the default event hold duration. Valid values are ``1`` to ``100`` years. You must specify either ``Days`` or ``Years``, but not both.
 
 ## DefaultRetention
 ### Properties
 * **Days**: int: The number of days that you want to specify for the default retention period. If Object Lock is turned on, you must specify ``Mode`` and specify either ``Days`` or ``Years``.
+* **DefaultEventHold**: [DefaultEventHold](#defaulteventhold): The default Object Lock event hold duration that you want to apply to new objects placed in the specified bucket. When the event hold is released, Amazon S3 retains the object version for this duration.
+  If you specify both a default retention period (``Days`` or ``Years``) and a ``DefaultEventHold``, the event hold duration can't exceed the default retention period.
 * **Mode**: string: The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. If Object Lock is turned on, you must specify ``Mode`` and specify either ``Days`` or ``Years``.
 * **Years**: int: The number of years that you want to specify for the default retention period. If Object Lock is turned on, you must specify ``Mode`` and specify either ``Days`` or ``Years``.
 
 ## DeleteMarkerReplication
 ### Properties
-* **Status**: string: Indicates whether to replicate delete markers. Disabled by default.
+* **Status**: string: Indicates whether to replicate delete markers.
 
 ## Destination
 ### Properties
@@ -285,7 +329,7 @@
    Although this value is optional, we strongly recommend that you set it to help prevent problems if the destination bucket ownership changes.
 * **BucketArn**: string (Required): The Amazon Resource Name (ARN) of the bucket to which data is exported.
 * **Format**: string (Required): Specifies the file format used when exporting data to Amazon S3.
-  *Allowed values*: ``CSV`` | ``ORC`` | ``Parquet``
+ *Allowed values*: ``CSV`` | ``ORC`` | ``Parquet``
 * **Prefix**: string: The prefix to use when exporting data. The prefix is prepended to all results.
 
 ## DetailedStatusCodesMetrics
@@ -342,6 +386,20 @@
 * **Prefix**: string: Specifies the inventory filter prefix.
 * **ScheduleFrequency**: string (Required): Specifies the schedule for generating inventory results.
 
+## InventoryTableConfiguration
+### Properties
+* **ConfigurationState**: string (Required): The configuration state of the inventory table, indicating whether the inventory table is enabled or disabled.
+* **EncryptionConfiguration**: [MetadataTableEncryptionConfiguration](#metadatatableencryptionconfiguration) (WriteOnly): The encryption configuration for the inventory table.
+* **TableArn**: string (ReadOnly): The Amazon Resource Name (ARN) for the inventory table.
+* **TableName**: string (ReadOnly): The name of the inventory table.
+
+## JournalTableConfiguration
+### Properties
+* **EncryptionConfiguration**: [MetadataTableEncryptionConfiguration](#metadatatableencryptionconfiguration) (WriteOnly): The encryption configuration for the journal table.
+* **RecordExpiration**: [RecordExpiration](#recordexpiration) (Required): The journal table record expiration settings for the journal table.
+* **TableArn**: string (ReadOnly): The Amazon Resource Name (ARN) for the journal table.
+* **TableName**: string (ReadOnly): The name of the journal table.
+
 ## LambdaConfiguration
 ### Properties
 * **Event**: string (Required): The Amazon S3 bucket event for which to invoke the LAMlong function. For more information, see [Supported Event Types](https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html) in the *Amazon S3 User Guide*.
@@ -351,7 +409,12 @@
 ## LifecycleConfiguration
 ### Properties
 * **Rules**: [Rule](#rule)[] (Required, WriteOnly): A lifecycle rule for individual objects in an Amazon S3 bucket.
-* **TransitionDefaultMinimumObjectSize**: string
+* **TransitionDefaultMinimumObjectSize**: string: Indicates which default minimum object size behavior is applied to the lifecycle configuration.
+  This parameter applies to general purpose buckets only. It isn't supported for directory bucket lifecycle configurations.
+   +  ``all_storage_classes_128K`` - Objects smaller than 128 KB will not transition to any storage class by default.
+  +  ``varies_by_storage_class`` - Objects smaller than 128 KB will transition to Glacier Flexible Retrieval or Glacier Deep Archive storage classes. By default, all other storage classes will prevent transitions smaller than 128 KB. 
+  
+ To customize the minimum object size for any transition you can add a filter that specifies a custom ``ObjectSizeGreaterThan`` or ``ObjectSizeLessThan`` in the body of your transition rule. Custom filters always take precedence over the default transition behavior.
 
 ## LoggingConfiguration
 ### Properties
@@ -368,6 +431,28 @@
 ### Properties
 * **BytesGreaterThan**: int: Minimum object size to which the rule applies.
 * **BytesLessThan**: int: Maximum object size to which the rule applies.
+
+## MetadataConfiguration
+### Properties
+* **AnnotationTableConfiguration**: [AnnotationTableConfiguration](#annotationtableconfiguration): The annotation table configuration for a metadata configuration.
+* **Destination**: [MetadataDestination](#metadatadestination) (ReadOnly): The destination information for the S3 Metadata configuration.
+* **InventoryTableConfiguration**: [InventoryTableConfiguration](#inventorytableconfiguration): The inventory table configuration for a metadata configuration.
+* **JournalTableConfiguration**: [JournalTableConfiguration](#journaltableconfiguration) (Required): The journal table configuration for a metadata configuration.
+
+## MetadataDestination
+### Properties
+* **TableBucketArn**: string: The Amazon Resource Name (ARN) of the table bucket where the metadata configuration is stored.
+* **TableBucketType**: string (Required): The type of the table bucket where the metadata configuration is stored. The ``aws`` value indicates an AWS managed table bucket, and the ``customer`` value indicates a customer-managed table bucket. V2 metadata configurations are stored in AWS managed table buckets, and V1 metadata configurations are stored in customer-managed table buckets.
+* **TableNamespace**: string: The namespace in the table bucket where the metadata tables for a metadata configuration are stored.
+
+## MetadataTableConfiguration
+### Properties
+* **S3TablesDestination**: [S3TablesDestination](#s3tablesdestination) (Required): The destination information for the metadata table configuration. The destination table bucket must be in the same Region and AWS-account as the general purpose bucket. The specified metadata table name must be unique within the ``aws_s3_metadata`` namespace in the destination table bucket.
+
+## MetadataTableEncryptionConfiguration
+### Properties
+* **KmsKeyArn**: string: If server-side encryption with KMSlong (KMS) keys (SSE-KMS) is specified, you must also specify the KMS key Amazon Resource Name (ARN). You must specify a customer-managed KMS key that's located in the same Region as the general purpose bucket that corresponds to the metadata table configuration.
+* **SseAlgorithm**: string (Required): The encryption type specified for a metadata table. To specify server-side encryption with KMSlong (KMS) keys (SSE-KMS), use the ``aws:kms`` value. To specify server-side encryption with Amazon S3 managed keys (SSE-S3), use the ``AES256`` value.
 
 ## Metrics
 ### Properties
@@ -477,6 +562,11 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 * **Filter**: [NotificationFilter](#notificationfilter): The filtering rules that determine which objects trigger notifications. For example, you can create a filter so that Amazon S3 sends notifications only when image files with a ``.jpg`` extension are added to the bucket. For more information, see [Configuring event notifications using object key name filtering](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/notification-how-to-filtering.html) in the *Amazon S3 User Guide*.
 * **Queue**: string (Required): The Amazon Resource Name (ARN) of the Amazon SQS queue to which Amazon S3 publishes a message when it detects events of the specified type. FIFO queues are not allowed when enabling an SQS queue as the event notification destination.
 
+## RecordExpiration
+### Properties
+* **Days**: int: If you enable journal table record expiration, you can set the number of days to retain your journal table records. Journal table records must be retained for a minimum of 7 days. To set this value, specify any whole number from ``7`` to ``2147483647``. For example, to retain your journal table records for one year, set this value to ``365``.
+* **Expiration**: string (Required): Specifies whether journal table record expiration is enabled or disabled.
+
 ## RedirectAllRequestsTo
 ### Properties
 * **HostName**: string (Required): Name of the host where requests are redirected.
@@ -495,7 +585,7 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 ## ReplicaModifications
 ### Properties
 * **Status**: string (Required): Specifies whether Amazon S3 replicates modifications on replicas.
-  *Allowed values*: ``Enabled`` | ``Disabled``
+ *Allowed values*: ``Enabled`` | ``Disabled``
 
 ## ReplicationConfiguration
 ### Properties
@@ -513,10 +603,11 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 * **ReplicationTime**: [ReplicationTime](#replicationtime): A container specifying S3 Replication Time Control (S3 RTC), including whether S3 RTC is enabled and the time when all objects and operations on objects must be replicated. Must be specified together with a ``Metrics`` block.
 * **StorageClass**: string: The storage class to use when replicating objects, such as S3 Standard or reduced redundancy. By default, Amazon S3 uses the storage class of the source object to create the object replica. 
  For valid values, see the ``StorageClass`` element of the [PUT Bucket replication](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTreplication.html) action in the *Amazon S3 API Reference*.
+ ``FSX_OPENZFS`` is not an accepted value when replicating objects.
 
 ## ReplicationRule
 ### Properties
-* **DeleteMarkerReplication**: [DeleteMarkerReplication](#deletemarkerreplication): Specifies whether Amazon S3 replicates delete markers. If you specify a ``Filter`` in your replication configuration, you must also include a ``DeleteMarkerReplication`` element. If your ``Filter`` includes a ``Tag`` element, the ``DeleteMarkerReplication`` ``Status`` must be set to Disabled, because Amazon S3 does not support replicating delete markers for tag-based rules. For an example configuration, see [Basic Rule Configuration](https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-add-config.html#replication-config-min-rule-config). 
+* **DeleteMarkerReplication**: [DeleteMarkerReplication](#deletemarkerreplication): Specifies whether Amazon S3 replicates delete markers. If you specify a ``Filter`` in your replication configuration, you must also include a ``DeleteMarkerReplication`` element. If your ``Filter`` includes a ``Tag`` element, the ``DeleteMarkerReplication````Status`` must be set to Disabled, because Amazon S3 does not support replicating delete markers for tag-based rules. For an example configuration, see [Basic Rule Configuration](https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-add-config.html#replication-config-min-rule-config). 
  For more information about delete marker replication, see [Basic Rule Configuration](https://docs.aws.amazon.com/AmazonS3/latest/dev/delete-marker-replication.html). 
   If you are using an earlier version of the replication configuration, Amazon S3 handles replication of delete markers differently. For more information, see [Backward Compatibility](https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-add-config.html#replication-backward-compat-considerations).
 * **Destination**: [ReplicationDestination](#replicationdestination) (Required): A container for information about the replication destination and its configurations including enabling the S3 Replication Time Control (S3 RTC).
@@ -564,7 +655,7 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 ### Properties
 * **HttpErrorCodeReturnedEquals**: string: The HTTP error code when the redirect is applied. In the event of an error, if the error code equals this value, then the specified redirect is applied.
  Required when parent element ``Condition`` is specified and sibling ``KeyPrefixEquals`` is not specified. If both are specified, then both must be true for the redirect to be applied.
-* **KeyPrefixEquals**: string: The object key name prefix when the redirect is applied. For example, to redirect requests for ``ExamplePage.html``, the key prefix will be ``ExamplePage.html``. To redirect request for all pages with the prefix ``docs/``, the key prefix will be ``/docs``, which identifies all objects in the docs/ folder.
+* **KeyPrefixEquals**: string: The object key name prefix when the redirect is applied. For example, to redirect requests for ``ExamplePage.html``, the key prefix will be ``ExamplePage.html``. To redirect request for all pages with the prefix ``docs/``, the key prefix will be ``docs/``, which identifies all objects in the docs/ folder.
  Required when the parent element ``Condition`` is specified and sibling ``HttpErrorCodeReturnedEquals`` is not specified. If both conditions are specified, both must be true for the redirect to be applied.
 
 ## Rule
@@ -600,6 +691,13 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 ### Properties
 * **Rules**: [FilterRule](#filterrule)[] (Required): A list of containers for the key-value pair that defines the criteria for the filter rule.
 
+## S3TablesDestination
+### Properties
+* **TableArn**: string (ReadOnly): The Amazon Resource Name (ARN) for the metadata table in the metadata table configuration. The specified metadata table name must be unique within the ``aws_s3_metadata`` namespace in the destination table bucket.
+* **TableBucketArn**: string (Required): The Amazon Resource Name (ARN) for the table bucket that's specified as the destination in the metadata table configuration. The destination table bucket must be in the same Region and AWS-account as the general purpose bucket.
+* **TableName**: string (Required): The name for the metadata table in your metadata table configuration. The specified metadata table name must be unique within the ``aws_s3_metadata`` namespace in the destination table bucket.
+* **TableNamespace**: string (ReadOnly): The table bucket namespace for the metadata table in your metadata table configuration. This value is always ``aws_s3_metadata``.
+
 ## SelectionCriteria
 ### Properties
 * **Delimiter**: string: Delimiter to divide S3 key into hierarchy of prefixes.
@@ -609,17 +707,17 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 ## ServerSideEncryptionByDefault
 ### Properties
 * **KMSMasterKeyID**: string: AWS Key Management Service (KMS) customer managed key ID to use for the default encryption. 
-   +   *General purpose buckets* - This parameter is allowed if and only if ``SSEAlgorithm`` is set to ``aws:kms`` or ``aws:kms:dsse``.
-  +   *Directory buckets* - This parameter is allowed if and only if ``SSEAlgorithm`` is set to ``aws:kms``.
+   +  *General purpose buckets* - This parameter is allowed if and only if ``SSEAlgorithm`` is set to ``aws:kms`` or ``aws:kms:dsse``.
+  +  *Directory buckets* - This parameter is allowed if and only if ``SSEAlgorithm`` is set to ``aws:kms``.
   
   You can specify the key ID, key alias, or the Amazon Resource Name (ARN) of the KMS key.
-  +  Key ID: ``1234abcd-12ab-34cd-56ef-1234567890ab`` 
-  +  Key ARN: ``arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab`` 
-  +  Key Alias: ``alias/alias-name`` 
+  +  Key ID: ``1234abcd-12ab-34cd-56ef-1234567890ab``
+  +  Key ARN: ``arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab``
+  +  Key Alias: ``alias/alias-name``
   
  If you are using encryption with cross-account or AWS service operations, you must use a fully qualified KMS key ARN. For more information, see [Using encryption for cross-account operations](https://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-encryption.html#bucket-encryption-update-bucket-policy).
-   +   *General purpose buckets* - If you're specifying a customer managed KMS key, we recommend using a fully qualified KMS key ARN. If you use a KMS key alias instead, then KMS resolves the key within the requester?s account. This behavior can result in data that's encrypted with a KMS key that belongs to the requester, and not the bucket owner. Also, if you use a key ID, you can run into a LogDestination undeliverable error when creating a VPC flow log. 
-  +   *Directory buckets* - When you specify an [customer managed key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) for encryption in your directory bucket, only use the key ID or key ARN. The key alias format of the KMS key isn't supported.
+   +  *General purpose buckets* - If you're specifying a customer managed KMS key, we recommend using a fully qualified KMS key ARN. If you use a KMS key alias instead, then KMS resolves the key within the requester’s account. This behavior can result in data that's encrypted with a KMS key that belongs to the requester, and not the bucket owner. Also, if you use a key ID, you can run into a LogDestination undeliverable error when creating a VPC flow log. 
+  +  *Directory buckets* - When you specify an [customer managed key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) for encryption in your directory bucket, only use the key ID or key ARN. The key alias format of the KMS key isn't supported.
   
    Amazon S3 only supports symmetric encryption KMS keys. For more information, see [Asymmetric keys in KMS](https://docs.aws.amazon.com//kms/latest/developerguide/symmetric-asymmetric.html) in the *Key Management Service Developer Guide*.
 * **SSEAlgorithm**: string (Required): Server-side encryption algorithm to use for the default encryption.
@@ -627,6 +725,8 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 
 ## ServerSideEncryptionRule
 ### Properties
+* **BlockedEncryptionTypes**: [BlockedEncryptionTypes](#blockedencryptiontypes): A bucket-level setting for Amazon S3 general purpose buckets used to prevent the upload of new objects encrypted with the specified server-side encryption type. For example, blocking an encryption type will block ``PutObject``, ``CopyObject``, ``PostObject``, multipart upload, and replication requests to the bucket for objects with the specified encryption type. However, you can continue to read and list any pre-existing objects already encrypted with the specified encryption type. For more information, see [Blocking or unblocking SSE-C for a general purpose bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/blocking-unblocking-s3-c-encryption-gpb.html).
+  Currently, this parameter only supports blocking or unblocking server-side encryption with customer-provided keys (SSE-C). For more information about SSE-C, see [Using server-side encryption with customer-provided keys (SSE-C)](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerSideEncryptionCustomerKeys.html).
 * **BucketKeyEnabled**: bool: Specifies whether Amazon S3 should use an S3 Bucket Key with server-side encryption using KMS (SSE-KMS) for new objects in the bucket. Existing objects are not affected. Setting the ``BucketKeyEnabled`` element to ``true`` causes Amazon S3 to use an S3 Bucket Key. By default, S3 Bucket Key is not enabled.
  For more information, see [Amazon S3 Bucket Keys](https://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-key.html) in the *Amazon S3 User Guide*.
 * **ServerSideEncryptionByDefault**: [ServerSideEncryptionByDefault](#serversideencryptionbydefault): Specifies the default server-side encryption to apply to new objects in the bucket. If a PUT Object request doesn't specify any server-side encryption, this default encryption will be applied.
@@ -650,10 +750,17 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 * **AwsOrg**: [AwsOrg](#awsorg)
 * **DataExport**: [DataExport](#dataexport)
 * **Exclude**: [BucketsAndRegions](#bucketsandregions)
+* **ExpandedPrefixesDataExport**: [StorageLensExpandedPrefixesDataExport](#storagelensexpandedprefixesdataexport)
 * **Id**: string (Required)
 * **Include**: [BucketsAndRegions](#bucketsandregions)
 * **IsEnabled**: bool (Required): Specifies whether the Amazon S3 Storage Lens configuration is enabled or disabled.
+* **PrefixDelimiter**: string: The delimiter to divide S3 key into hierarchy of prefixes.
 * **StorageLensArn**: string (ReadOnly): The ARN for the Amazon S3 Storage Lens configuration.
+
+## StorageLensExpandedPrefixesDataExport
+### Properties
+* **S3BucketDestination**: [S3BucketDestination](#s3bucketdestination)
+* **StorageLensTableDestination**: [StorageLensTableDestination](#storagelenstabledestination)
 
 ## StorageLensGroupLevel
 ### Properties
@@ -663,6 +770,16 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 ### Properties
 * **Exclude**: string[]
 * **Include**: string[]
+
+## StorageLensTableDestination
+### Properties
+* **Encryption**: [Encryption](#encryption)
+* **IsEnabled**: bool (Required): Specifies whether the export to S3 Tables is enabled or disabled.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties
@@ -717,7 +834,7 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 ### Properties
 * **StorageClass**: string (Required): The storage class to which you want the object to transition.
 * **TransitionDate**: string: Indicates when objects are transitioned to the specified storage class. The date value must be in ISO 8601 format. The time is always midnight UTC.
-* **TransitionInDays**: int: Indicates the number of days after creation when objects are transitioned to the specified storage class. The value must be a positive integer.
+* **TransitionInDays**: int: Indicates the number of days after creation when objects are transitioned to the specified storage class. The value can be ``0`` or any positive integer. Be aware that some storage classes have a minimum storage duration and that you're charged for transitioning objects before their minimum storage duration. For more information, see [Constraints and considerations for transitions](https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html#lifecycle-configuration-constraints) in the *Amazon S3 User Guide*.
 
 ## VersioningConfiguration
 ### Properties

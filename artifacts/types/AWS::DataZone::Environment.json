@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DataZone-Environment",
   "type": "AWS::DataZone::Environment",
-  "time": "2025-01-27T04:02:58.937Z",
+  "time": "2026-10-03T06:01:06.849Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -15,7 +15,10 @@
       "/properties/ProjectIdentifier",
       "/properties/UserParameters",
       "/properties/EnvironmentAccountIdentifier",
-      "/properties/EnvironmentAccountRegion"
+      "/properties/EnvironmentAccountRegion",
+      "/properties/EnvironmentBlueprintIdentifier",
+      "/properties/DeploymentOrder",
+      "/properties/EnvironmentConfigurationId"
     ],
     "definitions": {
       "EnvironmentParameter": {
@@ -129,6 +132,10 @@
         "description": "The Amazon DataZone user who created the environment.",
         "type": "string"
       },
+      "DeploymentOrder": {
+        "description": "The deployment order for the environment.",
+        "type": "integer"
+      },
       "Description": {
         "description": "The description of the Amazon DataZone environment.",
         "maxLength": 2048,
@@ -159,6 +166,14 @@
         "pattern": "^[a-zA-Z0-9_-]{1,36}$",
         "type": "string"
       },
+      "EnvironmentBlueprintIdentifier": {
+        "description": "The identifier of the environment blueprint.",
+        "type": "string"
+      },
+      "EnvironmentConfigurationId": {
+        "description": "The identifier of the environment configuration.",
+        "type": "string"
+      },
       "EnvironmentProfileId": {
         "description": "The ID of the environment profile with which the Amazon DataZone environment was created.",
         "pattern": "^[a-zA-Z0-9_-]{0,36}$",
@@ -181,7 +196,7 @@
           "type": "string"
         },
         "maxItems": 20,
-        "minItems": 1,
+        "minItems": 0,
         "type": "array"
       },
       "Id": {
@@ -193,7 +208,6 @@
         "description": "The name of the environment.",
         "maxLength": 64,
         "minLength": 1,
-        "pattern": "^[\\w -]+$",
         "type": "string"
       },
       "ProjectId": {
@@ -258,7 +272,10 @@
       "/properties/DomainIdentifier",
       "/properties/EnvironmentAccountIdentifier",
       "/properties/EnvironmentAccountRegion",
-      "/properties/EnvironmentRoleArn"
+      "/properties/EnvironmentRoleArn",
+      "/properties/EnvironmentBlueprintIdentifier",
+      "/properties/DeploymentOrder",
+      "/properties/EnvironmentConfigurationId"
     ]
   }
 }

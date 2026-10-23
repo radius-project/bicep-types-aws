@@ -1,49 +1,64 @@
 # AWS.IoTSiteWise @ default
 
 ## Resource AWS.IoTSiteWise/AccessPolicy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoTSiteWise/AccessPolicyProperties](#awsiotsitewiseaccesspolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoTSiteWise/Asset@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoTSiteWise/AssetProperties](#awsiotsitewiseassetproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoTSiteWise/AssetModel@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoTSiteWise/AssetModelProperties](#awsiotsitewiseassetmodelproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoTSiteWise/Dashboard@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoTSiteWise/DashboardProperties](#awsiotsitewisedashboardproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.IoTSiteWise/Dataset@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IoTSiteWise/DatasetProperties](#awsiotsitewisedatasetproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.IoTSiteWise/Gateway@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoTSiteWise/GatewayProperties](#awsiotsitewisegatewayproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoTSiteWise/Portal@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoTSiteWise/PortalProperties](#awsiotsitewiseportalproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoTSiteWise/Project@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -129,7 +144,8 @@
 * **AssetModelId**: string (ReadOnly, Identifier): The ID of the asset model.
 * **AssetModelName**: string (Required): A unique, friendly name for the asset model.
 * **AssetModelProperties**: [AssetModelProperty](#assetmodelproperty)[] (ReadOnly, WriteOnly): The property definitions of the asset model. You can specify up to 200 properties per asset model.
-* **AssetModelType**: string: The type of the asset model (ASSET_MODEL OR COMPONENT_MODEL)
+* **AssetModelType**: string: The type of the asset model (ASSET_MODEL OR COMPONENT_MODEL or INTERFACE)
+* **EnforcedAssetModelInterfaceRelationships**: [EnforcedAssetModelInterfaceRelationship](#enforcedassetmodelinterfacerelationship)[]: a list of asset model and interface relationships
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the asset model.
 
 ## AWS.IoTSiteWise/AssetProperties
@@ -154,12 +170,25 @@
 * **ProjectId**: string: The ID of the project in which to create the dashboard.
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the dashboard.
 
+## AWS.IoTSiteWise/DatasetProperties
+### Properties
+* **DatasetArn**: string (ReadOnly): The ARN of the dataset.
+* **DatasetConfig**: [DatasetConfig](#datasetconfig): The configuration for the dataset.
+* **DatasetDescription**: string: A description about the dataset, and its functionality.
+* **DatasetId**: string (ReadOnly, Identifier): The ID of the dataset. For workspace-scoped datasets this is the workspace name and dataset ID joined by a slash, for example my-workspace/123e4567-e89b-42d3-a456-426614174000.
+* **DatasetName**: string (Required): The name of the dataset.
+* **DatasetSource**: [DatasetSource](#datasetsource): The data source for the dataset.
+* **DatasetType**: string: The type of the dataset.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **WorkspaceName**: string: The name of the workspace associated with the dataset.
+
 ## AWS.IoTSiteWise/GatewayProperties
 ### Properties
 * **GatewayCapabilitySummaries**: [GatewayCapabilitySummary](#gatewaycapabilitysummary)[]: A list of gateway capability summaries that each contain a namespace and status.
 * **GatewayId**: string (ReadOnly, Identifier): The ID of the gateway device.
 * **GatewayName**: string (Required): A unique, friendly name for the gateway.
 * **GatewayPlatform**: [GatewayPlatform](#gatewayplatform) (Required): The gateway's platform. You can only specify one platform in a gateway.
+* **GatewayVersion**: string: The version of the gateway you want to create.
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the gateway.
 
 ## AWS.IoTSiteWise/PortalProperties
@@ -189,6 +218,27 @@
 * **ProjectName**: string (Required): A friendly name for the project.
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the project.
 
+## DatasetConfig
+### Properties
+* **Session**: [SessionConfig](#sessionconfig): The session configuration for a SESSION dataset.
+
+## DatasetSource
+### Properties
+* **SourceDetail**: [SourceDetail](#sourcedetail): The details of the dataset source associated with the dataset.
+* **SourceFormat**: string (Required): The format of the dataset source associated with the dataset.
+* **SourceType**: string (Required): The type of data source for the dataset.
+
+## EnforcedAssetModelInterfacePropertyMapping
+### Properties
+* **AssetModelPropertyExternalId**: string: The external ID of the enforced asset model property
+* **AssetModelPropertyLogicalId**: string: The logical ID of the enforced asset model property
+* **InterfaceAssetModelPropertyExternalId**: string (Required): The external ID of the enforced interface property
+
+## EnforcedAssetModelInterfaceRelationship
+### Properties
+* **InterfaceAssetModelId**: string: The ID of the interface that is enforced to the asset model
+* **PropertyMappings**: [EnforcedAssetModelInterfacePropertyMapping](#enforcedassetmodelinterfacepropertymapping)[]: Contains information about enforced interface property and asset model property
+
 ## ExpressionVariable
 ### Properties
 * **Name**: string (Required): The friendly name of the variable to be used in the expression.
@@ -201,16 +251,12 @@
 
 ## GatewayPlatform
 ### Properties
-* **Greengrass**: [Greengrass](#greengrass): A gateway that runs on AWS IoT Greengrass V1.
 * **GreengrassV2**: [GreengrassV2](#greengrassv2): A gateway that runs on AWS IoT Greengrass V2.
 * **SiemensIE**: [SiemensIE](#siemensie): A gateway that runs on Siemens Industrial Edge.
 
-## Greengrass
-### Properties
-* **GroupArn**: string (Required): The ARN of the Greengrass group.
-
 ## GreengrassV2
 ### Properties
+* **CoreDeviceOperatingSystem**: string: The operating system of the core device in AWS IoT Greengrass V2.
 * **CoreDeviceThingName**: string (Required): The name of the CoreDevice in GreenGrass V2.
 
 ## IamRole
@@ -220,6 +266,11 @@
 ## IamUser
 ### Properties
 * **arn**: string: The ARN of the IAM user.
+
+## KendraSourceDetail
+### Properties
+* **KnowledgeBaseArn**: string (Required): The knowledgeBaseArn details for the Kendra dataset source.
+* **RoleArn**: string (Required): The roleARN details for the Kendra dataset source.
 
 ## Metric
 ### Properties
@@ -258,9 +309,23 @@
 * **Transform**: [Transform](#transform)
 * **TypeName**: string (Required)
 
+## SessionConfig
+### Properties
+* **SessionEndTime**: string (Required): The end time of the session as an ISO 8601 UTC instant, for example 2024-12-31T23:59:59Z.
+* **SessionStartTime**: string (Required): The start time of the session as an ISO 8601 UTC instant, for example 2024-01-01T00:00:00Z.
+
 ## SiemensIE
 ### Properties
 * **IotCoreThingName**: string (Required): The name of the IoT Core Thing.
+
+## SourceDetail
+### Properties
+* **Kendra**: [KendraSourceDetail](#kendrasourcedetail): Contains details about the Kendra dataset source.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

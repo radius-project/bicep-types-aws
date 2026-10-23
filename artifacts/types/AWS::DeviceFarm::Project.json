@@ -1,10 +1,32 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DeviceFarm-Project",
   "type": "AWS::DeviceFarm::Project",
-  "time": "2025-01-08T21:13:01.467Z",
+  "time": "2026-10-21T15:31:19.564Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
+      "EnvironmentVariable": {
+        "additionalProperties": false,
+        "insertionOrder": false,
+        "properties": {
+          "Name": {
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "[a-zA-Z_][a-zA-Z_0-9]*",
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name",
+          "Value"
+        ],
+        "type": "object"
+      },
       "Tag": {
         "additionalProperties": false,
         "insertionOrder": false,
@@ -72,7 +94,7 @@
         "type": "object"
       }
     },
-    "description": "AWS::DeviceFarm::Project creates a new Device Farm Project",
+    "description": "Resource Type definition for a Device Farm Project",
     "handlers": {
       "create": {
         "permissions": [
@@ -84,7 +106,8 @@
           "ec2:DescribeSubnets",
           "ec2:DescribeSecurityGroups",
           "ec2:CreateNetworkInterface",
-          "iam:CreateServiceLinkedRole"
+          "iam:CreateServiceLinkedRole",
+          "iam:PassRole"
         ]
       },
       "delete": {
@@ -117,7 +140,8 @@
           "ec2:DescribeSubnets",
           "ec2:DescribeSecurityGroups",
           "ec2:CreateNetworkInterface",
-          "iam:CreateServiceLinkedRole"
+          "iam:CreateServiceLinkedRole",
+          "iam:PassRole"
         ]
       }
     },
@@ -135,6 +159,22 @@
         "maximum": 150,
         "minimum": 5,
         "type": "integer"
+      },
+      "EnvironmentVariables": {
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/EnvironmentVariable"
+        },
+        "maxItems": 32,
+        "minItems": 1,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "ExecutionRoleArn": {
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:[^:]*:iam::[0-9]{12}:role/.+",
+        "type": "string"
       },
       "Name": {
         "maxLength": 256,
@@ -160,6 +200,15 @@
       "Name"
     ],
     "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "devicefarm:TagResource",
+        "devicefarm:UntagResource",
+        "devicefarm:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
       "taggable": true
     },
     "typeName": "AWS::DeviceFarm::Project"

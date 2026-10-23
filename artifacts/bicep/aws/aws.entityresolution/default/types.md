@@ -1,35 +1,40 @@
 # AWS.EntityResolution @ default
 
 ## Resource AWS.EntityResolution/IdMappingWorkflow@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EntityResolution/IdMappingWorkflowProperties](#awsentityresolutionidmappingworkflowproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EntityResolution/IdNamespace@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EntityResolution/IdNamespaceProperties](#awsentityresolutionidnamespaceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EntityResolution/MatchingWorkflow@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EntityResolution/MatchingWorkflowProperties](#awsentityresolutionmatchingworkflowproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EntityResolution/PolicyStatement@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EntityResolution/PolicyStatementProperties](#awsentityresolutionpolicystatementproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EntityResolution/SchemaMapping@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -39,6 +44,7 @@
 ### Properties
 * **CreatedAt**: string (ReadOnly)
 * **Description**: string: The description of the IdMappingWorkflow
+* **IdMappingIncrementalRunConfig**: [IdMappingIncrementalRunConfig](#idmappingincrementalrunconfig)
 * **IdMappingTechniques**: [IdMappingTechniques](#idmappingtechniques) (Required)
 * **InputSourceConfig**: [IdMappingWorkflowInputSource](#idmappingworkflowinputsource)[] (Required)
 * **OutputSourceConfig**: [IdMappingWorkflowOutputSource](#idmappingworkflowoutputsource)[]
@@ -95,6 +101,15 @@
 * **Tags**: [Tag](#tag)[]
 * **UpdatedAt**: string (ReadOnly)
 
+## CustomerProfilesIntegrationConfig
+### Properties
+* **DomainArn**: string (Required)
+* **ObjectTypeArn**: string (Required)
+
+## IdMappingIncrementalRunConfig
+### Properties
+* **IncrementalRunType**: string (Required)
+
 ## IdMappingRuleBasedProperties
 ### Properties
 * **AttributeMatchingModel**: string (Required)
@@ -105,6 +120,7 @@
 ## IdMappingTechniques
 ### Properties
 * **IdMappingType**: string
+* **NormalizationVersion**: string (WriteOnly)
 * **ProviderProperties**: [ProviderProperties](#providerproperties)
 * **RuleBasedProperties**: [IdMappingRuleBasedProperties](#idmappingrulebasedproperties)
 
@@ -154,6 +170,10 @@
 ### Properties
 * **IntermediateS3Path**: string (Required): The s3 path that would be used to stage the intermediate data being generated during workflow execution.
 
+## MatchingConfig
+### Properties
+* **EnableTransitiveMatching**: bool: Enables transitive matching to process records across all rule levels and connect unmatched records to existing match groups
+
 ## MatchingWorkflow_ProviderConfiguration
 ### Properties
 
@@ -177,9 +197,10 @@
 ## OutputSource
 ### Properties
 * **ApplyNormalization**: bool
+* **CustomerProfilesIntegrationConfig**: [CustomerProfilesIntegrationConfig](#customerprofilesintegrationconfig)
 * **KMSArn**: string
 * **Output**: [OutputAttribute](#outputattribute)[] (Required)
-* **OutputS3Path**: string (Required): The S3 path to which Entity Resolution will write the output table
+* **OutputS3Path**: string: The S3 path to which Entity Resolution will write the output table
 
 ## ProviderProperties
 ### Properties
@@ -195,9 +216,11 @@
 
 ## ResolutionTechniques
 ### Properties
+* **EnableRealTimeMatching**: bool: Enables the workflow to use real-time matching. Can only be set on creation for RULE_MATCHING workflows that define RuleConditionProperties.
 * **ProviderProperties**: [ProviderProperties](#providerproperties)
 * **ResolutionType**: string
 * **RuleBasedProperties**: [RuleBasedProperties](#rulebasedproperties)
+* **RuleConditionProperties**: [RuleConditionProperties](#ruleconditionproperties)
 
 ## Rule
 ### Properties
@@ -219,6 +242,16 @@
 * **AttributeMatchingModel**: string (Required)
 * **MatchPurpose**: string
 * **Rules**: [Rule](#rule)[] (Required)
+
+## RuleCondition
+### Properties
+* **Condition**: string
+* **RuleName**: string
+
+## RuleConditionProperties
+### Properties
+* **MatchingConfig**: [MatchingConfig](#matchingconfig)
+* **Rules**: [RuleCondition](#rulecondition)[] (Required)
 
 ## SchemaInputAttribute
 ### Properties

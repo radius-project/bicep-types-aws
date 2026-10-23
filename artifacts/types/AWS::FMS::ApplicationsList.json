@@ -1,0 +1,184 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-FMS-ApplicationsList",
+  "type": "AWS::FMS::ApplicationsList",
+  "time": "2026-10-21T20:59:07.681Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ListId"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "App": {
+        "additionalProperties": false,
+        "description": "An individual Firewall Manager application.",
+        "properties": {
+          "AppName": {
+            "description": "The application's name.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Port": {
+            "description": "The application's port number, for example 80.",
+            "maximum": 65535,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "Protocol": {
+            "description": "The IP protocol name or number. The name can be one of tcp, udp, or icmp. For information on possible numbers, see Protocol Numbers (https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).",
+            "maxLength": 20,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "AppName",
+          "Protocol",
+          "Port"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A tag to associate with the applications list. A tag is a key-value pair.",
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Creates an AWS Firewall Manager applications list.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "fms:PutAppsList",
+          "fms:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "fms:DeleteAppsList"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "fms:ListAppsLists"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "fms:GetAppsList",
+          "fms:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "fms:PutAppsList",
+          "fms:GetAppsList",
+          "fms:TagResource",
+          "fms:UntagResource",
+          "fms:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "AppsList": {
+        "description": "An array of applications in the Firewall Manager applications list.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/App"
+        },
+        "type": "array"
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the applications list.",
+        "maxLength": 1024,
+        "minLength": 1,
+        "pattern": "^arn:aws(-[a-z0-9-]+)?:fms:[a-z0-9-]*:[0-9]{12}:applications-list/[a-z0-9A-Z-]{36}$",
+        "type": "string"
+      },
+      "CreateTime": {
+        "description": "The time that the Firewall Manager applications list was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "LastUpdateTime": {
+        "description": "The time that the Firewall Manager applications list was last updated.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ListId": {
+        "description": "The ID of the Firewall Manager applications list.",
+        "maxLength": 36,
+        "minLength": 36,
+        "pattern": "^[a-z0-9A-Z-]{36}$",
+        "type": "string"
+      },
+      "ListName": {
+        "description": "The name of the Firewall Manager applications list.",
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to the applications list.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/ListId",
+      "/properties/CreateTime",
+      "/properties/LastUpdateTime"
+    ],
+    "required": [
+      "ListName",
+      "AppsList"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-fms.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "fms:TagResource",
+        "fms:UntagResource",
+        "fms:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::FMS::ApplicationsList"
+  }
+}

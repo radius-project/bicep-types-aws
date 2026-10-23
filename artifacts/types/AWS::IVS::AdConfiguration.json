@@ -1,0 +1,165 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IVS-AdConfiguration",
+  "type": "AWS::IVS::AdConfiguration",
+  "time": "2026-10-21T22:40:24.19Z",
+  "schema": {
+    "additionalProperties": false,
+    "definitions": {
+      "MediaTailorPlaybackConfiguration": {
+        "additionalProperties": false,
+        "description": "Object specifying a configuration for integration with an AWS Elemental MediaTailor (EMT).",
+        "properties": {
+          "PlaybackConfigurationArn": {
+            "description": "ARN of the customer-created EMT PlaybackConfiguration resource in the same region and account.",
+            "maxLength": 128,
+            "minLength": 0,
+            "pattern": "^arn:aws:mediatailor:[a-z0-9-]+:[0-9]+:playbackConfiguration/[a-zA-Z0-9-]+$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "PostRollConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration for the post-roll ad break to use for this ad configuration.",
+        "properties": {
+          "DurationSeconds": {
+            "description": "Duration of the post-roll ad break, in seconds.",
+            "maximum": 300,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "Enabled": {
+            "description": "Whether the post-roll ad configuration is enabled.",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "DurationSeconds",
+          "Enabled"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]+)$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource type definition for AWS::IVS::AdConfiguration. An ad configuration links Amazon IVS resources to AWS Elemental MediaTailor playback configurations, enabling server-side ad insertion for a channel.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "ivs:CreateAdConfiguration",
+          "ivs:TagResource",
+          "mediatailor:GetPlaybackConfiguration"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "ivs:DeleteAdConfiguration"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "ivs:ListAdConfigurations"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ivs:GetAdConfiguration",
+          "ivs:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "ivs:UpdateAdConfiguration",
+          "ivs:TagResource",
+          "ivs:UntagResource",
+          "ivs:ListTagsForResource",
+          "mediatailor:GetPlaybackConfiguration"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "Ad configuration ARN.",
+        "maxLength": 128,
+        "minLength": 0,
+        "pattern": "^arn:aws:ivs:[a-z0-9-]+:[0-9]+:ad-configuration/[a-zA-Z0-9-]+$",
+        "type": "string"
+      },
+      "MediaTailorPlaybackConfigurations": {
+        "description": "List of integration configurations with MediaTailor resources. The first item in the list is the default playback configuration used for the ad configuration.",
+        "items": {
+          "$ref": "#/definitions/MediaTailorPlaybackConfiguration"
+        },
+        "maxItems": 3,
+        "minItems": 1,
+        "type": "array"
+      },
+      "Name": {
+        "description": "Ad configuration name. The value does not need to be unique.",
+        "maxLength": 128,
+        "minLength": 0,
+        "pattern": "^[a-zA-Z0-9-_]*$",
+        "type": "string"
+      },
+      "PostRollConfiguration": {
+        "$ref": "#/definitions/PostRollConfiguration"
+      },
+      "Tags": {
+        "description": "Tags attached to the resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn"
+    ],
+    "required": [
+      "MediaTailorPlaybackConfigurations"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "ivs:TagResource",
+        "ivs:UntagResource",
+        "ivs:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::IVS::AdConfiguration"
+  }
+}

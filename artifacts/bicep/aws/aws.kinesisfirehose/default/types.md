@@ -1,7 +1,8 @@
 # AWS.KinesisFirehose @ default
 
 ## Resource AWS.KinesisFirehose/DeliveryStream@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -62,22 +63,23 @@
 
 ## AWS.KinesisFirehose/DeliveryStreamProperties
 ### Properties
-* **AmazonOpenSearchServerlessDestinationConfiguration**: [AmazonOpenSearchServerlessDestinationConfiguration](#amazonopensearchserverlessdestinationconfiguration)
-* **AmazonopensearchserviceDestinationConfiguration**: [AmazonopensearchserviceDestinationConfiguration](#amazonopensearchservicedestinationconfiguration)
+* **AmazonOpenSearchServerlessDestinationConfiguration**: [AmazonOpenSearchServerlessDestinationConfiguration](#amazonopensearchserverlessdestinationconfiguration) (WriteOnly)
+* **AmazonopensearchserviceDestinationConfiguration**: [AmazonopensearchserviceDestinationConfiguration](#amazonopensearchservicedestinationconfiguration) (WriteOnly)
 * **Arn**: string (ReadOnly)
-* **DatabaseSourceConfiguration**: [DatabaseSourceConfiguration](#databasesourceconfiguration)
+* **DatabaseSourceConfiguration**: [DatabaseSourceConfiguration](#databasesourceconfiguration) (WriteOnly)
 * **DeliveryStreamEncryptionConfigurationInput**: [DeliveryStreamEncryptionConfigurationInput](#deliverystreamencryptionconfigurationinput)
 * **DeliveryStreamName**: string (Identifier)
 * **DeliveryStreamType**: string
-* **ElasticsearchDestinationConfiguration**: [ElasticsearchDestinationConfiguration](#elasticsearchdestinationconfiguration)
+* **DirectPutSourceConfiguration**: [DirectPutSourceConfiguration](#directputsourceconfiguration)
+* **ElasticsearchDestinationConfiguration**: [ElasticsearchDestinationConfiguration](#elasticsearchdestinationconfiguration) (WriteOnly)
 * **ExtendedS3DestinationConfiguration**: [ExtendedS3DestinationConfiguration](#extendeds3destinationconfiguration)
 * **HttpEndpointDestinationConfiguration**: [HttpEndpointDestinationConfiguration](#httpendpointdestinationconfiguration)
-* **IcebergDestinationConfiguration**: [IcebergDestinationConfiguration](#icebergdestinationconfiguration)
-* **KinesisStreamSourceConfiguration**: [KinesisStreamSourceConfiguration](#kinesisstreamsourceconfiguration)
-* **MSKSourceConfiguration**: [MSKSourceConfiguration](#msksourceconfiguration)
+* **IcebergDestinationConfiguration**: [IcebergDestinationConfiguration](#icebergdestinationconfiguration) (WriteOnly)
+* **KinesisStreamSourceConfiguration**: [KinesisStreamSourceConfiguration](#kinesisstreamsourceconfiguration) (WriteOnly)
+* **MSKSourceConfiguration**: [MSKSourceConfiguration](#msksourceconfiguration) (WriteOnly)
 * **RedshiftDestinationConfiguration**: [RedshiftDestinationConfiguration](#redshiftdestinationconfiguration)
-* **S3DestinationConfiguration**: [S3DestinationConfiguration](#s3destinationconfiguration)
-* **SnowflakeDestinationConfiguration**: [SnowflakeDestinationConfiguration](#snowflakedestinationconfiguration)
+* **S3DestinationConfiguration**: [S3DestinationConfiguration](#s3destinationconfiguration) (WriteOnly)
+* **SnowflakeDestinationConfiguration**: [SnowflakeDestinationConfiguration](#snowflakedestinationconfiguration) (WriteOnly)
 * **SplunkDestinationConfiguration**: [SplunkDestinationConfiguration](#splunkdestinationconfiguration)
 * **Tags**: [Tag](#tag)[]
 
@@ -89,10 +91,11 @@
 ## CatalogConfiguration
 ### Properties
 * **CatalogArn**: string
+* **WarehouseLocation**: string
 
 ## CloudWatchLoggingOptions
 ### Properties
-* **Enabled**: bool
+* **Enabled**: bool (WriteOnly)
 * **LogGroupName**: string
 * **LogStreamName**: string
 
@@ -151,6 +154,10 @@
 ## DeliveryStream_ColumnToJsonKeyMappings
 ### Properties
 
+## DeliveryStream_PartitionSpec
+### Properties
+* **Identity**: [PartitionField](#partitionfield)[]
+
 ## DeliveryStreamEncryptionConfigurationInput
 ### Properties
 * **KeyARN**: string
@@ -165,8 +172,13 @@
 ### Properties
 * **DestinationDatabaseName**: string (Required)
 * **DestinationTableName**: string (Required)
+* **PartitionSpec**: [DeliveryStream_PartitionSpec](#deliverystreampartitionspec)
 * **S3ErrorOutputPrefix**: string
 * **UniqueKeys**: string[]
+
+## DirectPutSourceConfiguration
+### Properties
+* **ThroughputHintInMBs**: int (WriteOnly)
 
 ## DocumentIdOptions
 ### Properties
@@ -206,7 +218,7 @@
 ## EncryptionConfiguration
 ### Properties
 * **KMSEncryptionConfig**: [KMSEncryptionConfig](#kmsencryptionconfig)
-* **NoEncryptionConfig**: string
+* **NoEncryptionConfig**: string (WriteOnly)
 
 ## ExtendedS3DestinationConfiguration
 ### Properties
@@ -214,12 +226,12 @@
 * **BufferingHints**: [BufferingHints](#bufferinghints)
 * **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
 * **CompressionFormat**: string
-* **CustomTimeZone**: string
+* **CustomTimeZone**: string (WriteOnly)
 * **DataFormatConversionConfiguration**: [DataFormatConversionConfiguration](#dataformatconversionconfiguration)
 * **DynamicPartitioningConfiguration**: [DynamicPartitioningConfiguration](#dynamicpartitioningconfiguration)
 * **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
 * **ErrorOutputPrefix**: string
-* **FileExtension**: string
+* **FileExtension**: string (WriteOnly)
 * **Prefix**: string
 * **ProcessingConfiguration**: [ProcessingConfiguration](#processingconfiguration)
 * **RoleARN**: string (Required)
@@ -237,7 +249,7 @@
 
 ## HttpEndpointConfiguration
 ### Properties
-* **AccessKey**: string
+* **AccessKey**: string (WriteOnly)
 * **Name**: string
 * **Url**: string (Required)
 
@@ -246,13 +258,13 @@
 * **BufferingHints**: [BufferingHints](#bufferinghints)
 * **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
 * **EndpointConfiguration**: [HttpEndpointConfiguration](#httpendpointconfiguration) (Required)
-* **ProcessingConfiguration**: [ProcessingConfiguration](#processingconfiguration)
+* **ProcessingConfiguration**: [ProcessingConfiguration](#processingconfiguration) (WriteOnly)
 * **RequestConfiguration**: [HttpEndpointRequestConfiguration](#httpendpointrequestconfiguration)
 * **RetryOptions**: [RetryOptions](#retryoptions)
 * **RoleARN**: string
 * **S3BackupMode**: string
 * **S3Configuration**: [S3DestinationConfiguration](#s3destinationconfiguration) (Required)
-* **SecretsManagerConfiguration**: [SecretsManagerConfiguration](#secretsmanagerconfiguration)
+* **SecretsManagerConfiguration**: [SecretsManagerConfiguration](#secretsmanagerconfiguration) (WriteOnly)
 
 ## HttpEndpointRequestConfiguration
 ### Properties
@@ -261,6 +273,7 @@
 
 ## IcebergDestinationConfiguration
 ### Properties
+* **AppendOnly**: bool
 * **BufferingHints**: [BufferingHints](#bufferinghints)
 * **CatalogConfiguration**: [CatalogConfiguration](#catalogconfiguration) (Required)
 * **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
@@ -270,6 +283,8 @@
 * **RoleARN**: string (Required)
 * **s3BackupMode**: string
 * **S3Configuration**: [S3DestinationConfiguration](#s3destinationconfiguration) (Required)
+* **SchemaEvolutionConfiguration**: [SchemaEvolutionConfiguration](#schemaevolutionconfiguration)
+* **TableCreationConfiguration**: [TableCreationConfiguration](#tablecreationconfiguration)
 
 ## InputFormatConfiguration
 ### Properties
@@ -282,7 +297,7 @@
 
 ## KMSEncryptionConfig
 ### Properties
-* **AWSKMSKeyARN**: string (Required)
+* **AWSKMSKeyARN**: string (Required, WriteOnly)
 
 ## MSKSourceConfiguration
 ### Properties
@@ -323,6 +338,10 @@
 * **PageSizeBytes**: int
 * **WriterVersion**: string
 
+## PartitionField
+### Properties
+* **SourceName**: string (Required)
+
 ## ProcessingConfiguration
 ### Properties
 * **Enabled**: bool
@@ -343,8 +362,8 @@
 * **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
 * **ClusterJDBCURL**: string (Required)
 * **CopyCommand**: [CopyCommand](#copycommand) (Required)
-* **Password**: string
-* **ProcessingConfiguration**: [ProcessingConfiguration](#processingconfiguration)
+* **Password**: string (WriteOnly)
+* **ProcessingConfiguration**: [ProcessingConfiguration](#processingconfiguration) (WriteOnly)
 * **RetryOptions**: [RedshiftRetryOptions](#redshiftretryoptions)
 * **RoleARN**: string (Required)
 * **S3BackupConfiguration**: [S3DestinationConfiguration](#s3destinationconfiguration)
@@ -368,7 +387,7 @@
 * **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
 * **CompressionFormat**: string
 * **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
-* **ErrorOutputPrefix**: string
+* **ErrorOutputPrefix**: string (WriteOnly)
 * **Prefix**: string
 * **RoleARN**: string (Required)
 
@@ -381,11 +400,15 @@
 * **TableName**: string
 * **VersionId**: string
 
+## SchemaEvolutionConfiguration
+### Properties
+* **Enabled**: bool
+
 ## SecretsManagerConfiguration
 ### Properties
-* **Enabled**: bool (Required)
-* **RoleARN**: string
-* **SecretARN**: string
+* **Enabled**: bool (Required, WriteOnly)
+* **RoleARN**: string (WriteOnly)
+* **SecretARN**: string (WriteOnly)
 
 ## Serializer
 ### Properties
@@ -416,7 +439,7 @@
 * **Schema**: string (Required)
 * **SecretsManagerConfiguration**: [SecretsManagerConfiguration](#secretsmanagerconfiguration)
 * **SnowflakeRoleConfiguration**: [SnowflakeRoleConfiguration](#snowflakeroleconfiguration)
-* **SnowflakeVpcConfiguration**: [SnowflakeVpcConfiguration](#snowflakevpcconfiguration)
+* **SnowflakeVpcConfiguration**: [SnowflakeVpcConfiguration](#snowflakevpcconfiguration) (WriteOnly)
 * **Table**: string (Required)
 * **User**: string
 
@@ -440,21 +463,25 @@
 
 ## SplunkDestinationConfiguration
 ### Properties
-* **BufferingHints**: [SplunkBufferingHints](#splunkbufferinghints)
-* **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
+* **BufferingHints**: [SplunkBufferingHints](#splunkbufferinghints) (WriteOnly)
+* **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions) (WriteOnly)
 * **HECAcknowledgmentTimeoutInSeconds**: int
 * **HECEndpoint**: string (Required)
 * **HECEndpointType**: string (Required)
 * **HECToken**: string
-* **ProcessingConfiguration**: [ProcessingConfiguration](#processingconfiguration)
+* **ProcessingConfiguration**: [ProcessingConfiguration](#processingconfiguration) (WriteOnly)
 * **RetryOptions**: [SplunkRetryOptions](#splunkretryoptions)
 * **S3BackupMode**: string
 * **S3Configuration**: [S3DestinationConfiguration](#s3destinationconfiguration) (Required)
-* **SecretsManagerConfiguration**: [SecretsManagerConfiguration](#secretsmanagerconfiguration)
+* **SecretsManagerConfiguration**: [SecretsManagerConfiguration](#secretsmanagerconfiguration) (WriteOnly)
 
 ## SplunkRetryOptions
 ### Properties
 * **DurationInSeconds**: int
+
+## TableCreationConfiguration
+### Properties
+* **Enabled**: bool
 
 ## Tag
 ### Properties

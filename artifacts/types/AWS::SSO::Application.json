@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SSO-Application",
   "type": "AWS::SSO::Application",
-  "time": "2024-12-11T20:30:04.968Z",
+  "time": "2026-10-21T22:14:39.884Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -84,7 +84,8 @@
         "permissions": [
           "sso:CreateApplication",
           "sso:DescribeApplication",
-          "sso:TagResource"
+          "sso:TagResource",
+          "sso:ListTagsForResource"
         ]
       },
       "delete": {
@@ -104,7 +105,8 @@
           ]
         },
         "permissions": [
-          "sso:ListApplications"
+          "sso:ListApplications",
+          "sso:ListTagsForResource"
         ]
       },
       "read": {
@@ -131,14 +133,14 @@
         "description": "The Application ARN that is returned upon creation of the Identity Center (SSO) Application",
         "maxLength": 1224,
         "minLength": 10,
-        "pattern": "^arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso::\\d{12}:application/(sso)?ins-[a-zA-Z0-9-.]{16}/apl-[a-zA-Z0-9]{16}$",
+        "pattern": "^arn:aws(-[a-z]{1,5}){0,3}:sso::\\d{12}:application/(sso)?ins-[a-zA-Z0-9-.]{16}/apl-[a-zA-Z0-9]{16}$",
         "type": "string"
       },
       "ApplicationProviderArn": {
         "description": "The ARN of the application provider under which the operation will run",
         "maxLength": 1224,
         "minLength": 10,
-        "pattern": "^arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso::aws:applicationProvider/[a-zA-Z0-9-/]+$",
+        "pattern": "^arn:aws(-[a-z]{1,5}){0,3}:sso::aws:applicationProvider/[a-zA-Z0-9-/]+$",
         "type": "string"
       },
       "Description": {
@@ -147,11 +149,18 @@
         "minLength": 1,
         "type": "string"
       },
+      "IdentityStoreArn": {
+        "description": "The ARN of the identity store associated with the Identity Center instance",
+        "maxLength": 1224,
+        "minLength": 10,
+        "pattern": "^arn:aws(-[a-z]{1,5}){0,3}:identitystore::\\d{12}:identitystore/d-[0-9a-f]{10}$",
+        "type": "string"
+      },
       "InstanceArn": {
         "description": "The ARN of the instance of IAM Identity Center under which the operation will run",
         "maxLength": 1224,
         "minLength": 10,
-        "pattern": "^arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso:::instance/(sso)?ins-[a-zA-Z0-9-.]{16}$",
+        "pattern": "^arn:aws(-[a-z]{1,5}){0,3}:sso:::instance/(sso)?ins-[a-zA-Z0-9-.]{16}$",
         "type": "string"
       },
       "Name": {
@@ -185,7 +194,8 @@
       }
     },
     "readOnlyProperties": [
-      "/properties/ApplicationArn"
+      "/properties/ApplicationArn",
+      "/properties/IdentityStoreArn"
     ],
     "required": [
       "Name",
@@ -195,6 +205,10 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-sso/aws-sso-application",
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "sso:TagResource",
+        "sso:UntagResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

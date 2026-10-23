@@ -1,6 +1,187 @@
 [
   {
     "$type": "ObjectType",
+    "name": "Arn",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PackagingType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3Location",
+    "properties": {
+      "S3Bucket": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "S3Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ScriptDetails",
+    "properties": {
+      "ExecutableParameters": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "ExecutablePath": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "ScriptS3Location": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1
+      },
+      "TimeoutInSeconds": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {}
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.AppStream/AppBlockProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AppStream/AppBlockProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18
+      },
+      "CreatedTime": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "DisplayName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "PackagingType": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "PostSetupScriptDetails": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "SetupScriptDetails": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "SourceS3Location": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AppStream/AppBlock",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.AppStream/AppBlock@default",
+    "body": {
+      "$ref": "#/10"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "AccessEndpoint",
     "properties": {
       "EndpointType": {
@@ -51,20 +232,17 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 0
       }
     }
-  },
-  {
-    "$type": "StringType"
   },
   {
     "$type": "ArrayType",
@@ -85,7 +263,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/0"
+      "$ref": "#/12"
     }
   },
   {
@@ -100,7 +278,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/15"
     }
   },
   {
@@ -109,13 +287,13 @@
     "properties": {
       "AccessEndpoints": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/20"
         },
         "flags": 0
       },
       "AppBlockArns": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/21"
         },
         "flags": 4
       },
@@ -137,6 +315,12 @@
         },
         "flags": 0
       },
+      "DisableIMDSV1": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0
+      },
       "DisplayName": {
         "type": {
           "$ref": "#/5"
@@ -145,7 +329,7 @@
       },
       "EnableDefaultInternetAccess": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/22"
         },
         "flags": 0
       },
@@ -175,13 +359,13 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/23"
         },
-        "flags": 4
+        "flags": 0
       },
       "VpcConfig": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/16"
         },
         "flags": 1
       }
@@ -207,7 +391,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -217,11 +401,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.AppStream/AppBlockBuilder@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/14"
+      "$ref": "#/25"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -286,7 +470,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/20"
+      "$ref": "#/31"
     }
   },
   {
@@ -307,7 +491,7 @@
       },
       "AttributesToDelete": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/33"
         },
         "flags": 4
       },
@@ -331,13 +515,13 @@
       },
       "IconS3Location": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/30"
         },
         "flags": 1
       },
       "InstanceFamilies": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/34"
         },
         "flags": 1
       },
@@ -361,15 +545,15 @@
       },
       "Platforms": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/35"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/36"
         },
-        "flags": 4
+        "flags": 0
       },
       "WorkingDirectory": {
         "type": {
@@ -399,7 +583,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/37"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -409,11 +593,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.AppStream/Application@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/27"
+      "$ref": "#/38"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -467,7 +651,7 @@
     "properties": {
       "CertificateBasedAuthProperties": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/40"
         },
         "flags": 0
       },
@@ -479,13 +663,13 @@
       },
       "OrganizationalUnitDistinguishedNames": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/43"
         },
         "flags": 1
       },
       "ServiceAccountCredentials": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/41"
         },
         "flags": 1
       }
@@ -511,7 +695,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/44"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -521,11 +705,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.AppStream/DirectoryConfig@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/34"
+      "$ref": "#/45"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -552,7 +736,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/36"
+      "$ref": "#/47"
     }
   },
   {
@@ -567,7 +751,7 @@
       },
       "Attributes": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/49"
         },
         "flags": 1
       },
@@ -623,7 +807,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/50"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -633,10 +817,857 @@
   {
     "$type": "ResourceType",
     "name": "AWS.AppStream/Entitlement@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/40"
+      "$ref": "#/51"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ComputeCapacity",
+    "properties": {
+      "DesiredInstances": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "DesiredSessions": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DomainJoinInfo",
+    "properties": {
+      "DirectoryName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "OrganizationalUnitDistinguishedName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3Location",
+    "properties": {
+      "S3Bucket": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "S3Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VolumeConfig",
+    "properties": {
+      "VolumeSizeInGb": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VpcConfig",
+    "properties": {
+      "SecurityGroupIds": {
+        "type": {
+          "$ref": "#/59"
+        },
+        "flags": 0
+      },
+      "SubnetIds": {
+        "type": {
+          "$ref": "#/60"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.AppStream/FleetProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/56"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AppStream/FleetProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2
+      },
+      "AttributesToDelete": {
+        "type": {
+          "$ref": "#/62"
+        },
+        "flags": 4
+      },
+      "ComputeCapacity": {
+        "type": {
+          "$ref": "#/53"
+        },
+        "flags": 0
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "DisableIMDSV1": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0
+      },
+      "DisconnectTimeoutInSeconds": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "DisplayName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "DomainJoinInfo": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 0
+      },
+      "EnableDefaultInternetAccess": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0
+      },
+      "FleetType": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "IamRoleArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "IdleDisconnectTimeoutInSeconds": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "ImageArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "ImageName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "InstanceType": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "MaxConcurrentSessions": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "MaxSessionsPerInstance": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "MaxUserDurationInSeconds": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17
+      },
+      "Platform": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "RootVolumeConfig": {
+        "type": {
+          "$ref": "#/57"
+        },
+        "flags": 0
+      },
+      "SessionScriptS3Location": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 0
+      },
+      "StreamView": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/63"
+        },
+        "flags": 0
+      },
+      "UsbDeviceFilterStrings": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 0
+      },
+      "VpcConfig": {
+        "type": {
+          "$ref": "#/58"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AppStream/Fleet",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.AppStream/Fleet@default",
+    "body": {
+      "$ref": "#/66"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AccessEndpoint",
+    "properties": {
+      "EndpointType": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The type of interface endpoint."
+      },
+      "VpceId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The identifier (ID) of the VPC in which the interface endpoint is used."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AgentAccessConfig",
+    "properties": {
+      "S3BucketArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the Amazon S3 bucket where agent screenshots are stored. Required when ScreenshotsUploadEnabled is true."
+      },
+      "ScreenImageFormat": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The image format for agent screen captures."
+      },
+      "ScreenResolution": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The screen resolution for the agent streaming environment."
+      },
+      "ScreenshotsUploadEnabled": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Indicates whether screenshot uploads to Amazon S3 are enabled for agent sessions."
+      },
+      "Settings": {
+        "type": {
+          "$ref": "#/78"
+        },
+        "flags": 1,
+        "description": "The list of agent access settings that define permissions for each agent action. You must specify at least one setting."
+      },
+      "UserControlMode": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The user control mode for agent sessions. This setting determines how users can interact with agent sessions. Valid values are VIEW_ONLY, VIEW_STOP, and DISABLED."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AgentAccessSetting",
+    "properties": {
+      "AgentAction": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The agent action to configure. Valid values are COMPUTER_VISION, COMPUTER_INPUT, and FORWARD_MCP_TOOLS. COMPUTER_VISION allows agents to take screenshots of the desktop. COMPUTER_INPUT allows agents to click, type, and scroll on the desktop and requires COMPUTER_VISION to also be enabled. FORWARD_MCP_TOOLS allows agents to interact with applications and the desktop operating system through direct MCP calls rather than using computer use tools. Forwards MCP tools configured on the WorkSpaces application session to the agent."
+      },
+      "Permission": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "Whether the agent action is enabled or disabled."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ApplicationSettings",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "Enables or disables persistent application settings for users during their streaming sessions."
+      },
+      "SettingsGroup": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The path prefix for the S3 bucket where users' persistent application settings are stored. You can allow the same persistent application settings to be used across multiple stacks by specifying the same settings group for each stack."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ContentRedirection",
+    "properties": {
+      "HostToClient": {
+        "type": {
+          "$ref": "#/76"
+        },
+        "flags": 0,
+        "description": "The URL redirection configuration from the streaming session host to the client."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StorageConnector",
+    "properties": {
+      "ConnectorType": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The type of storage connector."
+      },
+      "Domains": {
+        "type": {
+          "$ref": "#/79"
+        },
+        "flags": 0,
+        "description": "The names of the domains for the account."
+      },
+      "ResourceIdentifier": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The ARN of the storage connector."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StreamingExperienceSettings",
+    "properties": {
+      "PreferredProtocol": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The preferred protocol that you want to use while streaming your application."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The key of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The value of the tag."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "UrlRedirectionConfig",
+    "properties": {
+      "AllowedUrls": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 0,
+        "description": "The URLs that are allowed for redirection."
+      },
+      "DeniedUrls": {
+        "type": {
+          "$ref": "#/81"
+        },
+        "flags": 0,
+        "description": "The URLs that are denied for redirection."
+      },
+      "Enabled": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "Specifies whether URL redirection is enabled or disabled."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "UserSetting",
+    "properties": {
+      "Action": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The action that is enabled or disabled."
+      },
+      "MaximumLength": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Specifies the number of characters that can be copied by end users from the local device to the remote session, and to the local device from the remote session. This can be specified only for the CLIPBOARD_COPY_FROM_LOCAL_DEVICE and CLIPBOARD_COPY_TO_LOCAL_DEVICE actions. This defaults to 20,971,520 (20 MB) when unspecified and the permission is ENABLED. This can't be specified when the permission is DISABLED. The value can be between 1 and 20,971,520 (20 MB)."
+      },
+      "Permission": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "Indicates whether the action is enabled or disabled."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/70"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.AppStream/StackProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/68"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/73"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/75"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/77"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AppStream/StackProperties",
+    "properties": {
+      "AccessEndpoints": {
+        "type": {
+          "$ref": "#/83"
+        },
+        "flags": 0,
+        "description": "The list of virtual private cloud (VPC) interface endpoint objects. Users of the stack can connect to AppStream 2.0 only through the specified endpoints."
+      },
+      "AgentAccessConfig": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0,
+        "description": "The configuration for agent access on the stack. If specified, agent access is enabled for the stack."
+      },
+      "ApplicationSettings": {
+        "type": {
+          "$ref": "#/71"
+        },
+        "flags": 0,
+        "description": "The persistent application settings for users of the stack. When these settings are enabled, changes that users make to applications and Windows settings are automatically saved after each session and applied to the next session."
+      },
+      "AttributesToDelete": {
+        "type": {
+          "$ref": "#/84"
+        },
+        "flags": 4,
+        "description": "The stack attributes to delete."
+      },
+      "ContentRedirection": {
+        "type": {
+          "$ref": "#/72"
+        },
+        "flags": 0,
+        "description": "The content redirection settings for the stack. These settings control URL redirection between the streaming session and the local device."
+      },
+      "DeleteStorageConnectors": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 4,
+        "description": "This parameter has been deprecated. Deletes the storage connectors currently enabled for the stack."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The description to display."
+      },
+      "DisplayName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The stack name to display."
+      },
+      "EmbedHostDomains": {
+        "type": {
+          "$ref": "#/85"
+        },
+        "flags": 0,
+        "description": "The domains where AppStream 2.0 streaming sessions can be embedded in an iframe. You must approve the domains that you want to host embedded AppStream 2.0 streaming sessions."
+      },
+      "FeedbackURL": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The URL that users are redirected to after they click the Send Feedback link. If no URL is specified, no Send Feedback link is displayed."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 16,
+        "description": "The name of the stack."
+      },
+      "RedirectURL": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The URL that users are redirected to after their streaming session ends."
+      },
+      "StorageConnectors": {
+        "type": {
+          "$ref": "#/86"
+        },
+        "flags": 2,
+        "description": "The storage connectors to enable."
+      },
+      "StreamingExperienceSettings": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 0,
+        "description": "The streaming protocol that you want your stack to prefer. This can be UDP or TCP. Currently, UDP is only supported in the Windows native client."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/87"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs."
+      },
+      "UserSettings": {
+        "type": {
+          "$ref": "#/88"
+        },
+        "flags": 0,
+        "description": "The actions that are enabled or disabled for users during their streaming sessions. By default, these actions are enabled."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AppStream/Stack",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/89"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.AppStream/Stack@default",
+    "body": {
+      "$ref": "#/90"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.AppStream/StackFleetAssociationProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AppStream/StackFleetAssociationProperties",
+    "properties": {
+      "FleetName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "The name of the fleet. To associate a fleet with a stack, you must specify a dependency on the fleet resource."
+      },
+      "StackName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "The name of the stack. To associate a fleet with a stack, you must specify a dependency on the stack resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AppStream/StackFleetAssociation",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/93"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.AppStream/StackFleetAssociation@default",
+    "body": {
+      "$ref": "#/94"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

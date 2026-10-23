@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SES-ContactList",
   "type": "AWS::SES::ContactList",
-  "time": "2025-01-23T10:41:29.756Z",
+  "time": "2026-10-21T18:47:23.61Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -64,12 +64,16 @@
     "handlers": {
       "create": {
         "permissions": [
-          "ses:CreateContactList"
+          "ses:CreateContactList",
+          "ses:UntagResource",
+          "ses:TagResource",
+          "ses:GetContactList"
         ]
       },
       "delete": {
         "permissions": [
-          "ses:DeleteContactList"
+          "ses:DeleteContactList",
+          "ses:GetContactList"
         ]
       },
       "list": {
@@ -79,14 +83,16 @@
       },
       "read": {
         "permissions": [
-          "ses:GetContactList"
+          "ses:GetContactList",
+          "ses:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
           "ses:UpdateContactList",
           "ses:UntagResource",
-          "ses:TagResource"
+          "ses:TagResource",
+          "ses:GetContactList"
         ]
       }
     },
@@ -126,6 +132,18 @@
       }
     },
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-ses.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "ses:TagResource",
+        "ses:UntagResource",
+        "ses:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::SES::ContactList"
   }
 }

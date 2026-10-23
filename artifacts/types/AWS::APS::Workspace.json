@@ -1,13 +1,87 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-APS-Workspace",
   "type": "AWS::APS::Workspace",
-  "time": "2025-01-21T17:26:03.875Z",
+  "time": "2026-09-30T10:24:30.678Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/KmsKeyArn"
     ],
     "definitions": {
+      "CloudWatchLogDestination": {
+        "additionalProperties": false,
+        "description": "Represents a cloudwatch logs destination for query logging",
+        "properties": {
+          "LogGroupArn": {
+            "description": "The ARN of the CloudWatch Logs log group",
+            "maxLength": 512,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "LogGroupArn"
+        ],
+        "type": "object"
+      },
+      "Label": {
+        "additionalProperties": false,
+        "description": "Series label",
+        "properties": {
+          "Name": {
+            "description": "Name of the label",
+            "minLength": 1,
+            "pattern": "^[a-zA-Z_][a-zA-Z0-9_]*$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "Value of the label",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "LimitsPerLabelSet": {
+        "additionalProperties": false,
+        "description": "Label set and its associated limits",
+        "properties": {
+          "LabelSet": {
+            "description": "An array of series labels",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/Label"
+            },
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "Limits": {
+            "$ref": "#/definitions/LimitsPerLabelSetEntry"
+          }
+        },
+        "required": [
+          "Limits",
+          "LabelSet"
+        ],
+        "type": "object"
+      },
+      "LimitsPerLabelSetEntry": {
+        "additionalProperties": false,
+        "description": "Limits that can be applied to a label set",
+        "properties": {
+          "MaxSeries": {
+            "description": "The maximum number of active series that can be ingested for this label set",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
       "LoggingConfiguration": {
         "additionalProperties": false,
         "description": "Logging configuration",
@@ -19,6 +93,57 @@
             "type": "string"
           }
         },
+        "type": "object"
+      },
+      "LoggingDestination": {
+        "additionalProperties": false,
+        "description": "Destinations for query logging",
+        "properties": {
+          "CloudWatchLogs": {
+            "$ref": "#/definitions/CloudWatchLogDestination"
+          },
+          "Filters": {
+            "$ref": "#/definitions/LoggingFilter"
+          }
+        },
+        "required": [
+          "CloudWatchLogs",
+          "Filters"
+        ],
+        "type": "object"
+      },
+      "LoggingFilter": {
+        "additionalProperties": false,
+        "description": "Filters for logging",
+        "properties": {
+          "QspThreshold": {
+            "description": "Query logs with QSP above this limit are vended",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "QspThreshold"
+        ],
+        "type": "object"
+      },
+      "QueryLoggingConfiguration": {
+        "additionalProperties": false,
+        "description": "Query logging configuration",
+        "properties": {
+          "Destinations": {
+            "description": "The destinations configuration for query logging",
+            "items": {
+              "$ref": "#/definitions/LoggingDestination"
+            },
+            "maxItems": 1,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "Destinations"
+        ],
         "type": "object"
       },
       "Tag": {
@@ -43,6 +168,38 @@
           "Value"
         ],
         "type": "object"
+      },
+      "WorkspaceConfiguration": {
+        "additionalProperties": false,
+        "description": "Workspace configuration",
+        "properties": {
+          "LimitsPerLabelSets": {
+            "description": "An array of label set and associated limits",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/LimitsPerLabelSet"
+            },
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "OutOfOrderTimeWindowInSeconds": {
+            "description": "The time window in seconds for accepting out-of-order samples",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "RetentionPeriodInDays": {
+            "description": "How many days that metrics are retained in the workspace",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "RuleQueryOffsetInSeconds": {
+            "description": "Duration in seconds to offset rule evaluation queries into the past",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
       }
     },
     "description": "Resource Type definition for AWS::APS::Workspace",
@@ -55,6 +212,9 @@
           "aps:CreateAlertManagerDefinition",
           "aps:DescribeAlertManagerDefinition",
           "aps:CreateLoggingConfiguration",
+          "aps:CreateQueryLoggingConfiguration",
+          "aps:DescribeWorkspaceConfiguration",
+          "aps:UpdateWorkspaceConfiguration",
           "logs:CreateLogDelivery",
           "logs:GetLogDelivery",
           "logs:ListLogDeliveries",
@@ -70,6 +230,7 @@
           "aps:DescribeWorkspace",
           "aps:DeleteAlertManagerDefinition",
           "aps:DeleteLoggingConfiguration",
+          "aps:DeleteQueryLoggingConfiguration",
           "logs:DeleteLogDelivery"
         ]
       },
@@ -84,7 +245,9 @@
           "aps:DescribeWorkspace",
           "aps:ListTagsForResource",
           "aps:DescribeAlertManagerDefinition",
-          "aps:DescribeLoggingConfiguration"
+          "aps:DescribeLoggingConfiguration",
+          "aps:DescribeQueryLoggingConfiguration",
+          "aps:DescribeWorkspaceConfiguration"
         ]
       },
       "update": {
@@ -101,6 +264,12 @@
           "aps:DescribeLoggingConfiguration",
           "aps:UpdateLoggingConfiguration",
           "aps:DeleteLoggingConfiguration",
+          "aps:DescribeWorkspaceConfiguration",
+          "aps:UpdateWorkspaceConfiguration",
+          "aps:CreateQueryLoggingConfiguration",
+          "aps:UpdateQueryLoggingConfiguration",
+          "aps:DeleteQueryLoggingConfiguration",
+          "aps:DescribeQueryLoggingConfiguration",
           "logs:CreateLogDelivery",
           "logs:GetLogDelivery",
           "logs:UpdateLogDelivery",
@@ -145,6 +314,9 @@
         "description": "AMP Workspace prometheus endpoint",
         "type": "string"
       },
+      "QueryLoggingConfiguration": {
+        "$ref": "#/definitions/QueryLoggingConfiguration"
+      },
       "Tags": {
         "description": "An array of key-value pairs to apply to this resource.",
         "insertionOrder": false,
@@ -153,6 +325,9 @@
         },
         "type": "array",
         "uniqueItems": true
+      },
+      "WorkspaceConfiguration": {
+        "$ref": "#/definitions/WorkspaceConfiguration"
       },
       "WorkspaceId": {
         "description": "Required to identify a specific APS Workspace.",
@@ -171,6 +346,10 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "aps:TagResource",
+        "aps:UntagResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

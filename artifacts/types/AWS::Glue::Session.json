@@ -1,0 +1,286 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Glue-Session",
+  "type": "AWS::Glue::Session",
+  "time": "2026-10-21T21:41:14.489Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Id",
+      "/properties/Description",
+      "/properties/Role",
+      "/properties/Command",
+      "/properties/Timeout",
+      "/properties/IdleTimeout",
+      "/properties/DefaultArguments",
+      "/properties/Connections",
+      "/properties/MaxCapacity",
+      "/properties/NumberOfWorkers",
+      "/properties/WorkerType",
+      "/properties/SecurityConfiguration",
+      "/properties/GlueVersion",
+      "/properties/RequestOrigin"
+    ],
+    "definitions": {
+      "ConnectionsList": {
+        "additionalProperties": false,
+        "description": "Specifies the connections used by the session.",
+        "properties": {
+          "Connections": {
+            "description": "A list of connection names used by the session.",
+            "items": {
+              "maxLength": 255,
+              "minLength": 0,
+              "type": "string"
+            },
+            "maxItems": 1000,
+            "minItems": 0,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "SessionCommand": {
+        "additionalProperties": false,
+        "description": "The SessionCommand that runs the job.",
+        "properties": {
+          "Name": {
+            "description": "Specifies the name of the SessionCommand. Can be 'glueetl' or 'gluestreaming'.",
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": "^[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*$",
+            "type": "string"
+          },
+          "PythonVersion": {
+            "description": "Specifies the Python version. The Python version indicates the version supported for jobs of type Spark.",
+            "pattern": "^([2-3]|3[.]9)$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Glue::Session. Sessions provide an on-demand, serverless Apache Spark runtime environment for building, testing, and running data preparation and analytics applications.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "glue:CreateSession",
+          "glue:GetSession",
+          "glue:TagResource",
+          "iam:PassRole"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "glue:DeleteSession",
+          "glue:GetSession"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "glue:ListSessions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "glue:GetSession",
+          "glue:GetTags"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "glue:GetSession",
+          "glue:TagResource",
+          "glue:UntagResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the session.",
+        "type": "string"
+      },
+      "Command": {
+        "$ref": "#/definitions/SessionCommand"
+      },
+      "Connections": {
+        "$ref": "#/definitions/ConnectionsList"
+      },
+      "CreatedOn": {
+        "description": "The time and date when the session was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DefaultArguments": {
+        "additionalProperties": false,
+        "description": "A map array of key-value pairs. Max is 75 pairs.",
+        "maxProperties": 75,
+        "patternProperties": {
+          "^[.\\-_A-Za-z0-9]+$": {
+            "maxLength": 4096,
+            "minLength": 0,
+            "pattern": "^[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Description": {
+        "description": "The description of the session.",
+        "maxLength": 2048,
+        "minLength": 0,
+        "pattern": "^[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*$",
+        "type": "string"
+      },
+      "GlueVersion": {
+        "description": "The Glue version determines the versions of Apache Spark and Python that Glue supports. The GlueVersion must be greater than 2.0.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^(\\w+\\.)+\\w+$",
+        "type": "string"
+      },
+      "Id": {
+        "description": "The ID of the session.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*$",
+        "type": "string"
+      },
+      "IdleTimeout": {
+        "description": "The number of minutes when idle before session times out. Default is the value of Timeout.",
+        "type": "integer"
+      },
+      "MaxCapacity": {
+        "description": "The number of Glue data processing units (DPUs) that can be allocated when the job runs.",
+        "type": "number"
+      },
+      "NumberOfWorkers": {
+        "description": "The number of workers of a defined WorkerType to use for the session.",
+        "type": "integer"
+      },
+      "Progress": {
+        "description": "The code execution progress of the session.",
+        "type": "number"
+      },
+      "RequestOrigin": {
+        "description": "The origin of the request.",
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[.\\-_A-Za-z0-9]+$",
+        "type": "string"
+      },
+      "Role": {
+        "description": "The IAM Role ARN.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws[^:]*:iam::[0-9]*:role/.+$",
+        "type": "string"
+      },
+      "SecurityConfiguration": {
+        "description": "The name of the SecurityConfiguration structure to be used with the session.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*$",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The session status.",
+        "enum": [
+          "PROVISIONING",
+          "READY",
+          "FAILED",
+          "TIMEOUT",
+          "STOPPING",
+          "STOPPED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags belonging to the session.",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "minItems": 0,
+        "type": "array"
+      },
+      "Timeout": {
+        "description": "The number of minutes before session times out.",
+        "minimum": 1,
+        "type": "integer"
+      },
+      "WorkerType": {
+        "description": "The type of predefined worker that is allocated when a session runs.",
+        "enum": [
+          "Standard",
+          "G.1X",
+          "G.2X",
+          "G.025X",
+          "G.4X",
+          "G.8X",
+          "Z.2X"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/CreatedOn",
+      "/properties/Status",
+      "/properties/Progress"
+    ],
+    "required": [
+      "Id",
+      "Role",
+      "Command"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-glue",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "glue:TagResource",
+        "glue:UntagResource",
+        "glue:GetTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Glue::Session",
+    "writeOnlyProperties": [
+      "/properties/RequestOrigin",
+      "/properties/Timeout"
+    ]
+  }
+}

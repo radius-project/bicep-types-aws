@@ -106,11 +106,24 @@
   {
     "$type": "ResourceType",
     "name": "AWS.KinesisVideo/SignalingChannel@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/6"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StreamStorageConfiguration",
+    "properties": {
+      "DefaultStorageTier": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The storage tier for the Kinesis Video Stream. Determines the storage class used for stream data."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -139,7 +152,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/9"
     }
   },
   {
@@ -188,9 +201,16 @@
         "flags": 16,
         "description": "The name of the Kinesis Video stream."
       },
+      "StreamStorageConfiguration": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "Configuration for the storage tier of the Kinesis Video Stream."
+      },
       "Tags": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "An array of key-value pairs associated with the Kinesis Video Stream."
@@ -217,7 +237,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -227,10 +247,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.KinesisVideo/Stream@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/12"
+      "$ref": "#/13"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

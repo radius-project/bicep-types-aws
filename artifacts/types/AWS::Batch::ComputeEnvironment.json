@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Batch-ComputeEnvironment",
   "type": "AWS::Batch::ComputeEnvironment",
-  "time": "2025-01-08T18:58:23.629Z",
+  "time": "2026-10-19T20:38:33.623Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -19,6 +19,7 @@
       "/properties/ComputeResources/InstanceTypes",
       "/properties/ComputeResources/LaunchTemplate",
       "/properties/ComputeResources/PlacementGroup",
+      "/properties/ComputeResources/ScalingPolicy",
       "/properties/ComputeResources/SecurityGroupIds",
       "/properties/ComputeResources/Subnets",
       "/properties/ComputeResources/Tags",
@@ -29,9 +30,24 @@
       "/properties/ComputeEnvironmentName",
       "/properties/Tags",
       "/properties/Type",
-      "/properties/EksConfiguration"
+      "/properties/EksConfiguration/EksClusterArn",
+      "/properties/EksConfiguration/KubernetesNamespace",
+      "/properties/ComputeResources/ManagedInstancesProvider/InstanceLaunchTemplate/CapacityOptionType",
+      "/properties/ComputeResources/ManagedInstancesProvider/InstanceLaunchTemplate/FipsEnabled"
     ],
     "definitions": {
+      "CapacityReservations": {
+        "additionalProperties": false,
+        "properties": {
+          "ReservationGroupArn": {
+            "type": "string"
+          },
+          "ReservationPreference": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "ComputeResources": {
         "additionalProperties": false,
         "properties": {
@@ -40,6 +56,16 @@
           },
           "BidPercentage": {
             "type": "integer"
+          },
+          "CapacityTags": {
+            "additionalProperties": false,
+            "description": "Capacity-level tags for compute environments.",
+            "patternProperties": {
+              ".*": {
+                "type": "string"
+              }
+            },
+            "type": "object"
           },
           "DesiredvCpus": {
             "type": "integer"
@@ -72,6 +98,9 @@
           "LaunchTemplate": {
             "$ref": "#/definitions/LaunchTemplateSpecification"
           },
+          "ManagedInstancesProvider": {
+            "$ref": "#/definitions/ManagedInstancesProvider"
+          },
           "MaxvCpus": {
             "type": "integer"
           },
@@ -80,6 +109,9 @@
           },
           "PlacementGroup": {
             "type": "string"
+          },
+          "ScalingPolicy": {
+            "$ref": "#/definitions/ComputeScalingPolicy"
           },
           "SecurityGroupIds": {
             "insertionOrder": false,
@@ -119,15 +151,26 @@
           }
         },
         "required": [
-          "Subnets",
           "Type",
           "MaxvCpus"
         ],
         "type": "object"
       },
+      "ComputeScalingPolicy": {
+        "additionalProperties": false,
+        "properties": {
+          "MinScaleDownDelayMinutes": {
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
       "Ec2ConfigurationObject": {
         "additionalProperties": false,
         "properties": {
+          "BatchImageStatus": {
+            "type": "string"
+          },
           "ImageIdOverride": {
             "type": "string"
           },
@@ -143,9 +186,51 @@
         ],
         "type": "object"
       },
+      "EcsSettings": {
+        "additionalProperties": false,
+        "properties": {
+          "ContainerInsights": {
+            "description": "The CloudWatch Container Insights setting applied to the Amazon ECS cluster that backs this compute environment. After you set this property, you can't revert it to the default (unset) state in which the setting is managed outside of AWS Batch. If you remove this property after previously setting it, AWS Batch treats the omission as DISABLED, because the underlying API has no way to unset the value. Because of this, if a stack rollback would return this property to its previous unset state, AWS Batch sets it to DISABLED instead.",
+            "enum": [
+              "ENABLED",
+              "ENHANCED",
+              "DISABLED"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "EksAccessEntry": {
+        "additionalProperties": false,
+        "description": "The EKS access entry configuration for the compute environment. Controls whether AWS Batch manages the EKS access entry for the compute environment's service role, or inherits it from the cluster.",
+        "properties": {
+          "DesiredState": {
+            "description": "The desired state of the EKS access entry managed by AWS Batch. When omitted, AWS Batch applies INHERIT_FROM_CLUSTER.",
+            "enum": [
+              "ENABLED",
+              "DISABLED",
+              "INHERIT_FROM_CLUSTER"
+            ],
+            "type": "string"
+          },
+          "Status": {
+            "description": "The read-only status of the EKS access entry, returned by DescribeComputeEnvironments.",
+            "enum": [
+              "ACTIVE",
+              "INACTIVE"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "EksConfiguration": {
         "additionalProperties": false,
         "properties": {
+          "AccessEntry": {
+            "$ref": "#/definitions/EksAccessEntry"
+          },
           "EksClusterArn": {
             "default": false,
             "type": "string"
@@ -159,6 +244,74 @@
           "EksClusterArn",
           "KubernetesNamespace"
         ],
+        "type": "object"
+      },
+      "InfrastructureOptimization": {
+        "additionalProperties": false,
+        "properties": {
+          "ScaleInAfter": {
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "InstanceLaunchTemplate": {
+        "additionalProperties": false,
+        "properties": {
+          "CapacityOptionType": {
+            "enum": [
+              "ON_DEMAND",
+              "SPOT",
+              "RESERVED"
+            ],
+            "type": "string"
+          },
+          "CapacityReservations": {
+            "$ref": "#/definitions/CapacityReservations"
+          },
+          "Ec2InstanceProfileArn": {
+            "type": "string"
+          },
+          "FipsEnabled": {
+            "type": "boolean"
+          },
+          "InstanceMetadataTagsPropagation": {
+            "type": "boolean"
+          },
+          "InstanceRequirements": {
+            "$ref": "#/definitions/InstanceRequirements"
+          },
+          "LocalStorageConfiguration": {
+            "$ref": "#/definitions/ManagedInstancesLocalStorageConfiguration"
+          },
+          "Monitoring": {
+            "type": "string"
+          },
+          "NetworkConfiguration": {
+            "$ref": "#/definitions/ManagedInstancesNetworkConfiguration"
+          },
+          "StorageConfiguration": {
+            "$ref": "#/definitions/ManagedInstancesStorageConfiguration"
+          }
+        },
+        "required": [
+          "Ec2InstanceProfileArn",
+          "NetworkConfiguration"
+        ],
+        "type": "object"
+      },
+      "InstanceRequirements": {
+        "additionalProperties": false,
+        "properties": {
+          "AllowedInstanceTypes": {
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          }
+        },
         "type": "object"
       },
       "LaunchTemplateSpecification": {
@@ -177,6 +330,13 @@
             },
             "type": "array",
             "uniqueItems": false
+          },
+          "UserdataType": {
+            "enum": [
+              "EKS_BOOTSTRAP_SH",
+              "EKS_NODEADM"
+            ],
+            "type": "string"
           },
           "Version": {
             "type": "string"
@@ -201,8 +361,85 @@
             "type": "array",
             "uniqueItems": false
           },
+          "UserdataType": {
+            "enum": [
+              "EKS_BOOTSTRAP_SH",
+              "EKS_NODEADM"
+            ],
+            "type": "string"
+          },
           "Version": {
             "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ManagedInstancesLocalStorageConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "UseLocalStorage": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "ManagedInstancesNetworkConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "SecurityGroups": {
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "Subnets": {
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          }
+        },
+        "required": [
+          "Subnets",
+          "SecurityGroups"
+        ],
+        "type": "object"
+      },
+      "ManagedInstancesProvider": {
+        "additionalProperties": false,
+        "properties": {
+          "InfrastructureOptimization": {
+            "$ref": "#/definitions/InfrastructureOptimization"
+          },
+          "InfrastructureRoleArn": {
+            "type": "string"
+          },
+          "InstanceLaunchTemplate": {
+            "$ref": "#/definitions/InstanceLaunchTemplate"
+          },
+          "PropagateTags": {
+            "enum": [
+              "CAPACITY_PROVIDER",
+              "NONE"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "InfrastructureRoleArn",
+          "InstanceLaunchTemplate"
+        ],
+        "type": "object"
+      },
+      "ManagedInstancesStorageConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "StorageSizeGiB": {
+            "type": "integer"
           }
         },
         "type": "object"
@@ -231,7 +468,14 @@
           "Batch:DescribeComputeEnvironments",
           "iam:CreateServiceLinkedRole",
           "Iam:PassRole",
-          "Eks:DescribeCluster"
+          "Eks:AssociateAccessPolicy",
+          "Eks:CreateAccessEntry",
+          "Eks:DeleteAccessEntry",
+          "Eks:DescribeAccessEntry",
+          "Eks:DescribeCluster",
+          "Eks:ListAssociatedAccessPolicies",
+          "ec2:DescribeLaunchTemplateVersions",
+          "Batch:SetCapacityTags"
         ]
       },
       "delete": {
@@ -240,7 +484,13 @@
           "Batch:DescribeComputeEnvironments",
           "Batch:UpdateComputeEnvironment",
           "Iam:PassRole",
-          "Eks:DescribeCluster"
+          "Eks:AssociateAccessPolicy",
+          "Eks:CreateAccessEntry",
+          "Eks:DeleteAccessEntry",
+          "Eks:DescribeAccessEntry",
+          "Eks:DescribeCluster",
+          "Eks:ListAssociatedAccessPolicies",
+          "ec2:DescribeLaunchTemplateVersions"
         ]
       },
       "list": {
@@ -260,7 +510,14 @@
           "Batch:TagResource",
           "Batch:UnTagResource",
           "Iam:PassRole",
-          "Eks:DescribeCluster"
+          "Eks:AssociateAccessPolicy",
+          "Eks:CreateAccessEntry",
+          "Eks:DeleteAccessEntry",
+          "Eks:DescribeAccessEntry",
+          "Eks:DescribeCluster",
+          "Eks:ListAssociatedAccessPolicies",
+          "ec2:DescribeLaunchTemplateVersions",
+          "Batch:SetCapacityTags"
         ]
       }
     },
@@ -279,6 +536,9 @@
       },
       "Context": {
         "type": "string"
+      },
+      "EcsSettings": {
+        "$ref": "#/definitions/EcsSettings"
       },
       "EksConfiguration": {
         "$ref": "#/definitions/EksConfiguration"
@@ -314,7 +574,9 @@
       }
     },
     "readOnlyProperties": [
-      "/properties/ComputeEnvironmentArn"
+      "/properties/ComputeEnvironmentArn",
+      "/properties/ComputeResources/Ec2Configuration/*/BatchImageStatus",
+      "/properties/EksConfiguration/AccessEntry/Status"
     ],
     "required": [
       "Type"
@@ -323,7 +585,7 @@
       "cloudFormationSystemTags": false,
       "permissions": [
         "Batch:TagResource",
-        "Batch:UntagResource"
+        "Batch:UnTagResource"
       ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",

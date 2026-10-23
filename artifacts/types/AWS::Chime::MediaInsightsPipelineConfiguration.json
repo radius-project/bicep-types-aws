@@ -1,0 +1,639 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Chime-MediaInsightsPipelineConfiguration",
+  "type": "AWS::Chime::MediaInsightsPipelineConfiguration",
+  "time": "2026-10-21T20:58:11.041Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/MediaInsightsPipelineConfigurationName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/MediaInsightsPipelineConfigurationName"
+    ],
+    "definitions": {
+      "AmazonTranscribeCallAnalyticsProcessorConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "CallAnalyticsStreamCategories": {
+            "description": "The categories to send to the insights target.",
+            "insertionOrder": false,
+            "items": {
+              "maxLength": 200,
+              "minLength": 1,
+              "pattern": "^[0-9a-zA-Z._-]+$",
+              "type": "string"
+            },
+            "maxItems": 20,
+            "minItems": 1,
+            "type": "array"
+          },
+          "ContentIdentificationType": {
+            "description": "Labels all PII identified in the transcript.",
+            "enum": [
+              "PII"
+            ],
+            "type": "string"
+          },
+          "ContentRedactionType": {
+            "description": "Redacts all PII identified in the transcript.",
+            "enum": [
+              "PII"
+            ],
+            "type": "string"
+          },
+          "EnablePartialResultsStabilization": {
+            "description": "Enables partial result stabilization.",
+            "type": "boolean"
+          },
+          "FilterPartialResults": {
+            "description": "If true, partial results are filtered out.",
+            "type": "boolean"
+          },
+          "LanguageCode": {
+            "description": "The language code in the configuration.",
+            "enum": [
+              "en-US",
+              "en-GB",
+              "es-US",
+              "fr-CA",
+              "fr-FR",
+              "en-AU",
+              "it-IT",
+              "de-DE",
+              "pt-BR"
+            ],
+            "type": "string"
+          },
+          "LanguageModelName": {
+            "description": "The name of the custom language model.",
+            "maxLength": 200,
+            "minLength": 1,
+            "pattern": "^[0-9a-zA-Z._-]+$",
+            "type": "string"
+          },
+          "PartialResultsStability": {
+            "description": "The level of stability for partial results.",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ],
+            "type": "string"
+          },
+          "PiiEntityTypes": {
+            "description": "The types of PII to redact.",
+            "maxLength": 300,
+            "minLength": 1,
+            "pattern": "^[A-Z_, ]+$",
+            "type": "string"
+          },
+          "PostCallAnalyticsSettings": {
+            "$ref": "#/definitions/PostCallAnalyticsSettings"
+          },
+          "VocabularyFilterMethod": {
+            "description": "The vocabulary filtering method.",
+            "enum": [
+              "remove",
+              "mask",
+              "tag"
+            ],
+            "type": "string"
+          },
+          "VocabularyFilterName": {
+            "description": "The name of the custom vocabulary filter.",
+            "maxLength": 200,
+            "minLength": 1,
+            "pattern": "^[0-9a-zA-Z._-]+$",
+            "type": "string"
+          },
+          "VocabularyName": {
+            "description": "The name of the custom vocabulary.",
+            "maxLength": 200,
+            "minLength": 1,
+            "pattern": "^[0-9a-zA-Z._-]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "LanguageCode"
+        ],
+        "type": "object"
+      },
+      "AmazonTranscribeProcessorConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "ContentIdentificationType": {
+            "description": "Labels all PII identified in the transcript.",
+            "enum": [
+              "PII"
+            ],
+            "type": "string"
+          },
+          "ContentRedactionType": {
+            "description": "Redacts all PII identified in the transcript.",
+            "enum": [
+              "PII"
+            ],
+            "type": "string"
+          },
+          "EnablePartialResultsStabilization": {
+            "description": "Enables partial result stabilization.",
+            "type": "boolean"
+          },
+          "FilterPartialResults": {
+            "description": "If true, partial results are filtered out.",
+            "type": "boolean"
+          },
+          "IdentifyLanguage": {
+            "description": "Turns language identification on or off.",
+            "type": "boolean"
+          },
+          "IdentifyMultipleLanguages": {
+            "description": "Turns multiple language identification on or off.",
+            "type": "boolean"
+          },
+          "LanguageCode": {
+            "description": "The language code.",
+            "enum": [
+              "en-US",
+              "en-GB",
+              "es-US",
+              "fr-CA",
+              "fr-FR",
+              "en-AU",
+              "it-IT",
+              "de-DE",
+              "pt-BR"
+            ],
+            "type": "string"
+          },
+          "LanguageModelName": {
+            "description": "The name of the custom language model.",
+            "maxLength": 200,
+            "minLength": 1,
+            "pattern": "^[0-9a-zA-Z._-]+$",
+            "type": "string"
+          },
+          "LanguageOptions": {
+            "description": "The language options for transcription.",
+            "maxLength": 200,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z-,]+$",
+            "type": "string"
+          },
+          "PartialResultsStability": {
+            "description": "The level of stability for partial results.",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ],
+            "type": "string"
+          },
+          "PiiEntityTypes": {
+            "description": "The types of PII to redact.",
+            "maxLength": 300,
+            "minLength": 1,
+            "pattern": "^[A-Z_, ]+$",
+            "type": "string"
+          },
+          "PreferredLanguage": {
+            "description": "The preferred language for transcription.",
+            "enum": [
+              "en-US",
+              "en-GB",
+              "es-US",
+              "fr-CA",
+              "fr-FR",
+              "en-AU",
+              "it-IT",
+              "de-DE",
+              "pt-BR"
+            ],
+            "type": "string"
+          },
+          "ShowSpeakerLabel": {
+            "description": "Enables speaker partitioning.",
+            "type": "boolean"
+          },
+          "VocabularyFilterMethod": {
+            "description": "The vocabulary filtering method.",
+            "enum": [
+              "remove",
+              "mask",
+              "tag"
+            ],
+            "type": "string"
+          },
+          "VocabularyFilterName": {
+            "description": "The name of the custom vocabulary filter.",
+            "maxLength": 200,
+            "minLength": 1,
+            "pattern": "^[0-9a-zA-Z._-]+$",
+            "type": "string"
+          },
+          "VocabularyFilterNames": {
+            "description": "The names of the custom vocabulary filters.",
+            "maxLength": 3000,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9,-._]+$",
+            "type": "string"
+          },
+          "VocabularyName": {
+            "description": "The name of the custom vocabulary.",
+            "maxLength": 200,
+            "minLength": 1,
+            "pattern": "^[0-9a-zA-Z._-]+$",
+            "type": "string"
+          },
+          "VocabularyNames": {
+            "description": "The names of the custom vocabularies.",
+            "maxLength": 3000,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9,-._]+$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "IssueDetectionConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "RuleName": {
+            "description": "The name of the issue detection rule.",
+            "maxLength": 64,
+            "minLength": 2,
+            "pattern": "^[0-9a-zA-Z._-]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "RuleName"
+        ],
+        "type": "object"
+      },
+      "KeywordMatchConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "Keywords": {
+            "description": "The keywords or phrases to match.",
+            "insertionOrder": false,
+            "items": {
+              "maxLength": 100,
+              "minLength": 1,
+              "pattern": "^[\\s0-9a-zA-Z'-]+$",
+              "type": "string"
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "type": "array"
+          },
+          "Negate": {
+            "description": "Matches keywords on their presence or absence.",
+            "type": "boolean"
+          },
+          "RuleName": {
+            "description": "The name of the keyword match rule.",
+            "maxLength": 64,
+            "minLength": 2,
+            "pattern": "^[0-9a-zA-Z._-]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "RuleName",
+          "Keywords"
+        ],
+        "type": "object"
+      },
+      "KinesisDataStreamSinkConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "InsightsTarget": {
+            "description": "The ARN of the Kinesis Data Stream sink.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "pattern": "^arn[\\/\\:\\-\\_\\.a-zA-Z0-9]+$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "MediaInsightsPipelineConfigurationElement": {
+        "additionalProperties": false,
+        "properties": {
+          "AmazonTranscribeCallAnalyticsProcessorConfiguration": {
+            "$ref": "#/definitions/AmazonTranscribeCallAnalyticsProcessorConfiguration"
+          },
+          "AmazonTranscribeProcessorConfiguration": {
+            "$ref": "#/definitions/AmazonTranscribeProcessorConfiguration"
+          },
+          "KinesisDataStreamSinkConfiguration": {
+            "$ref": "#/definitions/KinesisDataStreamSinkConfiguration"
+          },
+          "S3RecordingSinkConfiguration": {
+            "$ref": "#/definitions/S3RecordingSinkConfiguration"
+          },
+          "Type": {
+            "description": "The element type.",
+            "enum": [
+              "AmazonTranscribeCallAnalyticsProcessor",
+              "AmazonTranscribeProcessor",
+              "KinesisDataStreamSink",
+              "S3RecordingSink"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Type"
+        ],
+        "type": "object"
+      },
+      "PostCallAnalyticsSettings": {
+        "additionalProperties": false,
+        "properties": {
+          "ContentRedactionOutput": {
+            "description": "The content redaction output settings.",
+            "enum": [
+              "redacted",
+              "redacted_and_unredacted"
+            ],
+            "type": "string"
+          },
+          "DataAccessRoleArn": {
+            "description": "The ARN of the role used by Transcribe to upload post-call analysis.",
+            "maxLength": 4096,
+            "type": "string"
+          },
+          "OutputEncryptionKMSKeyId": {
+            "description": "The ID of the KMS key used to encrypt the output.",
+            "maxLength": 4096,
+            "type": "string"
+          },
+          "OutputLocation": {
+            "description": "The URL of the Amazon S3 bucket for post-call data.",
+            "maxLength": 4096,
+            "type": "string"
+          }
+        },
+        "required": [
+          "OutputLocation",
+          "DataAccessRoleArn"
+        ],
+        "type": "object"
+      },
+      "RealTimeAlertConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "Disabled": {
+            "description": "Turns off real-time alerts.",
+            "type": "boolean"
+          },
+          "Rules": {
+            "description": "The rules in the alert.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/RealTimeAlertRule"
+            },
+            "maxItems": 3,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "RealTimeAlertRule": {
+        "additionalProperties": false,
+        "properties": {
+          "IssueDetectionConfiguration": {
+            "$ref": "#/definitions/IssueDetectionConfiguration"
+          },
+          "KeywordMatchConfiguration": {
+            "$ref": "#/definitions/KeywordMatchConfiguration"
+          },
+          "SentimentConfiguration": {
+            "$ref": "#/definitions/SentimentConfiguration"
+          },
+          "Type": {
+            "description": "The type of alert rule.",
+            "enum": [
+              "KeywordMatch",
+              "Sentiment",
+              "IssueDetection"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Type"
+        ],
+        "type": "object"
+      },
+      "S3RecordingSinkConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "Destination": {
+            "description": "The default URI of the Amazon S3 bucket.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "pattern": "^arn[\\/\\:\\-\\_\\.a-zA-Z0-9]+$",
+            "type": "string"
+          },
+          "RecordingFileFormat": {
+            "description": "The recording file format.",
+            "enum": [
+              "Wav",
+              "Opus"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "SentimentConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "RuleName": {
+            "description": "The name of the sentiment rule.",
+            "maxLength": 64,
+            "minLength": 2,
+            "pattern": "^[0-9a-zA-Z._-]+$",
+            "type": "string"
+          },
+          "SentimentType": {
+            "description": "The type of sentiment.",
+            "enum": [
+              "NEGATIVE"
+            ],
+            "type": "string"
+          },
+          "TimePeriod": {
+            "description": "The analysis interval in seconds.",
+            "maximum": 1800,
+            "minimum": 60,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "RuleName",
+          "SentimentType",
+          "TimePeriod"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for an Amazon Chime SDK Media Insights Pipeline Configuration",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "chime:CreateMediaInsightsPipelineConfiguration",
+          "chime:GetMediaInsightsPipelineConfiguration",
+          "chime:TagResource",
+          "iam:PassRole",
+          "kinesis:DescribeStream",
+          "s3:GetBucketPolicy"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "chime:DeleteMediaInsightsPipelineConfiguration",
+          "chime:ListVoiceConnectors"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "chime:ListMediaInsightsPipelineConfigurations"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "chime:GetMediaInsightsPipelineConfiguration",
+          "chime:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "chime:UpdateMediaInsightsPipelineConfiguration",
+          "chime:GetMediaInsightsPipelineConfiguration",
+          "chime:TagResource",
+          "chime:UntagResource",
+          "chime:ListTagsForResource",
+          "iam:PassRole",
+          "kinesis:DescribeStream",
+          "s3:GetBucketPolicy"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/MediaInsightsPipelineConfigurationArn"
+    ],
+    "properties": {
+      "CreatedTimestamp": {
+        "description": "The time at which the configuration was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Elements": {
+        "description": "The elements in the configuration.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/MediaInsightsPipelineConfigurationElement"
+        },
+        "type": "array"
+      },
+      "MediaInsightsPipelineConfigurationArn": {
+        "description": "The ARN of the configuration.",
+        "maxLength": 1024,
+        "minLength": 1,
+        "pattern": "^arn[\\/\\:\\-\\_\\.a-zA-Z0-9]+$",
+        "type": "string"
+      },
+      "MediaInsightsPipelineConfigurationId": {
+        "description": "The unique identifier of the configuration.",
+        "maxLength": 36,
+        "minLength": 36,
+        "pattern": "^[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}$",
+        "type": "string"
+      },
+      "MediaInsightsPipelineConfigurationName": {
+        "description": "The name of the media insights pipeline configuration.",
+        "maxLength": 64,
+        "minLength": 2,
+        "pattern": "^[0-9a-zA-Z._-]+$",
+        "type": "string"
+      },
+      "RealTimeAlertConfiguration": {
+        "$ref": "#/definitions/RealTimeAlertConfiguration"
+      },
+      "ResourceAccessRoleArn": {
+        "description": "The ARN of the role used by the service to access Amazon Web Services resources.",
+        "maxLength": 1024,
+        "minLength": 1,
+        "pattern": "^arn[\\/\\:\\-\\_\\.a-zA-Z0-9]+$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags associated with the configuration.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "minItems": 1,
+        "type": "array"
+      },
+      "UpdatedTimestamp": {
+        "description": "The time at which the configuration was last updated.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/MediaInsightsPipelineConfigurationArn",
+      "/properties/MediaInsightsPipelineConfigurationId",
+      "/properties/CreatedTimestamp",
+      "/properties/UpdatedTimestamp"
+    ],
+    "required": [
+      "MediaInsightsPipelineConfigurationName",
+      "ResourceAccessRoleArn",
+      "Elements"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "chime:TagResource",
+        "chime:UntagResource",
+        "chime:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Chime::MediaInsightsPipelineConfiguration"
+  }
+}

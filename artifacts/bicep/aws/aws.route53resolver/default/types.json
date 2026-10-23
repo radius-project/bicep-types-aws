@@ -1,5 +1,89 @@
 [
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.Route53Resolver/FirewallConfigProperties"
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Route53Resolver/FirewallConfigProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The ARN of the firewall configuration."
+      },
+      "FirewallFailOpen": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Determines how DNS Firewall operates during failures. By default, fail open is disabled, which means the failure mode is closed. If you enable this option, the failure mode is open. This behavior is only enforced for VPCs that have at least one DNS Firewall rule group association."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ID of the firewall configuration."
+      },
+      "OwnerId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The Amazon Web Services account ID of the owner of the VPC that this firewall configuration applies to."
+      },
+      "ResourceId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The ID of the VPC that this firewall configuration applies to."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Route53Resolver/FirewallConfig",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Route53Resolver/FirewallConfig@default",
+    "body": {
+      "$ref": "#/3"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
     "$type": "ObjectType",
     "name": "Domains",
     "properties": {}
@@ -10,14 +94,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -25,12 +109,9 @@
     }
   },
   {
-    "$type": "StringType"
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/1"
     }
   },
   {
@@ -43,13 +124,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/6"
     }
   },
   {
@@ -58,90 +139,90 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "Arn"
       },
       "CreationTime": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "Rfc3339TimeString"
       },
       "CreatorRequestId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The id of the creator request."
       },
       "DomainCount": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/9"
         },
         "flags": 2,
         "description": "Count"
       },
       "DomainFileUrl": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 4,
         "description": "S3 URL to import domains from."
       },
       "Domains": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/10"
         },
         "flags": 4
       },
       "Id": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "ResourceId"
       },
       "ManagedOwnerName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "ServicePrincipal"
       },
       "ModificationTime": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "Rfc3339TimeString"
       },
       "Name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "FirewallDomainListName"
       },
       "Status": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "ResolverFirewallDomainList, possible values are COMPLETE, DELETING, UPDATING, COMPLETE_IMPORT_FAILED, IMPORTING, and INACTIVE_OWNER_ACCOUNT_CLOSED."
       },
       "StatusMessage": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "FirewallDomainListAssociationStatus"
       },
       "Tags": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "Tags"
@@ -154,21 +235,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/12"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -178,11 +259,37 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Route53Resolver/FirewallDomainList@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/9"
+      "$ref": "#/13"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FirewallAdvancedContentCategoryConfig",
+    "properties": {
+      "Category": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The content category value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FirewallAdvancedThreatCategoryConfig",
+    "properties": {
+      "Category": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The threat category value."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -190,87 +297,138 @@
     "properties": {
       "Action": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "Rule Action"
       },
       "BlockOverrideDnsType": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "BlockOverrideDnsType"
       },
       "BlockOverrideDomain": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "BlockOverrideDomain"
       },
       "BlockOverrideTtl": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "BlockOverrideTtl"
       },
       "BlockResponse": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "BlockResponse"
       },
       "ConfidenceThreshold": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
-        "description": "FirewallDomainRedirectionAction"
+        "description": "ConfidenceThreshold"
       },
       "DnsThreatProtection": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
-        "description": "FirewallDomainRedirectionAction"
+        "description": "DnsThreatProtection"
       },
       "FirewallDomainListId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "ResourceId"
       },
       "FirewallDomainRedirectionAction": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "FirewallDomainRedirectionAction"
       },
+      "FirewallRuleType": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "Advanced firewall rule type. Mutually exclusive with FirewallDomainListId and DnsThreatProtection/ConfidenceThreshold."
+      },
       "FirewallThreatProtectionId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "ResourceId"
       },
       "Priority": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/9"
         },
         "flags": 1,
         "description": "Rule Priority"
       },
       "Qtype": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Qtype"
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The status of the firewall rule."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FirewallRuleType",
+    "properties": {
+      "FirewallAdvancedContentCategory": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
+      "FirewallAdvancedThreatCategory": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0
+      },
+      "PartnerThreatProtection": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PartnerThreatProtectionConfig",
+    "properties": {
+      "Partner": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The partner identifier value."
       }
     }
   },
@@ -280,14 +438,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -301,13 +459,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/12"
+      "$ref": "#/20"
     }
   },
   {
@@ -316,91 +474,91 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "Arn"
       },
       "CreationTime": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "Rfc3339TimeString"
       },
       "CreatorRequestId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The id of the creator request."
       },
       "FirewallRules": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/22"
         },
         "flags": 2,
         "description": "FirewallRules"
       },
       "Id": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "ResourceId"
       },
       "ModificationTime": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "Rfc3339TimeString"
       },
       "Name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "FirewallRuleGroupName"
       },
       "OwnerId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "AccountId"
       },
       "RuleCount": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/9"
         },
         "flags": 2,
         "description": "Count"
       },
       "ShareStatus": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "ShareStatus, possible values are NOT_SHARED, SHARED_WITH_ME, SHARED_BY_ME."
       },
       "Status": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "ResolverFirewallRuleGroupAssociation, possible values are COMPLETE, DELETING, UPDATING, and INACTIVE_OWNER_ACCOUNT_CLOSED."
       },
       "StatusMessage": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "FirewallRuleGroupStatus"
       },
       "Tags": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "Tags"
@@ -413,21 +571,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/24"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -437,11 +595,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Route53Resolver/FirewallRuleGroup@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/17"
+      "$ref": "#/25"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -449,14 +607,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -470,7 +628,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/19"
+      "$ref": "#/27"
     }
   },
   {
@@ -479,98 +637,98 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "Arn"
       },
       "CreationTime": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "Rfc3339TimeString"
       },
       "CreatorRequestId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The id of the creator request."
       },
       "FirewallRuleGroupId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "FirewallRuleGroupId"
       },
       "Id": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "Id"
       },
       "ManagedOwnerName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "ServicePrincipal"
       },
       "ModificationTime": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "Rfc3339TimeString"
       },
       "MutationProtection": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "MutationProtectionStatus"
       },
       "Name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "FirewallRuleGroupAssociationName"
       },
       "Priority": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/9"
         },
         "flags": 1,
         "description": "Priority"
       },
       "Status": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "ResolverFirewallRuleGroupAssociation, possible values are COMPLETE, DELETING, UPDATING, and INACTIVE_OWNER_ACCOUNT_CLOSED."
       },
       "StatusMessage": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "FirewallDomainListAssociationStatus"
       },
       "Tags": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/29"
         },
         "flags": 0,
         "description": "Tags"
       },
       "VpcId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "VpcId"
@@ -583,21 +741,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/30"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -607,11 +765,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Route53Resolver/FirewallRuleGroupAssociation@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/23"
+      "$ref": "#/31"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -619,14 +777,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -640,7 +798,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/33"
     }
   },
   {
@@ -649,84 +807,84 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The OutpostResolver ARN."
       },
       "CreationTime": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The OutpostResolver creation time"
       },
       "CreatorRequestId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The id of the creator request."
       },
       "Id": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "Id"
       },
       "InstanceCount": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "The number of OutpostResolvers."
       },
       "ModificationTime": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The OutpostResolver last modified time"
       },
       "Name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The OutpostResolver name."
       },
       "OutpostArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The Outpost ARN."
       },
       "PreferredInstanceType": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The OutpostResolver instance type."
       },
       "Status": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The OutpostResolver status, possible values are CREATING, OPERATIONAL, UPDATING, DELETING, ACTION_NEEDED, FAILED_CREATION and FAILED_DELETION."
       },
       "StatusMessage": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The OutpostResolver status message."
       },
       "Tags": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/35"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -739,189 +897,14 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
-        },
-        "flags": 17,
-        "description": "the resource alias"
-      },
-      "properties": {
-        "type": {
-          "$ref": "#/28"
-        },
-        "flags": 17,
-        "description": "properties of the resource"
-      }
-    }
-  },
-  {
-    "$type": "ResourceType",
-    "name": "AWS.Route53Resolver/OutpostResolver@default",
-    "scopeType": 0,
-    "body": {
-      "$ref": "#/29"
-    },
-    "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 1,
-        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 1,
-        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "TargetAddress",
-    "properties": {
-      "Ip": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "One IP address that you want to forward DNS queries to. You can specify only IPv4 addresses. "
-      },
-      "Ipv6": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "One IPv6 address that you want to forward DNS queries to. You can specify only IPv6 addresses. "
-      },
-      "Port": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "The port at Ip that you want to forward DNS queries to. "
-      },
-      "Protocol": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "The protocol that you want to use to forward DNS queries. "
-      },
-      "ServerNameIndication": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "The SNI of the target name servers for DoH/DoH-FIPS outbound endpoints"
-      }
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.Route53Resolver/ResolverRuleProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/31"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/32"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.Route53Resolver/ResolverRuleProperties",
-    "properties": {
-      "Arn": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 2,
-        "description": "The Amazon Resource Name (ARN) of the resolver rule."
-      },
-      "DomainName": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "DNS queries for this domain name are forwarded to the IP addresses that are specified in TargetIps"
-      },
-      "Name": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "The name for the Resolver rule"
-      },
-      "ResolverEndpointId": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "The ID of the endpoint that the rule is associated with."
-      },
-      "ResolverRuleId": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 18,
-        "description": "The ID of the endpoint that the rule is associated with."
-      },
-      "RuleType": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 1,
-        "description": "When you want to forward DNS queries for specified domain name to resolvers on your network, specify FORWARD. When you have a forwarding rule to forward DNS queries for a domain to your network and you want Resolver to process queries for a subdomain of that domain, specify SYSTEM."
-      },
-      "Tags": {
-        "type": {
-          "$ref": "#/34"
-        },
-        "flags": 0,
-        "description": "An array of key-value pairs to apply to this resource."
-      },
-      "TargetIps": {
-        "type": {
-          "$ref": "#/35"
-        },
-        "flags": 0,
-        "description": "An array that contains the IP addresses and ports that an outbound endpoint forwards DNS queries to. Typically, these are the IP addresses of DNS resolvers on your network. Specify IPv4 addresses. IPv6 is not supported."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.Route53Resolver/ResolverRule",
-    "properties": {
-      "name": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "the resource name"
-      },
-      "alias": {
-        "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
@@ -937,11 +920,432 @@
   },
   {
     "$type": "ResourceType",
-    "name": "AWS.Route53Resolver/ResolverRule@default",
-    "scopeType": 0,
+    "name": "AWS.Route53Resolver/OutpostResolver@default",
     "body": {
       "$ref": "#/37"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IpAddressRequest",
+    "properties": {
+      "Ip": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The IPv4 address that you want to use for DNS queries."
+      },
+      "Ipv6": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The IPv6 address that you want to use for DNS queries."
+      },
+      "SubnetId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The ID of the subnet that contains the IP address."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name for the tag. For example, if you want to associate Resolver resources with the account IDs of your customers for billing purposes, the value of Key might be account-id."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. For example, if Key is account-id, then Value might be the ID of the customer account that you're creating the resource for."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Route53Resolver/ResolverEndpointProperties"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/39"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Route53Resolver/ResolverEndpointProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the resolver endpoint, such as arn:aws:route53resolver:us-east-1:123456789012:resolver-endpoint/resolver-endpoint-a1bzhi."
+      },
+      "Direction": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Indicates whether the Resolver endpoint allows inbound or outbound DNS queries:\n- INBOUND: allows DNS queries to your VPC from your network \n- OUTBOUND: allows DNS queries from your VPC to your network \n- INBOUND_DELEGATION: allows DNS queries to your VPC from your network with authoritative answers from private hosted zones"
+      },
+      "Dns64Enabled": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0,
+        "description": "Specifies whether DNS64 is enabled for the Inbound Resolver Endpoint. When set to true, if a DNS AAAA query is made for a domain that has only an A (IPv4) record, the resolver automatically synthesizes an AAAA (IPv6) response by embedding the IPv4 address into the well-known prefix 64:ff9b::/96. Default is false."
+      },
+      "HostVPCId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ID of the VPC that you want to create the resolver endpoint in."
+      },
+      "IpAddressCount": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The number of IP addresses that the resolver endpoint can use for DNS queries."
+      },
+      "IpAddresses": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 1,
+        "description": "The subnets and IP addresses in your VPC that DNS queries originate from (for outbound endpoints) or that you forward DNS queries to (for inbound endpoints). The subnet ID uniquely identifies a VPC."
+      },
+      "Ipv6InternetAccessEnabled": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0,
+        "description": "Specifies whether IPv6 Internet Gateway access is enabled through the Outbound Resolver Endpoint. When set to true, this property allows your Endpoint ENIs to reach public IPv6 target nameservers through an internet gateway. Default is false."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A friendly name that lets you easily find a configuration in the Resolver dashboard in the Route 53 console."
+      },
+      "OutpostArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ARN (Amazon Resource Name) for the Outpost."
+      },
+      "PreferredInstanceType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The Amazon EC2 instance type."
+      },
+      "Protocols": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0,
+        "description": "Protocols used for the endpoint. DoH-FIPS is applicable for inbound endpoints only."
+      },
+      "ResolverEndpointId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The ID of the resolver endpoint."
+      },
+      "ResolverEndpointType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The Resolver endpoint IP address type."
+      },
+      "RniEnhancedMetricsEnabled": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0,
+        "description": "Specifies whether RNI enhanced metrics are enabled for the Resolver Endpoints. When set to true, one-minute granular metrics are published in CloudWatch for each RNI associated with this endpoint. When set to false, metrics are not published. Default is false."
+      },
+      "SecurityGroupIds": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 1,
+        "description": "The ID of one or more security groups that control access to this VPC. The security group must include one or more inbound rules (for inbound endpoints) or outbound rules (for outbound endpoints). Inbound and outbound rules must allow TCP and UDP access. For inbound access, open port 53. For outbound access, open the port that you're using for DNS queries on your network."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
+      "TargetNameServerMetricsEnabled": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0,
+        "description": "Specifies whether target name server metrics are enabled for the Outbound Resolver Endpoint. When set to true, one-minute granular metrics are published in CloudWatch for each target name server associated with this endpoint. When set to false, metrics are not published. Default is false."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Route53Resolver/ResolverEndpoint",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Route53Resolver/ResolverEndpoint@default",
+    "body": {
+      "$ref": "#/48"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TargetAddress",
+    "properties": {
+      "Ip": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "One IP address that you want to forward DNS queries to. You can specify only IPv4 addresses. "
+      },
+      "Ipv6": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "One IPv6 address that you want to forward DNS queries to. You can specify only IPv6 addresses. "
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The port at Ip that you want to forward DNS queries to. "
+      },
+      "Protocol": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The protocol that you want to use to forward DNS queries. "
+      },
+      "ServerNameIndication": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The SNI of the target name servers for DoH/DoH-FIPS outbound endpoints"
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Route53Resolver/ResolverRuleProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/50"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/51"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Route53Resolver/ResolverRuleProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the resolver rule."
+      },
+      "DelegationRecord": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name server domain for queries to be delegated to if a query matches the delegation record."
+      },
+      "DomainName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "DNS queries for this domain name are forwarded to the IP addresses that are specified in TargetIps"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name for the Resolver rule"
+      },
+      "ResolverEndpointId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ID of the endpoint that the rule is associated with."
+      },
+      "ResolverRuleId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The ID of the endpoint that the rule is associated with."
+      },
+      "RuleType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "When you want to forward DNS queries for specified domain name to resolvers on your network, specify FORWARD. When you have a forwarding rule to forward DNS queries for a domain to your network and you want Resolver to process queries for a subdomain of that domain, specify SYSTEM."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/53"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
+      "TargetIps": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 0,
+        "description": "An array that contains the IP addresses and ports that an outbound endpoint forwards DNS queries to. Typically, these are the IP addresses of DNS resolvers on your network. Specify IPv4 addresses. IPv6 is not supported."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Route53Resolver/ResolverRule",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Route53Resolver/ResolverRule@default",
+    "body": {
+      "$ref": "#/56"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

@@ -1,14 +1,16 @@
 # AWS.ResilienceHub @ default
 
 ## Resource AWS.ResilienceHub/App@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ResilienceHub/AppProperties](#awsresiliencehubappproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ResilienceHub/ResiliencyPolicy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name

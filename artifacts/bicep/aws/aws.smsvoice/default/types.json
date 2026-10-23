@@ -1,0 +1,1939 @@
+[
+  {
+    "$type": "ObjectType",
+    "name": "CloudWatchLogsDestination",
+    "properties": {
+      "IamRoleArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of an AWS Identity and Access Management role that is able to write event data to an Amazon CloudWatch destination."
+      },
+      "LogGroupArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The name of the Amazon CloudWatch log group that you want to record events in."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EventDestination",
+    "properties": {
+      "CloudWatchLogsDestination": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0,
+        "description": "An object that contains IamRoleArn and LogGroupArn associated with an Amazon CloudWatch event destination."
+      },
+      "Enabled": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "When set to true events will be logged. By default this is set to true"
+      },
+      "EventDestinationName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The name that identifies the event destination."
+      },
+      "KinesisFirehoseDestination": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "An object that contains IamRoleArn and DeliveryStreamArn associated with an Amazon Kinesis Firehose event destination."
+      },
+      "MatchingEventTypes": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "An array of event types that determine which events to log. If 'ALL' is used, then AWS End User Messaging SMS and Voice logs every event type."
+      },
+      "SnsDestination": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "An object that contains SNS TopicArn event destination."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KinesisFirehoseDestination",
+    "properties": {
+      "DeliveryStreamArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the delivery stream."
+      },
+      "IamRoleArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of an AWS Identity and Access Management role that is able to write event data to an Amazon CloudWatch destination."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SnsDestination",
+    "properties": {
+      "TopicArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the Amazon SNS topic that you want to publish events to."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SMSVOICE/ConfigurationSetProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SMSVOICE/ConfigurationSetProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2
+      },
+      "ConfigurationSetName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 16,
+        "description": "The name to use for the configuration set."
+      },
+      "DefaultSenderId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The default sender ID to set for the ConfigurationSet."
+      },
+      "EventDestinations": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "An event destination is a location where you send message events."
+      },
+      "MessageFeedbackEnabled": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Set to true to enable message feedback."
+      },
+      "ProtectConfigurationId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The unique identifier for the protect configuration to be associated to the configuration set."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SMSVOICE/ConfigurationSet",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SMSVOICE/ConfigurationSet@default",
+    "body": {
+      "$ref": "#/12"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The key identifier, or name, of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The string value associated with the key of the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SMSVOICE/NotifyConfigurationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SMSVOICE/NotifyConfigurationProperties",
+    "properties": {
+      "CreatedTimestamp": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The time when the notify configuration was created."
+      },
+      "DefaultTemplateId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The default template identifier to associate with the notify configuration. If specified, this template is used when sending messages without an explicit template identifier."
+      },
+      "DeletionProtectionEnabled": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "By default this is set to false. When set to true the notify configuration can't be deleted."
+      },
+      "DisplayName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The display name to associate with the notify configuration."
+      },
+      "EnabledChannels": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "An array of channels to enable for the notify configuration. Supported values include SMS and VOICE."
+      },
+      "EnabledCountries": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "An array of two-character ISO country codes, in ISO 3166-1 alpha-2 format, that are enabled for the notify configuration."
+      },
+      "NotifyConfigurationArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) for the notify configuration."
+      },
+      "NotifyConfigurationId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The unique identifier for the notify configuration."
+      },
+      "PoolId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The identifier of the pool to associate with the notify configuration."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The current status of the notify configuration."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "An array of tags (key and value pairs) associated with the notify configuration."
+      },
+      "Tier": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The tier of the notify configuration."
+      },
+      "TierUpgradeStatus": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The tier upgrade status of the notify configuration."
+      },
+      "UseCase": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The use case for the notify configuration."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SMSVOICE/NotifyConfiguration",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SMSVOICE/NotifyConfiguration@default",
+    "body": {
+      "$ref": "#/20"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SMSVOICE/OptOutListProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/22"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SMSVOICE/OptOutListProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) for the OptOutList."
+      },
+      "OptOutListName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 16,
+        "description": "The name of the new OptOutList."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SMSVOICE/OptOutList",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SMSVOICE/OptOutList@default",
+    "body": {
+      "$ref": "#/26"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MandatoryKeyword",
+    "properties": {
+      "Message": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OptionalKeyword",
+    "properties": {
+      "Action": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Keyword": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Message": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SMSVOICE/PhoneNumberProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PhoneNumber_MandatoryKeywords",
+    "properties": {
+      "HELP": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 1
+      },
+      "STOP": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/29"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/30"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PhoneNumber_TwoWay",
+    "properties": {
+      "ChannelArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the two way channel."
+      },
+      "ChannelRole": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "An optional IAM Role Arn for a service to assume, to be able to post inbound SMS messages."
+      },
+      "Enabled": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "By default this is set to false. When set to true you can receive incoming text messages from your end recipients."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SMSVOICE/PhoneNumberProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2
+      },
+      "DeletionProtectionEnabled": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "When set to true the sender ID can't be deleted. By default this is set to false."
+      },
+      "IsoCountryCode": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The two-character code, in ISO 3166-1 alpha-2 format, for the country or region."
+      },
+      "MandatoryKeywords": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 1,
+        "description": "A keyword is a word that you can search for on a particular phone number or pool. It is also a specific word or phrase that an end user can send to your number to elicit a response, such as an informational message or a special offer. When your number receives a message that begins with a keyword, AWS End User Messaging SMS and Voice responds with a customizable message. Keywords \"HELP\" and \"STOP\" are mandatory keywords"
+      },
+      "NumberCapabilities": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 1,
+        "description": "Indicates if the phone number will be used for text messages, voice messages, or both."
+      },
+      "NumberType": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The type of phone number to request."
+      },
+      "OptOutListName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The name of the OptOutList to associate with the phone number. You can use the OptOutListName or OptOutListArn."
+      },
+      "OptionalKeywords": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0,
+        "description": "A keyword is a word that you can search for on a particular phone number or pool. It is also a specific word or phrase that an end user can send to your number to elicit a response, such as an informational message or a special offer. When your number receives a message that begins with a keyword, AWS End User Messaging SMS and Voice responds with a customizable message."
+      },
+      "PhoneNumber": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2
+      },
+      "PhoneNumberId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18
+      },
+      "SelfManagedOptOutsEnabled": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "By default this is set to false. When an end recipient sends a message that begins with HELP or STOP to one of your dedicated numbers, AWS End User Messaging SMS and Voice automatically replies with a customizable message and adds the end recipient to the OptOutList. When set to true you're responsible for responding to HELP and STOP requests. You're also responsible for tracking and honoring opt-out requests."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
+      "TwoWay": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0,
+        "description": "When you set up two-way SMS, you can receive incoming messages from your customers. When one of your customers sends a message to your phone number, the message body is sent to an Amazon SNS topic or Amazon Connect for processing."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SMSVOICE/PhoneNumber",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SMSVOICE/PhoneNumber@default",
+    "body": {
+      "$ref": "#/38"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MandatoryKeyword",
+    "properties": {
+      "Message": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OptionalKeyword",
+    "properties": {
+      "Action": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Keyword": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Message": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SMSVOICE/PoolProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Pool_MandatoryKeywords",
+    "properties": {
+      "HELP": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 1
+      },
+      "STOP": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/41"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/42"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Pool_TwoWay",
+    "properties": {
+      "ChannelArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the two way channel."
+      },
+      "ChannelRole": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "An optional IAM Role Arn for a service to assume, to be able to post inbound SMS messages."
+      },
+      "Enabled": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "By default this is set to false. When set to true you can receive incoming text messages from your end recipients."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SMSVOICE/PoolProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2
+      },
+      "DeletionProtectionEnabled": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "When set to true the pool can't be deleted. By default this is set to false."
+      },
+      "MandatoryKeywords": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 1,
+        "description": "A keyword is a word that you can search for on a particular phone number or pool. It is also a specific word or phrase that an end user can send to your number to elicit a response, such as an informational message or a special offer. When your number receives a message that begins with a keyword, AWS End User Messaging SMS and Voice responds with a customizable message. Keywords \"HELP\" and \"STOP\" are mandatory keywords"
+      },
+      "OptOutListName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The name of the OptOutList to associate with the pool. You can use the OptOutListName or OptOutListArn."
+      },
+      "OptionalKeywords": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0,
+        "description": "A keyword is a word that you can search for on a particular phone number or pool. It is also a specific word or phrase that an end user can send to your number to elicit a response, such as an informational message or a special offer. When your number receives a message that begins with a keyword, AWS End User Messaging SMS and Voice responds with a customizable message."
+      },
+      "OriginationIdentities": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 1,
+        "description": "The origination identity to use such as a PhoneNumberId, PhoneNumberArn, SenderId or SenderIdArn and it's IsoCountryCode."
+      },
+      "PoolId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18
+      },
+      "SelfManagedOptOutsEnabled": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "By default this is set to false. When an end recipient sends a message that begins with HELP or STOP to one of your dedicated numbers, AWS End User Messaging SMS and Voice automatically replies with a customizable message and adds the end recipient to the OptOutList. When set to true you're responsible for responding to HELP and STOP requests. You're also responsible for tracking and honoring opt-out requests."
+      },
+      "SharedRoutesEnabled": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Indicates whether shared routes are enabled for the pool."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
+      "TwoWay": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 0,
+        "description": "When you set up two-way SMS, you can receive incoming messages from your customers. When one of your customers sends a message to your phone number, the message body is sent to an Amazon SNS topic or Amazon Connect for processing."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SMSVOICE/Pool",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/49"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SMSVOICE/Pool@default",
+    "body": {
+      "$ref": "#/50"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CountryRule",
+    "properties": {
+      "CountryCode": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The two-letter ISO country code"
+      },
+      "ProtectStatus": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The types of protection that can be used."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CountryRuleSet",
+    "properties": {
+      "MMS": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 0
+      },
+      "SMS": {
+        "type": {
+          "$ref": "#/56"
+        },
+        "flags": 0
+      },
+      "VOICE": {
+        "type": {
+          "$ref": "#/57"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/52"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/52"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/52"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SMSVOICE/ProtectConfigurationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/54"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SMSVOICE/ProtectConfigurationProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the protect configuration."
+      },
+      "CountryRuleSet": {
+        "type": {
+          "$ref": "#/53"
+        },
+        "flags": 0,
+        "description": "An array of CountryRule containing the rules for the NumberCapability."
+      },
+      "DeletionProtectionEnabled": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "When set to true deletion protection is enabled and protect configuration cannot be deleted. By default this is set to false."
+      },
+      "ProtectConfigurationId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "The unique identifier for the protect configuration."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/59"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SMSVOICE/ProtectConfiguration",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/60"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SMSVOICE/ProtectConfiguration@default",
+    "body": {
+      "$ref": "#/61"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The key of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The value of the tag."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TestingAgentInformation",
+    "properties": {
+      "RegistrationId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The unique identifier of the testing registration that created the testing agent."
+      },
+      "TestingAgentId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The identifier of the testing agent assigned by the RCS infrastructure provider."
+      },
+      "TestingAgentStatus": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The status of the testing agent. Named distinctly from the resource-level Status property, which has its own larger set of values."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SMSVOICE/RcsAgentProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/63"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SMSVOICE/RcsAgentProperties",
+    "properties": {
+      "CreatedTimestamp": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The time when the RCS agent was created."
+      },
+      "DeletionProtectionEnabled": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "When set to true the RCS agent can't be deleted. By default this is false."
+      },
+      "OptOutListName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The name of the opt-out list associated with the RCS agent."
+      },
+      "PoolId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the pool associated with the RCS agent. This is populated only while the agent is associated with a pool, which is done through the pool APIs rather than through this resource."
+      },
+      "RcsAgentArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the RCS agent."
+      },
+      "RcsAgentId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The unique identifier for the RCS agent, in the format rcs- followed by a hexadecimal string."
+      },
+      "SelfManagedOptOutsEnabled": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "When set to true you're responsible for responding to HELP and STOP requests, and for tracking and honoring opt-out requests. By default this is false."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The current status of the RCS agent. CREATED means the agent exists but no registration has been submitted. PENDING means a registration is awaiting processing. TESTING means the testing registration is approved and the agent can message registered test devices. PARTIAL means at least one country launch is active. ACTIVE means all submitted country launches are active. DELETED means the agent has been deleted."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/66"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to the RCS agent."
+      },
+      "TestingAgent": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 2
+      },
+      "TwoWayChannelArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the two way channel where inbound messages are delivered."
+      },
+      "TwoWayChannelRole": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of an IAM role for the service to assume in order to post inbound messages to the two way channel."
+      },
+      "TwoWayEnabled": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "When set to true two-way messaging is enabled for the RCS agent."
+      },
+      "TwoWayMediaS3BucketName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The name of the Amazon S3 bucket where inbound RCS media objects are written."
+      },
+      "TwoWayMediaS3KeyPrefix": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The key prefix used for inbound RCS media objects in the Amazon S3 bucket."
+      },
+      "TwoWayMediaS3Role": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the IAM role used to write inbound RCS media files to the Amazon S3 bucket. The role must have s3:PutObject permission on the bucket and a trust policy allowing sms-voice.amazonaws.com to assume it."
+      },
+      "TwoWayRcsEventsEnabled": {
+        "type": {
+          "$ref": "#/67"
+        },
+        "flags": 0,
+        "description": "The list of RCS event types enabled for two-way messaging. An empty list disables all event types. The special value ALL enables all current and future event types and must be the only element if used. Requires TwoWayEnabled to be true."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SMSVOICE/RcsAgent",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/68"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SMSVOICE/RcsAgent@default",
+    "body": {
+      "$ref": "#/69"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The key identifier, or name, of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The string value associated with the key of the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SMSVOICE/RegistrationProperties"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/71"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SMSVOICE/RegistrationProperties",
+    "properties": {
+      "CreatedTimestamp": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The time when the registration was created, in UNIX epoch time format."
+      },
+      "CurrentVersionNumber": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 2,
+        "description": "The current version number of the registration."
+      },
+      "RegistrationArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) for the registration."
+      },
+      "RegistrationId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The unique identifier for the registration."
+      },
+      "RegistrationStatus": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The status of the registration."
+      },
+      "RegistrationType": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The type of registration form to create."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 0,
+        "description": "An array of tags (key and value pairs) to associate with the registration."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SMSVOICE/Registration",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/75"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SMSVOICE/Registration@default",
+    "body": {
+      "$ref": "#/76"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The key identifier, or name, of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The string value associated with the key of the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SMSVOICE/RegistrationAttachmentProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/78"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SMSVOICE/RegistrationAttachmentProperties",
+    "properties": {
+      "AttachmentBody": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 4,
+        "description": "The registration file to upload. The maximum file size is 1500KB and valid file extensions are PDF, JPEG and PNG."
+      },
+      "AttachmentStatus": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The status of the registration attachment."
+      },
+      "AttachmentUrl": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 4,
+        "description": "A URL to the required registration file. For example, the URL to an MMS/shortcode form."
+      },
+      "CreatedTimestamp": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The time when the registration attachment was created, in UNIX epoch time format."
+      },
+      "RegistrationAttachmentArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) for the registration attachment."
+      },
+      "RegistrationAttachmentId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The unique identifier for the registration attachment."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 0,
+        "description": "An array of tags (key and value pairs) to associate with the registration attachment."
+      },
+      "UploadedAttachmentUrl": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The URL to the document that was uploaded as the registration attachment, as returned by the service."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SMSVOICE/RegistrationAttachment",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/81"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SMSVOICE/RegistrationAttachment@default",
+    "body": {
+      "$ref": "#/82"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SMSVOICE/ResourcePolicyProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResourcePolicy_PolicyDocument",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SMSVOICE/ResourcePolicyProperties",
+    "properties": {
+      "PolicyDocument": {
+        "type": {
+          "$ref": "#/85"
+        },
+        "flags": 1,
+        "description": "The JSON formatted resource-based policy to attach."
+      },
+      "ResourceArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "The Amazon Resource Name (ARN) of the AWS End User Messaging SMS and Voice resource to attach the resource-based policy to."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SMSVOICE/ResourcePolicy",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/86"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SMSVOICE/ResourcePolicy@default",
+    "body": {
+      "$ref": "#/87"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SMSVOICE/SenderIdProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/89"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SMSVOICE/SenderIdProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) associated with the SenderId."
+      },
+      "DeletionProtectionEnabled": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "When set to true the sender ID can't be deleted. By default this is set to false."
+      },
+      "IsoCountryCode": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "The two-character code, in ISO 3166-1 alpha-2 format, for the country or region."
+      },
+      "SenderId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "The sender ID string to request."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/91"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SMSVOICE/SenderId",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/92"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SMSVOICE/SenderId@default",
+    "body": {
+      "$ref": "#/93"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The key of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The value of the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SMSVOICE/VerifiedDestinationNumberProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/95"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SMSVOICE/VerifiedDestinationNumberProperties",
+    "properties": {
+      "CreatedTimestamp": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The time when the verified destination phone number was created."
+      },
+      "DestinationPhoneNumber": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The verified destination phone number, in E.164 format."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The status of the verified destination phone number. PENDING means the phone number has not been verified yet; VERIFIED means it is verified and can receive messages."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/97"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
+      "VerifiedDestinationNumberArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) for the verified destination phone number."
+      },
+      "VerifiedDestinationNumberId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The unique identifier for the verified destination phone number."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SMSVOICE/VerifiedDestinationNumber",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/98"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SMSVOICE/VerifiedDestinationNumber@default",
+    "body": {
+      "$ref": "#/99"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  }
+]

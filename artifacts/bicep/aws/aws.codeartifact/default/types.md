@@ -1,21 +1,24 @@
 # AWS.CodeArtifact @ default
 
 ## Resource AWS.CodeArtifact/Domain@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CodeArtifact/DomainProperties](#awscodeartifactdomainproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CodeArtifact/PackageGroup@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CodeArtifact/PackageGroupProperties](#awscodeartifactpackagegroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CodeArtifact/Repository@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name

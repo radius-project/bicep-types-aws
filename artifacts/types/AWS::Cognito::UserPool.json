@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Cognito-UserPool",
   "type": "AWS::Cognito::UserPool",
-  "time": "2025-01-27T19:22:19.743Z",
+  "time": "2026-10-21T23:45:35.427Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -98,6 +98,59 @@
         },
         "type": "object"
       },
+      "EncryptionKeyArnType": {
+        "pattern": "arn:[\\w+=/,.@-]+:[\\w+=/,.@-]+:([\\w+=/,.@-]*)?:[0-9]+:[\\w+=/,.@-]+(:[\\w+=/,.@-]+)?(:[\\w+=/,.@-]+)?",
+        "type": "string"
+      },
+      "EncryptionKeyType": {
+        "enum": [
+          "AWS_OWNED_KEY",
+          "CUSTOMER_MANAGED_KEY"
+        ],
+        "type": "string"
+      },
+      "EumsSmsConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "CallerArn": {
+            "type": "string"
+          },
+          "ConfigurationSetName": {
+            "type": "string"
+          },
+          "ExternalId": {
+            "type": "string"
+          },
+          "InEntityId": {
+            "type": "string"
+          },
+          "InTemplateId": {
+            "type": "string"
+          },
+          "OriginationIdentity": {
+            "type": "string"
+          },
+          "Region": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "CallerArn"
+        ],
+        "type": "object"
+      },
+      "InboundFederation": {
+        "additionalProperties": false,
+        "properties": {
+          "LambdaArn": {
+            "type": "string"
+          },
+          "LambdaVersion": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "InviteMessageTemplate": {
         "additionalProperties": false,
         "properties": {
@@ -109,6 +162,31 @@
           },
           "SMSMessage": {
             "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "IssuerConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "Type": {
+            "enum": [
+              "ORIGINAL",
+              "UPDATED"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "KeyConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "KeyType": {
+            "$ref": "#/definitions/EncryptionKeyType"
+          },
+          "KmsKeyArn": {
+            "$ref": "#/definitions/EncryptionKeyArnType"
           }
         },
         "type": "object"
@@ -130,6 +208,9 @@
           },
           "DefineAuthChallenge": {
             "type": "string"
+          },
+          "InboundFederation": {
+            "$ref": "#/definitions/InboundFederation"
           },
           "KMSKeyID": {
             "type": "string"
@@ -278,6 +359,9 @@
       "SmsConfiguration": {
         "additionalProperties": false,
         "properties": {
+          "EumsSms": {
+            "$ref": "#/definitions/EumsSmsConfiguration"
+          },
           "ExternalId": {
             "type": "string"
           },
@@ -372,6 +456,13 @@
           "cognito-idp:SetUserPoolMfaConfig",
           "cognito-idp:DescribeUserPool",
           "kms:CreateGrant",
+          "kms:DescribeKey",
+          "kms:Encrypt",
+          "kms:Decrypt",
+          "kms:GenerateDataKey",
+          "kms:GenerateDataKeyWithoutPlaintext",
+          "kms:ReEncryptFrom",
+          "kms:ReEncryptTo",
           "iam:CreateServiceLinkedRole",
           "cognito-idp:TagResource"
         ],
@@ -391,7 +482,9 @@
       "read": {
         "permissions": [
           "cognito-idp:DescribeUserPool",
-          "cognito-idp:GetUserPoolMfaConfig"
+          "cognito-idp:GetUserPoolMfaConfig",
+          "kms:Decrypt",
+          "kms:DescribeKey"
         ]
       },
       "update": {
@@ -404,7 +497,15 @@
           "cognito-idp:AddCustomAttributes",
           "cognito-idp:DescribeUserPool",
           "cognito-idp:GetUserPoolMfaConfig",
-          "iam:PassRole"
+          "iam:PassRole",
+          "kms:CreateGrant",
+          "kms:DescribeKey",
+          "kms:Encrypt",
+          "kms:Decrypt",
+          "kms:GenerateDataKey",
+          "kms:GenerateDataKeyWithoutPlaintext",
+          "kms:ReEncryptFrom",
+          "kms:ReEncryptTo"
         ],
         "timeoutInMinutes": 2
       }
@@ -468,6 +569,12 @@
           "type": "string"
         },
         "type": "array"
+      },
+      "IssuerConfiguration": {
+        "$ref": "#/definitions/IssuerConfiguration"
+      },
+      "KeyConfiguration": {
+        "$ref": "#/definitions/KeyConfiguration"
       },
       "LambdaConfig": {
         "$ref": "#/definitions/LambdaConfig"
@@ -546,6 +653,13 @@
       "VerificationMessageTemplate": {
         "$ref": "#/definitions/VerificationMessageTemplate"
       },
+      "WebAuthnFactorConfiguration": {
+        "enum": [
+          "SINGLE_FACTOR",
+          "MULTI_FACTOR_WITH_USER_VERIFICATION"
+        ],
+        "type": "string"
+      },
       "WebAuthnRelyingPartyID": {
         "maxLength": 63,
         "minLength": 1,
@@ -568,7 +682,7 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "cognito-idp:ListTagsForResource",
         "cognito-idp:UntagResource",

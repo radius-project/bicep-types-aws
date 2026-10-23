@@ -5,17 +5,37 @@
     "properties": {
       "Id": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "<p>The system-generated unique identifier for the IngestEndpoint.</p>"
       },
       "Url": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "<p>The ingest domain URL where the source stream should be sent.</p>"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputSwitchConfiguration",
+    "properties": {
+      "MQCSInputSwitching": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "<p>When true, AWS Elemental MediaPackage performs input switching based on the MQCS. Default is false. This setting is valid only when <code>InputType</code> is <code>CMAF</code>.</p>"
+      },
+      "PreferredInput": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "<p>For CMAF inputs, indicates which input MediaPackage should prefer when both inputs have equal MQCS scores. Select <code>1</code> to prefer the first ingest endpoint, or <code>2</code> to prefer the second ingest endpoint. If you don't specify a preferred input, MediaPackage uses its default switching behavior when MQCS scores are equal.</p>"
       }
     }
   },
@@ -26,17 +46,60 @@
   },
   {
     "$type": "ObjectType",
+    "name": "MultiviewConfiguration",
+    "properties": {
+      "AvailableLayouts": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 1,
+        "description": "<p>The tile layouts that players can request from this multiview channel's origin endpoints. Only the layouts that you list here are available. Each layout must appear at most once.</p>"
+      },
+      "AvailableSources": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 1,
+        "description": "<p>The channels that players can use as tiles in this multiview channel's output. Each source channel must be in the same channel group as the multiview channel, and must have an <code>InputType</code> of <code>CMAF</code>. Only the channels that you list here are available as tiles.</p>"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MultiviewLayoutType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OutputHeaderConfiguration",
+    "properties": {
+      "PublishMQCS": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "<p>When true, AWS Elemental MediaPackage includes the MQCS in responses to the CDN. This setting is valid only when <code>InputType</code> is <code>CMAF</code>.</p>"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OutputLockingMode",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "Tag",
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "Value": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0
       }
@@ -46,13 +109,37 @@
     "$type": "StringType"
   },
   {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
+  },
+  {
     "$type": "StringLiteralType",
     "value": "AWS.MediaPackageV2/ChannelProperties"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
     }
   },
   {
@@ -64,7 +151,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/7"
     }
   },
   {
@@ -73,66 +160,97 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 18,
         "description": "<p>The Amazon Resource Name (ARN) associated with the resource.</p>"
       },
+      "AttachedMultiviewChannels": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 2,
+        "description": "<p>The multiview channels, in the same channel group, that list this channel as an available source. This is a read-only field. You can't delete a channel while any multiview channel still lists it as a source. Use this field to find the multiview channels that you need to update first.</p>"
+      },
       "ChannelGroupName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 1
       },
       "ChannelName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 1
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 2,
         "description": "<p>The date and time the channel was created.</p>"
       },
       "Description": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "<p>Enter any descriptive text that helps you to identify the channel.</p>"
       },
       "IngestEndpointUrls": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/15"
         },
         "flags": 2
       },
       "IngestEndpoints": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/16"
         },
         "flags": 2,
         "description": "<p>The list of ingest endpoints.</p>"
       },
+      "InputSwitchConfiguration": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
       "InputType": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "ModifiedAt": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 2,
         "description": "<p>The date and time the channel was modified.</p>"
       },
+      "MultiviewConfiguration": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "OutputHeaderConfiguration": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "OutputLockingMode": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
       "Tags": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -144,21 +262,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/18"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -168,11 +286,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.MediaPackageV2/Channel@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/9"
+      "$ref": "#/19"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -180,13 +298,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "Value": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0
       }
@@ -199,7 +317,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/21"
     }
   },
   {
@@ -208,48 +326,48 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 18,
         "description": "<p>The Amazon Resource Name (ARN) associated with the resource.</p>"
       },
       "ChannelGroupName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 1
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 2,
         "description": "<p>The date and time the channel group was created.</p>"
       },
       "Description": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "<p>Enter any descriptive text that helps you to identify the channel group.</p>"
       },
       "EgressDomain": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 2,
         "description": "<p>The output domain where the source stream should be sent. Integrate the domain with a downstream CDN (such as Amazon CloudFront) or playback device.</p>"
       },
       "ModifiedAt": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 2,
         "description": "<p>The date and time the channel group was modified.</p>"
       },
       "Tags": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/23"
         },
         "flags": 0
       }
@@ -261,21 +379,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -285,11 +403,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.MediaPackageV2/ChannelGroup@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/15"
+      "$ref": "#/25"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "StringLiteralType",
@@ -304,10 +422,10 @@
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/18"
+        "$ref": "#/28"
       },
       {
-        "$ref": "#/3"
+        "$ref": "#/8"
       }
     ]
   },
@@ -317,19 +435,19 @@
     "properties": {
       "ChannelGroupName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 17
       },
       "ChannelName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 17
       },
       "Policy": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/29"
         },
         "flags": 1
       }
@@ -341,21 +459,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/30"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -365,11 +483,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.MediaPackageV2/ChannelPolicy@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/21"
+      "$ref": "#/31"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -393,82 +511,275 @@
   },
   {
     "$type": "ObjectType",
+    "name": "ContentKeyPeriodConfiguration",
+    "properties": {
+      "ContentKeyPeriodTiming": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ContentKeyPeriodTiming",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomAdType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DashAudioTimelinePattern",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DashAvailabilityStartTimeConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DashBaseUrl",
+    "properties": {
+      "DvbPriority": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "<p>For use with DVB-DASH profiles only. The priority of this location for servings segments. The lower the number, the higher the priority.</p>"
+      },
+      "DvbWeight": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "<p>For use with DVB-DASH profiles only. The weighting for source locations that have the same priority. </p>"
+      },
+      "ServiceLocation": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "<p>The name of the source location.</p>"
+      },
+      "Url": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "<p>A source location for segments.</p>"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DashCompactness",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "DashDrmSignaling",
     "properties": {}
   },
   {
     "$type": "ObjectType",
+    "name": "DashDvbFontDownload",
+    "properties": {
+      "FontFamily": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "<p>The <code>fontFamily</code> name for subtitles, as described in <a href=\"https://tech.ebu.ch/publications/tech3380\">EBU-TT-D Subtitling Distribution Format</a>. </p>"
+      },
+      "MimeType": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "<p>The <code>mimeType</code> of the resource that's at the font download URL.</p> <p>For information about font MIME types, see the <a href=\"https://dvb.org/wp-content/uploads/2021/06/A168r4_MPEG-DASH-Profile-for-Transport-of-ISO-BMFF-Based-DVB-Services_Draft-ts_103-285-v140_November_2021.pdf\">MPEG-DASH Profile for Transport of ISO BMFF Based DVB Services over IP Based Networks</a> document. </p>"
+      },
+      "Url": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "<p>The URL for downloading fonts for subtitles.</p>"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DashDvbMetricsReporting",
+    "properties": {
+      "Probability": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "<p>The number of playback devices per 1000 that will send error reports to the reporting URL. This represents the probability that a playback device will be a reporting player for this session.</p>"
+      },
+      "ReportingUrl": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "<p>The URL where playback devices send error reports.</p>"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DashDvbSettings",
+    "properties": {
+      "ErrorMetrics": {
+        "type": {
+          "$ref": "#/92"
+        },
+        "flags": 0,
+        "description": "<p>Playback device error reporting settings.</p>"
+      },
+      "FontDownload": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "DashManifestConfiguration",
     "properties": {
+      "AudioTimelinePattern": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "AvailabilityStartTimeConfiguration": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0
+      },
+      "BaseUrls": {
+        "type": {
+          "$ref": "#/93"
+        },
+        "flags": 0,
+        "description": "<p>The base URL to use for retrieving segments.</p>"
+      },
+      "Compactness": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
       "DrmSignaling": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "DvbSettings": {
+        "type": {
+          "$ref": "#/47"
         },
         "flags": 0
       },
       "FilterConfiguration": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/63"
         },
         "flags": 0
       },
       "ManifestName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 1,
         "description": "<p>A short string that's appended to the endpoint URL. The manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default manifest name, index. </p>"
       },
       "ManifestWindowSeconds": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "<p>The total duration (in seconds) of the manifest's content.</p>"
       },
       "MinBufferTimeSeconds": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "<p>Minimum amount of content (in seconds) that a player must keep available in the buffer.</p>"
       },
       "MinUpdatePeriodSeconds": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "<p>Minimum amount of time (in seconds) that the player should wait before requesting updates to the manifest.</p>"
       },
       "PeriodTriggers": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/94"
         },
         "flags": 0,
-        "description": "<p>A list of triggers that controls when AWS Elemental MediaPackage separates the MPEG-DASH manifest into multiple periods. Leave this value empty to indicate that the manifest is contained all in one period.\n         For more information about periods in the DASH manifest, see <a href=\"https://docs.aws.amazon.com/mediapackage/latest/userguide/multi-period.html\">Multi-period DASH in AWS Elemental MediaPackage</a>.</p>"
+        "description": "<p>A list of triggers that controls when AWS Elemental MediaPackage separates the MPEG-DASH manifest into multiple periods. Leave this value empty to indicate that the manifest is contained all in one period. For more information about periods in the DASH manifest, see <a href=\"https://docs.aws.amazon.com/mediapackage/latest/userguide/multi-period.html\">Multi-period DASH in AWS Elemental MediaPackage</a>.</p>"
+      },
+      "Profiles": {
+        "type": {
+          "$ref": "#/95"
+        },
+        "flags": 0,
+        "description": "<p>The profile that the output is compliant with.</p>"
+      },
+      "ProgramInformation": {
+        "type": {
+          "$ref": "#/51"
+        },
+        "flags": 0
       },
       "ScteDash": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/78"
         },
         "flags": 0
       },
       "SegmentTemplateFormat": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "SubtitleConfiguration": {
+        "type": {
+          "$ref": "#/53"
         },
         "flags": 0
       },
       "SuggestedPresentationDelaySeconds": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "<p>The amount of time (in seconds) that the player should be from the end of the manifest.</p>"
       },
+      "UriPathType": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
       "UtcTiming": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/56"
         },
         "flags": 0
       }
@@ -481,7 +792,82 @@
   },
   {
     "$type": "ObjectType",
+    "name": "DashProfile",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DashProgramInformation",
+    "properties": {
+      "Copyright": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "<p>A copyright statement about the content.</p>"
+      },
+      "LanguageCode": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "<p>The language code for this manifest.</p>"
+      },
+      "MoreInformationUrl": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "<p>An absolute URL that contains more information about this content.</p>"
+      },
+      "Source": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "<p>Information about the content provider.</p>"
+      },
+      "Title": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "<p>The title for the manifest.</p>"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "DashSegmentTemplateFormat",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DashSubtitleConfiguration",
+    "properties": {
+      "TtmlConfiguration": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DashTtmlConfiguration",
+    "properties": {
+      "TtmlProfile": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DashTtmlProfile",
     "properties": {}
   },
   {
@@ -490,13 +876,13 @@
     "properties": {
       "TimingMode": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "TimingSource": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "<p>The the method that the player uses to synchronize to coordinated universal time (UTC) wall clock time.</p>"
@@ -517,29 +903,36 @@
     "$type": "ObjectType",
     "name": "Encryption",
     "properties": {
+      "CmafExcludeSegmentDrmMetadata": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "<p>Excludes SEIG and SGPD boxes from segment metadata in CMAF containers.</p> <p>When set to <code>true</code>, MediaPackage omits these DRM metadata boxes from CMAF segments, which can improve compatibility with certain devices and players that don't support these boxes.</p> <p>Important considerations:</p> <ul> <li> <p>This setting only affects CMAF container formats</p> </li> <li> <p>Key rotation can still be handled through media playlist signaling</p> </li> <li> <p>PSSH and TENC boxes remain unaffected</p> </li> <li> <p>Default behavior is preserved when this setting is disabled</p> </li> </ul> <p>Valid values: <code>true</code> | <code>false</code> </p> <p>Default: <code>false</code> </p>"
+      },
       "ConstantInitializationVector": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "<p>A 128-bit, 16-byte hex value represented by a 32-character string, used in conjunction with the key for encrypting content. If you don't specify a value, then MediaPackage creates the constant initialization vector (IV).</p>"
       },
       "EncryptionMethod": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/61"
         },
         "flags": 1
       },
       "KeyRotationIntervalSeconds": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/10"
         },
         "flags": 0,
-        "description": "<p>The frequency (in seconds) of key changes for live workflows, in which content is streamed real time. The service retrieves content keys before the live content begins streaming, and then retrieves them as needed over the lifetime of the workflow. By default, key rotation is set to 300 seconds (5 minutes), the minimum rotation interval, which is equivalent to setting it to 300. If you don't enter an interval, content keys aren't rotated.</p>\n         <p>The following example setting causes the service to rotate keys every thirty minutes: <code>1800</code>\n         </p>"
+        "description": "<p>The frequency (in seconds) of key changes for live workflows, in which content is streamed real time. The service retrieves content keys before the live content begins streaming, and then retrieves them as needed over the lifetime of the workflow. By default, key rotation is set to 300 seconds (5 minutes), the minimum rotation interval, which is equivalent to setting it to 300. If you don't enter an interval, content keys aren't rotated.</p> <p>The following example setting causes the service to rotate keys every thirty minutes: <code>1800</code> </p>"
       },
       "SpekeKeyProvider": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/84"
         },
         "flags": 1
       }
@@ -551,13 +944,13 @@
     "properties": {
       "PresetSpeke20Audio": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 1
       },
       "PresetSpeke20Video": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 1
       }
@@ -569,13 +962,19 @@
     "properties": {
       "CmafEncryptionMethod": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "IsmEncryptionMethod": {
+        "type": {
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "TsEncryptionMethod": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0
       }
@@ -592,35 +991,48 @@
     "properties": {
       "ClipStartTime": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "<p>Optionally specify the clip start time for all of your manifest egress requests. When you include clip start time, note that you cannot use clip start time query parameters for this manifest's endpoint URL.</p>"
       },
+      "DrmSettings": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "<p>Optionally specify one or more DRM settings for all of your manifest egress requests. When you include a DRM setting, note that you cannot use an identical DRM setting query parameter for this manifest's endpoint URL.</p>"
+      },
       "End": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "<p>Optionally specify the end time for all of your manifest egress requests. When you include end time, note that you cannot use end time query parameters for this manifest's endpoint URL.</p>"
       },
       "ManifestFilter": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "<p>Optionally specify one or more manifest filters for all of your manifest egress requests. When you include a manifest filter, note that you cannot use an identical manifest filter query parameter for this manifest's endpoint URL.</p>"
       },
+      "Multiview": {
+        "type": {
+          "$ref": "#/72"
+        },
+        "flags": 0
+      },
       "Start": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "<p>Optionally specify the start time for all of your manifest egress requests. When you include start time, note that you cannot use start time query parameters for this manifest's endpoint URL.</p>"
       },
       "TimeDelaySeconds": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "<p>Optionally specify the time delay for all of your manifest egress requests. Enter a value that is smaller than your endpoint's startover window. When you include time delay, note that you cannot use time delay query parameters for this manifest's endpoint URL.</p>"
@@ -633,10 +1045,10 @@
     "properties": {
       "EndpointErrorConditions": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/96"
         },
         "flags": 0,
-        "description": "<p>The failover settings for the endpoint. The options are:</p>\n         <ul>\n            <li>\n               <p>\n                  <code>STALE_MANIFEST</code> - The manifest stalled and there a no new segments or parts.</p>\n            </li>\n            <li>\n               <p>\n                  <code>INCOMPLETE_MANIFEST</code> - There is a gap in the manifest.</p>\n            </li>\n            <li>\n               <p>\n                  <code>MISSING_DRM_KEY</code> - Key rotation is enabled but we're unable to fetch the key for the current key period.</p>\n            </li>\n         </ul>"
+        "description": "<p>The failover conditions for the endpoint. The options are:</p> <ul> <li> <p> <code>STALE_MANIFEST</code> - The manifest stalled and there are no new segments or parts.</p> </li> <li> <p> <code>INCOMPLETE_MANIFEST</code> - There is a gap in the manifest.</p> </li> <li> <p> <code>MISSING_DRM_KEY</code> - Key rotation is enabled but we're unable to fetch the key for the current key period.</p> </li> <li> <p> <code>SLATE_INPUT</code> - The segments which contain slate content are considered to be missing content.</p> </li> </ul>"
       }
     }
   },
@@ -646,56 +1058,122 @@
     "properties": {
       "ChildManifestName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "<p>A short string that's appended to the endpoint URL. The child manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default child manifest name, index_1. The manifestName on the HLSManifest object overrides the manifestName you provided on the originEndpoint object.</p>"
       },
       "FilterConfiguration": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/63"
         },
         "flags": 0
       },
       "ManifestName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 1,
         "description": "<p>A short short string that's appended to the endpoint URL. The manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default manifest name, index. MediaPackage automatically inserts the format extension, such as .m3u8. You can't use the same manifest name if you use HLS manifest and low-latency HLS manifest. The manifestName on the HLSManifest object overrides the manifestName you provided on the originEndpoint object.</p>"
       },
       "ManifestWindowSeconds": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "<p>The total duration (in seconds) of the manifest's content.</p>"
       },
       "ProgramDateTimeIntervalSeconds": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/10"
         },
         "flags": 0,
-        "description": "<p>Inserts EXT-X-PROGRAM-DATE-TIME tags in the output manifest at the interval that you specify. If you don't enter an interval, \n         EXT-X-PROGRAM-DATE-TIME tags aren't included in the manifest. \n         The tags sync the stream to the wall clock so that viewers can seek to a specific time in the playback timeline on the player. \n         ID3Timed metadata messages generate every 5 seconds whenever the content is ingested.</p>\n         <p>Irrespective of this parameter, if any ID3Timed metadata is in the HLS input, it is passed through to the HLS output.</p>"
+        "description": "<p>Inserts EXT-X-PROGRAM-DATE-TIME tags in the output manifest at the interval that you specify. If you don't enter an interval, EXT-X-PROGRAM-DATE-TIME tags aren't included in the manifest. The tags sync the stream to the wall clock so that viewers can seek to a specific time in the playback timeline on the player.</p> <p>Irrespective of this parameter, if any ID3Timed metadata is in the HLS input, it is passed through to the HLS output.</p>"
       },
       "ScteHls": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/80"
         },
         "flags": 0
       },
       "StartTag": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/86"
+        },
+        "flags": 0
+      },
+      "UriPathType": {
+        "type": {
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "Url": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "<p>The egress domain URL for stream delivery from MediaPackage.</p>"
+      },
+      "UrlEncodeChildManifest": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "<p>When enabled, MediaPackage URL-encodes the query string for API requests for HLS child manifests to comply with Amazon Web Services Signature Version 4 (SigV4) signature signing protocol. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv.html\">Amazon Web Services Signature Version 4 for API requests</a> in <i>Identity and Access Management User Guide</i>.</p>"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IsmEncryptionMethod",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LowLatencyHlsFilterConfiguration",
+    "properties": {
+      "ClipStartTime": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "<p>Optionally specify the clip start time for all of your manifest egress requests. When you include clip start time, note that you cannot use clip start time query parameters for this manifest's endpoint URL.</p>"
+      },
+      "DrmSettings": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "<p>Optionally specify one or more DRM settings for all of your manifest egress requests. When you include a DRM setting, note that you cannot use an identical DRM setting query parameter for this manifest's endpoint URL.</p>"
+      },
+      "End": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "<p>Optionally specify the end time for all of your manifest egress requests. When you include end time, note that you cannot use end time query parameters for this manifest's endpoint URL.</p>"
+      },
+      "ManifestFilter": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "<p>Optionally specify one or more manifest filters for all of your manifest egress requests. When you include a manifest filter, note that you cannot use an identical manifest filter query parameter for this manifest's endpoint URL.</p>"
+      },
+      "Start": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "<p>Optionally specify the start time for all of your manifest egress requests. When you include start time, note that you cannot use start time query parameters for this manifest's endpoint URL.</p>"
+      },
+      "TimeDelaySeconds": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "<p>Optionally specify the time delay for all of your manifest egress requests. Enter a value that is smaller than your endpoint's startover window. When you include time delay, note that you cannot use time delay query parameters for this manifest's endpoint URL.</p>"
       }
     }
   },
@@ -705,58 +1183,185 @@
     "properties": {
       "ChildManifestName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "<p>A short string that's appended to the endpoint URL. The child manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default child manifest name, index_1. The manifestName on the HLSManifest object overrides the manifestName you provided on the originEndpoint object.</p>"
       },
       "FilterConfiguration": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/67"
         },
         "flags": 0
       },
       "ManifestName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 1,
         "description": "<p>A short short string that's appended to the endpoint URL. The manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default manifest name, index. MediaPackage automatically inserts the format extension, such as .m3u8. You can't use the same manifest name if you use HLS manifest and low-latency HLS manifest. The manifestName on the HLSManifest object overrides the manifestName you provided on the originEndpoint object.</p>"
       },
       "ManifestWindowSeconds": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "<p>The total duration (in seconds) of the manifest's content.</p>"
       },
       "ProgramDateTimeIntervalSeconds": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/10"
         },
         "flags": 0,
-        "description": "<p>Inserts EXT-X-PROGRAM-DATE-TIME tags in the output manifest at the interval that you specify. If you don't enter an interval, \n         EXT-X-PROGRAM-DATE-TIME tags aren't included in the manifest. \n         The tags sync the stream to the wall clock so that viewers can seek to a specific time in the playback timeline on the player. \n         ID3Timed metadata messages generate every 5 seconds whenever the content is ingested.</p>\n         <p>Irrespective of this parameter, if any ID3Timed metadata is in the HLS input, it is passed through to the HLS output.</p>"
+        "description": "<p>Inserts EXT-X-PROGRAM-DATE-TIME tags in the output manifest at the interval that you specify. If you don't enter an interval, EXT-X-PROGRAM-DATE-TIME tags aren't included in the manifest. The tags sync the stream to the wall clock so that viewers can seek to a specific time in the playback timeline on the player.</p> <p>Irrespective of this parameter, if any ID3Timed metadata is in the HLS input, it is passed through to the HLS output.</p>"
       },
       "ScteHls": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/80"
         },
         "flags": 0
       },
       "StartTag": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/86"
+        },
+        "flags": 0
+      },
+      "UriPathType": {
+        "type": {
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "Url": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "<p>The egress domain URL for stream delivery from MediaPackage.</p>"
+      },
+      "UrlEncodeChildManifest": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "<p>When enabled, MediaPackage URL-encodes the query string for API requests for LL-HLS child manifests to comply with Amazon Web Services Signature Version 4 (SigV4) signature signing protocol. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv.html\">Amazon Web Services Signature Version 4 for API requests</a> in <i>Identity and Access Management User Guide</i>.</p>"
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MssFilterConfiguration",
+    "properties": {
+      "ClipStartTime": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "<p>Optionally specify the clip start time for all of your manifest egress requests. When you include clip start time, note that you cannot use clip start time query parameters for this manifest's endpoint URL.</p>"
+      },
+      "DrmSettings": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "<p>Optionally specify one or more DRM settings for all of your manifest egress requests. When you include a DRM setting, note that you cannot use an identical DRM setting query parameter for this manifest's endpoint URL.</p>"
+      },
+      "End": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "<p>Optionally specify the end time for all of your manifest egress requests. When you include end time, note that you cannot use end time query parameters for this manifest's endpoint URL.</p>"
+      },
+      "ManifestFilter": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "<p>Optionally specify one or more manifest filters for all of your manifest egress requests. When you include a manifest filter, note that you cannot use an identical manifest filter query parameter for this manifest's endpoint URL.</p>"
+      },
+      "Start": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "<p>Optionally specify the start time for all of your manifest egress requests. When you include start time, note that you cannot use start time query parameters for this manifest's endpoint URL.</p>"
+      },
+      "TimeDelaySeconds": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "<p>Optionally specify the time delay for all of your manifest egress requests. Enter a value that is smaller than your endpoint's startover window. When you include time delay, note that you cannot use time delay query parameters for this manifest's endpoint URL.</p>"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MssManifestConfiguration",
+    "properties": {
+      "FilterConfiguration": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0
+      },
+      "ManifestLayout": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "ManifestName": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "<p>The name of the MSS manifest. This name is appended to the origin endpoint URL to create the unique path for accessing this specific MSS manifest.</p>"
+      },
+      "ManifestWindowSeconds": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "<p>The duration (in seconds) of the manifest window. This represents the total amount of content available in the manifest at any given time.</p>"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MssManifestLayout",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MultiviewFilterConfiguration",
+    "properties": {
+      "Layout": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "Sources": {
+        "type": {
+          "$ref": "#/97"
+        },
+        "flags": 1,
+        "description": "<p>The source channels to composite, in tile order. Each channel must be one of the <code>AvailableSources</code> of the channel that this origin endpoint is on, and the number of channels must equal the number of tiles in <code>Layout</code>.</p>"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MultiviewLayoutType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OutputTimestampMode",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -772,12 +1377,25 @@
     "$type": "ObjectType",
     "name": "Scte",
     "properties": {
+      "CustomAdTypes": {
+        "type": {
+          "$ref": "#/98"
+        },
+        "flags": 0,
+        "description": "<p>A list of additional non-Ad SCTE-35 event types to treat as advertisements. When configured, events matching these types produce ad markers (such as <code>SCTE35-OUT</code> and <code>SCTE35-IN</code> in HLS DATERANGE tags) in manifests.</p> <p>Valid values: <code>PROGRAM</code> | <code>CHAPTER</code> | <code>UNSCHEDULED_EVENT</code> | <code>ALTERNATE_CONTENT_OPPORTUNITY</code> | <code>NETWORK</code> </p> <p>If you don't specify any values, the default is empty (only default ad types are used).</p>"
+      },
       "ScteFilter": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/99"
         },
         "flags": 0,
         "description": "<p>The SCTE-35 message types that you want to be treated as ad markers in the output.</p>"
+      },
+      "ScteInSegments": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
       }
     }
   },
@@ -787,7 +1405,13 @@
     "properties": {
       "AdMarkerDash": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "ScteInManifests": {
+        "type": {
+          "$ref": "#/8"
         },
         "flags": 0
       }
@@ -804,7 +1428,13 @@
     "properties": {
       "AdMarkerHls": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "ScteInManifests": {
+        "type": {
+          "$ref": "#/8"
         },
         "flags": 0
       }
@@ -812,51 +1442,67 @@
   },
   {
     "$type": "ObjectType",
+    "name": "ScteInManifests",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ScteInSegments",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "Segment",
     "properties": {
       "Encryption": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/59"
         },
         "flags": 0
       },
       "IncludeIframeOnlyStreams": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "<p>When selected, the stream set includes an additional I-frame only stream, along with the other tracks. If false, this extra stream is not included. MediaPackage generates an I-frame only stream from the first rendition in the manifest. The service inserts EXT-I-FRAMES-ONLY tags in the output manifest, and then generates and includes an I-frames only playlist in the stream. This playlist permits player functionality like fast forward and rewind.</p>"
       },
+      "OutputTimestampMode": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
       "Scte": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/77"
         },
         "flags": 0
       },
       "SegmentDurationSeconds": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "<p>The duration (in seconds) of each segment. Enter a value equal to, or a multiple of, the input segment duration. If the value that you enter is different from the input segment duration, MediaPackage rounds segments to the nearest multiple of the input segment duration.</p>"
       },
       "SegmentName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "<p>The name that describes the segment. The name is the base name of the segment used in all content manifests inside of the endpoint. You can't use spaces in the name.</p>"
       },
       "TsIncludeDvbSubtitles": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "<p>By default, MediaPackage excludes all digital video broadcasting (DVB) subtitles from the output. When selected, MediaPackage passes through DVB subtitles into the output.</p>"
       },
       "TsUseAudioRenditionGroup": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "<p>When selected, MediaPackage bundles all audio tracks in a rendition group. All other tracks in the stream can be used with any audio rendition from the group.</p>"
@@ -867,41 +1513,65 @@
     "$type": "ObjectType",
     "name": "SpekeKeyProvider",
     "properties": {
+      "CertificateArn": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "<p>The ARN for the certificate that you imported to Amazon Web Services Certificate Manager to add content key encryption to this endpoint. For this feature to work, your DRM key provider must support content key encryption.</p>"
+      },
+      "ContentKeyPeriodConfiguration": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 0
+      },
       "DrmSystems": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/100"
         },
         "flags": 1,
         "description": "<p>The DRM solution provider you're using to protect your content during distribution.</p>"
       },
       "EncryptionContractConfiguration": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/60"
         },
         "flags": 1
       },
       "ResourceId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 1,
-        "description": "<p>The unique identifier for the content. The service sends this to the key server to identify the current endpoint. How unique you make this depends on how fine-grained you want access controls to be. The service does not permit you to use the same ID for two simultaneous encryption processes. The resource ID is also known as the content ID.</p>\n         <p>The following example shows a resource ID: <code>MovieNight20171126093045</code>\n         </p>"
+        "description": "<p>The unique identifier for the content. The service sends this to the key server to identify the current endpoint. How unique you make this depends on how fine-grained you want access controls to be. The service does not permit you to use the same ID for two simultaneous encryption processes. The resource ID is also known as the content ID.</p> <p>The following example shows a resource ID: <code>MovieNight20171126093045</code> </p>"
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 1,
-        "description": "<p>The ARN for the IAM role granted by the key provider that provides access to the key provider API. This role must have a trust policy that allows MediaPackage to assume the role, and it must have a sufficient permissions policy to allow access to the specific key retrieval URL. Get this from your DRM solution provider.</p>\n         <p>Valid format: <code>arn:aws:iam::{accountID}:role/{name}</code>. The following example shows a role ARN: <code>arn:aws:iam::444455556666:role/SpekeAccess</code>\n         </p>"
+        "description": "<p>The ARN for the IAM role granted by the key provider that provides access to the key provider API. This role must have a trust policy that allows MediaPackage to assume the role, and it must have a sufficient permissions policy to allow access to the specific key retrieval URL. Get this from your DRM solution provider.</p> <p>Valid format: <code>arn:aws:iam::{accountID}:role/{name}</code>. The following example shows a role ARN: <code>arn:aws:iam::444455556666:role/SpekeAccess</code> </p>"
+      },
+      "SpekeVersion": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
       },
       "Url": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 1,
-        "description": "<p>The URL of the API Gateway proxy that you set up to talk to your key server. The API Gateway proxy must reside in the same AWS Region as MediaPackage and must start with https://.</p>\n         <p>The following example shows a URL: <code>https://1wm2dx1f33.execute-api.us-west-2.amazonaws.com/SpekeSample/copyProtection</code>\n         </p>"
+        "description": "<p>The URL of the API Gateway proxy that you set up to talk to your key server. The API Gateway proxy must reside in the same AWS Region as MediaPackage and must start with https://.</p> <p>The following example shows a URL: <code>https://1wm2dx1f33.execute-api.us-west-2.amazonaws.com/SpekeSample/copyProtection</code> </p>"
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SpekeVersion",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -909,14 +1579,14 @@
     "properties": {
       "Precise": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "<p>Specify the value for PRECISE within your EXT-X-START tag. Leave blank, or choose false, to use the default value NO. Choose yes to use the value YES.</p>"
       },
       "TimeOffset": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "<p>Specify the value for TIME-OFFSET within your EXT-X-START tag. Enter a signed floating point value which, if positive, must be less than the configured manifest duration minus three times the configured segment target duration. If negative, the absolute value must be larger than three times the configured segment target duration, and the absolute value must be smaller than the configured manifest duration.</p>"
@@ -925,17 +1595,22 @@
   },
   {
     "$type": "ObjectType",
+    "name": "StreamNameOutputMode",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "Tag",
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "Value": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0
       }
@@ -947,33 +1622,67 @@
     "properties": {}
   },
   {
-    "$type": "IntegerType"
+    "$type": "ObjectType",
+    "name": "UriPathType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "UriSeparator",
+    "properties": {}
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/46"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/42"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/8"
     }
-  },
-  {
-    "$type": "BooleanType"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
     }
   },
   {
@@ -983,43 +1692,55 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/8"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/28"
+      "$ref": "#/48"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/8"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/40"
+      "$ref": "#/65"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/8"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/41"
+      "$ref": "#/68"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/51"
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/70"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/88"
     }
   },
   {
@@ -1028,117 +1749,142 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 18,
         "description": "<p>The Amazon Resource Name (ARN) associated with the resource.</p>"
       },
       "ChannelGroupName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 1
       },
       "ChannelName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 1
       },
       "ContainerType": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 1
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 2,
         "description": "<p>The date and time the origin endpoint was created.</p>"
       },
       "DashManifestUrls": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/102"
         },
         "flags": 2
       },
       "DashManifests": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/103"
         },
         "flags": 0,
         "description": "<p>A DASH manifest configuration.</p>"
       },
       "Description": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "<p>Enter any descriptive text that helps you to identify the origin endpoint.</p>"
       },
       "ForceEndpointErrorConfiguration": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/64"
         },
         "flags": 0
       },
       "HlsManifestUrls": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/104"
         },
         "flags": 2
       },
       "HlsManifests": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/105"
         },
         "flags": 2,
         "description": "<p>An HTTP live streaming (HLS) manifest configuration.</p>"
       },
       "LowLatencyHlsManifestUrls": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/106"
         },
         "flags": 2
       },
       "LowLatencyHlsManifests": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/107"
         },
         "flags": 2,
         "description": "<p>A low-latency HLS manifest configuration.</p>"
       },
       "ModifiedAt": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 2,
         "description": "<p>The date and time the origin endpoint was modified.</p>"
       },
+      "MssManifestUrls": {
+        "type": {
+          "$ref": "#/108"
+        },
+        "flags": 2
+      },
+      "MssManifests": {
+        "type": {
+          "$ref": "#/109"
+        },
+        "flags": 0,
+        "description": "<p>The Microsoft Smooth Streaming (MSS) manifest configurations associated with this origin endpoint.</p>"
+      },
       "OriginEndpointName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 1
       },
       "Segment": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/83"
         },
         "flags": 0
       },
       "StartoverWindowSeconds": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "<p>The size of the window (in seconds) to create a window of the live stream that's available for on-demand viewing. Viewers can start-over or catch-up on content that falls within the window. The maximum startover window is 1,209,600 seconds (14 days).</p>"
       },
+      "StreamNameOutputMode": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
       "Tags": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/110"
+        },
+        "flags": 0
+      },
+      "UriSeparator": {
+        "type": {
+          "$ref": "#/8"
         },
         "flags": 0
       }
@@ -1150,21 +1896,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/111"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1174,11 +1920,37 @@
   {
     "$type": "ResourceType",
     "name": "AWS.MediaPackageV2/OriginEndpoint@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/68"
+      "$ref": "#/112"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CdnAuthConfiguration",
+    "properties": {
+      "CdnIdentifierSecretArns": {
+        "type": {
+          "$ref": "#/115"
+        },
+        "flags": 1,
+        "description": "<p>The ARN for the secret in Secrets Manager that your CDN uses for authorization to access the endpoint.</p>"
+      },
+      "SecretsRoleArn": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "<p>The ARN for the IAM role that gives MediaPackage read access to Secrets Manager and KMS for CDN authorization.</p>"
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
   },
   {
     "$type": "StringLiteralType",
@@ -1193,10 +1965,10 @@
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/71"
+        "$ref": "#/117"
       },
       {
-        "$ref": "#/3"
+        "$ref": "#/8"
       }
     ]
   },
@@ -1204,27 +1976,33 @@
     "$type": "ObjectType",
     "name": "AWS.MediaPackageV2/OriginEndpointPolicyProperties",
     "properties": {
+      "CdnAuthConfiguration": {
+        "type": {
+          "$ref": "#/114"
+        },
+        "flags": 0
+      },
       "ChannelGroupName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 17
       },
       "ChannelName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 17
       },
       "OriginEndpointName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 17
       },
       "Policy": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/118"
         },
         "flags": 1
       }
@@ -1236,21 +2014,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/8"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/119"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1260,10 +2038,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.MediaPackageV2/OriginEndpointPolicy@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/74"
+      "$ref": "#/120"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

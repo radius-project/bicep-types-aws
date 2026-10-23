@@ -1,0 +1,485 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoT-Job",
+  "type": "AWS::IoT::Job",
+  "time": "2026-10-21T21:12:31.861Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/JobId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/JobId",
+      "/properties/Targets",
+      "/properties/Document",
+      "/properties/DocumentSource",
+      "/properties/TargetSelection",
+      "/properties/JobTemplateArn",
+      "/properties/DocumentParameters",
+      "/properties/SchedulingConfig",
+      "/properties/DestinationPackageVersions",
+      "/properties/JobExecutionsRetryConfig"
+    ],
+    "definitions": {
+      "AbortConfig": {
+        "additionalProperties": false,
+        "description": "The criteria that determine when and how a job abort takes place.",
+        "properties": {
+          "CriteriaList": {
+            "description": "The list of criteria that determine when and how to abort the job.",
+            "insertionOrder": true,
+            "items": {
+              "$ref": "#/definitions/AbortCriteria"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "CriteriaList"
+        ],
+        "type": "object"
+      },
+      "AbortCriteria": {
+        "additionalProperties": false,
+        "description": "The criteria that determine when and how a job abort takes place.",
+        "properties": {
+          "Action": {
+            "description": "The type of job action to take to initiate the job abort.",
+            "enum": [
+              "CANCEL"
+            ],
+            "type": "string"
+          },
+          "FailureType": {
+            "description": "The type of job execution failures that can initiate a job abort.",
+            "enum": [
+              "FAILED",
+              "REJECTED",
+              "TIMED_OUT",
+              "ALL"
+            ],
+            "type": "string"
+          },
+          "MinNumberOfExecutedThings": {
+            "description": "The minimum number of things which must receive job execution notifications before the job can be aborted.",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "ThresholdPercentage": {
+            "description": "The minimum percentage of job execution failures that must occur to initiate the job abort.",
+            "maximum": 100,
+            "type": "number"
+          }
+        },
+        "required": [
+          "FailureType",
+          "Action",
+          "ThresholdPercentage",
+          "MinNumberOfExecutedThings"
+        ],
+        "type": "object"
+      },
+      "ExponentialRolloutRate": {
+        "additionalProperties": false,
+        "description": "Allows you to create an exponential rate of rollout for a job.",
+        "properties": {
+          "BaseRatePerMinute": {
+            "description": "The minimum number of things that will be notified of a pending job, per minute at the start of job rollout.",
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "IncrementFactor": {
+            "description": "The exponential factor to increase the rate of rollout for a job.",
+            "maximum": 5,
+            "minimum": 1.1,
+            "type": "number"
+          },
+          "RateIncreaseCriteria": {
+            "$ref": "#/definitions/RateIncreaseCriteria"
+          }
+        },
+        "required": [
+          "BaseRatePerMinute",
+          "IncrementFactor",
+          "RateIncreaseCriteria"
+        ],
+        "type": "object"
+      },
+      "JobExecutionsRetryConfig": {
+        "additionalProperties": false,
+        "description": "The configuration that determines how many retries are allowed for each failure type for a job.",
+        "properties": {
+          "CriteriaList": {
+            "description": "The list of criteria that determines how many retries are allowed for each failure type for a job.",
+            "insertionOrder": true,
+            "items": {
+              "$ref": "#/definitions/RetryCriteria"
+            },
+            "maxItems": 2,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "CriteriaList"
+        ],
+        "type": "object"
+      },
+      "JobExecutionsRolloutConfig": {
+        "additionalProperties": false,
+        "description": "Allows you to create a staged rollout of a job.",
+        "properties": {
+          "ExponentialRate": {
+            "$ref": "#/definitions/ExponentialRolloutRate"
+          },
+          "MaximumPerMinute": {
+            "description": "The maximum number of things that will be notified of a pending job, per minute. This parameter allows you to create a staged rollout.",
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "MaintenanceWindow": {
+        "additionalProperties": false,
+        "description": "An optional configuration within the SchedulingConfig to setup a recurring maintenance window with a predetermined start time and duration for the rollout of a job document to all devices in a target group for a job.",
+        "properties": {
+          "DurationInMinutes": {
+            "description": "Displays the duration of the next maintenance window.",
+            "maximum": 1430,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "StartTime": {
+            "description": "Displays the start time of the next maintenance window.",
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "StartTime",
+          "DurationInMinutes"
+        ],
+        "type": "object"
+      },
+      "PresignedUrlConfig": {
+        "additionalProperties": false,
+        "description": "Configuration for pre-signed S3 URLs.",
+        "properties": {
+          "ExpiresInSec": {
+            "description": "How long (in seconds) pre-signed URLs are valid. Valid values are 60 - 3600, the default value is 3600 seconds.",
+            "maximum": 3600,
+            "minimum": 60,
+            "type": "integer"
+          },
+          "RoleArn": {
+            "description": "The ARN of an IAM role that grants permission to download files from the S3 bucket where the job data/updates are stored.",
+            "maxLength": 2048,
+            "minLength": 20,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "RateIncreaseCriteria": {
+        "additionalProperties": false,
+        "description": "Allows you to define a criteria to initiate the increase in rate of rollout for a job.",
+        "properties": {
+          "NumberOfNotifiedThings": {
+            "description": "The threshold for number of notified things that will initiate the increase in rate of rollout.",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "NumberOfSucceededThings": {
+            "description": "The threshold for number of succeeded things that will initiate the increase in rate of rollout.",
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "RetryCriteria": {
+        "additionalProperties": false,
+        "description": "The criteria that determines how many retries are allowed for each failure type for a job.",
+        "properties": {
+          "FailureType": {
+            "description": "The type of job execution failures that can initiate a job retry.",
+            "enum": [
+              "FAILED",
+              "TIMED_OUT",
+              "ALL"
+            ],
+            "type": "string"
+          },
+          "NumberOfRetries": {
+            "description": "The number of retries allowed for a failure type for the job.",
+            "maximum": 10,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "FailureType",
+          "NumberOfRetries"
+        ],
+        "type": "object"
+      },
+      "SchedulingConfig": {
+        "additionalProperties": false,
+        "description": "Specifies the date and time that a job will begin the rollout of the job document to all devices in the target group.",
+        "properties": {
+          "EndBehavior": {
+            "description": "Specifies the end behavior for all job executions after a job reaches the selected endTime.",
+            "enum": [
+              "STOP_ROLLOUT",
+              "CANCEL",
+              "FORCE_CANCEL"
+            ],
+            "type": "string"
+          },
+          "EndTime": {
+            "description": "The time a job will stop rollout of the job document to all devices in the target group for a job.",
+            "maxLength": 64,
+            "minLength": 1,
+            "type": "string"
+          },
+          "MaintenanceWindows": {
+            "description": "An optional configuration within the SchedulingConfig to setup a recurring maintenance window.",
+            "insertionOrder": true,
+            "items": {
+              "$ref": "#/definitions/MaintenanceWindow"
+            },
+            "type": "array"
+          },
+          "StartTime": {
+            "description": "The time a job will begin rollout of the job document to all devices in the target group for a job.",
+            "maxLength": 64,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The tag's key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag's value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "TimeoutConfig": {
+        "additionalProperties": false,
+        "description": "Specifies the amount of time each device has to finish its execution of the job.",
+        "properties": {
+          "InProgressTimeoutInMinutes": {
+            "description": "Specifies the amount of time, in minutes, this device has to finish execution of this job. The timeout interval can be anywhere between 1 minute and 7 days (1 to 10080 minutes).",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Use the AWS::IoT::Job resource to declare an AWS IoT job. A job can be used to define a set of remote operations that are sent to and run on one or more devices (things or thing groups) connected to AWS IoT.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "iot:CreateJob",
+          "iot:DescribeJob",
+          "iot:TagResource",
+          "iot:ListTagsForResource",
+          "iot:GetPackageVersion",
+          "iam:PassRole",
+          "s3:GetObject"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "iot:DeleteJob",
+          "iot:DescribeJob"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "iot:ListJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "iot:DescribeJob",
+          "iot:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "iot:UpdateJob",
+          "iot:DescribeJob",
+          "iot:TagResource",
+          "iot:UntagResource",
+          "iot:ListTagsForResource",
+          "iam:PassRole"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "AbortConfig": {
+        "$ref": "#/definitions/AbortConfig"
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the job.",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The time when the job was created, in ISO 8601 date-time format.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "A short text description of the job.",
+        "maxLength": 2028,
+        "minLength": 1,
+        "pattern": "^[^\\p{C}]+$",
+        "type": "string"
+      },
+      "DestinationPackageVersions": {
+        "description": "The package version Amazon Resource Names (ARNs) that are installed on the device when the job successfully completes.",
+        "insertionOrder": true,
+        "items": {
+          "maxLength": 1600,
+          "minLength": 1,
+          "pattern": "^arn:[!-~]+$",
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "Document": {
+        "description": "The job document. Required if you don't specify a value for documentSource.",
+        "maxLength": 32768,
+        "minLength": 0,
+        "type": "string"
+      },
+      "DocumentParameters": {
+        "additionalProperties": false,
+        "description": "Parameters of an Amazon Web Services managed template that you can specify to create the job document.",
+        "patternProperties": {
+          "^[a-zA-Z0-9_-]+$": {
+            "maxLength": 30720,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "DocumentSource": {
+        "description": "An S3 link, or S3 object URL, to the job document. The link is an Amazon S3 object URL and is required if you don't specify a value for document.",
+        "maxLength": 1350,
+        "minLength": 1,
+        "type": "string"
+      },
+      "JobExecutionsRetryConfig": {
+        "$ref": "#/definitions/JobExecutionsRetryConfig"
+      },
+      "JobExecutionsRolloutConfig": {
+        "$ref": "#/definitions/JobExecutionsRolloutConfig"
+      },
+      "JobId": {
+        "description": "A job identifier which must be unique for your AWS account. We recommend using a UUID. Alpha-numeric characters, '-' and '_' are valid for use here.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9_-]+$",
+        "type": "string"
+      },
+      "JobTemplateArn": {
+        "description": "The ARN of the job template used to create the job.",
+        "maxLength": 1600,
+        "minLength": 1,
+        "pattern": "^arn:[!-~]+$",
+        "type": "string"
+      },
+      "PresignedUrlConfig": {
+        "$ref": "#/definitions/PresignedUrlConfig"
+      },
+      "SchedulingConfig": {
+        "$ref": "#/definitions/SchedulingConfig"
+      },
+      "Tags": {
+        "description": "Metadata which can be used to manage the job.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "TargetSelection": {
+        "description": "Specifies whether the job will continue to run (CONTINUOUS), or will be complete after all those things specified as targets have completed the job (SNAPSHOT).",
+        "enum": [
+          "CONTINUOUS",
+          "SNAPSHOT"
+        ],
+        "type": "string"
+      },
+      "Targets": {
+        "description": "A list of things and thing groups to which the job should be sent.",
+        "insertionOrder": true,
+        "items": {
+          "maxLength": 2048,
+          "minLength": 0,
+          "type": "string"
+        },
+        "minItems": 1,
+        "type": "array"
+      },
+      "TimeoutConfig": {
+        "$ref": "#/definitions/TimeoutConfig"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/CreatedAt"
+    ],
+    "required": [
+      "JobId",
+      "Targets"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "iot:TagResource",
+        "iot:UntagResource",
+        "iot:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::IoT::Job",
+    "writeOnlyProperties": [
+      "/properties/Document"
+    ]
+  }
+}

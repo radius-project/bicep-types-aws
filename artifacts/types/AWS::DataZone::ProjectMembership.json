@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DataZone-ProjectMembership",
   "type": "AWS::DataZone::ProjectMembership",
-  "time": "2025-01-27T03:22:18.837Z",
+  "time": "2026-10-03T06:32:39.102Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -48,13 +48,7 @@
         "type": "string"
       },
       "UserDesignation": {
-        "enum": [
-          "PROJECT_OWNER",
-          "PROJECT_CONTRIBUTOR",
-          "PROJECT_CATALOG_VIEWER",
-          "PROJECT_CATALOG_CONSUMER",
-          "PROJECT_CATALOG_STEWARD"
-        ],
+        "pattern": "^[a-zA-Z0-9_-]{1,36}$",
         "type": "string"
       }
     },
@@ -122,11 +116,21 @@
       "Member": {
         "$ref": "#/definitions/Member"
       },
+      "MemberIdentifier": {
+        "type": "string"
+      },
+      "MemberIdentifierType": {
+        "$ref": "#/definitions/MemberIdentifierType"
+      },
       "ProjectIdentifier": {
         "pattern": "^[a-zA-Z0-9_-]{1,36}$",
         "type": "string"
       }
     },
+    "readOnlyProperties": [
+      "/properties/MemberIdentifier",
+      "/properties/MemberIdentifierType"
+    ],
     "required": [
       "Designation",
       "DomainIdentifier",

@@ -1,0 +1,175 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Textract-Adapter",
+  "type": "AWS::Textract::Adapter",
+  "time": "2026-10-21T23:12:52.634Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/AdapterId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/FeatureTypes"
+    ],
+    "definitions": {
+      "AdapterDescription": {
+        "description": "The description to be assigned to the adapter being created.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9\\s!\"\\#\\$%'\u0026\\(\\)\\*\\+\\,\\-\\./:;=\\?@\\[\\\\\\]\\^_`\\{\\|\\}~\u003e\u003c]+$",
+        "type": "string"
+      },
+      "AdapterName": {
+        "description": "The name to be assigned to the adapter being created.",
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9-_]+$",
+        "type": "string"
+      },
+      "AutoUpdate": {
+        "description": "Controls whether or not the adapter should automatically update.",
+        "enum": [
+          "ENABLED",
+          "DISABLED"
+        ],
+        "type": "string"
+      },
+      "FeatureType": {
+        "description": "The type of feature that the adapter is being trained on.",
+        "enum": [
+          "QUERIES"
+        ],
+        "type": "string"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with the adapter.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "The AWS::Textract::Adapter resource creates an Amazon Textract adapter, which can be fine-tuned for enhanced performance on user-provided documents.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "textract:CreateAdapter",
+          "textract:GetAdapter",
+          "textract:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "textract:DeleteAdapter",
+          "textract:GetAdapter"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "textract:ListAdapters"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "textract:GetAdapter"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "textract:UpdateAdapter",
+          "textract:GetAdapter",
+          "textract:TagResource",
+          "textract:UntagResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "AdapterId": {
+        "description": "A unique identifier for the adapter resource.",
+        "maxLength": 1011,
+        "minLength": 12,
+        "type": "string"
+      },
+      "AdapterName": {
+        "$ref": "#/definitions/AdapterName"
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the adapter.",
+        "type": "string"
+      },
+      "AutoUpdate": {
+        "$ref": "#/definitions/AutoUpdate"
+      },
+      "CreationTime": {
+        "description": "The date and time that the adapter was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "$ref": "#/definitions/AdapterDescription"
+      },
+      "FeatureTypes": {
+        "description": "The type of feature that the adapter is being trained on. Currently, supported feature types are: QUERIES",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/FeatureType"
+        },
+        "minItems": 1,
+        "type": "array"
+      },
+      "Tags": {
+        "description": "A list of tags to be added to the adapter.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "minItems": 0,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/AdapterId",
+      "/properties/CreationTime"
+    ],
+    "required": [
+      "AdapterName",
+      "FeatureTypes"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-textract",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "textract:TagResource",
+        "textract:UntagResource",
+        "textract:GetAdapter"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Textract::Adapter"
+  }
+}

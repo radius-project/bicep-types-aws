@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Logs-DeliverySource",
   "type": "AWS::Logs::DeliverySource",
-  "time": "2025-01-21T16:23:26.125Z",
+  "time": "2026-10-19T16:02:15.203Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -87,6 +87,18 @@
         "$ref": "#/definitions/Arn",
         "description": "The Amazon Resource Name (ARN) that uniquely identifies this delivery source."
       },
+      "DeliverySourceConfiguration": {
+        "additionalProperties": false,
+        "description": "A map of key-value pairs to configure the delivery source. Both keys and values must be between 1 and 255 characters in length.",
+        "patternProperties": {
+          "^.{1,255}$": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "LogType": {
         "description": "The type of logs being delivered. Only mandatory when the resourceArn could match more than one. In such a case, the error message will contain all the possible options.",
         "maxLength": 255,
@@ -121,6 +133,21 @@
         "pattern": "[\\w-]*$",
         "type": "string"
       },
+      "Status": {
+        "description": "The status of this delivery source. The value can be ACTIVE or INACTIVE.",
+        "enum": [
+          "ACTIVE",
+          "INACTIVE"
+        ],
+        "type": "string"
+      },
+      "StatusReason": {
+        "description": "The reason for the status of this delivery source, such as RESOURCE_DELETED.",
+        "enum": [
+          "RESOURCE_DELETED"
+        ],
+        "type": "string"
+      },
       "Tags": {
         "description": "The tags that have been assigned to this delivery source.",
         "insertionOrder": false,
@@ -134,7 +161,9 @@
     "readOnlyProperties": [
       "/properties/Service",
       "/properties/ResourceArns",
-      "/properties/Arn"
+      "/properties/Arn",
+      "/properties/Status",
+      "/properties/StatusReason"
     ],
     "required": [
       "Name"
@@ -142,6 +171,11 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-logs.git",
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "logs:TagResource",
+        "logs:UntagResource",
+        "logs:ListTagsForResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

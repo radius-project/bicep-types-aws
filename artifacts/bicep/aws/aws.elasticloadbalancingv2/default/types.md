@@ -1,35 +1,40 @@
 # AWS.ElasticLoadBalancingV2 @ default
 
 ## Resource AWS.ElasticLoadBalancingV2/Listener@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ElasticLoadBalancingV2/ListenerProperties](#awselasticloadbalancingv2listenerproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ElasticLoadBalancingV2/ListenerRule@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ElasticLoadBalancingV2/ListenerRuleProperties](#awselasticloadbalancingv2listenerruleproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ElasticLoadBalancingV2/LoadBalancer@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ElasticLoadBalancingV2/LoadBalancerProperties](#awselasticloadbalancingv2loadbalancerproperties) (Identifier): properties of the resource
 
 ## Resource AWS.ElasticLoadBalancingV2/TargetGroup@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ElasticLoadBalancingV2/TargetGroupProperties](#awselasticloadbalancingv2targetgroupproperties) (Identifier): properties of the resource
 
 ## Resource AWS.ElasticLoadBalancingV2/TrustStore@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -40,10 +45,12 @@
 * **AuthenticateCognitoConfig**: [AuthenticateCognitoConfig](#authenticatecognitoconfig): [HTTPS listeners] Information for using Amazon Cognito to authenticate users. Specify only when ``Type`` is ``authenticate-cognito``.
 * **AuthenticateOidcConfig**: [AuthenticateOidcConfig](#authenticateoidcconfig): [HTTPS listeners] Information about an identity provider that is compliant with OpenID Connect (OIDC). Specify only when ``Type`` is ``authenticate-oidc``.
 * **FixedResponseConfig**: [FixedResponseConfig](#fixedresponseconfig): [Application Load Balancer] Information for creating an action that returns a custom HTTP response. Specify only when ``Type`` is ``fixed-response``.
-* **ForwardConfig**: [ForwardConfig](#forwardconfig): Information for creating an action that distributes requests among one or more target groups. For Network Load Balancers, you can specify a single target group. Specify only when ``Type`` is ``forward``. If you specify both ``ForwardConfig`` and ``TargetGroupArn``, you can specify only one target group using ``ForwardConfig`` and it must be the same target group specified in ``TargetGroupArn``.
+* **ForwardConfig**: [ForwardConfig](#forwardconfig): Information for creating an action that distributes requests among multiple target groups. Specify only when ``Type`` is ``forward``.
+ If you specify both ``ForwardConfig`` and ``TargetGroupArn``, you can specify only one target group using ``ForwardConfig`` and it must be the same target group specified in ``TargetGroupArn``.
+* **JwtValidationConfig**: [JwtValidationConfig](#jwtvalidationconfig): [HTTPS listeners] Information for validating JWT access tokens in client requests. Specify only when ``Type`` is ``jwt-validation``.
 * **Order**: int: The order for the action. This value is required for rules with multiple actions. The action with the lowest value for order is performed first.
 * **RedirectConfig**: [RedirectConfig](#redirectconfig): [Application Load Balancer] Information for creating a redirect action. Specify only when ``Type`` is ``redirect``.
-* **TargetGroupArn**: string: The Amazon Resource Name (ARN) of the target group. Specify only when ``Type`` is ``forward`` and you want to route to a single target group. To route to one or more target groups, use ``ForwardConfig`` instead.
+* **TargetGroupArn**: string: The Amazon Resource Name (ARN) of the target group. Specify only when ``Type`` is ``forward`` and you want to route to a single target group. To route to multiple target groups, you must use ``ForwardConfig`` instead.
 * **Type**: string (Required): The type of action.
 
 ## Action
@@ -51,10 +58,12 @@
 * **AuthenticateCognitoConfig**: [AuthenticateCognitoConfig](#authenticatecognitoconfig): [HTTPS listeners] Information for using Amazon Cognito to authenticate users. Specify only when ``Type`` is ``authenticate-cognito``.
 * **AuthenticateOidcConfig**: [AuthenticateOidcConfig](#authenticateoidcconfig): [HTTPS listeners] Information about an identity provider that is compliant with OpenID Connect (OIDC). Specify only when ``Type`` is ``authenticate-oidc``.
 * **FixedResponseConfig**: [FixedResponseConfig](#fixedresponseconfig): [Application Load Balancer] Information for creating an action that returns a custom HTTP response. Specify only when ``Type`` is ``fixed-response``.
-* **ForwardConfig**: [ForwardConfig](#forwardconfig): Information for creating an action that distributes requests among one or more target groups. For Network Load Balancers, you can specify a single target group. Specify only when ``Type`` is ``forward``. If you specify both ``ForwardConfig`` and ``TargetGroupArn``, you can specify only one target group using ``ForwardConfig`` and it must be the same target group specified in ``TargetGroupArn``.
+* **ForwardConfig**: [ForwardConfig](#forwardconfig): Information for creating an action that distributes requests among multiple target groups. Specify only when ``Type`` is ``forward``.
+ If you specify both ``ForwardConfig`` and ``TargetGroupArn``, you can specify only one target group using ``ForwardConfig`` and it must be the same target group specified in ``TargetGroupArn``.
+* **JwtValidationConfig**: [JwtValidationConfig](#jwtvalidationconfig): [HTTPS listeners] Information for validating JWT access tokens in client requests. Specify only when ``Type`` is ``jwt-validation``.
 * **Order**: int: The order for the action. This value is required for rules with multiple actions. The action with the lowest value for order is performed first.
 * **RedirectConfig**: [RedirectConfig](#redirectconfig): [Application Load Balancer] Information for creating a redirect action. Specify only when ``Type`` is ``redirect``.
-* **TargetGroupArn**: string: The Amazon Resource Name (ARN) of the target group. Specify only when ``Type`` is ``forward`` and you want to route to a single target group. To route to one or more target groups, use ``ForwardConfig`` instead.
+* **TargetGroupArn**: string: The Amazon Resource Name (ARN) of the target group. Specify only when ``Type`` is ``forward`` and you want to route to a single target group. To route to multiple target groups, you must use ``ForwardConfig`` instead.
 * **Type**: string (Required): The type of action.
 
 ## AuthenticateCognitoConfig
@@ -129,18 +138,19 @@
 ### Properties
 * **AlpnPolicy**: string[]: [TLS listener] The name of the Application-Layer Protocol Negotiation (ALPN) policy.
 * **Certificates**: [Certificate](#certificate)[]: The default SSL server certificate for a secure listener. You must provide exactly one certificate if the listener protocol is HTTPS or TLS.
+ For an HTTPS listener, update requires some interruptions. For a TLS listener, update requires no interruption.
  To create a certificate list for a secure listener, use [AWS::ElasticLoadBalancingV2::ListenerCertificate](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenercertificate.html).
 * **DefaultActions**: [Action](#action)[] (Required, WriteOnly): The actions for the default rule. You cannot define a condition for a default rule.
  To create additional rules for an Application Load Balancer, use [AWS::ElasticLoadBalancingV2::ListenerRule](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenerrule.html).
 * **ListenerArn**: string (ReadOnly, Identifier)
-* **ListenerAttributes**: [ListenerAttribute](#listenerattribute)[]: The listener attributes.
+* **ListenerAttributes**: [ListenerAttribute](#listenerattribute)[]: The listener attributes. Attributes that you do not modify retain their current values.
 * **LoadBalancerArn**: string (Required): The Amazon Resource Name (ARN) of the load balancer.
 * **MutualAuthentication**: [MutualAuthentication](#mutualauthentication): The mutual authentication configuration information.
 * **Port**: int: The port on which the load balancer is listening. You can't specify a port for a Gateway Load Balancer.
-* **Protocol**: string: The protocol for connections from clients to the load balancer. For Application Load Balancers, the supported protocols are HTTP and HTTPS. For Network Load Balancers, the supported protocols are TCP, TLS, UDP, and TCP_UDP. You can’t specify the UDP or TCP_UDP protocol if dual-stack mode is enabled. You can't specify a protocol for a Gateway Load Balancer.
-* **SslPolicy**: string: [HTTPS and TLS listeners] The security policy that defines which protocols and ciphers are supported.
- Updating the security policy can result in interruptions if the load balancer is handling a high volume of traffic.
- For more information, see [Security policies](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies) in the *Application Load Balancers Guide* and [Security policies](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-tls-listener.html#describe-ssl-policies) in the *Network Load Balancers Guide*.
+* **Protocol**: string: The protocol for connections from clients to the load balancer. For Application Load Balancers, the supported protocols are HTTP and HTTPS. For Network Load Balancers, the supported protocols are TCP, TLS, UDP, TCP_UDP, QUIC, and TCP_QUIC. You can’t specify the UDP, TCP_UDP, QUIC, or TCP_QUIC protocol if dual-stack mode is enabled. You can't specify a protocol for a Gateway Load Balancer.
+* **SslPolicy**: string: [HTTPS and TLS listeners] The security policy that defines which protocols and ciphers are supported. For more information, see [Security policies](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/describe-ssl-policies.html) in the *Application Load Balancers Guide* and [Security policies](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/describe-ssl-policies.html) in the *Network Load Balancers Guide*.
+ [HTTPS listeners] Updating the security policy can result in interruptions if the load balancer is handling a high volume of traffic. To decrease the possibility of an interruption if your load balancer is handling a high volume of traffic, create an additional load balancer or request an LCU reservation.
+* **Tags**: [Tag](#tag)[]
 
 ## AWS.ElasticLoadBalancingV2/ListenerRuleProperties
 ### Properties
@@ -153,19 +163,24 @@
 * **Priority**: int (Required): The rule priority. A listener can't have multiple rules with the same priority.
  If you try to reorder rules by updating their priorities, do not specify a new priority if an existing rule already uses this priority, as this can cause an error. If you need to reuse a priority with a different rule, you must remove it as a priority first, and then specify it in a subsequent update.
 * **RuleArn**: string (ReadOnly, Identifier)
+* **Tags**: [Tag](#tag)[]
+* **Transforms**: [Transform](#transform)[]
 
 ## AWS.ElasticLoadBalancingV2/LoadBalancerProperties
 ### Properties
 * **CanonicalHostedZoneID**: string (ReadOnly)
 * **DNSName**: string (ReadOnly)
+* **EnableCapacityReservationProvisionStabilize**: bool (WriteOnly): Indicates whether to enable stabilization when creating or updating an LCU reservation. This ensures that the final stack status reflects the status of the LCU reservation. The default is ``false``.
 * **EnablePrefixForIpv6SourceNat**: string: [Network Load Balancers with UDP listeners] Indicates whether to use an IPv6 prefix from each subnet for source NAT. The IP address type must be ``dualstack``. The default value is ``off``.
-* **EnforceSecurityGroupInboundRulesOnPrivateLinkTraffic**: string: Indicates whether to evaluate inbound security group rules for traffic sent to a Network Load Balancer through privatelink.
+* **EnforceSecurityGroupInboundRulesOnPrivateLinkTraffic**: string: Indicates whether to evaluate inbound security group rules for traffic sent to a Network Load Balancer through privatelink. The default is ``on``.
+ You can't configure this property on a Network Load Balancer unless you associated a security group with the load balancer when you created it.
 * **IpAddressType**: string: The IP address type. Internal load balancers must use ``ipv4``.
  [Application Load Balancers] The possible values are ``ipv4`` (IPv4 addresses), ``dualstack`` (IPv4 and IPv6 addresses), and ``dualstack-without-public-ipv4`` (public IPv6 addresses and private IPv4 and IPv6 addresses).
  Application Load Balancer authentication supports IPv4 addresses only when connecting to an Identity Provider (IdP) or Amazon Cognito endpoint. Without a public IPv4 address the load balancer can't complete the authentication process, resulting in HTTP 500 errors.
  [Network Load Balancers and Gateway Load Balancers] The possible values are ``ipv4`` (IPv4 addresses) and ``dualstack`` (IPv4 and IPv6 addresses).
+* **Ipv4IpamPoolId**: string: The ID of the IPv4 IPAM pool.
 * **LoadBalancerArn**: string (ReadOnly, Identifier)
-* **LoadBalancerAttributes**: [LoadBalancerAttribute](#loadbalancerattribute)[]: The load balancer attributes.
+* **LoadBalancerAttributes**: [LoadBalancerAttribute](#loadbalancerattribute)[]: The load balancer attributes. Attributes that you do not modify retain their current values.
 * **LoadBalancerFullName**: string (ReadOnly)
 * **LoadBalancerName**: string (ReadOnly)
 * **MinimumLoadBalancerCapacity**: [LoadBalancer_MinimumLoadBalancerCapacity](#loadbalancerminimumloadbalancercapacity): The minimum capacity for a load balancer.
@@ -207,6 +222,7 @@
 * **Protocol**: string: The protocol to use for routing traffic to the targets.
 * **ProtocolVersion**: string: [HTTP/HTTPS protocol] The protocol version. The possible values are GRPC, HTTP1, and HTTP2.
 * **Tags**: [Tag](#tag)[]: The tags.
+* **TargetControlPort**: int: The port that the target control agent uses to communicate the available capacity of targets to the load balancer.
 * **TargetGroupArn**: string (ReadOnly, Identifier): The ARN of the Target Group
 * **TargetGroupAttributes**: [TargetGroupAttribute](#targetgroupattribute)[]: The attributes.
 * **TargetGroupFullName**: string (ReadOnly): The full name of the target group.
@@ -257,20 +273,46 @@
 
 ## HostHeaderConfig
 ### Properties
-* **Values**: string[]: The host names. The maximum size of each name is 128 characters. The comparison is case insensitive. The following wildcard characters are supported: * (matches 0 or more characters) and ? (matches exactly 1 character).
+* **RegexValues**: string[]
+* **Values**: string[]: The host names. The maximum length of each string is 128 characters. The comparison is case insensitive. The following wildcard characters are supported: * (matches 0 or more characters) and ? (matches exactly 1 character). You must include at least one "." character. You can include only alphabetical characters after the final "." character.
  If you specify multiple strings, the condition is satisfied if one of the strings matches the host name.
 
 ## HttpHeaderConfig
 ### Properties
 * **HttpHeaderName**: string: The name of the HTTP header field. The maximum size is 40 characters. The header name is case insensitive. The allowed characters are specified by RFC 7230. Wildcards are not supported.
-* **Values**: string[]: The strings to compare against the value of the HTTP header. The maximum size of each string is 128 characters. The comparison strings are case insensitive. The following wildcard characters are supported: * (matches 0 or more characters) and ? (matches exactly 1 character).
+* **RegexValues**: string[]
+* **Values**: string[]: The strings to compare against the value of the HTTP header. The maximum length of each string is 128 characters. The comparison strings are case insensitive. The following wildcard characters are supported: * (matches 0 or more characters) and ? (matches exactly 1 character).
  If the same header appears multiple times in the request, we search them in order until a match is found.
  If you specify multiple strings, the condition is satisfied if one of the strings matches the value of the HTTP header. To require that all of the strings are a match, create one condition per string.
 
 ## HttpRequestMethodConfig
 ### Properties
-* **Values**: string[]: The name of the request method. The maximum size is 40 characters. The allowed characters are A-Z, hyphen (-), and underscore (_). The comparison is case sensitive. Wildcards are not supported; therefore, the method name must be an exact match.
+* **Values**: string[]: The name of the request method. The maximum length is 40 characters. The allowed characters are A-Z, hyphen (-), and underscore (_). The comparison is case sensitive. Wildcards are not supported; therefore, the method name must be an exact match.
  If you specify multiple strings, the condition is satisfied if one of the strings matches the HTTP request method. We recommend that you route GET and HEAD requests in the same way, because the response to a HEAD request may be cached.
+
+## JwtValidationActionAdditionalClaim
+### Properties
+* **Format**: string (Required): The format of the claim value.
+* **Name**: string (Required): The name of the claim. You can't specify ``exp``, ``iss``, ``nbf``, or ``iat`` because we validate them by default.
+* **Values**: string[] (Required): The claim value. The maximum size of the list is 10. Each value can be up to 256 characters in length. If the format is ``space-separated-values``, the values can't include spaces.
+
+## JwtValidationActionAdditionalClaim
+### Properties
+* **Format**: string (Required): The format of the claim value.
+* **Name**: string (Required): The name of the claim. You can't specify ``exp``, ``iss``, ``nbf``, or ``iat`` because we validate them by default.
+* **Values**: string[] (Required): The claim value. The maximum size of the list is 10. Each value can be up to 256 characters in length. If the format is ``space-separated-values``, the values can't include spaces.
+
+## JwtValidationConfig
+### Properties
+* **AdditionalClaims**: [JwtValidationActionAdditionalClaim](#jwtvalidationactionadditionalclaim)[]
+* **Issuer**: string (Required)
+* **JwksEndpoint**: string (Required)
+
+## JwtValidationConfig
+### Properties
+* **AdditionalClaims**: [JwtValidationActionAdditionalClaim](#jwtvalidationactionadditionalclaim)[]
+* **Issuer**: string (Required)
+* **JwksEndpoint**: string (Required)
 
 ## Listener_AuthenticationRequestExtraParams
 ### Properties
@@ -282,28 +324,31 @@
 ### Properties
 * **Key**: string: The name of the attribute.
  The following attribute is supported by Network Load Balancers, and Gateway Load Balancers.
-  +   ``tcp.idle_timeout.seconds`` - The tcp idle timeout value, in seconds. The valid range is 60-6000 seconds. The default is 350 seconds.
+  +  ``tcp.idle_timeout.seconds`` - The tcp idle timeout value, in seconds. The valid range is 60-6000 seconds. The default is 350 seconds.
+  
+ The following attribute is only supported by Gateway Load Balancers:
+  +  ``send_tcp_reset.on_idle_timeout.enabled`` – Specifies whether the Gateway Load Balancer sends a TCP Reset to the sender of traffic when a TCP flow's idle timeout expires. This attribute also applies to non-SYN TCP packets received for flows that are not in the flow table. The value is ``true`` or ``false``. The default is ``false``.
   
  The following attributes are only supported by Application Load Balancers.
-  +   ``routing.http.request.x_amzn_mtls_clientcert_serial_number.header_name`` - Enables you to modify the header name of the *X-Amzn-Mtls-Clientcert-Serial-Number* HTTP request header.
-  +   ``routing.http.request.x_amzn_mtls_clientcert_issuer.header_name`` - Enables you to modify the header name of the *X-Amzn-Mtls-Clientcert-Issuer* HTTP request header.
-  +   ``routing.http.request.x_amzn_mtls_clientcert_subject.header_name`` - Enables you to modify the header name of the *X-Amzn-Mtls-Clientcert-Subject* HTTP request header.
-  +   ``routing.http.request.x_amzn_mtls_clientcert_validity.header_name`` - Enables you to modify the header name of the *X-Amzn-Mtls-Clientcert-Validity* HTTP request header.
-  +   ``routing.http.request.x_amzn_mtls_clientcert_leaf.header_name`` - Enables you to modify the header name of the *X-Amzn-Mtls-Clientcert-Leaf* HTTP request header.
-  +   ``routing.http.request.x_amzn_mtls_clientcert.header_name`` - Enables you to modify the header name of the *X-Amzn-Mtls-Clientcert* HTTP request header.
-  +   ``routing.http.request.x_amzn_tls_version.header_name`` - Enables you to modify the header name of the *X-Amzn-Tls-Version* HTTP request header.
-  +   ``routing.http.request.x_amzn_tls_cipher_suite.header_name`` - Enables you to modify the header name of the *X-Amzn-Tls-Cipher-Suite* HTTP request header.
-  +   ``routing.http.response.server.enabled`` - Enables you to allow or remove the HTTP response server header.
-  +   ``routing.http.response.strict_transport_security.header_value`` - Informs browsers that the site should only be accessed using HTTPS, and that any future attempts to access it using HTTP should automatically be converted to HTTPS.
-  +   ``routing.http.response.access_control_allow_origin.header_value`` - Specifies which origins are allowed to access the server.
-  +   ``routing.http.response.access_control_allow_methods.header_value`` - Returns which HTTP methods are allowed when accessing the server from a different origin.
-  +   ``routing.http.response.access_control_allow_headers.header_value`` - Specifies which headers can be used during the request.
-  +   ``routing.http.response.access_control_allow_credentials.header_value`` - Indicates whether the browser should include credentials such as cookies or authentication when making requests.
-  +   ``routing.http.response.access_control_expose_headers.header_value`` - Returns which headers the browser can expose to the requesting client.
-  +   ``routing.http.response.access_control_max_age.header_value`` - Specifies how long the results of a preflight request can be cached, in seconds.
-  +   ``routing.http.response.content_security_policy.header_value`` - Specifies restrictions enforced by the browser to help minimize the risk of certain types of security threats.
-  +   ``routing.http.response.x_content_type_options.header_value`` - Indicates whether the MIME types advertised in the *Content-Type* headers should be followed and not be changed.
-  +   ``routing.http.response.x_frame_options.header_value`` - Indicates whether the browser is allowed to render a page in a *frame*, *iframe*, *embed* or *object*.
+  +  ``routing.http.request.x_amzn_mtls_clientcert_serial_number.header_name`` - Enables you to modify the header name of the *X-Amzn-Mtls-Clientcert-Serial-Number* HTTP request header.
+  +  ``routing.http.request.x_amzn_mtls_clientcert_issuer.header_name`` - Enables you to modify the header name of the *X-Amzn-Mtls-Clientcert-Issuer* HTTP request header.
+  +  ``routing.http.request.x_amzn_mtls_clientcert_subject.header_name`` - Enables you to modify the header name of the *X-Amzn-Mtls-Clientcert-Subject* HTTP request header.
+  +  ``routing.http.request.x_amzn_mtls_clientcert_validity.header_name`` - Enables you to modify the header name of the *X-Amzn-Mtls-Clientcert-Validity* HTTP request header.
+  +  ``routing.http.request.x_amzn_mtls_clientcert_leaf.header_name`` - Enables you to modify the header name of the *X-Amzn-Mtls-Clientcert-Leaf* HTTP request header.
+  +  ``routing.http.request.x_amzn_mtls_clientcert.header_name`` - Enables you to modify the header name of the *X-Amzn-Mtls-Clientcert* HTTP request header.
+  +  ``routing.http.request.x_amzn_tls_version.header_name`` - Enables you to modify the header name of the *X-Amzn-Tls-Version* HTTP request header.
+  +  ``routing.http.request.x_amzn_tls_cipher_suite.header_name`` - Enables you to modify the header name of the *X-Amzn-Tls-Cipher-Suite* HTTP request header.
+  +  ``routing.http.response.server.enabled`` - Enables you to allow or remove the HTTP response server header.
+  +  ``routing.http.response.strict_transport_security.header_value`` - Informs browsers that the site should only be accessed using HTTPS, and that any future attempts to access it using HTTP should automatically be converted to HTTPS.
+  +  ``routing.http.response.access_control_allow_origin.header_value`` - Specifies which origins are allowed to access the server.
+  +  ``routing.http.response.access_control_allow_methods.header_value`` - Returns which HTTP methods are allowed when accessing the server from a different origin.
+  +  ``routing.http.response.access_control_allow_headers.header_value`` - Specifies which headers can be used during the request.
+  +  ``routing.http.response.access_control_allow_credentials.header_value`` - Indicates whether the browser should include credentials such as cookies or authentication when making requests.
+  +  ``routing.http.response.access_control_expose_headers.header_value`` - Returns which headers the browser can expose to the requesting client.
+  +  ``routing.http.response.access_control_max_age.header_value`` - Specifies how long the results of a preflight request can be cached, in seconds.
+  +  ``routing.http.response.content_security_policy.header_value`` - Specifies restrictions enforced by the browser to help minimize the risk of certain types of security threats.
+  +  ``routing.http.response.x_content_type_options.header_value`` - Indicates whether the MIME types advertised in the *Content-Type* headers should be followed and not be changed.
+  +  ``routing.http.response.x_frame_options.header_value`` - Indicates whether the browser is allowed to render a page in a *frame*, *iframe*, *embed* or *object*.
 * **Value**: string: The value of the attribute.
 
 ## ListenerRule_AuthenticationRequestExtraParams
@@ -320,37 +365,41 @@
 ### Properties
 * **Key**: string: The name of the attribute.
  The following attributes are supported by all load balancers:
-  +   ``deletion_protection.enabled`` - Indicates whether deletion protection is enabled. The value is ``true`` or ``false``. The default is ``false``.
-  +   ``load_balancing.cross_zone.enabled`` - Indicates whether cross-zone load balancing is enabled. The possible values are ``true`` and ``false``. The default for Network Load Balancers and Gateway Load Balancers is ``false``. The default for Application Load Balancers is ``true``, and can't be changed.
+  +  ``deletion_protection.enabled`` - Indicates whether deletion protection is enabled. The value is ``true`` or ``false``. The default is ``false``.
+  +  ``load_balancing.cross_zone.enabled`` - Indicates whether cross-zone load balancing is enabled. The possible values are ``true`` and ``false``. The default for Network Load Balancers and Gateway Load Balancers is ``false``. The default for Application Load Balancers is ``true``, and can't be changed.
   
  The following attributes are supported by both Application Load Balancers and Network Load Balancers:
-  +   ``access_logs.s3.enabled`` - Indicates whether access logs are enabled. The value is ``true`` or ``false``. The default is ``false``.
-  +   ``access_logs.s3.bucket`` - The name of the S3 bucket for the access logs. This attribute is required if access logs are enabled. The bucket must exist in the same region as the load balancer and have a bucket policy that grants Elastic Load Balancing permissions to write to the bucket.
-  +   ``access_logs.s3.prefix`` - The prefix for the location in the S3 bucket for the access logs.
-  +   ``ipv6.deny_all_igw_traffic`` - Blocks internet gateway (IGW) access to the load balancer. It is set to ``false`` for internet-facing load balancers and ``true`` for internal load balancers, preventing unintended access to your internal load balancer through an internet gateway.
-  +   ``zonal_shift.config.enabled`` - Indicates whether zonal shift is enabled. The possible values are ``true`` and ``false``. The default is ``false``.
+  +  ``access_logs.s3.enabled`` - Indicates whether access logs are enabled. The value is ``true`` or ``false``. The default is ``false``.
+  +  ``access_logs.s3.bucket`` - The name of the S3 bucket for the access logs. This attribute is required if access logs are enabled. The bucket must exist in the same region as the load balancer and have a bucket policy that grants Elastic Load Balancing permissions to write to the bucket.
+  +  ``access_logs.s3.prefix`` - The prefix for the location in the S3 bucket for the access logs.
+  +  ``ipv6.deny_all_igw_traffic`` - Blocks internet gateway (IGW) access to the load balancer. It is set to ``false`` for internet-facing load balancers and ``true`` for internal load balancers, preventing unintended access to your internal load balancer through an internet gateway.
+  +  ``zonal_shift.config.enabled`` - Indicates whether zonal shift is enabled. The possible values are ``true`` and ``false``. The default is ``false``.
   
  The following attributes are supported by only Application Load Balancers:
-  +   ``idle_timeout.timeout_seconds`` - The idle timeout value, in seconds. The valid range is 1-4000 seconds. The default is 60 seconds.
-  +   ``client_keep_alive.seconds`` - The client keep alive value, in seconds. The valid range is 60-604800 seconds. The default is 3600 seconds.
-  +   ``connection_logs.s3.enabled`` - Indicates whether connection logs are enabled. The value is ``true`` or ``false``. The default is ``false``.
-  +   ``connection_logs.s3.bucket`` - The name of the S3 bucket for the connection logs. This attribute is required if connection logs are enabled. The bucket must exist in the same region as the load balancer and have a bucket policy that grants Elastic Load Balancing permissions to write to the bucket.
-  +   ``connection_logs.s3.prefix`` - The prefix for the location in the S3 bucket for the connection logs.
-  +   ``routing.http.desync_mitigation_mode`` - Determines how the load balancer handles requests that might pose a security risk to your application. The possible values are ``monitor``, ``defensive``, and ``strictest``. The default is ``defensive``.
-  +   ``routing.http.drop_invalid_header_fields.enabled`` - Indicates whether HTTP headers with invalid header fields are removed by the load balancer (``true``) or routed to targets (``false``). The default is ``false``.
-  +   ``routing.http.preserve_host_header.enabled`` - Indicates whether the Application Load Balancer should preserve the ``Host`` header in the HTTP request and send it to the target without any change. The possible values are ``true`` and ``false``. The default is ``false``.
-  +   ``routing.http.x_amzn_tls_version_and_cipher_suite.enabled`` - Indicates whether the two headers (``x-amzn-tls-version`` and ``x-amzn-tls-cipher-suite``), which contain information about the negotiated TLS version and cipher suite, are added to the client request before sending it to the target. The ``x-amzn-tls-version`` header has information about the TLS protocol version negotiated with the client, and the ``x-amzn-tls-cipher-suite`` header has information about the cipher suite negotiated with the client. Both headers are in OpenSSL format. The possible values for the attribute are ``true`` and ``false``. The default is ``false``.
-  +   ``routing.http.xff_client_port.enabled`` - Indicates whether the ``X-Forwarded-For`` header should preserve the source port that the client used to connect to the load balancer. The possible values are ``true`` and ``false``. The default is ``false``.
-  +   ``routing.http.xff_header_processing.mode`` - Enables you to modify, preserve, or remove the ``X-Forwarded-For`` header in the HTTP request before the Application Load Balancer sends the request to the target. The possible values are ``append``, ``preserve``, and ``remove``. The default is ``append``.
+  +  ``idle_timeout.timeout_seconds`` - The idle timeout value, in seconds. The valid range is 1-4000 seconds. The default is 60 seconds.
+  +  ``client_keep_alive.seconds`` - The client keep alive value, in seconds. The valid range is 60-604800 seconds. The default is 3600 seconds.
+  +  ``connection_logs.s3.enabled`` - Indicates whether connection logs are enabled. The value is ``true`` or ``false``. The default is ``false``.
+  +  ``connection_logs.s3.bucket`` - The name of the S3 bucket for the connection logs. This attribute is required if connection logs are enabled. The bucket must exist in the same region as the load balancer and have a bucket policy that grants Elastic Load Balancing permissions to write to the bucket.
+  +  ``connection_logs.s3.prefix`` - The prefix for the location in the S3 bucket for the connection logs.
+  +  ``health_check_logs.s3.enabled`` - Indicates whether health check logs are enabled. The value is ``true`` or ``false``. The default is ``false``.
+  +  ``health_check_logs.s3.bucket`` - The name of the S3 bucket for the health check logs. This attribute is required if health check logs are enabled. The bucket must exist in the same region as the load balancer and have a bucket policy that grants Elastic Load Balancing permissions to write to the bucket.
+  +  ``health_check_logs.s3.prefix`` - The prefix for the location in the S3 bucket for the health check logs.
+  +  ``routing.http.desync_mitigation_mode`` - Determines how the load balancer handles requests that might pose a security risk to your application. The possible values are ``monitor``, ``defensive``, and ``strictest``. The default is ``defensive``.
+  +  ``routing.http.drop_invalid_header_fields.enabled`` - Indicates whether HTTP headers with invalid header fields are removed by the load balancer (``true``) or routed to targets (``false``). The default is ``false``.
+  +  ``routing.http.preserve_host_header.enabled`` - Indicates whether the Application Load Balancer should preserve the ``Host`` header in the HTTP request and send it to the target without any change. The possible values are ``true`` and ``false``. The default is ``false``.
+  +  ``routing.http.x_amzn_tls_version_and_cipher_suite.enabled`` - Indicates whether the two headers (``x-amzn-tls-version`` and ``x-amzn-tls-cipher-suite``), which contain information about the negotiated TLS version and cipher suite, are added to the client request before sending it to the target. The ``x-amzn-tls-version`` header has information about the TLS protocol version negotiated with the client, and the ``x-amzn-tls-cipher-suite`` header has information about the cipher suite negotiated with the client. Both headers are in OpenSSL format. The possible values for the attribute are ``true`` and ``false``. The default is ``false``.
+  +  ``routing.http.xff_client_port.enabled`` - Indicates whether the ``X-Forwarded-For`` header should preserve the source port that the client used to connect to the load balancer. The possible values are ``true`` and ``false``. The default is ``false``.
+  +  ``routing.http.xff_header_processing.mode`` - Enables you to modify, preserve, or remove the ``X-Forwarded-For`` header in the HTTP request before the Application Load Balancer sends the request to the target. The possible values are ``append``, ``preserve``, and ``remove``. The default is ``append``.
   +  If the value is ``append``, the Application Load Balancer adds the client IP address (of the last hop) to the ``X-Forwarded-For`` header in the HTTP request before it sends it to targets.
   +  If the value is ``preserve`` the Application Load Balancer preserves the ``X-Forwarded-For`` header in the HTTP request, and sends it to targets without any change.
   +  If the value is ``remove``, the Application Load Balancer removes the ``X-Forwarded-For`` header in the HTTP request before it sends it to targets.
   
-  +   ``routing.http2.enabled`` - Indicates whether HTTP/2 is enabled. The possible values are ``true`` and ``false``. The default is ``true``. Elastic Load Balancing requires that message header names contain only alphanumeric characters and hyphens.
-  +   ``waf.fail_open.enabled`` - Indicates whether to allow a WAF-enabled load balancer to route requests to targets if it is unable to forward the request to AWS WAF. The possible values are ``true`` and ``false``. The default is ``false``.
+  +  ``routing.http2.enabled`` - Indicates whether clients can connect to the load balancer using HTTP/2. If ``true``, clients can connect using HTTP/2 or HTTP/1.1. However, all client requests are subject to the stricter HTTP/2 header validation rules. For example, message header names must contain only alphanumeric characters and hyphens. If ``false``, clients must connect using HTTP/1.1. The default is ``true``.
+  +  ``waf.fail_open.enabled`` - Indicates whether to allow a WAF-enabled load balancer to route requests to targets if it is unable to forward the request to AWS WAF. The possible values are ``true`` and ``false``. The default is ``false``.
   
  The following attributes are supported by only Network Load Balancers:
-  +   ``dns_record.client_routing_policy`` - Indicates how traffic is distributed among the load balancer Availability Zones. The possible values are ``availability_zone_affinity`` with 100 percent zonal affinity, ``partial_availability_zone_affinity`` with 85 percent zonal affinity, and ``any_availability_zone`` with 0 percent zonal affinity.
+  +  ``dns_record.client_routing_policy`` - Indicates how traffic is distributed among the load balancer Availability Zones. The possible values are ``availability_zone_affinity`` with 100 percent zonal affinity, ``partial_availability_zone_affinity`` with 85 percent zonal affinity, and ``any_availability_zone`` with 0 percent zonal affinity.
+  +  ``secondary_ips.auto_assigned.per_subnet`` - The number of secondary IP addresses to configure for your load balancer nodes. Use to address port allocation errors if you can't add targets. The valid range is 0 to 7. The default is 0. After you set this value, you can't decrease it.
 * **Value**: string: The value of the attribute.
 
 ## Matcher
@@ -360,19 +409,20 @@
 
 ## MutualAuthentication
 ### Properties
-* **AdvertiseTrustStoreCaNames**: string
+* **AdvertiseTrustStoreCaNames**: string: Indicates whether trust store CA certificate names are advertised.
 * **IgnoreClientCertificateExpiry**: bool: Indicates whether expired client certificates are ignored.
-* **Mode**: string: The client certificate handling method. Options are ``off``, ``passthrough`` or ``verify``. The default value is ``off``.
+* **Mode**: string: The client certificate handling method. Options are ``off``, ``passthrough`` or ``verify``. The default value on initial resource creation is ``off``. After mutual authentication is turned on, you must explicitly set the ``Mode`` to ``off`` to turn it off; removing the property from your template will not turn it off.
 * **TrustStoreArn**: string: The Amazon Resource Name (ARN) of the trust store.
 
 ## PathPatternConfig
 ### Properties
+* **RegexValues**: string[]
 * **Values**: string[]: The path patterns to compare against the request URL. The maximum size of each string is 128 characters. The comparison is case sensitive. The following wildcard characters are supported: * (matches 0 or more characters) and ? (matches exactly 1 character).
  If you specify multiple strings, the condition is satisfied if one of them matches the request URL. The path pattern is compared only to the path of the URL, not to its query string.
 
 ## QueryStringConfig
 ### Properties
-* **Values**: [QueryStringKeyValue](#querystringkeyvalue)[]: The key/value pairs or values to find in the query string. The maximum size of each string is 128 characters. The comparison is case insensitive. The following wildcard characters are supported: * (matches 0 or more characters) and ? (matches exactly 1 character). To search for a literal '*' or '?' character in a query string, you must escape these characters in ``Values`` using a '\' character.
+* **Values**: [QueryStringKeyValue](#querystringkeyvalue)[]: The key/value pairs or values to find in the query string. The maximum length of each string is 128 characters. The comparison is case insensitive. The following wildcard characters are supported: * (matches 0 or more characters) and ? (matches exactly 1 character). To search for a literal '*' or '?' character in a query string, you must escape these characters in ``Values`` using a '\' character.
  If you specify multiple key/value pairs or values, the condition is satisfied if one of them is found in the query string.
 
 ## QueryStringKeyValue
@@ -398,20 +448,30 @@
 * **Query**: string: The query parameters, URL-encoded when necessary, but not percent-encoded. Do not include the leading "?", as it is automatically added. You can specify any of the reserved keywords.
 * **StatusCode**: string (Required): The HTTP redirect code. The redirect is either permanent (HTTP 301) or temporary (HTTP 302).
 
+## RewriteConfig
+### Properties
+* **Regex**: string (Required): The regular expression to match in the input string. The maximum length of the string is 1,024 characters.
+* **Replace**: string (Required): The replacement string to use when rewriting the matched input. The maximum length of the string is 1,024 characters. You can specify capture groups in the regular expression (for example, $1 and $2).
+
+## RewriteConfigObject
+### Properties
+* **Rewrites**: [RewriteConfig](#rewriteconfig)[] (Required)
+
 ## RuleCondition
 ### Properties
-* **Field**: string: The field in the HTTP request. The following are the possible values:
-  +   ``http-header`` 
-  +   ``http-request-method`` 
-  +   ``host-header`` 
-  +   ``path-pattern`` 
-  +   ``query-string`` 
-  +   ``source-ip``
+* **Field**: string: The name of the field. The possible values are:
+  +  ``http-header`` ? [ALB] Matches on an HTTP header field.
+  +  ``http-request-method`` ? [ALB] Matches on the HTTP request method.
+  +  ``host-header`` ? [ALB] Matches on the host header.
+  +  ``path-pattern`` ? [ALB] Matches on the URL path of the request.
+  +  ``query-string`` ? [ALB] Matches on a query string parameter.
+  +  ``source-ip`` ? [ALB, NLB] Matches on the source IP address. For ALB, use ``SourceIpConfig`` with ``Values`` to specify CIDR ranges. For NLB, use ``SourceIpConfig`` with ``IpAddressType`` to match the IP address type (``ipv4`` or ``ipv6``).
 * **HostHeaderConfig**: [HostHeaderConfig](#hostheaderconfig): Information for a host header condition. Specify only when ``Field`` is ``host-header``.
 * **HttpHeaderConfig**: [HttpHeaderConfig](#httpheaderconfig): Information for an HTTP header condition. Specify only when ``Field`` is ``http-header``.
 * **HttpRequestMethodConfig**: [HttpRequestMethodConfig](#httprequestmethodconfig): Information for an HTTP method condition. Specify only when ``Field`` is ``http-request-method``.
 * **PathPatternConfig**: [PathPatternConfig](#pathpatternconfig): Information for a path pattern condition. Specify only when ``Field`` is ``path-pattern``.
 * **QueryStringConfig**: [QueryStringConfig](#querystringconfig): Information for a query string condition. Specify only when ``Field`` is ``query-string``.
+* **RegexValues**: string[]: The regular expressions to match against the condition field. The maximum length of each string is 128 characters. Specify only when ``Field`` is ``http-header``, ``host-header``, or ``path-pattern``.
 * **SourceIpConfig**: [SourceIpConfig](#sourceipconfig): Information for a source IP condition. Specify only when ``Field`` is ``source-ip``.
 * **Values**: string[]: The condition value. Specify only when ``Field`` is ``host-header`` or ``path-pattern``. Alternatively, to specify multiple host names or multiple path patterns, use ``HostHeaderConfig`` or ``PathPatternConfig``.
  If ``Field`` is ``host-header`` and you're not using ``HostHeaderConfig``, you can specify a single host name (for example, my.example.com). A host name is case insensitive, can be up to 128 characters in length, and can contain any of the following characters.
@@ -429,6 +489,7 @@
 
 ## SourceIpConfig
 ### Properties
+* **IpAddressType**: string
 * **Values**: string[]: The source IP addresses, in CIDR format. You can use both IPv4 and IPv6 addresses. Wildcards are not supported.
  If you specify multiple addresses, the condition is satisfied if the source IP address of the request matches one of the CIDR blocks. This condition is not satisfied by the addresses in the X-Forwarded-For header.
 
@@ -439,6 +500,16 @@
 * **PrivateIPv4Address**: string: [Network Load Balancers] The private IPv4 address for an internal load balancer.
 * **SourceNatIpv6Prefix**: string: [Network Load Balancers with UDP listeners] The IPv6 prefix to use for source NAT. Specify an IPv6 prefix (/80 netmask) from the subnet CIDR block or ``auto_assigned`` to use an IPv6 prefix selected at random from the subnet CIDR block.
 * **SubnetId**: string (Required): The ID of the subnet.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key of the tag.
+* **Value**: string (Required): The value of the tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key of the tag.
+* **Value**: string (Required): The value of the tag.
 
 ## Tag
 ### Properties
@@ -460,6 +531,7 @@
 * **AvailabilityZone**: string: An Availability Zone or all. This determines whether the target receives traffic from the load balancer nodes in the specified Availability Zone or from all enabled Availability Zones for the load balancer.
 * **Id**: string (Required): The ID of the target. If the target type of the target group is instance, specify an instance ID. If the target type is ip, specify an IP address. If the target type is lambda, specify the ARN of the Lambda function. If the target type is alb, specify the ARN of the Application Load Balancer target. 
 * **Port**: int: The port on which the target is listening. If the target group protocol is GENEVE, the supported port is 6081. If the target type is alb, the targeted Application Load Balancer must have at least one listener whose port matches the target group port. Not used if the target is a Lambda function.
+* **QuicServerId**: string: The Server ID used by targets when using QUIC or TCP_QUIC protocols.
 
 ## TargetGroupAttribute
 ### Properties
@@ -468,12 +540,12 @@
 
 ## TargetGroupStickinessConfig
 ### Properties
-* **DurationSeconds**: int: The time period, in seconds, during which requests from a client should be routed to the same target group. The range is 1-604800 seconds (7 days).
+* **DurationSeconds**: int: [Application Load Balancers] The time period, in seconds, during which requests from a client should be routed to the same target group. The range is 1-604800 seconds (7 days). You must specify this value when enabling target group stickiness.
 * **Enabled**: bool: Indicates whether target group stickiness is enabled.
 
 ## TargetGroupStickinessConfig
 ### Properties
-* **DurationSeconds**: int: The time period, in seconds, during which requests from a client should be routed to the same target group. The range is 1-604800 seconds (7 days).
+* **DurationSeconds**: int: [Application Load Balancers] The time period, in seconds, during which requests from a client should be routed to the same target group. The range is 1-604800 seconds (7 days). You must specify this value when enabling target group stickiness.
 * **Enabled**: bool: Indicates whether target group stickiness is enabled.
 
 ## TargetGroupTuple
@@ -485,4 +557,10 @@
 ### Properties
 * **TargetGroupArn**: string: The Amazon Resource Name (ARN) of the target group.
 * **Weight**: int: The weight. The range is 0 to 999.
+
+## Transform
+### Properties
+* **HostHeaderRewriteConfig**: [RewriteConfigObject](#rewriteconfigobject)
+* **Type**: string (Required)
+* **UrlRewriteConfig**: [RewriteConfigObject](#rewriteconfigobject)
 

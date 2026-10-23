@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EKS-Cluster",
   "type": "AWS::EKS::Cluster",
-  "time": "2025-01-25T07:08:44.161Z",
+  "time": "2026-10-20T01:20:51.84Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -12,8 +12,7 @@
       "/properties/AccessConfig/BootstrapClusterCreatorAdminPermissions",
       "/properties/Name",
       "/properties/RoleArn",
-      "/properties/BootstrapSelfManagedAddons",
-      "/properties/RemoteNetworkConfig"
+      "/properties/BootstrapSelfManagedAddons"
     ],
     "definitions": {
       "AccessConfig": {
@@ -36,6 +35,21 @@
         },
         "type": "object"
       },
+      "ActiveCertificateAuthority": {
+        "additionalProperties": false,
+        "description": "Identifies the certificate authority currently signing certificates for the cluster.",
+        "properties": {
+          "ActivatedBy": {
+            "description": "Indicates whether the active certificate authority was activated by EKS or by the customer.",
+            "type": "string"
+          },
+          "Id": {
+            "description": "The ID of the active (signing) certificate authority.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "BlockStorage": {
         "additionalProperties": false,
         "description": "Todo: add description",
@@ -43,6 +57,20 @@
           "Enabled": {
             "description": "Todo: add description",
             "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "CertificateAuthority": {
+        "additionalProperties": false,
+        "description": "The certificate authority information for the cluster, including the trust bundle and the currently active signing certificate authority.",
+        "properties": {
+          "Active": {
+            "$ref": "#/definitions/ActiveCertificateAuthority"
+          },
+          "Data": {
+            "description": "The base64-encoded certificate-authority trust bundle for the cluster (all trusted CAs).",
+            "type": "string"
           }
         },
         "type": "object"
@@ -82,14 +110,41 @@
       },
       "ControlPlanePlacement": {
         "additionalProperties": false,
-        "description": "Specify the placement group of the control plane machines for your cluster.",
+        "description": "The placement configuration for all the control plane instances of your local Amazon EKS cluster on an AWS Outpost.",
         "properties": {
           "GroupName": {
-            "description": "Specify the placement group name of the control place machines for your cluster.",
+            "description": "The name of the placement group for the Kubernetes control plane instances. This setting can't be changed after cluster creation.",
+            "type": "string"
+          },
+          "SpreadLevel": {
+            "description": "Optional parameter to specify the placement group spread level for control plane instances. If not provided, EKS will deploy control plane instances without a placement group.",
             "type": "string"
           }
         },
         "type": "object"
+      },
+      "ControlPlaneScalingConfig": {
+        "additionalProperties": false,
+        "description": "Configuration for provisioned control plane scaling.",
+        "properties": {
+          "Tier": {
+            "description": "The scaling tier for the provisioned control plane.",
+            "enum": [
+              "standard",
+              "tier-xl",
+              "tier-2xl",
+              "tier-4xl",
+              "tier-8xl",
+              "tier-ultra"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "DeletionProtection": {
+        "description": "Set this value to true to enable deletion protection for the cluster.",
+        "type": "boolean"
       },
       "ElasticLoadBalancing": {
         "additionalProperties": false,
@@ -125,6 +180,65 @@
               "type": "string"
             },
             "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "EtcdPlacement": {
+        "additionalProperties": false,
+        "description": "The placement configuration for the etcd instances of your local Amazon EKS cluster on an AWS Outpost.",
+        "properties": {
+          "SpreadLevel": {
+            "description": "Optional parameter to specify the placement group spread level for etcd instances. If not provided, EKS will deploy etcd instances without a placement group.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "HorizontalPodAutoscalerControllerConfig": {
+        "additionalProperties": false,
+        "description": "The horizontal pod autoscaler controller configuration.",
+        "properties": {
+          "HorizontalPodAutoscalerSyncPeriod": {
+            "description": "The interval between each sync of the horizontal pod autoscaler (e.g., 15s, 1m).",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "KubeApiServerConfig": {
+        "additionalProperties": false,
+        "description": "The configuration for the Kubernetes API server on an Amazon EKS cluster.",
+        "properties": {
+          "EventTtl": {
+            "description": "The duration that Kubernetes events are retained (e.g., 30m, 1h).",
+            "type": "string"
+          },
+          "ServiceNodePortRange": {
+            "$ref": "#/definitions/ServiceNodePortRange"
+          }
+        },
+        "type": "object"
+      },
+      "KubeControllerManagerConfig": {
+        "additionalProperties": false,
+        "description": "The configuration for the Kubernetes controller manager on an Amazon EKS cluster.",
+        "properties": {
+          "HorizontalPodAutoscalerControllerConfig": {
+            "$ref": "#/definitions/HorizontalPodAutoscalerControllerConfig"
+          },
+          "PodGcControllerConfig": {
+            "$ref": "#/definitions/PodGcControllerConfig"
+          }
+        },
+        "type": "object"
+      },
+      "KubeSchedulerConfig": {
+        "additionalProperties": false,
+        "description": "The configuration for the Kubernetes scheduler on an Amazon EKS cluster.",
+        "properties": {
+          "NodeResourcesFit": {
+            "$ref": "#/definitions/NodeResourcesFitConfig"
           }
         },
         "type": "object"
@@ -185,20 +299,38 @@
         },
         "type": "object"
       },
+      "NodeResourcesFitConfig": {
+        "additionalProperties": false,
+        "description": "The NodeResourcesFit plugin configuration for the Kubernetes scheduler.",
+        "properties": {
+          "ScoringStrategy": {
+            "$ref": "#/definitions/ScoringStrategy"
+          }
+        },
+        "type": "object"
+      },
       "OutpostConfig": {
         "additionalProperties": false,
         "description": "An object representing the Outpost configuration to use for AWS EKS outpost cluster.",
         "properties": {
           "ControlPlaneInstanceType": {
-            "description": "Specify the Instance type of the machines that should be used to create your cluster.",
+            "description": "The EC2 instance type for the Kubernetes control plane instances of your local Amazon EKS cluster on AWS Outposts. This instance type applies to all control plane instances and cannot be changed after cluster creation.",
             "type": "string"
           },
           "ControlPlanePlacement": {
             "$ref": "#/definitions/ControlPlanePlacement",
-            "description": "Specify the placement group of the control plane machines for your cluster."
+            "description": "An object representing the placement configuration for all the control plane instances of your local Amazon EKS cluster on an AWS Outpost."
+          },
+          "EtcdInstanceType": {
+            "description": "The EC2 instance type for etcd instances of your local Amazon EKS cluster on AWS Outposts. This instance type applies to all etcd instances and cannot be changed after cluster creation.",
+            "type": "string"
+          },
+          "EtcdPlacement": {
+            "$ref": "#/definitions/EtcdPlacement",
+            "description": "An object representing the placement configuration for the etcd instances of your local Amazon EKS cluster on an AWS Outpost."
           },
           "OutpostArns": {
-            "description": "Specify one or more Arn(s) of Outpost(s) on which you would like to create your cluster.",
+            "description": "The ARN of the Outpost that you want to use for your local Amazon EKS cluster on Outposts. Only a single Outpost ARN is supported.",
             "insertionOrder": false,
             "items": {
               "minItems": 1,
@@ -211,6 +343,17 @@
           "OutpostArns",
           "ControlPlaneInstanceType"
         ],
+        "type": "object"
+      },
+      "PodGcControllerConfig": {
+        "additionalProperties": false,
+        "description": "The pod garbage collector controller configuration.",
+        "properties": {
+          "TerminatedPodGcThreshold": {
+            "description": "The number of terminated pods that can exist before the terminated pod garbage collector starts deleting them.",
+            "type": "integer"
+          }
+        },
         "type": "object"
       },
       "Provider": {
@@ -236,9 +379,6 @@
             "description": "Network configuration of pods run on-premises with EKS Hybrid Nodes."
           }
         },
-        "required": [
-          "RemoteNodeNetworks"
-        ],
         "type": "object"
       },
       "RemoteNodeNetwork": {
@@ -295,10 +435,29 @@
         },
         "type": "array"
       },
+      "ResourceWeight": {
+        "additionalProperties": false,
+        "description": "A resource weight entry for the scheduler scoring strategy.",
+        "properties": {
+          "Name": {
+            "description": "The name of the resource (for example, cpu or memory).",
+            "type": "string"
+          },
+          "Weight": {
+            "description": "The weight assigned to the resource for scoring. Must be between 1 and 100.",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
       "ResourcesVpcConfig": {
         "additionalProperties": false,
         "description": "An object representing the VPC configuration to use for an Amazon EKS cluster.",
         "properties": {
+          "ControlPlaneEgressMode": {
+            "description": "Specify the egress mode for the cluster control plane. If you set this to CUSTOMER_ROUTED, the control plane routes traffic through your VPC subnets instead of using AWS managed networking.",
+            "type": "string"
+          },
           "EndpointPrivateAccess": {
             "description": "Set this value to true to enable private access for your cluster's Kubernetes API server endpoint. If you enable private access, Kubernetes API requests from within your cluster's VPC use the private VPC endpoint. The default value for this parameter is false, which disables private access for your Kubernetes API server. If you disable private access and you have nodes or AWS Fargate pods in the cluster, then ensure that publicAccessCidrs includes the necessary CIDR blocks for communication with the nodes or Fargate pods.",
             "type": "boolean"
@@ -338,6 +497,52 @@
         "required": [
           "SubnetIds"
         ],
+        "type": "object"
+      },
+      "RollbackConfig": {
+        "additionalProperties": false,
+        "description": "The rollback configuration to use for the cluster version rollback.",
+        "properties": {
+          "TimeoutMinutes": {
+            "description": "The timeout in minutes for the version rollback operation. If not specified, defaults to 720 minutes (12 hours).",
+            "maximum": 10080,
+            "minimum": 120,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "ScoringStrategy": {
+        "additionalProperties": false,
+        "description": "The scoring strategy configuration for the NodeResourcesFit scheduler plugin.",
+        "properties": {
+          "Resources": {
+            "description": "The resource weights used for scoring nodes.",
+            "items": {
+              "$ref": "#/definitions/ResourceWeight"
+            },
+            "type": "array"
+          },
+          "Type": {
+            "description": "The scoring strategy type (LeastAllocated or MostAllocated).",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ServiceNodePortRange": {
+        "additionalProperties": false,
+        "description": "The port range for Kubernetes NodePort services.",
+        "properties": {
+          "MaxPort": {
+            "description": "The maximum port number in the range.",
+            "type": "integer"
+          },
+          "MinPort": {
+            "description": "The minimum port number in the range.",
+            "type": "integer"
+          }
+        },
         "type": "object"
       },
       "StorageConfig": {
@@ -401,6 +606,9 @@
         "type": "object"
       }
     },
+    "deprecatedProperties": [
+      "/properties/EncryptionConfig/Resources"
+    ],
     "description": "An object representing an Amazon EKS cluster.",
     "handlers": {
       "create": {
@@ -446,12 +654,13 @@
           "iam:PassRole",
           "eks:UpdateClusterConfig",
           "eks:UpdateClusterVersion",
+          "eks:ActivateCertificateAuthority",
           "eks:DescribeCluster",
           "eks:DescribeUpdate",
           "eks:TagResource",
           "eks:UntagResource"
         ],
-        "timeoutInMinutes": 180
+        "timeoutInMinutes": 2160
       }
     },
     "primaryIdentifier": [
@@ -461,6 +670,10 @@
       "AccessConfig": {
         "$ref": "#/definitions/AccessConfig"
       },
+      "ActiveCertificateAuthorityId": {
+        "description": "The ID of the certificate authority to activate as the cluster's signing CA. Setting or changing this value activates the specified CA (the previously active CA becomes trusted).",
+        "type": "string"
+      },
       "Arn": {
         "description": "The ARN of the cluster, such as arn:aws:eks:us-west-2:666666666666:cluster/prod.",
         "type": "string"
@@ -468,6 +681,9 @@
       "BootstrapSelfManagedAddons": {
         "description": "Set this value to false to avoid creating the default networking add-ons when the cluster is created.",
         "type": "boolean"
+      },
+      "CertificateAuthority": {
+        "$ref": "#/definitions/CertificateAuthority"
       },
       "CertificateAuthorityData": {
         "description": "The certificate-authority-data for your cluster.",
@@ -479,6 +695,13 @@
       },
       "ComputeConfig": {
         "$ref": "#/definitions/ComputeConfig"
+      },
+      "ControlPlaneScalingConfig": {
+        "$ref": "#/definitions/ControlPlaneScalingConfig"
+      },
+      "DeletionProtection": {
+        "description": "Set this value to true to enable deletion protection for the cluster.",
+        "type": "boolean"
       },
       "EncryptionConfig": {
         "insertionOrder": false,
@@ -496,9 +719,23 @@
         "description": "The endpoint for your Kubernetes API server, such as https://5E1D0CEXAMPLEA591B746AFC5AB30262.yl4.us-west-2.eks.amazonaws.com.",
         "type": "string"
       },
+      "Force": {
+        "default": false,
+        "description": "Force cluster version update",
+        "type": "boolean"
+      },
       "Id": {
         "description": "The unique ID given to your cluster.",
         "type": "string"
+      },
+      "KubeApiServerConfig": {
+        "$ref": "#/definitions/KubeApiServerConfig"
+      },
+      "KubeControllerManagerConfig": {
+        "$ref": "#/definitions/KubeControllerManagerConfig"
+      },
+      "KubeSchedulerConfig": {
+        "$ref": "#/definitions/KubeSchedulerConfig"
       },
       "KubernetesNetworkConfig": {
         "$ref": "#/definitions/KubernetesNetworkConfig"
@@ -530,6 +767,9 @@
         "description": "The Amazon Resource Name (ARN) of the IAM role that provides permissions for the Kubernetes control plane to make calls to AWS API operations on your behalf.",
         "type": "string"
       },
+      "RollbackConfig": {
+        "$ref": "#/definitions/RollbackConfig"
+      },
       "StorageConfig": {
         "$ref": "#/definitions/StorageConfig"
       },
@@ -559,6 +799,9 @@
       "/properties/Arn",
       "/properties/Endpoint",
       "/properties/CertificateAuthorityData",
+      "/properties/CertificateAuthority/Data",
+      "/properties/CertificateAuthority/Active/Id",
+      "/properties/CertificateAuthority/Active/ActivatedBy",
       "/properties/ClusterSecurityGroupId",
       "/properties/EncryptionConfigKeyArn",
       "/properties/OpenIdConnectIssuerUrl",
@@ -583,7 +826,10 @@
     "typeName": "AWS::EKS::Cluster",
     "writeOnlyProperties": [
       "/properties/AccessConfig/BootstrapClusterCreatorAdminPermissions",
-      "/properties/BootstrapSelfManagedAddons"
+      "/properties/BootstrapSelfManagedAddons",
+      "/properties/Force",
+      "/properties/RollbackConfig",
+      "/properties/ActiveCertificateAuthorityId"
     ]
   }
 }

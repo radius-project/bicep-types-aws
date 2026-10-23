@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SES-DedicatedIpPool",
   "type": "AWS::SES::DedicatedIpPool",
-  "time": "2025-01-23T11:10:10.486Z",
+  "time": "2026-10-21T18:47:23.565Z",
   "schema": {
     "additionalProperties": false,
     "conditionalCreateOnlyProperties": [
@@ -10,13 +10,37 @@
     "createOnlyProperties": [
       "/properties/PoolName"
     ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
     "description": "Resource Type definition for AWS::SES::DedicatedIpPool",
     "handlers": {
       "create": {
         "permissions": [
           "ses:CreateDedicatedIpPool",
           "ses:GetDedicatedIpPool",
-          "ses:GetDedicatedIps"
+          "ses:GetDedicatedIps",
+          "ses:TagResource",
+          "ses:UntagResource"
         ]
       },
       "delete": {
@@ -32,13 +56,17 @@
       "read": {
         "permissions": [
           "ses:GetDedicatedIpPool",
-          "ses:GetDedicatedIps"
+          "ses:GetDedicatedIps",
+          "ses:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
           "ses:PutDedicatedIpPoolScalingAttributes",
-          "ses:GetDedicatedIpPool"
+          "ses:GetDedicatedIpPool",
+          "ses:TagResource",
+          "ses:UntagResource",
+          "ses:ListTagsForResource"
         ]
       }
     },
@@ -55,9 +83,31 @@
         "description": "Specifies whether the dedicated IP pool is managed or not. The default value is STANDARD.",
         "pattern": "^(STANDARD|MANAGED)$",
         "type": "string"
+      },
+      "Tags": {
+        "description": "The tags (keys and values) associated with the dedicated IP pool.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "minItems": 0,
+        "type": "array"
       }
     },
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-ses.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "ses:TagResource",
+        "ses:UntagResource",
+        "ses:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::SES::DedicatedIpPool"
   }
 }

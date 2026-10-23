@@ -151,11 +151,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Connect/AgentStatus@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/7"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -219,11 +219,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Connect/ApprovedOrigin@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/13"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -347,11 +347,16 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Connect/ContactFlow@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/19"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Enabled",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -378,9 +383,21 @@
     "value": "AWS.Connect/ContactFlowModuleProperties"
   },
   {
+    "$type": "ObjectType",
+    "name": "ContactFlowModule_ExternalInvocationConfiguration",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/21"
+      "$ref": "#/22"
     }
   },
   {
@@ -408,6 +425,13 @@
         "flags": 0,
         "description": "The description of the contact flow module."
       },
+      "ExternalInvocationConfiguration": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "Defines the external invocation configuration of the flow module resource"
+      },
       "InstanceArn": {
         "type": {
           "$ref": "#/1"
@@ -421,6 +445,13 @@
         },
         "flags": 1,
         "description": "The name of the contact flow module."
+      },
+      "Settings": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The schema of the settings for contact flow module in JSON Schema V4 format."
       },
       "State": {
         "type": {
@@ -438,7 +469,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "One or more tags."
@@ -465,7 +496,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/26"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -475,11 +506,849 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Connect/ContactFlowModule@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/25"
+      "$ref": "#/27"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Connect/ContactFlowModuleAliasProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/ContactFlowModuleAliasProperties",
+    "properties": {
+      "AliasId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the alias."
+      },
+      "ContactFlowModuleAliasARN": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The identifier of the contact flow module alias (ARN). This is constructed from the ContactFlowModuleArn and AliasId."
+      },
+      "ContactFlowModuleId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The identifier of the contact flow module (ARN) this alias is tied to."
+      },
+      "ContactFlowModuleVersion": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The version number of the contact flow module this alias points to."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The description of the alias."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the alias."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/ContactFlowModuleAlias",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Connect/ContactFlowModuleAlias@default",
+    "body": {
+      "$ref": "#/31"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Connect/ContactFlowModuleVersionProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/ContactFlowModuleVersionProperties",
+    "properties": {
+      "ContactFlowModuleId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The identifier of the contact flow module (ARN) this version is tied to."
+      },
+      "ContactFlowModuleVersionARN": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The identifier of the contact flow module version (ARN)."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The description of the version."
+      },
+      "FlowModuleContentSha256": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Indicates the checksum value of the latest published flow module content"
+      },
+      "Version": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The version number of this revision"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/ContactFlowModuleVersion",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Connect/ContactFlowModuleVersion@default",
+    "body": {
+      "$ref": "#/35"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Connect/ContactFlowVersionProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/ContactFlowVersionProperties",
+    "properties": {
+      "ContactFlowId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The ARN of the contact flow this version is tied to."
+      },
+      "ContactFlowVersionARN": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The identifier of the contact flow version (ARN)."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The description of the version."
+      },
+      "FlowContentSha256": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Indicates the checksum value of the latest published flow content"
+      },
+      "Version": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The version number of this revision"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/ContactFlowVersion",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Connect/ContactFlowVersion@default",
+    "body": {
+      "$ref": "#/39"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Description",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is maximum of 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Timestamp",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Connect/DataTableProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataTable_LockVersion",
+    "properties": {
+      "DataTable": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The data table for the lock version"
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/42"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/DataTableProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The arn of the Data Table"
+      },
+      "CreatedTime": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The creation time of the Data Table"
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The description of the Data Table."
+      },
+      "InstanceArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The identifier of the Amazon Connect instance."
+      },
+      "LastModifiedRegion": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Last modified region."
+      },
+      "LastModifiedTime": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "Last modified time."
+      },
+      "LockVersion": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 2,
+        "description": "The lock version of the Data Table"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the Data Table"
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The status of the Data Table"
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0,
+        "description": "One or more tags."
+      },
+      "TimeZone": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The time zone of the Data Table"
+      },
+      "ValueLockLevel": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value lock level of the Data Table"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/DataTable",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Connect/DataTable@default",
+    "body": {
+      "$ref": "#/48"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AttributeId",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Description",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LengthBoundary",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ValueBoundary",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Connect/DataTableAttributeProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataTableAttribute_LockVersion",
+    "properties": {
+      "Attribute": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": ""
+      },
+      "DataTable": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": ""
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataTableAttribute_Validation_Enum",
+    "properties": {
+      "Strict": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": ""
+      },
+      "Values": {
+        "type": {
+          "$ref": "#/56"
+        },
+        "flags": 0,
+        "description": ""
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataTableAttribute_Validation",
+    "properties": {
+      "Enum": {
+        "type": {
+          "$ref": "#/57"
+        },
+        "flags": 0,
+        "description": ""
+      },
+      "ExclusiveMaximum": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": ""
+      },
+      "ExclusiveMinimum": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": ""
+      },
+      "MaxLength": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": ""
+      },
+      "MaxValues": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": ""
+      },
+      "Maximum": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": ""
+      },
+      "MinLength": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": ""
+      },
+      "MinValues": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": ""
+      },
+      "Minimum": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": ""
+      },
+      "MultipleOf": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": ""
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/DataTableAttributeProperties",
+    "properties": {
+      "AttributeId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": ""
+      },
+      "DataTableArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": ""
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": ""
+      },
+      "InstanceArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": ""
+      },
+      "LastModifiedRegion": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": ""
+      },
+      "LastModifiedTime": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": ""
+      },
+      "LockVersion": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 2,
+        "description": ""
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": ""
+      },
+      "Primary": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": ""
+      },
+      "Validation": {
+        "type": {
+          "$ref": "#/58"
+        },
+        "flags": 0,
+        "description": ""
+      },
+      "ValueType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": ""
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/DataTableAttribute",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/59"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Connect/DataTableAttribute@default",
+    "body": {
+      "$ref": "#/60"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AttributeId",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Value",
+    "properties": {
+      "AttributeId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": ""
+      },
+      "AttributeValue": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": ""
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Connect/DataTableRecordProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/63"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/63"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataTableRecord_DataTableRecord",
+    "properties": {
+      "PrimaryValues": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 0,
+        "description": ""
+      },
+      "Values": {
+        "type": {
+          "$ref": "#/66"
+        },
+        "flags": 1,
+        "description": ""
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/DataTableRecordProperties",
+    "properties": {
+      "DataTableArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": ""
+      },
+      "DataTableRecord": {
+        "type": {
+          "$ref": "#/67"
+        },
+        "flags": 1,
+        "description": ""
+      },
+      "InstanceArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": ""
+      },
+      "RecordId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": ""
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/DataTableRecord",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/68"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Connect/DataTableRecord@default",
+    "body": {
+      "$ref": "#/69"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AliasConfiguration",
+    "properties": {
+      "EmailAddressArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The identifier of the email address alias"
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -508,13 +1377,26 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/27"
+      "$ref": "#/71"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/72"
     }
   },
   {
     "$type": "ObjectType",
     "name": "AWS.Connect/EmailAddressProperties",
     "properties": {
+      "AliasConfigurations": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 0,
+        "description": "List of alias configurations for the email address"
+      },
       "Description": {
         "type": {
           "$ref": "#/1"
@@ -552,7 +1434,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/75"
         },
         "flags": 0,
         "description": "One or more tags."
@@ -579,7 +1461,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/76"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -589,11 +1471,37 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Connect/EmailAddress@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/31"
+      "$ref": "#/77"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AutoEvaluationConfiguration",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": ""
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AutomaticFailConfiguration",
+    "properties": {
+      "TargetSection": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The referenceId of the target section for auto failure."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -601,7 +1509,7 @@
     "properties": {
       "Section": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/103"
         },
         "flags": 1,
         "description": "A subsection or inner section of an item."
@@ -614,14 +1522,14 @@
     "properties": {
       "Question": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/98"
         },
         "flags": 0,
         "description": "The information of the question."
       },
       "Section": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/103"
         },
         "flags": 0,
         "description": "The information of the section."
@@ -630,13 +1538,295 @@
   },
   {
     "$type": "ObjectType",
-    "name": "EvaluationFormNumericQuestionAutomation",
+    "name": "EvaluationFormItemEnablementCondition",
     "properties": {
-      "PropertyValue": {
+      "Operands": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/126"
         },
         "flags": 1,
+        "description": "Operands of the enablement condition."
+      },
+      "Operator": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The operator to be used to be applied to operands if more than one provided."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EvaluationFormItemEnablementConditionOperand",
+    "properties": {
+      "Expression": {
+        "type": {
+          "$ref": "#/86"
+        },
+        "flags": 0,
+        "description": "An expression of the enablement condition."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EvaluationFormItemEnablementConfiguration",
+    "properties": {
+      "Action": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "An enablement action that if condition is satisfied."
+      },
+      "Condition": {
+        "type": {
+          "$ref": "#/83"
+        },
+        "flags": 1,
+        "description": "A condition for item enablement configuration."
+      },
+      "DefaultAction": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "An enablement action that if condition is not satisfied."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EvaluationFormItemEnablementExpression",
+    "properties": {
+      "Comparator": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "A comparator to be used against list of values."
+      },
+      "Source": {
+        "type": {
+          "$ref": "#/87"
+        },
+        "flags": 1,
+        "description": "A source item of enablement expression."
+      },
+      "Values": {
+        "type": {
+          "$ref": "#/127"
+        },
+        "flags": 1,
+        "description": "A list of values from source item."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EvaluationFormItemEnablementSource",
+    "properties": {
+      "RefId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A referenceId of the source item."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "A type of source item."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EvaluationFormItemEnablementSourceValue",
+    "properties": {
+      "RefId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A referenceId of the source value."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A type of source item value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EvaluationFormLanguageConfiguration",
+    "properties": {
+      "FormLanguage": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The language for the evaluation form."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EvaluationFormMetricConfiguration",
+    "properties": {
+      "MetricName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the metric. Valid values are:\n  +  ``SALE_SUCCESS`` ? Sale success.\n  +  ``CSAT`` ? Customer satisfaction.\n  +  ``CHURN_PROPENSITY`` ? Churn propensity.\n  +  ``SELF_SERVICE_SUCCESS`` ? Self-service success.\n  +  ``PARTIAL_SELF_SERVICE_SUCCESS`` ? Partial self-service success."
+      },
+      "MetricType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The type of metric. Currently, only ``BUSINESS_OUTCOME`` is supported."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EvaluationFormMultiSelectQuestionAutomation",
+    "properties": {
+      "AnswerSource": {
+        "type": {
+          "$ref": "#/99"
+        },
+        "flags": 0,
+        "description": ""
+      },
+      "DefaultOptionRefIds": {
+        "type": {
+          "$ref": "#/128"
+        },
+        "flags": 0,
+        "description": "Reference IDs of default options."
+      },
+      "Options": {
+        "type": {
+          "$ref": "#/129"
+        },
+        "flags": 0,
+        "description": "Automation options for the multi-select question."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EvaluationFormMultiSelectQuestionAutomationOption",
+    "properties": {
+      "RuleCategory": {
+        "type": {
+          "$ref": "#/114"
+        },
+        "flags": 1,
+        "description": "Rule category configuration for this automation option."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EvaluationFormMultiSelectQuestionOption",
+    "properties": {
+      "AutomaticFail": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The flag to mark the option as automatic fail. If an automatic fail answer is provided, the overall evaluation gets a score of 0."
+      },
+      "AutomaticFailConfiguration": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 0,
+        "description": ""
+      },
+      "PointsConfiguration": {
+        "type": {
+          "$ref": "#/117"
+        },
+        "flags": 0,
+        "description": "The points configuration for point-based scoring."
+      },
+      "RefId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Reference identifier for this option."
+      },
+      "Score": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The score assigned to the answer option."
+      },
+      "Text": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Display text for this option."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EvaluationFormMultiSelectQuestionProperties",
+    "properties": {
+      "Automation": {
+        "type": {
+          "$ref": "#/91"
+        },
+        "flags": 0,
+        "description": "Automation configuration for this multi-select question."
+      },
+      "DisplayAs": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Display format for the multi-select question."
+      },
+      "Options": {
+        "type": {
+          "$ref": "#/130"
+        },
+        "flags": 1,
+        "description": "Options available for this multi-select question."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EvaluationFormNumericQuestionAutomation",
+    "properties": {
+      "AnswerSource": {
+        "type": {
+          "$ref": "#/99"
+        },
+        "flags": 0,
+        "description": "A source of automation answer for numeric question."
+      },
+      "PropertyValue": {
+        "type": {
+          "$ref": "#/115"
+        },
+        "flags": 0,
         "description": "The property value of the automation."
       }
     }
@@ -652,6 +1842,13 @@
         "flags": 0,
         "description": "The flag to mark the option as automatic fail. If an automatic fail answer is provided, the overall evaluation gets a score of 0."
       },
+      "AutomaticFailConfiguration": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 0,
+        "description": "A configuration for automatic fail."
+      },
       "MaxValue": {
         "type": {
           "$ref": "#/3"
@@ -666,12 +1863,19 @@
         "flags": 1,
         "description": "The minimum answer value of the range option."
       },
+      "PointsConfiguration": {
+        "type": {
+          "$ref": "#/117"
+        },
+        "flags": 0,
+        "description": "The points configuration for point-based scoring."
+      },
       "Score": {
         "type": {
           "$ref": "#/3"
         },
         "flags": 0,
-        "description": "The score assigned to answer values within the range option.\n  *Minimum*: 0\n  *Maximum*: 10"
+        "description": "The score assigned to answer values within the range option.\n *Minimum*: 0\n *Maximum*: 10"
       }
     }
   },
@@ -681,7 +1885,7 @@
     "properties": {
       "Automation": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/95"
         },
         "flags": 0,
         "description": "The automation properties of the numeric question."
@@ -702,7 +1906,7 @@
       },
       "Options": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/131"
         },
         "flags": 0,
         "description": "The scoring options of the numeric question."
@@ -713,12 +1917,26 @@
     "$type": "ObjectType",
     "name": "EvaluationFormQuestion",
     "properties": {
+      "Enablement": {
+        "type": {
+          "$ref": "#/85"
+        },
+        "flags": 0,
+        "description": "A question conditional enablement."
+      },
       "Instructions": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 0,
-        "description": "The instructions of the section.\n  *Length Constraints*: Minimum length of 0. Maximum length of 1024."
+        "description": "The instructions of the section.\n *Length Constraints*: Minimum length of 0. Maximum length of 1024."
+      },
+      "MetricConfiguration": {
+        "type": {
+          "$ref": "#/90"
+        },
+        "flags": 0,
+        "description": "The metric configuration for the question. Use this to associate a business outcome metric with the question."
       },
       "NotApplicableEnabled": {
         "type": {
@@ -732,11 +1950,11 @@
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The type of the question.\n  *Allowed values*: ``NUMERIC`` | ``SINGLESELECT`` | ``TEXT``"
+        "description": "The type of the question.\n *Allowed values*: ``NUMERIC`` | ``SINGLESELECT`` | ``TEXT``"
       },
       "QuestionTypeProperties": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/101"
         },
         "flags": 0,
         "description": "The properties of the type of question. Text questions do not have to define question type properties."
@@ -746,21 +1964,68 @@
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The identifier of the question. An identifier must be unique within the evaluation form.\n  *Length Constraints*: Minimum length of 1. Maximum length of 40."
+        "description": "The identifier of the question. An identifier must be unique within the evaluation form.\n *Length Constraints*: Minimum length of 1. Maximum length of 40."
+      },
+      "ScoringConfiguration": {
+        "type": {
+          "$ref": "#/100"
+        },
+        "flags": 0,
+        "description": "The scoring configuration of the question."
       },
       "Title": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The title of the question.\n  *Length Constraints*: Minimum length of 1. Maximum length of 350."
+        "description": "The title of the question.\n *Length Constraints*: Minimum length of 1. Maximum length of 350."
       },
       "Weight": {
         "type": {
           "$ref": "#/3"
         },
         "flags": 0,
-        "description": "The scoring weight of the section.\n  *Minimum*: 0\n  *Maximum*: 100"
+        "description": "The scoring weight of the section.\n *Minimum*: 0\n *Maximum*: 100"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EvaluationFormQuestionAutomationAnswerSource",
+    "properties": {
+      "SourceType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The automation answer source type."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EvaluationFormQuestionScoringConfiguration",
+    "properties": {
+      "IsExcludedFromScoring": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The flag to exclude the question from scoring."
+      },
+      "PointsConfiguration": {
+        "type": {
+          "$ref": "#/118"
+        },
+        "flags": 0,
+        "description": "The points configuration for point-based scoring."
+      },
+      "ScoreThresholds": {
+        "type": {
+          "$ref": "#/132"
+        },
+        "flags": 0,
+        "description": "The score thresholds for performance categories."
       }
     }
   },
@@ -768,19 +2033,60 @@
     "$type": "ObjectType",
     "name": "EvaluationFormQuestionTypeProperties",
     "properties": {
+      "MultiSelect": {
+        "type": {
+          "$ref": "#/94"
+        },
+        "flags": 0,
+        "description": "Properties for multi-select question types."
+      },
       "Numeric": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/97"
         },
         "flags": 0,
         "description": "The properties of the numeric question."
       },
       "SingleSelect": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/107"
         },
         "flags": 0,
         "description": "The properties of the numeric question."
+      },
+      "Text": {
+        "type": {
+          "$ref": "#/110"
+        },
+        "flags": 0,
+        "description": "The properties of the text question."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EvaluationFormScoreThreshold",
+    "properties": {
+      "MaxScorePercentage": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The maximum score percentage for the performance category."
+      },
+      "MinScorePercentage": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The minimum score percentage for the performance category."
+      },
+      "PerformanceCategory": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The performance category name."
       }
     }
   },
@@ -795,33 +2101,47 @@
         "flags": 0,
         "description": "The instructions of the section."
       },
-      "Items": {
+      "IsExcludedFromScoring": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/4"
         },
         "flags": 0,
-        "description": "The items of the section.\n  *Minimum*: 1"
+        "description": "The flag to exclude the section from scoring."
+      },
+      "Items": {
+        "type": {
+          "$ref": "#/133"
+        },
+        "flags": 0,
+        "description": "The items of the section.\n *Minimum*: 1"
       },
       "RefId": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The identifier of the section. An identifier must be unique within the evaluation form.\n  *Length Constraints*: Minimum length of 1. Maximum length of 40."
+        "description": "The identifier of the section. An identifier must be unique within the evaluation form.\n *Length Constraints*: Minimum length of 1. Maximum length of 40."
+      },
+      "ScoreThresholds": {
+        "type": {
+          "$ref": "#/134"
+        },
+        "flags": 0,
+        "description": "The score thresholds for performance categories."
       },
       "Title": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The title of the section.\n  *Length Constraints*: Minimum length of 1. Maximum length of 128."
+        "description": "The title of the section.\n *Length Constraints*: Minimum length of 1. Maximum length of 128."
       },
       "Weight": {
         "type": {
           "$ref": "#/3"
         },
         "flags": 0,
-        "description": "The scoring weight of the section.\n  *Minimum*: 0 \n  *Maximum*: 100"
+        "description": "The scoring weight of the section.\n *Minimum*: 0 \n *Maximum*: 100"
       }
     }
   },
@@ -829,19 +2149,26 @@
     "$type": "ObjectType",
     "name": "EvaluationFormSingleSelectQuestionAutomation",
     "properties": {
+      "AnswerSource": {
+        "type": {
+          "$ref": "#/99"
+        },
+        "flags": 0,
+        "description": "Automation answer source."
+      },
       "DefaultOptionRefId": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 0,
-        "description": "The identifier of the default answer option, when none of the automation options match the criteria.\n  *Length Constraints*: Minimum length of 1. Maximum length of 40."
+        "description": "The identifier of the default answer option, when none of the automation options match the criteria.\n *Length Constraints*: Minimum length of 1. Maximum length of 40."
       },
       "Options": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/135"
         },
-        "flags": 1,
-        "description": "The automation options of the single select question.\n  *Minimum*: 1\n  *Maximum*: 20"
+        "flags": 0,
+        "description": "The automation options of the single select question.\n *Minimum*: 1\n *Maximum*: 20"
       }
     }
   },
@@ -851,7 +2178,7 @@
     "properties": {
       "RuleCategory": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/123"
         },
         "flags": 1,
         "description": "The automation option based on a rule category for the single select question."
@@ -869,26 +2196,40 @@
         "flags": 0,
         "description": "The flag to mark the option as automatic fail. If an automatic fail answer is provided, the overall evaluation gets a score of 0."
       },
+      "AutomaticFailConfiguration": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 0,
+        "description": "Whether automatic fail is configured on a single select question."
+      },
+      "PointsConfiguration": {
+        "type": {
+          "$ref": "#/117"
+        },
+        "flags": 0,
+        "description": "The points configuration for point-based scoring."
+      },
       "RefId": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The identifier of the answer option. An identifier must be unique within the question.\n  *Length Constraints*: Minimum length of 1. Maximum length of 40."
+        "description": "The identifier of the answer option. An identifier must be unique within the question.\n *Length Constraints*: Minimum length of 1. Maximum length of 40."
       },
       "Score": {
         "type": {
           "$ref": "#/3"
         },
         "flags": 0,
-        "description": "The score assigned to the answer option.\n  *Minimum*: 0\n  *Maximum*: 10"
+        "description": "The score assigned to the answer option.\n *Minimum*: 0\n *Maximum*: 10"
       },
       "Text": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The title of the answer option.\n  *Length Constraints*: Minimum length of 1. Maximum length of 128."
+        "description": "The title of the answer option.\n *Length Constraints*: Minimum length of 1. Maximum length of 128."
       }
     }
   },
@@ -898,7 +2239,7 @@
     "properties": {
       "Automation": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/104"
         },
         "flags": 0,
         "description": "The display mode of the single select question."
@@ -908,14 +2249,133 @@
           "$ref": "#/1"
         },
         "flags": 0,
-        "description": "The display mode of the single select question.\n  *Allowed values*: ``DROPDOWN`` | ``RADIO``"
+        "description": "The display mode of the single select question.\n *Allowed values*: ``DROPDOWN`` | ``RADIO``"
       },
       "Options": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/136"
         },
         "flags": 1,
-        "description": "The answer options of the single select question.\n  *Minimum*: 2\n  *Maximum*: 256"
+        "description": "The answer options of the single select question.\n *Minimum*: 2\n *Maximum*: 256"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EvaluationFormTargetConfiguration",
+    "properties": {
+      "ContactInteractionType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The contact interaction type for this evaluation form."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EvaluationFormTextQuestionAutomation",
+    "properties": {
+      "AnswerSource": {
+        "type": {
+          "$ref": "#/99"
+        },
+        "flags": 0,
+        "description": "Automation answer source."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EvaluationFormTextQuestionProperties",
+    "properties": {
+      "Automation": {
+        "type": {
+          "$ref": "#/109"
+        },
+        "flags": 0,
+        "description": "The automation properties of the text question."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EvaluationReviewConfiguration",
+    "properties": {
+      "EligibilityDays": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Number of days during which a request for review can be submitted for evaluations created from this form."
+      },
+      "ReviewNotificationRecipients": {
+        "type": {
+          "$ref": "#/137"
+        },
+        "flags": 1,
+        "description": "List of recipients who should be notified when a review is requested."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EvaluationReviewNotificationRecipient",
+    "properties": {
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The type of notification recipient."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/113"
+        },
+        "flags": 1,
+        "description": "The value associated with the notification recipient type."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EvaluationReviewNotificationRecipientValue",
+    "properties": {
+      "UserId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The user identifier for the notification recipient."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MultiSelectQuestionRuleCategoryAutomation",
+    "properties": {
+      "Category": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The category name for this automation rule."
+      },
+      "Condition": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The condition for this automation rule."
+      },
+      "OptionRefIds": {
+        "type": {
+          "$ref": "#/138"
+        },
+        "flags": 1,
+        "description": "Reference IDs of options for this automation rule."
       }
     }
   },
@@ -934,7 +2394,64 @@
   },
   {
     "$type": "ObjectType",
+    "name": "PointValue",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QuestionOptionPointsConfiguration",
+    "properties": {
+      "IsBonus": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The flag to mark the option as a bonus option."
+      },
+      "PointValue": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The point value assigned to the answer option."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QuestionPointsConfiguration",
+    "properties": {
+      "IsBonus": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The flag to mark the question as a bonus question."
+      },
+      "MaxPointValue": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The maximum point value."
+      },
+      "MinPointValue": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The minimum point value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "RefId",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReferenceIdList",
     "properties": {}
   },
   {
@@ -951,14 +2468,21 @@
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The scoring mode of the evaluation form.\n  *Allowed values*: ``QUESTION_ONLY`` | ``SECTION_ONLY``"
+        "description": "The scoring mode of the evaluation form.\n *Allowed values*: ``QUESTION_ONLY`` | ``SECTION_ONLY``"
+      },
+      "ScoreThresholds": {
+        "type": {
+          "$ref": "#/140"
+        },
+        "flags": 0,
+        "description": ""
       },
       "Status": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The scoring status of the evaluation form.\n  *Allowed values*: ``ENABLED`` | ``DISABLED``"
+        "description": "The scoring status of the evaluation form.\n *Allowed values*: ``ENABLED`` | ``DISABLED``"
       }
     }
   },
@@ -971,21 +2495,21 @@
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The category name, as defined in Rules.\n  *Minimum*: 1\n  *Maximum*: 50"
+        "description": "The category name, as defined in Rules.\n *Minimum*: 1\n *Maximum*: 50"
       },
       "Condition": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The condition to apply for the automation option. If the condition is PRESENT, then the option is applied when the contact data includes the category. Similarly, if the condition is NOT_PRESENT, then the option is applied when the contact data does not include the category.\n  *Allowed values*: ``PRESENT`` | ``NOT_PRESENT`` \n  *Maximum*: 50"
+        "description": "The condition to apply for the automation option. If the condition is PRESENT, then the option is applied when the contact data includes the category. Similarly, if the condition is NOT_PRESENT, then the option is applied when the contact data does not include the category.\n *Allowed values*: ``PRESENT`` | ``NOT_PRESENT``\n *Maximum*: 50"
       },
       "OptionRefId": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The identifier of the answer option. An identifier must be unique within the question.\n  *Length Constraints*: Minimum length of 1. Maximum length of 40."
+        "description": "The identifier of the answer option. An identifier must be unique within the question.\n *Length Constraints*: Minimum length of 1. Maximum length of 40."
       }
     }
   },
@@ -1017,25 +2541,91 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/36"
+      "$ref": "#/84"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/34"
+      "$ref": "#/88"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/42"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/43"
+      "$ref": "#/92"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/93"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/96"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/102"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/82"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/102"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/105"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/106"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/112"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/102"
     }
   },
   {
@@ -1045,25 +2635,39 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/33"
+      "$ref": "#/81"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/50"
+      "$ref": "#/124"
     }
   },
   {
     "$type": "ObjectType",
     "name": "AWS.Connect/EvaluationFormProperties",
     "properties": {
+      "AIVersion": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The AI version to use for the evaluation form. This specifies which AI model version is used for automated evaluations."
+      },
+      "AutoEvaluationConfiguration": {
+        "type": {
+          "$ref": "#/79"
+        },
+        "flags": 0,
+        "description": "The automatic evaluation configuration of an evaluation form."
+      },
       "Description": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 0,
-        "description": "The description of the evaluation form.\n  *Length Constraints*: Minimum length of 0. Maximum length of 1024."
+        "description": "The description of the evaluation form.\n *Length Constraints*: Minimum length of 0. Maximum length of 1024."
       },
       "EvaluationFormArn": {
         "type": {
@@ -1081,14 +2685,28 @@
       },
       "Items": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/142"
         },
         "flags": 1,
-        "description": "Items that are part of the evaluation form. The total number of sections and questions must not exceed 100 each. Questions must be contained in a section.\n  *Minimum size*: 1\n  *Maximum size*: 100"
+        "description": "Items that are part of the evaluation form. The total number of sections and questions must not exceed 100 each. Questions must be contained in a section.\n *Minimum size*: 1\n *Maximum size*: 100"
+      },
+      "LanguageConfiguration": {
+        "type": {
+          "$ref": "#/89"
+        },
+        "flags": 0,
+        "description": "Configuration for language settings of this evaluation form."
+      },
+      "ReviewConfiguration": {
+        "type": {
+          "$ref": "#/111"
+        },
+        "flags": 0,
+        "description": "Configuration for evaluation review settings of this evaluation form."
       },
       "ScoringStrategy": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/122"
         },
         "flags": 0,
         "description": "A scoring strategy of the evaluation form."
@@ -1098,14 +2716,21 @@
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The status of the evaluation form.\n  *Allowed values*: ``DRAFT`` | ``ACTIVE``"
+        "description": "The status of the evaluation form.\n *Allowed values*: ``DRAFT`` | ``ACTIVE``"
       },
       "Tags": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/143"
         },
         "flags": 0,
         "description": "The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }."
+      },
+      "TargetConfiguration": {
+        "type": {
+          "$ref": "#/108"
+        },
+        "flags": 0,
+        "description": "Configuration that specifies the target for this evaluation form."
       },
       "Title": {
         "type": {
@@ -1136,7 +2761,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/144"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1146,11 +2771,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Connect/EvaluationForm@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/60"
+      "$ref": "#/145"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1175,14 +2800,14 @@
       },
       "EndTime": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/153"
         },
         "flags": 1,
         "description": "The end time that your contact center closes."
       },
       "StartTime": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/153"
         },
         "flags": 1,
         "description": "The start time that your contact center opens."
@@ -1213,7 +2838,7 @@
       },
       "OverrideConfig": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/166"
         },
         "flags": 1
       },
@@ -1228,6 +2853,18 @@
           "$ref": "#/1"
         },
         "flags": 1
+      },
+      "OverrideType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "RecurrenceConfig": {
+        "type": {
+          "$ref": "#/162"
+        },
+        "flags": 0
       }
     }
   },
@@ -1244,14 +2881,14 @@
       },
       "EndTime": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/160"
         },
         "flags": 1,
         "description": "The new end time that your contact center closes for the overriden days."
       },
       "StartTime": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/160"
         },
         "flags": 1,
         "description": "The new start time that your contact center opens for the overriden days."
@@ -1282,6 +2919,36 @@
         "description": "The minutes."
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "HoursOfOperationsIdentifier",
+    "properties": {
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The identifier for the hours of operation."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the hours of operation."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MonthDayList",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MonthList",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -1320,6 +2987,64 @@
   },
   {
     "$type": "ObjectType",
+    "name": "OverrideType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RecurrenceConfig",
+    "properties": {
+      "RecurrencePattern": {
+        "type": {
+          "$ref": "#/164"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RecurrenceFrequency",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RecurrencePattern",
+    "properties": {
+      "ByMonth": {
+        "type": {
+          "$ref": "#/170"
+        },
+        "flags": 0
+      },
+      "ByMonthDay": {
+        "type": {
+          "$ref": "#/171"
+        },
+        "flags": 0
+      },
+      "ByWeekdayOccurrence": {
+        "type": {
+          "$ref": "#/172"
+        },
+        "flags": 0
+      },
+      "Frequency": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Interval": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "Tag",
     "properties": {
       "Key": {
@@ -1341,13 +3066,43 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/66"
+      "$ref": "#/151"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/66"
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/151"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
     }
   },
   {
@@ -1357,28 +3112,47 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/64"
+      "$ref": "#/154"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/65"
+      "$ref": "#/149"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/73"
+      "$ref": "#/150"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/154"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/165"
     }
   },
   {
     "$type": "ObjectType",
     "name": "AWS.Connect/HoursOfOperationProperties",
     "properties": {
+      "ChildHoursOfOperations": {
+        "type": {
+          "$ref": "#/174"
+        },
+        "flags": 0,
+        "description": "List of child hours of operations."
+      },
       "Config": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/175"
         },
         "flags": 1,
         "description": "Configuration information for the hours of operation: day, start time, and end time."
@@ -1399,7 +3173,7 @@
       },
       "HoursOfOperationOverrides": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/176"
         },
         "flags": 0,
         "description": "One or more hours of operation overrides assigned to an hour of operation."
@@ -1418,9 +3192,16 @@
         "flags": 1,
         "description": "The name of the hours of operation."
       },
+      "ParentHoursOfOperations": {
+        "type": {
+          "$ref": "#/177"
+        },
+        "flags": 0,
+        "description": "List of parent hours of operations."
+      },
       "Tags": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/178"
         },
         "flags": 0,
         "description": "One or more tags."
@@ -1454,7 +3235,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/179"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1464,16 +3245,22 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Connect/HoursOfOperation@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/81"
+      "$ref": "#/180"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
     "name": "Attributes",
     "properties": {
+      "AutoMuteAgentOnHold": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
       "AutoResolveBestVoices": {
         "type": {
           "$ref": "#/4"
@@ -1498,11 +3285,47 @@
         },
         "flags": 0
       },
+      "EnhancedChatMonitoring": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "EnhancedContactMonitoring": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "HighVolumeOutBound": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
       "InboundCalls": {
         "type": {
           "$ref": "#/4"
         },
         "flags": 1
+      },
+      "MessageStreaming": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "MultiPartyChatConference": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "MultiPartyConference": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
       },
       "OutboundCalls": {
         "type": {
@@ -1517,6 +3340,11 @@
         "flags": 0
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AutoMuteAgentOnHold",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -1540,7 +3368,37 @@
   },
   {
     "$type": "ObjectType",
+    "name": "EnhancedChatMonitoring",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EnhancedContactMonitoring",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "HighVolumeOutBound",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "InboundCalls",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MessageStreaming",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MultiPartyChatConference",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MultiPartyConference",
     "properties": {}
   },
   {
@@ -1580,7 +3438,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/90"
+      "$ref": "#/196"
     }
   },
   {
@@ -1596,7 +3454,7 @@
       },
       "Attributes": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/182"
         },
         "flags": 1,
         "description": "The attributes for the instance."
@@ -1652,7 +3510,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/199"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1679,7 +3537,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/200"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1689,11 +3547,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Connect/Instance@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/95"
+      "$ref": "#/201"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1783,7 +3641,7 @@
     "properties": {
       "EncryptionConfig": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/205"
         },
         "flags": 1
       },
@@ -1824,7 +3682,7 @@
       },
       "EncryptionConfig": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/205"
         },
         "flags": 0
       }
@@ -1858,19 +3716,19 @@
       },
       "KinesisFirehoseConfig": {
         "type": {
-          "$ref": "#/105"
+          "$ref": "#/211"
         },
         "flags": 0
       },
       "KinesisStreamConfig": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/213"
         },
         "flags": 0
       },
       "KinesisVideoStreamConfig": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/214"
         },
         "flags": 0
       },
@@ -1882,7 +3740,7 @@
       },
       "S3Config": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/216"
         },
         "flags": 0
       },
@@ -1914,7 +3772,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/113"
+          "$ref": "#/219"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1924,11 +3782,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Connect/InstanceStorageConfig@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/114"
+      "$ref": "#/220"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1951,8 +3809,49 @@
     "properties": {}
   },
   {
+    "$type": "ObjectType",
+    "name": "SourceApplicationName",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceApplicationUrl",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
     "$type": "StringLiteralType",
     "value": "AWS.Connect/IntegrationAssociationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/229"
+    }
   },
   {
     "$type": "ObjectType",
@@ -1981,6 +3880,31 @@
           "$ref": "#/1"
         },
         "flags": 17
+      },
+      "SourceApplicationName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "SourceApplicationUrl": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "SourceType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/231"
+        },
+        "flags": 0,
+        "description": "The tags used to organize, track, or control access for this resource."
       }
     }
   },
@@ -2004,7 +3928,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/232"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2014,11 +3938,712 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Connect/IntegrationAssociation@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/122"
+      "$ref": "#/233"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AvailableFilter",
+    "properties": {
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CalculationComponent",
+    "properties": {
+      "Alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Metric calculation component alias for use within a calculation"
+      },
+      "MetricFilters": {
+        "type": {
+          "$ref": "#/243"
+        },
+        "flags": 0
+      },
+      "MetricId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "MetricName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CreatedByInfo",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MetricFilter",
+    "properties": {
+      "BooleanCondition": {
+        "type": {
+          "$ref": "#/239"
+        },
+        "flags": 0
+      },
+      "MetricFilterKey": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Negate": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "NumberCondition": {
+        "type": {
+          "$ref": "#/240"
+        },
+        "flags": 0
+      },
+      "StringCondition": {
+        "type": {
+          "$ref": "#/241"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MetricFilterBooleanCondition",
+    "properties": {
+      "Comparison": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MetricFilterNumberCondition",
+    "properties": {
+      "Comparison": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Values": {
+        "type": {
+          "$ref": "#/244"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MetricFilterStringCondition",
+    "properties": {
+      "Comparison": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Values": {
+        "type": {
+          "$ref": "#/245"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is maximum of 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/238"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Connect/MetricProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/235"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/236"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Metric_MetricCalculation",
+    "properties": {
+      "Calculation": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The calculation formula"
+      },
+      "CalculationComponents": {
+        "type": {
+          "$ref": "#/249"
+        },
+        "flags": 1,
+        "description": "The calculation components for the metric"
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/242"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/MetricProperties",
+    "properties": {
+      "Category": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The category of the custom metric"
+      },
+      "CreatedTime": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The timestamp where the metric was created"
+      },
+      "CreatedUser": {
+        "type": {
+          "$ref": "#/237"
+        },
+        "flags": 2
+      },
+      "CreationMethod": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Whether the metric was built with the guided Service Level (SL) experience, or with the free-form metric builder"
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The description of the custom metric"
+      },
+      "EffectiveTime": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "Earliest time that can be queried for this metric"
+      },
+      "Filters": {
+        "type": {
+          "$ref": "#/247"
+        },
+        "flags": 2,
+        "description": "List of filter types that may be used with this metric"
+      },
+      "Groupings": {
+        "type": {
+          "$ref": "#/248"
+        },
+        "flags": 2,
+        "description": "List of groupings that may be used with this metric"
+      },
+      "InstanceArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The identifier of the Amazon Connect instance."
+      },
+      "LastModifiedRegion": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The AWS region where the metric was last modified"
+      },
+      "LastModifiedTime": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The timestamp where the metric was last modified"
+      },
+      "LastModifiedUser": {
+        "type": {
+          "$ref": "#/237"
+        },
+        "flags": 2
+      },
+      "MetricArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) for the custom metric."
+      },
+      "MetricCalculation": {
+        "type": {
+          "$ref": "#/250"
+        },
+        "flags": 1,
+        "description": "The calculation configuration for the metric"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the custom metric"
+      },
+      "PositiveTrendIndicator": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Indicates how to classify a positive trend in metric data on the UI"
+      },
+      "PrimaryEventSource": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Main provider of the document/row-level data for the metric; should match Data Lake table names"
+      },
+      "PrimaryEventSourceEffectiveTimestampType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Identifies the timestamp used to place the metrics on a time-series; should match public attribute name"
+      },
+      "RefreshRate": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "Recommended time to wait between each refresh of data for the metric"
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The status of the custom metric"
+      },
+      "SupportedStats": {
+        "type": {
+          "$ref": "#/251"
+        },
+        "flags": 2,
+        "description": "List of stat aggregations available for the metric"
+      },
+      "SupportsCustomCalculation": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The metric may be used to compose other (custom) metrics"
+      },
+      "SupportsPreaggregateCalculation": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The metric may be used to compose other (custom) metrics, meaning it can be used inside of aggregate stat functions"
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/252"
+        },
+        "flags": 0,
+        "description": "One or more tags."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Whether the metric is provided out-of-the-box or created by each customer"
+      },
+      "Unit": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Display unit for the metric data"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/Metric",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/253"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Connect/Metric@default",
+    "body": {
+      "$ref": "#/254"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Arn",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InstanceArn",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LocalizedString",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NotificationContent",
+    "properties": {
+      "DeDE": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "EnUS": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "EsES": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "FrFR": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "IdID": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "ItIT": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "JaJP": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "KoKR": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "PtBR": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "ZhCN": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "ZhTW": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Priority",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RecipientList",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "UserArn",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Connect/NotificationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/262"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/NotificationProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) for the notification."
+      },
+      "Content": {
+        "type": {
+          "$ref": "#/259"
+        },
+        "flags": 1,
+        "description": "The content of the notification."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time a notification was created"
+      },
+      "ExpiresAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The time a notification will expire"
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The identifier of the notification."
+      },
+      "InstanceArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The identifier of the Amazon Connect instance."
+      },
+      "Priority": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The priority of the notification."
+      },
+      "Recipients": {
+        "type": {
+          "$ref": "#/266"
+        },
+        "flags": 0,
+        "description": "The recipients of the notification."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/267"
+        },
+        "flags": 0,
+        "description": "One or more tags."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/Notification",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/268"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Connect/Notification@default",
+    "body": {
+      "$ref": "#/269"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -2047,7 +4672,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/124"
+      "$ref": "#/271"
     }
   },
   {
@@ -2098,7 +4723,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/126"
+          "$ref": "#/273"
         },
         "flags": 0,
         "description": "One or more tags."
@@ -2139,7 +4764,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/127"
+          "$ref": "#/274"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2149,11 +4774,16 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Connect/PhoneNumber@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/128"
+      "$ref": "#/275"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Purpose",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -2176,6 +4806,32 @@
     "value": "AWS.Connect/PredefinedAttributeProperties"
   },
   {
+    "$type": "ObjectType",
+    "name": "PredefinedAttribute_AttributeConfiguration",
+    "properties": {
+      "EnableValueValidationOnAssociation": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Enables customers to enforce strict validation on the specific values that this predefined attribute can hold."
+      },
+      "IsReadOnly": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Allows the predefined attribute to show up and be managed in the Amazon Connect UI."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/1"
@@ -2187,7 +4843,7 @@
     "properties": {
       "StringList": {
         "type": {
-          "$ref": "#/134"
+          "$ref": "#/284"
         },
         "flags": 0
       }
@@ -2197,6 +4853,13 @@
     "$type": "ObjectType",
     "name": "AWS.Connect/PredefinedAttributeProperties",
     "properties": {
+      "AttributeConfiguration": {
+        "type": {
+          "$ref": "#/282"
+        },
+        "flags": 0,
+        "description": "Custom metadata associated to a Predefined attribute that controls how the attribute behaves when used by upstream services."
+      },
       "InstanceArn": {
         "type": {
           "$ref": "#/1"
@@ -2225,11 +4888,18 @@
         "flags": 17,
         "description": "The name of the predefined attribute."
       },
+      "Purposes": {
+        "type": {
+          "$ref": "#/283"
+        },
+        "flags": 0,
+        "description": "The assigned purposes of the predefined attribute."
+      },
       "Values": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/285"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "The values of a predefined attribute."
       }
     }
@@ -2254,7 +4924,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/136"
+          "$ref": "#/286"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2264,11 +4934,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Connect/PredefinedAttribute@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/137"
+      "$ref": "#/287"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -2297,7 +4967,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/139"
+      "$ref": "#/289"
     }
   },
   {
@@ -2341,7 +5011,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/141"
+          "$ref": "#/291"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -2368,7 +5038,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/142"
+          "$ref": "#/292"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2378,11 +5048,24 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Connect/Prompt@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/143"
+      "$ref": "#/293"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EmailAddress",
+    "properties": {
+      "EmailAddressArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the email address"
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -2480,19 +5163,32 @@
   {
     "$type": "ArrayType",
     "itemType": {
+      "$ref": "#/295"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
       "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/153"
+      "$ref": "#/304"
     }
   },
   {
     "$type": "ObjectType",
     "name": "AWS.Connect/QueueProperties",
     "properties": {
+      "AdditionalEmailAddresses": {
+        "type": {
+          "$ref": "#/307"
+        },
+        "flags": 0,
+        "description": "The email addresses that agents can use when replying to or initiating email contacts"
+      },
       "Description": {
         "type": {
           "$ref": "#/1"
@@ -2514,6 +5210,20 @@
         "flags": 1,
         "description": "The identifier of the Amazon Connect instance."
       },
+      "LastModifiedRegion": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The AWS Region where this resource was last modified."
+      },
+      "LastModifiedTime": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The timestamp when this resource was last modified."
+      },
       "MaxContacts": {
         "type": {
           "$ref": "#/3"
@@ -2530,17 +5240,17 @@
       },
       "OutboundCallerConfig": {
         "type": {
-          "$ref": "#/146"
+          "$ref": "#/297"
         },
         "flags": 0,
         "description": "The outbound caller ID name, number, and outbound whisper flow."
       },
       "OutboundEmailConfig": {
         "type": {
-          "$ref": "#/150"
+          "$ref": "#/301"
         },
         "flags": 0,
-        "description": "The outbound email address ID."
+        "description": "The outbound email configuration for a specified queue."
       },
       "QueueArn": {
         "type": {
@@ -2551,7 +5261,7 @@
       },
       "QuickConnectArns": {
         "type": {
-          "$ref": "#/156"
+          "$ref": "#/308"
         },
         "flags": 0,
         "description": "The quick connects available to agents who are working the queue."
@@ -2565,7 +5275,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/157"
+          "$ref": "#/309"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -2599,7 +5309,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/158"
+          "$ref": "#/310"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2609,16 +5319,28 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Connect/Queue@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/159"
+      "$ref": "#/311"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
     "name": "ContactFlowArn",
     "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FlowQuickConnectConfig",
+    "properties": {
+      "ContactFlowArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -2664,15 +5386,21 @@
     "$type": "ObjectType",
     "name": "QuickConnectConfig",
     "properties": {
+      "FlowConfig": {
+        "type": {
+          "$ref": "#/314"
+        },
+        "flags": 0
+      },
       "PhoneConfig": {
         "type": {
-          "$ref": "#/163"
+          "$ref": "#/316"
         },
         "flags": 0
       },
       "QueueConfig": {
         "type": {
-          "$ref": "#/165"
+          "$ref": "#/318"
         },
         "flags": 0
       },
@@ -2684,7 +5412,7 @@
       },
       "UserConfig": {
         "type": {
-          "$ref": "#/170"
+          "$ref": "#/323"
         },
         "flags": 0
       }
@@ -2745,7 +5473,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/168"
+      "$ref": "#/321"
     }
   },
   {
@@ -2782,7 +5510,7 @@
       },
       "QuickConnectConfig": {
         "type": {
-          "$ref": "#/166"
+          "$ref": "#/319"
         },
         "flags": 1,
         "description": "Configuration settings for the quick connect."
@@ -2796,7 +5524,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/172"
+          "$ref": "#/325"
         },
         "flags": 0,
         "description": "One or more tags."
@@ -2823,7 +5551,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/173"
+          "$ref": "#/326"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2833,11 +5561,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Connect/QuickConnect@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/174"
+      "$ref": "#/327"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -2889,7 +5617,7 @@
       },
       "CrossChannelBehavior": {
         "type": {
-          "$ref": "#/179"
+          "$ref": "#/332"
         },
         "flags": 0
       }
@@ -2904,6 +5632,18 @@
     "$type": "ObjectType",
     "name": "QueueArn",
     "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RoutingProfileManualAssignmentQueueConfig",
+    "properties": {
+      "QueueReference": {
+        "type": {
+          "$ref": "#/339"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -2923,7 +5663,7 @@
       },
       "QueueReference": {
         "type": {
-          "$ref": "#/185"
+          "$ref": "#/339"
         },
         "flags": 1
       }
@@ -2974,19 +5714,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/181"
+      "$ref": "#/337"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/184"
+      "$ref": "#/334"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/186"
+      "$ref": "#/338"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/340"
     }
   },
   {
@@ -3021,9 +5767,16 @@
         "flags": 1,
         "description": "The identifier of the Amazon Connect instance."
       },
+      "ManualAssignmentQueueConfigs": {
+        "type": {
+          "$ref": "#/342"
+        },
+        "flags": 0,
+        "description": "The manual assignment queues to associate with this routing profile."
+      },
       "MediaConcurrencies": {
         "type": {
-          "$ref": "#/188"
+          "$ref": "#/343"
         },
         "flags": 1,
         "description": "The channels agents can handle in the Contact Control Panel (CCP) for this routing profile."
@@ -3037,7 +5790,7 @@
       },
       "QueueConfigs": {
         "type": {
-          "$ref": "#/189"
+          "$ref": "#/344"
         },
         "flags": 0,
         "description": "The queues to associate with this routing profile."
@@ -3051,7 +5804,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/190"
+          "$ref": "#/345"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -3078,7 +5831,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/191"
+          "$ref": "#/346"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3088,11 +5841,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Connect/RoutingProfile@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/192"
+      "$ref": "#/347"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -3100,56 +5853,70 @@
     "properties": {
       "AssignContactCategoryActions": {
         "type": {
-          "$ref": "#/219"
+          "$ref": "#/382"
         },
         "flags": 0,
         "description": "Information about the contact category action. The syntax can be empty, for example, ``{}``."
       },
+      "AssignSlaActions": {
+        "type": {
+          "$ref": "#/383"
+        },
+        "flags": 0,
+        "description": ""
+      },
       "CreateCaseActions": {
         "type": {
-          "$ref": "#/220"
+          "$ref": "#/384"
         },
         "flags": 0,
         "description": ""
       },
       "EndAssociatedTasksActions": {
         "type": {
-          "$ref": "#/221"
+          "$ref": "#/385"
         },
         "flags": 0,
         "description": ""
       },
       "EventBridgeActions": {
         "type": {
-          "$ref": "#/222"
+          "$ref": "#/386"
         },
         "flags": 0,
         "description": "Information about the EV action."
       },
+      "SendInAppNotificationActions": {
+        "type": {
+          "$ref": "#/387"
+        },
+        "flags": 0,
+        "description": ""
+      },
       "SendNotificationActions": {
         "type": {
-          "$ref": "#/223"
+          "$ref": "#/388"
         },
         "flags": 0,
         "description": "Information about the send notification action."
       },
       "SubmitAutoEvaluationActions": {
         "type": {
-          "$ref": "#/224"
+          "$ref": "#/389"
         },
         "flags": 0,
         "description": ""
       },
       "TaskActions": {
         "type": {
-          "$ref": "#/225"
+          "$ref": "#/390"
         },
         "flags": 0,
         "description": "Information about the task action. This field is required if ``TriggerEventSource`` is one of the following values: ``OnZendeskTicketCreate`` | ``OnZendeskTicketStatusUpdate`` | ``OnSalesforceCaseCreate``"
       },
       "UpdateCaseActions": {
         "type": {
-          "$ref": "#/226"
+          "$ref": "#/391"
         },
         "flags": 0,
         "description": ""
@@ -3168,11 +5935,36 @@
   },
   {
     "$type": "ObjectType",
+    "name": "AssignSlaAction",
+    "properties": {
+      "CaseSlaConfiguration": {
+        "type": {
+          "$ref": "#/394"
+        },
+        "flags": 1,
+        "description": ""
+      },
+      "SlaAssignmentType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": ""
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AssignSlaActions",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "CreateCaseAction",
     "properties": {
       "Fields": {
         "type": {
-          "$ref": "#/228"
+          "$ref": "#/396"
         },
         "flags": 1,
         "description": ""
@@ -3232,7 +6024,7 @@
       },
       "Value": {
         "type": {
-          "$ref": "#/204"
+          "$ref": "#/361"
         },
         "flags": 1,
         "description": ""
@@ -3259,7 +6051,7 @@
       },
       "EmptyValue": {
         "type": {
-          "$ref": "#/232"
+          "$ref": "#/400"
         },
         "flags": 0,
         "description": ""
@@ -3280,18 +6072,115 @@
   },
   {
     "$type": "ObjectType",
+    "name": "InAppNotificationRecipientType",
+    "properties": {
+      "UserArns": {
+        "type": {
+          "$ref": "#/402"
+        },
+        "flags": 0,
+        "description": "The list of recipients by user arns."
+      },
+      "UserTags": {
+        "type": {
+          "$ref": "#/403"
+        },
+        "flags": 0,
+        "description": "The collection of recipients who are identified by user tags"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LocalizedString",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NotificationContent",
+    "properties": {
+      "DeDE": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "EnUS": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "EsES": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "FrFR": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "IdID": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "ItIT": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "JaJP": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "KoKR": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "PtBR": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "ZhCN": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "ZhTW": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "NotificationRecipientType",
     "properties": {
       "UserArns": {
         "type": {
-          "$ref": "#/234"
+          "$ref": "#/404"
         },
         "flags": 0,
         "description": "The Amazon Resource Name (ARN) of the user account."
       },
       "UserTags": {
         "type": {
-          "$ref": "#/235"
+          "$ref": "#/405"
         },
         "flags": 0,
         "description": "The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }. CON users with the specified tags will be notified."
@@ -3307,7 +6196,7 @@
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The type of the reference. ``DATE`` must be of type Epoch timestamp. \n  *Allowed values*: ``URL`` | ``ATTACHMENT`` | ``NUMBER`` | ``STRING`` | ``DATE`` | ``EMAIL``"
+        "description": "The type of the reference. ``DATE`` must be of type Epoch timestamp. \n *Allowed values*: ``URL`` | ``ATTACHMENT`` | ``NUMBER`` | ``STRING`` | ``DATE`` | ``EMAIL``"
       },
       "Value": {
         "type": {
@@ -3340,6 +6229,42 @@
   },
   {
     "$type": "ObjectType",
+    "name": "SendInAppNotificationAction",
+    "properties": {
+      "Content": {
+        "type": {
+          "$ref": "#/365"
+        },
+        "flags": 1
+      },
+      "Exclusion": {
+        "type": {
+          "$ref": "#/363"
+        },
+        "flags": 0
+      },
+      "Priority": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The priority of the notification."
+      },
+      "Recipient": {
+        "type": {
+          "$ref": "#/363"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SendInAppNotificationActions",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "SendNotificationAction",
     "properties": {
       "Content": {
@@ -3354,18 +6279,25 @@
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": "Content type format.\n  *Allowed value*: ``PLAIN_TEXT``"
+        "description": "Content type format.\n *Allowed value*: ``PLAIN_TEXT``"
       },
       "DeliveryMethod": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": "Notification delivery method.\n  *Allowed value*: ``EMAIL``"
+        "description": "Notification delivery method.\n *Allowed value*: ``EMAIL``"
+      },
+      "Exclusion": {
+        "type": {
+          "$ref": "#/366"
+        },
+        "flags": 0,
+        "description": ""
       },
       "Recipient": {
         "type": {
-          "$ref": "#/206"
+          "$ref": "#/366"
         },
         "flags": 1,
         "description": "Notification recipient."
@@ -3383,6 +6315,19 @@
     "$type": "ObjectType",
     "name": "SendNotificationActions",
     "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SlaTargetFieldValue",
+    "properties": {
+      "StringValue": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": ""
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -3449,7 +6394,7 @@
       },
       "References": {
         "type": {
-          "$ref": "#/238"
+          "$ref": "#/409"
         },
         "flags": 0,
         "description": "Information about the reference when the ``referenceType`` is ``URL``. Otherwise, null. ``URL`` is the only accepted type. (Supports variable injection in the ``Value`` field.)"
@@ -3467,7 +6412,7 @@
     "properties": {
       "Fields": {
         "type": {
-          "$ref": "#/240"
+          "$ref": "#/411"
         },
         "flags": 1,
         "description": ""
@@ -3487,79 +6432,144 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/195"
+      "$ref": "#/350"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/197"
+      "$ref": "#/352"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/199"
+      "$ref": "#/354"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/201"
+      "$ref": "#/356"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/209"
+      "$ref": "#/358"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/211"
+      "$ref": "#/369"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/214"
+      "$ref": "#/371"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/216"
+      "$ref": "#/374"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/195"
+      "$ref": "#/377"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/203"
+      "$ref": "#/379"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/197"
+      "$ref": "#/350"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/199"
+      "$ref": "#/373"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Rule_CaseSlaConfiguration",
+    "properties": {
+      "FieldId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The field Id for the SLA."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the SLA."
+      },
+      "TargetFieldValues": {
+        "type": {
+          "$ref": "#/393"
+        },
+        "flags": 0,
+        "description": "The target field values for the SLA."
+      },
+      "TargetSlaMinutes": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The target SLA time in minutes."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The type of SLA."
+      }
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/201"
+      "$ref": "#/352"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/360"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/354"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/356"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/358"
     }
   },
   {
@@ -3570,7 +6580,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/203"
+      "$ref": "#/360"
     }
   },
   {
@@ -3587,13 +6597,30 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/209"
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Rule_UserTags",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/369"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/211"
+      "$ref": "#/371"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/374"
     }
   },
   {
@@ -3604,19 +6631,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/214"
+      "$ref": "#/377"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/203"
+      "$ref": "#/360"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/216"
+      "$ref": "#/379"
     }
   },
   {
@@ -3626,7 +6653,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/213"
+      "$ref": "#/376"
     }
   },
   {
@@ -3635,7 +6662,7 @@
     "properties": {
       "Actions": {
         "type": {
-          "$ref": "#/194"
+          "$ref": "#/349"
         },
         "flags": 1,
         "description": "A list of actions to be run when the rule is triggered."
@@ -3666,7 +6693,7 @@
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The publish status of the rule.\n  *Allowed values*: ``DRAFT`` | ``PUBLISHED``"
+        "description": "The publish status of the rule.\n *Allowed values*: ``DRAFT`` | ``PUBLISHED``"
       },
       "RuleArn": {
         "type": {
@@ -3677,14 +6704,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/243"
+          "$ref": "#/414"
         },
         "flags": 0,
         "description": "The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }."
       },
       "TriggerEventSource": {
         "type": {
-          "$ref": "#/208"
+          "$ref": "#/368"
         },
         "flags": 1,
         "description": "The event source to trigger the rule."
@@ -3711,7 +6738,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/244"
+          "$ref": "#/415"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3721,11 +6748,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Connect/Rule@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/245"
+      "$ref": "#/416"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -3790,7 +6817,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/251"
+          "$ref": "#/422"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3800,11 +6827,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Connect/SecurityKey@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/252"
+      "$ref": "#/423"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -3812,17 +6839,24 @@
     "properties": {
       "ApplicationPermissions": {
         "type": {
-          "$ref": "#/259"
+          "$ref": "#/434"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "The permissions that the agent is granted on the application"
       },
       "Namespace": {
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "Namespace of the application that you want to give access to."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The type of the application."
       }
     }
   },
@@ -3833,8 +6867,80 @@
   },
   {
     "$type": "ObjectType",
+    "name": "DataTableAccessControlConfiguration",
+    "properties": {
+      "PrimaryAttributeAccessControlConfiguration": {
+        "type": {
+          "$ref": "#/430"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FlowModule",
+    "properties": {
+      "FlowModuleId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The identifier of the application that you want to give access to."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The type of the first-party application"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "Permission",
     "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PrimaryAttributeAccessControlConfigurationItem",
+    "properties": {
+      "PrimaryAttributeValues": {
+        "type": {
+          "$ref": "#/435"
+        },
+        "flags": 0,
+        "description": "An array of PrimaryAttributeValue objects."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PrimaryAttributeValue",
+    "properties": {
+      "AccessType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies the type of access granted. Currently, only \"ALLOW\" is supported"
+      },
+      "AttributeName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the primary attribute."
+      },
+      "Values": {
+        "type": {
+          "$ref": "#/436"
+        },
+        "flags": 0,
+        "description": "An array of allowed primary values for the specified primary attribute."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -3868,19 +6974,49 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/431"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
     "$type": "StringLiteralType",
     "value": "AWS.Connect/SecurityProfileProperties"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/258"
+      "$ref": "#/433"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/254"
+      "$ref": "#/428"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/425"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SecurityProfile_GranularAccessControlConfiguration",
+    "properties": {
+      "DataTableAccessControlConfiguration": {
+        "type": {
+          "$ref": "#/427"
+        },
+        "flags": 0
+      }
     }
   },
   {
@@ -3904,7 +7040,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/258"
+      "$ref": "#/433"
     }
   },
   {
@@ -3920,14 +7056,21 @@
       },
       "AllowedAccessControlTags": {
         "type": {
-          "$ref": "#/261"
+          "$ref": "#/438"
         },
         "flags": 0,
         "description": "The list of tags that a security profile uses to restrict access to resources in Amazon Connect."
       },
+      "AllowedFlowModules": {
+        "type": {
+          "$ref": "#/439"
+        },
+        "flags": 0,
+        "description": "The list of flow-module resources to be linked to a security profile in Amazon Connect."
+      },
       "Applications": {
         "type": {
-          "$ref": "#/262"
+          "$ref": "#/440"
         },
         "flags": 0,
         "description": "A list of third-party applications that the security profile will give access to."
@@ -3939,9 +7082,15 @@
         "flags": 0,
         "description": "The description of the security profile."
       },
+      "GranularAccessControlConfiguration": {
+        "type": {
+          "$ref": "#/441"
+        },
+        "flags": 0
+      },
       "HierarchyRestrictedResources": {
         "type": {
-          "$ref": "#/263"
+          "$ref": "#/442"
         },
         "flags": 0,
         "description": "The list of resources that a security profile applies hierarchy restrictions to in Amazon Connect."
@@ -3969,7 +7118,7 @@
       },
       "Permissions": {
         "type": {
-          "$ref": "#/264"
+          "$ref": "#/443"
         },
         "flags": 0,
         "description": "Permissions assigned to the security profile."
@@ -3990,14 +7139,14 @@
       },
       "TagRestrictedResources": {
         "type": {
-          "$ref": "#/265"
+          "$ref": "#/444"
         },
         "flags": 0,
         "description": "The list of resources that a security profile applies tag restrictions to in Amazon Connect."
       },
       "Tags": {
         "type": {
-          "$ref": "#/266"
+          "$ref": "#/445"
         },
         "flags": 0,
         "description": "The tags used to organize, track, or control access for this resource."
@@ -4024,7 +7173,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/267"
+          "$ref": "#/446"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4034,11 +7183,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Connect/SecurityProfile@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/268"
+      "$ref": "#/447"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -4057,7 +7206,7 @@
       },
       "Id": {
         "type": {
-          "$ref": "#/273"
+          "$ref": "#/452"
         },
         "flags": 1
       }
@@ -4076,13 +7225,13 @@
       },
       "Id": {
         "type": {
-          "$ref": "#/273"
+          "$ref": "#/452"
         },
         "flags": 1
       },
       "SingleSelectOptions": {
         "type": {
-          "$ref": "#/285"
+          "$ref": "#/464"
         },
         "flags": 0,
         "description": "list of field options to be used with single select"
@@ -4129,7 +7278,7 @@
     "properties": {
       "Id": {
         "type": {
-          "$ref": "#/273"
+          "$ref": "#/452"
         },
         "flags": 1
       }
@@ -4146,7 +7295,7 @@
     "properties": {
       "Id": {
         "type": {
-          "$ref": "#/273"
+          "$ref": "#/452"
         },
         "flags": 1
       }
@@ -4163,7 +7312,7 @@
     "properties": {
       "Id": {
         "type": {
-          "$ref": "#/273"
+          "$ref": "#/452"
         },
         "flags": 1
       }
@@ -4208,19 +7357,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/277"
+      "$ref": "#/456"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/279"
+      "$ref": "#/458"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/281"
+      "$ref": "#/460"
     }
   },
   {
@@ -4230,19 +7379,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/277"
+      "$ref": "#/456"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/279"
+      "$ref": "#/458"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/281"
+      "$ref": "#/460"
     }
   },
   {
@@ -4251,19 +7400,19 @@
     "properties": {
       "InvisibleFields": {
         "type": {
-          "$ref": "#/290"
+          "$ref": "#/469"
         },
         "flags": 0
       },
       "ReadOnlyFields": {
         "type": {
-          "$ref": "#/291"
+          "$ref": "#/470"
         },
         "flags": 0
       },
       "RequiredFields": {
         "type": {
-          "$ref": "#/292"
+          "$ref": "#/471"
         },
         "flags": 0
       }
@@ -4272,19 +7421,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/271"
+      "$ref": "#/450"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/272"
+      "$ref": "#/451"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/284"
+      "$ref": "#/463"
     }
   },
   {
@@ -4306,7 +7455,7 @@
       },
       "Constraints": {
         "type": {
-          "$ref": "#/293"
+          "$ref": "#/472"
         },
         "flags": 0,
         "description": "The constraints for the task template"
@@ -4320,7 +7469,7 @@
       },
       "Defaults": {
         "type": {
-          "$ref": "#/294"
+          "$ref": "#/473"
         },
         "flags": 0,
         "description": ""
@@ -4334,7 +7483,7 @@
       },
       "Fields": {
         "type": {
-          "$ref": "#/295"
+          "$ref": "#/474"
         },
         "flags": 0,
         "description": "The list of task template's fields"
@@ -4368,7 +7517,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/296"
+          "$ref": "#/475"
         },
         "flags": 0,
         "description": "One or more tags."
@@ -4395,7 +7544,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/297"
+          "$ref": "#/476"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4405,11 +7554,232 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Connect/TaskTemplate@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/298"
+      "$ref": "#/477"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EntryPoint",
+    "properties": {
+      "ChatEntryPointParameters": {
+        "type": {
+          "$ref": "#/482"
+        },
+        "flags": 0,
+        "description": "The chat entry point parameters for the test case"
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The type of the Entry Point"
+      },
+      "VoiceCallEntryPointParameters": {
+        "type": {
+          "$ref": "#/483"
+        },
+        "flags": 0,
+        "description": "The voice call entry point parameters for the test case"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is maximum of 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Timestamp",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TestCase_ChatEntryPointParameters",
+    "properties": {
+      "FlowId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The flow id used for the TestCase"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TestCase_VoiceCallEntryPointParameters",
+    "properties": {
+      "DestinationPhoneNumber": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The destination phonenumber of the EntryPoint"
+      },
+      "FlowId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The flow id used for the TestCase"
+      },
+      "SourcePhoneNumber": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The source phonenumber of the EntryPoint"
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Connect/TestCaseProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/480"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/TestCaseProperties",
+    "properties": {
+      "Content": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The content of the test case."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The description of the test case."
+      },
+      "EntryPoint": {
+        "type": {
+          "$ref": "#/479"
+        },
+        "flags": 0,
+        "description": "Entry point for Testcase."
+      },
+      "InitializationData": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The initialization data of the test case."
+      },
+      "InstanceArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The identifier of the Amazon Connect instance."
+      },
+      "LastModifiedRegion": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Last modified region."
+      },
+      "LastModifiedTime": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "Last modified time."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the test case."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The status of the test case."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/485"
+        },
+        "flags": 0,
+        "description": "One or more tags."
+      },
+      "TestCaseArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The identifier of the test case."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/TestCase",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/486"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Connect/TestCase@default",
+    "body": {
+      "$ref": "#/487"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -4438,7 +7808,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/300"
+      "$ref": "#/489"
     }
   },
   {
@@ -4482,7 +7852,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/302"
+          "$ref": "#/491"
         },
         "flags": 0,
         "description": "One or more tags."
@@ -4516,7 +7886,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/303"
+          "$ref": "#/492"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4526,15 +7896,181 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Connect/TrafficDistributionGroup@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/304"
+      "$ref": "#/493"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Connect/UseCaseProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/495"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/UseCaseProperties",
+    "properties": {
+      "InstanceId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The identifier of the Amazon Connect instance."
+      },
+      "IntegrationAssociationId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The identifier for the integration association."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/497"
+        },
+        "flags": 0,
+        "description": "The tags used to organize, track, or control access for this resource."
+      },
+      "UseCaseArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the use case."
+      },
+      "UseCaseId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The identifier of the use case."
+      },
+      "UseCaseType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The type of use case to associate to the integration association."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/UseCase",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/498"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Connect/UseCase@default",
+    "body": {
+      "$ref": "#/499"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AfterContactWorkConfig",
+    "properties": {
+      "AfterContactWorkMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "AfterContactWorkTimeLimit": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AfterContactWorkConfigPerChannel",
+    "properties": {
+      "AfterContactWorkConfig": {
+        "type": {
+          "$ref": "#/501"
+        },
+        "flags": 1
+      },
+      "AgentFirstCallbackAfterContactWorkConfig": {
+        "type": {
+          "$ref": "#/501"
+        },
+        "flags": 0
+      },
+      "Channel": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AfterContactWorkMode",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
     "name": "AfterContactWorkTimeLimit",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AgentFirstCallbackAutoAccept",
     "properties": {}
   },
   {
@@ -4550,6 +8086,35 @@
   {
     "$type": "ObjectType",
     "name": "AutoAccept",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AutoAcceptConfig",
+    "properties": {
+      "AgentFirstCallbackAutoAccept": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "AutoAccept": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "Channel": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Channel",
     "properties": {}
   },
   {
@@ -4581,6 +8146,53 @@
     "$type": "ObjectType",
     "name": "Mobile",
     "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PersistentConnection",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PersistentConnectionConfig",
+    "properties": {
+      "Channel": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "PersistentConnection": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PhoneNumberConfig",
+    "properties": {
+      "Channel": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "PhoneNumber": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "PhoneType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -4675,11 +8287,17 @@
         },
         "flags": 0
       },
+      "PersistentConnection": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
       "PhoneType": {
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1
+        "flags": 0
       }
     }
   },
@@ -4708,8 +8326,55 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "VoiceEnhancementConfig",
+    "properties": {
+      "Channel": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "VoiceEnhancementMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VoiceEnhancementMode",
+    "properties": {}
+  },
+  {
     "$type": "StringLiteralType",
     "value": "AWS.Connect/UserProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/502"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/509"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/518"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/519"
+    }
   },
   {
     "$type": "ArrayType",
@@ -4720,19 +8385,39 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/319"
+      "$ref": "#/523"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/322"
+      "$ref": "#/526"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/527"
     }
   },
   {
     "$type": "ObjectType",
     "name": "AWS.Connect/UserProperties",
     "properties": {
+      "AfterContactWorkConfigs": {
+        "type": {
+          "$ref": "#/530"
+        },
+        "flags": 0,
+        "description": "After Contact Work configurations of a user."
+      },
+      "AutoAcceptConfigs": {
+        "type": {
+          "$ref": "#/531"
+        },
+        "flags": 0,
+        "description": "Auto-accept configurations of a user."
+      },
       "DirectoryUserId": {
         "type": {
           "$ref": "#/1"
@@ -4749,7 +8434,7 @@
       },
       "IdentityInfo": {
         "type": {
-          "$ref": "#/320"
+          "$ref": "#/524"
         },
         "flags": 0,
         "description": "The information about the identity of the user."
@@ -4768,12 +8453,26 @@
         "flags": 4,
         "description": "The password for the user account. A password is required if you are using Amazon Connect for identity management. Otherwise, it is an error to include a password."
       },
+      "PersistentConnectionConfigs": {
+        "type": {
+          "$ref": "#/532"
+        },
+        "flags": 0,
+        "description": "Persistent Connection configurations of a user."
+      },
       "PhoneConfig": {
         "type": {
-          "$ref": "#/321"
+          "$ref": "#/525"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "The phone settings for the user."
+      },
+      "PhoneNumberConfigs": {
+        "type": {
+          "$ref": "#/533"
+        },
+        "flags": 0,
+        "description": "Phone Number configurations of a user."
       },
       "RoutingProfileArn": {
         "type": {
@@ -4784,14 +8483,14 @@
       },
       "SecurityProfileArns": {
         "type": {
-          "$ref": "#/324"
+          "$ref": "#/534"
         },
         "flags": 1,
         "description": "One or more security profile arns for the user"
       },
       "Tags": {
         "type": {
-          "$ref": "#/325"
+          "$ref": "#/535"
         },
         "flags": 0,
         "description": "One or more tags."
@@ -4805,7 +8504,7 @@
       },
       "UserProficiencies": {
         "type": {
-          "$ref": "#/326"
+          "$ref": "#/536"
         },
         "flags": 0,
         "description": "One or more predefined attributes assigned to a user, with a level that indicates how skilled they are."
@@ -4816,6 +8515,13 @@
         },
         "flags": 1,
         "description": "The user name for the account."
+      },
+      "VoiceEnhancementConfigs": {
+        "type": {
+          "$ref": "#/537"
+        },
+        "flags": 0,
+        "description": "Voice Enhancement configurations of a user."
       }
     }
   },
@@ -4839,7 +8545,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/327"
+          "$ref": "#/538"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4849,11 +8555,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Connect/User@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/328"
+      "$ref": "#/539"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -4887,7 +8593,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/330"
+      "$ref": "#/541"
     }
   },
   {
@@ -4917,7 +8623,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/333"
+          "$ref": "#/544"
         },
         "flags": 0,
         "description": "One or more tags."
@@ -4951,7 +8657,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/334"
+          "$ref": "#/545"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4961,11 +8667,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Connect/UserHierarchyGroup@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/335"
+      "$ref": "#/546"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -5112,31 +8818,31 @@
     "properties": {
       "LevelFive": {
         "type": {
-          "$ref": "#/339"
+          "$ref": "#/550"
         },
         "flags": 0
       },
       "LevelFour": {
         "type": {
-          "$ref": "#/340"
+          "$ref": "#/551"
         },
         "flags": 0
       },
       "LevelOne": {
         "type": {
-          "$ref": "#/341"
+          "$ref": "#/552"
         },
         "flags": 0
       },
       "LevelThree": {
         "type": {
-          "$ref": "#/342"
+          "$ref": "#/553"
         },
         "flags": 0
       },
       "LevelTwo": {
         "type": {
-          "$ref": "#/343"
+          "$ref": "#/554"
         },
         "flags": 0
       }
@@ -5155,7 +8861,7 @@
       },
       "UserHierarchyStructure": {
         "type": {
-          "$ref": "#/346"
+          "$ref": "#/557"
         },
         "flags": 0,
         "description": "Information about the hierarchy structure."
@@ -5189,7 +8895,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/347"
+          "$ref": "#/558"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -5199,11 +8905,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Connect/UserHierarchyStructure@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/348"
+      "$ref": "#/559"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -5238,7 +8944,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/350"
+      "$ref": "#/561"
     }
   },
   {
@@ -5252,7 +8958,7 @@
     "properties": {
       "Actions": {
         "type": {
-          "$ref": "#/352"
+          "$ref": "#/563"
         },
         "flags": 1,
         "description": "The actions of the view in an array."
@@ -5280,14 +8986,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/353"
+          "$ref": "#/564"
         },
         "flags": 0,
         "description": "One or more tags."
       },
       "Template": {
         "type": {
-          "$ref": "#/354"
+          "$ref": "#/565"
         },
         "flags": 1,
         "description": "The template of the view as JSON."
@@ -5335,7 +9041,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/355"
+          "$ref": "#/566"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -5345,11 +9051,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Connect/View@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/356"
+      "$ref": "#/567"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "StringLiteralType",
@@ -5416,7 +9122,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/359"
+          "$ref": "#/570"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -5426,10 +9132,612 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Connect/ViewVersion@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/360"
+      "$ref": "#/571"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Connect/VocabularyProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/573"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/VocabularyProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the custom vocabulary."
+      },
+      "Content": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The content of the custom vocabulary in plain-text format with a table of values."
+      },
+      "InstanceId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The identifier of the Amazon Connect instance."
+      },
+      "LanguageCode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The language code of the vocabulary entries."
+      },
+      "LastModifiedTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The timestamp when the custom vocabulary was last modified."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The current state of the custom vocabulary."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/575"
+        },
+        "flags": 0,
+        "description": "The tags used to organize, track, or control access for this resource."
+      },
+      "VocabularyId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The identifier of the custom vocabulary."
+      },
+      "VocabularyName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "A unique name of the custom vocabulary."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/Vocabulary",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/576"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Connect/Vocabulary@default",
+    "body": {
+      "$ref": "#/577"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FontFamily",
+    "properties": {
+      "Default": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MediaItem",
+    "properties": {
+      "Source": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MediaType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PaletteCanvas",
+    "properties": {
+      "ActiveBackground": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "ContainerBackground": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "PageBackground": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PaletteHeader",
+    "properties": {
+      "Background": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "InvertActionsColors": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "Text": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "TextHover": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PaletteNavigation",
+    "properties": {
+      "Background": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "InvertActionsColors": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "Text": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "TextActive": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "TextBackgroundActive": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "TextBackgroundHover": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "TextHover": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PalettePrimary",
+    "properties": {
+      "Active": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "ContrastText": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Default": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ThemeImageLink",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ThemeString",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Visibility",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WorkspaceFontFamily",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WorkspacePage",
+    "properties": {
+      "InputData": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The input data for the page."
+      },
+      "Page": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The page identifier."
+      },
+      "ResourceArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the resource associated with the page."
+      },
+      "Slug": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The slug for the page."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WorkspaceTheme",
+    "properties": {
+      "Dark": {
+        "type": {
+          "$ref": "#/593"
+        },
+        "flags": 0
+      },
+      "Light": {
+        "type": {
+          "$ref": "#/593"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WorkspaceThemeConfig",
+    "properties": {
+      "Palette": {
+        "type": {
+          "$ref": "#/594"
+        },
+        "flags": 0
+      },
+      "Typography": {
+        "type": {
+          "$ref": "#/595"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WorkspaceThemePalette",
+    "properties": {
+      "Canvas": {
+        "type": {
+          "$ref": "#/582"
+        },
+        "flags": 0
+      },
+      "Header": {
+        "type": {
+          "$ref": "#/583"
+        },
+        "flags": 0
+      },
+      "Navigation": {
+        "type": {
+          "$ref": "#/584"
+        },
+        "flags": 0
+      },
+      "Primary": {
+        "type": {
+          "$ref": "#/585"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WorkspaceThemeTypography",
+    "properties": {
+      "FontFamily": {
+        "type": {
+          "$ref": "#/579"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Connect/WorkspaceProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/580"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/591"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/586"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/WorkspaceProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) for the workspace."
+      },
+      "Associations": {
+        "type": {
+          "$ref": "#/597"
+        },
+        "flags": 0,
+        "description": "The resource ARNs associated with the workspace"
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The description of the workspace"
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The identifier of the workspace."
+      },
+      "InstanceArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The identifier of the Amazon Connect instance."
+      },
+      "Media": {
+        "type": {
+          "$ref": "#/598"
+        },
+        "flags": 4,
+        "description": "The media items for the workspace"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the workspace."
+      },
+      "Pages": {
+        "type": {
+          "$ref": "#/599"
+        },
+        "flags": 0,
+        "description": "The pages associated with the workspace"
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/600"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
+      "Theme": {
+        "type": {
+          "$ref": "#/592"
+        },
+        "flags": 0,
+        "description": "The theme configuration for the workspace"
+      },
+      "Title": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The title of the workspace"
+      },
+      "Visibility": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The visibility of the workspace. Will always be set to ASSIGNED oninitial creation."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Connect/Workspace",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/601"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Connect/Workspace@default",
+    "body": {
+      "$ref": "#/602"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

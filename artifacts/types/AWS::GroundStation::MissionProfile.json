@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-GroundStation-MissionProfile",
   "type": "AWS::GroundStation::MissionProfile",
-  "time": "2025-01-02T16:37:17.386Z",
+  "time": "2026-10-20T01:15:41.795Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -29,11 +29,20 @@
             "required": [
               "KmsAliasArn"
             ]
+          },
+          {
+            "required": [
+              "KmsAliasName"
+            ]
           }
         ],
         "properties": {
           "KmsAliasArn": {
             "pattern": "^(arn:(aws[a-zA-Z-]*)?:[a-z0-9-.]+:.*)|()$",
+            "type": "string"
+          },
+          "KmsAliasName": {
+            "pattern": "^alias/[a-zA-Z0-9:/_-]+$",
             "type": "string"
           },
           "KmsKeyArn": {
@@ -159,6 +168,11 @@
           "$ref": "#/definitions/Tag"
         },
         "type": "array"
+      },
+      "TelemetrySinkConfigArn": {
+        "description": "ARN of a Config resource of type TelemetrySinkConfig used for telemetry data sink configuration.",
+        "pattern": "^(arn:(aws[a-zA-Z-]*)?:[a-z0-9-.]+:.*)|()$",
+        "type": "string"
       },
       "TrackingConfigArn": {
         "pattern": "^(arn:(aws[a-zA-Z-]*)?:[a-z0-9-.]+:.*)|()$",

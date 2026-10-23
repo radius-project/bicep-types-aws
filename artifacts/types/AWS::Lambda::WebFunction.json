@@ -1,0 +1,152 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Lambda-WebFunction",
+  "type": "AWS::Lambda::WebFunction",
+  "time": "2026-10-21T23:37:12.651Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/FunctionName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/FunctionName"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with the function.",
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Lambda::WebFunction. Creates a Lambda Web function container.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "lambda:CreateWebFunction",
+          "lambda:GetWebFunction",
+          "lambda:TagResource",
+          "lambda:ListTags"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "lambda:DeleteWebFunction",
+          "lambda:GetWebFunction",
+          "lambda:ListTags"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "lambda:ListWebFunctions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "lambda:GetWebFunction",
+          "lambda:ListTags"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "lambda:GetWebFunction",
+          "lambda:TagResource",
+          "lambda:UntagResource",
+          "lambda:ListTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/FunctionArn"
+    ],
+    "properties": {
+      "CreatedAt": {
+        "description": "The timestamp when the function was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "FunctionArn": {
+        "description": "The Amazon Resource Name (ARN) of the function.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:(aws[a-z-]*):lambda:[a-z0-9-]+:[0-9]{12}:web-function/.+$",
+        "type": "string"
+      },
+      "FunctionName": {
+        "description": "The name of the web function. The name can contain letters, numbers, hyphens (-), and underscores (_), and cannot begin or end with a hyphen or an underscore. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
+      "State": {
+        "description": "The current state of the function.",
+        "enum": [
+          "Pending",
+          "Active",
+          "Failed",
+          "Deleting"
+        ],
+        "type": "string"
+      },
+      "StateReason": {
+        "description": "The reason for the function's current state.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A list of tags to apply to the function.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "UpdatedAt": {
+        "description": "The timestamp when the function was last updated.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/FunctionArn",
+      "/properties/State",
+      "/properties/StateReason",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "FunctionName"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "lambda:TagResource",
+        "lambda:UntagResource",
+        "lambda:ListTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Lambda::WebFunction"
+  }
+}

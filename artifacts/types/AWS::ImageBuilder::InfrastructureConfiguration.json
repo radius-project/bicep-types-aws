@@ -1,13 +1,35 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ImageBuilder-InfrastructureConfiguration",
   "type": "AWS::ImageBuilder::InfrastructureConfiguration",
-  "time": "2025-01-21T16:56:00.243Z",
+  "time": "2026-10-19T16:40:21.16Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/Name"
     ],
     "definitions": {
+      "AutoScalingGroup": {
+        "additionalProperties": false,
+        "description": "Identifies the Amazon EC2 Auto Scaling group that Image Builder takes the build instance from, and how long Image Builder waits when the group has no instance available.",
+        "properties": {
+          "CapacityWaitTimeoutSeconds": {
+            "description": "The number of seconds that Image Builder waits for an instance to become available in the group before the build fails. If you set this value to 0 or omit it, the build fails as soon as the group has no instance available.",
+            "maximum": 3600,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "Name": {
+            "description": "The name of the Auto Scaling group, in the same account and AWS Region as the infrastructure configuration.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name"
+        ],
+        "type": "object"
+      },
       "InstanceMetadataOptions": {
         "additionalProperties": false,
         "description": "The instance metadata option settings for the infrastructure configuration.",
@@ -35,6 +57,20 @@
             "$ref": "#/definitions/S3Logs"
           }
         },
+        "type": "object"
+      },
+      "ParentInstance": {
+        "additionalProperties": false,
+        "description": "Settings for building on an instance that is already running, instead of an instance that Image Builder launches for the build.",
+        "properties": {
+          "AutoScalingGroup": {
+            "$ref": "#/definitions/AutoScalingGroup",
+            "description": "The Amazon EC2 Auto Scaling group that Image Builder takes the build instance from."
+          }
+        },
+        "required": [
+          "AutoScalingGroup"
+        ],
         "type": "object"
       },
       "Placement": {
@@ -100,7 +136,7 @@
         "type": "object"
       }
     },
-    "description": "Resource schema for AWS::ImageBuilder::InfrastructureConfiguration",
+    "description": "Resource Type definition for AWS::ImageBuilder::InfrastructureConfiguration",
     "handlers": {
       "create": {
         "permissions": [
@@ -111,12 +147,13 @@
           "sns:Publish",
           "imagebuilder:TagResource",
           "imagebuilder:GetInfrastructureConfiguration",
-          "imagebuilder:CreateInfrastructureConfiguration"
+          "imagebuilder:CreateInfrastructureConfiguration",
+          "autoscaling:DescribeAutoScalingGroups"
         ]
       },
       "delete": {
         "permissions": [
-          "imagebuilder:UnTagResource",
+          "imagebuilder:UntagResource",
           "imagebuilder:GetInfrastructureConfiguration",
           "imagebuilder:DeleteInfrastructureConfiguration"
         ]
@@ -136,7 +173,10 @@
           "iam:PassRole",
           "sns:Publish",
           "imagebuilder:GetInfrastructureConfiguration",
-          "imagebuilder:UpdateInfrastructureConfiguration"
+          "imagebuilder:UpdateInfrastructureConfiguration",
+          "imagebuilder:TagResource",
+          "imagebuilder:UntagResource",
+          "autoscaling:DescribeAutoScalingGroups"
         ]
       }
     },
@@ -146,6 +186,7 @@
     "properties": {
       "Arn": {
         "description": "The Amazon Resource Name (ARN) of the infrastructure configuration.",
+        "pattern": "^arn:[^:]+:imagebuilder:[^:]+:[^:]+:infrastructure-configuration/.+$",
         "type": "string"
       },
       "Description": {
@@ -179,6 +220,10 @@
       "Name": {
         "description": "The name of the infrastructure configuration.",
         "type": "string"
+      },
+      "ParentInstance": {
+        "$ref": "#/definitions/ParentInstance",
+        "description": "The Amazon EC2 Auto Scaling group that Image Builder takes the build instance from, instead of launching a new instance. This applies only to the build phase."
       },
       "Placement": {
         "$ref": "#/definitions/Placement",
@@ -220,6 +265,10 @@
         },
         "type": "object"
       },
+      "TerminateInstanceOnCompletion": {
+        "description": "Specifies whether Image Builder terminates build and test instances that are still running when image creation ends without a failure. A TerminateInstance step in a workflow runs even when this is false.",
+        "type": "boolean"
+      },
       "TerminateInstanceOnFailure": {
         "description": "The terminate instance on failure configuration of the infrastructure configuration.",
         "type": "boolean"
@@ -234,7 +283,15 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-imagebuilder.git",
     "tagging": {
-      "taggable": false
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "imagebuilder:TagResource",
+        "imagebuilder:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
     },
     "typeName": "AWS::ImageBuilder::InfrastructureConfiguration"
   }

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IVS-PublicKey",
   "type": "AWS::IVS::PublicKey",
-  "time": "2024-11-19T16:53:02.73Z",
+  "time": "2026-10-20T22:10:10.36Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -19,7 +19,7 @@
           },
           "Value": {
             "maxLength": 256,
-            "minLength": 1,
+            "minLength": 0,
             "type": "string"
           }
         },
@@ -87,7 +87,7 @@
         "type": "string"
       },
       "PublicKeyMaterial": {
-        "description": "The public portion of a customer-generated key pair.",
+        "description": "The public portion of a customer-generated key pair. This field is required to create the AWS::IVS::PublicKey resource.",
         "pattern": "-----BEGIN PUBLIC KEY-----\\r?\\n([a-zA-Z0-9+/=\\r\\n]+)\\r?\\n-----END PUBLIC KEY-----(\\r?\\n)?",
         "type": "string"
       },
@@ -108,7 +108,7 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "ivs:TagResource",
         "ivs:UntagResource",

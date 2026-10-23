@@ -1,28 +1,32 @@
 # AWS.Shield @ default
 
 ## Resource AWS.Shield/DRTAccess@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Shield/DRTAccessProperties](#awsshielddrtaccessproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Shield/ProactiveEngagement@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Shield/ProactiveEngagementProperties](#awsshieldproactiveengagementproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Shield/Protection@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Shield/ProtectionProperties](#awsshieldprotectionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Shield/ProtectionGroup@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name

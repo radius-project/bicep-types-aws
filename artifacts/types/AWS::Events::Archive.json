@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Events-Archive",
   "type": "AWS::Events::Archive",
-  "time": "2024-11-24T07:40:56.612Z",
+  "time": "2026-06-02T13:49:39.278Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -13,7 +13,10 @@
       "create": {
         "permissions": [
           "events:DescribeArchive",
-          "events:CreateArchive"
+          "events:CreateArchive",
+          "kms:DescribeKey",
+          "kms:GenerateDataKey",
+          "kms:Decrypt"
         ]
       },
       "delete": {
@@ -29,13 +32,19 @@
       },
       "read": {
         "permissions": [
-          "events:DescribeArchive"
+          "events:DescribeArchive",
+          "kms:Decrypt"
         ]
       },
       "update": {
         "permissions": [
           "events:DescribeArchive",
-          "events:UpdateArchive"
+          "events:UpdateArchive",
+          "kms:DescribeKey",
+          "kms:GenerateDataKey",
+          "kms:Decrypt",
+          "kms:ReEncryptTo",
+          "kms:ReEncryptFrom"
         ]
       }
     },
@@ -58,6 +67,11 @@
       },
       "EventPattern": {
         "type": "object"
+      },
+      "KmsKeyIdentifier": {
+        "maxLength": 2048,
+        "minLength": 0,
+        "type": "string"
       },
       "RetentionDays": {
         "type": "integer"

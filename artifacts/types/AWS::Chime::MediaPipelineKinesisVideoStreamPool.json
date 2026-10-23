@@ -1,0 +1,173 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Chime-MediaPipelineKinesisVideoStreamPool",
+  "type": "AWS::Chime::MediaPipelineKinesisVideoStreamPool",
+  "time": "2026-10-21T22:16:13.851Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/PoolName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/PoolName",
+      "/properties/StreamConfiguration/Region"
+    ],
+    "description": "Resource Type definition for an Amazon Chime SDK Media Pipeline Kinesis Video Stream Pool",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "chime:CreateMediaPipelineKinesisVideoStreamPool",
+          "chime:GetMediaPipelineKinesisVideoStreamPool",
+          "chime:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "chime:DeleteMediaPipelineKinesisVideoStreamPool",
+          "chime:GetMediaPipelineKinesisVideoStreamPool"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "chime:ListMediaPipelineKinesisVideoStreamPools"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "chime:GetMediaPipelineKinesisVideoStreamPool",
+          "chime:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "chime:UpdateMediaPipelineKinesisVideoStreamPool",
+          "chime:GetMediaPipelineKinesisVideoStreamPool",
+          "chime:TagResource",
+          "chime:UntagResource",
+          "chime:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of the Kinesis Video Stream Pool.",
+        "maxLength": 1024,
+        "minLength": 1,
+        "pattern": "^arn[\\/\\:\\-\\_\\.a-zA-Z0-9]+$",
+        "type": "string"
+      },
+      "CreatedTimestamp": {
+        "description": "The time at which the Kinesis Video Stream Pool was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "PoolId": {
+        "description": "The unique identifier of the Kinesis Video Stream Pool.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^[0-9a-zA-Z._-]+$",
+        "type": "string"
+      },
+      "PoolName": {
+        "description": "The name of the Kinesis Video Stream Pool.",
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[0-9a-zA-Z._-]+$",
+        "type": "string"
+      },
+      "PoolStatus": {
+        "description": "The status of the Kinesis Video Stream Pool.",
+        "enum": [
+          "CREATING",
+          "ACTIVE",
+          "UPDATING",
+          "DELETING",
+          "FAILED"
+        ],
+        "type": "string"
+      },
+      "StreamConfiguration": {
+        "additionalProperties": false,
+        "description": "The configuration settings for the Kinesis video stream.",
+        "properties": {
+          "DataRetentionInHours": {
+            "description": "The amount of time that data is retained, in hours.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "Region": {
+            "description": "The AWS Region of the video stream.",
+            "maxLength": 32,
+            "minLength": 1,
+            "pattern": "^([a-z]+-){2,}\\d+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Region"
+        ],
+        "type": "object"
+      },
+      "Tags": {
+        "description": "The tags associated with the Kinesis Video Stream Pool.",
+        "insertionOrder": false,
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "Value": {
+              "maxLength": 256,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "maxItems": 200,
+        "minItems": 0,
+        "type": "array"
+      },
+      "UpdatedTimestamp": {
+        "description": "The time at which the Kinesis Video Stream Pool was last updated.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/PoolId",
+      "/properties/PoolStatus",
+      "/properties/CreatedTimestamp",
+      "/properties/UpdatedTimestamp"
+    ],
+    "required": [
+      "PoolName",
+      "StreamConfiguration"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "chime:TagResource",
+        "chime:UntagResource",
+        "chime:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Chime::MediaPipelineKinesisVideoStreamPool"
+  }
+}

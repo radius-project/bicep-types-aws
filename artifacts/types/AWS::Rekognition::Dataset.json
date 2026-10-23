@@ -1,0 +1,148 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Rekognition-Dataset",
+  "type": "AWS::Rekognition::Dataset",
+  "time": "2026-08-26T21:24:08.993Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DatasetType",
+      "/properties/ProjectArn"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^(?!aws:)[\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "The AWS::Rekognition::Dataset type creates an Amazon Rekognition Custom Labels dataset.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "rekognition:CreateDataset",
+          "rekognition:DescribeDataset",
+          "rekognition:TagResource",
+          "rekognition:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "rekognition:DeleteDataset",
+          "rekognition:DescribeDataset",
+          "rekognition:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ProjectArn": {
+              "maxLength": 2048,
+              "minLength": 20,
+              "pattern": "^(^arn:[a-z\\d-]+:rekognition:[a-z\\d-]+:\\d{12}:project\\/[a-zA-Z0-9_.\\-]{1,255}\\/[0-9]+$)$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "ProjectArn"
+          ]
+        },
+        "permissions": [
+          "rekognition:DescribeProjects"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "rekognition:DescribeDataset",
+          "rekognition:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "rekognition:TagResource",
+          "rekognition:UntagResource",
+          "rekognition:ListTagsForResource",
+          "rekognition:DescribeDataset"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/DatasetArn"
+    ],
+    "properties": {
+      "DatasetArn": {
+        "description": "The ARN of the dataset.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^(^arn:[a-z\\d-]+:rekognition:[a-z\\d-]+:\\d{12}:project\\/[a-zA-Z0-9_.\\-]{1,255}\\/dataset\\/(train|test)\\/[0-9]+$)$",
+        "type": "string"
+      },
+      "DatasetType": {
+        "description": "The type of the dataset. Specify TRAIN to create a training dataset. Specify TEST to create a test dataset.",
+        "enum": [
+          "TRAIN",
+          "TEST"
+        ],
+        "type": "string"
+      },
+      "ProjectArn": {
+        "description": "The ARN of the project to which the dataset belongs.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^(^arn:[a-z\\d-]+:rekognition:[a-z\\d-]+:\\d{12}:project\\/[a-zA-Z0-9_.\\-]{1,255}\\/[0-9]+$)$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/DatasetArn"
+    ],
+    "required": [
+      "DatasetType"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "rekognition:TagResource",
+        "rekognition:UntagResource",
+        "rekognition:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Rekognition::Dataset",
+    "writeOnlyProperties": [
+      "/properties/ProjectArn"
+    ]
+  }
+}

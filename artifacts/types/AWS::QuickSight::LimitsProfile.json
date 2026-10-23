@@ -1,0 +1,146 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-QuickSight-LimitsProfile",
+  "type": "AWS::QuickSight::LimitsProfile",
+  "time": "2026-10-21T13:07:43.488Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/AccountId"
+    ],
+    "definitions": {
+      "LimitUnit": {
+        "enum": [
+          "MB",
+          "GB",
+          "HOURS",
+          "DAYS"
+        ],
+        "type": "string"
+      },
+      "ProfileLimitValue": {
+        "additionalProperties": false,
+        "properties": {
+          "MaxValue": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "Unit": {
+            "$ref": "#/definitions/LimitUnit"
+          }
+        },
+        "required": [
+          "MaxValue",
+          "Unit"
+        ],
+        "type": "object"
+      },
+      "ResourceLimitsMap": {
+        "additionalProperties": false,
+        "patternProperties": {
+          ".+": {
+            "$ref": "#/definitions/ProfileLimitValue"
+          }
+        },
+        "type": "object"
+      },
+      "ResourceType": {
+        "enum": [
+          "INDEX_STORAGE",
+          "AGENT_HOURS"
+        ],
+        "type": "string"
+      }
+    },
+    "description": "Definition of AWS::QuickSight::LimitsProfile Resource Type",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "quicksight:CreateLimitsProfile",
+          "quicksight:DescribeLimitsProfile"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "quicksight:DeleteLimitsProfile",
+          "quicksight:DescribeLimitsProfile"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "quicksight:ListLimitsProfiles"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "quicksight:DescribeLimitsProfile"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "quicksight:UpdateLimitsProfile",
+          "quicksight:DescribeLimitsProfile"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/AccountId",
+      "/properties/ProfileId"
+    ],
+    "properties": {
+      "AccountId": {
+        "maxLength": 12,
+        "minLength": 12,
+        "pattern": "^[0-9]{12}$",
+        "type": "string"
+      },
+      "Arn": {
+        "type": "string"
+      },
+      "CreatedAt": {
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "maxLength": 1024,
+        "minLength": 0,
+        "type": "string"
+      },
+      "ProfileId": {
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^lp-[a-f0-9-]+$",
+        "type": "string"
+      },
+      "ProfileName": {
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
+      "ResourceLimits": {
+        "$ref": "#/definitions/ResourceLimitsMap"
+      },
+      "UpdatedAt": {
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/CreatedAt",
+      "/properties/ProfileId",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "AccountId",
+      "ProfileName",
+      "ResourceLimits"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": false,
+      "tagUpdatable": false,
+      "taggable": false
+    },
+    "typeName": "AWS::QuickSight::LimitsProfile"
+  }
+}

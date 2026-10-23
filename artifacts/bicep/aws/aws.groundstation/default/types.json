@@ -5,7 +5,7 @@
     "properties": {
       "SpectrumConfig": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/21"
         },
         "flags": 0
       }
@@ -29,7 +29,7 @@
       },
       "SpectrumConfig": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/21"
         },
         "flags": 0
       }
@@ -41,7 +41,7 @@
     "properties": {
       "SpectrumConfig": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/28"
         },
         "flags": 0
       },
@@ -53,7 +53,7 @@
       },
       "TransmitDisabled": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/29"
         },
         "flags": 0
       }
@@ -99,19 +99,25 @@
       },
       "S3RecordingConfig": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/20"
+        },
+        "flags": 0
+      },
+      "TelemetrySinkConfig": {
+        "type": {
+          "$ref": "#/23"
         },
         "flags": 0
       },
       "TrackingConfig": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/26"
         },
         "flags": 0
       },
       "UplinkEchoConfig": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/27"
         },
         "flags": 0
       }
@@ -123,13 +129,13 @@
     "properties": {
       "DataflowEndpointName": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0
       },
       "DataflowEndpointRegion": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0
       }
@@ -141,7 +147,7 @@
     "properties": {
       "UnvalidatedJSON": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0
       }
@@ -153,7 +159,7 @@
     "properties": {
       "UnvalidatedJSON": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0
       }
@@ -165,13 +171,13 @@
     "properties": {
       "Units": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0
       },
       "Value": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/31"
         },
         "flags": 0
       }
@@ -188,13 +194,13 @@
     "properties": {
       "Units": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0
       },
       "Value": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/31"
         },
         "flags": 0
       }
@@ -206,13 +212,13 @@
     "properties": {
       "Units": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0
       },
       "Value": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/31"
         },
         "flags": 0
       }
@@ -227,6 +233,29 @@
     "$type": "ObjectType",
     "name": "JsonString",
     "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KinesisDataStreamArn",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KinesisDataStreamData",
+    "properties": {
+      "KinesisDataStreamArn": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1
+      },
+      "KinesisRoleArn": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -249,19 +278,19 @@
     "properties": {
       "BucketArn": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0
       },
       "Prefix": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0
       }
@@ -285,7 +314,7 @@
       },
       "Polarization": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0
       }
@@ -297,13 +326,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0
       },
       "Value": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0
       }
@@ -311,11 +340,46 @@
   },
   {
     "$type": "ObjectType",
+    "name": "TelemetrySinkConfig",
+    "properties": {
+      "TelemetrySinkData": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      },
+      "TelemetrySinkType": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TelemetrySinkData",
+    "properties": {
+      "KinesisDataStreamData": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TelemetrySinkType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "TrackingConfig",
     "properties": {
       "Autotrack": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0
       }
@@ -327,13 +391,13 @@
     "properties": {
       "AntennaUplinkConfigArn": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0
       },
       "Enabled": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/29"
         },
         "flags": 0
       }
@@ -351,7 +415,7 @@
       },
       "Polarization": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0
       }
@@ -373,7 +437,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/20"
+      "$ref": "#/22"
     }
   },
   {
@@ -382,7 +446,7 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 18
       },
@@ -394,25 +458,25 @@
       },
       "Id": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 2
       },
       "Name": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/33"
         },
         "flags": 0
       },
       "Type": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 2
       }
@@ -424,21 +488,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/34"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -448,11 +512,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.GroundStation/Config@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/30"
+      "$ref": "#/35"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -470,31 +534,31 @@
     "properties": {
       "AgentStatus": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0
       },
       "AuditResults": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0
       },
       "EgressAddress": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/40"
         },
         "flags": 0
       },
       "IngressAddress": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/44"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0
       }
@@ -506,14 +570,14 @@
     "properties": {
       "Mtu": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "Maximum transmission unit (MTU) size in bytes of a dataflow endpoint."
       },
       "SocketAddress": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/47"
         },
         "flags": 0
       }
@@ -525,19 +589,19 @@
     "properties": {
       "Address": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/47"
         },
         "flags": 0
       },
       "Mtu": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/31"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0
       }
@@ -549,19 +613,19 @@
     "properties": {
       "AwsGroundStationAgentEndpoint": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/39"
         },
         "flags": 0
       },
       "Endpoint": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/41"
         },
         "flags": 0
       },
       "SecurityDetails": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/46"
         },
         "flags": 0
       }
@@ -573,14 +637,14 @@
     "properties": {
       "Maximum": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "A maximum value."
       },
       "Minimum": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "A minimum value."
@@ -593,14 +657,14 @@
     "properties": {
       "Mtu": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "Maximum transmission unit (MTU) size in bytes of a dataflow endpoint."
       },
       "SocketAddress": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/45"
         },
         "flags": 0
       }
@@ -612,14 +676,14 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0,
         "description": "IPv4 socket address."
       },
       "PortRange": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "Port range of a socket address."
@@ -632,19 +696,19 @@
     "properties": {
       "RoleArn": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/49"
         },
         "flags": 0
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/50"
         },
         "flags": 0
       }
@@ -656,13 +720,13 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0
       },
       "Port": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/31"
         },
         "flags": 0
       }
@@ -674,13 +738,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 1
       }
@@ -689,13 +753,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/30"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/30"
     }
   },
   {
@@ -705,13 +769,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/37"
+      "$ref": "#/42"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/43"
+      "$ref": "#/48"
     }
   },
   {
@@ -720,39 +784,39 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 2
       },
       "ContactPostPassDurationSeconds": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "Amount of time, in seconds, after a contact ends that the Ground Station Dataflow Endpoint Group will be in a POSTPASS state. A Ground Station Dataflow Endpoint Group State Change event will be emitted when the Dataflow Endpoint Group enters and exits the POSTPASS state."
       },
       "ContactPrePassDurationSeconds": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "Amount of time, in seconds, before a contact starts that the Ground Station Dataflow Endpoint Group will be in a PREPASS state. A Ground Station Dataflow Endpoint Group State Change event will be emitted when the Dataflow Endpoint Group enters and exits the PREPASS state."
       },
       "EndpointDetails": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/52"
         },
         "flags": 1
       },
       "Id": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 18
       },
       "Tags": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/53"
         },
         "flags": 0
       }
@@ -764,21 +828,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/54"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -788,11 +852,437 @@
   {
     "$type": "ResourceType",
     "name": "AWS.GroundStation/DataflowEndpointGroup@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/50"
+      "$ref": "#/55"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AgentStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AuditResults",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectionDetails",
+    "properties": {
+      "Mtu": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0,
+        "description": "Maximum transmission unit (MTU) size in bytes of a dataflow endpoint."
+      },
+      "SocketAddress": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CreateEndpointDetails",
+    "properties": {
+      "DownlinkAwsGroundStationAgentEndpoint": {
+        "type": {
+          "$ref": "#/61"
+        },
+        "flags": 0
+      },
+      "UplinkAwsGroundStationAgentEndpoint": {
+        "type": {
+          "$ref": "#/71"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DownlinkAwsGroundStationAgentEndpoint",
+    "properties": {
+      "DataflowDetails": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 1
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DownlinkAwsGroundStationAgentEndpointDetails",
+    "properties": {
+      "AgentStatus": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 0
+      },
+      "AuditResults": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 0
+      },
+      "DataflowDetails": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 1
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DownlinkConnectionDetails",
+    "properties": {
+      "AgentIpAndPortAddress": {
+        "type": {
+          "$ref": "#/67"
+        },
+        "flags": 1
+      },
+      "EgressAddressAndPort": {
+        "type": {
+          "$ref": "#/59"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DownlinkDataflowDetails",
+    "properties": {
+      "AgentConnectionDetails": {
+        "type": {
+          "$ref": "#/63"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EndpointDetails",
+    "properties": {
+      "DownlinkAwsGroundStationAgentEndpoint": {
+        "type": {
+          "$ref": "#/62"
+        },
+        "flags": 0
+      },
+      "UplinkAwsGroundStationAgentEndpoint": {
+        "type": {
+          "$ref": "#/72"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IntegerRange",
+    "properties": {
+      "Maximum": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 1,
+        "description": "A maximum value."
+      },
+      "Minimum": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 1,
+        "description": "A minimum value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RangedConnectionDetails",
+    "properties": {
+      "Mtu": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0,
+        "description": "Maximum transmission unit (MTU) size in bytes of a dataflow endpoint."
+      },
+      "SocketAddress": {
+        "type": {
+          "$ref": "#/68"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RangedSocketAddress",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1,
+        "description": "IPv4 socket address."
+      },
+      "PortRange": {
+        "type": {
+          "$ref": "#/66"
+        },
+        "flags": 1,
+        "description": "Port range of a socket address."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SocketAddress",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1,
+        "description": "IPv4 socket address."
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 1,
+        "description": "Port of a socket address."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "UplinkAwsGroundStationAgentEndpoint",
+    "properties": {
+      "DataflowDetails": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 1
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "UplinkAwsGroundStationAgentEndpointDetails",
+    "properties": {
+      "AgentStatus": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 0
+      },
+      "AuditResults": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 0
+      },
+      "DataflowDetails": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 1
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "UplinkConnectionDetails",
+    "properties": {
+      "AgentIpAndPortAddress": {
+        "type": {
+          "$ref": "#/67"
+        },
+        "flags": 1
+      },
+      "IngressAddressAndPort": {
+        "type": {
+          "$ref": "#/59"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "UplinkDataflowDetails",
+    "properties": {
+      "AgentConnectionDetails": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.GroundStation/DataflowEndpointGroupV2Properties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/65"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/60"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/70"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.GroundStation/DataflowEndpointGroupV2Properties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 2
+      },
+      "ContactPostPassDurationSeconds": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0,
+        "description": "Amount of time, in seconds, after a contact ends that the Ground Station Dataflow Endpoint Group will be in a POSTPASS state. A Ground Station Dataflow Endpoint Group State Change event will be emitted when the Dataflow Endpoint Group enters and exits the POSTPASS state."
+      },
+      "ContactPrePassDurationSeconds": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0,
+        "description": "Amount of time, in seconds, before a contact starts that the Ground Station Dataflow Endpoint Group will be in a PREPASS state. A Ground Station Dataflow Endpoint Group State Change event will be emitted when the Dataflow Endpoint Group enters and exits the PREPASS state."
+      },
+      "EndpointDetails": {
+        "type": {
+          "$ref": "#/76"
+        },
+        "flags": 2
+      },
+      "Endpoints": {
+        "type": {
+          "$ref": "#/77"
+        },
+        "flags": 4
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 18
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/78"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.GroundStation/DataflowEndpointGroupV2",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/79"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.GroundStation/DataflowEndpointGroupV2@default",
+    "body": {
+      "$ref": "#/80"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -800,13 +1290,13 @@
     "properties": {
       "Destination": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0
       },
       "Source": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0
       }
@@ -818,13 +1308,19 @@
     "properties": {
       "KmsAliasArn": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
+        },
+        "flags": 0
+      },
+      "KmsAliasName": {
+        "type": {
+          "$ref": "#/30"
         },
         "flags": 0
       },
       "KmsKeyArn": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0
       }
@@ -836,13 +1332,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 1
       }
@@ -855,13 +1351,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/52"
+      "$ref": "#/82"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/54"
+      "$ref": "#/84"
     }
   },
   {
@@ -870,80 +1366,87 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 18
       },
       "ContactPostPassDurationSeconds": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "Post-pass time needed after the contact."
       },
       "ContactPrePassDurationSeconds": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "Pre-pass time needed before the contact."
       },
       "DataflowEdges": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/86"
         },
         "flags": 1,
         "description": ""
       },
       "Id": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 18
       },
       "MinimumViableContactDurationSeconds": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/31"
         },
         "flags": 1,
         "description": "Visibilities with shorter duration than the specified minimum viable contact duration will be ignored when searching for available contacts."
       },
       "Name": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 1,
         "description": "A name used to identify a mission profile."
       },
       "Region": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 2
       },
       "StreamsKmsKey": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/83"
         },
         "flags": 0,
         "description": "The ARN of a KMS Key used for encrypting data during transmission from the source to destination locations."
       },
       "StreamsKmsRole": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0,
         "description": "The ARN of the KMS Key or Alias Key role used to define permissions on KMS Key usage."
       },
       "Tags": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/87"
         },
         "flags": 0
       },
+      "TelemetrySinkConfigArn": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 0,
+        "description": "ARN of a Config resource of type TelemetrySinkConfig used for telemetry data sink configuration."
+      },
       "TrackingConfigArn": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 1
       }
@@ -955,21 +1458,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/30"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/88"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -979,10 +1482,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.GroundStation/MissionProfile@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/59"
+      "$ref": "#/89"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

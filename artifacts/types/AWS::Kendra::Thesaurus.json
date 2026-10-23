@@ -1,0 +1,198 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Kendra-Thesaurus",
+  "type": "AWS::Kendra::Thesaurus",
+  "time": "2026-10-21T20:54:40.055Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/IndexId",
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/IndexId"
+    ],
+    "definitions": {
+      "S3Path": {
+        "additionalProperties": false,
+        "description": "Information required to find a specific file in an Amazon S3 bucket.",
+        "properties": {
+          "Bucket": {
+            "description": "The name of the S3 bucket that contains the file.",
+            "maxLength": 63,
+            "minLength": 3,
+            "pattern": "^[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]$",
+            "type": "string"
+          },
+          "Key": {
+            "description": "The name of the file.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Bucket",
+          "Key"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair that identifies or categorizes a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key for the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value associated with the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "A thesaurus for an Amazon Kendra index. The thesaurus contains a list of synonyms in Solr format.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "kendra:CreateThesaurus",
+          "kendra:DescribeThesaurus",
+          "kendra:TagResource",
+          "iam:PassRole"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "kendra:DeleteThesaurus",
+          "kendra:DescribeThesaurus",
+          "kendra:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "IndexId": {
+              "maxLength": 36,
+              "minLength": 36,
+              "pattern": "^[a-zA-Z0-9][a-zA-Z0-9-]*$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "IndexId"
+          ]
+        },
+        "permissions": [
+          "kendra:ListThesauri"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "kendra:DescribeThesaurus",
+          "kendra:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "kendra:UpdateThesaurus",
+          "kendra:DescribeThesaurus",
+          "kendra:TagResource",
+          "kendra:UntagResource",
+          "kendra:ListTagsForResource",
+          "iam:PassRole"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the thesaurus.",
+        "pattern": "^arn:[a-z0-9-]+:kendra:[a-z0-9-]+:[0-9]{12}:index/[a-zA-Z0-9][a-zA-Z0-9-]*/thesaurus/[a-zA-Z0-9][a-zA-Z0-9_-]*$",
+        "type": "string"
+      },
+      "Description": {
+        "description": "A description for the thesaurus.",
+        "maxLength": 1000,
+        "minLength": 0,
+        "pattern": "^\\P{C}*$",
+        "type": "string"
+      },
+      "Id": {
+        "description": "The identifier of the thesaurus.",
+        "maxLength": 100,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]*$",
+        "type": "string"
+      },
+      "IndexId": {
+        "description": "The identifier of the index for the thesaurus.",
+        "maxLength": 36,
+        "minLength": 36,
+        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9-]*$",
+        "type": "string"
+      },
+      "Name": {
+        "description": "A name for the thesaurus.",
+        "maxLength": 100,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]*$",
+        "type": "string"
+      },
+      "RoleArn": {
+        "description": "An IAM role that gives Amazon Kendra permissions to access the thesaurus file specified in SourceS3Path.",
+        "maxLength": 1284,
+        "minLength": 0,
+        "pattern": "^arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}$",
+        "type": "string"
+      },
+      "SourceS3Path": {
+        "$ref": "#/definitions/S3Path"
+      },
+      "Tags": {
+        "description": "A list of key-value pairs that identify or categorize the thesaurus.",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "minItems": 0,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Id"
+    ],
+    "required": [
+      "IndexId",
+      "Name",
+      "RoleArn",
+      "SourceS3Path"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "kendra:TagResource",
+        "kendra:UntagResource",
+        "kendra:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Kendra::Thesaurus"
+  }
+}

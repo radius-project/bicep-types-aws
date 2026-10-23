@@ -87,10 +87,849 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CodeDeploy/Application@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/5"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Alarm",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the alarm. Maximum length is 255 characters. Each alarm name can be used only once in a list of alarms."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AlarmConfiguration",
+    "properties": {
+      "Alarms": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 0,
+        "description": "A list of alarms configured for the deployment or deployment group. A maximum of 10 alarms can be added."
+      },
+      "Enabled": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0,
+        "description": "Indicates whether the alarm configuration is enabled."
+      },
+      "IgnorePollAlarmFailure": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0,
+        "description": "Indicates whether a deployment should continue if information about the current state of alarms cannot be retrieved from Amazon CloudWatch. The default value is false."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AutoRollbackConfiguration",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0,
+        "description": "Indicates whether a defined automatic rollback configuration is currently enabled."
+      },
+      "Events": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0,
+        "description": "The event type or types that trigger a rollback."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BlueGreenDeploymentConfiguration",
+    "properties": {
+      "DeploymentReadyOption": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Information about the action to take when newly provisioned instances are ready to receive traffic in a blue/green deployment."
+      },
+      "GreenFleetProvisioningOption": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "Information about how instances are provisioned for a replacement environment in a blue/green deployment."
+      },
+      "TerminateBlueInstancesOnDeploymentSuccess": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "Information about whether to terminate instances in the original fleet during a blue/green deployment."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BlueInstanceTerminationOption",
+    "properties": {
+      "Action": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The action to take on instances in the original environment after a successful blue/green deployment."
+      },
+      "TerminationWaitTimeInMinutes": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0,
+        "description": "For an Amazon EC2 deployment, the number of minutes to wait after a successful blue/green deployment before terminating instances from the original environment. For an Amazon ECS deployment, the number of minutes before deleting the original (blue) task set. During an Amazon ECS deployment, CodeDeploy shifts traffic from the original (blue) task set to a replacement (green) task set. The maximum setting is 2880 minutes (2 days)."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Deployment",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A description of the deployment."
+      },
+      "IgnoreApplicationStopFailures": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0,
+        "description": "If true, then if an ApplicationStop, BeforeBlockTraffic, or AfterBlockTraffic deployment lifecycle event to an instance fails, then the deployment continues to the next deployment lifecycle event. If false or not specified, then if a lifecycle event fails during a deployment to an instance, that deployment fails. If deployment to that instance is part of an overall deployment and the number of healthy hosts is not less than the minimum number of healthy hosts, then a deployment to the next instance is attempted."
+      },
+      "Revision": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 1,
+        "description": "Information about the location of stored application artifacts and the service from which to retrieve them."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DeploymentReadyOption",
+    "properties": {
+      "ActionOnTimeout": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Information about when to reroute traffic from an original environment to a replacement environment in a blue/green deployment. CONTINUE_DEPLOYMENT: Register new instances with the load balancer immediately after the new application revision is installed on the instances in the replacement environment. STOP_DEPLOYMENT: Do not register new instances with a load balancer unless traffic rerouting is started using ContinueDeployment . If traffic rerouting is not started before the end of the specified wait period, the deployment status is changed to Stopped."
+      },
+      "WaitTimeInMinutes": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0,
+        "description": "The number of minutes to wait before the status of a blue/green deployment is changed to Stopped if rerouting is not started manually. Applies only to the STOP_DEPLOYMENT option for actionOnTimeout."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DeploymentStyle",
+    "properties": {
+      "DeploymentOption": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Indicates whether to route deployment traffic behind a load balancer."
+      },
+      "DeploymentType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Indicates whether to run an in-place or blue/green deployment."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EC2TagFilter",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The tag filter key."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The tag filter type."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The tag filter value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EC2TagSet",
+    "properties": {
+      "Ec2TagSetList": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 0,
+        "description": "The Amazon EC2 tags that are already applied to Amazon EC2 instances that you want to include in the deployment group. CodeDeploy includes all Amazon EC2 instances identified by any of the tags you specify in this deployment group."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EC2TagSetListObject",
+    "properties": {
+      "Ec2TagGroup": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 0,
+        "description": "A list that contains other lists of Amazon EC2 instance tag groups. For an instance to be included in the deployment group, it must be identified by all of the tag groups in the list."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ECSService",
+    "properties": {
+      "ClusterName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the cluster that the Amazon ECS service is associated with."
+      },
+      "ServiceName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the target Amazon ECS service."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ELBInfo",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "For blue/green deployments, the name of the load balancer that is used to route traffic from original instances to replacement instances in a blue/green deployment. For in-place deployments, the name of the load balancer that instances are deregistered from so they are not serving traffic during a deployment, and then re-registered with after the deployment is complete."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GitHubLocation",
+    "properties": {
+      "CommitId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The SHA1 commit ID of the GitHub commit that represents the bundled artifacts for the application revision."
+      },
+      "Repository": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The GitHub account and repository pair that stores the application revision to be deployed."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GreenFleetProvisioningOption",
+    "properties": {
+      "Action": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The method used to add instances to a replacement environment."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LoadBalancerInfo",
+    "properties": {
+      "ElbInfoList": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 0,
+        "description": "An array that contains information about the load balancers to use for load balancing in a deployment. If you're using Classic Load Balancers, specify those load balancers in this array."
+      },
+      "TargetGroupInfoList": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0,
+        "description": "An array that contains information about the target groups to use for load balancing in a deployment. If you're using Application Load Balancers and Network Load Balancers, specify their associated target groups in this array."
+      },
+      "TargetGroupPairInfoList": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "The target group pair information. This is an array of TargeGroupPairInfo objects with a maximum size of one."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OnPremisesTagSet",
+    "properties": {
+      "OnPremisesTagSetList": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0,
+        "description": "A list that contains other lists of on-premises instance tag groups. For an instance to be included in the deployment group, it must be identified by all of the tag groups in the list."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OnPremisesTagSetListObject",
+    "properties": {
+      "OnPremisesTagGroup": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0,
+        "description": "Information about groups of on-premises instance tags."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RevisionLocation",
+    "properties": {
+      "GitHubLocation": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      },
+      "RevisionType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The type of application revision."
+      },
+      "S3Location": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3Location",
+    "properties": {
+      "Bucket": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the Amazon S3 bucket where the application revision is stored."
+      },
+      "BundleType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The file type of the application revision."
+      },
+      "ETag": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ETag of the Amazon S3 object that represents the bundled artifacts for the application revision. If the ETag is not specified as an input parameter, ETag validation of the object is skipped."
+      },
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the Amazon S3 object that represents the bundled artifacts for the application revision."
+      },
+      "Version": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A specific version of the Amazon S3 object that represents the bundled artifacts for the application revision. If the version is not specified, the system uses the most recent version by default."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The tag's key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The tag's value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TagFilter",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The on-premises instance tag filter key."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The on-premises instance tag filter type"
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The on-premises instance tag filter value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TargetGroupInfo",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "For blue/green deployments, the name of the target group that instances in the original environment are deregistered from, and instances in the replacement environment registered with. For in-place deployments, the name of the target group that instances are deregistered from, so they are not serving traffic during a deployment, and then re-registered with after the deployment completes. No duplicates allowed."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TargetGroupPairInfo",
+    "properties": {
+      "ProdTrafficRoute": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0,
+        "description": "The path used by a load balancer to route production traffic when an Amazon ECS deployment is complete."
+      },
+      "TargetGroups": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0,
+        "description": "One pair of target groups. One is associated with the original task set. The second is associated with the task set that serves traffic after the deployment is complete."
+      },
+      "TestTrafficRoute": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0,
+        "description": "An optional path used by a load balancer to route test traffic after an Amazon ECS deployment. Validation can occur while test traffic is served during a deployment."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TrafficRoute",
+    "properties": {
+      "ListenerArns": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of one listener. The listener identifies the route between a target group and a load balancer. This is an array of strings with a maximum size of one."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TriggerConfig",
+    "properties": {
+      "TriggerEvents": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0,
+        "description": "The event type or types that trigger notifications."
+      },
+      "TriggerName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the notification trigger."
+      },
+      "TriggerTargetArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the Amazon Simple Notification Service topic through which notifications about deployment or instance events are sent."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/15"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/19"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/29"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/30"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/24"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/28"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/29"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CodeDeploy/DeploymentGroupProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/18"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/15"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/28"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/27"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/32"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CodeDeploy/DeploymentGroupProperties",
+    "properties": {
+      "AlarmConfiguration": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "Information about the Amazon CloudWatch alarms that are associated with the deployment group."
+      },
+      "ApplicationName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The name of an existing CodeDeploy application to associate this deployment group with."
+      },
+      "AutoRollbackConfiguration": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "Information about the automatic rollback configuration that is associated with the deployment group. If you specify this property, don't specify the Deployment property."
+      },
+      "AutoScalingGroups": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 0,
+        "description": "A list of associated Auto Scaling groups that CodeDeploy automatically deploys revisions to when new instances are created. Duplicates are not allowed."
+      },
+      "BlueGreenDeploymentConfiguration": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "Information about blue/green deployment options for a deployment group."
+      },
+      "Deployment": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "The application revision to deploy to this deployment group. If you specify this property, your target application revision is deployed as soon as the provisioning process is complete. If you specify this property, don't specify the AutoRollbackConfiguration property."
+      },
+      "DeploymentConfigName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A deployment configuration name or a predefined configuration name. With predefined configurations, you can deploy application revisions to one instance at a time (CodeDeployDefault.OneAtATime), half of the instances at a time (CodeDeployDefault.HalfAtATime), or all the instances at once (CodeDeployDefault.AllAtOnce)."
+      },
+      "DeploymentGroupName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "A name for the deployment group. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the deployment group name."
+      },
+      "DeploymentStyle": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "Attributes that determine the type of deployment to run and whether to route deployment traffic behind a load balancer. If you specify this property with a blue/green deployment type, don't specify the AutoScalingGroups, LoadBalancerInfo, or Deployment properties."
+      },
+      "ECSServices": {
+        "type": {
+          "$ref": "#/49"
+        },
+        "flags": 0,
+        "description": "The target Amazon ECS services in the deployment group. This applies only to deployment groups that use the Amazon ECS compute platform. A target Amazon ECS service is specified as an Amazon ECS cluster and service name pair using the format <clustername>:<servicename>."
+      },
+      "Ec2TagFilters": {
+        "type": {
+          "$ref": "#/50"
+        },
+        "flags": 0,
+        "description": "The Amazon EC2 tags that are already applied to Amazon EC2 instances that you want to include in the deployment group. CodeDeploy includes all Amazon EC2 instances identified by any of the tags you specify in this deployment group. Duplicates are not allowed. You can specify EC2TagFilters or Ec2TagSet, but not both."
+      },
+      "Ec2TagSet": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Information about groups of tags applied to Amazon EC2 instances. Use when the deployment group includes only Amazon EC2 instances identified by all the tag groups. Cannot be used in the same call as ec2TagFilter."
+      },
+      "LoadBalancerInfo": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Information about the load balancer to use in a deployment."
+      },
+      "OnPremisesInstanceTagFilters": {
+        "type": {
+          "$ref": "#/51"
+        },
+        "flags": 0,
+        "description": "The on-premises instance tags already applied to on-premises instances that you want to include in the deployment group. CodeDeploy includes all on-premises instances identified by any of the tags you specify in this deployment group. Duplicates are not allowed. You can specify OnPremisesInstanceTagFilters or OnPremisesInstanceTagSet, but not both."
+      },
+      "OnPremisesTagSet": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "Information about groups of tags applied to on-premises instances. The deployment group includes only on-premises instances identified by all the tag groups. You can specify OnPremisesInstanceTagFilters or OnPremisesInstanceTagSet, but not both."
+      },
+      "OutdatedInstancesStrategy": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Indicates what happens when new Amazon EC2 instances are launched mid-deployment and do not receive the deployed application revision. If this option is set to UPDATE or is unspecified, CodeDeploy initiates one or more 'auto-update outdated instances' deployments to apply the deployed application revision to the new Amazon EC2 instances. If this option is set to IGNORE, CodeDeploy does not initiate a deployment to update the new Amazon EC2 instances. This may result in instances having different revisions."
+      },
+      "ServiceRoleArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "A service role Amazon Resource Name (ARN) that grants CodeDeploy permission to make calls to AWS services on your behalf. For more information, see 'Create a Service Role for AWS CodeDeploy' in the AWS CodeDeploy User Guide."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/52"
+        },
+        "flags": 0,
+        "description": "The metadata that you apply to CodeDeploy deployment groups to help you organize and categorize them. Each tag consists of a key and an optional value, both of which you define."
+      },
+      "TerminationHookEnabled": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0,
+        "description": "Indicates whether the deployment group was configured to have CodeDeploy install a termination hook into an Auto Scaling group."
+      },
+      "TriggerConfigurations": {
+        "type": {
+          "$ref": "#/53"
+        },
+        "flags": 0,
+        "description": "Information about triggers associated with the deployment group. Duplicates are not allowed."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CodeDeploy/DeploymentGroup",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CodeDeploy/DeploymentGroup@default",
+    "body": {
+      "$ref": "#/55"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

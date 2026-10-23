@@ -1,0 +1,229 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-Workteam",
+  "type": "AWS::SageMaker::Workteam",
+  "time": "2026-09-24T00:28:21.081Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/WorkteamName",
+      "/properties/WorkforceName"
+    ],
+    "definitions": {
+      "CognitoMemberDefinition": {
+        "additionalProperties": false,
+        "description": "The Amazon Cognito user group that is part of the work team.",
+        "properties": {
+          "CognitoClientId": {
+            "description": "An identifier for an application client. You must create the app client ID using Amazon Cognito.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "CognitoUserGroup": {
+            "description": "An identifier for a user group.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "CognitoUserPool": {
+            "description": "An identifier for a user pool. The user pool must be in the same region as the service that you are calling.",
+            "maxLength": 55,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "CognitoUserPool",
+          "CognitoClientId",
+          "CognitoUserGroup"
+        ],
+        "type": "object"
+      },
+      "MemberDefinition": {
+        "additionalProperties": false,
+        "description": "Defines an Amazon Cognito or your own OIDC IdP user group that is part of a work team.",
+        "properties": {
+          "CognitoMemberDefinition": {
+            "$ref": "#/definitions/CognitoMemberDefinition",
+            "description": "The Amazon Cognito user group that is part of the work team"
+          },
+          "OidcMemberDefinition": {
+            "$ref": "#/definitions/OidcMemberDefinition",
+            "description": "A list user groups that exist in your OIDC Identity Provider (IdP)."
+          }
+        },
+        "type": "object"
+      },
+      "NotificationConfiguration": {
+        "additionalProperties": false,
+        "description": "Configures SNS notifications of available or expiring work items for work teams.",
+        "properties": {
+          "NotificationTopicArn": {
+            "description": "The Amazon Resource Name (ARN) of the Amazon SNS topic to which notifications should be published.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "NotificationTopicArn"
+        ],
+        "type": "object"
+      },
+      "OidcMemberDefinition": {
+        "additionalProperties": false,
+        "description": "A list of user groups that exist in your OIDC Identity Provider (IdP).",
+        "properties": {
+          "OidcGroups": {
+            "description": "A list of OIDC group names whose members will be part of this workteam",
+            "items": {
+              "maxLength": 63,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": false
+          }
+        },
+        "required": [
+          "OidcGroups"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "An array of key-value pairs.",
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value",
+          "Key"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::SageMaker::Workteam",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "sagemaker:CreateWorkteam",
+          "sagemaker:AddTags",
+          "sagemaker:ListWorkforces",
+          "cognito-idp:DescribeUserPool",
+          "cognito-idp:DescribeUserPoolClient",
+          "cognito-idp:UpdateUserPoolClient",
+          "cognito-idp:ListGroups",
+          "cognito-idp:AdminListGroupsForUser"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "sagemaker:DeleteWorkteam"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "sagemaker:ListWorkteams"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "sagemaker:DescribeWorkteam",
+          "sagemaker:ListTags"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "sagemaker:UpdateWorkteam",
+          "sagemaker:AddTags",
+          "sagemaker:DeleteTags",
+          "sagemaker:ListWorkforces",
+          "cognito-idp:DescribeUserPool",
+          "cognito-idp:DescribeUserPoolClient",
+          "cognito-idp:UpdateUserPoolClient",
+          "cognito-idp:ListGroups",
+          "cognito-idp:AdminListGroupsForUser"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/WorkteamArn"
+    ],
+    "properties": {
+      "Description": {
+        "description": "A description of the work team.",
+        "maxLength": 200,
+        "minLength": 1,
+        "type": "string"
+      },
+      "MemberDefinitions": {
+        "description": "A list of MemberDefinition objects that contains objects that identify the workers that make up the work team.",
+        "items": {
+          "$ref": "#/definitions/MemberDefinition"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "NotificationConfiguration": {
+        "$ref": "#/definitions/NotificationConfiguration",
+        "description": "Configures SNS notifications of available or expiring work items for work teams."
+      },
+      "Tags": {
+        "description": "An array of key-value pairs.",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "WorkforceName": {
+        "description": "The name of the Workforce",
+        "maxLength": 63,
+        "minLength": 1,
+        "type": "string"
+      },
+      "WorkteamArn": {
+        "description": "The Amazon Resource Name (ARN) that identifies the work team.",
+        "pattern": "^arn:.*",
+        "type": "string"
+      },
+      "WorkteamName": {
+        "description": "The name of the work team.",
+        "maxLength": 63,
+        "minLength": 1,
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/WorkteamArn"
+    ],
+    "required": [
+      "Description",
+      "MemberDefinitions"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "sagemaker:ListTags",
+        "sagemaker:AddTags",
+        "sagemaker:DeleteTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::SageMaker::Workteam",
+    "writeOnlyProperties": [
+      "/properties/WorkforceName"
+    ]
+  }
+}

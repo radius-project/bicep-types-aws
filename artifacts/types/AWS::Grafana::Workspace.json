@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Grafana-Workspace",
   "type": "AWS::Grafana::Workspace",
-  "time": "2025-01-23T20:23:51.441Z",
+  "time": "2026-10-02T19:36:16.364Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -285,6 +285,8 @@
           "grafana:DescribeWorkspaceAuthentication",
           "grafana:DescribeWorkspaceConfiguration",
           "grafana:UpdateWorkspaceAuthentication",
+          "grafana:ListTagsForResource",
+          "grafana:TagResource",
           "sso:DescribeRegisteredRegions",
           "sso:CreateManagedApplicationInstance",
           "organizations:DescribeOrganization",
@@ -294,6 +296,8 @@
           "ec2:DescribeSecurityGroups",
           "ec2:DescribeSubnets",
           "ec2:DescribeVpcs",
+          "ec2:DescribeDhcpOptions",
+          "ec2:DescribeNetworkInterfaces",
           "iam:CreateServiceLinkedRole",
           "sso:ListApplicationInstances",
           "sso:GetApplicationInstance"
@@ -313,14 +317,16 @@
         "permissions": [
           "grafana:ListWorkspaces",
           "grafana:DescribeWorkspaceAuthentication",
-          "grafana:DescribeWorkspaceConfiguration"
+          "grafana:DescribeWorkspaceConfiguration",
+          "grafana:ListTagsForResource"
         ]
       },
       "read": {
         "permissions": [
           "grafana:DescribeWorkspace",
           "grafana:DescribeWorkspaceAuthentication",
-          "grafana:DescribeWorkspaceConfiguration"
+          "grafana:DescribeWorkspaceConfiguration",
+          "grafana:ListTagsForResource"
         ]
       },
       "update": {
@@ -331,6 +337,9 @@
           "grafana:UpdateWorkspace",
           "grafana:UpdateWorkspaceAuthentication",
           "grafana:UpdateWorkspaceConfiguration",
+          "grafana:TagResource",
+          "grafana:UntagResource",
+          "grafana:ListTagsForResource",
           "sso:DescribeRegisteredRegions",
           "sso:CreateManagedApplicationInstance",
           "ec2:GetManagedPrefixListEntries",
@@ -338,6 +347,8 @@
           "ec2:DescribeSecurityGroups",
           "ec2:DescribeSubnets",
           "ec2:DescribeVpcs",
+          "ec2:DescribeDhcpOptions",
+          "ec2:DescribeNetworkInterfaces",
           "iam:CreateServiceLinkedRole",
           "sso:ListApplicationInstances",
           "sso:GetApplicationInstance"
@@ -468,6 +479,32 @@
       "Status": {
         "$ref": "#/definitions/WorkspaceStatus"
       },
+      "Tags": {
+        "description": "The list of tags associated with the workspace.",
+        "insertionOrder": false,
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "Value": {
+              "maxLength": 256,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
       "VpcConfiguration": {
         "$ref": "#/definitions/VpcConfiguration"
       }
@@ -488,9 +525,15 @@
     ],
     "tagging": {
       "cloudFormationSystemTags": false,
-      "tagOnCreate": false,
-      "tagUpdatable": false,
-      "taggable": false
+      "permissions": [
+        "grafana:TagResource",
+        "grafana:UntagResource",
+        "grafana:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
     },
     "typeName": "AWS::Grafana::Workspace",
     "writeOnlyProperties": [

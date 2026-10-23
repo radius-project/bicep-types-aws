@@ -1,13 +1,19 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaConnect-FlowOutput",
   "type": "AWS::MediaConnect::FlowOutput",
-  "time": "2025-01-23T23:22:46.814Z",
+  "time": "2026-10-14T03:54:27.144Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
-      "/properties/Name"
+      "/properties/Name",
+      "/properties/FlowArn"
     ],
     "definitions": {
+      "AutomaticEncryptionKeyConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration settings for automatic encryption key management, where MediaConnect handles key creation and rotation.",
+        "type": "object"
+      },
       "DestinationConfiguration": {
         "additionalProperties": false,
         "description": "The definition of a media stream that is associated with the output.",
@@ -78,10 +84,12 @@
           },
           "RoleArn": {
             "description": "The ARN of the role that you created during setup (when you set up AWS Elemental MediaConnect as a trusted entity).",
+            "pattern": "^arn:(aws[a-zA-Z-]*):iam::[0-9]{12}:role/[a-zA-Z0-9_+=,.@-]+$",
             "type": "string"
           },
           "SecretArn": {
             "description": " The ARN of the secret that you created in AWS Secrets Manager to store the encryption key. This parameter is required for static key encryption and is not valid for SPEKE encryption.",
+            "pattern": "^arn:(aws[a-zA-Z-]*):secretsmanager:[a-z0-9-]+:[0-9]{12}:secret:[a-zA-Z0-9/_+=.@-]+$",
             "type": "string"
           }
         },
@@ -90,6 +98,60 @@
           "SecretArn"
         ],
         "type": "object"
+      },
+      "FlowTransitEncryption": {
+        "additionalProperties": false,
+        "description": "The configuration that defines how content is encrypted during transit between the MediaConnect router and a MediaConnect flow.",
+        "properties": {
+          "EncryptionKeyConfiguration": {
+            "$ref": "#/definitions/FlowTransitEncryptionKeyConfiguration"
+          },
+          "EncryptionKeyType": {
+            "$ref": "#/definitions/FlowTransitEncryptionKeyType"
+          }
+        },
+        "required": [
+          "EncryptionKeyConfiguration"
+        ],
+        "type": "object"
+      },
+      "FlowTransitEncryptionKeyConfiguration": {
+        "description": "Configuration settings for flow transit encryption keys.",
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "SecretsManager": {
+                "$ref": "#/definitions/SecretsManagerEncryptionKeyConfiguration"
+              }
+            },
+            "required": [
+              "SecretsManager"
+            ],
+            "title": "SecretsManager",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Automatic": {
+                "$ref": "#/definitions/AutomaticEncryptionKeyConfiguration"
+              }
+            },
+            "required": [
+              "Automatic"
+            ],
+            "title": "Automatic",
+            "type": "object"
+          }
+        ]
+      },
+      "FlowTransitEncryptionKeyType": {
+        "enum": [
+          "SECRETS_MANAGER",
+          "AUTOMATIC"
+        ],
+        "type": "string"
       },
       "Interface": {
         "additionalProperties": false,
@@ -141,6 +203,43 @@
         ],
         "type": "object"
       },
+      "SecretsManagerEncryptionKeyConfiguration": {
+        "additionalProperties": false,
+        "description": "The configuration settings for transit encryption of a flow output using AWS Secrets Manager, including the secret ARN and role ARN.",
+        "properties": {
+          "RoleArn": {
+            "description": "The ARN of the IAM role used for transit encryption to the router input using AWS Secrets Manager.",
+            "pattern": "^arn:(aws[a-zA-Z-]*):iam::[0-9]{12}:role/[a-zA-Z0-9_+=,.@-]+$",
+            "type": "string"
+          },
+          "SecretArn": {
+            "description": "The ARN of the AWS Secrets Manager secret used for transit encryption to the router input.",
+            "pattern": "^arn:(aws[a-zA-Z-]*):secretsmanager:[a-z0-9-]+:[0-9]{12}:secret:[a-zA-Z0-9/_+=.@-]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "RoleArn",
+          "SecretArn"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
       "VpcInterfaceAttachment": {
         "additionalProperties": false,
         "description": "The settings for attaching a VPC interface to an output.",
@@ -158,29 +257,50 @@
       "create": {
         "permissions": [
           "iam:PassRole",
-          "mediaconnect:AddFlowOutputs"
+          "mediaconnect:AddFlowOutputs",
+          "mediaconnect:DescribeFlow",
+          "mediaconnect:TagResource",
+          "mediaconnect:ListTagsForResource"
         ]
       },
       "delete": {
         "permissions": [
           "mediaconnect:DescribeFlow",
+          "mediaconnect:ListFlows",
           "mediaconnect:RemoveFlowOutput"
         ]
       },
       "list": {
+        "handlerSchema": {
+          "properties": {
+            "FlowArn": {
+              "$ref": "resource-schema.json#/properties/FlowArn"
+            }
+          },
+          "required": [
+            "FlowArn"
+          ]
+        },
         "permissions": [
-          "mediaconnect:DescribeFlow"
+          "mediaconnect:DescribeFlow",
+          "mediaconnect:ListFlows"
         ]
       },
       "read": {
         "permissions": [
-          "mediaconnect:DescribeFlow"
+          "mediaconnect:DescribeFlow",
+          "mediaconnect:ListFlows",
+          "mediaconnect:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
+          "iam:PassRole",
           "mediaconnect:DescribeFlow",
-          "mediaconnect:UpdateFlowOutput"
+          "mediaconnect:UpdateFlowOutput",
+          "mediaconnect:TagResource",
+          "mediaconnect:UntagResource",
+          "mediaconnect:ListTagsForResource"
         ]
       }
     },
@@ -209,6 +329,7 @@
       },
       "FlowArn": {
         "description": "The Amazon Resource Name (ARN), a unique identifier for any AWS resource, of the flow.",
+        "pattern": "^arn:(aws[a-zA-Z-]*):mediaconnect:[a-z0-9-]+:[0-9]{12}:flow:[a-zA-Z0-9-]+:[a-zA-Z0-9_-]+$",
         "type": "string"
       },
       "MaxLatency": {
@@ -230,8 +351,31 @@
         "description": "The name of the output. This value must be unique within the current flow.",
         "type": "string"
       },
+      "NdiAudioReferenceLevel": {
+        "description": "The audio reference level of the NDI receiver, in dBFS.",
+        "maximum": 0,
+        "minimum": -40,
+        "type": "integer"
+      },
+      "NdiOutputTimecodeSource": {
+        "description": "The timecode source for the NDI output.",
+        "enum": [
+          "EMBEDDED_TIMECODE",
+          "UTC_SYSTEM_TIME"
+        ],
+        "type": "string"
+      },
+      "NdiProgramName": {
+        "description": "A suffix for the names of the NDI sources that the flow creates. If a custom name isn't specified, MediaConnect uses the output name.",
+        "type": "string"
+      },
+      "NdiSpeedHqQuality": {
+        "description": "A quality setting for the NDI Speed HQ encoder.",
+        "type": "integer"
+      },
       "OutputArn": {
         "description": "The ARN of the output.",
+        "pattern": "^arn:(aws[a-zA-Z-]*):mediaconnect:[a-z0-9-]+:[0-9]{12}:output:[a-zA-Z0-9-]+:[a-zA-Z0-9_-]+$",
         "type": "string"
       },
       "OutputStatus": {
@@ -254,17 +398,27 @@
           "rtp",
           "zixi-pull",
           "rist",
-          "fujitsu-qos",
           "srt-listener",
           "srt-caller",
           "st2110-jpegxs",
-          "cdi"
+          "cdi",
+          "ndi-speed-hq"
         ],
         "type": "string"
       },
       "RemoteId": {
         "description": "The remote ID for the Zixi-pull stream.",
         "type": "string"
+      },
+      "RouterIntegrationState": {
+        "enum": [
+          "ENABLED",
+          "DISABLED"
+        ],
+        "type": "string"
+      },
+      "RouterIntegrationTransitEncryption": {
+        "$ref": "#/definitions/FlowTransitEncryption"
       },
       "SmoothingLatency": {
         "description": "The smoothing latency in milliseconds for RIST, RTP, and RTP-FEC streams.",
@@ -273,6 +427,15 @@
       "StreamId": {
         "description": "The stream ID that you want to use for this transport. This parameter applies only to Zixi-based streams.",
         "type": "string"
+      },
+      "Tags": {
+        "description": "Key-value pairs that can be used to tag and organize this flow output.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
       },
       "VpcInterfaceAttachment": {
         "$ref": "#/definitions/VpcInterfaceAttachment",
@@ -283,10 +446,21 @@
       "/properties/OutputArn"
     ],
     "required": [
-      "FlowArn",
-      "Protocol"
+      "FlowArn"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-mediaconnect.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "mediaconnect:TagResource",
+        "mediaconnect:UntagResource",
+        "mediaconnect:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::MediaConnect::FlowOutput"
   }
 }

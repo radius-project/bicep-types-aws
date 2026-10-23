@@ -1,0 +1,151 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-WorkSpaces-WorkspaceIpGroup",
+  "type": "AWS::WorkSpaces::WorkspaceIpGroup",
+  "time": "2026-10-21T23:06:09.236Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/GroupId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/GroupName",
+      "/properties/GroupDesc"
+    ],
+    "definitions": {
+      "IpRuleItem": {
+        "additionalProperties": false,
+        "description": "Describes a rule for an IP access control group.",
+        "properties": {
+          "IpRule": {
+            "description": "The IP address range, in CIDR notation.",
+            "type": "string"
+          },
+          "RuleDesc": {
+            "description": "The description of the rule.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "IpRule"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "Describes a tag.",
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for an IP access control group for Amazon WorkSpaces.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "workspaces:CreateIpGroup",
+          "workspaces:DescribeIpGroups",
+          "workspaces:CreateTags",
+          "workspaces:DescribeTags"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "workspaces:DeleteIpGroup",
+          "workspaces:DescribeIpGroups"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "workspaces:DescribeIpGroups"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "workspaces:DescribeIpGroups",
+          "workspaces:DescribeTags"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "workspaces:UpdateRulesOfIpGroup",
+          "workspaces:AuthorizeIpRules",
+          "workspaces:RevokeIpRules",
+          "workspaces:DescribeIpGroups",
+          "workspaces:CreateTags",
+          "workspaces:DeleteTags",
+          "workspaces:DescribeTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the IP access control group.",
+        "type": "string"
+      },
+      "GroupDesc": {
+        "description": "The description of the group.",
+        "type": "string"
+      },
+      "GroupId": {
+        "description": "The identifier of the IP access control group.",
+        "pattern": "^wsipg-[0-9a-z]{8,63}$",
+        "type": "string"
+      },
+      "GroupName": {
+        "description": "The name of the group.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags for the IP access control group.",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "UserRules": {
+        "description": "The rules for the IP access control group.",
+        "items": {
+          "$ref": "#/definitions/IpRuleItem"
+        },
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/GroupId"
+    ],
+    "required": [
+      "GroupName"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "workspaces:CreateTags",
+        "workspaces:DeleteTags",
+        "workspaces:DescribeTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::WorkSpaces::WorkspaceIpGroup"
+  }
+}

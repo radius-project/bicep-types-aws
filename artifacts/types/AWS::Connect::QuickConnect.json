@@ -1,14 +1,27 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Connect-QuickConnect",
   "type": "AWS::Connect::QuickConnect",
-  "time": "2025-01-21T22:32:52.324Z",
+  "time": "2026-09-29T14:52:32.49Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
       "ContactFlowArn": {
         "description": "The identifier of the contact flow.",
-        "pattern": "^arn:aws[-a-z0-9]*:connect:[-a-z0-9]*:[0-9]{12}:instance/[-a-zA-Z0-9]*/contact-flow/[-a-zA-Z0-9]*$",
+        "pattern": "^arn:aws[-a-z0-9]*:connect:[-a-z0-9]*:[0-9]{12}:instance/[-a-zA-Z0-9]*/contact-flow/[-a-zA-Z0-9]*(:[a-zA-Z0-9-]+)?$",
         "type": "string"
+      },
+      "FlowQuickConnectConfig": {
+        "additionalProperties": false,
+        "description": "The flow configuration. This is required only if QuickConnectType is FLOW.",
+        "properties": {
+          "ContactFlowArn": {
+            "$ref": "#/definitions/ContactFlowArn"
+          }
+        },
+        "required": [
+          "ContactFlowArn"
+        ],
+        "type": "object"
       },
       "PhoneNumber": {
         "description": "The phone number in E.164 format.",
@@ -54,6 +67,9 @@
         "additionalProperties": false,
         "description": "Configuration settings for the quick connect.",
         "properties": {
+          "FlowConfig": {
+            "$ref": "#/definitions/FlowQuickConnectConfig"
+          },
           "PhoneConfig": {
             "$ref": "#/definitions/PhoneNumberQuickConnectConfig"
           },
@@ -77,7 +93,8 @@
         "enum": [
           "PHONE_NUMBER",
           "QUEUE",
-          "USER"
+          "USER",
+          "FLOW"
         ],
         "type": "string"
       },
@@ -205,7 +222,8 @@
         "enum": [
           "PHONE_NUMBER",
           "QUEUE",
-          "USER"
+          "USER",
+          "FLOW"
         ],
         "type": "string"
       },
@@ -231,7 +249,7 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-connect",
     "tagging": {
-      "cloudFormationSystemTags": true,
+      "cloudFormationSystemTags": false,
       "permissions": [
         "connect:TagResource",
         "connect:UntagResource"

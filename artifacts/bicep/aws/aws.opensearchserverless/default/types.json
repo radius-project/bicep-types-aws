@@ -74,15 +74,63 @@
   {
     "$type": "ResourceType",
     "name": "AWS.OpenSearchServerless/AccessPolicy@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/4"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
     "name": "CollectionType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DeletionProtection",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EncryptionConfig",
+    "properties": {
+      "AWSOwnedKey": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "Indicates whether to use an AWS owned key for encryption."
+      },
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Key Management Service key used to encrypt the collection."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FipsEndpoints",
+    "properties": {
+      "CollectionEndpoint": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "DashboardEndpoint": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServerlessVectorAcceleration",
     "properties": {}
   },
   {
@@ -111,13 +159,28 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "VectorOptions",
+    "properties": {
+      "ServerlessVectorAcceleration": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
     "$type": "StringLiteralType",
     "value": "AWS.OpenSearchServerless/CollectionProperties"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/12"
     }
   },
   {
@@ -138,12 +201,25 @@
         "flags": 2,
         "description": "The endpoint for the collection."
       },
+      "CollectionGroupName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the collection group to associate with the collection."
+      },
       "DashboardEndpoint": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 2,
         "description": "The OpenSearch Dashboards endpoint for the collection."
+      },
+      "DeletionProtection": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
       },
       "Description": {
         "type": {
@@ -152,6 +228,18 @@
         "flags": 0,
         "description": "The description of the collection"
       },
+      "EncryptionConfig": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 4
+      },
+      "FipsEndpoints": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2
+      },
       "Id": {
         "type": {
           "$ref": "#/1"
@@ -159,12 +247,19 @@
         "flags": 18,
         "description": "The identifier of the collection"
       },
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Key Management Service key used to encrypt the collection."
+      },
       "Name": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The name of the collection.\n\nThe name must meet the following criteria:\nUnique to your account and AWS Region\nStarts with a lowercase letter\nContains only lowercase letters a-z, the numbers 0-9 and the hyphen (-)\nContains between 3 and 32 characters\n"
+        "description": "The name of the collection.\n\nThe name must meet the following criteria:\nUnique to your account and AWS Region\nStarts with a lowercase letter\nContains only lowercase letters a-z, the numbers 0-9 and the hyphen (-)\nContains between 3 and 64 characters\n"
       },
       "StandbyReplicas": {
         "type": {
@@ -174,7 +269,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/16"
         },
         "flags": 4,
         "description": "List of tags to be added to the resource"
@@ -182,6 +277,12 @@
       "Type": {
         "type": {
           "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "VectorOptions": {
+        "type": {
+          "$ref": "#/13"
         },
         "flags": 0
       }
@@ -207,7 +308,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/17"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -217,11 +318,540 @@
   {
     "$type": "ResourceType",
     "name": "AWS.OpenSearchServerless/Collection@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/12"
+      "$ref": "#/18"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CapacityLimits",
+    "properties": {
+      "MaxIndexingCapacityInOcu": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The maximum indexing capacity for collections in the group."
+      },
+      "MaxSearchCapacityInOcu": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The maximum search capacity for collections in the group."
+      },
+      "MinIndexingCapacityInOcu": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The minimum indexing capacity for collections in the group."
+      },
+      "MinSearchCapacityInOcu": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The minimum search capacity for collections in the group."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key in the key-value pair"
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value in the key-value pair"
+      }
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.OpenSearchServerless/CollectionGroupProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/21"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.OpenSearchServerless/CollectionGroupProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the collection group."
+      },
+      "CapacityLimits": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The description of the collection group."
+      },
+      "Generation": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The generation of Amazon OpenSearch Serverless for the collection group. Valid values are CLASSIC and NEXTGEN."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The unique identifier of the collection group."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the collection group."
+      },
+      "StandbyReplicas": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Indicates whether standby replicas are used for the collection group."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.OpenSearchServerless/CollectionGroup",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.OpenSearchServerless/CollectionGroup@default",
+    "body": {
+      "$ref": "#/26"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.OpenSearchServerless/CollectionIndexProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.OpenSearchServerless/CollectionIndexProperties",
+    "properties": {
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The identifier of the collection"
+      },
+      "IndexName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The name of the collection index"
+      },
+      "IndexSchema": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The Mappings for the collection index"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.OpenSearchServerless/CollectionIndex",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.OpenSearchServerless/CollectionIndex@default",
+    "body": {
+      "$ref": "#/30"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IndexSettings",
+    "properties": {
+      "Analysis": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0,
+        "description": "Custom analysis configuration including analyzers, tokenizers, and filters"
+      },
+      "Index": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PropertyMapping",
+    "properties": {
+      "Analyzer": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The analyzer to use for this field (for text and keyword fields)"
+      },
+      "CompressionLevel": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The compression level for knn_vector fields"
+      },
+      "DataType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The data type for knn_vector fields (e.g. float, byte). Controls how vector values are stored."
+      },
+      "Dimension": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Dimension size for vector fields, defines the number of dimensions in the vector"
+      },
+      "Index": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "Whether a field should be indexed"
+      },
+      "Method": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 0,
+        "description": "Configuration for k-NN search method"
+      },
+      "Properties": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 0,
+        "description": "Nested fields within an object or nested field type"
+      },
+      "SpaceType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The distance function used for k-NN search (field-level, outside Method)"
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The field data type. Must be a valid OpenSearch field type."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Default value for the field when not specified in a document"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Index_Analysis_Analyzer",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Index_Analysis",
+    "properties": {
+      "Analyzer": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0,
+        "description": "Custom analyzer definitions"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Index_Index",
+    "properties": {
+      "Knn": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "Enable/disable k-nearest neighbor search capability"
+      },
+      "KnnAlgoParamEfSearch": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 4,
+        "description": "Size of the dynamic list for the nearest neighbors"
+      },
+      "RefreshInterval": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "How often to perform refresh operation (e.g. '1s', '5s')"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Index_Method_Parameters",
+    "properties": {
+      "EfConstruction": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The size of the dynamic list used during k-NN graph creation"
+      },
+      "M": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Number of neighbors to consider during k-NN search"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Index_Method",
+    "properties": {
+      "Engine": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The k-NN search engine to use"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The algorithm name for k-NN search"
+      },
+      "Parameters": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 0,
+        "description": "Additional parameters for the k-NN algorithm"
+      },
+      "SpaceType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The distance function used for k-NN search"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Index_Properties",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.OpenSearchServerless/IndexProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Index_Mappings_Properties",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Index_Mappings",
+    "properties": {
+      "Properties": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "Defines the fields within the mapping, including their types and configurations"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.OpenSearchServerless/IndexProperties",
+    "properties": {
+      "CollectionEndpoint": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The endpoint for the collection."
+      },
+      "IndexName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The name of the OpenSearch Serverless index."
+      },
+      "Mappings": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0,
+        "description": "Index Mappings"
+      },
+      "Settings": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 0,
+        "description": "Index settings"
+      },
+      "Uuid": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The unique identifier for the index."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.OpenSearchServerless/Index",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.OpenSearchServerless/Index@default",
+    "body": {
+      "$ref": "#/44"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -285,7 +915,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/48"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -295,11 +925,31 @@
   {
     "$type": "ResourceType",
     "name": "AWS.OpenSearchServerless/LifecyclePolicy@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/17"
+      "$ref": "#/49"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IamFederationConfigOptions",
+    "properties": {
+      "GroupAttribute": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Group attribute for this IAM federation integration"
+      },
+      "UserAttribute": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "User attribute for this IAM federation integration"
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -383,9 +1033,16 @@
         "flags": 1,
         "description": "The XML saml provider metadata document that you want to use"
       },
+      "OpenSearchServerlessEntityId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Custom entity id attribute to override default entity id for this saml integration"
+      },
       "SessionTimeout": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/22"
         },
         "flags": 0,
         "description": "Defines the session timeout in minutes"
@@ -405,9 +1062,6 @@
     "properties": {}
   },
   {
-    "$type": "IntegerType"
-  },
-  {
     "$type": "StringLiteralType",
     "value": "AWS.OpenSearchServerless/SecurityConfigProperties"
   },
@@ -422,9 +1076,15 @@
         "flags": 0,
         "description": "Security config description"
       },
+      "IamFederationOptions": {
+        "type": {
+          "$ref": "#/51"
+        },
+        "flags": 0
+      },
       "IamIdentityCenterOptions": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/53"
         },
         "flags": 0
       },
@@ -444,7 +1104,7 @@
       },
       "SamlOptions": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/57"
         },
         "flags": 0
       },
@@ -476,7 +1136,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/60"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -486,11 +1146,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.OpenSearchServerless/SecurityConfig@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/29"
+      "$ref": "#/61"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -554,7 +1214,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/65"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -564,11 +1224,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.OpenSearchServerless/SecurityPolicy@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/34"
+      "$ref": "#/66"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "StringLiteralType",
@@ -606,14 +1266,14 @@
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": "The ID of one or more security groups to associate with the endpoint network interface"
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/70"
         },
         "flags": 1,
         "description": "The ID of one or more subnets in which to create an endpoint network interface"
@@ -647,7 +1307,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/71"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -657,10 +1317,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.OpenSearchServerless/VpcEndpoint@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/40"
+      "$ref": "#/72"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

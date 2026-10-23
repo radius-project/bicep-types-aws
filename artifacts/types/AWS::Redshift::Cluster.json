@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Redshift-Cluster",
   "type": "AWS::Redshift::Cluster",
-  "time": "2024-12-21T01:10:02.4Z",
+  "time": "2026-10-01T16:47:58.945Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -30,10 +30,6 @@
         "additionalProperties": false,
         "properties": {
           "BucketName": {
-            "relationshipRef": {
-              "propertyPath": "/properties/BucketName",
-              "typeName": "AWS::S3::Bucket"
-            },
             "type": "string"
           },
           "LogDestinationType": {
@@ -93,26 +89,22 @@
           "redshift:GetResourcePolicy",
           "redshift:PutResourcePolicy",
           "redshift:ModifyClusterMaintenance",
-          "ec2:DescribeVpcs",
-          "ec2:DescribeSubnets",
-          "ec2:DescribeNetworkInterfaces",
-          "ec2:DescribeAddresses",
+          "ec2:Describe*",
           "ec2:AssociateAddress",
           "ec2:CreateNetworkInterface",
           "ec2:ModifyNetworkInterfaceAttribute",
           "ec2:CreateVpcEndpoint",
-          "ec2:DescribeVpcEndpoints",
           "ec2:ModifyVpcEndpoint",
           "ec2:AllocateAddress",
           "ec2:CreateSecurityGroup",
-          "ec2:DescribeVpcAttribute",
-          "ec2:DescribeSecurityGroups",
-          "ec2:DescribeInternetGateways",
-          "ec2:DescribeSecurityGroupRules",
-          "ec2:DescribeAvailabilityZones",
-          "ec2:DescribeNetworkAcls",
-          "ec2:DescribeRouteTables",
-          "cloudwatch:PutMetricData"
+          "cloudwatch:PutMetricData",
+          "kms:GenerateDataKey",
+          "kms:CreateGrant",
+          "kms:DescribeKey",
+          "kms:Encrypt",
+          "kms:Decrypt",
+          "secretsmanager:CreateSecret",
+          "secretsmanager:TagResource"
         ],
         "timeoutInMinutes": 2160
       },
@@ -168,7 +160,14 @@
           "redshift:PutResourcePolicy",
           "redshift:GetResourcePolicy",
           "redshift:DeleteResourcePolicy",
-          "cloudwatch:PutMetricData"
+          "cloudwatch:PutMetricData",
+          "kms:GenerateDataKey",
+          "kms:CreateGrant",
+          "kms:DescribeKey",
+          "kms:Encrypt",
+          "kms:Decrypt",
+          "secretsmanager:CreateSecret",
+          "secretsmanager:TagResource"
         ],
         "timeoutInMinutes": 2160
       }
@@ -263,7 +262,7 @@
         "type": "boolean"
       },
       "DeferMaintenanceDuration": {
-        "description": "An integer indicating the duration of the maintenance window in days. If you specify a duration, you can't specify an end time. The duration must be 45 days or less.",
+        "description": "An integer indicating the duration of the maintenance window in days. If you specify a duration, you can't specify an end time. The duration must be 60 days or less.",
         "type": "integer"
       },
       "DeferMaintenanceEndTime": {
@@ -392,7 +391,7 @@
         "type": "object"
       },
       "NodeType": {
-        "description": "The node type to be provisioned for the cluster.Valid Values: ds2.xlarge | ds2.8xlarge | dc1.large | dc1.8xlarge | dc2.large | dc2.8xlarge | ra3.4xlarge | ra3.16xlarge",
+        "description": "The node type to be provisioned for the cluster.Valid Values: ds2.xlarge | ds2.8xlarge | dc1.large | dc1.8xlarge | dc2.large | dc2.8xlarge | ra3.large | ra3.4xlarge | ra3.16xlarge | rg.large | rg.xlarge | rg.4xlarge | rg.12xlarge",
         "type": "string"
       },
       "NumberOfNodes": {
@@ -485,6 +484,15 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
     "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "redshift:CreateTags",
+        "redshift:DeleteTags",
+        "redshift:DescribeTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
       "taggable": true
     },
     "typeName": "AWS::Redshift::Cluster",

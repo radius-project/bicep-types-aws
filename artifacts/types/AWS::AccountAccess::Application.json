@@ -1,0 +1,204 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AccountAccess-Application",
+  "type": "AWS::AccountAccess::Application",
+  "time": "2026-09-08T16:01:00.818Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/IdentitySource"
+    ],
+    "definitions": {
+      "IdentityCenter": {
+        "additionalProperties": false,
+        "properties": {
+          "ApplicationArn": {
+            "description": "The ARN of the associated Identity Center application",
+            "maxLength": 1224,
+            "minLength": 10,
+            "pattern": "^arn:[a-z0-9-]+:sso::[0-9]{12}:application/(sso)?ins-[a-zA-Z0-9-.]{16}/apl-[a-zA-Z0-9]{16}$",
+            "type": "string"
+          },
+          "InstanceArn": {
+            "description": "The ARN of the Identity Center instance",
+            "maxLength": 1224,
+            "minLength": 10,
+            "pattern": "^arn:[a-z0-9-]+:sso:::instance/(sso)?ins-[a-zA-Z0-9-.]{16}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "InstanceArn"
+        ],
+        "type": "object"
+      },
+      "IdentitySource": {
+        "additionalProperties": false,
+        "properties": {
+          "IdentityCenter": {
+            "$ref": "#/definitions/IdentityCenter"
+          }
+        },
+        "required": [
+          "IdentityCenter"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:.",
+            "maxLength": 127,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag. You can specify a value that is 0 to 255 Unicode characters in length and cannot be prefixed with aws:.",
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::AccountAccess::Application specifying an application for account access",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "account-access:CreateApplication",
+          "account-access:GetApplication",
+          "account-access:TagResource",
+          "account-access:ListTagsForResource",
+          "iam:CreateServiceLinkedRole",
+          "kms:Decrypt",
+          "organizations:DescribeOrganization",
+          "organizations:ListAWSServiceAccessForOrganization",
+          "sso:CreateApplication",
+          "sso:DescribeApplication",
+          "sso:DescribeInstance",
+          "sso:DescribeRegion",
+          "sso:PutApplicationAccessScope",
+          "sso:PutApplicationAssignmentConfiguration",
+          "sso:PutApplicationAuthenticationMethod",
+          "sso:PutApplicationGrant"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "account-access:DeleteApplication",
+          "account-access:GetApplication",
+          "account-access:ListTagsForResource",
+          "kms:Decrypt",
+          "sso:DeleteApplication",
+          "sso:DescribeApplication",
+          "sso:DescribeInstance"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "account-access:ListApplications"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "account-access:GetApplication",
+          "account-access:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "account-access:GetApplication",
+          "account-access:TagResource",
+          "account-access:UntagResource",
+          "account-access:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ApplicationArn"
+    ],
+    "properties": {
+      "ApplicationArn": {
+        "description": "The ARN of the application",
+        "maxLength": 2048,
+        "minLength": 49,
+        "pattern": "^arn:[a-z0-9-]+:account-access:[a-z0-9]+(-[a-z0-9]+)*:[0-9]{12}:application/[a-zA-Z0-9-]+$",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The timestamp when the application was created",
+        "type": "string"
+      },
+      "IdentitySource": {
+        "$ref": "#/definitions/IdentitySource",
+        "description": "The identity source for the application"
+      },
+      "Status": {
+        "description": "The status of the application",
+        "enum": [
+          "CREATE_IN_PROGRESS",
+          "ACTIVE",
+          "DELETE_IN_PROGRESS",
+          "CREATE_FAILED",
+          "DELETE_FAILED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "TenantId": {
+        "description": "The tenant ID of the application",
+        "type": "string"
+      },
+      "UpdatedAt": {
+        "description": "The timestamp when the application was last updated",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ApplicationArn",
+      "/properties/IdentitySource/IdentityCenter/ApplicationArn",
+      "/properties/Status",
+      "/properties/TenantId",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "IdentitySource"
+    ],
+    "resourceLink": {
+      "mappings": {
+        "ApplicationArn": "/ApplicationArn"
+      },
+      "templateUri": "/account-access/home?region=${awsRegion}#/application/${ApplicationArn}"
+    },
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-accountaccess.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "account-access:TagResource",
+        "account-access:UntagResource",
+        "account-access:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::AccountAccess::Application"
+  }
+}

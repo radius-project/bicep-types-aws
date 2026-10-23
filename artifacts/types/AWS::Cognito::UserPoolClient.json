@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Cognito-UserPoolClient",
   "type": "AWS::Cognito::UserPoolClient",
-  "time": "2025-01-22T17:11:29.959Z",
+  "time": "2026-10-22T00:03:58.699Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -26,6 +26,23 @@
           },
           "UserDataShared": {
             "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "RefreshTokenRotation": {
+        "properties": {
+          "Feature": {
+            "enum": [
+              "ENABLED",
+              "DISABLED"
+            ],
+            "type": "string"
+          },
+          "RetryGracePeriodSeconds": {
+            "maximum": 60,
+            "minimum": 0,
+            "type": "integer"
           }
         },
         "type": "object"
@@ -82,7 +99,8 @@
       },
       "read": {
         "permissions": [
-          "cognito-idp:DescribeUserPoolClient"
+          "cognito-idp:DescribeUserPoolClient",
+          "cognito-idp:ListUserPoolClientSecrets"
         ]
       },
       "update": {
@@ -184,6 +202,9 @@
           "type": "string"
         },
         "type": "array"
+      },
+      "RefreshTokenRotation": {
+        "$ref": "#/definitions/RefreshTokenRotation"
       },
       "RefreshTokenValidity": {
         "maximum": 315360000,

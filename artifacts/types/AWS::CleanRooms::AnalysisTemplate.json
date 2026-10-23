@@ -1,26 +1,25 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CleanRooms-AnalysisTemplate",
   "type": "AWS::CleanRooms::AnalysisTemplate",
-  "time": "2025-01-07T22:18:21.649Z",
+  "time": "2026-10-08T16:06:06.434Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/Name",
       "/properties/MembershipIdentifier",
       "/properties/Source",
-      "/properties/Source/Text",
       "/properties/Format",
       "/properties/AnalysisParameters",
-      "/properties/AnalysisParameters/Name",
-      "/properties/AnalysisParameters/Type",
-      "/properties/AnalysisParameters/DefaultValue"
+      "/properties/Schema",
+      "/properties/ErrorMessageConfiguration",
+      "/properties/SyntheticDataParameters"
     ],
     "definitions": {
       "AnalysisParameter": {
         "additionalProperties": false,
         "properties": {
           "DefaultValue": {
-            "maxLength": 250,
+            "maxLength": 1000,
             "minLength": 0,
             "type": "string"
           },
@@ -83,16 +82,175 @@
         "type": "object"
       },
       "AnalysisSource": {
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Text": {
+                "maxLength": 90000,
+                "minLength": 0,
+                "type": "string"
+              }
+            },
+            "required": [
+              "Text"
+            ],
+            "title": "Text",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Artifacts": {
+                "$ref": "#/definitions/AnalysisTemplateArtifacts"
+              }
+            },
+            "required": [
+              "Artifacts"
+            ],
+            "title": "Artifacts",
+            "type": "object"
+          }
+        ]
+      },
+      "AnalysisSourceMetadata": {
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Artifacts": {
+                "$ref": "#/definitions/AnalysisTemplateArtifactMetadata"
+              }
+            },
+            "required": [
+              "Artifacts"
+            ],
+            "title": "Artifacts",
+            "type": "object"
+          }
+        ]
+      },
+      "AnalysisTemplateArtifact": {
         "additionalProperties": false,
         "properties": {
-          "Text": {
-            "maxLength": 15000,
-            "minLength": 0,
+          "Location": {
+            "$ref": "#/definitions/S3Location"
+          }
+        },
+        "required": [
+          "Location"
+        ],
+        "type": "object"
+      },
+      "AnalysisTemplateArtifactMetadata": {
+        "additionalProperties": false,
+        "properties": {
+          "AdditionalArtifactHashes": {
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/Hash"
+            },
+            "type": "array"
+          },
+          "EntryPointHash": {
+            "$ref": "#/definitions/Hash"
+          }
+        },
+        "required": [
+          "EntryPointHash"
+        ],
+        "type": "object"
+      },
+      "AnalysisTemplateArtifacts": {
+        "additionalProperties": false,
+        "properties": {
+          "AdditionalArtifacts": {
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/AnalysisTemplateArtifact"
+            },
+            "maxItems": 1,
+            "minItems": 1,
+            "type": "array"
+          },
+          "EntryPoint": {
+            "$ref": "#/definitions/AnalysisTemplateArtifact"
+          },
+          "RoleArn": {
+            "maxLength": 512,
+            "minLength": 32,
             "type": "string"
           }
         },
         "required": [
-          "Text"
+          "EntryPoint",
+          "RoleArn"
+        ],
+        "type": "object"
+      },
+      "ColumnClassificationDetails": {
+        "additionalProperties": false,
+        "properties": {
+          "ColumnMapping": {
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/SyntheticDataColumnProperties"
+            },
+            "maxItems": 1000,
+            "minItems": 5,
+            "type": "array"
+          }
+        },
+        "required": [
+          "ColumnMapping"
+        ],
+        "type": "object"
+      },
+      "ErrorMessageConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "Type": {
+            "enum": [
+              "DETAILED"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Type"
+        ],
+        "type": "object"
+      },
+      "Hash": {
+        "additionalProperties": false,
+        "properties": {
+          "Sha256": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "MLSyntheticDataParameters": {
+        "additionalProperties": false,
+        "properties": {
+          "ColumnClassification": {
+            "$ref": "#/definitions/ColumnClassificationDetails"
+          },
+          "Epsilon": {
+            "maximum": 10,
+            "minimum": 0.0001,
+            "type": "number"
+          },
+          "MaxMembershipInferenceAttackScore": {
+            "maximum": 1,
+            "minimum": 0.5,
+            "type": "number"
+          }
+        },
+        "required": [
+          "Epsilon",
+          "MaxMembershipInferenceAttackScore",
+          "ColumnClassification"
         ],
         "type": "object"
       },
@@ -103,6 +261,67 @@
         },
         "minItems": 0,
         "type": "array"
+      },
+      "S3Location": {
+        "additionalProperties": false,
+        "properties": {
+          "Bucket": {
+            "maxLength": 63,
+            "minLength": 3,
+            "type": "string"
+          },
+          "Key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Bucket",
+          "Key"
+        ],
+        "type": "object"
+      },
+      "SyntheticDataColumnProperties": {
+        "additionalProperties": false,
+        "properties": {
+          "ColumnName": {
+            "maxLength": 128,
+            "pattern": "^[a-z0-9_](([a-z0-9_]+-)*([a-z0-9_]+))?$",
+            "type": "string"
+          },
+          "ColumnType": {
+            "enum": [
+              "CATEGORICAL",
+              "NUMERICAL"
+            ],
+            "type": "string"
+          },
+          "IsPredictiveValue": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "ColumnName",
+          "ColumnType",
+          "IsPredictiveValue"
+        ],
+        "type": "object"
+      },
+      "SyntheticDataParameters": {
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "MlSyntheticDataParameters": {
+                "$ref": "#/definitions/MLSyntheticDataParameters"
+              }
+            },
+            "required": [
+              "MlSyntheticDataParameters"
+            ],
+            "title": "MlSyntheticDataParameters",
+            "type": "object"
+          }
+        ]
       },
       "TableName": {
         "maxLength": 128,
@@ -138,7 +357,8 @@
           "cleanrooms:ListTagsForResource",
           "cleanrooms:TagResource",
           "cleanrooms:GetAnalysisTemplate",
-          "cleanrooms:ListAnalysisTemplates"
+          "cleanrooms:ListAnalysisTemplates",
+          "iam:PassRole"
         ]
       },
       "delete": {
@@ -192,7 +412,7 @@
         "items": {
           "$ref": "#/definitions/AnalysisParameter"
         },
-        "maxItems": 10,
+        "maxItems": 50,
         "minItems": 0,
         "type": "array"
       },
@@ -221,9 +441,13 @@
         "pattern": "^[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t\\r\\n]*$",
         "type": "string"
       },
+      "ErrorMessageConfiguration": {
+        "$ref": "#/definitions/ErrorMessageConfiguration"
+      },
       "Format": {
         "enum": [
-          "SQL"
+          "SQL",
+          "PYSPARK_1_0"
         ],
         "type": "string"
       },
@@ -248,6 +472,12 @@
       "Source": {
         "$ref": "#/definitions/AnalysisSource"
       },
+      "SourceMetadata": {
+        "$ref": "#/definitions/AnalysisSourceMetadata"
+      },
+      "SyntheticDataParameters": {
+        "$ref": "#/definitions/SyntheticDataParameters"
+      },
       "Tags": {
         "description": "An arbitrary set of tags (key-value pairs) for this cleanrooms analysis template.",
         "insertionOrder": false,
@@ -261,7 +491,6 @@
       "/properties/CollaborationArn",
       "/properties/CollaborationIdentifier",
       "/properties/AnalysisTemplateIdentifier",
-      "/properties/Schema",
       "/properties/Arn",
       "/properties/MembershipArn"
     ],

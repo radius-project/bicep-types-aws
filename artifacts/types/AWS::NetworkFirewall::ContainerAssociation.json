@@ -1,0 +1,235 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkFirewall-ContainerAssociation",
+  "type": "AWS::NetworkFirewall::ContainerAssociation",
+  "time": "2026-10-20T15:46:14.558Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ContainerAssociationName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ContainerAssociationName",
+      "/properties/Type"
+    ],
+    "definitions": {
+      "ContainerAttribute": {
+        "additionalProperties": false,
+        "description": "A key-value filter pair used in container association monitoring configurations to narrow which containers are tracked.",
+        "properties": {
+          "Key": {
+            "description": "The attribute key to filter on.",
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "^\\S+$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The attribute value to match.",
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "^\\S+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "ContainerMonitoringConfiguration": {
+        "additionalProperties": false,
+        "description": "Contains the monitoring configuration for a single cluster in a container association. Specifies the cluster ARN and optional attribute filters to narrow which containers are tracked.",
+        "properties": {
+          "AttributeFilters": {
+            "description": "Key-value pairs that filter which containers are tracked. For Amazon EKS, you can filter by namespace and Kubernetes labels. For Amazon ECS, you can filter by container instance attributes (EC2 launch type only).",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/ContainerAttribute"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "ClusterArn": {
+            "description": "The ARN of the Amazon ECS or Amazon EKS cluster to monitor. The cluster must be in the same Region and account as the container association.",
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "^arn:aws",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ClusterArn"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key:value pair associated with an Amazon Web Services resource.",
+        "properties": {
+          "Key": {
+            "description": "The part of the key:value pair that defines a tag. Tag keys are case-sensitive.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^.*$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The part of the key:value pair that defines a tag. Tag values are case-sensitive.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^.*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource type definition for AWS::NetworkFirewall::ContainerAssociation. A container association monitors container lifecycle events in your Amazon ECS or Amazon EKS clusters and resolves running container addresses for use in Network Firewall rules.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "network-firewall:CreateContainerAssociation",
+          "network-firewall:TagResource",
+          "network-firewall:DescribeContainerAssociation",
+          "ecs:DescribeClusters",
+          "eks:DescribeCluster",
+          "events:PutRule",
+          "events:PutTargets",
+          "iam:CreateServiceLinkedRole"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "network-firewall:DeleteContainerAssociation",
+          "network-firewall:DescribeContainerAssociation",
+          "events:DeleteRule",
+          "events:RemoveTargets"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "network-firewall:ListContainerAssociations"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "network-firewall:DescribeContainerAssociation"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "network-firewall:UpdateContainerAssociation",
+          "network-firewall:DescribeContainerAssociation",
+          "network-firewall:TagResource",
+          "network-firewall:UntagResource",
+          "ecs:DescribeClusters",
+          "eks:DescribeCluster",
+          "events:PutRule",
+          "events:PutTargets",
+          "events:DeleteRule",
+          "events:RemoveTargets"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ContainerAssociationArn"
+    ],
+    "properties": {
+      "ContainerAssociationArn": {
+        "description": "The Amazon Resource Name (ARN) of the container association.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^arn:aws",
+        "type": "string"
+      },
+      "ContainerAssociationName": {
+        "description": "The descriptive name of the container association. You can't change the name of a container association after you create it.",
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9-]+$",
+        "type": "string"
+      },
+      "ContainerMonitoringConfigurations": {
+        "description": "The monitoring configurations for the container association. Each configuration specifies an Amazon ECS or Amazon EKS cluster to monitor and optional attribute filters to narrow which containers are tracked.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/ContainerMonitoringConfiguration"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "Description": {
+        "description": "A description of the container association.",
+        "maxLength": 512,
+        "minLength": 0,
+        "pattern": "^.*$",
+        "type": "string"
+      },
+      "ResolvedCidrCount": {
+        "description": "The number of CIDR blocks resolved from the monitored containers.",
+        "maximum": 1000000,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "Status": {
+        "description": "The current status of the container association.",
+        "enum": [
+          "ACTIVE",
+          "CREATING",
+          "DELETING",
+          "UPDATING"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "Type": {
+        "description": "The type of containers to monitor. You can't change the container type after creation.",
+        "enum": [
+          "ECS",
+          "EKS"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ContainerAssociationArn",
+      "/properties/Status",
+      "/properties/ResolvedCidrCount"
+    ],
+    "required": [
+      "ContainerAssociationName",
+      "Type",
+      "ContainerMonitoringConfigurations"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-networkfirewall.git",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "network-firewall:TagResource",
+        "network-firewall:UntagResource",
+        "network-firewall:DescribeContainerAssociation"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::NetworkFirewall::ContainerAssociation"
+  }
+}

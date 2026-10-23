@@ -239,11 +239,153 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Omics/AnnotationStore@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/18"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Omics/RunCacheProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/20"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Omics/RunCacheProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 18,
+        "description": "The run cache ARN."
+      },
+      "CacheBehavior": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The default cache behavior for runs using this cache."
+      },
+      "CacheBucketOwnerId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The AWS account ID of the expected owner of the S3 bucket for the run cache."
+      },
+      "CacheS3Location": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 4,
+        "description": "The S3 location for storing the cached task outputs."
+      },
+      "CreationTime": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "Creation time of the run cache (an ISO 8601 formatted string)."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "A description of the run cache."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The run cache ID."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "A name for the run cache."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The run cache status."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Tags for the run cache."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Omics/RunCache",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Omics/RunCache@default",
+    "body": {
+      "$ref": "#/24"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -308,7 +450,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/26"
         },
         "flags": 0
       }
@@ -334,7 +476,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/28"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -344,11 +486,221 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Omics/RunGroup@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/23"
+      "$ref": "#/29"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ETagAlgorithmFamily",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EncryptionType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SequenceStoreStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SseConfig",
+    "properties": {
+      "KeyArn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "An encryption key ARN."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TagMap",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Omics/SequenceStoreProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SequenceStore_S3AccessPolicy",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Omics/SequenceStoreProperties",
+    "properties": {
+      "AccessLogLocation": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Location of the access logs."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The store's ARN."
+      },
+      "CreationTime": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "When the store was created."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "A description for the store."
+      },
+      "ETagAlgorithmFamily": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "FallbackLocation": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "An S3 location that is used to store files that have failed a direct upload."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "A name for the store."
+      },
+      "PropagatedSetLevelTags": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 0,
+        "description": "The tags keys to propagate to the S3 objects associated with read sets in the sequence store."
+      },
+      "S3AccessPointArn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "This is ARN of the access point associated with the S3 bucket storing read sets."
+      },
+      "S3AccessPolicy": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 0,
+        "description": "The resource policy that controls S3 access on the store"
+      },
+      "S3Uri": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The S3 URI of the sequence store."
+      },
+      "SequenceStoreId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 18
+      },
+      "SseConfig": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2
+      },
+      "StatusMessage": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The status message of the sequence store."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0
+      },
+      "UpdateTime": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The last-updated time of the sequence store."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Omics/SequenceStore",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Omics/SequenceStore@default",
+    "body": {
+      "$ref": "#/40"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -429,13 +781,13 @@
       },
       "Reference": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/43"
         },
         "flags": 1
       },
       "SseConfig": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/44"
         },
         "flags": 0
       },
@@ -465,7 +817,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/46"
         },
         "flags": 0
       },
@@ -497,7 +849,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/48"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -507,11 +859,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Omics/VariantStore@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/32"
+      "$ref": "#/49"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -520,7 +872,131 @@
   },
   {
     "$type": "ObjectType",
+    "name": "ContainerRegistryMap",
+    "properties": {
+      "ImageMappings": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 0
+      },
+      "RegistryMappings": {
+        "type": {
+          "$ref": "#/66"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DefinitionRepository",
+    "properties": {
+      "connectionArn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "excludeFilePatterns": {
+        "type": {
+          "$ref": "#/67"
+        },
+        "flags": 0
+      },
+      "fullRepositoryId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "sourceReference": {
+        "type": {
+          "$ref": "#/56"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ImageMapping",
+    "properties": {
+      "DestinationImage": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "SourceImage": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RegistryMapping",
+    "properties": {
+      "EcrAccountId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "EcrRepositoryPrefix": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "UpstreamRegistryUrl": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "UpstreamRepositoryPrefix": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceReference",
+    "properties": {
+      "type": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "value": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StorageType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "TagMap",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Uuid",
     "properties": {}
   },
   {
@@ -540,7 +1016,7 @@
       },
       "Optional": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/68"
         },
         "flags": 0
       }
@@ -560,6 +1036,24 @@
     "$type": "ObjectType",
     "name": "WorkflowType",
     "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/54"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/55"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
   },
   {
     "$type": "BooleanType"
@@ -584,11 +1078,29 @@
         },
         "flags": 2
       },
+      "ContainerRegistryMap": {
+        "type": {
+          "$ref": "#/52"
+        },
+        "flags": 0
+      },
+      "ContainerRegistryMapUri": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 4
+      },
       "CreationTime": {
         "type": {
           "$ref": "#/13"
         },
         "flags": 2
+      },
+      "DefinitionRepository": {
+        "type": {
+          "$ref": "#/53"
+        },
+        "flags": 4
       },
       "DefinitionUri": {
         "type": {
@@ -628,9 +1140,16 @@
       },
       "ParameterTemplate": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/62"
         },
         "flags": 0
+      },
+      "ParameterTemplatePath": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 4,
+        "description": "Path to the primary workflow parameter template JSON file inside the repository"
       },
       "Status": {
         "type": {
@@ -644,9 +1163,15 @@
         },
         "flags": 0
       },
+      "StorageType": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
       "Tags": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/58"
         },
         "flags": 0
       },
@@ -655,6 +1180,40 @@
           "$ref": "#/13"
         },
         "flags": 2
+      },
+      "Uuid": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2
+      },
+      "WorkflowBucketOwnerId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 4,
+        "description": "Optional workflow bucket owner ID to verify the workflow bucket"
+      },
+      "readmeMarkdown": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 4,
+        "description": "The markdown content for the workflow's README file. This provides documentation and usage information for users of the workflow."
+      },
+      "readmePath": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The path to the workflow README markdown file within the repository. This file provides documentation and usage information for the workflow. If not specified, the README.md file from the root directory of the repository will be used."
+      },
+      "readmeUri": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 4,
+        "description": "The S3 URI of the README file for the workflow. This file provides documentation and usage information for the workflow. The S3 URI must begin with s3://USER-OWNED-BUCKET/. The requester must have access to the S3 bucket and object. The max README content length is 500 KiB."
       }
     }
   },
@@ -678,7 +1237,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/70"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -688,10 +1247,389 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Omics/Workflow@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/44"
+      "$ref": "#/71"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Accelerators",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ContainerRegistryMap",
+    "properties": {
+      "ImageMappings": {
+        "type": {
+          "$ref": "#/86"
+        },
+        "flags": 0
+      },
+      "RegistryMappings": {
+        "type": {
+          "$ref": "#/87"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DefinitionRepository",
+    "properties": {
+      "connectionArn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "excludeFilePatterns": {
+        "type": {
+          "$ref": "#/88"
+        },
+        "flags": 0
+      },
+      "fullRepositoryId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "sourceReference": {
+        "type": {
+          "$ref": "#/78"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ImageMapping",
+    "properties": {
+      "DestinationImage": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "SourceImage": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RegistryMapping",
+    "properties": {
+      "EcrAccountId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "EcrRepositoryPrefix": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "UpstreamRegistryUrl": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "UpstreamRepositoryPrefix": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceReference",
+    "properties": {
+      "type": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "value": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StorageType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TagMap",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WorkflowEngine",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WorkflowParameter",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "Optional": {
+        "type": {
+          "$ref": "#/68"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WorkflowParameterTemplate",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WorkflowStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WorkflowType",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/76"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/77"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Omics/WorkflowVersionProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Omics/WorkflowVersionProperties",
+    "properties": {
+      "Accelerators": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 18
+      },
+      "ContainerRegistryMap": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 0
+      },
+      "ContainerRegistryMapUri": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 4
+      },
+      "CreationTime": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2
+      },
+      "DefinitionRepository": {
+        "type": {
+          "$ref": "#/75"
+        },
+        "flags": 4
+      },
+      "DefinitionUri": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 4
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "Engine": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "Main": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "ParameterTemplate": {
+        "type": {
+          "$ref": "#/83"
+        },
+        "flags": 0
+      },
+      "ParameterTemplatePath": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 4,
+        "description": "Path to the primary workflow parameter template JSON file inside the repository"
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2
+      },
+      "StorageCapacity": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0
+      },
+      "StorageType": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2
+      },
+      "Uuid": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2
+      },
+      "VersionName": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      },
+      "WorkflowBucketOwnerId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "WorkflowId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      },
+      "readmeMarkdown": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 4,
+        "description": "The markdown content for the workflow's README file. This provides documentation and usage information for users of the workflow."
+      },
+      "readmePath": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The path to the workflow README markdown file within the repository. This file provides documentation and usage information for the workflow. If not specified, the README.md file from the root directory of the repository will be used."
+      },
+      "readmeUri": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 4,
+        "description": "The S3 URI of the README file for the workflow. This file provides documentation and usage information for the workflow. The S3 URI must begin with s3://USER-OWNED-BUCKET/. The requester must have access to the S3 bucket and object. The max README content length is 500 KiB."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Omics/WorkflowVersion",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/90"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Omics/WorkflowVersion@default",
+    "body": {
+      "$ref": "#/91"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

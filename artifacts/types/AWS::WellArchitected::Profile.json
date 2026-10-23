@@ -1,0 +1,180 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-WellArchitected-Profile",
+  "type": "AWS::WellArchitected::Profile",
+  "time": "2026-10-21T21:16:59.853Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ProfileName"
+    ],
+    "definitions": {
+      "ProfileQuestionUpdate": {
+        "additionalProperties": false,
+        "description": "An update to a profile question.",
+        "properties": {
+          "QuestionId": {
+            "description": "The ID of the question.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "SelectedChoiceIds": {
+            "description": "The selected choices.",
+            "items": {
+              "maxLength": 64,
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Definition of AWS::WellArchitected::Profile Resource Type",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "wellarchitected:CreateProfile",
+          "wellarchitected:GetProfile",
+          "wellarchitected:TagResource",
+          "wellarchitected:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "wellarchitected:DeleteProfile",
+          "wellarchitected:GetProfile"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "wellarchitected:ListProfiles"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "wellarchitected:GetProfile",
+          "wellarchitected:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "wellarchitected:UpdateProfile",
+          "wellarchitected:GetProfile",
+          "wellarchitected:TagResource",
+          "wellarchitected:UntagResource",
+          "wellarchitected:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ProfileArn"
+    ],
+    "properties": {
+      "CreatedAt": {
+        "description": "The date and time the profile was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Owner": {
+        "description": "The owner of the profile.",
+        "type": "string"
+      },
+      "ProfileArn": {
+        "description": "The profile ARN.",
+        "maxLength": 2084,
+        "pattern": "^arn:aws[-a-z]*:wellarchitected:[a-z]{2}(-gov)?-[a-z]+-\\d:\\d{12}:profile/[a-z0-9]+$",
+        "type": "string"
+      },
+      "ProfileDescription": {
+        "description": "The profile description.",
+        "maxLength": 100,
+        "minLength": 3,
+        "type": "string"
+      },
+      "ProfileName": {
+        "description": "The name of the profile.",
+        "maxLength": 100,
+        "minLength": 3,
+        "type": "string"
+      },
+      "ProfileQuestions": {
+        "description": "The profile questions.",
+        "items": {
+          "$ref": "#/definitions/ProfileQuestionUpdate"
+        },
+        "type": "array"
+      },
+      "ProfileVersion": {
+        "description": "The profile version.",
+        "maxLength": 32,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9.\\-]+$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags assigned to the profile.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array"
+      },
+      "UpdatedAt": {
+        "description": "The date and time the profile was last updated.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ProfileArn",
+      "/properties/ProfileVersion",
+      "/properties/Owner",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "ProfileName",
+      "ProfileDescription",
+      "ProfileQuestions"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "wellarchitected:TagResource",
+        "wellarchitected:UntagResource",
+        "wellarchitected:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::WellArchitected::Profile"
+  }
+}

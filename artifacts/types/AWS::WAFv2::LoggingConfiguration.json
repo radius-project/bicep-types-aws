@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-WAFv2-LoggingConfiguration",
   "type": "AWS::WAFv2::LoggingConfiguration",
-  "time": "2024-10-30T01:23:03.14Z",
+  "time": "2026-09-21T18:01:26.611Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -23,6 +23,7 @@
                   "COUNT",
                   "CAPTCHA",
                   "CHALLENGE",
+                  "MONETIZE",
                   "EXCLUDED_AS_COUNT"
                 ],
                 "type": "string"
@@ -223,6 +224,9 @@
         "description": "The Amazon Resource Name (ARN) of the web ACL that you want to associate with LogDestinationConfigs.",
         "type": "string"
       }
+    },
+    "propertyTransform": {
+      "/properties/RedactedFields/*/SingleHeader/Name": "$lowercase(Name)"
     },
     "readOnlyProperties": [
       "/properties/ManagedByFirewallManager"

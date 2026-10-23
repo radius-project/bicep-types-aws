@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SES-MailManagerRuleSet",
   "type": "AWS::SES::MailManagerRuleSet",
-  "time": "2025-01-23T10:26:41.731Z",
+  "time": "2026-10-21T23:05:16.513Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -43,7 +43,7 @@
           "ResultField": {
             "maxLength": 256,
             "minLength": 1,
-            "pattern": "^[\\sa-zA-Z0-9_]+$",
+            "pattern": "^(addon\\.)?[\\sa-zA-Z0-9_]+$",
             "type": "string"
           }
         },
@@ -68,6 +68,58 @@
         },
         "required": [
           "TargetArchive"
+        ],
+        "type": "object"
+      },
+      "BounceAction": {
+        "additionalProperties": false,
+        "properties": {
+          "ActionFailurePolicy": {
+            "$ref": "#/definitions/ActionFailurePolicy"
+          },
+          "DiagnosticMessage": {
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "^[\\x20-\\x7e]+$",
+            "type": "string"
+          },
+          "Message": {
+            "maxLength": 500,
+            "minLength": 1,
+            "pattern": "^[\\r\\n\\x20-\\x7e]+$",
+            "type": "string"
+          },
+          "RoleArn": {
+            "maxLength": 2048,
+            "minLength": 20,
+            "pattern": "^[a-zA-Z0-9:_/+=,@.#-]+$",
+            "type": "string"
+          },
+          "Sender": {
+            "maxLength": 254,
+            "minLength": 0,
+            "pattern": "^[0-9A-Za-z@+.-]+$",
+            "type": "string"
+          },
+          "SmtpReplyCode": {
+            "maxLength": 3,
+            "minLength": 3,
+            "pattern": "^[45][0-9][0-9]$",
+            "type": "string"
+          },
+          "StatusCode": {
+            "maxLength": 9,
+            "minLength": 5,
+            "pattern": "^[45]\\.[0-9]{1,3}\\.[0-9]{1,3}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "RoleArn",
+          "Sender",
+          "StatusCode",
+          "SmtpReplyCode",
+          "DiagnosticMessage"
         ],
         "type": "object"
       },
@@ -131,6 +183,47 @@
       "DropAction": {
         "additionalProperties": false,
         "type": "object"
+      },
+      "InvokeLambdaAction": {
+        "additionalProperties": false,
+        "properties": {
+          "ActionFailurePolicy": {
+            "$ref": "#/definitions/ActionFailurePolicy"
+          },
+          "FunctionArn": {
+            "maxLength": 2048,
+            "minLength": 20,
+            "pattern": "^[a-zA-Z0-9:_/+=,@.#-]+$",
+            "type": "string"
+          },
+          "InvocationType": {
+            "$ref": "#/definitions/LambdaInvocationType"
+          },
+          "RetryTimeMinutes": {
+            "maximum": 2160,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "RoleArn": {
+            "maxLength": 2048,
+            "minLength": 20,
+            "pattern": "^[a-zA-Z0-9:_/+=,@.#-]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "FunctionArn",
+          "InvocationType",
+          "RoleArn"
+        ],
+        "type": "object"
+      },
+      "LambdaInvocationType": {
+        "enum": [
+          "EVENT",
+          "REQUEST_RESPONSE"
+        ],
+        "type": "string"
       },
       "MailFrom": {
         "enum": [
@@ -335,8 +428,58 @@
             ],
             "title": "DeliverToQBusiness",
             "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "PublishToSns": {
+                "$ref": "#/definitions/SnsAction"
+              }
+            },
+            "required": [
+              "PublishToSns"
+            ],
+            "title": "PublishToSns",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Bounce": {
+                "$ref": "#/definitions/BounceAction"
+              }
+            },
+            "required": [
+              "Bounce"
+            ],
+            "title": "Bounce",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "InvokeLambda": {
+                "$ref": "#/definitions/InvokeLambdaAction"
+              }
+            },
+            "required": [
+              "InvokeLambda"
+            ],
+            "title": "InvokeLambda",
+            "type": "object"
           }
         ]
+      },
+      "RuleAddressListEmailAttribute": {
+        "enum": [
+          "RECIPIENT",
+          "MAIL_FROM",
+          "SENDER",
+          "FROM",
+          "TO",
+          "CC"
+        ],
+        "type": "string"
       },
       "RuleBooleanEmailAttribute": {
         "enum": [
@@ -383,8 +526,47 @@
             ],
             "title": "Attribute",
             "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Analysis": {
+                "$ref": "#/definitions/Analysis"
+              }
+            },
+            "required": [
+              "Analysis"
+            ],
+            "title": "Analysis",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "IsInAddressList": {
+                "$ref": "#/definitions/RuleIsInAddressList"
+              }
+            },
+            "required": [
+              "IsInAddressList"
+            ],
+            "title": "IsInAddressList",
+            "type": "object"
           }
         ]
+      },
+      "RuleClientCertificateAttribute": {
+        "enum": [
+          "CN",
+          "SAN_RFC822_NAME",
+          "SAN_DNS_NAME",
+          "SAN_DIRECTORY_NAME",
+          "SAN_UNIFORM_RESOURCE_IDENTIFIER",
+          "SAN_IP_ADDRESS",
+          "SAN_REGISTERED_ID",
+          "SERIAL_NUMBER"
+        ],
+        "type": "string"
       },
       "RuleCondition": {
         "oneOf": [
@@ -521,9 +703,9 @@
           },
           "Values": {
             "items": {
-              "maxLength": 18,
+              "maxLength": 43,
               "minLength": 1,
-              "pattern": "^(([0-9]|.|/)*)$",
+              "pattern": "^(([0-9]|.|:|/)*)$",
               "type": "string"
             },
             "maxItems": 10,
@@ -561,6 +743,28 @@
             "type": "object"
           }
         ]
+      },
+      "RuleIsInAddressList": {
+        "additionalProperties": false,
+        "properties": {
+          "AddressLists": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 1,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "Attribute": {
+            "$ref": "#/definitions/RuleAddressListEmailAttribute"
+          }
+        },
+        "required": [
+          "Attribute",
+          "AddressLists"
+        ],
+        "type": "object"
       },
       "RuleNumberEmailAttribute": {
         "enum": [
@@ -693,6 +897,32 @@
               "MimeHeaderAttribute"
             ],
             "title": "MimeHeaderAttribute",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Analysis": {
+                "$ref": "#/definitions/Analysis"
+              }
+            },
+            "required": [
+              "Analysis"
+            ],
+            "title": "Analysis",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "ClientCertificateAttribute": {
+                "$ref": "#/definitions/RuleClientCertificateAttribute"
+              }
+            },
+            "required": [
+              "ClientCertificateAttribute"
+            ],
+            "title": "ClientCertificateAttribute",
             "type": "object"
           }
         ]
@@ -830,19 +1060,62 @@
         ],
         "type": "object"
       },
+      "SnsAction": {
+        "additionalProperties": false,
+        "properties": {
+          "ActionFailurePolicy": {
+            "$ref": "#/definitions/ActionFailurePolicy"
+          },
+          "Encoding": {
+            "$ref": "#/definitions/SnsNotificationEncoding"
+          },
+          "PayloadType": {
+            "$ref": "#/definitions/SnsNotificationPayloadType"
+          },
+          "RoleArn": {
+            "maxLength": 2048,
+            "minLength": 20,
+            "pattern": "^[a-zA-Z0-9:_/+=,@.#-]+$",
+            "type": "string"
+          },
+          "TopicArn": {
+            "maxLength": 2048,
+            "minLength": 20,
+            "pattern": "^arn:(aws|aws-cn|aws-us-gov|aws-eusc):sns:[a-z]{2}-([a-z]+-)+\\d{1}:\\d{12}:[\\w\\-]{1,256}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "TopicArn",
+          "RoleArn"
+        ],
+        "type": "object"
+      },
+      "SnsNotificationEncoding": {
+        "enum": [
+          "UTF-8",
+          "BASE64"
+        ],
+        "type": "string"
+      },
+      "SnsNotificationPayloadType": {
+        "enum": [
+          "CONTENT",
+          "HEADERS"
+        ],
+        "type": "string"
+      },
       "Tag": {
         "additionalProperties": false,
         "properties": {
           "Key": {
             "maxLength": 128,
             "minLength": 1,
-            "pattern": "^[a-zA-Z0-9/_\\+=\\.:@\\-]+$",
             "type": "string"
           },
           "Value": {
             "maxLength": 256,
             "minLength": 0,
-            "pattern": "^[a-zA-Z0-9/_\\+=\\.:@\\-]*$",
             "type": "string"
           }
         },

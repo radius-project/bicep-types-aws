@@ -1,11 +1,563 @@
 [
   {
     "$type": "ObjectType",
+    "name": "AccountId",
+    "properties": {}
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ApplicationSignals/DiscoveryProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ApplicationSignals/DiscoveryProperties",
+    "properties": {
+      "AccountId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ApplicationSignals/Discovery",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ApplicationSignals/Discovery@default",
+    "body": {
+      "$ref": "#/4"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AccountId",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GroupingAttributeDefinition",
+    "properties": {
+      "DefaultGroupingValue": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "GroupingName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "GroupingSourceKeys": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GroupingAttributeDefinitions",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GroupingString",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Timestamp",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ApplicationSignals/GroupingConfigurationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ApplicationSignals/GroupingConfigurationProperties",
+    "properties": {
+      "AccountId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18
+      },
+      "GroupingAttributeDefinitions": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ApplicationSignals/GroupingConfiguration",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ApplicationSignals/GroupingConfiguration@default",
+    "body": {
+      "$ref": "#/16"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AttributeFilterGroup",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CaptureLimitsConfig",
+    "properties": {
+      "MaxCollectionDepth": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "Maximum nesting depth to traverse inside collections."
+      },
+      "MaxCollectionWidth": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "Maximum number of items to capture from any collection."
+      },
+      "MaxFieldsPerObject": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "Maximum number of fields to capture for any object."
+      },
+      "MaxHits": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "Maximum number of times the instrumentation point can be hit before disabled."
+      },
+      "MaxObjectDepth": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "Maximum depth for nested object traversal."
+      },
+      "MaxStackFrames": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "Maximum number of stack frames to capture."
+      },
+      "MaxStackTraceSize": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "Maximum total size in bytes of a captured stack trace."
+      },
+      "MaxStringLength": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "Maximum length of captured string values in characters."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CodeCaptureConfiguration",
+    "properties": {
+      "CaptureArguments": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "The function arguments to capture."
+      },
+      "CaptureLimits": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1
+      },
+      "CaptureLocals": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0,
+        "description": "The local variables to capture by name."
+      },
+      "CaptureReturn": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0,
+        "description": "Whether to capture the return value. Defaults to false."
+      },
+      "CaptureStackTrace": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0,
+        "description": "Whether to capture a stack trace. Defaults to true."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CodeLocation",
+    "properties": {
+      "ClassName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The class or type name that contains the method."
+      },
+      "CodeUnit": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The package, module, or namespace that contains the target code."
+      },
+      "FilePath": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The source file path relative to the project or source root."
+      },
+      "Language": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The programming language for this instrumentation point."
+      },
+      "LineNumber": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "The line number to instrument."
+      },
+      "MethodName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The method or function name to instrument."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ApplicationSignals/InstrumentationConfigProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/18"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InstrumentationConfig_CaptureConfiguration",
+    "properties": {
+      "CodeCapture": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InstrumentationConfig_Location",
+    "properties": {
+      "CodeLocation": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/22"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ApplicationSignals/InstrumentationConfigProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the instrumentation configuration."
+      },
+      "AttributeFilters": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 0,
+        "description": "Client-side filters that target specific instances. Each object is AND-matched on keys, multiple objects are OR-matched."
+      },
+      "CaptureConfiguration": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 1,
+        "description": "Specifies what to capture when the instrumentation point is hit."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The server-generated creation timestamp for this instrumentation configuration."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "An optional short description that explains the purpose of this instrumentation."
+      },
+      "Environment": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The environment that the service is running in."
+      },
+      "ExpiresAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The timestamp after which this configuration is no longer served. For BREAKPOINT only; defaults to 24 hours."
+      },
+      "InstrumentationType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "Type of instrumentation: BREAKPOINT (temporary, expires after 24 hours) or PROBE (permanent, persists until deleted)."
+      },
+      "Location": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1,
+        "description": "The location where instrumentation should be applied."
+      },
+      "LocationHash": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "A stable hash computed from the location that uniquely identifies this instrumentation point."
+      },
+      "Service": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The name of the service to instrument. This should match the service.name resource attribute reported by the application."
+      },
+      "SignalType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The telemetry signal type to emit for this instrumentation. The supported value is SNAPSHOT."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0,
+        "description": "An optional list of key-value pairs to associate with the instrumentation configuration."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ApplicationSignals/InstrumentationConfig",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ApplicationSignals/InstrumentationConfig@default",
+    "body": {
+      "$ref": "#/33"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "BurnRateConfiguration",
     "properties": {
       "LookBackWindowMinutes": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/23"
         },
         "flags": 1,
         "description": "The number of minutes to use as the look-back window."
@@ -23,19 +575,19 @@
     "properties": {
       "Duration": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/23"
         },
         "flags": 1
       },
       "DurationUnit": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 1
       },
       "StartTime": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/23"
         },
         "flags": 1,
         "description": "Epoch time in seconds you want the first interval to start. Be sure to choose a time that configures the intervals the way that you want. For example, if you want weekly intervals starting on Mondays at 6 a.m., be sure to specify a start time that is a Monday at 6 a.m.\nAs soon as one calendar interval ends, another automatically begins."
@@ -44,18 +596,77 @@
   },
   {
     "$type": "ObjectType",
+    "name": "CompositeSliComponent",
+    "properties": {
+      "OperationName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CompositeSliComponents",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CompositeSliConfig",
+    "properties": {
+      "CompositeSliComponents": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0
+      },
+      "SelectionConfig": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DependencyConfig",
+    "properties": {
+      "DependencyKeyAttributes": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 1
+      },
+      "DependencyOperationName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "When the SLO monitors a specific operation of the dependency, this field specifies the name of that operation in the dependency."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DependencyKeyAttributes",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "Dimension",
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name of the dimension. Dimension names must contain only ASCII characters, must include at least one non-whitespace character, and cannot start with a colon (:). ASCII control characters are not supported as part of dimension names."
       },
       "Value": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The value of the dimension. Dimension values must contain only ASCII characters and must include at least one non-whitespace character. ASCII control characters are not supported as part of dimension values"
@@ -74,24 +685,61 @@
   },
   {
     "$type": "ObjectType",
+    "name": "ExclusionWindow",
+    "properties": {
+      "Reason": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "An optional reason for scheduling this time exclusion window. Default is 'No reason'."
+      },
+      "RecurrenceRule": {
+        "type": {
+          "$ref": "#/60"
+        },
+        "flags": 0
+      },
+      "StartTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The time you want the exclusion window to start at. Note that time exclusion windows can only be scheduled in the future, not the past."
+      },
+      "Window": {
+        "type": {
+          "$ref": "#/70"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ExclusionWindows",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "Goal",
     "properties": {
       "AttainmentGoal": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "The threshold that determines if the goal is being met. An attainment goal is the ratio of good periods that meet the threshold requirements to the total periods within the interval. For example, an attainment goal of 99.9% means that within your interval, you are targeting 99.9% of the periods to be in healthy state.\nIf you omit this parameter, 99 is used to represent 99% as the attainment goal."
       },
       "Interval": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/49"
         },
         "flags": 0
       },
       "WarningThreshold": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "The percentage of remaining budget over total budget that you want to get warnings for. If you omit this parameter, the default of 50.0 is used."
@@ -104,13 +752,13 @@
     "properties": {
       "CalendarInterval": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/37"
         },
         "flags": 0
       },
       "RollingInterval": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/63"
         },
         "flags": 0
       }
@@ -127,21 +775,21 @@
     "properties": {
       "Dimensions": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/76"
         },
         "flags": 0,
         "description": "An array of one or more dimensions to use to define the metric that you want to use."
       },
       "MetricName": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The name of the metric to use."
       },
       "Namespace": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The namespace of the metric."
@@ -159,28 +807,28 @@
     "properties": {
       "AccountId": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The ID of the account where the metrics are located, if this is a cross-account alarm."
       },
       "Expression": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The math expression to be performed on the returned data."
       },
       "Id": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "A short name used to tie this object to the results in the response."
       },
       "MetricStat": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/58"
         },
         "flags": 0,
         "description": "A metric to be used directly for the SLO, or to be used in the math expression that will be used for the SLO. Within one MetricDataQuery, you must specify either Expression or MetricStat but not both."
@@ -196,31 +844,64 @@
   },
   {
     "$type": "ObjectType",
+    "name": "MetricName",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MetricSource",
+    "properties": {
+      "MetricSourceAttributes": {
+        "type": {
+          "$ref": "#/78"
+        },
+        "flags": 0
+      },
+      "MetricSourceKeyAttributes": {
+        "type": {
+          "$ref": "#/79"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MetricSourceAttributes",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MetricSourceKeyAttributes",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "MetricStat",
     "properties": {
       "Metric": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/51"
         },
         "flags": 1
       },
       "Period": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/23"
         },
         "flags": 1,
         "description": "The granularity, in seconds, to be used for the metric."
       },
       "Stat": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The statistic to use for comparison to the threshold. It can be any CloudWatch statistic or extended statistic."
       },
       "Unit": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "If you omit Unit then all data that was collected with any unit is returned, along with the corresponding units that were specified when the data was reported to CloudWatch. If you specify a unit, the operation returns only data that was collected with that unit specified. If you specify a unit that does not match the data collected, the results of the operation are null. CloudWatch does not perform unit conversions."
@@ -233,17 +914,30 @@
     "properties": {
       "BadCountMetric": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/80"
         },
         "flags": 0,
         "description": "If you want to count \"bad requests\" to determine the percentage of successful requests for this request-based SLO, specify the metric to use as \"bad requests\" in this structure."
       },
       "GoodCountMetric": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/81"
         },
         "flags": 0,
         "description": "If you want to count \"good requests\" to determine the percentage of successful requests for this request-based SLO, specify the metric to use as \"good requests\" in this structure."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RecurrenceRule",
+    "properties": {
+      "Expression": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "A cron or rate expression denoting how often to repeat this exclusion window."
       }
     }
   },
@@ -253,21 +947,21 @@
     "properties": {
       "ComparisonOperator": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The arithmetic operation used when comparing the specified metric to the threshold."
       },
       "MetricThreshold": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "The value that the SLI metric is compared to."
       },
       "RequestBasedSliMetric": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/62"
         },
         "flags": 1
       }
@@ -277,35 +971,59 @@
     "$type": "ObjectType",
     "name": "RequestBasedSliMetric",
     "properties": {
+      "CompositeSliConfig": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0
+      },
+      "DependencyConfig": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0
+      },
       "KeyAttributes": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/50"
+        },
+        "flags": 0
+      },
+      "MetricName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "MetricSource": {
+        "type": {
+          "$ref": "#/55"
         },
         "flags": 0
       },
       "MetricType": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "If the SLO monitors either the LATENCY or AVAILABILITY metric that Application Signals collects, this field displays which of those metrics is used."
       },
       "MonitoredRequestCountMetric": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/59"
         },
         "flags": 0
       },
       "OperationName": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "If the SLO monitors a specific operation of the service, this field displays that operation name."
       },
       "TotalRequestCountMetric": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/82"
         },
         "flags": 0,
         "description": "This structure defines the metric that is used as the \"total requests\" number for a request-based SLO. The number observed for this metric is divided by the number of \"good requests\" or \"bad requests\" that is observed for the metric defined in `MonitoredRequestCountMetric`."
@@ -318,13 +1036,13 @@
     "properties": {
       "Duration": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/23"
         },
         "flags": 1
       },
       "DurationUnit": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 1
       }
@@ -332,25 +1050,48 @@
   },
   {
     "$type": "ObjectType",
+    "name": "SelectionConfig",
+    "properties": {
+      "Pattern": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SelectionType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "Sli",
     "properties": {
       "ComparisonOperator": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The arithmetic operation used when comparing the specified metric to the threshold."
       },
       "MetricThreshold": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/23"
         },
         "flags": 1,
         "description": "The value that the SLI metric is compared to."
       },
       "SliMetric": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/67"
         },
         "flags": 1
       }
@@ -360,42 +1101,66 @@
     "$type": "ObjectType",
     "name": "SliMetric",
     "properties": {
+      "CompositeSliConfig": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0
+      },
+      "DependencyConfig": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0
+      },
       "KeyAttributes": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/50"
         },
         "flags": 0
       },
       "MetricDataQueries": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/83"
+        },
+        "flags": 0
+      },
+      "MetricName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "MetricSource": {
+        "type": {
+          "$ref": "#/55"
         },
         "flags": 0
       },
       "MetricType": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "If the SLO monitors either the LATENCY or AVAILABILITY metric that Application Signals collects, this field displays which of those metrics is used."
       },
       "OperationName": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "If the SLO monitors a specific operation of the service, this field displays that operation name."
       },
       "PeriodSeconds": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "The number of seconds to use as the period for SLO evaluation. Your application's performance is compared to the SLI during each period. For each period, the application is determined to have either achieved or not achieved the necessary performance."
       },
       "Statistic": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The statistic to use for comparison to the threshold. It can be any CloudWatch statistic or extended statistic"
@@ -408,14 +1173,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "A string that you can use to assign a value. The combination of tag keys and values can help you organize and categorize your resources."
       },
       "Value": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The value for the specified tag key."
@@ -428,60 +1193,102 @@
     "properties": {}
   },
   {
-    "$type": "IntegerType"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/0"
-    }
-  },
-  {
-    "$type": "StringType"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/3"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/11"
-    }
-  },
-  {
-    "$type": "BooleanType"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/11"
+    "$type": "ObjectType",
+    "name": "Window",
+    "properties": {
+      "Duration": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1
+      },
+      "DurationUnit": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/35"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/38"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/38"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceLevelObjective_DependencyKeyAttributes",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/46"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/19"
+      "$ref": "#/43"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/53"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceLevelObjective_MetricSourceAttributes",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceLevelObjective_MetricSourceKeyAttributes",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/53"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/53"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/53"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/53"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/68"
     }
   },
   {
@@ -491,13 +1298,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/0"
+      "$ref": "#/35"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/19"
+      "$ref": "#/46"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/68"
     }
   },
   {
@@ -506,73 +1319,79 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "The ARN of this SLO."
       },
       "BurnRateConfigurations": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/86"
         },
         "flags": 0
       },
       "CreatedTime": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/23"
         },
         "flags": 2,
         "description": "Epoch time in seconds of the time that this SLO was created"
       },
       "Description": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "An optional description for this SLO. Default is 'No description'"
       },
       "EvaluationType": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "Displays whether this is a period-based SLO or a request-based SLO."
       },
+      "ExclusionWindows": {
+        "type": {
+          "$ref": "#/87"
+        },
+        "flags": 0
+      },
       "Goal": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/48"
         },
         "flags": 0
       },
       "LastUpdatedTime": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/23"
         },
         "flags": 2,
         "description": "Epoch time in seconds of the time that this SLO was most recently updated"
       },
       "Name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name of this SLO."
       },
       "RequestBasedSli": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/61"
         },
         "flags": 0
       },
       "Sli": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/66"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/88"
         },
         "flags": 0
       }
@@ -584,21 +1403,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/89"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -608,10 +1427,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.ApplicationSignals/ServiceLevelObjective@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/36"
+      "$ref": "#/90"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

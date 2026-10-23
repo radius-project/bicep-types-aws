@@ -1,10 +1,108 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-VerifiedPermissions-PolicyStore",
   "type": "AWS::VerifiedPermissions::PolicyStore",
-  "time": "2025-01-27T14:25:03.151Z",
+  "time": "2026-10-19T20:45:40.079Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
+      "Default": {
+        "additionalProperties": false,
+        "type": "object"
+      },
+      "DeletionMode": {
+        "default": "DISABLED",
+        "enum": [
+          "ENABLED",
+          "DISABLED"
+        ],
+        "type": "string"
+      },
+      "DeletionProtection": {
+        "additionalProperties": false,
+        "properties": {
+          "Mode": {
+            "$ref": "#/definitions/DeletionMode"
+          }
+        },
+        "required": [
+          "Mode"
+        ],
+        "type": "object"
+      },
+      "EncryptionContext": {
+        "additionalProperties": false,
+        "patternProperties": {
+          "^.+$": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "EncryptionSettings": {
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "KmsEncryptionSettings": {
+                "$ref": "#/definitions/KmsEncryptionSettings"
+              }
+            },
+            "required": [
+              "KmsEncryptionSettings"
+            ],
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Default": {
+                "$ref": "#/definitions/Default"
+              }
+            },
+            "required": [
+              "Default"
+            ],
+            "type": "object"
+          }
+        ],
+        "type": "object"
+      },
+      "KmsEncryptionSettings": {
+        "additionalProperties": false,
+        "properties": {
+          "EncryptionContext": {
+            "$ref": "#/definitions/EncryptionContext"
+          },
+          "Key": {
+            "$ref": "#/definitions/KmsKey"
+          }
+        },
+        "required": [
+          "Key"
+        ],
+        "type": "object"
+      },
+      "KmsEncryptionState": {
+        "additionalProperties": false,
+        "properties": {
+          "EncryptionContext": {
+            "$ref": "#/definitions/EncryptionContext"
+          },
+          "Key": {
+            "$ref": "#/definitions/KmsKey"
+          }
+        },
+        "required": [
+          "Key",
+          "EncryptionContext"
+        ],
+        "type": "object"
+      },
+      "KmsKey": {
+        "pattern": "^[a-zA-Z0-9:/_-]+$",
+        "type": "string"
+      },
       "SchemaDefinition": {
         "additionalProperties": false,
         "properties": {
@@ -16,6 +114,22 @@
       },
       "SchemaJson": {
         "type": "string"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
       },
       "ValidationMode": {
         "enum": [
@@ -42,8 +156,15 @@
       "create": {
         "permissions": [
           "verifiedpermissions:CreatePolicyStore",
+          "verifiedpermissions:TagResource",
           "verifiedpermissions:GetPolicyStore",
-          "verifiedpermissions:PutSchema"
+          "verifiedpermissions:PutSchema",
+          "kms:Decrypt",
+          "kms:DescribeKey",
+          "kms:Encrypt",
+          "kms:GenerateDataKeyWithoutPlaintext",
+          "kms:ReEncryptFrom",
+          "kms:ReEncryptTo"
         ]
       },
       "delete": {
@@ -62,6 +183,7 @@
       "read": {
         "permissions": [
           "verifiedpermissions:GetPolicyStore",
+          "verifiedpermissions:ListTagsForResource",
           "verifiedpermissions:GetSchema"
         ]
       },
@@ -69,8 +191,11 @@
         "permissions": [
           "verifiedpermissions:UpdatePolicyStore",
           "verifiedpermissions:GetPolicyStore",
+          "verifiedpermissions:TagResource",
+          "verifiedpermissions:UntagResource",
           "verifiedpermissions:GetSchema",
-          "verifiedpermissions:PutSchema"
+          "verifiedpermissions:PutSchema",
+          "kms:Decrypt"
         ]
       }
     },
@@ -84,10 +209,45 @@
         "pattern": "^arn:[^:]*:[^:]*:[^:]*:[^:]*:.*$",
         "type": "string"
       },
+      "DeletionProtection": {
+        "$ref": "#/definitions/DeletionProtection"
+      },
       "Description": {
         "maxLength": 150,
         "minLength": 0,
         "type": "string"
+      },
+      "EncryptionSettings": {
+        "$ref": "#/definitions/EncryptionSettings"
+      },
+      "EncryptionState": {
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "KmsEncryptionState": {
+                "$ref": "#/definitions/KmsEncryptionState"
+              }
+            },
+            "required": [
+              "KmsEncryptionState"
+            ],
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Default": {
+                "$ref": "#/definitions/Default"
+              }
+            },
+            "required": [
+              "Default"
+            ],
+            "type": "object"
+          }
+        ],
+        "type": "object"
       },
       "PolicyStoreId": {
         "maxLength": 200,
@@ -98,6 +258,15 @@
       "Schema": {
         "$ref": "#/definitions/SchemaDefinition"
       },
+      "Tags": {
+        "description": "The tags to add to the policy store",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
       "ValidationSettings": {
         "$ref": "#/definitions/ValidationSettings"
       }
@@ -107,18 +276,28 @@
     },
     "readOnlyProperties": [
       "/properties/Arn",
-      "/properties/PolicyStoreId"
+      "/properties/PolicyStoreId",
+      "/properties/EncryptionState"
     ],
     "required": [
       "ValidationSettings"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-avp",
     "tagging": {
-      "cloudFormationSystemTags": false,
-      "tagOnCreate": false,
-      "tagUpdatable": false,
-      "taggable": false
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "verifiedpermissions:TagResource",
+        "verifiedpermissions:ListTagsForResource",
+        "verifiedpermissions:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
     },
-    "typeName": "AWS::VerifiedPermissions::PolicyStore"
+    "typeName": "AWS::VerifiedPermissions::PolicyStore",
+    "writeOnlyProperties": [
+      "/properties/EncryptionSettings"
+    ]
   }
 }

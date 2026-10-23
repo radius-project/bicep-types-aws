@@ -54,11 +54,16 @@
   {
     "$type": "ResourceType",
     "name": "AWS.PaymentCryptography/Alias@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/3"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DeriveKeyUsage",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -83,7 +88,7 @@
       },
       "KeyModesOfUse": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 1
       },
@@ -111,55 +116,55 @@
     "properties": {
       "Decrypt": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "DeriveKey": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "Encrypt": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "Generate": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "NoRestrictions": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "Sign": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "Unwrap": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "Verify": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "Wrap": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/18"
         },
         "flags": 0
       }
@@ -172,6 +177,11 @@
   },
   {
     "$type": "ObjectType",
+    "name": "KeyReplicationState",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "KeyState",
     "properties": {}
   },
@@ -179,6 +189,43 @@
     "$type": "ObjectType",
     "name": "KeyUsage",
     "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReplicationStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReplicationStatusType",
+    "properties": {
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ARN of the AWS KMS key that protects the replica in this region."
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The AWS KMS key requested for this region, when replication failed before its ARN was known."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "StatusMessage": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -208,28 +255,40 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ObjectType",
     "name": "AWS.PaymentCryptography/KeyProperties",
     "properties": {
+      "DeriveKeyUsage": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
       "Enabled": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "Exportable": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/18"
         },
         "flags": 1
       },
       "KeyAttributes": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/7"
         },
         "flags": 1
       },
@@ -257,9 +316,28 @@
         },
         "flags": 2
       },
+      "Policy": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The resource-based policy attached to the key, in JSON format."
+      },
+      "ReplicationRegions": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 4
+      },
+      "ReplicationStatus": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2
+      },
       "Tags": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/21"
         },
         "flags": 0
       }
@@ -285,7 +363,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/22"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -295,10 +373,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.PaymentCryptography/Key@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/18"
+      "$ref": "#/23"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

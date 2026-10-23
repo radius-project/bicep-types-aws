@@ -1,0 +1,128 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-IPv4Pool",
+  "type": "AWS::EC2::IPv4Pool",
+  "time": "2026-10-21T23:13:16.388Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/PoolId"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::EC2::IPv4Pool. A public IPv4 pool is an EC2 IP address pool required for the public IPv4 CIDRs that you own and bring to AWS to manage with IPAM (BYOIP).",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "ec2:CreatePublicIpv4Pool",
+          "ec2:CreateTags"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "ec2:DeletePublicIpv4Pool",
+          "ec2:DescribePublicIpv4Pools"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "ec2:DescribePublicIpv4Pools"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ec2:DescribePublicIpv4Pools"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "ec2:DescribePublicIpv4Pools",
+          "ec2:CreateTags",
+          "ec2:DeleteTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the public IPv4 pool.",
+        "type": "string"
+      },
+      "Description": {
+        "description": "A description of the public IPv4 pool.",
+        "type": "string"
+      },
+      "NetworkBorderGroup": {
+        "description": "The name of the location from which the address pool is advertised.",
+        "type": "string"
+      },
+      "PoolId": {
+        "description": "The ID of the public IPv4 pool.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Any tags assigned to the public IPv4 pool.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "TotalAddressCount": {
+        "description": "The total number of addresses in the pool.",
+        "type": "integer"
+      },
+      "TotalAvailableAddressCount": {
+        "description": "The total number of available addresses in the pool.",
+        "type": "integer"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/PoolId",
+      "/properties/Description",
+      "/properties/NetworkBorderGroup",
+      "/properties/TotalAddressCount",
+      "/properties/TotalAvailableAddressCount"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "ec2:CreateTags",
+        "ec2:DeleteTags",
+        "ec2:DescribePublicIpv4Pools"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::EC2::IPv4Pool"
+  }
+}

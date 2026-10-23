@@ -1,63 +1,72 @@
 # AWS.IoTWireless @ default
 
 ## Resource AWS.IoTWireless/Destination@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoTWireless/DestinationProperties](#awsiotwirelessdestinationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoTWireless/DeviceProfile@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoTWireless/DeviceProfileProperties](#awsiotwirelessdeviceprofileproperties) (Identifier): properties of the resource
 
 ## Resource AWS.IoTWireless/FuotaTask@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoTWireless/FuotaTaskProperties](#awsiotwirelessfuotataskproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoTWireless/MulticastGroup@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoTWireless/MulticastGroupProperties](#awsiotwirelessmulticastgroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoTWireless/NetworkAnalyzerConfiguration@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoTWireless/NetworkAnalyzerConfigurationProperties](#awsiotwirelessnetworkanalyzerconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoTWireless/ServiceProfile@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoTWireless/ServiceProfileProperties](#awsiotwirelessserviceprofileproperties) (Identifier): properties of the resource
 
 ## Resource AWS.IoTWireless/TaskDefinition@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoTWireless/TaskDefinitionProperties](#awsiotwirelesstaskdefinitionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoTWireless/WirelessDevice@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoTWireless/WirelessDeviceProperties](#awsiotwirelesswirelessdeviceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoTWireless/WirelessGateway@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name

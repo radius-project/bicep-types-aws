@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SSM-PatchBaseline",
   "type": "AWS::SSM::PatchBaseline",
-  "time": "2024-06-24T16:26:35.228Z",
+  "time": "2026-10-20T20:51:55.374Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -253,6 +253,14 @@
         "description": "Indicates whether the list of approved patches includes non-security updates that should be applied to the instances. The default value is 'false'. Applies to Linux instances only.",
         "type": "boolean"
       },
+      "AvailableSecurityUpdatesComplianceStatus": {
+        "description": "The compliance status for vendor recommended security updates that are not approved by this patch baseline.",
+        "enum": [
+          "NON_COMPLIANT",
+          "COMPLIANT"
+        ],
+        "type": "string"
+      },
       "DefaultBaseline": {
         "default": false,
         "description": "Set the baseline as default baseline. Only registering to default patch baseline is allowed.",
@@ -365,6 +373,11 @@
     ],
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "ssm:AddTagsToResource",
+        "ssm:ListTagsForResource",
+        "ssm:RemoveTagsFromResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

@@ -281,6 +281,30 @@
   },
   {
     "$type": "ObjectType",
+    "name": "Workspace_Tags",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/28"
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "AWS.Grafana/WorkspaceProperties",
     "properties": {
       "AccountAccessType": {
@@ -438,6 +462,13 @@
         },
         "flags": 2
       },
+      "Tags": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 0,
+        "description": "The list of tags associated with the workspace."
+      },
       "VpcConfiguration": {
         "type": {
           "$ref": "#/11"
@@ -466,7 +497,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/30"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -476,10 +507,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Grafana/Workspace@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/29"
+      "$ref": "#/31"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

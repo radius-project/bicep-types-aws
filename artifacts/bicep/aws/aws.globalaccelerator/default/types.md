@@ -1,28 +1,32 @@
 # AWS.GlobalAccelerator @ default
 
 ## Resource AWS.GlobalAccelerator/Accelerator@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.GlobalAccelerator/AcceleratorProperties](#awsglobalacceleratoracceleratorproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GlobalAccelerator/CrossAccountAttachment@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.GlobalAccelerator/CrossAccountAttachmentProperties](#awsglobalacceleratorcrossaccountattachmentproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GlobalAccelerator/EndpointGroup@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.GlobalAccelerator/EndpointGroupProperties](#awsglobalacceleratorendpointgroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GlobalAccelerator/Listener@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -34,6 +38,9 @@
 * **DnsName**: string (ReadOnly): The Domain Name System (DNS) name that Global Accelerator creates that points to your accelerator's static IPv4 addresses.
 * **DualStackDnsName**: string (ReadOnly): The Domain Name System (DNS) name that Global Accelerator creates that points to your accelerator's static IPv4 and IPv6 addresses.
 * **Enabled**: bool: Indicates whether an accelerator is enabled. The value is true or false.
+* **FlowLogsEnabled**: bool: Indicates whether flow logs are enabled for the accelerator.
+* **FlowLogsS3Bucket**: string: The name of the Amazon S3 bucket for the flow logs.
+* **FlowLogsS3Prefix**: string: The prefix for the location in the Amazon S3 bucket for the flow logs.
 * **IpAddresses**: string[]: The IP addresses from BYOIP Prefix pool.
 * **IpAddressType**: string: IP Address type.
 * **Ipv4Addresses**: string[] (ReadOnly): The IPv4 addresses assigned to the accelerator.

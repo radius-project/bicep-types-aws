@@ -1,21 +1,24 @@
 # AWS.Chatbot @ default
 
 ## Resource AWS.Chatbot/CustomAction@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Chatbot/CustomActionProperties](#awschatbotcustomactionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Chatbot/MicrosoftTeamsChannelConfiguration@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Chatbot/MicrosoftTeamsChannelConfigurationProperties](#awschatbotmicrosoftteamschannelconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Chatbot/SlackChannelConfiguration@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -42,6 +45,7 @@
 * **Tags**: [Tag](#tag)[]: The tags to add to the configuration
 * **TeamId**: string (Required): The id of the Microsoft Teams team
 * **TeamsChannelId**: string (Required): The id of the Microsoft Teams channel
+* **TeamsChannelName**: string: The name of the Microsoft Teams channel
 * **TeamsTenantId**: string (Required): The id of the Microsoft Teams tenant
 * **UserRoleRequired**: bool: Enables use of a user role requirement in your chat configuration
 

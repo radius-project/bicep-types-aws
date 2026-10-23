@@ -1,0 +1,133 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Redshift-SnapshotSchedule",
+  "type": "AWS::Redshift::SnapshotSchedule",
+  "time": "2026-10-21T20:21:51.557Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ScheduleIdentifier"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ScheduleIdentifier",
+      "/properties/ScheduleDescription"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key, or name, for the resource tag.",
+            "maxLength": 127,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the resource tag.",
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Creates a snapshot schedule that lets you set up automatic snapshots of your Amazon Redshift cluster at regular intervals.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "redshift:CreateSnapshotSchedule",
+          "redshift:DescribeSnapshotSchedules",
+          "redshift:CreateTags"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "redshift:DeleteSnapshotSchedule",
+          "redshift:DescribeSnapshotSchedules"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "redshift:DescribeSnapshotSchedules"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "redshift:DescribeSnapshotSchedules"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "redshift:ModifySnapshotSchedule",
+          "redshift:DescribeSnapshotSchedules",
+          "redshift:CreateTags",
+          "redshift:DeleteTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the snapshot schedule.",
+        "type": "string"
+      },
+      "AssociatedClusterCount": {
+        "description": "The number of clusters associated with the schedule.",
+        "type": "integer"
+      },
+      "ScheduleDefinitions": {
+        "description": "The definition of the snapshot schedule. The definition is made up of schedule expressions, for example \"cron(30 12 *)\" or \"rate(12 hours)\".",
+        "insertionOrder": false,
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "ScheduleDescription": {
+        "description": "The description of the snapshot schedule.",
+        "type": "string"
+      },
+      "ScheduleIdentifier": {
+        "description": "A unique identifier for the snapshot schedule. Only alphanumeric characters are allowed.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An optional set of tags for the snapshot schedule.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/AssociatedClusterCount"
+    ],
+    "required": [
+      "ScheduleIdentifier",
+      "ScheduleDefinitions"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "redshift:CreateTags",
+        "redshift:DeleteTags",
+        "redshift:DescribeSnapshotSchedules"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Redshift::SnapshotSchedule"
+  }
+}

@@ -1,11 +1,12 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EntityResolution-MatchingWorkflow",
   "type": "AWS::EntityResolution::MatchingWorkflow",
-  "time": "2025-01-27T17:40:45.789Z",
+  "time": "2026-10-19T22:24:31.37Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
-      "/properties/WorkflowName"
+      "/properties/WorkflowName",
+      "/properties/ResolutionTechniques/EnableRealTimeMatching"
     ],
     "definitions": {
       "AttributeName": {
@@ -16,6 +17,33 @@
       },
       "CreatedAt": {
         "description": "The time of this MatchingWorkflow got created",
+        "type": "string"
+      },
+      "CustomerProfilesDomainArn": {
+        "description": "The Amazon Resource Name (ARN) of the Customer Profiles domain",
+        "pattern": "^arn:(aws|aws-us-gov|aws-cn):profile:[a-z]{2}-[a-z]{1,10}-[0-9]:[0-9]{12}:(domains/[a-zA-Z_0-9-]{1,255})$",
+        "type": "string"
+      },
+      "CustomerProfilesIntegrationConfig": {
+        "additionalProperties": false,
+        "description": "The Customer Profiles integration configuration for the output source",
+        "properties": {
+          "DomainArn": {
+            "$ref": "#/definitions/CustomerProfilesDomainArn"
+          },
+          "ObjectTypeArn": {
+            "$ref": "#/definitions/CustomerProfilesObjectTypeArn"
+          }
+        },
+        "required": [
+          "DomainArn",
+          "ObjectTypeArn"
+        ],
+        "type": "object"
+      },
+      "CustomerProfilesObjectTypeArn": {
+        "description": "The Amazon Resource Name (ARN) of the Customer Profiles object type",
+        "pattern": "^arn:(aws|aws-us-gov|aws-cn):profile:[a-z]{2}-[a-z]{1,10}-[0-9]:[0-9]{12}:(domains/[a-zA-Z_0-9-]{1,255}/object-types/[a-zA-Z_0-9-]{1,255})$",
         "type": "string"
       },
       "Description": {
@@ -83,6 +111,17 @@
         "pattern": "^arn:(aws|aws-us-gov|aws-cn):kms:.*:[0-9]+:.*$",
         "type": "string"
       },
+      "MatchingConfig": {
+        "additionalProperties": false,
+        "description": "Configuration for matching behavior within rule condition properties",
+        "properties": {
+          "EnableTransitiveMatching": {
+            "description": "Enables transitive matching to process records across all rule levels and connect unmatched records to existing match groups",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
       "MatchingWorkflowArn": {
         "description": "The default MatchingWorkflow arn",
         "pattern": "^arn:(aws|aws-us-gov|aws-cn):entityresolution:.*:[0-9]+:(matchingworkflow/.*)$",
@@ -109,6 +148,9 @@
           "ApplyNormalization": {
             "type": "boolean"
           },
+          "CustomerProfilesIntegrationConfig": {
+            "$ref": "#/definitions/CustomerProfilesIntegrationConfig"
+          },
           "KMSArn": {
             "$ref": "#/definitions/KMSArn"
           },
@@ -128,8 +170,7 @@
           }
         },
         "required": [
-          "Output",
-          "OutputS3Path"
+          "Output"
         ],
         "type": "object"
       },
@@ -162,6 +203,10 @@
       "ResolutionTechniques": {
         "additionalProperties": false,
         "properties": {
+          "EnableRealTimeMatching": {
+            "description": "Enables the workflow to use real-time matching. Can only be set on creation for RULE_MATCHING workflows that define RuleConditionProperties.",
+            "type": "boolean"
+          },
           "ProviderProperties": {
             "$ref": "#/definitions/ProviderProperties"
           },
@@ -170,6 +215,9 @@
           },
           "RuleBasedProperties": {
             "$ref": "#/definitions/RuleBasedProperties"
+          },
+          "RuleConditionProperties": {
+            "$ref": "#/definitions/RuleConditionProperties"
           }
         },
         "type": "object"
@@ -229,13 +277,46 @@
             "items": {
               "$ref": "#/definitions/Rule"
             },
-            "maxItems": 15,
+            "maxItems": 25,
             "minItems": 1,
             "type": "array"
           }
         },
         "required": [
           "AttributeMatchingModel",
+          "Rules"
+        ],
+        "type": "object"
+      },
+      "RuleCondition": {
+        "additionalProperties": false,
+        "properties": {
+          "Condition": {
+            "type": "string"
+          },
+          "RuleName": {
+            "$ref": "#/definitions/AttributeName"
+          }
+        },
+        "type": "object"
+      },
+      "RuleConditionProperties": {
+        "additionalProperties": false,
+        "properties": {
+          "MatchingConfig": {
+            "$ref": "#/definitions/MatchingConfig"
+          },
+          "Rules": {
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/RuleCondition"
+            },
+            "maxItems": 25,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
           "Rules"
         ],
         "type": "object"
@@ -286,7 +367,8 @@
           "events:PutRule",
           "events:DeleteRule",
           "events:PutTargets",
-          "events:ListTargetsByRule"
+          "events:ListTargetsByRule",
+          "profile:PutIntegration"
         ]
       },
       "delete": {
@@ -298,7 +380,8 @@
           "events:DeleteRule",
           "events:PutTargets",
           "events:RemoveTargets",
-          "events:ListTargetsByRule"
+          "events:ListTargetsByRule",
+          "profile:DeleteIntegration"
         ]
       },
       "list": {

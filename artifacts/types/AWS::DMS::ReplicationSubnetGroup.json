@@ -1,0 +1,107 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DMS-ReplicationSubnetGroup",
+  "type": "AWS::DMS::ReplicationSubnetGroup",
+  "time": "2026-10-19T16:35:02.623Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ReplicationSubnetGroupIdentifier"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::DMS::ReplicationSubnetGroup",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "dms:CreateReplicationSubnetGroup",
+          "dms:AddTagsToResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "dms:DeleteReplicationSubnetGroup"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "dms:DescribeReplicationSubnetGroups"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "dms:DescribeReplicationSubnetGroups",
+          "dms:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "dms:ModifyReplicationSubnetGroup",
+          "dms:AddTagsToResource",
+          "dms:RemoveTagsFromResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ReplicationSubnetGroupIdentifier"
+    ],
+    "properties": {
+      "ReplicationSubnetGroupDescription": {
+        "description": "The description for the subnet group.",
+        "type": "string"
+      },
+      "ReplicationSubnetGroupIdentifier": {
+        "description": "The name for the replication subnet group. This value is stored as a lowercase string.",
+        "type": "string"
+      },
+      "SubnetIds": {
+        "description": "One or more subnet IDs to be assigned to the replication subnet group.",
+        "items": {
+          "type": "string"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "Tags": {
+        "description": "One or more tags to be assigned to the replication subnet group",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": false
+      }
+    },
+    "required": [
+      "ReplicationSubnetGroupDescription",
+      "SubnetIds"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "dms:AddTagsToResource",
+        "dms:ListTagsForResource",
+        "dms:RemoveTagsFromResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::DMS::ReplicationSubnetGroup"
+  }
+}

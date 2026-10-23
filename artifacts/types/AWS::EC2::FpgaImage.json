@@ -1,0 +1,187 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-FpgaImage",
+  "type": "AWS::EC2::FpgaImage",
+  "time": "2026-10-21T20:58:18.627Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/FpgaImageId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/InputStorageLocation",
+      "/properties/LogsStorageLocation"
+    ],
+    "definitions": {
+      "StorageLocation": {
+        "additionalProperties": false,
+        "description": "Describes a storage location in Amazon S3.",
+        "properties": {
+          "Bucket": {
+            "description": "The name of the S3 bucket.",
+            "type": "string"
+          },
+          "Key": {
+            "description": "The key.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A tag consisting of a key-value pair.",
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Creates and manages an Amazon FPGA Image (AFI) from a design checkpoint (DCP).",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "ec2:CreateFpgaImage",
+          "ec2:DescribeFpgaImages",
+          "ec2:CreateTags",
+          "s3:GetObject"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "ec2:DeleteFpgaImage",
+          "ec2:DescribeFpgaImages",
+          "ec2:DeleteTags",
+          "ec2:DescribeTags"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "ec2:DescribeFpgaImages"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ec2:DescribeFpgaImages",
+          "ec2:DescribeTags"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "ec2:ModifyFpgaImageAttribute",
+          "ec2:DescribeFpgaImages",
+          "ec2:CreateTags",
+          "ec2:DeleteTags",
+          "ec2:DescribeTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of the FPGA image.",
+        "type": "string"
+      },
+      "CreateTime": {
+        "description": "The date and time the AFI was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DataRetentionSupport": {
+        "description": "Indicates whether data retention support is enabled for the AFI.",
+        "type": "boolean"
+      },
+      "Description": {
+        "description": "A description for the AFI.",
+        "type": "string"
+      },
+      "FpgaImageGlobalId": {
+        "description": "The global FPGA image identifier (AGFI ID).",
+        "type": "string"
+      },
+      "FpgaImageId": {
+        "description": "The FPGA image identifier (AFI ID).",
+        "type": "string"
+      },
+      "InputStorageLocation": {
+        "$ref": "#/definitions/StorageLocation",
+        "description": "The location of the encrypted design checkpoint in Amazon S3. The input must be a tarball."
+      },
+      "LogsStorageLocation": {
+        "$ref": "#/definitions/StorageLocation",
+        "description": "The location in Amazon S3 for the output logs."
+      },
+      "Name": {
+        "description": "A name for the AFI.",
+        "type": "string"
+      },
+      "OwnerId": {
+        "description": "The ID of the AWS account that owns the AFI.",
+        "type": "string"
+      },
+      "Public": {
+        "description": "Indicates whether the AFI is public.",
+        "type": "boolean"
+      },
+      "State": {
+        "description": "The state of the AFI (pending | available | failed | unavailable).",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags assigned to the FPGA image.",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "UpdateTime": {
+        "description": "The time of the most recent update to the AFI.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/FpgaImageId",
+      "/properties/FpgaImageGlobalId",
+      "/properties/State",
+      "/properties/OwnerId",
+      "/properties/CreateTime",
+      "/properties/UpdateTime",
+      "/properties/DataRetentionSupport",
+      "/properties/Public"
+    ],
+    "required": [],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "ec2:CreateTags",
+        "ec2:DeleteTags",
+        "ec2:DescribeTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::EC2::FpgaImage",
+    "writeOnlyProperties": [
+      "/properties/InputStorageLocation",
+      "/properties/LogsStorageLocation"
+    ]
+  }
+}

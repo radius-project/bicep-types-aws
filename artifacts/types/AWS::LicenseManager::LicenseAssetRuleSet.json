@@ -1,0 +1,256 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-LicenseManager-LicenseAssetRuleSet",
+  "type": "AWS::LicenseManager::LicenseAssetRuleSet",
+  "time": "2026-10-21T23:28:03.024Z",
+  "schema": {
+    "additionalProperties": false,
+    "definitions": {
+      "AndRuleStatement": {
+        "additionalProperties": false,
+        "description": "AND rule statement.",
+        "properties": {
+          "MatchingRuleStatements": {
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/MatchingRuleStatement"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "InstanceRuleStatement": {
+        "additionalProperties": false,
+        "description": "Instance rule statement.",
+        "properties": {
+          "AndRuleStatement": {
+            "$ref": "#/definitions/AndRuleStatement"
+          },
+          "MatchingRuleStatement": {
+            "$ref": "#/definitions/MatchingRuleStatement"
+          },
+          "OrRuleStatement": {
+            "$ref": "#/definitions/OrRuleStatement"
+          }
+        },
+        "type": "object"
+      },
+      "LicenseAssetRule": {
+        "additionalProperties": false,
+        "description": "License asset rule.",
+        "properties": {
+          "RuleStatement": {
+            "$ref": "#/definitions/RuleStatement"
+          }
+        },
+        "required": [
+          "RuleStatement"
+        ],
+        "type": "object"
+      },
+      "LicenseConfigurationRuleStatement": {
+        "additionalProperties": false,
+        "description": "License configuration rule statement.",
+        "properties": {
+          "AndRuleStatement": {
+            "$ref": "#/definitions/AndRuleStatement"
+          },
+          "MatchingRuleStatement": {
+            "$ref": "#/definitions/MatchingRuleStatement"
+          },
+          "OrRuleStatement": {
+            "$ref": "#/definitions/OrRuleStatement"
+          }
+        },
+        "type": "object"
+      },
+      "LicenseRuleStatement": {
+        "additionalProperties": false,
+        "description": "License rule statement.",
+        "properties": {
+          "AndRuleStatement": {
+            "$ref": "#/definitions/AndRuleStatement"
+          },
+          "MatchingRuleStatement": {
+            "$ref": "#/definitions/MatchingRuleStatement"
+          },
+          "OrRuleStatement": {
+            "$ref": "#/definitions/OrRuleStatement"
+          }
+        },
+        "type": "object"
+      },
+      "MatchingRuleStatement": {
+        "additionalProperties": false,
+        "description": "Matching rule statement.",
+        "properties": {
+          "Constraint": {
+            "description": "Constraint (e.g. Equals, Not_Equals).",
+            "type": "string"
+          },
+          "KeyToMatch": {
+            "description": "Key to match.",
+            "type": "string"
+          },
+          "ValueToMatch": {
+            "description": "Values to match.",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "KeyToMatch",
+          "Constraint",
+          "ValueToMatch"
+        ],
+        "type": "object"
+      },
+      "OrRuleStatement": {
+        "additionalProperties": false,
+        "description": "OR rule statement.",
+        "properties": {
+          "MatchingRuleStatements": {
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/MatchingRuleStatement"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "RuleStatement": {
+        "additionalProperties": false,
+        "description": "Rule statement. Specify exactly one of InstanceRuleStatement, LicenseRuleStatement, or LicenseConfigurationRuleStatement.",
+        "properties": {
+          "InstanceRuleStatement": {
+            "$ref": "#/definitions/InstanceRuleStatement"
+          },
+          "LicenseConfigurationRuleStatement": {
+            "$ref": "#/definitions/LicenseConfigurationRuleStatement"
+          },
+          "LicenseRuleStatement": {
+            "$ref": "#/definitions/LicenseRuleStatement"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource schema for AWS::LicenseManager::LicenseAssetRuleSet.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "license-manager:CreateLicenseAssetRuleset",
+          "license-manager:GetLicenseAssetRuleset",
+          "license-manager:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "license-manager:DeleteLicenseAssetRuleset"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "license-manager:ListLicenseAssetRulesets"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "license-manager:GetLicenseAssetRuleset",
+          "license-manager:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "license-manager:UpdateLicenseAssetRuleset",
+          "license-manager:GetLicenseAssetRuleset",
+          "license-manager:TagResource",
+          "license-manager:UntagResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/LicenseAssetRulesetArn"
+    ],
+    "properties": {
+      "Description": {
+        "description": "License asset ruleset description.",
+        "maxLength": 1024,
+        "type": "string"
+      },
+      "LicenseAssetRulesetArn": {
+        "description": "Amazon Resource Name (ARN) of the license asset ruleset.",
+        "maxLength": 2048,
+        "pattern": "^arn:aws[a-zA-Z-]*:[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,1023}$",
+        "type": "string"
+      },
+      "Name": {
+        "description": "License asset ruleset name.",
+        "maxLength": 128,
+        "type": "string"
+      },
+      "Rules": {
+        "description": "License asset rules.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/LicenseAssetRule"
+        },
+        "type": "array"
+      },
+      "Tags": {
+        "description": "Tags to add to the license asset ruleset.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/LicenseAssetRulesetArn"
+    ],
+    "required": [
+      "Name",
+      "Rules"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "license-manager:TagResource",
+        "license-manager:UntagResource",
+        "license-manager:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::LicenseManager::LicenseAssetRuleSet"
+  }
+}

@@ -305,11 +305,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.QBusiness/Application@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/19"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -347,49 +347,49 @@
     "properties": {
       "AndAllFilters": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/32"
         },
         "flags": 0
       },
       "ContainsAll": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/28"
         },
         "flags": 0
       },
       "ContainsAny": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/28"
         },
         "flags": 0
       },
       "EqualsTo": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/28"
         },
         "flags": 0
       },
       "GreaterThan": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/28"
         },
         "flags": 0
       },
       "GreaterThanOrEquals": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/28"
         },
         "flags": 0
       },
       "LessThan": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/28"
         },
         "flags": 0
       },
       "LessThanOrEquals": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/28"
         },
         "flags": 0
       },
@@ -401,9 +401,55 @@
       },
       "OrAllFilters": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/33"
         },
         "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataAccessorAuthenticationConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataAccessorAuthenticationDetail",
+    "properties": {
+      "AuthenticationConfiguration": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
+      "AuthenticationType": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
+      },
+      "ExternalIds": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataAccessorAuthenticationType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataAccessorIdcTrustedTokenIssuerConfiguration",
+    "properties": {
+      "IdcTrustedTokenIssuerArn": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
       }
     }
   },
@@ -419,7 +465,7 @@
       },
       "Value": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/35"
         },
         "flags": 1
       }
@@ -466,6 +512,12 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "DataAccessor_DocumentAttributeValue",
     "properties": {}
@@ -483,7 +535,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/26"
+      "$ref": "#/30"
     }
   },
   {
@@ -492,7 +544,7 @@
     "properties": {
       "ActionConfigurations": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/37"
         },
         "flags": 1
       },
@@ -501,6 +553,12 @@
           "$ref": "#/14"
         },
         "flags": 17
+      },
+      "AuthenticationDetail": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0
       },
       "CreatedAt": {
         "type": {
@@ -540,7 +598,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/38"
         },
         "flags": 0
       },
@@ -572,7 +630,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/39"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -582,15 +640,32 @@
   {
     "$type": "ResourceType",
     "name": "AWS.QBusiness/DataAccessor@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/35"
+      "$ref": "#/40"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
     "name": "AttributeValueOperator",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AudioExtractionConfiguration",
+    "properties": {
+      "AudioExtractionStatus": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AudioExtractionStatus",
     "properties": {}
   },
   {
@@ -604,13 +679,13 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/61"
         },
         "flags": 1
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/62"
         },
         "flags": 1
       }
@@ -634,7 +709,7 @@
       },
       "Value": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/63"
         },
         "flags": 0
       }
@@ -658,7 +733,7 @@
       },
       "Value": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/64"
         },
         "flags": 0
       }
@@ -685,19 +760,19 @@
     "properties": {
       "InlineConfigurations": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/65"
         },
         "flags": 0
       },
       "PostExtractionHookConfiguration": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/53"
         },
         "flags": 0
       },
       "PreExtractionHookConfiguration": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/53"
         },
         "flags": 0
       }
@@ -709,7 +784,7 @@
     "properties": {
       "InvocationCondition": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/47"
         },
         "flags": 0
       },
@@ -756,7 +831,7 @@
     "properties": {
       "Condition": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/47"
         },
         "flags": 0
       },
@@ -768,7 +843,7 @@
       },
       "Target": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/48"
         },
         "flags": 0
       }
@@ -778,9 +853,21 @@
     "$type": "ObjectType",
     "name": "MediaExtractionConfiguration",
     "properties": {
+      "AudioExtractionConfiguration": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      },
       "ImageExtractionConfiguration": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/54"
+        },
+        "flags": 0
+      },
+      "VideoExtractionConfiguration": {
+        "type": {
+          "$ref": "#/59"
         },
         "flags": 0
       }
@@ -805,6 +892,23 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "VideoExtractionConfiguration",
+    "properties": {
+      "VideoExtractionStatus": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VideoExtractionStatus",
+    "properties": {}
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/14"
@@ -829,7 +933,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/49"
+      "$ref": "#/56"
     }
   },
   {
@@ -844,7 +948,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/51"
+      "$ref": "#/58"
     }
   },
   {
@@ -859,7 +963,7 @@
       },
       "Configuration": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/67"
         },
         "flags": 1
       },
@@ -895,7 +999,7 @@
       },
       "DocumentEnrichmentConfiguration": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/52"
         },
         "flags": 0
       },
@@ -907,7 +1011,7 @@
       },
       "MediaExtractionConfiguration": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/57"
         },
         "flags": 0
       },
@@ -931,7 +1035,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/68"
         },
         "flags": 0
       },
@@ -949,7 +1053,7 @@
       },
       "VpcConfiguration": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/46"
         },
         "flags": 0
       }
@@ -975,7 +1079,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/69"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -985,11 +1089,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.QBusiness/DataSource@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/61"
+      "$ref": "#/70"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1026,7 +1130,7 @@
     "properties": {
       "Units": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/81"
         },
         "flags": 0
       }
@@ -1038,7 +1142,7 @@
     "properties": {
       "TextDocumentStatistics": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/80"
         },
         "flags": 0
       }
@@ -1083,13 +1187,13 @@
     "properties": {
       "IndexedTextBytes": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/81"
         },
         "flags": 0
       },
       "IndexedTextDocumentCount": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/81"
         },
         "flags": 0
       }
@@ -1105,13 +1209,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/64"
+      "$ref": "#/73"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/70"
+      "$ref": "#/79"
     }
   },
   {
@@ -1126,7 +1230,7 @@
       },
       "CapacityConfiguration": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/74"
         },
         "flags": 0
       },
@@ -1150,7 +1254,7 @@
       },
       "DocumentAttributeConfigurations": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/83"
         },
         "flags": 0
       },
@@ -1168,7 +1272,7 @@
       },
       "IndexStatistics": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/75"
         },
         "flags": 2
       },
@@ -1180,7 +1284,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/84"
         },
         "flags": 0
       },
@@ -1218,7 +1322,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/85"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1228,11 +1332,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.QBusiness/Index@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/77"
+      "$ref": "#/86"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1268,7 +1372,7 @@
     "properties": {
       "ApiSchema": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/88"
         },
         "flags": 1
       },
@@ -1384,7 +1488,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/90"
+      "$ref": "#/99"
     }
   },
   {
@@ -1399,7 +1503,7 @@
       },
       "AuthConfiguration": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/94"
         },
         "flags": 1
       },
@@ -1417,7 +1521,7 @@
       },
       "CustomPluginConfiguration": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/91"
         },
         "flags": 0
       },
@@ -1453,7 +1557,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/101"
         },
         "flags": 0
       },
@@ -1491,7 +1595,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/102"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1501,11 +1605,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.QBusiness/Plugin@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/94"
+      "$ref": "#/103"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1571,7 +1675,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/101"
+      "$ref": "#/110"
     }
   },
   {
@@ -1586,7 +1690,7 @@
       },
       "Configuration": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/107"
         },
         "flags": 1
       },
@@ -1628,7 +1732,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/112"
         },
         "flags": 0
       },
@@ -1666,7 +1770,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/113"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1676,11 +1780,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.QBusiness/Retriever@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/105"
+      "$ref": "#/114"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1693,7 +1797,7 @@
     "properties": {
       "EnabledBrowserExtensions": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/126"
         },
         "flags": 1
       }
@@ -1816,7 +1920,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/114"
+      "$ref": "#/123"
     }
   },
   {
@@ -1831,7 +1935,7 @@
       },
       "BrowserExtensionConfiguration": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/117"
         },
         "flags": 0
       },
@@ -1843,7 +1947,7 @@
       },
       "CustomizationConfiguration": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/118"
         },
         "flags": 0
       },
@@ -1855,13 +1959,13 @@
       },
       "IdentityProviderConfiguration": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/119"
         },
         "flags": 0
       },
       "Origins": {
         "type": {
-          "$ref": "#/119"
+          "$ref": "#/128"
         },
         "flags": 0
       },
@@ -1891,7 +1995,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/120"
+          "$ref": "#/129"
         },
         "flags": 0
       },
@@ -1947,7 +2051,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/130"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1957,10 +2061,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.QBusiness/WebExperience@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/122"
+      "$ref": "#/131"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

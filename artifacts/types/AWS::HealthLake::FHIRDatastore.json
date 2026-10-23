@@ -1,17 +1,33 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-HealthLake-FHIRDatastore",
   "type": "AWS::HealthLake::FHIRDatastore",
-  "time": "2025-01-13T22:42:57.048Z",
+  "time": "2026-10-16T01:25:48.126Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
-      "/properties/DatastoreName",
       "/properties/DatastoreTypeVersion",
       "/properties/PreloadDataConfig",
-      "/properties/SseConfiguration",
-      "/properties/IdentityProviderConfiguration"
+      "/properties/SseConfiguration"
     ],
     "definitions": {
+      "AnalyticsConfiguration": {
+        "additionalProperties": false,
+        "description": "The analytics configuration for the Data Store. Omitted when the Data Store can't carry analytics.",
+        "properties": {
+          "Status": {
+            "description": "The analytics status for the Data Store.",
+            "enum": [
+              "ENABLED",
+              "PAUSED"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Status"
+        ],
+        "type": "object"
+      },
       "CreatedAt": {
         "additionalProperties": false,
         "description": "The time that a Data Store was created.",
@@ -54,10 +70,12 @@
         "type": "string"
       },
       "DatastoreStatus": {
-        "description": "The status of the Data Store. Possible statuses are 'CREATING', 'ACTIVE', 'DELETING', or 'DELETED'.",
+        "description": "The status of the Data Store. Possible statuses are 'CREATING', 'ACTIVE', 'UPDATING', 'UPDATE_FAILED', 'DELETING', or 'DELETED'.",
         "enum": [
           "CREATING",
           "ACTIVE",
+          "UPDATING",
+          "UPDATE_FAILED",
           "DELETING",
           "DELETED"
         ],
@@ -82,7 +100,8 @@
             "description": "Type of Authorization Strategy. The two types of supported Authorization strategies are SMART_ON_FHIR_V1 and AWS_AUTH.",
             "enum": [
               "SMART_ON_FHIR_V1",
-              "AWS_AUTH"
+              "AWS_AUTH",
+              "SMART_ON_FHIR"
             ],
             "type": "string"
           },
@@ -132,6 +151,24 @@
         ],
         "type": "object"
       },
+      "NlpConfiguration": {
+        "additionalProperties": false,
+        "description": "The natural language processing (NLP) configuration for the Data Store.",
+        "properties": {
+          "Status": {
+            "description": "The NLP status for the Data Store.",
+            "enum": [
+              "ENABLED",
+              "DISABLED"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Status"
+        ],
+        "type": "object"
+      },
       "PreloadDataConfig": {
         "additionalProperties": false,
         "description": "The preloaded data configuration for the Data Store. Only data preloaded from Synthea is supported.",
@@ -146,6 +183,25 @@
         },
         "required": [
           "PreloadDataType"
+        ],
+        "type": "object"
+      },
+      "ProfileConfiguration": {
+        "additionalProperties": false,
+        "description": "The profile configuration for the Data Store.",
+        "properties": {
+          "DefaultProfiles": {
+            "description": "The FHIR profiles the Data Store validates resources against by default, for example us-core-3.1.1.",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "DefaultProfiles"
         ],
         "type": "object"
       },
@@ -213,7 +269,8 @@
           "healthlake:TagResource",
           "healthlake:UntagResource",
           "healthlake:ListTagsForResource"
-        ]
+        ],
+        "timeoutInMinutes": 360
       },
       "delete": {
         "permissions": [
@@ -226,7 +283,8 @@
           "ram:AcceptResourceShareInvitation",
           "glue:CreateDatabase",
           "glue:DeleteDatabase"
-        ]
+        ],
+        "timeoutInMinutes": 360
       },
       "list": {
         "permissions": [
@@ -241,6 +299,7 @@
       },
       "update": {
         "permissions": [
+          "healthlake:UpdateFHIRDatastore",
           "healthlake:TagResource",
           "healthlake:UntagResource",
           "healthlake:ListTagsForResource",
@@ -248,13 +307,17 @@
           "iam:PassRole",
           "iam:GetRole",
           "iam:CreateServiceLinkedRole"
-        ]
+        ],
+        "timeoutInMinutes": 360
       }
     },
     "primaryIdentifier": [
       "/properties/DatastoreId"
     ],
     "properties": {
+      "AnalyticsConfiguration": {
+        "$ref": "#/definitions/AnalyticsConfiguration"
+      },
       "CreatedAt": {
         "$ref": "#/definitions/CreatedAt"
       },
@@ -279,8 +342,14 @@
       "IdentityProviderConfiguration": {
         "$ref": "#/definitions/IdentityProviderConfiguration"
       },
+      "NlpConfiguration": {
+        "$ref": "#/definitions/NlpConfiguration"
+      },
       "PreloadDataConfig": {
         "$ref": "#/definitions/PreloadDataConfig"
+      },
+      "ProfileConfiguration": {
+        "$ref": "#/definitions/ProfileConfiguration"
       },
       "SseConfiguration": {
         "$ref": "#/definitions/SseConfiguration"

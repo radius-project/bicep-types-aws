@@ -1,28 +1,32 @@
 # AWS.SSO @ default
 
 ## Resource AWS.SSO/Application@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SSO/ApplicationProperties](#awsssoapplicationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SSO/Instance@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SSO/InstanceProperties](#awsssoinstanceproperties) (Identifier): properties of the resource
 
 ## Resource AWS.SSO/InstanceAccessControlAttributeConfiguration@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SSO/InstanceAccessControlAttributeConfigurationProperties](#awsssoinstanceaccesscontrolattributeconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SSO/PermissionSet@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -42,6 +46,7 @@
 * **ApplicationArn**: string (ReadOnly, Identifier): The Application ARN that is returned upon creation of the Identity Center (SSO) Application
 * **ApplicationProviderArn**: string (Required): The ARN of the application provider under which the operation will run
 * **Description**: string: The description information for the Identity Center (SSO) Application
+* **IdentityStoreArn**: string (ReadOnly): The ARN of the identity store associated with the Identity Center instance
 * **InstanceArn**: string (Required): The ARN of the instance of IAM Identity Center under which the operation will run
 * **Name**: string (Required): The name you want to assign to this Identity Center (SSO) Application
 * **PortalOptions**: [PortalOptionsConfiguration](#portaloptionsconfiguration): A structure that describes the options for the portal associated with an application

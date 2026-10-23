@@ -1,14 +1,16 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ElastiCache-ServerlessCache",
   "type": "AWS::ElastiCache::ServerlessCache",
-  "time": "2024-11-15T09:14:16.591Z",
+  "time": "2026-09-30T13:16:23.41Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/ServerlessCacheName",
       "/properties/KmsKeyId",
       "/properties/SnapshotArnsToRestore",
-      "/properties/SubnetIds"
+      "/properties/SubnetIds",
+      "/properties/NetworkType",
+      "/properties/ConnectionType"
     ],
     "definitions": {
       "CacheUsageLimits": {
@@ -23,6 +25,14 @@
           }
         },
         "type": "object"
+      },
+      "ConnectionType": {
+        "description": "The connection type for the serverless cache. Valid values are vpc or public.",
+        "enum": [
+          "vpc",
+          "public"
+        ],
+        "type": "string"
       },
       "DataStorage": {
         "additionalProperties": false,
@@ -78,6 +88,15 @@
           }
         },
         "type": "object"
+      },
+      "NetworkType": {
+        "description": "The network type for the serverless cache. Valid values are ipv4, ipv6, or dual_stack.",
+        "enum": [
+          "ipv4",
+          "ipv6",
+          "dual_stack"
+        ],
+        "type": "string"
       },
       "Tag": {
         "additionalProperties": false,
@@ -158,6 +177,9 @@
       "CacheUsageLimits": {
         "$ref": "#/definitions/CacheUsageLimits"
       },
+      "ConnectionType": {
+        "$ref": "#/definitions/ConnectionType"
+      },
       "CreateTime": {
         "description": "The creation time of the Serverless Cache.",
         "type": "string"
@@ -192,6 +214,9 @@
       "MajorEngineVersion": {
         "description": "The major engine version of the Serverless Cache.",
         "type": "string"
+      },
+      "NetworkType": {
+        "$ref": "#/definitions/NetworkType"
       },
       "ReaderEndpoint": {
         "$ref": "#/definitions/Endpoint"

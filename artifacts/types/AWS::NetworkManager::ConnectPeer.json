@@ -1,13 +1,12 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkManager-ConnectPeer",
   "type": "AWS::NetworkManager::ConnectPeer",
-  "time": "2024-12-11T12:53:06.698Z",
+  "time": "2026-10-14T23:11:25.98Z",
   "schema": {
     "additionalIdentifiers": [
       [
         "/properties/ConnectAttachmentId",
-        "/properties/CoreNetworkAddress",
-        "/properties/InsideCidrBlocks"
+        "/properties/CoreNetworkAddress"
       ]
     ],
     "additionalProperties": false,
@@ -190,6 +189,13 @@
         },
         "type": "array"
       },
+      "LastModificationErrors": {
+        "description": "Errors from the last modification of the connect peer.",
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
       "PeerAddress": {
         "description": "The IP address of the Connect peer.",
         "type": "string"
@@ -218,7 +224,8 @@
       "/properties/CreatedAt",
       "/properties/Configuration",
       "/properties/CoreNetworkId",
-      "/properties/EdgeLocation"
+      "/properties/EdgeLocation",
+      "/properties/LastModificationErrors"
     ],
     "required": [
       "ConnectAttachmentId",
@@ -226,7 +233,7 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-networkmanager/aws-networkmanager-connectpeer",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "networkmanager:TagResource",
         "networkmanager:UntagResource",

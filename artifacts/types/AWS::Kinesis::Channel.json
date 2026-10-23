@@ -1,0 +1,555 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Kinesis-Channel",
+  "type": "AWS::Kinesis::Channel",
+  "time": "2026-10-20T23:33:03.947Z",
+  "schema": {
+    "$comment": "Fail-open for system tags (aws:* prefix) is implemented in BaseHandlerStd.modifyTags() - AccessDeniedException on system tag operations is caught and silently continued. Customer tags still fail-hard. COE: https://www.coe.a2z.com/coe/236297/content",
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ChannelName",
+      "/properties/ServiceExecutionRoleARN",
+      "/properties/StreamConfigurationList",
+      "/properties/EncryptionConfiguration",
+      "/properties/S3DestinationConfiguration/StorageConfiguration",
+      "/properties/S3DestinationConfiguration/DeadLetterQueueS3Configuration",
+      "/properties/S3TablesDestinationConfiguration/S3TablesConfigurationList",
+      "/properties/S3TablesDestinationConfiguration/DeadLetterQueueS3Configuration"
+    ],
+    "definitions": {
+      "CloudWatchLogsConfiguration": {
+        "additionalProperties": false,
+        "description": "CloudWatch Logs configuration for the channel. When Enabled is true and LogGroupName is omitted, the service uses a default group derived from the channel name and id; LogStreamName defaults to the literal string 'DestinationDelivery'.",
+        "properties": {
+          "Enabled": {
+            "description": "Whether CloudWatch Logs delivery is enabled.",
+            "type": "boolean"
+          },
+          "LogGroupName": {
+            "description": "The CloudWatch log group name. When Enabled is true and LogGroupName is omitted, the service uses the default '/aws/kinesis/\u003cchannelName\u003e/\u003cchannelId\u003e'.",
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "^[\\.\\-_/#A-Za-z0-9]+$",
+            "type": "string"
+          },
+          "LogStreamName": {
+            "default": "DestinationDelivery",
+            "description": "The CloudWatch log stream name. Defaults to the literal string 'DestinationDelivery' when omitted.",
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "^[^:*]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Enabled"
+        ],
+        "type": "object"
+      },
+      "DeadLetterQueueS3Configuration": {
+        "additionalProperties": false,
+        "description": "Configuration of the S3 bucket used to capture records that cannot be delivered to the primary destination.",
+        "properties": {
+          "BucketARN": {
+            "description": "The ARN of the S3 bucket for storing failed records.",
+            "maxLength": 2048,
+            "minLength": 1,
+            "pattern": "^arn:aws[-a-z0-9]*:s3:::[a-z0-9._-]{3,63}$",
+            "type": "string"
+          },
+          "ErrorOutputPrefix": {
+            "description": "Optional S3 key prefix under which error records are organized. When omitted, the service uses the default 'kinesis-channel/errors/\u003cchannelName\u003e/\u003cchannelId\u003e/'.",
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "^[0-9A-Za-z!\\-_'.*()\\/]+$",
+            "type": "string"
+          },
+          "ExpectedBucketOwner": {
+            "description": "The AWS account ID of the expected owner of the dead-letter queue S3 bucket. Used to verify bucket ownership before delivery.",
+            "maxLength": 12,
+            "minLength": 12,
+            "pattern": "^\\d{12}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "BucketARN",
+          "ExpectedBucketOwner"
+        ],
+        "type": "object"
+      },
+      "EncryptionConfiguration": {
+        "additionalProperties": false,
+        "description": "Server-side encryption configuration for data at rest in the destination. Data delivered to S3 / S3 Tables is encrypted with the same key.",
+        "properties": {
+          "EncryptionType": {
+            "description": "The encryption type. KMS is the only supported value.",
+            "enum": [
+              "KMS"
+            ],
+            "type": "string"
+          },
+          "KeyId": {
+            "description": "The customer-managed AWS KMS key. Accepts a key GUID, key ARN, alias ARN, or alias name prefixed by 'alias/'. The Kinesis Data Streams managed alias 'aws/kinesis' is not accepted - the key must be customer-owned so it can also be used by readers of the destination.",
+            "maxLength": 2048,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "EncryptionType",
+          "KeyId"
+        ],
+        "type": "object"
+      },
+      "LoggingConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration for delivering channel operational logs.",
+        "properties": {
+          "CloudWatchLogs": {
+            "$ref": "#/definitions/CloudWatchLogsConfiguration",
+            "description": "CloudWatch Logs configuration block. When provided, controls whether and where the channel writes operational logs."
+          }
+        },
+        "required": [
+          "CloudWatchLogs"
+        ],
+        "type": "object"
+      },
+      "PartitionField": {
+        "additionalProperties": false,
+        "description": "A single partition field consisting of a transform applied to a source column.",
+        "properties": {
+          "SourceName": {
+            "description": "The name of the source column on which the transform is applied.",
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9._]+$",
+            "type": "string"
+          },
+          "Transform": {
+            "description": "The partitioning transform applied to the SourceName column.",
+            "enum": [
+              "TIME_HOUR"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Transform",
+          "SourceName"
+        ],
+        "type": "object"
+      },
+      "PartitionSpec": {
+        "additionalProperties": false,
+        "description": "Partitioning specification for the destination Iceberg table. Follows the S3 Tables / Iceberg PartitionSpec format.",
+        "properties": {
+          "PartitionFields": {
+            "description": "List of partition fields that define how records are partitioned when written to the destination table.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/PartitionField"
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "PartitionFields"
+        ],
+        "type": "object"
+      },
+      "RecordConfiguration": {
+        "additionalProperties": false,
+        "description": "The configuration that describes how records on the source stream are encoded.",
+        "properties": {
+          "GSRSchemaARN": {
+            "description": "The ARN of the AWS Glue Schema Registry (GSR) schema. Required for the S3 Tables destination, where it is used to create the S3 Table and to validate that the record format matches the table schema. Also used when RecordFormatType is GSR_JSON to interpret records read from the source stream. Vanilla S3 delivery writes records as S3 objects and does not need a schema. The schema must be in the same account and region as the channel.",
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "^arn:aws[-a-z0-9]*:glue:[-a-z0-9]+:\\d{12}:schema/[-a-zA-Z0-9_$#.]+/[-a-zA-Z0-9_$#.]+$",
+            "type": "string"
+          },
+          "RecordFormatType": {
+            "description": "The format used to interpret records read from the source stream.",
+            "enum": [
+              "GSR_JSON",
+              "JSON",
+              "STRING",
+              "BYTE_ARRAY"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "RecordFormatType"
+        ],
+        "type": "object"
+      },
+      "S3DestinationConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration for delivery to a vanilla S3 bucket destination. Exactly one of S3DestinationConfiguration and S3TablesDestinationConfiguration must be specified on the channel.",
+        "properties": {
+          "DataFreshnessInSeconds": {
+            "default": 300,
+            "description": "The maximum time in seconds the channel buffers records before delivery if the minimum target file size is not reached.",
+            "type": "integer"
+          },
+          "DeadLetterQueueS3Configuration": {
+            "$ref": "#/definitions/DeadLetterQueueS3Configuration",
+            "description": "Optional dead-letter queue (DLQ) configuration for records that cannot be delivered to the destination. When omitted, the service auto-fills using the storage BucketARN with an error prefix."
+          },
+          "StorageConfiguration": {
+            "$ref": "#/definitions/S3StorageConfiguration",
+            "description": "S3 storage configuration including the destination bucket, output key template, storage class, and compression type."
+          }
+        },
+        "required": [
+          "StorageConfiguration"
+        ],
+        "type": "object"
+      },
+      "S3StorageConfiguration": {
+        "additionalProperties": false,
+        "description": "S3 storage configuration that describes the destination bucket and how delivered objects are stored.",
+        "properties": {
+          "BucketARN": {
+            "description": "The ARN of the S3 bucket for record delivery. Different channels can deliver to the same bucket. Buckets can be cross-account but must be in the same region as the channel.",
+            "maxLength": 2048,
+            "minLength": 1,
+            "pattern": "^arn:aws[-a-z0-9]*:s3:::[a-z0-9._-]{3,63}$",
+            "type": "string"
+          },
+          "CompressionType": {
+            "description": "The compression algorithm applied to delivered objects.",
+            "enum": [
+              "NONE",
+              "GZIP",
+              "ZSTD"
+            ],
+            "type": "string"
+          },
+          "ExpectedBucketOwner": {
+            "description": "The AWS account ID of the expected owner of the destination S3 bucket. Used to verify bucket ownership before delivery.",
+            "maxLength": 12,
+            "minLength": 12,
+            "pattern": "^\\d{12}$",
+            "type": "string"
+          },
+          "OutputKeyTemplate": {
+            "description": "Optional template for the S3 object key path. Supports placeholders in the form !{name}: !{channel-name}, !{channel-id}, !{stream-name}, !{yyyy}, !{yy}, !{MM}, !{dd}, !{HH}, !{mm}, and !{extension} (a literal file extension can be supplied as !{extension:.json.gz}). When omitted, the service uses the default 'kinesis-channel/!{channel-name}/!{channel-id}/!{yyyy}/!{MM}/!{dd}/!{HH}/!{channel-name}-!{channel-id}-!{yyyy}-!{MM}-!{dd}-!{HH}-!{mm}!{extension}'.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "pattern": "^[0-9A-Za-z!\\-_'.*()\\/=:{}]+$",
+            "type": "string"
+          },
+          "StorageClass": {
+            "default": "STANDARD",
+            "description": "The S3 storage class for delivered objects.",
+            "enum": [
+              "STANDARD",
+              "INTELLIGENT_TIERING",
+              "GLACIER_IR"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "BucketARN",
+          "ExpectedBucketOwner",
+          "CompressionType"
+        ],
+        "type": "object"
+      },
+      "S3TableConfiguration": {
+        "additionalProperties": false,
+        "description": "An S3 Tables destination including its table bucket, namespace, table name, and partition spec.",
+        "properties": {
+          "CompressionType": {
+            "description": "The compression algorithm applied to objects delivered to the S3 Tables destination.",
+            "enum": [
+              "NONE",
+              "ZSTD",
+              "SNAPPY"
+            ],
+            "type": "string"
+          },
+          "Namespace": {
+            "description": "The name of the S3 Tables namespace that contains the destination table.",
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": "^[0-9a-z_]+$",
+            "type": "string"
+          },
+          "PartitionSpec": {
+            "$ref": "#/definitions/PartitionSpec",
+            "description": "The partition specification used by the destination Iceberg table."
+          },
+          "TableBucketARN": {
+            "description": "The ARN of the S3 Tables table bucket for record delivery. Buckets can be cross-account but must be in the same region as the channel.",
+            "maxLength": 2048,
+            "minLength": 1,
+            "pattern": "^arn:aws[-a-z0-9]*:s3tables:[-a-z0-9]+:[0-9]{12}:bucket/[a-z0-9_-]{3,63}$",
+            "type": "string"
+          },
+          "TableName": {
+            "description": "The name of the destination S3 Tables table. The table is created for the customer if it does not yet exist.",
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": "^[0-9a-z_]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "TableBucketARN",
+          "Namespace",
+          "TableName",
+          "CompressionType"
+        ],
+        "type": "object"
+      },
+      "S3TablesDestinationConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration for delivery to S3 Tables destinations. Exactly one of S3DestinationConfiguration and S3TablesDestinationConfiguration must be specified on the channel.",
+        "properties": {
+          "DataFreshnessInSeconds": {
+            "default": 300,
+            "description": "The maximum time in seconds the channel buffers records before delivery if the minimum target file size is not reached.",
+            "type": "integer"
+          },
+          "DeadLetterQueueS3Configuration": {
+            "$ref": "#/definitions/DeadLetterQueueS3Configuration",
+            "description": "The dead-letter queue (DLQ) configuration for records that cannot be delivered to the S3 Tables destination. Required for S3 Tables: there is no safe fallback because S3 Tables metadata writes are critical-path."
+          },
+          "S3TablesConfigurationList": {
+            "description": "The list of S3 Tables destinations. v1 supports a single element; the list shape allows future extensibility to fan out to multiple tables.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/S3TableConfiguration"
+            },
+            "maxItems": 10000,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "DeadLetterQueueS3Configuration",
+          "S3TablesConfigurationList"
+        ],
+        "type": "object"
+      },
+      "StreamConfiguration": {
+        "additionalProperties": false,
+        "description": "The configuration of a Kinesis stream that the channel reads from.",
+        "properties": {
+          "RecordConfiguration": {
+            "$ref": "#/definitions/RecordConfiguration",
+            "description": "The configuration that describes how records on the source stream are encoded."
+          },
+          "StreamARN": {
+            "description": "The Amazon resource name (ARN) of the Kinesis data stream that the channel reads from.",
+            "maxLength": 2048,
+            "minLength": 1,
+            "pattern": "^arn:aws.*:kinesis:.*:\\d{12}:stream/\\S+",
+            "type": "string"
+          }
+        },
+        "required": [
+          "StreamARN",
+          "RecordConfiguration"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "An arbitrary set of tags (key-value pairs) to associate with the Kinesis channel.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag. You can specify a value that is 0 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.",
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Kinesis::Channel",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "kinesis:CreateChannel",
+          "kinesis:DescribeChannel",
+          "kinesis:AssociateStreamsWithChannel",
+          "kinesis:TagResource",
+          "kinesis:ListTagsForResource",
+          "iam:PassRole"
+        ],
+        "timeoutInMinutes": 60
+      },
+      "delete": {
+        "permissions": [
+          "kinesis:DeleteChannel",
+          "kinesis:DescribeChannel"
+        ],
+        "timeoutInMinutes": 60
+      },
+      "list": {
+        "permissions": [
+          "kinesis:ListChannels"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "kinesis:DescribeChannel",
+          "kinesis:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "kinesis:UpdateChannel",
+          "kinesis:DescribeChannel",
+          "kinesis:TagResource",
+          "kinesis:UntagResource",
+          "kinesis:ListTagsForResource"
+        ],
+        "timeoutInMinutes": 60
+      }
+    },
+    "oneOf": [
+      {
+        "required": [
+          "S3DestinationConfiguration"
+        ]
+      },
+      {
+        "required": [
+          "S3TablesDestinationConfiguration"
+        ]
+      }
+    ],
+    "primaryIdentifier": [
+      "/properties/ChannelARN"
+    ],
+    "properties": {
+      "ChannelARN": {
+        "description": "The ARN of the channel.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:aws.*:kinesis:.*:\\d{12}:channel/\\S+",
+        "type": "string"
+      },
+      "ChannelCreationTimestamp": {
+        "description": "Timestamp of when the channel was created.",
+        "type": "string"
+      },
+      "ChannelId": {
+        "description": "The service-generated unique identifier for the channel.",
+        "maxLength": 64,
+        "minLength": 1,
+        "type": "string"
+      },
+      "ChannelName": {
+        "description": "The name of the channel. The name's uniqueness is scoped per AWS account and region.",
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9_.-]+$",
+        "type": "string"
+      },
+      "ChannelStatus": {
+        "description": "The status of the channel.",
+        "enum": [
+          "CREATING",
+          "ACTIVE",
+          "UPDATING",
+          "DELETING",
+          "FAILED"
+        ],
+        "type": "string"
+      },
+      "EncryptionConfiguration": {
+        "$ref": "#/definitions/EncryptionConfiguration",
+        "description": "Server-side encryption configuration for data at rest."
+      },
+      "LoggingConfiguration": {
+        "$ref": "#/definitions/LoggingConfiguration",
+        "default": {
+          "CloudWatchLogs": {
+            "Enabled": false
+          }
+        },
+        "description": "Configuration for delivering channel operational logs. Defaults to CloudWatch Logs disabled."
+      },
+      "S3DestinationConfiguration": {
+        "$ref": "#/definitions/S3DestinationConfiguration",
+        "description": "Configuration for delivery to a vanilla S3 bucket destination. Exactly one of S3DestinationConfiguration and S3TablesDestinationConfiguration must be specified."
+      },
+      "S3TablesDestinationConfiguration": {
+        "$ref": "#/definitions/S3TablesDestinationConfiguration",
+        "description": "Configuration for delivery to S3 Tables destinations. Exactly one of S3DestinationConfiguration and S3TablesDestinationConfiguration must be specified."
+      },
+      "ServiceExecutionRoleARN": {
+        "description": "The ARN of the IAM role that the channel assumes to read from the source stream, deliver records to the destination, and (when enabled) write CloudWatch Logs.",
+        "maxLength": 512,
+        "minLength": 1,
+        "pattern": "^arn:aws[-a-z0-9]*:iam::\\d{12}:role/[a-zA-Z_0-9+=,.@\\-_/]+$",
+        "type": "string"
+      },
+      "StreamConfigurationList": {
+        "description": "List of stream configurations associated with the channel. v1 supports a single element; the list shape allows future extensibility to fan in from multiple streams.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/StreamConfiguration"
+        },
+        "maxItems": 10000,
+        "minItems": 1,
+        "type": "array"
+      },
+      "Tags": {
+        "description": "An arbitrary set of tags (key-value pairs) to associate with the Kinesis channel.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": false
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ChannelARN",
+      "/properties/ChannelId",
+      "/properties/ChannelStatus",
+      "/properties/ChannelCreationTimestamp"
+    ],
+    "required": [
+      "ChannelName",
+      "ServiceExecutionRoleARN",
+      "StreamConfigurationList"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "kinesis:TagResource",
+        "kinesis:UntagResource",
+        "kinesis:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Kinesis::Channel"
+  }
+}

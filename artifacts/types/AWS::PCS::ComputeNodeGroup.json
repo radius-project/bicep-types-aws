@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-PCS-ComputeNodeGroup",
   "type": "AWS::PCS::ComputeNodeGroup",
-  "time": "2025-01-21T11:09:33.023Z",
+  "time": "2026-10-21T19:42:51.987Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -25,6 +25,16 @@
         },
         "type": "object"
       },
+      "GresCustomSetting": {
+        "additionalProperties": false,
+        "description": "A single Slurm gres.conf record, expressed as a map of gres.conf attribute names to their values (for example, {\"Name\": \"gpu\", \"Type\": \"a100\", \"File\": \"/dev/nvidia[0-7]\"} or {\"AutoDetect\": \"nvml\"}). AWS PCS adds the NodeName= prefix for the compute node group.",
+        "patternProperties": {
+          "^.+$": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "InstanceConfig": {
         "additionalProperties": false,
         "description": "An EC2 instance configuration AWS PCS uses to launch compute nodes.",
@@ -35,6 +45,135 @@
           }
         },
         "type": "object"
+      },
+      "NodeLifecycleActions": {
+        "additionalProperties": false,
+        "description": "Custom scripts that run at defined points in a compute node's lifecycle.",
+        "properties": {
+          "ScriptCachingPolicy": {
+            "description": "Controls whether lifecycle scripts are downloaded once at first boot (CACHE_ONCE) or re-downloaded on every reboot (REFRESH_ON_REBOOT). Defaults to CACHE_ONCE.",
+            "enum": [
+              "CACHE_ONCE",
+              "REFRESH_ON_REBOOT"
+            ],
+            "type": "string"
+          },
+          "Stages": {
+            "$ref": "#/definitions/NodeLifecycleStages"
+          }
+        },
+        "required": [
+          "Stages"
+        ],
+        "type": "object"
+      },
+      "NodeLifecycleScript": {
+        "additionalProperties": false,
+        "description": "A single lifecycle script with its source, arguments, and error behavior.",
+        "properties": {
+          "Arguments": {
+            "description": "An ordered list of arguments passed to the script.",
+            "insertionOrder": true,
+            "items": {
+              "maxLength": 256,
+              "type": "string"
+            },
+            "maxItems": 20,
+            "type": "array"
+          },
+          "ExecutionPolicy": {
+            "description": "Whether the script runs only on the node's first boot (FIRST_BOOT_ONLY) or on every boot including reboots (EVERY_BOOT). Defaults to FIRST_BOOT_ONLY.",
+            "enum": [
+              "FIRST_BOOT_ONLY",
+              "EVERY_BOOT"
+            ],
+            "type": "string"
+          },
+          "Name": {
+            "description": "A human-readable name that identifies the script.",
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9 _-]*$",
+            "type": "string"
+          },
+          "OnError": {
+            "description": "The behavior when the script exits with an error. Defaults to TERMINATE.",
+            "enum": [
+              "TERMINATE",
+              "STOP_SEQUENCE",
+              "CONTINUE"
+            ],
+            "type": "string"
+          },
+          "ScriptSource": {
+            "$ref": "#/definitions/ScriptSource"
+          }
+        },
+        "required": [
+          "Name",
+          "ScriptSource"
+        ],
+        "type": "object"
+      },
+      "NodeLifecycleStages": {
+        "additionalProperties": false,
+        "description": "The ordered scripts to run at each compute node lifecycle stage.",
+        "properties": {
+          "NodeBootstrapped": {
+            "description": "Scripts to run after the node is bootstrapped, once the PCS configuration phase completes and before slurmd starts.",
+            "insertionOrder": true,
+            "items": {
+              "$ref": "#/definitions/NodeLifecycleScript"
+            },
+            "maxItems": 20,
+            "minItems": 1,
+            "type": "array"
+          },
+          "NodeReady": {
+            "description": "Scripts to execute when the node becomes ready (every boot).",
+            "insertionOrder": true,
+            "items": {
+              "$ref": "#/definitions/NodeLifecycleScript"
+            },
+            "maxItems": 20,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "ScriptSource": {
+        "additionalProperties": false,
+        "description": "The external location of a lifecycle script.",
+        "properties": {
+          "Checksum": {
+            "description": "A 64-character hexadecimal SHA-256 digest used to verify script integrity.",
+            "maxLength": 64,
+            "minLength": 64,
+            "pattern": "^[a-fA-F0-9]{64}$",
+            "type": "string"
+          },
+          "S3VersionId": {
+            "description": "The S3 object version ID of the script, when stored in a versioned bucket.",
+            "maxLength": 1024,
+            "type": "string"
+          },
+          "ScriptLocation": {
+            "description": "The S3 URI or HTTPS URL where the script is stored.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "pattern": "^(s3://[a-z0-9][a-z0-9.-]{1,61}[a-z0-9]/.+|https://.+)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ScriptLocation"
+        ],
+        "type": "object"
+      },
+      "SecurityGroupId": {
+        "description": "An EC2 security group ID.",
+        "type": "string"
       },
       "SlurmCustomSetting": {
         "additionalProperties": false,
@@ -68,6 +207,7 @@
           "ec2:DescribeVpcs",
           "ec2:DescribeSubnets",
           "ec2:DescribeSecurityGroups",
+          "ec2:DescribeKeyPairs",
           "ec2:DescribeLaunchTemplates",
           "ec2:DescribeLaunchTemplateVersions",
           "ec2:DescribeInstanceTypes",
@@ -82,7 +222,7 @@
           "pcs:ListTagsForResource",
           "pcs:TagResource"
         ],
-        "timeoutInMinutes": 60
+        "timeoutInMinutes": 160
       },
       "delete": {
         "permissions": [
@@ -105,7 +245,7 @@
           "pcs:TagResource",
           "pcs:UntagResource"
         ],
-        "timeoutInMinutes": 60
+        "timeoutInMinutes": 160
       },
       "list": {
         "handlerSchema": {
@@ -135,6 +275,7 @@
           "ec2:DescribeVpcs",
           "ec2:DescribeSubnets",
           "ec2:DescribeSecurityGroups",
+          "ec2:DescribeKeyPairs",
           "ec2:DescribeLaunchTemplates",
           "ec2:DescribeLaunchTemplateVersions",
           "ec2:DescribeInstanceTypes",
@@ -150,7 +291,7 @@
           "pcs:TagResource",
           "pcs:UntagResource"
         ],
-        "timeoutInMinutes": 60
+        "timeoutInMinutes": 160
       }
     },
     "primaryIdentifier": [
@@ -174,7 +315,7 @@
         "additionalProperties": false,
         "description": "An Amazon EC2 launch template AWS PCS uses to launch compute nodes.",
         "properties": {
-          "Id": {
+          "TemplateId": {
             "description": "The ID of the EC2 launch template to use to provision instances.",
             "type": "string"
           },
@@ -183,10 +324,6 @@
             "type": "string"
           }
         },
-        "required": [
-          "Id",
-          "Version"
-        ],
         "type": "object"
       },
       "ErrorInfo": {
@@ -218,11 +355,16 @@
         "description": "The name that identifies the compute node group.",
         "type": "string"
       },
+      "NodeLifecycleActions": {
+        "$ref": "#/definitions/NodeLifecycleActions"
+      },
       "PurchaseOption": {
-        "description": "Specifies how EC2 instances are purchased on your behalf. AWS PCS supports On-Demand and Spot instances. For more information, see Instance purchasing options in the Amazon Elastic Compute Cloud User Guide. If you don't provide this option, it defaults to On-Demand.",
+        "description": "Specifies how EC2 instances are purchased on your behalf. AWS PCS supports On-Demand, Spot, Capacity Block, and Interruptible Capacity Reservation instances. For more information, see Instance purchasing options in the Amazon Elastic Compute Cloud User Guide. If you don't provide this option, it defaults to On-Demand.",
         "enum": [
           "ONDEMAND",
-          "SPOT"
+          "SPOT",
+          "CAPACITY_BLOCK",
+          "INTERRUPTIBLE_CAPACITY_RESERVATION"
         ],
         "type": "string"
       },
@@ -251,6 +393,20 @@
         "additionalProperties": false,
         "description": "Additional options related to the Slurm scheduler.",
         "properties": {
+          "GresCustomSettings": {
+            "description": "Additional Slurm gres.conf records for the compute node group. Each item is a map of gres.conf attribute names to values describing one gres.conf record (for example a GPU topology, MIG, MPS, or custom GRES entry). AWS PCS adds the NodeName= prefix and merges these records with the GPU record it derives from the instance type.",
+            "insertionOrder": true,
+            "items": {
+              "$ref": "#/definitions/GresCustomSetting"
+            },
+            "type": "array"
+          },
+          "ScaleDownIdleTimeInSeconds": {
+            "description": "The time before an idle node is scaled down.",
+            "maximum": 10000000,
+            "minimum": 1,
+            "type": "integer"
+          },
           "SlurmCustomSettings": {
             "description": "Additional Slurm-specific configuration that directly maps to Slurm settings.",
             "insertionOrder": false,
@@ -293,7 +449,7 @@
       },
       "SubnetIds": {
         "description": "The list of subnet IDs where instances are provisioned by the compute node group. The subnets must be in the same VPC as the cluster.",
-        "insertionOrder": false,
+        "insertionOrder": true,
         "items": {
           "$ref": "#/definitions/SubnetId"
         },
@@ -317,7 +473,6 @@
     ],
     "required": [
       "ClusterId",
-      "CustomLaunchTemplate",
       "IamInstanceProfileArn",
       "InstanceConfigs",
       "ScalingConfiguration",

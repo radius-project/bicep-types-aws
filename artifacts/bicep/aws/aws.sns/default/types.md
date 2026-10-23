@@ -1,21 +1,24 @@
 # AWS.SNS @ default
 
 ## Resource AWS.SNS/Subscription@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SNS/SubscriptionProperties](#awssnssubscriptionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SNS/Topic@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SNS/TopicProperties](#awssnstopicproperties) (Identifier): properties of the resource
 
 ## Resource AWS.SNS/TopicInlinePolicy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -43,11 +46,8 @@
 
 ## AWS.SNS/TopicProperties
 ### Properties
-* **ArchivePolicy**: [Topic_ArchivePolicy](#topicarchivepolicy): The archive policy determines the number of days SNS retains messages. You can set a retention period from 1 to 365 days.
-* **ContentBasedDeduplication**: bool: Enables content-based deduplication for FIFO topics.
-  +  By default, ``ContentBasedDeduplication`` is set to ``false``. If you create a FIFO topic and this attribute is ``false``, you must specify a value for the ``MessageDeduplicationId`` parameter for the [Publish](https://docs.aws.amazon.com/sns/latest/api/API_Publish.html) action. 
-  +  When you set ``ContentBasedDeduplication`` to ``true``, SNS uses a SHA-256 hash to generate the ``MessageDeduplicationId`` using the body of the message (but not the attributes of the message).
- (Optional) To override the generated value, you can specify a value for the the ``MessageDeduplicationId`` parameter for the ``Publish`` action.
+* **ArchivePolicy**: [Topic_ArchivePolicy](#topicarchivepolicy): The ``ArchivePolicy`` determines the number of days SNS retains messages in FIFO topics. You can set a retention period ranging from 1 to 365 days. This property is only applicable to FIFO topics; attempting to use it with standard topics will result in a creation failure.
+* **ContentBasedDeduplication**: bool: ``ContentBasedDeduplication`` enables deduplication of messages based on their content for FIFO topics. By default, this property is set to false. If you create a FIFO topic with ``ContentBasedDeduplication`` set to false, you must provide a ``MessageDeduplicationId`` for each ``Publish`` action. When set to true, SNS automatically generates a ``MessageDeduplicationId`` using a SHA-256 hash of the message body (excluding message attributes). You can optionally override this generated value by specifying a ``MessageDeduplicationId`` in the ``Publish`` action. Note that this property only applies to FIFO topics; using it with standard topics will cause the creation to fail.
 * **DataProtectionPolicy**: [Topic_DataProtectionPolicy](#topicdataprotectionpolicy): The body of the policy document you want to use for this topic.
  You can only add one policy per topic.
  The policy must be in JSON string format.
@@ -55,16 +55,17 @@
 * **DeliveryStatusLogging**: [LoggingConfig](#loggingconfig)[]: The ``DeliveryStatusLogging`` configuration enables you to log the delivery status of messages sent from your Amazon SNS topic to subscribed endpoints with the following supported delivery protocols:
   +  HTTP 
   +  Amazon Kinesis Data Firehose
-  +   AWS Lambda
+  +  AWS Lambda
   +  Platform application endpoint
   +  Amazon Simple Queue Service
   
  Once configured, log entries are sent to Amazon CloudWatch Logs.
 * **DisplayName**: string: The display name to use for an SNS topic with SMS subscriptions. The display name must be maximum 100 characters long, including hyphens (-), underscores (_), spaces, and tabs.
-* **FifoThroughputScope**: string
+* **FifoThroughputScope**: string: Specifies the throughput quota and deduplication behavior to apply for the FIFO topic. Valid values are ``Topic`` or ``MessageGroup``.
 * **FifoTopic**: bool: Set to true to create a FIFO topic.
 * **KmsMasterKeyId**: string: The ID of an AWS managed customer master key (CMK) for SNS or a custom CMK. For more information, see [Key terms](https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms). For more examples, see ``KeyId`` in the *API Reference*.
  This property applies only to [server-side-encryption](https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html).
+* **MaximumMessageSize**: int
 * **SignatureVersion**: string: The signature version corresponds to the hashing algorithm used while creating the signature of the notifications, subscription confirmations, or unsubscribe confirmation messages sent by Amazon SNS. By default, ``SignatureVersion`` is set to ``1``.
 * **Subscription**: [Subscription](#subscription)[]: The SNS subscriptions (endpoints) for this topic.
   If you specify the ``Subscription`` property in the ``AWS::SNS::Topic`` resource and it creates an associated subscription resource, the associated subscription is not deleted when the ``AWS::SNS::Topic`` resource is deleted.

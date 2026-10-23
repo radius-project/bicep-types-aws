@@ -1,0 +1,190 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Outposts-Outpost",
+  "type": "AWS::Outposts::Outpost",
+  "time": "2026-10-21T22:20:17.237Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/OutpostId"
+      ]
+    ],
+    "additionalProperties": false,
+    "anyOf": [
+      {
+        "required": [
+          "AvailabilityZone"
+        ]
+      },
+      {
+        "required": [
+          "AvailabilityZoneId"
+        ]
+      }
+    ],
+    "createOnlyProperties": [
+      "/properties/SiteId",
+      "/properties/AvailabilityZone",
+      "/properties/AvailabilityZoneId"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^(?![aA][wW][sS]:)[\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]+$",
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^[\\S \\n]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Definition of AWS::Outposts::Outpost Resource Type",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "outposts:CreateOutpost",
+          "outposts:GetOutpost",
+          "outposts:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "outposts:DeleteOutpost"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "outposts:ListOutposts"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "outposts:GetOutpost"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "outposts:UpdateOutpost",
+          "outposts:GetOutpost",
+          "outposts:TagResource",
+          "outposts:UntagResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/OutpostArn"
+    ],
+    "properties": {
+      "AvailabilityZone": {
+        "maxLength": 1000,
+        "minLength": 1,
+        "pattern": "^([a-zA-Z]+-){1,3}([a-zA-Z]+)?(\\d+[a-zA-Z]?)?$",
+        "type": "string"
+      },
+      "AvailabilityZoneId": {
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z]+\\d-[a-zA-Z]+\\d$",
+        "type": "string"
+      },
+      "Description": {
+        "maxLength": 1000,
+        "minLength": 1,
+        "pattern": "^[\\S ]*$",
+        "type": "string"
+      },
+      "LifeCycleStatus": {
+        "maxLength": 20,
+        "minLength": 1,
+        "pattern": "^[ A-Za-z]+$",
+        "type": "string"
+      },
+      "Name": {
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[\\S ]+$",
+        "type": "string"
+      },
+      "OutpostArn": {
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^arn:aws([a-z-]+)?:outposts:[a-z\\d-]+:\\d{12}:outpost/op-[a-f0-9]{17}$",
+        "type": "string"
+      },
+      "OutpostId": {
+        "maxLength": 180,
+        "minLength": 1,
+        "pattern": "^op-[a-f0-9]{17}$",
+        "type": "string"
+      },
+      "OwnerId": {
+        "maxLength": 12,
+        "minLength": 12,
+        "pattern": "^\\d{12}$",
+        "type": "string"
+      },
+      "SiteArn": {
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^arn:aws([a-z-]+)?:outposts:[a-z\\d-]+:\\d{12}:site/(os-[a-f0-9]{17})$",
+        "type": "string"
+      },
+      "SiteId": {
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^os-[a-f0-9]{17}$",
+        "type": "string"
+      },
+      "SupportedHardwareType": {
+        "enum": [
+          "RACK",
+          "SERVER"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/OutpostId",
+      "/properties/OutpostArn",
+      "/properties/OwnerId",
+      "/properties/SiteArn",
+      "/properties/LifeCycleStatus"
+    ],
+    "required": [
+      "Name",
+      "SiteId"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "outposts:TagResource",
+        "outposts:UntagResource",
+        "outposts:GetOutpost"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Outposts::Outpost"
+  }
+}

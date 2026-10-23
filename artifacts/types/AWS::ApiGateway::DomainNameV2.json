@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ApiGateway-DomainNameV2",
   "type": "AWS::ApiGateway::DomainNameV2",
-  "time": "2024-12-09T18:59:23.834Z",
+  "time": "2026-09-18T14:28:46.083Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -13,6 +13,9 @@
       "EndpointConfiguration": {
         "additionalProperties": false,
         "properties": {
+          "IpAddressType": {
+            "type": "string"
+          },
           "Types": {
             "items": {
               "type": "string"
@@ -41,6 +44,7 @@
         "permissions": [
           "apigateway:POST",
           "apigateway:GET",
+          "apigateway:PUT",
           "apigateway:UpdateDomainNamePolicy"
         ]
       },
@@ -66,6 +70,7 @@
           "apigateway:GET",
           "apigateway:PUT",
           "apigateway:PATCH",
+          "apigateway:DELETE",
           "apigateway:UpdateDomainNamePolicy"
         ]
       }
@@ -87,6 +92,9 @@
       "DomainNameId": {
         "type": "string"
       },
+      "EndpointAccessMode": {
+        "type": "string"
+      },
       "EndpointConfiguration": {
         "$ref": "#/definitions/EndpointConfiguration"
       },
@@ -95,6 +103,16 @@
           "object",
           "string"
         ]
+      },
+      "RoutingMode": {
+        "default": "BASE_PATH_MAPPING_ONLY",
+        "description": "The valid routing modes are [BASE_PATH_MAPPING_ONLY], [ROUTING_RULE_THEN_BASE_PATH_MAPPING] and [ROUTING_RULE_ONLY]. All other inputs are invalid.",
+        "enum": [
+          "BASE_PATH_MAPPING_ONLY",
+          "ROUTING_RULE_THEN_BASE_PATH_MAPPING",
+          "ROUTING_RULE_ONLY"
+        ],
+        "type": "string"
       },
       "SecurityPolicy": {
         "type": "string"
@@ -115,10 +133,8 @@
       "cloudFormationSystemTags": true,
       "permissions": [
         "apigateway:PUT",
-        "apigateway:PATCH",
         "apigateway:DELETE",
-        "apigateway:GET",
-        "apigateway:POST"
+        "apigateway:GET"
       ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",

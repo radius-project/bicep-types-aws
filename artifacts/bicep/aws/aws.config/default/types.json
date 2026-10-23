@@ -96,11 +96,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Config/AggregationAuthorization@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/5"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -192,7 +192,7 @@
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": "Indicates whether AWS or the customer owns and manages the CC rule.\n  CC Managed Rules are predefined rules owned by AWS. For more information, see [Managed Rules](https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html) in the *developer guide*.\n  CC Custom Rules are rules that you can develop either with Guard (``CUSTOM_POLICY``) or LAMlong (``CUSTOM_LAMBDA``). For more information, see [Custom Rules](https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_develop-rules.html) in the *developer guide*."
+        "description": "Indicates whether AWS or the customer owns and manages the CC rule.\n CC Managed Rules are predefined rules owned by AWS. For more information, see [Managed Rules](https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html) in the *developer guide*.\n CC Custom Rules are rules that you can develop either with Guard (``CUSTOM_POLICY``) or LAMlong (``CUSTOM_LAMBDA``). For more information, see [Custom Rules](https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_develop-rules.html) in the *developer guide*."
       },
       "SourceDetails": {
         "type": {
@@ -233,7 +233,7 @@
           "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The type of notification that triggers CC to run an evaluation for a rule. You can specify the following notification types:\n  +   ``ConfigurationItemChangeNotification`` - Triggers an evaluation when CC delivers a configuration item as a result of a resource change.\n  +   ``OversizedConfigurationItemChangeNotification`` - Triggers an evaluation when CC delivers an oversized configuration item. CC may generate this notification type when a resource changes and the notification exceeds the maximum size allowed by Amazon SNS.\n  +   ``ScheduledNotification`` - Triggers a periodic evaluation at the frequency specified for ``MaximumExecutionFrequency``.\n  +   ``ConfigurationSnapshotDeliveryCompleted`` - Triggers a periodic evaluation when CC delivers a configuration snapshot.\n  \n If you want your custom rule to be triggered by configuration changes, specify two SourceDetail objects, one for ``ConfigurationItemChangeNotification`` and one for ``OversizedConfigurationItemChangeNotification``."
+        "description": "The type of notification that triggers CC to run an evaluation for a rule. You can specify the following notification types:\n  +  ``ConfigurationItemChangeNotification`` - Triggers an evaluation when CC delivers a configuration item as a result of a resource change.\n  +  ``OversizedConfigurationItemChangeNotification`` - Triggers an evaluation when CC delivers an oversized configuration item. CC may generate this notification type when a resource changes and the notification exceeds the maximum size allowed by Amazon SNS.\n  +  ``ScheduledNotification`` - Triggers a periodic evaluation at the frequency specified for ``MaximumExecutionFrequency``.\n  +  ``ConfigurationSnapshotDeliveryCompleted`` - Triggers a periodic evaluation when CC delivers a configuration snapshot.\n  \n If you want your custom rule to be triggered by configuration changes, specify two SourceDetail objects, one for ``ConfigurationItemChangeNotification`` and one for ``OversizedConfigurationItemChangeNotification``."
       }
     }
   },
@@ -356,7 +356,7 @@
           "$ref": "#/9"
         },
         "flags": 0,
-        "description": "Defines which resources can trigger an evaluation for the rule. The scope can include one or more resource types, a combination of one resource type and one resource ID, or a combination of a tag key and value. Specify a scope to constrain the resources that can trigger an evaluation for the rule. If you do not specify a scope, evaluations are triggered when any resource in the recording group changes.\n  The scope can be empty."
+        "description": "Defines which resources can trigger an evaluation for the rule. The scope can include one or more resource types, a combination of one resource type and one resource ID, or a combination of a tag key and value. Specify a scope to constrain the resources that can trigger an evaluation for the rule. If you do not specify a scope, evaluations are triggered when any resource in the recording group changes."
       },
       "Source": {
         "type": {
@@ -397,11 +397,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Config/ConfigRule@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/21"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -574,11 +574,236 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Config/ConfigurationAggregator@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/33"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ExclusionByResourceTypes",
+    "properties": {
+      "ResourceTypes": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 1,
+        "description": "A comma-separated list of resource types to exclude from recording by the configuration recorder."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RecordingGroup",
+    "properties": {
+      "AllSupported": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "Specifies whether AWS Config records configuration changes for all supported resource types, excluding the global IAM resource types."
+      },
+      "ExclusionByResourceTypes": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0,
+        "description": "An object that specifies how AWS Config excludes resource types from being recorded by the configuration recorder."
+      },
+      "IncludeGlobalResourceTypes": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "This option is a bundle which only applies to the global IAM resource types: IAM users, groups, roles, and customer managed policies. "
+      },
+      "RecordingStrategy": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 0,
+        "description": "An object that specifies the recording strategy for the configuration recorder."
+      },
+      "ResourceTypes": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "A comma-separated list that specifies which resource types AWS Config records."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RecordingMode",
+    "properties": {
+      "RecordingFrequency": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The default recording frequency that AWS Config uses to record configuration changes."
+      },
+      "RecordingModeOverrides": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0,
+        "description": "An array of 'RecordingModeOverride' objects for you to specify your overrides for the recording mode. "
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RecordingModeOverride",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A description that you provide for the override."
+      },
+      "RecordingFrequency": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The recording frequency that will be applied to all the resource types specified in the override."
+      },
+      "ResourceTypes": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 1,
+        "description": "A comma-separated list that specifies which resource types AWS Config includes in the override."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RecordingStrategy",
+    "properties": {
+      "UseOnly": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/38"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Config/ConfigurationRecorderProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Config/ConfigurationRecorderProperties",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The name of the configuration recorder. By default, AWS Config assigns the name \"default\" when creating the configuration recorder. To change the configuration recorder name, you must use the DeleteConfigurationRecorder action to delete your current configuration recorder, and then you must use the PutConfigurationRecorder command to create a configuration recorder that has the desired name."
+      },
+      "RecordingGroup": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0,
+        "description": "Specifies which resource types are in scope for the configuration recorder to record."
+      },
+      "RecordingMode": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 0,
+        "description": "Specifies the default recording frequency for the configuration recorder."
+      },
+      "ResourceARN": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Returns the Amazon Resource Name (ARN) for the Configuration Recorder."
+      },
+      "RoleARN": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the role that allows AWS Config to read S3 objects."
+      },
+      "StartedOnCreate": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 4,
+        "description": "Defaults to 'true'. Controls whether the recorder starts recording after the create operation. Set this to 'false' for development and testing purposes."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Config/ConfigurationRecorder",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Config/ConfigurationRecorder@default",
+    "body": {
+      "$ref": "#/46"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -609,13 +834,39 @@
     "properties": {}
   },
   {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      }
+    }
+  },
+  {
     "$type": "StringLiteralType",
     "value": "AWS.Config/ConformancePackProperties"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/35"
+      "$ref": "#/48"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/51"
     }
   },
   {
@@ -640,9 +891,16 @@
     "$type": "ObjectType",
     "name": "AWS.Config/ConformancePackProperties",
     "properties": {
+      "ConformancePackArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Amazon Resource Name (ARN) of the conformance pack."
+      },
       "ConformancePackInputParameters": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "A list of ConformancePackInputParameter objects."
@@ -668,6 +926,13 @@
         "flags": 0,
         "description": "The prefix for delivery S3 bucket."
       },
+      "Tags": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 0,
+        "description": "The tags for the conformance pack."
+      },
       "TemplateBody": {
         "type": {
           "$ref": "#/1"
@@ -684,7 +949,7 @@
       },
       "TemplateSSMDocumentDetails": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/55"
         },
         "flags": 4,
         "description": "The TemplateSSMDocumentDetails object contains the name of the SSM document and the version of the SSM document."
@@ -711,7 +976,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/56"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -721,11 +986,589 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Config/ConformancePack@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/42"
+      "$ref": "#/57"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AzureConnectorConfiguration",
+    "properties": {
+      "ClientIdentifier": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The Azure client (application) identifier."
+      },
+      "TenantIdentifier": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The Azure tenant identifier."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectorConfiguration",
+    "properties": {
+      "Azure": {
+        "type": {
+          "$ref": "#/59"
+        },
+        "flags": 0,
+        "description": "The configuration for connecting to Microsoft Azure."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Config/ConnectorProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/61"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Config/ConnectorProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the connector."
+      },
+      "ConnectorConfiguration": {
+        "type": {
+          "$ref": "#/60"
+        },
+        "flags": 1,
+        "description": "The configuration for the connector that specifies the third-party cloud provider connection details."
+      },
+      "CreatedTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time at which the connector was created."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The name of the connector. AWS Config automatically assigns the name when creating the Connector."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/63"
+        },
+        "flags": 0,
+        "description": "The tags for the connector."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Config/Connector",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Config/Connector@default",
+    "body": {
+      "$ref": "#/65"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConfigSnapshotDeliveryProperties",
+    "properties": {
+      "DeliveryFrequency": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The frequency with which AWS Config delivers configuration snapshots."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Config/DeliveryChannelProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Config/DeliveryChannelProperties",
+    "properties": {
+      "ConfigSnapshotDeliveryProperties": {
+        "type": {
+          "$ref": "#/67"
+        },
+        "flags": 0,
+        "description": "The options for how often AWS Config delivers configuration snapshots to the Amazon S3 bucket."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The name of the delivery channel. By default, AWS Config assigns the name \"default\" when creating the delivery channel. To change the delivery channel name, you must use the DeleteDeliveryChannel action to delete your current delivery channel, and then you must use the PutDeliveryChannel command to create a delivery channel that has the desired name."
+      },
+      "S3BucketName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the Amazon S3 bucket to which AWS Config delivers configuration snapshots and configuration history files."
+      },
+      "S3KeyPrefix": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The prefix for the specified Amazon S3 bucket."
+      },
+      "S3KmsKeyArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the AWS Key Management Service (AWS KMS ) AWS KMS key (KMS key) used to encrypt objects delivered by AWS Config. Must belong to the same Region as the destination S3 bucket."
+      },
+      "SnsTopicARN": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the Amazon SNS topic to which AWS Config sends notifications about configuration changes."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Config/DeliveryChannel",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Config/DeliveryChannel@default",
+    "body": {
+      "$ref": "#/70"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OrganizationCustomPolicyRuleMetadata",
+    "properties": {
+      "DebugLogDeliveryAccounts": {
+        "type": {
+          "$ref": "#/75"
+        },
+        "flags": 0,
+        "description": "A list of accounts that you can enable debug logging for your organization AWS Config Custom Policy rule. "
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The description that you provide for your organization AWS Config rule."
+      },
+      "InputParameters": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A string, in JSON format, that is passed to your organization AWS Config Custom Policy rule."
+      },
+      "OrganizationConfigRuleTriggerTypes": {
+        "type": {
+          "$ref": "#/76"
+        },
+        "flags": 0,
+        "description": "The type of notification that initiates AWS Config to run an evaluation for a rule."
+      },
+      "PolicyText": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The policy definition containing the logic for your organization AWS Config Custom Policy rule."
+      },
+      "ResourceIdScope": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ID of the AWS resource that was evaluated."
+      },
+      "ResourceTypesScope": {
+        "type": {
+          "$ref": "#/77"
+        },
+        "flags": 0,
+        "description": "The type of the AWS resource that was evaluated."
+      },
+      "Runtime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The runtime system for your organization AWS Config Custom Policy rules."
+      },
+      "TagKeyScope": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "One part of a key-value pair that make up a tag. A key is a general label that acts like a category for more specific tag values."
+      },
+      "TagValueScope": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The optional part of a key-value pair that make up a tag. A value acts as a descriptor within a tag category (key)."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OrganizationCustomRuleMetadata",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The description that you provide for your organization AWS Config rule."
+      },
+      "InputParameters": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A string, in JSON format, that is passed to your organization AWS Config rule Lambda function."
+      },
+      "LambdaFunctionArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The lambda function ARN."
+      },
+      "MaximumExecutionFrequency": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The maximum frequency with which AWS Config runs evaluations for a rule.Allowed values: One_Hour | Three_Hours | Six_Hours | Twelve_Hours | TwentyFour_Hours."
+      },
+      "OrganizationConfigRuleTriggerTypes": {
+        "type": {
+          "$ref": "#/78"
+        },
+        "flags": 1,
+        "description": "The type of notification that triggers AWS Config to run an evaluation for a rule. You can specify the following notification types:"
+      },
+      "ResourceIdScope": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ID of the AWS resource that was evaluated."
+      },
+      "ResourceTypesScope": {
+        "type": {
+          "$ref": "#/79"
+        },
+        "flags": 0,
+        "description": "The type of the AWS resource that was evaluated."
+      },
+      "TagKeyScope": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "One part of a key-value pair that make up a tag. A key is a general label that acts like a category for more specific tag values."
+      },
+      "TagValueScope": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The optional part of a key-value pair that make up a tag. A value acts as a descriptor within a tag category (key)."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OrganizationManagedRuleMetadata",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The description that you provide for your organization AWS Config rule."
+      },
+      "InputParameters": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A string, in JSON format, that is passed to your organization AWS Config rule Lambda function."
+      },
+      "MaximumExecutionFrequency": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The maximum frequency with which AWS Config runs evaluations for a rule. Valid Values: One_Hour | Three_Hours | Six_Hours | Twelve_Hours | TwentyFour_Hours."
+      },
+      "ResourceIdScope": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ID of the AWS resource that was evaluated."
+      },
+      "ResourceTypesScope": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 0,
+        "description": "The type of the AWS resource that was evaluated."
+      },
+      "RuleIdentifier": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Required. For organization config managed rules, a predefined identifier from a list. For example, IAM_PASSWORD_POLICY is a managed rule. "
+      },
+      "TagKeyScope": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "One part of a key-value pair that make up a tag. A key is a general label that acts like a category for more specific tag values."
+      },
+      "TagValueScope": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The optional part of a key-value pair that make up a tag. A value acts as a descriptor within a tag category (key).\n\n"
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Config/OrganizationConfigRuleProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Config/OrganizationConfigRuleProperties",
+    "properties": {
+      "ExcludedAccounts": {
+        "type": {
+          "$ref": "#/82"
+        },
+        "flags": 0,
+        "description": "A comma-separated list of accounts that you want to exclude from an organization AWS Config rule."
+      },
+      "OrganizationConfigRuleArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of an organization AWS Config rule."
+      },
+      "OrganizationConfigRuleName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The name that you assign to an organization AWS Config rule. Required."
+      },
+      "OrganizationCustomPolicyRuleMetadata": {
+        "type": {
+          "$ref": "#/72"
+        },
+        "flags": 0,
+        "description": "This object specifies metadata for your organization's AWS Config Custom Policy rule."
+      },
+      "OrganizationCustomRuleMetadata": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0,
+        "description": "This object specifies organization custom rule metadata such as resource type, resource ID of AWS resource, Lambda function ARN, and organization trigger types that trigger AWS Config to evaluate your AWS resources against a rule."
+      },
+      "OrganizationManagedRuleMetadata": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 0,
+        "description": "This object specifies organization managed rule metadata such as resource type and ID of AWS resource along with the rule identifier."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Config/OrganizationConfigRule",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/83"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Config/OrganizationConfigRule@default",
+    "body": {
+      "$ref": "#/84"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -761,13 +1604,33 @@
     "properties": {}
   },
   {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      }
+    }
+  },
+  {
     "$type": "StringLiteralType",
     "value": "AWS.Config/OrganizationConformancePackProperties"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/45"
+      "$ref": "#/87"
     }
   },
   {
@@ -777,12 +1640,18 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/90"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "AWS.Config/OrganizationConformancePackProperties",
     "properties": {
       "ConformancePackInputParameters": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/92"
         },
         "flags": 0,
         "description": "A list of ConformancePackInputParameter objects."
@@ -803,10 +1672,17 @@
       },
       "ExcludedAccounts": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/93"
         },
         "flags": 0,
         "description": "A list of AWS accounts to be excluded from an organization conformance pack while deploying a conformance pack."
+      },
+      "OrganizationConformancePackArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Amazon Resource Name (ARN) of the organization conformance pack."
       },
       "OrganizationConformancePackName": {
         "type": {
@@ -814,6 +1690,13 @@
         },
         "flags": 17,
         "description": "The name of the organization conformance pack."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/94"
+        },
+        "flags": 0,
+        "description": "The tags for the organization conformance pack."
       },
       "TemplateBody": {
         "type": {
@@ -851,7 +1734,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/95"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -861,11 +1744,155 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Config/OrganizationConformancePack@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/52"
+      "$ref": "#/96"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ExecutionControls",
+    "properties": {
+      "SsmControls": {
+        "type": {
+          "$ref": "#/99"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SsmControls",
+    "properties": {
+      "ConcurrentExecutionRatePercentage": {
+        "type": {
+          "$ref": "#/100"
+        },
+        "flags": 0
+      },
+      "ErrorPercentage": {
+        "type": {
+          "$ref": "#/100"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Config/RemediationConfigurationProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RemediationConfiguration_Parameters",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Config/RemediationConfigurationProperties",
+    "properties": {
+      "Automatic": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      },
+      "ConfigRuleName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17
+      },
+      "ExecutionControls": {
+        "type": {
+          "$ref": "#/98"
+        },
+        "flags": 0
+      },
+      "MaximumAutomaticAttempts": {
+        "type": {
+          "$ref": "#/100"
+        },
+        "flags": 0
+      },
+      "Parameters": {
+        "type": {
+          "$ref": "#/102"
+        },
+        "flags": 0
+      },
+      "ResourceType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "RetryAttemptSeconds": {
+        "type": {
+          "$ref": "#/100"
+        },
+        "flags": 0
+      },
+      "TargetId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "TargetType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "TargetVersion": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Config/RemediationConfiguration",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/103"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Config/RemediationConfiguration@default",
+    "body": {
+      "$ref": "#/104"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -894,7 +1921,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/54"
+      "$ref": "#/106"
     }
   },
   {
@@ -933,7 +1960,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/108"
         },
         "flags": 0,
         "description": "The tags for the stored query."
@@ -960,7 +1987,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/109"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -970,10 +1997,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Config/StoredQuery@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/58"
+      "$ref": "#/110"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

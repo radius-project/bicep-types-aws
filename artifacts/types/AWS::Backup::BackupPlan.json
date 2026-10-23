@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Backup-BackupPlan",
   "type": "AWS::Backup::BackupPlan",
-  "time": "2025-01-23T17:07:34.425Z",
+  "time": "2026-10-21T22:53:11.286Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -25,7 +25,7 @@
         "additionalProperties": false,
         "properties": {
           "AdvancedBackupSettings": {
-            "insertionOrder": true,
+            "insertionOrder": false,
             "items": {
               "$ref": "#/definitions/AdvancedBackupSettingResourceType"
             },
@@ -39,6 +39,14 @@
             "insertionOrder": true,
             "items": {
               "$ref": "#/definitions/BackupRuleResourceType"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "ScanSettings": {
+            "insertionOrder": true,
+            "items": {
+              "$ref": "#/definitions/ScanSettingResourceType"
             },
             "type": "array",
             "uniqueItems": false
@@ -67,6 +75,14 @@
           "EnableContinuousBackup": {
             "type": "boolean"
           },
+          "IndexActions": {
+            "insertionOrder": true,
+            "items": {
+              "$ref": "#/definitions/IndexActionsResourceType"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
           "Lifecycle": {
             "$ref": "#/definitions/LifecycleResourceType"
           },
@@ -82,6 +98,14 @@
           "RuleName": {
             "type": "string"
           },
+          "ScanActions": {
+            "insertionOrder": true,
+            "items": {
+              "$ref": "#/definitions/ScanActionResourceType"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
           "ScheduleExpression": {
             "type": "string"
           },
@@ -92,6 +116,9 @@
             "type": "number"
           },
           "TargetBackupVault": {
+            "type": "string"
+          },
+          "TargetLogicallyAirGappedBackupVaultArn": {
             "type": "string"
           }
         },
@@ -116,6 +143,15 @@
         ],
         "type": "object"
       },
+      "IndexActionsResourceType": {
+        "additionalProperties": false,
+        "properties": {
+          "ResourceTypes": {
+            "$ref": "#/definitions/ResourceTypes"
+          }
+        },
+        "type": "object"
+      },
       "LifecycleResourceType": {
         "additionalProperties": false,
         "properties": {
@@ -130,6 +166,57 @@
           }
         },
         "type": "object"
+      },
+      "MalwareScanner": {
+        "enum": [
+          "GUARDDUTY"
+        ],
+        "type": "string"
+      },
+      "ResourceType": {
+        "type": "string"
+      },
+      "ResourceTypes": {
+        "insertionOrder": true,
+        "items": {
+          "$ref": "#/definitions/ResourceType"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "ScanActionResourceType": {
+        "additionalProperties": false,
+        "properties": {
+          "MalwareScanner": {
+            "$ref": "#/definitions/MalwareScanner"
+          },
+          "ScanMode": {
+            "$ref": "#/definitions/ScanMode"
+          }
+        },
+        "type": "object"
+      },
+      "ScanMode": {
+        "enum": [
+          "FULL_SCAN",
+          "INCREMENTAL_SCAN"
+        ],
+        "type": "string"
+      },
+      "ScanSettingResourceType": {
+        "additionalProperties": false,
+        "properties": {
+          "MalwareScanner": {
+            "$ref": "#/definitions/MalwareScanner"
+          },
+          "ResourceTypes": {
+            "$ref": "#/definitions/ResourceTypes"
+          },
+          "ScannerRoleArn": {
+            "type": "string"
+          }
+        },
+        "type": "object"
       }
     },
     "description": "Resource Type definition for AWS::Backup::BackupPlan",
@@ -138,7 +225,8 @@
         "permissions": [
           "backup:GetBackupPlan",
           "backup:TagResource",
-          "backup:CreateBackupPlan"
+          "backup:CreateBackupPlan",
+          "iam:PassRole"
         ]
       },
       "delete": {
@@ -163,7 +251,8 @@
           "backup:UpdateBackupPlan",
           "backup:ListTags",
           "backup:TagResource",
-          "backup:UntagResource"
+          "backup:UntagResource",
+          "iam:PassRole"
         ]
       }
     },

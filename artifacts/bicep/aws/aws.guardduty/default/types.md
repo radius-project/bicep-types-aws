@@ -1,53 +1,95 @@
 # AWS.GuardDuty @ default
 
+## Resource AWS.GuardDuty/CustomDetectionRuleAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.GuardDuty/CustomDetectionRuleAssociationProperties](#awsguarddutycustomdetectionruleassociationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.GuardDuty/Detector@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.GuardDuty/DetectorProperties](#awsguarddutydetectorproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GuardDuty/Filter@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.GuardDuty/FilterProperties](#awsguarddutyfilterproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GuardDuty/IPSet@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.GuardDuty/IPSetProperties](#awsguarddutyipsetproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GuardDuty/MalwareProtectionPlan@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.GuardDuty/MalwareProtectionPlanProperties](#awsguarddutymalwareprotectionplanproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GuardDuty/Member@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.GuardDuty/MemberProperties](#awsguarddutymemberproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.GuardDuty/PublishingDestination@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.GuardDuty/PublishingDestinationProperties](#awsguarddutypublishingdestinationproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.GuardDuty/ThreatEntitySet@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.GuardDuty/ThreatEntitySetProperties](#awsguarddutythreatentitysetproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.GuardDuty/ThreatIntelSet@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.GuardDuty/ThreatIntelSetProperties](#awsguarddutythreatintelsetproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.GuardDuty/TrustedEntitySet@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.GuardDuty/TrustedEntitySetProperties](#awsguarddutytrustedentitysetproperties) (Required, Identifier): properties of the resource
+
+## AWS.GuardDuty/CustomDetectionRuleAssociationProperties
+### Properties
+* **AccountId**: string (ReadOnly): The AWS account ID the association applies to.
+* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the association.
+* **AssociationId**: string (ReadOnly, Identifier): The service-generated unique identifier of the association.
+* **CreatedAt**: string (ReadOnly): The time the association was created.
+* **Mode**: string (Required): Whether the rule runs in LIVE mode (generates findings) or DRY_RUN mode (evaluates without generating findings).
+* **RuleId**: string (Required, Identifier): The catalog identifier of the custom detection rule to associate.
+* **Tags**: [TagItem](#tagitem)[]: The tags applied to the association.
+* **UpdatedAt**: string (ReadOnly): The time the association was last updated.
 
 ## AWS.GuardDuty/DetectorProperties
 ### Properties
@@ -72,6 +114,7 @@
 ### Properties
 * **Activate**: bool (WriteOnly)
 * **DetectorId**: string (Identifier)
+* **ExpectedBucketOwner**: string
 * **Format**: string (Required)
 * **Id**: string (ReadOnly, Identifier)
 * **Location**: string (Required)
@@ -109,15 +152,46 @@
 * **Status**: string (ReadOnly): The status of the publishing destination.
 * **Tags**: [TagItem](#tagitem)[]
 
+## AWS.GuardDuty/ThreatEntitySetProperties
+### Properties
+* **Activate**: bool (WriteOnly)
+* **CreatedAt**: string (ReadOnly)
+* **DetectorId**: string (Identifier)
+* **ErrorDetails**: string (ReadOnly)
+* **ExpectedBucketOwner**: string
+* **Format**: string (Required)
+* **Id**: string (ReadOnly, Identifier)
+* **Location**: string (Required)
+* **Name**: string
+* **Status**: string (ReadOnly)
+* **Tags**: [TagItem](#tagitem)[]
+* **UpdatedAt**: string (ReadOnly)
+
 ## AWS.GuardDuty/ThreatIntelSetProperties
 ### Properties
 * **Activate**: bool (WriteOnly)
 * **DetectorId**: string (Identifier)
+* **ExpectedBucketOwner**: string
 * **Format**: string (Required)
 * **Id**: string (ReadOnly, Identifier)
 * **Location**: string (Required)
 * **Name**: string
 * **Tags**: [TagItem](#tagitem)[]
+
+## AWS.GuardDuty/TrustedEntitySetProperties
+### Properties
+* **Activate**: bool (WriteOnly)
+* **CreatedAt**: string (ReadOnly)
+* **DetectorId**: string (Identifier)
+* **ErrorDetails**: string (ReadOnly)
+* **ExpectedBucketOwner**: string
+* **Format**: string (Required)
+* **Id**: string (ReadOnly, Identifier)
+* **Location**: string (Required)
+* **Name**: string
+* **Status**: string (ReadOnly)
+* **Tags**: [TagItem](#tagitem)[]
+* **UpdatedAt**: string (ReadOnly)
 
 ## CFNActions
 ### Properties
@@ -189,6 +263,21 @@
 ### Properties
 * **DestinationArn**: string: The ARN of the resource to publish to.
 * **KmsKeyArn**: string: The ARN of the KMS key to use for encryption.
+
+## TagItem
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## TagItem
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## TagItem
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## TagItem
 ### Properties

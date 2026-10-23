@@ -181,11 +181,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.EKS/AccessEntry@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/10"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -230,6 +230,19 @@
   {
     "$type": "StringLiteralType",
     "value": "AWS.EKS/AddonProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Addon_NamespaceConfig",
+    "properties": {
+      "Namespace": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The custom namespace for creating the add-on"
+      }
+    }
   },
   {
     "$type": "ArrayType",
@@ -285,16 +298,23 @@
         "flags": 0,
         "description": "The configuration values to use with the add-on"
       },
-      "PodIdentityAssociations": {
+      "NamespaceConfig": {
         "type": {
           "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The custom namespace configuration to use with the add-on"
+      },
+      "PodIdentityAssociations": {
+        "type": {
+          "$ref": "#/16"
         },
         "flags": 4,
         "description": "An array of pod identities to apply to this add-on."
       },
       "PreserveOnDelete": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 4,
         "description": "PreserveOnDelete parameter value"
@@ -315,7 +335,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -342,7 +362,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/19"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -352,11 +372,355 @@
   {
     "$type": "ResourceType",
     "name": "AWS.EKS/Addon@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/19"
+      "$ref": "#/20"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Ack",
+    "properties": {
+      "DisabledServices": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 0,
+        "description": "A list of ACK service names to disable. Controllers for services in this list are not installed or managed."
+      },
+      "EnableCrossNamespace": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Whether cross-namespace references are enabled for ACK controllers. When not specified, the service default applies."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ArgoCd",
+    "properties": {
+      "AwsIdc": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 1
+      },
+      "EndpointPrefix": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "An optional prefix for the Argo CD server endpoint. When specified, EKS uses this prefix to generate the server endpoint; otherwise, the endpoint is generated automatically. This value cannot be changed after the capability is created."
+      },
+      "Namespace": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The Kubernetes namespace where Argo CD resources will be created. If not specified, the default namespace is used."
+      },
+      "NetworkAccess": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0
+      },
+      "RbacRoleMappings": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0,
+        "description": "A list of role mappings that define which IAM Identity Center users or groups have which Argo CD roles. Each mapping associates an Argo CD role (ADMIN, EDITOR, or VIEWER) with one or more IAM Identity Center identities."
+      },
+      "ServerUrl": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The URL of the Argo CD server. Use this URL to access the Argo CD web interface and API."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ArgoCdRoleMapping",
+    "properties": {
+      "Identities": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 1,
+        "description": "A list of IAM Identity Center identities (users or groups) that should be assigned this Argo CD role."
+      },
+      "Role": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The Argo CD role to assign. Valid values are: ADMIN (full administrative access to Argo CD), EDITOR (edit access to Argo CD resources), or VIEWER (read-only access to Argo CD resources)."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AwsIdc",
+    "properties": {
+      "IdcInstanceArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The ARN of the IAM Identity Center instance to use for authentication."
+      },
+      "IdcManagedApplicationArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The ARN of the managed application created in IAM Identity Center for this Argo CD capability. This application is automatically created and managed by EKS."
+      },
+      "IdcRegion": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The Region where your IAM Identity Center instance is located."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CapabilityConfiguration",
+    "properties": {
+      "Ack": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0
+      },
+      "ArgoCd": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NetworkAccess",
+    "properties": {
+      "VpceIds": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 0,
+        "description": "A list of VPC endpoint IDs to associate with the managed Argo CD API server endpoint. Each VPC endpoint provides private connectivity from a specific VPC to the Argo CD server. You can specify multiple VPC endpoint IDs to enable access from multiple VPCs."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SsoIdentity",
+    "properties": {
+      "Id": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The unique identifier of the IAM Identity Center user or group."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The type of identity. Valid values are SSO_USER or SSO_GROUP."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/24"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/28"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.EKS/CapabilityProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/29"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EKS/CapabilityProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the capability."
+      },
+      "CapabilityName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "A unique name for the capability. The name must be unique within your cluster and can contain alphanumeric characters, hyphens, and underscores."
+      },
+      "ClusterName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The name of the EKS cluster where you want to create the capability."
+      },
+      "Configuration": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0,
+        "description": "The configuration settings for the capability. The structure of this object varies depending on the capability type. For Argo CD capabilities, you can configure IAM Identity Center integration, RBAC role mappings, and network access settings."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The Unix epoch timestamp in seconds for when the capability was created."
+      },
+      "DeletePropagationPolicy": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "Specifies how Kubernetes resources managed by the capability should be handled when the capability is deleted. Currently, the only supported value is RETAIN which retains all Kubernetes resources managed by the capability when the capability is deleted."
+      },
+      "ModifiedAt": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The Unix epoch timestamp in seconds for when the capability was last modified."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the IAM role that the capability uses to interact with AWS services. This role must have a trust policy that allows the EKS service principal to assume it, and it must have the necessary permissions for the capability type you're creating."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The current status of the capability. Valid values include: CREATING (the capability is being created), ACTIVE (the capability is running and available), UPDATING (the capability is being updated), DELETING (the capability is being deleted), CREATE_FAILED (the capability creation failed), UPDATE_FAILED (the capability update failed), or DELETE_FAILED (the capability deletion failed)."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The type of capability to create. Valid values are: ACK (AWS Controllers for Kubernetes, which lets you manage AWS resources directly from Kubernetes), ARGOCD (Argo CD for GitOps-based continuous delivery), or KRO (Kube Resource Orchestrator for composing and managing custom Kubernetes resources)."
+      },
+      "Version": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The version of the capability software that is currently running."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EKS/Capability",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.EKS/Capability@default",
+    "body": {
+      "$ref": "#/37"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -371,10 +735,30 @@
       },
       "BootstrapClusterCreatorAdminPermissions": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 4,
         "description": "Set this value to false to avoid creating a default cluster admin Access Entry using the IAM principal used to create the cluster."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ActiveCertificateAuthority",
+    "properties": {
+      "ActivatedBy": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "Indicates whether the active certificate authority was activated by EKS or by the customer."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The ID of the active (signing) certificate authority."
       }
     }
   },
@@ -384,10 +768,29 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "Todo: add description"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CertificateAuthority",
+    "properties": {
+      "Active": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0
+      },
+      "Data": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The base64-encoded certificate-authority trust bundle for the cluster (all trusted CAs)."
       }
     }
   },
@@ -397,7 +800,7 @@
     "properties": {
       "EnabledTypes": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/77"
         },
         "flags": 0
       }
@@ -409,14 +812,14 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "Todo: add description"
       },
       "NodePools": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/78"
         },
         "flags": 0,
         "description": "Todo: add description"
@@ -439,9 +842,34 @@
           "$ref": "#/3"
         },
         "flags": 0,
-        "description": "Specify the placement group name of the control place machines for your cluster."
+        "description": "The name of the placement group for the Kubernetes control plane instances. This setting can't be changed after cluster creation."
+      },
+      "SpreadLevel": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Optional parameter to specify the placement group spread level for control plane instances. If not provided, EKS will deploy control plane instances without a placement group."
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ControlPlaneScalingConfig",
+    "properties": {
+      "Tier": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The scaling tier for the provisioned control plane."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DeletionProtection",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -449,7 +877,7 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "Todo: add description"
@@ -467,17 +895,92 @@
     "properties": {
       "Provider": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/62"
         },
         "flags": 0,
         "description": "The encryption provider for the cluster."
       },
       "Resources": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/80"
         },
         "flags": 0,
         "description": "Specifies the resources to be encrypted. The only supported value is \"secrets\"."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EtcdPlacement",
+    "properties": {
+      "SpreadLevel": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Optional parameter to specify the placement group spread level for etcd instances. If not provided, EKS will deploy etcd instances without a placement group."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "HorizontalPodAutoscalerControllerConfig",
+    "properties": {
+      "HorizontalPodAutoscalerSyncPeriod": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The interval between each sync of the horizontal pod autoscaler (e.g., 15s, 1m)."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KubeApiServerConfig",
+    "properties": {
+      "EventTtl": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The duration that Kubernetes events are retained (e.g., 30m, 1h)."
+      },
+      "ServiceNodePortRange": {
+        "type": {
+          "$ref": "#/72"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KubeControllerManagerConfig",
+    "properties": {
+      "HorizontalPodAutoscalerControllerConfig": {
+        "type": {
+          "$ref": "#/52"
+        },
+        "flags": 0
+      },
+      "PodGcControllerConfig": {
+        "type": {
+          "$ref": "#/61"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KubeSchedulerConfig",
+    "properties": {
+      "NodeResourcesFit": {
+        "type": {
+          "$ref": "#/59"
+        },
+        "flags": 0
       }
     }
   },
@@ -487,7 +990,7 @@
     "properties": {
       "ElasticLoadBalancing": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/48"
         },
         "flags": 0,
         "description": "Todo: add description"
@@ -521,7 +1024,7 @@
     "properties": {
       "ClusterLogging": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "The cluster control plane logging configuration for your cluster. "
@@ -543,6 +1046,18 @@
   },
   {
     "$type": "ObjectType",
+    "name": "NodeResourcesFitConfig",
+    "properties": {
+      "ScoringStrategy": {
+        "type": {
+          "$ref": "#/71"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "OutpostConfig",
     "properties": {
       "ControlPlaneInstanceType": {
@@ -550,21 +1065,48 @@
           "$ref": "#/3"
         },
         "flags": 1,
-        "description": "Specify the Instance type of the machines that should be used to create your cluster."
+        "description": "The EC2 instance type for the Kubernetes control plane instances of your local Amazon EKS cluster on AWS Outposts. This instance type applies to all control plane instances and cannot be changed after cluster creation."
       },
       "ControlPlanePlacement": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/45"
         },
         "flags": 0,
-        "description": "Specify the placement group of the control plane machines for your cluster."
+        "description": "An object representing the placement configuration for all the control plane instances of your local Amazon EKS cluster on an AWS Outpost."
+      },
+      "EtcdInstanceType": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The EC2 instance type for etcd instances of your local Amazon EKS cluster on AWS Outposts. This instance type applies to all etcd instances and cannot be changed after cluster creation."
+      },
+      "EtcdPlacement": {
+        "type": {
+          "$ref": "#/51"
+        },
+        "flags": 0,
+        "description": "An object representing the placement configuration for the etcd instances of your local Amazon EKS cluster on an AWS Outpost."
       },
       "OutpostArns": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/81"
         },
         "flags": 1,
-        "description": "Specify one or more Arn(s) of Outpost(s) on which you would like to create your cluster."
+        "description": "The ARN of the Outpost that you want to use for your local Amazon EKS cluster on Outposts. Only a single Outpost ARN is supported."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PodGcControllerConfig",
+    "properties": {
+      "TerminatedPodGcThreshold": {
+        "type": {
+          "$ref": "#/82"
+        },
+        "flags": 0,
+        "description": "The number of terminated pods that can exist before the terminated pod garbage collector starts deleting them."
       }
     }
   },
@@ -587,14 +1129,14 @@
     "properties": {
       "RemoteNodeNetworks": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/83"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "Network configuration of nodes run on-premises with EKS Hybrid Nodes."
       },
       "RemotePodNetworks": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/84"
         },
         "flags": 0,
         "description": "Network configuration of pods run on-premises with EKS Hybrid Nodes."
@@ -607,7 +1149,7 @@
     "properties": {
       "Cidrs": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/85"
         },
         "flags": 1,
         "description": "Specifies the list of remote node CIDRs."
@@ -625,7 +1167,7 @@
     "properties": {
       "Cidrs": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/87"
         },
         "flags": 1,
         "description": "Specifies the list of remote pod CIDRs."
@@ -639,42 +1181,122 @@
   },
   {
     "$type": "ObjectType",
+    "name": "ResourceWeight",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 16,
+        "description": "The name of the resource (for example, cpu or memory)."
+      },
+      "Weight": {
+        "type": {
+          "$ref": "#/82"
+        },
+        "flags": 0,
+        "description": "The weight assigned to the resource for scoring. Must be between 1 and 100."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "ResourcesVpcConfig",
     "properties": {
+      "ControlPlaneEgressMode": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Specify the egress mode for the cluster control plane. If you set this to CUSTOMER_ROUTED, the control plane routes traffic through your VPC subnets instead of using AWS managed networking."
+      },
       "EndpointPrivateAccess": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "Set this value to true to enable private access for your cluster's Kubernetes API server endpoint. If you enable private access, Kubernetes API requests from within your cluster's VPC use the private VPC endpoint. The default value for this parameter is false, which disables private access for your Kubernetes API server. If you disable private access and you have nodes or AWS Fargate pods in the cluster, then ensure that publicAccessCidrs includes the necessary CIDR blocks for communication with the nodes or Fargate pods."
       },
       "EndpointPublicAccess": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "Set this value to false to disable public access to your cluster's Kubernetes API server endpoint. If you disable public access, your cluster's Kubernetes API server can only receive requests from within the cluster VPC. The default value for this parameter is true, which enables public access for your Kubernetes API server."
       },
       "PublicAccessCidrs": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/89"
         },
         "flags": 0,
         "description": "The CIDR blocks that are allowed access to your cluster's public Kubernetes API server endpoint. Communication to the endpoint from addresses outside of the CIDR blocks that you specify is denied. The default value is 0.0.0.0/0. If you've disabled private endpoint access and you have nodes or AWS Fargate pods in the cluster, then ensure that you specify the necessary CIDR blocks."
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/90"
         },
         "flags": 0,
         "description": "Specify one or more security groups for the cross-account elastic network interfaces that Amazon EKS creates to use to allow communication between your worker nodes and the Kubernetes control plane. If you don't specify a security group, the default security group for your VPC is used."
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/91"
         },
         "flags": 1,
         "description": "Specify subnets for your Amazon EKS nodes. Amazon EKS creates cross-account elastic network interfaces in these subnets to allow communication between your nodes and the Kubernetes control plane."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RollbackConfig",
+    "properties": {
+      "TimeoutMinutes": {
+        "type": {
+          "$ref": "#/82"
+        },
+        "flags": 0,
+        "description": "The timeout in minutes for the version rollback operation. If not specified, defaults to 720 minutes (12 hours)."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ScoringStrategy",
+    "properties": {
+      "Resources": {
+        "type": {
+          "$ref": "#/92"
+        },
+        "flags": 0,
+        "description": "The resource weights used for scoring nodes."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The scoring strategy type (LeastAllocated or MostAllocated)."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceNodePortRange",
+    "properties": {
+      "MaxPort": {
+        "type": {
+          "$ref": "#/82"
+        },
+        "flags": 0,
+        "description": "The maximum port number in the range."
+      },
+      "MinPort": {
+        "type": {
+          "$ref": "#/82"
+        },
+        "flags": 0,
+        "description": "The minimum port number in the range."
       }
     }
   },
@@ -684,7 +1306,7 @@
     "properties": {
       "BlockStorage": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "Todo: add description"
@@ -730,7 +1352,7 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "Set this value to true to enable zonal shift for the cluster."
@@ -740,7 +1362,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/31"
+      "$ref": "#/58"
     }
   },
   {
@@ -752,55 +1374,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/31"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/3"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/3"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/35"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/37"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/3"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/35"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/3"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/37"
+      "$ref": "#/58"
     }
   },
   {
@@ -816,9 +1390,66 @@
     }
   },
   {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/64"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/66"
+    }
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/64"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/66"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/68"
     }
   },
   {
@@ -828,13 +1459,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/28"
+      "$ref": "#/50"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/41"
+      "$ref": "#/74"
     }
   },
   {
@@ -843,9 +1474,16 @@
     "properties": {
       "AccessConfig": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/39"
         },
         "flags": 0
+      },
+      "ActiveCertificateAuthorityId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 4,
+        "description": "The ID of the certificate authority to activate as the cluster's signing CA. Setting or changing this value activates the specified CA (the previously active CA becomes trusted)."
       },
       "Arn": {
         "type": {
@@ -856,10 +1494,16 @@
       },
       "BootstrapSelfManagedAddons": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 4,
         "description": "Set this value to false to avoid creating the default networking add-ons when the cluster is created."
+      },
+      "CertificateAuthority": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0
       },
       "CertificateAuthorityData": {
         "type": {
@@ -877,13 +1521,26 @@
       },
       "ComputeConfig": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/44"
         },
         "flags": 0
       },
+      "ControlPlaneScalingConfig": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0
+      },
+      "DeletionProtection": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Set this value to true to enable deletion protection for the cluster."
+      },
       "EncryptionConfig": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/94"
         },
         "flags": 0
       },
@@ -901,6 +1558,13 @@
         "flags": 2,
         "description": "The endpoint for your Kubernetes API server, such as https://5E1D0CEXAMPLEA591B746AFC5AB30262.yl4.us-west-2.eks.amazonaws.com."
       },
+      "Force": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 4,
+        "description": "Force cluster version update"
+      },
       "Id": {
         "type": {
           "$ref": "#/3"
@@ -908,15 +1572,33 @@
         "flags": 2,
         "description": "The unique ID given to your cluster."
       },
+      "KubeApiServerConfig": {
+        "type": {
+          "$ref": "#/53"
+        },
+        "flags": 0
+      },
+      "KubeControllerManagerConfig": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 0
+      },
+      "KubeSchedulerConfig": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 0
+      },
       "KubernetesNetworkConfig": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/56"
         },
         "flags": 0
       },
       "Logging": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/57"
         },
         "flags": 0
       },
@@ -936,19 +1618,19 @@
       },
       "OutpostConfig": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/60"
         },
         "flags": 0
       },
       "RemoteNetworkConfig": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/63"
         },
         "flags": 0
       },
       "ResourcesVpcConfig": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/69"
         },
         "flags": 1
       },
@@ -959,22 +1641,28 @@
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) of the IAM role that provides permissions for the Kubernetes control plane to make calls to AWS API operations on your behalf."
       },
+      "RollbackConfig": {
+        "type": {
+          "$ref": "#/70"
+        },
+        "flags": 4
+      },
       "StorageConfig": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/73"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/95"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "UpgradePolicy": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/75"
         },
         "flags": 0
       },
@@ -987,7 +1675,7 @@
       },
       "ZonalShiftConfig": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/76"
         },
         "flags": 0
       }
@@ -1013,7 +1701,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/96"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1023,11 +1711,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.EKS/Cluster@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/62"
+      "$ref": "#/97"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1055,7 +1743,7 @@
     "properties": {
       "Labels": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/102"
         },
         "flags": 0
       },
@@ -1090,7 +1778,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/64"
+      "$ref": "#/99"
     }
   },
   {
@@ -1100,7 +1788,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/65"
+      "$ref": "#/100"
     }
   },
   {
@@ -1112,7 +1800,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/66"
+      "$ref": "#/101"
     }
   },
   {
@@ -1148,19 +1836,19 @@
       },
       "Selectors": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/104"
         },
         "flags": 1
       },
       "Subnets": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/105"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/106"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1187,7 +1875,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/107"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1197,11 +1885,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.EKS/FargateProfile@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/73"
+      "$ref": "#/108"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1237,7 +1925,7 @@
       },
       "RequiredClaims": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/113"
         },
         "flags": 0
       },
@@ -1300,7 +1988,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/76"
+      "$ref": "#/111"
     }
   },
   {
@@ -1310,7 +1998,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/77"
+      "$ref": "#/112"
     }
   },
   {
@@ -1340,13 +2028,13 @@
       },
       "Oidc": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/110"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/115"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1380,7 +2068,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/116"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1390,11 +2078,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.EKS/IdentityProviderConfig@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/82"
+      "$ref": "#/117"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1426,10 +2114,79 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "Set this value to true to enable node auto repair for the node group."
+      },
+      "MaxParallelNodesRepairedCount": {
+        "type": {
+          "$ref": "#/82"
+        },
+        "flags": 0,
+        "description": "Specify the maximum number of nodes that can be repaired concurrently or in parallel, expressed as a count of unhealthy nodes. This gives you finer-grained control over the pace of node replacements. When using this, you cannot also set MaxParallelNodesRepairedPercentage at the same time."
+      },
+      "MaxParallelNodesRepairedPercentage": {
+        "type": {
+          "$ref": "#/82"
+        },
+        "flags": 0,
+        "description": "Specify the maximum number of nodes that can be repaired concurrently or in parallel, expressed as a percentage of unhealthy nodes. This gives you finer-grained control over the pace of node replacements. When using this, you cannot also set MaxParallelNodesRepairedCount at the same time."
+      },
+      "MaxUnhealthyNodeThresholdCount": {
+        "type": {
+          "$ref": "#/82"
+        },
+        "flags": 0,
+        "description": "Specify a count threshold of unhealthy nodes, above which node auto repair actions will stop. When using this, you cannot also set MaxUnhealthyNodeThresholdPercentage at the same time."
+      },
+      "MaxUnhealthyNodeThresholdPercentage": {
+        "type": {
+          "$ref": "#/82"
+        },
+        "flags": 0,
+        "description": "Specify a percentage threshold of unhealthy nodes, above which node auto repair actions will stop. When using this, you cannot also set MaxUnhealthyNodeThresholdCount at the same time."
+      },
+      "NodeRepairConfigOverrides": {
+        "type": {
+          "$ref": "#/127"
+        },
+        "flags": 0,
+        "description": "Specify granular overrides for specific repair actions. These overrides control the repair action and the repair delay time before a node is considered eligible for repair. If you use this, you must specify all the values."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NodeRepairConfigOverrides",
+    "properties": {
+      "MinRepairWaitTimeMins": {
+        "type": {
+          "$ref": "#/82"
+        },
+        "flags": 0,
+        "description": "Specify the minimum time in minutes to wait before attempting to repair a node with this specific NodeMonitoringCondition and NodeUnhealthyReason."
+      },
+      "NodeMonitoringCondition": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Specify an unhealthy condition reported by the node monitoring agent that this override would apply to."
+      },
+      "NodeUnhealthyReason": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Specify a reason reported by the node monitoring agent that this override would apply to."
+      },
+      "RepairAction": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Specify the repair action to take for nodes when all of the specified conditions are met."
       }
     }
   },
@@ -1445,7 +2202,7 @@
       },
       "SourceSecurityGroups": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/128"
         },
         "flags": 0
       }
@@ -1457,19 +2214,19 @@
     "properties": {
       "DesiredSize": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/82"
         },
         "flags": 0
       },
       "MaxSize": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/82"
         },
         "flags": 0
       },
       "MinSize": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/82"
         },
         "flags": 0
       }
@@ -1505,14 +2262,14 @@
     "properties": {
       "MaxUnavailable": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/82"
         },
         "flags": 0,
         "description": "The maximum number of nodes unavailable at once during a version update. Nodes will be updated in parallel. This value or maxUnavailablePercentage is required to have a value.The maximum number is 100. "
       },
       "MaxUnavailablePercentage": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/82"
         },
         "flags": 0,
         "description": "The maximum percentage of nodes unavailable during a version update. This percentage of nodes will be updated in parallel, up to 100 nodes at once. This value or maxUnavailable is required to have a value."
@@ -1527,13 +2284,57 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "WarmPoolConfig",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Enable or disable warm pool for the node group."
+      },
+      "MaxGroupPreparedCapacity": {
+        "type": {
+          "$ref": "#/82"
+        },
+        "flags": 0,
+        "description": "The maximum number of instances that are allowed to be in the warm pool."
+      },
+      "MinSize": {
+        "type": {
+          "$ref": "#/82"
+        },
+        "flags": 0,
+        "description": "The minimum number of instances to maintain in the warm pool."
+      },
+      "PoolState": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The desired state of warm pool instances."
+      },
+      "ReuseOnScaleIn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Whether to return instances to the warm pool during scale-in instead of terminating them."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/121"
+    }
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/3"
     }
-  },
-  {
-    "$type": "IntegerType"
   },
   {
     "$type": "StringLiteralType",
@@ -1564,7 +2365,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/88"
+      "$ref": "#/124"
     }
   },
   {
@@ -1600,14 +2401,14 @@
       },
       "DiskSize": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/82"
         },
         "flags": 0,
         "description": "The root device disk size (in GiB) for your node group instances."
       },
       "ForceUpdateEnabled": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 4,
         "description": "Force the update if the existing node group's pods are unable to be drained due to a pod disruption budget issue."
@@ -1620,28 +2421,28 @@
       },
       "InstanceTypes": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/130"
         },
         "flags": 0,
         "description": "Specify the instance types for a node group."
       },
       "Labels": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/131"
         },
         "flags": 0,
         "description": "The Kubernetes labels to be applied to the nodes in the node group when they are created."
       },
       "LaunchTemplate": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/119"
         },
         "flags": 0,
         "description": "An object representing a node group's launch template specification."
       },
       "NodeRepairConfig": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/120"
         },
         "flags": 0,
         "description": "The node auto repair configuration for node group."
@@ -1669,42 +2470,42 @@
       },
       "RemoteAccess": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/122"
         },
         "flags": 0,
         "description": "The remote access (SSH) configuration to use with your node group."
       },
       "ScalingConfig": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/123"
         },
         "flags": 0,
         "description": "The scaling configuration details for the Auto Scaling group that is created for your node group."
       },
       "Subnets": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/132"
         },
         "flags": 1,
         "description": "The subnets to use for the Auto Scaling group that is created for your node group."
       },
       "Tags": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/133"
         },
         "flags": 0,
         "description": "The metadata, as key-value pairs, to apply to the node group to assist with categorization and organization. Follows same schema as Labels for consistency."
       },
       "Taints": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/134"
         },
         "flags": 0,
         "description": "The Kubernetes taints to be applied to the nodes in the node group when they are created."
       },
       "UpdateConfig": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/125"
         },
         "flags": 0,
         "description": "The node group update configuration."
@@ -1715,6 +2516,13 @@
         },
         "flags": 0,
         "description": "The Kubernetes version to use for your managed nodes."
+      },
+      "WarmPoolConfig": {
+        "type": {
+          "$ref": "#/126"
+        },
+        "flags": 0,
+        "description": "The warm pool configuration details for the Auto Scaling group that is created for the node group."
       }
     }
   },
@@ -1738,7 +2546,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/135"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1748,11 +2556,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.EKS/Nodegroup@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/99"
+      "$ref": "#/136"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1781,7 +2589,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/101"
+      "$ref": "#/138"
     }
   },
   {
@@ -1809,12 +2617,33 @@
         "flags": 1,
         "description": "The cluster that the pod identity association is created for."
       },
+      "DisableSessionTags": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The Disable Session Tags of the pod identity association."
+      },
+      "ExternalId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The External Id of the pod identity association."
+      },
       "Namespace": {
         "type": {
           "$ref": "#/3"
         },
         "flags": 1,
         "description": "The Kubernetes namespace that the pod identity association is created for."
+      },
+      "Policy": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The policy of the pod identity association."
       },
       "RoleArn": {
         "type": {
@@ -1832,10 +2661,17 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/140"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
+      },
+      "TargetRoleArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The Target Role Arn of the pod identity association."
       }
     }
   },
@@ -1859,7 +2695,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/141"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1869,10 +2705,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.EKS/PodIdentityAssociation@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/105"
+      "$ref": "#/142"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

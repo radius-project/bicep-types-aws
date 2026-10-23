@@ -1,14 +1,15 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-PartnerApp",
   "type": "AWS::SageMaker::PartnerApp",
-  "time": "2024-12-19T17:25:42.659Z",
+  "time": "2026-04-20T16:31:52.362Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/Name",
       "/properties/Type",
       "/properties/ExecutionRoleArn",
-      "/properties/AuthType"
+      "/properties/AuthType",
+      "/properties/KmsKeyId"
     ],
     "definitions": {
       "PartnerAppAdminUserList": {
@@ -97,7 +98,9 @@
           "sagemaker:DescribePartnerApp",
           "sagemaker:AddTags",
           "sagemaker:ListTags",
-          "iam:PassRole"
+          "iam:PassRole",
+          "kms:CreateGrant",
+          "kms:DescribeKey"
         ],
         "timeoutInMinutes": 180
       },
@@ -128,7 +131,8 @@
           "sagemaker:DescribePartnerApp",
           "sagemaker:AddTags",
           "sagemaker:ListTags",
-          "sagemaker:DeleteTags"
+          "sagemaker:DeleteTags",
+          "kms:DescribeKey"
         ],
         "timeoutInMinutes": 180
       }
@@ -137,6 +141,12 @@
       "/properties/Arn"
     ],
     "properties": {
+      "AppVersion": {
+        "description": "The version of the PartnerApp.",
+        "maxLength": 64,
+        "minLength": 1,
+        "type": "string"
+      },
       "ApplicationConfig": {
         "$ref": "#/definitions/PartnerAppConfig",
         "description": "A collection of settings that specify the maintenance schedule for the PartnerApp."
@@ -167,6 +177,14 @@
         "pattern": "^[a-zA-Z0-9-]+$",
         "type": "string"
       },
+      "CurrentVersionEolDate": {
+        "description": "The end-of-life date for the current version of the PartnerApp.",
+        "type": "string"
+      },
+      "EnableAutoMinorVersionUpgrade": {
+        "description": "Enables automatic minor version upgrades for the PartnerApp.",
+        "type": "boolean"
+      },
       "EnableIamSessionBasedIdentity": {
         "description": "Enables IAM Session based Identity for PartnerApp.",
         "type": "boolean"
@@ -176,6 +194,12 @@
         "maxLength": 2048,
         "minLength": 20,
         "pattern": "^arn:aws[a-z\\-]*:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$",
+        "type": "string"
+      },
+      "KmsKeyId": {
+        "description": "The AWS KMS customer managed key used to encrypt the data associated with the PartnerApp.",
+        "maxLength": 2048,
+        "pattern": ".*",
         "type": "string"
       },
       "MaintenanceConfig": {
@@ -219,9 +243,10 @@
     },
     "readOnlyProperties": [
       "/properties/Arn",
-      "/properties/BaseUrl"
+      "/properties/BaseUrl",
+      "/properties/CurrentVersionEolDate"
     ],
-    "replacementStrategy": "delete_then_create",
+    "replacementStrategy": "create_then_delete",
     "required": [
       "Name",
       "Type",

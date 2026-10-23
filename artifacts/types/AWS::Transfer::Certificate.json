@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Transfer-Certificate",
   "type": "AWS::Transfer::Certificate",
-  "time": "2024-12-26T14:54:44.051Z",
+  "time": "2026-10-12T14:02:00.313Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -171,6 +171,10 @@
         "type": "string"
       }
     },
+    "propertyTransform": {
+      "/properties/Certificate": "$replace(Certificate, /\\s+$/, '')",
+      "/properties/CertificateChain": "$replace(CertificateChain, /\\s+$/, '')"
+    },
     "readOnlyProperties": [
       "/properties/Arn",
       "/properties/CertificateId",
@@ -186,6 +190,11 @@
     ],
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "transfer:ListTagsForResource",
+        "transfer:UnTagResource",
+        "transfer:TagResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

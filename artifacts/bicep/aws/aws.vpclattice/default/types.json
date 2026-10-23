@@ -114,11 +114,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.VpcLattice/AccessLogSubscription@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/5"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "StringLiteralType",
@@ -183,11 +183,153 @@
   {
     "$type": "ResourceType",
     "name": "AWS.VpcLattice/AuthPolicy@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/10"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TxtMethodConfig",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.VpcLattice/DomainVerificationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/12"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DomainVerification_TxtMethodConfig",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.VpcLattice/DomainVerificationProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18
+      },
+      "DomainName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
+      "TxtMethodConfig": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.VpcLattice/DomainVerification",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.VpcLattice/DomainVerification@default",
+    "body": {
+      "$ref": "#/18"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -195,13 +337,13 @@
     "properties": {
       "FixedResponse": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/21"
         },
         "flags": 0
       },
       "Forward": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/22"
         },
         "flags": 0
       }
@@ -213,7 +355,7 @@
     "properties": {
       "StatusCode": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/25"
         },
         "flags": 1
       }
@@ -225,7 +367,7 @@
     "properties": {
       "TargetGroups": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/26"
         },
         "flags": 1
       }
@@ -261,7 +403,7 @@
       },
       "Weight": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/25"
         },
         "flags": 0
       }
@@ -273,7 +415,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/16"
+      "$ref": "#/24"
     }
   },
   {
@@ -283,7 +425,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/15"
+      "$ref": "#/23"
     }
   },
   {
@@ -298,7 +440,7 @@
       },
       "DefaultAction": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/20"
         },
         "flags": 1
       },
@@ -316,7 +458,7 @@
       },
       "Port": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/25"
         },
         "flags": 0
       },
@@ -346,7 +488,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/28"
         },
         "flags": 0
       }
@@ -372,7 +514,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/29"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -382,16 +524,28 @@
   {
     "$type": "ResourceType",
     "name": "AWS.VpcLattice/Listener@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/22"
+      "$ref": "#/30"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
     "name": "ArnResource",
     "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CidrResource",
+    "properties": {
+      "CidrRanges": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -445,6 +599,12 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
     "$type": "StringLiteralType",
     "value": "AWS.VpcLattice/ResourceConfigurationProperties"
   },
@@ -465,7 +625,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/29"
+      "$ref": "#/38"
     }
   },
   {
@@ -474,7 +634,7 @@
     "properties": {
       "AllowAssociationToSharableServiceNetwork": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/41"
         },
         "flags": 0
       },
@@ -483,6 +643,24 @@
           "$ref": "#/1"
         },
         "flags": 18
+      },
+      "CustomDomainName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "DomainVerificationId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "GroupDomain": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
       },
       "Id": {
         "type": {
@@ -494,11 +672,11 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 0
+        "flags": 1
       },
       "PortRanges": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/42"
         },
         "flags": 0
       },
@@ -516,7 +694,7 @@
       },
       "ResourceConfigurationDefinition": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/43"
         },
         "flags": 0
       },
@@ -530,7 +708,7 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 0
+        "flags": 1
       },
       "ResourceGatewayId": {
         "type": {
@@ -540,7 +718,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/44"
         },
         "flags": 0
       }
@@ -566,9 +744,9 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/45"
         },
-        "flags": 16,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -576,11 +754,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.VpcLattice/ResourceConfiguration@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/36"
+      "$ref": "#/46"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -619,7 +797,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/38"
+      "$ref": "#/48"
     }
   },
   {
@@ -644,7 +822,20 @@
         },
         "flags": 0
       },
+      "Ipv4AddressesPerEni": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0,
+        "description": "The number of IPv4 addresses to allocate per ENI for the resource gateway"
+      },
       "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "ResourceConfigDnsResolution": {
         "type": {
           "$ref": "#/1"
         },
@@ -652,21 +843,21 @@
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "The ID of one or more security groups to associate with the endpoint network interface."
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/51"
         },
-        "flags": 0,
+        "flags": 1,
         "description": "The ID of one or more subnets in which to create an endpoint network interface."
       },
       "Tags": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/52"
         },
         "flags": 0
       },
@@ -674,7 +865,7 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 0
+        "flags": 1
       }
     }
   },
@@ -698,9 +889,9 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/53"
         },
-        "flags": 16,
+        "flags": 17,
         "description": "properties of the resource"
       }
     }
@@ -708,11 +899,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.VpcLattice/ResourceGateway@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/44"
+      "$ref": "#/54"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "StringLiteralType",
@@ -729,7 +920,7 @@
     "properties": {
       "Policy": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/57"
         },
         "flags": 1
       },
@@ -761,7 +952,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/58"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -771,11 +962,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.VpcLattice/ResourcePolicy@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/49"
+      "$ref": "#/59"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -783,13 +974,13 @@
     "properties": {
       "FixedResponse": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/62"
         },
         "flags": 0
       },
       "Forward": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/63"
         },
         "flags": 0
       }
@@ -801,7 +992,7 @@
     "properties": {
       "StatusCode": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/25"
         },
         "flags": 1
       }
@@ -813,7 +1004,7 @@
     "properties": {
       "TargetGroups": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/72"
         },
         "flags": 1
       }
@@ -825,13 +1016,13 @@
     "properties": {
       "CaseSensitive": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/41"
         },
         "flags": 0
       },
       "Match": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/65"
         },
         "flags": 1
       },
@@ -873,7 +1064,7 @@
     "properties": {
       "HeaderMatches": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/73"
         },
         "flags": 0
       },
@@ -885,7 +1076,7 @@
       },
       "PathMatch": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/68"
         },
         "flags": 0
       }
@@ -897,7 +1088,7 @@
     "properties": {
       "HttpMatch": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/66"
         },
         "flags": 1
       }
@@ -909,13 +1100,13 @@
     "properties": {
       "CaseSensitive": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/41"
         },
         "flags": 0
       },
       "Match": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/69"
         },
         "flags": 1
       }
@@ -969,7 +1160,7 @@
       },
       "Weight": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/25"
         },
         "flags": 0
       }
@@ -978,13 +1169,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/61"
+      "$ref": "#/71"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/54"
+      "$ref": "#/64"
     }
   },
   {
@@ -994,7 +1185,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/60"
+      "$ref": "#/70"
     }
   },
   {
@@ -1003,7 +1194,7 @@
     "properties": {
       "Action": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/61"
         },
         "flags": 1
       },
@@ -1027,7 +1218,7 @@
       },
       "Match": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/67"
         },
         "flags": 1
       },
@@ -1039,7 +1230,7 @@
       },
       "Priority": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/25"
         },
         "flags": 1
       },
@@ -1051,7 +1242,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/75"
         },
         "flags": 0
       }
@@ -1077,7 +1268,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/76"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1087,11 +1278,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.VpcLattice/Rule@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/67"
+      "$ref": "#/77"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1136,7 +1327,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/70"
+      "$ref": "#/80"
     }
   },
   {
@@ -1175,7 +1366,7 @@
       },
       "DnsEntry": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/79"
         },
         "flags": 0
       },
@@ -1184,6 +1375,12 @@
           "$ref": "#/1"
         },
         "flags": 2
+      },
+      "IdleTimeoutSeconds": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0
       },
       "LastUpdatedAt": {
         "type": {
@@ -1205,7 +1402,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/82"
         },
         "flags": 0
       }
@@ -1231,7 +1428,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/83"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1241,11 +1438,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.VpcLattice/Service@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/74"
+      "$ref": "#/84"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1253,7 +1450,7 @@
     "properties": {
       "enabled": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/41"
         },
         "flags": 1
       }
@@ -1284,7 +1481,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/77"
+      "$ref": "#/87"
     }
   },
   {
@@ -1329,13 +1526,13 @@
       },
       "SharingConfig": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/86"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/89"
         },
         "flags": 0
       }
@@ -1361,7 +1558,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/90"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1371,11 +1568,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.VpcLattice/ServiceNetwork@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/81"
+      "$ref": "#/91"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1402,7 +1599,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/83"
+      "$ref": "#/93"
     }
   },
   {
@@ -1421,6 +1618,12 @@
         },
         "flags": 2
       },
+      "PrivateDnsEnabled": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0
+      },
       "ResourceConfigurationId": {
         "type": {
           "$ref": "#/1"
@@ -1435,7 +1638,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/95"
         },
         "flags": 0
       }
@@ -1461,7 +1664,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/96"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1471,11 +1674,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.VpcLattice/ServiceNetworkResourceAssociation@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/87"
+      "$ref": "#/97"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1520,7 +1723,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/90"
+      "$ref": "#/100"
     }
   },
   {
@@ -1541,7 +1744,7 @@
       },
       "DnsEntry": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/99"
         },
         "flags": 0
       },
@@ -1607,7 +1810,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/102"
         },
         "flags": 0
       }
@@ -1633,7 +1836,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/103"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1643,11 +1846,29 @@
   {
     "$type": "ResourceType",
     "name": "AWS.VpcLattice/ServiceNetworkServiceAssociation@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/94"
+      "$ref": "#/104"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DnsOptions",
+    "properties": {
+      "PrivateDnsPreference": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "PrivateDnsSpecifiedDomains": {
+        "type": {
+          "$ref": "#/108"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -1668,6 +1889,12 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
     "$type": "StringLiteralType",
     "value": "AWS.VpcLattice/ServiceNetworkVpcAssociationProperties"
   },
@@ -1680,7 +1907,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/96"
+      "$ref": "#/107"
     }
   },
   {
@@ -1699,15 +1926,27 @@
         },
         "flags": 2
       },
+      "DnsOptions": {
+        "type": {
+          "$ref": "#/106"
+        },
+        "flags": 0
+      },
       "Id": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 2
       },
+      "PrivateDnsEnabled": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0
+      },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/110"
         },
         "flags": 0
       },
@@ -1743,7 +1982,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/111"
         },
         "flags": 0
       },
@@ -1781,7 +2020,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/112"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1791,11 +2030,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.VpcLattice/ServiceNetworkVpcAssociation@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/101"
+      "$ref": "#/113"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1803,31 +2042,31 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/41"
         },
         "flags": 0
       },
       "HealthCheckIntervalSeconds": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "HealthCheckTimeoutSeconds": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "HealthyThresholdCount": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "Matcher": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/116"
         },
         "flags": 0
       },
@@ -1839,7 +2078,7 @@
       },
       "Port": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/25"
         },
         "flags": 0
       },
@@ -1857,7 +2096,7 @@
       },
       "UnhealthyThresholdCount": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/25"
         },
         "flags": 0
       }
@@ -1905,7 +2144,7 @@
       },
       "Port": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/25"
         },
         "flags": 0
       }
@@ -1917,7 +2156,7 @@
     "properties": {
       "HealthCheck": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/115"
         },
         "flags": 0
       },
@@ -1935,7 +2174,7 @@
       },
       "Port": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/25"
         },
         "flags": 0
       },
@@ -1966,13 +2205,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/105"
+      "$ref": "#/117"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/106"
+      "$ref": "#/118"
     }
   },
   {
@@ -1987,7 +2226,7 @@
       },
       "Config": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/119"
         },
         "flags": 0
       },
@@ -2023,13 +2262,13 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/121"
         },
         "flags": 0
       },
       "Targets": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/122"
         },
         "flags": 0
       },
@@ -2061,7 +2300,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/111"
+          "$ref": "#/123"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2071,10 +2310,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.VpcLattice/TargetGroup@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/112"
+      "$ref": "#/124"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

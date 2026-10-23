@@ -1,14 +1,16 @@
 # AWS.AppRunner @ default
 
 ## Resource AWS.AppRunner/Service@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AppRunner/ServiceProperties](#awsapprunnerserviceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppRunner/VpcIngressConnection@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name

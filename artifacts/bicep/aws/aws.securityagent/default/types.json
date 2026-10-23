@@ -1,0 +1,2231 @@
+[
+  {
+    "$type": "ObjectType",
+    "name": "AWSResources",
+    "properties": {
+      "IamRoles": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "IAM role ARNs"
+      },
+      "LambdaFunctionArns": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0,
+        "description": "Lambda function ARNs used to retrieve tester credentials for pentests"
+      },
+      "LogGroups": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "CloudWatch log group ARNs"
+      },
+      "S3Buckets": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "S3 bucket ARNs"
+      },
+      "SecretArns": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "SecretsManager secret ARNs used to store tester credentials for pentests"
+      },
+      "Vpcs": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "VPC configurations"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AzureDevOpsCapabilitiesResource",
+    "properties": {
+      "LeaveComments": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "Enables Code Review in the repository"
+      },
+      "RemediateCode": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "Enables creation of pull requests with automated fixes"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AzureDevOpsRepositoryResource",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "Azure DevOps repository name"
+      },
+      "Organization": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Read-only Azure DevOps organization that owns the repository, populated from service-side metadata"
+      },
+      "Project": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "Azure DevOps project that owns the repository"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BitbucketCapabilitiesResource",
+    "properties": {
+      "LeaveComments": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "Enables Code Review in the repository"
+      },
+      "RemediateCode": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "Enables creation of pull requests with automated fixes"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BitbucketRepositoryResource",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "Bitbucket repository name"
+      },
+      "Workspace": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "Bitbucket workspace slug owning the repository"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CodeReviewSettings",
+    "properties": {
+      "ControlsScanning": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1,
+        "description": "Whether Controls are utilized for code review analysis"
+      },
+      "GeneralPurposeScanning": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1,
+        "description": "Whether general purpose analysis is performed for code review"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConfluenceCapabilitiesResource",
+    "properties": {
+      "CreateDocument": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "Enables creation of new Confluence documents in the same space"
+      },
+      "FetchDocument": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "Enables read access to the document content"
+      },
+      "UpdateDocument": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "Enables updates to the document"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConfluenceDocumentResource",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "Customer-supplied logical name for the Confluence document"
+      },
+      "PageId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "Confluence page identifier"
+      },
+      "SpaceKey": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "Confluence space key containing the document"
+      },
+      "SpaceTitle": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Read-only human-readable title of the containing space, populated from service-side metadata"
+      },
+      "Title": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Read-only human-readable title of the page, populated from service-side metadata"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GitHubCapabilitiesResource",
+    "properties": {
+      "LeaveComments": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1,
+        "description": "Enables Code Review in the repository"
+      },
+      "RemediateCode": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1,
+        "description": "Enables creation of pull requests with automated fixes"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GitHubRepositoryResource",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "GitHub repository name"
+      },
+      "Owner": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "GitHub repository owner (user or organization)"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GitLabCapabilitiesResource",
+    "properties": {
+      "LeaveComments": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "Enables Code Review in the repository"
+      },
+      "RemediateCode": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "Enables creation of merge requests with automated fixes"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GitLabRepositoryResource",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "GitLab project name"
+      },
+      "Namespace": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "GitLab project namespace (user, group, or subgroup path)"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IntegratedResource",
+    "properties": {
+      "Integration": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "Unique identifier of the Provider Integration"
+      },
+      "ProviderResources": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 1,
+        "description": "List of selected Resources from the Integration"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IntegratedResources",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ProviderResource",
+    "properties": {
+      "AzureDevOpsCapabilities": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "AzureDevOpsRepository": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      },
+      "BitbucketCapabilities": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "BitbucketRepository": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "ConfluenceCapabilities": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "ConfluenceDocument": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "GitHubCapabilities": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "GitHubRepository": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      },
+      "GitLabCapabilities": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "GitLabRepository": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The key name of the tag"
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The value for the tag"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VpcConfig",
+    "properties": {
+      "SecurityGroupArns": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0,
+        "description": "List of security group ARNs in the customer VPC"
+      },
+      "SubnetArns": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 0,
+        "description": "List of subnet ARNs in the customer VPC"
+      },
+      "VpcArn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "ARN of the customer VPC"
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/16"
+    }
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/12"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SecurityAgent/AgentSpaceProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/12"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/15"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityAgent/AgentSpaceProperties",
+    "properties": {
+      "AgentSpaceId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 18,
+        "description": "Unique identifier of the agent space"
+      },
+      "AwsResources": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0
+      },
+      "CodeReviewSettings": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "Timestamp when the agent space was created"
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Description of the agent space"
+      },
+      "IntegratedResources": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 2
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Identifier of the KMS key used to encrypt data. Can be a key ID, key ARN, alias name, or alias ARN. If not specified, an AWS managed key is used."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "Name of the agent space"
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0,
+        "description": "Tags for the agent space"
+      },
+      "TargetDomainIds": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 0,
+        "description": "List of target domain identifiers registered with the agent space"
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "Timestamp when the agent space was last updated"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityAgent/AgentSpace",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SecurityAgent/AgentSpace@default",
+    "body": {
+      "$ref": "#/34"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IdCConfiguration",
+    "properties": {
+      "IdCApplicationArn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2
+      },
+      "IdCInstanceArn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The key name of the tag"
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The value for the tag"
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SecurityAgent/ApplicationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/37"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityAgent/ApplicationProperties",
+    "properties": {
+      "ApplicationId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 18
+      },
+      "ApplicationName": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2
+      },
+      "DefaultKmsKeyId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Identifier of a KMS key. Can be a key ID, key ARN, alias name, or alias ARN."
+      },
+      "Domain": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2
+      },
+      "IdCConfiguration": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 0,
+        "description": "Tags for the application"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityAgent/Application",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SecurityAgent/Application@default",
+    "body": {
+      "$ref": "#/41"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BitbucketInput",
+    "properties": {
+      "Code": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The OAuth 2.0 authorization code returned from the consent redirect."
+      },
+      "InstallationId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The Atlassian installation identifier, available from the Atlassian administration console."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The CSRF state token echoed back from the OAuth redirect."
+      },
+      "Workspace": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The Bitbucket workspace slug that identifies the workspace to integrate."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConfluenceInput",
+    "properties": {
+      "Code": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The OAuth 2.0 authorization code returned from the consent redirect."
+      },
+      "InstallationId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The Atlassian installation identifier, available from the Atlassian administration console."
+      },
+      "SiteUrl": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The Confluence Cloud site URL, for example https://mysite.atlassian.net."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The CSRF state token echoed back from the OAuth redirect."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GitHubInput",
+    "properties": {
+      "Code": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The OAuth authorization code received from GitHub."
+      },
+      "InstallationId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The installation identifier provided by GitHub Enterprise Server on the install callback. Required for GitHub Enterprise Server integrations and ignored for GitHub.com."
+      },
+      "OrganizationName": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The name of the GitHub organization to integrate with."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The CSRF state token for validating the OAuth flow."
+      },
+      "TargetUrl": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The HTTPS URL of a self-hosted GitHub Enterprise Server instance. Omit this value for GitHub.com."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GitLabInput",
+    "properties": {
+      "AccessToken": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The GitLab access token used to authenticate. This can be a personal access token or a group access token."
+      },
+      "GroupId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The identifier of the GitLab group. Required when TokenType is GROUP and ignored for personal tokens."
+      },
+      "TargetUrl": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The HTTPS URL of a self-managed GitLab instance. Omit this value for GitLab SaaS (gitlab.com)."
+      },
+      "TokenType": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The type of GitLab access token."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ProviderInput",
+    "properties": {
+      "Bitbucket": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      },
+      "Confluence": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
+      },
+      "Github": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0
+      },
+      "Gitlab": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SecurityAgent/IntegrationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/48"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityAgent/IntegrationProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the integration."
+      },
+      "DisplayName": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The display name for the integration."
+      },
+      "InstallationId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "The installation identifier from the integration provider."
+      },
+      "IntegrationId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the integration."
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 4,
+        "description": "The identifier of the AWS KMS key to use for encrypting data associated with the integration. Can be a key ID, key ARN, alias name, or alias ARN."
+      },
+      "PrivateConnectionName": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The name of an active private connection used to reach a self-hosted provider instance over private networking."
+      },
+      "Provider": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The integration provider."
+      },
+      "ProviderInput": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 4
+      },
+      "ProviderType": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "The type of the integration provider."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/50"
+        },
+        "flags": 0,
+        "description": "The tags to associate with the integration."
+      },
+      "TargetUrl": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "The HTTPS URL of the customer self-hosted instance, such as a GitHub Enterprise Server or self-managed GitLab instance. This value is absent for SaaS integrations."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityAgent/Integration",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/51"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SecurityAgent/Integration@default",
+    "body": {
+      "$ref": "#/52"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Actor",
+    "properties": {
+      "Authentication": {
+        "type": {
+          "$ref": "#/56"
+        },
+        "flags": 0,
+        "description": "Authentication credentials for this actor"
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Description of the actor"
+      },
+      "EnableEmailMfa": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "Whether email-based MFA is enabled for this actor"
+      },
+      "Identifier": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Identifier for the actor"
+      },
+      "MfaForwardingAddress": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Server-generated email forwarding address for receiving MFA codes"
+      },
+      "Uris": {
+        "type": {
+          "$ref": "#/76"
+        },
+        "flags": 0,
+        "description": "List of URIs this actor is authorized to access"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Assets",
+    "properties": {
+      "Actors": {
+        "type": {
+          "$ref": "#/77"
+        },
+        "flags": 6,
+        "description": "List of actors used during testing"
+      },
+      "Documents": {
+        "type": {
+          "$ref": "#/78"
+        },
+        "flags": 0,
+        "description": "List of documents providing additional context for the pentest"
+      },
+      "Endpoints": {
+        "type": {
+          "$ref": "#/79"
+        },
+        "flags": 0,
+        "description": "List of endpoints to test"
+      },
+      "IntegratedRepositories": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 0,
+        "description": "List of repositories connected via provider integrations"
+      },
+      "SourceCode": {
+        "type": {
+          "$ref": "#/81"
+        },
+        "flags": 0,
+        "description": "List of source code repositories to analyze"
+      },
+      "TrustedCaCertificates": {
+        "type": {
+          "$ref": "#/82"
+        },
+        "flags": 0,
+        "description": "Trust anchors for validating target endpoint TLS certificates, for endpoints served by a private or internal CA, an intermediate CA, or a self-signed certificate"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Authentication",
+    "properties": {
+      "ProviderType": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Type of authentication provider"
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Reference value for the authentication provider, such as a secret ARN or Lambda ARN"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CaCertificateSource",
+    "properties": {
+      "ArtifactId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Artifact ID of an uploaded certificate file"
+      },
+      "InlinePem": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "PEM-encoded X.509 certificate supplied inline"
+      },
+      "S3Location": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Amazon S3 location URI of a customer-staged certificate"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CleanUpStrategy",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CloudWatchLog",
+    "properties": {
+      "LogGroup": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "CloudWatch log group"
+      },
+      "LogStream": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "CloudWatch log stream"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CodeRemediationStrategy",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomHeader",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Name of the header"
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Value of the header"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DocumentInfo",
+    "properties": {
+      "ArtifactId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Artifact identifier"
+      },
+      "S3Location": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "S3 document location"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Endpoint",
+    "properties": {
+      "Uri": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "URI of the endpoint to test"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IntegratedRepository",
+    "properties": {
+      "Branch": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "An optional override for the repository branch"
+      },
+      "IntegrationId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "Unique identifier of the provider integration"
+      },
+      "ProviderResourceId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "Identifier of the resource within the provider integration"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NetworkTrafficConfig",
+    "properties": {
+      "CustomHeaders": {
+        "type": {
+          "$ref": "#/83"
+        },
+        "flags": 0,
+        "description": "Custom headers to include in outbound requests"
+      },
+      "Rules": {
+        "type": {
+          "$ref": "#/84"
+        },
+        "flags": 0,
+        "description": "Ordered list of network traffic rules"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NetworkTrafficRule",
+    "properties": {
+      "Effect": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Whether to allow or deny traffic matching this rule"
+      },
+      "NetworkTrafficRuleType": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Type of pattern matching for this rule"
+      },
+      "Pattern": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "URL pattern this rule applies to"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReportDestination",
+    "properties": {
+      "ContainerId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "Identifier of the container, such as a space, within the integration to publish the report to"
+      },
+      "DocumentId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Identifier of an existing document to update with the report"
+      },
+      "IntegrationId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "Unique identifier of the provider integration to publish the report to"
+      },
+      "ParentId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Identifier of the parent under which the report document is created"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReportFilters",
+    "properties": {
+      "AnnotationNotes": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "Whether to include reviewer annotation notes under each finding"
+      },
+      "ComplianceReport": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "Whether to include the compliance-ready report additions"
+      },
+      "ConfidenceLevels": {
+        "type": {
+          "$ref": "#/85"
+        },
+        "flags": 0,
+        "description": "Confidence levels to include in the report"
+      },
+      "FindingTypes": {
+        "type": {
+          "$ref": "#/86"
+        },
+        "flags": 0,
+        "description": "Finding types to include in the report"
+      },
+      "RiskLevels": {
+        "type": {
+          "$ref": "#/87"
+        },
+        "flags": 0,
+        "description": "Severity levels to include in the report"
+      },
+      "RiskTypes": {
+        "type": {
+          "$ref": "#/88"
+        },
+        "flags": 0,
+        "description": "Risk types to include in the report"
+      },
+      "Statuses": {
+        "type": {
+          "$ref": "#/89"
+        },
+        "flags": 0,
+        "description": "Finding statuses to include in the report"
+      },
+      "TaskStatuses": {
+        "type": {
+          "$ref": "#/90"
+        },
+        "flags": 0,
+        "description": "Task execution statuses to include in the report's task table"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RiskType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SkillType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceCodeRepository",
+    "properties": {
+      "S3Location": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "S3 source code location"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TestScope",
+    "properties": {
+      "Type": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The kind of application the target is tested as"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TestScopeType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TrustedCaCertificate",
+    "properties": {
+      "Source": {
+        "type": {
+          "$ref": "#/57"
+        },
+        "flags": 1,
+        "description": "Where to read the certificate from"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VpcConfig",
+    "properties": {
+      "SecurityGroupArns": {
+        "type": {
+          "$ref": "#/91"
+        },
+        "flags": 0,
+        "description": "List of security groups in the VPC"
+      },
+      "SubnetArns": {
+        "type": {
+          "$ref": "#/92"
+        },
+        "flags": 0,
+        "description": "List of subnets in the VPC"
+      },
+      "VpcArn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/54"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/62"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/63"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/64"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/71"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/74"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/61"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/66"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SecurityAgent/PentestProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityAgent/PentestProperties",
+    "properties": {
+      "AgentSpaceId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 17,
+        "description": "Identifier of agent space where the pentest should be created"
+      },
+      "Assets": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 1,
+        "description": "Collection of assets to be tested or used during the penetration test"
+      },
+      "CleanUpStrategy": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Strategy for cleaning up resources after pentest job completion"
+      },
+      "CodeRemediationStrategy": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Strategy for code remediation on findings"
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "Timestamp when the pentest was created"
+      },
+      "DisableManagedSkills": {
+        "type": {
+          "$ref": "#/94"
+        },
+        "flags": 0,
+        "description": "A list of managed skills to disable for this pentest"
+      },
+      "ExcludeRiskTypes": {
+        "type": {
+          "$ref": "#/95"
+        },
+        "flags": 0,
+        "description": "A list of risk types excluded from the pentest execution"
+      },
+      "LogConfig": {
+        "type": {
+          "$ref": "#/59"
+        },
+        "flags": 0,
+        "description": "CloudWatch logs config"
+      },
+      "NetworkTrafficConfig": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 0,
+        "description": "Configuration for network traffic filtering"
+      },
+      "PentestId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 18,
+        "description": "Unique identifier of the pentest"
+      },
+      "ReportDestination": {
+        "type": {
+          "$ref": "#/67"
+        },
+        "flags": 4,
+        "description": "Destination for publishing the scan report to Confluence"
+      },
+      "ReportFilters": {
+        "type": {
+          "$ref": "#/68"
+        },
+        "flags": 4,
+        "description": "Filters applied when the scan report is published to Confluence"
+      },
+      "ServiceRole": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "Service role for accessing resources"
+      },
+      "TestScope": {
+        "type": {
+          "$ref": "#/72"
+        },
+        "flags": 0,
+        "description": "Scope of the target under test, determining which classes of risk are assessed"
+      },
+      "Title": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Title of the penetration test"
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "Timestamp when the pentest was last updated"
+      },
+      "VpcConfig": {
+        "type": {
+          "$ref": "#/75"
+        },
+        "flags": 0,
+        "description": "VPC configuration that the security testing environment accesses"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityAgent/Pentest",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/96"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SecurityAgent/Pentest@default",
+    "body": {
+      "$ref": "#/97"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SecurityRequirement",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "Description of the security requirement"
+      },
+      "Domain": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "Security domain this requirement belongs to"
+      },
+      "Evaluation": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "How to evaluate compliance with this requirement"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "Name of the security requirement"
+      },
+      "Remediation": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "How to remediate non-compliance"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The key name of the tag"
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The value for the tag"
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SecurityAgent/SecurityRequirementPackProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/99"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/100"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityAgent/SecurityRequirementPackProperties",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Description of the pack"
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "KMS key for client-side encryption of pack contents"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "Name of the security requirement pack"
+      },
+      "PackId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 18,
+        "description": "Unique identifier of the security requirement pack"
+      },
+      "SecurityRequirements": {
+        "type": {
+          "$ref": "#/102"
+        },
+        "flags": 0,
+        "description": "Security requirements within this pack"
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Whether the pack is enabled or disabled"
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/103"
+        },
+        "flags": 0,
+        "description": "Tags for the security requirement pack"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityAgent/SecurityRequirementPack",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/104"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SecurityAgent/SecurityRequirementPack@default",
+    "body": {
+      "$ref": "#/105"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DnsVerification",
+    "properties": {
+      "DnsRecordName": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Record name to be added in DNS for target domain"
+      },
+      "DnsRecordType": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Type of record to be added in DNS for target domain"
+      },
+      "Token": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Token used to verify domain ownership"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "HttpVerification",
+    "properties": {
+      "RoutePath": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Route path where verification token should be placed"
+      },
+      "Token": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Token used to verify domain ownership"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The key name of the tag"
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The value for the tag"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VerificationDetails",
+    "properties": {
+      "DnsTxt": {
+        "type": {
+          "$ref": "#/107"
+        },
+        "flags": 0
+      },
+      "HttpRoute": {
+        "type": {
+          "$ref": "#/108"
+        },
+        "flags": 0
+      },
+      "Method": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Type of domain ownership verification method"
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SecurityAgent/TargetDomainProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/109"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityAgent/TargetDomainProperties",
+    "properties": {
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "Timestamp when the target domain was registered"
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/112"
+        },
+        "flags": 0,
+        "description": "Tags for the target domain"
+      },
+      "TargetDomainId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 18,
+        "description": "Unique identifier of the target domain"
+      },
+      "TargetDomainName": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "Domain name of the target domain"
+      },
+      "VerificationDetails": {
+        "type": {
+          "$ref": "#/110"
+        },
+        "flags": 2
+      },
+      "VerificationMethod": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "Verification method for the target domain"
+      },
+      "VerificationStatus": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "Current verification status of the registered target domain"
+      },
+      "VerificationStatusReason": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "Reason for the current target domain verification status"
+      },
+      "VerifiedAt": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "Timestamp when the target domain was last successfully verified"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityAgent/TargetDomain",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/113"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SecurityAgent/TargetDomain@default",
+    "body": {
+      "$ref": "#/114"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  }
+]

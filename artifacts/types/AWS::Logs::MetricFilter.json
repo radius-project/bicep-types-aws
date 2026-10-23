@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Logs-MetricFilter",
   "type": "AWS::Logs::MetricFilter",
-  "time": "2025-01-10T19:33:41.645Z",
+  "time": "2026-10-21T16:33:07.228Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -153,6 +153,20 @@
       "ApplyOnTransformedLogs": {
         "description": "This parameter is valid only for log groups that have an active log transformer. For more information about log transformers, see [PutTransformer](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutTransformer.html).\n If this value is ``true``, the metric filter is applied on the transformed version of the log events instead of the original ingested log events.",
         "type": "boolean"
+      },
+      "EmitSystemFieldDimensions": {
+        "description": "The list of system fields that are emitted as additional dimensions in the generated metrics. Returns the ``emitSystemFieldDimensions`` value if it was specified when the metric filter was created.",
+        "insertionOrder": false,
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "FieldSelectionCriteria": {
+        "description": "The filter expression that specifies which log events are processed by this metric filter based on system fields. Returns the ``fieldSelectionCriteria`` value if it was specified when the metric filter was created.",
+        "maxLength": 2000,
+        "minLength": 0,
+        "type": "string"
       },
       "FilterName": {
         "description": "The name of the metric filter.",

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-TransitGateway",
   "type": "AWS::EC2::TransitGateway",
-  "time": "2025-01-22T20:47:59.019Z",
+  "time": "2026-10-21T23:13:52.604Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -34,46 +34,28 @@
           "ec2:CreateTags",
           "ec2:DescribeTransitGateways",
           "ec2:DescribeTags",
-          "ec2:DeleteTransitGateway",
-          "ec2:DeleteTags",
           "ec2:ModifyTransitGateway",
           "ec2:ModifyTransitGatewayOptions"
         ]
       },
       "delete": {
         "permissions": [
-          "ec2:CreateTransitGateway",
-          "ec2:CreateTags",
           "ec2:DescribeTransitGateways",
           "ec2:DescribeTags",
           "ec2:DeleteTransitGateway",
-          "ec2:DeleteTags",
-          "ec2:ModifyTransitGateway",
-          "ec2:ModifyTransitGatewayOptions"
+          "ec2:DeleteTags"
         ]
       },
       "list": {
         "permissions": [
-          "ec2:CreateTransitGateway",
-          "ec2:CreateTags",
           "ec2:DescribeTransitGateways",
-          "ec2:DescribeTags",
-          "ec2:DeleteTransitGateway",
-          "ec2:DeleteTags",
-          "ec2:ModifyTransitGateway",
-          "ec2:ModifyTransitGatewayOptions"
+          "ec2:DescribeTags"
         ]
       },
       "read": {
         "permissions": [
-          "ec2:CreateTransitGateway",
-          "ec2:CreateTags",
           "ec2:DescribeTransitGateways",
-          "ec2:DescribeTags",
-          "ec2:DeleteTransitGateway",
-          "ec2:DeleteTags",
-          "ec2:ModifyTransitGateway",
-          "ec2:ModifyTransitGatewayOptions"
+          "ec2:DescribeTags"
         ]
       },
       "update": {
@@ -115,6 +97,16 @@
       "DnsSupport": {
         "type": "string"
       },
+      "EncryptionSupport": {
+        "enum": [
+          "disable",
+          "enable"
+        ],
+        "type": "string"
+      },
+      "EncryptionSupportState": {
+        "type": "string"
+      },
       "Id": {
         "type": "string"
       },
@@ -149,16 +141,24 @@
     },
     "readOnlyProperties": [
       "/properties/Id",
-      "/properties/TransitGatewayArn"
+      "/properties/TransitGatewayArn",
+      "/properties/EncryptionSupportState"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-transitgateway",
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "ec2:CreateTags",
+        "ec2:DeleteTags"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,
       "taggable": true
     },
-    "typeName": "AWS::EC2::TransitGateway"
+    "typeName": "AWS::EC2::TransitGateway",
+    "writeOnlyProperties": [
+      "/properties/EncryptionSupport"
+    ]
   }
 }

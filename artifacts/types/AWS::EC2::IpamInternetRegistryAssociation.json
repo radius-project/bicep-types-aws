@@ -1,0 +1,177 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-IpamInternetRegistryAssociation",
+  "type": "AWS::EC2::IpamInternetRegistryAssociation",
+  "time": "2026-10-21T20:37:19.185Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/IpamInternetRegistryAssociationId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/IpamId",
+      "/properties/Rir",
+      "/properties/OrganizationHandle",
+      "/properties/Description"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "maxLength": 127,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "An association between an IPAM and a Regional Internet Registry (RIR) for delegated Resource Public Key Infrastructure (RPKI) management. Use it to have IPAM create Route Origin Authorizations (ROAs) for IP address prefixes registered with the internet registry. The IPAM must be in the Advanced tier.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "ec2:CreateIpamInternetRegistryAssociation",
+          "ec2:DescribeIpamInternetRegistryAssociations",
+          "ec2:CreateTags"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "ec2:DeleteIpamInternetRegistryAssociation",
+          "ec2:DescribeIpamInternetRegistryAssociations",
+          "ec2:DeleteTags"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "ec2:DescribeIpamInternetRegistryAssociations"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ec2:DescribeIpamInternetRegistryAssociations"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "ec2:CreateTags",
+          "ec2:DeleteTags",
+          "ec2:DescribeIpamInternetRegistryAssociations"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/IpamInternetRegistryAssociationArn"
+    ],
+    "properties": {
+      "ChildRequestXml": {
+        "description": "The XML content for the child request to be submitted to the internet registry to complete the BPKI setup.",
+        "type": "string"
+      },
+      "Description": {
+        "description": "A description for the internet registry association.",
+        "type": "string"
+      },
+      "IpamId": {
+        "description": "The ID of the IPAM to associate with the internet registry.",
+        "type": "string"
+      },
+      "IpamInternetRegistryAssociationArn": {
+        "description": "The Amazon Resource Name (ARN) of the internet registry association.",
+        "maxLength": 1283,
+        "minLength": 1,
+        "type": "string"
+      },
+      "IpamInternetRegistryAssociationId": {
+        "description": "The ID of the internet registry association.",
+        "type": "string"
+      },
+      "IpamRegion": {
+        "description": "The Amazon Web Services Region of the IPAM.",
+        "type": "string"
+      },
+      "OrganizationHandle": {
+        "description": "The organization handle at the internet registry (for example, a RIPE NCC organization ID or ARIN Org ID).",
+        "type": "string"
+      },
+      "OwnerId": {
+        "description": "The ID of the Amazon Web Services account that owns the internet registry association.",
+        "type": "string"
+      },
+      "Rir": {
+        "description": "The Regional Internet Registry to associate with. The service returns these values in upper case, so the enum uses the round-tripping form.",
+        "enum": [
+          "RIPE",
+          "APNIC",
+          "ARIN",
+          "LACNIC"
+        ],
+        "type": "string"
+      },
+      "State": {
+        "description": "The state of the internet registry association.",
+        "enum": [
+          "pending-enable",
+          "create-in-progress",
+          "create-failed",
+          "enable-in-progress",
+          "enable-complete",
+          "enable-failed",
+          "delete-in-progress",
+          "delete-complete",
+          "delete-failed"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags assigned to the internet registry association.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/IpamInternetRegistryAssociationArn",
+      "/properties/IpamInternetRegistryAssociationId",
+      "/properties/OwnerId",
+      "/properties/IpamRegion",
+      "/properties/State",
+      "/properties/ChildRequestXml"
+    ],
+    "replacementStrategy": "delete_then_create",
+    "required": [
+      "IpamId",
+      "Rir",
+      "OrganizationHandle"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "ec2:CreateTags",
+        "ec2:DeleteTags",
+        "ec2:DescribeIpamInternetRegistryAssociations"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::EC2::IpamInternetRegistryAssociation"
+  }
+}

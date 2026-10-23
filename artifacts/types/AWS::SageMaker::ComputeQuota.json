@@ -1,0 +1,395 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-ComputeQuota",
+  "type": "AWS::SageMaker::ComputeQuota",
+  "time": "2026-10-21T22:38:08.193Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ComputeQuotaId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name",
+      "/properties/ClusterArn",
+      "/properties/ComputeQuotaTarget/TeamName"
+    ],
+    "definitions": {
+      "AcceleratorPartitionConfig": {
+        "additionalProperties": false,
+        "description": "Multi-instance GPU (MIG) partition profile and count for fractional accelerator allocation.",
+        "properties": {
+          "Count": {
+            "description": "The number of MIG partitions of the specified Type allocated to the team.",
+            "maximum": 10000000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "Type": {
+            "description": "MIG profile type. Service rejects MIG profiles that the chosen InstanceType does not support.",
+            "enum": [
+              "mig-1g.5gb",
+              "mig-1g.10gb",
+              "mig-1g.18gb",
+              "mig-1g.20gb",
+              "mig-1g.23gb",
+              "mig-1g.35gb",
+              "mig-1g.45gb",
+              "mig-1g.47gb",
+              "mig-2g.10gb",
+              "mig-2g.20gb",
+              "mig-2g.35gb",
+              "mig-2g.45gb",
+              "mig-2g.47gb",
+              "mig-3g.20gb",
+              "mig-3g.40gb",
+              "mig-3g.71gb",
+              "mig-3g.90gb",
+              "mig-3g.93gb",
+              "mig-4g.20gb",
+              "mig-4g.40gb",
+              "mig-4g.71gb",
+              "mig-4g.90gb",
+              "mig-4g.93gb",
+              "mig-7g.40gb",
+              "mig-7g.80gb",
+              "mig-7g.141gb",
+              "mig-7g.180gb",
+              "mig-7g.186gb"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Type",
+          "Count"
+        ],
+        "type": "object"
+      },
+      "ComputeQuotaConfig": {
+        "additionalProperties": false,
+        "description": "Compute allocation rules: per-resource quotas, idle-borrowing strategy, and team-task preemption policy.",
+        "properties": {
+          "ComputeQuotaResources": {
+            "description": "Per-instance-type compute quotas for the team. When VCpu / MemoryInGiB / Accelerators are partially specified, SageMaker auto-fills the remaining fields ratio-proportionally to the underlying instance ? Read may return values the customer did not supply (drift may flag this).",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/ComputeQuotaResourceConfig"
+            },
+            "maxItems": 15,
+            "minItems": 0,
+            "type": "array"
+          },
+          "PreemptTeamTasks": {
+            "description": "Team-task preemption policy. Defaults service-side to 'LowerPriority' when omitted on Create.",
+            "enum": [
+              "Never",
+              "LowerPriority"
+            ],
+            "type": "string"
+          },
+          "ResourceSharingConfig": {
+            "$ref": "#/definitions/ResourceSharingConfig",
+            "description": "Idle-resource-sharing strategy for this team's quota. When omitted, the service applies defaults (Strategy=LendAndBorrow, BorrowLimit=50)."
+          }
+        },
+        "type": "object"
+      },
+      "ComputeQuotaResourceConfig": {
+        "additionalProperties": false,
+        "description": "Per-instance-type compute quota element. Reused under ComputeQuotaConfig.ComputeQuotaResources and ResourceSharingConfig.AbsoluteBorrowLimits.",
+        "properties": {
+          "AcceleratorPartition": {
+            "$ref": "#/definitions/AcceleratorPartitionConfig",
+            "description": "Multi-instance GPU (MIG) partition profile and count, for fractional accelerator allocation. Service rejects MIG profiles that the chosen InstanceType does not support."
+          },
+          "Accelerators": {
+            "description": "The number of accelerators (e.g., GPUs) of this type allocated to the team. SageMaker auto-fills VCpu / MemoryInGiB ratio-proportionally if only this is set.",
+            "maximum": 10000000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "Count": {
+            "description": "The number of instances of this type allocated to the team.",
+            "maximum": 10000000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "InstanceType": {
+            "description": "The cluster instance type the quota applies to (e.g., 'ml.m5.xlarge', 'ml.p5.48xlarge'). Validated by the service against the supported HyperPod instance types.",
+            "type": "string"
+          },
+          "MemoryInGiB": {
+            "description": "The memory in GiB allocated to the team. Floating-point. SageMaker auto-fills Accelerators / VCpu ratio-proportionally if only this is set.",
+            "maximum": 10000000,
+            "minimum": 0,
+            "type": "number"
+          },
+          "VCpu": {
+            "description": "The number of vCPUs allocated to the team. Floating-point. SageMaker auto-fills Accelerators / MemoryInGiB ratio-proportionally if only this is set.",
+            "maximum": 10000000,
+            "minimum": 0,
+            "type": "number"
+          }
+        },
+        "required": [
+          "InstanceType"
+        ],
+        "type": "object"
+      },
+      "ComputeQuotaTarget": {
+        "additionalProperties": false,
+        "description": "The team this compute allocation rule applies to.",
+        "properties": {
+          "FairShareWeight": {
+            "description": "Relative fair-share weight when fair-share scheduling is enabled on the parent ClusterSchedulerConfig. Defaults service-side to 0 when omitted.",
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "TeamName": {
+            "description": "The name of the team. Materialized as Kubernetes namespace 'hyperpod-ns-\u003cTeamName\u003e' on the EKS cluster, so the value must satisfy RFC 1123 namespace constraints. Reassignment is not supported (createOnly).",
+            "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9]){0,39}?$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "TeamName"
+        ],
+        "type": "object"
+      },
+      "ResourceSharingConfig": {
+        "additionalProperties": false,
+        "description": "Idle-resource-sharing strategy for this team's quota.",
+        "properties": {
+          "AbsoluteBorrowLimits": {
+            "description": "Per-instance-type absolute caps on resources this team can borrow.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/ComputeQuotaResourceConfig"
+            },
+            "maxItems": 15,
+            "minItems": 0,
+            "type": "array"
+          },
+          "BorrowLimit": {
+            "description": "Maximum percentage of the team's idle quota that can be borrowed by other teams. Smithy admits 0..10000; in practice the service-documented operational range is 1..500. Defaults service-side to 50 when omitted on Create.",
+            "maximum": 10000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "Strategy": {
+            "description": "How this team participates in idle-resource sharing.",
+            "enum": [
+              "Lend",
+              "DontLend",
+              "LendAndBorrow"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Strategy"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::SageMaker::ComputeQuota. Defines a compute allocation rule for an EKS-orchestrated SageMaker HyperPod cluster's task governance. Available in 15 regions (us-east-1, us-east-2, us-west-1, us-west-2, ap-south-1, ap-southeast-1, ap-southeast-2, ap-southeast-3, ap-northeast-1, eu-central-1, eu-west-1, eu-west-2, eu-north-1, eu-south-2, sa-east-1).",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "sagemaker:CreateComputeQuota",
+          "sagemaker:DescribeComputeQuota",
+          "sagemaker:DescribeCluster",
+          "sagemaker:AddTags",
+          "sagemaker:ListTags",
+          "eks:AssociateAccessPolicy",
+          "eks:DescribeCluster",
+          "eks:ListAssociatedAccessPolicies"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "sagemaker:DeleteComputeQuota",
+          "sagemaker:DescribeComputeQuota",
+          "sagemaker:ListTags",
+          "sagemaker:DescribeCluster",
+          "eks:DescribeCluster",
+          "eks:DisassociateAccessPolicy",
+          "eks:DescribeAccessEntry",
+          "eks:ListAssociatedAccessPolicies"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "sagemaker:ListComputeQuotas"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "sagemaker:DescribeComputeQuota",
+          "sagemaker:ListTags"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "sagemaker:UpdateComputeQuota",
+          "sagemaker:DescribeComputeQuota",
+          "sagemaker:DescribeCluster",
+          "eks:DescribeCluster",
+          "eks:AssociateAccessPolicy",
+          "eks:DisassociateAccessPolicy",
+          "eks:DescribeAccessEntry",
+          "eks:ListAssociatedAccessPolicies",
+          "sagemaker:AddTags",
+          "sagemaker:DeleteTags",
+          "sagemaker:ListTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ComputeQuotaArn"
+    ],
+    "properties": {
+      "ActivationState": {
+        "description": "Whether the compute allocation rule is active. Defaults service-side to 'Enabled' when omitted on Create.",
+        "enum": [
+          "Enabled",
+          "Disabled"
+        ],
+        "type": "string"
+      },
+      "ClusterArn": {
+        "description": "The ARN of the EKS-orchestrated SageMaker HyperPod cluster the compute allocation definition is bound to. Slurm-orchestrated clusters are rejected by the service.",
+        "maxLength": 256,
+        "minLength": 20,
+        "pattern": "^arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:cluster/[a-z0-9]{12}$",
+        "type": "string"
+      },
+      "ComputeQuotaArn": {
+        "description": "The Amazon Resource Name (ARN) of the compute allocation definition.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:compute-quota/[a-z0-9]{12}$",
+        "type": "string"
+      },
+      "ComputeQuotaConfig": {
+        "$ref": "#/definitions/ComputeQuotaConfig",
+        "description": "Compute allocation rules: per-resource quotas, idle-borrowing strategy, and team-task preemption policy."
+      },
+      "ComputeQuotaId": {
+        "description": "The unique 12-character identifier of the compute allocation definition.",
+        "pattern": "^[a-z0-9]{12}$",
+        "type": "string"
+      },
+      "ComputeQuotaTarget": {
+        "$ref": "#/definitions/ComputeQuotaTarget",
+        "description": "The team this compute allocation rule applies to."
+      },
+      "ComputeQuotaVersion": {
+        "description": "The version of the compute allocation definition. Incremented on each successful Update; used for optimistic concurrency control.",
+        "type": "integer"
+      },
+      "CreationTime": {
+        "description": "The ISO-8601 timestamp at which the compute allocation definition was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "A free-form description of the compute allocation definition.",
+        "maxLength": 1024,
+        "minLength": 0,
+        "pattern": "^[\\p{L}\\p{M}\\p{Z}\\p{S}\\p{N}\\p{P}]*$",
+        "type": "string"
+      },
+      "LastModifiedTime": {
+        "description": "The ISO-8601 timestamp at which the compute allocation definition was last modified.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the compute allocation definition.",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The current lifecycle status of the compute allocation definition.",
+        "enum": [
+          "Creating",
+          "Created",
+          "CreateFailed",
+          "CreateRollbackFailed",
+          "Updating",
+          "Updated",
+          "UpdateFailed",
+          "UpdateRollbackFailed",
+          "Deleting",
+          "Deleted",
+          "DeleteFailed",
+          "DeleteRollbackFailed"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags to associate with the compute allocation definition.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "minItems": 0,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ComputeQuotaArn",
+      "/properties/ComputeQuotaId",
+      "/properties/ComputeQuotaVersion",
+      "/properties/Status",
+      "/properties/CreationTime",
+      "/properties/LastModifiedTime"
+    ],
+    "replacementStrategy": "delete_then_create",
+    "required": [
+      "Name",
+      "ClusterArn",
+      "ComputeQuotaConfig",
+      "ComputeQuotaTarget"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "sagemaker:AddTags",
+        "sagemaker:DeleteTags",
+        "sagemaker:ListTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::SageMaker::ComputeQuota"
+  }
+}

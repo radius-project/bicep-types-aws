@@ -1,10 +1,14 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Connect-ContactFlowModule",
   "type": "AWS::Connect::ContactFlowModule",
-  "time": "2025-01-14T22:29:45.541Z",
+  "time": "2026-10-21T21:58:25.24Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
+      "Enabled": {
+        "description": "Specifies whether the flow module resource is enabled for external invocation",
+        "type": "boolean"
+      },
       "Tag": {
         "additionalProperties": false,
         "description": "A key-value pair to associate with a resource.",
@@ -95,6 +99,16 @@
         "pattern": ".*\\S.*",
         "type": "string"
       },
+      "ExternalInvocationConfiguration": {
+        "additionalProperties": false,
+        "description": "Defines the external invocation configuration of the flow module resource",
+        "properties": {
+          "Enabled": {
+            "$ref": "#/definitions/Enabled"
+          }
+        },
+        "type": "object"
+      },
       "InstanceArn": {
         "description": "The identifier of the Amazon Connect instance (ARN).",
         "maxLength": 256,
@@ -107,6 +121,11 @@
         "maxLength": 127,
         "minLength": 1,
         "pattern": ".*\\S.*",
+        "type": "string"
+      },
+      "Settings": {
+        "description": "The schema of the settings for contact flow module in JSON Schema V4 format.",
+        "maxLength": 256000,
         "type": "string"
       },
       "State": {

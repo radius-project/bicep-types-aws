@@ -1,17 +1,632 @@
 [
   {
     "$type": "ObjectType",
+    "name": "ContainerConfig",
+    "properties": {
+      "Arguments": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "Entrypoint": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "ImageUri": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "MetricDefinitions": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InferenceContainerConfig",
+    "properties": {
+      "ImageUri": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MetricDefinition",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "Regex": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CleanRoomsML/ConfiguredModelAlgorithmProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CleanRoomsML/ConfiguredModelAlgorithmProperties",
+    "properties": {
+      "ConfiguredModelAlgorithmArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 18
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "InferenceContainerConfig": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "An arbitrary set of tags (key-value pairs) for this cleanrooms-ml configured model algorithm."
+      },
+      "TrainingContainerConfig": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CleanRoomsML/ConfiguredModelAlgorithm",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CleanRoomsML/ConfiguredModelAlgorithm@default",
+    "body": {
+      "$ref": "#/11"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomEntityConfig",
+    "properties": {
+      "CustomDataIdentifiers": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EntityType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LogRedactionConfiguration",
+    "properties": {
+      "CustomEntityConfig": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "EntitiesToRedact": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LogType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LogsConfigurationPolicy",
+    "properties": {
+      "AllowedAccountIds": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 1
+      },
+      "FilterPattern": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "LogRedactionConfiguration": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
+      "LogType": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MetricsConfigurationPolicy",
+    "properties": {
+      "NoiseLevel": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NoiseLevelType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PrivacyConfiguration",
+    "properties": {
+      "Policies": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PrivacyConfigurationPolicies",
+    "properties": {
+      "TrainedModelExports": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0
+      },
+      "TrainedModelInferenceJobs": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 0
+      },
+      "TrainedModels": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TrainedModelArtifactMaxSize",
+    "properties": {
+      "Unit": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TrainedModelArtifactMaxSizeUnitType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TrainedModelExportFileType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TrainedModelExportsConfigurationPolicy",
+    "properties": {
+      "FilesToExport": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 1
+      },
+      "MaxSize": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TrainedModelExportsMaxSize",
+    "properties": {
+      "Unit": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TrainedModelExportsMaxSizeUnitType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TrainedModelInferenceJobsConfigurationPolicy",
+    "properties": {
+      "ContainerLogs": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 0
+      },
+      "MaxOutputSize": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TrainedModelInferenceMaxOutputSize",
+    "properties": {
+      "Unit": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TrainedModelInferenceMaxOutputSizeUnitType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TrainedModelsConfigurationPolicy",
+    "properties": {
+      "ContainerLogs": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 0
+      },
+      "ContainerMetrics": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0
+      },
+      "MaxArtifactSize": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CleanRoomsML/ConfiguredModelAlgorithmAssociationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/22"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CleanRoomsML/ConfiguredModelAlgorithmAssociationProperties",
+    "properties": {
+      "CollaborationIdentifier": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2
+      },
+      "ConfiguredModelAlgorithmArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "ConfiguredModelAlgorithmAssociationArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 18
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "MembershipIdentifier": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "PrivacyConfiguration": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "An arbitrary set of tags (key-value pairs) for this cleanrooms-ml configured model algorithm association."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CleanRoomsML/ConfiguredModelAlgorithmAssociation",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CleanRoomsML/ConfiguredModelAlgorithmAssociation@default",
+    "body": {
+      "$ref": "#/43"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "ColumnSchema",
     "properties": {
       "ColumnName": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/4"
         },
         "flags": 1
       },
       "ColumnTypes": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/55"
         },
         "flags": 1
       }
@@ -28,7 +643,7 @@
     "properties": {
       "GlueDataSource": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/51"
         },
         "flags": 1
       }
@@ -40,13 +655,13 @@
     "properties": {
       "InputConfig": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/49"
         },
         "flags": 1
       },
       "Type": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/4"
         },
         "flags": 1
       }
@@ -58,13 +673,13 @@
     "properties": {
       "DataSource": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/47"
         },
         "flags": 1
       },
       "Schema": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/56"
         },
         "flags": 1
       }
@@ -81,19 +696,19 @@
     "properties": {
       "CatalogId": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "DatabaseName": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/4"
         },
         "flags": 1
       },
       "TableName": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/4"
         },
         "flags": 1
       }
@@ -105,13 +720,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/4"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/4"
         },
         "flags": 1
       }
@@ -128,18 +743,15 @@
     "properties": {}
   },
   {
-    "$type": "StringType"
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/10"
+      "$ref": "#/4"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/0"
+      "$ref": "#/45"
     }
   },
   {
@@ -149,13 +761,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/7"
+      "$ref": "#/52"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/48"
     }
   },
   {
@@ -164,44 +776,44 @@
     "properties": {
       "Description": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/4"
         },
         "flags": 1
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/4"
         },
         "flags": 1
       },
       "Status": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/4"
         },
         "flags": 2
       },
       "Tags": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/58"
         },
         "flags": 0,
         "description": "An arbitrary set of tags (key-value pairs) for this cleanrooms-ml training dataset."
       },
       "TrainingData": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/59"
         },
         "flags": 1
       },
       "TrainingDatasetArn": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/4"
         },
         "flags": 18
       }
@@ -213,21 +825,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/4"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/60"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -237,10 +849,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CleanRoomsML/TrainingDataset@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/17"
+      "$ref": "#/61"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

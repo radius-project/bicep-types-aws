@@ -1,0 +1,2815 @@
+[
+  {
+    "$type": "ObjectType",
+    "name": "IamAuthConfiguration",
+    "properties": {
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2
+      },
+      "OperatorAppRoleArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IdcAuthConfiguration",
+    "properties": {
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2
+      },
+      "IdcApplicationArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2
+      },
+      "IdcInstanceArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "OperatorAppRoleArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IdpAuthConfiguration",
+    "properties": {
+      "ClientId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The OIDC client identifier for the external identity provider application."
+      },
+      "ClientSecret": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 5,
+        "description": "The OIDC client secret for the external identity provider application. Use a Secrets Manager dynamic reference to avoid storing the secret in the template."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2
+      },
+      "IssuerUrl": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The OIDC issuer URL for the external identity provider."
+      },
+      "OperatorAppRoleArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The IAM role that Operator App users assume to access DevOps Agent APIs."
+      },
+      "Provider": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The external identity provider type."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2
+      },
+      "UserIdClaim": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The identity claim used to identify users. This value is selected by the service for the configured provider."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OperatorApp",
+    "properties": {
+      "Iam": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0
+      },
+      "Idc": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Idp": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Preferences",
+    "properties": {
+      "ElevatedActionsEnabled": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "Indicates whether elevated directed actions are permitted in this AgentSpace. Defaults to false when not set."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DevOpsAgent/AgentSpaceProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DevOpsAgent/AgentSpaceProperties",
+    "properties": {
+      "AgentSpaceId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 18,
+        "description": "The unique identifier of the AgentSpace"
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the AgentSpace."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The timestamp when the resource was created."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The description of the AgentSpace."
+      },
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The ARN of the KMS key to use for encryption."
+      },
+      "Locale": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The locale for the AgentSpace, which determines the language used in agent responses."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The name of the AgentSpace."
+      },
+      "OperatorApp": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "Preferences": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The timestamp when the resource was last updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DevOpsAgent/AgentSpace",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DevOpsAgent/AgentSpace@default",
+    "body": {
+      "$ref": "#/11"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AssetFile",
+    "properties": {
+      "ContentBytes": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Base64-encoded binary contents of the file. Mutually exclusive with ContentText (max 6 MiB)."
+      },
+      "ContentText": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "UTF-8 text contents of the file. Mutually exclusive with ContentBytes (max 1.5 MiB)."
+      },
+      "Metadata": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "Per-file metadata document. Values may be strings, numbers, booleans, or lists of any of those (validated server-side)."
+      },
+      "Path": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Path of this file within the asset bundle."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Asset_Metadata",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DevOpsAgent/AssetProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Asset_Metadata",
+    "properties": {}
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DevOpsAgent/AssetProperties",
+    "properties": {
+      "AgentSpaceId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "The unique identifier of the parent Agent Space. The asset is created as a child of this agent space."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the asset. Nested under the parent Agent Space: arn:<partition>:aidevops:<region>:<account-id>:agentspace/<agentspace-id>/asset/<asset-id>."
+      },
+      "AssetId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 18,
+        "description": "The unique identifier of the asset (assigned by the service on Create)."
+      },
+      "AssetType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The type of asset. The Asset API treats this as an open string; call ListAssetTypes for the current authoritative set of supported types. As of launch, customer-creatable types include skill, agents_md, and attachment."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The timestamp when the asset was created."
+      },
+      "Files": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 4,
+        "description": "Inline file list. Mutually exclusive with Zip; enforced by the handler at Create/Update time. Write-only: not repopulated by Read."
+      },
+      "Metadata": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Asset metadata document. Required and optional keys depend on AssetType. Values may be strings, numbers, booleans, or lists of any of those - validated server-side; see the public Asset API docs for the per-type metadata schema."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The timestamp when the asset was last updated."
+      },
+      "Version": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 2,
+        "description": "The current asset version. Server-managed; bumps on every successful Update (including no-op updates). This is the drift signal for change detection."
+      },
+      "Zip": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 4,
+        "description": "Base64-encoded zip bundle containing all files for the asset. Mutually exclusive with Files; enforced by the handler at Create/Update time. Write-only: not repopulated by Read. Server treats a zip as 'replace all files' (max 6 MiB)."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DevOpsAgent/Asset",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DevOpsAgent/Asset@default",
+    "body": {
+      "$ref": "#/20"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWSConfiguration",
+    "properties": {
+      "AccountId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "AWS Account Id corresponding to provided resources"
+      },
+      "AccountType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Account Type 'monitor' for DevOpsAgent monitoring"
+      },
+      "AgentElevatedRoleArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The IAM role that AWS DevOps Agent assumes to perform elevated directed actions in this AWS account. Elevated actions also require ElevatedActionsEnabled to be set in the Preferences of the AgentSpace. When not provided, only non-elevated directed actions are available. Removing this property from the template clears the role on update. Setting this role is subject to the same iam:PassRole requirement as AssumableRoleArn."
+      },
+      "AssumableRoleArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Role ARN to be assumed by DevOpsAgent to operate on behalf of customer"
+      },
+      "Resources": {
+        "type": {
+          "$ref": "#/49"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/50"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWSResource",
+    "properties": {
+      "ResourceArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the resource"
+      },
+      "ResourceMetadata": {
+        "type": {
+          "$ref": "#/51"
+        },
+        "flags": 0,
+        "description": "Additional metadata for the resource"
+      },
+      "ResourceType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Resource type"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWSResourceList",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWSTagList",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AgentSpaceId",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AssociationId",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AzureConfiguration",
+    "properties": {
+      "SubscriptionId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Azure subscription ID corresponding to provided resources"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DynatraceConfiguration",
+    "properties": {
+      "EnableWebhookUpdates": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "When set to true, enables the Agent Space to create and update webhooks for receiving notifications and events from the service"
+      },
+      "EnvId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Dynatrace environment id"
+      },
+      "Resources": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 0,
+        "description": "List of Dynatrace resources to monitor"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EventChannelConfiguration",
+    "properties": {
+      "EnableWebhookUpdates": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "When set to true, enables the Agent Space to create and update webhooks for receiving notifications and events from the service"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GitHubConfiguration",
+    "properties": {
+      "Owner": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Repository owner"
+      },
+      "OwnerType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Type of repository owner"
+      },
+      "RepoId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Associated Github repo ID"
+      },
+      "RepoName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Associated Github repo name"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GitLabConfiguration",
+    "properties": {
+      "EnableWebhookUpdates": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "When set to true, enables the Agent Space to create and update webhooks for receiving notifications and events from the service"
+      },
+      "InstanceIdentifier": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "GitLab instance identifier"
+      },
+      "ProjectId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "GitLab numeric project ID"
+      },
+      "ProjectPath": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Full GitLab project path (e.g., namespace/project-name)"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KeyValuePair",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MCPServerConfiguration",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The description of the MCP server"
+      },
+      "EnableWebhookUpdates": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "When set to true, enables the Agent Space to create and update webhooks for receiving notifications and events from the service"
+      },
+      "Endpoint": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "MCP server endpoint URL"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The name of the MCP server"
+      },
+      "Tools": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 1,
+        "description": "List of MCP tools that can be used with the association"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MCPServerDatadogConfiguration",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The description of the MCP server"
+      },
+      "EnableWebhookUpdates": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "When set to true, enables the Agent Space to create and update webhooks for receiving notifications and events from the service"
+      },
+      "EnabledElevatedTools": {
+        "type": {
+          "$ref": "#/56"
+        },
+        "flags": 0,
+        "description": "The mutative MCP tools enabled for this integration, by tool name. Only tools the service classifies as MUTATIVE may be listed; other names are rejected. Tool names can be found in the console or from the association's current configuration. The list fully replaces the stored value on update: removing a name disables that tool, and removing the property disables all elevated tools."
+      },
+      "Endpoint": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "MCP server endpoint URL"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The name of the MCP server"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MCPServerGrafanaConfiguration",
+    "properties": {
+      "EnableWebhookUpdates": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "When set to true, enables the Agent Space to create and update webhooks for receiving notifications and events from the service"
+      },
+      "EnabledElevatedTools": {
+        "type": {
+          "$ref": "#/57"
+        },
+        "flags": 0,
+        "description": "The mutative MCP tools enabled for this integration, by tool name. Only tools the service classifies as MUTATIVE may be listed; other names are rejected. Tool names can be found in the console or from the association's current configuration. The list fully replaces the stored value on update: removing a name disables that tool, and removing the property disables all elevated tools. Independent of Tools, which selects the toolsets available to the agent."
+      },
+      "Endpoint": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "MCP server endpoint URL"
+      },
+      "Tools": {
+        "type": {
+          "$ref": "#/58"
+        },
+        "flags": 0,
+        "description": "List of tool categories to enable for the Grafana MCP server"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MCPServerNewRelicConfiguration",
+    "properties": {
+      "AccountId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "New Relic Account ID"
+      },
+      "Endpoint": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "MCP server endpoint URL (e.g., https://mcp.newrelic.com/mcp/)"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MCPServerSigV4Configuration",
+    "properties": {
+      "Tools": {
+        "type": {
+          "$ref": "#/59"
+        },
+        "flags": 1,
+        "description": "List of MCP tools available for the association"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MCPServerSplunkConfiguration",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The description of the MCP server"
+      },
+      "EnableWebhookUpdates": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "When set to true, enables the Agent Space to create and update webhooks for receiving notifications and events from the service"
+      },
+      "Endpoint": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "MCP server endpoint URL"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The name of the MCP server"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PagerDutyConfiguration",
+    "properties": {
+      "CustomerEmail": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Email to be used in PagerDuty API header"
+      },
+      "EnableWebhookUpdates": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "When set to true, enables the Agent Space to create and update webhooks for receiving notifications and events from the service"
+      },
+      "Services": {
+        "type": {
+          "$ref": "#/60"
+        },
+        "flags": 1,
+        "description": "List of PagerDuty service IDs available for the association"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceId",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceNowConfiguration",
+    "properties": {
+      "EnableWebhookUpdates": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "When set to true, enables the Agent Space to create and update webhooks for receiving notifications and events from the service"
+      },
+      "InstanceId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "ServiceNow instance ID"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SlackBidirectionalConfiguration",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "Whether bidirectional communication is enabled for this association. When set to true, you can mention the agent in a configured Slack channel and it responds in that channel. When omitted or set to false, the agent ignores mentions and only sends notifications"
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "IAM role ARN that AWS DevOps Agent assumes to exchange messages with your Slack workspace on behalf of this association"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SlackChannel",
+    "properties": {
+      "ChannelId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Slack channel ID"
+      },
+      "ChannelName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Slack channel name"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SlackConfiguration",
+    "properties": {
+      "Bidirectional": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
+      },
+      "TransmissionTarget": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 1
+      },
+      "WorkspaceId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Associated Slack workspace ID"
+      },
+      "WorkspaceName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Associated Slack workspace name"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SlackTransmissionTarget",
+    "properties": {
+      "IncidentResponseTarget": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 1,
+        "description": "Destination for IncidentResponse agent."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceAwsConfiguration",
+    "properties": {
+      "AccountId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "AWS Account Id corresponding to provided resources"
+      },
+      "AccountType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Account Type 'source' for DevOpsAgent monitoring"
+      },
+      "AgentElevatedRoleArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The IAM role that AWS DevOps Agent assumes to perform elevated directed actions in this AWS account. Elevated actions also require ElevatedActionsEnabled to be set in the Preferences of the AgentSpace. When not provided, only non-elevated directed actions are available. Removing this property from the template clears the role on update. Setting this role is subject to the same iam:PassRole requirement as AssumableRoleArn."
+      },
+      "AssumableRoleArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Role ARN to be assumed by DevOpsAgent to operate on behalf of customer"
+      },
+      "Resources": {
+        "type": {
+          "$ref": "#/61"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/62"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/23"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/33"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Association_ResourceMetadata",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/23"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/33"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/23"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/33"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DevOpsAgent/AssociationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DevOpsAgent/AssociationProperties",
+    "properties": {
+      "AgentSpaceId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "The unique identifier of the AgentSpace"
+      },
+      "AssociationId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 18,
+        "description": "The unique identifier of the association"
+      },
+      "Configuration": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 1,
+        "description": "The configuration that directs how AgentSpace interacts with the given service"
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The timestamp when the association was created"
+      },
+      "LinkedAssociationIds": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 4,
+        "description": "Set of linked association IDs for parent-child relationships"
+      },
+      "ServiceId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The identifier for the associated service"
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The timestamp when the association was last updated"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DevOpsAgent/Association",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DevOpsAgent/Association@default",
+    "body": {
+      "$ref": "#/66"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectionConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SelfManagedMode",
+    "properties": {
+      "ResourceConfigurationId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The ARN of the Resource Configuration."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceManagedMode",
+    "properties": {
+      "DnsResolution": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "DNS resolution mode for the resource gateway. Defaults to PUBLIC when not set."
+      },
+      "HostAddress": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "IP address or DNS name of the target resource."
+      },
+      "IpAddressType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "IP address type of the service-managed Resource Gateway."
+      },
+      "Ipv4AddressesPerEni": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "Number of IPv4 addresses in each ENI for the service-managed Resource Gateway."
+      },
+      "PortRanges": {
+        "type": {
+          "$ref": "#/72"
+        },
+        "flags": 0,
+        "description": "TCP port ranges that a consumer can use to access the resource."
+      },
+      "SecurityGroupIds": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0,
+        "description": "Security groups to attach to the service-managed Resource Gateway."
+      },
+      "SubnetIds": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 0,
+        "description": "Subnets that the service-managed Resource Gateway will span."
+      },
+      "VpcId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "VPC to create the service-managed Resource Gateway in."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DevOpsAgent/PrivateConnectionProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/71"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DevOpsAgent/PrivateConnectionProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the Private Connection."
+      },
+      "Certificate": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 4,
+        "description": "Certificate for the Private Connection."
+      },
+      "CertificateExpiryTime": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The expiry time of the certificate associated with the Private Connection."
+      },
+      "ConnectionConfiguration": {
+        "type": {
+          "$ref": "#/68"
+        },
+        "flags": 1,
+        "description": "The connection configuration for the Private Connection."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "Unique name for this Private Connection within the account."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The status of the Private Connection."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/76"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DevOpsAgent/PrivateConnection",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/77"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DevOpsAgent/PrivateConnection@default",
+    "body": {
+      "$ref": "#/78"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AdditionalServiceDetails",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ApiKeyDetails",
+    "properties": {
+      "ApiKeyHeader": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "HTTP header name to send the API key"
+      },
+      "ApiKeyName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "User friendly API key name"
+      },
+      "ApiKeyValue": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "API key value"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AzureIdentityServiceDetails",
+    "properties": {
+      "ClientId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Azure AD application client ID"
+      },
+      "TenantId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Azure AD tenant ID"
+      },
+      "WebIdentityRoleArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "ARN of the IAM role for web identity token exchange"
+      },
+      "WebIdentityTokenAudiences": {
+        "type": {
+          "$ref": "#/121"
+        },
+        "flags": 1,
+        "description": "List of audiences for the web identity token"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BearerTokenDetails",
+    "properties": {
+      "AuthorizationHeader": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "HTTP header name to send the bearer token"
+      },
+      "TokenName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "User friendly bearer token name"
+      },
+      "TokenValue": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Bearer token value"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DynatraceAuthorizationConfig",
+    "properties": {
+      "OAuthClientCredentials": {
+        "type": {
+          "$ref": "#/102"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DynatraceServiceDetails",
+    "properties": {
+      "AccountUrn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Dynatrace resource account URN"
+      },
+      "AuthorizationConfig": {
+        "type": {
+          "$ref": "#/84"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GitHubAppVerificationDetails",
+    "properties": {
+      "AppVariant": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Permission variant of the DevOps Agent GitHub App that must already be installed on the organization or account"
+      },
+      "OrganizationName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "GitHub organization to scope the service to. The token must be an active member of the organization and only that organization's repositories are accessible. Omit to register the token's own user account"
+      },
+      "TargetUrl": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "GitHub instance URL. Omit for github.com. Provide the instance host for GitHub Enterprise Server or GitHub Enterprise Cloud with data residency (e.g. https://github.example.com)"
+      },
+      "TokenValue": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "GitHub personal access token (PAT) value. Accepts classic PATs (ghp_...), fine-grained PATs (github_pat_...), and GitHub Enterprise Server token formats"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GitHubDetails",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GitHubPatDetails",
+    "properties": {
+      "OrganizationName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "GitHub organization to scope the service to. The token must be an active member of the organization and only that organization's repositories are accessible. Omit to register the token's own user account"
+      },
+      "TargetUrl": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "GitHub instance URL. Omit for github.com. Provide the instance host for GitHub Enterprise Server or GitHub Enterprise Cloud with data residency (e.g. https://github.example.com)"
+      },
+      "TokenValue": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "GitHub personal access token (PAT) value. Accepts classic PATs (ghp_...), fine-grained PATs (github_pat_...), and GitHub Enterprise Server token formats"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GitLabDetails",
+    "properties": {
+      "GroupId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Optional GitLab group ID for group-level access tokens"
+      },
+      "TargetUrl": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "GitLab instance URL"
+      },
+      "TokenType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Type of GitLab access token"
+      },
+      "TokenValue": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "GitLab access token value"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MCPServerAuthorizationConfig",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MCPServerDetails",
+    "properties": {
+      "AuthorizationConfig": {
+        "type": {
+          "$ref": "#/90"
+        },
+        "flags": 1
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Optional description for the MCP server"
+      },
+      "Endpoint": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "MCP server endpoint URL"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "MCP server name"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MCPServerGrafanaAuthorizationConfig",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MCPServerGrafanaDetails",
+    "properties": {
+      "AuthorizationConfig": {
+        "type": {
+          "$ref": "#/92"
+        },
+        "flags": 1
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Optional description for the MCP server"
+      },
+      "Endpoint": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "MCP server endpoint URL"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "MCP server name"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MCPServerOAuthClientCredentialsConfig",
+    "properties": {
+      "ClientId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "OAuth client ID"
+      },
+      "ClientName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "User friendly OAuth client name"
+      },
+      "ClientSecret": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "OAuth client secret"
+      },
+      "ExchangeParameters": {
+        "type": {
+          "$ref": "#/122"
+        },
+        "flags": 0,
+        "description": "OAuth token exchange parameters"
+      },
+      "ExchangeUrl": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "OAuth token exchange URL"
+      },
+      "Scopes": {
+        "type": {
+          "$ref": "#/123"
+        },
+        "flags": 0,
+        "description": "OAuth scopes"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MCPServerSigV4AuthorizationConfig",
+    "properties": {
+      "CustomHeaders": {
+        "type": {
+          "$ref": "#/124"
+        },
+        "flags": 0,
+        "description": "Custom headers for the SigV4 MCP server"
+      },
+      "McpRoleArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "IAM role ARN to assume for SigV4 signing. Optional - when omitted, credentials are resolved at runtime via a monitor account association."
+      },
+      "Region": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "AWS region for SigV4 signing. Use '*' for SigV4a multi-region signing."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Deprecated - use McpRoleArn instead. IAM role ARN to assume for SigV4 signing. Set to an empty string to remove a previously configured role and make the server role-less (cross-account)."
+      },
+      "Service": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "AWS service name for SigV4 signing"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MCPServerSigV4Details",
+    "properties": {
+      "AuthorizationConfig": {
+        "type": {
+          "$ref": "#/95"
+        },
+        "flags": 1
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Optional description for the MCP server"
+      },
+      "Endpoint": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "MCP server endpoint URL"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "MCP server name"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MCPServerSplunkAuthorizationConfig",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MCPServerSplunkDetails",
+    "properties": {
+      "AuthorizationConfig": {
+        "type": {
+          "$ref": "#/97"
+        },
+        "flags": 1
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Optional description for the MCP server"
+      },
+      "Endpoint": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "MCP server endpoint URL"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "MCP server name"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NewRelicApiKeyConfig",
+    "properties": {
+      "AccountId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "New Relic Account ID"
+      },
+      "AlertPolicyIds": {
+        "type": {
+          "$ref": "#/125"
+        },
+        "flags": 0,
+        "description": "List of alert policy IDs"
+      },
+      "ApiKey": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "New Relic User API Key"
+      },
+      "ApplicationIds": {
+        "type": {
+          "$ref": "#/126"
+        },
+        "flags": 0,
+        "description": "List of monitored APM application IDs"
+      },
+      "EntityGuids": {
+        "type": {
+          "$ref": "#/127"
+        },
+        "flags": 0,
+        "description": "List of globally unique IDs for New Relic resources"
+      },
+      "Region": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "New Relic region"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NewRelicAuthorizationConfig",
+    "properties": {
+      "ApiKey": {
+        "type": {
+          "$ref": "#/99"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NewRelicServiceDetails",
+    "properties": {
+      "AuthorizationConfig": {
+        "type": {
+          "$ref": "#/100"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OAuthClientDetails",
+    "properties": {
+      "ClientId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "OAuth client ID"
+      },
+      "ClientName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "User friendly OAuth client name"
+      },
+      "ClientSecret": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "OAuth client secret"
+      },
+      "ExchangeParameters": {
+        "type": {
+          "$ref": "#/128"
+        },
+        "flags": 0,
+        "description": "OAuth token exchange parameters"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PagerDutyAuthorizationConfig",
+    "properties": {
+      "OAuthClientCredentials": {
+        "type": {
+          "$ref": "#/102"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PagerDutyDetails",
+    "properties": {
+      "AuthorizationConfig": {
+        "type": {
+          "$ref": "#/103"
+        },
+        "flags": 1
+      },
+      "Scopes": {
+        "type": {
+          "$ref": "#/129"
+        },
+        "flags": 1,
+        "description": "PagerDuty scopes"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RegisteredAzureIdentityDetails",
+    "properties": {
+      "ClientId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Azure AD application client ID"
+      },
+      "TenantId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Azure AD tenant ID"
+      },
+      "WebIdentityRoleArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "ARN of the IAM role for web identity token exchange"
+      },
+      "WebIdentityTokenAudiences": {
+        "type": {
+          "$ref": "#/130"
+        },
+        "flags": 1,
+        "description": "List of audiences for the web identity token"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RegisteredDynatraceDetails",
+    "properties": {
+      "AccountUrn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Dynatrace resource account URN"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RegisteredGitHubServiceDetails",
+    "properties": {
+      "AppVariant": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The GitHub App variant the service was registered with"
+      },
+      "AuthMode": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "How the service authenticates against the GitHub API: app after AppVerification, pat after DirectAccess"
+      },
+      "HostingType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The GitHub hosting type the service was registered with"
+      },
+      "Owner": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The GitHub repository owner name derived from the token"
+      },
+      "OwnerType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Type of repository owner"
+      },
+      "TargetUrl": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "GitHub instance URL (absent for github.com)"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RegisteredGitLabServiceDetails",
+    "properties": {
+      "GroupId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Optional GitLab group ID for group-level access tokens"
+      },
+      "TargetUrl": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "GitLab instance URL"
+      },
+      "TokenType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Type of GitLab access token"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RegisteredMCPServerDetails",
+    "properties": {
+      "ApiKeyHeader": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "API key header name if using API key authentication"
+      },
+      "AuthorizationMethod": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "MCP server authorization method"
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Optional description for the MCP server"
+      },
+      "Endpoint": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "MCP server endpoint URL"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "MCP server name"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RegisteredMCPServerGrafanaDetails",
+    "properties": {
+      "AuthorizationMethod": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "MCP server authorization method"
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Optional description for the MCP server"
+      },
+      "Endpoint": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "MCP server endpoint URL"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "MCP server name"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RegisteredMCPServerSigV4Details",
+    "properties": {
+      "CustomHeaders": {
+        "type": {
+          "$ref": "#/131"
+        },
+        "flags": 0,
+        "description": "Custom headers for the SigV4 MCP server"
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Optional description for the MCP server"
+      },
+      "Endpoint": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The MCP server endpoint URL"
+      },
+      "McpRoleArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "IAM role ARN for SigV4 signing. Absent when no dedicated role is configured."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The MCP server name"
+      },
+      "Region": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "AWS region for SigV4 signing"
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Deprecated - use McpRoleArn instead. IAM role ARN for SigV4 signing"
+      },
+      "Service": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "AWS service name for SigV4 signing"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RegisteredNewRelicDetails",
+    "properties": {
+      "AccountId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "New Relic account ID"
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Optional user description"
+      },
+      "Region": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "New Relic region"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RegisteredPagerDutyDetails",
+    "properties": {
+      "Scopes": {
+        "type": {
+          "$ref": "#/132"
+        },
+        "flags": 1,
+        "description": "The scopes assigned to the service"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RegisteredServiceNowDetails",
+    "properties": {
+      "InstanceUrl": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "ServiceNow instance URL"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceDetails",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceId",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceNowAuthorizationConfig",
+    "properties": {
+      "OAuthClientCredentials": {
+        "type": {
+          "$ref": "#/102"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceNowServiceDetails",
+    "properties": {
+      "AuthorizationConfig": {
+        "type": {
+          "$ref": "#/117"
+        },
+        "flags": 0
+      },
+      "InstanceUrl": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "ServiceNow instance URL"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Service_ExchangeParameters",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Service_CustomHeaders",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Service_ExchangeParameters",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Service_CustomHeaders",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DevOpsAgent/ServiceProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Service_AccessibleResources",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/134"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/120"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DevOpsAgent/ServiceProperties",
+    "properties": {
+      "AccessibleResources": {
+        "type": {
+          "$ref": "#/135"
+        },
+        "flags": 2,
+        "description": "List of accessible resources for this service"
+      },
+      "AdditionalServiceDetails": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 2,
+        "description": "Additional details specific to the service type"
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the Service."
+      },
+      "ExchangeUrlPrivateConnectionName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 4,
+        "description": "The name of the private connection to use for OAuth token exchange requests only. Cannot be specified when PrivateConnectionName is provided."
+      },
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The ARN of the KMS key to use for encryption."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The display name for the service registration."
+      },
+      "PrivateConnectionName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The name of the private connection to use for VPC connectivity."
+      },
+      "ServiceDetails": {
+        "type": {
+          "$ref": "#/115"
+        },
+        "flags": 4,
+        "description": "Service-specific configuration details for create operation"
+      },
+      "ServiceId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 18,
+        "description": "The unique identifier of the service"
+      },
+      "ServiceType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The type of service being registered"
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/136"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
+      "TargetUrlPrivateConnectionName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 4,
+        "description": "The name of the private connection to use for API calls (target URL) only. Cannot be specified when PrivateConnectionName is provided."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DevOpsAgent/Service",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/137"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DevOpsAgent/Service@default",
+    "body": {
+      "$ref": "#/138"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Condition",
+    "properties": {
+      "Schedule": {
+        "type": {
+          "$ref": "#/141"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Schedule",
+    "properties": {
+      "Expression": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "A cron or rate expression that defines when the trigger fires."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DevOpsAgent/TriggerProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Trigger_Action",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DevOpsAgent/TriggerProperties",
+    "properties": {
+      "Action": {
+        "type": {
+          "$ref": "#/143"
+        },
+        "flags": 1,
+        "description": "The action to perform when the trigger fires. A JSON object containing actionType and task."
+      },
+      "AgentSpaceId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "The unique identifier of the parent Agent Space."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the trigger. Nested under the parent Agent Space: arn:<partition>:aidevops:<region>:<account-id>:agentspace/<agentspace-id>/trigger/<trigger-id>."
+      },
+      "Condition": {
+        "type": {
+          "$ref": "#/140"
+        },
+        "flags": 1
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The timestamp when the trigger was created."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The status of the trigger. Active triggers fire on schedule; Inactive triggers are paused."
+      },
+      "TriggerId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 18,
+        "description": "The unique identifier of the trigger (assigned by the service on Create)."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The type of trigger."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The timestamp when the trigger was last updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DevOpsAgent/Trigger",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/144"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DevOpsAgent/Trigger@default",
+    "body": {
+      "$ref": "#/145"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  }
+]

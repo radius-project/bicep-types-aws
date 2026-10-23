@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Amplify-Branch",
   "type": "AWS::Amplify::Branch",
-  "time": "2025-01-27T19:16:42.542Z",
+  "time": "2026-09-28T17:24:23.59Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -199,6 +199,12 @@
         "pattern": "(?s).+",
         "type": "string"
       },
+      "ComputeRoleArn": {
+        "maxLength": 1000,
+        "minLength": 0,
+        "pattern": "(?s).*",
+        "type": "string"
+      },
       "Description": {
         "maxLength": 1000,
         "pattern": "(?s).*",
@@ -211,6 +217,9 @@
         "type": "boolean"
       },
       "EnablePullRequestPreview": {
+        "type": "boolean"
+      },
+      "EnableSkewProtection": {
         "type": "boolean"
       },
       "EnvironmentVariables": {
@@ -256,6 +265,18 @@
       "BranchName"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-amplify",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "amplify:TagResource",
+        "amplify:ListTagsForResource",
+        "amplify:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::Amplify::Branch",
     "writeOnlyProperties": [
       "/properties/BasicAuthConfig"

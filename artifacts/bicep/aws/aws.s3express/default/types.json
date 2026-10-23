@@ -1,10 +1,241 @@
 [
   {
-    "$type": "StringLiteralType",
-    "value": "AWS.S3Express/BucketPolicyProperties"
+    "$type": "ObjectType",
+    "name": "Arn",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PublicAccessBlockConfiguration",
+    "properties": {
+      "BlockPublicAcls": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Specifies whether Amazon S3 should block public access control lists (ACLs) for buckets in this account. Setting this element to TRUE causes the following behavior:\n- PUT Bucket acl and PUT Object acl calls fail if the specified ACL is public.\n - PUT Object calls fail if the request includes a public ACL.\n. - PUT Bucket calls fail if the request includes a public ACL.\nEnabling this setting doesn't affect existing policies or ACLs."
+      },
+      "BlockPublicPolicy": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Specifies whether Amazon S3 should block public bucket policies for buckets in this account. Setting this element to TRUE causes Amazon S3 to reject calls to PUT Bucket policy if the specified bucket policy allows public access. Enabling this setting doesn't affect existing bucket policies."
+      },
+      "IgnorePublicAcls": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Specifies whether Amazon S3 should ignore public ACLs for buckets in this account. Setting this element to TRUE causes Amazon S3 to ignore all public ACLs on buckets in this account and any objects that they contain. Enabling this setting doesn't affect the persistence of any existing ACLs and doesn't prevent new public ACLs from being set."
+      },
+      "RestrictPublicBuckets": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Specifies whether Amazon S3 should restrict public bucket policies for this bucket. Setting this element to TRUE restricts access to this bucket to only AWS services and authorized users within this account if the bucket has a public policy.\nEnabling this setting doesn't affect previously stored bucket policies, except that public and cross-account access within any public bucket policy, including non-public delegation to specific accounts, is blocked."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Scope",
+    "properties": {
+      "Permissions": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "You can include one or more API operations as permissions"
+      },
+      "Prefixes": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "You can specify any amount of pre?xes, but the total length of characters of all pre?xes must be less than 256 bytes in size."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VpcConfiguration",
+    "properties": {
+      "VpcId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "If this field is specified, this access point will only allow connections from the specified VPC ID."
+      }
+    }
   },
   {
     "$type": "StringType"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.S3Express/AccessPointProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AccessPoint_Policy",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.S3Express/AccessPointProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the specified accesspoint."
+      },
+      "Bucket": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The name of the bucket that you want to associate this Access Point with."
+      },
+      "BucketAccountId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The AWS account ID associated with the S3 bucket associated with this access point."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 16,
+        "description": "The name you want to assign to this Access Point. If you don't specify a name, AWS CloudFormation generates a unique ID and uses that ID for the access point name. For directory buckets, the access point name must consist of a base name that you provide and su?x that includes the ZoneID (AWS Availability Zone or Local Zone) of your bucket location, followed by --xa-s3."
+      },
+      "NetworkOrigin": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "Indicates whether this Access Point allows access from the public Internet. If VpcConfiguration is specified for this Access Point, then NetworkOrigin is VPC, and the Access Point doesn't allow access from the public Internet. Otherwise, NetworkOrigin is Internet, and the Access Point allows access from the public Internet, subject to the Access Point and bucket access policies."
+      },
+      "Policy": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The Access Point Policy you want to apply to this access point."
+      },
+      "PublicAccessBlockConfiguration": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The PublicAccessBlock configuration that you want to apply to this Access Point."
+      },
+      "Scope": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "For directory buckets, you can ?lter access control to speci?c pre?xes, API operations, or a combination of both."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0
+      },
+      "VpcConfiguration": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "If you include this field, Amazon S3 restricts access to this Access Point to requests from the specified Virtual Private Cloud (VPC)."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.S3Express/AccessPoint",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.S3Express/AccessPoint@default",
+    "body": {
+      "$ref": "#/13"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.S3Express/BucketPolicyProperties"
   },
   {
     "$type": "ObjectType",
@@ -15,10 +246,10 @@
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/2"
+        "$ref": "#/16"
       },
       {
-        "$ref": "#/1"
+        "$ref": "#/5"
       }
     ]
   },
@@ -28,14 +259,14 @@
     "properties": {
       "Bucket": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "The name of the S3 directory bucket to which the policy applies."
       },
       "PolicyDocument": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/17"
         },
         "flags": 1,
         "description": "A policy document containing permissions to add to the specified bucket. In IAM, you must provide policy documents in JSON format. However, in CloudFormation you can provide the policy in JSON or YAML format because CloudFormation converts YAML to JSON before submitting it to IAM."
@@ -48,21 +279,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/18"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -72,11 +303,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.S3Express/BucketPolicy@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/5"
+      "$ref": "#/19"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -84,7 +315,7 @@
     "properties": {
       "DaysAfterInitiation": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/32"
         },
         "flags": 1,
         "description": "Specifies the number of days after which Amazon S3 aborts an incomplete multipart upload."
@@ -102,10 +333,98 @@
     "properties": {
       "ServerSideEncryptionConfiguration": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/33"
         },
         "flags": 1,
         "description": "Specifies the default server-side-encryption configuration."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Destination",
+    "properties": {
+      "BucketAccountId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The account ID that owns the destination S3 bucket. "
+      },
+      "BucketArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the destination Amazon S3 bucket to which data is exported."
+      },
+      "Format": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "Specifies the file format used when exporting data to Amazon S3."
+      },
+      "Prefix": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The prefix to use when exporting data. The prefix is prepended to all results."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InventoryConfiguration",
+    "properties": {
+      "Destination": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      },
+      "Enabled": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Specifies whether the inventory is enabled or disabled."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The ID used to identify the inventory configuration."
+      },
+      "IncludedObjectVersions": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "Object versions to include in the inventory list."
+      },
+      "OptionalFields": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0,
+        "description": "Contains the optional fields that are included in the inventory results."
+      },
+      "Prefix": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The prefix that is prepended to all inventory results."
+      },
+      "ScheduleFrequency": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "Specifies the schedule for generating inventory results."
       }
     }
   },
@@ -115,10 +434,37 @@
     "properties": {
       "Rules": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/35"
         },
         "flags": 1,
         "description": "A lifecycle rule for individual objects in an Amazon S3 Express bucket."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MetricsConfiguration",
+    "properties": {
+      "AccessPointArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The access point ARN used when evaluating a metrics filter."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The ID used to identify the metrics configuration."
+      },
+      "Prefix": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The prefix used when evaluating a metrics filter."
       }
     }
   },
@@ -128,43 +474,43 @@
     "properties": {
       "AbortIncompleteMultipartUpload": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/21"
         },
         "flags": 0
       },
       "ExpirationInDays": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/32"
         },
         "flags": 0
       },
       "Id": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "ObjectSizeGreaterThan": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "ObjectSizeLessThan": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "Prefix": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "Status": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       }
@@ -176,14 +522,14 @@
     "properties": {
       "KMSMasterKeyID": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "AWS Key Management Service (KMS) customer managed key ID to use for the default encryption. This parameter is allowed only if SSEAlgorithm is set to aws:kms. You can specify this parameter with the key ID or the Amazon Resource Name (ARN) of the KMS key"
       },
       "SSEAlgorithm": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1
       }
@@ -195,16 +541,34 @@
     "properties": {
       "BucketKeyEnabled": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "Specifies whether Amazon S3 should use an S3 Bucket Key with server-side encryption using KMS (SSE-KMS) for new objects in the bucket. Existing objects are not affected. Amazon S3 Express One Zone uses an S3 Bucket Key with SSE-KMS and S3 Bucket Key cannot be disabled. It's only allowed to set the BucketKeyEnabled element to true."
       },
       "ServerSideEncryptionByDefault": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/29"
         },
         "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
       }
     }
   },
@@ -214,21 +578,42 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/30"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/5"
     }
   },
   {
-    "$type": "BooleanType"
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/28"
+    }
   },
   {
     "$type": "StringLiteralType",
     "value": "AWS.S3Express/DirectoryBucketProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/25"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/27"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/31"
+    }
   },
   {
     "$type": "ObjectType",
@@ -236,51 +621,71 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "Returns the Amazon Resource Name (ARN) of the specified bucket."
       },
       "AvailabilityZoneName": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "Returns the code for the Availability Zone or Local Zone where the directory bucket was created. An example for the code of an Availability Zone is 'us-east-1f'."
       },
       "BucketEncryption": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/23"
         },
         "flags": 0
       },
       "BucketName": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 16,
         "description": "Specifies a name for the bucket. The bucket name must contain only lowercase letters, numbers, and hyphens (-). A directory bucket name must be unique in the chosen Availability Zone or Local Zone. The bucket name must also follow the format 'bucket_base_name--zone_id--x-s3'. The zone_id can be the ID of an Availability Zone or a Local Zone. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the bucket name."
       },
       "DataRedundancy": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "Specifies the number of Availability Zone or Local Zone that's used for redundancy for the bucket."
       },
+      "InventoryConfigurations": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 0,
+        "description": "The inventory configuration for an Amazon S3 Express bucket."
+      },
       "LifecycleConfiguration": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/26"
         },
         "flags": 0,
         "description": "Lifecycle rules that define how Amazon S3 Express manages objects during their lifetime."
       },
       "LocationName": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "Specifies the Zone ID of the Availability Zone or Local Zone where the directory bucket will be created. An example Availability Zone ID value is 'use1-az5'."
+      },
+      "MetricsConfigurations": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 0,
+        "description": "Specifies the metrics configurations for the Amazon S3 Express bucket."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 0
       }
     }
   },
@@ -290,21 +695,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/40"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -314,10 +719,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.S3Express/DirectoryBucket@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/20"
+      "$ref": "#/41"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

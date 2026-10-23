@@ -1,10 +1,54 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-WorkSpacesWeb-UserSettings",
   "type": "AWS::WorkSpacesWeb::UserSettings",
-  "time": "2025-01-23T17:28:24.498Z",
+  "time": "2026-10-21T20:05:26.854Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
+      "BrandingConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "ColorTheme": {
+            "$ref": "#/definitions/ColorTheme"
+          },
+          "Favicon": {
+            "pattern": "(^s3://[a-z0-9][a-z0-9\\.\\-]{1,61}[a-z0-9]/.+$)|(^(?=(.{4})*$)[A-Za-z0-9+/]*={0,2}$)",
+            "type": "string"
+          },
+          "FaviconMetadata": {
+            "$ref": "#/definitions/ImageMetadata"
+          },
+          "LocalizedStrings": {
+            "$ref": "#/definitions/LocalizedBrandingStringMap"
+          },
+          "Logo": {
+            "pattern": "(^s3://[a-z0-9][a-z0-9\\.\\-]{1,61}[a-z0-9]/.+$)|(^(?=(.{4})*$)[A-Za-z0-9+/]*={0,2}$)",
+            "type": "string"
+          },
+          "LogoMetadata": {
+            "$ref": "#/definitions/ImageMetadata"
+          },
+          "TermsOfService": {
+            "maxLength": 153600,
+            "type": "string"
+          },
+          "Wallpaper": {
+            "pattern": "(^s3://[a-z0-9][a-z0-9\\.\\-]{1,61}[a-z0-9]/.+$)|(^(?=(.{4})*$)[A-Za-z0-9+/]*={0,2}$)",
+            "type": "string"
+          },
+          "WallpaperMetadata": {
+            "$ref": "#/definitions/ImageMetadata"
+          }
+        },
+        "type": "object"
+      },
+      "ColorTheme": {
+        "enum": [
+          "Light",
+          "Dark"
+        ],
+        "type": "string"
+      },
       "CookieSpecification": {
         "additionalProperties": false,
         "properties": {
@@ -77,6 +121,118 @@
         },
         "type": "object"
       },
+      "ImageMetadata": {
+        "additionalProperties": false,
+        "properties": {
+          "FileExtension": {
+            "maxLength": 131072,
+            "minLength": 0,
+            "pattern": "^[\\s\\S]*$",
+            "type": "string"
+          },
+          "LastUploadTimestamp": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "MimeType": {
+            "$ref": "#/definitions/MimeType"
+          }
+        },
+        "required": [
+          "FileExtension",
+          "LastUploadTimestamp",
+          "MimeType"
+        ],
+        "type": "object"
+      },
+      "Locale": {
+        "enum": [
+          "de-DE",
+          "en-US",
+          "es-ES",
+          "fr-FR",
+          "id-ID",
+          "it-IT",
+          "ja-JP",
+          "ko-KR",
+          "pt-BR",
+          "zh-CN",
+          "zh-TW"
+        ],
+        "type": "string"
+      },
+      "LocalizedBrandingStringMap": {
+        "additionalProperties": false,
+        "patternProperties": {
+          ".+": {
+            "$ref": "#/definitions/LocalizedBrandingStrings"
+          }
+        },
+        "type": "object"
+      },
+      "LocalizedBrandingStrings": {
+        "additionalProperties": false,
+        "properties": {
+          "BrowserTabTitle": {
+            "pattern": "^[^\u003c\u003e\u0026'`~\\\\]*$",
+            "type": "string"
+          },
+          "ContactButtonText": {
+            "pattern": "^[^\u003c\u003e\u0026'`~\\\\]*$",
+            "type": "string"
+          },
+          "ContactLink": {
+            "pattern": "^(https?://|mailto:).*",
+            "type": "string"
+          },
+          "LoadingText": {
+            "pattern": "^[^\u003c\u003e\u0026'`~\\\\]*$",
+            "type": "string"
+          },
+          "LoginButtonText": {
+            "pattern": "^[^\u003c\u003e\u0026'`~\\\\]*$",
+            "type": "string"
+          },
+          "LoginDescription": {
+            "pattern": "^[^\u003c\u003e\u0026'`~\\\\]*$",
+            "type": "string"
+          },
+          "LoginTitle": {
+            "pattern": "^[^\u003c\u003e\u0026'`~\\\\]*$",
+            "type": "string"
+          },
+          "WelcomeText": {
+            "pattern": "^[^\u003c\u003e\u0026'`~\\\\]*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "BrowserTabTitle",
+          "WelcomeText"
+        ],
+        "type": "object"
+      },
+      "MaxDisplayResolution": {
+        "enum": [
+          "size4096X2160",
+          "size3840X2160",
+          "size3440X1440",
+          "size2560X1440",
+          "size1920X1080",
+          "size1280X720",
+          "size1024X768",
+          "size800X600"
+        ],
+        "type": "string"
+      },
+      "MimeType": {
+        "enum": [
+          "image/png",
+          "image/jpeg",
+          "image/x-icon"
+        ],
+        "type": "string"
+      },
       "Tag": {
         "additionalProperties": false,
         "properties": {
@@ -98,6 +254,51 @@
           "Value"
         ],
         "type": "object"
+      },
+      "ToolbarConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "HiddenToolbarItems": {
+            "items": {
+              "$ref": "#/definitions/ToolbarItem"
+            },
+            "type": "array"
+          },
+          "MaxDisplayResolution": {
+            "$ref": "#/definitions/MaxDisplayResolution"
+          },
+          "ToolbarType": {
+            "$ref": "#/definitions/ToolbarType"
+          },
+          "VisualMode": {
+            "$ref": "#/definitions/VisualMode"
+          }
+        },
+        "type": "object"
+      },
+      "ToolbarItem": {
+        "enum": [
+          "Windows",
+          "DualMonitor",
+          "FullScreen",
+          "Webcam",
+          "Microphone"
+        ],
+        "type": "string"
+      },
+      "ToolbarType": {
+        "enum": [
+          "Floating",
+          "Docked"
+        ],
+        "type": "string"
+      },
+      "VisualMode": {
+        "enum": [
+          "Dark",
+          "Light"
+        ],
+        "type": "string"
       }
     },
     "description": "Definition of AWS::WorkSpacesWeb::UserSettings Resource Type",
@@ -113,7 +314,8 @@
           "kms:Decrypt",
           "kms:GenerateDataKeyWithoutPlaintext",
           "kms:ReEncryptTo",
-          "kms:ReEncryptFrom"
+          "kms:ReEncryptFrom",
+          "s3:GetObject"
         ]
       },
       "delete": {
@@ -155,7 +357,8 @@
           "kms:CreateGrant",
           "kms:DescribeKey",
           "kms:GenerateDataKey",
-          "kms:Decrypt"
+          "kms:Decrypt",
+          "s3:GetObject"
         ]
       }
     },
@@ -175,6 +378,9 @@
           "type": "string"
         },
         "type": "array"
+      },
+      "BrandingConfiguration": {
+        "$ref": "#/definitions/BrandingConfiguration"
       },
       "CookieSynchronizationConfiguration": {
         "$ref": "#/definitions/CookieSynchronizationConfiguration"
@@ -221,6 +427,9 @@
         "minItems": 0,
         "type": "array"
       },
+      "ToolbarConfiguration": {
+        "$ref": "#/definitions/ToolbarConfiguration"
+      },
       "UploadAllowed": {
         "$ref": "#/definitions/EnabledType"
       },
@@ -229,11 +438,17 @@
         "minLength": 20,
         "pattern": "^arn:[\\w+=\\/,.@-]+:[a-zA-Z0-9\\-]+:[a-zA-Z0-9\\-]*:[a-zA-Z0-9]{1,12}:[a-zA-Z]+(\\/[a-fA-F0-9\\-]{36})+$",
         "type": "string"
+      },
+      "WebAuthnAllowed": {
+        "$ref": "#/definitions/EnabledType"
       }
     },
     "readOnlyProperties": [
       "/properties/AssociatedPortalArns",
-      "/properties/UserSettingsArn"
+      "/properties/UserSettingsArn",
+      "/properties/BrandingConfiguration/LogoMetadata",
+      "/properties/BrandingConfiguration/FaviconMetadata",
+      "/properties/BrandingConfiguration/WallpaperMetadata"
     ],
     "required": [
       "CopyAllowed",
@@ -243,7 +458,7 @@
       "UploadAllowed"
     ],
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "workspaces-web:UntagResource",
         "workspaces-web:ListTagsForResource",
@@ -254,6 +469,11 @@
       "tagUpdatable": true,
       "taggable": true
     },
-    "typeName": "AWS::WorkSpacesWeb::UserSettings"
+    "typeName": "AWS::WorkSpacesWeb::UserSettings",
+    "writeOnlyProperties": [
+      "/properties/BrandingConfiguration/Logo",
+      "/properties/BrandingConfiguration/Favicon",
+      "/properties/BrandingConfiguration/Wallpaper"
+    ]
   }
 }

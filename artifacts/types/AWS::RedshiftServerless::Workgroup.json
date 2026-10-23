@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RedshiftServerless-Workgroup",
   "type": "AWS::RedshiftServerless::Workgroup",
-  "time": "2025-01-23T18:12:09.625Z",
+  "time": "2026-10-21T17:03:02.443Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -183,6 +183,12 @@
             },
             "type": "array"
           },
+          "TrackName": {
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9_]+$",
+            "type": "string"
+          },
           "WorkgroupArn": {
             "type": "string"
           },
@@ -224,7 +230,9 @@
           "redshift-serverless:GetWorkgroup",
           "redshift-serverless:GetNamespace",
           "redshift-serverless:ListTagsForResource",
-          "redshift-serverless:TagResource"
+          "redshift-serverless:TagResource",
+          "redshift-serverless:RestoreFromSnapshot",
+          "redshift-serverless:RestoreFromRecoveryPoint"
         ]
       },
       "delete": {
@@ -285,7 +293,9 @@
           "redshift-serverless:UpdateWorkgroup",
           "redshift-serverless:ListTagsForResource",
           "redshift-serverless:TagResource",
-          "redshift-serverless:UntagResource"
+          "redshift-serverless:UntagResource",
+          "redshift-serverless:RestoreFromSnapshot",
+          "redshift-serverless:RestoreFromRecoveryPoint"
         ]
       }
     },
@@ -337,6 +347,10 @@
         "description": "A value that specifies whether the workgroup can be accessible from a public network.",
         "type": "boolean"
       },
+      "RecoveryPointId": {
+        "description": "The identifier of the recovery point to restore the namespace from. When this resource is first created, the namespace is restored from this recovery point. On subsequent updates, a restore occurs only when RecoveryPointId changes from its previous value. If the value is unchanged or removed, no restore takes place and existing data is preserved.",
+        "type": "string"
+      },
       "SecurityGroupIds": {
         "description": "A list of security group IDs to associate with the workgroup.",
         "insertionOrder": false,
@@ -349,6 +363,18 @@
         "maxItems": 32,
         "minItems": 1,
         "type": "array"
+      },
+      "SnapshotArn": {
+        "description": "The Amazon Resource Name (ARN) of the snapshot to restore the namespace from. Specify either SnapshotArn or SnapshotName, but not both. When this resource is first created, the namespace is restored from this snapshot. On subsequent updates, a restore occurs only when SnapshotArn changes from its previous value. If the value is unchanged or removed, no restore takes place and existing data is preserved.",
+        "type": "string"
+      },
+      "SnapshotName": {
+        "description": "The name of the snapshot to restore the namespace from. Because snapshot names are unique only within an account, also specify SnapshotOwnerAccount when restoring from a snapshot owned by a different account. Specify either SnapshotName or SnapshotArn, but not both. When this resource is first created, the namespace is restored from this snapshot. On subsequent updates, a restore occurs only when SnapshotName or SnapshotOwnerAccount changes from its previous value. If both values are unchanged or SnapshotName is removed, no restore takes place and existing data is preserved.",
+        "type": "string"
+      },
+      "SnapshotOwnerAccount": {
+        "description": "The AWS account ID that owns the snapshot. Required when restoring from a snapshot shared by another account. Used in combination with SnapshotName. On updates, changing this value while SnapshotName is set triggers a restore from the newly referenced snapshot. If the value is unchanged, no restore takes place and existing data is preserved.",
+        "type": "string"
       },
       "SubnetIds": {
         "description": "A list of subnet IDs the workgroup is associated with.",
@@ -373,6 +399,12 @@
         "minItems": 0,
         "type": "array"
       },
+      "TrackName": {
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9_]+$",
+        "type": "string"
+      },
       "Workgroup": {
         "$ref": "#/definitions/Workgroup",
         "description": "Definition for workgroup resource"
@@ -386,7 +418,6 @@
       }
     },
     "readOnlyProperties": [
-      "/properties/Workgroup",
       "/properties/Workgroup/WorkgroupId",
       "/properties/Workgroup/WorkgroupArn",
       "/properties/Workgroup/WorkgroupName",
@@ -394,10 +425,10 @@
       "/properties/Workgroup/BaseCapacity",
       "/properties/Workgroup/MaxCapacity",
       "/properties/Workgroup/EnhancedVpcRouting",
-      "/properties/Workgroup/ConfigParameters/*/ParameterKey",
-      "/properties/Workgroup/ConfigParameters/*/ParameterValue",
+      "/properties/Workgroup/ConfigParameters",
       "/properties/Workgroup/SecurityGroupIds",
       "/properties/Workgroup/SubnetIds",
+      "/properties/Workgroup/TrackName",
       "/properties/Workgroup/Status",
       "/properties/Workgroup/Endpoint/Address",
       "/properties/Workgroup/Endpoint/Port",
@@ -415,7 +446,7 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-redshift-serverless",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "redshift-serverless:ListTagsForResource",
         "redshift-serverless:TagResource",
@@ -428,11 +459,13 @@
     },
     "typeName": "AWS::RedshiftServerless::Workgroup",
     "writeOnlyProperties": [
-      "/properties/BaseCapacity",
-      "/properties/MaxCapacity",
       "/properties/ConfigParameters",
       "/properties/SecurityGroupIds",
-      "/properties/SubnetIds"
+      "/properties/SubnetIds",
+      "/properties/SnapshotArn",
+      "/properties/SnapshotName",
+      "/properties/SnapshotOwnerAccount",
+      "/properties/RecoveryPointId"
     ]
   }
 }

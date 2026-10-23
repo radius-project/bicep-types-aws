@@ -1,0 +1,214 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Transfer-HostKey",
+  "type": "AWS::Transfer::HostKey",
+  "time": "2026-10-21T20:21:23.158Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ServerId",
+        "/properties/HostKeyId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ServerId",
+      "/properties/HostKeyBody"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The name assigned to the tag that you create.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "Contains one or more values that you assigned to the key name you create.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource type definition for AWS::Transfer::HostKey",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "transfer:ImportHostKey",
+          "transfer:DescribeHostKey",
+          "transfer:TagResource",
+          "secretsmanager:CreateSecret",
+          "iam:CreateServiceLinkedRole",
+          "kms:GenerateDataKey",
+          "kms:Decrypt"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "transfer:DeleteHostKey",
+          "transfer:DescribeHostKey",
+          "transfer:ListTagsForResource",
+          "secretsmanager:DeleteSecret"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ServerId": {
+              "maxLength": 19,
+              "minLength": 19,
+              "pattern": "^s-([0-9a-f]{17})$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "ServerId"
+          ]
+        },
+        "permissions": [
+          "transfer:ListHostKeys"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "transfer:DescribeHostKey",
+          "transfer:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "transfer:UpdateHostKey",
+          "transfer:DescribeHostKey",
+          "transfer:ExportHostKey",
+          "transfer:TagResource",
+          "transfer:UntagResource",
+          "transfer:ListTagsForResource",
+          "secretsmanager:CreateSecret",
+          "secretsmanager:GetSecretValue",
+          "secretsmanager:UpdateSecret",
+          "secretsmanager:DeleteSecret",
+          "iam:CreateServiceLinkedRole",
+          "kms:GenerateDataKey",
+          "kms:Decrypt"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The unique Amazon Resource Name (ARN) for the host key.",
+        "maxLength": 1600,
+        "minLength": 20,
+        "pattern": "^arn:\\S+$",
+        "type": "string"
+      },
+      "DateImported": {
+        "description": "The date on which the host key was added to the server.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The text description for this host key.",
+        "maxLength": 200,
+        "minLength": 0,
+        "pattern": "^[\\p{Print}]*$",
+        "type": "string"
+      },
+      "HostKeyBody": {
+        "description": "The private key portion of an SSH key pair. Transfer Family accepts RSA, ECDSA, and ED25519 keys.",
+        "maxLength": 4096,
+        "type": "string"
+      },
+      "HostKeyFingerprint": {
+        "description": "The public key fingerprint, which is a short sequence of bytes used to identify the longer public key.",
+        "type": "string"
+      },
+      "HostKeyId": {
+        "description": "A unique identifier for the host key.",
+        "maxLength": 25,
+        "minLength": 25,
+        "pattern": "^hostkey-[0-9a-f]{17}$",
+        "type": "string"
+      },
+      "KmsKey": {
+        "description": "The Amazon Resource Name (ARN) of a customer managed key used to encrypt the Secrets Manager secret that holds the host key. Applies only when StorageType is SECRETS_MANAGER. If omitted, the AWS managed key is used.",
+        "maxLength": 1600,
+        "minLength": 20,
+        "pattern": "^arn:\\S+$",
+        "type": "string"
+      },
+      "SecretId": {
+        "description": "The Amazon Resource Name (ARN) of the Secrets Manager secret that holds the host key. Returned only when StorageType is SECRETS_MANAGER.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "type": "string"
+      },
+      "ServerId": {
+        "description": "The identifier of the server that contains the host key.",
+        "maxLength": 19,
+        "minLength": 19,
+        "pattern": "^s-([0-9a-f]{17})$",
+        "type": "string"
+      },
+      "StorageType": {
+        "description": "The type of storage used for the host key. SERVICE_MANAGED keys are stored within the Transfer Family service. SECRETS_MANAGER keys are stored in an AWS Secrets Manager secret in your account.",
+        "enum": [
+          "SERVICE_MANAGED",
+          "SECRETS_MANAGER"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Key-value pairs that can be used to group and search for host keys.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array"
+      },
+      "Type": {
+        "description": "The encryption algorithm that is used for the host key.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/HostKeyId",
+      "/properties/HostKeyFingerprint",
+      "/properties/Type",
+      "/properties/DateImported",
+      "/properties/SecretId"
+    ],
+    "required": [
+      "ServerId"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "transfer:TagResource",
+        "transfer:UntagResource",
+        "transfer:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Transfer::HostKey",
+    "writeOnlyProperties": [
+      "/properties/HostKeyBody",
+      "/properties/KmsKey"
+    ]
+  }
+}

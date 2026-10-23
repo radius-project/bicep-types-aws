@@ -177,10 +177,178 @@
   {
     "$type": "ResourceType",
     "name": "AWS.DocDBElastic/Cluster@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/8"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value of the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DocDBElastic/ClusterSnapshotProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DocDBElastic/ClusterSnapshotProperties",
+    "properties": {
+      "AdminUserName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The name of the elastic cluster administrator."
+      },
+      "ClusterArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The ARN of the elastic cluster of which to create a snapshot."
+      },
+      "ClusterCreationTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time when the source elastic cluster was created, in Universal Coordinated Time (UTC)."
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The KMS key identifier used to encrypt the source elastic cluster."
+      },
+      "SnapshotArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the elastic cluster snapshot."
+      },
+      "SnapshotCreationTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time when the elastic cluster snapshot was created, in Universal Coordinated Time (UTC)."
+      },
+      "SnapshotName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the elastic cluster snapshot."
+      },
+      "SnapshotType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The type of the elastic cluster snapshot (manual or automated)."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The status of the elastic cluster snapshot."
+      },
+      "SubnetIds": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 2,
+        "description": "The Amazon EC2 subnet IDs associated with the source elastic cluster."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to the elastic cluster snapshot."
+      },
+      "VpcSecurityGroupIds": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 2,
+        "description": "The Amazon EC2 security group IDs associated with the source elastic cluster."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DocDBElastic/ClusterSnapshot",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DocDBElastic/ClusterSnapshot@default",
+    "body": {
+      "$ref": "#/16"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

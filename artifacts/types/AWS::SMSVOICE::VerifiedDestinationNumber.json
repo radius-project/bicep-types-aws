@@ -1,0 +1,140 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SMSVOICE-VerifiedDestinationNumber",
+  "type": "AWS::SMSVOICE::VerifiedDestinationNumber",
+  "time": "2026-10-21T23:35:12.924Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/VerifiedDestinationNumberId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DestinationPhoneNumber"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^.+$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "maxLength": 256,
+            "pattern": "^.*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "A destination phone number that has been registered for verification with AWS End User Messaging SMS. A newly created number is in PENDING status; it becomes VERIFIED only after the recipient supplies the one-time code out of band.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "sms-voice:CreateVerifiedDestinationNumber",
+          "sms-voice:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "sms-voice:DeleteVerifiedDestinationNumber"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "sms-voice:DescribeVerifiedDestinationNumbers"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "sms-voice:DescribeVerifiedDestinationNumbers",
+          "sms-voice:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "sms-voice:DescribeVerifiedDestinationNumbers",
+          "sms-voice:ListTagsForResource",
+          "sms-voice:TagResource",
+          "sms-voice:UntagResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/VerifiedDestinationNumberArn"
+    ],
+    "properties": {
+      "CreatedTimestamp": {
+        "description": "The time when the verified destination phone number was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DestinationPhoneNumber": {
+        "description": "The verified destination phone number, in E.164 format.",
+        "maxLength": 20,
+        "minLength": 1,
+        "pattern": "^\\+?[1-9][0-9]{1,18}$",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the verified destination phone number. PENDING means the phone number has not been verified yet; VERIFIED means it is verified and can receive messages.",
+        "enum": [
+          "PENDING",
+          "VERIFIED",
+          "UNSUPPORTED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "VerifiedDestinationNumberArn": {
+        "description": "The Amazon Resource Name (ARN) for the verified destination phone number.",
+        "type": "string"
+      },
+      "VerifiedDestinationNumberId": {
+        "description": "The unique identifier for the verified destination phone number.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/VerifiedDestinationNumberArn",
+      "/properties/VerifiedDestinationNumberId",
+      "/properties/Status",
+      "/properties/CreatedTimestamp"
+    ],
+    "required": [
+      "DestinationPhoneNumber"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "sms-voice:TagResource",
+        "sms-voice:UntagResource",
+        "sms-voice:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::SMSVOICE::VerifiedDestinationNumber"
+  }
+}

@@ -1,21 +1,24 @@
 # AWS.CodeStarConnections @ default
 
 ## Resource AWS.CodeStarConnections/Connection@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CodeStarConnections/ConnectionProperties](#awscodestarconnectionsconnectionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CodeStarConnections/RepositoryLink@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CodeStarConnections/RepositoryLinkProperties](#awscodestarconnectionsrepositorylinkproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CodeStarConnections/SyncConfiguration@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name

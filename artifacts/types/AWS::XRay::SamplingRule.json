@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-XRay-SamplingRule",
   "type": "AWS::XRay::SamplingRule",
-  "time": "2024-12-18T22:43:06.065Z",
+  "time": "2026-09-16T20:03:39.734Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -17,6 +17,27 @@
         "maxLength": 32,
         "minLength": 1,
         "type": "string"
+      },
+      "SamplingRateBoost": {
+        "additionalProperties": false,
+        "properties": {
+          "CooldownWindowMinutes": {
+            "description": "Time window (in minutes) in which only one sampling rate boost can be triggered. After a boost occurs, no further boosts are allowed until the next window.",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "MaxRate": {
+            "description": "The maximum sampling rate X-Ray will apply when it detects anomalies. X-Ray determines the appropriate rate between your baseline and the maximum, depending on anomaly activity.",
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          }
+        },
+        "required": [
+          "MaxRate",
+          "CooldownWindowMinutes"
+        ],
+        "type": "object"
       },
       "SamplingRule": {
         "additionalProperties": false,
@@ -69,6 +90,9 @@
           },
           "RuleName": {
             "$ref": "#/definitions/RuleName"
+          },
+          "SamplingRateBoost": {
+            "$ref": "#/definitions/SamplingRateBoost"
           },
           "ServiceName": {
             "description": "Matches the name that the service uses to identify itself in segments.",
@@ -173,6 +197,9 @@
           "RuleName": {
             "$ref": "#/definitions/RuleName"
           },
+          "SamplingRateBoost": {
+            "$ref": "#/definitions/SamplingRateBoost"
+          },
           "ServiceName": {
             "description": "Matches the name that the service uses to identify itself in segments.",
             "maxLength": 64,
@@ -228,7 +255,8 @@
       "create": {
         "permissions": [
           "xray:CreateSamplingRule",
-          "xray:TagResource"
+          "xray:TagResource",
+          "xray:ListTagsForResource"
         ]
       },
       "delete": {
@@ -288,7 +316,8 @@
       "cloudFormationSystemTags": true,
       "permissions": [
         "xray:TagResource",
-        "xray:UntagResource"
+        "xray:UntagResource",
+        "xray:ListTagsForResource"
       ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",

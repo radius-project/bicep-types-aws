@@ -1,0 +1,223 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SMSVOICE-NotifyConfiguration",
+  "type": "AWS::SMSVOICE::NotifyConfiguration",
+  "time": "2026-10-21T20:49:40.231Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/NotifyConfigurationId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DisplayName",
+      "/properties/UseCase"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key identifier, or name, of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^.+$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The string value associated with the key of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^.*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "A notify configuration defines the settings used to send templated messages with AWS End User Messaging SMS managed messaging, including the display name, use case, enabled channels, and enabled countries.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "sms-voice:CreateNotifyConfiguration",
+          "sms-voice:DescribeNotifyConfigurations",
+          "sms-voice:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "sms-voice:DeleteNotifyConfiguration"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "sms-voice:DescribeNotifyConfigurations"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "sms-voice:DescribeNotifyConfigurations",
+          "sms-voice:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "sms-voice:UpdateNotifyConfiguration",
+          "sms-voice:TagResource",
+          "sms-voice:UntagResource",
+          "sms-voice:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/NotifyConfigurationArn"
+    ],
+    "properties": {
+      "CreatedTimestamp": {
+        "description": "The time when the notify configuration was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DefaultTemplateId": {
+        "description": "The default template identifier to associate with the notify configuration. If specified, this template is used when sending messages without an explicit template identifier.",
+        "maxLength": 256,
+        "pattern": "^[A-Za-z0-9_-]*$",
+        "type": "string"
+      },
+      "DeletionProtectionEnabled": {
+        "description": "By default this is set to false. When set to true the notify configuration can't be deleted.",
+        "type": "boolean"
+      },
+      "DisplayName": {
+        "description": "The display name to associate with the notify configuration.",
+        "maxLength": 15,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_ -]+$",
+        "type": "string"
+      },
+      "EnabledChannels": {
+        "description": "An array of channels to enable for the notify configuration. Supported values include SMS and VOICE.",
+        "insertionOrder": false,
+        "items": {
+          "enum": [
+            "SMS",
+            "VOICE",
+            "MMS",
+            "RCS"
+          ],
+          "type": "string"
+        },
+        "maxItems": 4,
+        "minItems": 1,
+        "type": "array"
+      },
+      "EnabledCountries": {
+        "description": "An array of two-character ISO country codes, in ISO 3166-1 alpha-2 format, that are enabled for the notify configuration.",
+        "insertionOrder": false,
+        "items": {
+          "maxLength": 2,
+          "minLength": 2,
+          "pattern": "^[A-Z]{2}$",
+          "type": "string"
+        },
+        "maxItems": 300,
+        "type": "array"
+      },
+      "NotifyConfigurationArn": {
+        "description": "The Amazon Resource Name (ARN) for the notify configuration.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^arn:\\S+$",
+        "type": "string"
+      },
+      "NotifyConfigurationId": {
+        "description": "The unique identifier for the notify configuration.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "type": "string"
+      },
+      "PoolId": {
+        "description": "The identifier of the pool to associate with the notify configuration.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_:/-]+$",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The current status of the notify configuration.",
+        "enum": [
+          "PENDING",
+          "ACTIVE",
+          "REJECTED",
+          "REQUIRES_VERIFICATION"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of tags (key and value pairs) associated with the notify configuration.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array"
+      },
+      "Tier": {
+        "description": "The tier of the notify configuration.",
+        "enum": [
+          "BASIC",
+          "ADVANCED"
+        ],
+        "type": "string"
+      },
+      "TierUpgradeStatus": {
+        "description": "The tier upgrade status of the notify configuration.",
+        "enum": [
+          "BASIC",
+          "PENDING_UPGRADE",
+          "ADVANCED",
+          "REJECTED"
+        ],
+        "type": "string"
+      },
+      "UseCase": {
+        "description": "The use case for the notify configuration.",
+        "enum": [
+          "CODE_VERIFICATION"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/NotifyConfigurationArn",
+      "/properties/NotifyConfigurationId",
+      "/properties/Tier",
+      "/properties/TierUpgradeStatus",
+      "/properties/Status",
+      "/properties/CreatedTimestamp"
+    ],
+    "required": [
+      "DisplayName",
+      "UseCase",
+      "EnabledChannels"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "sms-voice:TagResource",
+        "sms-voice:UntagResource",
+        "sms-voice:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::SMSVOICE::NotifyConfiguration"
+  }
+}

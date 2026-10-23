@@ -1,42 +1,48 @@
 # AWS.DeviceFarm @ default
 
 ## Resource AWS.DeviceFarm/DevicePool@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DeviceFarm/DevicePoolProperties](#awsdevicefarmdevicepoolproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DeviceFarm/InstanceProfile@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DeviceFarm/InstanceProfileProperties](#awsdevicefarminstanceprofileproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DeviceFarm/NetworkProfile@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DeviceFarm/NetworkProfileProperties](#awsdevicefarmnetworkprofileproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DeviceFarm/Project@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DeviceFarm/ProjectProperties](#awsdevicefarmprojectproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DeviceFarm/TestGridProject@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DeviceFarm/TestGridProjectProperties](#awsdevicefarmtestgridprojectproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DeviceFarm/VPCEConfiguration@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -82,6 +88,8 @@
 ### Properties
 * **Arn**: string (ReadOnly, Identifier)
 * **DefaultJobTimeoutMinutes**: int
+* **EnvironmentVariables**: [EnvironmentVariable](#environmentvariable)[]
+* **ExecutionRoleArn**: string
 * **Name**: string (Required)
 * **Tags**: [Tag](#tag)[]
 * **VpcConfig**: [VpcConfig](#vpcconfig)
@@ -102,6 +110,11 @@
 * **VpceConfigurationDescription**: string
 * **VpceConfigurationName**: string (Required)
 * **VpceServiceName**: string (Required)
+
+## EnvironmentVariable
+### Properties
+* **Name**: string (Required)
+* **Value**: string (Required)
 
 ## Rule
 ### Properties

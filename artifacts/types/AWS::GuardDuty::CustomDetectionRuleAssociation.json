@@ -1,0 +1,153 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-GuardDuty-CustomDetectionRuleAssociation",
+  "type": "AWS::GuardDuty::CustomDetectionRuleAssociation",
+  "time": "2026-10-13T15:55:39.146Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Arn"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/RuleId"
+    ],
+    "definitions": {
+      "TagItem": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::GuardDuty::CustomDetectionRuleAssociation. Associates a GuardDuty custom detection rule with the caller's account, enabling the rule in either LIVE or DRY_RUN mode.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "guardduty:CreateCustomDetectionRuleAssociation",
+          "guardduty:GetCustomDetectionRuleAssociation",
+          "guardduty:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "guardduty:DeleteCustomDetectionRuleAssociation",
+          "guardduty:GetCustomDetectionRuleAssociation"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "guardduty:ListCustomDetectionRuleAssociations"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "guardduty:GetCustomDetectionRuleAssociation"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "guardduty:UpdateCustomDetectionRuleAssociation",
+          "guardduty:GetCustomDetectionRuleAssociation",
+          "guardduty:TagResource",
+          "guardduty:UntagResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/RuleId",
+      "/properties/AssociationId"
+    ],
+    "properties": {
+      "AccountId": {
+        "description": "The AWS account ID the association applies to.",
+        "maxLength": 12,
+        "minLength": 12,
+        "type": "string"
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the association.",
+        "maxLength": 1024,
+        "minLength": 1,
+        "pattern": "^arn:[a-zA-Z0-9\\-]+:[a-zA-Z0-9\\-]+:[a-zA-Z0-9\\-]*:[0-9]*:.+$",
+        "type": "string"
+      },
+      "AssociationId": {
+        "description": "The service-generated unique identifier of the association.",
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The time the association was created.",
+        "type": "string"
+      },
+      "Mode": {
+        "description": "Whether the rule runs in LIVE mode (generates findings) or DRY_RUN mode (evaluates without generating findings).",
+        "enum": [
+          "LIVE",
+          "DRY_RUN"
+        ],
+        "type": "string"
+      },
+      "RuleId": {
+        "description": "The catalog identifier of the custom detection rule to associate.",
+        "maxLength": 100,
+        "minLength": 1,
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags applied to the association.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/TagItem"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "UpdatedAt": {
+        "description": "The time the association was last updated.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/AssociationId",
+      "/properties/Arn",
+      "/properties/AccountId",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "RuleId",
+      "Mode"
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/guardduty/",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "guardduty:GetCustomDetectionRuleAssociation",
+        "guardduty:TagResource",
+        "guardduty:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::GuardDuty::CustomDetectionRuleAssociation"
+  }
+}

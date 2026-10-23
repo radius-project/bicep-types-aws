@@ -1,25 +1,421 @@
 [
   {
     "$type": "ObjectType",
+    "name": "CloudWatchLogsDestinationDetails",
+    "properties": {
+      "LogGroup": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The name of the CloudWatch Logs log group."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DestinationDetails",
+    "properties": {
+      "CloudWatchLogsDetails": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0,
+        "description": "The configuration details of the CloudWatch Logs destination"
+      },
+      "KinesisFirehoseDetails": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The configuration details of the Kinesis Data Firehose destination."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Endpoint",
+    "properties": {
+      "Address": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KinesisFirehoseDestinationDetails",
+    "properties": {
+      "DeliveryStream": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The name of the Kinesis Data Firehose delivery stream"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LogDeliveryConfigurationRequest",
+    "properties": {
+      "DestinationDetails": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Configuration details of either a CloudWatch Logs destination or Kinesis Data Firehose destination."
+      },
+      "DestinationType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Specify either CloudWatch Logs or Kinesis Data Firehose as the destination type. "
+      },
+      "LogFormat": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Valid values are either json or text"
+      },
+      "LogType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Valid value is either slow-log, which refers to slow-log or engine-log"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ElastiCache/CacheClusterProperties"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ElastiCache/CacheClusterProperties",
+    "properties": {
+      "AZMode": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Specifies whether the nodes in this Memcached cluster are created in a single Availability Zone or created across multiple Availability Zones in the cluster's region."
+      },
+      "AutoMinorVersionUpgrade": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "If you are running Redis engine version 6.0 or later, set this parameter to yes if you want to opt-in to the next minor version upgrade campaign."
+      },
+      "CacheNodeType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The compute and memory capacity of the nodes in the node group (shard)."
+      },
+      "CacheParameterGroupName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The name of the parameter group to associate with this cluster."
+      },
+      "CacheSecurityGroupNames": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 4,
+        "description": "A list of security group names to associate with this cluster."
+      },
+      "CacheSubnetGroupName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The name of the subnet group to be used for the cluster."
+      },
+      "ClusterName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 16,
+        "description": "A name for the cache cluster."
+      },
+      "ConfigurationEndpoint": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "Specifies the ConfigurationEndpoint address and port"
+      },
+      "Engine": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The name of the cache engine to be used for this cluster."
+      },
+      "EngineVersion": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The version number of the cache engine to be used for this cluster"
+      },
+      "IpDiscovery": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The Ip Discovery parameter for cachecluster."
+      },
+      "LogDeliveryConfigurations": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "Specifies the destination, format and type of the logs"
+      },
+      "NetworkType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The network type parameter for cachecluster."
+      },
+      "NotificationTopicArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the Amazon Simple Notification Service (SNS) topic to which notifications are sent."
+      },
+      "NumCacheNodes": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 1,
+        "description": "The number of cache nodes that the cache cluster should have."
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "The port number on which each of the cache nodes accepts connections."
+      },
+      "PreferredAvailabilityZone": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 4,
+        "description": "The EC2 Availability Zone in which the cluster is created."
+      },
+      "PreferredAvailabilityZones": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "A list of the Availability Zones in which cache nodes are created. The order of the zones in the list is not important."
+      },
+      "PreferredMaintenanceWindow": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Specifies the weekly time range during which maintenance on the cluster is performed."
+      },
+      "RedisEndpoint": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "Specifies the RedisEndPoint address and port"
+      },
+      "SnapshotArns": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 4,
+        "description": "A single-element string list containing an Amazon Resource Name (ARN) that uniquely identifies a Redis RDB snapshot file stored in Amazon S3."
+      },
+      "SnapshotName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 4,
+        "description": "The name of a Redis snapshot from which to restore data into the new node group (shard)."
+      },
+      "SnapshotRetentionLimit": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "The number of days for which ElastiCache retains automatic snapshots before deleting them."
+      },
+      "SnapshotWindow": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The daily time range (in UTC) during which ElastiCache begins taking a daily snapshot of your node group (shard)."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "A list of tags to be added to this resource."
+      },
+      "TransitEncryptionEnabled": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "A flag that enables in-transit encryption when set to true. You cannot modify the value of TransitEncryptionEnabled after the cluster is created"
+      },
+      "VpcSecurityGroupIds": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "One or more VPC security groups associated with the cluster."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ElastiCache/CacheCluster",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ElastiCache/CacheCluster@default",
+    "body": {
+      "$ref": "#/17"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "GlobalReplicationGroupMember",
     "properties": {
       "ReplicationGroupId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "Regionally unique identifier for the member i.e. ReplicationGroupId."
       },
       "ReplicationGroupRegion": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The AWS region of the Global Datastore member."
       },
       "Role": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "Indicates the role of the member, primary or secondary."
@@ -32,21 +428,21 @@
     "properties": {
       "ReplicationGroupId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The replication group id of the Global Datastore member."
       },
       "ReplicationGroupRegion": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The AWS region of the Global Datastore member."
       },
       "ReshardingConfigurations": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "A list of PreferredAvailabilityZones objects that specifies the configuration of a node group in the resharded cluster. "
@@ -59,14 +455,14 @@
     "properties": {
       "NodeGroupId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "Unique identifier for the Node Group. This is either auto-generated by ElastiCache (4-digit id) or a user supplied id."
       },
       "PreferredAvailabilityZones": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "A list of preferred availability zones for the nodes of new node groups."
@@ -74,18 +470,35 @@
     }
   },
   {
-    "$type": "StringType"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/2"
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The key for the tag. May not be null."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The tag's value. May be null."
+      }
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/21"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
     }
   },
   {
@@ -93,110 +506,124 @@
     "value": "AWS.ElastiCache/GlobalReplicationGroupProperties"
   },
   {
-    "$type": "BooleanType"
-  },
-  {
-    "$type": "IntegerType"
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/0"
+      "$ref": "#/19"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/20"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/22"
     }
   },
   {
     "$type": "ObjectType",
     "name": "AWS.ElastiCache/GlobalReplicationGroupProperties",
     "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The ARN (Amazon Resource Name) of the Global Datastore."
+      },
       "AutomaticFailoverEnabled": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/8"
         },
         "flags": 4,
         "description": "AutomaticFailoverEnabled"
       },
       "CacheNodeType": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 4,
         "description": "The cache node type of the Global Datastore"
       },
       "CacheParameterGroupName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
-        "flags": 0,
+        "flags": 4,
         "description": "Cache parameter group name to use for the new engine version. This parameter cannot be modified independently."
       },
       "Engine": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The engine of the Global Datastore."
       },
       "EngineVersion": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 4,
         "description": "The engine version of the Global Datastore."
       },
       "GlobalNodeGroupCount": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/11"
         },
         "flags": 4,
         "description": "Indicates the number of node groups in the Global Datastore."
       },
       "GlobalReplicationGroupDescription": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The optional description of the Global Datastore"
       },
       "GlobalReplicationGroupId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 18,
         "description": "The name of the Global Datastore, it is generated by ElastiCache adding a prefix to GlobalReplicationGroupIdSuffix."
       },
       "GlobalReplicationGroupIdSuffix": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 4,
         "description": "The suffix name of a Global Datastore. Amazon ElastiCache automatically applies a prefix to the Global Datastore ID when it is created. Each AWS Region has its own prefix. "
       },
       "Members": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/26"
         },
         "flags": 1,
         "description": "The replication groups that comprise the Global Datastore."
       },
       "RegionalConfigurations": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/27"
         },
         "flags": 4,
         "description": "Describes the replication group IDs, the AWS regions where they are stored and the shard configuration for each that comprise the Global Datastore "
       },
       "Status": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 2,
         "description": "The status of the Global Datastore"
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this Global Datastore."
       }
     }
   },
@@ -206,21 +633,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/29"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -230,11 +657,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.ElastiCache/GlobalReplicationGroup@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/12"
+      "$ref": "#/30"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -242,13 +669,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 1
       }
@@ -266,7 +693,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/14"
+      "$ref": "#/32"
     }
   },
   {
@@ -275,35 +702,35 @@
     "properties": {
       "CacheParameterGroupFamily": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 1,
         "description": "The name of the cache parameter group family that this cache parameter group is compatible with."
       },
       "CacheParameterGroupName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 18,
         "description": "The name of the Cache Parameter Group."
       },
       "Description": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 1,
         "description": "The description for this cache parameter group."
       },
       "Properties": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "A comma-delimited list of parameter name/value pairs. For more information see ModifyCacheParameterGroup in the Amazon ElastiCache API Reference Guide."
       },
       "Tags": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/35"
         },
         "flags": 0,
         "description": "Tags are composed of a Key/Value pair. You can use tags to categorize and track each parameter group. The tag value null is permitted."
@@ -316,21 +743,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/36"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -340,25 +767,38 @@
   {
     "$type": "ResourceType",
     "name": "AWS.ElastiCache/ParameterGroup@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/19"
+      "$ref": "#/37"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
-    "name": "CacheUsageLimits",
+    "name": "CloudWatchLogsDestinationDetails",
     "properties": {
-      "DataStorage": {
+      "LogGroup": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The name of the CloudWatch Logs log group."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DestinationDetails",
+    "properties": {
+      "CloudWatchLogsDetails": {
+        "type": {
+          "$ref": "#/39"
         },
         "flags": 0
       },
-      "ECPUPerSecond": {
+      "KinesisFirehoseDetails": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/42"
         },
         "flags": 0
       }
@@ -366,25 +806,635 @@
   },
   {
     "$type": "ObjectType",
+    "name": "Endpoint",
+    "properties": {
+      "Address": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The DNS hostname of the cache node."
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The port number that the cache engine is listening on."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KinesisFirehoseDestinationDetails",
+    "properties": {
+      "DeliveryStream": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The name of the Kinesis Data Firehose delivery stream."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LogDeliveryConfigurationRequest",
+    "properties": {
+      "DestinationDetails": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 1
+      },
+      "DestinationType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Specify either CloudWatch Logs or Kinesis Data Firehose as the destination type. Valid values are either cloudwatch-logs or kinesis-firehose."
+      },
+      "LogFormat": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Valid values are either json or text."
+      },
+      "LogType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Valid value is either slow-log, which refers to slow-log or engine-log."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NodeGroupConfiguration",
+    "properties": {
+      "NodeGroupId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Either the ElastiCache for Redis supplied 4-digit id or a user supplied id for the node group these configuration values apply to."
+      },
+      "PrimaryAvailabilityZone": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The Availability Zone where the primary node of this node group (shard) is launched."
+      },
+      "ReplicaAvailabilityZones": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0,
+        "description": "A list of Availability Zones to be used for the read replicas. The number of Availability Zones in this list must match the value of ReplicaCount or ReplicasPerNodeGroup if not specified."
+      },
+      "ReplicaCount": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "The number of read replica nodes in this node group (shard)."
+      },
+      "Slots": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "A string of comma-separated values where the first set of values are the slot numbers (zero based), and the second set of values are the keyspaces for each slot. The following example specifies three slots (numbered 0, 1, and 2): 0,1,2,0-4999,5000-9999,10000-16,383."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ElastiCache/ReplicationGroupProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/43"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/44"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReplicationGroup_ReadEndPoint",
+    "properties": {
+      "Addresses": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "A string containing a comma-separated list of endpoints for the primary and read-only replicas, formatted as [address1, address2, ...]. The order of the addresses maps to the order of the ports from the ReadEndPoint.Ports attribute."
+      },
+      "AddressesList": {
+        "type": {
+          "$ref": "#/52"
+        },
+        "flags": 2,
+        "description": "A list of endpoints for the read-only replicas. The order of the addresses maps to the order of the ports from the ReadEndPoint.Ports attribute."
+      },
+      "Ports": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "A string containing a comma-separated list of ports for the read-only replicas, formatted as [port1, port2, ...]. The order of the ports maps to the order of the addresses from the ReadEndPoint.Addresses attribute."
+      },
+      "PortsList": {
+        "type": {
+          "$ref": "#/53"
+        },
+        "flags": 2,
+        "description": "A list of ports for the read-only replicas. The order of the ports maps to the order of the addresses from the ReadEndPoint.Addresses attribute."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/45"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ElastiCache/ReplicationGroupProperties",
+    "properties": {
+      "AtRestEncryptionEnabled": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "A flag that enables encryption at rest when set to true.AtRestEncryptionEnabled after the replication group is created. To enable encryption at rest on a replication group you must set AtRestEncryptionEnabled to true when you create the replication group."
+      },
+      "AuthToken": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 4,
+        "description": "Reserved parameter. The password used to access a password protected server.AuthToken can be specified only on replication groups where TransitEncryptionEnabled is true. For more information."
+      },
+      "AutoMinorVersionUpgrade": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "This parameter is currently disabled."
+      },
+      "AutomaticFailoverEnabled": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "Specifies whether a read-only replica is automatically promoted to read/write primary if the existing primary fails. AutomaticFailoverEnabled must be enabled for Redis (cluster mode enabled) replication groups."
+      },
+      "CacheNodeType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The compute and memory capacity of the nodes in the node group (shard)."
+      },
+      "CacheParameterGroupName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 4,
+        "description": "The name of the parameter group to associate with this replication group. If this argument is omitted, the default cache parameter group for the specified engine is used."
+      },
+      "CacheSecurityGroupNames": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 4,
+        "description": "A list of cache security group names to associate with this replication group."
+      },
+      "CacheSubnetGroupName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 4,
+        "description": "The name of the cache subnet group to be used for the replication group."
+      },
+      "ClusterMode": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Enabled or Disabled. To modify cluster mode from Disabled to Enabled, you must first set the cluster mode to Compatible. Compatible mode allows your Redis OSS clients to connect using both cluster mode enabled and cluster mode disabled. After you migrate all Redis OSS clients to use cluster mode enabled, you can then complete cluster mode configuration and set the cluster mode to Enabled. For more information, see Modify cluster mode."
+      },
+      "ConfigurationEndPoint": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 2,
+        "description": "The configuration details of the replication group."
+      },
+      "DataTieringEnabled": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "Enables data tiering. Data tiering is only supported for replication groups using the r6gd node type. This parameter must be set to true when using r6gd nodes."
+      },
+      "Durability": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The durability setting for the replication group. Valid values: default, async, sync, disabled. Enabling durability on an existing non-durable cluster or disabling durability on an existing durable cluster is not currently supported and will result in an error; specify the desired durability at create time. The resolved state is returned in EffectiveDurability."
+      },
+      "EffectiveDurability": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The resolved durability state of the replication group after resolving the default value. This is a read-only property."
+      },
+      "Engine": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The name of the cache engine to be used for the clusters in this replication group."
+      },
+      "EngineVersion": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 4,
+        "description": "The version number of the cache engine to be used for the clusters in this replication group. To view the supported cache engine versions, use the DescribeCacheEngineVersions operation."
+      },
+      "GlobalReplicationGroupId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The name of the Global datastore"
+      },
+      "IpDiscovery": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The network type you choose when creating a replication group, either ipv4 | ipv6. IPv6 is supported for workloads using Redis OSS engine version 6.2 onward or Memcached engine version 1.6.6 on all instances built on the Nitro system."
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 4,
+        "description": "The ID of the KMS key used to encrypt the disk on the cluster."
+      },
+      "LogDeliveryConfigurations": {
+        "type": {
+          "$ref": "#/49"
+        },
+        "flags": 0,
+        "description": "Specifies the destination, format and type of the logs."
+      },
+      "MultiAZEnabled": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "A flag indicating if you have Multi-AZ enabled to enhance fault tolerance. For more information, see Minimizing Downtime: Multi-AZ."
+      },
+      "NetworkType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Must be either ipv4 | ipv6 | dual_stack. IPv6 is supported for workloads using Redis OSS engine version 6.2 onward or Memcached engine version 1.6.6 on all instances built on the Nitro system"
+      },
+      "NodeGroupConfiguration": {
+        "type": {
+          "$ref": "#/50"
+        },
+        "flags": 4,
+        "description": "NodeGroupConfiguration is a property of the AWS::ElastiCache::ReplicationGroup resource that configures an Amazon ElastiCache (ElastiCache) Redis cluster node group."
+      },
+      "NotificationTopicArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 4,
+        "description": "The Amazon Resource Name (ARN) of the Amazon Simple Notification Service (SNS) topic to which notifications are sent."
+      },
+      "NumCacheClusters": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "The number of clusters this replication group initially has.This parameter is not used if there is more than one node group (shard). You should use ReplicasPerNodeGroup instead."
+      },
+      "NumNodeGroups": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 4,
+        "description": "An optional parameter that specifies the number of node groups (shards) for this Redis (cluster mode enabled) replication group. For Redis (cluster mode disabled) either omit this parameter or set it to 1."
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "The port number on which each member of the replication group accepts connections."
+      },
+      "PreferredCacheClusterAZs": {
+        "type": {
+          "$ref": "#/51"
+        },
+        "flags": 4,
+        "description": "A list of EC2 Availability Zones in which the replication group's clusters are created. The order of the Availability Zones in the list is the order in which clusters are allocated. The primary cluster is created in the first AZ in the list. This parameter is not used if there is more than one node group (shard). You should use NodeGroupConfiguration instead."
+      },
+      "PreferredMaintenanceWindow": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 4,
+        "description": "Specifies the weekly time range during which maintenance on the cluster is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period."
+      },
+      "PrimaryClusterId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 4,
+        "description": "The identifier of the cluster that serves as the primary for this replication group. This cluster must already exist and have a status of available."
+      },
+      "PrimaryEndPoint": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 2,
+        "description": "The primary endpoint configuration"
+      },
+      "ReadEndPoint": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 2
+      },
+      "ReaderEndPoint": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 2,
+        "description": "The endpoint of the reader node in the replication group."
+      },
+      "ReplicasPerNodeGroup": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "An optional parameter that specifies the number of replica nodes in each node group (shard). Valid values are 0 to 5.\n\n**Note:** Using ReplicasPerNodeGroup with NodeGroupConfiguration results in resource replacement. For online scaling, use ReplicasPerNodeGroup alone."
+      },
+      "ReplicationGroupDescription": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "A user-created description for the replication group."
+      },
+      "ReplicationGroupId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 16,
+        "description": "The replication group identifier. This parameter is stored as a lowercase string."
+      },
+      "SecurityGroupIds": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 4,
+        "description": "One or more Amazon VPC security groups associated with this replication group."
+      },
+      "SnapshotArns": {
+        "type": {
+          "$ref": "#/56"
+        },
+        "flags": 4,
+        "description": "A list of Amazon Resource Names (ARN) that uniquely identify the Redis RDB snapshot files stored in Amazon S3."
+      },
+      "SnapshotName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 4,
+        "description": "The name of a snapshot from which to restore data into the new replication group. The snapshot status changes to restoring while the new replication group is being created."
+      },
+      "SnapshotRetentionLimit": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "The number of days for which ElastiCache retains automatic snapshots before deleting them. For example, if you set SnapshotRetentionLimit to 5, a snapshot that was taken today is retained for 5 days before being deleted."
+      },
+      "SnapshotWindow": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The daily time range (in UTC) during which ElastiCache begins taking a daily snapshot of your node group (shard)."
+      },
+      "SnapshottingClusterId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The cluster ID that is used as the daily snapshot source for the replication group. This parameter cannot be set for Redis (cluster mode enabled) replication groups."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/57"
+        },
+        "flags": 0,
+        "description": "A list of cost allocation tags to be added to this resource. Tags are comma-separated key,value pairs (e.g. Key=myKey, Value=myKeyValue. You can include multiple tags as shown following: Key=myKey, Value=myKeyValue Key=mySecondKey, Value=mySecondKeyValue."
+      },
+      "TransitEncryptionEnabled": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "A flag that enables in-transit encryption when set to true."
+      },
+      "TransitEncryptionMode": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "A setting that allows you to migrate your clients to use in-transit encryption, with no downtime. When setting TransitEncryptionEnabled to true, you can set your TransitEncryptionMode to preferred in the same request, to allow both encrypted and unencrypted connections at the same time. Once you migrate all your Redis OSS clients to use encrypted connections you can modify the value to required to allow encrypted connections only. Setting TransitEncryptionMode to required is a two-step process that requires you to first set the TransitEncryptionMode to preferred, after that you can set TransitEncryptionMode to required. This process will not trigger the replacement of the replication group."
+      },
+      "UserGroupIds": {
+        "type": {
+          "$ref": "#/58"
+        },
+        "flags": 0,
+        "description": "The ID of user group to associate with the replication group."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ElastiCache/ReplicationGroup",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/59"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ElastiCache/ReplicationGroup@default",
+    "body": {
+      "$ref": "#/60"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CacheUsageLimits",
+    "properties": {
+      "DataStorage": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 0
+      },
+      "ECPUPerSecond": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectionType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "DataStorage",
     "properties": {
       "Maximum": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "The maximum cached data capacity of the Serverless Cache."
       },
       "Minimum": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "The minimum cached data capacity of the Serverless Cache."
       },
       "Unit": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 1,
         "description": "The unit of cached data capacity of the Serverless Cache."
@@ -397,14 +1447,14 @@
     "properties": {
       "Maximum": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "The maximum ECPU per second of the Serverless Cache."
       },
       "Minimum": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "The minimum ECPU per second of the Serverless Cache."
@@ -417,14 +1467,14 @@
     "properties": {
       "Address": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 2,
         "description": "Endpoint address."
       },
       "Port": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 2,
         "description": "Endpoint port."
@@ -433,18 +1483,23 @@
   },
   {
     "$type": "ObjectType",
+    "name": "NetworkType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "Tag",
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with 'aws:'. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -458,25 +1513,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/6"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/6"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/6"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/68"
     }
   },
   {
@@ -485,137 +1540,149 @@
     "properties": {
       "ARN": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 2,
         "description": "The ARN of the Serverless Cache."
       },
       "CacheUsageLimits": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/62"
+        },
+        "flags": 0
+      },
+      "ConnectionType": {
+        "type": {
+          "$ref": "#/6"
         },
         "flags": 0
       },
       "CreateTime": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 2,
         "description": "The creation time of the Serverless Cache."
       },
       "DailySnapshotTime": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The daily time range (in UTC) during which the service takes automatic snapshot of the Serverless Cache."
       },
       "Description": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The description of the Serverless Cache."
       },
       "Endpoint": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/66"
         },
         "flags": 0
       },
       "Engine": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 1,
         "description": "The engine name of the Serverless Cache."
       },
       "FinalSnapshotName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 4,
         "description": "The final snapshot name which is taken before Serverless Cache is deleted."
       },
       "FullEngineVersion": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 2,
         "description": "The full engine version of the Serverless Cache."
       },
       "KmsKeyId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The ID of the KMS key used to encrypt the cluster."
       },
       "MajorEngineVersion": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The major engine version of the Serverless Cache."
       },
+      "NetworkType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
       "ReaderEndpoint": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/66"
         },
         "flags": 0
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/70"
         },
         "flags": 0,
         "description": "One or more Amazon VPC security groups associated with this Serverless Cache."
       },
       "ServerlessCacheName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 17,
         "description": "The name of the Serverless Cache. This value must be unique."
       },
       "SnapshotArnsToRestore": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/71"
         },
         "flags": 4,
         "description": "The ARN's of snapshot to restore Serverless Cache."
       },
       "SnapshotRetentionLimit": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "The snapshot retention limit of the Serverless Cache."
       },
       "Status": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 2,
         "description": "The status of the Serverless Cache."
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/72"
         },
         "flags": 0,
         "description": "The subnet id's of the Serverless Cache."
       },
       "Tags": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/73"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this Serverless Cache."
       },
       "UserGroupId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The ID of the user group."
@@ -628,21 +1695,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/74"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -652,11 +1719,38 @@
   {
     "$type": "ResourceType",
     "name": "AWS.ElastiCache/ServerlessCache@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/32"
+      "$ref": "#/75"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServerlessCacheConfiguration",
+    "properties": {
+      "Engine": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The engine that the serverless cache is configured with."
+      },
+      "MajorEngineVersion": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The engine version number that the serverless cache is configured with."
+      },
+      "ServerlessCacheName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The identifier of the serverless cache."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -664,13 +1758,477 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The key for the tag. May not be null."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The tag's value. May be null."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ElastiCache/ServerlessCacheSnapshotProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/78"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ElastiCache/ServerlessCacheSnapshotProperties",
+    "properties": {
+      "ARN": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the serverless cache snapshot."
+      },
+      "BytesUsedForCache": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The total size of the serverless cache snapshot, in bytes."
+      },
+      "CreateTime": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The date and time that the source serverless cache's metadata and cache data set was obtained for the snapshot."
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the AWS KMS key used to encrypt the snapshot. Provide the key ARN: the resource returns the key ARN on read, so supplying a bare key ID or alias for this createOnly property may be reported as drift by CloudFormation."
+      },
+      "ServerlessCacheConfiguration": {
+        "type": {
+          "$ref": "#/77"
+        },
+        "flags": 2,
+        "description": "The configuration of the serverless cache, at the time the snapshot was taken."
+      },
+      "ServerlessCacheName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The name of an existing serverless cache. The snapshot is created from this cache."
+      },
+      "ServerlessCacheSnapshotName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The name of the serverless cache snapshot. Must be unique for the customer account. This value is stored as a lowercase string."
+      },
+      "SnapshotType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The type of snapshot of the serverless cache."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The current status of the serverless cache snapshot."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 0,
+        "description": "A list of tags to be added to the serverless cache snapshot resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ElastiCache/ServerlessCacheSnapshot",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/81"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ElastiCache/ServerlessCacheSnapshot@default",
+    "body": {
+      "$ref": "#/82"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NodeSnapshot",
+    "properties": {
+      "CacheClusterId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "A unique identifier for the source cluster."
+      },
+      "CacheNodeCreateTime": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The date and time when the cache node was created in the source cluster."
+      },
+      "CacheNodeId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The cache node identifier for the node in the source cluster."
+      },
+      "CacheSize": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The size of the cache on the source cache node."
+      },
+      "NodeGroupId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "A unique identifier for the source node group (shard)."
+      },
+      "SnapshotCreateTime": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The date and time when the source node's metadata and cache data set was obtained for the snapshot."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ElastiCache/SnapshotProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/84"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/85"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ElastiCache/SnapshotProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 18,
+        "description": "The ARN (Amazon Resource Name) of the snapshot."
+      },
+      "AutoMinorVersionUpgrade": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2,
+        "description": "If true, opt-in to the next auto minor version upgrade campaign."
+      },
+      "AutomaticFailover": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "Indicates the status of automatic failover for the source replication group."
+      },
+      "CacheClusterCreateTime": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The date and time when the source cluster was created."
+      },
+      "CacheClusterId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The identifier of an existing cluster to create a snapshot from. The snapshot is created from this cluster."
+      },
+      "CacheNodeType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The name of the compute and memory capacity node type for the source cluster."
+      },
+      "CacheParameterGroupName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The cache parameter group that is associated with the source cluster."
+      },
+      "CacheSubnetGroupName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The name of the cache subnet group associated with the source cluster."
+      },
+      "DataTiering": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "Enables data tiering. Data tiering is only supported for replication groups using the r6gd node type."
+      },
+      "Engine": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The name of the cache engine used by the source cluster."
+      },
+      "EngineVersion": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The version of the cache engine version used by the source cluster."
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The ID of the KMS key used to encrypt the snapshot."
+      },
+      "NodeSnapshots": {
+        "type": {
+          "$ref": "#/87"
+        },
+        "flags": 2,
+        "description": "A list of the cache nodes in the source cluster."
+      },
+      "NumCacheNodes": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 2,
+        "description": "The number of cache nodes in the source cluster."
+      },
+      "NumNodeGroups": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 2,
+        "description": "The number of node groups (shards) in this snapshot."
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 2,
+        "description": "The port number used by each cache nodes in the source cluster."
+      },
+      "PreferredAvailabilityZone": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The name of the Availability Zone in which the source cluster is located."
+      },
+      "PreferredMaintenanceWindow": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "Specifies the weekly time range during which maintenance on the cluster is performed."
+      },
+      "ReplicationGroupDescription": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "A description of the source replication group."
+      },
+      "ReplicationGroupId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The identifier of an existing replication group to create a snapshot from. The snapshot is created from this replication group."
+      },
+      "SnapshotName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The name of a snapshot. Must be unique within the customer account."
+      },
+      "SnapshotRetentionLimit": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 2,
+        "description": "For an automatic snapshot, the number of days for which ElastiCache retains the snapshot before deleting it."
+      },
+      "SnapshotSource": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "Indicates whether the snapshot is from an automatic backup (automated) or was created manually (manual)."
+      },
+      "SnapshotStatus": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The status of the snapshot. Valid values: creating | available | restoring | copying | deleting | failed | deleted."
+      },
+      "SnapshotWindow": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The daily time range during which ElastiCache takes daily snapshots of the source cluster."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/88"
+        },
+        "flags": 0,
+        "description": "A list of tags to be added to this resource."
+      },
+      "TopicArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) for the topic used by the source cluster for publishing notifications."
+      },
+      "VpcId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The Amazon Virtual Private Cloud identifier (VPC ID) of the cache subnet group for the source cluster."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ElastiCache/Snapshot",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/89"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ElastiCache/Snapshot@default",
+    "body": {
+      "$ref": "#/90"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 1
       }
@@ -683,13 +2241,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/6"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/34"
+      "$ref": "#/92"
     }
   },
   {
@@ -698,28 +2256,28 @@
     "properties": {
       "CacheSubnetGroupName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 16,
         "description": "The name for the cache subnet group. This value is stored as a lowercase string."
       },
       "Description": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 1,
         "description": "The description for the cache subnet group."
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/94"
         },
         "flags": 1,
         "description": "The EC2 subnet IDs for the cache subnet group."
       },
       "Tags": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/95"
         },
         "flags": 0
       }
@@ -731,21 +2289,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/96"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -755,11 +2313,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.ElastiCache/SubnetGroup@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/39"
+      "$ref": "#/97"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -767,14 +2325,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with 'aws:'. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -788,7 +2346,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/6"
     }
   },
   {
@@ -797,14 +2355,14 @@
     "properties": {
       "Passwords": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/101"
         },
         "flags": 0,
         "description": "Passwords used for this user account. You can create up to two passwords for each user."
       },
       "Type": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 1,
         "description": "Authentication Type"
@@ -814,13 +2372,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/6"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/41"
+      "$ref": "#/99"
     }
   },
   {
@@ -829,69 +2387,69 @@
     "properties": {
       "AccessString": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 4,
         "description": "Access permissions string used for this user account."
       },
       "Arn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 2,
         "description": "The Amazon Resource Name (ARN) of the user account."
       },
       "AuthenticationMode": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/102"
         },
         "flags": 4
       },
       "Engine": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 1,
         "description": "The target cache engine for the user."
       },
       "NoPasswordRequired": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/8"
         },
         "flags": 4,
         "description": "Indicates a password is not required for this user account."
       },
       "Passwords": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/103"
         },
         "flags": 4,
         "description": "Passwords used for this user account. You can create up to two passwords for each user."
       },
       "Status": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 2,
         "description": "Indicates the user status. Can be \"active\", \"modifying\" or \"deleting\"."
       },
       "Tags": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/104"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this user."
       },
       "UserId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 17,
         "description": "The ID of the user."
       },
       "UserName": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 1,
         "description": "The username of the user."
@@ -904,21 +2462,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/105"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -928,11 +2486,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.ElastiCache/User@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/48"
+      "$ref": "#/106"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -940,14 +2498,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with 'aws:'. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -961,13 +2519,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/50"
+      "$ref": "#/108"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/6"
     }
   },
   {
@@ -976,42 +2534,42 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 2,
         "description": "The Amazon Resource Name (ARN) of the user account."
       },
       "Engine": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 1,
         "description": "The target cache engine for the user group."
       },
       "Status": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 2,
         "description": "Indicates user group status. Can be \"creating\", \"active\", \"modifying\", \"deleting\"."
       },
       "Tags": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/110"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this user."
       },
       "UserGroupId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 17,
         "description": "The ID of the user group."
       },
       "UserIds": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/111"
         },
         "flags": 1,
         "description": "List of users associated to this user group."
@@ -1024,21 +2582,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/6"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/112"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1048,10 +2606,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.ElastiCache/UserGroup@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/55"
+      "$ref": "#/113"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

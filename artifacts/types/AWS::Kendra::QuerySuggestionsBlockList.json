@@ -1,0 +1,202 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Kendra-QuerySuggestionsBlockList",
+  "type": "AWS::Kendra::QuerySuggestionsBlockList",
+  "time": "2026-10-21T22:51:37.227Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/IndexId",
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/IndexId"
+    ],
+    "definitions": {
+      "S3Path": {
+        "additionalProperties": false,
+        "description": "Information required to find a specific file in an Amazon S3 bucket.",
+        "properties": {
+          "Bucket": {
+            "description": "The name of the S3 bucket that contains the file.",
+            "maxLength": 63,
+            "minLength": 3,
+            "pattern": "^[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]$",
+            "type": "string"
+          },
+          "Key": {
+            "description": "The name of the file.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Bucket",
+          "Key"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair that identifies or categorizes a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key for the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value associated with the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "A block list used for query suggestions for an Amazon Kendra index. A block list contains words or phrases that should not appear as query suggestions.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "kendra:CreateQuerySuggestionsBlockList",
+          "kendra:DescribeQuerySuggestionsBlockList",
+          "kendra:TagResource",
+          "iam:PassRole",
+          "s3:GetObject"
+        ],
+        "timeoutInMinutes": 780
+      },
+      "delete": {
+        "permissions": [
+          "kendra:DeleteQuerySuggestionsBlockList",
+          "kendra:DescribeQuerySuggestionsBlockList",
+          "kendra:ListTagsForResource"
+        ],
+        "timeoutInMinutes": 780
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "IndexId": {
+              "maxLength": 36,
+              "minLength": 36,
+              "pattern": "^[a-zA-Z0-9][a-zA-Z0-9-]*$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "IndexId"
+          ]
+        },
+        "permissions": [
+          "kendra:ListQuerySuggestionsBlockLists"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "kendra:DescribeQuerySuggestionsBlockList",
+          "kendra:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "kendra:UpdateQuerySuggestionsBlockList",
+          "kendra:DescribeQuerySuggestionsBlockList",
+          "kendra:TagResource",
+          "kendra:UntagResource",
+          "kendra:ListTagsForResource",
+          "iam:PassRole",
+          "s3:GetObject"
+        ],
+        "timeoutInMinutes": 780
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the query suggestions block list.",
+        "type": "string"
+      },
+      "Description": {
+        "description": "A description for the block list.",
+        "maxLength": 1000,
+        "minLength": 0,
+        "pattern": "^\\P{C}*$",
+        "type": "string"
+      },
+      "Id": {
+        "description": "The identifier of the block list.",
+        "maxLength": 36,
+        "minLength": 36,
+        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9-]*$",
+        "type": "string"
+      },
+      "IndexId": {
+        "description": "The identifier of the index for the block list.",
+        "maxLength": 36,
+        "minLength": 36,
+        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9-]*$",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the block list.",
+        "maxLength": 100,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9])*$",
+        "type": "string"
+      },
+      "RoleArn": {
+        "description": "The Amazon Resource Name (ARN) of an IAM role with permission to access the S3 bucket that contains the block list text file.",
+        "maxLength": 1284,
+        "minLength": 0,
+        "pattern": "^arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}$",
+        "type": "string"
+      },
+      "SourceS3Path": {
+        "$ref": "#/definitions/S3Path"
+      },
+      "Tags": {
+        "description": "A list of key-value pairs that identify or categorize the block list.",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "minItems": 0,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Id"
+    ],
+    "required": [
+      "IndexId",
+      "Name",
+      "SourceS3Path",
+      "RoleArn"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "kendra:TagResource",
+        "kendra:UntagResource",
+        "kendra:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Kendra::QuerySuggestionsBlockList"
+  }
+}

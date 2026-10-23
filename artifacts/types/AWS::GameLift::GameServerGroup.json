@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-GameLift-GameServerGroup",
   "type": "AWS::GameLift::GameServerGroup",
-  "time": "2024-12-19T21:17:41.733Z",
+  "time": "2026-10-19T17:12:51.626Z",
   "schema": {
     "$schema": "https://schema.cloudformation.us-east-1.amazonaws.com/provider.definition.schema.v1.json",
     "additionalProperties": false,
@@ -238,7 +238,7 @@
         "type": "object"
       },
       "Tags": {
-        "description": "A list of labels to assign to the new game server group resource. Updating game server group tags with CloudFormation will not take effect. Please update this property using AWS GameLift APIs instead.",
+        "description": "A list of labels to assign to the new game server group resource.",
         "insertionOrder": false,
         "items": {
           "$ref": "#/definitions/Tag"
@@ -292,6 +292,7 @@
       "create": {
         "permissions": [
           "gamelift:CreateGameServerGroup",
+          "gamelift:ListTagsForResource",
           "gamelift:TagResource",
           "gamelift:DescribeGameServerGroup",
           "iam:assumeRole",
@@ -350,12 +351,17 @@
       },
       "read": {
         "permissions": [
-          "gamelift:DescribeGameServerGroup"
+          "gamelift:DescribeGameServerGroup",
+          "gamelift:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
           "gamelift:UpdateGameServerGroup",
+          "gamelift:DescribeGameServerGroup",
+          "gamelift:TagResource",
+          "gamelift:UntagResource",
+          "gamelift:ListTagsForResource",
           "iam:assumeRole",
           "iam:PassRole",
           "autoscaling:DescribeAutoScalingGroups",
@@ -435,7 +441,18 @@
       "RoleArn"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-gamelift.git",
-    "taggable": true,
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "gamelift:ListTagsForResource",
+        "gamelift:TagResource",
+        "gamelift:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::GameLift::GameServerGroup",
     "writeOnlyProperties": [
       "/properties/DeleteOption",
@@ -443,8 +460,7 @@
       "/properties/MinSize",
       "/properties/MaxSize",
       "/properties/AutoScalingPolicy",
-      "/properties/VpcSubnets",
-      "/properties/Tags"
+      "/properties/VpcSubnets"
     ]
   }
 }

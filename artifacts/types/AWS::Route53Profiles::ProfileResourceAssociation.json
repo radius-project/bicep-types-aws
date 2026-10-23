@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Route53Profiles-ProfileResourceAssociation",
   "type": "AWS::Route53Profiles::ProfileResourceAssociation",
-  "time": "2025-01-16T19:26:06.471Z",
+  "time": "2026-10-11T14:04:25.182Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -15,16 +15,23 @@
         "permissions": [
           "route53profiles:AssociateResourceToProfile",
           "route53profiles:GetProfileResourceAssociation",
-          "route53resolver:*",
-          "route53:*"
+          "route53resolver:GetFirewallRuleGroup",
+          "route53resolver:GetResolverRule",
+          "route53:GetHostedZone",
+          "route53profiles:ListProfileResourceAssociations",
+          "route53resolver:GetResolverQueryLogConfig",
+          "ec2:DescribeVpcEndpoints"
         ]
       },
       "delete": {
         "permissions": [
           "route53profiles:DisassociateResourceFromProfile",
           "route53profiles:GetProfileResourceAssociation",
-          "route53resolver:*",
-          "route53:*"
+          "route53resolver:GetFirewallRuleGroup",
+          "route53resolver:GetResolverRule",
+          "route53:GetHostedZone",
+          "route53resolver:GetResolverQueryLogConfig",
+          "ec2:DescribeVpcEndpoints"
         ]
       },
       "list": {
@@ -39,24 +46,18 @@
           ]
         },
         "permissions": [
-          "route53profiles:ListProfileResourceAssociations",
-          "route53resolver:*",
-          "route53:*"
+          "route53profiles:ListProfileResourceAssociations"
         ]
       },
       "read": {
         "permissions": [
-          "route53profiles:GetProfileResourceAssociation",
-          "route53resolver:*",
-          "route53:*"
+          "route53profiles:GetProfileResourceAssociation"
         ]
       },
       "update": {
         "permissions": [
           "route53profiles:UpdateProfileResourceAssociation",
-          "route53profiles:GetProfileResourceAssociation",
-          "route53resolver:*",
-          "route53:*"
+          "route53profiles:GetProfileResourceAssociation"
         ]
       }
     },

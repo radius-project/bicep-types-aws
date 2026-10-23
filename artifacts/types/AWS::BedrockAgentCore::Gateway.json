@@ -1,0 +1,764 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-BedrockAgentCore-Gateway",
+  "type": "AWS::BedrockAgentCore::Gateway",
+  "time": "2026-09-24T19:23:51.08Z",
+  "schema": {
+    "additionalProperties": false,
+    "definitions": {
+      "AdvertisedScopeMappingType": {
+        "additionalProperties": false,
+        "description": "Maps an originalScope (from allowedScopes) to an advertisedScope\nexposed in WWW-Authenticate / Protected Resource Metadata.",
+        "maxProperties": 50,
+        "minProperties": 1,
+        "patternProperties": {
+          "^[\\x21\\x23-\\x5B\\x5D-\\x7E]+$": {
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": "^[\\x21\\x23-\\x5B\\x5D-\\x7E]+$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "AuthorizerConfiguration": {
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "CustomJWTAuthorizer": {
+                "$ref": "#/definitions/CustomJWTAuthorizerConfiguration"
+              }
+            },
+            "required": [
+              "CustomJWTAuthorizer"
+            ],
+            "title": "CustomJWTAuthorizer",
+            "type": "object"
+          }
+        ]
+      },
+      "AuthorizerType": {
+        "enum": [
+          "CUSTOM_JWT",
+          "AWS_IAM",
+          "NONE",
+          "AUTHENTICATE_ONLY"
+        ],
+        "type": "string"
+      },
+      "AuthorizingClaimMatchValueType": {
+        "additionalProperties": false,
+        "properties": {
+          "ClaimMatchOperator": {
+            "$ref": "#/definitions/ClaimMatchOperatorType"
+          },
+          "ClaimMatchValue": {
+            "$ref": "#/definitions/ClaimMatchValueType"
+          }
+        },
+        "required": [
+          "ClaimMatchOperator",
+          "ClaimMatchValue"
+        ],
+        "type": "object"
+      },
+      "ClaimMatchOperatorType": {
+        "enum": [
+          "EQUALS",
+          "CONTAINS",
+          "CONTAINS_ANY"
+        ],
+        "type": "string"
+      },
+      "ClaimMatchValueType": {
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "MatchValueString": {
+                "maxLength": 255,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.:/-]+$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "MatchValueString"
+            ],
+            "title": "MatchValueString",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "MatchValueStringList": {
+                "items": {
+                  "maxLength": 255,
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.:/-]+$",
+                  "type": "string"
+                },
+                "minItems": 1,
+                "type": "array"
+              }
+            },
+            "required": [
+              "MatchValueStringList"
+            ],
+            "title": "MatchValueStringList",
+            "type": "object"
+          }
+        ]
+      },
+      "CustomClaimValidationType": {
+        "additionalProperties": false,
+        "properties": {
+          "AuthorizingClaimMatchValue": {
+            "$ref": "#/definitions/AuthorizingClaimMatchValueType"
+          },
+          "InboundTokenClaimName": {
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.:-]+$",
+            "type": "string"
+          },
+          "InboundTokenClaimValueType": {
+            "$ref": "#/definitions/InboundTokenClaimValueType"
+          }
+        },
+        "required": [
+          "AuthorizingClaimMatchValue",
+          "InboundTokenClaimName",
+          "InboundTokenClaimValueType"
+        ],
+        "type": "object"
+      },
+      "CustomJWTAuthorizerConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "AdvertisedScopeMapping": {
+            "$ref": "#/definitions/AdvertisedScopeMappingType"
+          },
+          "AllowedAudience": {
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "AllowedClients": {
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "AllowedScopes": {
+            "items": {
+              "maxLength": 255,
+              "minLength": 1,
+              "pattern": "^[\\x21\\x23-\\x5B\\x5D-\\x7E]+$",
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "CustomClaims": {
+            "items": {
+              "$ref": "#/definitions/CustomClaimValidationType"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "DiscoveryUrl": {
+            "pattern": "^.+/\\.well-known/openid-configuration$",
+            "type": "string"
+          },
+          "PrivateEndpoint": {
+            "$ref": "#/definitions/PrivateEndpoint"
+          }
+        },
+        "required": [
+          "DiscoveryUrl"
+        ],
+        "type": "object"
+      },
+      "EndpointIpAddressType": {
+        "enum": [
+          "IPV4",
+          "IPV6"
+        ],
+        "type": "string"
+      },
+      "ExceptionLevel": {
+        "enum": [
+          "DEBUG"
+        ],
+        "type": "string"
+      },
+      "GatewayInterceptionPoint": {
+        "enum": [
+          "REQUEST",
+          "RESPONSE"
+        ],
+        "type": "string"
+      },
+      "GatewayInterceptorConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "InputConfiguration": {
+            "$ref": "#/definitions/InterceptorInputConfiguration"
+          },
+          "InterceptionPoints": {
+            "items": {
+              "$ref": "#/definitions/GatewayInterceptionPoint"
+            },
+            "maxItems": 2,
+            "minItems": 1,
+            "type": "array"
+          },
+          "Interceptor": {
+            "$ref": "#/definitions/InterceptorConfiguration"
+          }
+        },
+        "required": [
+          "InterceptionPoints",
+          "Interceptor"
+        ],
+        "type": "object"
+      },
+      "GatewayPolicyEngineConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "Arn": {
+            "maxLength": 170,
+            "minLength": 1,
+            "pattern": "^arn:aws:bedrock-agentcore:[a-z0-9-]+:[0-9]{12}:policy-engine\\/[a-zA-Z][a-zA-Z0-9-_]{0,99}-[a-zA-Z0-9_]{10}$",
+            "type": "string"
+          },
+          "Mode": {
+            "$ref": "#/definitions/GatewayPolicyEngineMode"
+          }
+        },
+        "required": [
+          "Arn",
+          "Mode"
+        ],
+        "type": "object"
+      },
+      "GatewayPolicyEngineMode": {
+        "enum": [
+          "LOG_ONLY",
+          "ENFORCE"
+        ],
+        "type": "string"
+      },
+      "GatewayProtocolConfiguration": {
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Mcp": {
+                "$ref": "#/definitions/MCPGatewayConfiguration"
+              }
+            },
+            "required": [
+              "Mcp"
+            ],
+            "title": "Mcp",
+            "type": "object"
+          }
+        ]
+      },
+      "GatewayProtocolType": {
+        "enum": [
+          "MCP"
+        ],
+        "type": "string"
+      },
+      "GatewayStatus": {
+        "enum": [
+          "CREATING",
+          "UPDATING",
+          "UPDATE_UNSUCCESSFUL",
+          "DELETING",
+          "READY",
+          "FAILED"
+        ],
+        "type": "string"
+      },
+      "InboundTokenClaimValueType": {
+        "enum": [
+          "STRING",
+          "STRING_ARRAY"
+        ],
+        "type": "string"
+      },
+      "InterceptorConfiguration": {
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Lambda": {
+                "$ref": "#/definitions/LambdaInterceptorConfiguration"
+              }
+            },
+            "required": [
+              "Lambda"
+            ],
+            "title": "Lambda",
+            "type": "object"
+          }
+        ]
+      },
+      "InterceptorInputConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "PassRequestHeaders": {
+            "type": "boolean"
+          },
+          "PayloadFilter": {
+            "$ref": "#/definitions/InterceptorPayloadFilter"
+          }
+        },
+        "required": [
+          "PassRequestHeaders"
+        ],
+        "type": "object"
+      },
+      "InterceptorPayloadExclusion": {
+        "enum": [
+          "RESPONSE_BODY"
+        ],
+        "type": "string"
+      },
+      "InterceptorPayloadExclusionSelector": {
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Field": {
+                "$ref": "#/definitions/InterceptorPayloadExclusion"
+              }
+            },
+            "required": [
+              "Field"
+            ],
+            "title": "Field",
+            "type": "object"
+          }
+        ]
+      },
+      "InterceptorPayloadFilter": {
+        "additionalProperties": false,
+        "properties": {
+          "Exclude": {
+            "items": {
+              "$ref": "#/definitions/InterceptorPayloadExclusionSelector"
+            },
+            "maxItems": 1,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "Exclude"
+        ],
+        "type": "object"
+      },
+      "LambdaInterceptorConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "Arn": {
+            "maxLength": 170,
+            "minLength": 1,
+            "pattern": "^arn:(aws[a-zA-Z-]*)?:lambda:([a-z]{2}(-gov)?-[a-z]+-\\d{1}):(\\d{12}):function:([a-zA-Z0-9-_.]+)(:(\\$LATEST|[a-zA-Z0-9-_]+))?$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Arn"
+        ],
+        "type": "object"
+      },
+      "MCPGatewayConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "Instructions": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "type": "string"
+          },
+          "SearchType": {
+            "$ref": "#/definitions/SearchType"
+          },
+          "SessionConfiguration": {
+            "$ref": "#/definitions/SessionConfiguration"
+          },
+          "StreamingConfiguration": {
+            "$ref": "#/definitions/StreamingConfiguration"
+          },
+          "SupportedVersions": {
+            "items": {
+              "default": "2025-03-26",
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "ManagedVpcResource": {
+        "additionalProperties": false,
+        "properties": {
+          "EndpointIpAddressType": {
+            "$ref": "#/definitions/EndpointIpAddressType"
+          },
+          "RoutingDomain": {
+            "maxLength": 255,
+            "minLength": 3,
+            "type": "string"
+          },
+          "SecurityGroupIds": {
+            "items": {
+              "pattern": "^sg-(([0-9a-z]{8})|([0-9a-z]{17}))$",
+              "type": "string"
+            },
+            "maxItems": 5,
+            "minItems": 0,
+            "type": "array"
+          },
+          "SubnetIds": {
+            "items": {
+              "pattern": "^subnet-[0-9a-zA-Z]{8,17}$",
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "Tags": {
+            "$ref": "#/definitions/TagsMap"
+          },
+          "VpcIdentifier": {
+            "pattern": "^vpc-(([0-9a-z]{8})|([0-9a-z]{17}))$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "EndpointIpAddressType",
+          "SubnetIds",
+          "VpcIdentifier"
+        ],
+        "type": "object"
+      },
+      "PrivateEndpoint": {
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "SelfManagedLatticeResource": {
+                "$ref": "#/definitions/SelfManagedLatticeResource"
+              }
+            },
+            "required": [
+              "SelfManagedLatticeResource"
+            ],
+            "title": "SelfManagedLatticeResource",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "ManagedVpcResource": {
+                "$ref": "#/definitions/ManagedVpcResource"
+              }
+            },
+            "required": [
+              "ManagedVpcResource"
+            ],
+            "title": "ManagedVpcResource",
+            "type": "object"
+          }
+        ]
+      },
+      "SearchType": {
+        "enum": [
+          "SEMANTIC"
+        ],
+        "type": "string"
+      },
+      "SelfManagedLatticeResource": {
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "ResourceConfigurationIdentifier": {
+                "maxLength": 2048,
+                "minLength": 20,
+                "pattern": "^((rcfg-[0-9a-z]{17})|(arn:[a-z0-9\\-]+:vpc-lattice:[a-zA-Z0-9\\-]+:\\d{12}:resourceconfiguration/rcfg-[0-9a-z]{17}))$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "ResourceConfigurationIdentifier"
+            ],
+            "title": "ResourceConfigurationIdentifier",
+            "type": "object"
+          }
+        ]
+      },
+      "SessionConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "SessionTimeoutInSeconds": {
+            "maximum": 28800,
+            "minimum": 900,
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "StreamingConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "EnableResponseStreaming": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "TagsMap": {
+        "additionalProperties": false,
+        "maxProperties": 50,
+        "minProperties": 0,
+        "patternProperties": {
+          "^[a-zA-Z0-9\\s._:/=+@-]*$": {
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9\\s._:/=+@-]*$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "WafConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "FailureMode": {
+            "$ref": "#/definitions/WafFailureMode"
+          }
+        },
+        "type": "object"
+      },
+      "WafFailureMode": {
+        "enum": [
+          "FAIL_CLOSE",
+          "FAIL_OPEN"
+        ],
+        "type": "string"
+      },
+      "WorkloadIdentityDetails": {
+        "additionalProperties": false,
+        "properties": {
+          "WorkloadIdentityArn": {
+            "maxLength": 1024,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "WorkloadIdentityArn"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Definition of AWS::BedrockAgentCore::Gateway Resource Type",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "bedrock-agentcore:CreateGateway",
+          "bedrock-agentcore:CreateWorkloadIdentity",
+          "bedrock-agentcore:DeleteWorkloadIdentity",
+          "bedrock-agentcore:GetGateway",
+          "bedrock-agentcore:ListTagsForResource",
+          "bedrock-agentcore:SynchronizeGatewayTargets",
+          "bedrock-agentcore:TagResource",
+          "iam:PassRole",
+          "kms:CreateGrant",
+          "kms:Decrypt",
+          "kms:DescribeKey",
+          "kms:GenerateDataKey"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "bedrock-agentcore:DeleteGateway",
+          "bedrock-agentcore:DeleteWorkloadIdentity",
+          "bedrock-agentcore:GetGateway"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "bedrock-agentcore:ListGateways"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "bedrock-agentcore:GetGateway",
+          "bedrock-agentcore:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "bedrock-agentcore:GetGateway",
+          "bedrock-agentcore:ListTagsForResource",
+          "bedrock-agentcore:TagResource",
+          "bedrock-agentcore:UntagResource",
+          "bedrock-agentcore:UpdateGateway",
+          "iam:PassRole",
+          "kms:Decrypt",
+          "kms:DescribeKey",
+          "kms:GenerateDataKey",
+          "kms:ListGrants"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/GatewayIdentifier"
+    ],
+    "properties": {
+      "AuthorizerConfiguration": {
+        "$ref": "#/definitions/AuthorizerConfiguration"
+      },
+      "AuthorizerType": {
+        "$ref": "#/definitions/AuthorizerType"
+      },
+      "CreatedAt": {
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "maxLength": 200,
+        "minLength": 1,
+        "type": "string"
+      },
+      "ExceptionLevel": {
+        "$ref": "#/definitions/ExceptionLevel"
+      },
+      "GatewayArn": {
+        "pattern": "^arn:aws(|-cn|-us-gov):bedrock-agentcore:[a-z0-9-]{1,20}:[0-9]{12}:gateway/([0-9a-z][-]?){1,48}-[a-z0-9]{10}$",
+        "type": "string"
+      },
+      "GatewayIdentifier": {
+        "pattern": "^([0-9a-z][-]?){1,100}-[0-9a-z]{10}$",
+        "type": "string"
+      },
+      "GatewayUrl": {
+        "maxLength": 1024,
+        "minLength": 1,
+        "type": "string"
+      },
+      "InterceptorConfigurations": {
+        "items": {
+          "$ref": "#/definitions/GatewayInterceptorConfiguration"
+        },
+        "maxItems": 2,
+        "minItems": 1,
+        "type": "array"
+      },
+      "KmsKeyArn": {
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:aws(|-cn|-us-gov):kms:[a-zA-Z0-9-]*:[0-9]{12}:key/[a-zA-Z0-9-]{36}$",
+        "type": "string"
+      },
+      "Name": {
+        "pattern": "^([0-9a-zA-Z][-]?){1,48}$",
+        "type": "string"
+      },
+      "PolicyEngineConfiguration": {
+        "$ref": "#/definitions/GatewayPolicyEngineConfiguration"
+      },
+      "ProtocolConfiguration": {
+        "$ref": "#/definitions/GatewayProtocolConfiguration"
+      },
+      "ProtocolType": {
+        "allOf": [
+          {
+            "$ref": "#/definitions/GatewayProtocolType"
+          },
+          {
+            "default": "MCP"
+          }
+        ]
+      },
+      "RoleArn": {
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:aws(-[^:]+)?:iam::([0-9]{12})?:role/.+$",
+        "type": "string"
+      },
+      "Status": {
+        "$ref": "#/definitions/GatewayStatus"
+      },
+      "StatusReasons": {
+        "items": {
+          "maxLength": 2048,
+          "type": "string"
+        },
+        "maxItems": 100,
+        "type": "array"
+      },
+      "Tags": {
+        "$ref": "#/definitions/TagsMap"
+      },
+      "UpdatedAt": {
+        "format": "date-time",
+        "type": "string"
+      },
+      "WafConfiguration": {
+        "$ref": "#/definitions/WafConfiguration"
+      },
+      "WebAclArn": {
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:[a-z0-9\\-]+:wafv2:[a-z0-9\\-]+:[0-9]{12}:regional/webacl/.+$",
+        "type": "string"
+      },
+      "WorkloadIdentityDetails": {
+        "$ref": "#/definitions/WorkloadIdentityDetails"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/CreatedAt",
+      "/properties/GatewayArn",
+      "/properties/GatewayIdentifier",
+      "/properties/GatewayUrl",
+      "/properties/Status",
+      "/properties/StatusReasons",
+      "/properties/UpdatedAt",
+      "/properties/WebAclArn",
+      "/properties/WorkloadIdentityDetails"
+    ],
+    "required": [
+      "AuthorizerType",
+      "Name",
+      "RoleArn"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "bedrock-agentcore:ListTagsForResource",
+        "bedrock-agentcore:TagResource",
+        "bedrock-agentcore:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::BedrockAgentCore::Gateway",
+    "writeOnlyProperties": [
+      "/properties/AuthorizerConfiguration/CustomJWTAuthorizer/PrivateEndpoint/ManagedVpcResource/Tags"
+    ]
+  }
+}

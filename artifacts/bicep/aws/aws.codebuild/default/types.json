@@ -9,6 +9,12 @@
         },
         "flags": 0
       },
+      "instanceType": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
       "machineType": {
         "type": {
           "$ref": "#/8"
@@ -317,10 +323,1254 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CodeBuild/Fleet@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/17"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Artifacts",
+    "properties": {
+      "ArtifactIdentifier": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "An identifier for this artifact definition."
+      },
+      "EncryptionDisabled": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0,
+        "description": "Set to true if you do not want your output artifacts encrypted. This option is valid only if your artifacts type is Amazon Simple Storage Service (Amazon S3). If this is set with another artifacts type, an `invalidInputException` is thrown."
+      },
+      "Location": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "Information about the build output artifact location:\n* If `type` is set to `CODEPIPELINE`, AWS CodePipeline ignores this value if specified. This is because CodePipeline manages its build output locations instead of CodeBuild.\n* If `type` is set to `NO_ARTIFACTS`, this value is ignored if specified, because no build output is produced.\n* If `type` is set to `S3`, this is the name of the output bucket.\nIf you specify `CODEPIPELINE` or `NO_ARTIFACTS` for the `Type` property, don't specify this property. For all of the other types, you must specify this property.\n"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 16
+      },
+      "NamespaceType": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "OverrideArtifactName": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
+      },
+      "Packaging": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "Path": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The type of build output artifact. Valid values include:\n* `CODEPIPELINE`: The build project has build output generated through CodePipeline.\n  The `CODEPIPELINE` type is not supported for `secondaryArtifacts`.\n* `NO_ARTIFACTS`: The build project does not produce any build output.\n* `S3`: The build project stores build output in Amazon S3.\n"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BatchRestrictions",
+    "properties": {
+      "ComputeTypesAllowed": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0
+      },
+      "FleetsAllowed": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0
+      },
+      "MaximumBuildsAllowed": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BuildStatusConfig",
+    "properties": {
+      "Context": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "TargetUrl": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CloudWatchLogsConfig",
+    "properties": {
+      "GroupName": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "StreamName": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DockerServer",
+    "properties": {
+      "ComputeType": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "Information about the compute resources the docker server uses. Valid Values: BUILD_GENERAL1_SMALL | BUILD_GENERAL1_MEDIUM | BUILD_GENERAL1_LARGE | BUILD_GENERAL1_XLARGE | BUILD_GENERAL1_2XLARGE | BUILD_LAMBDA_1GB | BUILD_LAMBDA_2GB | BUILD_LAMBDA_4GB | BUILD_LAMBDA_8GB | BUILD_LAMBDA_10GB | ATTRIBUTE_BASED_COMPUTE | CUSTOM_INSTANCE_TYPE"
+      },
+      "SecurityGroupIds": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 0,
+        "description": "A list of one or more security groups IDs."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Environment",
+    "properties": {
+      "Certificate": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "ComputeType": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "DockerServer": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "Contains docker server information."
+      },
+      "EnvironmentVariables": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 0
+      },
+      "Fleet": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 0
+      },
+      "HostKernel": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The kernel version of the host operating system for the build environment. Allowed values: LINUX_KERNEL_4 | LINUX_KERNEL_6 | LINUX_KERNEL_LATEST"
+      },
+      "Image": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "ImagePullCredentialsType": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "PrivilegedMode": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
+      },
+      "RegistryCredential": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EnvironmentVariable",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FilterGroup",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GitSubmodulesConfig",
+    "properties": {
+      "FetchSubmodules": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LogsConfig",
+    "properties": {
+      "CloudWatchLogs": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0
+      },
+      "S3Logs": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ProjectBuildBatchConfig",
+    "properties": {
+      "BatchReportMode": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "CombineArtifacts": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
+      },
+      "Restrictions": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      },
+      "ServiceRole": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "TimeoutInMins": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ProjectCache",
+    "properties": {
+      "CacheNamespace": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "Defines the scope of the cache. You can use this namespace to share a cache across multiple projects."
+      },
+      "Location": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "Modes": {
+        "type": {
+          "$ref": "#/50"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The type of cache used by the build project. Allowed values: NO_CACHE | S3 | LOCAL."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ProjectFileSystemLocation",
+    "properties": {
+      "Identifier": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "Location": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "MountOptions": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "MountPoint": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ProjectFleet",
+    "properties": {
+      "FleetArn": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ProjectSourceVersion",
+    "properties": {
+      "SourceIdentifier": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "SourceVersion": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ProjectTriggers",
+    "properties": {
+      "BuildType": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "FilterGroups": {
+        "type": {
+          "$ref": "#/52"
+        },
+        "flags": 0
+      },
+      "PullRequestBuildPolicy": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0
+      },
+      "ScopeConfiguration": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 0
+      },
+      "Webhook": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PullRequestBuildPolicy",
+    "properties": {
+      "ApproverRoles": {
+        "type": {
+          "$ref": "#/53"
+        },
+        "flags": 0
+      },
+      "RequiresCommentApproval": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RegistryCredential",
+    "properties": {
+      "Credential": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "CredentialProvider": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3LogsConfig",
+    "properties": {
+      "EncryptionDisabled": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
+      },
+      "Location": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ScopeConfiguration",
+    "properties": {
+      "Domain": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The domain of the GitHub Enterprise organization or the GitLab Self Managed group. Note that this parameter is only required if your project's source type is GITHUB_ENTERPRISE or GITLAB_SELF_MANAGED."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17,
+        "description": "The name of either the enterprise or organization that will send webhook events to CodeBuild, depending on if the webhook is a global or organization webhook respectively."
+      },
+      "Scope": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The type of scope for a GitHub or GitLab webhook. The scope default is GITHUB_ORGANIZATION. Allowed values: GITHUB_ORGANIZATION | GITHUB_GLOBAL | GITLAB_GROUP"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Source",
+    "properties": {
+      "Auth": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0
+      },
+      "BuildSpec": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "BuildStatusConfig": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0
+      },
+      "GitCloneDepth": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "GitSubmodulesConfig": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0
+      },
+      "InsecureSsl": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
+      },
+      "Location": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "ReportBuildStatus": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
+      },
+      "SourceIdentifier": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceAuth",
+    "properties": {
+      "Resource": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VpcConfig",
+    "properties": {
+      "SecurityGroupIds": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 0
+      },
+      "Subnets": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 0
+      },
+      "VpcId": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WebhookFilter",
+    "properties": {
+      "ExcludeMatchedPattern": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
+      },
+      "Pattern": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/25"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/43"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/43"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/51"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CodeBuild/ProjectProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/31"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/19"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/33"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/39"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/41"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CodeBuild/ProjectProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2
+      },
+      "Artifacts": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1,
+        "description": "Specifies output settings for artifacts generated by an AWS CodeBuild build."
+      },
+      "AutoRetryLimit": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "BadgeEnabled": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0,
+        "description": "Indicates whether AWS CodeBuild generates a publicly accessible URL for your project's build badge."
+      },
+      "BuildBatchConfig": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 0,
+        "description": "Defines the batch build options for the project."
+      },
+      "Cache": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 0,
+        "description": "Settings that AWS CodeBuild uses to store and reuse build dependencies."
+      },
+      "ConcurrentBuildLimit": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The maximum number of concurrent builds that are allowed for this project."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "A description that makes the build project easy to identify."
+      },
+      "EncryptionKey": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "Environment": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      },
+      "FileSystemLocations": {
+        "type": {
+          "$ref": "#/57"
+        },
+        "flags": 0
+      },
+      "LogsConfig": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 16
+      },
+      "QueuedTimeoutInMinutes": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "ResourceAccessRole": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "SecondaryArtifacts": {
+        "type": {
+          "$ref": "#/58"
+        },
+        "flags": 0
+      },
+      "SecondarySourceVersions": {
+        "type": {
+          "$ref": "#/59"
+        },
+        "flags": 0
+      },
+      "SecondarySources": {
+        "type": {
+          "$ref": "#/60"
+        },
+        "flags": 0
+      },
+      "ServiceRole": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "Source": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 1
+      },
+      "SourceVersion": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/61"
+        },
+        "flags": 0
+      },
+      "TimeoutInMinutes": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "Triggers": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 4
+      },
+      "Visibility": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "VpcConfig": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CodeBuild/Project",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/62"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CodeBuild/Project@default",
+    "body": {
+      "$ref": "#/63"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReportExportConfig",
+    "properties": {
+      "ExportConfigType": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "S3Destination": {
+        "type": {
+          "$ref": "#/66"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3ReportExportConfig",
+    "properties": {
+      "Bucket": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "BucketOwner": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "EncryptionDisabled": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
+      },
+      "EncryptionKey": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "Packaging": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "Path": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CodeBuild/ReportGroupProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/67"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CodeBuild/ReportGroupProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 18
+      },
+      "DeleteReports": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 4
+      },
+      "ExportConfig": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 1
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CodeBuild/ReportGroup",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/70"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CodeBuild/ReportGroup@default",
+    "body": {
+      "$ref": "#/71"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CodeBuild/SourceCredentialProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CodeBuild/SourceCredentialProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 18,
+        "description": "The ARN of the SourceCredential resource."
+      },
+      "AuthType": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The type of authentication used by the credentials. Valid options are OAUTH, BASIC_AUTH, PERSONAL_ACCESS_TOKEN, CODECONNECTIONS, or SECRETS_MANAGER. "
+      },
+      "ServerType": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The type of source provider. The valid options are GITHUB, GITHUB_ENTERPRISE, GITLAB, GITLAB_SELF_MANAGED, or BITBUCKET."
+      },
+      "Token": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 5,
+        "description": "For GitHub or GitHub Enterprise, this is the personal access token. For Bitbucket, this is either the access token or the app password. For the authType CODECONNECTIONS, this is the connectionArn. For the authType SECRETS_MANAGER, this is the secretArn."
+      },
+      "Username": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 4,
+        "description": " The Bitbucket username when the authType is BASIC_AUTH. This parameter is not valid for other types of source providers or connections."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CodeBuild/SourceCredential",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CodeBuild/SourceCredential@default",
+    "body": {
+      "$ref": "#/75"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

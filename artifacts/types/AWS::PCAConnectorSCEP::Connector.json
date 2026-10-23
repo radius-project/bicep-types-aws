@@ -1,12 +1,13 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-PCAConnectorSCEP-Connector",
   "type": "AWS::PCAConnectorSCEP::Connector",
-  "time": "2025-01-17T14:58:29.38Z",
+  "time": "2026-10-21T14:10:00.516Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/CertificateAuthorityArn",
-      "/properties/MobileDeviceManagement"
+      "/properties/MobileDeviceManagement",
+      "/properties/VpcEndpointId"
     ],
     "definitions": {
       "ConnectorType": {
@@ -159,6 +160,11 @@
       },
       "Type": {
         "$ref": "#/definitions/ConnectorType"
+      },
+      "VpcEndpointId": {
+        "maxLength": 200,
+        "minLength": 5,
+        "type": "string"
       }
     },
     "readOnlyProperties": [
@@ -183,6 +189,9 @@
       "tagUpdatable": true,
       "taggable": true
     },
-    "typeName": "AWS::PCAConnectorSCEP::Connector"
+    "typeName": "AWS::PCAConnectorSCEP::Connector",
+    "writeOnlyProperties": [
+      "/properties/VpcEndpointId"
+    ]
   }
 }

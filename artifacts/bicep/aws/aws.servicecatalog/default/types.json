@@ -1,6 +1,349 @@
 [
   {
     "$type": "ObjectType",
+    "name": "CodeStarParameters",
+    "properties": {
+      "ArtifactPath": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The absolute path where the artifact resides within the repo and branch, formatted as \"folder/file.json\"."
+      },
+      "Branch": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The specific branch where the artifact resides."
+      },
+      "ConnectionArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The CodeStar ARN, which is the connection between AWS Service Catalog and the external repository.\n\n"
+      },
+      "Repository": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The specific repository where the product's artifact-to-be-synced resides, formatted as \"Account/Repo.\""
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectionParameters",
+    "properties": {
+      "CodeStar": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0,
+        "description": "The connection details based on the connection Type."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ProvisioningArtifactProperties",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The description of the provisioning artifact, including how it differs from the previous provisioning artifact."
+      },
+      "DisableTemplateValidation": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "If set to true, AWS Service Catalog stops validating the specified provisioning artifact even if it is invalid."
+      },
+      "Info": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "Specify the template source with one of the following options, but not both. Keys accepted: [ LoadTemplateFromURL, ImportFromPhysicalId ] The URL of the AWS CloudFormation template in Amazon S3 in JSON format. Specify the URL in JSON format as follows:\n\n\"LoadTemplateFromURL\": \"https://s3.amazonaws.com/cf-templates-ozkq9d3hgiq2-us-east-1/...\"\n\nImportFromPhysicalId: The physical id of the resource that contains the template. Currently only supports AWS CloudFormation stack arn. Specify the physical id in JSON format as follows: ImportFromPhysicalId: \"arn:aws:cloudformation:[us-east-1]:[accountId]:stack/[StackName]/[resourceId]"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The name of the provisioning artifact (for example, v1 v2beta). No spaces are allowed."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The type of provisioning artifact. Valid values are CLOUD_FORMATION_TEMPLATE, TERRAFORM_OPEN_SOURCE, TERRAFORM_CLOUD, EXTERNAL"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceConnection",
+    "properties": {
+      "ConnectionParameters": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The connection details based on the connection Type."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The only supported SourceConnection type is Codestar."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The tag value"
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CloudFormationProduct_Info",
+    "properties": {
+      "ImportFromPhysicalId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The physical id of the resource that contains the template. Currently only supports AWS CloudFormation stack arn"
+      },
+      "LoadTemplateFromURL": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The URL of the AWS CloudFormation template in Amazon S3 in JSON format."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CloudFormationProduct_ConnectionParameters",
+    "properties": {
+      "CodeStar": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ServiceCatalog/CloudFormationProductProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ServiceCatalog/CloudFormationProductProperties",
+    "properties": {
+      "AcceptLanguage": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 4,
+        "description": "The language code."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The description of the product."
+      },
+      "Distributor": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The distributor of the product."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "The ID of the product, such as prod-tsjbmal34qvek"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The name of the product."
+      },
+      "Owner": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The owner of the product."
+      },
+      "ProductName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The name of the product."
+      },
+      "ProductType": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The type of product."
+      },
+      "ProvisioningArtifactIds": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The IDs of the provisioning artifacts"
+      },
+      "ProvisioningArtifactNames": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The names of the provisioning artifacts"
+      },
+      "ProvisioningArtifactParameters": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 4,
+        "description": "The configuration of the provisioning artifact (also known as a version)."
+      },
+      "ReplaceProvisioningArtifacts": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 4,
+        "description": "This property is turned off by default. If turned off, you can update provisioning artifacts or product attributes (such as description, distributor, name, owner, and more) and the associated provisioning artifacts will retain the same unique identifier. Provisioning artifacts are matched within the CloudFormationProduct resource, and only those that have been updated will be changed. Provisioning artifacts are matched by a combinaton of provisioning artifact template URL and name."
+      },
+      "SourceConnection": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "A top level ProductViewDetail response containing details about the product's connection. AWS Service Catalog returns this field for the CreateProduct, UpdateProduct, DescribeProductAsAdmin, and SearchProductAsAdmin APIs. This response contains the same fields as the ConnectionParameters request, with the addition of the LastSync response."
+      },
+      "SupportDescription": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The support information about the product."
+      },
+      "SupportEmail": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The contact email for product support."
+      },
+      "SupportUrl": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The contact URL for product support."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "One or more tags."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ServiceCatalog/CloudFormationProduct",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ServiceCatalog/CloudFormationProduct@default",
+    "body": {
+      "$ref": "#/13"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "OutputType",
     "properties": {}
   },
@@ -10,13 +353,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1
       }
@@ -28,43 +371,43 @@
     "properties": {
       "StackSetAccounts": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/19"
         },
         "flags": 0
       },
       "StackSetFailureToleranceCount": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/20"
         },
         "flags": 0
       },
       "StackSetFailureTolerancePercentage": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/20"
         },
         "flags": 0
       },
       "StackSetMaxConcurrencyCount": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/20"
         },
         "flags": 0
       },
       "StackSetMaxConcurrencyPercentage": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/20"
         },
         "flags": 0
       },
       "StackSetOperationType": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "StackSetRegions": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/21"
         },
         "flags": 0
       }
@@ -76,25 +419,22 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1
       }
     }
   },
   {
-    "$type": "StringType"
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/5"
     }
   },
   {
@@ -103,7 +443,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/5"
     }
   },
   {
@@ -113,7 +453,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/5"
     }
   },
   {
@@ -124,13 +464,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/16"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/18"
     }
   },
   {
@@ -139,98 +479,98 @@
     "properties": {
       "AcceptLanguage": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "CloudformationStackArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2
       },
       "NotificationArns": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/23"
         },
         "flags": 0
       },
       "Outputs": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/24"
         },
         "flags": 2,
         "description": "List of key-value pair outputs."
       },
       "PathId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "PathName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "ProductId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "ProductName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "ProvisionedProductId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 18
       },
       "ProvisionedProductName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "ProvisioningArtifactId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "ProvisioningArtifactName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "ProvisioningParameters": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "ProvisioningPreferences": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "RecordId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2
       },
       "Tags": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/26"
         },
         "flags": 0
       }
@@ -242,21 +582,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/27"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -266,11 +606,557 @@
   {
     "$type": "ResourceType",
     "name": "AWS.ServiceCatalog/CloudFormationProvisionedProduct@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/14"
+      "$ref": "#/28"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ServiceCatalog/LaunchNotificationConstraintProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ServiceCatalog/LaunchNotificationConstraintProperties",
+    "properties": {
+      "AcceptLanguage": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 4
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "Unique identifier for the constraint"
+      },
+      "NotificationArns": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 1
+      },
+      "PortfolioId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "ProductId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ServiceCatalog/LaunchNotificationConstraint",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ServiceCatalog/LaunchNotificationConstraint@default",
+    "body": {
+      "$ref": "#/33"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ServiceCatalog/LaunchRoleConstraintProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ServiceCatalog/LaunchRoleConstraintProperties",
+    "properties": {
+      "AcceptLanguage": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 4,
+        "description": "The language code for the constraint."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The description of the launch role constraint."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "The unique identifier for the launch role constraint."
+      },
+      "LocalRoleName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The local IAM role name to use in the launch constraint."
+      },
+      "PortfolioId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The ID of the portfolio to which this launch role constraint applies."
+      },
+      "ProductId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The ID of the product to which this launch role constraint applies."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The ARN of the IAM role used for the launch constraint."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ServiceCatalog/LaunchRoleConstraint",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ServiceCatalog/LaunchRoleConstraint@default",
+    "body": {
+      "$ref": "#/37"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ServiceCatalog/LaunchTemplateConstraintProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ServiceCatalog/LaunchTemplateConstraintProperties",
+    "properties": {
+      "AcceptLanguage": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 4,
+        "description": "The language code."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The description of the constraint."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "Unique identifier for the constraint"
+      },
+      "PortfolioId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The portfolio identifier."
+      },
+      "ProductId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The product identifier."
+      },
+      "Rules": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "A json encoded string of the template constraint rules"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ServiceCatalog/LaunchTemplateConstraint",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ServiceCatalog/LaunchTemplateConstraint@default",
+    "body": {
+      "$ref": "#/41"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ServiceCatalog/PortfolioProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/43"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ServiceCatalog/PortfolioProperties",
+    "properties": {
+      "AcceptLanguage": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 4
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "DisplayName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18
+      },
+      "PortfolioName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2
+      },
+      "ProviderName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ServiceCatalog/Portfolio",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ServiceCatalog/Portfolio@default",
+    "body": {
+      "$ref": "#/47"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ServiceCatalog/PortfolioShareProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ServiceCatalog/PortfolioShareProperties",
+    "properties": {
+      "AcceptLanguage": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 4,
+        "description": "The language code."
+      },
+      "AccountId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "The AWS account ID."
+      },
+      "PortfolioId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "The portfolio identifier."
+      },
+      "ShareTagOptions": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Enables or disables TagOptions sharing when creating the portfolio share."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ServiceCatalog/PortfolioShare",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/50"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ServiceCatalog/PortfolioShare@default",
+    "body": {
+      "$ref": "#/51"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ServiceCatalog/ResourceUpdateConstraintProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ServiceCatalog/ResourceUpdateConstraintProperties",
+    "properties": {
+      "AcceptLanguage": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 4,
+        "description": "The language code"
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The description of the constraint"
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "Unique identifier for the constraint"
+      },
+      "PortfolioId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The portfolio identifier"
+      },
+      "ProductId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The product identifier"
+      },
+      "TagUpdateOnProvisionedProduct": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "ALLOWED or NOT_ALLOWED, to permit or prevent changes to the tags on provisioned instances of the specified portfolio / product combination"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ServiceCatalog/ResourceUpdateConstraint",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ServiceCatalog/ResourceUpdateConstraint@default",
+    "body": {
+      "$ref": "#/55"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -278,13 +1164,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1
       }
@@ -297,7 +1183,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/16"
+      "$ref": "#/57"
     }
   },
   {
@@ -306,37 +1192,37 @@
     "properties": {
       "AcceptLanguage": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 4
       },
       "Definition": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/59"
         },
         "flags": 1
       },
       "DefinitionType": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1
       },
       "Description": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "Id": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 18
       },
       "Name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1
       }
@@ -348,21 +1234,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/60"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -372,10 +1258,212 @@
   {
     "$type": "ResourceType",
     "name": "AWS.ServiceCatalog/ServiceAction@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/20"
+      "$ref": "#/61"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ServiceCatalog/StackSetConstraintProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ServiceCatalog/StackSetConstraintProperties",
+    "properties": {
+      "AcceptLanguage": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 4,
+        "description": "The language code."
+      },
+      "AccountList": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 1,
+        "description": "One or more AWS accounts that will have access to the provisioned product."
+      },
+      "AdminRole": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "AdminRole ARN."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The description of the constraint."
+      },
+      "ExecutionRole": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "ExecutionRole name."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "Unique identifier for the constraint"
+      },
+      "PortfolioId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The portfolio identifier."
+      },
+      "ProductId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The product identifier."
+      },
+      "RegionList": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 1,
+        "description": "One or more AWS Regions where the provisioned product will be available."
+      },
+      "StackInstanceControl": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "Permission to create, update, and delete stack instances. Choose from ALLOWED and NOT_ALLOWED."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ServiceCatalog/StackSetConstraint",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/66"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ServiceCatalog/StackSetConstraint@default",
+    "body": {
+      "$ref": "#/67"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ServiceCatalog/TagOptionProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ServiceCatalog/TagOptionProperties",
+    "properties": {
+      "Active": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The TagOption active state."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "The TagOption identifier."
+      },
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The TagOption key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The TagOption value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ServiceCatalog/TagOption",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/70"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ServiceCatalog/TagOption@default",
+    "body": {
+      "$ref": "#/71"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

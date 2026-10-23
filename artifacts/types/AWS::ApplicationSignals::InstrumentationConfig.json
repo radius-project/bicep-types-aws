@@ -1,0 +1,407 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ApplicationSignals-InstrumentationConfig",
+  "type": "AWS::ApplicationSignals::InstrumentationConfig",
+  "time": "2026-10-21T20:39:05.312Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Arn"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/InstrumentationType",
+      "/properties/Service",
+      "/properties/Environment",
+      "/properties/SignalType",
+      "/properties/Location",
+      "/properties/Description",
+      "/properties/ExpiresAt",
+      "/properties/AttributeFilters",
+      "/properties/CaptureConfiguration"
+    ],
+    "definitions": {
+      "AttributeFilterGroup": {
+        "additionalProperties": false,
+        "description": "A string-to-string map of OpenTelemetry resource attributes that must all match.",
+        "patternProperties": {
+          "^.{1,50}$": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "CaptureLimitsConfig": {
+        "additionalProperties": false,
+        "description": "Safety limits that bound what is captured.",
+        "properties": {
+          "MaxCollectionDepth": {
+            "description": "Maximum nesting depth to traverse inside collections.",
+            "maximum": 5,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "MaxCollectionWidth": {
+            "description": "Maximum number of items to capture from any collection.",
+            "maximum": 20,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "MaxFieldsPerObject": {
+            "description": "Maximum number of fields to capture for any object.",
+            "maximum": 20,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "MaxHits": {
+            "description": "Maximum number of times the instrumentation point can be hit before disabled.",
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "MaxObjectDepth": {
+            "description": "Maximum depth for nested object traversal.",
+            "maximum": 5,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "MaxStackFrames": {
+            "description": "Maximum number of stack frames to capture.",
+            "maximum": 20,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "MaxStackTraceSize": {
+            "description": "Maximum total size in bytes of a captured stack trace.",
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "MaxStringLength": {
+            "description": "Maximum length of captured string values in characters.",
+            "maximum": 255,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "CodeCaptureConfiguration": {
+        "additionalProperties": false,
+        "description": "Defines what data to capture for code-level instrumentation.",
+        "properties": {
+          "CaptureArguments": {
+            "description": "The function arguments to capture.",
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 10,
+            "type": "array"
+          },
+          "CaptureLimits": {
+            "$ref": "#/definitions/CaptureLimitsConfig"
+          },
+          "CaptureLocals": {
+            "description": "The local variables to capture by name.",
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 20,
+            "type": "array"
+          },
+          "CaptureReturn": {
+            "description": "Whether to capture the return value. Defaults to false.",
+            "type": "boolean"
+          },
+          "CaptureStackTrace": {
+            "description": "Whether to capture a stack trace. Defaults to true.",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "CaptureLimits"
+        ],
+        "type": "object"
+      },
+      "CodeLocation": {
+        "additionalProperties": false,
+        "description": "Identifies a code location to instrument.",
+        "properties": {
+          "ClassName": {
+            "description": "The class or type name that contains the method.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "CodeUnit": {
+            "description": "The package, module, or namespace that contains the target code.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "FilePath": {
+            "description": "The source file path relative to the project or source root.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Language": {
+            "description": "The programming language for this instrumentation point.",
+            "enum": [
+              "Java",
+              "Python",
+              "Javascript"
+            ],
+            "type": "string"
+          },
+          "LineNumber": {
+            "description": "The line number to instrument.",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "MethodName": {
+            "description": "The method or function name to instrument.",
+            "maxLength": 80,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Language",
+          "FilePath"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with the resource.",
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Creates a dynamic instrumentation configuration for a specific code or endpoint location within a service and environment.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "application-signals:CreateInstrumentationConfiguration",
+          "application-signals:GetInstrumentationConfiguration",
+          "application-signals:TagResource",
+          "application-signals:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "application-signals:DeleteInstrumentationConfiguration",
+          "application-signals:GetInstrumentationConfiguration",
+          "application-signals:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "Environment": {
+              "maxLength": 255,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9:/+=,.@_-]+$",
+              "type": "string"
+            },
+            "InstrumentationType": {
+              "enum": [
+                "BREAKPOINT",
+                "PROBE"
+              ],
+              "type": "string"
+            },
+            "Service": {
+              "maxLength": 255,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9:/+=,.@_-]+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "Service",
+            "Environment",
+            "InstrumentationType"
+          ]
+        },
+        "permissions": [
+          "application-signals:ListInstrumentationConfigurations"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "application-signals:GetInstrumentationConfiguration",
+          "application-signals:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "application-signals:GetInstrumentationConfiguration",
+          "application-signals:TagResource",
+          "application-signals:UntagResource",
+          "application-signals:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/InstrumentationType",
+      "/properties/Service",
+      "/properties/Environment",
+      "/properties/SignalType",
+      "/properties/LocationHash"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the instrumentation configuration.",
+        "pattern": "^arn:[^:]+:application-signals:[^:]+:[0-9]{12}:instrumentationConfig/.+/[0-9a-f]{16}$",
+        "type": "string"
+      },
+      "AttributeFilters": {
+        "description": "Client-side filters that target specific instances. Each object is AND-matched on keys, multiple objects are OR-matched.",
+        "items": {
+          "$ref": "#/definitions/AttributeFilterGroup"
+        },
+        "maxItems": 10,
+        "minItems": 1,
+        "type": "array"
+      },
+      "CaptureConfiguration": {
+        "additionalProperties": false,
+        "description": "Specifies what to capture when the instrumentation point is hit.",
+        "properties": {
+          "CodeCapture": {
+            "$ref": "#/definitions/CodeCaptureConfiguration"
+          }
+        },
+        "required": [
+          "CodeCapture"
+        ],
+        "type": "object"
+      },
+      "CreatedAt": {
+        "description": "The server-generated creation timestamp for this instrumentation configuration.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "An optional short description that explains the purpose of this instrumentation.",
+        "maxLength": 50,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Environment": {
+        "description": "The environment that the service is running in.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9:/+=,.@_-]+$",
+        "type": "string"
+      },
+      "ExpiresAt": {
+        "description": "The timestamp after which this configuration is no longer served. For BREAKPOINT only; defaults to 24 hours.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "InstrumentationType": {
+        "description": "Type of instrumentation: BREAKPOINT (temporary, expires after 24 hours) or PROBE (permanent, persists until deleted).",
+        "enum": [
+          "BREAKPOINT",
+          "PROBE"
+        ],
+        "type": "string"
+      },
+      "Location": {
+        "additionalProperties": false,
+        "description": "The location where instrumentation should be applied.",
+        "properties": {
+          "CodeLocation": {
+            "$ref": "#/definitions/CodeLocation"
+          }
+        },
+        "required": [
+          "CodeLocation"
+        ],
+        "type": "object"
+      },
+      "LocationHash": {
+        "description": "A stable hash computed from the location that uniquely identifies this instrumentation point.",
+        "maxLength": 16,
+        "minLength": 16,
+        "type": "string"
+      },
+      "Service": {
+        "description": "The name of the service to instrument. This should match the service.name resource attribute reported by the application.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9:/+=,.@_-]+$",
+        "type": "string"
+      },
+      "SignalType": {
+        "description": "The telemetry signal type to emit for this instrumentation. The supported value is SNAPSHOT.",
+        "enum": [
+          "SNAPSHOT"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An optional list of key-value pairs to associate with the instrumentation configuration.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/LocationHash",
+      "/properties/CreatedAt"
+    ],
+    "replacementStrategy": "delete_then_create",
+    "required": [
+      "InstrumentationType",
+      "Service",
+      "Environment",
+      "SignalType",
+      "Location",
+      "CaptureConfiguration"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "application-signals:TagResource",
+        "application-signals:UntagResource",
+        "application-signals:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::ApplicationSignals::InstrumentationConfig"
+  }
+}

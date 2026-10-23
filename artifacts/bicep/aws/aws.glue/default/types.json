@@ -1,39 +1,2192 @@
 [
   {
     "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Glue/BlueprintProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/BlueprintProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the blueprint."
+      },
+      "BlueprintLocation": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies a path in Amazon S3 where the blueprint is published."
+      },
+      "CreatedOn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The date and time the blueprint was registered."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A description of the blueprint."
+      },
+      "LastModifiedOn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The date and time the blueprint was last modified."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the blueprint."
+      },
+      "ParameterSpec": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "A JSON string that indicates the list of parameter specifications for the blueprint."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The status of the blueprint registration."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The tags to be applied to this blueprint."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/Blueprint",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Glue/Blueprint@default",
+    "body": {
+      "$ref": "#/5"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CatalogProperties",
+    "properties": {
+      "CustomProperties": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 2,
+        "description": "Additional key-value properties for the catalog."
+      },
+      "DataLakeAccessProperties": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataLakeAccessProperties",
+    "properties": {
+      "AllowFullTableExternalDataAccess": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "Allows third-party engines to access data in Amazon S3 locations that are registered with Lake Formation."
+      },
+      "CatalogType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies a federated catalog type for the native catalog resource."
+      },
+      "DataLakeAccess": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Turns on or off data lake access for Apache Spark applications that access Amazon Redshift databases in the Data Catalog from any non-Redshift engine."
+      },
+      "DataTransferRole": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A role that will be assumed by Glue for transferring data into/out of the staging bucket during a query."
+      },
+      "KmsKey": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "An encryption key that will be used for the staging bucket that will be created along with the catalog."
+      },
+      "ManagedWorkgroupName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The name of the managed workgroup associated with the catalog."
+      },
+      "ManagedWorkgroupStatus": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The status of the managed workgroup."
+      },
+      "RedshiftDatabaseName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The name of the Redshift database."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataLakePrincipal",
+    "properties": {
+      "DataLakePrincipalIdentifier": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "An identifier for the Lake Formation principal."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FederatedCatalog",
+    "properties": {
+      "ConnectionName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the connection to an external data source."
+      },
+      "Identifier": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A unique identifier for the federated catalog."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PrincipalPermissions",
+    "properties": {
+      "Permissions": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The permissions that are granted to the principal."
+      },
+      "Principal": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TargetRedshiftCatalog",
+    "properties": {
+      "CatalogArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the catalog resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Catalog_CustomProperties",
+    "properties": {}
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Glue/CatalogProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/11"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/11"
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Catalog_Parameters",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/12"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/CatalogProperties",
+    "properties": {
+      "AllowFullTableExternalDataAccess": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Allows third-party engines to access data in Amazon S3 locations that are registered with Lake Formation."
+      },
+      "CatalogId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ID of the catalog."
+      },
+      "CatalogProperties": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "CreateDatabaseDefaultPermissions": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 2,
+        "description": "An array of PrincipalPermissions objects for default database permissions."
+      },
+      "CreateTableDefaultPermissions": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 2,
+        "description": "An array of PrincipalPermissions objects for default table permissions."
+      },
+      "CreateTime": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 2,
+        "description": "The time at which the catalog was created."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A description of the catalog."
+      },
+      "FederatedCatalog": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the catalog to create."
+      },
+      "OverwriteChildResourcePermissionsWithDefault": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "Specifies whether to overwrite child resource permissions with the default permissions."
+      },
+      "Parameters": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "A map of key-value pairs that define parameters and properties of the catalog."
+      },
+      "ResourceArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the catalog."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
+      "TargetRedshiftCatalog": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "UpdateTime": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 2,
+        "description": "The time at which the catalog was last updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/Catalog",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Glue/Catalog@default",
+    "body": {
+      "$ref": "#/24"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CsvClassifier",
+    "properties": {
+      "AllowSingleColumn": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Enables the processing of files that contain only one column."
+      },
+      "ContainsCustomDatatype": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 0,
+        "description": "Indicates whether the CSV file contains custom data types."
+      },
+      "ContainsHeader": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Indicates whether the CSV file contains a header. A value of UNKNOWN specifies that the classifier will detect whether the CSV file contains headings. A value of PRESENT specifies that the CSV file contains headings. A value of ABSENT specifies that the CSV file does not contain headings."
+      },
+      "CustomDatatypeConfigured": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Enables the configuration of custom data types."
+      },
+      "Delimiter": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A custom symbol to denote what separates each column entry in the row."
+      },
+      "DisableValueTrimming": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Specifies not to trim values before identifying the type of column values. The default value is true."
+      },
+      "Header": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0,
+        "description": "A list of strings representing column names."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The name of the classifier."
+      },
+      "QuoteSymbol": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A custom symbol to denote what combines content into a single column value. It must be different from the column delimiter."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GrokClassifier",
+    "properties": {
+      "Classification": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "An identifier of the data format that the classifier matches, such as Twitter, JSON, Omniture logs, and so on."
+      },
+      "CustomPatterns": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Optional custom grok patterns defined by this classifier."
+      },
+      "GrokPattern": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The grok pattern applied to a data store by this classifier."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The name of the classifier."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JsonClassifier",
+    "properties": {
+      "JsonPath": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "A JsonPath string defining the JSON data for the classifier to classify. AWS Glue supports a subset of JsonPath, as described in Writing JsonPath Custom Classifiers."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The name of the classifier."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "XMLClassifier",
+    "properties": {
+      "Classification": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "An identifier of the data format that the classifier matches."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The name of the classifier."
+      },
+      "RowTag": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The XML tag designating the element that contains each record in an XML document being parsed. This can't identify a self-closing element (closed by />). An empty row element that contains only attributes can be parsed as long as it ends with a closing tag (for example, <row item_a=\"A\" item_b=\"B\"></row> is okay, but <row item_a=\"A\" item_b=\"B\" /> is not)."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Glue/ClassifierProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/ClassifierProperties",
+    "properties": {
+      "CsvClassifier": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0,
+        "description": "A classifier for comma-separated values (CSV)."
+      },
+      "GrokClassifier": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0,
+        "description": "A classifier that uses grok."
+      },
+      "JsonClassifier": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 0,
+        "description": "A classifier for JSON content."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "One of XMLClassifier/Name, GrokClassifier/Name, JsonClassifier/Name or CsvClassifier/Name"
+      },
+      "XMLClassifier": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 0,
+        "description": "A classifier for XML content."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/Classifier",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Glue/Classifier@default",
+    "body": {
+      "$ref": "#/34"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AuthenticationConfiguration",
+    "properties": {
+      "AuthenticationType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 5,
+        "description": "A structure containing the authentication configuration in the CreateConnection request."
+      },
+      "BasicAuthenticationCredentials": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 4,
+        "description": "For supplying basic auth credentials when not providing a SecretArn value"
+      },
+      "CustomAuthenticationCredentials": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 4,
+        "description": "A structure containing the authentication credentials in the CreateConnection request."
+      },
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The Amazon Resource Name (ARN) of the KMS key used in the authentication configuration."
+      },
+      "OAuth2Properties": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0,
+        "description": "A structure containing properties for OAuth2 in the CreateConnection request."
+      },
+      "SecretArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The secret manager ARN to store credentials in the CreateConnection request."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AuthorizationCodeProperties",
+    "properties": {
+      "AuthorizationCode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The authorization code used in the authentication configuration."
+      },
+      "RedirectUri": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The redirect URI where the user gets redirected to by authorization server when issuing an authorization code."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BasicAuthenticationCredentials",
+    "properties": {
+      "Password": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The password used in the authentication configuration."
+      },
+      "Username": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The username used in the authentication configuration."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectionInput",
+    "properties": {
+      "AthenaProperties": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0,
+        "description": "Connection properties specific to the Athena compute environment."
+      },
+      "AuthenticationConfiguration": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 4,
+        "description": "The authentication configuration used to connect to the connection."
+      },
+      "ConnectionProperties": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0,
+        "description": "A map of key-value pairs used as parameters for this connection."
+      },
+      "ConnectionType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The type of the connection that needs to be created."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A description of the connection."
+      },
+      "MatchCriteria": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 0,
+        "description": "A list of criteria that can be used in selecting this connection."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The name of the connection."
+      },
+      "PhysicalConnectionRequirements": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0,
+        "description": "The physical connection requirements."
+      },
+      "PythonProperties": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 0,
+        "description": "Connection properties specific to the Python compute environment."
+      },
+      "SparkProperties": {
+        "type": {
+          "$ref": "#/49"
+        },
+        "flags": 0,
+        "description": "Connection properties specific to the Spark compute environment."
+      },
+      "ValidateCredentials": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 4,
+        "description": "A flag to validate the credentials during create connection. Default is true."
+      },
+      "ValidateForComputeEnvironments": {
+        "type": {
+          "$ref": "#/50"
+        },
+        "flags": 4
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OAuth2ClientApplication",
+    "properties": {
+      "AWSManagedClientApplicationReference": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The reference to the SaaS-side client app that is AWS managed."
+      },
+      "UserManagedClientApplicationClientId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The client application clientID if the ClientAppType is USER_MANAGED."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OAuth2Credentials",
+    "properties": {
+      "AccessToken": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The access token used in the authentication configuration."
+      },
+      "JwtToken": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The JSON Web Token (JWT) used when the authentication type is OAuth2."
+      },
+      "RefreshToken": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The refresh token used when the authentication type is OAuth2."
+      },
+      "UserManagedClientApplicationClientSecret": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The client application client secret if the client application is user managed."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OAuth2Properties",
+    "properties": {
+      "AuthorizationCodeProperties": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 4,
+        "description": "The set of properties required for the the OAuth2 AUTHORIZATION_CODE grant type workflow."
+      },
+      "OAuth2ClientApplication": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0,
+        "description": "The OAuth2 client app used for the connection."
+      },
+      "OAuth2Credentials": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 4,
+        "description": "A structure containing the OAuth2 credentials used in the authentication configuration."
+      },
+      "OAuth2GrantType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The grant type used in the authentication configuration."
+      },
+      "TokenUrl": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The URL used in the authentication configuration."
+      },
+      "TokenUrlParametersMap": {
+        "type": {
+          "$ref": "#/51"
+        },
+        "flags": 0,
+        "description": "A map of key-value pairs used in the authentication configuration."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PhysicalConnectionRequirements",
+    "properties": {
+      "AvailabilityZone": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The availability zone where the connection is located."
+      },
+      "SecurityGroupIdList": {
+        "type": {
+          "$ref": "#/52"
+        },
+        "flags": 0,
+        "description": "The security group ID list used by the connection."
+      },
+      "SubnetId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The subnet ID used by the connection."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Connection_CustomAuthenticationCredentials",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Connection_AthenaProperties",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Connection_ConnectionProperties",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Connection_PythonProperties",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Connection_SparkProperties",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Connection_TokenUrlParametersMap",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Glue/ConnectionProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Connection_Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/ConnectionProperties",
+    "properties": {
+      "CatalogId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The ID of the data catalog to create the catalog object in. Currently, this should be the AWS account ID."
+      },
+      "ConnectionInput": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 1,
+        "description": "The connection properties used for this connection."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The name of the connection."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 0,
+        "description": "The collection of tags. Each tag element is associated with a given resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/Connection",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Glue/Connection@default",
+    "body": {
+      "$ref": "#/56"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BasicAuthenticationProperties",
+    "properties": {
+      "Password": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 0
+      },
+      "Username": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BetweenConfiguration",
+    "properties": {
+      "HighBoundKey": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The parameter name used for the upper bound value in a BETWEEN filter operation."
+      },
+      "LowBoundKey": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The parameter name used for the lower bound value in a BETWEEN filter operation."
+      },
+      "Template": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A template string for constructing the BETWEEN filter expression."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ClientCredentialsProperties",
+    "properties": {
+      "ClientId": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 0
+      },
+      "ClientSecret": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 0
+      },
+      "ContentType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "RequestMethod": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Scope": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 0
+      },
+      "TokenUrl": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 0
+      },
+      "TokenUrlParameters": {
+        "type": {
+          "$ref": "#/83"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectionPropertiesConfiguration",
+    "properties": {
+      "AdditionalRequestParameters": {
+        "type": {
+          "$ref": "#/84"
+        },
+        "flags": 0,
+        "description": "Key-value pairs of additional request parameters."
+      },
+      "Url": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectorAuthenticationConfiguration",
+    "properties": {
+      "AuthenticationTypes": {
+        "type": {
+          "$ref": "#/85"
+        },
+        "flags": 1,
+        "description": "A list of authentication types supported."
+      },
+      "BasicAuthenticationProperties": {
+        "type": {
+          "$ref": "#/58"
+        },
+        "flags": 0
+      },
+      "CustomAuthenticationProperties": {
+        "type": {
+          "$ref": "#/67"
+        },
+        "flags": 0
+      },
+      "OAuth2Properties": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectorAuthorizationCodeProperties",
+    "properties": {
+      "AuthorizationCode": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 0
+      },
+      "AuthorizationCodeUrl": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 0
+      },
+      "ClientId": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 0
+      },
+      "ClientSecret": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 0
+      },
+      "ContentType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Prompt": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 0
+      },
+      "RedirectUri": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 0
+      },
+      "RequestMethod": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Scope": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 0
+      },
+      "TokenUrl": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 0
+      },
+      "TokenUrlParameters": {
+        "type": {
+          "$ref": "#/86"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectorOAuth2Properties",
+    "properties": {
+      "AuthorizationCodeProperties": {
+        "type": {
+          "$ref": "#/63"
+        },
+        "flags": 0
+      },
+      "ClientCredentialsProperties": {
+        "type": {
+          "$ref": "#/60"
+        },
+        "flags": 0
+      },
+      "JWTBearerProperties": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 0
+      },
+      "OAuth2GrantType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The OAuth2 grant type to use."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectorProperty",
+    "properties": {
+      "AllowedValues": {
+        "type": {
+          "$ref": "#/87"
+        },
+        "flags": 0,
+        "description": "A list of allowed values for the property."
+      },
+      "DefaultValue": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The default value for the property."
+      },
+      "KeyOverride": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A key name to use when sending this property in API requests."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the property."
+      },
+      "PropertyLocation": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies where this property should be included in REST requests."
+      },
+      "PropertyType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The data type of this property."
+      },
+      "Required": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "Indicates whether the property is required."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CursorConfiguration",
+    "properties": {
+      "LimitParameter": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0
+      },
+      "NextPage": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomAuthenticationProperties",
+    "properties": {
+      "AuthenticationParameters": {
+        "type": {
+          "$ref": "#/88"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EntityConfiguration",
+    "properties": {
+      "Schema": {
+        "type": {
+          "$ref": "#/89"
+        },
+        "flags": 0,
+        "description": "The schema definition for this entity."
+      },
+      "SourceConfiguration": {
+        "type": {
+          "$ref": "#/81"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ExtractedParameter",
+    "properties": {
+      "DefaultValue": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The default value."
+      },
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The parameter key name."
+      },
+      "PropertyLocation": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies where to place the parameter in requests."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/78"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FieldDefinition",
+    "properties": {
+      "FieldDataType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The data type of the field."
+      },
+      "FilterOverrides": {
+        "type": {
+          "$ref": "#/72"
+        },
+        "flags": 0
+      },
+      "IsNullable": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates whether this field can contain null values."
+      },
+      "IsOrderable": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates whether this field can be used for ordering results."
+      },
+      "IsPartitionable": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates whether this field can be used for partitioning queries to the data source."
+      },
+      "IsQueryable": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates whether this field can be used in filter predicates when querying data."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the field."
+      },
+      "ResponseDateFormat": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The format pattern for parsing date values from API responses. Accepts Java DateTimeFormatter patterns, EPOCH_SECONDS, or EPOCH_MILLIS."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FilterConfiguration",
+    "properties": {
+      "BetweenConfiguration": {
+        "type": {
+          "$ref": "#/59"
+        },
+        "flags": 0
+      },
+      "DateTimeFormat": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The global date and time format for filter expressions."
+      },
+      "FilterMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The strategy for applying filters to requests."
+      },
+      "FilterStringConfiguration": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0
+      },
+      "OperatorMappings": {
+        "type": {
+          "$ref": "#/90"
+        },
+        "flags": 0,
+        "description": "A map of logical filter operators to their API-specific string representations."
+      },
+      "StripQuotes": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates whether surrounding double quotes should be stripped from filter values before processing."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FilterOverrides",
+    "properties": {
+      "BetweenConfiguration": {
+        "type": {
+          "$ref": "#/59"
+        },
+        "flags": 0
+      },
+      "DateTimeFormat": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The date and time format for filter expressions on this field, overriding the global DateTimeFormat."
+      },
+      "FieldName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "An override for the field name to use in filter expressions, if different from the schema field name."
+      },
+      "OperatorMappings": {
+        "type": {
+          "$ref": "#/91"
+        },
+        "flags": 0,
+        "description": "A map of logical filter operators to their field-specific API representations, overriding the global operator mappings."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FilterStringConfiguration",
+    "properties": {
+      "QueryParameterName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The query parameter name used to send the constructed filter expression string in API requests."
+      },
+      "QuoteCharacter": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The character used to quote values when QuoteStringValues is true. Defaults to double quotes if not specified."
+      },
+      "QuoteStringValues": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates whether string and date values should be wrapped with a quote character in the filter expression."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JWTBearerProperties",
+    "properties": {
+      "ContentType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "JwtToken": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 0
+      },
+      "RequestMethod": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "TokenUrl": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 0
+      },
+      "TokenUrlParameters": {
+        "type": {
+          "$ref": "#/92"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OffsetConfiguration",
+    "properties": {
+      "LimitParameter": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 1
+      },
+      "OffsetParameter": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PaginationConfiguration",
+    "properties": {
+      "CursorConfiguration": {
+        "type": {
+          "$ref": "#/66"
+        },
+        "flags": 0
+      },
+      "OffsetConfiguration": {
+        "type": {
+          "$ref": "#/75"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResponseConfiguration",
+    "properties": {
+      "ErrorPath": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "JSON path expression for error information location."
+      },
+      "ResultPath": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "JSON path expression for result data location."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResponseExtractionMapping",
+    "properties": {
+      "ContentPath": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A JSON path expression to extract a value from response body."
+      },
+      "HeaderKey": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of an HTTP response header from which to extract the value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RestConfiguration",
+    "properties": {
+      "EntityConfigurations": {
+        "type": {
+          "$ref": "#/93"
+        },
+        "flags": 0,
+        "description": "A map of entity configurations."
+      },
+      "GlobalSourceConfiguration": {
+        "type": {
+          "$ref": "#/81"
+        },
+        "flags": 0
+      },
+      "ValidationEndpointConfiguration": {
+        "type": {
+          "$ref": "#/94"
+        },
+        "flags": 0,
+        "description": "Configuration for the validation endpoint. Only supports RequestMethod and RequestPath."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SecretConnectorProperty",
+    "properties": {
+      "KeyOverride": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A key name to use when sending this property in API requests."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the property."
+      },
+      "PropertyLocation": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies where this property should be included in REST requests."
+      },
+      "PropertyType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The data type of this property. Must be SECRET for secret properties."
+      },
+      "Required": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "Indicates whether the property is required."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceConfiguration",
+    "properties": {
+      "FilterConfiguration": {
+        "type": {
+          "$ref": "#/71"
+        },
+        "flags": 0
+      },
+      "PaginationConfiguration": {
+        "type": {
+          "$ref": "#/76"
+        },
+        "flags": 0
+      },
+      "RequestMethod": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The HTTP method to use."
+      },
+      "RequestParameters": {
+        "type": {
+          "$ref": "#/95"
+        },
+        "flags": 0,
+        "description": "Request parameters configuration."
+      },
+      "RequestPath": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The URL path for the REST endpoint."
+      },
+      "ResponseConfiguration": {
+        "type": {
+          "$ref": "#/77"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/65"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/65"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/65"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/80"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectionType_Schema",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectionType_OperatorMappings",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectionType_OperatorMappings",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/65"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectionType_EntityConfigurations",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectionType_ValidationEndpointConfiguration",
+    "properties": {
+      "RequestMethod": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The HTTP method to use."
+      },
+      "RequestPath": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The URL path for the REST endpoint."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/65"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Glue/ConnectionTypeProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/82"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/ConnectionTypeProperties",
+    "properties": {
+      "ConnectionProperties": {
+        "type": {
+          "$ref": "#/61"
+        },
+        "flags": 4
+      },
+      "ConnectionType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the connection type. Must be prefixed with REST-."
+      },
+      "ConnectionTypeArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the registered connection type."
+      },
+      "ConnectorAuthenticationConfiguration": {
+        "type": {
+          "$ref": "#/62"
+        },
+        "flags": 4
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A description of the connection type."
+      },
+      "IntegrationType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The integration type for the connection. Currently only REST is supported."
+      },
+      "RestConfiguration": {
+        "type": {
+          "$ref": "#/79"
+        },
+        "flags": 1
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/97"
+        },
+        "flags": 0,
+        "description": "Tags to assign to the connection type."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/ConnectionType",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/98"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Glue/ConnectionType@default",
+    "body": {
+      "$ref": "#/99"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "CatalogTarget",
     "properties": {
       "ConnectionName": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The name of the connection for an Amazon S3-backed Data Catalog table to be a target of the crawl when using a Catalog connection type paired with a NETWORK Connection type."
       },
       "DatabaseName": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The name of the database to be synchronized."
       },
       "DlqEventQueueArn": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "A valid Amazon dead-letter SQS ARN. For example, arn:aws:sqs:region:account:deadLetterQueue."
       },
       "EventQueueArn": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "A valid Amazon SQS ARN. For example, arn:aws:sqs:region:account:sqs."
       },
       "Tables": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/114"
         },
         "flags": 0,
         "description": "A list of the tables to be synchronized."
@@ -46,28 +2199,28 @@
     "properties": {
       "ConnectionName": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The name of the connection to use to connect to the Delta table target."
       },
       "CreateNativeDeltaTable": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "Specifies whether the crawler will create native tables, to allow integration with query engines that support querying of the Delta transaction log directly."
       },
       "DeltaTables": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/115"
         },
         "flags": 0,
         "description": ""
       },
       "WriteManifest": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "Specifies whether to write the manifest files to the Delta table path."
@@ -80,10 +2233,58 @@
     "properties": {
       "Path": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The name of the DynamoDB table to crawl."
+      },
+      "ScanAll": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates whether to scan all the records, or to sample rows from the table. Scanning all the records can take a long time when the table is not a high throughput table. A value of true means to scan all records, while a value of false means to sample the records. If no value is specified, the value defaults to true."
+      },
+      "ScanRate": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "The percentage of the configured read capacity units to use by the AWS Glue crawler. Read capacity units is a term defined by DynamoDB, and is a numeric value that acts as rate limiter for the number of reads that can be performed on that table per second.\n\nThe valid values are null or a value between 0.1 to 1.5. A null value is used when user does not provide a value, and defaults to 0.5 of the configured Read Capacity Unit (for provisioned tables), or 0.25 of the max configured Read Capacity Unit (for tables using on-demand mode)."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "HudiTarget",
+    "properties": {
+      "ConnectionName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the connection to use to connect to the Hudi target."
+      },
+      "Exclusions": {
+        "type": {
+          "$ref": "#/116"
+        },
+        "flags": 0,
+        "description": "A list of global patterns used to exclude from the crawl."
+      },
+      "MaximumTraversalDepth": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "The maximum depth of Amazon S3 paths that the crawler can traverse to discover the Hudi metadata folder in your Amazon S3 path. Used to limit the crawler run time."
+      },
+      "Paths": {
+        "type": {
+          "$ref": "#/117"
+        },
+        "flags": 0,
+        "description": "One or more Amazon S3 paths that contains Hudi metadata folders as s3://bucket/prefix ."
       }
     }
   },
@@ -93,28 +2294,28 @@
     "properties": {
       "ConnectionName": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The name of the connection to use to connect to the Iceberg target."
       },
       "Exclusions": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/118"
         },
         "flags": 0,
         "description": "A list of global patterns used to exclude from the crawl."
       },
       "MaximumTraversalDepth": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "The maximum depth of Amazon S3 paths that the crawler can traverse to discover the Iceberg metadata folder in your Amazon S3 path. Used to limit the crawler run time."
       },
       "Paths": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/119"
         },
         "flags": 0,
         "description": "One or more Amazon S3 paths that contains Iceberg metadata folders as s3://bucket/prefix ."
@@ -127,28 +2328,28 @@
     "properties": {
       "ConnectionName": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The name of the connection to use to connect to the JDBC target."
       },
       "EnableAdditionalMetadata": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/120"
         },
         "flags": 0,
         "description": "Specify a value of RAWTYPES or COMMENTS to enable additional metadata in table responses. RAWTYPES provides the native-level datatype. COMMENTS provides comments associated with a column or table in the database.\n\nIf you do not need additional metadata, keep the field empty."
       },
       "Exclusions": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/121"
         },
         "flags": 0,
         "description": "A list of glob patterns used to exclude from the crawl. For more information, see Catalog Tables with a Crawler."
       },
       "Path": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The path of the JDBC target."
@@ -161,14 +2362,14 @@
     "properties": {
       "AccountId": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Required for cross account crawls. For same account crawls as the target data, this can be left as null."
       },
       "UseLakeFormationCredentials": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "Specifies whether to use AWS Lake Formation credentials for the crawler instead of the IAM role credentials."
@@ -181,14 +2382,14 @@
     "properties": {
       "ConnectionName": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The name of the connection to use to connect to the Amazon DocumentDB or MongoDB target."
       },
       "Path": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The path of the Amazon DocumentDB or MongoDB target (database/collection)."
@@ -201,7 +2402,7 @@
     "properties": {
       "RecrawlBehavior": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Specifies whether to crawl the entire dataset again or to crawl only folders that were added since the last crawler run. A value of CRAWL_EVERYTHING specifies crawling the entire dataset again. A value of CRAWL_NEW_FOLDERS_ONLY specifies crawling only folders that were added since the last crawler run. A value of CRAWL_EVENT_MODE specifies crawling only the changes identified by Amazon S3 events."
@@ -214,42 +2415,42 @@
     "properties": {
       "ConnectionName": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The name of a connection which allows a job or crawler to access data in Amazon S3 within an Amazon Virtual Private Cloud environment (Amazon VPC)."
       },
       "DlqEventQueueArn": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "A valid Amazon dead-letter SQS ARN. For example, arn:aws:sqs:region:account:deadLetterQueue."
       },
       "EventQueueArn": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "A valid Amazon SQS ARN. For example, arn:aws:sqs:region:account:sqs."
       },
       "Exclusions": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/122"
         },
         "flags": 0,
         "description": "A list of glob patterns used to exclude from the crawl."
       },
       "Path": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The path to the Amazon S3 target."
       },
       "SampleSize": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "Sets the number of files in each leaf folder to be crawled when crawling sample files in a dataset. If not set, all the files are crawled. A valid value is an integer between 1 and 249."
@@ -262,7 +2463,7 @@
     "properties": {
       "ScheduleExpression": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "A cron expression used to specify the schedule. For more information, see Time-Based Schedules for Jobs and Crawlers. For example, to run something every day at 12:15 UTC, specify cron(15 12 * * ? *)."
@@ -275,14 +2476,14 @@
     "properties": {
       "DeleteBehavior": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The deletion behavior when the crawler finds a deleted object. A value of LOG specifies that if a table or partition is found to no longer exist, do not delete it, only log that it was found to no longer exist. A value of DELETE_FROM_DATABASE specifies that if a table or partition is found to have been removed, delete it from the database. A value of DEPRECATE_IN_DATABASE specifies that if a table has been found to no longer exist, to add a property to the table that says 'DEPRECATED' and includes a timestamp with the time of deprecation."
       },
       "UpdateBehavior": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The update behavior when the crawler finds a changed schema. A value of LOG specifies that if a table or a partition already exists, and a change is detected, do not update it, only log that a change was detected. Add new tables and new partitions (including on existing tables). A value of UPDATE_IN_DATABASE specifies that if a table or partition already exists, and a change is detected, update it. Add new tables and partitions."
@@ -295,110 +2496,60 @@
     "properties": {
       "CatalogTargets": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/123"
         },
         "flags": 0,
         "description": "Specifies AWS Glue Data Catalog targets."
       },
       "DeltaTargets": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/124"
         },
         "flags": 0,
         "description": "Specifies an array of Delta data store targets."
       },
       "DynamoDBTargets": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/125"
         },
         "flags": 0,
         "description": "Specifies Amazon DynamoDB targets."
       },
+      "HudiTargets": {
+        "type": {
+          "$ref": "#/126"
+        },
+        "flags": 0,
+        "description": "Specifies Apache Hudi data store targets."
+      },
       "IcebergTargets": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/127"
         },
         "flags": 0,
         "description": "Specifies Apache Iceberg data store targets."
       },
       "JdbcTargets": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/128"
         },
         "flags": 0,
         "description": "Specifies JDBC targets."
       },
       "MongoDBTargets": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/129"
         },
         "flags": 0,
         "description": "A list of Mongo DB targets."
       },
       "S3Targets": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/130"
         },
         "flags": 0,
         "description": "Specifies Amazon Simple Storage Service (Amazon S3) targets."
       }
-    }
-  },
-  {
-    "$type": "StringType"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/12"
-    }
-  },
-  {
-    "$type": "BooleanType"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/12"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/12"
-    }
-  },
-  {
-    "$type": "IntegerType"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/12"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/12"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/12"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/12"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/0"
     }
   },
   {
@@ -410,31 +2561,97 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/101"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/102"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/103"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/104"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/105"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/106"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/108"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/110"
     }
   },
   {
@@ -444,7 +2661,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/12"
+      "$ref": "#/1"
     }
   },
   {
@@ -458,94 +2675,94 @@
     "properties": {
       "Classifiers": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/132"
         },
         "flags": 0,
         "description": "A list of UTF-8 strings that specify the names of custom classifiers that are associated with the crawler."
       },
       "Configuration": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior."
       },
       "CrawlerSecurityConfiguration": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The name of the SecurityConfiguration structure to be used by this crawler."
       },
       "DatabaseName": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The name of the database in which the crawler's output is stored."
       },
       "Description": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "A description of the crawler."
       },
       "LakeFormationConfiguration": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/107"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 16,
         "description": "The name of the crawler."
       },
       "RecrawlPolicy": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/109"
         },
         "flags": 0
       },
       "Role": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) of an IAM role that's used to access customer resources, such as Amazon Simple Storage Service (Amazon S3) data."
       },
       "Schedule": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/111"
         },
         "flags": 0
       },
       "SchemaChangePolicy": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/112"
         },
         "flags": 0
       },
       "TablePrefix": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The prefix added to the names of tables that are created."
       },
       "Tags": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/133"
         },
         "flags": 0,
         "description": "The tags to use with this crawler."
       },
       "Targets": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/113"
         },
         "flags": 1
       }
@@ -557,21 +2774,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/134"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -581,11 +2798,333 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Glue/Crawler@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/33"
+      "$ref": "#/135"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Glue/CustomEntityTypeProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomEntityType_Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/CustomEntityTypeProperties",
+    "properties": {
+      "ContextWords": {
+        "type": {
+          "$ref": "#/138"
+        },
+        "flags": 0,
+        "description": "A list of context words."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The name of the custom entity type."
+      },
+      "RegexString": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A regular expression string that is used for detecting sensitive data in a custom pattern."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/139"
+        },
+        "flags": 4,
+        "description": "Tags to associate with the custom entity type."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/CustomEntityType",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/140"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Glue/CustomEntityType@default",
+    "body": {
+      "$ref": "#/141"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectionPasswordEncryption",
+    "properties": {
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "An AWS KMS key that is used to encrypt the connection password."
+      },
+      "ReturnConnectionPasswordEncrypted": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "When the ReturnConnectionPasswordEncrypted flag is set to 'true', passwords remain encrypted in the responses of GetConnection and GetConnections. This encryption takes effect independently from catalog encryption."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataCatalogEncryptionSettings",
+    "properties": {
+      "ConnectionPasswordEncryption": {
+        "type": {
+          "$ref": "#/143"
+        },
+        "flags": 0
+      },
+      "EncryptionAtRest": {
+        "type": {
+          "$ref": "#/145"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EncryptionAtRest",
+    "properties": {
+      "CatalogEncryptionMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The encryption-at-rest mode for encrypting Data Catalog data."
+      },
+      "CatalogEncryptionServiceRole": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The role that AWS Glue assumes to encrypt and decrypt the Data Catalog objects on the caller's behalf."
+      },
+      "SseAwsKmsKeyId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ID of the AWS KMS key to use for encryption at rest."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Glue/DataCatalogEncryptionSettingsProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/DataCatalogEncryptionSettingsProperties",
+    "properties": {
+      "CatalogId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The ID of the Data Catalog in which the settings are created."
+      },
+      "DataCatalogEncryptionSettings": {
+        "type": {
+          "$ref": "#/144"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/DataCatalogEncryptionSettings",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/147"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Glue/DataCatalogEncryptionSettings@default",
+    "body": {
+      "$ref": "#/148"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataQualityTargetTable",
+    "properties": {
+      "DatabaseName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the database where the AWS Glue table exists."
+      },
+      "TableName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the AWS Glue table."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Glue/DataQualityRulesetProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataQualityRuleset_Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/DataQualityRulesetProperties",
+    "properties": {
+      "ClientToken": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "A unique token for idempotency."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A description of the data quality ruleset."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "A unique name for the data quality ruleset."
+      },
+      "Ruleset": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A Data Quality Definition Language (DQDL) ruleset."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/152"
+        },
+        "flags": 0,
+        "description": "A map of key-value pairs to apply to this resource."
+      },
+      "TargetTable": {
+        "type": {
+          "$ref": "#/150"
+        },
+        "flags": 0,
+        "description": "An object representing an AWS Glue table."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/DataQualityRuleset",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/153"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Glue/DataQualityRuleset@default",
+    "body": {
+      "$ref": "#/154"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -593,7 +3132,7 @@
     "properties": {
       "DataLakePrincipalIdentifier": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "An identifier for the AWS Lake Formation principal."
@@ -606,21 +3145,21 @@
     "properties": {
       "CatalogId": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The ID of the Data Catalog in which the database resides."
       },
       "DatabaseName": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 16,
         "description": "The name of the catalog database."
       },
       "Region": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Region of the target database."
@@ -633,49 +3172,49 @@
     "properties": {
       "CreateTableDefaultPermissions": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/161"
         },
         "flags": 0,
         "description": "Creates a set of default permissions on the table for principals. Used by AWS Lake Formation. Not used in the normal course of AWS Glue operations."
       },
       "Description": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "A description of the database."
       },
       "FederatedDatabase": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/159"
         },
         "flags": 0,
         "description": "A FederatedDatabase structure that references an entity outside the AWS Glue Data Catalog."
       },
       "LocationUri": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The location of the database (for example, an HDFS path)."
       },
       "Name": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The name of the database. For hive compatibility, this is folded to lowercase when it is stored."
       },
       "Parameters": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/162"
         },
         "flags": 0,
         "description": "These key-value pairs define parameters and properties of the database."
       },
       "TargetDatabase": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/157"
         },
         "flags": 0,
         "description": "A DatabaseIdentifier structure that describes a target database for resource linking."
@@ -688,14 +3227,14 @@
     "properties": {
       "ConnectionName": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The name of the connection to the external metastore."
       },
       "Identifier": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "A unique identifier for the federated database."
@@ -708,14 +3247,14 @@
     "properties": {
       "Permissions": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/163"
         },
         "flags": 0,
         "description": "The permissions that are granted to the principal."
       },
       "Principal": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/156"
         },
         "flags": 0,
         "description": "The principal who is granted permissions."
@@ -725,7 +3264,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/39"
+      "$ref": "#/160"
     }
   },
   {
@@ -736,7 +3275,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/12"
+      "$ref": "#/1"
     }
   },
   {
@@ -749,21 +3288,21 @@
     "properties": {
       "CatalogId": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The AWS account ID for the account in which to create the catalog object."
       },
       "DatabaseInput": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/158"
         },
         "flags": 1,
         "description": "The metadata for the database."
       },
       "DatabaseName": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 16,
         "description": "The name of the database. For hive compatibility, this is folded to lowercase when it is store."
@@ -776,21 +3315,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/165"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -800,11 +3339,451 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Glue/Database@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/45"
+      "$ref": "#/166"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Glue/IdentityCenterConfigurationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/IdentityCenterConfigurationProperties",
+    "properties": {
+      "AccountId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The identifier for the specified AWS account."
+      },
+      "ApplicationArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The Glue IAM identity center application arn"
+      },
+      "InstanceArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The IAM identity center instance arn"
+      },
+      "Scopes": {
+        "type": {
+          "$ref": "#/169"
+        },
+        "flags": 0,
+        "description": "The downstream scopes that Glue identity center configuration can access"
+      },
+      "UserBackgroundSessionsEnabled": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Enable or disable user background sessions for Glue Identity Center"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/IdentityCenterConfiguration",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/170"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Glue/IdentityCenterConfiguration@default",
+    "body": {
+      "$ref": "#/171"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IntegrationAdditionalEncryptionContextMap",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IntegrationConfig",
+    "properties": {
+      "ContinuousSync": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 4,
+        "description": "Enables continuous synchronization for on-demand data extractions."
+      },
+      "RefreshInterval": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies the frequency at which CDC (Change Data Capture) pulls or incremental loads should occur."
+      },
+      "SourceProperties": {
+        "type": {
+          "$ref": "#/175"
+        },
+        "flags": 4
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceProperties",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/176"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Glue/IntegrationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/176"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/IntegrationProperties",
+    "properties": {
+      "AdditionalEncryptionContext": {
+        "type": {
+          "$ref": "#/173"
+        },
+        "flags": 0
+      },
+      "CreateTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time (UTC) when the integration was created."
+      },
+      "DataFilter": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "IntegrationArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the integration."
+      },
+      "IntegrationConfig": {
+        "type": {
+          "$ref": "#/174"
+        },
+        "flags": 0
+      },
+      "IntegrationName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The name of the integration."
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "An KMS key identifier for the key to use to encrypt the integration. If you don't specify an encryption key, the default AWS owned KMS key is used."
+      },
+      "SourceArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the database to use as the source for replication"
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The status of the integration."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/180"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
+      "TargetArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the Glue data warehouse to use as the target for replication"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/Integration",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/181"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Glue/Integration@default",
+    "body": {
+      "$ref": "#/182"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Glue/IntegrationResourcePropertyProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IntegrationResourceProperty_SourceProcessingProperties",
+    "properties": {
+      "RoleArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The IAM role to access the Glue connection."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/184"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IntegrationResourceProperty_TargetProcessingProperties",
+    "properties": {
+      "ConnectionName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The Glue network connection to configure the Glue job running in the customer VPC."
+      },
+      "EventBusArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ARN of an Eventbridge event bus to receive the integration status notification."
+      },
+      "KmsArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ARN of the KMS key used for encryption."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The IAM role to access the Glue database."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/IntegrationResourcePropertyProperties",
+    "properties": {
+      "ResourceArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The connection ARN of the source, or the database ARN of the target."
+      },
+      "ResourcePropertyArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The integration resource property ARN."
+      },
+      "SourceProcessingProperties": {
+        "type": {
+          "$ref": "#/186"
+        },
+        "flags": 0,
+        "description": "The resource properties associated with the integration source."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/187"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
+      "TargetProcessingProperties": {
+        "type": {
+          "$ref": "#/188"
+        },
+        "flags": 0,
+        "description": "The resource properties associated with the integration target."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/IntegrationResourceProperty",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/189"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Glue/IntegrationResourceProperty@default",
+    "body": {
+      "$ref": "#/190"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -812,7 +3791,7 @@
     "properties": {
       "Connections": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/198"
         },
         "flags": 0,
         "description": "A list of connections used by the job."
@@ -825,13 +3804,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "Value": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0
       }
@@ -843,7 +3822,7 @@
     "properties": {
       "MaxConcurrentRuns": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "The maximum number of concurrent runs allowed for the job."
@@ -856,28 +3835,28 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 16,
         "description": "The name of the job command"
       },
       "PythonVersion": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The Python version being used to execute a Python shell job."
       },
       "Runtime": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Runtime is used to specify the versions of Ray, Python and additional libraries available in your environment"
       },
       "ScriptLocation": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Specifies the Amazon Simple Storage Service (Amazon S3) path to a script that executes a job"
@@ -890,13 +3869,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "Value": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0
       }
@@ -908,7 +3887,7 @@
     "properties": {
       "NotifyDelayAfter": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "It is the number of minutes to wait before sending a job run delay notification after a job run starts"
@@ -918,7 +3897,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/12"
+      "$ref": "#/1"
     }
   },
   {
@@ -946,161 +3925,161 @@
     "properties": {
       "AllocatedCapacity": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "The number of capacity units that are allocated to this job."
       },
       "Command": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/195"
         },
         "flags": 1,
         "description": "The code that executes a job."
       },
       "Connections": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/192"
         },
         "flags": 0,
         "description": "Specifies the connections used by a job"
       },
       "DefaultArguments": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/200"
         },
         "flags": 0,
         "description": "The default arguments for this job, specified as name-value pairs."
       },
       "Description": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "A description of the job."
       },
       "ExecutionClass": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Indicates whether the job is run with a standard or flexible execution class."
       },
       "ExecutionProperty": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/194"
         },
         "flags": 0,
         "description": "The maximum number of concurrent runs that are allowed for this job."
       },
       "GlueVersion": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Glue version determines the versions of Apache Spark and Python that AWS Glue supports."
       },
       "JobMode": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Property description not available."
       },
       "JobRunQueuingEnabled": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "Property description not available."
       },
       "LogUri": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "This field is reserved for future use."
       },
       "MaintenanceWindow": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Property description not available."
       },
       "MaxCapacity": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "The number of AWS Glue data processing units (DPUs) that can be allocated when this job runs."
       },
       "MaxRetries": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "The maximum number of times to retry this job after a JobRun fails"
       },
       "Name": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 16,
         "description": "The name you assign to the job definition"
       },
       "NonOverridableArguments": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/201"
         },
         "flags": 0,
         "description": "Non-overridable arguments for this job, specified as name-value pairs."
       },
       "NotificationProperty": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/197"
         },
         "flags": 0,
         "description": "Specifies configuration properties of a notification."
       },
       "NumberOfWorkers": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "The number of workers of a defined workerType that are allocated when a job runs."
       },
       "Role": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name or Amazon Resource Name (ARN) of the IAM role associated with this job."
       },
       "SecurityConfiguration": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The name of the SecurityConfiguration structure to be used with this job."
       },
       "Tags": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/202"
         },
         "flags": 0,
         "description": "The tags to use with this job."
       },
       "Timeout": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "The maximum time that a job run can consume resources before it is terminated and enters TIMEOUT status."
       },
       "WorkerType": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "TThe type of predefined worker that is allocated when a job runs."
@@ -1113,21 +4092,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/203"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1137,11 +4116,112 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Glue/Job@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/59"
+      "$ref": "#/204"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FindMatchesParameters",
+    "properties": {
+      "AccuracyCostTradeoff": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "The value for accuracy and cost tradeoff. A value of 0.5 means balance."
+      },
+      "EnforceProvidedLabels": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "If true, forces the output to match the provided labels."
+      },
+      "PrecisionRecallTradeoff": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "The value for precision and recall tradeoff. A value of 0.5 means no preference."
+      },
+      "PrimaryKeyColumnName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of a column that uniquely identifies rows in the source table."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GlueTables",
+    "properties": {
+      "CatalogId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A unique identifier for the AWS Glue Data Catalog."
+      },
+      "ConnectionName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the connection to the AWS Glue Data Catalog."
+      },
+      "DatabaseName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "A database name in the AWS Glue Data Catalog."
+      },
+      "TableName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "A table name in the AWS Glue Data Catalog."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputRecordTables",
+    "properties": {
+      "GlueTables": {
+        "type": {
+          "$ref": "#/213"
+        },
+        "flags": 0,
+        "description": "The database and table in the AWS Glue Data Catalog that is used for input or output data."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MLUserDataEncryption",
+    "properties": {
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ID for the customer-provided KMS key."
+      },
+      "MLUserDataEncryptionMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The encryption mode applied to user data."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -1149,14 +4229,637 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TransformEncryption",
+    "properties": {
+      "MLUserDataEncryption": {
+        "type": {
+          "$ref": "#/209"
+        },
+        "flags": 0
+      },
+      "TaskRunSecurityConfigurationName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the security configuration."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TransformParameters",
+    "properties": {
+      "FindMatchesParameters": {
+        "type": {
+          "$ref": "#/206"
+        },
+        "flags": 0
+      },
+      "TransformType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The type of machine learning transform."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/207"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Glue/MLTransformProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MLTransform_Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/MLTransformProperties",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A user-defined, long-form description text for the machine learning transform."
+      },
+      "GlueVersion": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The version of AWS Glue this machine learning transform is compatible with."
+      },
+      "InputRecordTables": {
+        "type": {
+          "$ref": "#/208"
+        },
+        "flags": 1,
+        "description": "A list of AWS Glue table definitions used by the transform."
+      },
+      "MaxCapacity": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "The number of AWS Glue DPUs allocated to task runs for this transform."
+      },
+      "MaxRetries": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "The maximum number of times to retry after an MLTaskRun fails."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A user-defined name for the machine learning transform."
+      },
+      "NumberOfWorkers": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "The number of workers of a defined workerType that are allocated when a task runs."
+      },
+      "Role": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name or ARN of the IAM role with the required permissions."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/215"
+        },
+        "flags": 0,
+        "description": "The tags to use with this machine learning transform."
+      },
+      "Timeout": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "The timeout in minutes of the machine learning transform."
+      },
+      "TransformEncryption": {
+        "type": {
+          "$ref": "#/211"
+        },
+        "flags": 0,
+        "description": "The encryption-at-rest settings of the transform."
+      },
+      "TransformId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The unique identifier for the transform."
+      },
+      "TransformParameters": {
+        "type": {
+          "$ref": "#/212"
+        },
+        "flags": 1,
+        "description": "The algorithm-specific parameters that are associated with the machine learning transform."
+      },
+      "WorkerType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The type of predefined worker that is allocated when a task runs."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/MLTransform",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/216"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Glue/MLTransform@default",
+    "body": {
+      "$ref": "#/217"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Column",
+    "properties": {
+      "Comment": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A free-form text comment."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the Column."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The data type of the Column."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Order",
+    "properties": {
+      "Column": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the column."
+      },
+      "SortOrder": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "Indicates that the column is sorted in ascending order (== 1), or in descending order (==0)."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PartitionInput",
+    "properties": {
+      "Parameters": {
+        "type": {
+          "$ref": "#/227"
+        },
+        "flags": 0,
+        "description": "Key-value pairs defining partition parameters."
+      },
+      "StorageDescriptor": {
+        "type": {
+          "$ref": "#/226"
+        },
+        "flags": 0
+      },
+      "Values": {
+        "type": {
+          "$ref": "#/228"
+        },
+        "flags": 1,
+        "description": "The values of the partition. Although this parameter is not required by the SDK, you must specify this parameter for a valid input. The values for the keys for the new partition must be passed as an array of String objects that must be ordered in the same order as the partition keys appearing in the Amazon S3 prefix. Otherwise AWS Glue will add the values to the wrong keys."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SchemaId",
+    "properties": {
+      "RegistryName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the schema registry that contains the schema."
+      },
+      "SchemaArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the schema. One of SchemaArn or SchemaName has to be provided."
+      },
+      "SchemaName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the schema. One of SchemaArn or SchemaName has to be provided."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SchemaReference",
+    "properties": {
+      "SchemaId": {
+        "type": {
+          "$ref": "#/222"
+        },
+        "flags": 0
+      },
+      "SchemaVersionId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The unique ID assigned to a version of the schema. Either this or the SchemaId has to be provided."
+      },
+      "SchemaVersionNumber": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "The version number of the schema."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SerdeInfo",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Name of the SerDe."
+      },
+      "Parameters": {
+        "type": {
+          "$ref": "#/229"
+        },
+        "flags": 0,
+        "description": "These key-value pairs define initialization parameters for the SerDe."
+      },
+      "SerializationLibrary": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Usually the class that implements the SerDe. An example is org.apache.hadoop.hive.serde2.columnar.ColumnarSerDe."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SkewedInfo",
+    "properties": {
+      "SkewedColumnNames": {
+        "type": {
+          "$ref": "#/230"
+        },
+        "flags": 0,
+        "description": "A list of values that appear so frequently as to be considered skewed."
+      },
+      "SkewedColumnValueLocationMaps": {
+        "type": {
+          "$ref": "#/231"
+        },
+        "flags": 0,
+        "description": "A mapping of skewed values to the columns that contain them."
+      },
+      "SkewedColumnValues": {
+        "type": {
+          "$ref": "#/232"
+        },
+        "flags": 0,
+        "description": "A list of names of columns that contain skewed values."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StorageDescriptor",
+    "properties": {
+      "BucketColumns": {
+        "type": {
+          "$ref": "#/233"
+        },
+        "flags": 0,
+        "description": "A list of reducer grouping columns, clustering columns, and bucketing columns in the table."
+      },
+      "Columns": {
+        "type": {
+          "$ref": "#/234"
+        },
+        "flags": 0,
+        "description": "A list of the Columns in the table."
+      },
+      "Compressed": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "True if the data in the table is compressed, or False if not."
+      },
+      "InputFormat": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The input format: SequenceFileInputFormat (binary), or TextInputFormat, or a custom format."
+      },
+      "Location": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The physical location of the table. By default, this takes the form of the warehouse location, followed by the database location in the warehouse, followed by the table name."
+      },
+      "NumberOfBuckets": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "The number of buckets. You must specify this property if the partition contains any dimension columns."
+      },
+      "OutputFormat": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The output format: SequenceFileOutputFormat (binary), or IgnoreKeyTextOutputFormat, or a custom format."
+      },
+      "Parameters": {
+        "type": {
+          "$ref": "#/235"
+        },
+        "flags": 0,
+        "description": "The user-supplied properties in key-value form."
+      },
+      "SchemaReference": {
+        "type": {
+          "$ref": "#/223"
+        },
+        "flags": 0
+      },
+      "SerdeInfo": {
+        "type": {
+          "$ref": "#/224"
+        },
+        "flags": 0
+      },
+      "SkewedInfo": {
+        "type": {
+          "$ref": "#/225"
+        },
+        "flags": 0
+      },
+      "SortColumns": {
+        "type": {
+          "$ref": "#/236"
+        },
+        "flags": 0,
+        "description": "A list specifying the sort order of each bucket in the table."
+      },
+      "StoredAsSubDirectories": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "True if the table data is stored in subdirectories, or False if not."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Partition_Parameters",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Partition_Parameters",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Partition_SkewedColumnValueLocationMaps",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/219"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Partition_Parameters",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/220"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Glue/PartitionProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/PartitionProperties",
+    "properties": {
+      "CatalogId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The name of the catalog database in which to create the partition."
+      },
+      "DatabaseName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The AWS account ID of the catalog in which the partion is to be created."
+      },
+      "IdentifierPartitionInputValues": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "A hashed string equivalent to the partition values list for use as a component of the resource's identifier in CFN"
+      },
+      "PartitionInput": {
+        "type": {
+          "$ref": "#/221"
+        },
+        "flags": 1
+      },
+      "TableName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The name of the metadata table in which the partition is to be created."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/Partition",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/238"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Glue/Partition@default",
+    "body": {
+      "$ref": "#/239"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "A key to identify the tag."
       },
       "Value": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "Corresponding tag value for the key."
@@ -1170,7 +4873,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/61"
+      "$ref": "#/241"
     }
   },
   {
@@ -1179,28 +4882,28 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "Amazon Resource Name for the created Registry."
       },
       "Description": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "A description of the registry. If description is not provided, there will not be any default value for this."
       },
       "Name": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "Name of the registry to be created of max length of 255, and may only contain letters, numbers, hyphen, underscore, dollar sign, or hash mark.  No whitespace."
       },
       "Tags": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/243"
         },
         "flags": 0,
         "description": "List of tags to tag the Registry"
@@ -1213,21 +4916,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/244"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1237,11 +4940,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Glue/Registry@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/65"
+      "$ref": "#/245"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1249,14 +4952,14 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 16,
         "description": "Amazon Resource Name for the Registry."
       },
       "Name": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Name of the registry in which the schema will be created."
@@ -1269,14 +4972,14 @@
     "properties": {
       "IsLatest": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "Indicates if the latest version needs to be updated."
       },
       "VersionNumber": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "Indicates the version number in the schema to update."
@@ -1289,14 +4992,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "A key to identify the tag."
       },
       "Value": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "Corresponding tag value for the key."
@@ -1310,7 +5013,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/69"
+      "$ref": "#/249"
     }
   },
   {
@@ -1319,68 +5022,68 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "Amazon Resource Name for the Schema."
       },
       "CheckpointVersion": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/248"
         },
         "flags": 0
       },
       "Compatibility": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "Compatibility setting for the schema."
       },
       "DataFormat": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "Data format name to use for the schema. Accepted values: 'AVRO', 'JSON', 'PROTOBUF'"
       },
       "Description": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "A description of the schema. If description is not provided, there will not be any default value for this."
       },
       "InitialSchemaVersionId": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "Represents the version ID associated with the initial schema version."
       },
       "Name": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "Name of the schema."
       },
       "Registry": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/247"
         },
         "flags": 0
       },
       "SchemaDefinition": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 4,
         "description": "Definition for the initial schema version in plain-text."
       },
       "Tags": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/251"
         },
         "flags": 0,
         "description": "List of tags to tag the schema"
@@ -1393,21 +5096,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/252"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1417,11 +5120,1408 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Glue/Schema@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/73"
+      "$ref": "#/253"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectionsList",
+    "properties": {
+      "Connections": {
+        "type": {
+          "$ref": "#/258"
+        },
+        "flags": 0,
+        "description": "A list of connection names used by the session."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SessionCommand",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies the name of the SessionCommand. Can be 'glueetl' or 'gluestreaming'."
+      },
+      "PythonVersion": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies the Python version. The Python version indicates the version supported for jobs of type Spark."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Glue/SessionProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Session_DefaultArguments",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/257"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/SessionProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the session."
+      },
+      "Command": {
+        "type": {
+          "$ref": "#/256"
+        },
+        "flags": 1
+      },
+      "Connections": {
+        "type": {
+          "$ref": "#/255"
+        },
+        "flags": 0
+      },
+      "CreatedOn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time and date when the session was created."
+      },
+      "DefaultArguments": {
+        "type": {
+          "$ref": "#/260"
+        },
+        "flags": 0,
+        "description": "A map array of key-value pairs. Max is 75 pairs."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The description of the session."
+      },
+      "GlueVersion": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The Glue version determines the versions of Apache Spark and Python that Glue supports. The GlueVersion must be greater than 2.0."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The ID of the session."
+      },
+      "IdleTimeout": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "The number of minutes when idle before session times out. Default is the value of Timeout."
+      },
+      "MaxCapacity": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "The number of Glue data processing units (DPUs) that can be allocated when the job runs."
+      },
+      "NumberOfWorkers": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "The number of workers of a defined WorkerType to use for the session."
+      },
+      "Progress": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 2,
+        "description": "The code execution progress of the session."
+      },
+      "RequestOrigin": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The origin of the request."
+      },
+      "Role": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The IAM Role ARN."
+      },
+      "SecurityConfiguration": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the SecurityConfiguration structure to be used with the session."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The session status."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/261"
+        },
+        "flags": 0,
+        "description": "The tags belonging to the session."
+      },
+      "Timeout": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 4,
+        "description": "The number of minutes before session times out."
+      },
+      "WorkerType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The type of predefined worker that is allocated when a session runs."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/Session",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/262"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Glue/Session@default",
+    "body": {
+      "$ref": "#/263"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Column",
+    "properties": {
+      "Comment": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A free-form text comment."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The name of the Column."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The data type of the Column."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IcebergInput",
+    "properties": {
+      "IcebergTableInput": {
+        "type": {
+          "$ref": "#/273"
+        },
+        "flags": 0,
+        "description": "Specifies the Iceberg table configuration."
+      },
+      "MetadataOperation": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A required metadata operation. Can only be set to CREATE."
+      },
+      "Version": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The table version of the Iceberg table. Defaults to 2."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IcebergPartitionField",
+    "properties": {
+      "FieldId": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "The partition field ID."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The partition field name."
+      },
+      "SourceId": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 1,
+        "description": "The source field ID."
+      },
+      "Transform": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The transform to apply."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IcebergPartitionSpec",
+    "properties": {
+      "Fields": {
+        "type": {
+          "$ref": "#/286"
+        },
+        "flags": 1,
+        "description": "The partition fields."
+      },
+      "SpecId": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "The spec ID."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IcebergSchema",
+    "properties": {
+      "Fields": {
+        "type": {
+          "$ref": "#/287"
+        },
+        "flags": 1,
+        "description": "The fields in the schema."
+      },
+      "IdentifierFieldIds": {
+        "type": {
+          "$ref": "#/288"
+        },
+        "flags": 0,
+        "description": "The identifier field IDs."
+      },
+      "SchemaId": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "The schema ID."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The type of the schema."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IcebergSortField",
+    "properties": {
+      "Direction": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The sort direction."
+      },
+      "NullOrder": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The null ordering."
+      },
+      "SourceId": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 1,
+        "description": "The source field ID."
+      },
+      "Transform": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The transform to apply."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IcebergSortOrder",
+    "properties": {
+      "Fields": {
+        "type": {
+          "$ref": "#/289"
+        },
+        "flags": 1,
+        "description": "The sort fields."
+      },
+      "OrderId": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 1,
+        "description": "The order ID."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IcebergStructField",
+    "properties": {
+      "Doc": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Documentation for the field."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 1,
+        "description": "The field ID."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The field name."
+      },
+      "Required": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "Whether the field is required."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The field type."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IcebergTableInput",
+    "properties": {
+      "Location": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The location of the Iceberg table."
+      },
+      "PartitionSpec": {
+        "type": {
+          "$ref": "#/268"
+        },
+        "flags": 0,
+        "description": "The partition spec for the Iceberg table."
+      },
+      "Properties": {
+        "type": {
+          "$ref": "#/290"
+        },
+        "flags": 0,
+        "description": "The properties for the Iceberg table."
+      },
+      "Schema": {
+        "type": {
+          "$ref": "#/269"
+        },
+        "flags": 1,
+        "description": "The schema for the Iceberg table."
+      },
+      "WriteOrder": {
+        "type": {
+          "$ref": "#/271"
+        },
+        "flags": 0,
+        "description": "The write order for the Iceberg table."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MetadataOperation",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OpenTableFormatInput",
+    "properties": {
+      "IcebergInput": {
+        "type": {
+          "$ref": "#/266"
+        },
+        "flags": 0,
+        "description": "Specifies an IcebergInput structure that defines an Apache Iceberg metadata table."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Order",
+    "properties": {
+      "Column": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the column."
+      },
+      "SortOrder": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 1,
+        "description": "Indicates that the column is sorted in ascending order (==1), or in descending order (==0)."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SchemaId",
+    "properties": {
+      "RegistryName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the schema registry that contains the schema."
+      },
+      "SchemaArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the schema. One of SchemaArn or SchemaName has to be provided."
+      },
+      "SchemaName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the schema. One of SchemaArn or SchemaName has to be provided."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SchemaReference",
+    "properties": {
+      "SchemaId": {
+        "type": {
+          "$ref": "#/277"
+        },
+        "flags": 0,
+        "description": "A structure that contains schema identity fields. Either this or the SchemaVersionId has to be provided."
+      },
+      "SchemaVersionId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The unique ID assigned to a version of the schema. Either this or the SchemaId has to be provided."
+      },
+      "SchemaVersionNumber": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "The version number of the schema."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SerdeInfo",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "Name of the SerDe."
+      },
+      "Parameters": {
+        "type": {
+          "$ref": "#/291"
+        },
+        "flags": 0,
+        "description": "These key-value pairs define initialization parameters for the SerDe."
+      },
+      "SerializationLibrary": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Usually the class that implements the SerDe. An example is org.apache.hadoop.hive.serde2.columnar.ColumnarSerDe."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SkewedInfo",
+    "properties": {
+      "SkewedColumnNames": {
+        "type": {
+          "$ref": "#/292"
+        },
+        "flags": 0,
+        "description": "A list of names of columns that contain skewed values."
+      },
+      "SkewedColumnValueLocationMaps": {
+        "type": {
+          "$ref": "#/293"
+        },
+        "flags": 0,
+        "description": "A mapping of skewed values to the columns that contain them."
+      },
+      "SkewedColumnValues": {
+        "type": {
+          "$ref": "#/294"
+        },
+        "flags": 0,
+        "description": "A list of names of columns that contain skewed values."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StorageDescriptor",
+    "properties": {
+      "BucketColumns": {
+        "type": {
+          "$ref": "#/295"
+        },
+        "flags": 0,
+        "description": "A list of reducer grouping columns, clustering columns, and bucketing columns in the table."
+      },
+      "Columns": {
+        "type": {
+          "$ref": "#/296"
+        },
+        "flags": 0,
+        "description": "A list of the Columns in the table."
+      },
+      "Compressed": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "True if the data in the table is compressed, or False if not."
+      },
+      "InputFormat": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The input format: SequenceFileInputFormat (binary), or TextInputFormat, or a custom format."
+      },
+      "Location": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The physical location of the table. By default, this takes the form of the warehouse location, followed by the database location in the warehouse, followed by the table name."
+      },
+      "NumberOfBuckets": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "Must be specified if the table contains any dimension columns."
+      },
+      "OutputFormat": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The output format: SequenceFileOutputFormat (binary), or IgnoreKeyTextOutputFormat, or a custom format."
+      },
+      "Parameters": {
+        "type": {
+          "$ref": "#/297"
+        },
+        "flags": 0,
+        "description": "The user-supplied properties in key-value form."
+      },
+      "SchemaReference": {
+        "type": {
+          "$ref": "#/278"
+        },
+        "flags": 0,
+        "description": "An object that references a schema stored in the AWS Glue Schema Registry."
+      },
+      "SerdeInfo": {
+        "type": {
+          "$ref": "#/279"
+        },
+        "flags": 0,
+        "description": "The serialization/deserialization (SerDe) information."
+      },
+      "SkewedInfo": {
+        "type": {
+          "$ref": "#/280"
+        },
+        "flags": 0,
+        "description": "The information about values that appear frequently in a column (skewed values)."
+      },
+      "SortColumns": {
+        "type": {
+          "$ref": "#/298"
+        },
+        "flags": 0,
+        "description": "A list specifying the sort order of each bucket in the table."
+      },
+      "StoredAsSubDirectories": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "True if the table data is stored in subdirectories, or False if not."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TableIdentifier",
+    "properties": {
+      "CatalogId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The ID of the Data Catalog in which the table resides."
+      },
+      "DatabaseName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The name of the catalog database that contains the target table."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The name of the target table."
+      },
+      "Region": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The Region of the table."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TableInput",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A description of the table."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The table name. For Hive compatibility, this is folded to lowercase when it is stored."
+      },
+      "Owner": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The table owner. Included for Apache Hive compatibility. Not used in the normal course of AWS Glue operations."
+      },
+      "Parameters": {
+        "type": {
+          "$ref": "#/299"
+        },
+        "flags": 0,
+        "description": "These key-value pairs define properties associated with the table."
+      },
+      "PartitionKeys": {
+        "type": {
+          "$ref": "#/300"
+        },
+        "flags": 0,
+        "description": "A list of columns by which the table is partitioned. Only primitive types are supported as partition keys."
+      },
+      "Retention": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "The retention time for this table."
+      },
+      "StorageDescriptor": {
+        "type": {
+          "$ref": "#/281"
+        },
+        "flags": 0,
+        "description": "A storage descriptor containing information about the physical storage of this table."
+      },
+      "TableType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The type of this table. AWS Glue will create tables with the EXTERNAL_TABLE type. Other services, such as Athena, may create tables with additional table types."
+      },
+      "TargetTable": {
+        "type": {
+          "$ref": "#/282"
+        },
+        "flags": 0,
+        "description": "A TableIdentifier structure that describes a target table for resource linking."
+      },
+      "ViewDefinition": {
+        "type": {
+          "$ref": "#/284"
+        },
+        "flags": 0,
+        "description": "The view definition for the table."
+      },
+      "ViewExpandedText": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Included for Apache Hive compatibility. Not used in the normal course of AWS Glue operations."
+      },
+      "ViewOriginalText": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Included for Apache Hive compatibility. Not used in the normal course of AWS Glue operations."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ViewDefinition",
+    "properties": {
+      "Definer": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The definer of the view."
+      },
+      "IsProtected": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates whether the view is protected."
+      },
+      "Representations": {
+        "type": {
+          "$ref": "#/301"
+        },
+        "flags": 4,
+        "description": "The representations of the view."
+      },
+      "SubObjects": {
+        "type": {
+          "$ref": "#/302"
+        },
+        "flags": 4,
+        "description": "The sub-objects of the view."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ViewRepresentation",
+    "properties": {
+      "Dialect": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The dialect of the view representation."
+      },
+      "DialectVersion": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The version of the dialect."
+      },
+      "ValidationConnection": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The connection used for validation."
+      },
+      "ViewExpandedText": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The expanded text of the view."
+      },
+      "ViewOriginalText": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The original text of the view."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/267"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/272"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/20"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/270"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Table_Properties",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Table_Parameters",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Table_SkewedColumnValueLocationMaps",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/265"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Table_Parameters",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/276"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Table_Parameters",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/265"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/285"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Glue/TableProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/TableProperties",
+    "properties": {
+      "CatalogId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The ID of the Data Catalog in which to create the Table."
+      },
+      "DatabaseName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The name of the database where the table metadata resides. For Hive compatibility, this must be all lowercase."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The table name. For Hive compatibility, this is folded to lowercase when it is stored."
+      },
+      "OpenTableFormatInput": {
+        "type": {
+          "$ref": "#/275"
+        },
+        "flags": 4,
+        "description": "Specifies an OpenTableFormatInput structure when creating an open format table."
+      },
+      "TableInput": {
+        "type": {
+          "$ref": "#/283"
+        },
+        "flags": 0,
+        "description": "A structure used to define a table."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/Table",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/304"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Glue/Table@default",
+    "body": {
+      "$ref": "#/305"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CompactionConfiguration",
+    "properties": {
+      "IcebergConfiguration": {
+        "type": {
+          "$ref": "#/308"
+        },
+        "flags": 0,
+        "description": "The configuration for an Iceberg compaction optimizer."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IcebergCompactionConfiguration",
+    "properties": {
+      "DeleteFileThreshold": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "The minimum number of deletes in a data file to make it eligible for compaction."
+      },
+      "MinInputFiles": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "The minimum number of input files before compaction is triggered."
+      },
+      "Strategy": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The compaction strategy to use. Valid values are binpack, sort, and z-order."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IcebergConfiguration",
+    "properties": {
+      "Location": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies a directory in which to look for orphan files (defaults to the table's location). You may choose a sub-directory rather than the top-level table location."
+      },
+      "OrphanFileRetentionPeriodInDays": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "The specific number of days you want to keep the orphan files."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IcebergRetentionConfiguration",
+    "properties": {
+      "CleanExpiredFiles": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
+      "NumberOfSnapshotsToRetain": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      },
+      "SnapshotRetentionPeriodInDays": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OrphanFileDeletionConfiguration",
+    "properties": {
+      "IcebergConfiguration": {
+        "type": {
+          "$ref": "#/309"
+        },
+        "flags": 0,
+        "description": "The IcebergConfiguration property helps optimize your Iceberg tables in AWS Glue by allowing you to specify format-specific settings that control how data is stored, compressed, and managed."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RetentionConfiguration",
+    "properties": {
+      "IcebergConfiguration": {
+        "type": {
+          "$ref": "#/310"
+        },
+        "flags": 0,
+        "description": "The configuration for an Iceberg snapshot retention optimizer."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TableOptimizerConfiguration",
+    "properties": {
+      "CompactionConfiguration": {
+        "type": {
+          "$ref": "#/307"
+        },
+        "flags": 0,
+        "description": "The configuration for a compaction optimizer. This configuration defines how data files in your table will be compacted to improve query performance and reduce storage costs."
+      },
+      "Enabled": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "Whether the table optimization is enabled."
+      },
+      "OrphanFileDeletionConfiguration": {
+        "type": {
+          "$ref": "#/311"
+        },
+        "flags": 0,
+        "description": "OrphanFileDeletionConfiguration is a property that can be included within the TableOptimizer resource. It controls the automatic deletion of orphaned files - files that are not tracked by the table metadata, and older than the configured age limit."
+      },
+      "RetentionConfiguration": {
+        "type": {
+          "$ref": "#/312"
+        },
+        "flags": 0,
+        "description": "The configuration for a snapshot retention optimizer for Apache Iceberg tables."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "A role passed by the caller which gives the service permission to update the resources associated with the optimizer on the caller's behalf."
+      },
+      "VpcConfiguration": {
+        "type": {
+          "$ref": "#/314"
+        },
+        "flags": 0,
+        "description": "An object that describes the VPC configuration for a table optimizer. This configuration is necessary to perform optimization on tables that are in a customer VPC."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VpcConfiguration",
+    "properties": {
+      "GlueConnectionName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the AWS Glue connection used for the VPC for the table optimizer."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Glue/TableOptimizerProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/TableOptimizerProperties",
+    "properties": {
+      "CatalogId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The catalog ID of the table"
+      },
+      "DatabaseName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The name of the database. For Hive compatibility, this is folded to lowercase when it is stored."
+      },
+      "TableName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The table name. For Hive compatibility, this must be entirely lowercase."
+      },
+      "TableOptimizerConfiguration": {
+        "type": {
+          "$ref": "#/313"
+        },
+        "flags": 1,
+        "description": "Specifies configuration details of a table optimizer."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The type of table optimizer."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/TableOptimizer",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/316"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Glue/TableOptimizer@default",
+    "body": {
+      "$ref": "#/317"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1429,42 +6529,42 @@
     "properties": {
       "Arguments": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/324"
         },
         "flags": 0,
         "description": "The job arguments used when this trigger fires. For this job run, they replace the default arguments set in the job definition itself."
       },
       "CrawlerName": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The name of the crawler to be used with this action."
       },
       "JobName": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The name of a job to be executed."
       },
       "NotificationProperty": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/322"
         },
         "flags": 0,
         "description": "Specifies configuration properties of a job run notification."
       },
       "SecurityConfiguration": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The name of the SecurityConfiguration structure to be used with this action."
       },
       "Timeout": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "The JobRun timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters TIMEOUT status. The default is 2,880 minutes (48 hours). This overrides the timeout value set in the parent job."
@@ -1477,35 +6577,35 @@
     "properties": {
       "CrawlState": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The state of the crawler to which this condition applies."
       },
       "CrawlerName": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The name of the crawler to which this condition applies."
       },
       "JobName": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The name of the job whose JobRuns this condition applies to, and on which this trigger waits."
       },
       "LogicalOperator": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "A logical operator."
       },
       "State": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The condition state. Currently, the values supported are SUCCEEDED, STOPPED, TIMEOUT, and FAILED."
@@ -1518,14 +6618,14 @@
     "properties": {
       "BatchSize": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/20"
         },
         "flags": 1,
         "description": "Number of events that must be received from Amazon EventBridge before EventBridge event trigger fires."
       },
       "BatchWindow": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "Window of time in seconds after which EventBridge event trigger fires. Window starts when first event is received."
@@ -1538,7 +6638,7 @@
     "properties": {
       "NotifyDelayAfter": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "After a job run starts, the number of minutes to wait before sending a job run delay notification"
@@ -1551,14 +6651,14 @@
     "properties": {
       "Conditions": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/325"
         },
         "flags": 0,
         "description": "A list of the conditions that determine when the trigger will fire."
       },
       "Logical": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "An optional field if only one condition is listed. If multiple conditions are listed, then this field is required."
@@ -1573,7 +6673,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/76"
+      "$ref": "#/320"
     }
   },
   {
@@ -1583,7 +6683,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/75"
+      "$ref": "#/319"
     }
   },
   {
@@ -1597,70 +6697,70 @@
     "properties": {
       "Actions": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/327"
         },
         "flags": 1,
         "description": "The actions initiated by this trigger."
       },
       "Description": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "A description of this trigger."
       },
       "EventBatchingCondition": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/321"
         },
         "flags": 0,
         "description": "Batch condition that must be met (specified number of events received or batch time window expired) before EventBridge event trigger fires."
       },
       "Name": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 16,
         "description": "The name of the trigger."
       },
       "Predicate": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/323"
         },
         "flags": 0,
         "description": "The predicate of this trigger, which defines when it will fire."
       },
       "Schedule": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "A cron expression used to specify the schedule."
       },
       "StartOnCreation": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/15"
         },
         "flags": 4,
         "description": "Set to true to start SCHEDULED and CONDITIONAL triggers when created. True is not supported for ON_DEMAND triggers."
       },
       "Tags": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/328"
         },
         "flags": 0,
         "description": "The tags to use with this trigger."
       },
       "Type": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The type of trigger that this is."
       },
       "WorkflowName": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The name of the workflow associated with the trigger."
@@ -1673,21 +6773,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/329"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1697,11 +6797,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Glue/Trigger@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/86"
+      "$ref": "#/330"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1709,25 +6809,25 @@
     "properties": {
       "AllowedValues": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/335"
         },
         "flags": 0
       },
       "DefaultValue": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "MaxValue": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "MinValue": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0
       }
@@ -1739,13 +6839,13 @@
     "properties": {
       "JobConfiguration": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/336"
         },
         "flags": 0
       },
       "SessionConfiguration": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/337"
         },
         "flags": 0
       }
@@ -1757,14 +6857,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "A key to identify the tag."
       },
       "Value": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "Corresponding tag value for the key."
@@ -1774,7 +6874,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/12"
+      "$ref": "#/1"
     }
   },
   {
@@ -1794,7 +6894,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/90"
+      "$ref": "#/334"
     }
   },
   {
@@ -1803,35 +6903,35 @@
     "properties": {
       "Configuration": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/333"
         },
         "flags": 0,
         "description": "UsageProfile configuration for supported service ex: (Jobs, Sessions)."
       },
       "CreatedOn": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "Creation time."
       },
       "Description": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The description of the UsageProfile."
       },
       "Name": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "The name of the UsageProfile."
       },
       "Tags": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/339"
         },
         "flags": 0,
         "description": "The tags to be applied to this UsageProfiles."
@@ -1844,21 +6944,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/340"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1868,10 +6968,229 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Glue/UsageProfile@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/97"
+      "$ref": "#/341"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResourceUri",
+    "properties": {
+      "ResourceType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The type of the resource."
+      },
+      "Uri": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The URI for accessing the resource."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Glue/UserDefinedFunctionProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/343"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/UserDefinedFunctionProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the user-defined function."
+      },
+      "ClassName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The Java class that contains the function code."
+      },
+      "DatabaseName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the catalog database in which the function is located."
+      },
+      "FunctionName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the function."
+      },
+      "FunctionType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The type of the function."
+      },
+      "OwnerName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The owner of the function."
+      },
+      "OwnerType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The owner type."
+      },
+      "ResourceUris": {
+        "type": {
+          "$ref": "#/345"
+        },
+        "flags": 0,
+        "description": "The resource URIs for the function."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/UserDefinedFunction",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/346"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Glue/UserDefinedFunction@default",
+    "body": {
+      "$ref": "#/347"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Glue/WorkflowProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Workflow_DefaultRunProperties",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Workflow_Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/WorkflowProperties",
+    "properties": {
+      "DefaultRunProperties": {
+        "type": {
+          "$ref": "#/350"
+        },
+        "flags": 0,
+        "description": "A collection of properties to be used as part of each execution of the workflow"
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A description of the workflow"
+      },
+      "MaxConcurrentRuns": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "You can use this parameter to prevent unwanted multiple updates to data, to control costs, or in some cases, to prevent exceeding the maximum number of concurrent runs of any of the component jobs. If you leave this parameter blank, there is no limit to the number of concurrent workflow runs."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The name of the workflow representing the flow"
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/351"
+        },
+        "flags": 0,
+        "description": "The tags to use with this workflow."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/Workflow",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/352"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Glue/Workflow@default",
+    "body": {
+      "$ref": "#/353"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Timestream-InfluxDBInstance",
   "type": "AWS::Timestream::InfluxDBInstance",
-  "time": "2025-01-23T06:33:26.893Z",
+  "time": "2026-08-08T01:16:15.434Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -13,11 +13,34 @@
       "/properties/VpcSubnetIds",
       "/properties/VpcSecurityGroupIds",
       "/properties/PubliclyAccessible",
-      "/properties/DbStorageType",
-      "/properties/AllocatedStorage",
       "/properties/NetworkType"
     ],
     "definitions": {
+      "MaintenanceSchedule": {
+        "additionalProperties": false,
+        "description": "The maintenance schedule for the InfluxDB instance.",
+        "properties": {
+          "PreferredMaintenanceWindow": {
+            "description": "The preferred maintenance window in format ddd:HH:MM-ddd:HH:MM.",
+            "maxLength": 19,
+            "minLength": 0,
+            "pattern": "^$|^(Mon|Tue|Wed|Thu|Fri|Sat|Sun):([01]\\d|2[0-3]):[0-5]\\d-(Mon|Tue|Wed|Thu|Fri|Sat|Sun):([01]\\d|2[0-3]):[0-5]\\d$",
+            "type": "string"
+          },
+          "Timezone": {
+            "description": "The IANA timezone identifier for the maintenance schedule.",
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^(UTC|[A-Za-z_]+/[A-Za-z0-9_]+(/[A-Za-z0-9_]+)?)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Timezone",
+          "PreferredMaintenanceWindow"
+        ],
+        "type": "object"
+      },
       "Tag": {
         "additionalProperties": false,
         "description": "A key-value pair to associate with a resource.",
@@ -136,7 +159,8 @@
           "db.influx.4xlarge",
           "db.influx.8xlarge",
           "db.influx.12xlarge",
-          "db.influx.16xlarge"
+          "db.influx.16xlarge",
+          "db.influx.24xlarge"
         ],
         "type": "string"
       },
@@ -212,6 +236,10 @@
         ],
         "type": "object"
       },
+      "MaintenanceSchedule": {
+        "$ref": "#/definitions/MaintenanceSchedule",
+        "description": "The maintenance schedule for the InfluxDB instance."
+      },
       "Name": {
         "description": "The unique name that is associated with the InfluxDB instance.",
         "maxLength": 40,
@@ -225,6 +253,11 @@
           "IPV4",
           "DUAL"
         ],
+        "type": "string"
+      },
+      "NextMaintenanceTime": {
+        "description": "The timestamp of the next scheduled maintenance event.",
+        "format": "date-time",
         "type": "string"
       },
       "Organization": {
@@ -262,9 +295,12 @@
           "AVAILABLE",
           "DELETING",
           "MODIFYING",
+          "MAINTENANCE",
           "UPDATING",
           "UPDATING_DEPLOYMENT_TYPE",
           "UPDATING_INSTANCE_TYPE",
+          "REBOOTING",
+          "REBOOT_FAILED",
           "DELETED",
           "FAILED"
         ],
@@ -315,7 +351,8 @@
       "/properties/AvailabilityZone",
       "/properties/Endpoint",
       "/properties/SecondaryAvailabilityZone",
-      "/properties/InfluxAuthParametersSecretArn"
+      "/properties/InfluxAuthParametersSecretArn",
+      "/properties/NextMaintenanceTime"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-timestream.git",
     "tagging": {

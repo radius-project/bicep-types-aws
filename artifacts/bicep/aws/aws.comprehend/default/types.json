@@ -340,11 +340,659 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Comprehend/DocumentClassifier@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/18"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "The initial part of a key-value pair that forms a tag associated with a given resource."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "The second part of a key-value pair that forms a tag associated with a given resource."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Comprehend/DocumentClassifierEndpointProperties"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/20"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Comprehend/DocumentClassifierEndpointProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the document classifier endpoint."
+      },
+      "CreationTime": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "The creation date and time of the endpoint."
+      },
+      "CurrentInferenceUnits": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The number of inference units currently used by the model using this endpoint."
+      },
+      "DesiredInferenceUnits": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The desired number of inference units to be used by the model. Each inference unit represents throughput of 100 characters per second."
+      },
+      "EndpointName": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "The name of the endpoint. The name must be unique within the AWS Region and account."
+      },
+      "LastModifiedTime": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "The date and time that the endpoint was last modified."
+      },
+      "ModelArn": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the document classifier model to which the endpoint is attached."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "Tags associated with the endpoint being created."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Comprehend/DocumentClassifierEndpoint",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Comprehend/DocumentClassifierEndpoint@default",
+    "body": {
+      "$ref": "#/25"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AugmentedManifestsListItem",
+    "properties": {
+      "AnnotationDataS3Uri": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The S3 prefix to the annotation files that are referred in the augmented manifest file."
+      },
+      "AttributeNames": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 1,
+        "description": "The JSON attribute that contains the annotations for your training documents."
+      },
+      "DocumentType": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The type of augmented manifest."
+      },
+      "S3Uri": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "The Amazon S3 location of the augmented manifest file."
+      },
+      "SourceDocumentsS3Uri": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The S3 prefix to the source files (PDFs) that are referred to in the augmented manifest file."
+      },
+      "Split": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The purpose of the data you've provided in the augmented manifest."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EntityRecognizerAnnotations",
+    "properties": {
+      "S3Uri": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "Specifies the Amazon S3 location where the annotations are located."
+      },
+      "TestS3Uri": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "Specifies the Amazon S3 location where the test annotations are located."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EntityRecognizerDocuments",
+    "properties": {
+      "InputFormat": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "Specifies how the text in an input file should be processed."
+      },
+      "S3Uri": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "Specifies the Amazon S3 location where the training documents are located."
+      },
+      "TestS3Uri": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "Specifies the Amazon S3 location where the test documents are located."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EntityRecognizerEntityList",
+    "properties": {
+      "S3Uri": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "Specifies the Amazon S3 location where the entity list is located."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EntityRecognizerInputDataConfig",
+    "properties": {
+      "Annotations": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 0,
+        "description": "The S3 location of the CSV file that annotates your training documents."
+      },
+      "AugmentedManifests": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0,
+        "description": "A list of augmented manifest files that provide training data for a custom model."
+      },
+      "DataFormat": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The format of your training data."
+      },
+      "Documents": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 0,
+        "description": "The S3 location of the folder that contains the training documents."
+      },
+      "EntityList": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 0,
+        "description": "The S3 location of the CSV file that has the entity list."
+      },
+      "EntityTypes": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 1,
+        "description": "The entity types in the labeled training data."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EntityTypesListItem",
+    "properties": {
+      "Type": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "An entity type within a labeled training dataset."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "The key of the key-value pair that forms a tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "The value of the key-value pair that forms a tag."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VpcConfig",
+    "properties": {
+      "SecurityGroupIds": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 1,
+        "description": "The ID number for a security group on an instance of your private VPC."
+      },
+      "Subnets": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 1,
+        "description": "The ID for each subnet being used in your private VPC."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/9"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/27"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/32"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/9"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/9"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Comprehend/EntityRecognizerProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/33"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Comprehend/EntityRecognizerProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) that identifies the entity recognizer."
+      },
+      "DataAccessRoleArn": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the IAM role that grants Amazon Comprehend read access to your input data."
+      },
+      "InputDataConfig": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 1,
+        "description": "Specifies the format and location of the input data. The S3 bucket containing the input data must be located in the same Region as the entity recognizer being created."
+      },
+      "LanguageCode": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "The language of the input documents. All documents must be in the same language."
+      },
+      "ModelKmsKeyId": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "ID for the AWS KMS key that Amazon Comprehend uses to encrypt trained custom models."
+      },
+      "ModelPolicy": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 4,
+        "description": "The JSON resource-based policy to attach to your custom entity recognizer model."
+      },
+      "RecognizerName": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "The name given to the entity recognizer."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "Tags to associate with the entity recognizer."
+      },
+      "VersionName": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The version name given to the entity recognizer."
+      },
+      "VolumeKmsKeyId": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "ID for the AWS KMS key that Amazon Comprehend uses to encrypt data on the storage volume attached to the ML compute instance(s)."
+      },
+      "VpcConfig": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0,
+        "description": "Configuration parameters for an optional private VPC containing the resources you are using for your custom entity recognizer."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Comprehend/EntityRecognizer",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Comprehend/EntityRecognizer@default",
+    "body": {
+      "$ref": "#/43"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "The initial part of a key-value pair that forms a tag associated with a given resource."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "The second part of a key-value pair that forms a tag associated with a given resource."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Comprehend/EntityRecognizerEndpointProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/45"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Comprehend/EntityRecognizerEndpointProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the entity recognizer endpoint."
+      },
+      "CreationTime": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "The creation date and time of the endpoint."
+      },
+      "CurrentInferenceUnits": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The number of inference units currently used by the model using this endpoint."
+      },
+      "DataAccessRoleArn": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the IAM role that grants Amazon Comprehend read access to trained custom models encrypted with a customer managed key (ModelKmsKeyId)."
+      },
+      "DesiredInferenceUnits": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The desired number of inference units to be used by the model. Each inference unit represents throughput of 100 characters per second."
+      },
+      "EndpointName": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "The name of the endpoint. The name must be unique within the AWS Region and account."
+      },
+      "EndpointStatus": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "The current status of the endpoint. Because the endpoint updates and creation are asynchronous, wait for the endpoint to be IN_SERVICE before making inference requests."
+      },
+      "FlywheelArn": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the flywheel to which the endpoint is attached."
+      },
+      "LastModifiedTime": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "The date and time that the endpoint was last modified."
+      },
+      "ModelArn": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the entity recognizer model to which the endpoint is attached."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 0,
+        "description": "Tags associated with the endpoint being created."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Comprehend/EntityRecognizerEndpoint",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Comprehend/EntityRecognizerEndpoint@default",
+    "body": {
+      "$ref": "#/49"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -370,7 +1018,7 @@
       },
       "VpcConfig": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/58"
         },
         "flags": 0
       }
@@ -382,7 +1030,7 @@
     "properties": {
       "Labels": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/59"
         },
         "flags": 0
       },
@@ -400,7 +1048,7 @@
     "properties": {
       "EntityTypes": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/60"
         },
         "flags": 0
       }
@@ -447,13 +1095,13 @@
     "properties": {
       "DocumentClassificationConfig": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/52"
         },
         "flags": 0
       },
       "EntityRecognitionConfig": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/53"
         },
         "flags": 0
       },
@@ -471,13 +1119,13 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/61"
         },
         "flags": 1
       },
       "Subnets": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/62"
         },
         "flags": 1
       }
@@ -492,7 +1140,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/54"
     }
   },
   {
@@ -514,7 +1162,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/56"
     }
   },
   {
@@ -547,7 +1195,7 @@
       },
       "DataSecurityConfig": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/51"
         },
         "flags": 0
       },
@@ -565,13 +1213,13 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/64"
         },
         "flags": 0
       },
       "TaskConfig": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/57"
         },
         "flags": 0
       }
@@ -597,7 +1245,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/65"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -607,10 +1255,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Comprehend/Flywheel@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/35"
+      "$ref": "#/66"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

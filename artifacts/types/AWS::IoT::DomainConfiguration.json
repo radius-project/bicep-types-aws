@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoT-DomainConfiguration",
   "type": "AWS::IoT::DomainConfiguration",
-  "time": "2024-11-22T17:50:32.977Z",
+  "time": "2026-09-22T16:31:42.657Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -116,14 +116,16 @@
           "iot:DescribeDomainConfiguration",
           "iot:TagResource",
           "iot:ListTagsForResource",
-          "acm:GetCertificate"
+          "acm:GetCertificate",
+          "kms:Decrypt"
         ]
       },
       "delete": {
         "permissions": [
           "iot:DescribeDomainConfiguration",
           "iot:DeleteDomainConfiguration",
-          "iot:UpdateDomainConfiguration"
+          "iot:UpdateDomainConfiguration",
+          "kms:Decrypt"
         ]
       },
       "list": {
@@ -134,7 +136,8 @@
       "read": {
         "permissions": [
           "iot:DescribeDomainConfiguration",
-          "iot:ListTagsForResource"
+          "iot:ListTagsForResource",
+          "kms:Decrypt"
         ]
       },
       "update": {
@@ -143,7 +146,8 @@
           "iot:DescribeDomainConfiguration",
           "iot:ListTagsForResource",
           "iot:TagResource",
-          "iot:UntagResource"
+          "iot:UntagResource",
+          "kms:Decrypt"
         ]
       }
     },
@@ -259,7 +263,7 @@
     "required": [],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
     "tagging": {
-      "cloudFormationSystemTags": true,
+      "cloudFormationSystemTags": false,
       "permissions": [
         "iot:ListTagsForResource",
         "iot:TagResource",
