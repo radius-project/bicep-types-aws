@@ -14,6 +14,7 @@ import (
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/cloudformation"
 	"github.com/aws/aws-sdk-go-v2/service/cloudformation/types"
+	"github.com/radius-project/bicep-types-aws/src/aws-type-downloader/pkg/breaking"
 	"github.com/spf13/cobra"
 )
 
@@ -36,6 +37,50 @@ func init() {
 	Root.Flags().StringP("output", "o", "", "output directory")
 	Root.Flags().BoolP("clean", "c", false, "clean files for removed types")
 	_ = Root.MarkFlagRequired("output")
+
+	BreakingChanges.Flags().String("old", "", "directory with the previous type records")
+	BreakingChanges.Flags().String("new", "", "directory with the new type records")
+	BreakingChanges.Flags().Int("max-length", 0, "maximum report length in bytes, 0 for no limit")
+	_ = BreakingChanges.MarkFlagRequired("old")
+	_ = BreakingChanges.MarkFlagRequired("new")
+	Root.AddCommand(BreakingChanges)
+}
+
+var BreakingChanges = &cobra.Command{
+	Use:   "breaking-changes",
+	Short: "Print a Markdown report of type changes that can break existing templates",
+	Args:  cobra.NoArgs,
+	RunE:  runBreakingChanges,
+}
+
+func runBreakingChanges(cmd *cobra.Command, args []string) error {
+	oldDirectory, err := cmd.Flags().GetString("old")
+	if err != nil {
+		return err
+	}
+
+	newDirectory, err := cmd.Flags().GetString("new")
+	if err != nil {
+		return err
+	}
+
+	maxLength, err := cmd.Flags().GetInt("max-length")
+	if err != nil {
+		return err
+	}
+
+	oldSchemas, err := breaking.LoadDir(oldDirectory)
+	if err != nil {
+		return fmt.Errorf("could not read the previous types: %w", err)
+	}
+
+	newSchemas, err := breaking.LoadDir(newDirectory)
+	if err != nil {
+		return fmt.Errorf("could not read the new types: %w", err)
+	}
+
+	_, err = fmt.Fprint(cmd.OutOrStdout(), breaking.Report(breaking.Compare(oldSchemas, newSchemas), maxLength))
+	return err
 }
 
 func run(cmd *cobra.Command, args []string) error {
