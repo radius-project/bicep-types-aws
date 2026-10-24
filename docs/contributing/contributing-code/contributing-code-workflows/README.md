@@ -8,7 +8,7 @@ This workflow is used to build and test the AWS downloader and AWS generator to 
 
 ## `generate-types.yaml`
 
-This workflow downloads the latest AWS resource type schemas, regenerates the Bicep types and the reference documentation, and opens a pull request with the changes. It runs every Monday and can also be started manually. Every run uses the `generate-aws-types` branch, so if the pull request is still open, it is updated instead of a new one being opened. If nothing changed, no pull request is opened.
+This workflow downloads the latest AWS resource type schemas, regenerates the Bicep types and the reference documentation, and opens a pull request with the changes. It runs every Monday and can also be started manually from `main`; runs started from other branches are skipped. Every run uses the `generate-aws-types` branch, so if the pull request is still open, it is updated instead of a new one being opened. If nothing changed, no pull request is opened.
 
 The pull request body lists the changes that can break existing templates: removed resource types, removed properties, properties that became required, and properties whose type changed. The list is cut short to fit in the pull request body, and the job summary of the workflow run has the full list. To run the check locally, copy `artifacts/types` to another directory, run the downloader, and then run:
 

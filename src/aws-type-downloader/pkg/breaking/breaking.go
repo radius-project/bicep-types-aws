@@ -136,7 +136,8 @@ func Compare(oldSchemas, newSchemas map[string]*Schema) []Change {
 			resourceType: typeName,
 			oldRoot:      normalize(oldSchema),
 			newRoot:      normalize(newSchema),
-			readOnly:     toSet(newSchema.ReadOnlyProperties),
+			oldReadOnly:  toSet(oldSchema.ReadOnlyProperties),
+			newReadOnly:  toSet(newSchema.ReadOnlyProperties),
 			seen:         map[schemaPair]bool{},
 		}
 		c.compareObject(c.oldRoot, c.newRoot, "", "/properties")
@@ -229,7 +230,8 @@ type comparer struct {
 	resourceType string
 	oldRoot      *Schema
 	newRoot      *Schema
-	readOnly     map[string]bool
+	oldReadOnly  map[string]bool
+	newReadOnly  map[string]bool
 	// seen holds the schema pairs being compared on the current path.
 	seen    map[schemaPair]bool
 	changes []Change
@@ -241,10 +243,10 @@ func (c *comparer) add(change Change) {
 }
 
 // isReadOnly reports whether the property at pointer, or any property that
-// contains it, is read-only. Templates cannot set read-only properties.
-func (c *comparer) isReadOnly(pointer string) bool {
+// contains it, is in readOnly. Templates cannot set read-only properties.
+func isReadOnly(readOnly map[string]bool, pointer string) bool {
 	for p := pointer; strings.Count(p, "/") >= 2; p = p[:strings.LastIndex(p, "/")] {
-		if c.readOnly[p] {
+		if readOnly[p] {
 			return true
 		}
 	}
@@ -258,21 +260,60 @@ func (c *comparer) compareObject(oldSchema, newSchema *Schema, path, pointer str
 	oldRequired := required(oldSchema)
 	newRequired := required(newSchema)
 
+	// A property is a required input only when it is required and templates
+	// can set it, so a required read-only property that stops being read-only
+	// becomes a new required input. Templates could not set anything inside an
+	// object that was read-only, so requirements inside it cannot break them.
+	wasReadOnly := isReadOnly(c.oldReadOnly, pointer)
 	for _, name := range sortedKeys(newSchema.Properties) {
-		if newRequired[name] && !oldRequired[name] && !c.isReadOnly(pointer+"/"+name) {
+		if wasReadOnly {
+			break
+		}
+		p := pointer + "/" + name
+		oldInput := oldRequired[name] && !isReadOnly(c.oldReadOnly, p)
+		newInput := newRequired[name] && !isReadOnly(c.newReadOnly, p)
+		if newInput && !oldInput {
 			c.add(Change{Kind: PropertyRequired, Property: join(path, name)})
 		}
 	}
 
+	oldValues, newValues := oldSchema.AdditionalProperties, newSchema.AdditionalProperties
+
 	for _, name := range sortedKeys(oldSchema.Properties) {
+		oldProp := oldSchema.Properties[name]
 		newProp, ok := newSchema.Properties[name]
-		if !ok {
+		switch {
+		case ok:
+			c.compareSchema(oldProp, newProp, join(path, name), pointer+"/"+name)
+		case newValues.Any:
+			// Templates can still set the key as an additional property.
+		case newValues.Schema != nil:
+			c.compareSchema(oldProp, newValues.Schema, join(path, name), pointer+"/"+name)
+		default:
 			c.add(Change{Kind: PropertyRemoved, Property: join(path, name)})
+		}
+	}
+
+	// A new property replaces the additional property value type for its key,
+	// so templates that set that key before may no longer match.
+	for _, name := range sortedKeys(newSchema.Properties) {
+		if _, ok := oldSchema.Properties[name]; ok {
 			continue
 		}
-
-		c.compareSchema(oldSchema.Properties[name], newProp, join(path, name), pointer+"/"+name)
+		switch {
+		case oldValues.Any:
+			c.addNarrowedFromAny(newSchema.Properties[name], join(path, name))
+		case oldValues.Schema != nil:
+			c.compareSchema(oldValues.Schema, newSchema.Properties[name], join(path, name), pointer+"/"+name)
+		}
 	}
+}
+
+// addNarrowedFromAny reports a value that accepted anything and now has the
+// type of newSchema.
+func (c *comparer) addNarrowedFromAny(newSchema *Schema, path string) {
+	resolved, _ := resolve(c.newRoot, newSchema)
+	c.add(Change{Kind: PropertyType, Property: path, OldType: "any", NewType: formatTypes(typeSet(resolved))})
 }
 
 func (c *comparer) compareSchema(oldSchema, newSchema *Schema, path, pointer string) {
@@ -315,8 +356,7 @@ func (c *comparer) compareAdditional(oldSchema, newSchema *Schema, path, pointer
 	case newValues.Schema == nil:
 		c.add(Change{Kind: PropertyRemoved, Property: path})
 	case oldValues.Any:
-		resolved, _ := resolve(c.newRoot, newValues.Schema)
-		c.add(Change{Kind: PropertyType, Property: path, OldType: "any", NewType: formatTypes(typeSet(resolved))})
+		c.addNarrowedFromAny(newValues.Schema, path)
 	default:
 		c.compareSchema(oldValues.Schema, newValues.Schema, path, pointer)
 	}
@@ -331,8 +371,7 @@ func (c *comparer) compareItems(oldSchema, newSchema *Schema, path, pointer stri
 	case newSchema.Items == nil:
 		return
 	case oldSchema.Items == nil:
-		resolved, _ := resolve(c.newRoot, newSchema.Items)
-		c.add(Change{Kind: PropertyType, Property: path, OldType: "any", NewType: formatTypes(typeSet(resolved))})
+		c.addNarrowedFromAny(newSchema.Items, path)
 	default:
 		c.compareSchema(oldSchema.Items, newSchema.Items, path, pointer)
 	}

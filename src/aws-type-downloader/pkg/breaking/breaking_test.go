@@ -477,3 +477,92 @@ func TestCompare_DoesNotChangeInput(t *testing.T) {
 		t.Errorf("Compare changed the definition properties: %v", schema.Definitions["Config"].Properties)
 	}
 }
+
+func TestCompare_RequiredOutputBecomesInput(t *testing.T) {
+	changes := compareOne(t,
+		`{"properties": {"Name": {"type": "string"}}, "required": ["Name"], "readOnlyProperties": ["/properties/Name"]}`,
+		`{"properties": {"Name": {"type": "string"}}, "required": ["Name"]}`,
+	)
+	assertChanges(t, changes, Change{Kind: PropertyRequired, Property: "Name"})
+}
+
+func TestCompare_RequiredInputBecomesOutputIsNotBreaking(t *testing.T) {
+	changes := compareOne(t,
+		`{"properties": {"Name": {"type": "string"}}, "required": ["Name"]}`,
+		`{"properties": {"Name": {"type": "string"}}, "required": ["Name"], "readOnlyProperties": ["/properties/Name"]}`,
+	)
+	assertChanges(t, changes)
+}
+
+func TestCompare_NewPropertyNarrowsMap(t *testing.T) {
+	schema := func(additional, properties string) string {
+		return `{"properties": {"Labels": {"type": "object", "properties": {` + properties + `}, "additionalProperties": ` + additional + `}}}`
+	}
+	count := `"Count": {"type": "integer"}`
+
+	tests := []struct {
+		name       string
+		additional string
+		want       []Change
+	}{
+		{
+			name:       "any values",
+			additional: `true`,
+			want:       []Change{{Kind: PropertyType, Property: "Labels.Count", OldType: "any", NewType: "integer"}},
+		},
+		{
+			name:       "string values",
+			additional: `{"type": "string"}`,
+			want:       []Change{{Kind: PropertyType, Property: "Labels.Count", OldType: "string", NewType: "integer"}},
+		},
+		{name: "matching values", additional: `{"type": "integer"}`},
+		{name: "no additional properties", additional: `false`},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			assertChanges(t, compareOne(t, schema(tt.additional, ``), schema(tt.additional, count)), tt.want...)
+		})
+	}
+}
+
+func TestCompare_RemovedPropertyCoveredByAdditionalProperties(t *testing.T) {
+	schema := func(properties, additional string) string {
+		return `{"properties": {"Config": {"type": "object", "properties": {` + properties + `}, "additionalProperties": ` + additional + `}}}`
+	}
+	name := `"Name": {"type": "string"}`
+
+	tests := []struct {
+		name       string
+		additional string
+		want       []Change
+	}{
+		{name: "any values", additional: `true`},
+		{name: "matching values", additional: `{"type": "string"}`},
+		{
+			name:       "different values",
+			additional: `{"type": "integer"}`,
+			want:       []Change{{Kind: PropertyType, Property: "Config.Name", OldType: "string", NewType: "integer"}},
+		},
+		{
+			name:       "no additional properties",
+			additional: `false`,
+			want:       []Change{{Kind: PropertyRemoved, Property: "Config.Name"}},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			assertChanges(t, compareOne(t, schema(name, tt.additional), schema(``, tt.additional)), tt.want...)
+		})
+	}
+}
+
+func TestCompare_RequiredUnderFormerlyReadOnlyParentIsNotBreaking(t *testing.T) {
+	config := `"Config": {"type": "object", "properties": {"Name": {"type": "string"}}, "required": ["Name"]}`
+	changes := compareOne(t,
+		`{"properties": {`+config+`}, "readOnlyProperties": ["/properties/Config"]}`,
+		`{"properties": {`+config+`}}`,
+	)
+	assertChanges(t, changes)
+}

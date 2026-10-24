@@ -36,7 +36,9 @@ jobs:
   generate-types:
     name: Generate Bicep types for AWS
     runs-on: ubuntu-24.04
-    if: github.repository == 'radius-project/bicep-types-aws'
+    # The pull request targets the branch the run starts from and every run
+    # shares one head branch, so only runs from main may update it.
+    if: github.repository == 'radius-project/bicep-types-aws' && github.ref == 'refs/heads/main'
     # A full download describes every AWS resource type, which can take well
     # over 10 minutes when AWS throttles the requests.
     timeout-minutes: 60
