@@ -566,3 +566,177 @@ func TestCompare_RequiredUnderFormerlyReadOnlyParentIsNotBreaking(t *testing.T) 
 	)
 	assertChanges(t, changes)
 }
+
+func TestCompare_RefToNonObjectDefinition(t *testing.T) {
+	schema := func(visibility string) string {
+		return `{
+			"properties": {"Visibility": {"$ref": "#/definitions/Visibility"}},
+			"definitions": {"Visibility": ` + visibility + `}
+		}`
+	}
+	enum := `{"type": "string", "enum": ["HIDDEN", "VISIBLE"]}`
+
+	assertChanges(t, compareOne(t, schema(enum), schema(enum)))
+	assertChanges(t, compareOne(t, schema(enum), schema(`{}`)),
+		Change{Kind: PropertyType, Property: "Visibility", OldType: "string", NewType: "object"})
+}
+
+func TestCompare_RefWithSiblingKeywords(t *testing.T) {
+	// Keywords next to a $ref replace the ones in the definition, as in the
+	// type generator.
+	schema := func(siblings string) string {
+		return `{
+			"properties": {"Config": {"$ref": "#/definitions/Config"` + siblings + `}},
+			"definitions": {"Config": {"type": "object", "properties": {"A": {"type": "string"}}}}
+		}`
+	}
+
+	tests := []struct {
+		name string
+		old  string
+		new  string
+		want []Change
+	}{
+		{
+			name: "type",
+			old:  ``,
+			new:  `, "type": "string"`,
+			want: []Change{{Kind: PropertyType, Property: "Config", OldType: "object", NewType: "string"}},
+		},
+		{
+			name: "properties",
+			old:  ``,
+			new:  `, "properties": {"B": {"type": "string"}}`,
+			want: []Change{{Kind: PropertyRemoved, Property: "Config.A"}},
+		},
+		{
+			name: "required",
+			old:  ``,
+			new:  `, "required": ["A"]`,
+			want: []Change{{Kind: PropertyRequired, Property: "Config.A"}},
+		},
+		{
+			name: "additionalProperties",
+			old:  `, "additionalProperties": true`,
+			new:  `, "additionalProperties": {"type": "integer"}`,
+			want: []Change{{Kind: PropertyType, Property: "Config.*", OldType: "any", NewType: "integer"}},
+		},
+		{
+			// The generator ignores a false additionalProperties next to a
+			// $ref and uses the definition, which allows no extra keys.
+			name: "additionalProperties false",
+			old:  `, "additionalProperties": true`,
+			new:  `, "additionalProperties": false`,
+			want: []Change{{Kind: PropertyRemoved, Property: "Config.*"}},
+		},
+		{
+			name: "items",
+			old:  `, "type": "array"`,
+			new:  `, "type": "array", "items": {"type": "string"}`,
+			want: []Change{{Kind: PropertyType, Property: "Config[]", OldType: "any", NewType: "string"}},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			assertChanges(t, compareOne(t, schema(tt.old), schema(tt.new)), tt.want...)
+		})
+	}
+}
+
+func TestCompare_RefToProperty(t *testing.T) {
+	schema := func(nameType string) string {
+		return `{"properties": {"Name": {"type": "` + nameType + `"}, "Alias": {"$ref": "#/properties/Name"}}}`
+	}
+	assertChanges(t, compareOne(t, schema("string"), schema("integer")),
+		Change{Kind: PropertyType, Property: "Alias", OldType: "string", NewType: "integer"},
+		Change{Kind: PropertyType, Property: "Name", OldType: "string", NewType: "integer"},
+	)
+}
+
+func TestCompare_UnresolvedRefIsComparedAsWritten(t *testing.T) {
+	for _, ref := range []string{"#", "#/definitions/Missing", "other.json#/definitions/Thing"} {
+		t.Run(ref, func(t *testing.T) {
+			schema := `{"properties": {"Thing": {"$ref": "` + ref + `"}}}`
+			assertChanges(t, compareOne(t, schema, schema))
+		})
+	}
+}
+
+func TestCompare_NullSchemasDoNotPanic(t *testing.T) {
+	schema := `{
+		"properties": {"Thing": null, "Config": {"$ref": "#/definitions/Config"}},
+		"definitions": {"Config": {"oneOf": [null, {"properties": {"A": {"type": "string"}}}]}, "Unused": null}
+	}`
+	assertChanges(t, compareOne(t, schema, schema))
+}
+
+func TestLoadDir_InvalidAdditionalProperties(t *testing.T) {
+	dir := t.TempDir()
+	record := `{"type": "AWS::Test::Thing", "schema": {"additionalProperties": "yes"}}`
+	if err := os.WriteFile(filepath.Join(dir, "thing.json"), []byte(record), 0644); err != nil {
+		t.Fatal(err)
+	}
+
+	_, err := LoadDir(dir)
+	if err == nil || !strings.Contains(err.Error(), "thing.json") {
+		t.Errorf("got error %v, want an error naming thing.json", err)
+	}
+}
+
+func TestLoadDir_NotADirectory(t *testing.T) {
+	file := filepath.Join(t.TempDir(), "file")
+	if err := os.WriteFile(file, nil, 0644); err != nil {
+		t.Fatal(err)
+	}
+
+	if _, err := LoadDir(file); err == nil {
+		t.Error("got no error for a path that is not a directory")
+	}
+}
+
+func TestLoadDir_SkipsDirectories(t *testing.T) {
+	dir := t.TempDir()
+	if err := os.Mkdir(filepath.Join(dir, "nested.json"), 0755); err != nil {
+		t.Fatal(err)
+	}
+
+	schemas, err := LoadDir(dir)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(schemas) != 0 {
+		t.Errorf("got %d schemas, want 0", len(schemas))
+	}
+}
+
+func TestCompare_UntypedDefinitionKeepsOneOfRequired(t *testing.T) {
+	// The type generator sets type object on every definition before it
+	// resolves references, so an untyped definition keeps its oneOf rules.
+	schema := func(branches string) string {
+		return `{
+			"properties": {"Config": {"$ref": "#/definitions/Config"}},
+			"definitions": {"Config": {
+				"properties": {"A": {"type": "string"}, "B": {"type": "string"}},
+				"required": ["A", "B"],
+				"oneOf": ` + branches + `
+			}}
+		}`
+	}
+	assertChanges(t, compareOne(t, schema(`[{"required": ["A"]}, {"required": ["A", "B"]}]`), schema(`[{"required": ["A", "B"]}]`)),
+		Change{Kind: PropertyRequired, Property: "Config.B"})
+}
+
+func TestLoadDir_UnreadableFile(t *testing.T) {
+	if os.Geteuid() == 0 {
+		t.Skip("root can read files without read permission")
+	}
+	dir := t.TempDir()
+	if err := os.WriteFile(filepath.Join(dir, "locked.json"), []byte("{}"), 0000); err != nil {
+		t.Fatal(err)
+	}
+
+	if _, err := LoadDir(dir); err == nil {
+		t.Error("got no error for an unreadable file")
+	}
+}

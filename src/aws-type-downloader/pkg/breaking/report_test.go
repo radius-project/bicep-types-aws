@@ -73,3 +73,21 @@ func TestReport_TruncatesToMaxLength(t *testing.T) {
 		}
 	}
 }
+
+func TestReport_MaxLengthSmallerThanFooter(t *testing.T) {
+	changes := []Change{
+		{ResourceType: "AWS::A::Thing", Kind: TypeRemoved},
+		{ResourceType: "AWS::B::Thing", Kind: TypeRemoved},
+	}
+	summary := "Found 2 change(s) that can break existing templates. See the full report in the workflow run.\n"
+
+	for _, maxLength := range []int{1, 50, len(summary) - 1, len(summary), 120} {
+		got := Report(changes, maxLength)
+		if len(got) > maxLength {
+			t.Errorf("maxLength %d: report is %d bytes: %q", maxLength, len(got), got)
+		}
+		if !strings.HasPrefix(summary, got) {
+			t.Errorf("maxLength %d: got %q, want a prefix of %q", maxLength, got, summary)
+		}
+	}
+}

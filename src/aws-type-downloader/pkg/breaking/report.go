@@ -49,7 +49,17 @@ func Report(changes []Change, maxLength int) string {
 		b.WriteString(chunk)
 	}
 
-	return b.String()
+	if b.Len() <= maxLength {
+		return b.String()
+	}
+
+	// Not even one change fits next to the header and footer. The summary
+	// is ASCII, so cutting it at a byte offset keeps it valid UTF-8.
+	summary := fmt.Sprintf("Found %d change(s) that can break existing templates. See the full report in the workflow run.\n", len(changes))
+	if len(summary) > maxLength {
+		summary = summary[:maxLength]
+	}
+	return summary
 }
 
 func omittedFooter(omitted int) string {
