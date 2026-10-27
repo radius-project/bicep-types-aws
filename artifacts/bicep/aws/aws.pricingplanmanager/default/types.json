@@ -1,0 +1,131 @@
+[
+  {
+    "$type": "ObjectType",
+    "name": "UsageLevel",
+    "properties": {}
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.PricingPlanManager/SubscriptionProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.PricingPlanManager/SubscriptionProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The ARN of the subscription."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time the subscription was created, in ISO 8601 format."
+      },
+      "CurrentPlanTier": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The plan tier currently active on the subscription as reported by the API. Populated by the Read handler. Diverges from PlanTier after a non-reversible CloudFormation rollback; surface via drift detection."
+      },
+      "PlanFamily": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the pricing plan family."
+      },
+      "PlanTier": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The tier of the pricing plan. CloudFormation does not change the tier of an existing subscription; a stack update that changes the tier, upgrading or downgrading it, is rejected."
+      },
+      "ResourceArns": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The ARNs of resources associated with the subscription."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The status of the subscription. PENDING_APPROVAL means a paid-tier subscription has been created but is not yet active and incurs no charges until it is approved out of band via a separate ApprovePaidSubscription call; CloudFormation never approves it. Free-tier subscriptions are activated immediately and do not use this status. ACTIVE means the subscription is in effect and, for paid tiers, billing has started. SYNC_IN_PROGRESS means a change is being applied. FAILED means provisioning did not complete; see StatusReason."
+      },
+      "StatusReason": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "A human-readable explanation of why the subscription is in its current status. Populated only when Status is FAILED, where it carries the reason the subscription could not be provisioned. Empty for all other statuses."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time the subscription was last modified, in ISO 8601 format."
+      },
+      "UsageLevel": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.PricingPlanManager/Subscription",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.PricingPlanManager/Subscription@default",
+    "body": {
+      "$ref": "#/5"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  }
+]

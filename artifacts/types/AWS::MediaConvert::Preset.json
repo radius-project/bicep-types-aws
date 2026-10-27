@@ -1,0 +1,94 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaConvert-Preset",
+  "type": "AWS::MediaConvert::Preset",
+  "time": "2026-10-21T01:46:36.073Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name"
+    ],
+    "description": "Resource Type definition for AWS::MediaConvert::Preset",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "mediaconvert:GetPreset",
+          "mediaconvert:CreatePreset",
+          "mediaconvert:TagResource",
+          "mediaconvert:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "mediaconvert:GetPreset",
+          "mediaconvert:DeletePreset"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "mediaconvert:ListPresets"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "mediaconvert:GetPreset",
+          "mediaconvert:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "mediaconvert:UpdatePreset",
+          "mediaconvert:ListTagsForResource",
+          "mediaconvert:TagResource",
+          "mediaconvert:UntagResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Name"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the output preset, such as arn:aws:mediaconvert:us-west-2:123456789012",
+        "type": "string"
+      },
+      "Category": {
+        "description": "The new category for the preset, if you are changing it.",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The new description for the preset, if you are changing it.",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the preset that you are modifying.",
+        "type": "string"
+      },
+      "SettingsJson": {
+        "description": "Specify, in JSON format, the transcoding job settings for this output preset. This specification must conform to the AWS Elemental MediaConvert job validation. For information about forming this specification, see the Remarks section later in this topic.",
+        "type": "object"
+      },
+      "Tags": {
+        "type": "object"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn"
+    ],
+    "required": [
+      "SettingsJson"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "mediaconvert:ListTagsForResource",
+        "mediaconvert:TagResource",
+        "mediaconvert:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::MediaConvert::Preset"
+  }
+}

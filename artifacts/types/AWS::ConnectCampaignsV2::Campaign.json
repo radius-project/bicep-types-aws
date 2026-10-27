@@ -1,13 +1,28 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ConnectCampaignsV2-Campaign",
   "type": "AWS::ConnectCampaignsV2::Campaign",
-  "time": "2025-01-23T22:43:36.857Z",
+  "time": "2026-10-14T21:07:46.576Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/ConnectInstanceId"
     ],
     "definitions": {
+      "AgentAction": {
+        "description": "Actions that can performed on a contact by an agent",
+        "enum": [
+          "DISCARD"
+        ],
+        "type": "string"
+      },
+      "AgentActions": {
+        "description": "Actions that can be performed by agent during preview phase",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/AgentAction"
+        },
+        "type": "array"
+      },
       "AgentlessConfig": {
         "additionalProperties": false,
         "description": "Agentless config",
@@ -51,6 +66,14 @@
         "minLength": 1,
         "type": "string"
       },
+      "CampaignType": {
+        "description": "Campaign type",
+        "enum": [
+          "MANAGED",
+          "JOURNEY"
+        ],
+        "type": "string"
+      },
       "Capacity": {
         "description": "Allocates outbound capacity for the specific channel of this campaign between multiple active campaigns",
         "maximum": 1,
@@ -74,6 +97,11 @@
             "required": [
               "Email"
             ]
+          },
+          {
+            "required": [
+              "WhatsApp"
+            ]
           }
         ],
         "description": "The possible types of channel subtype config parameters",
@@ -86,6 +114,9 @@
           },
           "Telephony": {
             "$ref": "#/definitions/TelephonyChannelSubtypeConfig"
+          },
+          "WhatsApp": {
+            "$ref": "#/definitions/WhatsAppChannelSubtypeConfig"
           }
         },
         "type": "object"
@@ -144,6 +175,9 @@
         "properties": {
           "AllChannelsSubtypes": {
             "$ref": "#/definitions/CommunicationLimits"
+          },
+          "InstanceLimitsHandling": {
+            "$ref": "#/definitions/InstanceLimitsHandling"
           }
         },
         "type": "object"
@@ -162,6 +196,9 @@
             "$ref": "#/definitions/TimeWindow"
           },
           "Telephony": {
+            "$ref": "#/definitions/TimeWindow"
+          },
+          "WhatsApp": {
             "$ref": "#/definitions/TimeWindow"
           }
         },
@@ -239,7 +276,7 @@
       },
       "EmailOutboundConfig": {
         "additionalProperties": false,
-        "description": "Default SMS outbound config",
+        "description": "Default Email outbound config",
         "properties": {
           "ConnectSourceEmailAddress": {
             "$ref": "#/definitions/EmailAddress"
@@ -267,6 +304,26 @@
         },
         "type": "object"
       },
+      "EntryLimitsConfig": {
+        "additionalProperties": false,
+        "description": "Entry limits config for a campaign",
+        "properties": {
+          "MaxEntryCount": {
+            "description": "Maximum number of entries per participant. 0 indicates unlimited entries.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "MinEntryInterval": {
+            "$ref": "#/definitions/Iso8601Duration",
+            "description": "Minimum time interval between entries for the same participant in ISO 8601 duration format"
+          }
+        },
+        "required": [
+          "MaxEntryCount",
+          "MinEntryInterval"
+        ],
+        "type": "object"
+      },
       "EventTrigger": {
         "additionalProperties": false,
         "description": "The event trigger of the campaign",
@@ -284,6 +341,14 @@
         "pattern": "^[a-zA-Z0-9_\\-.]*$",
         "type": "string"
       },
+      "InstanceLimitsHandling": {
+        "description": "Enumeration of Instance Limits handling in a Campaign",
+        "enum": [
+          "OPT_IN",
+          "OPT_OUT"
+        ],
+        "type": "string"
+      },
       "Iso8601Date": {
         "description": "Date in ISO 8601 format, e.g. 2024-01-01",
         "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
@@ -293,7 +358,7 @@
         "description": "Time duration in ISO 8601 format",
         "maxLength": 50,
         "minLength": 0,
-        "pattern": "^[a-zA-Z0-9.]*$",
+        "pattern": "^P(?:([-+]?[0-9]+)D)?(T(?:([-+]?[0-9]+)H)?(?:([-+]?[0-9]+)M)?(?:([-+]?[0-9]+)(?:[.,]([0-9]{0,9}))?S)?)?$",
         "type": "string"
       },
       "Iso8601Time": {
@@ -310,6 +375,9 @@
           },
           "LocalTimeZoneDetection": {
             "$ref": "#/definitions/LocalTimeZoneDetection"
+          },
+          "LocalTimeZoneDetectionScope": {
+            "$ref": "#/definitions/LocalTimeZoneDetectionScope"
           }
         },
         "type": "object"
@@ -321,6 +389,14 @@
           "$ref": "#/definitions/LocalTimeZoneDetectionType"
         },
         "type": "array"
+      },
+      "LocalTimeZoneDetectionScope": {
+        "description": "Local TimeZone Detection scope",
+        "enum": [
+          "PRIMARY_ONLY",
+          "ALL_AVAILABLE"
+        ],
+        "type": "string"
       },
       "LocalTimeZoneDetectionType": {
         "description": "Local TimeZone Detection method",
@@ -353,6 +429,26 @@
         },
         "required": [
           "BandwidthAllocation"
+        ],
+        "type": "object"
+      },
+      "PreviewConfig": {
+        "additionalProperties": false,
+        "description": "Preview config",
+        "properties": {
+          "AgentActions": {
+            "$ref": "#/definitions/AgentActions"
+          },
+          "BandwidthAllocation": {
+            "$ref": "#/definitions/BandwidthAllocation"
+          },
+          "TimeoutConfig": {
+            "$ref": "#/definitions/TimeoutConfig"
+          }
+        },
+        "required": [
+          "BandwidthAllocation",
+          "TimeoutConfig"
         ],
         "type": "object"
       },
@@ -420,6 +516,12 @@
           }
         },
         "type": "object"
+      },
+      "RingTimeout": {
+        "description": "Maximum ring time for outbound calls in seconds",
+        "maximum": 60,
+        "minimum": 15,
+        "type": "integer"
       },
       "Schedule": {
         "additionalProperties": false,
@@ -515,8 +617,8 @@
       },
       "SourceEmailAddressDisplayName": {
         "description": "The name of the source email address display name",
-        "maxLength": 127,
-        "minLength": 1,
+        "maxLength": 256,
+        "minLength": 0,
         "type": "string"
       },
       "SourcePhoneNumber": {
@@ -577,6 +679,9 @@
           },
           "ConnectSourcePhoneNumber": {
             "$ref": "#/definitions/SourcePhoneNumber"
+          },
+          "RingTimeout": {
+            "$ref": "#/definitions/RingTimeout"
           }
         },
         "required": [
@@ -602,6 +707,11 @@
             "required": [
               "AgentlessConfig"
             ]
+          },
+          {
+            "required": [
+              "PreviewConfig"
+            ]
           }
         ],
         "properties": {
@@ -610,6 +720,9 @@
           },
           "PredictiveConfig": {
             "$ref": "#/definitions/PredictiveConfig"
+          },
+          "PreviewConfig": {
+            "$ref": "#/definitions/PreviewConfig"
           },
           "ProgressiveConfig": {
             "$ref": "#/definitions/ProgressiveConfig"
@@ -666,6 +779,68 @@
       "TimeZone": {
         "description": "Time Zone Id in the IANA format",
         "type": "string"
+      },
+      "TimeoutConfig": {
+        "description": "Timeout Config for preview contacts",
+        "properties": {
+          "DurationInSeconds": {
+            "$ref": "#/definitions/TimeoutDuration"
+          }
+        },
+        "type": "object"
+      },
+      "TimeoutDuration": {
+        "description": "Timeout duration for a preview contact in seconds",
+        "maximum": 300,
+        "minimum": 1,
+        "type": "integer"
+      },
+      "WhatsAppChannelSubtypeConfig": {
+        "additionalProperties": false,
+        "description": "WhatsApp Channel Subtype config",
+        "properties": {
+          "Capacity": {
+            "$ref": "#/definitions/Capacity"
+          },
+          "DefaultOutboundConfig": {
+            "$ref": "#/definitions/WhatsAppOutboundConfig"
+          },
+          "OutboundMode": {
+            "$ref": "#/definitions/WhatsAppOutboundMode"
+          }
+        },
+        "required": [
+          "OutboundMode",
+          "DefaultOutboundConfig"
+        ],
+        "type": "object"
+      },
+      "WhatsAppOutboundConfig": {
+        "additionalProperties": false,
+        "description": "Default WhatsApp outbound config",
+        "properties": {
+          "ConnectSourcePhoneNumberArn": {
+            "$ref": "#/definitions/Arn"
+          },
+          "WisdomTemplateArn": {
+            "$ref": "#/definitions/Arn"
+          }
+        },
+        "required": [
+          "ConnectSourcePhoneNumberArn",
+          "WisdomTemplateArn"
+        ],
+        "type": "object"
+      },
+      "WhatsAppOutboundMode": {
+        "additionalProperties": false,
+        "description": "WhatsApp Outbound Mode",
+        "properties": {
+          "AgentlessConfig": {
+            "$ref": "#/definitions/AgentlessConfig"
+          }
+        },
+        "type": "object"
       }
     },
     "description": "Definition of AWS::ConnectCampaignsV2::Campaign Resource Type",
@@ -689,7 +864,8 @@
           "connect-campaigns:DeleteCampaign",
           "connect-campaigns:DeleteCampaignChannelSubtypeConfig",
           "connect-campaigns:DeleteCampaignCommunicationLimits",
-          "connect-campaigns:DeleteCampaignCommunicationTime"
+          "connect-campaigns:DeleteCampaignCommunicationTime",
+          "connect-campaigns:DeleteCampaignEntryLimits"
         ]
       },
       "list": {
@@ -717,9 +893,11 @@
           "connect-campaigns:DeleteCampaignChannelSubtypeConfig",
           "connect-campaigns:DeleteCampaignCommunicationLimits",
           "connect-campaigns:DeleteCampaignCommunicationTime",
+          "connect-campaigns:DeleteCampaignEntryLimits",
           "connect-campaigns:UpdateCampaignChannelSubtypeConfig",
           "connect-campaigns:UpdateCampaignCommunicationLimits",
           "connect-campaigns:UpdateCampaignCommunicationTime",
+          "connect-campaigns:UpdateCampaignEntryLimits",
           "connect-campaigns:UpdateCampaignName",
           "connect-campaigns:UpdateCampaignFlowAssociation",
           "connect-campaigns:UpdateCampaignSchedule",
@@ -762,6 +940,9 @@
       "ConnectInstanceId": {
         "$ref": "#/definitions/InstanceId"
       },
+      "EntryLimitsConfig": {
+        "$ref": "#/definitions/EntryLimitsConfig"
+      },
       "Name": {
         "$ref": "#/definitions/CampaignName"
       },
@@ -780,6 +961,9 @@
         "maxItems": 50,
         "type": "array",
         "uniqueItems": true
+      },
+      "Type": {
+        "$ref": "#/definitions/CampaignType"
       }
     },
     "readOnlyProperties": [
@@ -787,12 +971,11 @@
     ],
     "required": [
       "Name",
-      "ConnectInstanceId",
-      "ChannelSubtypeConfig"
+      "ConnectInstanceId"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-connect-campaigns",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "connect-campaigns:UntagResource",
         "connect-campaigns:TagResource"

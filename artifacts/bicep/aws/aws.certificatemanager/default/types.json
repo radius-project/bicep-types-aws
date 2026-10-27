@@ -74,10 +74,695 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CertificateManager/Account@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/6"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DnsPrevalidationOptions",
+    "properties": {
+      "DomainScope": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      },
+      "HostedZoneId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The Route 53 hosted zone ID for automatic DNS record management. When provided, the service creates the validation DNS record on the customer's behalf."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DomainScope",
+    "properties": {
+      "ExactDomain": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Whether certificates may be issued for the exact domain."
+      },
+      "Subdomains": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Whether certificates may be issued for subdomains of the domain."
+      },
+      "Wildcards": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Whether wildcard certificates may be issued for the domain."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PrevalidationOptions",
+    "properties": {
+      "DnsPrevalidation": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CertificateManager/AcmeDomainValidationProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AcmeDomainValidation_Tags",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CertificateManager/AcmeDomainValidationProperties",
+    "properties": {
+      "AcmeEndpointArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The ARN of the ACME endpoint this domain validation is associated with."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the domain validation."
+      },
+      "DomainName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The domain name to validate."
+      },
+      "PrevalidationOptions": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "Tags associated with the domain validation."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CertificateManager/AcmeDomainValidation",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CertificateManager/AcmeDomainValidation@default",
+    "body": {
+      "$ref": "#/16"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CertificateAuthority",
+    "properties": {
+      "PublicCertificateAuthority": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PublicCertificateAuthority",
+    "properties": {
+      "AllowedKeyAlgorithms": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The allowed key algorithms for certificates issued via this endpoint."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CertificateManager/AcmeEndpointProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/20"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AcmeEndpoint_Tags",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/24"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CertificateManager/AcmeEndpointProperties",
+    "properties": {
+      "AcmeEndpointArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the ACME endpoint."
+      },
+      "AuthorizationBehavior": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The authorization behavior for the ACME endpoint."
+      },
+      "CertificateAuthority": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 1
+      },
+      "CertificateTags": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "Tags applied to certificates issued via this endpoint."
+      },
+      "Contact": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Whether contact information is required for the ACME endpoint."
+      },
+      "EndpointUrl": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The ACME directory URL for the endpoint."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0,
+        "description": "Tags associated with the ACME endpoint."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CertificateManager/AcmeEndpoint",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CertificateManager/AcmeEndpoint@default",
+    "body": {
+      "$ref": "#/27"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Expiration",
+    "properties": {
+      "Type": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The time unit for the expiration value."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The expiration value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CertificateManager/AcmeExternalAccountBindingProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AcmeExternalAccountBinding_Tags",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/32"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CertificateManager/AcmeExternalAccountBindingProperties",
+    "properties": {
+      "AcmeEndpointArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The ARN of the ACME endpoint this binding is associated with."
+      },
+      "AcmeExternalAccountBindingArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the external account binding."
+      },
+      "Expiration": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 4
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The IAM role ARN for cross-account access."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 0,
+        "description": "Tags associated with the external account binding."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CertificateManager/AcmeExternalAccountBinding",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CertificateManager/AcmeExternalAccountBinding@default",
+    "body": {
+      "$ref": "#/35"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DomainValidationOption",
+    "properties": {
+      "DomainName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      },
+      "HostedZoneId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      },
+      "ValidationDomain": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The tag's key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The tag's value."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CertificateManager/CertificateProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/37"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/38"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CertificateManager/CertificateProperties",
+    "properties": {
+      "CertificateArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the private certificate authority (CA) that will be used to issue the certificate."
+      },
+      "CertificateAuthorityArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the private certificate authority (CA) that will be used to issue the certificate."
+      },
+      "CertificateExport": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Specifies whether the certificate can be exported. ENABLED allows the certificate to be exported, DISABLED prevents export."
+      },
+      "CertificateTransparencyLoggingPreference": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "You can opt out of certificate transparency logging by specifying the DISABLED option. Opt in by specifying ENABLED."
+      },
+      "DomainName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The fully qualified domain name (FQDN), such as www.example.com, with which you want to secure an ACM certificate"
+      },
+      "DomainValidationOptions": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 4,
+        "description": "Domain information that domain name registrars use to verify your identity."
+      },
+      "KeyAlgorithm": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Specifies the algorithm of the public and private key pair that your certificate uses to encrypt data."
+      },
+      "SubjectAlternativeNames": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "Additional FQDNs to be included in the Subject Alternative Name extension of the ACM certificate."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0,
+        "description": "Key-value pairs that can identify the certificate."
+      },
+      "ValidationMethod": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 4,
+        "description": "The method you want to use to validate that you own or control the domain associated with a public certificate. Valid values are DNS, EMAIL or HTTP"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CertificateManager/Certificate",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CertificateManager/Certificate@default",
+    "body": {
+      "$ref": "#/44"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

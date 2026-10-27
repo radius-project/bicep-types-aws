@@ -1,52 +1,69 @@
 # AWS.Location @ default
 
 ## Resource AWS.Location/APIKey@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Location/APIKeyProperties](#awslocationapikeyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Location/GeofenceCollection@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Location/GeofenceCollectionProperties](#awslocationgeofencecollectionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Location/Map@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Location/MapProperties](#awslocationmapproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Location/PlaceIndex@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Location/PlaceIndexProperties](#awslocationplaceindexproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Location/RouteCalculator@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Location/RouteCalculatorProperties](#awslocationroutecalculatorproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Location/Tracker@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Location/TrackerProperties](#awslocationtrackerproperties) (Required, Identifier): properties of the resource
 
+## AndroidApp
+### Properties
+* **CertificateFingerprint**: string (Required)
+* **Package**: string (Required)
+
 ## ApiKeyRestrictions
 ### Properties
 * **AllowActions**: string[] (Required)
+* **AllowAndroidApps**: [AndroidApp](#androidapp)[]
+* **AllowAppleApps**: [AppleApp](#appleapp)[]
 * **AllowReferers**: string[]
 * **AllowResources**: string[] (Required)
+
+## AppleApp
+### Properties
+* **BundleId**: string (Required)
 
 ## AWS.Location/APIKeyProperties
 ### Properties

@@ -1,0 +1,215 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Glue-Classifier",
+  "type": "AWS::Glue::Classifier",
+  "time": "2026-08-06T15:09:57.182Z",
+  "schema": {
+    "additionalProperties": false,
+    "anyOf": [
+      {
+        "required": [
+          "XMLClassifier"
+        ]
+      },
+      {
+        "required": [
+          "CsvClassifier"
+        ]
+      },
+      {
+        "required": [
+          "GrokClassifier"
+        ]
+      },
+      {
+        "required": [
+          "JsonClassifier"
+        ]
+      }
+    ],
+    "createOnlyProperties": [
+      "/properties/XMLClassifier/Name",
+      "/properties/CsvClassifier/Name",
+      "/properties/JsonClassifier/Name",
+      "/properties/GrokClassifier/Name"
+    ],
+    "definitions": {
+      "CsvClassifier": {
+        "additionalProperties": false,
+        "properties": {
+          "AllowSingleColumn": {
+            "description": "Enables the processing of files that contain only one column.",
+            "type": "boolean"
+          },
+          "ContainsCustomDatatype": {
+            "description": "Indicates whether the CSV file contains custom data types.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "ContainsHeader": {
+            "description": "Indicates whether the CSV file contains a header. A value of UNKNOWN specifies that the classifier will detect whether the CSV file contains headings. A value of PRESENT specifies that the CSV file contains headings. A value of ABSENT specifies that the CSV file does not contain headings.",
+            "type": "string"
+          },
+          "CustomDatatypeConfigured": {
+            "description": "Enables the configuration of custom data types.",
+            "type": "boolean"
+          },
+          "Delimiter": {
+            "description": "A custom symbol to denote what separates each column entry in the row.",
+            "type": "string"
+          },
+          "DisableValueTrimming": {
+            "description": "Specifies not to trim values before identifying the type of column values. The default value is true.",
+            "type": "boolean"
+          },
+          "Header": {
+            "description": "A list of strings representing column names.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "Name": {
+            "description": "The name of the classifier.",
+            "type": "string"
+          },
+          "QuoteSymbol": {
+            "description": "A custom symbol to denote what combines content into a single column value. It must be different from the column delimiter.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "GrokClassifier": {
+        "additionalProperties": false,
+        "properties": {
+          "Classification": {
+            "description": "An identifier of the data format that the classifier matches, such as Twitter, JSON, Omniture logs, and so on.",
+            "type": "string"
+          },
+          "CustomPatterns": {
+            "description": "Optional custom grok patterns defined by this classifier.",
+            "type": "string"
+          },
+          "GrokPattern": {
+            "description": "The grok pattern applied to a data store by this classifier.",
+            "type": "string"
+          },
+          "Name": {
+            "description": "The name of the classifier.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "GrokPattern",
+          "Classification"
+        ],
+        "type": "object"
+      },
+      "JsonClassifier": {
+        "additionalProperties": false,
+        "properties": {
+          "JsonPath": {
+            "description": "A JsonPath string defining the JSON data for the classifier to classify. AWS Glue supports a subset of JsonPath, as described in Writing JsonPath Custom Classifiers.",
+            "type": "string"
+          },
+          "Name": {
+            "description": "The name of the classifier.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "JsonPath"
+        ],
+        "type": "object"
+      },
+      "XMLClassifier": {
+        "additionalProperties": false,
+        "properties": {
+          "Classification": {
+            "description": "An identifier of the data format that the classifier matches.",
+            "type": "string"
+          },
+          "Name": {
+            "description": "The name of the classifier.",
+            "type": "string"
+          },
+          "RowTag": {
+            "description": "The XML tag designating the element that contains each record in an XML document being parsed. This can't identify a self-closing element (closed by /\u003e). An empty row element that contains only attributes can be parsed as long as it ends with a closing tag (for example, \u003crow item_a=\"A\" item_b=\"B\"\u003e\u003c/row\u003e is okay, but \u003crow item_a=\"A\" item_b=\"B\" /\u003e is not).",
+            "type": "string"
+          }
+        },
+        "required": [
+          "RowTag",
+          "Classification"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Glue::Classifier",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "glue:CreateClassifier",
+          "glue:GetClassifier"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "glue:DeleteClassifier"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "glue:GetClassifiers"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "glue:GetClassifier"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "glue:UpdateClassifier",
+          "glue:GetClassifier"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Name"
+    ],
+    "properties": {
+      "CsvClassifier": {
+        "$ref": "#/definitions/CsvClassifier",
+        "description": "A classifier for comma-separated values (CSV)."
+      },
+      "GrokClassifier": {
+        "$ref": "#/definitions/GrokClassifier",
+        "description": "A classifier that uses grok."
+      },
+      "JsonClassifier": {
+        "$ref": "#/definitions/JsonClassifier",
+        "description": "A classifier for JSON content."
+      },
+      "Name": {
+        "description": "One of XMLClassifier/Name, GrokClassifier/Name, JsonClassifier/Name or CsvClassifier/Name",
+        "type": "string"
+      },
+      "XMLClassifier": {
+        "$ref": "#/definitions/XMLClassifier",
+        "description": "A classifier for XML content."
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Name"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::Glue::Classifier"
+  }
+}

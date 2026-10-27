@@ -5,14 +5,14 @@
     "properties": {
       "CodeContent": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/11"
         },
         "flags": 1,
         "description": "The location and type of the application code."
       },
       "CodeContentType": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "Specifies whether the code content is in text or zip format."
@@ -30,54 +30,81 @@
         "flags": 0,
         "description": "The code location and type parameters for a Flink-based Kinesis Data Analytics application."
       },
+      "ApplicationEncryptionConfiguration": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Describes whether customer managed key is enabled and key details for customer data encryption"
+      },
       "ApplicationSnapshotConfiguration": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "Describes whether snapshots are enabled for a Flink-based Kinesis Data Analytics application."
       },
       "ApplicationSystemRollbackConfiguration": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "Describes whether system initiated rollbacks are enabled for a Flink-based Kinesis Data Analytics application."
       },
       "EnvironmentProperties": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/15"
         },
         "flags": 4,
         "description": "Describes execution properties for a Flink-based Kinesis Data Analytics application."
       },
       "FlinkApplicationConfiguration": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/16"
         },
         "flags": 0,
         "description": "The creation and update parameters for a Flink-based Kinesis Data Analytics application."
       },
       "SqlApplicationConfiguration": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "The creation and update parameters for a SQL-based Kinesis Data Analytics application."
       },
       "VpcConfigurations": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0,
         "description": "The array of descriptions of VPC configurations available to the application."
       },
       "ZeppelinApplicationConfiguration": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The configuration parameters for a Kinesis Data Analytics Studio notebook."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ApplicationEncryptionConfiguration",
+    "properties": {
+      "KeyId": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0,
+        "description": "KMS KeyId. Can be either key uuid or full key arn or key alias arn or short key alias"
+      },
+      "KeyType": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 1,
+        "description": "Specifies whether application data is encrypted using service key: AWS_OWNED_KEY or customer key: CUSTOMER_MANAGED_KEY"
       }
     }
   },
@@ -87,7 +114,7 @@
     "properties": {
       "ApplicationMaintenanceWindowStartTime": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "The start time for the maintenance window."
@@ -100,14 +127,14 @@
     "properties": {
       "ApplicationRestoreType": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "Specifies how the application should be restored."
       },
       "SnapshotName": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "The identifier of an existing snapshot of application state to use to restart an application. The application uses this value if RESTORE_FROM_CUSTOM_SNAPSHOT is specified for the ApplicationRestoreType."
@@ -120,7 +147,7 @@
     "properties": {
       "SnapshotsEnabled": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/45"
         },
         "flags": 1,
         "description": "Describes whether snapshots are enabled for a Flink-based Kinesis Data Analytics application."
@@ -133,7 +160,7 @@
     "properties": {
       "RollbackEnabled": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/45"
         },
         "flags": 1,
         "description": "Describes whether system initiated rollbacks are enabled for a Flink-based Kinesis Data Analytics application."
@@ -151,14 +178,14 @@
     "properties": {
       "RecordColumnDelimiter": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "The column delimiter. For example, in a CSV format, a comma (\",\") is the typical column delimiter."
       },
       "RecordRowDelimiter": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "The row delimiter. For example, in a CSV format, '\\n' is the typical row delimiter."
@@ -171,7 +198,7 @@
     "properties": {
       "GlueDataCatalogConfiguration": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "The configuration parameters for the default Amazon Glue database. You use this database for Apache Flink SQL queries and table API transforms that you write in a Kinesis Data Analytics Studio notebook."
@@ -184,28 +211,28 @@
     "properties": {
       "CheckpointInterval": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "Describes the interval in milliseconds between checkpoint operations."
       },
       "CheckpointingEnabled": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "Describes whether checkpointing is enabled for a Flink-based Kinesis Data Analytics application."
       },
       "ConfigurationType": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "Describes whether the application uses Kinesis Data Analytics' default checkpointing behavior. You must set this property to `CUSTOM` in order to set the `CheckpointingEnabled`, `CheckpointInterval`, or `MinPauseBetweenCheckpoints` parameters."
       },
       "MinPauseBetweenCheckpoints": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "Describes the minimum time in milliseconds after a checkpoint operation completes that a new checkpoint operation can start. If a checkpoint operation takes longer than the CheckpointInterval, the application otherwise performs continual checkpoint operations. For more information, see Tuning Checkpointing in the Apache Flink Documentation."
@@ -218,21 +245,21 @@
     "properties": {
       "S3ContentLocation": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "Information about the Amazon S3 bucket that contains the application code."
       },
       "TextContent": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "The text-format code for a Flink-based Kinesis Data Analytics application."
       },
       "ZipFileContent": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 4,
         "description": "The zip-format code for a Flink-based Kinesis Data Analytics application."
@@ -245,21 +272,21 @@
     "properties": {
       "ArtifactType": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "Set this to either `UDF` or `DEPENDENCY_JAR`. `UDF` stands for user-defined functions. This type of artifact must be in an S3 bucket. A `DEPENDENCY_JAR` can be in either Maven or an S3 bucket."
       },
       "MavenReference": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/28"
         },
         "flags": 0,
         "description": "The parameters required to fully specify a Maven reference."
       },
       "S3ContentLocation": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "The location of the custom artifacts."
@@ -277,7 +304,7 @@
     "properties": {
       "S3ContentLocation": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/35"
         },
         "flags": 1,
         "description": "The description of an Amazon S3 object that contains the Amazon Data Analytics application, including the Amazon Resource Name (ARN) of the S3 bucket, the name of the Amazon S3 object that contains the data, and the version number of the Amazon S3 object that contains the data."
@@ -290,7 +317,7 @@
     "properties": {
       "PropertyGroups": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/48"
         },
         "flags": 0,
         "description": "Describes the execution property groups."
@@ -303,21 +330,21 @@
     "properties": {
       "CheckpointConfiguration": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "Describes an application's checkpointing configuration. Checkpointing is the process of persisting application state for fault tolerance. For more information, see Checkpoints for Fault Tolerance in the Apache Flink Documentation."
       },
       "MonitoringConfiguration": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/29"
         },
         "flags": 0,
         "description": "Describes configuration parameters for Amazon CloudWatch logging for an application."
       },
       "ParallelismConfiguration": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/30"
         },
         "flags": 0,
         "description": "Describes parameters for how an application executes multiple tasks simultaneously."
@@ -330,7 +357,7 @@
     "properties": {
       "AllowNonRestoredState": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "When restoring from a snapshot, specifies whether the runtime is allowed to skip a state that cannot be mapped to the new program. Defaults to false. If you update your application without specifying this parameter, AllowNonRestoredState will be set to false, even if it was previously set to true."
@@ -343,7 +370,7 @@
     "properties": {
       "DatabaseARN": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "The Amazon Resource Name (ARN) of the database."
@@ -356,42 +383,42 @@
     "properties": {
       "InputParallelism": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/21"
         },
         "flags": 0,
         "description": "Describes the number of in-application streams to create."
       },
       "InputProcessingConfiguration": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/22"
         },
         "flags": 0,
         "description": "The InputProcessingConfiguration for the input. An input processor transforms records as they are received from the stream, before the application's SQL code executes. Currently, the only input processing configuration available is InputLambdaProcessor."
       },
       "InputSchema": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/23"
         },
         "flags": 1,
         "description": "Describes the format of the data in the streaming source, and how each data element maps to corresponding columns in the in-application stream that is being created."
       },
       "KinesisFirehoseInput": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "If the streaming source is an Amazon Kinesis Data Firehose delivery stream, identifies the delivery stream's ARN."
       },
       "KinesisStreamsInput": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/26"
         },
         "flags": 0,
         "description": "If the streaming source is an Amazon Kinesis data stream, identifies the stream's Amazon Resource Name (ARN)."
       },
       "NamePrefix": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "The name prefix to use when creating an in-application stream. Suppose that you specify a prefix `\"MyInApplicationStream\"`. Kinesis Data Analytics then creates one or more (as per the InputParallelism count you specified) in-application streams with the names `\"MyInApplicationStream_001\"`, `\"MyInApplicationStream_002\"`, and so on."
@@ -404,7 +431,7 @@
     "properties": {
       "ResourceARN": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "The ARN of the Amazon Lambda function that operates on records in the stream."
@@ -417,7 +444,7 @@
     "properties": {
       "Count": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "The number of in-application streams to create."
@@ -430,7 +457,7 @@
     "properties": {
       "InputLambdaProcessor": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "The InputLambdaProcessor that is used to preprocess the records in the stream before being processed by your application code."
@@ -443,21 +470,21 @@
     "properties": {
       "RecordColumns": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/49"
         },
         "flags": 1,
         "description": "A list of `RecordColumn` objects."
       },
       "RecordEncoding": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "Specifies the encoding of the records in the streaming source. For example, UTF-8."
       },
       "RecordFormat": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/33"
         },
         "flags": 1,
         "description": "Specifies the format of the records on the streaming source."
@@ -470,7 +497,7 @@
     "properties": {
       "RecordRowPath": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "The path to the top-level parent that contains the records."
@@ -483,7 +510,7 @@
     "properties": {
       "ResourceARN": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) of the delivery stream."
@@ -496,7 +523,7 @@
     "properties": {
       "ResourceARN": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "The ARN of the input Kinesis data stream to read."
@@ -509,14 +536,14 @@
     "properties": {
       "CSVMappingParameters": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "Provides additional mapping information when the record format uses delimiters (for example, CSV)."
       },
       "JSONMappingParameters": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Provides additional mapping information when JSON is the record format on the streaming source."
@@ -529,21 +556,21 @@
     "properties": {
       "ArtifactId": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "The artifact ID of the Maven reference."
       },
       "GroupId": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "The group ID of the Maven reference."
       },
       "Version": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "The version of the Maven reference."
@@ -556,21 +583,21 @@
     "properties": {
       "ConfigurationType": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "Describes whether to use the default CloudWatch logging configuration for an application. You must set this property to CUSTOM in order to set the LogLevel or MetricsLevel parameters."
       },
       "LogLevel": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "Describes the verbosity of the CloudWatch Logs for an application."
       },
       "MetricsLevel": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "Describes the granularity of the CloudWatch Logs for an application. The Parallelism level is not recommended for applications with a Parallelism over 64 due to excessive costs."
@@ -583,28 +610,28 @@
     "properties": {
       "AutoScalingEnabled": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "Describes whether the Kinesis Data Analytics service can increase the parallelism of the application in response to increased throughput."
       },
       "ConfigurationType": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "Describes whether the application uses the default parallelism for the Kinesis Data Analytics service. You must set this property to `CUSTOM` in order to change your application's `AutoScalingEnabled`, `Parallelism`, or `ParallelismPerKPU` properties."
       },
       "Parallelism": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "Describes the initial number of parallel tasks that a Java-based Kinesis Data Analytics application can perform. The Kinesis Data Analytics service can increase this number automatically if ParallelismConfiguration:AutoScalingEnabled is set to true."
       },
       "ParallelismPerKPU": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "Describes the number of parallel tasks that a Java-based Kinesis Data Analytics application can perform per Kinesis Processing Unit (KPU) used by the application. For more information about KPUs, see Amazon Kinesis Data Analytics Pricing."
@@ -617,14 +644,14 @@
     "properties": {
       "PropertyGroupId": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "Describes the key of an application execution property key-value pair."
       },
       "PropertyMap": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "Describes the value of an application execution property key-value pair."
@@ -637,21 +664,21 @@
     "properties": {
       "Mapping": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "A reference to the data element in the streaming input or the reference data source."
       },
       "Name": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "The name of the column that is created in the in-application input stream or reference table."
       },
       "SqlType": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "The type of column created in the in-application input stream or reference table."
@@ -664,14 +691,14 @@
     "properties": {
       "MappingParameters": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "When you configure application input at the time of creating or updating an application, provides additional mapping information specific to the record format (such as JSON, CSV, or record fields delimited by some delimiter) on the streaming source."
       },
       "RecordFormatType": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "The type of record format."
@@ -684,14 +711,14 @@
     "properties": {
       "ApplicationRestoreConfiguration": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "Describes the restore behavior of a restarting application."
       },
       "FlinkRunConfiguration": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "Describes the starting parameters for a Flink-based Kinesis Data Analytics application."
@@ -704,14 +731,14 @@
     "properties": {
       "BasePath": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "The base path for the S3 bucket."
       },
       "BucketARN": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) of the S3 bucket."
@@ -724,21 +751,21 @@
     "properties": {
       "BucketARN": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) for the S3 bucket containing the application code."
       },
       "FileKey": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "The file key for the object containing the application code."
       },
       "ObjectVersion": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "The version of the object containing the application code."
@@ -751,7 +778,7 @@
     "properties": {
       "Inputs": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "The array of Input objects describing the input streams used by the application."
@@ -764,14 +791,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that's 1 to 128 Unicode characters in length and can't be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that's 0 to 256 characters in length."
@@ -784,14 +811,14 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/52"
         },
         "flags": 1,
         "description": "The array of SecurityGroup IDs used by the VPC configuration."
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/53"
         },
         "flags": 1,
         "description": "The array of Subnet IDs used by the VPC configuration."
@@ -809,28 +836,28 @@
     "properties": {
       "CatalogConfiguration": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "The Amazon Glue Data Catalog that you use in queries in a Kinesis Data Analytics Studio notebook."
       },
       "CustomArtifactsConfiguration": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/55"
         },
         "flags": 0,
         "description": "A list of CustomArtifactConfiguration objects."
       },
       "DeployAsApplicationConfiguration": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "The information required to deploy a Kinesis Data Analytics Studio notebook as an application with durable state."
       },
       "MonitoringConfiguration": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "The monitoring configuration of a Kinesis Data Analytics Studio notebook."
@@ -843,7 +870,7 @@
     "properties": {
       "LogLevel": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "The verbosity of the CloudWatch Logs for an application. You can set it to `INFO`, `WARN`, `ERROR`, or `DEBUG`."
@@ -856,7 +883,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/38"
+      "$ref": "#/39"
     }
   },
   {
@@ -868,19 +895,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/30"
+      "$ref": "#/12"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/31"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/32"
     }
   },
   {
@@ -891,31 +918,31 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/18"
+      "$ref": "#/19"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/42"
+      "$ref": "#/43"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/42"
+      "$ref": "#/43"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/38"
+      "$ref": "#/39"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/12"
     }
   },
   {
@@ -925,7 +952,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/37"
+      "$ref": "#/38"
     }
   },
   {
@@ -941,56 +968,56 @@
       },
       "ApplicationDescription": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "The description of the application."
       },
       "ApplicationMaintenanceConfiguration": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "Used to configure start of maintenance window."
       },
       "ApplicationMode": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "To create a Kinesis Data Analytics Studio notebook, you must set the mode to `INTERACTIVE`. However, for a Kinesis Data Analytics for Apache Flink application, the mode is optional."
       },
       "ApplicationName": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 16,
         "description": "The name of the application."
       },
       "RunConfiguration": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/34"
         },
         "flags": 4,
         "description": "Specifies run configuration (start parameters) of a Kinesis Data Analytics application. Evaluated on update for RUNNING applications an only."
       },
       "RuntimeEnvironment": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "The runtime environment for the application."
       },
       "ServiceExecutionRole": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "Specifies the IAM role that the application uses to access external resources."
       },
       "Tags": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/57"
         },
         "flags": 0,
         "description": "A list of one or more tags to assign to the application. A tag is a key-value pair that identifies an application. Note that the maximum number of application tags includes system tags. The maximum number of user-defined application tags is 50."
@@ -1003,21 +1030,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/58"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1027,10 +1054,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.KinesisAnalyticsV2/Application@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/58"
+      "$ref": "#/59"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

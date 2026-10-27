@@ -1,0 +1,154 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudFormation-GeneratedTemplate",
+  "type": "AWS::CloudFormation::GeneratedTemplate",
+  "time": "2026-10-21T22:40:35.51Z",
+  "schema": {
+    "additionalProperties": false,
+    "definitions": {
+      "TemplateConfiguration": {
+        "additionalProperties": false,
+        "description": "The configuration details of the generated template.",
+        "properties": {
+          "DeletionPolicy": {
+            "description": "The DeletionPolicy assigned to resources in the generated template.",
+            "enum": [
+              "DELETE",
+              "RETAIN"
+            ],
+            "type": "string"
+          },
+          "UpdateReplacePolicy": {
+            "description": "The UpdateReplacePolicy assigned to resources in the generated template.",
+            "enum": [
+              "DELETE",
+              "RETAIN"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "TemplateProgress": {
+        "additionalProperties": false,
+        "description": "A summary of the progress of the template generation.",
+        "properties": {
+          "ResourcesFailed": {
+            "description": "The number of resources that failed the template generation.",
+            "type": "integer"
+          },
+          "ResourcesPending": {
+            "description": "The number of resources that are still pending the template generation.",
+            "type": "integer"
+          },
+          "ResourcesProcessing": {
+            "description": "The number of resources that are in-process for the template generation.",
+            "type": "integer"
+          },
+          "ResourcesSucceeded": {
+            "description": "The number of resources that succeeded the template generation.",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Creates a generated template from existing resources using the CloudFormation IaC Generator.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "cloudformation:CreateGeneratedTemplate",
+          "cloudformation:DescribeGeneratedTemplate"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "cloudformation:DeleteGeneratedTemplate",
+          "cloudformation:DescribeGeneratedTemplate"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "cloudformation:ListGeneratedTemplates"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "cloudformation:DescribeGeneratedTemplate"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "cloudformation:UpdateGeneratedTemplate",
+          "cloudformation:DescribeGeneratedTemplate"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/GeneratedTemplateId"
+    ],
+    "properties": {
+      "CreationTime": {
+        "description": "The time the generated template was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "GeneratedTemplateId": {
+        "description": "The Amazon Resource Name (ARN) of the generated template.",
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
+      "GeneratedTemplateName": {
+        "description": "The name assigned to the generated template.",
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
+      "LastUpdatedTime": {
+        "description": "The time the generated template was last updated.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Progress": {
+        "$ref": "#/definitions/TemplateProgress"
+      },
+      "Status": {
+        "description": "The status of the template generation.",
+        "enum": [
+          "CREATE_PENDING",
+          "UPDATE_PENDING",
+          "DELETE_PENDING",
+          "CREATE_IN_PROGRESS",
+          "UPDATE_IN_PROGRESS",
+          "DELETE_IN_PROGRESS",
+          "FAILED",
+          "COMPLETE"
+        ],
+        "type": "string"
+      },
+      "TemplateConfiguration": {
+        "$ref": "#/definitions/TemplateConfiguration"
+      },
+      "TotalWarnings": {
+        "description": "The number of warnings generated for this template.",
+        "minimum": 0,
+        "type": "integer"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/GeneratedTemplateId",
+      "/properties/Status",
+      "/properties/CreationTime",
+      "/properties/LastUpdatedTime",
+      "/properties/Progress",
+      "/properties/TotalWarnings"
+    ],
+    "required": [
+      "GeneratedTemplateName"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::CloudFormation::GeneratedTemplate"
+  }
+}

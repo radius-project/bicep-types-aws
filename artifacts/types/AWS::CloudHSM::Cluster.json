@@ -1,0 +1,233 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudHSM-Cluster",
+  "type": "AWS::CloudHSM::Cluster",
+  "time": "2026-10-21T21:45:29.915Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ClusterId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/SubnetIds",
+      "/properties/NetworkType",
+      "/properties/Mode",
+      "/properties/HsmType"
+    ],
+    "description": "Creates and manages an AWS CloudHSM cluster.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "cloudhsm:CreateCluster",
+          "cloudhsm:DescribeClusters",
+          "cloudhsm:TagResource",
+          "cloudhsm:ListTags",
+          "ec2:CreateSecurityGroup",
+          "ec2:AuthorizeSecurityGroupIngress",
+          "ec2:AuthorizeSecurityGroupEgress",
+          "ec2:RevokeSecurityGroupEgress",
+          "ec2:CreateNetworkInterface",
+          "ec2:DescribeNetworkInterfaces",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeVpcs",
+          "ec2:DescribeSecurityGroups",
+          "iam:CreateServiceLinkedRole"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "cloudhsm:DeleteCluster",
+          "cloudhsm:DescribeClusters",
+          "ec2:DeleteSecurityGroup"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "cloudhsm:DescribeClusters"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "cloudhsm:DescribeClusters",
+          "cloudhsm:ListTags"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "cloudhsm:ModifyCluster",
+          "cloudhsm:DescribeClusters",
+          "cloudhsm:TagResource",
+          "cloudhsm:UntagResource",
+          "cloudhsm:ListTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the cluster.",
+        "type": "string"
+      },
+      "BackupPolicy": {
+        "description": "The cluster's backup policy.",
+        "enum": [
+          "DEFAULT"
+        ],
+        "type": "string"
+      },
+      "BackupRetentionPolicy": {
+        "additionalProperties": false,
+        "description": "A policy that defines how the service retains backups.",
+        "properties": {
+          "Type": {
+            "description": "The type of backup retention policy.",
+            "enum": [
+              "DAYS"
+            ],
+            "type": "string"
+          },
+          "Value": {
+            "description": "Use a value between 7 - 379.",
+            "maxLength": 3,
+            "minLength": 1,
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ClusterId": {
+        "description": "The cluster's identifier (ID).",
+        "pattern": "^cluster-[2-7a-zA-Z]{11,16}$",
+        "type": "string"
+      },
+      "HsmType": {
+        "description": "The type of HSM to use in the cluster.",
+        "maxLength": 32,
+        "pattern": "^((p|)hsm[0-9][a-z.]*\\.[a-zA-Z]+)$",
+        "type": "string"
+      },
+      "Mode": {
+        "description": "The mode to use in the cluster.",
+        "enum": [
+          "FIPS",
+          "NON_FIPS"
+        ],
+        "type": "string"
+      },
+      "NetworkType": {
+        "description": "The NetworkType to create a cluster with.",
+        "enum": [
+          "IPV4",
+          "DUALSTACK"
+        ],
+        "type": "string"
+      },
+      "SecurityGroup": {
+        "description": "The identifier (ID) of the cluster's security group.",
+        "pattern": "^sg-[0-9a-fA-F]{8,17}$",
+        "type": "string"
+      },
+      "State": {
+        "description": "The cluster's state.",
+        "enum": [
+          "CREATE_IN_PROGRESS",
+          "UNINITIALIZED",
+          "INITIALIZE_IN_PROGRESS",
+          "INITIALIZED",
+          "ACTIVE",
+          "UPDATE_IN_PROGRESS",
+          "MODIFY_IN_PROGRESS",
+          "ROLLBACK_IN_PROGRESS",
+          "DELETE_IN_PROGRESS",
+          "DELETED",
+          "DEGRADED"
+        ],
+        "type": "string"
+      },
+      "SubnetIds": {
+        "description": "The identifiers (IDs) of the subnets where the cluster is created. You must specify at least one subnet.",
+        "items": {
+          "pattern": "^subnet-[0-9a-fA-F]{8,17}$",
+          "type": "string"
+        },
+        "maxItems": 10,
+        "minItems": 1,
+        "type": "array"
+      },
+      "SubnetMapping": {
+        "additionalProperties": false,
+        "description": "A map from availability zone to the cluster's subnet in that availability zone.",
+        "patternProperties": {
+          "^[a-z]{2}-[a-z]+-[0-9][a-z]$": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tags": {
+        "description": "Tags to apply to the CloudHSM cluster.",
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "description": "The key of the tag.",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "Value": {
+              "description": "The value of the tag.",
+              "maxLength": 256,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "maxItems": 50,
+        "minItems": 1,
+        "type": "array"
+      },
+      "VpcId": {
+        "description": "The identifier (ID) of the virtual private cloud (VPC) that contains the cluster.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/ClusterId",
+      "/properties/State",
+      "/properties/SecurityGroup",
+      "/properties/VpcId",
+      "/properties/SubnetMapping",
+      "/properties/BackupPolicy"
+    ],
+    "required": [
+      "HsmType"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "cloudhsm:TagResource",
+        "cloudhsm:UntagResource",
+        "cloudhsm:ListTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::CloudHSM::Cluster",
+    "writeOnlyProperties": [
+      "/properties/SubnetIds"
+    ]
+  }
+}

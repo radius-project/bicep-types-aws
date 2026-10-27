@@ -1,0 +1,151 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkMonitor-Monitor",
+  "type": "AWS::NetworkMonitor::Monitor",
+  "time": "2026-10-21T22:59:25.621Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/MonitorName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/MonitorName"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "An Amazon CloudWatch Network Monitor resource that monitors network traffic between a source VPC subnet and a destination IP address.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "networkmonitor:CreateMonitor",
+          "networkmonitor:GetMonitor",
+          "networkmonitor:TagResource",
+          "iam:CreateServiceLinkedRole"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "networkmonitor:DeleteMonitor",
+          "networkmonitor:GetMonitor"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "networkmonitor:ListMonitors"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "networkmonitor:GetMonitor",
+          "networkmonitor:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "networkmonitor:UpdateMonitor",
+          "networkmonitor:GetMonitor",
+          "networkmonitor:TagResource",
+          "networkmonitor:UntagResource",
+          "networkmonitor:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/MonitorArn"
+    ],
+    "properties": {
+      "AggregationPeriod": {
+        "description": "The time, in seconds, that metrics are aggregated and sent to Amazon CloudWatch. Valid values are either 30 or 60.",
+        "minimum": 30,
+        "type": "integer"
+      },
+      "CreatedAt": {
+        "description": "The time and date when the monitor was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ModifiedAt": {
+        "description": "The time and date when the monitor was last modified.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "MonitorArn": {
+        "description": "The ARN of the monitor.",
+        "maxLength": 512,
+        "minLength": 20,
+        "pattern": "^arn:.*$",
+        "type": "string"
+      },
+      "MonitorName": {
+        "description": "The name identifying the monitor. It can contain only letters, underscores (_), or dashes (-), and can be up to 200 characters.",
+        "maxLength": 200,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9_-]+$",
+        "type": "string"
+      },
+      "State": {
+        "description": "The state of the monitor.",
+        "enum": [
+          "PENDING",
+          "ACTIVE",
+          "INACTIVE",
+          "ERROR",
+          "DELETING"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags for the monitor.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/MonitorArn",
+      "/properties/State",
+      "/properties/CreatedAt",
+      "/properties/ModifiedAt"
+    ],
+    "required": [
+      "MonitorName"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "networkmonitor:TagResource",
+        "networkmonitor:UntagResource",
+        "networkmonitor:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::NetworkMonitor::Monitor"
+  }
+}

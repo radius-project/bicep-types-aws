@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-VpcLattice-ServiceNetworkVpcAssociation",
   "type": "AWS::VpcLattice::ServiceNetworkVpcAssociation",
-  "time": "2025-01-09T05:45:35.074Z",
+  "time": "2026-10-08T15:58:22.184Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -18,6 +18,33 @@
       "/properties/VpcIdentifier"
     ],
     "definitions": {
+      "DnsOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "PrivateDnsPreference": {
+            "enum": [
+              "VERIFIED_DOMAINS_ONLY",
+              "ALL_DOMAINS",
+              "VERIFIED_DOMAINS_AND_SPECIFIED_DOMAINS",
+              "SPECIFIED_DOMAINS_ONLY"
+            ],
+            "type": "string"
+          },
+          "PrivateDnsSpecifiedDomains": {
+            "insertionOrder": false,
+            "items": {
+              "maxLength": 255,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "type": "object"
+      },
       "Tag": {
         "additionalProperties": false,
         "properties": {
@@ -111,11 +138,17 @@
       "CreatedAt": {
         "type": "string"
       },
+      "DnsOptions": {
+        "$ref": "#/definitions/DnsOptions"
+      },
       "Id": {
         "maxLength": 22,
         "minLength": 22,
         "pattern": "^snva-[0-9a-z]{17}$",
         "type": "string"
+      },
+      "PrivateDnsEnabled": {
+        "type": "boolean"
       },
       "SecurityGroupIds": {
         "insertionOrder": false,

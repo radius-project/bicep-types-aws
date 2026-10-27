@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-BackupGateway-Hypervisor",
   "type": "AWS::BackupGateway::Hypervisor",
-  "time": "2025-01-23T17:07:14.767Z",
+  "time": "2026-10-19T17:04:08.056Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -54,6 +54,7 @@
     "handlers": {
       "create": {
         "permissions": [
+          "backup-gateway:ListTagsForResource",
           "backup-gateway:ImportHypervisorConfiguration",
           "backup-gateway:GetHypervisor",
           "backup-gateway:ListHypervisors",
@@ -78,7 +79,8 @@
       "read": {
         "permissions": [
           "backup-gateway:GetHypervisor",
-          "backup-gateway:ListHypervisors"
+          "backup-gateway:ListHypervisors",
+          "backup-gateway:ListTagsForResource"
         ]
       },
       "update": {
@@ -87,7 +89,8 @@
           "backup-gateway:GetHypervisor",
           "backup-gateway:ListHypervisors",
           "backup-gateway:ImportHypervisorConfiguration",
-          "backup-gateway:DeleteHypervisor"
+          "backup-gateway:DeleteHypervisor",
+          "backup-gateway:ListTagsForResource"
         ]
       }
     },
@@ -149,6 +152,11 @@
     ],
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "backup-gateway:UntagResource",
+        "backup-gateway:TagResource",
+        "backup-gateway:ListTagsForResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": false,
@@ -160,7 +168,6 @@
       "/properties/LogGroupArn",
       "/properties/Name",
       "/properties/Password",
-      "/properties/Tags",
       "/properties/Username"
     ]
   }

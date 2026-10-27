@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-OpenSearchServerless-SecurityConfig",
   "type": "AWS::OpenSearchServerless::SecurityConfig",
-  "time": "2025-01-08T16:30:59.711Z",
+  "time": "2026-10-19T20:39:51.566Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -15,6 +15,21 @@
       "/properties/IamIdentityCenterOptions/InstanceArn"
     ],
     "definitions": {
+      "IamFederationConfigOptions": {
+        "additionalProperties": false,
+        "description": "Describe IAM federation options in form of key value map",
+        "properties": {
+          "GroupAttribute": {
+            "description": "Group attribute for this IAM federation integration",
+            "type": "string"
+          },
+          "UserAttribute": {
+            "description": "User attribute for this IAM federation integration",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "IamIdentityCenterApplicationArn": {
         "description": "The ARN of the IAM Identity Center application used to integrate with OpenSearch Serverless",
         "type": "string"
@@ -79,6 +94,13 @@
             "pattern": "[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u00A1-\\u00FF]+",
             "type": "string"
           },
+          "OpenSearchServerlessEntityId": {
+            "description": "Custom entity id attribute to override default entity id for this saml integration",
+            "maxLength": 1024,
+            "minLength": 1,
+            "pattern": "^aws:opensearch:[0-9]{12}:*",
+            "type": "string"
+          },
           "SessionTimeout": {
             "description": "Defines the session timeout in minutes",
             "type": "integer"
@@ -100,12 +122,13 @@
         "description": "Config type for security config",
         "enum": [
           "saml",
-          "iamidentitycenter"
+          "iamidentitycenter",
+          "iamfederation"
         ],
         "type": "string"
       }
     },
-    "description": "Amazon OpenSearchServerless security config resource",
+    "description": "Resource Type definition for AWS::OpenSearchServerless::SecurityConfig",
     "handlers": {
       "create": {
         "permissions": [
@@ -162,6 +185,9 @@
         "maxLength": 1000,
         "minLength": 1,
         "type": "string"
+      },
+      "IamFederationOptions": {
+        "$ref": "#/definitions/IamFederationConfigOptions"
       },
       "IamIdentityCenterOptions": {
         "$ref": "#/definitions/IamIdentityCenterConfigOptions"

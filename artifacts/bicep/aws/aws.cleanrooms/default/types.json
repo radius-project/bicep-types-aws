@@ -5,19 +5,19 @@
     "properties": {
       "DefaultValue": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Type": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -29,7 +29,7 @@
     "properties": {
       "ReferencedTables": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 1
       }
@@ -38,10 +38,122 @@
   {
     "$type": "ObjectType",
     "name": "AnalysisSource",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AnalysisSourceMetadata",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AnalysisTemplateArtifact",
     "properties": {
-      "Text": {
+      "Location": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/12"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AnalysisTemplateArtifactMetadata",
+    "properties": {
+      "AdditionalArtifactHashes": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0
+      },
+      "EntryPointHash": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AnalysisTemplateArtifacts",
+    "properties": {
+      "AdditionalArtifacts": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      },
+      "EntryPoint": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ColumnClassificationDetails",
+    "properties": {
+      "ColumnMapping": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ErrorMessageConfiguration",
+    "properties": {
+      "Type": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Hash",
+    "properties": {
+      "Sha256": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MLSyntheticDataParameters",
+    "properties": {
+      "ColumnClassification": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1
+      },
+      "Epsilon": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1
+      },
+      "MaxMembershipInferenceAttackScore": {
+        "type": {
+          "$ref": "#/22"
         },
         "flags": 1
       }
@@ -50,6 +162,53 @@
   {
     "$type": "ObjectType",
     "name": "ReferencedTables",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3Location",
+    "properties": {
+      "Bucket": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      },
+      "Key": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SyntheticDataColumnProperties",
+    "properties": {
+      "ColumnName": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      },
+      "ColumnType": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      },
+      "IsPredictiveValue": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SyntheticDataParameters",
     "properties": {}
   },
   {
@@ -63,13 +222,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -81,14 +240,38 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/9"
     }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "BooleanType"
   },
   {
     "$type": "StringLiteralType",
@@ -103,7 +286,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/16"
     }
   },
   {
@@ -112,62 +295,68 @@
     "properties": {
       "AnalysisParameters": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/26"
         },
         "flags": 0,
         "description": "The member who can query can provide this placeholder for a literal data value in an analysis template"
       },
       "AnalysisTemplateIdentifier": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 18
       },
       "Arn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 2
       },
       "CollaborationArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 2
       },
       "CollaborationIdentifier": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 2
       },
       "Description": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "ErrorMessageConfiguration": {
+        "type": {
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "Format": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "MembershipArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 2
       },
       "MembershipIdentifier": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 17
       },
       "Name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
@@ -175,7 +364,7 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 2
+        "flags": 0
       },
       "Source": {
         "type": {
@@ -183,9 +372,21 @@
         },
         "flags": 1
       },
+      "SourceMetadata": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "SyntheticDataParameters": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0
+      },
       "Tags": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "An arbitrary set of tags (key-value pairs) for this cleanrooms analysis template."
@@ -198,21 +399,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/28"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -222,15 +423,35 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CleanRooms/AnalysisTemplate@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/13"
+      "$ref": "#/29"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AllowedResultRegions",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
     "name": "AnalyticsEngine",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AutoApprovedChangeType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AutoApprovedChangeTypeList",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CollaborationJobLogStatus",
     "properties": {}
   },
   {
@@ -254,25 +475,37 @@
     "properties": {
       "AllowCleartext": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/24"
         },
         "flags": 1
       },
       "AllowDuplicates": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/24"
         },
         "flags": 1
       },
       "AllowJoinsOnColumnsWithDifferentNames": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/24"
         },
         "flags": 1
       },
       "PreserveNulls": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/24"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JobComputePaymentConfig",
+    "properties": {
+      "IsResponsible": {
+        "type": {
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -284,7 +517,7 @@
     "properties": {
       "CustomMLMemberAbilities": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/58"
         },
         "flags": 1
       }
@@ -296,13 +529,19 @@
     "properties": {
       "ModelInference": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/47"
         },
         "flags": 0
       },
       "ModelTraining": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/48"
+        },
+        "flags": 0
+      },
+      "SyntheticDataGeneration": {
+        "type": {
+          "$ref": "#/53"
         },
         "flags": 0
       }
@@ -324,31 +563,31 @@
     "properties": {
       "AccountId": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "DisplayName": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "MLMemberAbilities": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/41"
         },
         "flags": 0
       },
       "MemberAbilities": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/60"
         },
-        "flags": 1
+        "flags": 0
       },
       "PaymentConfiguration": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/50"
         },
         "flags": 0
       }
@@ -365,7 +604,7 @@
     "properties": {
       "IsResponsible": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -377,7 +616,7 @@
     "properties": {
       "IsResponsible": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -392,15 +631,21 @@
     "$type": "ObjectType",
     "name": "PaymentConfiguration",
     "properties": {
+      "JobCompute": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0
+      },
       "MachineLearning": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/42"
         },
         "flags": 0
       },
       "QueryCompute": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/51"
         },
         "flags": 1
       }
@@ -412,7 +657,24 @@
     "properties": {
       "IsResponsible": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/24"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SupportedS3Region",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SyntheticDataGenerationPaymentConfig",
+    "properties": {
+      "IsResponsible": {
+        "type": {
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -424,13 +686,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -439,28 +701,37 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
-    }
-  },
-  {
-    "$type": "BooleanType"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
     }
   },
   {
@@ -470,100 +741,136 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/24"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/31"
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/45"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/54"
     }
   },
   {
     "$type": "ObjectType",
     "name": "AWS.CleanRooms/CollaborationProperties",
     "properties": {
+      "AllowedResultRegions": {
+        "type": {
+          "$ref": "#/62"
+        },
+        "flags": 0
+      },
       "AnalyticsEngine": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Arn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 2
       },
+      "AutoApprovedChangeTypes": {
+        "type": {
+          "$ref": "#/63"
+        },
+        "flags": 0
+      },
       "CollaborationIdentifier": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 18
       },
       "CreatorDisplayName": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "CreatorMLMemberAbilities": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/41"
         },
         "flags": 0
       },
       "CreatorMemberAbilities": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/64"
         },
-        "flags": 1
+        "flags": 0
       },
       "CreatorPaymentConfiguration": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/50"
         },
         "flags": 0
       },
       "DataEncryptionMetadata": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/39"
         },
         "flags": 0
       },
       "Description": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
+      },
+      "IsMetricsEnabled": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
+      "JobLogStatus": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
       },
       "Members": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/65"
         },
-        "flags": 1
+        "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "QueryLogStatus": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/66"
         },
         "flags": 0,
         "description": "An arbitrary set of tags (key-value pairs) for this cleanrooms collaboration."
@@ -576,21 +883,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/67"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -600,11 +907,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CleanRooms/Collaboration@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/42"
+      "$ref": "#/68"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -617,13 +924,13 @@
     "properties": {
       "ColumnNames": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/109"
         },
         "flags": 1
       },
       "Function": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -640,19 +947,19 @@
     "properties": {
       "ColumnName": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Minimum": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/22"
         },
         "flags": 1
       },
       "Type": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -660,7 +967,53 @@
   },
   {
     "$type": "ObjectType",
+    "name": "AggregationThreshold",
+    "properties": {
+      "AllowedAggregateExpressionType": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      },
+      "IdentityColumns": {
+        "type": {
+          "$ref": "#/110"
+        },
+        "flags": 1
+      },
+      "MinimumIdentityCount": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1
+      },
+      "OutputColumnThresholds": {
+        "type": {
+          "$ref": "#/111"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AggregationThresholdType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "AggregationType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AllowedAggregateExpressionType",
     "properties": {}
   },
   {
@@ -694,13 +1047,13 @@
     "properties": {
       "Policy": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/91"
         },
         "flags": 1
       },
       "Type": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -712,49 +1065,49 @@
     "properties": {
       "AdditionalAnalyses": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "AggregateColumns": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/114"
         },
         "flags": 1
       },
       "AllowedJoinOperators": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/115"
         },
         "flags": 0
       },
       "DimensionColumns": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/116"
         },
         "flags": 1
       },
       "JoinColumns": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/117"
         },
         "flags": 1
       },
       "JoinRequired": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "OutputConstraints": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/118"
         },
         "flags": 1
       },
       "ScalarFunctions": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/119"
         },
         "flags": 1
       }
@@ -771,31 +1124,43 @@
     "properties": {
       "AdditionalAnalyses": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "AggregationThresholds": {
+        "type": {
+          "$ref": "#/120"
         },
         "flags": 0
       },
       "AllowedAnalyses": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/121"
         },
         "flags": 1
       },
       "AllowedAnalysisProviders": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/122"
+        },
+        "flags": 0
+      },
+      "ComparisonControls": {
+        "type": {
+          "$ref": "#/90"
         },
         "flags": 0
       },
       "DifferentialPrivacy": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/94"
         },
         "flags": 0
       },
       "DisallowedOutputColumns": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/123"
         },
         "flags": 0
       }
@@ -807,25 +1172,25 @@
     "properties": {
       "AdditionalAnalyses": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "AllowedJoinOperators": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/124"
         },
         "flags": 0
       },
       "JoinColumns": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/125"
         },
         "flags": 1
       },
       "ListColumns": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/126"
         },
         "flags": 1
       }
@@ -835,27 +1200,62 @@
     "$type": "ObjectType",
     "name": "AthenaTableReference",
     "properties": {
+      "CatalogName": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
       "DatabaseName": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "OutputLocation": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "Region": {
+        "type": {
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "TableName": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "WorkGroup": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CommercialRegion",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ComparisonControls",
+    "properties": {
+      "AllowedColumnComparisonColumns": {
+        "type": {
+          "$ref": "#/127"
+        },
+        "flags": 1
+      },
+      "AllowedLiteralComparisonColumns": {
+        "type": {
+          "$ref": "#/128"
         },
         "flags": 1
       }
@@ -867,7 +1267,7 @@
     "properties": {
       "V1": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/129"
         },
         "flags": 1
       }
@@ -889,7 +1289,7 @@
     "properties": {
       "Columns": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/130"
         },
         "flags": 1
       }
@@ -901,7 +1301,7 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -918,13 +1318,19 @@
     "properties": {
       "DatabaseName": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
+      "Region": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
       "TableName": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -942,7 +1348,35 @@
   },
   {
     "$type": "ObjectType",
+    "name": "OutputColumnThreshold",
+    "properties": {
+      "MinimumIdentityCount": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1
+      },
+      "OutputColumnName": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "ScalarFunctions",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SelectedAnalysisMethod",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SelectedAnalysisMethods",
     "properties": {}
   },
   {
@@ -951,37 +1385,37 @@
     "properties": {
       "AccountIdentifier": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "DatabaseName": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "SchemaName": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "SecretArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "TableName": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "TableSchema": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/133"
         },
         "flags": 1
       }
@@ -998,13 +1432,13 @@
     "properties": {
       "ColumnName": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "ColumnType": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -1021,13 +1455,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -1036,94 +1470,121 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
-    }
-  },
-  {
-    "$type": "IntegerType"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/45"
+      "$ref": "#/100"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/71"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/47"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/73"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/74"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
     }
   },
   {
@@ -1134,13 +1595,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/64"
+      "$ref": "#/95"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
     }
   },
   {
@@ -1155,19 +1622,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/54"
+      "$ref": "#/83"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/74"
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/108"
     }
   },
   {
@@ -1176,55 +1649,61 @@
     "properties": {
       "AllowedColumns": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/135"
         },
         "flags": 1
       },
       "AnalysisMethod": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "AnalysisRules": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/136"
         },
         "flags": 0
       },
       "Arn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 2
       },
       "ConfiguredTableIdentifier": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 18
       },
       "Description": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
+      "SelectedAnalysisMethods": {
+        "type": {
+          "$ref": "#/137"
+        },
+        "flags": 0
+      },
       "TableReference": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/107"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/138"
         },
         "flags": 0,
         "description": "An arbitrary set of tags (key-value pairs) for this cleanrooms collaboration."
@@ -1237,21 +1716,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/139"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1261,11 +1740,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CleanRooms/ConfiguredTable@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/100"
+      "$ref": "#/140"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1293,13 +1772,13 @@
     "properties": {
       "Policy": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/150"
         },
         "flags": 1
       },
       "Type": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -1311,13 +1790,13 @@
     "properties": {
       "AllowedAdditionalAnalyses": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/156"
         },
         "flags": 0
       },
       "AllowedResultReceivers": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/157"
         },
         "flags": 0
       }
@@ -1329,13 +1808,13 @@
     "properties": {
       "AllowedAdditionalAnalyses": {
         "type": {
-          "$ref": "#/118"
+          "$ref": "#/158"
         },
         "flags": 0
       },
       "AllowedResultReceivers": {
         "type": {
-          "$ref": "#/119"
+          "$ref": "#/159"
         },
         "flags": 0
       }
@@ -1347,13 +1826,13 @@
     "properties": {
       "AllowedAdditionalAnalyses": {
         "type": {
-          "$ref": "#/120"
+          "$ref": "#/160"
         },
         "flags": 0
       },
       "AllowedResultReceivers": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/161"
         },
         "flags": 0
       }
@@ -1365,7 +1844,7 @@
     "properties": {
       "V1": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/162"
         },
         "flags": 1
       }
@@ -1387,13 +1866,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -1402,49 +1881,49 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
@@ -1459,13 +1938,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/106"
+      "$ref": "#/146"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/153"
     }
   },
   {
@@ -1474,55 +1953,55 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 2
       },
       "ConfiguredTableAssociationAnalysisRules": {
         "type": {
-          "$ref": "#/124"
+          "$ref": "#/164"
         },
         "flags": 0
       },
       "ConfiguredTableAssociationIdentifier": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 18
       },
       "ConfiguredTableIdentifier": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Description": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "MembershipIdentifier": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 17
       },
       "Name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/125"
+          "$ref": "#/165"
         },
         "flags": 0,
         "description": "An arbitrary set of tags (key-value pairs) for this cleanrooms collaboration."
@@ -1535,21 +2014,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/126"
+          "$ref": "#/166"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1559,11 +2038,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CleanRooms/ConfiguredTableAssociation@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/127"
+      "$ref": "#/167"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1571,13 +2050,13 @@
     "properties": {
       "InputReferenceArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "ManageResourcePolicies": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -1589,7 +2068,7 @@
     "properties": {
       "IdMappingTableInputSource": {
         "type": {
-          "$ref": "#/134"
+          "$ref": "#/174"
         },
         "flags": 1
       }
@@ -1601,13 +2080,13 @@
     "properties": {
       "IdNamespaceAssociationId": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Type": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -1619,13 +2098,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -1639,7 +2118,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/131"
+      "$ref": "#/171"
     }
   },
   {
@@ -1649,7 +2128,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/132"
+      "$ref": "#/172"
     }
   },
   {
@@ -1658,73 +2137,73 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 2
       },
       "CollaborationArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 2
       },
       "CollaborationIdentifier": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 2
       },
       "Description": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "IdMappingTableIdentifier": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 18
       },
       "InputReferenceConfig": {
         "type": {
-          "$ref": "#/129"
+          "$ref": "#/169"
         },
         "flags": 1
       },
       "InputReferenceProperties": {
         "type": {
-          "$ref": "#/130"
+          "$ref": "#/170"
         },
         "flags": 2
       },
       "KmsKeyArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "MembershipArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 2
       },
       "MembershipIdentifier": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 17
       },
       "Name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/136"
+          "$ref": "#/176"
         },
         "flags": 0
       }
@@ -1736,21 +2215,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/177"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1760,11 +2239,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CleanRooms/IdMappingTable@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/138"
+      "$ref": "#/178"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1777,7 +2256,7 @@
     "properties": {
       "AllowUseAsDimensionColumn": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -1789,13 +2268,13 @@
     "properties": {
       "InputReferenceArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "ManageResourcePolicies": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -1807,13 +2286,13 @@
     "properties": {
       "IdMappingWorkflowsSupported": {
         "type": {
-          "$ref": "#/146"
+          "$ref": "#/186"
         },
         "flags": 0
       },
       "IdNamespaceType": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -1825,13 +2304,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -1845,7 +2324,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/140"
+      "$ref": "#/180"
     }
   },
   {
@@ -1855,7 +2334,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/144"
+      "$ref": "#/184"
     }
   },
   {
@@ -1864,73 +2343,73 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 2
       },
       "CollaborationArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 2
       },
       "CollaborationIdentifier": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 2
       },
       "Description": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "IdMappingConfig": {
         "type": {
-          "$ref": "#/141"
+          "$ref": "#/181"
         },
         "flags": 0
       },
       "IdNamespaceAssociationIdentifier": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 18
       },
       "InputReferenceConfig": {
         "type": {
-          "$ref": "#/142"
+          "$ref": "#/182"
         },
         "flags": 1
       },
       "InputReferenceProperties": {
         "type": {
-          "$ref": "#/143"
+          "$ref": "#/183"
         },
         "flags": 2
       },
       "MembershipArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 2
       },
       "MembershipIdentifier": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 17
       },
       "Name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/188"
         },
         "flags": 0
       }
@@ -1942,21 +2421,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/149"
+          "$ref": "#/189"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1966,11 +2445,551 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CleanRooms/IdNamespaceAssociation@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/150"
+      "$ref": "#/190"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AdditionalAnalyses",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AggregationThreshold",
+    "properties": {
+      "AllowedAggregateExpressionType": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      },
+      "IdentityColumns": {
+        "type": {
+          "$ref": "#/217"
+        },
+        "flags": 1
+      },
+      "MinimumIdentityCount": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1
+      },
+      "OutputColumnThresholds": {
+        "type": {
+          "$ref": "#/218"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AggregationThresholdType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AllowedAggregateExpressionType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AllowedAnalyses",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AllowedAnalysis",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AllowedAnalysisProvider",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AllowedAnalysisProviders",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AllowedResultReceivers",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AnalysisRuleColumnName",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ComparisonControls",
+    "properties": {
+      "AllowedColumnComparisonColumns": {
+        "type": {
+          "$ref": "#/222"
+        },
+        "flags": 1
+      },
+      "AllowedLiteralComparisonColumns": {
+        "type": {
+          "$ref": "#/223"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DifferentialPrivacy",
+    "properties": {
+      "Columns": {
+        "type": {
+          "$ref": "#/224"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DifferentialPrivacyColumn",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DisallowedOutputColumns",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IntermediateTableAnalysisRule",
+    "properties": {
+      "Policy": {
+        "type": {
+          "$ref": "#/208"
+        },
+        "flags": 1
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IntermediateTableAnalysisRuleCustom",
+    "properties": {
+      "AdditionalAnalyses": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "AggregationThresholds": {
+        "type": {
+          "$ref": "#/226"
+        },
+        "flags": 0
+      },
+      "AllowedAnalyses": {
+        "type": {
+          "$ref": "#/227"
+        },
+        "flags": 1
+      },
+      "AllowedAnalysisProviders": {
+        "type": {
+          "$ref": "#/228"
+        },
+        "flags": 0
+      },
+      "AllowedResultReceivers": {
+        "type": {
+          "$ref": "#/229"
+        },
+        "flags": 0
+      },
+      "ComparisonControls": {
+        "type": {
+          "$ref": "#/202"
+        },
+        "flags": 0
+      },
+      "DifferentialPrivacy": {
+        "type": {
+          "$ref": "#/203"
+        },
+        "flags": 0
+      },
+      "DisallowedOutputColumns": {
+        "type": {
+          "$ref": "#/230"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IntermediateTableAnalysisRulePolicy",
+    "properties": {
+      "V1": {
+        "type": {
+          "$ref": "#/231"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IntermediateTableAnalysisRulePolicyV1",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IntermediateTableAnalysisRuleType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IntermediateTableStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OutputColumnThreshold",
+    "properties": {
+      "MinimumIdentityCount": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1
+      },
+      "OutputColumnName": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PopulationAnalysisConfiguration",
+    "properties": {
+      "SqlParameters": {
+        "type": {
+          "$ref": "#/214"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PopulationAnalysisSqlParameters",
+    "properties": {
+      "AnalysisTemplateArn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "QueryString": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "UUID",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/212"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/204"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/193"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IntermediateTable_IntermediateTableAnalysisRulePolicyV1",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CleanRooms/IntermediateTableProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/206"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/215"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CleanRooms/IntermediateTableProperties",
+    "properties": {
+      "AnalysisRules": {
+        "type": {
+          "$ref": "#/233"
+        },
+        "flags": 0
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2
+      },
+      "CollaborationArn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2
+      },
+      "CollaborationIdentifier": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "IntermediateTableIdentifier": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 18
+      },
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "MembershipArn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2
+      },
+      "MembershipIdentifier": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 17
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      },
+      "PopulationAnalysisConfiguration": {
+        "type": {
+          "$ref": "#/213"
+        },
+        "flags": 1
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/234"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CleanRooms/IntermediateTable",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/235"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CleanRooms/IntermediateTable@default",
+    "body": {
+      "$ref": "#/236"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MembershipJobComputePaymentConfig",
+    "properties": {
+      "IsResponsible": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MembershipJobLogStatus",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -1978,13 +2997,19 @@
     "properties": {
       "ModelInference": {
         "type": {
-          "$ref": "#/153"
+          "$ref": "#/241"
         },
         "flags": 0
       },
       "ModelTraining": {
         "type": {
-          "$ref": "#/154"
+          "$ref": "#/242"
+        },
+        "flags": 0
+      },
+      "SyntheticDataGeneration": {
+        "type": {
+          "$ref": "#/251"
         },
         "flags": 0
       }
@@ -1996,7 +3021,7 @@
     "properties": {
       "IsResponsible": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -2008,7 +3033,7 @@
     "properties": {
       "IsResponsible": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -2018,15 +3043,51 @@
     "$type": "ObjectType",
     "name": "MembershipPaymentConfiguration",
     "properties": {
+      "JobCompute": {
+        "type": {
+          "$ref": "#/238"
+        },
+        "flags": 0
+      },
       "MachineLearning": {
         "type": {
-          "$ref": "#/152"
+          "$ref": "#/240"
         },
         "flags": 0
       },
       "QueryCompute": {
         "type": {
-          "$ref": "#/158"
+          "$ref": "#/248"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MembershipProtectedJobOutputConfiguration",
+    "properties": {
+      "S3": {
+        "type": {
+          "$ref": "#/252"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MembershipProtectedJobResultConfiguration",
+    "properties": {
+      "OutputConfiguration": {
+        "type": {
+          "$ref": "#/244"
+        },
+        "flags": 1
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -2038,7 +3099,7 @@
     "properties": {
       "S3": {
         "type": {
-          "$ref": "#/161"
+          "$ref": "#/253"
         },
         "flags": 1
       }
@@ -2050,13 +3111,13 @@
     "properties": {
       "OutputConfiguration": {
         "type": {
-          "$ref": "#/156"
+          "$ref": "#/246"
         },
         "flags": 1
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -2068,7 +3129,7 @@
     "properties": {
       "IsResponsible": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/24"
         },
         "flags": 1
       }
@@ -2086,29 +3147,59 @@
   },
   {
     "$type": "ObjectType",
-    "name": "ProtectedQueryS3OutputConfiguration",
+    "name": "MembershipSyntheticDataGenerationPaymentConfig",
+    "properties": {
+      "IsResponsible": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ProtectedJobS3OutputConfigurationInput",
     "properties": {
       "Bucket": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "KeyPrefix": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ProtectedQueryS3OutputConfiguration",
+    "properties": {
+      "Bucket": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      },
+      "KeyPrefix": {
+        "type": {
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "ResultFormat": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "SingleFileOutput": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/24"
         },
         "flags": 0
       }
@@ -2125,13 +3216,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -2144,7 +3235,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/163"
+      "$ref": "#/255"
     }
   },
   {
@@ -2153,55 +3244,73 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 2
       },
       "CollaborationArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 2
       },
       "CollaborationCreatorAccountId": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 2
       },
       "CollaborationIdentifier": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
+      "DefaultJobResultConfiguration": {
+        "type": {
+          "$ref": "#/245"
+        },
+        "flags": 0
+      },
       "DefaultResultConfiguration": {
         "type": {
-          "$ref": "#/157"
+          "$ref": "#/247"
+        },
+        "flags": 0
+      },
+      "IsMetricsEnabled": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
+      "JobLogStatus": {
+        "type": {
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "MembershipIdentifier": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 18
       },
       "PaymentConfiguration": {
         "type": {
-          "$ref": "#/155"
+          "$ref": "#/243"
         },
         "flags": 0
       },
       "QueryLogStatus": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/165"
+          "$ref": "#/257"
         },
         "flags": 0,
         "description": "An arbitrary set of tags (key-value pairs) for this cleanrooms membership."
@@ -2214,21 +3323,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/166"
+          "$ref": "#/258"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2238,11 +3347,35 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CleanRooms/Membership@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/167"
+      "$ref": "#/259"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BudgetParameter",
+    "properties": {
+      "AutoRefresh": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "Budget": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -2250,13 +3383,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -2267,27 +3400,45 @@
     "value": "AWS.CleanRooms/PrivacyBudgetTemplateProperties"
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/261"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "PrivacyBudgetTemplate_Parameters",
     "properties": {
+      "BudgetParameters": {
+        "type": {
+          "$ref": "#/264"
+        },
+        "flags": 0
+      },
       "Epsilon": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/22"
         },
-        "flags": 1
+        "flags": 0
+      },
+      "ResourceArn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
       },
       "UsersNoisePerQuery": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/22"
         },
-        "flags": 1
+        "flags": 0
       }
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/169"
+      "$ref": "#/262"
     }
   },
   {
@@ -2296,61 +3447,61 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 2
       },
       "AutoRefresh": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "CollaborationArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 2
       },
       "CollaborationIdentifier": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 2
       },
       "MembershipArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 2
       },
       "MembershipIdentifier": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 17
       },
       "Parameters": {
         "type": {
-          "$ref": "#/171"
+          "$ref": "#/265"
         },
         "flags": 1
       },
       "PrivacyBudgetTemplateIdentifier": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 18
       },
       "PrivacyBudgetType": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/172"
+          "$ref": "#/266"
         },
         "flags": 0,
         "description": "An arbitrary set of tags (key-value pairs) for this cleanrooms privacy budget template."
@@ -2363,21 +3514,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/173"
+          "$ref": "#/267"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2387,10 +3538,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CleanRooms/PrivacyBudgetTemplate@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/174"
+      "$ref": "#/268"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

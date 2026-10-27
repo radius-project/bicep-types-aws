@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-QuickSight-DataSource",
   "type": "AWS::QuickSight::DataSource",
-  "time": "2024-12-12T16:24:03.089Z",
+  "time": "2026-10-08T16:05:07.433Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -46,6 +46,14 @@
         "additionalProperties": false,
         "description": "\u003cp\u003eParameters for Amazon Athena.\u003c/p\u003e",
         "properties": {
+          "ConsumerAccountRoleArn": {
+            "maxLength": 2048,
+            "minLength": 20,
+            "type": "string"
+          },
+          "IdentityCenterConfiguration": {
+            "$ref": "#/definitions/IdentityCenterConfiguration"
+          },
           "RoleArn": {
             "description": "\u003cp\u003eUse the \u003ccode\u003eRoleArn\u003c/code\u003e structure to override an account-wide role for a specific Athena data source. For example, say an account administrator has turned off all Athena access with an account-wide role. The administrator can then use \u003ccode\u003eRoleArn\u003c/code\u003e to bypass the account-wide role and allow Athena access for the single Athena data source that is specified in the structure, even if the account-wide role forbidding Athena access is still active.\u003c/p\u003e",
             "maxLength": 2048,
@@ -127,7 +135,8 @@
         "enum": [
           "PASSWORD",
           "TOKEN",
-          "X509"
+          "X509",
+          "KEYPAIR"
         ],
         "type": "string"
       },
@@ -190,6 +199,12 @@
           },
           "CredentialPair": {
             "$ref": "#/definitions/CredentialPair"
+          },
+          "KeyPairCredentials": {
+            "$ref": "#/definitions/KeyPairCredentials"
+          },
+          "OAuthClientCredentials": {
+            "$ref": "#/definitions/OAuthClientCredentials"
           },
           "SecretArn": {
             "description": "\u003cp\u003eThe Amazon Resource Name (ARN) of the secret associated with the data source in Amazon Secrets Manager.\u003c/p\u003e",
@@ -274,6 +289,9 @@
           "S3Parameters": {
             "$ref": "#/definitions/S3Parameters"
           },
+          "S3TablesParameters": {
+            "$ref": "#/definitions/S3TablesParameters"
+          },
           "SnowflakeParameters": {
             "$ref": "#/definitions/SnowflakeParameters"
           },
@@ -312,20 +330,25 @@
           "DB2_AS400",
           "EXASOL",
           "FILE",
+          "FULLY_MANAGED_KNOWLEDGE_BASE",
           "GITHUB",
+          "INTERNATIONAL_DATA_CORPORATION",
           "JIRA",
           "MARIADB",
           "MYSQL",
           "ORACLE",
           "POSTGRESQL",
           "PRESTO",
+          "QBUSINESS",
           "REDSHIFT",
           "S3",
           "S3_TABLES",
+          "S3_KNOWLEDGE_BASE",
           "SALESFORCE",
           "SERVICENOW",
           "SNOWFLAKE",
           "SPARK",
+          "SPICE",
           "SQLSERVER",
           "TERADATA",
           "TIMESTREAM",
@@ -339,7 +362,16 @@
           "DOCUMENTDB",
           "APPFLOW",
           "IMPALA",
-          "GLUE"
+          "GLUE",
+          "GLUE_DATA_CATALOG",
+          "GOOGLE_DRIVE",
+          "CONFLUENCE",
+          "SHAREPOINT",
+          "ONE_DRIVE",
+          "WEB_CRAWLER",
+          "BOX",
+          "GOOGLESHEETS",
+          "ATLAN"
         ],
         "type": "string"
       },
@@ -347,11 +379,17 @@
         "additionalProperties": false,
         "description": "\u003cp\u003eThe parameters that are required to connect to a Databricks data source.\u003c/p\u003e",
         "properties": {
+          "AuthenticationType": {
+            "$ref": "#/definitions/AuthenticationType"
+          },
           "Host": {
             "description": "\u003cp\u003eThe host name of the Databricks data source.\u003c/p\u003e",
             "maxLength": 256,
             "minLength": 1,
             "type": "string"
+          },
+          "OAuthParameters": {
+            "$ref": "#/definitions/OAuthParameters"
           },
           "Port": {
             "default": 0,
@@ -384,6 +422,59 @@
             "type": "boolean"
           }
         },
+        "type": "object"
+      },
+      "ImpalaParameters": {
+        "additionalProperties": false,
+        "properties": {
+          "Host": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Port": {
+            "default": 0,
+            "maximum": 65535,
+            "minimum": 1,
+            "type": "number"
+          },
+          "SqlEndpointPath": {
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Host",
+          "Port",
+          "SqlEndpointPath"
+        ],
+        "type": "object"
+      },
+      "KeyPairCredentials": {
+        "additionalProperties": false,
+        "properties": {
+          "KeyPairUsername": {
+            "maxLength": 64,
+            "minLength": 1,
+            "type": "string"
+          },
+          "PrivateKey": {
+            "maxLength": 8000,
+            "minLength": 1600,
+            "pattern": "^-{5}BEGIN (ENCRYPTED )?PRIVATE KEY-{5}\\u000D?\\u000A([A-Za-z0-9/+]{64}\\u000D?\\u000A)*[A-Za-z0-9/+]{1,64}={0,2}\\u000D?\\u000A-{5}END (ENCRYPTED )?PRIVATE KEY-{5}(\\u000D?\\u000A)?$",
+            "type": "string"
+          },
+          "PrivateKeyPassphrase": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "KeyPairUsername",
+          "PrivateKey"
+        ],
         "type": "object"
       },
       "ManifestFileLocation": {
@@ -471,6 +562,27 @@
         ],
         "type": "object"
       },
+      "OAuthClientCredentials": {
+        "additionalProperties": false,
+        "properties": {
+          "ClientId": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "ClientSecret": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Username": {
+            "maxLength": 64,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "OAuthParameters": {
         "additionalProperties": false,
         "properties": {
@@ -520,6 +632,10 @@
             "maximum": 65535,
             "minimum": 1,
             "type": "number"
+          },
+          "UseServiceName": {
+            "default": false,
+            "type": "boolean"
           }
         },
         "required": [
@@ -702,7 +818,7 @@
             "items": {
               "type": "string"
             },
-            "maxItems": 20,
+            "maxItems": 30,
             "minItems": 1,
             "type": "array"
           },
@@ -730,6 +846,7 @@
           "UPDATE_IN_PROGRESS",
           "UPDATE_SUCCESSFUL",
           "UPDATE_FAILED",
+          "PENDING_UPDATE",
           "DELETED"
         ],
         "type": "string"
@@ -751,6 +868,16 @@
         "required": [
           "ManifestFileLocation"
         ],
+        "type": "object"
+      },
+      "S3TablesParameters": {
+        "additionalProperties": false,
+        "properties": {
+          "TableBucketArn": {
+            "pattern": "^(arn:aws[-a-z0-9]*:[a-z0-9]+:[-a-z0-9]*:[0-9]{12}:bucket/[a-zA-Z0-9-_]{3,63})$",
+            "type": "string"
+          }
+        },
         "type": "object"
       },
       "SnowflakeParameters": {
@@ -1162,6 +1289,18 @@
       "Type"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-quicksight",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "quicksight:TagResource",
+        "quicksight:UntagResource",
+        "quicksight:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::QuickSight::DataSource",
     "writeOnlyProperties": [
       "/properties/Credentials",

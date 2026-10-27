@@ -1,0 +1,133 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ObservabilityAdmin-DatasetIntegration",
+  "type": "AWS::ObservabilityAdmin::DatasetIntegration",
+  "time": "2026-10-21T22:42:52.726Z",
+  "schema": {
+    "additionalProperties": false,
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "The AWS::ObservabilityAdmin::DatasetIntegration resource represents a CloudWatch dataset integration for an account in a region. The integration enables telemetry forwarding into the caller's CloudWatch dataset via a customer-provided IAM role.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "observabilityadmin:CreateDatasetIntegration",
+          "observabilityadmin:GetDatasetIntegration",
+          "observabilityadmin:TagResource",
+          "observabilityadmin:ListTagsForResource",
+          "iam:PassRole"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "observabilityadmin:DeleteDatasetIntegration",
+          "observabilityadmin:GetDatasetIntegration",
+          "observabilityadmin:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "observabilityadmin:ListDatasetIntegrations"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "observabilityadmin:GetDatasetIntegration",
+          "observabilityadmin:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "observabilityadmin:UpdateDatasetIntegration",
+          "observabilityadmin:GetDatasetIntegration",
+          "observabilityadmin:TagResource",
+          "observabilityadmin:UntagResource",
+          "observabilityadmin:ListTagsForResource",
+          "iam:PassRole"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the dataset integration.",
+        "maxLength": 1011,
+        "minLength": 1,
+        "pattern": "^arn:aws[a-zA-Z-]*:observabilityadmin:[a-z0-9-]+:[0-9]{12}:dataset-integration/.+$",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The ISO 8601 timestamp of when the dataset integration was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "RoleArn": {
+        "description": "The ARN of the IAM role that the service assumes to forward telemetry to the customer's CloudWatch dataset. The role must live in the caller's account.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws[a-zA-Z-]*:iam::[0-9]{12}:role/.+$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "UpdatedAt": {
+        "description": "The ISO 8601 timestamp of when the dataset integration was last updated.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt"
+    ],
+    "replacementStrategy": "delete_then_create",
+    "required": [
+      "RoleArn"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "observabilityadmin:TagResource",
+        "observabilityadmin:UntagResource",
+        "observabilityadmin:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::ObservabilityAdmin::DatasetIntegration"
+  }
+}

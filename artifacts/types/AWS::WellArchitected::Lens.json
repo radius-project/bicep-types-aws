@@ -1,0 +1,143 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-WellArchitected-Lens",
+  "type": "AWS::WellArchitected::Lens",
+  "time": "2026-10-21T20:52:20.603Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/LensId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/JSONString",
+      "/properties/LensVersion"
+    ],
+    "description": "Definition of AWS::WellArchitected::Lens Resource Type",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "wellarchitected:ImportLens",
+          "wellarchitected:CreateLensVersion",
+          "wellarchitected:GetLens",
+          "wellarchitected:TagResource",
+          "wellarchitected:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "wellarchitected:DeleteLens",
+          "wellarchitected:GetLens"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "wellarchitected:ListLenses"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "wellarchitected:GetLens",
+          "wellarchitected:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "wellarchitected:GetLens",
+          "wellarchitected:TagResource",
+          "wellarchitected:UntagResource",
+          "wellarchitected:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/LensArn"
+    ],
+    "properties": {
+      "Description": {
+        "description": "The description of the lens.",
+        "maxLength": 1024,
+        "minLength": 1,
+        "type": "string"
+      },
+      "JSONString": {
+        "description": "The JSON representation of a lens.",
+        "maxLength": 500000,
+        "minLength": 2,
+        "type": "string"
+      },
+      "LensArn": {
+        "description": "The ARN of the lens.",
+        "type": "string"
+      },
+      "LensId": {
+        "description": "The unique identifier of the lens.",
+        "type": "string"
+      },
+      "LensVersion": {
+        "description": "The version of the lens.",
+        "maxLength": 32,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Name": {
+        "description": "The full name of the lens.",
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Owner": {
+        "description": "The Amazon Web Services account ID that owns the lens.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags assigned to the lens.",
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "Value": {
+              "maxLength": 256,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "maxItems": 50,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/LensArn",
+      "/properties/LensId",
+      "/properties/Name",
+      "/properties/Description",
+      "/properties/Owner"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "wellarchitected:TagResource",
+        "wellarchitected:UntagResource",
+        "wellarchitected:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::WellArchitected::Lens",
+    "writeOnlyProperties": [
+      "/properties/JSONString"
+    ]
+  }
+}

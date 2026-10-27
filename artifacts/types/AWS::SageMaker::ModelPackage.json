@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-ModelPackage",
   "type": "AWS::SageMaker::ModelPackage",
-  "time": "2025-01-20T05:49:21.707Z",
+  "time": "2026-10-19T17:23:04.035Z",
   "schema": {
     "additionalProperties": false,
     "conditionalCreateOnlyProperties": [
@@ -151,8 +151,9 @@
         "minProperties": 1,
         "patternProperties": {
           "^([\\p{L}\\p{Z}\\p{N}_.:\\/=+\\-@]*)${1,128}": {
-            "maxLength": 128,
+            "maxLength": 256,
             "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:\\/=+\\-@]*)${1,256}",
             "type": "string"
           },
           "^([\\p{L}\\p{Z}\\p{N}_.:\\/=+\\-@]*)${1,256}": {
@@ -1243,11 +1244,12 @@
     "readOnlyProperties": [
       "/properties/ModelPackageArn",
       "/properties/CreationTime",
+      "/properties/LastModifiedTime",
       "/properties/ModelPackageStatus"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-sagemaker",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "sagemaker:AddTags",
         "sagemaker:ListTags",

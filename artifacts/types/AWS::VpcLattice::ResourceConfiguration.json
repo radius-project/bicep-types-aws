@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-VpcLattice-ResourceConfiguration",
   "type": "AWS::VpcLattice::ResourceConfiguration",
-  "time": "2025-01-09T04:58:16.697Z",
+  "time": "2026-10-08T15:21:14.998Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -13,13 +13,36 @@
       "/properties/ResourceGatewayId",
       "/properties/ResourceConfigurationType",
       "/properties/ProtocolType",
-      "/properties/ResourceConfigurationAuthType"
+      "/properties/ResourceConfigurationAuthType",
+      "/properties/CustomDomainName",
+      "/properties/GroupDomain",
+      "/properties/DomainVerificationId"
     ],
     "definitions": {
       "ArnResource": {
         "maxLength": 1224,
         "pattern": "^arn.*",
         "type": "string"
+      },
+      "CidrResource": {
+        "additionalProperties": false,
+        "properties": {
+          "CidrRanges": {
+            "insertionOrder": false,
+            "items": {
+              "maxLength": 50,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "CidrRanges"
+        ],
+        "type": "object"
       },
       "DnsResource": {
         "additionalProperties": false,
@@ -134,6 +157,22 @@
         "pattern": "^arn:[a-z0-9f\\-]+:vpc-lattice:[a-zA-Z0-9\\-]+:\\d{12}:resourceconfiguration/rcfg-[0-9a-z]{17}$",
         "type": "string"
       },
+      "CustomDomainName": {
+        "maxLength": 255,
+        "minLength": 3,
+        "type": "string"
+      },
+      "DomainVerificationId": {
+        "maxLength": 20,
+        "minLength": 20,
+        "pattern": "^dv-[a-fA-F0-9]{17}$",
+        "type": "string"
+      },
+      "GroupDomain": {
+        "maxLength": 255,
+        "minLength": 3,
+        "type": "string"
+      },
       "Id": {
         "$ref": "#/definitions/Id"
       },
@@ -203,6 +242,19 @@
             ],
             "title": "DnsResource",
             "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "CidrResource": {
+                "$ref": "#/definitions/CidrResource"
+              }
+            },
+            "required": [
+              "CidrResource"
+            ],
+            "title": "CidrResource",
+            "type": "object"
           }
         ],
         "type": "object"
@@ -215,7 +267,8 @@
           "GROUP",
           "CHILD",
           "SINGLE",
-          "ARN"
+          "ARN",
+          "CIDR"
         ],
         "type": "string"
       },
@@ -237,7 +290,10 @@
       "/properties/Id",
       "/properties/Arn"
     ],
-    "required": [],
+    "required": [
+      "Name",
+      "ResourceConfigurationType"
+    ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
     "tagging": {
       "cloudFormationSystemTags": true,

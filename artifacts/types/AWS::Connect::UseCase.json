@@ -1,0 +1,160 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Connect-UseCase",
+  "type": "AWS::Connect::UseCase",
+  "time": "2026-10-21T23:13:02.81Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/InstanceId",
+      "/properties/IntegrationAssociationId",
+      "/properties/UseCaseType"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^(?!aws:)[\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for a use case associated with an Amazon Connect integration association.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "connect:CreateUseCase",
+          "connect:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "connect:DeleteUseCase",
+          "connect:ListUseCases",
+          "connect:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "InstanceId": {
+              "description": "The identifier of the Amazon Connect instance.",
+              "maxLength": 100,
+              "minLength": 1,
+              "type": "string"
+            },
+            "IntegrationAssociationId": {
+              "description": "The identifier for the integration association.",
+              "maxLength": 200,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "InstanceId",
+            "IntegrationAssociationId"
+          ]
+        },
+        "permissions": [
+          "connect:ListUseCases"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "connect:ListUseCases",
+          "connect:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "connect:TagResource",
+          "connect:UntagResource",
+          "connect:ListTagsForResource",
+          "connect:ListUseCases"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/InstanceId",
+      "/properties/IntegrationAssociationId",
+      "/properties/UseCaseId"
+    ],
+    "properties": {
+      "InstanceId": {
+        "description": "The identifier of the Amazon Connect instance.",
+        "maxLength": 100,
+        "minLength": 1,
+        "type": "string"
+      },
+      "IntegrationAssociationId": {
+        "description": "The identifier for the integration association.",
+        "maxLength": 200,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags used to organize, track, or control access for this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array"
+      },
+      "UseCaseArn": {
+        "description": "The Amazon Resource Name (ARN) of the use case.",
+        "type": "string"
+      },
+      "UseCaseId": {
+        "description": "The identifier of the use case.",
+        "maxLength": 200,
+        "minLength": 1,
+        "type": "string"
+      },
+      "UseCaseType": {
+        "description": "The type of use case to associate to the integration association.",
+        "enum": [
+          "RULES_EVALUATION",
+          "CONNECT_CAMPAIGNS"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/UseCaseArn",
+      "/properties/UseCaseId"
+    ],
+    "required": [
+      "InstanceId",
+      "IntegrationAssociationId",
+      "UseCaseType"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "connect:TagResource",
+        "connect:UntagResource",
+        "connect:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Connect::UseCase"
+  }
+}

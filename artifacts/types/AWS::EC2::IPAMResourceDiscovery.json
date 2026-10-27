@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-IPAMResourceDiscovery",
   "type": "AWS::EC2::IPAMResourceDiscovery",
-  "time": "2025-01-21T16:58:33.605Z",
+  "time": "2026-10-19T17:16:48.106Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -16,6 +16,21 @@
         },
         "required": [
           "RegionName"
+        ],
+        "type": "object"
+      },
+      "IpamResourceDiscoveryOrganizationalUnitExclusion": {
+        "additionalProperties": false,
+        "description": "If your IPAM is integrated with AWS Organizations and you add an organizational unit (OU) exclusion, IPAM will not manage the IP addresses in accounts in that OU exclusion.",
+        "properties": {
+          "OrganizationsEntityPath": {
+            "description": "An AWS Organizations entity path. Build the path for the OU(s) using AWS Organizations IDs separated by a '/'. Include all child OUs by ending the path with '/*'.",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "OrganizationsEntityPath"
         ],
         "type": "object"
       },
@@ -112,6 +127,15 @@
         "type": "array",
         "uniqueItems": true
       },
+      "OrganizationalUnitExclusions": {
+        "description": "A set of organizational unit (OU) exclusions for this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/IpamResourceDiscoveryOrganizationalUnitExclusion"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
       "OwnerId": {
         "description": "Owner Account ID of the Resource Discovery",
         "type": "string"
@@ -142,7 +166,7 @@
     "required": [],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-ipam.git",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "ec2:DeleteTags",
         "ec2:CreateTags"

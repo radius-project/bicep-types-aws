@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkManager-TransitGatewayRouteTableAttachment",
   "type": "AWS::NetworkManager::TransitGatewayRouteTableAttachment",
-  "time": "2024-12-11T12:23:26.637Z",
+  "time": "2026-10-15T03:10:44.692Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -112,6 +112,9 @@
           "networkmanager:ListTagsForResource",
           "networkmanager:TagResource",
           "networkmanager:UntagResource",
+          "networkmanager:PutAttachmentRoutingPolicyLabel",
+          "networkmanager:RemoveAttachmentRoutingPolicyLabel",
+          "networkmanager:ListAttachmentRoutingPolicyAssociations",
           "ec2:DescribeRegions"
         ]
       }
@@ -148,6 +151,13 @@
         "description": "The Region where the edge is located.",
         "type": "string"
       },
+      "LastModificationErrors": {
+        "description": "Errors from the last modification of the attachment.",
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
       "NetworkFunctionGroupName": {
         "description": "The name of the network function group attachment.",
         "type": "string"
@@ -170,6 +180,10 @@
       },
       "ResourceArn": {
         "description": "The ARN of the Resource.",
+        "type": "string"
+      },
+      "RoutingPolicyLabel": {
+        "description": "Routing policy label",
         "type": "string"
       },
       "SegmentName": {
@@ -210,7 +224,10 @@
       "/properties/OwnerAccountId",
       "/properties/EdgeLocation",
       "/properties/AttachmentPolicyRuleNumber",
-      "/properties/SegmentName"
+      "/properties/SegmentName",
+      "/properties/LastModificationErrors",
+      "/properties/ProposedSegmentChange",
+      "/properties/ProposedNetworkFunctionGroupChange"
     ],
     "required": [
       "PeeringId",
@@ -218,7 +235,7 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-networkmanager/aws-networkmanager-transitgatewayroutetableattachment",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "networkmanager:TagResource",
         "networkmanager:UntagResource",
@@ -229,6 +246,9 @@
       "tagUpdatable": true,
       "taggable": true
     },
-    "typeName": "AWS::NetworkManager::TransitGatewayRouteTableAttachment"
+    "typeName": "AWS::NetworkManager::TransitGatewayRouteTableAttachment",
+    "writeOnlyProperties": [
+      "/properties/RoutingPolicyLabel"
+    ]
   }
 }

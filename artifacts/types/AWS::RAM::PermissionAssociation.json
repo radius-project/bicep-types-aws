@@ -1,0 +1,152 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RAM-PermissionAssociation",
+  "type": "AWS::RAM::PermissionAssociation",
+  "time": "2026-10-20T20:21:06.719Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ResourceShareArn",
+      "/properties/PermissionArn"
+    ],
+    "definitions": {
+      "PermissionTemplateParameter": {
+        "additionalProperties": false,
+        "description": "Specifies a template parameter name and its associated values for a managed permission.",
+        "properties": {
+          "Name": {
+            "description": "The name of the template parameter.",
+            "type": "string"
+          },
+          "Values": {
+            "description": "The values for the template parameter.",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "Name",
+          "Values"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Associates a specified AWS RAM permission with a resource share. You can only associate one permission with each resource type in a resource share.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "ram:AssociateResourceSharePermission",
+          "ram:GetPermission",
+          "ram:GetResourceShares",
+          "ram:ListPermissionAssociations"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "ram:DisassociateResourceSharePermission",
+          "ram:ListPermissionAssociations"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "ram:ListPermissionAssociations"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ram:ListPermissionAssociations"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "ram:AssociateResourceSharePermission",
+          "ram:GetPermission",
+          "ram:GetResourceShares",
+          "ram:ListPermissionAssociations"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ResourceShareArn",
+      "/properties/PermissionArn"
+    ],
+    "properties": {
+      "AssociationStatus": {
+        "description": "The current status of the association between the permission and the resource share.",
+        "enum": [
+          "ASSOCIATING",
+          "ASSOCIATED",
+          "FAILED",
+          "DISASSOCIATING",
+          "SUSPENDED",
+          "SUSPENDING",
+          "RESTORING",
+          "DISASSOCIATED"
+        ],
+        "type": "string"
+      },
+      "FeatureSet": {
+        "description": "The feature set of the resource share.",
+        "enum": [
+          "STANDARD",
+          "CREATED_FROM_POLICY",
+          "PROMOTING_TO_STANDARD"
+        ],
+        "type": "string"
+      },
+      "IsDefault": {
+        "description": "Indicates whether the associated resource share is using the default version of the permission.",
+        "type": "boolean"
+      },
+      "LastUpdatedTime": {
+        "description": "The date and time when the association between the permission and the resource share was last updated.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "PermissionArn": {
+        "description": "Specifies the [Amazon Resource Name (ARN)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of the AWS RAM permission to associate with the resource share.",
+        "type": "string"
+      },
+      "PermissionVersion": {
+        "description": "The version of the permission currently associated with the resource share.",
+        "type": "string"
+      },
+      "Replace": {
+        "default": false,
+        "description": "Specifies whether to replace the existing permission on the resource share. Use `true` to replace the current permission. Use `false` to add the permission when no permission is currently associated. The default value is `false`. Updating an existing association also requires `true`, because AWS RAM applies the change by re-associating the permission.",
+        "type": "boolean"
+      },
+      "ResourceShareArn": {
+        "description": "Specifies the [Amazon Resource Name (ARN)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of the resource share.",
+        "type": "string"
+      },
+      "ResourceType": {
+        "description": "The resource type to which the permission applies.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/IsDefault",
+      "/properties/AssociationStatus",
+      "/properties/LastUpdatedTime",
+      "/properties/FeatureSet",
+      "/properties/ResourceType",
+      "/properties/PermissionVersion"
+    ],
+    "replacementStrategy": "create_then_delete",
+    "required": [
+      "PermissionArn",
+      "ResourceShareArn"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::RAM::PermissionAssociation",
+    "writeOnlyProperties": [
+      "/properties/Replace"
+    ]
+  }
+}

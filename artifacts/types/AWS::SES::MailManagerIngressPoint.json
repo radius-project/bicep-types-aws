@@ -1,10 +1,11 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SES-MailManagerIngressPoint",
   "type": "AWS::SES::MailManagerIngressPoint",
-  "time": "2025-01-23T11:03:57.222Z",
+  "time": "2026-10-21T23:05:38.139Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
+      "/properties/NetworkConfiguration",
       "/properties/Type"
     ],
     "definitions": {
@@ -30,7 +31,7 @@
             "additionalProperties": false,
             "properties": {
               "SecretArn": {
-                "pattern": "^arn:(aws|aws-cn|aws-us-gov):secretsmanager:[a-z0-9-]+:\\d{12}:secret:[a-zA-Z0-9/_+=,.@-]+$",
+                "pattern": "^arn:(aws|aws-cn|aws-us-gov|aws-eusc):secretsmanager:[a-z0-9-]+:\\d{12}:secret:[a-zA-Z0-9/_+=,.@-]+$",
                 "type": "string"
               }
             },
@@ -38,6 +39,19 @@
               "SecretArn"
             ],
             "title": "SecretArn",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "TlsAuthConfiguration": {
+                "$ref": "#/definitions/TlsAuthConfiguration"
+              }
+            },
+            "required": [
+              "TlsAuthConfiguration"
+            ],
+            "title": "TlsAuthConfiguration",
             "type": "object"
           }
         ]
@@ -63,9 +77,79 @@
       "IngressPointType": {
         "enum": [
           "OPEN",
-          "AUTH"
+          "AUTH",
+          "MTLS"
         ],
         "type": "string"
+      },
+      "IpType": {
+        "enum": [
+          "IPV4",
+          "DUAL_STACK"
+        ],
+        "type": "string"
+      },
+      "NetworkConfiguration": {
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "PublicNetworkConfiguration": {
+                "$ref": "#/definitions/PublicNetworkConfiguration"
+              }
+            },
+            "required": [
+              "PublicNetworkConfiguration"
+            ],
+            "title": "PublicNetworkConfiguration",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "PrivateNetworkConfiguration": {
+                "$ref": "#/definitions/PrivateNetworkConfiguration"
+              }
+            },
+            "required": [
+              "PrivateNetworkConfiguration"
+            ],
+            "title": "PrivateNetworkConfiguration",
+            "type": "object"
+          }
+        ]
+      },
+      "PrivateNetworkConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "VpcEndpointId": {
+            "pattern": "^vpce-[a-zA-Z0-9]{17}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "VpcEndpointId"
+        ],
+        "type": "object"
+      },
+      "PublicNetworkConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "IpType": {
+            "allOf": [
+              {
+                "$ref": "#/definitions/IpType"
+              },
+              {
+                "default": "IPV4"
+              }
+            ]
+          }
+        },
+        "required": [
+          "IpType"
+        ],
+        "type": "object"
       },
       "Tag": {
         "additionalProperties": false,
@@ -73,19 +157,62 @@
           "Key": {
             "maxLength": 128,
             "minLength": 1,
-            "pattern": "^[a-zA-Z0-9/_\\+=\\.:@\\-]+$",
             "type": "string"
           },
           "Value": {
             "maxLength": 256,
             "minLength": 0,
-            "pattern": "^[a-zA-Z0-9/_\\+=\\.:@\\-]*$",
             "type": "string"
           }
         },
         "required": [
           "Key",
           "Value"
+        ],
+        "type": "object"
+      },
+      "TlsAuthConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "TrustStore": {
+            "$ref": "#/definitions/TrustStore"
+          }
+        },
+        "required": [
+          "TrustStore"
+        ],
+        "type": "object"
+      },
+      "TlsPolicy": {
+        "enum": [
+          "REQUIRED",
+          "OPTIONAL",
+          "FIPS"
+        ],
+        "type": "string"
+      },
+      "TrustStore": {
+        "additionalProperties": false,
+        "properties": {
+          "CAContent": {
+            "maxLength": 500000,
+            "minLength": 1,
+            "pattern": "^[\\P{C}\\s]*$",
+            "type": "string"
+          },
+          "CrlContent": {
+            "maxLength": 500000,
+            "minLength": 1,
+            "pattern": "^[\\P{C}\\s]*$",
+            "type": "string"
+          },
+          "KmsKeyArn": {
+            "pattern": "^arn:(aws|aws-cn|aws-us-gov|aws-eusc):kms:[a-z0-9-]+:\\d{12}:(key|alias)/[a-zA-Z0-9/_-]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "CAContent"
         ],
         "type": "object"
       }
@@ -98,7 +225,8 @@
           "ses:ListTagsForResource",
           "ses:GetIngressPoint",
           "ses:CreateIngressPoint",
-          "iam:CreateServiceLinkedRole"
+          "iam:CreateServiceLinkedRole",
+          "ec2:DescribeVpcEndpoints"
         ]
       },
       "delete": {
@@ -152,6 +280,9 @@
         "pattern": "^[A-Za-z0-9_\\-]+$",
         "type": "string"
       },
+      "NetworkConfiguration": {
+        "$ref": "#/definitions/NetworkConfiguration"
+      },
       "RuleSetId": {
         "maxLength": 100,
         "minLength": 1,
@@ -170,6 +301,9 @@
         "maxItems": 200,
         "minItems": 0,
         "type": "array"
+      },
+      "TlsPolicy": {
+        "$ref": "#/definitions/TlsPolicy"
       },
       "TrafficPolicyId": {
         "maxLength": 100,

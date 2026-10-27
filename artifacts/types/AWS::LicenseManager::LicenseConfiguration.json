@@ -1,0 +1,230 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-LicenseManager-LicenseConfiguration",
+  "type": "AWS::LicenseManager::LicenseConfiguration",
+  "time": "2026-10-21T23:33:49.722Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/LicenseConfigurationId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/LicenseCountingType",
+      "/properties/LicenseRules"
+    ],
+    "definitions": {
+      "ProductInformation": {
+        "additionalProperties": false,
+        "description": "Describes product information for a license configuration.",
+        "properties": {
+          "ProductInformationFilterList": {
+            "description": "A product information filter list.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/ProductInformationFilter"
+            },
+            "type": "array"
+          },
+          "ResourceType": {
+            "description": "Resource type. The possible values are SSM_MANAGED | RDS.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ResourceType",
+          "ProductInformationFilterList"
+        ],
+        "type": "object"
+      },
+      "ProductInformationFilter": {
+        "additionalProperties": false,
+        "description": "Describes a product information filter.",
+        "properties": {
+          "ProductInformationFilterComparator": {
+            "description": "Logical operator.",
+            "type": "string"
+          },
+          "ProductInformationFilterName": {
+            "description": "Filter name.",
+            "type": "string"
+          },
+          "ProductInformationFilterValue": {
+            "description": "Filter value.",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "ProductInformationFilterName",
+          "ProductInformationFilterComparator"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource schema for AWS::LicenseManager::LicenseConfiguration. A license configuration is an abstraction of a customer license agreement that can be consumed and enforced by License Manager.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "license-manager:CreateLicenseConfiguration",
+          "license-manager:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "license-manager:DeleteLicenseConfiguration",
+          "license-manager:GetLicenseConfiguration",
+          "license-manager:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "license-manager:ListLicenseConfigurations"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "license-manager:GetLicenseConfiguration",
+          "license-manager:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "license-manager:UpdateLicenseConfiguration",
+          "license-manager:GetLicenseConfiguration",
+          "license-manager:TagResource",
+          "license-manager:UntagResource",
+          "license-manager:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/LicenseConfigurationArn"
+    ],
+    "properties": {
+      "Description": {
+        "description": "Description of the license configuration.",
+        "type": "string"
+      },
+      "DisassociateWhenNotFound": {
+        "description": "When true, disassociates a resource when software is uninstalled.",
+        "type": "boolean"
+      },
+      "LicenseConfigurationArn": {
+        "description": "Amazon Resource Name (ARN) of the license configuration.",
+        "maxLength": 2048,
+        "type": "string"
+      },
+      "LicenseConfigurationId": {
+        "description": "Unique ID of the license configuration.",
+        "type": "string"
+      },
+      "LicenseCount": {
+        "description": "Number of licenses managed by the license configuration.",
+        "type": "integer"
+      },
+      "LicenseCountHardLimit": {
+        "description": "Indicates whether hard or soft license enforcement is used. Exceeding a hard limit blocks the launch of new instances.",
+        "type": "boolean"
+      },
+      "LicenseCountingType": {
+        "description": "Dimension used to track the license inventory.",
+        "enum": [
+          "vCPU",
+          "Instance",
+          "Core",
+          "Socket"
+        ],
+        "type": "string"
+      },
+      "LicenseExpiry": {
+        "description": "License configuration expiry as an epoch timestamp (seconds since 1970-01-01T00:00:00Z).",
+        "type": "integer"
+      },
+      "LicenseRules": {
+        "description": "License rules. The syntax is #name=value (for example, #allowedTenancy=EC2-DedicatedHost).",
+        "insertionOrder": false,
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "Name": {
+        "description": "Name of the license configuration.",
+        "type": "string"
+      },
+      "OwnerAccountId": {
+        "description": "Account ID of the owner of the license configuration.",
+        "type": "string"
+      },
+      "ProductInformationList": {
+        "description": "Product information.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/ProductInformation"
+        },
+        "type": "array"
+      },
+      "Status": {
+        "description": "License configuration status.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags to add to the license configuration.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/LicenseConfigurationId",
+      "/properties/LicenseConfigurationArn",
+      "/properties/Status",
+      "/properties/OwnerAccountId"
+    ],
+    "required": [
+      "Name",
+      "LicenseCountingType"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "license-manager:TagResource",
+        "license-manager:UntagResource",
+        "license-manager:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::LicenseManager::LicenseConfiguration"
+  }
+}

@@ -1,9 +1,12 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SSM-Association",
   "type": "AWS::SSM::Association",
-  "time": "2025-01-15T17:13:02.53Z",
+  "time": "2026-10-12T19:13:48.017Z",
   "schema": {
     "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/InstanceId"
+    ],
     "definitions": {
       "InstanceAssociationOutputLocation": {
         "additionalProperties": false,
@@ -53,6 +56,31 @@
         "minLength": 3,
         "type": "string"
       },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "Metadata that you assign to your AWS resources.",
+        "properties": {
+          "Key": {
+            "description": "The name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
       "Target": {
         "additionalProperties": false,
         "properties": {
@@ -93,7 +121,9 @@
           "iam:CreateServiceLinkedRole",
           "ssm:CreateAssociation",
           "ssm:DescribeAssociation",
-          "ssm:GetCalendarState"
+          "ssm:GetCalendarState",
+          "ssm:AddTagsToResource",
+          "ssm:ListTagsForResource"
         ]
       },
       "delete": {
@@ -109,6 +139,7 @@
       "read": {
         "permissions": [
           "ssm:DescribeAssociation",
+          "ssm:ListTagsForResource",
           "resource-groups:GetGroupQuery",
           "resource-groups:ListGroups",
           "resource-groups:ListGroupResources"
@@ -118,7 +149,11 @@
         "permissions": [
           "iam:PassRole",
           "ssm:UpdateAssociation",
-          "ssm:GetCalendarState"
+          "ssm:DescribeAssociation",
+          "ssm:GetCalendarState",
+          "ssm:AddTagsToResource",
+          "ssm:RemoveTagsFromResource",
+          "ssm:ListTagsForResource"
         ]
       }
     },
@@ -128,6 +163,16 @@
     "properties": {
       "ApplyOnlyAtCronInterval": {
         "type": "boolean"
+      },
+      "AssociationDispatchAssumeRole": {
+        "description": "A role used by association to take actions on your behalf.",
+        "examples": [
+          "arn:aws:iam::123456789012:role/myAssociationDispatchAssumeRole"
+        ],
+        "maxLength": 512,
+        "minLength": 1,
+        "pattern": "arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+",
+        "type": "string"
       },
       "AssociationId": {
         "description": "Unique identifier of the association.",
@@ -253,6 +298,17 @@
         ],
         "type": "string"
       },
+      "Tags": {
+        "description": "A key-value pair to associate with a resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 1000,
+        "minItems": 0,
+        "type": "array",
+        "uniqueItems": false
+      },
       "Targets": {
         "description": "The targets that the SSM document sends commands to.",
         "items": {
@@ -276,7 +332,16 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-ssm",
     "tagging": {
-      "taggable": false
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "ssm:AddTagsToResource",
+        "ssm:ListTagsForResource",
+        "ssm:RemoveTagsFromResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
     },
     "typeName": "AWS::SSM::Association",
     "writeOnlyProperties": [

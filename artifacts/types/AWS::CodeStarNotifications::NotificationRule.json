@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CodeStarNotifications-NotificationRule",
   "type": "AWS::CodeStarNotifications::NotificationRule",
-  "time": "2024-12-10T16:27:43.892Z",
+  "time": "2026-10-21T19:05:38.054Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -29,7 +29,8 @@
     "handlers": {
       "create": {
         "permissions": [
-          "codestar-notifications:createNotificationRule"
+          "codestar-notifications:createNotificationRule",
+          "codestar-notifications:TagResource"
         ]
       },
       "delete": {
@@ -140,6 +141,17 @@
       "Targets",
       "Name"
     ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "codestar-notifications:TagResource",
+        "codestar-notifications:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::CodeStarNotifications::NotificationRule",
     "writeOnlyProperties": [
       "/properties/EventTypeId",

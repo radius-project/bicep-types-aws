@@ -1,0 +1,273 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SSM-CloudConnector",
+  "type": "AWS::SSM::CloudConnector",
+  "time": "2026-10-21T21:37:34.285Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/CloudConnectorId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/RoleArn",
+      "/properties/ConfigConnectorArn",
+      "/properties/Configuration/AzureConfiguration/TenantId"
+    ],
+    "definitions": {
+      "AzureConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration for connecting to Azure.",
+        "properties": {
+          "ApplicationDisplayName": {
+            "description": "The display name of the Azure AD application.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}\\p{P}\\p{M}]*)$",
+            "type": "string"
+          },
+          "ApplicationId": {
+            "description": "The Azure AD application ID.",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+            "type": "string"
+          },
+          "Targets": {
+            "$ref": "#/definitions/ConfigurationTargets"
+          },
+          "TenantDisplayName": {
+            "description": "The display name of the Azure AD tenant.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}\\p{P}\\p{M}]*)$",
+            "type": "string"
+          },
+          "TenantId": {
+            "description": "The Azure AD tenant ID. Cannot be changed after creation.",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "TenantId",
+          "ApplicationId"
+        ],
+        "type": "object"
+      },
+      "AzureSubscription": {
+        "additionalProperties": false,
+        "description": "An Azure subscription with its ID and optional display name.",
+        "properties": {
+          "DisplayName": {
+            "description": "The display name of the Azure subscription.",
+            "maxLength": 128,
+            "minLength": 0,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}\\p{P}\\p{M}]*)$",
+            "type": "string"
+          },
+          "Id": {
+            "description": "The Azure subscription ID.",
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Id"
+        ],
+        "type": "object"
+      },
+      "CloudConnectorConfiguration": {
+        "additionalProperties": false,
+        "description": "The configuration for the cloud connector. Currently supports Azure.",
+        "properties": {
+          "AzureConfiguration": {
+            "$ref": "#/definitions/AzureConfiguration"
+          }
+        },
+        "required": [
+          "AzureConfiguration"
+        ],
+        "type": "object"
+      },
+      "ConfigurationTargets": {
+        "additionalProperties": false,
+        "description": "The targets for the cloud connector. If omitted, the entire tenant is targeted.",
+        "properties": {
+          "Subscriptions": {
+            "description": "List of Azure subscriptions.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/AzureSubscription"
+            },
+            "maxItems": 75,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "Subscriptions"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::SSM::CloudConnector. Enables AWS Systems Manager to manage resources in external cloud providers.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "ssm:CreateCloudConnector",
+          "ssm:GetCloudConnector",
+          "ssm:AddTagsToResource",
+          "ssm:ListTagsForResource",
+          "iam:PassRole",
+          "config:PutThirdPartyServiceLinkedConfigurationRecorder",
+          "config:GetConnector"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "ssm:DeleteCloudConnector",
+          "ssm:GetCloudConnector",
+          "ssm:ListAssociations",
+          "config:PutThirdPartyServiceLinkedConfigurationRecorder",
+          "config:DeleteServiceLinkedConfigurationRecorder",
+          "config:GetConnector"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "ssm:ListCloudConnectors"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ssm:GetCloudConnector",
+          "ssm:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "ssm:UpdateCloudConnector",
+          "ssm:GetCloudConnector",
+          "ssm:AddTagsToResource",
+          "ssm:RemoveTagsFromResource",
+          "ssm:ListTagsForResource",
+          "config:PutThirdPartyServiceLinkedConfigurationRecorder",
+          "config:GetConnector"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/CloudConnectorArn"
+    ],
+    "properties": {
+      "CloudConnectorArn": {
+        "description": "The ARN of the cloud connector.",
+        "pattern": "^arn:aws(-cn|-us-gov)?:ssm:[a-z0-9-]+:\\d{12}:cloud-connector/[a-f0-9-]+$",
+        "type": "string"
+      },
+      "CloudConnectorId": {
+        "description": "The unique identifier of the cloud connector.",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        "type": "string"
+      },
+      "ConfigConnectorArn": {
+        "description": "The ARN of the AWS Config connector.",
+        "maxLength": 512,
+        "minLength": 1,
+        "pattern": "^arn:aws(-cn|-us-gov)?:config:[a-z0-9-]+:\\d{12}:connector/.+$",
+        "type": "string"
+      },
+      "Configuration": {
+        "$ref": "#/definitions/CloudConnectorConfiguration",
+        "description": "The configuration for the cloud connector."
+      },
+      "CreatedAt": {
+        "description": "The timestamp when the cloud connector was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description of the cloud connector.",
+        "maxLength": 1024,
+        "minLength": 1,
+        "pattern": "^[\\p{L}\\p{Z}\\p{N}\\p{P}\\p{M}]*$",
+        "type": "string"
+      },
+      "DisplayName": {
+        "description": "The display name of the cloud connector.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^[\\p{L}\\p{Z}\\p{N}\\p{P}\\p{M}]*$",
+        "type": "string"
+      },
+      "RoleArn": {
+        "description": "The IAM role ARN used by the cloud connector.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws[a-z0-9-]*:iam::\\d{12}:role/[\\w-/.@+=,]{1,1017}$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags to apply to the cloud connector.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array"
+      },
+      "UpdatedAt": {
+        "description": "The timestamp when the cloud connector was last updated.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/CloudConnectorArn",
+      "/properties/CloudConnectorId",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "DisplayName",
+      "RoleArn",
+      "Configuration",
+      "ConfigConnectorArn"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-ssm.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "ssm:AddTagsToResource",
+        "ssm:ListTagsForResource",
+        "ssm:RemoveTagsFromResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::SSM::CloudConnector"
+  }
+}

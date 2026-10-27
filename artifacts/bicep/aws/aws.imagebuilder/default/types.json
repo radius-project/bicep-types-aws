@@ -1,45 +1,647 @@
 [
   {
     "$type": "ObjectType",
+    "name": "LatestVersion",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The latest version ARN of the created component."
+      },
+      "Major": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The latest version ARN of the created component, with the same major version."
+      },
+      "Minor": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The latest version ARN of the created component, with the same minor version."
+      },
+      "Patch": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The latest version ARN of the created component, with the same patch version."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ImageBuilder/ComponentProperties"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Component_Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ImageBuilder/ComponentProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the component."
+      },
+      "ChangeDescription": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The change description of the component."
+      },
+      "Data": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The data of the component."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The description of the component."
+      },
+      "Encrypted": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The encryption status of the component."
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The KMS key identifier used to encrypt the component."
+      },
+      "LatestVersion": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 2,
+        "description": "The latest version references of the component."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the component."
+      },
+      "Platform": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The platform of the component."
+      },
+      "SupportedOsVersions": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The operating system (OS) version supported by the component."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The tags associated with the component."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The type of the component denotes whether the component is used to build the image or only to test it. "
+      },
+      "Uri": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The uri of the component."
+      },
+      "Version": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The version of the component."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ImageBuilder/Component",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ImageBuilder/Component@default",
+    "body": {
+      "$ref": "#/7"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ComponentConfiguration",
+    "properties": {
+      "ComponentArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the component."
+      },
+      "Parameters": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "A group of parameter settings that are used to configure the component for a specific recipe."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ComponentParameter",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the component parameter to set."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "Sets the value for the named component parameter."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EbsInstanceBlockDeviceSpecification",
+    "properties": {
+      "DeleteOnTermination": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Use to configure delete on termination of the associated device."
+      },
+      "Encrypted": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Use to configure device encryption."
+      },
+      "Iops": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "Use to configure device IOPS."
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Use to configure the KMS key to use when encrypting the device."
+      },
+      "SnapshotId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The snapshot that defines the device contents."
+      },
+      "Throughput": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "For GP3 volumes only - The throughput in MiB/s that the volume supports."
+      },
+      "VolumeSize": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "Use to override the device's volume size."
+      },
+      "VolumeType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Use to override the device's volume type."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InstanceBlockDeviceMapping",
+    "properties": {
+      "DeviceName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The device to which these mappings apply."
+      },
+      "Ebs": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "Use to manage Amazon EBS-specific configuration for this mapping."
+      },
+      "NoDevice": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Use to remove a mapping from the parent image."
+      },
+      "VirtualName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Use to manage instance ephemeral devices."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InstanceConfiguration",
+    "properties": {
+      "BlockDeviceMappings": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0,
+        "description": "Defines the block devices to attach for building an instance from this Image Builder AMI."
+      },
+      "Image": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The AMI ID to use as the base image for a container build and test instance. If not specified, Image Builder will use the appropriate ECS-optimized AMI as a base image."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LatestVersion",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The latest version ARN of the created container recipe."
+      },
+      "Major": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The latest version ARN of the created container recipe, with the same major version."
+      },
+      "Minor": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The latest version ARN of the created container recipe, with the same minor version."
+      },
+      "Patch": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The latest version ARN of the created container recipe, with the same patch version."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TargetContainerRepository",
+    "properties": {
+      "RepositoryName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the container repository where the output container image is stored. This name is prefixed by the repository location."
+      },
+      "Service": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies the service in which this image was registered."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/12"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ImageBuilder/ContainerRecipeProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/9"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ContainerRecipe_Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ImageBuilder/ContainerRecipeProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the container recipe."
+      },
+      "Components": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "Components for build and test that are included in the container recipe."
+      },
+      "ContainerType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies the type of container, such as Docker."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The description of the container recipe."
+      },
+      "DockerfileTemplateData": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "Dockerfiles are text documents that are used to build Docker containers, and ensure that they contain all of the elements required by the application running inside. The template data consists of contextual variables where Image Builder places build information or scripts, based on your container image recipe."
+      },
+      "DockerfileTemplateUri": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The S3 URI for the Dockerfile that will be used to build your container image."
+      },
+      "ImageOsVersionOverride": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "Specifies the operating system version for the source image."
+      },
+      "InstanceConfiguration": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "A group of options that can be used to configure an instance for building and testing container images."
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Identifies which KMS key is used to encrypt the container image."
+      },
+      "LatestVersion": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 2,
+        "description": "The latest version references of the container recipe."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the container recipe."
+      },
+      "ParentImage": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The source image for the container recipe."
+      },
+      "PlatformOverride": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "Specifies the operating system platform when you use a custom source image."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Tags that are attached to the container recipe."
+      },
+      "TargetRepository": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The destination repository for the container image."
+      },
+      "Version": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The semantic version of the container recipe (<major>.<minor>.<patch>)."
+      },
+      "WorkingDirectory": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The working directory to be used during build and test workflows."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ImageBuilder/ContainerRecipe",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ImageBuilder/ContainerRecipe@default",
+    "body": {
+      "$ref": "#/24"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "AmiDistributionConfiguration",
     "properties": {
       "AmiTags": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "The tags to apply to AMIs distributed to this Region."
       },
       "Description": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The description of the AMI distribution configuration."
       },
       "KmsKeyId": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The KMS key identifier used to encrypt the distributed image."
       },
       "LaunchPermissionConfiguration": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/32"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The name of the AMI distribution configuration."
       },
       "TargetAccountIds": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/38"
         },
         "flags": 0,
         "description": "The ID of accounts to which you want to distribute an image."
@@ -52,21 +654,21 @@
     "properties": {
       "ContainerTags": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "Tags that are attached to the container distribution configuration."
       },
       "Description": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The description of the container distribution configuration."
       },
       "TargetRepository": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "The destination repository for the container distribution configuration."
@@ -79,43 +681,50 @@
     "properties": {
       "AmiDistributionConfiguration": {
         "type": {
-          "$ref": "#/0"
+          "$ref": "#/26"
         },
         "flags": 0
       },
       "ContainerDistributionConfiguration": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/27"
         },
         "flags": 0
       },
       "FastLaunchConfigurations": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "The Windows faster-launching configurations to use for AMI distribution."
       },
       "LaunchTemplateConfigurations": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "A group of launchTemplateConfiguration settings that apply to image distribution."
       },
       "LicenseConfigurationArns": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "The License Manager Configuration to associate with the AMI in the specified Region."
       },
       "Region": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "region"
+      },
+      "SsmParameterConfigurations": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0,
+        "description": "The SSM parameter configurations to use for AMI distribution."
       }
     }
   },
@@ -125,21 +734,21 @@
     "properties": {
       "AccountId": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The owner account ID for the fast-launch enabled Windows AMI."
       },
       "Enabled": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "A Boolean that represents the current state of faster launching for the Windows AMI. Set to true to start using Windows faster launching, or false to stop using it."
       },
       "LaunchTemplate": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/30"
         },
         "flags": 0,
         "description": "The launch template that the fast-launch enabled Windows AMI uses when it launches Windows instances to create pre-provisioned snapshots."
@@ -153,7 +762,7 @@
       },
       "SnapshotConfiguration": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "Configuration settings for managing the number of snapshots that are created from pre-provisioned instances for the Windows AMI when faster launching is enabled."
@@ -166,21 +775,21 @@
     "properties": {
       "LaunchTemplateId": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The ID of the launch template to use for faster launching for a Windows AMI."
       },
       "LaunchTemplateName": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The name of the launch template to use for faster launching for a Windows AMI."
       },
       "LaunchTemplateVersion": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The version of the launch template to use for faster launching for a Windows AMI."
@@ -206,28 +815,28 @@
     "properties": {
       "OrganizationArns": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/44"
         },
         "flags": 0,
         "description": "The ARN for an Amazon Web Services Organization that you want to share your AMI with."
       },
       "OrganizationalUnitArns": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "The ARN for an Organizations organizational unit (OU) that you want to share your AMI with."
       },
       "UserGroups": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "The name of the group."
       },
       "UserIds": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/47"
         },
         "flags": 0,
         "description": "The AWS account ID."
@@ -240,21 +849,21 @@
     "properties": {
       "AccountId": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The account ID that this configuration applies to."
       },
       "LaunchTemplateId": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Identifies the EC2 launch template to use."
       },
       "SetDefaultVersion": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "Set the specified EC2 launch template as the default launch template for the specified account."
@@ -268,18 +877,45 @@
   },
   {
     "$type": "ObjectType",
+    "name": "SsmParameterConfiguration",
+    "properties": {
+      "AmiAccountId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The account ID for the AMI to update the parameter with."
+      },
+      "DataType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The data type of the SSM parameter."
+      },
+      "ParameterName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the SSM parameter."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "TargetContainerRepository",
     "properties": {
       "RepositoryName": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The repository name of target container repository."
       },
       "Service": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The service of target container repository."
@@ -292,66 +928,63 @@
     "properties": {}
   },
   {
-    "$type": "StringType"
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/29"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/7"
+      "$ref": "#/33"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
-    }
-  },
-  {
-    "$type": "BooleanType"
-  },
-  {
-    "$type": "IntegerType"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/35"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
     }
   },
   {
@@ -361,7 +994,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/28"
     }
   },
   {
@@ -375,35 +1008,35 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the distribution configuration."
       },
       "Description": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The description of the distribution configuration."
       },
       "Distributions": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/49"
         },
         "flags": 1,
         "description": "The distributions of the distribution configuration."
       },
       "Name": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name of the distribution configuration."
       },
       "Tags": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "The tags associated with the component."
@@ -416,21 +1049,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/51"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -440,11 +1073,24 @@
   {
     "$type": "ResourceType",
     "name": "AWS.ImageBuilder/DistributionConfiguration@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/27"
+      "$ref": "#/52"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DeletionSettings",
+    "properties": {
+      "ExecutionRole": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The execution role to use for deleting the image, as well as underlying resources."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -452,14 +1098,412 @@
     "properties": {
       "ContainerTags": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/64"
         },
         "flags": 0,
         "description": "Tags for Image Builder to apply the output container image that is scanned. Tags can help you identify and manage your scanned images."
       },
       "RepositoryName": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the container repository that Amazon Inspector scans to identify findings for your container images. The name includes the path for the repository location. If you don’t provide this information, Image Builder creates a repository in your account named image-builder-image-scanning-repository to use for vulnerability scans for your output container images."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ImageLoggingConfiguration",
+    "properties": {
+      "LogGroupName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the log group for image build logs."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ImagePipelineExecutionSettings",
+    "properties": {
+      "DeploymentId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The deployment ID of the pipeline, used to trigger new image pipeline executions."
+      },
+      "OnUpdate": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Whether to trigger the image pipeline when the pipeline is updated. False by default."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ImageScanningConfiguration",
+    "properties": {
+      "EcrConfiguration": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 0,
+        "description": "Contains ECR settings for vulnerability scans."
+      },
+      "ImageScanningEnabled": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "This sets whether Image Builder keeps a snapshot of the vulnerability scans that Amazon Inspector runs against the test instance when you create a new image."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ImageTestsConfiguration",
+    "properties": {
+      "ImageTestsEnabled": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "ImageTestsEnabled"
+      },
+      "TimeoutMinutes": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "TimeoutMinutes"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LatestVersion",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The latest version ARN of the created image."
+      },
+      "Major": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The latest version ARN of the created image, with the same major version."
+      },
+      "Minor": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The latest version ARN of the created image, with the same minor version."
+      },
+      "Patch": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The latest version ARN of the created image, with the same patch version."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WorkflowConfiguration",
+    "properties": {
+      "OnFailure": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Define execution decision in case of workflow failure"
+      },
+      "ParallelGroup": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The parallel group name"
+      },
+      "Parameters": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 0,
+        "description": "The parameters associated with the workflow"
+      },
+      "WorkflowArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the workflow"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WorkflowParameter",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/66"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WorkflowParameterValue",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/62"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ImageBuilder/ImageProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Image_Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/61"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ImageBuilder/ImageProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the image."
+      },
+      "ContainerRecipeArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the container recipe that defines how images are configured and tested."
+      },
+      "DeletionSettings": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 4,
+        "description": "The deletion settings of the image, indicating whether to delete the underlying resources in addition to the image."
+      },
+      "DistributionConfigurationArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the distribution configuration."
+      },
+      "EnhancedImageMetadataEnabled": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Collects additional information about the image being created, including the operating system (OS) version and package list."
+      },
+      "ExecutionRole": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The execution role name/ARN for the image build, if provided"
+      },
+      "ImageId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The AMI ID of the EC2 AMI in current region."
+      },
+      "ImagePipelineExecutionSettings": {
+        "type": {
+          "$ref": "#/57"
+        },
+        "flags": 4,
+        "description": "The image pipeline execution settings of the image."
+      },
+      "ImageRecipeArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the image recipe that defines how images are configured, tested, and assessed."
+      },
+      "ImageScanningConfiguration": {
+        "type": {
+          "$ref": "#/58"
+        },
+        "flags": 0,
+        "description": "Contains settings for vulnerability scans that Amazon Inspector runs against the test instance during image creation."
+      },
+      "ImageTestsConfiguration": {
+        "type": {
+          "$ref": "#/59"
+        },
+        "flags": 0,
+        "description": "The image tests configuration used when creating this image."
+      },
+      "ImageUri": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "URI for containers created in current Region with default ECR image tag"
+      },
+      "InfrastructureConfigurationArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the infrastructure configuration."
+      },
+      "LatestVersion": {
+        "type": {
+          "$ref": "#/60"
+        },
+        "flags": 2,
+        "description": "The latest version references of the image."
+      },
+      "LoggingConfiguration": {
+        "type": {
+          "$ref": "#/56"
+        },
+        "flags": 0,
+        "description": "The logging configuration settings for the image."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The name of the image."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/68"
+        },
+        "flags": 0,
+        "description": "The tags associated with the image."
+      },
+      "Workflows": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0,
+        "description": "Workflows to define the image build process"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ImageBuilder/Image",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/70"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ImageBuilder/Image@default",
+    "body": {
+      "$ref": "#/71"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AutoDisablePolicy",
+    "properties": {
+      "FailureCount": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 1,
+        "description": "The number of consecutive failures after which the pipeline should be automatically disabled."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EcrConfiguration",
+    "properties": {
+      "ContainerTags": {
+        "type": {
+          "$ref": "#/82"
+        },
+        "flags": 0,
+        "description": "Tags for Image Builder to apply the output container image that is scanned. Tags can help you identify and manage your scanned images."
+      },
+      "RepositoryName": {
+        "type": {
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The name of the container repository that Amazon Inspector scans to identify findings for your container images. The name includes the path for the repository location. If you don't provide this information, Image Builder creates a repository in your account named image-builder-image-scanning-repository to use for vulnerability scans for your output container images."
@@ -472,17 +1516,17 @@
     "properties": {
       "EcrConfiguration": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/74"
         },
         "flags": 0,
         "description": "Contains ECR settings for vulnerability scans."
       },
       "ImageScanningEnabled": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/3"
         },
         "flags": 0,
-        "description": "This sets whether Image Builder keeps a snapshot of the vulnerability scans that Amazon Inspector runs against the build instance when you create a new image."
+        "description": "This sets whether Image Builder keeps a snapshot of the vulnerability scans that Amazon Inspector runs against the test instance when you create a new image."
       }
     }
   },
@@ -492,7 +1536,7 @@
     "properties": {
       "ImageTestsEnabled": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "Defines if tests should be executed when building this image."
@@ -508,21 +1552,55 @@
   },
   {
     "$type": "ObjectType",
+    "name": "PipelineLoggingConfiguration",
+    "properties": {
+      "ImageLogGroupName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the log group for image build logs."
+      },
+      "PipelineLogGroupName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the log group for pipeline execution logs."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "Schedule",
     "properties": {
+      "AutoDisablePolicy": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0,
+        "description": "The auto-disable policy for the image pipeline."
+      },
       "PipelineExecutionStartCondition": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The condition configures when the pipeline should trigger a new image build."
       },
       "ScheduleExpression": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The expression determines how often EC2 Image Builder evaluates your pipelineExecutionStartCondition."
+      },
+      "Timezone": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The timezone that applies to the scheduling expression, for example \"Etc/UTC\" or \"America/Los_Angeles\" in IANA timezone format. If not specified, this defaults to UTC."
       }
     }
   },
@@ -532,28 +1610,28 @@
     "properties": {
       "OnFailure": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Define execution decision in case of workflow failure"
       },
       "ParallelGroup": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The parallel group name"
       },
       "Parameters": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/83"
         },
         "flags": 0,
         "description": "The parameters associated with the workflow"
       },
       "WorkflowArn": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The Amazon Resource Name (ARN) of the workflow"
@@ -566,13 +1644,13 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "Value": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/84"
         },
         "flags": 0
       }
@@ -586,24 +1664,29 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/34"
+      "$ref": "#/80"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "StringLiteralType",
     "value": "AWS.ImageBuilder/ImagePipelineProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ImagePipeline_ImageTags",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -613,7 +1696,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/33"
+      "$ref": "#/79"
     }
   },
   {
@@ -622,105 +1705,126 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the image pipeline."
       },
       "ContainerRecipeArn": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The Amazon Resource Name (ARN) of the container recipe that defines how images are configured and tested."
       },
+      "DeploymentId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The deployment ID of the pipeline, used for resource create/update triggers."
+      },
       "Description": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The description of the image pipeline."
       },
       "DistributionConfigurationArn": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The Amazon Resource Name (ARN) of the distribution configuration associated with this image pipeline."
       },
       "EnhancedImageMetadataEnabled": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "Collects additional information about the image being created, including the operating system (OS) version and package list."
       },
       "ExecutionRole": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The execution role name/ARN for the image build, if provided"
       },
       "ImageRecipeArn": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The Amazon Resource Name (ARN) of the image recipe that defines how images are configured, tested, and assessed."
       },
       "ImageScanningConfiguration": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/75"
         },
         "flags": 0,
-        "description": "Contains settings for vulnerability scans."
+        "description": "Contains settings for vulnerability scans that Amazon Inspector runs against the test instance during image creation."
+      },
+      "ImageTags": {
+        "type": {
+          "$ref": "#/86"
+        },
+        "flags": 0,
+        "description": "The tags to be applied to images created by this pipeline."
       },
       "ImageTestsConfiguration": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/76"
         },
         "flags": 0,
         "description": "The image tests configuration of the image pipeline."
       },
       "InfrastructureConfigurationArn": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) of the infrastructure configuration associated with this image pipeline."
       },
+      "LoggingConfiguration": {
+        "type": {
+          "$ref": "#/77"
+        },
+        "flags": 0,
+        "description": "The logging configuration settings for the image pipeline."
+      },
       "Name": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name of the image pipeline."
       },
       "Schedule": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/78"
         },
         "flags": 0,
         "description": "The schedule of the image pipeline."
       },
       "Status": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The status of the image pipeline."
       },
       "Tags": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/87"
         },
         "flags": 0,
         "description": "The tags of this image pipeline."
       },
       "Workflows": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/88"
         },
         "flags": 0,
         "description": "Workflows to define the image build process"
@@ -733,21 +1837,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/89"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -757,11 +1861,411 @@
   {
     "$type": "ResourceType",
     "name": "AWS.ImageBuilder/ImagePipeline@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/43"
+      "$ref": "#/90"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AdditionalInstanceConfiguration",
+    "properties": {
+      "SystemsManagerAgent": {
+        "type": {
+          "$ref": "#/98"
+        },
+        "flags": 0,
+        "description": "Contains settings for the SSM agent on your build instance."
+      },
+      "UserDataOverride": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Use this property to provide commands or a command script to run when you launch your build instance."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ComponentConfiguration",
+    "properties": {
+      "ComponentArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the component."
+      },
+      "Parameters": {
+        "type": {
+          "$ref": "#/99"
+        },
+        "flags": 0,
+        "description": "A group of parameter settings that are used to configure the component for a specific recipe."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ComponentParameter",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the component parameter to set."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/100"
+        },
+        "flags": 1,
+        "description": "Sets the value for the named component parameter."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EbsInstanceBlockDeviceSpecification",
+    "properties": {
+      "DeleteOnTermination": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Use to configure delete on termination of the associated device."
+      },
+      "Encrypted": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Use to configure device encryption."
+      },
+      "Iops": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "Use to configure device IOPS."
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Use to configure the KMS key to use when encrypting the device."
+      },
+      "SnapshotId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The snapshot that defines the device contents."
+      },
+      "Throughput": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "For GP3 volumes only - The throughput in MiB/s that the volume supports."
+      },
+      "VolumeSize": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "Use to override the device's volume size."
+      },
+      "VolumeType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Use to override the device's volume type."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InstanceBlockDeviceMapping",
+    "properties": {
+      "DeviceName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The device to which these mappings apply."
+      },
+      "Ebs": {
+        "type": {
+          "$ref": "#/95"
+        },
+        "flags": 0,
+        "description": "Use to manage Amazon EBS-specific configuration for this mapping."
+      },
+      "NoDevice": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Use to remove a mapping from the parent image."
+      },
+      "VirtualName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Use to manage instance ephemeral devices."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LatestVersion",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The latest version ARN of the created image recipe."
+      },
+      "Major": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The latest version ARN of the created image recipe, with the same major version."
+      },
+      "Minor": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The latest version ARN of the created image recipe, with the same minor version."
+      },
+      "Patch": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The latest version ARN of the created image recipe, with the same patch version."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SystemsManagerAgent",
+    "properties": {
+      "UninstallAfterBuild": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Controls whether the SSM agent is removed from your final build image, prior to creating the new AMI. If this is set to true, then the agent is removed from the final image. If it's set to false, then the agent is left in, so that it is included in the new AMI. The default value is false."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/94"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ImageBuilder/ImageRecipeProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ImageRecipe_AmiTags",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/96"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/93"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ImageRecipe_Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ImageBuilder/ImageRecipeProperties",
+    "properties": {
+      "AdditionalInstanceConfiguration": {
+        "type": {
+          "$ref": "#/92"
+        },
+        "flags": 0,
+        "description": "Specify additional settings and launch scripts for your build instances."
+      },
+      "AmiTags": {
+        "type": {
+          "$ref": "#/102"
+        },
+        "flags": 0,
+        "description": "The tags to apply to the AMI created by this image recipe."
+      },
+      "AmiWatermarks": {
+        "type": {
+          "$ref": "#/103"
+        },
+        "flags": 0,
+        "description": "The AMI watermark names to attach to the output AMI from this recipe. AMI watermarks are lineage markers that automatically propagate to derivative AMIs when the source AMI is copied or distributed."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the image recipe."
+      },
+      "BlockDeviceMappings": {
+        "type": {
+          "$ref": "#/104"
+        },
+        "flags": 0,
+        "description": "The block device mappings to apply when creating images from this recipe."
+      },
+      "Components": {
+        "type": {
+          "$ref": "#/105"
+        },
+        "flags": 0,
+        "description": "The components of the image recipe."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The description of the image recipe."
+      },
+      "LatestVersion": {
+        "type": {
+          "$ref": "#/97"
+        },
+        "flags": 2,
+        "description": "The latest version references of the image recipe."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the image recipe."
+      },
+      "ParentImage": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The parent image of the image recipe."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/106"
+        },
+        "flags": 0,
+        "description": "The tags of the image recipe."
+      },
+      "Version": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The version of the image recipe."
+      },
+      "WorkingDirectory": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The working directory to be used during build and test workflows."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ImageBuilder/ImageRecipe",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/107"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ImageBuilder/ImageRecipe@default",
+    "body": {
+      "$ref": "#/108"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AutoScalingGroup",
+    "properties": {
+      "CapacityWaitTimeoutSeconds": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "The number of seconds that Image Builder waits for an instance to become available in the group before the build fails. If you set this value to 0 or omit it, the build fails as soon as the group has no instance available."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the Auto Scaling group, in the same account and AWS Region as the infrastructure configuration."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -776,7 +2280,7 @@
       },
       "HttpTokens": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Indicates whether a signed token header is required for instance metadata retrieval requests. The values affect the response as follows: "
@@ -789,9 +2293,22 @@
     "properties": {
       "S3Logs": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/115"
         },
         "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ParentInstance",
+    "properties": {
+      "AutoScalingGroup": {
+        "type": {
+          "$ref": "#/110"
+        },
+        "flags": 1,
+        "description": "The Amazon EC2 Auto Scaling group that Image Builder takes the build instance from."
       }
     }
   },
@@ -801,28 +2318,28 @@
     "properties": {
       "AvailabilityZone": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "AvailabilityZone"
       },
       "HostId": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "HostId"
       },
       "HostResourceGroupArn": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "HostResourceGroupArn"
       },
       "Tenancy": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Tenancy"
@@ -835,14 +2352,14 @@
     "properties": {
       "S3BucketName": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "S3BucketName"
       },
       "S3KeyPrefix": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "S3KeyPrefix"
@@ -855,14 +2372,14 @@
     "properties": {
       "TagKey": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "TagKey"
       },
       "TagValue": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "TagValue"
@@ -876,7 +2393,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/1"
     }
   },
   {
@@ -887,7 +2404,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/1"
     }
   },
   {
@@ -901,105 +2418,119 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the infrastructure configuration."
       },
       "Description": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The description of the infrastructure configuration."
       },
       "InstanceMetadataOptions": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/111"
         },
         "flags": 0,
         "description": "The instance metadata option settings for the infrastructure configuration."
       },
       "InstanceProfileName": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The instance profile of the infrastructure configuration."
       },
       "InstanceTypes": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/118"
         },
         "flags": 0,
         "description": "The instance types of the infrastructure configuration."
       },
       "KeyPair": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The EC2 key pair of the infrastructure configuration.."
       },
       "Logging": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/112"
         },
         "flags": 0,
         "description": "The logging configuration of the infrastructure configuration."
       },
       "Name": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name of the infrastructure configuration."
       },
+      "ParentInstance": {
+        "type": {
+          "$ref": "#/113"
+        },
+        "flags": 0,
+        "description": "The Amazon EC2 Auto Scaling group that Image Builder takes the build instance from, instead of launching a new instance. This applies only to the build phase."
+      },
       "Placement": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/114"
         },
         "flags": 0,
         "description": "The placement option settings for the infrastructure configuration."
       },
       "ResourceTags": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/119"
         },
         "flags": 0,
         "description": "The tags attached to the resource created by Image Builder."
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/120"
         },
         "flags": 0,
         "description": "The security group IDs of the infrastructure configuration."
       },
       "SnsTopicArn": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The SNS Topic Amazon Resource Name (ARN) of the infrastructure configuration."
       },
       "SubnetId": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The subnet ID of the infrastructure configuration."
       },
       "Tags": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/121"
         },
         "flags": 0,
         "description": "The tags associated with the component."
       },
+      "TerminateInstanceOnCompletion": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Specifies whether Image Builder terminates build and test instances that are still running when image creation ends without a failure. A TerminateInstance step in a workflow runs even when this is false."
+      },
       "TerminateInstanceOnFailure": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "The terminate instance on failure configuration of the infrastructure configuration."
@@ -1012,21 +2543,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/122"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1036,11 +2567,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.ImageBuilder/InfrastructureConfiguration@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/56"
+      "$ref": "#/123"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1048,13 +2579,13 @@
     "properties": {
       "IncludeResources": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/129"
         },
         "flags": 0
       },
       "Type": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The action type of the policy detail."
@@ -1067,35 +2598,35 @@
     "properties": {
       "IsPublic": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "Use to apply lifecycle policy actions on whether the AMI is public."
       },
       "LastLaunched": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/130"
         },
         "flags": 0,
         "description": "Use to apply lifecycle policy actions on AMIs launched before a certain time."
       },
       "Regions": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/135"
         },
         "flags": 0,
         "description": "Use to apply lifecycle policy actions on AMIs distributed to a set of regions."
       },
       "SharedAccounts": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/136"
         },
         "flags": 0,
         "description": "Use to apply lifecycle policy actions on AMIs shared with a set of regions."
       },
       "TagMap": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/137"
         },
         "flags": 0,
         "description": "The AMIs to select by tag."
@@ -1108,13 +2639,13 @@
     "properties": {
       "Amis": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/126"
         },
         "flags": 0
       },
       "TagMap": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/138"
         },
         "flags": 0,
         "description": "The Image Builder tags to filter on."
@@ -1134,14 +2665,14 @@
       },
       "Type": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The filter type."
       },
       "Unit": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The value's time unit."
@@ -1161,21 +2692,21 @@
     "properties": {
       "Amis": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "Use to configure lifecycle actions on AMIs."
       },
       "Containers": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "Use to configure lifecycle actions on containers."
       },
       "Snapshots": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "Use to configure lifecycle actions on snapshots."
@@ -1188,7 +2719,7 @@
     "properties": {
       "Unit": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The value's time unit."
@@ -1208,19 +2739,19 @@
     "properties": {
       "Action": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/125"
         },
         "flags": 1
       },
       "ExclusionRules": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/127"
         },
         "flags": 0
       },
       "Filter": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/128"
         },
         "flags": 1
       }
@@ -1232,14 +2763,14 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The recipe name."
       },
       "SemanticVersion": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The recipe version."
@@ -1252,14 +2783,14 @@
     "properties": {
       "Recipes": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/139"
         },
         "flags": 0,
         "description": "The recipes to select."
       },
       "TagMap": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/140"
         },
         "flags": 0,
         "description": "The Image Builder resources to select by tag."
@@ -1274,13 +2805,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/1"
     }
   },
   {
@@ -1296,7 +2827,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/65"
+      "$ref": "#/132"
     }
   },
   {
@@ -1311,7 +2842,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/64"
+      "$ref": "#/131"
     }
   },
   {
@@ -1325,63 +2856,63 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the lifecycle policy."
       },
       "Description": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The description of the lifecycle policy."
       },
       "ExecutionRole": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The execution role of the lifecycle policy."
       },
       "Name": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name of the lifecycle policy."
       },
       "PolicyDetails": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/142"
         },
         "flags": 1,
         "description": "The policy details of the lifecycle policy."
       },
       "ResourceSelection": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/133"
         },
         "flags": 1,
         "description": "The resource selection of the lifecycle policy."
       },
       "ResourceType": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The resource type of the lifecycle policy."
       },
       "Status": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The status of the lifecycle policy."
       },
       "Tags": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/143"
         },
         "flags": 0,
         "description": "The tags associated with the lifecycle policy."
@@ -1394,21 +2925,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/144"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1418,10 +2949,172 @@
   {
     "$type": "ResourceType",
     "name": "AWS.ImageBuilder/LifecyclePolicy@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/78"
+      "$ref": "#/145"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LatestVersion",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The latest version ARN of the created workflow."
+      },
+      "Major": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The latest version ARN of the created workflow, with the same major version."
+      },
+      "Minor": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The latest version ARN of the created workflow, with the same minor version."
+      },
+      "Patch": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The latest version ARN of the created workflow, with the same patch version."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ImageBuilder/WorkflowProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Workflow_Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ImageBuilder/WorkflowProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the workflow."
+      },
+      "ChangeDescription": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The change description of the workflow."
+      },
+      "Data": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The data of the workflow."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The description of the workflow."
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The KMS key identifier used to encrypt the workflow."
+      },
+      "LatestVersion": {
+        "type": {
+          "$ref": "#/147"
+        },
+        "flags": 2,
+        "description": "The latest version references of the workflow."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the workflow."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/149"
+        },
+        "flags": 0,
+        "description": "The tags associated with the workflow."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The type of the workflow denotes whether the workflow is used to build, test, or distribute."
+      },
+      "Uri": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The uri of the workflow."
+      },
+      "Version": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The version of the workflow."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ImageBuilder/Workflow",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/150"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ImageBuilder/Workflow@default",
+    "body": {
+      "$ref": "#/151"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

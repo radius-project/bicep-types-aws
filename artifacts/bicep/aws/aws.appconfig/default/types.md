@@ -1,42 +1,64 @@
 # AWS.AppConfig @ default
 
 ## Resource AWS.AppConfig/Application@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AppConfig/ApplicationProperties](#awsappconfigapplicationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppConfig/ConfigurationProfile@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AppConfig/ConfigurationProfileProperties](#awsappconfigconfigurationprofileproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppConfig/DeploymentStrategy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AppConfig/DeploymentStrategyProperties](#awsappconfigdeploymentstrategyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppConfig/Environment@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AppConfig/EnvironmentProperties](#awsappconfigenvironmentproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.AppConfig/ExperimentDefinition@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.AppConfig/ExperimentDefinitionProperties](#awsappconfigexperimentdefinitionproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.AppConfig/ExperimentRun@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.AppConfig/ExperimentRunProperties](#awsappconfigexperimentrunproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.AppConfig/Extension@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AppConfig/ExtensionProperties](#awsappconfigextensionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppConfig/ExtensionAssociation@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -98,6 +120,41 @@ Expressed numerically, the deployment rolls out as follows: 2% of the targets, 4
 * **Name**: string (Required): A name for the environment.
 * **Tags**: [Tag](#tag)[]: Metadata to assign to the environment. Tags help organize and categorize your AWS AppConfig resources. Each tag consists of a key and an optional value, both of which you define.
 
+## AWS.AppConfig/ExperimentDefinitionProperties
+### Properties
+* **ApplicationId**: string (ReadOnly, Identifier): The resolved application ID (read-only, assigned by service).
+* **ApplicationIdentifier**: string (Required): The application ID, name, or ARN.
+* **AudienceDescription**: string: Human-readable description of the audience.
+* **AudienceRule**: string (Required): Rule expression defining the experiment audience.
+* **ConfigurationProfileIdentifier**: string (Required): The configuration profile ID, name, or ARN.
+* **Control**: [Treatment](#treatment) (Required): The control (baseline) variant.
+* **CreatedAt**: string (ReadOnly): ISO-8601 creation timestamp.
+* **EnvironmentIdentifier**: string (Required): The environment ID, name, or ARN.
+* **FlagKey**: string (Required): The key of the existing flag in the configuration profile to experiment on.
+* **Hypothesis**: string: The hypothesis of the experiment.
+* **Id**: string (ReadOnly, Identifier): The experiment definition ID.
+* **LaunchCriteria**: string: Criteria for launching the experiment.
+* **Name**: string (Required): A name for the experiment definition.
+* **Status**: string (ReadOnly): Current status.
+* **Tags**: [Tag](#tag)[]: Tags to associate with the experiment definition.
+* **Treatments**: [Treatment](#treatment)[] (Required, ReadOnly): Treatment variants (1-5).
+* **UpdatedAt**: string (ReadOnly): ISO-8601 last update timestamp.
+
+## AWS.AppConfig/ExperimentRunProperties
+### Properties
+* **ApplicationId**: string (ReadOnly, Identifier): The resolved application ID.
+* **ApplicationIdentifier**: string (Required): The application name or ID used to create the experiment run.
+* **Description**: string: Description of the experiment run.
+* **ExperimentDefinitionId**: string (ReadOnly, Identifier): The resolved experiment definition ID.
+* **ExperimentDefinitionIdentifier**: string (Required): The experiment definition name or ID used to create the experiment run.
+* **ExposurePercentage**: int (Required): Percentage of traffic exposed to the experiment (0-100).
+* **Run**: string (ReadOnly, Identifier): The run number (auto-assigned by the service).
+* **StartedAt**: string (ReadOnly): ISO-8601 timestamp when the run started.
+* **Status**: string (ReadOnly): Current status of the run.
+* **Tags**: [Tag](#tag)[]: Tags to associate with the experiment run.
+* **TreatmentOverrides**: [TreatmentOverrides](#treatmentoverrides)
+* **UpdatedAt**: string (ReadOnly): ISO-8601 timestamp when the run was last updated.
+
 ## AWS.AppConfig/ExtensionAssociationProperties
 ### Properties
 * **Arn**: string (ReadOnly)
@@ -108,7 +165,7 @@ Expressed numerically, the deployment rolls out as follows: 2% of the targets, 4
 * **Parameters**: [ExtensionAssociation_Parameters](#extensionassociationparameters)
 * **ResourceArn**: string (ReadOnly)
 * **ResourceIdentifier**: string (WriteOnly)
-* **Tags**: [Tag](#tag)[] (WriteOnly): An array of key-value pairs to apply to this resource.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
 ## AWS.AppConfig/ExtensionProperties
 ### Properties
@@ -119,8 +176,14 @@ Expressed numerically, the deployment rolls out as follows: 2% of the targets, 4
 * **LatestVersionNumber**: int (WriteOnly)
 * **Name**: string (Required): Name of the extension.
 * **Parameters**: [Extension_Parameters](#extensionparameters)
-* **Tags**: [Tag](#tag)[] (WriteOnly): An array of key-value tags to apply to this resource.
+* **Tags**: [Tag](#tag)[]: An array of key-value tags to apply to this resource.
 * **VersionNumber**: int (ReadOnly)
+
+## ExperimentDefinition_AttributeValues
+### Properties
+
+## ExperimentRun_Inline
+### Properties
 
 ## Extension_Actions
 ### Properties
@@ -148,6 +211,16 @@ Expressed numerically, the deployment rolls out as follows: 2% of the targets, 4
 
 ## Tag
 ### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
+
+## Tag
+### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
@@ -165,6 +238,18 @@ Expressed numerically, the deployment rolls out as follows: 2% of the targets, 4
 ### Properties
 * **Key**: string: The key-value string map. The tag key can be up to 128 characters and must not start with aws:.
 * **Value**: string: The tag value can be up to 256 characters.
+
+## Treatment
+### Properties
+* **AttributeValues**: [ExperimentDefinition_AttributeValues](#experimentdefinitionattributevalues): Map of attribute name to attribute value.
+* **Description**: string
+* **Enabled**: bool (Required): Whether the flag is enabled for this variant.
+* **Key**: string (ReadOnly): The treatment key (read-only, auto-generated by service).
+* **Weight**: int (Required): Traffic weight percentage.
+
+## TreatmentOverrides
+### Properties
+* **Inline**: [ExperimentRun_Inline](#experimentruninline): Map of entity ID to treatment key (t1, t2, ..., or c for control).
 
 ## Validators
 ### Properties

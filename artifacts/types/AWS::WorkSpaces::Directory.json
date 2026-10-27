@@ -1,0 +1,778 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-WorkSpaces-Directory",
+  "type": "AWS::WorkSpaces::Directory",
+  "time": "2026-10-07T17:31:22.427Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/DirectoryId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/SubnetIds",
+      "/properties/EnableSelfService",
+      "/properties/Tenancy",
+      "/properties/WorkspaceDirectoryName",
+      "/properties/WorkspaceDirectoryDescription",
+      "/properties/UserIdentityType",
+      "/properties/WorkspaceType",
+      "/properties/ActiveDirectoryConfig",
+      "/properties/IdcInstanceArn",
+      "/properties/MicrosoftEntraConfig"
+    ],
+    "definitions": {
+      "AccessEndpoint": {
+        "additionalProperties": false,
+        "description": "Describes the access type and endpoint for a WorkSpace.",
+        "properties": {
+          "AccessEndpointType": {
+            "description": "Indicates the type of access endpoint.",
+            "enum": [
+              "STREAMING_WSP"
+            ],
+            "type": "string"
+          },
+          "VpcEndpointId": {
+            "description": "Indicates the VPC endpoint to use for access.",
+            "pattern": "^[a-zA-Z0-9\\_\\-]{1,1000}$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "AccessEndpointConfig": {
+        "additionalProperties": false,
+        "description": "Describes the access endpoint configuration for a WorkSpace.",
+        "properties": {
+          "AccessEndpoints": {
+            "description": "Indicates a list of access endpoints associated with this directory.",
+            "items": {
+              "$ref": "#/definitions/AccessEndpoint"
+            },
+            "type": "array"
+          },
+          "InternetFallbackProtocols": {
+            "description": "Indicates a list of protocols that fallback to using the public Internet when streaming over a VPC endpoint is not available.",
+            "items": {
+              "enum": [
+                "PCOIP"
+              ],
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "AccessEndpoints"
+        ],
+        "type": "object"
+      },
+      "ActiveDirectoryConfig": {
+        "additionalProperties": false,
+        "description": "Information about the Active Directory config.",
+        "properties": {
+          "DomainName": {
+            "description": "The name of the domain.",
+            "pattern": "^([a-zA-Z0-9]+[.-])+([a-zA-Z0-9])+$",
+            "type": "string"
+          },
+          "ServiceAccountSecretArn": {
+            "description": "Indicates the secret ARN on the service account.",
+            "pattern": "^arn:aws[a-z-]{0,7}:secretsmanager:[A-za-z0-9_/.-]{0,63}:[A-za-z0-9_/.-]{0,63}:secret:[A-Za-z0-9][A-za-z0-9_/.-]{8,519}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "DomainName",
+          "ServiceAccountSecretArn"
+        ],
+        "type": "object"
+      },
+      "CertificateBasedAuthProperties": {
+        "additionalProperties": false,
+        "description": "Describes the properties of the certificate-based authentication you want to use with your WorkSpaces.",
+        "properties": {
+          "CertificateAuthorityArn": {
+            "description": "The Amazon Resource Name (ARN) of the Amazon Web Services Certificate Manager Private CA resource.",
+            "maxLength": 200,
+            "minLength": 5,
+            "pattern": "^arn:[\\w+=/,.@-]+:[\\w+=/,.@-]+:[\\w+=/,.@-]*:[0-9]*:[\\w+=,.@-]+(/[\\w+=,.@-]+)*$",
+            "type": "string"
+          },
+          "Status": {
+            "description": "The status of the certificate-based authentication properties.",
+            "enum": [
+              "DISABLED",
+              "ENABLED"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "DefaultWorkspaceCreationProperties": {
+        "additionalProperties": false,
+        "description": "The default values that are used to create WorkSpaces.",
+        "properties": {
+          "CustomSecurityGroupId": {
+            "description": "The identifier of the default security group to apply to WorkSpaces when they are created.",
+            "maxLength": 20,
+            "minLength": 11,
+            "pattern": "^(sg-([0-9a-f]{8}|[0-9a-f]{17}))$",
+            "type": "string"
+          },
+          "DefaultOu": {
+            "description": "The organizational unit (OU) in the directory for the WorkSpace machine accounts.",
+            "type": "string"
+          },
+          "EnableInternetAccess": {
+            "description": "Specifies whether to automatically assign an Elastic public IP address to WorkSpaces in this directory by default.",
+            "type": "boolean"
+          },
+          "EnableMaintenanceMode": {
+            "description": "Specifies whether maintenance mode is enabled for WorkSpaces.",
+            "type": "boolean"
+          },
+          "InstanceIamRoleArn": {
+            "description": "Indicates the IAM role ARN of the instance.",
+            "pattern": "^arn:aws[a-z-]{0,7}:[A-Za-z0-9][A-za-z0-9_/.-]{0,62}:[A-za-z0-9_/.-]{0,63}:[A-za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.\\\\-]{0,1023}$",
+            "type": "string"
+          },
+          "UserEnabledAsLocalAdministrator": {
+            "description": "Specifies whether WorkSpace users are local administrators on their WorkSpaces.",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "GlobalAcceleratorForDirectory": {
+        "additionalProperties": false,
+        "description": "Describes the Global Accelerator for directory.",
+        "properties": {
+          "Mode": {
+            "description": "Indicates if Global Accelerator for directory is enabled or disabled.",
+            "enum": [
+              "ENABLED_AUTO",
+              "DISABLED"
+            ],
+            "type": "string"
+          },
+          "PreferredProtocol": {
+            "description": "Indicates the preferred protocol for Global Accelerator.",
+            "enum": [
+              "TCP",
+              "NONE"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Mode"
+        ],
+        "type": "object"
+      },
+      "IDCConfig": {
+        "additionalProperties": false,
+        "description": "Specifies the configurations of the identity center.",
+        "properties": {
+          "ApplicationArn": {
+            "description": "The Amazon Resource Name (ARN) of the application.",
+            "pattern": "^arn:aws[a-z-]{0,7}:[A-Za-z0-9][A-za-z0-9_/.-]{0,62}:[A-za-z0-9_/.-]{0,63}:[A-za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.\\\\-]{0,1023}$",
+            "type": "string"
+          },
+          "InstanceArn": {
+            "description": "The Amazon Resource Name (ARN) of the identity center instance.",
+            "pattern": "^arn:aws[a-z-]{0,7}:[A-Za-z0-9][A-za-z0-9_/.-]{0,62}:[A-za-z0-9_/.-]{0,63}:[A-za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.\\\\-]{0,1023}$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "MicrosoftEntraConfig": {
+        "additionalProperties": false,
+        "description": "Specifies the configurations of the Microsoft Entra.",
+        "properties": {
+          "ApplicationConfigSecretArn": {
+            "description": "The Amazon Resource Name (ARN) of the application config.",
+            "pattern": "^arn:aws[a-z-]{0,7}:secretsmanager:[A-za-z0-9_/.-]{0,63}:[A-za-z0-9_/.-]{0,63}:secret:[A-Za-z0-9][A-za-z0-9_/.-]{8,519}$",
+            "type": "string"
+          },
+          "TenantId": {
+            "description": "The identifier of the tenant.",
+            "pattern": "^[a-zA-Z0-9-]{1,100}$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "SamlProperties": {
+        "additionalProperties": false,
+        "description": "Describes the enablement status, user access URL, and relay state parameter name that are used for configuring federation with an SAML 2.0 identity provider.",
+        "properties": {
+          "RelayStateParameterName": {
+            "description": "The relay state parameter name supported by the SAML 2.0 identity provider (IdP).",
+            "minLength": 1,
+            "type": "string"
+          },
+          "Status": {
+            "description": "Indicates the status of SAML 2.0 authentication.",
+            "enum": [
+              "DISABLED",
+              "ENABLED",
+              "ENABLED_WITH_DIRECTORY_LOGIN_FALLBACK"
+            ],
+            "type": "string"
+          },
+          "UserAccessUrl": {
+            "description": "The SAML 2.0 identity provider (IdP) user access URL.",
+            "maxLength": 200,
+            "minLength": 8,
+            "pattern": "^(http|https)\\://\\S+$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "SelfservicePermissions": {
+        "additionalProperties": false,
+        "description": "Describes the self-service permissions for a directory.",
+        "properties": {
+          "ChangeComputeType": {
+            "description": "Specifies whether users can change the compute type (bundle) for their WorkSpace.",
+            "enum": [
+              "ENABLED",
+              "DISABLED"
+            ],
+            "type": "string"
+          },
+          "IncreaseVolumeSize": {
+            "description": "Specifies whether users can increase the volume size of the drives on their WorkSpace.",
+            "enum": [
+              "ENABLED",
+              "DISABLED"
+            ],
+            "type": "string"
+          },
+          "RebuildWorkspace": {
+            "description": "Specifies whether users can rebuild the operating system of a WorkSpace to its original state.",
+            "enum": [
+              "ENABLED",
+              "DISABLED"
+            ],
+            "type": "string"
+          },
+          "RestartWorkspace": {
+            "description": "Specifies whether users can restart their WorkSpace.",
+            "enum": [
+              "ENABLED",
+              "DISABLED"
+            ],
+            "type": "string"
+          },
+          "SwitchRunningMode": {
+            "description": "Specifies whether users can switch the running mode of their WorkSpace.",
+            "enum": [
+              "ENABLED",
+              "DISABLED"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "StorageConnector": {
+        "additionalProperties": false,
+        "description": "Describes the storage connector.",
+        "properties": {
+          "ConnectorType": {
+            "description": "The type of connector used to save user files.",
+            "enum": [
+              "HOME_FOLDER"
+            ],
+            "type": "string"
+          },
+          "Status": {
+            "description": "Indicates if the storage connector is enabled or disabled.",
+            "enum": [
+              "ENABLED",
+              "DISABLED"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "ConnectorType",
+          "Status"
+        ],
+        "type": "object"
+      },
+      "StreamingProperties": {
+        "additionalProperties": false,
+        "description": "Describes the streaming properties.",
+        "properties": {
+          "GlobalAccelerator": {
+            "$ref": "#/definitions/GlobalAcceleratorForDirectory"
+          },
+          "StorageConnectors": {
+            "description": "Indicates the storage connector used.",
+            "items": {
+              "$ref": "#/definitions/StorageConnector"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "StreamingExperiencePreferredProtocol": {
+            "description": "Indicates the type of preferred protocol for the streaming experience.",
+            "enum": [
+              "TCP",
+              "UDP"
+            ],
+            "type": "string"
+          },
+          "UserSettings": {
+            "description": "Indicates the permission settings associated with the user.",
+            "items": {
+              "$ref": "#/definitions/UserSetting"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "maxLength": 127,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "UserSetting": {
+        "additionalProperties": false,
+        "description": "Information about the user's permission settings.",
+        "properties": {
+          "Action": {
+            "description": "Indicates the type of action.",
+            "enum": [
+              "CLIPBOARD_COPY_FROM_LOCAL_DEVICE",
+              "CLIPBOARD_COPY_TO_LOCAL_DEVICE",
+              "PRINTING_TO_LOCAL_DEVICE",
+              "SMART_CARD"
+            ],
+            "type": "string"
+          },
+          "MaximumLength": {
+            "description": "Indicates the maximum character length for the specified user setting.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "Permission": {
+            "description": "Indicates if the setting is enabled or disabled.",
+            "enum": [
+              "ENABLED",
+              "DISABLED"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Action",
+          "Permission"
+        ],
+        "type": "object"
+      },
+      "WorkspaceAccessProperties": {
+        "additionalProperties": false,
+        "description": "The device types and operating systems that can be used to access a WorkSpace.",
+        "properties": {
+          "AccessEndpointConfig": {
+            "$ref": "#/definitions/AccessEndpointConfig"
+          },
+          "DeviceTypeAndroid": {
+            "description": "Indicates whether users can use Android and Android-compatible Chrome OS devices to access their WorkSpaces.",
+            "enum": [
+              "ALLOW",
+              "DENY"
+            ],
+            "type": "string"
+          },
+          "DeviceTypeChromeOs": {
+            "description": "Indicates whether users can use Chromebooks to access their WorkSpaces.",
+            "enum": [
+              "ALLOW",
+              "DENY"
+            ],
+            "type": "string"
+          },
+          "DeviceTypeIos": {
+            "description": "Indicates whether users can use iOS devices to access their WorkSpaces.",
+            "enum": [
+              "ALLOW",
+              "DENY"
+            ],
+            "type": "string"
+          },
+          "DeviceTypeLinux": {
+            "description": "Indicates whether users can use Linux clients to access their WorkSpaces.",
+            "enum": [
+              "ALLOW",
+              "DENY"
+            ],
+            "type": "string"
+          },
+          "DeviceTypeOsx": {
+            "description": "Indicates whether users can use macOS clients to access their WorkSpaces.",
+            "enum": [
+              "ALLOW",
+              "DENY"
+            ],
+            "type": "string"
+          },
+          "DeviceTypeWeb": {
+            "description": "Indicates whether users can access their WorkSpaces through a web browser.",
+            "enum": [
+              "ALLOW",
+              "DENY"
+            ],
+            "type": "string"
+          },
+          "DeviceTypeWindows": {
+            "description": "Indicates whether users can use Windows clients to access their WorkSpaces.",
+            "enum": [
+              "ALLOW",
+              "DENY"
+            ],
+            "type": "string"
+          },
+          "DeviceTypeWorkSpacesThinClient": {
+            "description": "Indicates whether users can access their WorkSpaces through a WorkSpaces Thin Client.",
+            "enum": [
+              "ALLOW",
+              "DENY"
+            ],
+            "type": "string"
+          },
+          "DeviceTypeZeroClient": {
+            "description": "Indicates whether users can use zero client devices to access their WorkSpaces.",
+            "enum": [
+              "ALLOW",
+              "DENY"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::WorkSpaces::Directory",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "workspaces:RegisterWorkspaceDirectory",
+          "workspaces:DescribeWorkspaceDirectories",
+          "workspaces:CreateTags",
+          "workspaces:ModifyWorkspaceCreationProperties",
+          "workspaces:ModifyWorkspaceAccessProperties",
+          "workspaces:ModifySelfservicePermissions",
+          "workspaces:ModifySamlProperties",
+          "workspaces:ModifyCertificateBasedAuthProperties",
+          "workspaces:ModifyStreamingProperties",
+          "workspaces:ModifyEndpointEncryptionMode",
+          "workspaces:AssociateIpGroups",
+          "ec2:CreateSecurityGroup",
+          "ec2:CreateTags",
+          "ec2:DescribeAvailabilityZones",
+          "ec2:DescribeInternetGateways",
+          "ec2:DescribeNetworkInterfaces",
+          "ec2:DescribeRouteTables",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeVpcs",
+          "ec2:DescribeVpcEndpoints",
+          "iam:GetRole",
+          "iam:PassRole"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "workspaces:DeregisterWorkspaceDirectory",
+          "workspaces:DescribeWorkspaceDirectories",
+          "workspaces:DescribeTags"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "workspaces:DescribeWorkspaceDirectories"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "workspaces:DescribeWorkspaceDirectories",
+          "workspaces:DescribeTags"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "workspaces:CreateTags",
+          "workspaces:DeleteTags",
+          "workspaces:DescribeTags",
+          "workspaces:DescribeWorkspaceDirectories",
+          "workspaces:ModifyWorkspaceCreationProperties",
+          "workspaces:ModifyWorkspaceAccessProperties",
+          "workspaces:ModifySelfservicePermissions",
+          "workspaces:ModifySamlProperties",
+          "workspaces:ModifyCertificateBasedAuthProperties",
+          "workspaces:ModifyStreamingProperties",
+          "workspaces:ModifyEndpointEncryptionMode",
+          "workspaces:AssociateIpGroups",
+          "workspaces:DisassociateIpGroups",
+          "ec2:DescribeNetworkInterfaces",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeVpcs",
+          "ec2:DescribeVpcEndpoints",
+          "iam:GetRole",
+          "iam:PassRole"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "ActiveDirectoryConfig": {
+        "$ref": "#/definitions/ActiveDirectoryConfig"
+      },
+      "Alias": {
+        "description": "The directory alias.",
+        "type": "string"
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the WorkSpace directory.",
+        "type": "string"
+      },
+      "CertificateBasedAuthProperties": {
+        "$ref": "#/definitions/CertificateBasedAuthProperties"
+      },
+      "CustomerUserName": {
+        "description": "The user name for the service account.",
+        "maxLength": 63,
+        "minLength": 1,
+        "type": "string"
+      },
+      "DirectoryId": {
+        "description": "The directory identifier.",
+        "maxLength": 65,
+        "minLength": 10,
+        "pattern": "^(d-[0-9a-f]{8,63}|wsd-[0-9a-z]{8,63})$",
+        "type": "string"
+      },
+      "DirectoryName": {
+        "description": "The name of the directory.",
+        "type": "string"
+      },
+      "DirectoryType": {
+        "description": "The directory type.",
+        "enum": [
+          "SIMPLE_AD",
+          "AD_CONNECTOR",
+          "CUSTOMER_MANAGED",
+          "AWS_IAM_IDENTITY_CENTER"
+        ],
+        "type": "string"
+      },
+      "DnsIpAddresses": {
+        "description": "The IP addresses of the DNS servers for the directory.",
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "DnsIpv6Addresses": {
+        "description": "The IPv6 addresses of the DNS servers for the directory.",
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "EnableSelfService": {
+        "description": "Indicates whether self-service capabilities are enabled or disabled.",
+        "type": "boolean"
+      },
+      "EndpointEncryptionMode": {
+        "description": "Endpoint encryption mode that allows you to configure the specified directory between Standard TLS and FIPS 140-2 validated mode.",
+        "enum": [
+          "STANDARD_TLS",
+          "FIPS_VALIDATED"
+        ],
+        "type": "string"
+      },
+      "IDCConfig": {
+        "$ref": "#/definitions/IDCConfig"
+      },
+      "IamRoleId": {
+        "description": "The identifier of the IAM role.",
+        "type": "string"
+      },
+      "IdcInstanceArn": {
+        "description": "The Amazon Resource Name (ARN) of the identity center instance.",
+        "pattern": "^arn:aws[a-z-]{0,7}:[A-Za-z0-9][A-za-z0-9_/.-]{0,62}:[A-za-z0-9_/.-]{0,63}:[A-za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.\\\\-]{0,1023}$",
+        "type": "string"
+      },
+      "IpGroupIds": {
+        "description": "The identifiers of the IP access control groups associated with the directory.",
+        "items": {
+          "pattern": "^wsipg-[0-9a-z]{8,63}$",
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "MicrosoftEntraConfig": {
+        "$ref": "#/definitions/MicrosoftEntraConfig"
+      },
+      "RegistrationCode": {
+        "description": "The registration code for the directory.",
+        "maxLength": 20,
+        "minLength": 1,
+        "type": "string"
+      },
+      "SamlProperties": {
+        "$ref": "#/definitions/SamlProperties"
+      },
+      "SelfservicePermissions": {
+        "$ref": "#/definitions/SelfservicePermissions"
+      },
+      "State": {
+        "description": "The state of the directory's registration with Amazon WorkSpaces.",
+        "enum": [
+          "REGISTERING",
+          "REGISTERED",
+          "DEREGISTERING",
+          "DEREGISTERED",
+          "ERROR"
+        ],
+        "type": "string"
+      },
+      "StreamingProperties": {
+        "$ref": "#/definitions/StreamingProperties"
+      },
+      "SubnetIds": {
+        "description": "The identifiers of the subnets for your virtual private cloud (VPC).",
+        "items": {
+          "maxLength": 24,
+          "minLength": 15,
+          "pattern": "^(subnet-([0-9a-f]{8}|[0-9a-f]{17}))$",
+          "type": "string"
+        },
+        "maxItems": 2,
+        "minItems": 0,
+        "type": "array"
+      },
+      "Tags": {
+        "description": "The tags associated with the directory.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "Tenancy": {
+        "description": "Indicates whether your WorkSpace directory is dedicated or shared.",
+        "enum": [
+          "DEDICATED",
+          "SHARED"
+        ],
+        "type": "string"
+      },
+      "UserIdentityType": {
+        "description": "The type of identity management the user is using.",
+        "enum": [
+          "CUSTOMER_MANAGED",
+          "AWS_DIRECTORY_SERVICE",
+          "AWS_IAM_IDENTITY_CENTER"
+        ],
+        "type": "string"
+      },
+      "WorkspaceAccessProperties": {
+        "$ref": "#/definitions/WorkspaceAccessProperties"
+      },
+      "WorkspaceCreationProperties": {
+        "$ref": "#/definitions/DefaultWorkspaceCreationProperties"
+      },
+      "WorkspaceDirectoryDescription": {
+        "description": "Description of the directory to register.",
+        "pattern": "^([a-zA-Z0-9_])[\\\\a-zA-Z0-9_@#%*+=:?./!\\s-]{1,255}$",
+        "type": "string"
+      },
+      "WorkspaceDirectoryName": {
+        "description": "The name of the directory to register.",
+        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.\\s-]{1,64}$",
+        "type": "string"
+      },
+      "WorkspaceSecurityGroupId": {
+        "description": "The identifier of the security group that is assigned to new WorkSpaces.",
+        "maxLength": 20,
+        "minLength": 11,
+        "pattern": "^(sg-([0-9a-f]{8}|[0-9a-f]{17}))$",
+        "type": "string"
+      },
+      "WorkspaceType": {
+        "description": "Indicates whether the directory's WorkSpace type is personal or pools.",
+        "enum": [
+          "PERSONAL",
+          "POOLS"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/DirectoryId",
+      "/properties/Arn",
+      "/properties/State",
+      "/properties/Alias",
+      "/properties/DirectoryName",
+      "/properties/DirectoryType",
+      "/properties/DnsIpAddresses",
+      "/properties/DnsIpv6Addresses",
+      "/properties/CustomerUserName",
+      "/properties/IamRoleId",
+      "/properties/RegistrationCode",
+      "/properties/WorkspaceSecurityGroupId",
+      "/properties/IDCConfig"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "workspaces:CreateTags",
+        "workspaces:DeleteTags",
+        "workspaces:DescribeTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::WorkSpaces::Directory",
+    "writeOnlyProperties": [
+      "/properties/EnableSelfService",
+      "/properties/IdcInstanceArn"
+    ]
+  }
+}

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-WAFv2-WebACL",
   "type": "AWS::WAFv2::WebACL",
-  "time": "2024-10-30T01:02:14.939Z",
+  "time": "2026-09-21T17:42:57.435Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -58,6 +58,22 @@
         ],
         "type": "object"
       },
+      "AWSManagedRulesAntiDDoSRuleSet": {
+        "additionalProperties": false,
+        "description": "Configures how to use the AntiDDOS AWS managed rule group in the web ACL",
+        "properties": {
+          "ClientSideActionConfig": {
+            "$ref": "#/definitions/ClientSideActionConfig"
+          },
+          "SensitivityToBlock": {
+            "$ref": "#/definitions/SensitivityToAct"
+          }
+        },
+        "required": [
+          "ClientSideActionConfig"
+        ],
+        "type": "object"
+      },
       "AWSManagedRulesBotControlRuleSet": {
         "additionalProperties": false,
         "description": "Configures how to use the Bot Control managed rule group in the web ACL",
@@ -106,6 +122,62 @@
         ],
         "type": "object"
       },
+      "ApplicationAttribute": {
+        "additionalProperties": false,
+        "description": "Application details defined during the \u0026webacl; creation process. Application attributes help WAF; give recommendations for protection packs.",
+        "properties": {
+          "Name": {
+            "$ref": "#/definitions/AttributeName"
+          },
+          "Values": {
+            "$ref": "#/definitions/AttributeValues"
+          }
+        },
+        "required": [
+          "Name",
+          "Values"
+        ],
+        "type": "object"
+      },
+      "ApplicationAttributes": {
+        "description": "Contains the attribute name and a list of values for that attribute.",
+        "items": {
+          "$ref": "#/definitions/ApplicationAttribute"
+        },
+        "maxItems": 10,
+        "minItems": 1,
+        "type": "array"
+      },
+      "ApplicationConfig": {
+        "additionalProperties": false,
+        "description": "Configures the ability for the WAF; console to store and retrieve application attributes during the webacl; creation process. Application attributes help WAF; give recommendations for protection packs.",
+        "properties": {
+          "Attributes": {
+            "$ref": "#/definitions/ApplicationAttributes"
+          }
+        },
+        "required": [
+          "Attributes"
+        ],
+        "type": "object"
+      },
+      "AsnMatchStatement": {
+        "additionalProperties": false,
+        "properties": {
+          "AsnList": {
+            "items": {
+              "maximum": 4294967295,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "type": "array"
+          },
+          "ForwardedIPConfig": {
+            "$ref": "#/definitions/ForwardedIPConfiguration"
+          }
+        },
+        "type": "object"
+      },
       "AssociationConfig": {
         "additionalProperties": false,
         "description": "AssociationConfig for body inspection",
@@ -116,6 +188,29 @@
         },
         "type": "object"
       },
+      "AttributeName": {
+        "description": "Specifies the attribute name.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[\\w\\-]+$",
+        "type": "string"
+      },
+      "AttributeValue": {
+        "description": "Specifies the attribute value.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[\\w\\-]+$",
+        "type": "string"
+      },
+      "AttributeValues": {
+        "description": "Contains a list of values for that attribute",
+        "items": {
+          "$ref": "#/definitions/AttributeValue"
+        },
+        "maxItems": 10,
+        "minItems": 1,
+        "type": "array"
+      },
       "BlockAction": {
         "additionalProperties": false,
         "description": "Block traffic towards application.",
@@ -125,6 +220,16 @@
           }
         },
         "type": "object"
+      },
+      "BlockchainChain": {
+        "description": "The blockchain chain to use.",
+        "enum": [
+          "BASE",
+          "SOLANA",
+          "BASE_SEPOLIA",
+          "SOLANA_DEVNET"
+        ],
+        "type": "string"
       },
       "Body": {
         "additionalProperties": false,
@@ -154,6 +259,12 @@
           },
           "PositionalConstraint": {
             "$ref": "#/definitions/PositionalConstraint"
+          },
+          "PreParseTextTransformations": {
+            "items": {
+              "$ref": "#/definitions/PreParseTextTransformation"
+            },
+            "type": "array"
           },
           "SearchString": {
             "$ref": "#/definitions/SearchString"
@@ -211,6 +322,38 @@
             "$ref": "#/definitions/ImmunityTimeProperty"
           }
         },
+        "type": "object"
+      },
+      "ClientSideAction": {
+        "additionalProperties": false,
+        "description": "Client side action config for AntiDDOS AMR.",
+        "properties": {
+          "ExemptUriRegularExpressions": {
+            "$ref": "#/definitions/RegularExpressionList"
+          },
+          "Sensitivity": {
+            "$ref": "#/definitions/SensitivityToAct"
+          },
+          "UsageOfAction": {
+            "$ref": "#/definitions/UsageOfAction"
+          }
+        },
+        "required": [
+          "UsageOfAction"
+        ],
+        "type": "object"
+      },
+      "ClientSideActionConfig": {
+        "additionalProperties": false,
+        "description": "Client side action config for AntiDDOS AMR.",
+        "properties": {
+          "Challenge": {
+            "$ref": "#/definitions/ClientSideAction"
+          }
+        },
+        "required": [
+          "Challenge"
+        ],
         "type": "object"
       },
       "CookieMatchPattern": {
@@ -276,6 +419,34 @@
           }
         },
         "type": "object"
+      },
+      "CryptoConfig": {
+        "additionalProperties": false,
+        "description": "Configures cryptocurrency payment settings.",
+        "properties": {
+          "PaymentNetworks": {
+            "$ref": "#/definitions/PaymentNetworks"
+          }
+        },
+        "required": [
+          "PaymentNetworks"
+        ],
+        "type": "object"
+      },
+      "CryptoCurrency": {
+        "description": "The cryptocurrency to use for payment.",
+        "enum": [
+          "USDC"
+        ],
+        "type": "string"
+      },
+      "CurrencyMode": {
+        "description": "The currency mode for monetization. Use REAL for production payments and TEST for testing with testnet currencies.",
+        "enum": [
+          "REAL",
+          "TEST"
+        ],
+        "type": "string"
       },
       "CustomHTTPHeader": {
         "additionalProperties": false,
@@ -378,6 +549,54 @@
         ],
         "type": "object"
       },
+      "DataProtect": {
+        "additionalProperties": false,
+        "properties": {
+          "Action": {
+            "$ref": "#/definitions/DataProtectionAction"
+          },
+          "ExcludeRateBasedDetails": {
+            "type": "boolean"
+          },
+          "ExcludeRuleMatchDetails": {
+            "type": "boolean"
+          },
+          "Field": {
+            "$ref": "#/definitions/FieldToProtect"
+          }
+        },
+        "required": [
+          "Field",
+          "Action"
+        ],
+        "type": "object"
+      },
+      "DataProtectionAction": {
+        "enum": [
+          "SUBSTITUTION",
+          "HASH"
+        ],
+        "type": "string"
+      },
+      "DataProtectionConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "DataProtections": {
+            "$ref": "#/definitions/DataProtections"
+          }
+        },
+        "required": [
+          "DataProtections"
+        ],
+        "type": "object"
+      },
+      "DataProtections": {
+        "items": {
+          "$ref": "#/definitions/DataProtect"
+        },
+        "minItems": 1,
+        "type": "array"
+      },
       "DefaultAction": {
         "additionalProperties": false,
         "description": "Default Action WebACL will take against ingress traffic when there is no matching Rule.",
@@ -463,11 +682,17 @@
           "Cookies": {
             "$ref": "#/definitions/Cookies"
           },
+          "HeaderOrder": {
+            "$ref": "#/definitions/HeaderOrder"
+          },
           "Headers": {
             "$ref": "#/definitions/Headers"
           },
           "JA3Fingerprint": {
             "$ref": "#/definitions/JA3Fingerprint"
+          },
+          "JA4Fingerprint": {
+            "$ref": "#/definitions/JA4Fingerprint"
           },
           "JsonBody": {
             "$ref": "#/definitions/JsonBody"
@@ -505,12 +730,49 @@
             ],
             "type": "object"
           },
+          "UriFragment": {
+            "$ref": "#/definitions/UriFragment"
+          },
           "UriPath": {
             "description": "The path component of the URI of a web request. This is the part of a web request that identifies a resource, for example, /images/daily-ad.jpg.",
             "type": "object"
           }
         },
         "type": "object"
+      },
+      "FieldToProtect": {
+        "additionalProperties": false,
+        "description": "Field in log to protect.",
+        "properties": {
+          "FieldKeys": {
+            "description": "List of field keys to protect",
+            "items": {
+              "$ref": "#/definitions/FieldToProtectKeyName"
+            },
+            "type": "array"
+          },
+          "FieldType": {
+            "description": "Field type to protect",
+            "enum": [
+              "SINGLE_HEADER",
+              "SINGLE_COOKIE",
+              "SINGLE_QUERY_ARGUMENT",
+              "QUERY_STRING",
+              "BODY"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "FieldType"
+        ],
+        "type": "object"
+      },
+      "FieldToProtectKeyName": {
+        "description": "Key of the field to protect.",
+        "maxLength": 64,
+        "minLength": 1,
+        "type": "string"
       },
       "ForwardedIPConfiguration": {
         "additionalProperties": false,
@@ -581,6 +843,19 @@
             "type": "array"
           }
         },
+        "type": "object"
+      },
+      "HeaderOrder": {
+        "additionalProperties": false,
+        "description": "The string containing the list of a web request's header names, ordered as they appear in the web request, separated by colons.",
+        "properties": {
+          "OversizeHandling": {
+            "$ref": "#/definitions/OversizeHandling"
+          }
+        },
+        "required": [
+          "OversizeHandling"
+        ],
         "type": "object"
       },
       "Headers": {
@@ -666,6 +941,23 @@
       "JA3Fingerprint": {
         "additionalProperties": false,
         "description": "Includes the JA3 fingerprint of a web request.",
+        "properties": {
+          "FallbackBehavior": {
+            "enum": [
+              "MATCH",
+              "NO_MATCH"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "FallbackBehavior"
+        ],
+        "type": "object"
+      },
+      "JA4Fingerprint": {
+        "additionalProperties": false,
+        "description": "Includes the JA4 fingerprint of a web request.",
         "properties": {
           "FallbackBehavior": {
             "enum": [
@@ -788,6 +1080,9 @@
           "AWSManagedRulesATPRuleSet": {
             "$ref": "#/definitions/AWSManagedRulesATPRuleSet"
           },
+          "AWSManagedRulesAntiDDoSRuleSet": {
+            "$ref": "#/definitions/AWSManagedRulesAntiDDoSRuleSet"
+          },
           "AWSManagedRulesBotControlRuleSet": {
             "$ref": "#/definitions/AWSManagedRulesBotControlRuleSet"
           },
@@ -868,6 +1163,29 @@
         ],
         "type": "string"
       },
+      "MonetizationConfig": {
+        "additionalProperties": false,
+        "description": "Configures monetization for the web ACL or rule group.",
+        "properties": {
+          "CryptoConfig": {
+            "$ref": "#/definitions/CryptoConfig"
+          },
+          "CurrencyMode": {
+            "$ref": "#/definitions/CurrencyMode"
+          }
+        },
+        "type": "object"
+      },
+      "MonetizeAction": {
+        "additionalProperties": false,
+        "description": "Monetize action for rules.",
+        "properties": {
+          "PriceMultiplier": {
+            "$ref": "#/definitions/PriceMultiplier"
+          }
+        },
+        "type": "object"
+      },
       "NotStatement": {
         "additionalProperties": false,
         "properties": {
@@ -877,6 +1195,23 @@
         },
         "required": [
           "Statement"
+        ],
+        "type": "object"
+      },
+      "OnSourceDDoSProtectionConfig": {
+        "additionalProperties": false,
+        "description": "Configures the options for on-source DDoS protection provided by supported resource type.",
+        "properties": {
+          "ALBLowReputationMode": {
+            "enum": [
+              "ACTIVE_UNDER_DDOS",
+              "ALWAYS_ON"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "ALBLowReputationMode"
         ],
         "type": "object"
       },
@@ -919,6 +1254,36 @@
         ],
         "type": "string"
       },
+      "PaymentNetwork": {
+        "additionalProperties": false,
+        "description": "Configuration for a single payment network.",
+        "properties": {
+          "Chain": {
+            "$ref": "#/definitions/BlockchainChain"
+          },
+          "Prices": {
+            "$ref": "#/definitions/Prices"
+          },
+          "WalletAddress": {
+            "$ref": "#/definitions/WalletAddress"
+          }
+        },
+        "required": [
+          "Chain",
+          "WalletAddress",
+          "Prices"
+        ],
+        "type": "object"
+      },
+      "PaymentNetworks": {
+        "description": "List of payment network configurations.",
+        "items": {
+          "$ref": "#/definitions/PaymentNetwork"
+        },
+        "maxItems": 2,
+        "minItems": 1,
+        "type": "array"
+      },
       "PhoneNumberField": {
         "$ref": "#/definitions/FieldIdentifier"
       },
@@ -932,6 +1297,79 @@
           "CONTAINS_WORD"
         ],
         "type": "string"
+      },
+      "PreParseTextTransformation": {
+        "additionalProperties": false,
+        "description": "Text Transformation applied before parsing the query string.",
+        "properties": {
+          "Priority": {
+            "$ref": "#/definitions/PreParseTextTransformationPriority"
+          },
+          "Type": {
+            "$ref": "#/definitions/PreParseTextTransformationType"
+          }
+        },
+        "required": [
+          "Priority",
+          "Type"
+        ],
+        "type": "object"
+      },
+      "PreParseTextTransformationPriority": {
+        "description": "Priority of PreParseTextTransformation being applied.",
+        "minimum": 0,
+        "type": "integer"
+      },
+      "PreParseTextTransformationType": {
+        "description": "Type of pre-parse text transformation.",
+        "enum": [
+          "NONE",
+          "URL_DECODE",
+          "URL_DECODE_UNI",
+          "COMBINE_DUPLICATE_QUERY_ARGS_BY_COMMA",
+          "REPLACE_SEMICOLONS_WITH_AMPERSANDS"
+        ],
+        "type": "string"
+      },
+      "Price": {
+        "additionalProperties": false,
+        "description": "A price configuration.",
+        "properties": {
+          "Amount": {
+            "$ref": "#/definitions/PriceAmount"
+          },
+          "Currency": {
+            "$ref": "#/definitions/CryptoCurrency"
+          }
+        },
+        "required": [
+          "Amount",
+          "Currency"
+        ],
+        "type": "object"
+      },
+      "PriceAmount": {
+        "description": "The price amount.",
+        "maxLength": 13,
+        "minLength": 1,
+        "pattern": "^([1-9][0-9]*(\\.[0-9]{1,3})?|0\\.([1-9][0-9]{0,2}|0[1-9][0-9]?|00[1-9]))$",
+        "type": "string"
+      },
+      "PriceMultiplier": {
+        "description": "The price multiplier for the monetize action.",
+        "maxLength": 3,
+        "minLength": 1,
+        "pattern": "^([1-9][0-9]?|100)$",
+        "type": "string"
+      },
+      "Prices": {
+        "description": "List of price configurations.",
+        "items": {
+          "$ref": "#/definitions/Price"
+        },
+        "maxItems": 1,
+        "minItems": 1,
+        "type": "array"
       },
       "QueryString": {
         "type": "object"
@@ -979,6 +1417,9 @@
         "additionalProperties": false,
         "description": "Specifies a single custom aggregate key for a rate-base rule.",
         "properties": {
+          "ASN": {
+            "$ref": "#/definitions/RateLimitAsn"
+          },
           "Cookie": {
             "$ref": "#/definitions/RateLimitCookie"
           },
@@ -993,6 +1434,12 @@
           },
           "IP": {
             "$ref": "#/definitions/RateLimitIP"
+          },
+          "JA3Fingerprint": {
+            "$ref": "#/definitions/RateLimitJA3Fingerprint"
+          },
+          "JA4Fingerprint": {
+            "$ref": "#/definitions/RateLimitJA4Fingerprint"
           },
           "LabelNamespace": {
             "$ref": "#/definitions/RateLimitLabelNamespace"
@@ -1013,6 +1460,10 @@
         "maximum": 2000000000,
         "minimum": 10,
         "type": "integer"
+      },
+      "RateLimitAsn": {
+        "description": "Specifies the request's ASN as an aggregate key for a rate-based rule.",
+        "type": "object"
       },
       "RateLimitCookie": {
         "additionalProperties": false,
@@ -1072,6 +1523,40 @@
       },
       "RateLimitIP": {
         "description": "Specifies the IP address in the web request as an aggregate key for a rate-based rule.",
+        "type": "object"
+      },
+      "RateLimitJA3Fingerprint": {
+        "additionalProperties": false,
+        "description": "Specifies the request's JA3 fingerprint as an aggregate key for a rate-based rule.",
+        "properties": {
+          "FallbackBehavior": {
+            "enum": [
+              "MATCH",
+              "NO_MATCH"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "FallbackBehavior"
+        ],
+        "type": "object"
+      },
+      "RateLimitJA4Fingerprint": {
+        "additionalProperties": false,
+        "description": "Specifies the request's JA4 fingerprint as an aggregate key for a rate-based rule.",
+        "properties": {
+          "FallbackBehavior": {
+            "enum": [
+              "MATCH",
+              "NO_MATCH"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "FallbackBehavior"
+        ],
         "type": "object"
       },
       "RateLimitLabelNamespace": {
@@ -1145,11 +1630,26 @@
         ],
         "type": "object"
       },
+      "Regex": {
+        "description": "Regex",
+        "properties": {
+          "RegexString": {
+            "$ref": "#/definitions/RegexPatternString"
+          }
+        },
+        "type": "object"
+      },
       "RegexMatchStatement": {
         "additionalProperties": false,
         "properties": {
           "FieldToMatch": {
             "$ref": "#/definitions/FieldToMatch"
+          },
+          "PreParseTextTransformations": {
+            "items": {
+              "$ref": "#/definitions/PreParseTextTransformation"
+            },
+            "type": "array"
           },
           "RegexString": {
             "maxLength": 512,
@@ -1179,6 +1679,12 @@
           "FieldToMatch": {
             "$ref": "#/definitions/FieldToMatch"
           },
+          "PreParseTextTransformations": {
+            "items": {
+              "$ref": "#/definitions/PreParseTextTransformation"
+            },
+            "type": "array"
+          },
           "TextTransformations": {
             "items": {
               "$ref": "#/definitions/TextTransformation"
@@ -1192,6 +1698,17 @@
           "TextTransformations"
         ],
         "type": "object"
+      },
+      "RegexPatternString": {
+        "maxLength": 512,
+        "minLength": 1,
+        "type": "string"
+      },
+      "RegularExpressionList": {
+        "items": {
+          "$ref": "#/definitions/Regex"
+        },
+        "type": "array"
       },
       "RequestBody": {
         "additionalProperties": false,
@@ -1531,6 +2048,9 @@
           },
           "Count": {
             "$ref": "#/definitions/CountAction"
+          },
+          "Monetize": {
+            "$ref": "#/definitions/MonetizeAction"
           }
         },
         "type": "object"
@@ -1614,6 +2134,14 @@
         ],
         "type": "string"
       },
+      "SensitivityToAct": {
+        "enum": [
+          "LOW",
+          "MEDIUM",
+          "HIGH"
+        ],
+        "type": "string"
+      },
       "SingleHeader": {
         "additionalProperties": false,
         "properties": {
@@ -1649,6 +2177,12 @@
           },
           "FieldToMatch": {
             "$ref": "#/definitions/FieldToMatch"
+          },
+          "PreParseTextTransformations": {
+            "items": {
+              "$ref": "#/definitions/PreParseTextTransformation"
+            },
+            "type": "array"
           },
           "Size": {
             "maximum": 21474836480,
@@ -1686,6 +2220,12 @@
           "FieldToMatch": {
             "$ref": "#/definitions/FieldToMatch"
           },
+          "PreParseTextTransformations": {
+            "items": {
+              "$ref": "#/definitions/PreParseTextTransformation"
+            },
+            "type": "array"
+          },
           "SensitivityLevel": {
             "$ref": "#/definitions/SensitivityLevel"
           },
@@ -1708,6 +2248,9 @@
         "properties": {
           "AndStatement": {
             "$ref": "#/definitions/AndStatement"
+          },
+          "AsnMatchStatement": {
+            "$ref": "#/definitions/AsnMatchStatement"
           },
           "ByteMatchStatement": {
             "$ref": "#/definitions/ByteMatchStatement"
@@ -1815,7 +2358,17 @@
           "REPLACE_NULLS",
           "BASE64_DECODE_EXT",
           "URL_DECODE_UNI",
-          "UTF8_TO_UNICODE"
+          "UTF8_TO_UNICODE",
+          "REMOVE_WHITESPACE",
+          "TRIM",
+          "TRIM_LEFT",
+          "TRIM_RIGHT",
+          "REMOVE_COMMENTS_CHAR",
+          "UPPERCASE",
+          "CMD_LINE_WIN",
+          "CMD_LINE_UNIX",
+          "JS_DECODE_EXT",
+          "SHA256"
         ],
         "type": "string"
       },
@@ -1829,8 +2382,29 @@
         },
         "type": "array"
       },
+      "UriFragment": {
+        "additionalProperties": false,
+        "description": "The path component of the URI Fragment. This is the part of a web request that identifies a fragment uri, for example, /abcd#introduction",
+        "properties": {
+          "FallbackBehavior": {
+            "enum": [
+              "MATCH",
+              "NO_MATCH"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "UriPath": {
         "type": "object"
+      },
+      "UsageOfAction": {
+        "enum": [
+          "ENABLED",
+          "DISABLED"
+        ],
+        "type": "string"
       },
       "VisibilityConfig": {
         "additionalProperties": false,
@@ -1855,12 +2429,25 @@
         ],
         "type": "object"
       },
+      "WalletAddress": {
+        "description": "The wallet address for receiving payments.",
+        "maxLength": 44,
+        "minLength": 26,
+        "pattern": ".*\\S.*",
+        "type": "string"
+      },
       "XssMatchStatement": {
         "additionalProperties": false,
         "description": "Xss Match Statement.",
         "properties": {
           "FieldToMatch": {
             "$ref": "#/definitions/FieldToMatch"
+          },
+          "PreParseTextTransformations": {
+            "items": {
+              "$ref": "#/definitions/PreParseTextTransformation"
+            },
+            "type": "array"
           },
           "TextTransformations": {
             "items": {
@@ -1882,7 +2469,10 @@
         "permissions": [
           "wafv2:CreateWebACL",
           "wafv2:GetWebACL",
-          "wafv2:ListTagsForResource"
+          "wafv2:ListTagsForResource",
+          "wafv2:TagResource",
+          "wafv2:UntagResource",
+          "payments:GetConnectedAccount"
         ]
       },
       "delete": {
@@ -1918,7 +2508,8 @@
           "wafv2:GetWebACL",
           "wafv2:ListTagsForResource",
           "wafv2:TagResource",
-          "wafv2:UntagResource"
+          "wafv2:UntagResource",
+          "payments:GetConnectedAccount"
         ]
       }
     },
@@ -1928,6 +2519,10 @@
       "/properties/Scope"
     ],
     "properties": {
+      "ApplicationConfig": {
+        "$ref": "#/definitions/ApplicationConfig",
+        "description": "Collection of application attributes."
+      },
       "Arn": {
         "$ref": "#/definitions/ResourceArn"
       },
@@ -1947,6 +2542,10 @@
       "CustomResponseBodies": {
         "$ref": "#/definitions/CustomResponseBodies"
       },
+      "DataProtectionConfig": {
+        "$ref": "#/definitions/DataProtectionConfig",
+        "description": "Collection of dataProtects."
+      },
       "DefaultAction": {
         "$ref": "#/definitions/DefaultAction"
       },
@@ -1959,8 +2558,14 @@
       "LabelNamespace": {
         "$ref": "#/definitions/LabelName"
       },
+      "MonetizationConfig": {
+        "$ref": "#/definitions/MonetizationConfig"
+      },
       "Name": {
         "$ref": "#/definitions/EntityName"
+      },
+      "OnSourceDDoSProtectionConfig": {
+        "$ref": "#/definitions/OnSourceDDoSProtectionConfig"
       },
       "Rules": {
         "description": "Collection of Rules.",
@@ -2000,6 +2605,11 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-wafv2.git",
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "wafv2:TagResource",
+        "wafv2:UntagResource",
+        "wafv2:ListTagsForResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

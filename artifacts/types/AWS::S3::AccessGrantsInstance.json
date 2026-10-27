@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-S3-AccessGrantsInstance",
   "type": "AWS::S3::AccessGrantsInstance",
-  "time": "2025-01-08T17:20:42.828Z",
+  "time": "2026-10-19T18:58:33.599Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -38,12 +38,15 @@
       "create": {
         "permissions": [
           "s3:CreateAccessGrantsInstance",
+          "s3:AssociateAccessGrantsIdentityCenter",
           "s3:TagResource"
         ]
       },
       "delete": {
         "permissions": [
-          "s3:DeleteAccessGrantsInstance"
+          "s3:GetAccessGrantsInstance",
+          "s3:DeleteAccessGrantsInstance",
+          "s3:DissociateAccessGrantsIdentityCenter"
         ]
       },
       "list": {
@@ -113,9 +116,6 @@
       "tagUpdatable": true,
       "taggable": true
     },
-    "typeName": "AWS::S3::AccessGrantsInstance",
-    "writeOnlyProperties": [
-      "/properties/Tags"
-    ]
+    "typeName": "AWS::S3::AccessGrantsInstance"
   }
 }

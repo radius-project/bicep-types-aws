@@ -1,42 +1,48 @@
 # AWS.DataBrew @ default
 
 ## Resource AWS.DataBrew/Dataset@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataBrew/DatasetProperties](#awsdatabrewdatasetproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DataBrew/Job@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataBrew/JobProperties](#awsdatabrewjobproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DataBrew/Project@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataBrew/ProjectProperties](#awsdatabrewprojectproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DataBrew/Recipe@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataBrew/RecipeProperties](#awsdatabrewrecipeproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DataBrew/Ruleset@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataBrew/RulesetProperties](#awsdatabrewrulesetproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DataBrew/Schedule@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name

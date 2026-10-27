@@ -1,17 +1,207 @@
 [
   {
     "$type": "ObjectType",
+    "name": "ConfigurationId",
+    "properties": {
+      "Id": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 17
+      },
+      "Revision": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EncryptionOptions",
+    "properties": {
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The customer master key (CMK) to use for the A KMS (KMS). \nThis key is used to encrypt your data at rest. If not provided, Amazon MQ will use a default CMK to encrypt your data.\nThe Key ARN is recommended so that drift can be detected,\nbut a key ID or key alias will also be accepted for API compatibility reasons.\n"
+      },
+      "UseAwsOwnedKey": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LdapServerMetadata",
+    "properties": {
+      "Hosts": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "RoleBase": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1
+      },
+      "RoleName": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "RoleSearchMatching": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1
+      },
+      "RoleSearchSubtree": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      },
+      "ServiceAccountPassword": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 4
+      },
+      "ServiceAccountUsername": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1
+      },
+      "UserBase": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1
+      },
+      "UserRoleName": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "UserSearchMatching": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1
+      },
+      "UserSearchSubtree": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LogList",
+    "properties": {
+      "Audit": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      },
+      "General": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MaintenanceWindow",
+    "properties": {
+      "DayOfWeek": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "_Allowed Values_: <code>MONDAY</code> | <code>TUESDAY</code> | <code>WEDNESDAY</code> | <code>THURSDAY</code> | <code>FRIDAY</code> | <code>SATURDAY</code> | <code>SUNDAY</code>\n"
+      },
+      "TimeOfDay": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The time, in 24-hour format, and use only numbers separated by a colon, HH:MM or HH:MM:SS. Example: 13:05.\nWhen writing YAML this may need to be quoted to prevent a timestamp being read and converted to a number of minutes or seconds.\n"
+      },
+      "TimeZone": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The time zone, UTC by default, in either the Country/City format, or the UTC offset format."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "TagsEntry",
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/7"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/7"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "User",
+    "properties": {
+      "ConsoleAccess": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      },
+      "Groups": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0
+      },
+      "Password": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1
+      },
+      "ReplicationUser": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      },
+      "Username": {
+        "type": {
+          "$ref": "#/7"
         },
         "flags": 1
       }
@@ -21,13 +211,380 @@
     "$type": "StringType"
   },
   {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.AmazonMQ/BrokerProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AmazonMQ/BrokerProperties",
+    "properties": {
+      "AmqpEndpoints": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2
+      },
+      "AuthenticationStrategy": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "AutoMinorVersionUpgrade": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      },
+      "BrokerName": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1
+      },
+      "Configuration": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 4,
+        "description": "The intended configuration (ID and revision) to be set when creating or updating.\nThis property is write-only so that applications of a ConfigurationAssociation do not cause drift.\n"
+      },
+      "ConfigurationId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The ID of the current actual configuration."
+      },
+      "ConfigurationRevision": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The revision of the current actual configuration."
+      },
+      "ConsoleURLs": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 2
+      },
+      "DataReplicationMode": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "DataReplicationPrimaryBrokerArn": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 4,
+        "description": "The ARN of the primary broker that is used to replicate data from in a data replication pair when creating a replica.\nThis field is only used at creation-time. Changes to it subsequently are ignored by CloudFormation.\nInformation on the current primary is available on the DataReplicationMetadata object returned by the API.\n"
+      },
+      "DeploymentMode": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1
+      },
+      "EncryptionOptions": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "EngineType": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1
+      },
+      "EngineVersion": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 4,
+        "description": "The version specified to use. See also EngineVersionCurrent."
+      },
+      "EngineVersionCurrent": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The version in use. This may have more precision than the specified EngineVersion."
+      },
+      "HostInstanceType": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 18
+      },
+      "IpAddresses": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2
+      },
+      "LdapServerMetadata": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      },
+      "Logs": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "MaintenanceWindowStartTime": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "MqttEndpoints": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2
+      },
+      "OpenWireEndpoints": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2
+      },
+      "PubliclyAccessible": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1
+      },
+      "ResourceShareArns": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "The ARNs of the resource shares to be associated with the broker.\n"
+      },
+      "SecurityGroups": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0
+      },
+      "StompEndpoints": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 2
+      },
+      "StorageSize": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The broker's storage size in GB."
+      },
+      "StorageType": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "SubnetIds": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0
+      },
+      "Users": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 4,
+        "description": "Users to configure on the broker. \nFor RabbitMQ, this should be one user, created when the broker is created, and changes thereafter are ignored.\nFor ActiveMQ, changes to anything but Password are detected and will trigger an update,\nbut changes to Password cannot be detected so updates to Password may not take effect unless there is some other change.\n"
+      },
+      "WssEndpoints": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 2
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AmazonMQ/Broker",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.AmazonMQ/Broker@default",
+    "body": {
+      "$ref": "#/26"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TagsEntry",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
     "$type": "StringLiteralType",
     "value": "AWS.AmazonMQ/ConfigurationProperties"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/0"
+      "$ref": "#/28"
     }
   },
   {
@@ -36,70 +593,70 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/7"
         },
         "flags": 2,
         "description": "The Amazon Resource Name (ARN) of the Amazon MQ configuration."
       },
       "AuthenticationStrategy": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/7"
         },
         "flags": 0,
         "description": "The authentication strategy associated with the configuration. The default is SIMPLE."
       },
       "Data": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/7"
         },
         "flags": 4,
         "description": "The base64-encoded XML configuration."
       },
       "Description": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/7"
         },
         "flags": 0,
         "description": "The description of the configuration."
       },
       "EngineType": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/7"
         },
         "flags": 1,
         "description": "The type of broker engine. Note: Currently, Amazon MQ only supports ACTIVEMQ for creating and editing broker configurations."
       },
       "EngineVersion": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/7"
         },
         "flags": 0,
         "description": "The version of the broker engine."
       },
       "Id": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/7"
         },
         "flags": 18,
         "description": "The ID of the Amazon MQ configuration."
       },
       "Name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/7"
         },
         "flags": 1,
         "description": "The name of the configuration."
       },
       "Revision": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/7"
         },
         "flags": 2,
         "description": "The revision number of the configuration."
       },
       "Tags": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/30"
         },
         "flags": 0,
         "description": "Create tags when creating the configuration."
@@ -112,21 +669,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/7"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/7"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/31"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -136,10 +693,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.AmazonMQ/Configuration@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/5"
+      "$ref": "#/32"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

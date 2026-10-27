@@ -1,0 +1,669 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MSK-Channel",
+  "type": "AWS::MSK::Channel",
+  "time": "2026-08-28T07:31:54.544Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ChannelName",
+      "/properties/ClusterArn",
+      "/properties/TopicConfigurationList",
+      "/properties/EncryptionConfiguration",
+      "/properties/LoggingInfo",
+      "/properties/IcebergDestinationConfiguration/ServiceExecutionRoleArn",
+      "/properties/IcebergDestinationConfiguration/Catalog",
+      "/properties/IcebergDestinationConfiguration/Catalog/CatalogArn",
+      "/properties/IcebergDestinationConfiguration/Catalog/WarehouseLocation",
+      "/properties/IcebergDestinationConfiguration/DeadLetterQueueS3",
+      "/properties/IcebergDestinationConfiguration/DeadLetterQueueS3/BucketArn",
+      "/properties/IcebergDestinationConfiguration/DeadLetterQueueS3/ErrorOutputPrefix",
+      "/properties/IcebergDestinationConfiguration/DeadLetterQueueS3/ExpectedBucketOwner",
+      "/properties/IcebergDestinationConfiguration/AppendOnly",
+      "/properties/IcebergDestinationConfiguration/SchemaEvolution",
+      "/properties/IcebergDestinationConfiguration/SchemaEvolution/EnableSchemaEvolution",
+      "/properties/IcebergDestinationConfiguration/TableCreation",
+      "/properties/IcebergDestinationConfiguration/TableCreation/EnableTableCreation",
+      "/properties/IcebergDestinationConfiguration/DestinationTableList",
+      "/properties/IcebergDestinationConfiguration/DestinationTableList/*/DestinationDatabaseName",
+      "/properties/IcebergDestinationConfiguration/DestinationTableList/*/DestinationTableName",
+      "/properties/IcebergDestinationConfiguration/DestinationTableList/*/PartitionSpec",
+      "/properties/IcebergDestinationConfiguration/DestinationTableList/*/PartitionSpec/PartitionStrategy",
+      "/properties/IcebergDestinationConfiguration/DestinationTableList/*/PartitionSpec/SourceList",
+      "/properties/IcebergDestinationConfiguration/DestinationTableList/*/PartitionSpec/SourceList/*/SourceName",
+      "/properties/IcebergDestinationConfiguration/CompressionType",
+      "/properties/S3DestinationConfiguration/ServiceExecutionRoleArn",
+      "/properties/S3DestinationConfiguration/DeadLetterQueueS3",
+      "/properties/S3DestinationConfiguration/DeadLetterQueueS3/BucketArn",
+      "/properties/S3DestinationConfiguration/DeadLetterQueueS3/ErrorOutputPrefix",
+      "/properties/S3DestinationConfiguration/DeadLetterQueueS3/ExpectedBucketOwner",
+      "/properties/S3DestinationConfiguration/Storage",
+      "/properties/S3DestinationConfiguration/Storage/BucketArn",
+      "/properties/S3DestinationConfiguration/Storage/OutputPrefix",
+      "/properties/S3DestinationConfiguration/Storage/OutputKeyTemplate",
+      "/properties/S3DestinationConfiguration/Storage/StorageClass",
+      "/properties/S3DestinationConfiguration/Storage/CompressionType",
+      "/properties/S3DestinationConfiguration/Storage/ExpectedBucketOwner"
+    ],
+    "definitions": {
+      "Catalog": {
+        "additionalProperties": false,
+        "description": "Catalog configuration of the destination",
+        "properties": {
+          "CatalogArn": {
+            "description": "The ARN of the catalog",
+            "pattern": "^arn:[\\w-]+:glue:[\\w-]+:\\d+:catalog.*\\Z",
+            "type": "string"
+          },
+          "WarehouseLocation": {
+            "description": "The warehouse location",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ChannelLoggingInfo": {
+        "additionalProperties": false,
+        "description": "Log configuration details for Channel",
+        "properties": {
+          "CloudWatchLogs": {
+            "$ref": "#/definitions/CloudWatchLogsLogDestination"
+          },
+          "Firehose": {
+            "$ref": "#/definitions/FirehoseLogDestination"
+          },
+          "S3": {
+            "$ref": "#/definitions/S3LogDestination"
+          }
+        },
+        "type": "object"
+      },
+      "ChannelName": {
+        "description": "Name of the channel",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9._-]+$",
+        "type": "string"
+      },
+      "ChannelStateInfo": {
+        "additionalProperties": false,
+        "description": "Includes information about the channel state",
+        "properties": {
+          "Code": {
+            "description": "Code for channel state",
+            "type": "string"
+          },
+          "Message": {
+            "description": "Message for channel state",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ChannelStatus": {
+        "description": "Status of a channel resource",
+        "enum": [
+          "CREATING",
+          "ACTIVE",
+          "UPDATING",
+          "DELETING",
+          "FAILED",
+          "SUSPENDING",
+          "SUSPENDED"
+        ],
+        "type": "string"
+      },
+      "CloudWatchLogsLogDestination": {
+        "additionalProperties": false,
+        "description": "CloudWatch Logs log destination details",
+        "properties": {
+          "Enabled": {
+            "description": "Whether CloudWatch Logs logging is enabled",
+            "type": "boolean"
+          },
+          "LogGroup": {
+            "description": "The CloudWatch log group for log delivery",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Enabled"
+        ],
+        "type": "object"
+      },
+      "DeadLetterQueueS3": {
+        "additionalProperties": false,
+        "description": "Dead letter queue S3 configuration of the destination",
+        "properties": {
+          "BucketArn": {
+            "description": "The ARN of the S3 bucket",
+            "pattern": "^arn:[\\w-]+:s3:::.*\\Z",
+            "type": "string"
+          },
+          "ErrorOutputPrefix": {
+            "description": "The error output prefix",
+            "type": "string"
+          },
+          "ExpectedBucketOwner": {
+            "description": "Optional 12-digit AWS account ID expected to own the dead-letter S3 bucket",
+            "type": "string"
+          }
+        },
+        "required": [
+          "BucketArn",
+          "ErrorOutputPrefix"
+        ],
+        "type": "object"
+      },
+      "DestinationTable": {
+        "additionalProperties": false,
+        "description": "Destination table configuration",
+        "properties": {
+          "DestinationDatabaseName": {
+            "description": "The destination database name",
+            "type": "string"
+          },
+          "DestinationTableName": {
+            "description": "The destination table name",
+            "type": "string"
+          },
+          "PartitionSpec": {
+            "$ref": "#/definitions/PartitionSpec"
+          }
+        },
+        "required": [
+          "DestinationDatabaseName",
+          "DestinationTableName"
+        ],
+        "type": "object"
+      },
+      "EncryptionConfiguration": {
+        "additionalProperties": false,
+        "description": "Encryption configuration",
+        "properties": {
+          "KmsKeyArn": {
+            "description": "The ARN of the KMS key for encryption",
+            "pattern": "^arn:[\\w-]+:kms:[\\w-]+:\\d+:key.*\\Z",
+            "type": "string"
+          }
+        },
+        "required": [
+          "KmsKeyArn"
+        ],
+        "type": "object"
+      },
+      "FirehoseLogDestination": {
+        "additionalProperties": false,
+        "description": "Firehose log destination details",
+        "properties": {
+          "DeliveryStream": {
+            "description": "The Firehose delivery stream for log delivery",
+            "type": "string"
+          },
+          "Enabled": {
+            "description": "Whether Firehose logging is enabled",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "Enabled"
+        ],
+        "type": "object"
+      },
+      "IcebergCompressionType": {
+        "description": "Compression codec for Iceberg table data files. Defaults to ZSTD.",
+        "enum": [
+          "ZSTD",
+          "SNAPPY"
+        ],
+        "type": "string"
+      },
+      "IcebergDestinationConfiguration": {
+        "additionalProperties": false,
+        "description": "Iceberg destination configuration",
+        "properties": {
+          "AppendOnly": {
+            "default": true,
+            "description": "Append only mode",
+            "type": "boolean"
+          },
+          "Catalog": {
+            "$ref": "#/definitions/Catalog"
+          },
+          "CompressionType": {
+            "$ref": "#/definitions/IcebergCompressionType"
+          },
+          "DataFreshnessInSeconds": {
+            "description": "Data freshness in seconds",
+            "maximum": 900,
+            "minimum": 60,
+            "type": "integer"
+          },
+          "DeadLetterQueueS3": {
+            "$ref": "#/definitions/DeadLetterQueueS3"
+          },
+          "DestinationTableList": {
+            "description": "List of destination tables",
+            "items": {
+              "$ref": "#/definitions/DestinationTable"
+            },
+            "maxItems": 1,
+            "minItems": 1,
+            "type": "array"
+          },
+          "SchemaEvolution": {
+            "$ref": "#/definitions/SchemaEvolution"
+          },
+          "ServiceExecutionRoleArn": {
+            "description": "The Amazon Resource Name (ARN) of an IAM role used by MSK to access the table",
+            "pattern": "^arn:[\\w-]+:iam::[\\w-]+:role.*\\Z",
+            "type": "string"
+          },
+          "TableCreation": {
+            "$ref": "#/definitions/TableCreation"
+          }
+        },
+        "required": [
+          "ServiceExecutionRoleArn",
+          "DeadLetterQueueS3",
+          "AppendOnly",
+          "SchemaEvolution",
+          "TableCreation",
+          "DestinationTableList"
+        ],
+        "type": "object"
+      },
+      "PartitionSource": {
+        "additionalProperties": false,
+        "description": "Partition source configuration",
+        "properties": {
+          "SourceName": {
+            "description": "Source name",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "PartitionSpec": {
+        "additionalProperties": false,
+        "description": "Partition specification",
+        "properties": {
+          "PartitionStrategy": {
+            "$ref": "#/definitions/PartitionStrategy"
+          },
+          "SourceList": {
+            "description": "Source list",
+            "items": {
+              "$ref": "#/definitions/PartitionSource"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "PartitionStrategy"
+        ],
+        "type": "object"
+      },
+      "PartitionStrategy": {
+        "description": "Partition strategy for MSK channel",
+        "enum": [
+          "TIME_HOUR"
+        ],
+        "type": "string"
+      },
+      "RecordConverter": {
+        "additionalProperties": false,
+        "description": "Record converter configuration for a topic",
+        "properties": {
+          "ValueConverter": {
+            "$ref": "#/definitions/ValueConverter"
+          }
+        },
+        "required": [
+          "ValueConverter"
+        ],
+        "type": "object"
+      },
+      "RecordSchema": {
+        "additionalProperties": false,
+        "description": "Record schema configuration for a topic",
+        "properties": {
+          "GsrArn": {
+            "description": "ARN of Glue Schema Registry resource used for table schema",
+            "type": "string"
+          }
+        },
+        "required": [
+          "GsrArn"
+        ],
+        "type": "object"
+      },
+      "S3CompressionType": {
+        "description": "S3 compression type",
+        "enum": [
+          "NONE",
+          "GZIP",
+          "ZSTD"
+        ],
+        "type": "string"
+      },
+      "S3DestinationConfiguration": {
+        "additionalProperties": false,
+        "description": "S3 destination configuration",
+        "properties": {
+          "DataFreshnessInSeconds": {
+            "description": "Data freshness in seconds",
+            "maximum": 900,
+            "minimum": 60,
+            "type": "integer"
+          },
+          "DeadLetterQueueS3": {
+            "$ref": "#/definitions/DeadLetterQueueS3"
+          },
+          "ServiceExecutionRoleArn": {
+            "description": "The Amazon Resource Name (ARN) of an IAM role used by MSK to access S3",
+            "pattern": "^arn:[\\w-]+:iam::[\\w-]+:role.*\\Z",
+            "type": "string"
+          },
+          "Storage": {
+            "$ref": "#/definitions/S3Storage"
+          }
+        },
+        "required": [
+          "DeadLetterQueueS3",
+          "ServiceExecutionRoleArn",
+          "Storage"
+        ],
+        "type": "object"
+      },
+      "S3LogDestination": {
+        "additionalProperties": false,
+        "description": "S3 log destination details",
+        "properties": {
+          "Bucket": {
+            "description": "The name of the S3 bucket for log delivery",
+            "type": "string"
+          },
+          "Enabled": {
+            "description": "Whether S3 logging is enabled",
+            "type": "boolean"
+          },
+          "Prefix": {
+            "description": "The S3 prefix for log delivery",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Enabled"
+        ],
+        "type": "object"
+      },
+      "S3Storage": {
+        "additionalProperties": false,
+        "description": "S3 storage configuration",
+        "properties": {
+          "BucketArn": {
+            "description": "ARN of the S3 bucket",
+            "pattern": "^arn:[\\w-]+:s3:::.*\\Z",
+            "type": "string"
+          },
+          "CompressionType": {
+            "$ref": "#/definitions/S3CompressionType"
+          },
+          "ExpectedBucketOwner": {
+            "description": "Optional 12-digit AWS account ID expected to own the S3 bucket",
+            "type": "string"
+          },
+          "OutputKeyTemplate": {
+            "description": "Template for S3 key for output objects, used for partitioning",
+            "type": "string"
+          },
+          "OutputPrefix": {
+            "description": "Optional prefix for output objects",
+            "type": "string"
+          },
+          "StorageClass": {
+            "$ref": "#/definitions/S3StorageClass"
+          }
+        },
+        "required": [
+          "BucketArn",
+          "StorageClass",
+          "CompressionType"
+        ],
+        "type": "object"
+      },
+      "S3StorageClass": {
+        "description": "S3 storage class",
+        "enum": [
+          "STANDARD",
+          "INTELLIGENT_TIERING",
+          "GLACIER_IR"
+        ],
+        "type": "string"
+      },
+      "SchemaEvolution": {
+        "additionalProperties": false,
+        "description": "Schema evolution configuration of the destination",
+        "properties": {
+          "EnableSchemaEvolution": {
+            "default": false,
+            "description": "Whether schema evolution is enabled",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "EnableSchemaEvolution"
+        ],
+        "type": "object"
+      },
+      "TableCreation": {
+        "additionalProperties": false,
+        "description": "Table creation configuration of the destination",
+        "properties": {
+          "EnableTableCreation": {
+            "default": true,
+            "description": "Whether table creation is enabled",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "EnableTableCreation"
+        ],
+        "type": "object"
+      },
+      "Tags": {
+        "additionalProperties": false,
+        "description": "Tags attached to the channel",
+        "patternProperties": {
+          "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "TopicConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration of topic in a channel",
+        "properties": {
+          "RecordConverter": {
+            "$ref": "#/definitions/RecordConverter"
+          },
+          "RecordSchema": {
+            "$ref": "#/definitions/RecordSchema"
+          },
+          "TopicArn": {
+            "description": "The Amazon Resource Name (ARN) that uniquely identifies the topic",
+            "pattern": "^arn:[\\w-]+:kafka:[\\w-]+:\\d+:topic.*\\Z",
+            "type": "string"
+          }
+        },
+        "required": [
+          "TopicArn",
+          "RecordConverter"
+        ],
+        "type": "object"
+      },
+      "ValueConverter": {
+        "description": "Value converter for topic data",
+        "enum": [
+          "BYTE_ARRAY",
+          "JSON",
+          "JSON_SCHEMA_GSR",
+          "STRING"
+        ],
+        "type": "string"
+      }
+    },
+    "description": "Resource Type definition for AWS::MSK::Channel",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "kafka:CreateChannel",
+          "kafka:DescribeChannel",
+          "kafka:TagResource",
+          "dynamodb:DescribeTable",
+          "dynamodb:PutItem",
+          "dynamodb:TagResource",
+          "stepfunctions:DescribeStateMachine",
+          "stepfunctions:StartExecution",
+          "stepfunctions:TagResource",
+          "iam:PassRole",
+          "kms:DescribeKey",
+          "glue:CreateTable",
+          "glue:GetTable",
+          "glue:GetDatabase",
+          "s3:GetBucketLocation",
+          "s3:GetBucketPolicy",
+          "s3:PutBucketPolicy",
+          "s3:ListBucket",
+          "s3:PutObject",
+          "s3:GetObject",
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents",
+          "logs:DescribeLogGroups",
+          "logs:CreateLogDelivery",
+          "logs:GetLogDelivery",
+          "logs:UpdateLogDelivery",
+          "logs:ListLogDeliveries",
+          "logs:PutResourcePolicy",
+          "logs:DescribeResourcePolicies",
+          "firehose:DescribeDeliveryStream",
+          "firehose:PutRecord",
+          "firehose:PutRecordBatch",
+          "firehose:TagDeliveryStream",
+          "iam:CreateServiceLinkedRole",
+          "iam:GetRole",
+          "iam:AttachRolePolicy",
+          "iam:PutRolePolicy"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "kafka:DeleteChannel",
+          "kafka:DescribeChannel",
+          "dynamodb:DescribeTable",
+          "stepfunctions:DescribeStateMachine",
+          "stepfunctions:StopExecution",
+          "logs:ListLogDeliveries",
+          "logs:DeleteLogDelivery",
+          "kms:DescribeKey"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "kafka:ListChannels",
+          "kms:DescribeKey"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "kafka:DescribeChannel",
+          "kafka:ListTagsForResource",
+          "kms:DescribeKey"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "kafka:UpdateChannel",
+          "kafka:DescribeChannel",
+          "kafka:TagResource",
+          "kafka:UntagResource",
+          "kms:DescribeKey"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ChannelArn"
+    ],
+    "properties": {
+      "ChannelArn": {
+        "description": "The Amazon Resource Name (ARN) that uniquely identifies the channel",
+        "type": "string"
+      },
+      "ChannelName": {
+        "$ref": "#/definitions/ChannelName"
+      },
+      "ClusterArn": {
+        "description": "The Amazon Resource Name (ARN) of the cluster",
+        "pattern": "^arn:[\\w-]+:kafka:[\\w-]+:\\d+:cluster.*\\Z",
+        "type": "string"
+      },
+      "EncryptionConfiguration": {
+        "$ref": "#/definitions/EncryptionConfiguration"
+      },
+      "IcebergDestinationConfiguration": {
+        "$ref": "#/definitions/IcebergDestinationConfiguration"
+      },
+      "LoggingInfo": {
+        "$ref": "#/definitions/ChannelLoggingInfo"
+      },
+      "S3DestinationConfiguration": {
+        "$ref": "#/definitions/S3DestinationConfiguration"
+      },
+      "StateInfo": {
+        "$ref": "#/definitions/ChannelStateInfo"
+      },
+      "Status": {
+        "$ref": "#/definitions/ChannelStatus"
+      },
+      "Tags": {
+        "$ref": "#/definitions/Tags"
+      },
+      "TopicConfigurationList": {
+        "description": "Topic configuration",
+        "items": {
+          "$ref": "#/definitions/TopicConfiguration"
+        },
+        "maxItems": 1,
+        "minItems": 1,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ChannelArn",
+      "/properties/Status",
+      "/properties/StateInfo"
+    ],
+    "required": [
+      "ChannelName",
+      "TopicConfigurationList"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "kafka:TagResource",
+        "kafka:UntagResource",
+        "kafka:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::MSK::Channel",
+    "writeOnlyProperties": [
+      "/properties/ClusterArn"
+    ]
+  }
+}

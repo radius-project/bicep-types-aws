@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Wisdom-AIPrompt",
   "type": "AWS::Wisdom::AIPrompt",
-  "time": "2025-01-02T17:38:38.701Z",
+  "time": "2026-10-20T22:25:44.146Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -13,7 +13,6 @@
     "createOnlyProperties": [
       "/properties/ApiFormat",
       "/properties/AssistantId",
-      "/properties/ModelId",
       "/properties/Name",
       "/properties/Tags",
       "/properties/TemplateType",
@@ -23,7 +22,9 @@
       "AIPromptAPIFormat": {
         "enum": [
           "ANTHROPIC_CLAUDE_MESSAGES",
-          "ANTHROPIC_CLAUDE_TEXT_COMPLETIONS"
+          "ANTHROPIC_CLAUDE_TEXT_COMPLETIONS",
+          "MESSAGES",
+          "TEXT_COMPLETIONS"
         ],
         "type": "string"
       },
@@ -57,7 +58,14 @@
           "INTENT_LABELING_GENERATION",
           "QUERY_REFORMULATION",
           "SELF_SERVICE_PRE_PROCESSING",
-          "SELF_SERVICE_ANSWER_GENERATION"
+          "SELF_SERVICE_ANSWER_GENERATION",
+          "EMAIL_RESPONSE",
+          "EMAIL_OVERVIEW",
+          "EMAIL_GENERATIVE_ANSWER",
+          "EMAIL_QUERY_REFORMULATION",
+          "ORCHESTRATION",
+          "NOTE_TAKING",
+          "CASE_SUMMARIZATION"
         ],
         "type": "string"
       },
@@ -132,7 +140,7 @@
     ],
     "properties": {
       "AIPromptArn": {
-        "pattern": "^arn:[a-z-]*?:wisdom:[a-z0-9-]*?:[0-9]{12}:[a-z-]*?/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}(?:/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}){0,2}$",
+        "pattern": "^arn:[a-z-]*?:wisdom:[a-z0-9-]*?:[0-9]{12}:[a-z-]*?/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}(?:/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}){0,2}(:[A-Z0-9_$]+){0,1}$",
         "type": "string"
       },
       "AIPromptId": {

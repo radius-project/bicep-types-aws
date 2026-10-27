@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-GreengrassV2-ComponentVersion",
   "type": "AWS::GreengrassV2::ComponentVersion",
-  "time": "2024-10-30T15:26:51.889Z",
+  "time": "2026-09-29T19:52:53.684Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -260,7 +260,8 @@
       },
       "delete": {
         "permissions": [
-          "greengrass:DeleteComponent"
+          "greengrass:DeleteComponent",
+          "greengrass:DescribeComponent"
         ]
       },
       "list": {
@@ -331,7 +332,12 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-greengrassv2",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "greengrass:TagResource",
+        "greengrass:UntagResource",
+        "greengrass:ListTagsForResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

@@ -1,0 +1,182 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoTSecureTunneling-Tunnel",
+  "type": "AWS::IoTSecureTunneling::Tunnel",
+  "time": "2026-10-21T23:31:28.13Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/TunnelId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Description",
+      "/properties/DestinationConfig",
+      "/properties/TimeoutConfig"
+    ],
+    "definitions": {
+      "DestinationConfig": {
+        "additionalProperties": false,
+        "description": "The destination configuration.",
+        "properties": {
+          "Services": {
+            "description": "A list of service names that identify the target application.",
+            "items": {
+              "maxLength": 128,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9:_-]+$",
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "ThingName": {
+            "description": "The name of the IoT thing to which you want to connect.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9:_-]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Services"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "TimeoutConfig": {
+        "additionalProperties": false,
+        "description": "Tunnel timeout configuration.",
+        "properties": {
+          "MaxLifetimeTimeoutMinutes": {
+            "description": "The maximum amount of time (in minutes) a tunnel can remain open.",
+            "maximum": 720,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "A connection between a source computer and a destination device using AWS IoT Secure Tunneling.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "iot:OpenTunnel",
+          "iot:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "iot:CloseTunnel",
+          "iot:DescribeTunnel"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "iot:ListTunnels"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "iot:DescribeTunnel",
+          "iot:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "iot:DescribeTunnel",
+          "iot:TagResource",
+          "iot:UntagResource",
+          "iot:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/TunnelArn"
+    ],
+    "properties": {
+      "Description": {
+        "description": "A short text description of the tunnel.",
+        "pattern": "^[^\\p{C}]{1,2048}$",
+        "type": "string"
+      },
+      "DestinationConfig": {
+        "$ref": "#/definitions/DestinationConfig",
+        "description": "The destination configuration for the tunnel."
+      },
+      "Status": {
+        "description": "The status of the tunnel. Valid values are OPEN and CLOSED.",
+        "enum": [
+          "OPEN",
+          "CLOSED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A collection of tag metadata.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "TimeoutConfig": {
+        "$ref": "#/definitions/TimeoutConfig",
+        "description": "Timeout configuration for the tunnel."
+      },
+      "TunnelArn": {
+        "description": "The Amazon Resource Name (ARN) of the tunnel.",
+        "maxLength": 1600,
+        "minLength": 1,
+        "type": "string"
+      },
+      "TunnelId": {
+        "description": "A unique alpha-numeric tunnel ID.",
+        "pattern": "^[a-zA-Z0-9_\\-+=:]{1,128}$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/TunnelArn",
+      "/properties/TunnelId",
+      "/properties/Status"
+    ],
+    "required": [],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "iot:TagResource",
+        "iot:UntagResource",
+        "iot:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::IoTSecureTunneling::Tunnel"
+  }
+}

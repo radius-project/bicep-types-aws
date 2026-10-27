@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-WorkSpaces-WorkspacesPool",
   "type": "AWS::WorkSpaces::WorkspacesPool",
-  "time": "2024-12-11T23:43:09.087Z",
+  "time": "2026-10-20T22:36:23.066Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -44,6 +44,13 @@
           "DesiredUserSessions"
         ],
         "type": "object"
+      },
+      "RunningMode": {
+        "enum": [
+          "ALWAYS_ON",
+          "AUTO_STOP"
+        ],
+        "type": "string"
       },
       "Tag": {
         "additionalProperties": false,
@@ -94,28 +101,36 @@
       "create": {
         "permissions": [
           "workspaces:CreateWorkspacesPool",
-          "workspaces:DescribeWorkspacesPools"
+          "workspaces:DescribeWorkspacesPools",
+          "workspaces:CreateTags"
         ]
       },
       "delete": {
         "permissions": [
           "workspaces:DescribeWorkspacesPools",
-          "workspaces:TerminateWorkspacesPool"
+          "workspaces:TerminateWorkspacesPool",
+          "workspaces:DeleteTags"
         ]
       },
       "list": {
         "permissions": [
-          "workspaces:DescribeWorkspacesPools"
+          "workspaces:DescribeWorkspacesPools",
+          "workspaces:DescribeTags"
         ]
       },
       "read": {
         "permissions": [
-          "workspaces:DescribeWorkspacesPools"
+          "workspaces:DescribeWorkspacesPools",
+          "workspaces:DescribeTags"
         ]
       },
       "update": {
         "permissions": [
-          "workspaces:UpdateWorkspacesPool"
+          "workspaces:UpdateWorkspacesPool",
+          "workspaces:CreateTags",
+          "workspaces:DeleteTags",
+          "workspaces:DescribeWorkspacesPools",
+          "workspaces:DescribeTags"
         ]
       }
     },
@@ -160,6 +175,9 @@
         "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$",
         "type": "string"
       },
+      "RunningMode": {
+        "$ref": "#/definitions/RunningMode"
+      },
       "Tags": {
         "insertionOrder": false,
         "items": {
@@ -185,9 +203,14 @@
     ],
     "tagging": {
       "cloudFormationSystemTags": false,
+      "permissions": [
+        "workspaces:CreateTags",
+        "workspaces:DescribeTags",
+        "workspaces:DeleteTags"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
-      "tagUpdatable": false,
+      "tagUpdatable": true,
       "taggable": true
     },
     "typeName": "AWS::WorkSpaces::WorkspacesPool"

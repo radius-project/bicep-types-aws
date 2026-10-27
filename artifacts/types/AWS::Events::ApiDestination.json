@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Events-ApiDestination",
   "type": "AWS::Events::ApiDestination",
-  "time": "2024-11-24T07:41:32.57Z",
+  "time": "2025-06-26T15:24:06.38Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -47,6 +47,11 @@
         "pattern": "^arn:aws([a-z]|\\-)*:events:([a-z]|\\d|\\-)*:([0-9]{12})?:api-destination/[\\.\\-_A-Za-z0-9]+/[\\-A-Za-z0-9]+$",
         "type": "string"
       },
+      "ArnForPolicy": {
+        "description": "The arn of the api destination to be used in IAM policies.",
+        "pattern": "^arn:aws([a-z]|\\-)*:events:([a-z]|\\d|\\-)*:([0-9]{12})?:api-destination/[\\.\\-_A-Za-z0-9]+$",
+        "type": "string"
+      },
       "ConnectionArn": {
         "description": "The arn of the connection.",
         "pattern": "^arn:aws([a-z]|\\-)*:events:([a-z]|\\d|\\-)*:([0-9]{12})?:connection/[\\.\\-_A-Za-z0-9]+/[\\-A-Za-z0-9]+$",
@@ -86,7 +91,8 @@
       }
     },
     "readOnlyProperties": [
-      "/properties/Arn"
+      "/properties/Arn",
+      "/properties/ArnForPolicy"
     ],
     "required": [
       "ConnectionArn",

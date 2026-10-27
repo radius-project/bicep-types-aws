@@ -1,0 +1,145 @@
+[
+  {
+    "$type": "ObjectType",
+    "name": "BucketName",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BucketOwner",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KMSKeyArn",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RecordingDestinations",
+    "properties": {
+      "S3Buckets": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3Bucket",
+    "properties": {
+      "BucketName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "BucketOwner": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3Buckets",
+    "properties": {}
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SSMGuiConnect/PreferencesProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Preferences_ConnectionRecordingPreferences",
+    "properties": {
+      "KMSKeyArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "RecordingDestinations": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SSMGuiConnect/PreferencesProperties",
+    "properties": {
+      "AccountId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 18,
+        "description": "The AWS Account Id that the preference is associated with, used as the unique identifier for this resource."
+      },
+      "ConnectionRecordingPreferences": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The set of preferences used for recording RDP connections in the requesting AWS account and AWS Region. This includes details such as which S3 bucket recordings are stored in."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SSMGuiConnect/Preferences",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SSMGuiConnect/Preferences@default",
+    "body": {
+      "$ref": "#/12"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  }
+]

@@ -1,13 +1,14 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Backup-LogicallyAirGappedBackupVault",
   "type": "AWS::Backup::LogicallyAirGappedBackupVault",
-  "time": "2025-01-23T17:50:39.868Z",
+  "time": "2026-10-21T23:11:41.202Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/BackupVaultName",
       "/properties/MinRetentionDays",
-      "/properties/MaxRetentionDays"
+      "/properties/MaxRetentionDays",
+      "/properties/EncryptionKeyArn"
     ],
     "definitions": {
       "BackupVaultNamePattern": {
@@ -41,12 +42,16 @@
       "create": {
         "permissions": [
           "backup:TagResource",
+          "backup:AssociateBackupVaultMpaApprovalTeam",
           "backup:CreateLogicallyAirGappedBackupVault",
           "backup:PutBackupVaultAccessPolicy",
           "backup:PutBackupVaultNotifications",
           "backup-storage:Mount",
           "backup-storage:MountCapsule",
-          "backup:DescribeBackupVault"
+          "backup:DescribeBackupVault",
+          "mpa:GetApprovalTeam",
+          "kms:DescribeKey",
+          "kms:CreateGrant"
         ]
       },
       "delete": {
@@ -69,6 +74,7 @@
       },
       "update": {
         "permissions": [
+          "backup:AssociateBackupVaultMpaApprovalTeam",
           "backup:DescribeBackupVault",
           "backup:DeleteBackupVaultAccessPolicy",
           "backup:DeleteBackupVaultNotifications",
@@ -79,7 +85,8 @@
           "backup:UntagResource",
           "backup:PutBackupVaultAccessPolicy",
           "backup:PutBackupVaultNotifications",
-          "backup:PutBackupVaultLockConfiguration"
+          "backup:PutBackupVaultLockConfiguration",
+          "mpa:GetApprovalTeam"
         ]
       }
     },
@@ -117,6 +124,9 @@
       "MinRetentionDays": {
         "type": "integer"
       },
+      "MpaApprovalTeamArn": {
+        "type": "string"
+      },
       "Notifications": {
         "$ref": "#/definitions/NotificationObjectType"
       },
@@ -129,7 +139,6 @@
     },
     "readOnlyProperties": [
       "/properties/BackupVaultArn",
-      "/properties/EncryptionKeyArn",
       "/properties/VaultState",
       "/properties/VaultType"
     ],

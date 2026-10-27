@@ -1,0 +1,154 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Comprehend-DocumentClassifierEndpoint",
+  "type": "AWS::Comprehend::DocumentClassifierEndpoint",
+  "time": "2026-10-21T22:27:24.345Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/EndpointName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/EndpointName"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The initial part of a key-value pair that forms a tag associated with a given resource.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The second part of a key-value pair that forms a tag associated with a given resource.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "An Amazon Comprehend endpoint that hosts a custom document classification model for real-time inference.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "comprehend:CreateEndpoint",
+          "comprehend:DescribeEndpoint",
+          "comprehend:TagResource",
+          "comprehend:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "comprehend:DeleteEndpoint",
+          "comprehend:DescribeEndpoint",
+          "comprehend:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "comprehend:ListEndpoints"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "comprehend:DescribeEndpoint",
+          "comprehend:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "comprehend:UpdateEndpoint",
+          "comprehend:DescribeEndpoint",
+          "comprehend:TagResource",
+          "comprehend:UntagResource",
+          "comprehend:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the document classifier endpoint.",
+        "maxLength": 256,
+        "pattern": "^arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document-classifier-endpoint/[a-zA-Z0-9](-*[a-zA-Z0-9])*$",
+        "type": "string"
+      },
+      "CreationTime": {
+        "description": "The creation date and time of the endpoint.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "CurrentInferenceUnits": {
+        "description": "The number of inference units currently used by the model using this endpoint.",
+        "minimum": 1,
+        "type": "integer"
+      },
+      "DesiredInferenceUnits": {
+        "description": "The desired number of inference units to be used by the model. Each inference unit represents throughput of 100 characters per second.",
+        "minimum": 1,
+        "type": "integer"
+      },
+      "EndpointName": {
+        "description": "The name of the endpoint. The name must be unique within the AWS Region and account.",
+        "maxLength": 40,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9])*$",
+        "type": "string"
+      },
+      "LastModifiedTime": {
+        "description": "The date and time that the endpoint was last modified.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ModelArn": {
+        "description": "The Amazon Resource Name (ARN) of the document classifier model to which the endpoint is attached.",
+        "maxLength": 256,
+        "pattern": "^arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document-classifier/[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags associated with the endpoint being created.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/CurrentInferenceUnits",
+      "/properties/CreationTime",
+      "/properties/LastModifiedTime"
+    ],
+    "required": [
+      "EndpointName",
+      "ModelArn",
+      "DesiredInferenceUnits"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "comprehend:TagResource",
+        "comprehend:UntagResource",
+        "comprehend:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Comprehend::DocumentClassifierEndpoint"
+  }
+}

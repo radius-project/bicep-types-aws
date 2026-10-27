@@ -203,11 +203,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Athena/CapacityReservation@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/17"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -257,12 +257,26 @@
     "$type": "ObjectType",
     "name": "AWS.Athena/DataCatalogProperties",
     "properties": {
+      "ConnectionType": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The type of connection for a FEDERATED data catalog"
+      },
       "Description": {
         "type": {
           "$ref": "#/8"
         },
         "flags": 0,
         "description": "A description of the data catalog to be created. "
+      },
+      "Error": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "Text of the error that occurred during data catalog creation or deletion."
       },
       "Name": {
         "type": {
@@ -278,6 +292,13 @@
         "flags": 0,
         "description": "Specifies the Lambda function or functions to use for creating the data catalog. This is a mapping whose values depend on the catalog type. "
       },
+      "Status": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The status of the creation or deletion of the data catalog. LAMBDA, GLUE, and HIVE data catalog types are created synchronously. Their status is either CREATE_COMPLETE or CREATE_FAILED. The FEDERATED data catalog type is created asynchronously."
+      },
       "Tags": {
         "type": {
           "$ref": "#/24"
@@ -290,7 +311,7 @@
           "$ref": "#/8"
         },
         "flags": 1,
-        "description": "The type of data catalog to create: LAMBDA for a federated catalog, GLUE for AWS Glue Catalog, or HIVE for an external hive metastore. "
+        "description": "The type of data catalog to create: LAMBDA for a federated catalog, GLUE for AWS Glue Catalog, or HIVE for an external hive metastore. FEDERATED is a federated catalog for which Athena creates the connection and the Lambda function for you based on the parameters that you pass."
       }
     }
   },
@@ -324,11 +345,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Athena/DataCatalog@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/26"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "StringLiteralType",
@@ -398,11 +419,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Athena/PreparedStatement@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/30"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -425,6 +446,60 @@
     "$type": "ObjectType",
     "name": "BytesScannedCutoffPerQuery",
     "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Classification",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 16,
+        "description": "The name of the configuration classification."
+      },
+      "Properties": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0,
+        "description": "A set of properties specified within a configuration classification."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CloudWatchLoggingConfiguration",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/70"
+        },
+        "flags": 0,
+        "description": "Enables CloudWatch logging."
+      },
+      "LogGroup": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The name of the log group in Amazon CloudWatch Logs where you want to publish your logs."
+      },
+      "LogStreamNamePrefix": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "Prefix for the CloudWatch log stream name."
+      },
+      "LogTypes": {
+        "type": {
+          "$ref": "#/71"
+        },
+        "flags": 0,
+        "description": "The types of logs that you want to publish to CloudWatch."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -473,6 +548,54 @@
   },
   {
     "$type": "ObjectType",
+    "name": "EngineConfiguration",
+    "properties": {
+      "AdditionalConfigs": {
+        "type": {
+          "$ref": "#/72"
+        },
+        "flags": 4,
+        "description": "Contains additional notebook engine MAP<string, string> parameter mappings in the form of key-value pairs. To specify an Athena notebook that the Jupyter server will download and serve, specify a value for the StartSessionRequest$NotebookVersion field, and then add a key named NotebookId to AdditionalConfigs that has the value of the Athena notebook ID."
+      },
+      "Classifications": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0,
+        "description": "The configuration classifications that can be specified for the engine."
+      },
+      "CoordinatorDpuSize": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 4,
+        "description": "The number of DPUs to use for the coordinator. A coordinator is a special executor that orchestrates processing work and manages other executors in a notebook session. The default is 1."
+      },
+      "DefaultExecutorDpuSize": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 4,
+        "description": "The default number of DPUs to use for executors. An executor is the smallest unit of compute that a notebook session can request from Athena. The default is 1."
+      },
+      "MaxConcurrentDpus": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 4,
+        "description": "The maximum number of DPUs that can run concurrently."
+      },
+      "SparkProperties": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 4,
+        "description": "Specifies custom jar files and Spark properties for use cases like cluster encryption, table formats, and general Spark tuning."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "EngineVersion",
     "properties": {
       "EffectiveEngineVersion": {
@@ -503,6 +626,80 @@
     "$type": "ObjectType",
     "name": "KmsKey",
     "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedLoggingConfiguration",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/70"
+        },
+        "flags": 0,
+        "description": "Enables managed log persistence."
+      },
+      "KmsKey": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The KMS key ARN to encrypt the logs stored in managed log persistence."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedQueryResultsConfiguration",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/70"
+        },
+        "flags": 0
+      },
+      "EncryptionConfiguration": {
+        "type": {
+          "$ref": "#/49"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedStorageEncryptionConfiguration",
+    "properties": {
+      "KmsKey": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MonitoringConfiguration",
+    "properties": {
+      "CloudWatchLoggingConfiguration": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0
+      },
+      "ManagedLoggingConfiguration": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 0
+      },
+      "S3LoggingConfiguration": {
+        "type": {
+          "$ref": "#/63"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -561,7 +758,7 @@
       },
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/39"
         },
         "flags": 0
       },
@@ -591,7 +788,7 @@
       },
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/39"
         },
         "flags": 0
       },
@@ -609,25 +806,25 @@
       },
       "RemoveAclConfiguration": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/70"
         },
         "flags": 0
       },
       "RemoveEncryptionConfiguration": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/70"
         },
         "flags": 0
       },
       "RemoveExpectedBucketOwner": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/70"
         },
         "flags": 0
       },
       "RemoveOutputLocation": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/70"
         },
         "flags": 0
       }
@@ -637,6 +834,33 @@
     "$type": "ObjectType",
     "name": "S3AclOption",
     "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3LoggingConfiguration",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/70"
+        },
+        "flags": 0,
+        "description": "Enables S3 log delivery."
+      },
+      "KmsKey": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The KMS key ARN to encrypt the logs published to the given Amazon S3 destination."
+      },
+      "LogLocation": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The Amazon S3 destination URI for log publishing."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -684,19 +908,25 @@
       },
       "CustomerContentEncryptionConfiguration": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/37"
         },
         "flags": 0
       },
       "EnforceWorkGroupConfiguration": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/70"
+        },
+        "flags": 0
+      },
+      "EngineConfiguration": {
+        "type": {
+          "$ref": "#/42"
         },
         "flags": 0
       },
       "EngineVersion": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/43"
         },
         "flags": 0
       },
@@ -706,21 +936,33 @@
         },
         "flags": 0
       },
+      "ManagedQueryResultsConfiguration": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 0
+      },
+      "MonitoringConfiguration": {
+        "type": {
+          "$ref": "#/50"
+        },
+        "flags": 0
+      },
       "PublishCloudWatchMetricsEnabled": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/70"
         },
         "flags": 0
       },
       "RequesterPaysEnabled": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/70"
         },
         "flags": 0
       },
       "ResultConfiguration": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/60"
         },
         "flags": 0
       }
@@ -744,19 +986,25 @@
       },
       "CustomerContentEncryptionConfiguration": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/37"
         },
         "flags": 0
       },
       "EnforceWorkGroupConfiguration": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/70"
+        },
+        "flags": 0
+      },
+      "EngineConfiguration": {
+        "type": {
+          "$ref": "#/42"
         },
         "flags": 0
       },
       "EngineVersion": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/43"
         },
         "flags": 0
       },
@@ -766,45 +1014,83 @@
         },
         "flags": 0
       },
+      "ManagedQueryResultsConfiguration": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 0
+      },
+      "MonitoringConfiguration": {
+        "type": {
+          "$ref": "#/50"
+        },
+        "flags": 0
+      },
       "PublishCloudWatchMetricsEnabled": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/70"
         },
         "flags": 0
       },
       "RemoveBytesScannedCutoffPerQuery": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/70"
         },
         "flags": 0
       },
       "RemoveCustomerContentEncryptionConfiguration": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/70"
         },
         "flags": 0
       },
       "RequesterPaysEnabled": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/70"
         },
         "flags": 0
       },
       "ResultConfigurationUpdates": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/61"
         },
         "flags": 0
       }
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "WorkGroup_Properties",
+    "properties": {}
+  },
+  {
     "$type": "BooleanType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WorkGroup_LogTypes",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WorkGroup_AdditionalConfigs",
+    "properties": {}
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/57"
+      "$ref": "#/35"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WorkGroup_SparkProperties",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/65"
     }
   },
   {
@@ -814,7 +1100,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/57"
+      "$ref": "#/65"
     }
   },
   {
@@ -844,7 +1130,7 @@
       },
       "RecursiveDeleteOption": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/70"
         },
         "flags": 4,
         "description": "The option to delete the workgroup and its contents even if the workgroup contains any named queries."
@@ -858,21 +1144,21 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/77"
         },
         "flags": 0,
         "description": "One or more tags, separated by commas, that you want to attach to the workgroup as you create it"
       },
       "WorkGroupConfiguration": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/67"
         },
         "flags": 0,
         "description": "The workgroup configuration"
       },
       "WorkGroupConfigurationUpdates": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/68"
         },
         "flags": 4,
         "description": "The workgroup configuration update object"
@@ -899,7 +1185,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/78"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -909,10 +1195,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Athena/WorkGroup@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/66"
+      "$ref": "#/79"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

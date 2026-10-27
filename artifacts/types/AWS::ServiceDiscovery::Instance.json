@@ -1,0 +1,86 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ServiceDiscovery-Instance",
+  "type": "AWS::ServiceDiscovery::Instance",
+  "time": "2026-10-19T16:56:01.113Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/InstanceId",
+      "/properties/ServiceId"
+    ],
+    "description": "Resource Type definition for AWS::ServiceDiscovery::Instance",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "servicediscovery:RegisterInstance",
+          "servicediscovery:GetInstance",
+          "servicediscovery:GetOperation"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "servicediscovery:DeregisterInstance",
+          "servicediscovery:GetInstance",
+          "servicediscovery:GetOperation"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ServiceId": {
+              "$ref": "resource-schema.json#/properties/ServiceId"
+            }
+          },
+          "required": [
+            "ServiceId"
+          ]
+        },
+        "permissions": [
+          "servicediscovery:ListInstances"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "servicediscovery:GetInstance"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "servicediscovery:RegisterInstance",
+          "servicediscovery:GetInstance",
+          "servicediscovery:GetOperation"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ServiceId",
+      "/properties/InstanceId"
+    ],
+    "properties": {
+      "InstanceAttributes": {
+        "description": "A string map that contains information for the service that is specified in ServiceId.",
+        "type": "object"
+      },
+      "InstanceId": {
+        "description": "An identifier that you want to associate with the instance.",
+        "maxLength": 64,
+        "minLength": 1,
+        "type": "string"
+      },
+      "ServiceId": {
+        "description": "The ID or Amazon Resource Name (ARN) of the service that you want to use for settings for the instance.",
+        "maxLength": 255,
+        "minLength": 1,
+        "type": "string"
+      }
+    },
+    "required": [
+      "InstanceAttributes",
+      "ServiceId"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::ServiceDiscovery::Instance"
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-WellArchitected-AgentContext",
+  "type": "AWS::WellArchitected::AgentContext",
+  "time": "2026-10-21T23:34:40.007Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ProfileArn",
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ProfileArn",
+      "/properties/ContextType"
+    ],
+    "definitions": {
+      "ApplicationType": {
+        "description": "Type of the application described by this context. Mirrors the value stored in `Content.applicationType` and is surfaced as a typed read-only attribute by the service for discoverability.",
+        "enum": [
+          "SAS",
+          "DESKTOP_APPLICATION",
+          "OTHER"
+        ],
+        "type": "string"
+      },
+      "ContextType": {
+        "description": "The type of the Agent Context.",
+        "enum": [
+          "APPLICATION"
+        ],
+        "type": "string"
+      },
+      "Criticality": {
+        "description": "Business criticality of the application described by this context. Mirrors the value stored in `Content.criticality` and is surfaced as a typed read-only attribute by the service for discoverability.",
+        "enum": [
+          "MISSION_CRITICAL",
+          "BUSINESS_CRITICAL",
+          "NON_CRITICAL",
+          "TEST_DEVELOPMENT"
+        ],
+        "type": "string"
+      }
+    },
+    "description": "Resource schema for AWS::WellArchitected::AgentContext. An Agent Context provides supplemental application context (free-form content) within an Agent Profile, used to improve the quality of Well-Architected Agent recommendations.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "wellarchitected:CreateAgentContext",
+          "wellarchitected:GetAgentContext"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "wellarchitected:DeleteAgentContext",
+          "wellarchitected:GetAgentContext"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ProfileArn": {
+              "maxLength": 2048,
+              "minLength": 1,
+              "pattern": "^arn:aws([a-z0-9-]+)?:wellarchitected:[a-z0-9-]{6,64}:[0-9]{12}:agent-profile/[a-zA-Z0-9_-]+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "ProfileArn"
+          ]
+        },
+        "permissions": [
+          "wellarchitected:ListAgentContexts"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "wellarchitected:GetAgentContext"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "wellarchitected:UpdateAgentContext",
+          "wellarchitected:GetAgentContext"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "ApplicationType": {
+        "$ref": "#/definitions/ApplicationType"
+      },
+      "Arn": {
+        "description": "The synthetic Amazon Resource Name (ARN) of the Agent Context, composed of the parent profile ARN and the context id.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:aws([a-z0-9-]+)?:wellarchitected:[a-z0-9-]{6,64}:[0-9]{12}:agent-profile/[a-zA-Z0-9_-]+/agent-context/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        "type": "string"
+      },
+      "Content": {
+        "description": "The free-form content of the Agent Context, supplied as an arbitrary JSON object.",
+        "type": "object"
+      },
+      "ContextType": {
+        "$ref": "#/definitions/ContextType"
+      },
+      "CreatedAt": {
+        "description": "The timestamp when the context was created.",
+        "format": "date-time",
+        "maxLength": 64,
+        "minLength": 20,
+        "type": "string"
+      },
+      "CreatedBy": {
+        "description": "The identifier of the system or user that created this context.",
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Criticality": {
+        "$ref": "#/definitions/Criticality"
+      },
+      "Id": {
+        "description": "The service-generated unique identifier of the Agent Context.",
+        "maxLength": 36,
+        "minLength": 36,
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        "type": "string"
+      },
+      "LastModifiedAt": {
+        "description": "The timestamp when the context was last modified.",
+        "format": "date-time",
+        "maxLength": 64,
+        "minLength": 20,
+        "type": "string"
+      },
+      "LastModifiedBy": {
+        "description": "The identifier of the system or user that last modified this context.",
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
+      "ProfileArn": {
+        "description": "The Amazon Resource Name (ARN) of the parent Agent Profile that owns this context. Pass `!Ref` of the parent AWS::WellArchitected::AgentProfile to flow its ARN here.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:aws([a-z0-9-]+)?:wellarchitected:[a-z0-9-]{6,64}:[0-9]{12}:agent-profile/[a-zA-Z0-9_-]+$",
+        "type": "string"
+      },
+      "Title": {
+        "description": "The title of the Agent Context.",
+        "maxLength": 1000,
+        "minLength": 1,
+        "pattern": "^[\\P{C}]+$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Id",
+      "/properties/ApplicationType",
+      "/properties/Criticality",
+      "/properties/CreatedBy",
+      "/properties/CreatedAt",
+      "/properties/LastModifiedBy",
+      "/properties/LastModifiedAt"
+    ],
+    "required": [
+      "ProfileArn",
+      "Title",
+      "ContextType",
+      "Content"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::WellArchitected::AgentContext"
+  }
+}

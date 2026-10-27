@@ -1,0 +1,145 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-PricingPlanManager-Subscription",
+  "type": "AWS::PricingPlanManager::Subscription",
+  "time": "2026-10-19T23:14:13.409Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/PlanFamily"
+    ],
+    "definitions": {
+      "UsageLevel": {
+        "enum": [
+          "DEFAULT",
+          "CF_PREMIUM_L2",
+          "CF_PREMIUM_L3",
+          "CF_PREMIUM_L4",
+          "CF_PREMIUM_L5",
+          "CF_PREMIUM_L6",
+          "CF_PREMIUM_L7"
+        ],
+        "type": "string"
+      }
+    },
+    "description": "Resource type definition for AWS::PricingPlanManager::Subscription. Deleting an activated subscription does not terminate it immediately; it schedules a cancellation that takes effect at the end of the current billing period. Until that date the subscription remains active and billing continues. Deleting a subscription that has not yet been activated (PENDING_APPROVAL status) removes it immediately with no further charges.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "pricingplanmanager:CreateSubscription",
+          "pricingplanmanager:GetSubscription",
+          "pricingplanmanager:ListSubscriptions",
+          "pricingplanmanager:CancelSubscriptionChange",
+          "cloudwatch:GetMetricData",
+          "shield:ListProtections"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "pricingplanmanager:CancelSubscription",
+          "pricingplanmanager:CancelSubscriptionChange",
+          "pricingplanmanager:GetSubscription"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "pricingplanmanager:ListSubscriptions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "pricingplanmanager:GetSubscription"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "pricingplanmanager:UpdateSubscription",
+          "pricingplanmanager:GetSubscription",
+          "pricingplanmanager:CancelSubscriptionChange",
+          "pricingplanmanager:AssociateResourcesToSubscription",
+          "pricingplanmanager:DisassociateResourcesFromSubscription",
+          "cloudwatch:GetMetricData",
+          "shield:ListProtections"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of the subscription.",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The time the subscription was created, in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "CurrentPlanTier": {
+        "description": "The plan tier currently active on the subscription as reported by the API. Populated by the Read handler. Diverges from PlanTier after a non-reversible CloudFormation rollback; surface via drift detection.",
+        "type": "string"
+      },
+      "PlanFamily": {
+        "description": "The name of the pricing plan family.",
+        "enum": [
+          "CloudFront"
+        ],
+        "type": "string"
+      },
+      "PlanTier": {
+        "description": "The tier of the pricing plan. CloudFormation does not change the tier of an existing subscription; a stack update that changes the tier, upgrading or downgrading it, is rejected.",
+        "type": "string"
+      },
+      "ResourceArns": {
+        "description": "The ARNs of resources associated with the subscription.",
+        "insertionOrder": false,
+        "items": {
+          "type": "string"
+        },
+        "maxItems": 10,
+        "minItems": 1,
+        "type": "array"
+      },
+      "Status": {
+        "description": "The status of the subscription. PENDING_APPROVAL means a paid-tier subscription has been created but is not yet active and incurs no charges until it is approved out of band via a separate ApprovePaidSubscription call; CloudFormation never approves it. Free-tier subscriptions are activated immediately and do not use this status. ACTIVE means the subscription is in effect and, for paid tiers, billing has started. SYNC_IN_PROGRESS means a change is being applied. FAILED means provisioning did not complete; see StatusReason.",
+        "enum": [
+          "ACTIVE",
+          "SYNC_IN_PROGRESS",
+          "FAILED",
+          "PENDING_APPROVAL"
+        ],
+        "type": "string"
+      },
+      "StatusReason": {
+        "description": "A human-readable explanation of why the subscription is in its current status. Populated only when Status is FAILED, where it carries the reason the subscription could not be provisioned. Empty for all other statuses.",
+        "type": "string"
+      },
+      "UpdatedAt": {
+        "description": "The time the subscription was last modified, in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "UsageLevel": {
+        "$ref": "#/definitions/UsageLevel"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/CurrentPlanTier",
+      "/properties/Status",
+      "/properties/StatusReason",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "PlanFamily",
+      "PlanTier",
+      "ResourceArns"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-pricingplanmanager",
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::PricingPlanManager::Subscription"
+  }
+}

@@ -1,0 +1,117 @@
+[
+  {
+    "$type": "ObjectType",
+    "name": "DataSourceType",
+    "properties": {
+      "S3GlueDataCatalog": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3GlueDataCatalog",
+    "properties": {
+      "RoleArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The ARN of the IAM role that grants OpenSearch Service permission to access the Glue Data Catalog."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.OpenSearch/DataSourceProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.OpenSearch/DataSourceProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the data source."
+      },
+      "DataSourceType": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 1
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "A description of the data source."
+      },
+      "DomainName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The name of the OpenSearch Service domain."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The name of the data source."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The status of the data source."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.OpenSearch/DataSource",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.OpenSearch/DataSource@default",
+    "body": {
+      "$ref": "#/5"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  }
+]

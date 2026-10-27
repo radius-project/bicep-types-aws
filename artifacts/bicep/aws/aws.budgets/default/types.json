@@ -1,41 +1,17 @@
 [
   {
     "$type": "ObjectType",
-    "name": "ActionThreshold",
+    "name": "AutoAdjustData",
     "properties": {
-      "Type": {
+      "AutoAdjustType": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 1
       },
-      "Value": {
+      "HistoricalOptions": {
         "type": {
-          "$ref": "#/8"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Definition",
-    "properties": {
-      "IamActionDefinition": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0
-      },
-      "ScpActionDefinition": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0
-      },
-      "SsmActionDefinition": {
-        "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 0
       }
@@ -43,31 +19,301 @@
   },
   {
     "$type": "ObjectType",
-    "name": "IamActionDefinition",
+    "name": "BudgetData",
     "properties": {
-      "Groups": {
+      "AutoAdjustData": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/0"
         },
         "flags": 0
       },
-      "PolicyArn": {
+      "BillingViewArn": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
-        "flags": 1
+        "flags": 0
       },
-      "Roles": {
+      "BudgetLimit": {
         "type": {
           "$ref": "#/10"
         },
         "flags": 0
       },
-      "Users": {
+      "BudgetName": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/14"
         },
         "flags": 0
+      },
+      "BudgetType": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
+      },
+      "CostFilters": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
+      "CostTypes": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "FilterExpression": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "Metrics": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0
+      },
+      "PlannedBudgetLimits": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "TimePeriod": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "TimeUnit": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CostCategoryValues",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0
+      },
+      "MatchOptions": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0
+      },
+      "Values": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CostTypes",
+    "properties": {
+      "IncludeCredit": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      },
+      "IncludeDiscount": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      },
+      "IncludeOtherSubscription": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      },
+      "IncludeRecurring": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      },
+      "IncludeRefund": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      },
+      "IncludeSubscription": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      },
+      "IncludeSupport": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      },
+      "IncludeTax": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      },
+      "IncludeUpfront": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      },
+      "UseAmortized": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      },
+      "UseBlended": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Expression",
+    "properties": {
+      "And": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0
+      },
+      "CostCategories": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      },
+      "Dimensions": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "Not": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "Or": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ExpressionDimensionValues",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0
+      },
+      "MatchOptions": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0
+      },
+      "Values": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "HistoricalOptions",
+    "properties": {
+      "BudgetAdjustmentPeriod": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Notification",
+    "properties": {
+      "ComparisonOperator": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
+      },
+      "NotificationType": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
+      },
+      "Threshold": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 1
+      },
+      "ThresholdType": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NotificationWithSubscribers",
+    "properties": {
+      "Notification": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1
+      },
+      "Subscribers": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 1
       }
     }
   },
@@ -77,55 +323,31 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
-        "flags": 1
+        "flags": 0
       }
     }
   },
   {
     "$type": "ObjectType",
-    "name": "ScpActionDefinition",
+    "name": "Spend",
     "properties": {
-      "PolicyId": {
+      "Amount": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/25"
         },
         "flags": 1
       },
-      "TargetIds": {
+      "Unit": {
         "type": {
-          "$ref": "#/12"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SsmActionDefinition",
-    "properties": {
-      "InstanceIds": {
-        "type": {
-          "$ref": "#/13"
-        },
-        "flags": 1
-      },
-      "Region": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1
-      },
-      "Subtype": {
-        "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 1
       }
@@ -137,15 +359,57 @@
     "properties": {
       "Address": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 1
       },
-      "Type": {
+      "SubscriptionType": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TagValues",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0
+      },
+      "MatchOptions": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0
+      },
+      "Values": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TimePeriod",
+    "properties": {
+      "End": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0
+      },
+      "Start": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0
       }
     }
   },
@@ -153,36 +417,341 @@
     "$type": "StringType"
   },
   {
+    "$type": "ObjectType",
+    "name": "Budget_CostFilters",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Budget_PlannedBudgetLimits",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
+    }
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
+    }
+  },
+  {
     "$type": "IntegerType"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/7"
+      "$ref": "#/11"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/7"
+      "$ref": "#/14"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/7"
+      "$ref": "#/14"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Budgets/BudgetProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/7"
+      "$ref": "#/9"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Budgets/BudgetProperties",
+    "properties": {
+      "Budget": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 18
+      },
+      "NotificationsWithSubscribers": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 0
+      },
+      "ResourceTags": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Budgets/Budget",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Budgets/Budget@default",
+    "body": {
+      "$ref": "#/33"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ActionThreshold",
+    "properties": {
+      "Type": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Definition",
+    "properties": {
+      "IamActionDefinition": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 0
+      },
+      "ScpActionDefinition": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 0
+      },
+      "SsmActionDefinition": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IamActionDefinition",
+    "properties": {
+      "Groups": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0
+      },
+      "PolicyArn": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
+      },
+      "Roles": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      },
+      "Users": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResourceTag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ScpActionDefinition",
+    "properties": {
+      "PolicyId": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
+      },
+      "TargetIds": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SsmActionDefinition",
+    "properties": {
+      "InstanceIds": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 1
+      },
+      "Region": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
+      },
+      "Subtype": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Subscriber",
+    "properties": {
+      "Address": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
+      }
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/7"
+      "$ref": "#/14"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
     }
   },
   {
@@ -192,13 +761,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/38"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/41"
     }
   },
   {
@@ -207,61 +776,61 @@
     "properties": {
       "ActionId": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 18
       },
       "ActionThreshold": {
         "type": {
-          "$ref": "#/0"
+          "$ref": "#/35"
         },
         "flags": 1
       },
       "ActionType": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 1
       },
       "ApprovalModel": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 0
       },
       "BudgetName": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 17
       },
       "Definition": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/36"
         },
         "flags": 1
       },
       "ExecutionRoleArn": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 1
       },
       "NotificationType": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 1
       },
       "ResourceTags": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/48"
         },
         "flags": 0
       },
       "Subscribers": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/49"
         },
         "flags": 1
       }
@@ -273,21 +842,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/14"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/50"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -297,10 +866,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Budgets/BudgetsAction@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/18"
+      "$ref": "#/51"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

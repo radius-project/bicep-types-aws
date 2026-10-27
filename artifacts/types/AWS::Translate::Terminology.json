@@ -1,0 +1,254 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Translate-Terminology",
+  "type": "AWS::Translate::Terminology",
+  "time": "2026-10-21T22:16:25.347Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Name"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name",
+      "/properties/EncryptionKey"
+    ],
+    "description": "A custom terminology resource for Amazon Translate that enables customized translations.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "translate:ImportTerminology",
+          "translate:GetTerminology",
+          "translate:TagResource",
+          "translate:ListTagsForResource",
+          "kms:Decrypt",
+          "kms:DescribeKey",
+          "kms:CreateGrant"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "translate:DeleteTerminology",
+          "translate:GetTerminology"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "translate:ListTerminologies"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "translate:GetTerminology",
+          "translate:ListTagsForResource",
+          "kms:Decrypt",
+          "kms:DescribeKey"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "translate:ImportTerminology",
+          "translate:GetTerminology",
+          "translate:ListTagsForResource",
+          "translate:TagResource",
+          "translate:UntagResource",
+          "kms:Decrypt",
+          "kms:DescribeKey",
+          "kms:CreateGrant"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the custom terminology.",
+        "maxLength": 512,
+        "minLength": 1,
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The time the terminology was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description of the custom terminology.",
+        "maxLength": 256,
+        "minLength": 0,
+        "type": "string"
+      },
+      "Directionality": {
+        "description": "The directionality of the terminology.",
+        "enum": [
+          "UNI",
+          "MULTI"
+        ],
+        "type": "string"
+      },
+      "EncryptionKey": {
+        "additionalProperties": false,
+        "description": "The encryption key for the custom terminology.",
+        "properties": {
+          "Id": {
+            "description": "The Amazon Resource Name (ARN) of the encryption key.",
+            "maxLength": 400,
+            "minLength": 1,
+            "pattern": "^(arn:aws((-us-gov)|(-iso)|(-iso-b)|(-cn))?:kms:)?([a-z]{2}-[a-z]+(-[a-z]+)?-\\d:)?(\\d{12}:)?(((key/)?[a-zA-Z0-9-_]+)|(alias/[a-zA-Z0-9:/_-]+))$",
+            "type": "string"
+          },
+          "Type": {
+            "description": "The type of encryption key.",
+            "enum": [
+              "KMS"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Type",
+          "Id"
+        ],
+        "type": "object"
+      },
+      "Format": {
+        "description": "The format of the terminology data.",
+        "enum": [
+          "CSV",
+          "TMX",
+          "TSV"
+        ],
+        "type": "string"
+      },
+      "LastUpdatedAt": {
+        "description": "The time the terminology was last updated.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "MergeStrategy": {
+        "description": "The merge strategy for the custom terminology. Currently only OVERWRITE is supported.",
+        "enum": [
+          "OVERWRITE"
+        ],
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the custom terminology.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^([A-Za-z0-9-]_?)+$",
+        "type": "string"
+      },
+      "SizeBytes": {
+        "description": "The size of the terminology file in bytes.",
+        "type": "integer"
+      },
+      "SourceLanguageCode": {
+        "description": "The source language code for the custom terminology.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags associated with the terminology.",
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "description": "The key of the tag.",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "Value": {
+              "description": "The value of the tag.",
+              "maxLength": 256,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "maxItems": 200,
+        "type": "array"
+      },
+      "TargetLanguageCodes": {
+        "description": "The target language codes for the custom terminology.",
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "TermCount": {
+        "description": "The number of terms in the custom terminology.",
+        "type": "integer"
+      },
+      "TerminologyData": {
+        "additionalProperties": false,
+        "description": "The terminology data for the custom terminology being imported.",
+        "properties": {
+          "Directionality": {
+            "description": "The directionality of the terminology resource.",
+            "enum": [
+              "UNI",
+              "MULTI"
+            ],
+            "type": "string"
+          },
+          "File": {
+            "description": "The file containing the custom terminology data, base64-encoded.",
+            "type": "string"
+          },
+          "Format": {
+            "description": "The data format of the custom terminology.",
+            "enum": [
+              "CSV",
+              "TMX",
+              "TSV"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "File",
+          "Format"
+        ],
+        "type": "object"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/SourceLanguageCode",
+      "/properties/TargetLanguageCodes",
+      "/properties/SizeBytes",
+      "/properties/TermCount",
+      "/properties/CreatedAt",
+      "/properties/LastUpdatedAt",
+      "/properties/Directionality",
+      "/properties/Format"
+    ],
+    "required": [
+      "Name"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "translate:TagResource",
+        "translate:UntagResource",
+        "translate:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Translate::Terminology",
+    "writeOnlyProperties": [
+      "/properties/TerminologyData",
+      "/properties/MergeStrategy"
+    ]
+  }
+}

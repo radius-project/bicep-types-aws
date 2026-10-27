@@ -1,84 +1,128 @@
 # AWS.Cognito @ default
 
 ## Resource AWS.Cognito/IdentityPool@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Cognito/IdentityPoolProperties](#awscognitoidentitypoolproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Cognito/IdentityPoolPrincipalTag@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Cognito/IdentityPoolPrincipalTagProperties](#awscognitoidentitypoolprincipaltagproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Cognito/IdentityPoolRoleAttachment@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Cognito/IdentityPoolRoleAttachmentProperties](#awscognitoidentitypoolroleattachmentproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Cognito/LogDeliveryConfiguration@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Cognito/LogDeliveryConfigurationProperties](#awscognitologdeliveryconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Cognito/ManagedLoginBranding@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Cognito/ManagedLoginBrandingProperties](#awscognitomanagedloginbrandingproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Cognito/Terms@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Cognito/TermsProperties](#awscognitotermsproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Cognito/UserPool@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Cognito/UserPoolProperties](#awscognitouserpoolproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Cognito/UserPoolClient@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Cognito/UserPoolClientProperties](#awscognitouserpoolclientproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Cognito/UserPoolDomain@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Cognito/UserPoolDomainProperties](#awscognitouserpooldomainproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Cognito/UserPoolGroup@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Cognito/UserPoolGroupProperties](#awscognitouserpoolgroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Cognito/UserPoolIdentityProvider@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Cognito/UserPoolIdentityProviderProperties](#awscognitouserpoolidentityproviderproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Cognito/UserPoolRegionalConfigurationAttachment@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Cognito/UserPoolRegionalConfigurationAttachmentProperties](#awscognitouserpoolregionalconfigurationattachmentproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Cognito/UserPoolReplica@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Cognito/UserPoolReplicaProperties](#awscognitouserpoolreplicaproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Cognito/UserPoolResourceServer@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Cognito/UserPoolResourceServerProperties](#awscognitouserpoolresourceserverproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Cognito/UserPoolRiskConfigurationAttachment@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Cognito/UserPoolRiskConfigurationAttachmentProperties](#awscognitouserpoolriskconfigurationattachmentproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Cognito/UserPoolUICustomizationAttachment@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -177,6 +221,16 @@
 * **UseCognitoProvidedValues**: bool
 * **UserPoolId**: string (Required, Identifier)
 
+## AWS.Cognito/TermsProperties
+### Properties
+* **ClientId**: string (WriteOnly)
+* **Enforcement**: string (Required)
+* **Links**: [LinksType](#linkstype) (Required)
+* **TermsId**: string (ReadOnly, Identifier)
+* **TermsName**: string (Required)
+* **TermsSource**: string (Required)
+* **UserPoolId**: string (Required, Identifier)
+
 ## AWS.Cognito/UserPoolClientProperties
 ### Properties
 * **AccessTokenValidity**: int
@@ -199,11 +253,21 @@
 * **Name**: string (ReadOnly)
 * **PreventUserExistenceErrors**: string
 * **ReadAttributes**: string[]
+* **RefreshTokenRotation**: [RefreshTokenRotation](#refreshtokenrotation)
 * **RefreshTokenValidity**: int
 * **SupportedIdentityProviders**: string[]
 * **TokenValidityUnits**: [TokenValidityUnits](#tokenvalidityunits)
 * **UserPoolId**: string (Required, Identifier)
 * **WriteAttributes**: string[]
+
+## AWS.Cognito/UserPoolDomainProperties
+### Properties
+* **CloudFrontDistribution**: string (ReadOnly)
+* **CustomDomainConfig**: [CustomDomainConfigType](#customdomainconfigtype)
+* **Domain**: string (Required, Identifier)
+* **ManagedLoginVersion**: int (WriteOnly)
+* **Routing**: [RoutingType](#routingtype)
+* **UserPoolId**: string (Required, Identifier)
 
 ## AWS.Cognito/UserPoolGroupProperties
 ### Properties
@@ -237,6 +301,8 @@
 * **EmailVerificationMessage**: string
 * **EmailVerificationSubject**: string
 * **EnabledMfas**: string[] (WriteOnly)
+* **IssuerConfiguration**: [IssuerConfiguration](#issuerconfiguration)
+* **KeyConfiguration**: [KeyConfiguration](#keyconfiguration)
 * **LambdaConfig**: [LambdaConfig](#lambdaconfig)
 * **MfaConfiguration**: string
 * **Policies**: [Policies](#policies)
@@ -255,8 +321,24 @@
 * **UserPoolTags**: [UserPool_UserPoolTags](#userpooluserpooltags)
 * **UserPoolTier**: string
 * **VerificationMessageTemplate**: [VerificationMessageTemplate](#verificationmessagetemplate)
+* **WebAuthnFactorConfiguration**: string
 * **WebAuthnRelyingPartyID**: string
 * **WebAuthnUserVerification**: string
+
+## AWS.Cognito/UserPoolRegionalConfigurationAttachmentProperties
+### Properties
+* **EmailConfiguration**: [EmailConfiguration](#emailconfiguration)
+* **LambdaConfig**: [LambdaConfig](#lambdaconfig)
+* **SmsConfiguration**: [SmsConfiguration](#smsconfiguration)
+* **Status**: string: The status of the replica. Set to ACTIVE or INACTIVE.
+* **UserPoolId**: string (Required, Identifier)
+* **UserPoolTags**: [UserPoolRegionalConfigurationAttachment_UserPoolTags](#userpoolregionalconfigurationattachmentuserpooltags)
+
+## AWS.Cognito/UserPoolReplicaProperties
+### Properties
+* **RegionName**: string (Required, Identifier)
+* **UserPoolId**: string (Required, Identifier)
+* **UserPoolTagsAtCreate**: [UserPoolReplica_UserPoolTagsAtCreate](#userpoolreplicauserpooltagsatcreate)
 
 ## AWS.Cognito/UserPoolResourceServerProperties
 ### Properties
@@ -304,7 +386,22 @@
 * **Actions**: [CompromisedCredentialsActionsType](#compromisedcredentialsactionstype) (Required)
 * **EventFilter**: string[]
 
+## CustomDomainConfigType
+### Properties
+* **CertificateArn**: string
+* **SecurityPolicy**: string
+
 ## CustomEmailSender
+### Properties
+* **LambdaArn**: string
+* **LambdaVersion**: string
+
+## CustomEmailSender
+### Properties
+* **LambdaArn**: string
+* **LambdaVersion**: string
+
+## CustomSMSSender
 ### Properties
 * **LambdaArn**: string
 * **LambdaVersion**: string
@@ -327,6 +424,39 @@
 * **ReplyToEmailAddress**: string
 * **SourceArn**: string
 
+## EmailConfiguration
+### Properties
+* **ConfigurationSet**: string
+* **EmailSendingAccount**: string
+* **From**: string
+* **ReplyToEmailAddress**: string
+* **SourceArn**: string
+
+## EumsSmsConfiguration
+### Properties
+* **CallerArn**: string (Required)
+* **ConfigurationSetName**: string
+* **ExternalId**: string
+* **InEntityId**: string
+* **InTemplateId**: string
+* **OriginationIdentity**: string
+* **Region**: string
+
+## EumsSmsConfiguration
+### Properties
+* **CallerArn**: string (Required)
+* **ConfigurationSetName**: string
+* **ExternalId**: string
+* **InEntityId**: string
+* **InTemplateId**: string
+* **OriginationIdentity**: string
+* **Region**: string
+
+## FailoverType
+### Properties
+* **PrimaryRoute53HealthCheckId**: string (Required)
+* **SecondaryRegion**: string (Required)
+
 ## FirehoseConfiguration
 ### Properties
 * **StreamArn**: string
@@ -346,11 +476,30 @@
 ## IdentityPoolRoleAttachment_Roles
 ### Properties
 
+## InboundFederation
+### Properties
+* **LambdaArn**: string
+* **LambdaVersion**: string
+
+## InboundFederation
+### Properties
+* **LambdaArn**: string
+* **LambdaVersion**: string
+
 ## InviteMessageTemplate
 ### Properties
 * **EmailMessage**: string
 * **EmailSubject**: string
 * **SMSMessage**: string
+
+## IssuerConfiguration
+### Properties
+* **Type**: string
+
+## KeyConfiguration
+### Properties
+* **KeyType**: string
+* **KmsKeyArn**: string
 
 ## LambdaConfig
 ### Properties
@@ -359,6 +508,7 @@
 * **CustomMessage**: string
 * **CustomSMSSender**: [CustomSMSSender](#customsmssender)
 * **DefineAuthChallenge**: string
+* **InboundFederation**: [InboundFederation](#inboundfederation)
 * **KMSKeyID**: string
 * **PostAuthentication**: string
 * **PostConfirmation**: string
@@ -368,6 +518,27 @@
 * **PreTokenGenerationConfig**: [PreTokenGenerationConfig](#pretokengenerationconfig)
 * **UserMigration**: string
 * **VerifyAuthChallengeResponse**: string
+
+## LambdaConfig
+### Properties
+* **CreateAuthChallenge**: string
+* **CustomEmailSender**: [CustomEmailSender](#customemailsender)
+* **CustomMessage**: string
+* **CustomSMSSender**: [CustomSMSSender](#customsmssender)
+* **DefineAuthChallenge**: string
+* **InboundFederation**: [InboundFederation](#inboundfederation)
+* **KMSKeyID**: string
+* **PostAuthentication**: string
+* **PostConfirmation**: string
+* **PreAuthentication**: string
+* **PreSignUp**: string
+* **PreTokenGeneration**: string
+* **PreTokenGenerationConfig**: [PreTokenGenerationConfig](#pretokengenerationconfig)
+* **UserMigration**: string
+* **VerifyAuthChallengeResponse**: string
+
+## LinksType
+### Properties
 
 ## LogConfiguration
 ### Properties
@@ -420,6 +591,11 @@
 * **LambdaArn**: string
 * **LambdaVersion**: string
 
+## PreTokenGenerationConfig
+### Properties
+* **LambdaArn**: string
+* **LambdaVersion**: string
+
 ## PushSync
 ### Properties
 * **ApplicationArns**: string[]
@@ -430,6 +606,11 @@
 * **Name**: string
 * **Priority**: int
 
+## RefreshTokenRotation
+### Properties
+* **Feature**: string
+* **RetryGracePeriodSeconds**: int
+
 ## ResourceServerScopeType
 ### Properties
 * **ScopeDescription**: string (Required)
@@ -439,6 +620,10 @@
 ### Properties
 * **BlockedIPRangeList**: string[]
 * **SkippedIPRangeList**: string[]
+
+## RoutingType
+### Properties
+* **Failover**: [FailoverType](#failovertype)
 
 ## S3Configuration
 ### Properties
@@ -460,6 +645,14 @@
 
 ## SmsConfiguration
 ### Properties
+* **EumsSms**: [EumsSmsConfiguration](#eumssmsconfiguration)
+* **ExternalId**: string
+* **SnsCallerArn**: string
+* **SnsRegion**: string
+
+## SmsConfiguration
+### Properties
+* **EumsSms**: [EumsSmsConfiguration](#eumssmsconfiguration)
 * **ExternalId**: string
 * **SnsCallerArn**: string
 * **SnsRegion**: string
@@ -500,6 +693,12 @@
 ### Properties
 
 ## UserPoolIdentityProvider_ProviderDetails
+### Properties
+
+## UserPoolRegionalConfigurationAttachment_UserPoolTags
+### Properties
+
+## UserPoolReplica_UserPoolTagsAtCreate
 ### Properties
 
 ## VerificationMessageTemplate

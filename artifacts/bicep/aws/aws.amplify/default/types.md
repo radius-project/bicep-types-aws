@@ -1,25 +1,36 @@
 # AWS.Amplify @ default
 
 ## Resource AWS.Amplify/App@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Amplify/AppProperties](#awsamplifyappproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Amplify/Branch@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Amplify/BranchProperties](#awsamplifybranchproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Amplify/Domain@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Amplify/DomainProperties](#awsamplifydomainproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Amplify/Webhook@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Amplify/WebhookProperties](#awsamplifywebhookproperties) (Required, Identifier): properties of the resource
 
 ## AutoBranchCreationConfig
 ### Properties
@@ -45,6 +56,7 @@
 * **BasicAuthConfig**: [BasicAuthConfig](#basicauthconfig) (WriteOnly)
 * **BuildSpec**: string
 * **CacheConfig**: [CacheConfig](#cacheconfig)
+* **ComputeRoleArn**: string
 * **CustomHeaders**: string
 * **CustomRules**: [CustomRule](#customrule)[]
 * **DefaultDomain**: string (ReadOnly)
@@ -52,6 +64,7 @@
 * **EnableBranchAutoDeletion**: bool
 * **EnvironmentVariables**: [EnvironmentVariable](#environmentvariable)[]
 * **IAMServiceRole**: string
+* **JobConfig**: [JobConfig](#jobconfig)
 * **Name**: string (Required)
 * **OauthToken**: string (WriteOnly)
 * **Platform**: string
@@ -66,10 +79,12 @@
 * **BasicAuthConfig**: [BasicAuthConfig](#basicauthconfig) (WriteOnly)
 * **BranchName**: string (Required)
 * **BuildSpec**: string
+* **ComputeRoleArn**: string
 * **Description**: string
 * **EnableAutoBuild**: bool
 * **EnablePerformanceMode**: bool
 * **EnablePullRequestPreview**: bool
+* **EnableSkewProtection**: bool
 * **EnvironmentVariables**: [EnvironmentVariable](#environmentvariable)[]
 * **Framework**: string
 * **PullRequestEnvironmentName**: string
@@ -91,6 +106,16 @@
 * **StatusReason**: string (ReadOnly)
 * **SubDomainSettings**: [SubDomainSetting](#subdomainsetting)[] (Required)
 * **UpdateStatus**: string (ReadOnly)
+
+## AWS.Amplify/WebhookProperties
+### Properties
+* **AppId**: string (WriteOnly): The unique ID for an Amplify app.
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) for the webhook.
+* **BranchName**: string (Required): The name for a branch that is part of an Amplify app.
+* **Description**: string: The description for a webhook.
+* **Tags**: [Tag](#tag)[]: Tags for the webhook.
+* **WebhookId**: string (ReadOnly): The unique ID for a webhook.
+* **WebhookUrl**: string (ReadOnly): The URL of the webhook.
 
 ## Backend
 ### Properties
@@ -140,10 +165,19 @@
 * **Name**: string (Required)
 * **Value**: string (Required)
 
+## JobConfig
+### Properties
+* **BuildComputeType**: string (Required)
+
 ## SubDomainSetting
 ### Properties
 * **BranchName**: string (Required)
 * **Prefix**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

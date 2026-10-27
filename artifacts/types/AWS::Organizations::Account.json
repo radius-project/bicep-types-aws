@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Organizations-Account",
   "type": "AWS::Organizations::Account",
-  "time": "2025-01-22T16:51:32.595Z",
+  "time": "2026-09-29T21:23:52.359Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -125,12 +125,31 @@
         "type": "array",
         "uniqueItems": true
       },
+      "Paths": {
+        "description": "The paths in the organization where the account exists.",
+        "items": {
+          "pattern": "^(o-[a-z0-9]{10,32}/r-[0-9a-z]{4,32}(/ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})*(/\\d{12})*)/",
+          "type": "string"
+        },
+        "type": "array"
+      },
       "RoleName": {
         "default": "OrganizationAccountAccessRole",
         "description": "The name of an IAM role that AWS Organizations automatically preconfigures in the new member account. Default name is OrganizationAccountAccessRole if not specified.",
         "maxLength": 64,
         "minLength": 1,
         "pattern": "[\\w+=,.@-]{1,64}",
+        "type": "string"
+      },
+      "State": {
+        "description": "The state of the account in the organization.",
+        "enum": [
+          "PENDING_ACTIVATION",
+          "ACTIVE",
+          "SUSPENDED",
+          "PENDING_CLOSURE",
+          "CLOSED"
+        ],
         "type": "string"
       },
       "Status": {
@@ -155,9 +174,11 @@
     "readOnlyProperties": [
       "/properties/AccountId",
       "/properties/Status",
+      "/properties/State",
       "/properties/JoinedTimestamp",
       "/properties/JoinedMethod",
-      "/properties/Arn"
+      "/properties/Arn",
+      "/properties/Paths"
     ],
     "required": [
       "AccountName",
@@ -165,7 +186,7 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-organizations",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "organizations:TagResource",
         "organizations:UntagResource",

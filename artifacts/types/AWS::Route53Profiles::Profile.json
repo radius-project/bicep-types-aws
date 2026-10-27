@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Route53Profiles-Profile",
   "type": "AWS::Route53Profiles::Profile",
-  "time": "2025-01-16T18:52:05.749Z",
+  "time": "2026-10-11T13:40:00.981Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -94,6 +94,15 @@
         "minLength": 1,
         "type": "string"
       },
+      "ShareStatus": {
+        "description": "The sharing status of the profile.",
+        "enum": [
+          "NOT_SHARED",
+          "SHARED_WITH_ME",
+          "SHARED_BY_ME"
+        ],
+        "type": "string"
+      },
       "Tags": {
         "description": "An array of key-value pairs to apply to this resource.",
         "insertionOrder": false,
@@ -107,13 +116,14 @@
     "readOnlyProperties": [
       "/properties/Arn",
       "/properties/Id",
-      "/properties/ClientToken"
+      "/properties/ClientToken",
+      "/properties/ShareStatus"
     ],
     "required": [
       "Name"
     ],
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "route53profiles:TagResource",
         "route53profiles:UntagResource"

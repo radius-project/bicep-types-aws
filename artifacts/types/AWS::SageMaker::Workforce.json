@@ -1,0 +1,326 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-Workforce",
+  "type": "AWS::SageMaker::Workforce",
+  "time": "2026-10-22T00:18:53.325Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/WorkforceName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/WorkforceName",
+      "/properties/CognitoConfig"
+    ],
+    "definitions": {
+      "CognitoConfig": {
+        "additionalProperties": false,
+        "description": "The configuration of an Amazon Cognito workforce. A single Cognito workforce is created using and corresponds to a single Amazon Cognito user pool.",
+        "properties": {
+          "ClientId": {
+            "description": "The client ID for your Amazon Cognito user pool.",
+            "type": "string"
+          },
+          "UserPool": {
+            "description": "The ID for your Amazon Cognito user pool.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ClientId",
+          "UserPool"
+        ],
+        "type": "object"
+      },
+      "OidcConfig": {
+        "additionalProperties": false,
+        "description": "The configuration of an OIDC Identity Provider (IdP) private workforce.",
+        "properties": {
+          "AuthenticationRequestExtraParams": {
+            "additionalProperties": false,
+            "description": "A string to string map of identifiers specific to the custom identity provider (IdP) being used.",
+            "maxProperties": 10,
+            "patternProperties": {
+              "^.+$": {
+                "maxLength": 512,
+                "pattern": "^[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}]+$",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "AuthorizationEndpoint": {
+            "description": "The OIDC IdP authorization endpoint used to configure your private workforce.",
+            "maxLength": 500,
+            "pattern": "^https://.*$",
+            "type": "string"
+          },
+          "ClientId": {
+            "description": "The OIDC IdP client ID used to configure your private workforce.",
+            "maxLength": 1024,
+            "pattern": "^[\\w+]+$",
+            "type": "string"
+          },
+          "ClientSecret": {
+            "description": "The OIDC IdP client secret used to configure your private workforce.",
+            "maxLength": 1024,
+            "pattern": "^[\\w+]+$",
+            "type": "string"
+          },
+          "Issuer": {
+            "description": "The OIDC IdP issuer used to configure your private workforce.",
+            "maxLength": 500,
+            "pattern": "^https://.*$",
+            "type": "string"
+          },
+          "JwksUri": {
+            "description": "The OIDC IdP JSON Web Key Set (Jwks) URI used to configure your private workforce.",
+            "maxLength": 500,
+            "pattern": "^https://.*$",
+            "type": "string"
+          },
+          "LogoutEndpoint": {
+            "description": "The OIDC IdP logout endpoint used to configure your private workforce.",
+            "maxLength": 500,
+            "pattern": "^https://.*$",
+            "type": "string"
+          },
+          "Scope": {
+            "description": "An array of string identifiers used to refer to the specific pieces of user data or claims that the client application wants to access.",
+            "maxLength": 500,
+            "pattern": "^[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}\\s]+$",
+            "type": "string"
+          },
+          "TokenEndpoint": {
+            "description": "The OIDC IdP token endpoint used to configure your private workforce.",
+            "maxLength": 500,
+            "pattern": "^https://.*$",
+            "type": "string"
+          },
+          "UserInfoEndpoint": {
+            "description": "The OIDC IdP user info endpoint used to configure your private workforce.",
+            "maxLength": 500,
+            "pattern": "^https://.*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "AuthorizationEndpoint",
+          "ClientId",
+          "Issuer",
+          "JwksUri",
+          "LogoutEndpoint",
+          "TokenEndpoint",
+          "UserInfoEndpoint"
+        ],
+        "type": "object"
+      },
+      "SourceIpConfig": {
+        "additionalProperties": false,
+        "description": "A list of IP address ranges used to access your training data.",
+        "properties": {
+          "Cidrs": {
+            "description": "A list of one to ten Classless Inter-Domain Routing (CIDR) values.",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 10,
+            "type": "array"
+          }
+        },
+        "required": [
+          "Cidrs"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "WorkforceVpcConfigRequest": {
+        "additionalProperties": false,
+        "description": "The VPC configuration for the workforce.",
+        "properties": {
+          "SecurityGroupIds": {
+            "description": "The VPC security group IDs.",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 5,
+            "minItems": 1,
+            "type": "array"
+          },
+          "Subnets": {
+            "description": "The VPC subnets.",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 16,
+            "minItems": 1,
+            "type": "array"
+          },
+          "VpcId": {
+            "description": "The ID of the VPC.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::SageMaker::Workforce. Use to create a private workforce that you can use to label your training data using Amazon SageMaker Ground Truth.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "sagemaker:CreateWorkforce",
+          "sagemaker:DescribeWorkforce",
+          "sagemaker:AddTags",
+          "sagemaker:ListTags",
+          "cognito-idp:DescribeUserPool",
+          "cognito-idp:DescribeUserPoolClient",
+          "cognito-idp:DescribeUserPoolDomain",
+          "cognito-idp:ListGroups",
+          "cognito-idp:ListUsers",
+          "cognito-idp:UpdateUserPool",
+          "cognito-idp:UpdateUserPoolClient",
+          "ec2:CreateVpcEndpoint",
+          "ec2:DescribeVpcEndpoints",
+          "ec2:DeleteVpcEndpoints",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeVpcs"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "sagemaker:DeleteWorkforce",
+          "sagemaker:DescribeWorkforce",
+          "sagemaker:ListTags",
+          "ec2:DeleteVpcEndpoints",
+          "ec2:DescribeVpcEndpoints"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "sagemaker:ListWorkforces"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "sagemaker:DescribeWorkforce",
+          "sagemaker:ListTags"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "sagemaker:UpdateWorkforce",
+          "sagemaker:DescribeWorkforce",
+          "sagemaker:AddTags",
+          "sagemaker:DeleteTags",
+          "sagemaker:ListTags",
+          "ec2:CreateVpcEndpoint",
+          "ec2:DescribeVpcEndpoints",
+          "ec2:DeleteVpcEndpoints",
+          "ec2:ModifyVpcEndpoint",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeVpcs"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/WorkforceArn"
+    ],
+    "properties": {
+      "CognitoConfig": {
+        "$ref": "#/definitions/CognitoConfig"
+      },
+      "IpAddressType": {
+        "description": "The IP address type for the workforce. IPv4 only or dualstack (IPv4 and IPv6).",
+        "enum": [
+          "ipv4",
+          "dualstack"
+        ],
+        "type": "string"
+      },
+      "OidcConfig": {
+        "$ref": "#/definitions/OidcConfig"
+      },
+      "SourceIpConfig": {
+        "$ref": "#/definitions/SourceIpConfig"
+      },
+      "SubDomain": {
+        "description": "The subdomain for your OIDC Identity Provider.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs.",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array"
+      },
+      "WorkforceArn": {
+        "description": "The Amazon Resource Name (ARN) of the private workforce.",
+        "maxLength": 256,
+        "pattern": "^arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:workforce/.*$",
+        "type": "string"
+      },
+      "WorkforceName": {
+        "description": "The name of the private workforce.",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9]([a-zA-Z0-9\\-]){0,62}$",
+        "type": "string"
+      },
+      "WorkforceVpcConfig": {
+        "$ref": "#/definitions/WorkforceVpcConfigRequest"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/WorkforceArn",
+      "/properties/SubDomain"
+    ],
+    "replacementStrategy": "delete_then_create",
+    "required": [
+      "WorkforceName"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "sagemaker:AddTags",
+        "sagemaker:DeleteTags",
+        "sagemaker:ListTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::SageMaker::Workforce",
+    "writeOnlyProperties": [
+      "/properties/OidcConfig/ClientSecret"
+    ]
+  }
+}

@@ -1,9 +1,12 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-FMS-NotificationChannel",
   "type": "AWS::FMS::NotificationChannel",
-  "time": "2024-08-22T15:11:54.04Z",
+  "time": "2026-03-30T15:41:30.083Z",
   "schema": {
     "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/SnsTopicArn"
+    ],
     "definitions": {
       "ResourceArn": {
         "description": "A resource ARN.",
@@ -18,11 +21,13 @@
       "create": {
         "permissions": [
           "fms:PutNotificationChannel",
-          "iam:PassRole"
+          "iam:PassRole",
+          "fms:GetNotificationChannel"
         ]
       },
       "delete": {
         "permissions": [
+          "fms:GetNotificationChannel",
           "fms:DeleteNotificationChannel"
         ]
       },
@@ -39,7 +44,8 @@
       "update": {
         "permissions": [
           "fms:PutNotificationChannel",
-          "iam:PassRole"
+          "iam:PassRole",
+          "fms:GetNotificationChannel"
         ]
       }
     },
@@ -59,6 +65,9 @@
       "SnsTopicArn"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-fms.git",
+    "tagging": {
+      "taggable": false
+    },
     "typeName": "AWS::FMS::NotificationChannel"
   }
 }

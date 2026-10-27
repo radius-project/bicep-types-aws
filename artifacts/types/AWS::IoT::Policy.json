@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoT-Policy",
   "type": "AWS::IoT::Policy",
-  "time": "2024-11-22T17:33:55.007Z",
+  "time": "2026-09-22T16:03:46.402Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -32,7 +32,8 @@
           "iot:CreatePolicy",
           "iot:GetPolicy",
           "iot:TagResource",
-          "iot:ListTagsForResource"
+          "iot:ListTagsForResource",
+          "kms:Decrypt"
         ]
       },
       "delete": {
@@ -40,7 +41,8 @@
           "iot:DeletePolicy",
           "iot:GetPolicy",
           "iot:ListPolicyVersions",
-          "iot:DeletePolicyVersion"
+          "iot:DeletePolicyVersion",
+          "kms:Decrypt"
         ]
       },
       "list": {
@@ -51,7 +53,8 @@
       "read": {
         "permissions": [
           "iot:GetPolicy",
-          "iot:ListTagsForResource"
+          "iot:ListTagsForResource",
+          "kms:Decrypt"
         ]
       },
       "update": {
@@ -63,7 +66,8 @@
           "iot:SetDefaultPolicyVersion",
           "iot:TagResource",
           "iot:UntagResource",
-          "iot:ListTagsForResource"
+          "iot:ListTagsForResource",
+          "kms:Decrypt"
         ]
       }
     },
@@ -105,7 +109,12 @@
       "PolicyDocument"
     ],
     "tagging": {
-      "cloudFormationSystemTags": true,
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "iot:ListTagsForResource",
+        "iot:TagResource",
+        "iot:UntagResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

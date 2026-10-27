@@ -1,0 +1,569 @@
+[
+  {
+    "$type": "ObjectType",
+    "name": "AccessLoggingPolicy",
+    "properties": {
+      "EmitInterval": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "The interval for publishing the access logs. You can specify an interval of either 5 minutes or 60 minutes.\n\nDefault: 60 minutes"
+      },
+      "Enabled": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 1,
+        "description": "Specifies whether access logs are enabled for the load balancer."
+      },
+      "S3BucketName": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The name of the Amazon S3 bucket where the access logs are stored."
+      },
+      "S3BucketPrefix": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The logical hierarchy you created for your Amazon S3 bucket, for example `my-bucket-prefix/prod`. If the prefix is not provided, the log is placed at the root level of the bucket."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AppCookieStickinessPolicy",
+    "properties": {
+      "CookieName": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The name of the application cookie used for stickiness."
+      },
+      "PolicyName": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The mnemonic name for the policy being created. The name must be unique within a set of policies for this load balancer."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectionDrainingPolicy",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 1,
+        "description": "Specifies whether connection draining is enabled for the load balancer."
+      },
+      "Timeout": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "The maximum time, in seconds, to keep the existing connections open before deregistering the instances."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectionSettings",
+    "properties": {
+      "IdleTimeout": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 1,
+        "description": "The time, in seconds, that the connection is allowed to be idle (no data has been sent over the connection) before it is closed by the load balancer."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "HealthCheck",
+    "properties": {
+      "HealthyThreshold": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The number of consecutive health checks successes required before moving the instance to the `Healthy` state."
+      },
+      "Interval": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The approximate interval, in seconds, between health checks of an individual instance."
+      },
+      "Target": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The instance being checked."
+      },
+      "Timeout": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The amount of time, in seconds, during which no response means a failed health check.\n\nThis value must be less than the `Interval` value."
+      },
+      "UnhealthyThreshold": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The number of consecutive health check failures required before moving the instance to the `Unhealthy` state."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LBCookieStickinessPolicy",
+    "properties": {
+      "CookieExpirationPeriod": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The time period, in seconds, after which the cookie should be considered stale. If this parameter is not specified, the stickiness session lasts for the duration of the browser session."
+      },
+      "PolicyName": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The name of the policy. This name must be unique within the set of policies for this load balancer."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Listeners",
+    "properties": {
+      "InstancePort": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The port on which the instance is listening."
+      },
+      "InstanceProtocol": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The protocol to use for routing traffic to instances: HTTP, HTTPS, TCP, or SSL.\n\nIf the front-end protocol is TCP or SSL, the back-end protocol must be TCP or SSL. If the front-end protocol is HTTP or HTTPS, the back-end protocol must be HTTP or HTTPS.\n\nIf there is another listener with the same `InstancePort` whose `InstanceProtocol` is secure, (HTTPS or SSL), the listener's `InstanceProtocol` must also be secure.\n\nIf there is another listener with the same `InstancePort` whose `InstanceProtocol` is HTTP or TCP, the listener's `InstanceProtocol` must be HTTP or TCP."
+      },
+      "LoadBalancerPort": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The port on which the load balancer is listening. On EC2-VPC, you can specify any port from the range 1-65535. On EC2-Classic, you can specify any port from the following list: 25, 80, 443, 465, 587, 1024-65535."
+      },
+      "PolicyNames": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "The names of the policies to associate with the listener."
+      },
+      "Protocol": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The load balancer transport protocol to use for routing: HTTP, HTTPS, TCP, or SSL."
+      },
+      "SSLCertificateId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the server certificate."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Policies",
+    "properties": {
+      "Attributes": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The policy attributes."
+      },
+      "InstancePorts": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The instance ports for the policy. Required only for some policy types."
+      },
+      "LoadBalancerPorts": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The load balancer ports for the policy. Required only for some policy types."
+      },
+      "PolicyName": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The name of the policy."
+      },
+      "PolicyType": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The name of the policy type."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PolicyItem",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceSecurityGroup",
+    "properties": {
+      "GroupName": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The name of the security group that you can use as part of your inbound rules for your load balancer's back-end instances."
+      },
+      "OwnerAlias": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The owner of the source security group."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that's 1 to 128 Unicode characters in length and can't be prefixed with `aws:`. You can use any of the following characters: the set of Unicode letters, digits, whitespace, `_`, `.`, `/`, `=`, `+`, and `-`."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that's 1 to 256 characters in length."
+      }
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ElasticLoadBalancing/LoadBalancerProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ElasticLoadBalancing/LoadBalancerProperties",
+    "properties": {
+      "AccessLoggingPolicy": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0,
+        "description": "Information about where and how access logs are stored for the load balancer."
+      },
+      "AppCookieStickinessPolicy": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0,
+        "description": "Information about a policy for application-controlled session stickiness."
+      },
+      "AvailabilityZones": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "The Availability Zones for a load balancer in a default VPC. For a load balancer in a nondefault VPC, specify Subnets instead."
+      },
+      "CanonicalHostedZoneName": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The name of the Route 53 hosted zone that is associated with the load balancer. Internal-facing load balancers."
+      },
+      "CanonicalHostedZoneNameID": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The ID of the Route 53 hosted zone name that is associated with the load balancer."
+      },
+      "ConnectionDrainingPolicy": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "If enabled, the load balancer allows existing requests to complete before the load balancer shifts traffic away from a deregistered or unhealthy instance."
+      },
+      "ConnectionSettings": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "If enabled, the load balancer allows the connections to remain idle (no data is sent over the connection) for the specified duration."
+      },
+      "CrossZone": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "If enabled, the load balancer routes the request traffic evenly across all instances regardless of the Availability Zones."
+      },
+      "DNSName": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The DNS name for the load balancer"
+      },
+      "HealthCheck": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The health check settings to use when evaluating the health of your EC2 instances."
+      },
+      "Instances": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The IDs of the instances for the load balancer."
+      },
+      "LBCookieStickinessPolicy": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Information about a policy for duration-based session stickiness."
+      },
+      "Listeners": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "The Listeners for the load balancer. You can specify at most one listener per port."
+      },
+      "LoadBalancerName": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 16,
+        "description": "The name of the load balancer. This name must be unique within your set of load balancers for the region."
+      },
+      "Policies": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "The policies defined for your Classic Load Balancer. Specify only back-end server policies."
+      },
+      "Scheme": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The type of load balancer. Valid only for load balancers in a VPC."
+      },
+      "SecurityGroups": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0,
+        "description": "The security groups for the load balancer. Valid only for load balancers in a VPC."
+      },
+      "SourceSecurityGroup": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2
+      },
+      "Subnets": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0,
+        "description": "The IDs of the subnets for the load balancer. You can specify at most one subnet per Availability Zone."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0,
+        "description": "The tags associated with a load balancer."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ElasticLoadBalancing/LoadBalancer",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ElasticLoadBalancing/LoadBalancer@default",
+    "body": {
+      "$ref": "#/29"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  }
+]

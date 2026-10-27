@@ -1,28 +1,32 @@
 # AWS.EventSchemas @ default
 
 ## Resource AWS.EventSchemas/Discoverer@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EventSchemas/DiscovererProperties](#awseventschemasdiscovererproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EventSchemas/Registry@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EventSchemas/RegistryProperties](#awseventschemasregistryproperties) (Identifier): properties of the resource
 
 ## Resource AWS.EventSchemas/RegistryPolicy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EventSchemas/RegistryPolicyProperties](#awseventschemasregistrypolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EventSchemas/Schema@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name

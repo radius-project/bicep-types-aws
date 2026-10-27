@@ -1,13 +1,12 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DataBrew-Job",
   "type": "AWS::DataBrew::Job",
-  "time": "2025-01-14T21:46:00.21Z",
+  "time": "2026-10-21T00:18:50.346Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/Name",
-      "/properties/Type",
-      "/properties/Tags"
+      "/properties/Type"
     ],
     "definitions": {
       "AllowedStatistics": {
@@ -493,7 +492,6 @@
       "read": {
         "permissions": [
           "databrew:DescribeJob",
-          "databrew:ListTagsForResource",
           "iam:ListRoles"
         ]
       },
@@ -501,6 +499,8 @@
         "permissions": [
           "databrew:UpdateProfileJob",
           "databrew:UpdateRecipeJob",
+          "databrew:TagResource",
+          "databrew:UntagResource",
           "iam:PassRole"
         ]
       }
@@ -641,7 +641,7 @@
       ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
-      "tagUpdatable": false,
+      "tagUpdatable": true,
       "taggable": true
     },
     "typeName": "AWS::DataBrew::Job"

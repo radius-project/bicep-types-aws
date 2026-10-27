@@ -1,0 +1,227 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Bedrock-RetrievalInstruction",
+  "type": "AWS::Bedrock::RetrievalInstruction",
+  "time": "2026-10-21T22:59:37.418Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/RetrievalInstructionId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name",
+      "/properties/CustomerEncryptionKeyArn"
+    ],
+    "definitions": {
+      "Instruction": {
+        "additionalProperties": false,
+        "description": "The reviewed content this instruction serves ? what AgenticRetrieveStream resolves while status is ACTIVE. Absent until the first create review passes. Always present on a numbered version.",
+        "properties": {
+          "AnswerFormat": {
+            "description": "How the answer is structured, including how sources are cited.",
+            "minLength": 1,
+            "type": "string"
+          },
+          "AnswerPolicy": {
+            "description": "Whether and how to answer: how strongly an answer must be supported, and what to do with questions outside scope.",
+            "minLength": 1,
+            "type": "string"
+          },
+          "Persona": {
+            "description": "Who the assistant is: identity, tone and language.",
+            "minLength": 1,
+            "type": "string"
+          },
+          "RetrievalGuidance": {
+            "description": "How to interpret and decompose the question, and what to prioritise when searching.",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Bedrock::RetrievalInstruction",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "bedrock:CreateRetrievalInstruction",
+          "bedrock:GetRetrievalInstruction",
+          "bedrock:TagResource",
+          "kms:Decrypt",
+          "kms:DescribeKey",
+          "kms:GenerateDataKey"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "bedrock:DeleteRetrievalInstruction"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "Status": {
+              "description": "Whether the instruction can be used. Only ACTIVE is resolvable at retrieval time. Monotone: INACTIVE to ACTIVE once, never back. Numbered versions are always ACTIVE.",
+              "enum": [
+                "ACTIVE",
+                "INACTIVE"
+              ],
+              "type": "string"
+            }
+          }
+        },
+        "permissions": [
+          "bedrock:ListRetrievalInstructions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "bedrock:GetRetrievalInstruction",
+          "bedrock:ListTagsForResource",
+          "kms:Decrypt"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "bedrock:GetRetrievalInstruction",
+          "bedrock:ListTagsForResource",
+          "bedrock:TagResource",
+          "bedrock:UntagResource",
+          "bedrock:UpdateRetrievalInstruction",
+          "kms:Decrypt",
+          "kms:GenerateDataKey"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the resource.",
+        "pattern": "^arn:[^:]+:bedrock:[^:]*:[0-9]{12}:retrieval-instruction/(?:[a-z0-9]{10})$",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "When the retrieval instruction was created. On a numbered version, when that version was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "CustomerEncryptionKeyArn": {
+        "description": "The ARN of the customer managed KMS key protecting this content, when one was supplied at create.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:aws(-cn|-us-gov|-eusc|-iso(-[b-f])?)?:kms:[a-zA-Z0-9-]*:[0-9]{12}:key/[a-zA-Z0-9-]{36}$",
+        "type": "string"
+      },
+      "Description": {
+        "description": "A description of the retrieval instruction. On a numbered version, the description of that version.",
+        "maxLength": 200,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Instruction": {
+        "$ref": "#/definitions/Instruction",
+        "description": "The reviewed content this instruction serves ? what AgenticRetrieveStream resolves while status is ACTIVE. Absent until the first create review passes. Always present on a numbered version."
+      },
+      "LastTransitionStatus": {
+        "description": "The outcome or in-progress state of the most recent create or update. CREATING or UPDATING means the operation is still running. Independent of status. Always has a value from the create 202 onward. On a numbered version this is always CREATE_SUCCESSFUL: a version is created once, from reviewed content, and is immutable.",
+        "enum": [
+          "CREATING",
+          "UPDATING",
+          "CREATE_SUCCESSFUL",
+          "CREATE_FAILED",
+          "UPDATE_SUCCESSFUL",
+          "UPDATE_FAILED"
+        ],
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the retrieval instruction.",
+        "maxLength": 100,
+        "minLength": 1,
+        "pattern": "^([0-9a-zA-Z][_-]?){1,100}$",
+        "type": "string"
+      },
+      "RetrievalInstructionId": {
+        "description": "The identifier of the retrieval instruction.",
+        "maxLength": 10,
+        "minLength": 10,
+        "pattern": "^[a-z0-9]{10}$",
+        "type": "string"
+      },
+      "Status": {
+        "description": "Whether the instruction can be used. Only ACTIVE is resolvable at retrieval time. Monotone: INACTIVE to ACTIVE once, never back. Numbered versions are always ACTIVE.",
+        "enum": [
+          "ACTIVE",
+          "INACTIVE"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "UpdatedAt": {
+        "description": "When the retrieval instruction was last updated. Equal to createdAt on a numbered version, which is immutable.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/RetrievalInstructionId",
+      "/properties/Status",
+      "/properties/LastTransitionStatus",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt",
+      "/properties/Arn"
+    ],
+    "required": [
+      "Name",
+      "Instruction"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "bedrock:ListTagsForResource",
+        "bedrock:TagResource",
+        "bedrock:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Bedrock::RetrievalInstruction"
+  }
+}

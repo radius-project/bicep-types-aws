@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-FlowLog",
   "type": "AWS::EC2::FlowLog",
-  "time": "2025-01-25T12:00:43.583Z",
+  "time": "2026-10-21T07:27:39.023Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -15,7 +15,8 @@
       "/properties/ResourceType",
       "/properties/LogFormat",
       "/properties/MaxAggregationInterval",
-      "/properties/DestinationOptions"
+      "/properties/DestinationOptions",
+      "/properties/TagFieldSpecifications"
     ],
     "definitions": {
       "Tag": {
@@ -33,15 +34,38 @@
           "Key"
         ],
         "type": "object"
+      },
+      "TagFieldSpecification": {
+        "additionalProperties": false,
+        "properties": {
+          "ResourceType": {
+            "type": "string"
+          },
+          "TagKeys": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          }
+        },
+        "required": [
+          "ResourceType",
+          "TagKeys"
+        ],
+        "type": "object"
       }
     },
     "description": "Specifies a VPC flow log, which enables you to capture IP traffic for a specific network interface, subnet, or VPC.",
     "handlers": {
       "create": {
         "permissions": [
+          "autoscaling:DescribeTags",
           "ec2:CreateFlowLogs",
           "ec2:DescribeFlowLogs",
+          "ec2:DescribeTags",
           "ec2:CreateTags",
+          "iam:CreateServiceLinkedRole",
           "iam:PassRole",
           "logs:CreateLogDelivery",
           "s3:GetBucketPolicy",
@@ -149,9 +173,18 @@
           "Subnet",
           "VPC",
           "TransitGateway",
-          "TransitGatewayAttachment"
+          "TransitGatewayAttachment",
+          "RegionalNatGateway"
         ],
         "type": "string"
+      },
+      "TagFieldSpecifications": {
+        "description": "The resource types and associated tags for EC2 resources associated with the EC2 Tags feature for log enrichment.",
+        "items": {
+          "$ref": "#/definitions/TagFieldSpecification"
+        },
+        "type": "array",
+        "uniqueItems": true
       },
       "Tags": {
         "description": "The tags to apply to the flow logs.",

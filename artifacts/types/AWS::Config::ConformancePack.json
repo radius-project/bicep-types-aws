@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Config-ConformancePack",
   "type": "AWS::Config::ConformancePack",
-  "time": "2025-01-16T17:58:04.183Z",
+  "time": "2026-10-21T19:17:29.494Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -36,6 +36,29 @@
         "maxLength": 4096,
         "minLength": 0,
         "type": "string"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. ",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. ",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value",
+          "Key"
+        ],
+        "type": "object"
       }
     },
     "description": "A conformance pack is a collection of AWS Config rules and remediation actions that can be easily deployed as a single entity in an account and a region or across an entire AWS Organization.",
@@ -46,6 +69,8 @@
           "config:PutConformancePack",
           "config:DescribeConformancePackStatus",
           "config:DescribeConformancePacks",
+          "config:TagResource",
+          "config:ListTagsForResource",
           "s3:GetObject",
           "s3:GetBucketAcl",
           "iam:CreateServiceLinkedRole",
@@ -55,7 +80,8 @@
       "delete": {
         "permissions": [
           "config:DeleteConformancePack",
-          "config:DescribeConformancePackStatus"
+          "config:DescribeConformancePackStatus",
+          "config:UntagResource"
         ]
       },
       "list": {
@@ -65,13 +91,18 @@
       },
       "read": {
         "permissions": [
-          "config:DescribeConformancePacks"
+          "config:DescribeConformancePacks",
+          "config:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
           "config:PutConformancePack",
           "config:DescribeConformancePackStatus",
+          "config:DescribeConformancePacks",
+          "config:TagResource",
+          "config:UntagResource",
+          "config:ListTagsForResource",
           "s3:GetObject",
           "s3:GetBucketAcl",
           "iam:CreateServiceLinkedRole",
@@ -83,6 +114,10 @@
       "/properties/ConformancePackName"
     ],
     "properties": {
+      "ConformancePackArn": {
+        "description": "Amazon Resource Name (ARN) of the conformance pack.",
+        "type": "string"
+      },
       "ConformancePackInputParameters": {
         "description": "A list of ConformancePackInputParameter objects.",
         "items": {
@@ -110,6 +145,15 @@
         "maxLength": 1024,
         "minLength": 0,
         "type": "string"
+      },
+      "Tags": {
+        "description": "The tags for the conformance pack.",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
       },
       "TemplateBody": {
         "description": "A string containing full conformance pack template body. You can only specify one of the template body or template S3Uri fields.",
@@ -142,16 +186,24 @@
         "type": "object"
       }
     },
+    "readOnlyProperties": [
+      "/properties/ConformancePackArn"
+    ],
     "required": [
       "ConformancePackName"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-config.git",
     "tagging": {
-      "cloudFormationSystemTags": false,
-      "tagOnCreate": false,
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "config:TagResource",
+        "config:UntagResource",
+        "config:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
-      "tagUpdatable": false,
-      "taggable": false
+      "tagUpdatable": true,
+      "taggable": true
     },
     "typeName": "AWS::Config::ConformancePack",
     "writeOnlyProperties": [

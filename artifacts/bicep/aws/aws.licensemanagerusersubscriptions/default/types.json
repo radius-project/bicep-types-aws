@@ -1,0 +1,266 @@
+[
+  {
+    "$type": "ObjectType",
+    "name": "CredentialsProvider",
+    "properties": {
+      "SecretsManagerCredentialsProvider": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LicenseServer",
+    "properties": {
+      "HealthStatus": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The health status of the license server."
+      },
+      "Ipv4Address": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The domain IPv4 address of the license server."
+      },
+      "Ipv6Address": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The domain IPv6 address of the license server."
+      },
+      "ProvisioningStatus": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The current state of the provisioning process for the license server."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LicenseServerSettings",
+    "properties": {
+      "ServerSettings": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "ServerType": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The type of license server."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RdsSalSettings",
+    "properties": {
+      "RdsSalCredentialsProvider": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SecretsManagerCredentialsProvider",
+    "properties": {
+      "SecretId": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The identifier of the Secrets Manager secret that holds the license server administrator credentials. The name of the secret must begin with the prefix license-manager-user-."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServerEndpoint",
+    "properties": {
+      "Endpoint": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The network address of the endpoint."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServerSettings",
+    "properties": {
+      "RdsSalSettings": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.LicenseManagerUserSubscriptions/LicenseServerEndpointProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.LicenseManagerUserSubscriptions/LicenseServerEndpointProperties",
+    "properties": {
+      "CreationTime": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2,
+        "description": "The timestamp when License Manager created the license server endpoint."
+      },
+      "IdentityProviderArn": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17,
+        "description": "The Amazon Resource Name (ARN) that identifies the registered identity provider the license server endpoint is created for. For Active Directory, that can be a self-managed Active Directory or an AWS Managed Microsoft AD."
+      },
+      "LicenseServerEndpointArn": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the license server endpoint."
+      },
+      "LicenseServerEndpointId": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2,
+        "description": "The ID of the license server endpoint."
+      },
+      "LicenseServerEndpointProvisioningStatus": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2,
+        "description": "The current state of the provisioning process for the license server endpoint."
+      },
+      "LicenseServerSettings": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 4
+      },
+      "LicenseServers": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 2,
+        "description": "The license servers that are accessed through this endpoint."
+      },
+      "ServerEndpoint": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2
+      },
+      "ServerType": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2,
+        "description": "The type of license server."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "The tags that apply for the license server endpoint. A maximum of 50 tags."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.LicenseManagerUserSubscriptions/LicenseServerEndpoint",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.LicenseManagerUserSubscriptions/LicenseServerEndpoint@default",
+    "body": {
+      "$ref": "#/13"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  }
+]

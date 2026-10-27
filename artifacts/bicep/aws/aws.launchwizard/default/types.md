@@ -1,7 +1,8 @@
 # AWS.LaunchWizard @ default
 
 ## Resource AWS.LaunchWizard/Deployment@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -16,7 +17,7 @@
 * **DeploymentPatternName**: string (Required): Workload deployment pattern name
 * **Name**: string (Required): Name of LaunchWizard deployment
 * **ResourceGroup**: string (ReadOnly): Resource Group Name created for LaunchWizard deployment
-* **Specifications**: [DeploymentSpecifications](#deploymentspecifications) (Required, WriteOnly): LaunchWizard deployment specifications
+* **Specifications**: [DeploymentSpecifications](#deploymentspecifications) (WriteOnly): LaunchWizard deployment specifications
 * **Status**: string (ReadOnly): Status of LaunchWizard deployment
 * **Tags**: [Tags](#tags)[]: Tags for LaunchWizard deployment
 * **WorkloadName**: string (Required): Workload Name for LaunchWizard deployment

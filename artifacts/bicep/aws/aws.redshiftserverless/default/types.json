@@ -344,11 +344,194 @@
   {
     "$type": "ResourceType",
     "name": "AWS.RedshiftServerless/Namespace@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/17"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Snapshot",
+    "properties": {
+      "AdminUsername": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2
+      },
+      "NamespaceArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2
+      },
+      "NamespaceName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2
+      },
+      "OwnerAccount": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2
+      },
+      "RetentionPeriod": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2
+      },
+      "SnapshotArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2
+      },
+      "SnapshotCreateTime": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2
+      },
+      "SnapshotName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SnapshotStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.RedshiftServerless/SnapshotProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/21"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.RedshiftServerless/SnapshotProperties",
+    "properties": {
+      "NamespaceName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The namespace the snapshot is associated with."
+      },
+      "OwnerAccount": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The owner account of the snapshot."
+      },
+      "RetentionPeriod": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The retention period of the snapshot."
+      },
+      "Snapshot": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 2,
+        "description": "Definition for snapshot resource"
+      },
+      "SnapshotName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "The name of the snapshot."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.RedshiftServerless/Snapshot",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.RedshiftServerless/Snapshot@default",
+    "body": {
+      "$ref": "#/25"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -386,7 +569,7 @@
       },
       "VpcEndpoints": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/36"
         },
         "flags": 2
       }
@@ -469,7 +652,7 @@
     "properties": {
       "NetworkInterfaces": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/37"
         },
         "flags": 0
       },
@@ -499,7 +682,7 @@
       },
       "ConfigParameters": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/38"
         },
         "flags": 2
       },
@@ -511,7 +694,7 @@
       },
       "Endpoint": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/28"
         },
         "flags": 0
       },
@@ -535,7 +718,7 @@
       },
       "PricePerformanceTarget": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/30"
         },
         "flags": 0
       },
@@ -547,7 +730,7 @@
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/39"
         },
         "flags": 2
       },
@@ -559,7 +742,13 @@
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/40"
+        },
+        "flags": 2
+      },
+      "TrackName": {
+        "type": {
+          "$ref": "#/5"
         },
         "flags": 2
       },
@@ -591,19 +780,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/33"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/21"
+      "$ref": "#/29"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/19"
+      "$ref": "#/27"
     }
   },
   {
@@ -625,7 +814,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/19"
+      "$ref": "#/27"
     }
   },
   {
@@ -661,7 +850,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/24"
+      "$ref": "#/32"
     }
   },
   {
@@ -672,12 +861,12 @@
         "type": {
           "$ref": "#/8"
         },
-        "flags": 4,
+        "flags": 0,
         "description": "The base compute capacity of the workgroup in Redshift Processing Units (RPUs)."
       },
       "ConfigParameters": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/42"
         },
         "flags": 4,
         "description": "A list of parameters to set for finer control over a database. Available options are datestyle, enable_user_activity_logging, query_group, search_path, max_query_execution_time, and require_ssl."
@@ -693,7 +882,7 @@
         "type": {
           "$ref": "#/8"
         },
-        "flags": 4,
+        "flags": 0,
         "description": "The max compute capacity of the workgroup in Redshift Processing Units (RPUs)."
       },
       "NamespaceName": {
@@ -712,7 +901,7 @@
       },
       "PricePerformanceTarget": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "A property that represents the price performance target settings for the workgroup."
@@ -724,32 +913,66 @@
         "flags": 0,
         "description": "A value that specifies whether the workgroup can be accessible from a public network."
       },
+      "RecoveryPointId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 4,
+        "description": "The identifier of the recovery point to restore the namespace from. When this resource is first created, the namespace is restored from this recovery point. On subsequent updates, a restore occurs only when RecoveryPointId changes from its previous value. If the value is unchanged or removed, no restore takes place and existing data is preserved."
+      },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/44"
         },
         "flags": 4,
         "description": "A list of security group IDs to associate with the workgroup."
       },
+      "SnapshotArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 4,
+        "description": "The Amazon Resource Name (ARN) of the snapshot to restore the namespace from. Specify either SnapshotArn or SnapshotName, but not both. When this resource is first created, the namespace is restored from this snapshot. On subsequent updates, a restore occurs only when SnapshotArn changes from its previous value. If the value is unchanged or removed, no restore takes place and existing data is preserved."
+      },
+      "SnapshotName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 4,
+        "description": "The name of the snapshot to restore the namespace from. Because snapshot names are unique only within an account, also specify SnapshotOwnerAccount when restoring from a snapshot owned by a different account. Specify either SnapshotName or SnapshotArn, but not both. When this resource is first created, the namespace is restored from this snapshot. On subsequent updates, a restore occurs only when SnapshotName or SnapshotOwnerAccount changes from its previous value. If both values are unchanged or SnapshotName is removed, no restore takes place and existing data is preserved."
+      },
+      "SnapshotOwnerAccount": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 4,
+        "description": "The AWS account ID that owns the snapshot. Required when restoring from a snapshot shared by another account. Used in combination with SnapshotName. On updates, changing this value while SnapshotName is set triggers a restore from the newly referenced snapshot. If the value is unchanged, no restore takes place and existing data is preserved."
+      },
       "SubnetIds": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/45"
         },
         "flags": 4,
         "description": "A list of subnet IDs the workgroup is associated with."
       },
       "Tags": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "The map of the key-value pairs used to tag the workgroup."
       },
+      "TrackName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
       "Workgroup": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/34"
         },
-        "flags": 2,
+        "flags": 0,
         "description": "Definition for workgroup resource"
       },
       "WorkgroupName": {
@@ -781,7 +1004,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/47"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -791,10 +1014,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.RedshiftServerless/Workgroup@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/40"
+      "$ref": "#/48"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

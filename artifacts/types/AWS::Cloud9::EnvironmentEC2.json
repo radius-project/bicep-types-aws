@@ -1,0 +1,199 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Cloud9-EnvironmentEC2",
+  "type": "AWS::Cloud9::EnvironmentEC2",
+  "time": "2026-10-20T21:09:30.882Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Arn"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/AutomaticStopTimeMinutes",
+      "/properties/OwnerArn",
+      "/properties/ConnectionType",
+      "/properties/InstanceType",
+      "/properties/ImageId",
+      "/properties/SubnetId",
+      "/properties/Repositories"
+    ],
+    "definitions": {
+      "Repository": {
+        "additionalProperties": false,
+        "properties": {
+          "PathComponent": {
+            "description": "The path within the development environment's default file system location to clone the AWS CodeCommit repository into.",
+            "maxLength": 1000,
+            "type": "string"
+          },
+          "RepositoryUrl": {
+            "description": "The clone URL of the AWS CodeCommit repository to be cloned.",
+            "maxLength": 1000,
+            "type": "string"
+          }
+        },
+        "required": [
+          "PathComponent",
+          "RepositoryUrl"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value",
+          "Key"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Cloud9::EnvironmentEC2",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "cloud9:CreateEnvironmentEC2",
+          "cloud9:DescribeEnvironments",
+          "cloud9:TagResource",
+          "cloud9:ListTagsForResource",
+          "iam:CreateServiceLinkedRole",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeVpcs",
+          "ssm:StartSession"
+        ],
+        "timeoutInMinutes": 15
+      },
+      "delete": {
+        "permissions": [
+          "cloud9:DeleteEnvironment",
+          "cloud9:DescribeEnvironments",
+          "ec2:DescribeInstances",
+          "ec2:TerminateInstances",
+          "ec2:DeleteSecurityGroup"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "cloud9:ListEnvironments"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "cloud9:DescribeEnvironments",
+          "cloud9:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "cloud9:UpdateEnvironment",
+          "cloud9:DescribeEnvironments",
+          "cloud9:TagResource",
+          "cloud9:UntagResource",
+          "cloud9:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/EnvironmentId"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the development environment.",
+        "type": "string"
+      },
+      "AutomaticStopTimeMinutes": {
+        "description": "The number of minutes until the running instance is shut down after the environment was last used.",
+        "type": "integer"
+      },
+      "ConnectionType": {
+        "description": "The connection type used for connecting to an Amazon EC2 environment.",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description of the environment.",
+        "maxLength": 200,
+        "minLength": 1,
+        "type": "string"
+      },
+      "EnvironmentId": {
+        "description": "The ID of the environment.",
+        "type": "string"
+      },
+      "ImageId": {
+        "description": "The identifier for the Amazon Machine Image (AMI) that's used to create the EC2 instance.",
+        "type": "string"
+      },
+      "InstanceType": {
+        "description": "The type of instance to connect to the environment.",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the environment.",
+        "maxLength": 60,
+        "minLength": 1,
+        "type": "string"
+      },
+      "OwnerArn": {
+        "description": "The Amazon Resource Name (ARN) of the environment owner.",
+        "type": "string"
+      },
+      "Repositories": {
+        "description": "Any AWS CodeCommit source code repositories to be cloned into the development environment.",
+        "items": {
+          "$ref": "#/definitions/Repository"
+        },
+        "type": "array"
+      },
+      "SubnetId": {
+        "description": "The ID of the subnet in Amazon VPC that AWS Cloud9 will use.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs that will be associated with the new AWS Cloud9 development environment.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/EnvironmentId"
+    ],
+    "required": [],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "cloud9:TagResource",
+        "cloud9:UntagResource",
+        "cloud9:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Cloud9::EnvironmentEC2",
+    "writeOnlyProperties": [
+      "/properties/InstanceType",
+      "/properties/ImageId",
+      "/properties/SubnetId",
+      "/properties/AutomaticStopTimeMinutes",
+      "/properties/Repositories"
+    ]
+  }
+}

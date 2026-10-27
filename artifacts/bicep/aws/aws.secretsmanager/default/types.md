@@ -1,28 +1,32 @@
 # AWS.SecretsManager @ default
 
 ## Resource AWS.SecretsManager/ResourcePolicy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SecretsManager/ResourcePolicyProperties](#awssecretsmanagerresourcepolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SecretsManager/RotationSchedule@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SecretsManager/RotationScheduleProperties](#awssecretsmanagerrotationscheduleproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SecretsManager/Secret@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SecretsManager/SecretProperties](#awssecretsmanagersecretproperties) (Identifier): properties of the resource
 
 ## Resource AWS.SecretsManager/SecretTargetAttachment@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -37,6 +41,8 @@
 
 ## AWS.SecretsManager/RotationScheduleProperties
 ### Properties
+* **ExternalSecretRotationMetadata**: [ExternalSecretRotationMetadataItem](#externalsecretrotationmetadataitem)[]: The list of metadata needed to successfully rotate a managed external secret.
+* **ExternalSecretRotationRoleArn**: string: The ARN of the IAM role that is used by Secrets Manager to rotate a managed external secret.
 * **HostedRotationLambda**: [HostedRotationLambda](#hostedrotationlambda) (WriteOnly): Creates a new Lambda rotation function based on one of the Secrets Manager rotation function templates. To use a rotation function that already exists, specify RotationLambdaARN instead.
 * **Id**: string (ReadOnly, Identifier): The ARN of the secret.
 * **RotateImmediatelyOnUpdate**: bool (WriteOnly): Specifies whether to rotate the secret immediately or wait until the next scheduled rotation window.
@@ -72,6 +78,7 @@
   +  Tag keys and values are case sensitive.
   +  Do not use the ``aws:`` prefix in your tag names or values because AWS reserves it for AWS use. You can't edit or delete tag names or values with this prefix. Tags with this prefix do not count against your tags per secret limit.
   +  If you use your tagging schema across multiple services and resources, other services might have restrictions on allowed characters. Generally allowed characters: letters, spaces, and numbers representable in UTF-8, plus the following special characters: + - = . _ : / @.
+* **Type**: string: The exact string that identifies the third-party partner that holds the external secret. For more information, see [Managed external secret partners](https://docs.aws.amazon.com/secretsmanager/latest/userguide/mes-partners.html).
 
 ## AWS.SecretsManager/SecretTargetAttachmentProperties
 ### Properties
@@ -79,6 +86,11 @@
 * **SecretId**: string (Required)
 * **TargetId**: string (Required)
 * **TargetType**: string (Required)
+
+## ExternalSecretRotationMetadataItem
+### Properties
+* **Key**: string (Required): The key name of the metadata item. You can specify a value that's 1 to 256 characters in length.
+* **Value**: string (Required): The value for the metadata item. You can specify a value that's 1 to 2048 characters in length.
 
 ## GenerateSecretString
 ### Properties

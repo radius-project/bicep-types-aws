@@ -1,0 +1,1279 @@
+[
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Cases/CaseProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Cases/CaseProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the case."
+      },
+      "CaseId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "A unique identifier of the case."
+      },
+      "CustomerId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The full customer profile ARN for the case."
+      },
+      "DomainId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The unique identifier of the Cases domain."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "A list of tags for the case."
+      },
+      "TemplateId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "A unique identifier of a template."
+      },
+      "Title": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The title of the case."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Cases/Case",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Cases/Case@default",
+    "body": {
+      "$ref": "#/5"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BooleanCondition",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BooleanOperands",
+    "properties": {
+      "OperandOne": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1
+      },
+      "OperandTwo": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      },
+      "Result": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 1,
+        "description": "The value of the outer rule if the condition evaluates to true."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CaseRuleDetails",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EmptyOperandValue",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "HiddenCaseRule",
+    "properties": {
+      "Conditions": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1,
+        "description": "List of conditions for the hidden rule; the first condition to evaluate to true dictates the value of the rule"
+      },
+      "DefaultValue": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 1,
+        "description": "The value of the rule (i.e. whether the field is hidden) should none of the conditions evaluate to true"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OperandOne",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OperandTwo",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RequiredCaseRule",
+    "properties": {
+      "Conditions": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 1,
+        "description": "An ordered list of boolean conditions that determine when the field should be required. Conditions are evaluated in order, and the first condition that evaluates to true determines whether the field is required, overriding the default value."
+      },
+      "DefaultValue": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 1,
+        "description": "The default required state for the field when none of the specified conditions are met. If true, the field is required by default; if false, the field is optional by default."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CaseRule_OperandOne",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CaseRule_OperandTwo",
+    "properties": {}
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Cases/CaseRuleProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/15"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Cases/CaseRuleProperties",
+    "properties": {
+      "CaseRuleArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of a case rule."
+      },
+      "CaseRuleId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The unique identifier of a case rule."
+      },
+      "CreatedTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time at which the case rule was created."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A description explaining the purpose and behavior of this case rule. Helps administrators understand when and why this rule applies to case fields."
+      },
+      "DomainId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The unique identifier of the Cases domain."
+      },
+      "LastModifiedTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time at which the case rule was created or last modified."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "A descriptive name for the case rule. Must be unique within the domain and should clearly indicate the rule's purpose (e.g., 'Priority Field Required for Urgent Cases')."
+      },
+      "Rule": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The tags that you attach to this case rule."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Cases/CaseRule",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Cases/CaseRule@default",
+    "body": {
+      "$ref": "#/24"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DomainStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Cases/DomainProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/27"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Cases/DomainProperties",
+    "properties": {
+      "CreatedTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time at which the domain was created."
+      },
+      "DomainArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) for the Cases domain."
+      },
+      "DomainId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the Cases domain."
+      },
+      "DomainStatus": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name for your Cases domain. It must be unique for your AWS account."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 0,
+        "description": "The tags that you attach to this domain."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Cases/Domain",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Cases/Domain@default",
+    "body": {
+      "$ref": "#/31"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FieldAttributes",
+    "properties": {
+      "Text": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FieldType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TextAttributes",
+    "properties": {
+      "IsMultiline": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 1,
+        "description": "Attribute that defines rendering component and validation"
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/35"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Cases/FieldProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/35"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Cases/FieldProperties",
+    "properties": {
+      "Attributes": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 0,
+        "description": "Field-type specific attributes that control rendering and validation behavior"
+      },
+      "CreatedTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time at which the field was created."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A description explaining the purpose and usage of this field in cases. Helps agents and administrators understand what information should be captured in this field."
+      },
+      "DomainId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The unique identifier of the Cases domain."
+      },
+      "FieldArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the field."
+      },
+      "FieldId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The unique identifier of a field."
+      },
+      "LastModifiedTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time at which the field was created or last modified."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The display name of the field as it appears to agents in the case interface. Should be descriptive and user-friendly (e.g., 'Customer Priority Level', 'Issue Category')."
+      },
+      "Namespace": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Indicates whether this is a System field (predefined by AWS) or a Custom field (created by your organization). System fields cannot be modified or deleted."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Cases/Field",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Cases/Field@default",
+    "body": {
+      "$ref": "#/42"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BasicLayout",
+    "properties": {
+      "MoreInfo": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 0
+      },
+      "TopPanel": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FieldGroup",
+    "properties": {
+      "Fields": {
+        "type": {
+          "$ref": "#/52"
+        },
+        "flags": 1,
+        "description": "An ordered list of fields to display in this group. The order determines the sequence in which fields appear in the agent interface. Each field is referenced by its unique field ID."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A descriptive name for the field group. Helps organize related fields together in the layout interface."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FieldItem",
+    "properties": {
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The unique identifier of a field."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LayoutContent",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LayoutSections",
+    "properties": {
+      "Sections": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 0,
+        "description": "Defines the sections within a panel or tab. Contains field groups that organize related fields together."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Section",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/46"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Layout_Section",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/53"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/50"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Cases/LayoutProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/50"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Cases/LayoutProperties",
+    "properties": {
+      "Content": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 1
+      },
+      "CreatedTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time at which the layout was created."
+      },
+      "DomainId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The unique identifier of the Cases domain."
+      },
+      "LastModifiedTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time at which the layout was created or last modified."
+      },
+      "LayoutArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the layout."
+      },
+      "LayoutId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the layout."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "A descriptive name for the layout. Must be unique within the Cases domain and should clearly indicate the layout's purpose and field organization."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/57"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Cases/Layout",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/58"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Cases/Layout@default",
+    "body": {
+      "$ref": "#/59"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CommentContent",
+    "properties": {
+      "Body": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Text in the body of a comment."
+      },
+      "ContentType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Type of the text in the comment."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RelatedItemContent",
+    "properties": {
+      "Comment": {
+        "type": {
+          "$ref": "#/61"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value of the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Cases/RelatedItemProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/63"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Cases/RelatedItemProperties",
+    "properties": {
+      "CaseId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "A unique identifier of the case."
+      },
+      "Content": {
+        "type": {
+          "$ref": "#/62"
+        },
+        "flags": 1,
+        "description": "The content of a related item to be created."
+      },
+      "DomainId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The unique identifier of the Cases domain."
+      },
+      "RelatedItemArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the related item."
+      },
+      "RelatedItemId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the related item."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 0,
+        "description": "A list of tags on the related item."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The type of a related item."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Cases/RelatedItem",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/66"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Cases/RelatedItem@default",
+    "body": {
+      "$ref": "#/67"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LayoutConfiguration",
+    "properties": {
+      "DefaultLayout": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The unique identifier of a layout."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RequiredField",
+    "properties": {
+      "FieldId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The unique identifier of a field."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TemplateRule",
+    "properties": {
+      "CaseRuleId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The unique identifier of a case rule."
+      },
+      "FieldId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ID of the field that this rule applies to."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TemplateStatus",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Cases/TemplateProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/70"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/72"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/71"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Cases/TemplateProperties",
+    "properties": {
+      "CreatedTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time at which the template was created."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A description explaining the purpose and use case for this template. Should indicate what types of cases this template is designed for and any specific workflow it supports."
+      },
+      "DomainId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The unique identifier of the Cases domain."
+      },
+      "LastModifiedTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time at which the template was created or last modified."
+      },
+      "LayoutConfiguration": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "A name for the template. It must be unique per domain."
+      },
+      "RequiredFields": {
+        "type": {
+          "$ref": "#/75"
+        },
+        "flags": 0,
+        "description": "A list of fields that must contain a value for a case to be successfully created with this template."
+      },
+      "Rules": {
+        "type": {
+          "$ref": "#/76"
+        },
+        "flags": 0,
+        "description": "A list of case rules (also known as case field conditions) on a template."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/77"
+        },
+        "flags": 0,
+        "description": "The tags that you attach to this template."
+      },
+      "TemplateArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the template."
+      },
+      "TemplateId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The unique identifier of a template."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Cases/Template",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/78"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Cases/Template@default",
+    "body": {
+      "$ref": "#/79"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  }
+]

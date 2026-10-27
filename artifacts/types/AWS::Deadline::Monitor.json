@@ -1,18 +1,46 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Deadline-Monitor",
   "type": "AWS::Deadline::Monitor",
-  "time": "2025-01-27T17:26:22.422Z",
+  "time": "2026-10-21T23:50:10.959Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
-      "/properties/IdentityCenterInstanceArn"
+      "/properties/IdentityCenterInstanceArn",
+      "/properties/IdentityCenterRegion"
     ],
-    "description": "Definition of AWS::Deadline::Monitor Resource Type",
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. ",
+            "maxLength": 127,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. ",
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Deadline::Monitor",
     "handlers": {
       "create": {
         "permissions": [
           "deadline:CreateMonitor",
           "deadline:GetMonitor",
+          "deadline:TagResource",
+          "deadline:ListTagsForResource",
           "iam:PassRole",
           "kms:CreateGrant",
           "sso:CreateApplication",
@@ -36,12 +64,16 @@
       },
       "read": {
         "permissions": [
-          "deadline:GetMonitor"
+          "deadline:GetMonitor",
+          "deadline:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
           "deadline:GetMonitor",
+          "deadline:TagResource",
+          "deadline:UntagResource",
+          "deadline:ListTagsForResource",
           "deadline:UpdateMonitor",
           "iam:PassRole",
           "kms:CreateGrant",
@@ -70,6 +102,13 @@
         "pattern": "^arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso:::instance/(sso)?ins-[a-zA-Z0-9-.]{16}$",
         "type": "string"
       },
+      "IdentityCenterRegion": {
+        "description": "The AWS region where IAM Identity Center is enabled. Required when Identity Center is in a different region than the monitor.",
+        "maxLength": 25,
+        "minLength": 1,
+        "pattern": "^[a-z0-9-]+$",
+        "type": "string"
+      },
       "MonitorId": {
         "pattern": "^monitor-[0-9a-f]{32}$",
         "type": "string"
@@ -81,6 +120,16 @@
       "Subdomain": {
         "pattern": "^[a-z0-9-]{1,100}$",
         "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
       },
       "Url": {
         "type": "string"
@@ -99,10 +148,16 @@
       "Subdomain"
     ],
     "tagging": {
-      "cloudFormationSystemTags": false,
-      "tagOnCreate": false,
-      "tagUpdatable": false,
-      "taggable": false
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "deadline:TagResource",
+        "deadline:UntagResource",
+        "deadline:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
     },
     "typeName": "AWS::Deadline::Monitor"
   }

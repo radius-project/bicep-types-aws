@@ -1,32 +1,40 @@
 # AWS.B2BI @ default
 
 ## Resource AWS.B2BI/Capability@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.B2BI/CapabilityProperties](#awsb2bicapabilityproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.B2BI/Partnership@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.B2BI/PartnershipProperties](#awsb2bipartnershipproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.B2BI/Profile@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.B2BI/ProfileProperties](#awsb2biprofileproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.B2BI/Transformer@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.B2BI/TransformerProperties](#awsb2bitransformerproperties) (Required, Identifier): properties of the resource
+
+## AdvancedOptions
+### Properties
+* **X12**: [X12AdvancedOptions](#x12advancedoptions)
 
 ## AWS.B2BI/CapabilityProperties
 ### Properties
@@ -92,6 +100,7 @@
 
 ## CapabilityOptions
 ### Properties
+* **InboundEdi**: [InboundEdiOptions](#inboundedioptions)
 * **OutboundEdi**: [Partnership_OutboundEdiOptions](#partnershipoutboundedioptions)
 
 ## EdiType
@@ -100,8 +109,13 @@
 ## FormatOptions
 ### Properties
 
+## InboundEdiOptions
+### Properties
+* **X12**: [X12InboundEdiOptions](#x12inboundedioptions)
+
 ## InputConversion
 ### Properties
+* **AdvancedOptions**: [AdvancedOptions](#advancedoptions)
 * **FormatOptions**: [FormatOptions](#formatoptions)
 * **FromFormat**: string (Required)
 
@@ -112,6 +126,7 @@
 
 ## OutputConversion
 ### Properties
+* **AdvancedOptions**: [AdvancedOptions](#advancedoptions)
 * **FormatOptions**: [FormatOptions](#formatoptions)
 * **ToFormat**: string (Required)
 
@@ -152,4 +167,29 @@
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Transformer_X12ValidationRule
+### Properties
+
+## X12AcknowledgmentOptions
+### Properties
+* **FunctionalAcknowledgment**: string (Required)
+* **TechnicalAcknowledgment**: string (Required)
+
+## X12AdvancedOptions
+### Properties
+* **SplitOptions**: [X12SplitOptions](#x12splitoptions)
+* **ValidationOptions**: [X12ValidationOptions](#x12validationoptions)
+
+## X12InboundEdiOptions
+### Properties
+* **AcknowledgmentOptions**: [X12AcknowledgmentOptions](#x12acknowledgmentoptions)
+
+## X12SplitOptions
+### Properties
+* **SplitBy**: string
+
+## X12ValidationOptions
+### Properties
+* **ValidationRules**: [Transformer_X12ValidationRule](#transformerx12validationrule)[]
 

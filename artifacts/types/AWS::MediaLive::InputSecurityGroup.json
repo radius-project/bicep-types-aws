@@ -1,0 +1,115 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaLive-InputSecurityGroup",
+  "type": "AWS::MediaLive::InputSecurityGroup",
+  "time": "2026-10-14T19:01:51.342Z",
+  "schema": {
+    "additionalProperties": false,
+    "definitions": {
+      "InputWhitelistRule": {
+        "additionalProperties": false,
+        "description": "Whitelist rule",
+        "properties": {
+          "Cidr": {
+            "description": "The IPv4 CIDR that's whitelisted.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::MediaLive::InputSecurityGroup",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "medialive:CreateInputSecurityGroup",
+          "medialive:ListTagsForResource",
+          "medialive:CreateTags"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "medialive:DeleteInputSecurityGroup",
+          "medialive:DescribeInputSecurityGroup"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "medialive:ListInputSecurityGroups"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "medialive:DescribeInputSecurityGroup",
+          "medialive:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "medialive:UpdateInputSecurityGroup",
+          "medialive:DescribeInputSecurityGroup",
+          "medialive:ListTagsForResource",
+          "medialive:CreateTags",
+          "medialive:DeleteTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Id"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "Unique ARN of Input Security Group",
+        "type": "string"
+      },
+      "Id": {
+        "description": "The Id of the Input Security Group",
+        "type": "string"
+      },
+      "Inputs": {
+        "description": "The list of inputs currently using this Input Security Group.",
+        "insertionOrder": false,
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "Tags": {
+        "additionalProperties": false,
+        "description": "A collection of key-value pairs.",
+        "patternProperties": {
+          ".+": {
+            "description": "Placeholder documentation for __string",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "WhitelistRules": {
+        "description": "Whitelist rules and their sync status",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/InputWhitelistRule"
+        },
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Id",
+      "/properties/Inputs"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "medialive:CreateTags",
+        "medialive:ListTagsForResource",
+        "medialive:DeleteTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::MediaLive::InputSecurityGroup"
+  }
+}

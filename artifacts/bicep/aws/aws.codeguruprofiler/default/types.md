@@ -1,7 +1,8 @@
 # AWS.CodeGuruProfiler @ default
 
 ## Resource AWS.CodeGuruProfiler/ProfilingGroup@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name

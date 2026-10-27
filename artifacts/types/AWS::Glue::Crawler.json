@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Glue-Crawler",
   "type": "AWS::Glue::Crawler",
-  "time": "2024-10-10T17:06:48.371Z",
+  "time": "2026-03-05T23:45:30.036Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -74,6 +74,45 @@
           "Path": {
             "description": "The name of the DynamoDB table to crawl.",
             "type": "string"
+          },
+          "ScanAll": {
+            "description": "Indicates whether to scan all the records, or to sample rows from the table. Scanning all the records can take a long time when the table is not a high throughput table. A value of true means to scan all records, while a value of false means to sample the records. If no value is specified, the value defaults to true.",
+            "type": "boolean"
+          },
+          "ScanRate": {
+            "description": "The percentage of the configured read capacity units to use by the AWS Glue crawler. Read capacity units is a term defined by DynamoDB, and is a numeric value that acts as rate limiter for the number of reads that can be performed on that table per second.\n\nThe valid values are null or a value between 0.1 to 1.5. A null value is used when user does not provide a value, and defaults to 0.5 of the configured Read Capacity Unit (for provisioned tables), or 0.25 of the max configured Read Capacity Unit (for tables using on-demand mode).",
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "HudiTarget": {
+        "additionalProperties": false,
+        "description": "Specifies Apache Hudi data store targets.",
+        "properties": {
+          "ConnectionName": {
+            "description": "The name of the connection to use to connect to the Hudi target.",
+            "type": "string"
+          },
+          "Exclusions": {
+            "description": "A list of global patterns used to exclude from the crawl.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "MaximumTraversalDepth": {
+            "description": "The maximum depth of Amazon S3 paths that the crawler can traverse to discover the Hudi metadata folder in your Amazon S3 path. Used to limit the crawler run time.",
+            "type": "integer"
+          },
+          "Paths": {
+            "description": "One or more Amazon S3 paths that contains Hudi metadata folders as s3://bucket/prefix .",
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
           }
         },
         "type": "object"
@@ -270,6 +309,14 @@
             "type": "array",
             "uniqueItems": false
           },
+          "HudiTargets": {
+            "description": "Specifies Apache Hudi data store targets.",
+            "items": {
+              "$ref": "#/definitions/HudiTarget"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
           "IcebergTargets": {
             "description": "Specifies Apache Iceberg data store targets.",
             "items": {
@@ -413,6 +460,10 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-glue.git",
     "tagging": {
       "cloudFormationSystemTags": false,
+      "permissions": [
+        "glue:TagResource",
+        "glue:UntagResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

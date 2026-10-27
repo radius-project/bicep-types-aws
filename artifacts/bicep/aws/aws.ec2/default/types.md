@@ -1,448 +1,736 @@
 # AWS.EC2 @ default
 
+## Resource AWS.EC2/ApplicationStatusCheck@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/ApplicationStatusCheckProperties](#awsec2applicationstatuscheckproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.EC2/CapacityManagerDataExport@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/CapacityManagerDataExportProperties](#awsec2capacitymanagerdataexportproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.EC2/CapacityReservation@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/CapacityReservationProperties](#awsec2capacityreservationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/CapacityReservationFleet@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/CapacityReservationFleetProperties](#awsec2capacityreservationfleetproperties) (Identifier): properties of the resource
 
 ## Resource AWS.EC2/CarrierGateway@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/CarrierGatewayProperties](#awsec2carriergatewayproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/CustomerGateway@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/CustomerGatewayProperties](#awsec2customergatewayproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/DHCPOptions@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/DHCPOptionsProperties](#awsec2dhcpoptionsproperties) (Identifier): properties of the resource
 
 ## Resource AWS.EC2/EC2Fleet@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/EC2FleetProperties](#awsec2ec2fleetproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.EC2/EgressOnlyInternetGateway@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/EgressOnlyInternetGatewayProperties](#awsec2egressonlyinternetgatewayproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.EC2/EIP@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/EIPProperties](#awsec2eipproperties) (Identifier): properties of the resource
 
 ## Resource AWS.EC2/FlowLog@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/FlowLogProperties](#awsec2flowlogproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.EC2/FpgaImage@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/FpgaImageProperties](#awsec2fpgaimageproperties) (Identifier): properties of the resource
+
 ## Resource AWS.EC2/GatewayRouteTableAssociation@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/GatewayRouteTableAssociationProperties](#awsec2gatewayroutetableassociationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/Host@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/HostProperties](#awsec2hostproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/Instance@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/InstanceProperties](#awsec2instanceproperties) (Identifier): properties of the resource
 
 ## Resource AWS.EC2/InstanceConnectEndpoint@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/InstanceConnectEndpointProperties](#awsec2instanceconnectendpointproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.EC2/InstanceEventWindow@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/InstanceEventWindowProperties](#awsec2instanceeventwindowproperties) (Identifier): properties of the resource
+
 ## Resource AWS.EC2/InternetGateway@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/InternetGatewayProperties](#awsec2internetgatewayproperties) (Identifier): properties of the resource
 
 ## Resource AWS.EC2/IPAM@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/IPAMProperties](#awsec2ipamproperties) (Identifier): properties of the resource
 
+## Resource AWS.EC2/IpamExternalResourceVerificationToken@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/IpamExternalResourceVerificationTokenProperties](#awsec2ipamexternalresourceverificationtokenproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.EC2/IpamInternetRegistryAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/IpamInternetRegistryAssociationProperties](#awsec2ipaminternetregistryassociationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.EC2/IPAMPool@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/IPAMPoolProperties](#awsec2ipampoolproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.EC2/IPAMPrefixListResolver@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/IPAMPrefixListResolverProperties](#awsec2ipamprefixlistresolverproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.EC2/IPAMPrefixListResolverTarget@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/IPAMPrefixListResolverTargetProperties](#awsec2ipamprefixlistresolvertargetproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.EC2/IPAMResourceDiscovery@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/IPAMResourceDiscoveryProperties](#awsec2ipamresourcediscoveryproperties) (Identifier): properties of the resource
 
 ## Resource AWS.EC2/IPAMResourceDiscoveryAssociation@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/IPAMResourceDiscoveryAssociationProperties](#awsec2ipamresourcediscoveryassociationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/IPAMScope@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/IPAMScopeProperties](#awsec2ipamscopeproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.EC2/IPv4Pool@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/IPv4PoolProperties](#awsec2ipv4poolproperties) (Identifier): properties of the resource
+
 ## Resource AWS.EC2/LaunchTemplate@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/LaunchTemplateProperties](#awsec2launchtemplateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/LocalGatewayRoute@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/LocalGatewayRouteProperties](#awsec2localgatewayrouteproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/LocalGatewayRouteTable@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/LocalGatewayRouteTableProperties](#awsec2localgatewayroutetableproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/LocalGatewayRouteTableVirtualInterfaceGroupAssociation@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/LocalGatewayRouteTableVirtualInterfaceGroupAssociationProperties](#awsec2localgatewayroutetablevirtualinterfacegroupassociationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/LocalGatewayRouteTableVPCAssociation@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/LocalGatewayRouteTableVPCAssociationProperties](#awsec2localgatewayroutetablevpcassociationproperties) (Required, Identifier): properties of the resource
 
-## Resource AWS.EC2/NatGateway@default
-* **Valid Scope(s)**: Unknown
+## Resource AWS.EC2/LocalGatewayVirtualInterface@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.EC2/NatGatewayProperties](#awsec2natgatewayproperties) (Required, Identifier): properties of the resource
+* **properties**: [AWS.EC2/LocalGatewayVirtualInterfaceProperties](#awsec2localgatewayvirtualinterfaceproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.EC2/LocalGatewayVirtualInterfaceGroup@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/LocalGatewayVirtualInterfaceGroupProperties](#awsec2localgatewayvirtualinterfacegroupproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.EC2/NatGateway@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/NatGatewayProperties](#awsec2natgatewayproperties) (Identifier): properties of the resource
 
 ## Resource AWS.EC2/NetworkAcl@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/NetworkAclProperties](#awsec2networkaclproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/NetworkInsightsAccessScope@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/NetworkInsightsAccessScopeProperties](#awsec2networkinsightsaccessscopeproperties) (Identifier): properties of the resource
 
 ## Resource AWS.EC2/NetworkInsightsAccessScopeAnalysis@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/NetworkInsightsAccessScopeAnalysisProperties](#awsec2networkinsightsaccessscopeanalysisproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/NetworkInsightsAnalysis@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/NetworkInsightsAnalysisProperties](#awsec2networkinsightsanalysisproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/NetworkInsightsPath@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/NetworkInsightsPathProperties](#awsec2networkinsightspathproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/NetworkInterface@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/NetworkInterfaceProperties](#awsec2networkinterfaceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/NetworkInterfaceAttachment@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/NetworkInterfaceAttachmentProperties](#awsec2networkinterfaceattachmentproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/PrefixList@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/PrefixListProperties](#awsec2prefixlistproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/Route@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/RouteProperties](#awsec2routeproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.EC2/RouteServer@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/RouteServerProperties](#awsec2routeserverproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.EC2/RouteServerEndpoint@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/RouteServerEndpointProperties](#awsec2routeserverendpointproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.EC2/RouteServerPeer@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/RouteServerPeerProperties](#awsec2routeserverpeerproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.EC2/RouteTable@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/RouteTableProperties](#awsec2routetableproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.EC2/SecondaryNetwork@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/SecondaryNetworkProperties](#awsec2secondarynetworkproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.EC2/SecurityGroup@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/SecurityGroupProperties](#awsec2securitygroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/SecurityGroupEgress@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/SecurityGroupEgressProperties](#awsec2securitygroupegressproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/SecurityGroupIngress@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/SecurityGroupIngressProperties](#awsec2securitygroupingressproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/SnapshotBlockPublicAccess@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/SnapshotBlockPublicAccessProperties](#awsec2snapshotblockpublicaccessproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/SpotFleet@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/SpotFleetProperties](#awsec2spotfleetproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.EC2/SqlHaStandbyDetectedInstance@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/SqlHaStandbyDetectedInstanceProperties](#awsec2sqlhastandbydetectedinstanceproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.EC2/Subnet@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/SubnetProperties](#awsec2subnetproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.EC2/SubnetCidrReservation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/SubnetCidrReservationProperties](#awsec2subnetcidrreservationproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.EC2/TrafficMirrorFilter@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/TrafficMirrorFilterProperties](#awsec2trafficmirrorfilterproperties) (Identifier): properties of the resource
+
+## Resource AWS.EC2/TrafficMirrorFilterRule@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/TrafficMirrorFilterRuleProperties](#awsec2trafficmirrorfilterruleproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.EC2/TrafficMirrorSession@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/TrafficMirrorSessionProperties](#awsec2trafficmirrorsessionproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.EC2/TrafficMirrorTarget@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/TrafficMirrorTargetProperties](#awsec2trafficmirrortargetproperties) (Identifier): properties of the resource
+
 ## Resource AWS.EC2/TransitGateway@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/TransitGatewayProperties](#awsec2transitgatewayproperties) (Identifier): properties of the resource
 
 ## Resource AWS.EC2/TransitGatewayAttachment@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/TransitGatewayAttachmentProperties](#awsec2transitgatewayattachmentproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/TransitGatewayConnect@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/TransitGatewayConnectProperties](#awsec2transitgatewayconnectproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.EC2/TransitGatewayConnectPeer@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/TransitGatewayConnectPeerProperties](#awsec2transitgatewayconnectpeerproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.EC2/TransitGatewayMeteringPolicy@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/TransitGatewayMeteringPolicyProperties](#awsec2transitgatewaymeteringpolicyproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.EC2/TransitGatewayMulticastDomain@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/TransitGatewayMulticastDomainProperties](#awsec2transitgatewaymulticastdomainproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/TransitGatewayPeeringAttachment@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/TransitGatewayPeeringAttachmentProperties](#awsec2transitgatewaypeeringattachmentproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.EC2/TransitGatewayPolicyTable@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/TransitGatewayPolicyTableProperties](#awsec2transitgatewaypolicytableproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.EC2/TransitGatewayPolicyTableEntry@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/TransitGatewayPolicyTableEntryProperties](#awsec2transitgatewaypolicytableentryproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.EC2/TransitGatewayRouteTable@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/TransitGatewayRouteTableProperties](#awsec2transitgatewayroutetableproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/TransitGatewayVpcAttachment@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/TransitGatewayVpcAttachmentProperties](#awsec2transitgatewayvpcattachmentproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/VerifiedAccessEndpoint@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/VerifiedAccessEndpointProperties](#awsec2verifiedaccessendpointproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/VerifiedAccessGroup@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/VerifiedAccessGroupProperties](#awsec2verifiedaccessgroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/VerifiedAccessInstance@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/VerifiedAccessInstanceProperties](#awsec2verifiedaccessinstanceproperties) (Identifier): properties of the resource
 
 ## Resource AWS.EC2/VerifiedAccessTrustProvider@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/VerifiedAccessTrustProviderProperties](#awsec2verifiedaccesstrustproviderproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/Volume@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.EC2/VolumeProperties](#awsec2volumeproperties) (Required, Identifier): properties of the resource
+* **properties**: [AWS.EC2/VolumeProperties](#awsec2volumeproperties) (Identifier): properties of the resource
 
 ## Resource AWS.EC2/VPC@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/VPCProperties](#awsec2vpcproperties) (Identifier): properties of the resource
 
 ## Resource AWS.EC2/VPCBlockPublicAccessExclusion@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/VPCBlockPublicAccessExclusionProperties](#awsec2vpcblockpublicaccessexclusionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/VPCBlockPublicAccessOptions@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/VPCBlockPublicAccessOptionsProperties](#awsec2vpcblockpublicaccessoptionsproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/VPCDHCPOptionsAssociation@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/VPCDHCPOptionsAssociationProperties](#awsec2vpcdhcpoptionsassociationproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.EC2/VPCEncryptionControl@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/VPCEncryptionControlProperties](#awsec2vpcencryptioncontrolproperties) (Identifier): properties of the resource
+
 ## Resource AWS.EC2/VPCEndpoint@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/VPCEndpointProperties](#awsec2vpcendpointproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/VPCEndpointConnectionNotification@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/VPCEndpointConnectionNotificationProperties](#awsec2vpcendpointconnectionnotificationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/VPCEndpointService@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/VPCEndpointServiceProperties](#awsec2vpcendpointserviceproperties) (Identifier): properties of the resource
 
 ## Resource AWS.EC2/VPCEndpointServicePermissions@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/VPCEndpointServicePermissionsProperties](#awsec2vpcendpointservicepermissionsproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/VPCGatewayAttachment@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/VPCGatewayAttachmentProperties](#awsec2vpcgatewayattachmentproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/VPCPeeringConnection@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/VPCPeeringConnectionProperties](#awsec2vpcpeeringconnectionproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.EC2/VPNConcentrator@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/VPNConcentratorProperties](#awsec2vpnconcentratorproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.EC2/VPNConnection@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/VPNConnectionProperties](#awsec2vpnconnectionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/VPNGateway@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -553,10 +841,58 @@
 * **Protocol**: string
 * **SecurityGroupId**: string
 
+## AnalysisTransitGatewayPolicyTableEntry
+### Properties
+* **DestinationCidr**: string
+* **DestinationPortRange**: [PortRange](#portrange)
+* **Protocol**: string
+* **RuleNumber**: int
+* **SourceCidr**: string
+* **SourcePortRange**: [PortRange](#portrange)
+* **TargetRouteTableId**: string
+
 ## AssociationParameter
 ### Properties
 * **Key**: string (Required): The name of an input parameter that is in the associated SSM document.
 * **Value**: string[] (Required): The value of an input parameter.
+
+## AvailabilityZoneAddress
+### Properties
+* **AllocationIds**: string[] (Required): The allocation IDs of the Elastic IP addresses (EIPs) to be used for handling outbound NAT traffic in this specific Availability Zone.
+* **AvailabilityZone**: string: For regional NAT gateways only: The Availability Zone where this specific NAT gateway configuration will be active. Each AZ in a regional NAT gateway has its own configuration to handle outbound NAT traffic from that AZ. 
+ A regional NAT gateway is a single NAT Gateway that works across multiple availability zones (AZs) in your VPC, providing redundancy, scalability and availability across all the AZs in a Region.
+* **AvailabilityZoneId**: string: For regional NAT gateways only: The ID of the Availability Zone where this specific NAT gateway configuration will be active. Each AZ in a regional NAT gateway has its own configuration to handle outbound NAT traffic from that AZ. Use this instead of AvailabilityZone for consistent identification of AZs across AWS Regions. 
+ A regional NAT gateway is a single NAT Gateway that works across multiple availability zones (AZs) in your VPC, providing redundancy, scalability and availability across all the AZs in a Region.
+
+## AWS.EC2/ApplicationStatusCheckProperties
+### Properties
+* **Aggregation**: string: Whether this check is included in the rolled-up application status.
+* **ApplicationStatusCheckId**: string (ReadOnly): The unique identifier of the application status check.
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the application status check.
+* **CreationTime**: string (ReadOnly): When the application status check was created (ISO 8601).
+* **DeviceIndex**: int: The network interface device index used for the health check.
+* **FailureThreshold**: int: The number of consecutive failed probes required to mark the instance unhealthy.
+* **HealthCheckPaths**: [HealthCheckPath](#healthcheckpath)[]: The source/destination network paths used for the health check.
+* **InitializationGracePeriodSeconds**: int: Seconds to wait after instance launch before beginning health checks.
+* **Interval**: int: The interval, in seconds, between health check probes.
+* **IpScope**: string: The IP scope used for the health check.
+* **IpVersion**: string: The IP version used for the health check.
+* **Path**: string: The HTTP path used for the health check.
+* **Port**: int (Required): The port used for the health check.
+* **Protocol**: string (Required): The network protocol used for the health check.
+* **StatusCodeMatcher**: string: The HTTP status codes considered successful (e.g., "200-299").
+* **SuccessThreshold**: int: The number of consecutive successful probes required to mark the instance healthy.
+* **Tags**: [Tag](#tag)[]: Tags to apply to the application status check.
+* **Timeout**: int: The timeout, in seconds, for each health check probe.
+
+## AWS.EC2/CapacityManagerDataExportProperties
+### Properties
+* **CapacityManagerDataExportId**: string (ReadOnly, Identifier): The unique identifier of the capacity manager data export.
+* **OutputFormat**: string (Required): The format of the exported capacity manager data. Choose 'csv' for comma-separated values or 'parquet' for optimized columnar storage format.
+* **S3BucketName**: string (Required): The name of the Amazon S3 bucket where the capacity manager data export will be stored. The bucket must exist and be accessible by EC2 Capacity Manager service.
+* **S3BucketPrefix**: string: The prefix for the S3 bucket location where exported files will be placed. If not specified, files will be placed in the root of the bucket.
+* **Schedule**: string (Required): The schedule for the capacity manager data export. Currently supports hourly exports that provide periodic snapshots of capacity manager data.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to the capacity manager data export.
 
 ## AWS.EC2/CapacityReservationFleetProperties
 ### Properties
@@ -565,8 +901,8 @@
 * **EndDate**: string
 * **InstanceMatchCriteria**: string
 * **InstanceTypeSpecifications**: [InstanceTypeSpecification](#instancetypespecification)[]
-* **NoRemoveEndDate**: bool
-* **RemoveEndDate**: bool
+* **NoRemoveEndDate**: bool (WriteOnly)
+* **RemoveEndDate**: bool (WriteOnly)
 * **TagSpecifications**: [TagSpecification](#tagspecification)[]
 * **Tenancy**: string
 * **TotalTargetCapacity**: int
@@ -576,6 +912,12 @@
 * **AvailabilityZone**: string
 * **AvailabilityZoneId**: string
 * **AvailableInstanceCount**: int (ReadOnly)
+* **CapacityAllocationSet**: [CapacityAllocation](#capacityallocation)[] (ReadOnly)
+* **CapacityReservationArn**: string (ReadOnly)
+* **CapacityReservationFleetId**: string (ReadOnly)
+* **CommitmentInfo**: [CapacityReservation_CommitmentInfo](#capacityreservationcommitmentinfo) (ReadOnly)
+* **CreateDate**: string (ReadOnly)
+* **DeliveryPreference**: string (ReadOnly)
 * **EbsOptimized**: bool
 * **EndDate**: string
 * **EndDateType**: string
@@ -586,7 +928,11 @@
 * **InstancePlatform**: string (Required)
 * **InstanceType**: string (Required)
 * **OutPostArn**: string
+* **OwnerId**: string (ReadOnly)
 * **PlacementGroupArn**: string
+* **ReservationType**: string (ReadOnly)
+* **StartDate**: string (ReadOnly)
+* **State**: string (ReadOnly)
 * **TagSpecifications**: [TagSpecification](#tagspecification)[]
 * **Tenancy**: string
 * **TotalInstanceCount**: int (ReadOnly)
@@ -610,7 +956,7 @@
 * **CertificateArn**: string: The Amazon Resource Name (ARN) for the customer gateway certificate.
 * **CustomerGatewayId**: string (ReadOnly, Identifier)
 * **DeviceName**: string: The name of customer gateway device.
-* **IpAddress**: string (Required): IPv4 address for the customer gateway device's outside interface. The address must be static. If ``OutsideIpAddressType`` in your VPN connection options is set to ``PrivateIpv4``, you can use an RFC6598 or RFC1918 private IPv4 address. If ``OutsideIpAddressType`` is set to ``PublicIpv4``, you can use a public IPv4 address.
+* **IpAddress**: string (Required): The IP address for the customer gateway device's outside interface. The address must be static. If ``OutsideIpAddressType`` in your VPN connection options is set to ``PrivateIpv4``, you can use an RFC6598 or RFC1918 private IPv4 address. If ``OutsideIpAddressType`` is set to ``Ipv6``, you can use an IPv6 address.
 * **Tags**: [Tag](#tag)[]: One or more tags for the customer gateway.
 * **Type**: string (Required): The type of VPN connection that this customer gateway supports (``ipsec.1``).
 
@@ -630,9 +976,10 @@
 * **Context**: string
 * **ExcessCapacityTerminationPolicy**: string
 * **FleetId**: string (ReadOnly, Identifier)
-* **LaunchTemplateConfigs**: [FleetLaunchTemplateConfigRequest](#fleetlaunchtemplateconfigrequest)[] (Required)
+* **LaunchTemplateConfigs**: [FleetLaunchTemplateConfigRequest](#fleetlaunchtemplateconfigrequest)[] (Required, WriteOnly)
 * **OnDemandOptions**: [OnDemandOptionsRequest](#ondemandoptionsrequest)
 * **ReplaceUnhealthyInstances**: bool
+* **ReservedCapacityOptions**: [ReservedCapacityOptionsRequest](#reservedcapacityoptionsrequest)
 * **SpotOptions**: [SpotOptionsRequest](#spotoptionsrequest)
 * **TagSpecifications**: [TagSpecification](#tagspecification)[]
 * **TargetCapacitySpecification**: [TargetCapacitySpecificationRequest](#targetcapacityspecificationrequest) (Required)
@@ -641,15 +988,21 @@
 * **ValidFrom**: string
 * **ValidUntil**: string
 
+## AWS.EC2/EgressOnlyInternetGatewayProperties
+### Properties
+* **Id**: string (ReadOnly, Identifier): Service Generated ID of the EgressOnlyInternetGateway
+* **Tags**: [Tag](#tag)[]: Any tags assigned to the egress only internet gateway.
+* **VpcId**: string (Required): The ID of the VPC for which to create the egress-only internet gateway.
+
 ## AWS.EC2/EIPProperties
 ### Properties
-* **Address**: string (WriteOnly)
+* **Address**: string (WriteOnly): An Elastic IP address or a carrier IP address in a Wavelength Zone.
 * **AllocationId**: string (ReadOnly, Identifier)
 * **Domain**: string: The network (``vpc``).
  If you define an Elastic IP address and associate it with a VPC that is defined in the same template, you must declare a dependency on the VPC-gateway attachment by using the [DependsOn Attribute](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-dependson.html) on this resource.
 * **InstanceId**: string: The ID of the instance.
   Updates to the ``InstanceId`` property may require *some interruptions*. Updates on an EIP reassociates the address on its associated resource.
-* **IpamPoolId**: string (WriteOnly)
+* **IpamPoolId**: string (WriteOnly): The ID of an IPAM pool which has an Amazon-provided or BYOIP public IPv4 CIDR provisioned to it. For more information, see [Allocate sequential Elastic IP addresses from an IPAM pool](https://docs.aws.amazon.com/vpc/latest/ipam/tutorials-eip-pool.html) in the *Amazon VPC IPAM User Guide*.
 * **NetworkBorderGroup**: string: A unique set of Availability Zones, Local Zones, or Wavelength Zones from which AWS advertises IP addresses. Use this parameter to limit the IP address to this location. IP addresses cannot move between network border groups.
  Use [DescribeAvailabilityZones](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html) to view the network border groups.
 * **PublicIp**: string (ReadOnly, Identifier)
@@ -672,8 +1025,26 @@
 * **MaxAggregationInterval**: int: The maximum interval of time during which a flow of packets is captured and aggregated into a flow log record. You can specify 60 seconds (1 minute) or 600 seconds (10 minutes).
 * **ResourceId**: string (Required): The ID of the subnet, network interface, or VPC for which you want to create a flow log.
 * **ResourceType**: string (Required): The type of resource for which to create the flow log. For example, if you specified a VPC ID for the ResourceId property, specify VPC for this property.
+* **TagFieldSpecifications**: [TagFieldSpecification](#tagfieldspecification)[]: The resource types and associated tags for EC2 resources associated with the EC2 Tags feature for log enrichment.
 * **Tags**: [Tag](#tag)[]: The tags to apply to the flow logs.
 * **TrafficType**: string: The type of traffic to log. You can log traffic that the resource accepts or rejects, or all traffic.
+
+## AWS.EC2/FpgaImageProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The ARN of the FPGA image.
+* **CreateTime**: string (ReadOnly): The date and time the AFI was created.
+* **DataRetentionSupport**: bool (ReadOnly): Indicates whether data retention support is enabled for the AFI.
+* **Description**: string: A description for the AFI.
+* **FpgaImageGlobalId**: string (ReadOnly): The global FPGA image identifier (AGFI ID).
+* **FpgaImageId**: string (ReadOnly): The FPGA image identifier (AFI ID).
+* **InputStorageLocation**: [StorageLocation](#storagelocation) (WriteOnly): The location of the encrypted design checkpoint in Amazon S3. The input must be a tarball.
+* **LogsStorageLocation**: [StorageLocation](#storagelocation) (WriteOnly): The location in Amazon S3 for the output logs.
+* **Name**: string: A name for the AFI.
+* **OwnerId**: string (ReadOnly): The ID of the AWS account that owns the AFI.
+* **Public**: bool (ReadOnly): Indicates whether the AFI is public.
+* **State**: string (ReadOnly): The state of the AFI (pending | available | failed | unavailable).
+* **Tags**: [Tag](#tag)[]: The tags assigned to the FPGA image.
+* **UpdateTime**: string (ReadOnly): The time of the most recent update to the AFI.
 
 ## AWS.EC2/GatewayRouteTableAssociationProperties
 ### Properties
@@ -692,15 +1063,36 @@
 * **InstanceFamily**: string: Specifies the instance family to be supported by the Dedicated Hosts. If you specify an instance family, the Dedicated Hosts support multiple instance types within that instance family.
 * **InstanceType**: string: Specifies the instance type to be supported by the Dedicated Hosts. If you specify an instance type, the Dedicated Hosts support instances of the specified instance type only.
 * **OutpostArn**: string: The Amazon Resource Name (ARN) of the Amazon Web Services Outpost on which to allocate the Dedicated Host.
+* **Tags**: [Tag](#tag)[]: Any tags assigned to the Host.
 
 ## AWS.EC2/InstanceConnectEndpointProperties
 ### Properties
+* **AvailabilityZone**: string (ReadOnly): The Availability Zone of the EC2 Instance Connect Endpoint
+* **AvailabilityZoneId**: string (ReadOnly): The ID of the Availability Zone of the EC2 Instance Connect Endpoint
 * **ClientToken**: string (WriteOnly): The client token of the instance connect endpoint.
-* **Id**: string (ReadOnly, Identifier): The id of the instance connect endpoint
-* **PreserveClientIp**: bool: If true, the address of the instance connect endpoint client is preserved when connecting to the end resource
-* **SecurityGroupIds**: string[]: The security group IDs of the instance connect endpoint.
-* **SubnetId**: string (Required): The subnet id of the instance connect endpoint
-* **Tags**: [Tag](#tag)[]: The tags of the instance connect endpoint.
+* **CreatedAt**: string (ReadOnly): The date and time that the EC2 Instance Connect Endpoint was created
+* **Id**: string (ReadOnly, Identifier): The ID of the EC2 Instance Connect Endpoint.
+* **InstanceConnectEndpointArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the EC2 Instance Connect Endpoint
+* **NetworkInterfaceIds**: string[] (ReadOnly): The ID of the elastic network interface that Amazon EC2 automatically created when creating the EC2 Instance Connect Endpoint
+* **OwnerId**: string (ReadOnly): The ID of the AWS account that created the EC2 Instance Connect Endpoint
+* **PreserveClientIp**: bool: Indicates whether your client's IP address is preserved as the source when you connect to a resource.
+* **PublicDnsNames**: [InstanceConnectEndpoint_InstanceConnectEndpointPublicDnsNames](#instanceconnectendpointinstanceconnectendpointpublicdnsnames) (ReadOnly): The public DNS names of the endpoint
+* **SecurityGroupIds**: string[]: The security groups associated with the endpoint.
+* **State**: string (ReadOnly): The current state of the EC2 Instance Connect Endpoint
+* **StateMessage**: string (ReadOnly): The message for the current state of the EC2 Instance Connect Endpoint. Can include a failure message
+* **SubnetId**: string (Required): The ID of the subnet in which the EC2 Instance Connect Endpoint was created.
+* **Tags**: [Tag](#tag)[]: The tags assigned to the EC2 Instance Connect Endpoint.
+* **VpcId**: string (ReadOnly): The ID of the VPC in which the EC2 Instance Connect Endpoint was created
+
+## AWS.EC2/InstanceEventWindowProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the event window.
+* **CronExpression**: string: The cron expression defined for the event window. Exactly one of TimeRanges or CronExpression must be specified.
+* **InstanceEventWindowId**: string (ReadOnly): The ID of the event window.
+* **Name**: string: The name of the event window.
+* **State**: string (ReadOnly): The current state of the event window. Observed values include creating, active, modifying, deleting and deleted.
+* **Tags**: [Tag](#tag)[]: The tags applied to the event window.
+* **TimeRanges**: [TimeRange](#timerange)[]: The time ranges of the event window. Exactly one of TimeRanges or CronExpression must be specified.
 
 ## AWS.EC2/InstanceProperties
 ### Properties
@@ -712,8 +1104,8 @@
 * **CreditSpecification**: [Instance_CreditSpecification](#instancecreditspecification): The credit option for CPU usage of the burstable performance instance. Valid values are standard and unlimited.
 * **DisableApiTermination**: bool: If you set this parameter to true, you can't terminate the instance using the Amazon EC2 console, CLI, or API; otherwise, you can.
 * **EbsOptimized**: bool: Indicates whether the instance is optimized for Amazon EBS I/O.
-* **ElasticGpuSpecifications**: [ElasticGpuSpecification](#elasticgpuspecification)[]: An elastic GPU to associate with the instance.
-* **ElasticInferenceAccelerators**: [ElasticInferenceAccelerator](#elasticinferenceaccelerator)[]: An elastic inference accelerator to associate with the instance.
+* **ElasticGpuSpecifications**: [ElasticGpuSpecification](#elasticgpuspecification)[]: An elastic GPU to associate with the instance. Amazon Elastic Graphics is no longer available.
+* **ElasticInferenceAccelerators**: [ElasticInferenceAccelerator](#elasticinferenceaccelerator)[]: An elastic inference accelerator to associate with the instance. Amazon Elastic Inference is no longer available.
 * **EnclaveOptions**: [Instance_EnclaveOptions](#instanceenclaveoptions): Indicates whether the instance is enabled for AWS Nitro Enclaves.
 * **HibernationOptions**: [Instance_HibernationOptions](#instancehibernationoptions): Indicates whether an instance is enabled for hibernation.
 * **HostId**: string: If you specify host for the Affinity property, the ID of a dedicated host that the instance is associated with. If you don't specify an ID, Amazon EC2 launches the instance onto any available, compatible dedicated host in your account.
@@ -729,6 +1121,7 @@
 * **KeyName**: string: The name of the key pair.
 * **LaunchTemplate**: [Instance_LaunchTemplateSpecification](#instancelaunchtemplatespecification) (WriteOnly): The launch template to use to launch the instances.
 * **LicenseSpecifications**: [LicenseSpecification](#licensespecification)[]: The license configurations.
+* **MetadataOptions**: [Instance_MetadataOptions](#instancemetadataoptions): The metadata options for the instance
 * **Monitoring**: bool: Specifies whether detailed monitoring is enabled for the instance.
 * **NetworkInterfaces**: [NetworkInterface](#networkinterface)[]: The network interfaces to associate with the instance.
 * **PlacementGroupName**: string: The name of an existing placement group that you want to launch the instance into (cluster | partition | spread).
@@ -759,6 +1152,34 @@
 * **InternetGatewayId**: string (ReadOnly, Identifier)
 * **Tags**: [Tag](#tag)[]: Any tags to assign to the internet gateway.
 
+## AWS.EC2/IpamExternalResourceVerificationTokenProperties
+### Properties
+* **IpamArn**: string (ReadOnly): The ARN of the IPAM that created the token.
+* **IpamExternalResourceVerificationTokenArn**: string (ReadOnly, Identifier): The ARN of the IPAM external resource verification token.
+* **IpamExternalResourceVerificationTokenId**: string (ReadOnly): The ID of the token.
+* **IpamId**: string (Required): The ID of the IPAM that will create the token.
+* **IpamRegion**: string (ReadOnly): The Region of the IPAM that created the token.
+* **NotAfter**: string (ReadOnly): The token expiration.
+* **State**: string (ReadOnly): The token state.
+* **Status**: string (ReadOnly): The token status.
+* **Tags**: [Tag](#tag)[]: The tags for the token.
+* **TokenName**: string (ReadOnly): The token name.
+* **TokenValue**: string (ReadOnly): The token value.
+
+## AWS.EC2/IpamInternetRegistryAssociationProperties
+### Properties
+* **ChildRequestXml**: string (ReadOnly): The XML content for the child request to be submitted to the internet registry to complete the BPKI setup.
+* **Description**: string: A description for the internet registry association.
+* **IpamId**: string (Required): The ID of the IPAM to associate with the internet registry.
+* **IpamInternetRegistryAssociationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the internet registry association.
+* **IpamInternetRegistryAssociationId**: string (ReadOnly): The ID of the internet registry association.
+* **IpamRegion**: string (ReadOnly): The Amazon Web Services Region of the IPAM.
+* **OrganizationHandle**: string (Required): The organization handle at the internet registry (for example, a RIPE NCC organization ID or ARIN Org ID).
+* **OwnerId**: string (ReadOnly): The ID of the Amazon Web Services account that owns the internet registry association.
+* **Rir**: string (Required): The Regional Internet Registry to associate with. The service returns these values in upper case, so the enum uses the round-tripping form.
+* **State**: string (ReadOnly): The state of the internet registry association.
+* **Tags**: [Tag](#tag)[]: The tags assigned to the internet registry association.
+
 ## AWS.EC2/IPAMPoolProperties
 ### Properties
 * **AddressFamily**: string (Required): The address family of the address space in this pool. Either IPv4 or IPv6.
@@ -786,14 +1207,38 @@
 * **StateMessage**: string (ReadOnly): An explanation of how the pool arrived at it current state.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
+## AWS.EC2/IPAMPrefixListResolverProperties
+### Properties
+* **AddressFamily**: string (Required): The address family of the address space in this Prefix List Resolver. Either IPv4 or IPv6.
+* **Description**: string
+* **IpamArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the IPAM this Prefix List Resolver is a part of.
+* **IpamId**: string (WriteOnly): The Id of the IPAM this Prefix List Resolver is a part of.
+* **IpamPrefixListResolverArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the IPAM Prefix List Resolver
+* **IpamPrefixListResolverId**: string (ReadOnly, Identifier): Id of the IPAM Prefix List Resolver.
+* **Rules**: [IpamPrefixListResolverRule](#ipamprefixlistresolverrule)[]: Rules define the business logic for selecting CIDRs from IPAM.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## AWS.EC2/IPAMPrefixListResolverTargetProperties
+### Properties
+* **DesiredVersion**: int: The desired version of the Prefix List Resolver that this Target should synchronize with.
+* **IpamPrefixListResolverId**: string (Required): The Id of the IPAM Prefix List Resolver associated with this Target.
+* **IpamPrefixListResolverTargetArn**: string (ReadOnly): Id of the IPAM Prefix List Resolver Target.
+* **IpamPrefixListResolverTargetId**: string (ReadOnly, Identifier): Id of the IPAM Prefix List Resolver Target.
+* **PrefixListId**: string (Required): The Id of the Managed Prefix List.
+* **PrefixListRegion**: string (Required): The region that the Managed Prefix List is located in.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **TrackLatestVersion**: bool (Required): Indicates whether this Target automatically tracks the latest version of the Prefix List Resolver.
+
 ## AWS.EC2/IPAMProperties
 ### Properties
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the IPAM.
 * **DefaultResourceDiscoveryAssociationId**: string (ReadOnly): The Id of the default association to the default resource discovery, created with this IPAM.
 * **DefaultResourceDiscoveryId**: string (ReadOnly): The Id of the default resource discovery, created with this IPAM.
+* **DefaultResourceDiscoveryOrganizationalUnitExclusions**: [IpamOrganizationalUnitExclusion](#ipamorganizationalunitexclusion)[]: A set of organizational unit (OU) exclusions for the default resource discovery, created with this IPAM.
 * **Description**: string
 * **EnablePrivateGua**: bool: Enable provisioning of GUA space in private pools.
 * **IpamId**: string (ReadOnly, Identifier): Id of the IPAM.
+* **MeteredAccount**: string: A metered account is an account that is charged for active IP addresses managed in IPAM
 * **OperatingRegions**: [IpamOperatingRegion](#ipamoperatingregion)[]: The regions IPAM is enabled for. Allows pools to be created in these regions, as well as enabling monitoring
 * **PrivateDefaultScopeId**: string (ReadOnly): The Id of the default scope for publicly routable IP space, created with this IPAM.
 * **PublicDefaultScopeId**: string (ReadOnly): The Id of the default scope for publicly routable IP space, created with this IPAM.
@@ -824,6 +1269,7 @@
 * **IpamResourceDiscoveryRegion**: string (ReadOnly): The region the resource discovery is setup in. 
 * **IsDefault**: bool (ReadOnly): Determines whether or not address space from this pool is publicly advertised. Must be set if and only if the pool is IPv6.
 * **OperatingRegions**: [IpamOperatingRegion](#ipamoperatingregion)[]: The regions Resource Discovery is enabled for. Allows resource discoveries to be created in these regions, as well as enabling monitoring
+* **OrganizationalUnitExclusions**: [IpamResourceDiscoveryOrganizationalUnitExclusion](#ipamresourcediscoveryorganizationalunitexclusion)[]: A set of organizational unit (OU) exclusions for this resource.
 * **OwnerId**: string (ReadOnly): Owner Account ID of the Resource Discovery
 * **State**: string (ReadOnly): The state of this Resource Discovery.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
@@ -832,6 +1278,7 @@
 ### Properties
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the IPAM scope.
 * **Description**: string
+* **ExternalAuthorityConfiguration**: [IpamScopeExternalAuthorityConfiguration](#ipamscopeexternalauthorityconfiguration)
 * **IpamArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the IPAM this scope is a part of.
 * **IpamId**: string (Required): The Id of the IPAM this scope is a part of.
 * **IpamScopeId**: string (ReadOnly, Identifier): Id of the IPAM scope.
@@ -839,6 +1286,16 @@
 * **IsDefault**: bool (ReadOnly): Is this one of the default scopes created with the IPAM.
 * **PoolCount**: int (ReadOnly): The number of pools that currently exist in this scope.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## AWS.EC2/IPv4PoolProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the public IPv4 pool.
+* **Description**: string (ReadOnly): A description of the public IPv4 pool.
+* **NetworkBorderGroup**: string (ReadOnly): The name of the location from which the address pool is advertised.
+* **PoolId**: string (ReadOnly): The ID of the public IPv4 pool.
+* **Tags**: [Tag](#tag)[]: Any tags assigned to the public IPv4 pool.
+* **TotalAddressCount**: int (ReadOnly): The total number of addresses in the pool.
+* **TotalAvailableAddressCount**: int (ReadOnly): The total number of available addresses in the pool.
 
 ## AWS.EC2/LaunchTemplateProperties
 ### Properties
@@ -891,20 +1348,59 @@
 * **Tags**: [Tag](#tag)[]: The tags for the association.
 * **VpcId**: string (Required): The ID of the VPC.
 
+## AWS.EC2/LocalGatewayVirtualInterfaceGroupProperties
+### Properties
+* **ConfigurationState**: string (ReadOnly): The current state of the local gateway virtual interface group
+* **LocalBgpAsn**: int: The Autonomous System Number(ASN) for the local Border Gateway Protocol (BGP)
+* **LocalBgpAsnExtended**: int: The extended 32-bit ASN for the local BGP configuration
+* **LocalGatewayId**: string (Required): The ID of the local gateway
+* **LocalGatewayVirtualInterfaceGroupArn**: string (ReadOnly): The Amazon Resource Number (ARN) of the local gateway virtual interface group
+* **LocalGatewayVirtualInterfaceGroupId**: string (ReadOnly, Identifier): The ID of the virtual interface group
+* **LocalGatewayVirtualInterfaceIds**: string[] (ReadOnly): The IDs of the virtual interfaces
+* **OwnerId**: string (ReadOnly): The ID of the Amazon Web Services account that owns the local gateway virtual interface group
+* **Tags**: [Tag](#tag)[]: The tags assigned to the virtual interface group
+
+## AWS.EC2/LocalGatewayVirtualInterfaceProperties
+### Properties
+* **ConfigurationState**: string (ReadOnly): The current state of the local gateway virtual interface
+* **LocalAddress**: string (Required): The local address.
+* **LocalBgpAsn**: int (ReadOnly): The Autonomous System Number(ASN) for the local Border Gateway Protocol (BGP)
+* **LocalGatewayId**: string (ReadOnly): The ID of the local gateway
+* **LocalGatewayVirtualInterfaceGroupId**: string (Required): The ID of the virtual interface group
+* **LocalGatewayVirtualInterfaceId**: string (ReadOnly, Identifier): The ID of the virtual interface
+* **OutpostLagId**: string (Required): The Outpost LAG ID.
+* **OwnerId**: string (ReadOnly): The ID of the Amazon Web Services account that owns the local gateway virtual interface group
+* **PeerAddress**: string (Required): The peer address.
+* **PeerBgpAsn**: int: The peer BGP ASN.
+* **PeerBgpAsnExtended**: int: The extended 32-bit ASN of the BGP peer for use with larger ASN values.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **Vlan**: int (Required): The ID of the VLAN.
+
 ## AWS.EC2/NatGatewayProperties
 ### Properties
 * **AllocationId**: string: [Public NAT gateway only] The allocation ID of the Elastic IP address that's associated with the NAT gateway. This property is required for a public NAT gateway and cannot be specified with a private NAT gateway.
+* **AutoProvisionZones**: string (ReadOnly)
+* **AutoScalingIps**: string (ReadOnly)
+* **AvailabilityMode**: string: Indicates whether this is a zonal (single-AZ) or regional (multi-AZ) NAT gateway.
+ A zonal NAT gateway is a NAT Gateway that provides redundancy and scalability within a single availability zone. A regional NAT gateway is a single NAT Gateway that works across multiple availability zones (AZs) in your VPC, providing redundancy, scalability and availability across all the AZs in a Region.
+ For more information, see [Regional NAT gateways for automatic multi-AZ expansion](https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateways-regional.html) in the *Amazon VPC User Guide*.
+* **AvailabilityZoneAddresses**: [AvailabilityZoneAddress](#availabilityzoneaddress)[]: For regional NAT gateways only: Specifies which Availability Zones you want the NAT gateway to support and the Elastic IP addresses (EIPs) to use in each AZ. The regional NAT gateway uses these EIPs to handle outbound NAT traffic from their respective AZs. If not specified, the NAT gateway will automatically expand to new AZs and associate EIPs upon detection of an elastic network interface. If you specify this parameter, auto-expansion is disabled and you must manually manage AZ coverage.
+ A regional NAT gateway is a single NAT Gateway that works across multiple availability zones (AZs) in your VPC, providing redundancy, scalability and availability across all the AZs in a Region.
+ For more information, see [Regional NAT gateways for automatic multi-AZ expansion](https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateways-regional.html) in the *Amazon VPC User Guide*.
 * **ConnectivityType**: string: Indicates whether the NAT gateway supports public or private connectivity. The default is public connectivity.
+* **EniId**: string (ReadOnly)
 * **MaxDrainDurationSeconds**: int (WriteOnly): The maximum amount of time to wait (in seconds) before forcibly releasing the IP addresses if connections are still in progress. Default value is 350 seconds.
 * **NatGatewayId**: string (ReadOnly, Identifier)
 * **PrivateIpAddress**: string: The private IPv4 address to assign to the NAT gateway. If you don't provide an address, a private IPv4 address will be automatically assigned.
+* **RouteTableId**: string (ReadOnly)
 * **SecondaryAllocationIds**: string[]: Secondary EIP allocation IDs. For more information, see [Create a NAT gateway](https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-working-with.html) in the *Amazon VPC User Guide*.
 * **SecondaryPrivateIpAddressCount**: int: [Private NAT gateway only] The number of secondary private IPv4 addresses you want to assign to the NAT gateway. For more information about secondary addresses, see [Create a NAT gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating) in the *Amazon Virtual Private Cloud User Guide*.
-  ``SecondaryPrivateIpAddressCount`` and ``SecondaryPrivateIpAddresses`` cannot be set at the same time.
+ ``SecondaryPrivateIpAddressCount`` and ``SecondaryPrivateIpAddresses`` cannot be set at the same time.
 * **SecondaryPrivateIpAddresses**: string[]: Secondary private IPv4 addresses. For more information about secondary addresses, see [Create a NAT gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating) in the *Amazon Virtual Private Cloud User Guide*.
-  ``SecondaryPrivateIpAddressCount`` and ``SecondaryPrivateIpAddresses`` cannot be set at the same time.
-* **SubnetId**: string (Required): The ID of the subnet in which the NAT gateway is located.
+ ``SecondaryPrivateIpAddressCount`` and ``SecondaryPrivateIpAddresses`` cannot be set at the same time.
+* **SubnetId**: string: The ID of the subnet in which the NAT gateway is located.
 * **Tags**: [Tag](#tag)[]: The tags for the NAT gateway.
+* **VpcId**: string: The ID of the VPC in which the NAT gateway is located.
 
 ## AWS.EC2/NetworkAclProperties
 ### Properties
@@ -928,8 +1424,8 @@
 ## AWS.EC2/NetworkInsightsAccessScopeProperties
 ### Properties
 * **CreatedDate**: string (ReadOnly)
-* **ExcludePaths**: [AccessScopePathRequest](#accessscopepathrequest)[] (WriteOnly)
-* **MatchPaths**: [AccessScopePathRequest](#accessscopepathrequest)[] (WriteOnly)
+* **ExcludePaths**: [AccessScopePathRequest](#accessscopepathrequest)[]
+* **MatchPaths**: [AccessScopePathRequest](#accessscopepathrequest)[]
 * **NetworkInsightsAccessScopeArn**: string (ReadOnly)
 * **NetworkInsightsAccessScopeId**: string (ReadOnly, Identifier)
 * **Tags**: [Tag](#tag)[]
@@ -941,6 +1437,7 @@
 * **AlternatePathHints**: [AlternatePathHint](#alternatepathhint)[] (ReadOnly)
 * **Explanations**: [Explanation](#explanation)[] (ReadOnly)
 * **FilterInArns**: string[]
+* **FilterOutArns**: string[]
 * **ForwardPathComponents**: [PathComponent](#pathcomponent)[] (ReadOnly)
 * **NetworkInsightsAnalysisArn**: string (ReadOnly)
 * **NetworkInsightsAnalysisId**: string (ReadOnly, Identifier)
@@ -975,6 +1472,7 @@
 * **AttachmentId**: string (ReadOnly, Identifier)
 * **DeleteOnTermination**: bool: Whether to delete the network interface when the instance terminates. By default, this value is set to ``true``.
 * **DeviceIndex**: string (Required): The network interface's position in the attachment order. For example, the first attached network interface has a ``DeviceIndex`` of 0.
+* **EnaQueueCount**: int: The number of ENA queues created with the instance.
 * **EnaSrdSpecification**: [EnaSrdSpecification](#enasrdspecification): Configures ENA Express for the network interface that this action attaches to the instance.
 * **InstanceId**: string (Required): The ID of the instance to which you will attach the ENI.
 * **NetworkInterfaceId**: string (Required): The ID of the ENI that you want to attach.
@@ -997,6 +1495,8 @@
 * **PrimaryPrivateIpAddress**: string (ReadOnly): Returns the primary private IP address of the network interface.
 * **PrivateIpAddress**: string: Assigns a single private IP address to the network interface, which is used as the primary private IP address. If you want to specify multiple private IP address, use the PrivateIpAddresses property. 
 * **PrivateIpAddresses**: [PrivateIpAddressSpecification](#privateipaddressspecification)[]: Assigns a list of private IP addresses to the network interface. You can specify a primary private IP address by setting the value of the Primary property to true in the PrivateIpAddressSpecification property. If you want EC2 to automatically assign private IP addresses, use the SecondaryPrivateIpAddressCount property and do not specify this property.
+* **PublicIpDnsHostnameTypeSpecification**: string (WriteOnly): Public IP DNS hostname type
+* **PublicIpDnsNameOptions**: [PublicIpDnsNameOptions](#publicipdnsnameoptions) (ReadOnly)
 * **SecondaryPrivateIpAddressCount**: int: The number of secondary private IPv4 addresses to assign to a network interface. When you specify a number of secondary IPv4 addresses, Amazon EC2 selects these IP addresses within the subnet's IPv4 CIDR range. You can't specify this option and specify more than one private IP address using privateIpAddresses
 * **SecondaryPrivateIpAddresses**: string[] (ReadOnly): Returns the secondary private IP addresses of the network interface.
 * **SourceDestCheck**: bool: Indicates whether traffic to or from the instance is validated.
@@ -1031,16 +1531,62 @@
 * **LocalGatewayId**: string: The ID of the local gateway.
 * **NatGatewayId**: string: [IPv4 traffic only] The ID of a NAT gateway.
 * **NetworkInterfaceId**: string: The ID of a network interface.
+* **OdbNetworkArn**: string: The Amazon Resource Name (ARN) of the ODB network.
 * **RouteTableId**: string (Required, Identifier): The ID of the route table for the route.
 * **TransitGatewayId**: string: The ID of a transit gateway.
 * **VpcEndpointId**: string: The ID of a VPC endpoint. Supported for Gateway Load Balancer endpoints only.
 * **VpcPeeringConnectionId**: string: The ID of a VPC peering connection.
+
+## AWS.EC2/RouteServerEndpointProperties
+### Properties
+* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the Route Server Endpoint.
+* **EniAddress**: string (ReadOnly): Elastic Network Interface IP address owned by the Route Server Endpoint
+* **EniId**: string (ReadOnly): Elastic Network Interface ID owned by the Route Server Endpoint
+* **Id**: string (ReadOnly, Identifier): The ID of the Route Server Endpoint.
+* **RouteServerId**: string (Required): Route Server ID
+* **SubnetId**: string (Required): Subnet ID
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **VpcId**: string (ReadOnly): VPC ID
+
+## AWS.EC2/RouteServerPeerProperties
+### Properties
+* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the Route Server Peer.
+* **BgpOptions**: [BgpOptions](#bgpoptions) (Required)
+* **EndpointEniAddress**: string (ReadOnly): Elastic Network Interface IP address owned by the Route Server Endpoint
+* **EndpointEniId**: string (ReadOnly): Elastic Network Interface ID owned by the Route Server Endpoint
+* **Id**: string (ReadOnly, Identifier): The ID of the Route Server Peer.
+* **PeerAddress**: string (Required): IP address of the Route Server Peer
+* **RouteServerEndpointId**: string (Required): Route Server Endpoint ID
+* **RouteServerId**: string (ReadOnly): Route Server ID
+* **SubnetId**: string (ReadOnly): Subnet ID
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **VpcId**: string (ReadOnly): VPC ID
+
+## AWS.EC2/RouteServerProperties
+### Properties
+* **AmazonSideAsn**: int (Required): The Amazon-side ASN of the Route Server.
+* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the Route Server.
+* **Id**: string (ReadOnly, Identifier): The ID of the Route Server.
+* **PersistRoutes**: string: Whether to enable persistent routes
+* **PersistRoutesDuration**: int (WriteOnly): The duration of persistent routes in minutes
+* **SnsNotificationsEnabled**: bool: Whether to enable SNS notifications
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
 ## AWS.EC2/RouteTableProperties
 ### Properties
 * **RouteTableId**: string (ReadOnly, Identifier)
 * **Tags**: [Tag](#tag)[]: Any tags assigned to the route table.
 * **VpcId**: string (Required): The ID of the VPC.
+
+## AWS.EC2/SecondaryNetworkProperties
+### Properties
+* **Ipv4CidrBlock**: string (Required): The IPv4 CIDR block for the secondary network. The CIDR block size must be between /12 and /28.
+* **Ipv4CidrBlockAssociations**: [Ipv4CidrBlockAssociation](#ipv4cidrblockassociation)[] (ReadOnly): Information about the IPv4 CIDR blocks associated with the secondary network.
+* **NetworkType**: string (Required): The type of secondary network.
+* **OwnerId**: string (ReadOnly): The ID of the Amazon Web Services account that owns the secondary network.
+* **SecondaryNetworkArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the secondary network.
+* **SecondaryNetworkId**: string (ReadOnly): The ID of the secondary network.
+* **Tags**: [Tag](#tag)[]: The tags for the secondary network.
 
 ## AWS.EC2/SecurityGroupEgressProperties
 ### Properties
@@ -1113,6 +1659,26 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **Id**: string (ReadOnly, Identifier)
 * **SpotFleetRequestConfigData**: [SpotFleetRequestConfigData](#spotfleetrequestconfigdata) (Required)
+* **Tags**: [Tag](#tag)[]: The tags to specify in SpotFleetRequestConfigData
+
+## AWS.EC2/SqlHaStandbyDetectedInstanceProperties
+### Properties
+* **HaStatus**: string (ReadOnly)
+* **InstanceId**: string (Required, Identifier)
+* **LastUpdatedTime**: string (ReadOnly)
+* **SqlServerCredentials**: string
+* **SqlServerLicenseUsage**: string (ReadOnly)
+
+## AWS.EC2/SubnetCidrReservationProperties
+### Properties
+* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the subnet CIDR reservation.
+* **Cidr**: string (Required): The IPv4 or IPv6 CIDR range to reserve. Must lie inside the subnet's CIDR block and must not overlap an existing reservation. Supply an IPv6 range exactly as the service returns it: Amazon EC2 stores an IPv6 CIDR in RFC 5952 compressed form, and a noncanonical spelling of the same range is reported as drift because this property is create-only and read back.
+* **Description**: string: The description of the subnet CIDR reservation.
+* **OwnerId**: string (ReadOnly): The identifier of the AWS account that owns the subnet CIDR reservation.
+* **ReservationType**: string (Required): The type of reservation. A prefix reservation is used for an IPv6 prefix delegated to a network interface; an explicit reservation is used for a range that Amazon EC2 must not assign automatically.
+* **SubnetCidrReservationId**: string (ReadOnly, Identifier): The identifier of the subnet CIDR reservation.
+* **SubnetId**: string (Required, Identifier): The identifier of the subnet the CIDR range is reserved in.
+* **Tags**: [Tag](#tag)[]: The tags assigned to the subnet CIDR reservation.
 
 ## AWS.EC2/SubnetProperties
 ### Properties
@@ -1121,6 +1687,7 @@ Use this for ICMP and any protocol that uses ports.
 * **AvailabilityZone**: string: The Availability Zone of the subnet.
  If you update this property, you must also update the ``CidrBlock`` property.
 * **AvailabilityZoneId**: string: The AZ ID of the subnet.
+* **BlockPublicAccessStates**: [Subnet_BlockPublicAccessStates](#subnetblockpublicaccessstates) (ReadOnly)
 * **CidrBlock**: string: The IPv4 CIDR block assigned to the subnet.
  If you update this property, we create a new subnet, and then delete the existing one.
 * **EnableDns64**: bool: Indicates whether DNS queries made to the Amazon-provided DNS Resolver in this subnet should return synthetic IPv6 addresses for IPv4-only destinations.
@@ -1135,7 +1702,7 @@ Use this for ICMP and any protocol that uses ports.
 * **Ipv6Native**: bool: Indicates whether this is an IPv6 only subnet. For more information, see [Subnet basics](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#subnet-basics) in the *User Guide*.
 * **Ipv6NetmaskLength**: int (WriteOnly): An IPv6 netmask length for the subnet.
 * **MapPublicIpOnLaunch**: bool: Indicates whether instances launched in this subnet receive a public IPv4 address. The default value is ``false``.
-  AWS charges for all public IPv4 addresses, including public IPv4 addresses associated with running instances and Elastic IP addresses. For more information, see the *Public IPv4 Address* tab on the [VPC pricing page](https://docs.aws.amazon.com/vpc/pricing/).
+ AWS charges for all public IPv4 addresses, including public IPv4 addresses associated with running instances and Elastic IP addresses. For more information, see the *Public IPv4 Address* tab on the [VPC pricing page](https://docs.aws.amazon.com/vpc/pricing/).
 * **NetworkAclAssociationId**: string (ReadOnly)
 * **OutpostArn**: string: The Amazon Resource Name (ARN) of the Outpost.
 * **PrivateDnsNameOptionsOnLaunch**: [Subnet_PrivateDnsNameOptionsOnLaunch](#subnetprivatednsnameoptionsonlaunch): The hostname type for EC2 instances launched into this subnet and how DNS A and AAAA record queries to the instances should be handled. For more information, see [Amazon EC2 instance hostname types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-naming.html) in the *User Guide*.
@@ -1148,6 +1715,50 @@ Use this for ICMP and any protocol that uses ports.
 * **VpcId**: string (Required): The ID of the VPC the subnet is in.
  If you update this property, you must also update the ``CidrBlock`` property.
 
+## AWS.EC2/TrafficMirrorFilterProperties
+### Properties
+* **Description**: string: The description of a traffic mirror filter.
+* **Id**: string (ReadOnly, Identifier): The ID of a traffic mirror filter.
+* **NetworkServices**: string[]: The network service that is associated with the traffic mirror filter.
+* **Tags**: [Tag](#tag)[]: The tags for a traffic mirror filter.
+
+## AWS.EC2/TrafficMirrorFilterRuleProperties
+### Properties
+* **Description**: string: The description of the Traffic Mirror Filter rule.
+* **DestinationCidrBlock**: string (Required): The destination CIDR block to assign to the Traffic Mirror rule.
+* **DestinationPortRange**: [TrafficMirrorPortRange](#trafficmirrorportrange): The destination port range.
+* **Protocol**: int: The number of protocol, for example 17 (UDP), to assign to the Traffic Mirror rule.
+* **RuleAction**: string (Required): The action to take on the filtered traffic (accept/reject).
+* **RuleNumber**: int (Required): The number of the Traffic Mirror rule.
+* **SourceCidrBlock**: string (Required): The source CIDR block to assign to the Traffic Mirror Filter rule.
+* **SourcePortRange**: [TrafficMirrorPortRange](#trafficmirrorportrange): The source port range.
+* **Tags**: [Tag](#tag)[]: Any tags assigned to the Traffic Mirror Filter rule.
+* **TrafficDirection**: string (Required): The direction of traffic (ingress/egress).
+* **TrafficMirrorFilterId**: string (Required): The ID of the filter that this rule is associated with.
+* **TrafficMirrorFilterRuleId**: string (ReadOnly, Identifier): The ID of the Traffic Mirror Filter rule.
+
+## AWS.EC2/TrafficMirrorSessionProperties
+### Properties
+* **Description**: string: The description of the Traffic Mirror session.
+* **Id**: string (ReadOnly, Identifier): The ID of a Traffic Mirror session.
+* **NetworkInterfaceId**: string (Required): The ID of the source network interface.
+* **OwnerId**: string: The ID of the account that owns the Traffic Mirror session.
+* **PacketLength**: int: The number of bytes in each packet to mirror.
+* **SessionNumber**: int (Required): The session number determines the order in which sessions are evaluated when an interface is used by multiple sessions. The first session with a matching filter is the one that mirrors the packets.
+* **Tags**: [Tag](#tag)[]: The tags assigned to the Traffic Mirror session.
+* **TrafficMirrorFilterId**: string (Required): The ID of a Traffic Mirror filter.
+* **TrafficMirrorTargetId**: string (Required): The ID of a Traffic Mirror target.
+* **VirtualNetworkId**: int: The VXLAN ID for the Traffic Mirror session.
+
+## AWS.EC2/TrafficMirrorTargetProperties
+### Properties
+* **Description**: string: The description of the Traffic Mirror target.
+* **GatewayLoadBalancerEndpointId**: string: The ID of the Gateway Load Balancer endpoint.
+* **Id**: string (ReadOnly, Identifier)
+* **NetworkInterfaceId**: string: The network interface ID that is associated with the target.
+* **NetworkLoadBalancerArn**: string: The Amazon Resource Name (ARN) of the Network Load Balancer that is associated with the target.
+* **Tags**: [Tag](#tag)[]:  The tags to assign to the Traffic Mirror target.
+
 ## AWS.EC2/TransitGatewayAttachmentProperties
 ### Properties
 * **Id**: string (ReadOnly, Identifier)
@@ -1156,6 +1767,15 @@ Use this for ICMP and any protocol that uses ports.
 * **Tags**: [Tag](#tag)[]
 * **TransitGatewayId**: string (Required)
 * **VpcId**: string (Required)
+
+## AWS.EC2/TransitGatewayConnectPeerProperties
+### Properties
+* **ConnectPeerConfiguration**: [TransitGatewayConnectPeerConfiguration](#transitgatewayconnectpeerconfiguration) (Required): The Connect peer details.
+* **CreationTime**: string (ReadOnly): The creation time.
+* **State**: string (ReadOnly): The state of the Connect peer.
+* **Tags**: [Tag](#tag)[]: The tags for the Connect Peer.
+* **TransitGatewayAttachmentId**: string (Required): The ID of the Connect attachment.
+* **TransitGatewayConnectPeerId**: string (ReadOnly, Identifier): The ID of the Connect peer.
 
 ## AWS.EC2/TransitGatewayConnectProperties
 ### Properties
@@ -1166,6 +1786,15 @@ Use this for ICMP and any protocol that uses ports.
 * **TransitGatewayAttachmentId**: string (ReadOnly, Identifier): The ID of the Connect attachment.
 * **TransitGatewayId**: string (ReadOnly): The ID of the transit gateway.
 * **TransportTransitGatewayAttachmentId**: string (Required): The ID of the attachment from which the Connect attachment was created.
+
+## AWS.EC2/TransitGatewayMeteringPolicyProperties
+### Properties
+* **MiddleboxAttachmentIds**: string[]: Middle box attachment Ids
+* **State**: string (ReadOnly): State of the transit gateway metering policy
+* **Tags**: [Tag](#tag)[]
+* **TransitGatewayId**: string (Required): The Id of transit gateway
+* **TransitGatewayMeteringPolicyId**: string (ReadOnly, Identifier): The Id of the transit gateway metering policy
+* **UpdateEffectiveAt**: string (ReadOnly): The timestamp at which the latest action performed on the metering policy will become effective
 
 ## AWS.EC2/TransitGatewayMulticastDomainProperties
 ### Properties
@@ -1189,6 +1818,22 @@ Use this for ICMP and any protocol that uses ports.
 * **TransitGatewayAttachmentId**: string (ReadOnly, Identifier): The ID of the transit gateway peering attachment.
 * **TransitGatewayId**: string (Required): The ID of the transit gateway.
 
+## AWS.EC2/TransitGatewayPolicyTableEntryProperties
+### Properties
+* **PolicyRule**: [TransitGatewayPolicyRule](#transitgatewaypolicyrule) (Required): The policy rule associated with the entry.
+* **PolicyRuleNumber**: string (Required, Identifier): The rule number for the policy table entry.
+* **State**: string (ReadOnly): The state of the policy table entry.
+* **TargetRouteTableId**: string (Required): The ID of the target route table.
+* **TransitGatewayPolicyTableId**: string (Required, Identifier): The ID of the transit gateway policy table.
+
+## AWS.EC2/TransitGatewayPolicyTableProperties
+### Properties
+* **CreationTime**: string (ReadOnly): Creation time of the transit gateway policy table
+* **State**: string (ReadOnly): State of the transit gateway policy table
+* **Tags**: [Tag](#tag)[]
+* **TransitGatewayId**: string (Required): The Id of transit gateway
+* **TransitGatewayPolicyTableId**: string (ReadOnly, Identifier): The Id of transit gateway policy table.
+
 ## AWS.EC2/TransitGatewayProperties
 ### Properties
 * **AmazonSideAsn**: int
@@ -1198,6 +1843,8 @@ Use this for ICMP and any protocol that uses ports.
 * **DefaultRouteTablePropagation**: string
 * **Description**: string
 * **DnsSupport**: string
+* **EncryptionSupport**: string (WriteOnly)
+* **EncryptionSupportState**: string (ReadOnly)
 * **Id**: string (ReadOnly, Identifier)
 * **MulticastSupport**: string
 * **PropagationDefaultRouteTableId**: string
@@ -1296,18 +1943,22 @@ Use this for ICMP and any protocol that uses ports.
 
 ## AWS.EC2/VolumeProperties
 ### Properties
-* **AutoEnableIO**: bool: Indicates whether the volume is auto-enabled for I/O operations. By default, Amazon EBS disables I/O to the volume from attached EC2 instances when it determines that a volume's data is potentially inconsistent. If the consistency of the volume is not a concern, and you prefer that the volume be made available immediately if it's impaired, you can configure the volume to automatically enable I/O.
-* **AvailabilityZone**: string (Required): The ID of the Availability Zone in which to create the volume. For example, ``us-east-1a``.
-* **Encrypted**: bool: Indicates whether the volume should be encrypted. The effect of setting the encryption state to ``true`` depends on the volume origin (new or from a snapshot), starting encryption state, ownership, and whether encryption by default is enabled. For more information, see [Encryption by default](https://docs.aws.amazon.com/ebs/latest/userguide/work-with-ebs-encr.html#encryption-by-default) in the *Amazon EBS User Guide*.
- Encrypted Amazon EBS volumes must be attached to instances that support Amazon EBS encryption. For more information, see [Supported instance types](https://docs.aws.amazon.com/ebs/latest/userguide/ebs-encryption-requirements.html#ebs-encryption_supported_instances).
-* **Iops**: int: The number of I/O operations per second (IOPS). For ``gp3``, ``io1``, and ``io2`` volumes, this represents the number of IOPS that are provisioned for the volume. For ``gp2`` volumes, this represents the baseline performance of the volume and the rate at which the volume accumulates I/O credits for bursting.
- The following are the supported values for each volume type:
-  +   ``gp3``: 3,000 - 16,000 IOPS
-  +   ``io1``: 100 - 64,000 IOPS
-  +   ``io2``: 100 - 256,000 IOPS
+* **AutoEnableIO**: bool: Indicates whether the volume is auto-enabled for I/O operations. By default, EBS disables I/O to the volume from attached EC2 instances when it determines that a volume's data is potentially inconsistent. If the consistency of the volume is not a concern, and you prefer that the volume be made available immediately if it's impaired, you can configure the volume to automatically enable I/O.
+* **AvailabilityZone**: string: The ID of the Availability Zone in which to create the volume. For example, ``us-east-1a``.
+ Either ``AvailabilityZone`` or ``AvailabilityZoneId`` must be specified, but not both.
+ If you are creating a volume copy, omit this parameter. The volume copy is created in the same Availability Zone as the source volume.
+* **AvailabilityZoneId**: string: The ID of the Availability Zone in which to create the volume. For example, ``use1-az1``.
+ Either ``AvailabilityZone`` or ``AvailabilityZoneId`` must be specified, but not both.
+ If you are creating a volume copy, omit this parameter. The volume copy is created in the same Availability Zone as the source volume.
+* **Encrypted**: bool: Indicates whether the volume should be encrypted. The effect of setting the encryption state to ``true`` depends on the volume origin (new, from a snapshot, or from an existing volume), starting encryption state, ownership, and whether encryption by default is enabled. For more information, see [Encryption by default](https://docs.aws.amazon.com/ebs/latest/userguide/work-with-ebs-encr.html#encryption-by-default) in the *Amazon EBS User Guide*.
+ If you are creating a volume copy, omit this parameter. The volume is automatically encrypted with the same KMS key as the source volume. You can't copy unencrypted volumes.
+* **Iops**: int: The number of I/O operations per second (IOPS) to provision for the volume. Required for ``io1`` and ``io2`` volumes. Optional for ``gp3`` volumes. Omit for all other volume types. 
+ Valid ranges:
+  +  gp3: ``3,000``(*default*)``- 80,000`` IOPS
+  +  io1: ``100 - 64,000`` IOPS
+  +  io2: ``100 - 256,000`` IOPS
   
- For ``io2`` volumes, you can achieve up to 256,000 IOPS on [instances built on the Nitro System](https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-nitro-instances.html). On other instances, you can achieve performance up to 32,000 IOPS.
- This parameter is required for ``io1`` and ``io2`` volumes. The default for ``gp3`` volumes is 3,000 IOPS. This parameter is not supported for ``gp2``, ``st1``, ``sc1``, or ``standard`` volumes.
+  [Instances built on the Nitro System](https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-nitro-instances.html) can support up to 256,000 IOPS. Other instances can support up to 32,000 IOPS.
 * **KmsKeyId**: string: The identifier of the kms-key-long to use for Amazon EBS encryption. If ``KmsKeyId`` is specified, the encrypted state must be ``true``.
  If you omit this property and your account is enabled for encryption by default, or *Encrypted* is set to ``true``, then the volume is encrypted using the default key specified for your account. If your account does not have a default key, then the volume is encrypted using the aws-managed-key.
  Alternatively, if you want to specify a different key, you can specify one of the following:
@@ -1315,30 +1966,48 @@ Use this for ICMP and any protocol that uses ports.
   +  Key alias. Specify the alias for the key, prefixed with ``alias/``. For example, for a key with the alias ``my_cmk``, use ``alias/my_cmk``. Or to specify the aws-managed-key, use ``alias/aws/ebs``.
   +  Key ARN. For example, arn:aws:kms:us-east-1:012345678910:key/1234abcd-12ab-34cd-56ef-1234567890ab.
   +  Alias ARN. For example, arn:aws:kms:us-east-1:012345678910:alias/ExampleAlias.
-* **MultiAttachEnabled**: bool: Indicates whether Amazon EBS Multi-Attach is enabled.
-  CFNlong does not currently support updating a single-attach volume to be multi-attach enabled, updating a multi-attach enabled volume to be single-attach, or updating the size or number of I/O operations per second (IOPS) of a multi-attach enabled volume.
-* **OutpostArn**: string: The Amazon Resource Name (ARN) of the Outpost.
-* **Size**: int: The size of the volume, in GiBs. You must specify either a snapshot ID or a volume size. If you specify a snapshot, the default is the snapshot size. You can specify a volume size that is equal to or larger than the snapshot size.
- The following are the supported volumes sizes for each volume type:
-  +   ``gp2`` and ``gp3``: 1 - 16,384 GiB
-  +   ``io1``: 4 - 16,384 GiB
-  +   ``io2``: 4 - 65,536 GiB
-  +   ``st1`` and ``sc1``: 125 - 16,384 GiB
-  +   ``standard``: 1 - 1024 GiB
-* **SnapshotId**: string: The snapshot from which to create the volume. You must specify either a snapshot ID or a volume size.
-* **Tags**: [Tag](#tag)[]: The tags to apply to the volume during creation.
-* **Throughput**: int: The throughput to provision for a volume, with a maximum of 1,000 MiB/s.
- This parameter is valid only for ``gp3`` volumes. The default value is 125.
- Valid Range: Minimum value of 125. Maximum value of 1000.
-* **VolumeId**: string (ReadOnly, Identifier)
-* **VolumeType**: string: The volume type. This parameter can be one of the following values:
-  +  General Purpose SSD: ``gp2`` | ``gp3`` 
-  +  Provisioned IOPS SSD: ``io1`` | ``io2`` 
-  +  Throughput Optimized HDD: ``st1`` 
-  +  Cold HDD: ``sc1`` 
-  +  Magnetic: ``standard`` 
   
- For more information, see [Amazon EBS volume types](https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volume-types.html).
+ If you are creating a volume copy, omit this parameter. The volume is automatically encrypted with the same KMS key as the source volume. You can't copy unencrypted volumes.
+* **MultiAttachEnabled**: bool: Indicates whether Amazon EBS Multi-Attach is enabled.
+ CFNlong does not currently support updating a single-attach volume to be multi-attach enabled, updating a multi-attach enabled volume to be single-attach, or updating the size or number of I/O operations per second (IOPS) of a multi-attach enabled volume.
+* **OutpostArn**: string (WriteOnly): The Amazon Resource Name (ARN) of the Outpost on which to create the volume.
+ If you intend to use a volume with an instance running on an outpost, then you must create the volume on the same outpost as the instance. You can't use a volume created in an AWS Region with an instance on an AWS outpost, or the other way around.
+* **Size**: int: The size of the volume, in GiBs.
+  +  Required for new empty volumes.
+  +  Optional for volumes created from snapshots and volume copies. In this case, the size defaults to the size of the snapshot or source volume. You can optionally specify a size that is equal to or larger than the size of the source snapshot or volume.
+  
+ Supported volume sizes:
+  +  gp2: ``1 - 16,384`` GiB
+  +  gp3: ``1 - 65,536`` GiB
+  +  io1: ``4 - 16,384`` GiB
+  +  io2: ``4 - 65,536`` GiB
+  +  st1 and sc1: ``125 - 16,384`` GiB
+  +  standard: ``1 - 1024`` GiB
+* **SnapshotId**: string: The snapshot from which to create the volume. Only specify to create a volume from a snapshot. To create a new empty volume, omit this parameter and specify a value for ``Size`` instead. To create a volume copy, omit this parameter and specify ``SourceVolumeId`` instead.
+* **SourceVolumeId**: string: The ID of the source EBS volume to copy. When specified, the volume is created as an exact copy of the specified volume. Only specify to create a volume copy. To create a new empty volume or to create a volume from a snapshot, omit this parameter,
+* **Tags**: [Tag](#tag)[]: The tags to apply to the volume during creation.
+* **Throughput**: int: The throughput to provision for a volume, with a maximum of 2,000 MiB/s.
+ This parameter is valid only for ``gp3`` volumes. The default value is 125.
+ Valid Range: Minimum value of 125. Maximum value of 2000.
+ The maximum ratio of throughput to IOPS is 0.25 MiB/s per IOPS. For example, a volume with 3,000 IOPS can have a maximum throughput of 750 MiB/s (3,000 x 0.25).
+* **VolumeId**: string (ReadOnly, Identifier)
+* **VolumeInitializationRate**: int: Specifies the Amazon EBS Provisioned Rate for Volume Initialization (volume initialization rate), in MiB/s, at which to download the snapshot blocks from Amazon S3 to the volume. This is also known as *volume initialization*. Specifying a volume initialization rate ensures that the volume is initialized at a predictable and consistent rate after creation.
+ This parameter is supported only for volumes created from snapshots. Omit this parameter if:
+  +  You want to create the volume using fast snapshot restore. You must specify a snapshot that is enabled for fast snapshot restore. In this case, the volume is fully initialized at creation.
+  If you specify a snapshot that is enabled for fast snapshot restore and a volume initialization rate, the volume will be initialized at the specified rate instead of fast snapshot restore.
+   +  You want to create a volume that is initialized at the default rate.
+  
+ For more information, see [Initialize Amazon EBS volumes](https://docs.aws.amazon.com/ebs/latest/userguide/initalize-volume.html) in the *Amazon EC2 User Guide*.
+ Valid range: 100 - 300 MiB/s
+* **VolumeType**: string: The volume type. This parameter can be one of the following values:
+  +  General Purpose SSD: ``gp2`` | ``gp3``
+  +  Provisioned IOPS SSD: ``io1`` | ``io2``
+  +  Throughput Optimized HDD: ``st1``
+  +  Cold HDD: ``sc1``
+  +  Magnetic: ``standard``
+  
+  Throughput Optimized HDD (``st1``) and Cold HDD (``sc1``) volumes can't be used as boot volumes.
+  For more information, see [Amazon EBS volume types](https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volume-types.html) in the *Amazon EBS User Guide*.
  Default: ``gp2``
 
 ## AWS.EC2/VPCBlockPublicAccessExclusionProperties
@@ -1352,12 +2021,31 @@ Use this for ICMP and any protocol that uses ports.
 ## AWS.EC2/VPCBlockPublicAccessOptionsProperties
 ### Properties
 * **AccountId**: string (ReadOnly, Identifier): The identifier for the specified AWS account.
+* **ExclusionsAllowed**: string (ReadOnly): Determines if exclusions are allowed. If you have enabled VPC BPA at the Organization level, exclusions may be not-allowed. Otherwise, they are allowed.
 * **InternetGatewayBlockMode**: string (Required): The desired Block Public Access mode for Internet Gateways in your account. We do not allow to create in a off mode as this is the default value
 
 ## AWS.EC2/VPCDHCPOptionsAssociationProperties
 ### Properties
 * **DhcpOptionsId**: string (Required, Identifier): The ID of the DHCP options set, or default to associate no DHCP options with the VPC.
 * **VpcId**: string (Required, Identifier): The ID of the VPC.
+
+## AWS.EC2/VPCEncryptionControlProperties
+### Properties
+* **EgressOnlyInternetGatewayExclusionInput**: string (WriteOnly): Used to enable or disable EIGW exclusion
+* **ElasticFileSystemExclusionInput**: string (WriteOnly): Used to enable or disable EFS exclusion
+* **InternetGatewayExclusionInput**: string (WriteOnly): Used to enable or disable IGW exclusion
+* **LambdaExclusionInput**: string (WriteOnly): Used to enable or disable Lambda exclusion
+* **Mode**: string: The VPC encryption control mode, either monitor or enforce.
+* **NatGatewayExclusionInput**: string (WriteOnly): Used to enable or disable Nat gateway exclusion
+* **ResourceExclusions**: [ResourceExclusions](#resourceexclusions) (ReadOnly): Enumerates the states of all the VPC encryption control resource exclusions
+* **State**: string (ReadOnly): The current state of the VPC encryption control.
+* **StateMessage**: string (ReadOnly): Provides additional context on the state of the VPC encryption control.
+* **Tags**: [Tag](#tag)[]: The tags to assign to the VPC encryption control.
+* **VirtualPrivateGatewayExclusionInput**: string (WriteOnly): Used to enable or disable VGW exclusion
+* **VpcEncryptionControlId**: string (ReadOnly, Identifier): The VPC encryption control resource id.
+* **VpcId**: string: The VPC on which this VPC encryption control is applied.
+* **VpcLatticeExclusionInput**: string (WriteOnly): Used to enable or disable Vpc Lattice exclusion
+* **VpcPeeringExclusionInput**: string (WriteOnly): Used to enable or disable VPC peering exclusion
 
 ## AWS.EC2/VPCEndpointConnectionNotificationProperties
 ### Properties
@@ -1371,9 +2059,9 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **CreationTimestamp**: string (ReadOnly)
 * **DnsEntries**: string[] (ReadOnly)
-* **DnsOptions**: [DnsOptionsSpecification](#dnsoptionsspecification)
+* **DnsOptions**: [DnsOptionsSpecification](#dnsoptionsspecification): Describes the DNS options for an endpoint.
 * **Id**: string (ReadOnly, Identifier)
-* **IpAddressType**: string
+* **IpAddressType**: string: The supported IP address types.
 * **NetworkInterfaceIds**: string[] (ReadOnly)
 * **PolicyDocument**: [VPCEndpoint_PolicyDocument](#vpcendpointpolicydocument) | string: An endpoint policy, which controls access to the service from the VPC. The default endpoint policy allows full access to the service. Endpoint policies are supported only for gateway and interface endpoints.
  For CloudFormation templates in YAML, you can provide the policy in JSON or YAML format. For example, if you have a JSON policy, you can convert it to YAML before including it in the YAML template, and CFNlong converts the policy to JSON format before calling the API actions for privatelink. Alternatively, you can include the JSON directly in the YAML, as shown in the following ``Properties`` section:
@@ -1382,13 +2070,14 @@ Use this for ICMP and any protocol that uses ports.
  To use a private hosted zone, you must set the following VPC attributes to ``true``: ``enableDnsHostnames`` and ``enableDnsSupport``.
  This property is supported only for interface endpoints.
  Default: ``false``
-* **ResourceConfigurationArn**: string
+* **ResourceConfigurationArn**: string: The Amazon Resource Name (ARN) of the resource configuration.
 * **RouteTableIds**: string[]: The IDs of the route tables. Routing is supported only for gateway endpoints.
 * **SecurityGroupIds**: string[]: The IDs of the security groups to associate with the endpoint network interfaces. If this parameter is not specified, we use the default security group for the VPC. Security groups are supported only for interface endpoints.
 * **ServiceName**: string: The name of the endpoint service.
-* **ServiceNetworkArn**: string
+* **ServiceNetworkArn**: string: The Amazon Resource Name (ARN) of the service network.
+* **ServiceRegion**: string: Describes a Region.
 * **SubnetIds**: string[]: The IDs of the subnets in which to create endpoint network interfaces. You must specify this property for an interface endpoint or a Gateway Load Balancer endpoint. You can't specify this property for a gateway endpoint. For a Gateway Load Balancer endpoint, you can specify only one subnet.
-* **Tags**: [Tag](#tag)[]
+* **Tags**: [Tag](#tag)[]: The tags to associate with the endpoint.
 * **VpcEndpointType**: string: The type of endpoint.
  Default: Gateway
 * **VpcId**: string (Required): The ID of the VPC.
@@ -1405,7 +2094,11 @@ Use this for ICMP and any protocol that uses ports.
 * **GatewayLoadBalancerArns**: string[]
 * **NetworkLoadBalancerArns**: string[]
 * **PayerResponsibility**: string
+* **PrivateDnsName**: string
+* **PrivateDnsNameConfiguration**: [PrivateDnsNameConfiguration](#privatednsnameconfiguration)
 * **ServiceId**: string (ReadOnly, Identifier)
+* **SupportedIpAddressTypes**: string[]: Specify which Ip Address types are supported for VPC endpoint service.
+* **SupportedRegions**: string[]: The Regions from which service consumers can access the service.
 * **Tags**: [Tag](#tag)[]: The tags to add to the VPC endpoint service.
 
 ## AWS.EC2/VPCGatewayAttachmentProperties
@@ -1417,10 +2110,11 @@ Use this for ICMP and any protocol that uses ports.
 
 ## AWS.EC2/VPCPeeringConnectionProperties
 ### Properties
+* **AssumeRoleRegion**: string (WriteOnly): The Region code to use when calling Security Token Service (STS) to assume the PeerRoleArn, if provided. You can update this property.
 * **Id**: string (ReadOnly, Identifier)
 * **PeerOwnerId**: string: The AWS account ID of the owner of the accepter VPC.
 * **PeerRegion**: string: The Region code for the accepter VPC, if the accepter VPC is located in a Region other than the Region in which you make the request.
-* **PeerRoleArn**: string (WriteOnly): The Amazon Resource Name (ARN) of the VPC peer role for the peering connection in another AWS account.
+* **PeerRoleArn**: string (WriteOnly): The Amazon Resource Name (ARN) of the VPC peer role for the peering connection in another AWS account. You can update this property. To manage PeerVpcPeeringConnectionOptions on a peering connection with another AWS account, the role must allow ec2:DescribeVpcPeeringConnections and ec2:ModifyVpcPeeringConnectionOptions.
 * **PeerVpcId**: string (Required): The ID of the VPC with which you are creating the VPC peering connection. You must specify this parameter in the request.
 * **Tags**: [Tag](#tag)[]
 * **VpcId**: string (Required): The ID of the VPC.
@@ -1436,8 +2130,8 @@ Use this for ICMP and any protocol that uses ports.
  You can only enable DNS hostnames if you've enabled DNS support.
 * **EnableDnsSupport**: bool: Indicates whether the DNS resolution is supported for the VPC. If enabled, queries to the Amazon provided DNS server at the 169.254.169.253 IP address, or the reserved IP address at the base of the VPC network range "plus two" succeed. If disabled, the Amazon provided DNS service in the VPC that resolves public DNS hostnames to IP addresses is not enabled. Enabled by default. For more information, see [DNS attributes in your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-support).
 * **InstanceTenancy**: string: The allowed tenancy of instances launched into the VPC.
-  +   ``default``: An instance launched into the VPC runs on shared hardware by default, unless you explicitly specify a different tenancy during instance launch.
-  +   ``dedicated``: An instance launched into the VPC runs on dedicated hardware by default, unless you explicitly specify a tenancy of ``host`` during instance launch. You cannot specify a tenancy of ``default`` during instance launch.
+  +  ``default``: An instance launched into the VPC runs on shared hardware by default, unless you explicitly specify a different tenancy during instance launch.
+  +  ``dedicated``: An instance launched into the VPC runs on dedicated hardware by default, unless you explicitly specify a tenancy of ``host`` during instance launch. You cannot specify a tenancy of ``default`` during instance launch.
   
  Updating ``InstanceTenancy`` requires no replacement only if you are updating its value from ``dedicated`` to ``default``. Updating ``InstanceTenancy`` from ``default`` to ``dedicated`` requires replacement.
 * **Ipv4IpamPoolId**: string (WriteOnly): The ID of an IPv4 IPAM pool you want to use for allocating this VPC's CIDR. For more information, see [What is IPAM?](https://docs.aws.amazon.com//vpc/latest/ipam/what-is-it-ipam.html) in the *Amazon VPC IPAM User Guide*.
@@ -1445,7 +2139,17 @@ Use this for ICMP and any protocol that uses ports.
 * **Ipv4NetmaskLength**: int (WriteOnly): The netmask length of the IPv4 CIDR you want to allocate to this VPC from an Amazon VPC IP Address Manager (IPAM) pool. For more information about IPAM, see [What is IPAM?](https://docs.aws.amazon.com//vpc/latest/ipam/what-is-it-ipam.html) in the *Amazon VPC IPAM User Guide*.
 * **Ipv6CidrBlocks**: string[] (ReadOnly)
 * **Tags**: [Tag](#tag)[]: The tags for the VPC.
+* **VpcEncryptionControl**: [VpcEncryptionControl](#vpcencryptioncontrol): Describes the configuration and state of VPC encryption controls.
+ For more information, see [Enforce VPC encryption in transit](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-encryption-controls.html) in the *Amazon VPC User Guide*.
 * **VpcId**: string (ReadOnly, Identifier)
+
+## AWS.EC2/VPNConcentratorProperties
+### Properties
+* **Tags**: [Tag](#tag)[]: Any tags assigned to the VPN concentrator.
+* **TransitGatewayAttachmentId**: string (ReadOnly)
+* **TransitGatewayId**: string: The ID of the transit gateway associated with the VPN concentrator.
+* **Type**: string (Required): The type of VPN concentrator.
+* **VpnConcentratorId**: string (ReadOnly, Identifier)
 
 ## AWS.EC2/VPNConnectionProperties
 ### Properties
@@ -1456,9 +2160,10 @@ Use this for ICMP and any protocol that uses ports.
  Default: ``0.0.0.0/0``
 * **LocalIpv6NetworkCidr**: string: The IPv6 CIDR on the customer gateway (on-premises) side of the VPN connection.
  Default: ``::/0``
-* **OutsideIpAddressType**: string: The type of IPv4 address assigned to the outside interface of the customer gateway device.
- Valid values: ``PrivateIpv4`` | ``PublicIpv4`` 
+* **OutsideIpAddressType**: string: The type of IP address assigned to the outside interface of the customer gateway device.
+ Valid values: ``PrivateIpv4`` | ``PublicIpv4`` | ``Ipv6``
  Default: ``PublicIpv4``
+* **PreSharedKeyStorage**: string (WriteOnly): Specifies the storage mode for the pre-shared key (PSK). Valid values are ``Standard`` (stored in the S2Slong service) or ``SecretsManager`` (stored in AWS Secrets Manager).
 * **RemoteIpv4NetworkCidr**: string: The IPv4 CIDR on the AWS side of the VPN connection.
  Default: ``0.0.0.0/0``
 * **RemoteIpv6NetworkCidr**: string: The IPv6 CIDR on the AWS side of the VPN connection.
@@ -1470,13 +2175,15 @@ Use this for ICMP and any protocol that uses ports.
  You must specify either ``TransitGatewayId`` or ``VpnGatewayId``, but not both.
 * **TransportTransitGatewayAttachmentId**: string: The transit gateway attachment ID to use for the VPN tunnel.
  Required if ``OutsideIpAddressType`` is set to ``PrivateIpv4``.
+* **TunnelBandwidth**: string: The desired bandwidth specification for the VPN tunnel, used when creating or modifying VPN connection options to set the tunnel's throughput capacity. ``standard`` supports up to 1.25 Gbps per tunnel, while ``large`` supports up to 5 Gbps per tunnel. The default value is ``standard``. Existing VPN connections without a bandwidth setting will automatically default to ``standard``.
 * **TunnelInsideIpVersion**: string: Indicate whether the VPN tunnels process IPv4 or IPv6 traffic.
  Default: ``ipv4``
 * **Type**: string (Required): The type of VPN connection.
+* **VpnConcentratorId**: string: The ID of the VPN concentrator to associate with the VPN connection.
 * **VpnConnectionId**: string (ReadOnly, Identifier)
 * **VpnGatewayId**: string: The ID of the virtual private gateway at the AWS side of the VPN connection.
  You must specify either ``TransitGatewayId`` or ``VpnGatewayId``, but not both.
-* **VpnTunnelOptionsSpecifications**: [VpnTunnelOptionsSpecification](#vpntunneloptionsspecification)[]: The tunnel options for the VPN connection.
+* **VpnTunnelOptionsSpecifications**: [VpnTunnelOptionsSpecification](#vpntunneloptionsspecification)[] (WriteOnly): The tunnel options for the VPN connection.
 
 ## AWS.EC2/VPNGatewayProperties
 ### Properties
@@ -1512,6 +2219,18 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **Cpu**: [CpuPerformanceFactorRequest](#cpuperformancefactorrequest)
 
+## BgpOptions
+### Properties
+* **PeerAsn**: int: BGP ASN of the Route Server Peer
+* **PeerLivenessDetection**: string: BGP Liveness Detection
+
+## BlockDeviceMapping
+### Properties
+* **DeviceName**: string
+* **Ebs**: [EbsBlockDevice](#ebsblockdevice)
+* **NoDevice**: string
+* **VirtualName**: string
+
 ## BlockDeviceMapping
 ### Properties
 * **DeviceName**: string (Required): The device name (for example, /dev/sdh or xvdh).
@@ -1533,10 +2252,20 @@ Use this for ICMP and any protocol that uses ports.
 * **NoDevice**: string
 * **VirtualName**: string
 
+## CapacityAllocation
+### Properties
+* **AllocationType**: string
+* **Count**: int
+
 ## CapacityRebalance
 ### Properties
 * **ReplacementStrategy**: string
 * **TerminationDelay**: int
+
+## CapacityReservation_CommitmentInfo
+### Properties
+* **CommitmentEndDate**: string
+* **CommittedInstanceCount**: int
 
 ## CapacityReservationOptionsRequest
 ### Properties
@@ -1545,15 +2274,20 @@ Use this for ICMP and any protocol that uses ports.
 ## CapacityReservationSpecification
 ### Properties
 * **CapacityReservationPreference**: string: Indicates the instance's Capacity Reservation preferences. Possible preferences include:
-  +   ``capacity-reservations-only`` - The instance will only run in a Capacity Reservation or Capacity Reservation group. If capacity isn't available, the instance will fail to launch.
-  +   ``open`` - The instance can run in any ``open`` Capacity Reservation that has matching attributes (instance type, platform, Availability Zone, tenancy).
-  +   ``none`` - The instance avoids running in a Capacity Reservation even if one is available. The instance runs in On-Demand capacity.
+  +  ``capacity-reservations-only`` - The instance will only run in a Capacity Reservation or Capacity Reservation group. If capacity isn't available, the instance will fail to launch.
+  +  ``open`` - The instance can run in any ``open`` Capacity Reservation that has matching attributes (instance type, platform, Availability Zone, tenancy).
+  +  ``none`` - The instance avoids running in a Capacity Reservation even if one is available. The instance runs in On-Demand capacity.
 * **CapacityReservationTarget**: [CapacityReservationTarget](#capacityreservationtarget): Information about the target Capacity Reservation or Capacity Reservation group.
 
 ## CapacityReservationTarget
 ### Properties
 * **CapacityReservationId**: string: The ID of the Capacity Reservation in which to run the instance.
 * **CapacityReservationResourceGroupArn**: string: The ARN of the Capacity Reservation resource group in which to run the instance.
+
+## CapacityReservationTargetRequest
+### Properties
+* **CapacityReservationIds**: string[]
+* **CapacityReservationResourceGroupArns**: string[]
 
 ## CidrOptions
 ### Properties
@@ -1572,6 +2306,11 @@ Use this for ICMP and any protocol that uses ports.
 
 ## CloudwatchLogOptionsSpecification
 ### Properties
+* **BgpLogEnabled**: bool: Specifies whether to enable BGP logging for the VPN connection. Default value is ``False``.
+ Valid values: ``True`` | ``False``
+* **BgpLogGroupArn**: string: The Amazon Resource Name (ARN) of the CloudWatch log group where BGP logs will be sent.
+* **BgpLogOutputFormat**: string: The desired output format for BGP logs to be sent to CloudWatch. Default format is ``json``.
+ Valid values: ``json`` | ``text``
 * **LogEnabled**: bool: Enable or disable VPN tunnel logging feature. Default value is ``False``.
  Valid values: ``True`` | ``False``
 * **LogGroupArn**: string: The Amazon Resource Name (ARN) of the CloudWatch log group to send logs to.
@@ -1580,7 +2319,7 @@ Use this for ICMP and any protocol that uses ports.
 
 ## ConnectionTrackingSpecification
 ### Properties
-* **TcpEstablishedTimeout**: int: Timeout (in seconds) for idle TCP connections in an established state. Min: 60 seconds. Max: 432000 seconds (5 days). Default: 432000 seconds. Recommended: Less than 432000 seconds.
+* **TcpEstablishedTimeout**: int: Timeout (in seconds) for idle TCP connections in an established state. Min: 60 seconds. Max: 432000 seconds (5 days). Default: 350 seconds for Nitro v6 instance types (excluding P6e-GB200); 432000 seconds for all other instance types (including P6e-GB200). Recommended: Less than 432000 seconds.
 * **UdpStreamTimeout**: int: Timeout (in seconds) for idle UDP flows classified as streams which have seen more than one request-response transaction. Min: 60 seconds. Max: 180 seconds (3 minutes). Default: 180 seconds.
 * **UdpTimeout**: int: Timeout (in seconds) for idle UDP flows that have seen traffic only in a single direction or a single request-response transaction. Min: 30 seconds. Max: 60 seconds. Default: 30 seconds.
 
@@ -1596,8 +2335,9 @@ Use this for ICMP and any protocol that uses ports.
 
 ## CpuOptions
 ### Properties
-* **AmdSevSnp**: string: Indicates whether to enable the instance for AMD SEV-SNP. AMD SEV-SNP is supported with M6a, R6a, and C6a instance types only. For more information, see [AMD SEV-SNP](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sev-snp.html).
+* **AmdSevSnp**: string: Indicates whether to enable the instance for AMD SEV-SNP. AMD SEV-SNP is supported with M6a, R6a, and C6a instance types only. For more information, see [AMD SEV-SNP for Amazon EC2 instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sev-snp.html).
 * **CoreCount**: int: The number of CPU cores for the instance.
+* **NestedVirtualization**: string: Indicates whether the instance is enabled for nested virtualization.
 * **ThreadsPerCore**: int: The number of threads per CPU core. To disable multithreading for the instance, specify a value of ``1``. Otherwise, specify the default value of ``2``.
 
 ## CpuPerformanceFactorRequest
@@ -1620,8 +2360,10 @@ Use this for ICMP and any protocol that uses ports.
 
 ## DnsOptionsSpecification
 ### Properties
-* **DnsRecordIpType**: string
-* **PrivateDnsOnlyForInboundResolverEndpoint**: string
+* **DnsRecordIpType**: string: The DNS records created for the endpoint.
+* **PrivateDnsOnlyForInboundResolverEndpoint**: string: Indicates whether to enable private DNS only for inbound endpoints. This option is available only for services that support both gateway and interface endpoints. It routes traffic that originates from the VPC to the gateway endpoint and traffic that originates from on-premises to the interface endpoint.
+* **PrivateDnsPreference**: string: The preference for which private domains have a private hosted zone created for and associated with the specified VPC. Only supported when private DNS is enabled and when the VPC endpoint type is ServiceNetwork or Resource.
+* **PrivateDnsSpecifiedDomains**: string[]: Indicates which of the private domains to create private hosted zones for and associate with the specified VPC. Only supported when private DNS is enabled and the private DNS preference is ``VERIFIED_DOMAINS_AND_SPECIFIED_DOMAINS`` or ``SPECIFIED_DOMAINS_ONLY``.
 
 ## Ebs
 ### Properties
@@ -1636,26 +2378,47 @@ Use this for ICMP and any protocol that uses ports.
 ## Ebs
 ### Properties
 * **DeleteOnTermination**: bool: Indicates whether the EBS volume is deleted on instance termination.
+* **EbsCardIndex**: int
 * **Encrypted**: bool: Indicates whether the EBS volume is encrypted. Encrypted volumes can only be attached to instances that support Amazon EBS encryption. If you are creating a volume from a snapshot, you can't specify an encryption value.
 * **Iops**: int: The number of I/O operations per second (IOPS). For ``gp3``, ``io1``, and ``io2`` volumes, this represents the number of IOPS that are provisioned for the volume. For ``gp2`` volumes, this represents the baseline performance of the volume and the rate at which the volume accumulates I/O credits for bursting.
  The following are the supported values for each volume type:
-  +   ``gp3``: 3,000 - 16,000 IOPS
-  +   ``io1``: 100 - 64,000 IOPS
-  +   ``io2``: 100 - 256,000 IOPS
+  +  ``gp3``: 3,000 - 80,000 IOPS
+  +  ``io1``: 100 - 64,000 IOPS
+  +  ``io2``: 100 - 256,000 IOPS
   
- For ``io2`` volumes, you can achieve up to 256,000 IOPS on [instances built on the Nitro System](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances). On other instances, you can achieve performance up to 32,000 IOPS.
+ For ``io2`` volumes, you can achieve up to 256,000 IOPS on [instances built on the Nitro System](https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-nitro-instances.html). On other instances, you can achieve performance up to 32,000 IOPS.
  This parameter is supported for ``io1``, ``io2``, and ``gp3`` volumes only.
 * **KmsKeyId**: string: Identifier (key ID, key alias, key ARN, or alias ARN) of the customer managed KMS key to use for EBS encryption.
 * **SnapshotId**: string: The ID of the snapshot.
-* **Throughput**: int: The throughput to provision for a ``gp3`` volume, with a maximum of 1,000 MiB/s.
- Valid Range: Minimum value of 125. Maximum value of 1000.
+* **Throughput**: int: The throughput to provision for a ``gp3`` volume, with a maximum of 2,000 MiB/s.
+ Valid Range: Minimum value of 125. Maximum value of 2,000.
+* **VolumeInitializationRate**: int: Specifies the Amazon EBS Provisioned Rate for Volume Initialization (volume initialization rate), in MiB/s, at which to download the snapshot blocks from Amazon S3 to the volume. This is also known as *volume initialization*. Specifying a volume initialization rate ensures that the volume is initialized at a predictable and consistent rate after creation.
+ This parameter is supported only for volumes created from snapshots. Omit this parameter if:
+  +  You want to create the volume using fast snapshot restore. You must specify a snapshot that is enabled for fast snapshot restore. In this case, the volume is fully initialized at creation.
+  If you specify a snapshot that is enabled for fast snapshot restore and a volume initialization rate, the volume will be initialized at the specified rate instead of fast snapshot restore.
+   +  You want to create a volume that is initialized at the default rate.
+  
+ For more information, see [Initialize Amazon EBS volumes](https://docs.aws.amazon.com/ebs/latest/userguide/initalize-volume.html) in the *Amazon EC2 User Guide*.
+ Valid range: 100 - 300 MiB/s
 * **VolumeSize**: int: The size of the volume, in GiBs. You must specify either a snapshot ID or a volume size. The following are the supported volumes sizes for each volume type:
-  +   ``gp2`` and ``gp3``: 1 - 16,384 GiB
-  +   ``io1``: 4 - 16,384 GiB
-  +   ``io2``: 4 - 65,536 GiB
-  +   ``st1`` and ``sc1``: 125 - 16,384 GiB
-  +   ``standard``: 1 - 1024 GiB
+  +  ``gp2``: 1 - 16,384 GiB
+  +  ``gp3``: 1 - 65,536 GiB
+  +  ``io1``: 4 - 16,384 GiB
+  +  ``io2``: 4 - 65,536 GiB
+  +  ``st1`` and ``sc1``: 125 - 16,384 GiB
+  +  ``standard``: 1 - 1024 GiB
 * **VolumeType**: string: The volume type. For more information, see [Amazon EBS volume types](https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volume-types.html) in the *Amazon EBS User Guide*.
+
+## EbsBlockDevice
+### Properties
+* **DeleteOnTermination**: bool
+* **Encrypted**: bool
+* **Iops**: int
+* **KmsKeyId**: string
+* **MultiAvailabilityZoneConfiguration**: [MultiAvailabilityZoneConfiguration](#multiavailabilityzoneconfiguration)
+* **SnapshotId**: string
+* **VolumeSize**: int
+* **VolumeType**: string
 
 ## EbsBlockDevice
 ### Properties
@@ -1679,16 +2442,17 @@ Use this for ICMP and any protocol that uses ports.
 
 ## ElasticGpuSpecification
 ### Properties
-* **Type**: string (Required): The type of Elastic Graphics accelerator.
-
-## ElasticGpuSpecification
-### Properties
-* **Type**: string: The type of Elastic Graphics accelerator.
+* **Type**: string (Required): The type of Elastic Graphics accelerator. Amazon Elastic Graphics is no longer available.
 
 ## ElasticInferenceAccelerator
 ### Properties
-* **Count**: int: The number of elastic inference accelerators to attach to the instance.
-* **Type**: string (Required): The type of elastic inference accelerator.
+* **Count**: int: The number of elastic inference accelerators to attach to the instance. Amazon Elastic Inference is no longer available.
+* **Type**: string (Required): The type of elastic inference accelerator. Amazon Elastic Inference is no longer available.
+
+## EnaSrdSpecification
+### Properties
+* **EnaSrdEnabled**: bool: Specifies whether ENA Express is enabled for the network interface when you launch an instance.
+* **EnaSrdUdpSpecification**: [EnaSrdUdpSpecification](#enasrdudpspecification)
 
 ## EnaSrdSpecification
 ### Properties
@@ -1699,6 +2463,10 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **EnaSrdEnabled**: bool: Indicates whether ENA Express is enabled for the network interface.
 * **EnaSrdUdpSpecification**: [NetworkInterfaceAttachment_EnaSrdUdpSpecification](#networkinterfaceattachmentenasrdudpspecification): Configures ENA Express for UDP network traffic.
+
+## EnaSrdUdpSpecification
+### Properties
+* **EnaSrdUdpEnabled**: bool: Indicates whether UDP traffic uses ENA Express for your instance.
 
 ## EnaSrdUdpSpecification
 ### Properties
@@ -1759,6 +2527,8 @@ Use this for ICMP and any protocol that uses ports.
 * **SubnetRouteTable**: [AnalysisComponent](#analysiscomponent)
 * **TransitGateway**: [AnalysisComponent](#analysiscomponent)
 * **TransitGatewayAttachment**: [AnalysisComponent](#analysiscomponent)
+* **TransitGatewayPolicyTable**: [AnalysisComponent](#analysiscomponent)
+* **TransitGatewayPolicyTableEntry**: [AnalysisTransitGatewayPolicyTableEntry](#analysistransitgatewaypolicytableentry)
 * **TransitGatewayRouteTable**: [AnalysisComponent](#analysiscomponent)
 * **TransitGatewayRouteTableRoute**: [TransitGatewayRouteTableRoute](#transitgatewayroutetableroute)
 * **Vpc**: [AnalysisComponent](#analysiscomponent)
@@ -1780,9 +2550,15 @@ Use this for ICMP and any protocol that uses ports.
 ## FleetLaunchTemplateOverridesRequest
 ### Properties
 * **AvailabilityZone**: string
+* **AvailabilityZoneId**: string
+* **BlockDeviceMappings**: [BlockDeviceMapping](#blockdevicemapping)[]
+* **IamInstanceProfile**: [IamInstanceProfileSpecification](#iaminstanceprofilespecification)
 * **InstanceRequirements**: [InstanceRequirementsRequest](#instancerequirementsrequest)
 * **InstanceType**: string
+* **KeyName**: string
 * **MaxPrice**: string
+* **MetadataOptions**: [InstanceMetadataOptionsRequest](#instancemetadataoptionsrequest)
+* **NetworkInterfaces**: [NetworkInterfaceSpecificationRequest](#networkinterfacespecificationrequest)[]
 * **Placement**: [Placement](#placement)
 * **Priority**: int
 * **SubnetId**: string
@@ -1798,6 +2574,7 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **LaunchTemplateId**: string
 * **LaunchTemplateName**: string
+* **LaunchTemplateSpecificationUserData**: string
 * **Version**: string (Required)
 
 ## FlowLog_DestinationOptions
@@ -1810,6 +2587,21 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **GroupId**: string (Required)
 
+## HealthCheckPath
+### Properties
+* **Destinations**: [HealthCheckPathDestination](#healthcheckpathdestination)[]
+* **Source**: [HealthCheckPathSource](#healthcheckpathsource)
+
+## HealthCheckPathDestination
+### Properties
+* **SecurityGroupId**: string
+* **SubnetId**: string
+
+## HealthCheckPathSource
+### Properties
+* **SecurityGroupId**: string
+* **SubnetId**: string
+
 ## HibernationOptions
 ### Properties
 * **Configured**: bool: If you set this parameter to ``true``, the instance is enabled for hibernation.
@@ -1819,6 +2611,11 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **Arn**: string: The Amazon Resource Name (ARN) of the instance profile.
 * **Name**: string: The name of the instance profile.
+
+## IamInstanceProfileSpecification
+### Properties
+* **Arn**: string
+* **Name**: string
 
 ## IamInstanceProfileSpecification
 ### Properties
@@ -1864,6 +2661,14 @@ Use this for ICMP and any protocol that uses ports.
 * **LaunchTemplateName**: string: The name of the launch template. You must specify the LaunchTemplateName or the LaunchTemplateId, but not both.
 * **Version**: string: The version number of the launch template.
 
+## Instance_MetadataOptions
+### Properties
+* **HttpEndpoint**: string: Enables or disables the HTTP metadata endpoint on your instances. If you specify a value of disabled, you cannot access your instance metadata.
+* **HttpProtocolIpv6**: string: Enables or disables the IPv6 endpoint for the instance metadata service. To use this option, the instance must be a Nitro-based instance launched in a subnet that supports IPv6.
+* **HttpPutResponseHopLimit**: int: The number of network hops that the metadata token can travel. Maximum is 64.
+* **HttpTokens**: string: Indicates whether IMDSv2 is required.
+* **InstanceMetadataTags**: string: Indicates whether tags from the instance are propagated to the EBS volumes.
+
 ## Instance_NoDevice
 ### Properties
 
@@ -1877,6 +2682,21 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **Code**: string: The state of the instance as a 16-bit unsigned integer.
 * **Name**: string: The current state of the instance.
+
+## InstanceConnectEndpoint_InstanceConnectEndpointDnsNames
+### Properties
+* **DnsName**: string: The DNS name of the EC2 Instance Connect Endpoint.
+* **FipsDnsName**: string: The Federal Information Processing Standards (FIPS) compliant DNS name of the EC2 Instance Connect Endpoint.
+
+## InstanceConnectEndpoint_InstanceConnectEndpointDnsNames
+### Properties
+* **DnsName**: string: The DNS name of the EC2 Instance Connect Endpoint.
+* **FipsDnsName**: string: The Federal Information Processing Standards (FIPS) compliant DNS name of the EC2 Instance Connect Endpoint.
+
+## InstanceConnectEndpoint_InstanceConnectEndpointPublicDnsNames
+### Properties
+* **Dualstack**: [InstanceConnectEndpoint_InstanceConnectEndpointDnsNames](#instanceconnectendpointinstanceconnectendpointdnsnames): The dualstack DNS name of the EC2 Instance Connect Endpoint. A dualstack DNS name supports connections from both IPv4 and IPv6 clients.
+* **Ipv4**: [InstanceConnectEndpoint_InstanceConnectEndpointDnsNames](#instanceconnectendpointinstanceconnectendpointdnsnames): The IPv4-only DNS name of the EC2 Instance Connect Endpoint.
 
 ## InstanceIpv6Address
 ### Properties
@@ -1894,6 +2714,12 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **MarketType**: string: The market type.
 * **SpotOptions**: [SpotOptions](#spotoptions): The options for Spot Instances.
+
+## InstanceMetadataOptionsRequest
+### Properties
+* **HttpEndpoint**: string
+* **HttpPutResponseHopLimit**: int
+* **HttpTokens**: string
 
 ## InstanceNetworkInterfaceSpecification
 ### Properties
@@ -1927,12 +2753,19 @@ Use this for ICMP and any protocol that uses ports.
   +  For instance types with NVIDIA A100 GPUs, specify ``a100``.
   +  For instance types with NVIDIA H100 GPUs, specify ``h100``.
   +  For instance types with AWS Inferentia chips, specify ``inferentia``.
+  +  For instance types with AWS Inferentia2 chips, specify ``inferentia2``.
+  +  For instance types with Habana Gaudi HL-205 GPUs, specify ``gaudi-hl-205``.
   +  For instance types with NVIDIA GRID K520 GPUs, specify ``k520``.
   +  For instance types with NVIDIA K80 GPUs, specify ``k80``.
+  +  For instance types with NVIDIA L4 GPUs, specify ``l4``.
+  +  For instance types with NVIDIA L40S GPUs, specify ``l40s``.
   +  For instance types with NVIDIA M60 GPUs, specify ``m60``.
   +  For instance types with AMD Radeon Pro V520 GPUs, specify ``radeon-pro-v520``.
+  +  For instance types with AWS Trainium chips, specify ``trainium``.
+  +  For instance types with AWS Trainium2 chips, specify ``trainium2``.
   +  For instance types with NVIDIA T4 GPUs, specify ``t4``.
   +  For instance types with NVIDIA T4G GPUs, specify ``t4g``.
+  +  For instance types with Xilinx U30 cards, specify ``u30``.
   +  For instance types with Xilinx VU9P FPGAs, specify ``vu9p``.
   +  For instance types with NVIDIA V100 GPUs, specify ``v100``.
   
@@ -1943,6 +2776,7 @@ Use this for ICMP and any protocol that uses ports.
   +  For instance types with FPGA accelerators, specify ``fpga``.
   +  For instance types with GPU accelerators, specify ``gpu``.
   +  For instance types with Inference accelerators, specify ``inference``.
+  +  For instance types with Media accelerators, specify ``media``.
   
  Default: Any accelerator type
 * **AllowedInstanceTypes**: string[]: The instance types to apply your specified attributes against. All other instance types are ignored, even if they match your specified attributes.
@@ -2046,6 +2880,7 @@ Use this for ICMP and any protocol that uses ports.
 * **NetworkBandwidthGbps**: [NetworkBandwidthGbpsRequest](#networkbandwidthgbpsrequest)
 * **NetworkInterfaceCount**: [NetworkInterfaceCountRequest](#networkinterfacecountrequest)
 * **OnDemandMaxPricePercentageOverLowestPrice**: int
+* **RequireEncryptionInTransit**: bool
 * **RequireHibernateSupport**: bool
 * **SpotMaxPricePercentageOverLowestPrice**: int
 * **TotalLocalStorageGB**: [TotalLocalStorageGBRequest](#totallocalstoragegbrequest)
@@ -2074,6 +2909,7 @@ Use this for ICMP and any protocol that uses ports.
 * **NetworkBandwidthGbps**: [NetworkBandwidthGbpsRequest](#networkbandwidthgbpsrequest)
 * **NetworkInterfaceCount**: [NetworkInterfaceCountRequest](#networkinterfacecountrequest)
 * **OnDemandMaxPricePercentageOverLowestPrice**: int
+* **RequireEncryptionInTransit**: bool
 * **RequireHibernateSupport**: bool
 * **SpotMaxPricePercentageOverLowestPrice**: int
 * **TotalLocalStorageGB**: [TotalLocalStorageGBRequest](#totallocalstoragegbrequest)
@@ -2097,6 +2933,43 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **RegionName**: string (Required): The name of the region.
 
+## IpamOrganizationalUnitExclusion
+### Properties
+* **OrganizationsEntityPath**: string (Required): An AWS Organizations entity path. Build the path for the OU(s) using AWS Organizations IDs separated by a '/'. Include all child OUs by ending the path with '/*'.
+
+## IpamPrefixListResolverRule
+### Properties
+* **Conditions**: [IpamPrefixListResolverRuleCondition](#ipamprefixlistresolverrulecondition)[]: Two of the rule types allow you to add conditions to the rules. (1) For IPAM Pool CIDR rules, you can specify an ipamPoolId; if not specified, the rule will apply to all IPAM Pool CIDRs in the scope.  (2) For IPAM Resource CIDR rules, you can specify resourceId, resourceOwner, resourceRegion, cidr, or resourceTag.
+* **IpamScopeId**: string: This rule will only match resources that are in this IPAM Scope.
+* **ResourceType**: string: The resourceType property only applies to ipam-resource-cidr rules; this property specifies what type of resources this rule will apply to, such as VPCs or Subnets.
+* **RuleType**: string (Required): There are three rule types: (1) Static CIDR: A fixed list of CIDRs that don't change (like a manual list replicated across Regions). (2) IPAM pool CIDR: CIDRs from specific IPAM pools (like all CIDRs from your IPAM production pool).  (3) IPAM resource CIDR: CIDRs for AWS resources like VPCs, subnets, and EIPs within a specific IPAM scope.
+* **StaticCidr**: string: A fixed CIDR that doesn't change
+
+## IpamPrefixListResolverRuleCondition
+### Properties
+* **Cidr**: string: Condition for the IPAM Resource CIDR rule type.  CIDR (like 10.24.34.0/23).
+* **IpamPoolId**: string: Condition for the IPAM Pool CIDR rule type.  If not chosen, the resolver applies to all IPAM Pool CIDRs in the scope.
+* **Operation**: string (Required): Equals, Not equals, or Subnet Of.  The subnet-of operation only applies to cidr conditions.
+* **ResourceId**: string: Condition for the IPAM Resource CIDR rule type.  The unique ID of a resource (like vpc-1234567890abcdef0).
+* **ResourceOwner**: string: Condition for the IPAM Resource CIDR rule type.  Resource owner (like 111122223333).
+* **ResourceRegion**: string: Condition for the IPAM Resource CIDR rule type.  Resource region (like us-east-1).
+* **ResourceTag**: [Tag](#tag): Condition for the IPAM Resource CIDR rule type.  Resource Tag (like dev-vpc-1).
+
+## IpamResourceDiscoveryOrganizationalUnitExclusion
+### Properties
+* **OrganizationsEntityPath**: string (Required): An AWS Organizations entity path. Build the path for the OU(s) using AWS Organizations IDs separated by a '/'. Include all child OUs by ending the path with '/*'.
+
+## IpamScopeExternalAuthorityConfiguration
+### Properties
+* **ExternalResourceIdentifier**: string (Required): Resource identifier of the scope in the external service connecting to your AWS IPAM scope.
+* **IpamScopeExternalAuthorityType**: string (Required): An external service connecting to your AWS IPAM scope.
+
+## Ipv4CidrBlockAssociation
+### Properties
+* **AssociationId**: string: The association ID for the IPv4 CIDR block.
+* **CidrBlock**: string: The IPv4 CIDR block.
+* **State**: string: The state of the CIDR block association.
+
 ## Ipv4PrefixSpecification
 ### Properties
 * **Ipv4Prefix**: string: The IPv4 prefix. For information, see [Assigning prefixes to network interfaces](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-prefix-eni.html) in the *Amazon EC2 User Guide*.
@@ -2109,6 +2982,10 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **Ipv6Address**: string: One or more specific IPv6 addresses from the IPv6 CIDR block range of your subnet. You can't use this option if you're specifying a number of IPv6 addresses.
 
+## Ipv6AddressRequest
+### Properties
+* **Ipv6Address**: string
+
 ## Ipv6PrefixSpecification
 ### Properties
 * **Ipv6Prefix**: string: The IPv6 prefix.
@@ -2116,9 +2993,6 @@ Use this for ICMP and any protocol that uses ports.
 ## Ipv6PrefixSpecification
 ### Properties
 * **Ipv6Prefix**: string (Required)
-
-## LaunchTemplate_NetworkPerformanceOptions
-### Properties
 
 ## LaunchTemplateConfig
 ### Properties
@@ -2129,17 +3003,11 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **BlockDeviceMappings**: [BlockDeviceMapping](#blockdevicemapping)[]: The block device mapping.
 * **CapacityReservationSpecification**: [CapacityReservationSpecification](#capacityreservationspecification): The Capacity Reservation targeting option. If you do not specify this parameter, the instance's Capacity Reservation preference defaults to ``open``, which enables it to run in any open Capacity Reservation that has matching attributes (instance type, platform, Availability Zone).
-* **CpuOptions**: [CpuOptions](#cpuoptions): The CPU options for the instance. For more information, see [Optimize CPU options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html) in the *Amazon EC2 User Guide*.
+* **CpuOptions**: [CpuOptions](#cpuoptions): The CPU options for the instance. For more information, see [CPU options for Amazon EC2 instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html) in the *Amazon EC2 User Guide*.
 * **CreditSpecification**: [CreditSpecification](#creditspecification): The credit option for CPU usage of the instance. Valid only for T instances.
-* **DisableApiStop**: bool: Indicates whether to enable the instance for stop protection. For more information, see [Enable stop protection for your instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-stop-protection.html) in the *Amazon EC2 User Guide*.
-* **DisableApiTermination**: bool: If you set this parameter to ``true``, you can't terminate the instance using the Amazon EC2 console, CLI, or API; otherwise, you can. To change this attribute after launch, use [ModifyInstanceAttribute](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstanceAttribute.html). Alternatively, if you set ``InstanceInitiatedShutdownBehavior`` to ``terminate``, you can terminate the instance by running the shutdown command from the instance.
+* **DisableApiStop**: bool: Indicates whether to enable the instance for stop protection. For more information, see [Enable stop protection for your EC2 instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-stop-protection.html) in the *Amazon EC2 User Guide*.
+* **DisableApiTermination**: bool: Indicates whether termination protection is enabled for the instance. The default is ``false``, which means that you can terminate the instance using the Amazon EC2 console, command line tools, or API. You can enable termination protection when you launch an instance, while the instance is running, or while the instance is stopped.
 * **EbsOptimized**: bool: Indicates whether the instance is optimized for Amazon EBS I/O. This optimization provides dedicated throughput to Amazon EBS and an optimized configuration stack to provide optimal Amazon EBS I/O performance. This optimization isn't available with all instance types. Additional usage charges apply when using an EBS-optimized instance.
-* **ElasticGpuSpecifications**: [ElasticGpuSpecification](#elasticgpuspecification)[]: Deprecated.
-  Amazon Elastic Graphics reached end of life on January 8, 2024. For workloads that require graphics acceleration, we recommend that you use Amazon EC2 G4ad, G4dn, or G5 instances.
-* **ElasticInferenceAccelerators**: [LaunchTemplateElasticInferenceAccelerator](#launchtemplateelasticinferenceaccelerator)[]: Amazon Elastic Inference is no longer available.
-  An elastic inference accelerator to associate with the instance. Elastic inference accelerators are a resource you can attach to your Amazon EC2 instances to accelerate your Deep Learning (DL) inference workloads.
- You cannot specify accelerators from different generations in the same request.
-  Starting April 15, 2023, AWS will not onboard new customers to Amazon Elastic Inference (EI), and will help current customers migrate their workloads to options that offer better price and performance. After April 15, 2023, new customers will not be able to launch instances with Amazon EI accelerators in Amazon SageMaker, Amazon ECS, or Amazon EC2. However, customers who have used Amazon EI at least once during the past 30-day period are considered current customers and will be able to continue using the service.
 * **EnclaveOptions**: [EnclaveOptions](#enclaveoptions): Indicates whether the instance is enabled for AWS Nitro Enclaves. For more information, see [What is Nitro Enclaves?](https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave.html) in the *Nitro Enclaves User Guide*.
  You can't enable AWS Nitro Enclaves and hibernation on the same instance.
 * **HibernationOptions**: [HibernationOptions](#hibernationoptions): Indicates whether an instance is enabled for hibernation. This parameter is valid only if the instance meets the [hibernation prerequisites](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/hibernating-prerequisites.html). For more information, see [Hibernate your Amazon EC2 instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html) in the *Amazon EC2 User Guide*.
@@ -2159,11 +3027,11 @@ Use this for ICMP and any protocol that uses ports.
  You must specify ``VCpuCount`` and ``MemoryMiB``. All other attributes are optional. Any unspecified optional attribute is set to its default.
  When you specify multiple attributes, you get instance types that satisfy all of the specified attributes. If you specify multiple values for an attribute, you get instance types that satisfy any of the specified values.
  To limit the list of instance types from which Amazon EC2 can identify matching instance types, you can use one of the following parameters, but not both in the same request:
-  +   ``AllowedInstanceTypes`` - The instance types to include in the list. All other instance types are ignored, even if they match your specified attributes.
-  +   ``ExcludedInstanceTypes`` - The instance types to exclude from the list, even if they match your specified attributes.
+  +  ``AllowedInstanceTypes`` - The instance types to include in the list. All other instance types are ignored, even if they match your specified attributes.
+  +  ``ExcludedInstanceTypes`` - The instance types to exclude from the list, even if they match your specified attributes.
   
   If you specify ``InstanceRequirements``, you can't specify ``InstanceType``.
- Attribute-based instance type selection is only supported when using Auto Scaling groups, EC2 Fleet, and Spot Fleet to launch instances. If you plan to use the launch template in the [launch instance wizard](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-instance-wizard.html), or with the [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) API or [AWS::EC2::Instance](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html) AWS CloudFormation resource, you can't specify ``InstanceRequirements``.
+ Attribute-based instance type selection is only supported when using Auto Scaling groups, EC2 Fleet, and Spot Fleet to launch instances. If you plan to use the launch template in the [launch instance wizard](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-instance-wizard.html), or with the [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) API or [AWS::EC2::Instance](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html)AWS CloudFormation resource, you can't specify ``InstanceRequirements``.
   For more information, see [Specify attributes for instance type selection for EC2 Fleet or Spot Fleet](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-attribute-based-instance-type-selection.html) and [Spot placement score](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-placement-score.html) in the *Amazon EC2 User Guide*.
 * **InstanceType**: string: The instance type. For more information, see [Amazon EC2 instance types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html) in the *Amazon EC2 User Guide*.
  If you specify ``InstanceType``, you can't specify ``InstanceRequirements``.
@@ -2173,10 +3041,10 @@ Use this for ICMP and any protocol that uses ports.
   If you do not specify a key pair, you can't connect to the instance unless you choose an AMI that is configured to allow users another way to log in.
 * **LicenseSpecifications**: [LicenseSpecification](#licensespecification)[]: The license configurations.
 * **MaintenanceOptions**: [MaintenanceOptions](#maintenanceoptions): The maintenance options of your instance.
-* **MetadataOptions**: [MetadataOptions](#metadataoptions): The metadata options for the instance. For more information, see [Instance metadata and user data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) in the *Amazon EC2 User Guide*.
+* **MetadataOptions**: [MetadataOptions](#metadataoptions): The metadata options for the instance. For more information, see [Configure the Instance Metadata Service options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-options.html) in the *Amazon EC2 User Guide*.
 * **Monitoring**: [Monitoring](#monitoring): The monitoring for the instance.
 * **NetworkInterfaces**: [NetworkInterface](#networkinterface)[]: The network interfaces for the instance.
-* **NetworkPerformanceOptions**: [LaunchTemplate_NetworkPerformanceOptions](#launchtemplatenetworkperformanceoptions)
+* **NetworkPerformanceOptions**: [NetworkPerformanceOptions](#networkperformanceoptions): The settings for the network performance options for the instance. For more information, see [EC2 instance bandwidth weighting configuration](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configure-bandwidth-weighting.html).
 * **Placement**: [Placement](#placement): The placement for the instance.
 * **PrivateDnsNameOptions**: [PrivateDnsNameOptions](#privatednsnameoptions): The hostname type for EC2 instances launched into this subnet and how DNS A and AAAA record queries should be handled. For more information, see [Amazon EC2 instance hostname types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-naming.html) in the *User Guide*.
 * **RamDiskId**: string: The ID of the RAM disk.
@@ -2187,18 +3055,13 @@ Use this for ICMP and any protocol that uses ports.
  If you specify a network interface, you must specify any security groups as part of the network interface instead of using this parameter.
 * **TagSpecifications**: [TagSpecification](#tagspecification)[]: The tags to apply to resources that are created during instance launch.
  To tag the launch template itself, use [TagSpecifications](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-launchtemplate.html#cfn-ec2-launchtemplate-tagspecifications).
-* **UserData**: string: The user data to make available to the instance. You must provide base64-encoded text. User data is limited to 16 KB. For more information, see [Run commands on your Amazon EC2 instance at launch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) in the *Amazon EC2 User Guide*.
- If you are creating the launch template for use with BATCH, the user data must be provided in the [MIME multi-part archive format](https://docs.aws.amazon.com/https://cloudinit.readthedocs.io/en/latest/topics/format.html#mime-multi-part-archive). For more information, see [Amazon EC2 user data in launch templates](https://docs.aws.amazon.com/batch/latest/userguide/launch-templates.html) in the *User Guide*.
-
-## LaunchTemplateElasticInferenceAccelerator
-### Properties
-* **Count**: int: The number of elastic inference accelerators to attach to the instance. 
- Default: 1
-* **Type**: string: The type of elastic inference accelerator. The possible values are eia1.medium, eia1.large, and eia1.xlarge.
+* **UserData**: string: The user data to make available to the instance. You must provide base64-encoded text. User data is limited to 16 KB. For more information, see [Run commands when you launch an EC2 instance with user data input](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) in the *Amazon EC2 User Guide*.
+ If you are creating the launch template for use with BATCH, the user data must be provided in the [MIME multi-part archive format](https://docs.aws.amazon.com/https://cloudinit.readthedocs.io/en/latest/topics/format.html#mime-multi-part-archive). For more information, see [Amazon EC2 user data in launch templates](https://docs.aws.amazon.com/batch/latest/userguide/launch-templates.html#lt-user-data) in the *User Guide*.
 
 ## LaunchTemplateOverrides
 ### Properties
 * **AvailabilityZone**: string
+* **AvailabilityZoneId**: string
 * **InstanceRequirements**: [InstanceRequirementsRequest](#instancerequirementsrequest)
 * **InstanceType**: string
 * **Priority**: int
@@ -2277,19 +3140,24 @@ Use this for ICMP and any protocol that uses ports.
 * **HttpProtocolIpv6**: string: Enables or disables the IPv6 endpoint for the instance metadata service.
  Default: ``disabled``
 * **HttpPutResponseHopLimit**: int: The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel.
- Default: ``1`` 
+ Default: ``1``
  Possible values: Integers from 1 to 64
 * **HttpTokens**: string: Indicates whether IMDSv2 is required.
-  +   ``optional`` - IMDSv2 is optional. You can choose whether to send a session token in your instance metadata retrieval requests. If you retrieve IAM role credentials without a session token, you receive the IMDSv1 role credentials. If you retrieve IAM role credentials using a valid session token, you receive the IMDSv2 role credentials.
-  +   ``required`` - IMDSv2 is required. You must send a session token in your instance metadata retrieval requests. With this option, retrieving the IAM role credentials always returns IMDSv2 credentials; IMDSv1 credentials are not available.
+  +  ``optional`` - IMDSv2 is optional. You can choose whether to send a session token in your instance metadata retrieval requests. If you retrieve IAM role credentials without a session token, you receive the IMDSv1 role credentials. If you retrieve IAM role credentials using a valid session token, you receive the IMDSv2 role credentials.
+  +  ``required`` - IMDSv2 is required. You must send a session token in your instance metadata retrieval requests. With this option, retrieving the IAM role credentials always returns IMDSv2 credentials; IMDSv1 credentials are not available.
   
  Default: If the value of ``ImdsSupport`` for the Amazon Machine Image (AMI) for your instance is ``v2.0``, the default is ``required``.
-* **InstanceMetadataTags**: string: Set to ``enabled`` to allow access to instance tags from the instance metadata. Set to ``disabled`` to turn off access to instance tags from the instance metadata. For more information, see [Work with instance tags using the instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#work-with-tags-in-IMDS).
+* **InstanceMetadataTags**: string: Set to ``enabled`` to allow access to instance tags from the instance metadata. Set to ``disabled`` to turn off access to instance tags from the instance metadata. For more information, see [View tags for your EC2 instances using instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/work-with-tags-in-IMDS.html).
  Default: ``disabled``
 
 ## Monitoring
 ### Properties
 * **Enabled**: bool: Specify ``true`` to enable detailed monitoring. Otherwise, basic monitoring is enabled.
+
+## MultiAvailabilityZoneConfiguration
+### Properties
+* **ConfigurationType**: string
+* **StandbyAvailabilityZones**: [StandbyAvailabilityZone](#standbyavailabilityzone)[]
 
 ## NativeApplicationOidcOptions
 ### Properties
@@ -2324,6 +3192,7 @@ Use this for ICMP and any protocol that uses ports.
 * **DeleteOnTermination**: bool: If set to true, the interface is deleted when the instance is terminated.
 * **Description**: string: The description of the network interface.
 * **DeviceIndex**: string (Required): The position of the network interface in the attachment order. A primary network interface has a device index of 0.
+* **EnaSrdSpecification**: [EnaSrdSpecification](#enasrdspecification)
 * **GroupSet**: string[]: The IDs of the security groups for the network interface.
 * **Ipv6AddressCount**: int: A number of IPv6 addresses to assign to the network interface.
 * **Ipv6Addresses**: [InstanceIpv6Address](#instanceipv6address)[]: The IPv6 addresses associated with the network interface.
@@ -2338,15 +3207,16 @@ Use this for ICMP and any protocol that uses ports.
 * **AssociateCarrierIpAddress**: bool: Associates a Carrier IP address with eth0 for a new network interface.
  Use this option when you launch an instance in a Wavelength Zone and want to associate a Carrier IP address with the network interface. For more information about Carrier IP addresses, see [Carrier IP addresses](https://docs.aws.amazon.com/wavelength/latest/developerguide/how-wavelengths-work.html#provider-owned-ip) in the *Developer Guide*.
 * **AssociatePublicIpAddress**: bool: Associates a public IPv4 address with eth0 for a new network interface.
-  AWS charges for all public IPv4 addresses, including public IPv4 addresses associated with running instances and Elastic IP addresses. For more information, see the *Public IPv4 Address* tab on the [Amazon VPC pricing page](https://docs.aws.amazon.com/vpc/pricing/).
+ AWS charges for all public IPv4 addresses, including public IPv4 addresses associated with running instances and Elastic IP addresses. For more information, see the *Public IPv4 Address* tab on the [Amazon VPC pricing page](https://docs.aws.amazon.com/vpc/pricing/).
 * **ConnectionTrackingSpecification**: [ConnectionTrackingSpecification](#connectiontrackingspecification): A connection tracking specification for the network interface.
 * **DeleteOnTermination**: bool: Indicates whether the network interface is deleted when the instance is terminated.
 * **Description**: string: A description for the network interface.
-* **DeviceIndex**: int: The device index for the network interface attachment. If the network interface is of type ``interface``, you must specify a device index.
+* **DeviceIndex**: int: The device index for the network interface attachment. The primary network interface has a device index of 0. If the network interface is of type ``interface``, you must specify a device index.
  If you create a launch template that includes secondary network interfaces but no primary network interface, and you specify it using the ``LaunchTemplate`` property of ``AWS::EC2::Instance``, then you must include a primary network interface using the ``NetworkInterfaces`` property of ``AWS::EC2::Instance``.
+* **EnaQueueCount**: int: The number of ENA queues to be created with the instance.
 * **EnaSrdSpecification**: [EnaSrdSpecification](#enasrdspecification): The ENA Express configuration for the network interface.
 * **Groups**: string[]: The IDs of one or more security groups.
-* **InterfaceType**: string: The type of network interface. To create an Elastic Fabric Adapter (EFA), specify ``efa`` or ``efa``. For more information, see [Elastic Fabric Adapter](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) in the *Amazon EC2 User Guide*.
+* **InterfaceType**: string: The type of network interface. To create an Elastic Fabric Adapter (EFA), specify ``efa`` or ``efa``. For more information, see [Elastic Fabric Adapter for AI/ML and HPC workloads on Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) in the *Amazon EC2 User Guide*.
  If you are not creating an EFA, specify ``interface`` or omit this parameter.
  If you specify ``efa-only``, do not assign any IP addresses to the network interface. EFA-only network interfaces do not support IP addresses.
  Valid values: ``interface`` | ``efa`` | ``efa-only``
@@ -2389,6 +3259,28 @@ Use this for ICMP and any protocol that uses ports.
 * **Port**: int: The IP port number.
 * **PortRanges**: [PortRange](#portrange)[]: The list of port ranges.
 * **Protocol**: string: The IP protocol.
+
+## NetworkInterfaceSpecificationRequest
+### Properties
+* **AssociatePublicIpAddress**: bool
+* **DeleteOnTermination**: bool
+* **Description**: string
+* **DeviceIndex**: int
+* **Groups**: string[]
+* **InterfaceType**: string
+* **Ipv6AddressCount**: int
+* **Ipv6Addresses**: [Ipv6AddressRequest](#ipv6addressrequest)[]
+* **NetworkCardIndex**: int
+* **NetworkInterfaceId**: string
+* **PrivateIpAddress**: string
+* **PrivateIpAddresses**: [PrivateIpAddressSpecificationRequest](#privateipaddressspecificationrequest)[]
+* **SecondaryPrivateIpAddressCount**: int
+* **SubnetId**: string
+
+## NetworkPerformanceOptions
+### Properties
+* **BandwidthWeighting**: string: Specify the bandwidth weighting option to boost the associated type of baseline bandwidth, as follows:
+  + default This option uses the standard bandwidth configuration for your instance type. + vpc-1 This option boosts your networking baseline bandwidth and reduces your EBS baseline bandwidth. + ebs-1 This option boosts your EBS baseline bandwidth and reduces your networking baseline bandwidth.
 
 ## OidcOptions
 ### Properties
@@ -2436,6 +3328,7 @@ Use this for ICMP and any protocol that uses ports.
 * **SourceVpc**: [AnalysisComponent](#analysiscomponent)
 * **Subnet**: [AnalysisComponent](#analysiscomponent)
 * **TransitGateway**: [AnalysisComponent](#analysiscomponent)
+* **TransitGatewayPolicyTableEntry**: [AnalysisTransitGatewayPolicyTableEntry](#analysistransitgatewaypolicytableentry)
 * **TransitGatewayRouteTableRoute**: [TransitGatewayRouteTableRoute](#transitgatewayroutetableroute)
 * **Vpc**: [AnalysisComponent](#analysiscomponent)
 
@@ -2503,6 +3396,7 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **Affinity**: string: The affinity setting for an instance on a Dedicated Host.
 * **AvailabilityZone**: string: The Availability Zone for the instance.
+ Either ``AvailabilityZone`` or ``AvailabilityZoneId`` can be specified, but not both
 * **GroupId**: string: The Group Id of a placement group. You must specify the Placement Group *Group Id* to launch an instance in a shared placement group.
 * **GroupName**: string: The name of the placement group for the instance.
 * **HostId**: string: The ID of the Dedicated Host for the instance.
@@ -2520,6 +3414,13 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **FromPort**: int: The first port in the range.
 * **ToPort**: int: The last port in the range.
+
+## PrivateDnsNameConfiguration
+### Properties
+* **Name**: string (ReadOnly)
+* **State**: string (ReadOnly)
+* **Type**: string (ReadOnly)
+* **Value**: string (ReadOnly)
 
 ## PrivateDnsNameOptions
 ### Properties
@@ -2547,9 +3448,21 @@ Use this for ICMP and any protocol that uses ports.
 * **Primary**: bool
 * **PrivateIpAddress**: string (Required)
 
+## PrivateIpAddressSpecificationRequest
+### Properties
+* **Primary**: bool
+* **PrivateIpAddress**: string
+
 ## ProvisionedCidr
 ### Properties
 * **Cidr**: string (Required)
+
+## PublicIpDnsNameOptions
+### Properties
+* **DnsHostnameType**: string
+* **PublicDualStackDnsName**: string
+* **PublicIpv4DnsName**: string
+* **PublicIpv6DnsName**: string
 
 ## RdsOptions
 ### Properties
@@ -2567,15 +3480,37 @@ Use this for ICMP and any protocol that uses ports.
   Ensure that you specify the correct value for the instance family. The instance family is everything before the period (``.``) in the instance type name. For example, in the instance type ``c6i.large``, the instance family is ``c6i``, not ``c6``. For more information, see [Amazon EC2 instance type naming conventions](https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-type-names.html) in *Amazon EC2 Instance Types*.
   The following instance families are *not supported* for performance protection:
   +   ``c1`` 
-  +   ``g3`` | ``g3s`` 
+  +  ``g3`` | ``g3s``
   +   ``hpc7g`` 
-  +   ``m1`` | ``m2`` 
-  +   ``mac1`` | ``mac2`` | ``mac2-m1ultra`` | ``mac2-m2`` | ``mac2-m2pro`` 
-  +   ``p3dn`` | ``p4d`` | ``p5`` 
+  +  ``m1`` | ``m2``
+  +  ``mac1`` | ``mac2`` | ``mac2-m1ultra`` | ``mac2-m2`` | ``mac2-m2pro``
+  +  ``p3dn`` | ``p4d`` | ``p5``
   +   ``t1`` 
-  +   ``u-12tb1`` | ``u-18tb1`` | ``u-24tb1`` | ``u-3tb1`` | ``u-6tb1`` | ``u-9tb1`` | ``u7i-12tb`` | ``u7in-16tb`` | ``u7in-24tb`` | ``u7in-32tb`` 
+  +  ``u-12tb1`` | ``u-18tb1`` | ``u-24tb1`` | ``u-3tb1`` | ``u-6tb1`` | ``u-9tb1`` | ``u7i-12tb`` | ``u7in-16tb`` | ``u7in-24tb`` | ``u7in-32tb``
   
  If you enable performance protection by specifying a supported instance family, the returned instance types will exclude the above unsupported instance families.
+
+## ReservedCapacityFallbackOptionsRequest
+### Properties
+* **MarketTypes**: string[]
+
+## ReservedCapacityOptionsRequest
+### Properties
+* **AllocationStrategy**: string
+* **CapacityReservationTarget**: [CapacityReservationTargetRequest](#capacityreservationtargetrequest)
+* **ReservationTypes**: string[]
+* **ReservedCapacityFallbackOptions**: [ReservedCapacityFallbackOptionsRequest](#reservedcapacityfallbackoptionsrequest)
+
+## ResourceExclusions
+### Properties
+* **EgressOnlyInternetGateway**: [VpcEncryptionControlExclusion](#vpcencryptioncontrolexclusion) (ReadOnly)
+* **ElasticFileSystem**: [VpcEncryptionControlExclusion](#vpcencryptioncontrolexclusion) (ReadOnly)
+* **InternetGateway**: [VpcEncryptionControlExclusion](#vpcencryptioncontrolexclusion) (ReadOnly)
+* **Lambda**: [VpcEncryptionControlExclusion](#vpcencryptioncontrolexclusion) (ReadOnly)
+* **NatGateway**: [VpcEncryptionControlExclusion](#vpcencryptioncontrolexclusion) (ReadOnly)
+* **VirtualPrivateGateway**: [VpcEncryptionControlExclusion](#vpcencryptioncontrolexclusion) (ReadOnly)
+* **VpcLattice**: [VpcEncryptionControlExclusion](#vpcencryptioncontrolexclusion) (ReadOnly)
+* **VpcPeering**: [VpcEncryptionControlExclusion](#vpcencryptioncontrolexclusion) (ReadOnly)
 
 ## ResourceStatementRequest
 ### Properties
@@ -2658,7 +3593,7 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **BlockDurationMinutes**: int: Deprecated.
 * **InstanceInterruptionBehavior**: string: The behavior when a Spot Instance is interrupted. The default is ``terminate``.
-* **MaxPrice**: string: The maximum hourly price you're willing to pay for the Spot Instances. We do not recommend using this parameter because it can lead to increased interruptions. If you do not specify this parameter, you will pay the current Spot price.
+* **MaxPrice**: string: The maximum hourly price you're willing to pay for a Spot Instance. We do not recommend using this parameter because it can lead to increased interruptions. If you do not specify this parameter, you will pay the current Spot price. If you do specify this parameter, it must be more than USD $0.001. Specifying a value below USD $0.001 will result in an ``InvalidParameterValue`` error message when the launch template is used to launch an instance.
   If you specify a maximum price, your Spot Instances will be interrupted more frequently than if you do not specify this parameter.
 * **SpotInstanceType**: string: The Spot Instance request type.
  If you are using Spot Instances with an Auto Scaling group, use ``one-time`` requests, as the ASlong service handles requesting new Spot Instances whenever the group is below its desired capacity.
@@ -2682,6 +3617,7 @@ Use this for ICMP and any protocol that uses ports.
 ## SpotPlacement
 ### Properties
 * **AvailabilityZone**: string
+* **AvailabilityZoneId**: string
 * **GroupName**: string
 * **Tenancy**: string
 
@@ -2700,6 +3636,20 @@ Use this for ICMP and any protocol that uses ports.
 * **AssociationParameters**: [AssociationParameter](#associationparameter)[]: The input parameter values to use with the associated SSM document.
 * **DocumentName**: string (Required): The name of an SSM document to associate with the instance.
 
+## StandbyAvailabilityZone
+### Properties
+* **AvailabilityZone**: string
+* **AvailabilityZoneId**: string
+
+## StorageLocation
+### Properties
+* **Bucket**: string: The name of the S3 bucket.
+* **Key**: string: The key.
+
+## Subnet_BlockPublicAccessStates
+### Properties
+* **InternetGatewayBlockMode**: string: The mode of VPC BPA. Options here are off, block-bidirectional, block-ingress 
+
 ## Subnet_PrivateDnsNameOptionsOnLaunch
 ### Properties
 * **EnableResourceNameDnsAAAARecord**: bool
@@ -2713,6 +3663,16 @@ Use this for ICMP and any protocol that uses ports.
 
 ## Tag
 ### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
 
@@ -2738,6 +3698,21 @@ Use this for ICMP and any protocol that uses ports.
 
 ## Tag
 ### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
 * **Key**: string (Required): The tag key.
 * **Value**: string (Required): The tag value.
 
@@ -2758,6 +3733,11 @@ Use this for ICMP and any protocol that uses ports.
 
 ## Tag
 ### Properties
+* **Key**: string (Required): The key of the tag.
+* **Value**: string (Required): The value of the tag.
+
+## Tag
+### Properties
 * **Key**: string (Required): The tag key.
 * **Value**: string (Required): The tag value.
 
@@ -2768,6 +3748,26 @@ Use this for ICMP and any protocol that uses ports.
 
 ## Tag
 ### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key of the tag.
+* **Value**: string (Required): The value of the tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
@@ -2785,6 +3785,11 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
 
 ## Tag
 ### Properties
@@ -2808,6 +3813,16 @@ Use this for ICMP and any protocol that uses ports.
 
 ## Tag
 ### Properties
+* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
 * **Key**: string (Required): The tag key.
 * **Value**: string (Required): The tag value.
 
@@ -2848,6 +3863,26 @@ Use this for ICMP and any protocol that uses ports.
 
 ## Tag
 ### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
+
+## Tag
+### Properties
 * **Key**: string (Required): The tag key.
 * **Value**: string (Required): The tag value.
 
@@ -2865,6 +3900,31 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **Key**: string (Required): The tag key.
 * **Value**: string (Required): The tag value.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key of the tag. Amazon EC2 reserves keys beginning with 'aws:' for internal use and rejects them for this resource. Amazon EC2 accepts a maximum of 128 Unicode characters.
+* **Value**: string (Required): The value of the tag. Amazon EC2 accepts a maximum of 256 Unicode characters.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties
@@ -2883,6 +3943,16 @@ Use this for ICMP and any protocol that uses ports.
 
 ## Tag
 ### Properties
+* **Key**: string: The key of the tag. Constraints: Tag keys are case-sensitive and accept a maximum of 127 Unicode characters. May not begin with aws: .
+* **Value**: string: The value of the tag. Constraints: Tag values are case-sensitive and accept a maximum of 256 Unicode characters.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
 * **Key**: string: The key of the tag. Constraints: Tag keys are case-sensitive and accept a maximum of 127 Unicode characters. May not begin with aws:.
 * **Value**: string: The value of the tag. Constraints: Tag values are case-sensitive and accept a maximum of 255 Unicode characters.
 
@@ -2890,6 +3960,11 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **Key**: string: The key of the tag. Constraints: Tag keys are case-sensitive and accept a maximum of 127 Unicode characters. May not begin with aws:.
 * **Value**: string: The value of the tag. Constraints: Tag values are case-sensitive and accept a maximum of 255 Unicode characters.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties
@@ -2938,8 +4013,15 @@ Use this for ICMP and any protocol that uses ports.
 
 ## Tag
 ### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key of the tag.
+ Constraints: Tag keys are case-sensitive and accept a maximum of 127 Unicode characters. May not begin with ``aws:``.
+* **Value**: string (Required): The value of the tag.
+ Constraints: Tag values are case-sensitive and accept a maximum of 256 Unicode characters.
 
 ## Tag
 ### Properties
@@ -2953,6 +4035,13 @@ Use this for ICMP and any protocol that uses ports.
 
 ## Tag
 ### Properties
+* **Key**: string (Required): The key of the tag.
+ Constraints: Tag keys are case-sensitive and accept a maximum of 127 Unicode characters. May not begin with ``aws:``.
+* **Value**: string (Required): The value of the tag.
+ Constraints: Tag values are case-sensitive and accept a maximum of 256 Unicode characters.
+
+## Tag
+### Properties
 * **Key**: string (Required): The tag key.
 * **Value**: string (Required): The tag value.
 
@@ -2960,6 +4049,11 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **Key**: string (Required): The tag key.
 * **Value**: string (Required): The tag value.
+
+## TagFieldSpecification
+### Properties
+* **ResourceType**: string (Required)
+* **TagKeys**: string[] (Required)
 
 ## TagSpecification
 ### Properties
@@ -3002,6 +4096,13 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **ResourceStatement**: [ResourceStatementRequest](#resourcestatementrequest)
 
+## TimeRange
+### Properties
+* **EndHour**: int: The hour when the time range ends.
+* **EndWeekDay**: string: The day on which the time range ends.
+* **StartHour**: int: The hour when the time range begins.
+* **StartWeekDay**: string: The day on which the time range begins.
+
 ## TotalLocalStorageGB
 ### Properties
 * **Max**: int: The maximum amount of total local storage, in GB. To specify no maximum limit, omit this parameter.
@@ -3017,6 +4118,11 @@ Use this for ICMP and any protocol that uses ports.
 * **Max**: int
 * **Min**: int
 
+## TrafficMirrorPortRange
+### Properties
+* **FromPort**: int (Required): The first port in the Traffic Mirror port range.
+* **ToPort**: int (Required): The last port in the Traffic Mirror port range.
+
 ## TransitGatewayAttachment_Options
 ### Properties
 * **ApplianceModeSupport**: string: Indicates whether to enable Ipv6 Support for Vpc Attachment. Valid Values: enable | disable
@@ -3024,15 +4130,39 @@ Use this for ICMP and any protocol that uses ports.
 * **Ipv6Support**: string: Indicates whether to enable Ipv6 Support for Vpc Attachment. Valid Values: enable | disable
 * **SecurityGroupReferencingSupport**: string: Indicates whether to enable Security Group referencing support for Vpc Attachment. Valid Values: enable | disable
 
+## TransitGatewayAttachmentBgpConfiguration
+### Properties
+* **BgpStatus**: string: The BGP status.
+* **PeerAddress**: string: The interior BGP peer IP address for the appliance.
+* **PeerAsn**: int: The peer Autonomous System Number (ASN).
+* **TransitGatewayAddress**: string: The interior BGP peer IP address for the transit gateway.
+* **TransitGatewayAsn**: int: The transit gateway Autonomous System Number (ASN).
+
 ## TransitGatewayConnectOptions
 ### Properties
 * **Protocol**: string: The tunnel protocol.
+
+## TransitGatewayConnectPeerConfiguration
+### Properties
+* **BgpConfigurations**: [TransitGatewayAttachmentBgpConfiguration](#transitgatewayattachmentbgpconfiguration)[] (ReadOnly): The BGP configuration details.
+* **InsideCidrBlocks**: string[] (Required): The range of interior BGP peer IP addresses.
+* **PeerAddress**: string (Required): The peer IP address (GRE outer IP address) on the appliance side of the Connect peer.
+* **Protocol**: string (ReadOnly): The tunnel protocol.
+* **TransitGatewayAddress**: string: The Connect peer IP address on the transit gateway side of the tunnel.
 
 ## TransitGatewayMulticastDomain_Options
 ### Properties
 * **AutoAcceptSharedAssociations**: string: Indicates whether to automatically cross-account subnet associations that are associated with the transit gateway multicast domain. Valid Values: enable | disable
 * **Igmpv2Support**: string: Indicates whether Internet Group Management Protocol (IGMP) version 2 is turned on for the transit gateway multicast domain. Valid Values: enable | disable
 * **StaticSourcesSupport**: string: Indicates whether support for statically configuring transit gateway multicast group sources is turned on. Valid Values: enable | disable
+
+## TransitGatewayPolicyRule
+### Properties
+* **DestinationCidrBlock**: string: The destination CIDR block for the transit gateway policy rule.
+* **DestinationPortRange**: string: The destination port range for the transit gateway policy rule.
+* **Protocol**: string: The protocol for the transit gateway policy rule.
+* **SourceCidrBlock**: string: The source CIDR block for the transit gateway policy rule.
+* **SourcePortRange**: string: The source port range for the transit gateway policy rule.
 
 ## TransitGatewayRouteTableRoute
 ### Properties
@@ -3109,6 +4239,44 @@ Use this for ICMP and any protocol that uses ports.
 * **Device**: string (Required): The device name (for example, /dev/sdh or xvdh).
 * **VolumeId**: string (Required): The ID of the EBS volume. The volume and instance must be within the same Availability Zone.
 
+## VpcEncryptionControl
+### Properties
+* **EgressOnlyInternetGatewayExclusion**: string (WriteOnly)
+* **ElasticFileSystemExclusion**: string (WriteOnly)
+* **InternetGatewayExclusion**: string (WriteOnly)
+* **LambdaExclusion**: string (WriteOnly)
+* **Mode**: string: The encryption mode for the VPC Encryption Control configuration.
+* **NatGatewayExclusion**: string (WriteOnly)
+* **ResourceExclusions**: [VpcEncryptionControlExclusions](#vpcencryptioncontrolexclusions) (ReadOnly): Information about resource exclusions for the VPC Encryption Control configuration.
+* **State**: string (ReadOnly): The current state of the VPC Encryption Control configuration.
+* **StateMessage**: string (ReadOnly): A message providing additional information about the encryption control state.
+* **VirtualPrivateGatewayExclusion**: string (WriteOnly)
+* **VpcEncryptionControlId**: string (ReadOnly): The ID of the VPC Encryption Control configuration.
+* **VpcId**: string (ReadOnly, Identifier): The ID of the VPC associated with the encryption control configuration.
+* **VpcLatticeExclusion**: string (WriteOnly)
+* **VpcPeeringExclusion**: string (WriteOnly)
+
+## VpcEncryptionControlExclusion
+### Properties
+* **State**: string (ReadOnly): The current state of the exclusion configuration.
+* **StateMessage**: string (ReadOnly): A message providing additional information about the exclusion state.
+
+## VpcEncryptionControlExclusion
+### Properties
+* **State**: string (ReadOnly)
+* **StateMessage**: string (ReadOnly)
+
+## VpcEncryptionControlExclusions
+### Properties
+* **EgressOnlyInternetGateway**: [VpcEncryptionControlExclusion](#vpcencryptioncontrolexclusion) (ReadOnly): The exclusion configuration for egress-only internet gateway traffic.
+* **ElasticFileSystem**: [VpcEncryptionControlExclusion](#vpcencryptioncontrolexclusion) (ReadOnly): The exclusion configuration for Elastic File System traffic.
+* **InternetGateway**: [VpcEncryptionControlExclusion](#vpcencryptioncontrolexclusion) (ReadOnly): The exclusion configuration for internet gateway traffic.
+* **Lambda**: [VpcEncryptionControlExclusion](#vpcencryptioncontrolexclusion) (ReadOnly): The exclusion configuration for Lambda function traffic.
+* **NatGateway**: [VpcEncryptionControlExclusion](#vpcencryptioncontrolexclusion) (ReadOnly): The exclusion configuration for NAT gateway traffic.
+* **VirtualPrivateGateway**: [VpcEncryptionControlExclusion](#vpcencryptioncontrolexclusion) (ReadOnly): The exclusion configuration for virtual private gateway traffic.
+* **VpcLattice**: [VpcEncryptionControlExclusion](#vpcencryptioncontrolexclusion) (ReadOnly): The exclusion configuration for VPC Lattice traffic.
+* **VpcPeering**: [VpcEncryptionControlExclusion](#vpcencryptioncontrolexclusion) (ReadOnly): The exclusion configuration for VPC peering connection traffic.
+
 ## VpnTunnelLogOptionsSpecification
 ### Properties
 * **CloudwatchLogOptions**: [CloudwatchLogOptionsSpecification](#cloudwatchlogoptionsspecification): Options for sending VPN tunnel logs to CloudWatch.
@@ -3116,7 +4284,7 @@ Use this for ICMP and any protocol that uses ports.
 ## VpnTunnelOptionsSpecification
 ### Properties
 * **DPDTimeoutAction**: string: The action to take after DPD timeout occurs. Specify ``restart`` to restart the IKE initiation. Specify ``clear`` to end the IKE session.
- Valid Values: ``clear`` | ``none`` | ``restart`` 
+ Valid Values: ``clear`` | ``none`` | ``restart``
  Default: ``clear``
 * **DPDTimeoutSeconds**: int: The number of seconds after which a DPD timeout occurs.
  Constraints: A value greater than or equal to 30.
@@ -3155,7 +4323,7 @@ Use this for ICMP and any protocol that uses ports.
  Constraints: A value between 64 and 2048.
  Default: ``1024``
 * **StartupAction**: string: The action to take when the establishing the tunnel for the VPN connection. By default, your customer gateway device must initiate the IKE negotiation and bring up the tunnel. Specify ``start`` for AWS to initiate the IKE negotiation.
- Valid Values: ``add`` | ``start`` 
+ Valid Values: ``add`` | ``start``
  Default: ``add``
 * **TunnelInsideCidr**: string: The range of inside IP addresses for the tunnel. Any specified CIDR blocks must be unique across all VPN connections that use the same virtual private gateway. 
  Constraints: A size /30 CIDR block from the ``169.254.0.0/16`` range. The following CIDR blocks are reserved and cannot be used:

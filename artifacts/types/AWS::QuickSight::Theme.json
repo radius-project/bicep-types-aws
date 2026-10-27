@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-QuickSight-Theme",
   "type": "AWS::QuickSight::Theme",
-  "time": "2024-12-17T17:23:38.209Z",
+  "time": "2026-10-22T00:08:49.757Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -13,10 +13,20 @@
         "additionalProperties": false,
         "description": "\u003cp\u003eThe display options for tile borders for visuals.\u003c/p\u003e",
         "properties": {
+          "Color": {
+            "description": "String to encapsulate the most generic way Color can be formatted (words, hexStrings etc)",
+            "type": "string"
+          },
           "Show": {
             "default": null,
             "description": "\u003cp\u003eThe option to enable display of borders for visuals.\u003c/p\u003e",
             "type": "boolean"
+          },
+          "Width": {
+            "description": "String to encapsulate the most generic way Width can be formatted with whatever units (px, em etc)",
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
           }
         },
         "type": "object"
@@ -62,6 +72,72 @@
         },
         "type": "object"
       },
+      "FontConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "FontColor": {
+            "pattern": "^#[A-F0-9]{6}$",
+            "type": "string"
+          },
+          "FontDecoration": {
+            "$ref": "#/definitions/FontDecoration"
+          },
+          "FontFamily": {
+            "description": "\u003cp\u003eThe font family that you want to use.\u003c/p\u003e",
+            "type": "string"
+          },
+          "FontSize": {
+            "$ref": "#/definitions/FontSize"
+          },
+          "FontStyle": {
+            "$ref": "#/definitions/FontStyle"
+          },
+          "FontWeight": {
+            "$ref": "#/definitions/FontWeight"
+          }
+        },
+        "type": "object"
+      },
+      "FontDecoration": {
+        "enum": [
+          "UNDERLINE",
+          "NONE"
+        ],
+        "type": "string"
+      },
+      "FontSize": {
+        "additionalProperties": false,
+        "properties": {
+          "Absolute": {
+            "description": "\u003cp\u003eThe font size that you want to use in px.\u003c/p\u003e",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "FontStyle": {
+        "enum": [
+          "NORMAL",
+          "ITALIC"
+        ],
+        "type": "string"
+      },
+      "FontWeight": {
+        "additionalProperties": false,
+        "properties": {
+          "Name": {
+            "$ref": "#/definitions/FontWeightName"
+          }
+        },
+        "type": "object"
+      },
+      "FontWeightName": {
+        "enum": [
+          "NORMAL",
+          "BOLD"
+        ],
+        "type": "string"
+      },
       "GutterStyle": {
         "additionalProperties": false,
         "description": "\u003cp\u003eThe display options for gutter spacing between tiles on a sheet.\u003c/p\u003e",
@@ -73,6 +149,15 @@
           }
         },
         "type": "object"
+      },
+      "HorizontalTextAlignment": {
+        "enum": [
+          "LEFT",
+          "CENTER",
+          "RIGHT",
+          "AUTO"
+        ],
+        "type": "string"
       },
       "MarginStyle": {
         "additionalProperties": false,
@@ -95,12 +180,12 @@
             "items": {
               "type": "string"
             },
-            "maxItems": 20,
+            "maxItems": 30,
             "minItems": 1,
             "type": "array"
           },
           "Principal": {
-            "description": "\u003cp\u003eThe Amazon Resource Name (ARN) of the principal. This can be one of the\n            following:\u003c/p\u003e\n         \u003cul\u003e\n            \u003cli\u003e\n               \u003cp\u003eThe ARN of an Amazon QuickSight user or group associated with a data source or dataset. (This is common.)\u003c/p\u003e\n            \u003c/li\u003e\n            \u003cli\u003e\n               \u003cp\u003eThe ARN of an Amazon QuickSight user, group, or namespace associated with an analysis, dashboard, template, or theme. (This is common.)\u003c/p\u003e\n            \u003c/li\u003e\n            \u003cli\u003e\n               \u003cp\u003eThe ARN of an Amazon Web Services account root: This is an IAM ARN rather than a QuickSight\n                    ARN. Use this option only to share resources (templates) across Amazon Web Services accounts.\n                    (This is less common.) \u003c/p\u003e\n            \u003c/li\u003e\n         \u003c/ul\u003e",
+            "description": "\u003cp\u003eThe Amazon Resource Name (ARN) of the principal. This can be one of the\n            following:\u003c/p\u003e\n         \u003cul\u003e\n            \u003cli\u003e\n               \u003cp\u003eThe ARN of an Amazon Quick user or group associated with a data source or dataset. (This is common.)\u003c/p\u003e\n            \u003c/li\u003e\n            \u003cli\u003e\n               \u003cp\u003eThe ARN of an Amazon Quick user, group, or namespace associated with an analysis, dashboard, template, or theme. (This is common.)\u003c/p\u003e\n            \u003c/li\u003e\n            \u003cli\u003e\n               \u003cp\u003eThe ARN of an Amazon Web Services account root: This is an IAM ARN rather than a QuickSight\n                    ARN. Use this option only to share resources (templates) across Amazon Web Services accounts.\n                    (This is less common.) \u003c/p\u003e\n            \u003c/li\u003e\n         \u003c/ul\u003e",
             "maxLength": 256,
             "minLength": 1,
             "type": "string"
@@ -120,14 +205,31 @@
           "UPDATE_IN_PROGRESS",
           "UPDATE_SUCCESSFUL",
           "UPDATE_FAILED",
+          "PENDING_UPDATE",
           "DELETED"
         ],
         "type": "string"
+      },
+      "SheetBackgroundStyle": {
+        "additionalProperties": false,
+        "properties": {
+          "Color": {
+            "description": "String to encapsulate the most generic way Color can be formatted (words, hexStrings etc)",
+            "type": "string"
+          },
+          "Gradient": {
+            "type": "string"
+          }
+        },
+        "type": "object"
       },
       "SheetStyle": {
         "additionalProperties": false,
         "description": "\u003cp\u003eThe theme display options for sheets. \u003c/p\u003e",
         "properties": {
+          "Background": {
+            "$ref": "#/definitions/SheetBackgroundStyle"
+          },
           "Tile": {
             "$ref": "#/definitions/TileStyle"
           },
@@ -159,6 +261,12 @@
           "Value"
         ],
         "type": "object"
+      },
+      "TextTransform": {
+        "enum": [
+          "CAPITALIZE"
+        ],
+        "type": "string"
       },
       "ThemeConfiguration": {
         "additionalProperties": false,
@@ -217,7 +325,7 @@
             "type": "string"
           },
           "BaseThemeId": {
-            "description": "\u003cp\u003eThe Amazon QuickSight-defined ID of the theme that a custom theme inherits from. All\n            themes initially inherit from a default Amazon QuickSight theme.\u003c/p\u003e",
+            "description": "\u003cp\u003eThe Amazon Quick-defined ID of the theme that a custom theme inherits from. All\n            themes initially inherit from a default Quick theme.\u003c/p\u003e",
             "maxLength": 512,
             "minLength": 1,
             "pattern": "^[\\w\\-]+$",
@@ -273,8 +381,22 @@
         "additionalProperties": false,
         "description": "\u003cp\u003eDisplay options related to tiles on a sheet.\u003c/p\u003e",
         "properties": {
+          "BackgroundColor": {
+            "description": "String to encapsulate the most generic way Color can be formatted (words, hexStrings etc)",
+            "type": "string"
+          },
           "Border": {
             "$ref": "#/definitions/BorderStyle"
+          },
+          "BorderRadius": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "Padding": {
+            "maxLength": 200,
+            "minLength": 0,
+            "type": "string"
           }
         },
         "type": "object"
@@ -282,6 +404,15 @@
       "Typography": {
         "additionalProperties": false,
         "properties": {
+          "AxisLabelFontConfiguration": {
+            "$ref": "#/definitions/FontConfiguration"
+          },
+          "AxisTitleFontConfiguration": {
+            "$ref": "#/definitions/FontConfiguration"
+          },
+          "DataLabelFontConfiguration": {
+            "$ref": "#/definitions/FontConfiguration"
+          },
           "FontFamilies": {
             "items": {
               "$ref": "#/definitions/Font"
@@ -289,13 +420,25 @@
             "maxItems": 5,
             "minItems": 0,
             "type": "array"
+          },
+          "LegendTitleFontConfiguration": {
+            "$ref": "#/definitions/FontConfiguration"
+          },
+          "LegendValueFontConfiguration": {
+            "$ref": "#/definitions/FontConfiguration"
+          },
+          "VisualSubtitleFontConfiguration": {
+            "$ref": "#/definitions/VisualSubtitleFontConfiguration"
+          },
+          "VisualTitleFontConfiguration": {
+            "$ref": "#/definitions/VisualTitleFontConfiguration"
           }
         },
         "type": "object"
       },
       "UIColorPalette": {
         "additionalProperties": false,
-        "description": "\u003cp\u003eThe theme colors that apply to UI and to charts, excluding data colors. The colors\n            description is a hexadecimal color code that consists of six alphanumerical characters,\n            prefixed with \u003ccode\u003e#\u003c/code\u003e, for example #37BFF5. For more information, see \u003ca href=\"https://docs.aws.amazon.com/quicksight/latest/user/themes-in-quicksight.html\"\u003eUsing Themes in Amazon QuickSight\u003c/a\u003e in the \u003ci\u003eAmazon QuickSight User\n                Guide.\u003c/i\u003e\n         \u003c/p\u003e",
+        "description": "\u003cp\u003eThe theme colors that apply to UI and to charts, excluding data colors. The colors\n            description is a hexadecimal color code that consists of six alphanumerical characters,\n            prefixed with \u003ccode\u003e#\u003c/code\u003e, for example #37BFF5. For more information, see \u003ca href=\"https://docs.aws.amazon.com/quicksight/latest/user/themes-in-quicksight.html\"\u003eUsing Themes in Amazon Quick\u003c/a\u003e in the \u003ci\u003eAmazon Quick User\n                Guide.\u003c/i\u003e\n         \u003c/p\u003e",
         "properties": {
           "Accent": {
             "description": "\u003cp\u003eThis color is that applies to selected states and buttons.\u003c/p\u003e",
@@ -376,6 +519,36 @@
             "description": "\u003cp\u003eThe foreground color that applies to any text or other elements that appear over the\n            warning color.\u003c/p\u003e",
             "pattern": "^#[A-F0-9]{6}$",
             "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "VisualSubtitleFontConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "FontConfiguration": {
+            "$ref": "#/definitions/FontConfiguration"
+          },
+          "TextAlignment": {
+            "$ref": "#/definitions/HorizontalTextAlignment"
+          },
+          "TextTransform": {
+            "$ref": "#/definitions/TextTransform"
+          }
+        },
+        "type": "object"
+      },
+      "VisualTitleFontConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "FontConfiguration": {
+            "$ref": "#/definitions/FontConfiguration"
+          },
+          "TextAlignment": {
+            "$ref": "#/definitions/HorizontalTextAlignment"
+          },
+          "TextTransform": {
+            "$ref": "#/definitions/TextTransform"
           }
         },
         "type": "object"
@@ -521,11 +694,18 @@
       "Name"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-quicksight",
-    "typeName": "AWS::QuickSight::Theme",
-    "writeOnlyProperties": [
-      "/properties/BaseThemeId",
-      "/properties/Configuration",
-      "/properties/VersionDescription"
-    ]
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "quicksight:TagResource",
+        "quicksight:UntagResource",
+        "quicksight:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::QuickSight::Theme"
   }
 }

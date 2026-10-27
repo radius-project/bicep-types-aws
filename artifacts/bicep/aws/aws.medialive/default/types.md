@@ -1,77 +1,112 @@
 # AWS.MediaLive @ default
 
 ## Resource AWS.MediaLive/ChannelPlacementGroup@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.MediaLive/ChannelPlacementGroupProperties](#awsmedialivechannelplacementgroupproperties) (Identifier): properties of the resource
 
 ## Resource AWS.MediaLive/CloudWatchAlarmTemplate@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.MediaLive/CloudWatchAlarmTemplateProperties](#awsmedialivecloudwatchalarmtemplateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MediaLive/CloudWatchAlarmTemplateGroup@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.MediaLive/CloudWatchAlarmTemplateGroupProperties](#awsmedialivecloudwatchalarmtemplategroupproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MediaLive/Cluster@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.MediaLive/ClusterProperties](#awsmedialiveclusterproperties) (Identifier): properties of the resource
 
 ## Resource AWS.MediaLive/EventBridgeRuleTemplate@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.MediaLive/EventBridgeRuleTemplateProperties](#awsmedialiveeventbridgeruletemplateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MediaLive/EventBridgeRuleTemplateGroup@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.MediaLive/EventBridgeRuleTemplateGroupProperties](#awsmedialiveeventbridgeruletemplategroupproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.MediaLive/Input@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MediaLive/InputProperties](#awsmedialiveinputproperties) (Identifier): properties of the resource
+
+## Resource AWS.MediaLive/InputSecurityGroup@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MediaLive/InputSecurityGroupProperties](#awsmedialiveinputsecuritygroupproperties) (Identifier): properties of the resource
+
 ## Resource AWS.MediaLive/Multiplex@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.MediaLive/MultiplexProperties](#awsmedialivemultiplexproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MediaLive/Multiplexprogram@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.MediaLive/MultiplexprogramProperties](#awsmedialivemultiplexprogramproperties) (Identifier): properties of the resource
 
 ## Resource AWS.MediaLive/Network@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.MediaLive/NetworkProperties](#awsmedialivenetworkproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.MediaLive/Node@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MediaLive/NodeProperties](#awsmedialivenodeproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.MediaLive/SdiSource@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.MediaLive/SdiSourceProperties](#awsmedialivesdisourceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MediaLive/SignalMap@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -108,7 +143,7 @@
 * **Description**: string: A resource's optional description.
 * **EvaluationPeriods**: int (Required): The number of periods over which data is compared to the specified threshold.
 * **GroupId**: string (ReadOnly): A cloudwatch alarm template group's id. AWS provided template groups have ids that start with `aws-`
-* **GroupIdentifier**: string (Required, WriteOnly): A cloudwatch alarm template group's identifier. Can be either be its id or current name.
+* **GroupIdentifier**: string (WriteOnly): A cloudwatch alarm template group's identifier. Can be either be its id or current name.
 * **Id**: string (ReadOnly): A cloudwatch alarm template's id. AWS provided templates have ids that start with `aws-`
 * **Identifier**: string (ReadOnly, Identifier)
 * **MetricName**: string (Required): The name of the metric associated with the alarm. Must be compatible with targetResourceType.
@@ -152,12 +187,55 @@
 * **EventTargets**: [EventBridgeRuleTemplateTarget](#eventbridgeruletemplatetarget)[]: Placeholder documentation for __listOfEventBridgeRuleTemplateTarget
 * **EventType**: string (Required)
 * **GroupId**: string (ReadOnly): An eventbridge rule template group's id. AWS provided template groups have ids that start with `aws-`
-* **GroupIdentifier**: string (Required, WriteOnly): An eventbridge rule template group's identifier. Can be either be its id or current name.
+* **GroupIdentifier**: string (WriteOnly): An eventbridge rule template group's identifier. Can be either be its id or current name.
 * **Id**: string (ReadOnly): An eventbridge rule template's id. AWS provided templates have ids that start with `aws-`
 * **Identifier**: string (ReadOnly, Identifier): Placeholder documentation for __string
 * **ModifiedAt**: string (ReadOnly): Placeholder documentation for __timestampIso8601
 * **Name**: string (Required): A resource's name. Names must be unique within the scope of a resource type in a specific region.
 * **Tags**: [TagMap](#tagmap)
+
+## AWS.MediaLive/InputProperties
+### Properties
+* **Arn**: string (ReadOnly): The Unique ARN of the input (generated, immutable).
+* **AttachedChannels**: string[] (ReadOnly): A list of channel IDs that that input is attached to (currently an input can only be attached to one channel).
+* **Destinations**: [InputDestination](#inputdestination)[] (ReadOnly, WriteOnly): A list of the destinations of the input (PUSH-type).
+* **DestinationUrls**: string[] (ReadOnly): A list of destination URLs of the input (PUSH-type).
+* **Id**: string (ReadOnly, Identifier): The generated ID of the input (unique for user account, immutable).
+* **InputClass**: string (ReadOnly): STANDARD - MediaLive expects two sources to be connected to this input. If the channel is also STANDARD, both sources will be ingested. If the channel is SINGLE_PIPELINE, only the first source will be ingested; the second source will always be ignored, even if the first source fails.
+SINGLE_PIPELINE - You can connect only one source to this input. If the ChannelClass is also SINGLE_PIPELINE, this value is valid. If the ChannelClass is STANDARD, this value is not valid because the channel requires two sources in the input.
+* **InputDevices**: [InputDeviceSettings](#inputdevicesettings)[]: Settings for the input devices.
+* **InputNetworkLocation**: string: The location of this input. AWS, for an input existing in the AWS Cloud, On-Prem for
+an input in a customer network.
+* **InputPartnerIds**: string[] (ReadOnly): A list of IDs for all Inputs which are partners of this one.
+* **InputSecurityGroups**: string[] (WriteOnly): A list of security groups referenced by IDs to attach to the input.
+* **InputSourceType**: string (ReadOnly): Certain pull input sources can be dynamic, meaning that they can have their URL's dynamically changes
+during input switch actions. Presently, this functionality only works with MP4_FILE and TS_FILE inputs.
+* **MediaConnectFlows**: [MediaConnectFlow](#mediaconnectflow)[]: A list of MediaConnect Flows for this input.
+* **MulticastSettings**: [MulticastSettings](#multicastsettings): Multicast Input settings.
+* **Name**: string: The user-assigned name (This is a mutable value).
+* **RoleArn**: string: The Amazon Resource Name (ARN) of the role this input assumes during and after creation.
+* **RouterSettings**: [RouterSettings](#routersettings): Information about the MediaConnect Router association for this input.
+* **SdiSources**: string[]: SDI Sources for this Input.
+* **SecurityGroups**: string[] (ReadOnly): A list of IDs for all the Input Security Groups attached to the input.
+* **Smpte2110ReceiverGroupSettings**: [Smpte2110ReceiverGroupSettings](#smpte2110receivergroupsettings): Include this parameter if the input is a SMPTE 2110 input, to identify the stream sources for this input.
+* **Sources**: [InputSource](#inputsource)[]: A list of the sources of the input (PULL-type).
+* **SourceUrls**: string[] (ReadOnly): A list of source URLs of the input (PULL-type).
+* **SrtSettings**: [SrtSettings](#srtsettings): The settings associated with an SRT input.
+* **State**: string (ReadOnly): Placeholder documentation for InputState
+* **Tags**: [Input_Tags](#inputtags): A collection of key-value pairs.
+* **Type**: string: The different types of inputs that AWS Elemental MediaLive supports.
+* **Vpc**: [InputVpcRequest](#inputvpcrequest) (WriteOnly): Settings for a private VPC Input.
+When this property is specified, the input destination addresses will be created in a VPC rather than with public Internet addresses.
+This property requires setting the roleArn property on Input creation.
+Not compatible with the inputSecurityGroups property.
+
+## AWS.MediaLive/InputSecurityGroupProperties
+### Properties
+* **Arn**: string (ReadOnly): Unique ARN of Input Security Group
+* **Id**: string (ReadOnly, Identifier): The Id of the Input Security Group
+* **Inputs**: string[] (ReadOnly): The list of inputs currently using this Input Security Group.
+* **Tags**: [InputSecurityGroup_Tags](#inputsecuritygrouptags): A collection of key-value pairs.
+* **WhitelistRules**: [InputWhitelistRule](#inputwhitelistrule)[]: Whitelist rules and their sync status
 
 ## AWS.MediaLive/MultiplexprogramProperties
 ### Properties
@@ -192,6 +270,21 @@
 * **Routes**: [Route](#route)[]: The routes for the network
 * **State**: string (ReadOnly): The current state of the Network.
 * **Tags**: [Tags](#tags)[]: A collection of key-value pairs.
+
+## AWS.MediaLive/NodeProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The ARN of the Node. It is automatically assigned when the Node is created.
+* **ChannelPlacementGroups**: string[] (ReadOnly): An array of IDs. Each ID is one ChannelPlacementGroup that is associated with this Node.
+* **ClusterId**: string (Required): The ID of the Cluster that the Node belongs to.
+* **ConnectionState**: string (ReadOnly)
+* **Id**: string (ReadOnly): The unique ID of the Node. Unique in the Cluster. The ID is the resource-id portion of the ARN.
+* **InstanceArn**: string (ReadOnly): The ARN of the EC2 instance hosting the Node.
+* **Name**: string: The user-specified name of the Node.
+* **NodeInterfaceMappings**: [NodeInterfaceMapping](#nodeinterfacemapping)[]: An array of interface mappings for the Node.
+* **Role**: string
+* **SdiSourceMappings**: [SdiSourceMapping](#sdisourcemapping)[]: An array of SDI source mappings.
+* **State**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]: A collection of key-value pairs.
 
 ## AWS.MediaLive/SdiSourceProperties
 ### Properties
@@ -241,6 +334,63 @@
 ## FailedMediaResourceMap
 ### Properties
 
+## Input_Tags
+### Properties
+
+## InputDestination
+### Properties
+* **Ip**: string: The system-generated static IP address of endpoint.
+It remains fixed for the lifetime of the input.
+* **Network**: string: The ID of the attached network.
+* **NetworkRoutes**: [InputDestinationRoute](#inputdestinationroute)[]: If the push input has an input location of ON-PREM it's a requirement to specify what the route of the input
+is going to be on the customer local network.
+* **Port**: string: The port number for the input.
+* **StaticIpAddress**: string: The static IP address for the input destination.
+* **StreamName**: string: The stream name for the input destination.
+* **Url**: string: This represents the endpoint that the customer stream will be
+pushed to.
+* **Vpc**: [InputDestinationVpc](#inputdestinationvpc): The properties for a VPC type input destination.
+
+## InputDestinationRoute
+### Properties
+* **Cidr**: string: The CIDR of the route.
+* **Gateway**: string: An optional gateway for the route.
+
+## InputDestinationVpc
+### Properties
+* **AvailabilityZone**: string: The availability zone of the Input destination.
+* **NetworkInterfaceId**: string: The network interface ID of the Input destination in the VPC.
+
+## InputDeviceSettings
+### Properties
+* **Id**: string (Identifier): The unique ID for the device.
+
+## InputSdpLocation
+### Properties
+* **MediaIndex**: int: The index of the media stream in the SDP file for one SMPTE 2110 stream.
+* **SdpUrl**: string: The URL of the SDP file for one SMPTE 2110 stream.
+
+## InputSecurityGroup_Tags
+### Properties
+
+## InputSource
+### Properties
+* **PasswordParam**: string: The key used to extract the password from EC2 Parameter store.
+* **Url**: string: This represents the customer's source URL where stream is
+pulled from.
+* **Username**: string: The username for the input source.
+
+## InputVpcRequest
+### Properties
+* **SecurityGroupIds**: string[]: A list of up to 5 EC2 VPC security group IDs to attach to the Input VPC network interfaces.
+Requires subnetIds. If none are specified then the VPC default security group will be used.
+* **SubnetIds**: string[]: A list of 2 VPC subnet IDs from the same VPC.
+Subnet IDs must be mapped to two unique availability zones (AZ).
+
+## InputWhitelistRule
+### Properties
+* **Cidr**: string: The IPv4 CIDR that's whitelisted.
+
 ## InterfaceMapping
 ### Properties
 * **LogicalInterfaceName**: string: logical interface name, unique in the list
@@ -250,6 +400,10 @@
 ### Properties
 * **Cidr**: string: IP address cidr pool
 
+## MediaConnectFlow
+### Properties
+* **FlowArn**: string: The unique ARN of the MediaConnect Flow being used as a source.
+
 ## MediaResourceMap
 ### Properties
 
@@ -258,6 +412,15 @@
 * **DetailsUri**: string: URI associated with a signal map's monitor deployment.
 * **ErrorMessage**: string: Error message associated with a failed monitor deployment of a signal map.
 * **Status**: string (Required)
+
+## MulticastSettings
+### Properties
+* **Sources**: [MulticastSource](#multicastsource)[]: Placeholder documentation for __listOfMulticastSource
+
+## MulticastSource
+### Properties
+* **SourceIp**: string: This represents the ip address of the device sending the multicast stream.
+* **Url**: string (Required): This represents the customer's source URL where multicast stream is pulled from.
 
 ## Multiplex_MultiplexMediaConnectOutputDestinationSettings
 ### Properties
@@ -310,15 +473,87 @@
 ## MultiplexVideoSettings
 ### Properties
 
+## NodeInterfaceMapping
+### Properties
+* **LogicalInterfaceName**: string: The logical name for this interface.
+* **NetworkInterfaceMode**: string: The network interface mode.
+* **PhysicalInterfaceName**: string: The physical interface name.
+
 ## Route
 ### Properties
 * **Cidr**: string: Ip address cidr
 * **Gateway**: string: IP address for the route packet paths
 
+## RouterDestinationSettings
+### Properties
+* **AvailabilityZoneName**: string (Required): The Availability Zone (AZ) name this destination is created in.
+* **RouterOutputArn**: string: The ARN of the MediaConnect Router output currently connected to this input.
+
+## RouterSettings
+### Properties
+* **Destinations**: [RouterDestinationSettings](#routerdestinationsettings)[] (ReadOnly): MediaConnect Router destinations associated with this input.
+* **EncryptionType**: string: Encryption configuration for the MediaConnect Router association. AUTOMATIC uses a service-managed secret; SECRETS_MANAGER requires SecretArn.
+* **SecretArn**: string: The ARN of the Secrets Manager secret used to encrypt this input. Required when EncryptionType is SECRETS_MANAGER.
+
+## SdiSourceMapping
+### Properties
+* **CardNumber**: int: The card number.
+* **ChannelNumber**: int: The channel number.
+* **SdiSource**: string: The SDI source.
+
+## Smpte2110ReceiverGroup
+### Properties
+* **SdpSettings**: [Smpte2110ReceiverGroupSdpSettings](#smpte2110receivergroupsdpsettings): The single Smpte2110ReceiverGroupSdpSettings that identify the video, audio, and ancillary streams for this receiver group.
+
+## Smpte2110ReceiverGroupSdpSettings
+### Properties
+* **AncillarySdps**: [InputSdpLocation](#inputsdplocation)[]: A list of InputSdpLocations. Each item in the list specifies the SDP file and index for one ancillary SMPTE 2110 stream.
+Each stream encapsulates one captions stream (out of any number you can include) or the single SCTE 35 stream that you can include.
+* **AudioSdps**: [InputSdpLocation](#inputsdplocation)[]: A list of InputSdpLocations. Each item in the list specifies the SDP file and index for one audio SMPTE 2110 stream.
+* **VideoSdp**: [InputSdpLocation](#inputsdplocation): The InputSdpLocation that specifies the SDP file and index for the single video SMPTE 2110 stream for this 2110 input.
+
+## Smpte2110ReceiverGroupSettings
+### Properties
+* **Smpte2110ReceiverGroups**: [Smpte2110ReceiverGroup](#smpte2110receivergroup)[]: Placeholder documentation for __listOfSmpte2110ReceiverGroup
+
+## SrtCallerDecryption
+### Properties
+* **Algorithm**: string: The algorithm used to encrypt content.
+* **PassphraseSecretArn**: string: The ARN for the secret in Secrets Manager. Someone in your organization must create a secret and provide you with its ARN. The secret holds the passphrase that MediaLive uses to decrypt the source content.
+
+## SrtCallerSource
+### Properties
+* **Decryption**: [SrtCallerDecryption](#srtcallerdecryption): The decryption settings for the SRT caller source. Present only if the source has decryption enabled.
+* **MinimumLatency**: int: The preferred latency (in milliseconds) for implementing packet loss and recovery. Packet recovery is a key feature of SRT.
+* **SrtListenerAddress**: string: The IP address at the upstream system (the listener) that MediaLive (the caller) connects to.
+* **SrtListenerPort**: string: The port at the upstream system (the listener) that MediaLive (the caller) connects to.
+* **StreamId**: string: The stream ID, if the upstream system uses this identifier.
+
+## SrtListenerDecryption
+### Properties
+* **Algorithm**: string: The algorithm used to encrypt content.
+* **PassphraseSecretArn**: string: The ARN for the secret in Secrets Manager. Someone in your organization must create a secret and provide you with its ARN. The secret holds the passphrase that MediaLive uses to decrypt the source content.
+
+## SrtListenerSettings
+### Properties
+* **Decryption**: [SrtListenerDecryption](#srtlistenerdecryption): The decryption settings for the SRT listener source. Present only if the source has decryption enabled.
+* **MinimumLatency**: int: The preferred latency (in milliseconds) for implementing packet loss and recovery. Packet recovery is a key feature of SRT.
+* **StreamId**: string: The stream ID, if the upstream system uses this identifier.
+
+## SrtSettings
+### Properties
+* **SrtCallerSources**: [SrtCallerSource](#srtcallersource)[]: Placeholder documentation for __listOfSrtCallerSource
+* **SrtListenerSettings**: [SrtListenerSettings](#srtlistenersettings): Settings for an SRT listener input. Configured only when the input uses the SRT_LISTENER input type.
+
 ## SuccessfulMonitorDeployment
 ### Properties
 * **DetailsUri**: string (Required): URI associated with a signal map's monitor deployment.
 * **Status**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
 
 ## TagMap
 ### Properties

@@ -1,12 +1,11 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DataBrew-Schedule",
   "type": "AWS::DataBrew::Schedule",
-  "time": "2025-01-14T21:46:00.616Z",
+  "time": "2026-10-21T00:44:21.74Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
-      "/properties/Name",
-      "/properties/Tags"
+      "/properties/Name"
     ],
     "definitions": {
       "JobName": {
@@ -63,13 +62,14 @@
       "read": {
         "permissions": [
           "databrew:DescribeSchedule",
-          "databrew:ListTagsForResource",
           "iam:ListRoles"
         ]
       },
       "update": {
         "permissions": [
-          "databrew:UpdateSchedule"
+          "databrew:UpdateSchedule",
+          "databrew:TagResource",
+          "databrew:UntagResource"
         ]
       }
     },
@@ -120,7 +120,7 @@
       ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
-      "tagUpdatable": false,
+      "tagUpdatable": true,
       "taggable": true
     },
     "typeName": "AWS::DataBrew::Schedule"

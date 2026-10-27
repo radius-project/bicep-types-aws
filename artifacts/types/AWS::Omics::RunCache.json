@@ -1,0 +1,179 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Omics-RunCache",
+  "type": "AWS::Omics::RunCache",
+  "time": "2026-10-21T20:38:04.849Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/CacheS3Location",
+      "/properties/CacheBucketOwnerId"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Definition of AWS::Omics::RunCache Resource Type",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "omics:CreateRunCache",
+          "omics:GetRunCache",
+          "omics:TagResource",
+          "s3:GetBucketLocation",
+          "s3:ListBucket",
+          "s3:PutObject",
+          "s3:GetObject"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "omics:DeleteRunCache",
+          "omics:GetRunCache"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "omics:ListRunCaches"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "omics:GetRunCache"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "omics:UpdateRunCache",
+          "omics:GetRunCache",
+          "omics:TagResource",
+          "omics:UntagResource",
+          "omics:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The run cache ARN.",
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^arn:.+$",
+        "type": "string"
+      },
+      "CacheBehavior": {
+        "description": "The default cache behavior for runs using this cache.",
+        "enum": [
+          "CACHE_ON_FAILURE",
+          "CACHE_ALWAYS"
+        ],
+        "type": "string"
+      },
+      "CacheBucketOwnerId": {
+        "description": "The AWS account ID of the expected owner of the S3 bucket for the run cache.",
+        "maxLength": 12,
+        "minLength": 12,
+        "pattern": "^[0-9]+$",
+        "type": "string"
+      },
+      "CacheS3Location": {
+        "description": "The S3 location for storing the cached task outputs.",
+        "pattern": "^s3://([a-z0-9][a-z0-9-.]{1,61}[a-z0-9])(/(.{0,1024}))?$",
+        "type": "string"
+      },
+      "CreationTime": {
+        "description": "Creation time of the run cache (an ISO 8601 formatted string).",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "A description of the run cache.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+        "type": "string"
+      },
+      "Id": {
+        "description": "The run cache ID.",
+        "maxLength": 18,
+        "minLength": 1,
+        "pattern": "^[0-9]+$",
+        "type": "string"
+      },
+      "Name": {
+        "description": "A name for the run cache.",
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The run cache status.",
+        "enum": [
+          "ACTIVE",
+          "DELETED",
+          "FAILED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags for the run cache.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/CreationTime",
+      "/properties/Id",
+      "/properties/Status"
+    ],
+    "required": [],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "omics:TagResource",
+        "omics:UntagResource",
+        "omics:GetRunCache"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Omics::RunCache",
+    "writeOnlyProperties": [
+      "/properties/CacheS3Location"
+    ]
+  }
+}

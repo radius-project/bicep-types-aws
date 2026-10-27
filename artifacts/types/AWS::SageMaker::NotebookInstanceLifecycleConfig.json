@@ -1,0 +1,128 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-NotebookInstanceLifecycleConfig",
+  "type": "AWS::SageMaker::NotebookInstanceLifecycleConfig",
+  "time": "2026-09-17T20:47:40.037Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/NotebookInstanceLifecycleConfigName"
+    ],
+    "definitions": {
+      "NotebookInstanceLifecycleHook": {
+        "additionalProperties": false,
+        "description": "Specifies the notebook instance lifecycle configuration script. Each lifecycle configuration script has a limit of 16384 characters.",
+        "properties": {
+          "Content": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value",
+          "Key"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::SageMaker::NotebookInstanceLifecycleConfig",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "sagemaker:CreateNotebookInstanceLifecycleConfig",
+          "sagemaker:AddTags"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "sagemaker:DeleteNotebookInstanceLifecycleConfig"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "sagemaker:ListNotebookInstanceLifecycleConfigs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "sagemaker:DescribeNotebookInstanceLifecycleConfig",
+          "sagemaker:ListTags"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "sagemaker:UpdateNotebookInstanceLifecycleConfig",
+          "sagemaker:AddTags",
+          "sagemaker:DeleteTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/NotebookInstanceLifecycleConfigArn"
+    ],
+    "properties": {
+      "NotebookInstanceLifecycleConfigArn": {
+        "description": "The Amazon Resource Name (ARN) of the lifecycle configuration.",
+        "type": "string"
+      },
+      "NotebookInstanceLifecycleConfigName": {
+        "description": "The name of the lifecycle configuration.",
+        "maxLength": 63,
+        "minLength": 1,
+        "type": "string"
+      },
+      "OnCreate": {
+        "description": "A shell script that runs only once, when you create a notebook instance. The shell script must be a base64-encoded string.",
+        "items": {
+          "$ref": "#/definitions/NotebookInstanceLifecycleHook"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "OnStart": {
+        "description": "A shell script that runs every time you start a notebook instance, including when you create the notebook instance. The shell script must be a base64-encoded string.",
+        "items": {
+          "$ref": "#/definitions/NotebookInstanceLifecycleHook"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": false
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/NotebookInstanceLifecycleConfigArn"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "sagemaker:AddTags",
+        "sagemaker:DeleteTags",
+        "sagemaker:ListTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::SageMaker::NotebookInstanceLifecycleConfig"
+  }
+}

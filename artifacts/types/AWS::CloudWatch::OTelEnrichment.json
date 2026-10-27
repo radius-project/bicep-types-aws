@@ -1,0 +1,120 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudWatch-OTelEnrichment",
+  "type": "AWS::CloudWatch::OTelEnrichment",
+  "time": "2026-10-20T23:33:21.171Z",
+  "schema": {
+    "additionalProperties": false,
+    "definitions": {
+      "OTelEnrichmentMetricSelector": {
+        "additionalProperties": false,
+        "description": "Selects metrics within one namespace. The same shape serves both the include and the exclude direction. Namespaces are compared byte-for-byte and case-sensitively; no wildcards, prefixes or normalization.",
+        "properties": {
+          "MetricNames": {
+            "description": "Absent or empty means every metric in this namespace, in whichever direction this selector appears. Present means only these metric names.",
+            "insertionOrder": false,
+            "items": {
+              "maxLength": 255,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 100,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "Namespace": {
+            "description": "The CloudWatch namespace this selector applies to.",
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": "^[^:].*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Namespace"
+        ],
+        "type": "object"
+      },
+      "Status": {
+        "description": "Current status of OTel enrichment (RUNNING or STOPPED).",
+        "enum": [
+          "RUNNING",
+          "STOPPED"
+        ],
+        "type": "string"
+      }
+    },
+    "description": "AWS::CloudWatch::OTelEnrichment enables OTel metric enrichment in CloudWatch, allowing CloudWatch vended metrics to be available for PromQL querying enriched with AWS resource tags and metadata.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "cloudwatch:StartOTelEnrichment",
+          "cloudwatch:GetOTelEnrichment"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "cloudwatch:StopOTelEnrichment",
+          "cloudwatch:GetOTelEnrichment"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "cloudwatch:GetOTelEnrichment"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "cloudwatch:GetOTelEnrichment"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "cloudwatch:UpdateOTelEnrichment",
+          "cloudwatch:GetOTelEnrichment"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/AccountId"
+    ],
+    "properties": {
+      "AccountId": {
+        "description": "The AWS account ID. This is the primary identifier for this singleton resource.",
+        "type": "string"
+      },
+      "ExcludeFilters": {
+        "description": "Removes metrics from the include set. Absent or empty means nothing is removed. Evaluated after IncludeFilters, so ExcludeFilters always wins.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/OTelEnrichmentMetricSelector"
+        },
+        "maxItems": 100,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "IncludeFilters": {
+        "description": "Scopes enrichment to a subset of the account's telemetry. Absent or empty means all namespaces are in scope. Present means only these are. The service enforces a combined cap of 100 selectors across IncludeFilters and ExcludeFilters, and rejects more than one selector for the same namespace within a direction.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/OTelEnrichmentMetricSelector"
+        },
+        "maxItems": 100,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "Status": {
+        "$ref": "#/definitions/Status"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/AccountId",
+      "/properties/Status"
+    ],
+    "required": [],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::CloudWatch::OTelEnrichment"
+  }
+}

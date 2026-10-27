@@ -1,0 +1,150 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DRS-RecoveryPlan",
+  "type": "AWS::DRS::RecoveryPlan",
+  "time": "2026-10-21T23:13:19.867Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/RecoveryPlanID"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "A Recovery Plan orchestrates multi-server disaster recovery in AWS Elastic Disaster Recovery.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "drs:CreateRecoveryPlan",
+          "drs:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "drs:DeleteRecoveryPlan"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "drs:ListRecoveryPlans"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "drs:GetRecoveryPlan",
+          "drs:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "drs:UpdateRecoveryPlan",
+          "drs:TagResource",
+          "drs:UntagResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of the Recovery Plan.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws(-[a-z0-9]+)*:drs:[a-z0-9-]+:[0-9]{12}:[a-zA-Z0-9_/.-]+$",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The timestamp when the Recovery Plan was created.",
+        "maxLength": 32,
+        "minLength": 19,
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description of the Recovery Plan.",
+        "maxLength": 1024,
+        "minLength": 0,
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the Recovery Plan.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9 _-]*$",
+        "type": "string"
+      },
+      "RecoveryPlanID": {
+        "description": "The ID of the Recovery Plan.",
+        "maxLength": 64,
+        "minLength": 22,
+        "pattern": "^plan-[0-9a-zA-Z]{17,59}$",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the Recovery Plan. ACTIVE means executable. INVALID means the plan has no SERVER type steps and cannot be executed.",
+        "enum": [
+          "ACTIVE",
+          "INVALID"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags associated with the Recovery Plan.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "UpdatedAt": {
+        "description": "The timestamp when the Recovery Plan was last updated.",
+        "maxLength": 32,
+        "minLength": 19,
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/RecoveryPlanID",
+      "/properties/Status",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "Name"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "drs:TagResource",
+        "drs:UntagResource",
+        "drs:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::DRS::RecoveryPlan"
+  }
+}

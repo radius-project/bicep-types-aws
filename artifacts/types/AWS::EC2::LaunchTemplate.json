@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-LaunchTemplate",
   "type": "AWS::EC2::LaunchTemplate",
-  "time": "2025-01-17T22:54:12.581Z",
+  "time": "2026-06-16T03:17:23.593Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -66,7 +66,7 @@
       },
       "BlockDeviceMapping": {
         "additionalProperties": false,
-        "description": "Specifies a block device mapping for a launch template. You must specify ``DeviceName`` plus exactly one of the following properties: ``Ebs``, ``NoDevice``, or ``VirtualName``.\n  ``BlockDeviceMapping`` is a property of [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
+        "description": "Specifies a block device mapping for a launch template. You must specify ``DeviceName`` plus exactly one of the following properties: ``Ebs``, ``NoDevice``, or ``VirtualName``.\n ``BlockDeviceMapping`` is a property of [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
         "properties": {
           "DeviceName": {
             "description": "The device name (for example, /dev/sdh or xvdh).",
@@ -89,10 +89,10 @@
       },
       "CapacityReservationSpecification": {
         "additionalProperties": false,
-        "description": "Specifies an instance's Capacity Reservation targeting option. You can specify only one option at a time.\n  ``CapacityReservationSpecification`` is a property of [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
+        "description": "Specifies an instance's Capacity Reservation targeting option. You can specify only one option at a time.\n ``CapacityReservationSpecification`` is a property of [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
         "properties": {
           "CapacityReservationPreference": {
-            "description": "Indicates the instance's Capacity Reservation preferences. Possible preferences include:\n  +   ``capacity-reservations-only`` - The instance will only run in a Capacity Reservation or Capacity Reservation group. If capacity isn't available, the instance will fail to launch.\n  +   ``open`` - The instance can run in any ``open`` Capacity Reservation that has matching attributes (instance type, platform, Availability Zone, tenancy).\n  +   ``none`` - The instance avoids running in a Capacity Reservation even if one is available. The instance runs in On-Demand capacity.",
+            "description": "Indicates the instance's Capacity Reservation preferences. Possible preferences include:\n  +  ``capacity-reservations-only`` - The instance will only run in a Capacity Reservation or Capacity Reservation group. If capacity isn't available, the instance will fail to launch.\n  +  ``open`` - The instance can run in any ``open`` Capacity Reservation that has matching attributes (instance type, platform, Availability Zone, tenancy).\n  +  ``none`` - The instance avoids running in a Capacity Reservation even if one is available. The instance runs in On-Demand capacity.",
             "type": "string"
           },
           "CapacityReservationTarget": {
@@ -104,7 +104,7 @@
       },
       "CapacityReservationTarget": {
         "additionalProperties": false,
-        "description": "Specifies a target Capacity Reservation.\n  ``CapacityReservationTarget`` is a property of the [Amazon EC2 LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html) property type.",
+        "description": "Specifies a target Capacity Reservation.\n ``CapacityReservationTarget`` is a property of the [Amazon EC2 LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html) property type.",
         "properties": {
           "CapacityReservationId": {
             "description": "The ID of the Capacity Reservation in which to run the instance.",
@@ -122,7 +122,7 @@
         "description": "A security group connection tracking specification that enables you to set the idle timeout for connection tracking on an Elastic network interface. For more information, see [Connection tracking timeouts](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-connection-tracking.html#connection-tracking-timeouts) in the *Amazon EC2 User Guide*.",
         "properties": {
           "TcpEstablishedTimeout": {
-            "description": "Timeout (in seconds) for idle TCP connections in an established state. Min: 60 seconds. Max: 432000 seconds (5 days). Default: 432000 seconds. Recommended: Less than 432000 seconds.",
+            "description": "Timeout (in seconds) for idle TCP connections in an established state. Min: 60 seconds. Max: 432000 seconds (5 days). Default: 350 seconds for Nitro v6 instance types (excluding P6e-GB200); 432000 seconds for all other instance types (including P6e-GB200). Recommended: Less than 432000 seconds.",
             "type": "integer"
           },
           "UdpStreamTimeout": {
@@ -149,10 +149,10 @@
       },
       "CpuOptions": {
         "additionalProperties": false,
-        "description": "Specifies the CPU options for an instance. For more information, see [Optimize CPU options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html) in the *User Guide*.\n  ``CpuOptions`` is a property of [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
+        "description": "Specifies the CPU options for an instance. For more information, see [Optimize CPU options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html) in the *User Guide*.\n ``CpuOptions`` is a property of [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
         "properties": {
           "AmdSevSnp": {
-            "description": "Indicates whether to enable the instance for AMD SEV-SNP. AMD SEV-SNP is supported with M6a, R6a, and C6a instance types only. For more information, see [AMD SEV-SNP](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sev-snp.html).",
+            "description": "Indicates whether to enable the instance for AMD SEV-SNP. AMD SEV-SNP is supported with M6a, R6a, and C6a instance types only. For more information, see [AMD SEV-SNP for Amazon EC2 instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sev-snp.html).",
             "enum": [
               "enabled",
               "disabled"
@@ -163,6 +163,14 @@
             "description": "The number of CPU cores for the instance.",
             "type": "integer"
           },
+          "NestedVirtualization": {
+            "description": "Indicates whether the instance is enabled for nested virtualization.",
+            "enum": [
+              "enabled",
+              "disabled"
+            ],
+            "type": "string"
+          },
           "ThreadsPerCore": {
             "description": "The number of threads per CPU core. To disable multithreading for the instance, specify a value of ``1``. Otherwise, specify the default value of ``2``.",
             "type": "integer"
@@ -172,7 +180,7 @@
       },
       "CreditSpecification": {
         "additionalProperties": false,
-        "description": "Specifies the credit option for CPU usage of a T2, T3, or T3a instance.\n  ``CreditSpecification`` is a property of [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
+        "description": "Specifies the credit option for CPU usage of a T2, T3, or T3a instance.\n ``CreditSpecification`` is a property of [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
         "properties": {
           "CpuCredits": {
             "description": "The credit option for CPU usage of a T instance.\n Valid values: ``standard`` | ``unlimited``",
@@ -183,18 +191,22 @@
       },
       "Ebs": {
         "additionalProperties": false,
-        "description": "Parameters for a block device for an EBS volume in an Amazon EC2 launch template.\n  ``Ebs`` is a property of [AWS::EC2::LaunchTemplate BlockDeviceMapping](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping.html).",
+        "description": "Parameters for a block device for an EBS volume in an Amazon EC2 launch template.\n ``Ebs`` is a property of [AWS::EC2::LaunchTemplate BlockDeviceMapping](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping.html).",
         "properties": {
           "DeleteOnTermination": {
             "description": "Indicates whether the EBS volume is deleted on instance termination.",
             "type": "boolean"
+          },
+          "EbsCardIndex": {
+            "description": "",
+            "type": "integer"
           },
           "Encrypted": {
             "description": "Indicates whether the EBS volume is encrypted. Encrypted volumes can only be attached to instances that support Amazon EBS encryption. If you are creating a volume from a snapshot, you can't specify an encryption value.",
             "type": "boolean"
           },
           "Iops": {
-            "description": "The number of I/O operations per second (IOPS). For ``gp3``, ``io1``, and ``io2`` volumes, this represents the number of IOPS that are provisioned for the volume. For ``gp2`` volumes, this represents the baseline performance of the volume and the rate at which the volume accumulates I/O credits for bursting.\n The following are the supported values for each volume type:\n  +   ``gp3``: 3,000 - 16,000 IOPS\n  +   ``io1``: 100 - 64,000 IOPS\n  +   ``io2``: 100 - 256,000 IOPS\n  \n For ``io2`` volumes, you can achieve up to 256,000 IOPS on [instances built on the Nitro System](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances). On other instances, you can achieve performance up to 32,000 IOPS.\n This parameter is supported for ``io1``, ``io2``, and ``gp3`` volumes only.",
+            "description": "The number of I/O operations per second (IOPS). For ``gp3``, ``io1``, and ``io2`` volumes, this represents the number of IOPS that are provisioned for the volume. For ``gp2`` volumes, this represents the baseline performance of the volume and the rate at which the volume accumulates I/O credits for bursting.\n The following are the supported values for each volume type:\n  +  ``gp3``: 3,000 - 80,000 IOPS\n  +  ``io1``: 100 - 64,000 IOPS\n  +  ``io2``: 100 - 256,000 IOPS\n  \n For ``io2`` volumes, you can achieve up to 256,000 IOPS on [instances built on the Nitro System](https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-nitro-instances.html). On other instances, you can achieve performance up to 32,000 IOPS.\n This parameter is supported for ``io1``, ``io2``, and ``gp3`` volumes only.",
             "type": "integer"
           },
           "KmsKeyId": {
@@ -206,26 +218,19 @@
             "type": "string"
           },
           "Throughput": {
-            "description": "The throughput to provision for a ``gp3`` volume, with a maximum of 1,000 MiB/s.\n Valid Range: Minimum value of 125. Maximum value of 1000.",
+            "description": "The throughput to provision for a ``gp3`` volume, with a maximum of 2,000 MiB/s.\n Valid Range: Minimum value of 125. Maximum value of 2,000.",
+            "type": "integer"
+          },
+          "VolumeInitializationRate": {
+            "description": "Specifies the Amazon EBS Provisioned Rate for Volume Initialization (volume initialization rate), in MiB/s, at which to download the snapshot blocks from Amazon S3 to the volume. This is also known as *volume initialization*. Specifying a volume initialization rate ensures that the volume is initialized at a predictable and consistent rate after creation.\n This parameter is supported only for volumes created from snapshots. Omit this parameter if:\n  +  You want to create the volume using fast snapshot restore. You must specify a snapshot that is enabled for fast snapshot restore. In this case, the volume is fully initialized at creation.\n  If you specify a snapshot that is enabled for fast snapshot restore and a volume initialization rate, the volume will be initialized at the specified rate instead of fast snapshot restore.\n   +  You want to create a volume that is initialized at the default rate.\n  \n For more information, see [Initialize Amazon EBS volumes](https://docs.aws.amazon.com/ebs/latest/userguide/initalize-volume.html) in the *Amazon EC2 User Guide*.\n Valid range: 100 - 300 MiB/s",
             "type": "integer"
           },
           "VolumeSize": {
-            "description": "The size of the volume, in GiBs. You must specify either a snapshot ID or a volume size. The following are the supported volumes sizes for each volume type:\n  +   ``gp2`` and ``gp3``: 1 - 16,384 GiB\n  +   ``io1``: 4 - 16,384 GiB\n  +   ``io2``: 4 - 65,536 GiB\n  +   ``st1`` and ``sc1``: 125 - 16,384 GiB\n  +   ``standard``: 1 - 1024 GiB",
+            "description": "The size of the volume, in GiBs. You must specify either a snapshot ID or a volume size. The following are the supported volumes sizes for each volume type:\n  +  ``gp2``: 1 - 16,384 GiB\n  +  ``gp3``: 1 - 65,536 GiB\n  +  ``io1``: 4 - 16,384 GiB\n  +  ``io2``: 4 - 65,536 GiB\n  +  ``st1`` and ``sc1``: 125 - 16,384 GiB\n  +  ``standard``: 1 - 1024 GiB",
             "type": "integer"
           },
           "VolumeType": {
             "description": "The volume type. For more information, see [Amazon EBS volume types](https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volume-types.html) in the *Amazon EBS User Guide*.",
-            "type": "string"
-          }
-        },
-        "type": "object"
-      },
-      "ElasticGpuSpecification": {
-        "additionalProperties": false,
-        "description": "Amazon Elastic Graphics reached end of life on January 8, 2024. For workloads that require graphics acceleration, we recommend that you use Amazon EC2 G4ad, G4dn, or G5 instances.\n  Specifies a specification for an Elastic GPU for an Amazon EC2 launch template.\n  ``ElasticGpuSpecification`` is a property of [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
-        "properties": {
-          "Type": {
-            "description": "The type of Elastic Graphics accelerator.",
             "type": "string"
           }
         },
@@ -270,7 +275,7 @@
       },
       "HibernationOptions": {
         "additionalProperties": false,
-        "description": "Specifies whether your instance is configured for hibernation. This parameter is valid only if the instance meets the [hibernation prerequisites](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites). For more information, see [Hibernate Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html) in the *Amazon EC2 User Guide*.\n  ``HibernationOptions`` is a property of [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
+        "description": "Specifies whether your instance is configured for hibernation. This parameter is valid only if the instance meets the [hibernation prerequisites](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites). For more information, see [Hibernate Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html) in the *Amazon EC2 User Guide*.\n ``HibernationOptions`` is a property of [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
         "properties": {
           "Configured": {
             "description": "If you set this parameter to ``true``, the instance is enabled for hibernation.\n Default: ``false``",
@@ -281,7 +286,7 @@
       },
       "IamInstanceProfile": {
         "additionalProperties": false,
-        "description": "Specifies an IAM instance profile, which is a container for an IAM role for your instance. You can use an IAM role to distribute your AWS credentials to your instances.\n If you are creating the launch template for use with an ASlong group, you can specify either the name or the ARN of the instance profile, but not both.\n  ``IamInstanceProfile`` is a property of [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
+        "description": "Specifies an IAM instance profile, which is a container for an IAM role for your instance. You can use an IAM role to distribute your AWS credentials to your instances.\n If you are creating the launch template for use with an ASlong group, you can specify either the name or the ARN of the instance profile, but not both.\n ``IamInstanceProfile`` is a property of [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
         "properties": {
           "Arn": {
             "description": "The Amazon Resource Name (ARN) of the instance profile.",
@@ -296,7 +301,7 @@
       },
       "InstanceMarketOptions": {
         "additionalProperties": false,
-        "description": "Specifies the market (purchasing) option for an instance.\n  ``InstanceMarketOptions`` is a property of the [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
+        "description": "Specifies the market (purchasing) option for an instance.\n ``InstanceMarketOptions`` is a property of the [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
         "properties": {
           "MarketType": {
             "description": "The market type.",
@@ -311,7 +316,7 @@
       },
       "InstanceRequirements": {
         "additionalProperties": false,
-        "description": "The attributes for the instance types. When you specify instance attributes, Amazon EC2 will identify instance types with these attributes.\n You must specify ``VCpuCount`` and ``MemoryMiB``. All other attributes are optional. Any unspecified optional attribute is set to its default.\n When you specify multiple attributes, you get instance types that satisfy all of the specified attributes. If you specify multiple values for an attribute, you get instance types that satisfy any of the specified values.\n To limit the list of instance types from which Amazon EC2 can identify matching instance types, you can use one of the following parameters, but not both in the same request:\n  +   ``AllowedInstanceTypes`` - The instance types to include in the list. All other instance types are ignored, even if they match your specified attributes.\n  +   ``ExcludedInstanceTypes`` - The instance types to exclude from the list, even if they match your specified attributes.\n  \n  If you specify ``InstanceRequirements``, you can't specify ``InstanceType``.\n Attribute-based instance type selection is only supported when using Auto Scaling groups, EC2 Fleet, and Spot Fleet to launch instances. If you plan to use the launch template in the [launch instance wizard](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-instance-wizard.html), or with the [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) API or [AWS::EC2::Instance](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html) AWS CloudFormation resource, you can't specify ``InstanceRequirements``.\n  For more information, see [Specify attributes for instance type selection for EC2 Fleet or Spot Fleet](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-attribute-based-instance-type-selection.html) and [Spot placement score](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-placement-score.html) in the *Amazon EC2 User Guide*.",
+        "description": "The attributes for the instance types. When you specify instance attributes, Amazon EC2 will identify instance types with these attributes.\n You must specify ``VCpuCount`` and ``MemoryMiB``. All other attributes are optional. Any unspecified optional attribute is set to its default.\n When you specify multiple attributes, you get instance types that satisfy all of the specified attributes. If you specify multiple values for an attribute, you get instance types that satisfy any of the specified values.\n To limit the list of instance types from which Amazon EC2 can identify matching instance types, you can use one of the following parameters, but not both in the same request:\n  +  ``AllowedInstanceTypes`` - The instance types to include in the list. All other instance types are ignored, even if they match your specified attributes.\n  +  ``ExcludedInstanceTypes`` - The instance types to exclude from the list, even if they match your specified attributes.\n  \n  If you specify ``InstanceRequirements``, you can't specify ``InstanceType``.\n Attribute-based instance type selection is only supported when using Auto Scaling groups, EC2 Fleet, and Spot Fleet to launch instances. If you plan to use the launch template in the [launch instance wizard](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-instance-wizard.html), or with the [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) API or [AWS::EC2::Instance](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html)AWS CloudFormation resource, you can't specify ``InstanceRequirements``.\n  For more information, see [Specify attributes for instance type selection for EC2 Fleet or Spot Fleet](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-attribute-based-instance-type-selection.html) and [Spot placement score](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-placement-score.html) in the *Amazon EC2 User Guide*.",
         "properties": {
           "AcceleratorCount": {
             "$ref": "#/definitions/AcceleratorCount",
@@ -326,7 +331,7 @@
             "uniqueItems": false
           },
           "AcceleratorNames": {
-            "description": "The accelerators that must be on the instance type.\n  +  For instance types with NVIDIA A10G GPUs, specify ``a10g``.\n  +  For instance types with NVIDIA A100 GPUs, specify ``a100``.\n  +  For instance types with NVIDIA H100 GPUs, specify ``h100``.\n  +  For instance types with AWS Inferentia chips, specify ``inferentia``.\n  +  For instance types with NVIDIA GRID K520 GPUs, specify ``k520``.\n  +  For instance types with NVIDIA K80 GPUs, specify ``k80``.\n  +  For instance types with NVIDIA M60 GPUs, specify ``m60``.\n  +  For instance types with AMD Radeon Pro V520 GPUs, specify ``radeon-pro-v520``.\n  +  For instance types with NVIDIA T4 GPUs, specify ``t4``.\n  +  For instance types with NVIDIA T4G GPUs, specify ``t4g``.\n  +  For instance types with Xilinx VU9P FPGAs, specify ``vu9p``.\n  +  For instance types with NVIDIA V100 GPUs, specify ``v100``.\n  \n Default: Any accelerator",
+            "description": "The accelerators that must be on the instance type.\n  +  For instance types with NVIDIA A10G GPUs, specify ``a10g``.\n  +  For instance types with NVIDIA A100 GPUs, specify ``a100``.\n  +  For instance types with NVIDIA H100 GPUs, specify ``h100``.\n  +  For instance types with AWS Inferentia chips, specify ``inferentia``.\n  +  For instance types with AWS Inferentia2 chips, specify ``inferentia2``.\n  +  For instance types with Habana Gaudi HL-205 GPUs, specify ``gaudi-hl-205``.\n  +  For instance types with NVIDIA GRID K520 GPUs, specify ``k520``.\n  +  For instance types with NVIDIA K80 GPUs, specify ``k80``.\n  +  For instance types with NVIDIA L4 GPUs, specify ``l4``.\n  +  For instance types with NVIDIA L40S GPUs, specify ``l40s``.\n  +  For instance types with NVIDIA M60 GPUs, specify ``m60``.\n  +  For instance types with AMD Radeon Pro V520 GPUs, specify ``radeon-pro-v520``.\n  +  For instance types with AWS Trainium chips, specify ``trainium``.\n  +  For instance types with AWS Trainium2 chips, specify ``trainium2``.\n  +  For instance types with NVIDIA T4 GPUs, specify ``t4``.\n  +  For instance types with NVIDIA T4G GPUs, specify ``t4g``.\n  +  For instance types with Xilinx U30 cards, specify ``u30``.\n  +  For instance types with Xilinx VU9P FPGAs, specify ``vu9p``.\n  +  For instance types with NVIDIA V100 GPUs, specify ``v100``.\n  \n Default: Any accelerator",
             "items": {
               "type": "string"
             },
@@ -338,7 +343,7 @@
             "description": "The minimum and maximum amount of total accelerator memory, in MiB.\n Default: No minimum or maximum limits"
           },
           "AcceleratorTypes": {
-            "description": "The accelerator types that must be on the instance type.\n  +  For instance types with FPGA accelerators, specify ``fpga``.\n  +  For instance types with GPU accelerators, specify ``gpu``.\n  +  For instance types with Inference accelerators, specify ``inference``.\n  \n Default: Any accelerator type",
+            "description": "The accelerator types that must be on the instance type.\n  +  For instance types with FPGA accelerators, specify ``fpga``.\n  +  For instance types with GPU accelerators, specify ``gpu``.\n  +  For instance types with Inference accelerators, specify ``inference``.\n  +  For instance types with Media accelerators, specify ``media``.\n  \n Default: Any accelerator type",
             "items": {
               "type": "string"
             },
@@ -451,7 +456,7 @@
       },
       "Ipv4PrefixSpecification": {
         "additionalProperties": false,
-        "description": "Specifies an IPv4 prefix for a network interface.\n  ``Ipv4PrefixSpecification`` is a property of [AWS::EC2::LaunchTemplate NetworkInterface](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html).",
+        "description": "Specifies an IPv4 prefix for a network interface.\n ``Ipv4PrefixSpecification`` is a property of [AWS::EC2::LaunchTemplate NetworkInterface](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html).",
         "properties": {
           "Ipv4Prefix": {
             "description": "The IPv4 prefix. For information, see [Assigning prefixes to network interfaces](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-prefix-eni.html) in the *Amazon EC2 User Guide*.",
@@ -462,7 +467,7 @@
       },
       "Ipv6Add": {
         "additionalProperties": false,
-        "description": "Specifies an IPv6 address in an Amazon EC2 launch template.\n  ``Ipv6Add`` is a property of [AWS::EC2::LaunchTemplate NetworkInterface](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html).",
+        "description": "Specifies an IPv6 address in an Amazon EC2 launch template.\n ``Ipv6Add`` is a property of [AWS::EC2::LaunchTemplate NetworkInterface](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html).",
         "properties": {
           "Ipv6Address": {
             "description": "One or more specific IPv6 addresses from the IPv6 CIDR block range of your subnet. You can't use this option if you're specifying a number of IPv6 addresses.",
@@ -473,7 +478,7 @@
       },
       "Ipv6PrefixSpecification": {
         "additionalProperties": false,
-        "description": "Specifies an IPv6 prefix for a network interface.\n  ``Ipv6PrefixSpecification`` is a property of [AWS::EC2::LaunchTemplate NetworkInterface](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html).",
+        "description": "Specifies an IPv6 prefix for a network interface.\n ``Ipv6PrefixSpecification`` is a property of [AWS::EC2::LaunchTemplate NetworkInterface](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html).",
         "properties": {
           "Ipv6Prefix": {
             "description": "The IPv6 prefix.",
@@ -500,39 +505,23 @@
           },
           "CpuOptions": {
             "$ref": "#/definitions/CpuOptions",
-            "description": "The CPU options for the instance. For more information, see [Optimize CPU options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html) in the *Amazon EC2 User Guide*."
+            "description": "The CPU options for the instance. For more information, see [CPU options for Amazon EC2 instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html) in the *Amazon EC2 User Guide*."
           },
           "CreditSpecification": {
             "$ref": "#/definitions/CreditSpecification",
             "description": "The credit option for CPU usage of the instance. Valid only for T instances."
           },
           "DisableApiStop": {
-            "description": "Indicates whether to enable the instance for stop protection. For more information, see [Enable stop protection for your instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-stop-protection.html) in the *Amazon EC2 User Guide*.",
+            "description": "Indicates whether to enable the instance for stop protection. For more information, see [Enable stop protection for your EC2 instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-stop-protection.html) in the *Amazon EC2 User Guide*.",
             "type": "boolean"
           },
           "DisableApiTermination": {
-            "description": "If you set this parameter to ``true``, you can't terminate the instance using the Amazon EC2 console, CLI, or API; otherwise, you can. To change this attribute after launch, use [ModifyInstanceAttribute](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstanceAttribute.html). Alternatively, if you set ``InstanceInitiatedShutdownBehavior`` to ``terminate``, you can terminate the instance by running the shutdown command from the instance.",
+            "description": "Indicates whether termination protection is enabled for the instance. The default is ``false``, which means that you can terminate the instance using the Amazon EC2 console, command line tools, or API. You can enable termination protection when you launch an instance, while the instance is running, or while the instance is stopped.",
             "type": "boolean"
           },
           "EbsOptimized": {
             "description": "Indicates whether the instance is optimized for Amazon EBS I/O. This optimization provides dedicated throughput to Amazon EBS and an optimized configuration stack to provide optimal Amazon EBS I/O performance. This optimization isn't available with all instance types. Additional usage charges apply when using an EBS-optimized instance.",
             "type": "boolean"
-          },
-          "ElasticGpuSpecifications": {
-            "description": "Deprecated.\n  Amazon Elastic Graphics reached end of life on January 8, 2024. For workloads that require graphics acceleration, we recommend that you use Amazon EC2 G4ad, G4dn, or G5 instances.",
-            "items": {
-              "$ref": "#/definitions/ElasticGpuSpecification"
-            },
-            "type": "array",
-            "uniqueItems": false
-          },
-          "ElasticInferenceAccelerators": {
-            "description": "Amazon Elastic Inference is no longer available.\n  An elastic inference accelerator to associate with the instance. Elastic inference accelerators are a resource you can attach to your Amazon EC2 instances to accelerate your Deep Learning (DL) inference workloads.\n You cannot specify accelerators from different generations in the same request.\n  Starting April 15, 2023, AWS will not onboard new customers to Amazon Elastic Inference (EI), and will help current customers migrate their workloads to options that offer better price and performance. After April 15, 2023, new customers will not be able to launch instances with Amazon EI accelerators in Amazon SageMaker, Amazon ECS, or Amazon EC2. However, customers who have used Amazon EI at least once during the past 30-day period are considered current customers and will be able to continue using the service.",
-            "items": {
-              "$ref": "#/definitions/LaunchTemplateElasticInferenceAccelerator"
-            },
-            "type": "array",
-            "uniqueItems": false
           },
           "EnclaveOptions": {
             "$ref": "#/definitions/EnclaveOptions",
@@ -560,7 +549,7 @@
           },
           "InstanceRequirements": {
             "$ref": "#/definitions/InstanceRequirements",
-            "description": "The attributes for the instance types. When you specify instance attributes, Amazon EC2 will identify instance types with these attributes.\n You must specify ``VCpuCount`` and ``MemoryMiB``. All other attributes are optional. Any unspecified optional attribute is set to its default.\n When you specify multiple attributes, you get instance types that satisfy all of the specified attributes. If you specify multiple values for an attribute, you get instance types that satisfy any of the specified values.\n To limit the list of instance types from which Amazon EC2 can identify matching instance types, you can use one of the following parameters, but not both in the same request:\n  +   ``AllowedInstanceTypes`` - The instance types to include in the list. All other instance types are ignored, even if they match your specified attributes.\n  +   ``ExcludedInstanceTypes`` - The instance types to exclude from the list, even if they match your specified attributes.\n  \n  If you specify ``InstanceRequirements``, you can't specify ``InstanceType``.\n Attribute-based instance type selection is only supported when using Auto Scaling groups, EC2 Fleet, and Spot Fleet to launch instances. If you plan to use the launch template in the [launch instance wizard](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-instance-wizard.html), or with the [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) API or [AWS::EC2::Instance](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html) AWS CloudFormation resource, you can't specify ``InstanceRequirements``.\n  For more information, see [Specify attributes for instance type selection for EC2 Fleet or Spot Fleet](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-attribute-based-instance-type-selection.html) and [Spot placement score](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-placement-score.html) in the *Amazon EC2 User Guide*."
+            "description": "The attributes for the instance types. When you specify instance attributes, Amazon EC2 will identify instance types with these attributes.\n You must specify ``VCpuCount`` and ``MemoryMiB``. All other attributes are optional. Any unspecified optional attribute is set to its default.\n When you specify multiple attributes, you get instance types that satisfy all of the specified attributes. If you specify multiple values for an attribute, you get instance types that satisfy any of the specified values.\n To limit the list of instance types from which Amazon EC2 can identify matching instance types, you can use one of the following parameters, but not both in the same request:\n  +  ``AllowedInstanceTypes`` - The instance types to include in the list. All other instance types are ignored, even if they match your specified attributes.\n  +  ``ExcludedInstanceTypes`` - The instance types to exclude from the list, even if they match your specified attributes.\n  \n  If you specify ``InstanceRequirements``, you can't specify ``InstanceType``.\n Attribute-based instance type selection is only supported when using Auto Scaling groups, EC2 Fleet, and Spot Fleet to launch instances. If you plan to use the launch template in the [launch instance wizard](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-instance-wizard.html), or with the [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) API or [AWS::EC2::Instance](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html)AWS CloudFormation resource, you can't specify ``InstanceRequirements``.\n  For more information, see [Specify attributes for instance type selection for EC2 Fleet or Spot Fleet](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-attribute-based-instance-type-selection.html) and [Spot placement score](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-placement-score.html) in the *Amazon EC2 User Guide*."
           },
           "InstanceType": {
             "description": "The instance type. For more information, see [Amazon EC2 instance types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html) in the *Amazon EC2 User Guide*.\n If you specify ``InstanceType``, you can't specify ``InstanceRequirements``.",
@@ -588,7 +577,7 @@
           },
           "MetadataOptions": {
             "$ref": "#/definitions/MetadataOptions",
-            "description": "The metadata options for the instance. For more information, see [Instance metadata and user data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) in the *Amazon EC2 User Guide*."
+            "description": "The metadata options for the instance. For more information, see [Configure the Instance Metadata Service options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-options.html) in the *Amazon EC2 User Guide*."
           },
           "Monitoring": {
             "$ref": "#/definitions/Monitoring",
@@ -603,7 +592,8 @@
             "uniqueItems": false
           },
           "NetworkPerformanceOptions": {
-            "description": ""
+            "$ref": "#/definitions/NetworkPerformanceOptions",
+            "description": "The settings for the network performance options for the instance. For more information, see [EC2 instance bandwidth weighting configuration](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configure-bandwidth-weighting.html)."
           },
           "Placement": {
             "$ref": "#/definitions/Placement",
@@ -642,22 +632,7 @@
             "uniqueItems": false
           },
           "UserData": {
-            "description": "The user data to make available to the instance. You must provide base64-encoded text. User data is limited to 16 KB. For more information, see [Run commands on your Amazon EC2 instance at launch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) in the *Amazon EC2 User Guide*.\n If you are creating the launch template for use with BATCH, the user data must be provided in the [MIME multi-part archive format](https://docs.aws.amazon.com/https://cloudinit.readthedocs.io/en/latest/topics/format.html#mime-multi-part-archive). For more information, see [Amazon EC2 user data in launch templates](https://docs.aws.amazon.com/batch/latest/userguide/launch-templates.html) in the *User Guide*.",
-            "type": "string"
-          }
-        },
-        "type": "object"
-      },
-      "LaunchTemplateElasticInferenceAccelerator": {
-        "additionalProperties": false,
-        "description": "Specifies an elastic inference accelerator.\n  ``LaunchTemplateElasticInferenceAccelerator`` is a property of [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
-        "properties": {
-          "Count": {
-            "description": "The number of elastic inference accelerators to attach to the instance. \n Default: 1",
-            "type": "integer"
-          },
-          "Type": {
-            "description": "The type of elastic inference accelerator. The possible values are eia1.medium, eia1.large, and eia1.xlarge.",
+            "description": "The user data to make available to the instance. You must provide base64-encoded text. User data is limited to 16 KB. For more information, see [Run commands when you launch an EC2 instance with user data input](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) in the *Amazon EC2 User Guide*.\n If you are creating the launch template for use with BATCH, the user data must be provided in the [MIME multi-part archive format](https://docs.aws.amazon.com/https://cloudinit.readthedocs.io/en/latest/topics/format.html#mime-multi-part-archive). For more information, see [Amazon EC2 user data in launch templates](https://docs.aws.amazon.com/batch/latest/userguide/launch-templates.html#lt-user-data) in the *User Guide*.",
             "type": "string"
           }
         },
@@ -665,7 +640,7 @@
       },
       "LaunchTemplateTagSpecification": {
         "additionalProperties": false,
-        "description": "Specifies the tags to apply to the launch template during creation.\n To specify the tags for the resources that are created during instance launch, use [AWS::EC2::LaunchTemplate TagSpecification](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-tagspecification.html).\n  ``LaunchTemplateTagSpecification`` is a property of [AWS::EC2::LaunchTemplate](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-launchtemplate.html).",
+        "description": "Specifies the tags to apply to the launch template during creation.\n To specify the tags for the resources that are created during instance launch, use [AWS::EC2::LaunchTemplate TagSpecification](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-tagspecification.html).\n ``LaunchTemplateTagSpecification`` is a property of [AWS::EC2::LaunchTemplate](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-launchtemplate.html).",
         "properties": {
           "ResourceType": {
             "description": "The type of resource. To tag a launch template, ``ResourceType`` must be ``launch-template``.",
@@ -684,7 +659,7 @@
       },
       "LicenseSpecification": {
         "additionalProperties": false,
-        "description": "Specifies a license configuration for an instance.\n  ``LicenseSpecification`` is a property of [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
+        "description": "Specifies a license configuration for an instance.\n ``LicenseSpecification`` is a property of [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
         "properties": {
           "LicenseConfigurationArn": {
             "description": "The Amazon Resource Name (ARN) of the license configuration.",
@@ -736,7 +711,7 @@
       },
       "MetadataOptions": {
         "additionalProperties": false,
-        "description": "The metadata options for the instance. For more information, see [Instance metadata and user data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) in the *Amazon EC2 User Guide*.\n  ``MetadataOptions`` is a property of [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
+        "description": "The metadata options for the instance. For more information, see [Instance metadata and user data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) in the *Amazon EC2 User Guide*.\n ``MetadataOptions`` is a property of [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
         "properties": {
           "HttpEndpoint": {
             "description": "Enables or disables the HTTP metadata endpoint on your instances. If the parameter is not specified, the default state is ``enabled``.\n  If you specify a value of ``disabled``, you will not be able to access your instance metadata.",
@@ -747,15 +722,15 @@
             "type": "string"
           },
           "HttpPutResponseHopLimit": {
-            "description": "The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel.\n Default: ``1`` \n Possible values: Integers from 1 to 64",
+            "description": "The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel.\n Default: ``1``\n Possible values: Integers from 1 to 64",
             "type": "integer"
           },
           "HttpTokens": {
-            "description": "Indicates whether IMDSv2 is required.\n  +   ``optional`` - IMDSv2 is optional. You can choose whether to send a session token in your instance metadata retrieval requests. If you retrieve IAM role credentials without a session token, you receive the IMDSv1 role credentials. If you retrieve IAM role credentials using a valid session token, you receive the IMDSv2 role credentials.\n  +   ``required`` - IMDSv2 is required. You must send a session token in your instance metadata retrieval requests. With this option, retrieving the IAM role credentials always returns IMDSv2 credentials; IMDSv1 credentials are not available.\n  \n Default: If the value of ``ImdsSupport`` for the Amazon Machine Image (AMI) for your instance is ``v2.0``, the default is ``required``.",
+            "description": "Indicates whether IMDSv2 is required.\n  +  ``optional`` - IMDSv2 is optional. You can choose whether to send a session token in your instance metadata retrieval requests. If you retrieve IAM role credentials without a session token, you receive the IMDSv1 role credentials. If you retrieve IAM role credentials using a valid session token, you receive the IMDSv2 role credentials.\n  +  ``required`` - IMDSv2 is required. You must send a session token in your instance metadata retrieval requests. With this option, retrieving the IAM role credentials always returns IMDSv2 credentials; IMDSv1 credentials are not available.\n  \n Default: If the value of ``ImdsSupport`` for the Amazon Machine Image (AMI) for your instance is ``v2.0``, the default is ``required``.",
             "type": "string"
           },
           "InstanceMetadataTags": {
-            "description": "Set to ``enabled`` to allow access to instance tags from the instance metadata. Set to ``disabled`` to turn off access to instance tags from the instance metadata. For more information, see [Work with instance tags using the instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#work-with-tags-in-IMDS).\n Default: ``disabled``",
+            "description": "Set to ``enabled`` to allow access to instance tags from the instance metadata. Set to ``disabled`` to turn off access to instance tags from the instance metadata. For more information, see [View tags for your EC2 instances using instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/work-with-tags-in-IMDS.html).\n Default: ``disabled``",
             "type": "string"
           }
         },
@@ -763,7 +738,7 @@
       },
       "Monitoring": {
         "additionalProperties": false,
-        "description": "Specifies whether detailed monitoring is enabled for an instance. For more information about detailed monitoring, see [Enable or turn off detailed monitoring for your instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html) in the *User Guide*.\n  ``Monitoring`` is a property of [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
+        "description": "Specifies whether detailed monitoring is enabled for an instance. For more information about detailed monitoring, see [Enable or turn off detailed monitoring for your instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html) in the *User Guide*.\n ``Monitoring`` is a property of [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
         "properties": {
           "Enabled": {
             "description": "Specify ``true`` to enable detailed monitoring. Otherwise, basic monitoring is enabled.",
@@ -789,14 +764,14 @@
       },
       "NetworkInterface": {
         "additionalProperties": false,
-        "description": "Specifies the parameters for a network interface.\n  ``NetworkInterface`` is a property of [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
+        "description": "Specifies the parameters for a network interface.\n ``NetworkInterface`` is a property of [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
         "properties": {
           "AssociateCarrierIpAddress": {
             "description": "Associates a Carrier IP address with eth0 for a new network interface.\n Use this option when you launch an instance in a Wavelength Zone and want to associate a Carrier IP address with the network interface. For more information about Carrier IP addresses, see [Carrier IP addresses](https://docs.aws.amazon.com/wavelength/latest/developerguide/how-wavelengths-work.html#provider-owned-ip) in the *Developer Guide*.",
             "type": "boolean"
           },
           "AssociatePublicIpAddress": {
-            "description": "Associates a public IPv4 address with eth0 for a new network interface.\n  AWS charges for all public IPv4 addresses, including public IPv4 addresses associated with running instances and Elastic IP addresses. For more information, see the *Public IPv4 Address* tab on the [Amazon VPC pricing page](https://docs.aws.amazon.com/vpc/pricing/).",
+            "description": "Associates a public IPv4 address with eth0 for a new network interface.\n AWS charges for all public IPv4 addresses, including public IPv4 addresses associated with running instances and Elastic IP addresses. For more information, see the *Public IPv4 Address* tab on the [Amazon VPC pricing page](https://docs.aws.amazon.com/vpc/pricing/).",
             "type": "boolean"
           },
           "ConnectionTrackingSpecification": {
@@ -812,7 +787,11 @@
             "type": "string"
           },
           "DeviceIndex": {
-            "description": "The device index for the network interface attachment. If the network interface is of type ``interface``, you must specify a device index.\n If you create a launch template that includes secondary network interfaces but no primary network interface, and you specify it using the ``LaunchTemplate`` property of ``AWS::EC2::Instance``, then you must include a primary network interface using the ``NetworkInterfaces`` property of ``AWS::EC2::Instance``.",
+            "description": "The device index for the network interface attachment. The primary network interface has a device index of 0. If the network interface is of type ``interface``, you must specify a device index.\n If you create a launch template that includes secondary network interfaces but no primary network interface, and you specify it using the ``LaunchTemplate`` property of ``AWS::EC2::Instance``, then you must include a primary network interface using the ``NetworkInterfaces`` property of ``AWS::EC2::Instance``.",
+            "type": "integer"
+          },
+          "EnaQueueCount": {
+            "description": "The number of ENA queues to be created with the instance.",
             "type": "integer"
           },
           "EnaSrdSpecification": {
@@ -828,7 +807,7 @@
             "uniqueItems": false
           },
           "InterfaceType": {
-            "description": "The type of network interface. To create an Elastic Fabric Adapter (EFA), specify ``efa`` or ``efa``. For more information, see [Elastic Fabric Adapter](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) in the *Amazon EC2 User Guide*.\n If you are not creating an EFA, specify ``interface`` or omit this parameter.\n If you specify ``efa-only``, do not assign any IP addresses to the network interface. EFA-only network interfaces do not support IP addresses.\n Valid values: ``interface`` | ``efa`` | ``efa-only``",
+            "description": "The type of network interface. To create an Elastic Fabric Adapter (EFA), specify ``efa`` or ``efa``. For more information, see [Elastic Fabric Adapter for AI/ML and HPC workloads on Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) in the *Amazon EC2 User Guide*.\n If you are not creating an EFA, specify ``interface`` or omit this parameter.\n If you specify ``efa-only``, do not assign any IP addresses to the network interface. EFA-only network interfaces do not support IP addresses.\n Valid values: ``interface`` | ``efa`` | ``efa-only``",
             "type": "string"
           },
           "Ipv4PrefixCount": {
@@ -917,16 +896,27 @@
         },
         "type": "object"
       },
+      "NetworkPerformanceOptions": {
+        "additionalProperties": false,
+        "description": "Contains settings for the network performance options for the instance.",
+        "properties": {
+          "BandwidthWeighting": {
+            "description": "Specify the bandwidth weighting option to boost the associated type of baseline bandwidth, as follows:\n  + default This option uses the standard bandwidth configuration for your instance type. + vpc-1 This option boosts your networking baseline bandwidth and reduces your EBS baseline bandwidth. + ebs-1 This option boosts your EBS baseline bandwidth and reduces your networking baseline bandwidth.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "Placement": {
         "additionalProperties": false,
-        "description": "Specifies the placement of an instance.\n  ``Placement`` is a property of [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
+        "description": "Specifies the placement of an instance.\n ``Placement`` is a property of [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
         "properties": {
           "Affinity": {
             "description": "The affinity setting for an instance on a Dedicated Host.",
             "type": "string"
           },
           "AvailabilityZone": {
-            "description": "The Availability Zone for the instance.",
+            "description": "The Availability Zone for the instance.\n Either ``AvailabilityZone`` or ``AvailabilityZoneId`` can be specified, but not both",
             "type": "string"
           },
           "GroupId": {
@@ -981,7 +971,7 @@
       },
       "PrivateIpAdd": {
         "additionalProperties": false,
-        "description": "Specifies a secondary private IPv4 address for a network interface.\n  ``PrivateIpAdd`` is a property of [AWS::EC2::LaunchTemplate NetworkInterface](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html).",
+        "description": "Specifies a secondary private IPv4 address for a network interface.\n ``PrivateIpAdd`` is a property of [AWS::EC2::LaunchTemplate NetworkInterface](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html).",
         "properties": {
           "Primary": {
             "description": "Indicates whether the private IPv4 address is the primary private IPv4 address. Only one IPv4 address can be designated as primary.",
@@ -999,7 +989,7 @@
         "description": "Specifies an instance family to use as the baseline reference for CPU performance.",
         "properties": {
           "InstanceFamily": {
-            "description": "The instance family to use as a baseline reference.\n  Ensure that you specify the correct value for the instance family. The instance family is everything before the period (``.``) in the instance type name. For example, in the instance type ``c6i.large``, the instance family is ``c6i``, not ``c6``. For more information, see [Amazon EC2 instance type naming conventions](https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-type-names.html) in *Amazon EC2 Instance Types*.\n  The following instance families are *not supported* for performance protection:\n  +   ``c1`` \n  +   ``g3`` | ``g3s`` \n  +   ``hpc7g`` \n  +   ``m1`` | ``m2`` \n  +   ``mac1`` | ``mac2`` | ``mac2-m1ultra`` | ``mac2-m2`` | ``mac2-m2pro`` \n  +   ``p3dn`` | ``p4d`` | ``p5`` \n  +   ``t1`` \n  +   ``u-12tb1`` | ``u-18tb1`` | ``u-24tb1`` | ``u-3tb1`` | ``u-6tb1`` | ``u-9tb1`` | ``u7i-12tb`` | ``u7in-16tb`` | ``u7in-24tb`` | ``u7in-32tb`` \n  \n If you enable performance protection by specifying a supported instance family, the returned instance types will exclude the above unsupported instance families.",
+            "description": "The instance family to use as a baseline reference.\n  Ensure that you specify the correct value for the instance family. The instance family is everything before the period (``.``) in the instance type name. For example, in the instance type ``c6i.large``, the instance family is ``c6i``, not ``c6``. For more information, see [Amazon EC2 instance type naming conventions](https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-type-names.html) in *Amazon EC2 Instance Types*.\n  The following instance families are *not supported* for performance protection:\n  +   ``c1`` \n  +  ``g3`` | ``g3s``\n  +   ``hpc7g`` \n  +  ``m1`` | ``m2``\n  +  ``mac1`` | ``mac2`` | ``mac2-m1ultra`` | ``mac2-m2`` | ``mac2-m2pro``\n  +  ``p3dn`` | ``p4d`` | ``p5``\n  +   ``t1`` \n  +  ``u-12tb1`` | ``u-18tb1`` | ``u-24tb1`` | ``u-3tb1`` | ``u-6tb1`` | ``u-9tb1`` | ``u7i-12tb`` | ``u7in-16tb`` | ``u7in-24tb`` | ``u7in-32tb``\n  \n If you enable performance protection by specifying a supported instance family, the returned instance types will exclude the above unsupported instance families.",
             "type": "string"
           }
         },
@@ -1016,7 +1006,7 @@
       },
       "SpotOptions": {
         "additionalProperties": false,
-        "description": "Specifies options for Spot Instances.\n  ``SpotOptions`` is a property of [AWS::EC2::LaunchTemplate InstanceMarketOptions](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-instancemarketoptions.html).",
+        "description": "Specifies options for Spot Instances.\n ``SpotOptions`` is a property of [AWS::EC2::LaunchTemplate InstanceMarketOptions](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-instancemarketoptions.html).",
         "properties": {
           "BlockDurationMinutes": {
             "description": "Deprecated.",
@@ -1027,7 +1017,7 @@
             "type": "string"
           },
           "MaxPrice": {
-            "description": "The maximum hourly price you're willing to pay for the Spot Instances. We do not recommend using this parameter because it can lead to increased interruptions. If you do not specify this parameter, you will pay the current Spot price.\n  If you specify a maximum price, your Spot Instances will be interrupted more frequently than if you do not specify this parameter.",
+            "description": "The maximum hourly price you're willing to pay for a Spot Instance. We do not recommend using this parameter because it can lead to increased interruptions. If you do not specify this parameter, you will pay the current Spot price. If you do specify this parameter, it must be more than USD $0.001. Specifying a value below USD $0.001 will result in an ``InvalidParameterValue`` error message when the launch template is used to launch an instance.\n  If you specify a maximum price, your Spot Instances will be interrupted more frequently than if you do not specify this parameter.",
             "type": "string"
           },
           "SpotInstanceType": {
@@ -1062,7 +1052,7 @@
       },
       "TagSpecification": {
         "additionalProperties": false,
-        "description": "Specifies the tags to apply to resources that are created during instance launch.\n  ``TagSpecification`` is a property type of [TagSpecifications](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-tagspecifications). [TagSpecifications](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-tagspecifications) is a property of [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
+        "description": "Specifies the tags to apply to resources that are created during instance launch.\n ``TagSpecification`` is a property type of [TagSpecifications](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-tagspecifications). [TagSpecifications](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-tagspecifications) is a property of [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html).",
         "properties": {
           "ResourceType": {
             "description": "The type of resource to tag. You can specify tags for the following resource types only: ``instance`` | ``volume`` | ``network-interface`` | ``spot-instances-request``. If the instance does not include the resource type that you specify, the instance launch fails. For example, not all instance types include a volume.\n To tag a resource after it has been created, see [CreateTags](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTags.html).",
@@ -1137,7 +1127,9 @@
       },
       "update": {
         "permissions": [
-          "ec2:CreateLaunchTemplateVersion"
+          "ec2:CreateLaunchTemplateVersion",
+          "ec2:CreateTags",
+          "ec2:DeleteTags"
         ]
       }
     },

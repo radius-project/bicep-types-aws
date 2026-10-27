@@ -1,0 +1,254 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-QuickSight-Space",
+  "type": "AWS::QuickSight::Space",
+  "time": "2026-10-14T20:29:13.873Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Arn"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/AwsAccountId",
+      "/properties/SpaceId"
+    ],
+    "definitions": {
+      "ResourcePermission": {
+        "additionalProperties": false,
+        "description": "A permission granted to a principal on a QuickSight resource.",
+        "properties": {
+          "Actions": {
+            "description": "The list of actions granted to the principal.",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 20,
+            "minItems": 1,
+            "type": "array"
+          },
+          "Principal": {
+            "description": "The ARN of the principal (user or group) receiving the permission.",
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Principal",
+          "Actions"
+        ],
+        "type": "object"
+      },
+      "SpaceResource": {
+        "additionalProperties": false,
+        "description": "A QuickSight resource attached to the space.",
+        "properties": {
+          "ResourceArn": {
+            "description": "The ARN of the QuickSight resource.",
+            "type": "string"
+          },
+          "ResourceType": {
+            "description": "The type of QuickSight resource.",
+            "enum": [
+              "TOPIC",
+              "DASHBOARD",
+              "KNOWLEDGE_BASE",
+              "ACTION_CONNECTOR",
+              "DATA_SET"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "ResourceType",
+          "ResourceArn"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with the space resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::QuickSight::Space",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "quicksight:CreateSpace",
+          "quicksight:DescribeSpace",
+          "quicksight:UpdateSpaceResources",
+          "quicksight:UpdateSpacePermissions",
+          "quicksight:ListSpaceResources",
+          "quicksight:DescribeSpacePermissions",
+          "quicksight:TagResource",
+          "quicksight:UntagResource",
+          "quicksight:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "quicksight:DeleteSpace",
+          "quicksight:DescribeSpace",
+          "quicksight:ListTagsForResource",
+          "quicksight:UntagResource"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "AwsAccountId": {
+              "$ref": "resource-schema.json#/properties/AwsAccountId"
+            }
+          },
+          "required": [
+            "AwsAccountId"
+          ]
+        },
+        "permissions": [
+          "quicksight:ListSpaces"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "quicksight:DescribeSpace",
+          "quicksight:DescribeSpacePermissions",
+          "quicksight:ListSpaceResources",
+          "quicksight:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "quicksight:UpdateSpace",
+          "quicksight:DescribeSpace",
+          "quicksight:UpdateSpaceResources",
+          "quicksight:ListSpaceResources",
+          "quicksight:UpdateSpacePermissions",
+          "quicksight:DescribeSpacePermissions",
+          "quicksight:TagResource",
+          "quicksight:UntagResource",
+          "quicksight:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/AwsAccountId",
+      "/properties/SpaceId"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the space.",
+        "pattern": "^arn:aws[a-zA-Z-]*:quicksight:[a-z0-9-]+:[0-9]{12}:space/.+$",
+        "type": "string"
+      },
+      "AwsAccountId": {
+        "description": "The ID of the Amazon Web Services account where the space is being created.",
+        "maxLength": 12,
+        "minLength": 12,
+        "pattern": "^[0-9]{12}$",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The date and time the space was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "description": "The user name of the principal who created the space.",
+        "type": "string"
+      },
+      "Description": {
+        "description": "A description of the space.",
+        "maxLength": 512,
+        "minLength": 0,
+        "type": "string"
+      },
+      "Name": {
+        "description": "The display name of the space.",
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Permissions": {
+        "description": "A list of permissions granted on the space.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/ResourcePermission"
+        },
+        "type": "array"
+      },
+      "Resources": {
+        "description": "A list of QuickSight resources attached to the space.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/SpaceResource"
+        },
+        "type": "array"
+      },
+      "SpaceId": {
+        "description": "The unique identifier for the space.",
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A list of key-value pairs to associate with the space resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array"
+      },
+      "UpdatedAt": {
+        "description": "The date and time the space was last updated.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt",
+      "/properties/CreatedBy"
+    ],
+    "required": [
+      "AwsAccountId",
+      "SpaceId",
+      "Name"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "quicksight:TagResource",
+        "quicksight:UntagResource",
+        "quicksight:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::QuickSight::Space"
+  }
+}

@@ -1,21 +1,24 @@
 # AWS.Proton @ default
 
 ## Resource AWS.Proton/EnvironmentAccountConnection@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Proton/EnvironmentAccountConnectionProperties](#awsprotonenvironmentaccountconnectionproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Proton/EnvironmentTemplate@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Proton/EnvironmentTemplateProperties](#awsprotonenvironmenttemplateproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Proton/ServiceTemplate@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name

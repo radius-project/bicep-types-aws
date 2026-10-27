@@ -1,7 +1,8 @@
 # AWS.RUM @ default
 
 ## Resource AWS.RUM/AppMonitor@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -9,6 +10,11 @@
 
 ## AppMonitor_DimensionKeys
 ### Properties
+
+## AppMonitor_JavaScriptSourceMaps
+### Properties
+* **S3Uri**: string: The S3Uri of the bucket or folder that stores the source map files. It is required if status is ENABLED.
+* **Status**: string (Required): Specifies whether JavaScript error stack traces should be unminified for this app monitor. The default is for JavaScript error stack trace unminification to be DISABLED
 
 ## AppMonitorConfiguration
 ### Properties
@@ -28,14 +34,22 @@
 * **AppMonitorConfiguration**: [AppMonitorConfiguration](#appmonitorconfiguration)
 * **CustomEvents**: [CustomEvents](#customevents)
 * **CwLogEnabled**: bool: Data collected by RUM is kept by RUM for 30 days and then deleted. This parameter specifies whether RUM sends a copy of this telemetry data to CWLlong in your account. This enables you to keep the telemetry data for more than 30 days, but it does incur CWLlong charges. If you omit this parameter, the default is false
-* **Domain**: string (Required): The top-level internet domain name for which your application has administrative authority.
+* **DeobfuscationConfiguration**: [DeobfuscationConfiguration](#deobfuscationconfiguration)
+* **Domain**: string: The top-level internet domain name for which your application has administrative authority. The CreateAppMonitor requires either the domain or the domain list.
+* **DomainList**: string[]: The top-level internet domain names for which your application has administrative authority. The CreateAppMonitor requires either the domain or the domain list.
 * **Id**: string (ReadOnly): The unique ID of the new app monitor.
 * **Name**: string (Required, Identifier): A name for the app monitor
+* **Platform**: string
+* **ResourcePolicy**: [ResourcePolicy](#resourcepolicy)
 * **Tags**: [Tag](#tag)[]
 
 ## CustomEvents
 ### Properties
 * **Status**: string: Indicates whether AppMonitor accepts custom events.
+
+## DeobfuscationConfiguration
+### Properties
+* **JavaScriptSourceMaps**: [AppMonitor_JavaScriptSourceMaps](#appmonitorjavascriptsourcemaps): A structure that contains the configuration for how an app monitor can unminify JavaScript error stack traces using source maps.
 
 ## MetricDefinition
 ### Properties
@@ -87,27 +101,82 @@ WebVitalsFirstInputDelay
 
 WebVitalsLargestContentfulPaint
 
+WebVitalsInteractionToNextPaint
+
 JsErrorCount
 
 HttpErrorCount
 
 SessionCount
+
+PageViewCount
+
+Http4xxCount
+
+Http5xxCount
+
+SessionDuration
+
+PageViewCountPerSession
+
+JsErrorCountPerSession
+
+Http4xxCountPerSession
+
+Http5xxCountPerSession
+
+JsErrorCountPerPageView
+
+Http4xxCountPerPageView
+
+Http5xxCountPerPageView
+
+TimeOnPage
+
+ColdLaunchTime
+
+WarmLaunchTime
+
+CrashCount
+
+ANRCount
+
+AppHangCount
+
+ScreenLoadCount
+
+ScreenLoadTime
+
+NetworkLatency
+
+SpanPayloadSize
+
+LogEventPayloadSize
 * **Namespace**: string: The namespace used by CloudWatch Metrics for the metric that is defined in this structure
 * **UnitLabel**: string: The CloudWatch metric unit to use for this metric. If you omit this field, the metric is recorded with no unit.
 * **ValueKey**: string: The field within the event object that the metric value is sourced from.
 
 If you omit this field, a hardcoded value of 1 is pushed as the metric value. This is useful if you just want to count the number of events that the filter catches.
 
-If this metric is sent to Evidently, this field will be passed to Evidently raw and Evidently will handle data extraction from the event.
+If this metric is sent to Evidently, this field will be passed to Evidently raw and Evidently will handle data extraction from the event. Note: Evidently has been discontinued.
 
 ## MetricDestination
 ### Properties
-* **Destination**: string (Required): Defines the destination to send the metrics to. Valid values are CloudWatch and Evidently. If you specify Evidently, you must also specify the ARN of the Evidently experiment that is to be the destination and an IAM role that has permission to write to the experiment.
-* **DestinationArn**: string: Use this parameter only if Destination is Evidently. This parameter specifies the ARN of the Evidently experiment that will receive the extended metrics.
-* **IamRoleArn**: string: This parameter is required if Destination is Evidently. If Destination is CloudWatch, do not use this parameter.
+* **Destination**: string (Required): Defines the destination to send the metrics to. Valid values are CloudWatch and Evidently. Note: Evidently has been discontinued and is no longer supported - requests with Evidently will be rejected.
+* **DestinationArn**: string: Evidently has been discontinued and therefore this is no longer an acceptable field. If Destination is CloudWatch, do not use this parameter. 
+
+This parameter specifies the ARN of the Evidently experiment that will receive the extended metrics.
+* **IamRoleArn**: string: Evidently has been discontinued and therefore this is no longer an acceptable field. If Destination is CloudWatch, do not use this parameter. 
 
 This parameter specifies the ARN of an IAM role that RUM will assume to write to the Evidently experiment that you are sending metrics to. This role must have permission to write to that experiment.
 * **MetricDefinitions**: [MetricDefinition](#metricdefinition)[]: An array of structures which define the metrics that you want to send.
+
+## ResourcePolicy
+### Properties
+* **PolicyDocument**: string (Required): The JSON to use as the resource policy. The document can be up to 4 KB in size. 
+* **PolicyRevisionId**: string: A string value that you can use to conditionally update your policy. You can provide the revision ID of your existing policy to make mutating requests against that policy. 
+
+ When you assign a policy revision ID, then later requests about that policy will be rejected with an InvalidPolicyRevisionIdException error if they don't provide the correct current revision ID.
 
 ## Tag
 ### Properties

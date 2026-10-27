@@ -1,11 +1,20 @@
 # AWS.AccessAnalyzer @ default
 
 ## Resource AWS.AccessAnalyzer/Analyzer@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AccessAnalyzer/AnalyzerProperties](#awsaccessanalyzeranalyzerproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.AccessAnalyzer/ArchiveRule@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.AccessAnalyzer/ArchiveRuleProperties](#awsaccessanalyzerarchiveruleproperties) (Required, Identifier): properties of the resource
 
 ## AnalysisRuleCriteria
 ### Properties
@@ -22,12 +31,20 @@ For the tag value, you can specify a value that is 0 to 256 characters in length
 
 ## Analyzer_AnalyzerConfiguration
 ### Properties
+* **InternalAccessConfiguration**: [InternalAccessConfiguration](#internalaccessconfiguration)
 * **UnusedAccessConfiguration**: [UnusedAccessConfiguration](#unusedaccessconfiguration)
+
+## Analyzer_InternalAccessAnalysisRule
+### Properties
+* **Inclusions**: [InternalAccessAnalysisRuleCriteria](#internalaccessanalysisrulecriteria)[]: A list of rules for the internal access analyzer containing criteria to include in analysis. Only resources that meet the rule criteria will generate findings.
 
 ## ArchiveRule
 ### Properties
 * **Filter**: [Filter](#filter)[] (Required)
 * **RuleName**: string (Required): The archive rule name
+
+## ArchiveRule_Filter
+### Properties
 
 ## AWS.AccessAnalyzer/AnalyzerProperties
 ### Properties
@@ -36,7 +53,16 @@ For the tag value, you can specify a value that is 0 to 256 characters in length
 * **ArchiveRules**: [ArchiveRule](#archiverule)[]
 * **Arn**: string (ReadOnly, Identifier): Amazon Resource Name (ARN) of the analyzer
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-* **Type**: string (Required): The type of the analyzer, must be one of ACCOUNT, ORGANIZATION, ACCOUNT_UNUSED_ACCESS or ORGANIZATION_UNUSED_ACCESS
+* **Type**: string (Required): The type of the analyzer, must be one of ACCOUNT, ORGANIZATION, ACCOUNT_INTERNAL_ACCESS, ORGANIZATION_INTERNAL_ACCESS, ACCOUNT_UNUSED_ACCESS and ORGANIZATION_UNUSED_ACCESS
+
+## AWS.AccessAnalyzer/ArchiveRuleProperties
+### Properties
+* **AnalyzerName**: string (Required): The name of the analyzer for the archive rule.
+* **Arn**: string (ReadOnly, Identifier): The ARN of the archive rule.
+* **CreatedAt**: string (ReadOnly): The time at which the archive rule was created.
+* **Filter**: [ArchiveRule_Filter](#archiverulefilter) (Required): The criteria for the archive rule. A map of filter criteria property names to their criterion values.
+* **RuleName**: string (Required): The name of the archive rule.
+* **UpdatedAt**: string (ReadOnly): The time at which the archive rule was last updated.
 
 ## Filter
 ### Properties
@@ -45,6 +71,16 @@ For the tag value, you can specify a value that is 0 to 256 characters in length
 * **Exists**: bool
 * **Neq**: string[]
 * **Property**: string (Required)
+
+## InternalAccessAnalysisRuleCriteria
+### Properties
+* **AccountIds**: string[]: A list of AWS account IDs to apply to the internal access analysis rule criteria. Account IDs can only be applied to the analysis rule criteria for organization-level analyzers and cannot include the organization owner account.
+* **ResourceArns**: string[]: A list of resource ARNs to apply to the internal access analysis rule criteria. The analyzer will only generate findings for resources that match these ARNs.
+* **ResourceTypes**: string[]: A list of resource types to apply to the internal access analysis rule criteria. The analyzer will only generate findings for resources of these types.
+
+## InternalAccessConfiguration
+### Properties
+* **InternalAccessAnalysisRule**: [Analyzer_InternalAccessAnalysisRule](#analyzerinternalaccessanalysisrule): Contains information about analysis rules for the internal access analyzer. Analysis rules determine which entities will generate findings based on the criteria you define when you create the rule.
 
 ## Tag
 ### Properties

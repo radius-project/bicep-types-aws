@@ -1,14 +1,9 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CleanRooms-ConfiguredTable",
   "type": "AWS::CleanRooms::ConfiguredTable",
-  "time": "2025-01-07T22:33:23.754Z",
+  "time": "2026-10-08T16:09:57.315Z",
   "schema": {
     "additionalProperties": false,
-    "createOnlyProperties": [
-      "/properties/AllowedColumns",
-      "/properties/AnalysisMethod",
-      "/properties/TableReference"
-    ],
     "definitions": {
       "AdditionalAnalyses": {
         "enum": [
@@ -71,9 +66,61 @@
         ],
         "type": "object"
       },
+      "AggregationThreshold": {
+        "additionalProperties": false,
+        "properties": {
+          "AllowedAggregateExpressionType": {
+            "$ref": "#/definitions/AllowedAggregateExpressionType"
+          },
+          "IdentityColumns": {
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/AnalysisRuleColumnName"
+            },
+            "maxItems": 1,
+            "minItems": 1,
+            "type": "array"
+          },
+          "MinimumIdentityCount": {
+            "maximum": 100000,
+            "minimum": 2,
+            "type": "integer"
+          },
+          "OutputColumnThresholds": {
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/OutputColumnThreshold"
+            },
+            "type": "array"
+          },
+          "Type": {
+            "$ref": "#/definitions/AggregationThresholdType"
+          }
+        },
+        "required": [
+          "IdentityColumns",
+          "MinimumIdentityCount",
+          "Type",
+          "AllowedAggregateExpressionType"
+        ],
+        "type": "object"
+      },
+      "AggregationThresholdType": {
+        "enum": [
+          "COUNT_DISTINCT"
+        ],
+        "type": "string"
+      },
       "AggregationType": {
         "enum": [
           "COUNT_DISTINCT"
+        ],
+        "type": "string"
+      },
+      "AllowedAggregateExpressionType": {
+        "enum": [
+          "COLUMNS_ONLY",
+          "ANY_EXPRESSION"
         ],
         "type": "string"
       },
@@ -88,7 +135,7 @@
       "AllowedAnalysis": {
         "maxLength": 200,
         "minLength": 0,
-        "pattern": "(ANY_QUERY|arn:[\\w]{3}:cleanrooms:[\\w]{2}-[\\w]{4,9}-[\\d]:[\\d]{12}:membership/[\\d\\w-]+/analysistemplate/[\\d\\w-]+)",
+        "pattern": "(ANY_QUERY|ANY_JOB|arn:[\\w]{3}:cleanrooms:[\\w]{2}-[\\w]{4,9}-[\\d]:[\\d]{12}:membership/[\\d\\w-]+/analysistemplate/[\\d\\w-]+)",
         "type": "string"
       },
       "AllowedAnalysisProvider": {
@@ -107,7 +154,9 @@
       },
       "AnalysisMethod": {
         "enum": [
-          "DIRECT_QUERY"
+          "DIRECT_QUERY",
+          "DIRECT_JOB",
+          "MULTIPLE"
         ],
         "type": "string"
       },
@@ -203,11 +252,23 @@
           "AdditionalAnalyses": {
             "$ref": "#/definitions/AdditionalAnalyses"
           },
+          "AggregationThresholds": {
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/AggregationThreshold"
+            },
+            "maxItems": 1,
+            "minItems": 1,
+            "type": "array"
+          },
           "AllowedAnalyses": {
             "$ref": "#/definitions/AllowedAnalyses"
           },
           "AllowedAnalysisProviders": {
             "$ref": "#/definitions/AllowedAnalysisProviders"
+          },
+          "ComparisonControls": {
+            "$ref": "#/definitions/ComparisonControls"
           },
           "DifferentialPrivacy": {
             "$ref": "#/definitions/DifferentialPrivacy"
@@ -260,6 +321,12 @@
       "AthenaTableReference": {
         "additionalProperties": false,
         "properties": {
+          "CatalogName": {
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9_-]+$",
+            "type": "string"
+          },
           "DatabaseName": {
             "maxLength": 128,
             "type": "string"
@@ -268,6 +335,9 @@
             "maxLength": 1024,
             "minLength": 8,
             "type": "string"
+          },
+          "Region": {
+            "$ref": "#/definitions/CommercialRegion"
           },
           "TableName": {
             "maxLength": 128,
@@ -283,6 +353,67 @@
           "DatabaseName",
           "TableName",
           "WorkGroup"
+        ],
+        "type": "object"
+      },
+      "CommercialRegion": {
+        "enum": [
+          "us-west-1",
+          "us-west-2",
+          "us-east-1",
+          "us-east-2",
+          "af-south-1",
+          "ap-east-1",
+          "ap-south-2",
+          "ap-southeast-1",
+          "ap-southeast-2",
+          "ap-southeast-5",
+          "ap-southeast-4",
+          "ap-southeast-7",
+          "ap-south-1",
+          "ap-northeast-3",
+          "ap-northeast-1",
+          "ap-northeast-2",
+          "ca-central-1",
+          "ca-west-1",
+          "eu-south-1",
+          "eu-west-3",
+          "eu-south-2",
+          "eu-central-2",
+          "eu-central-1",
+          "eu-north-1",
+          "eu-west-1",
+          "eu-west-2",
+          "me-south-1",
+          "me-central-1",
+          "il-central-1",
+          "sa-east-1",
+          "mx-central-1",
+          "ap-east-2"
+        ],
+        "type": "string"
+      },
+      "ComparisonControls": {
+        "additionalProperties": false,
+        "properties": {
+          "AllowedColumnComparisonColumns": {
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/AnalysisRuleColumnName"
+            },
+            "type": "array"
+          },
+          "AllowedLiteralComparisonColumns": {
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/AnalysisRuleColumnName"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "AllowedLiteralComparisonColumns",
+          "AllowedColumnComparisonColumns"
         ],
         "type": "object"
       },
@@ -395,6 +526,9 @@
             "pattern": "^[a-zA-Z0-9_](([a-zA-Z0-9_ ]+-)*([a-zA-Z0-9_ ]+))?$",
             "type": "string"
           },
+          "Region": {
+            "$ref": "#/definitions/CommercialRegion"
+          },
           "TableName": {
             "maxLength": 128,
             "pattern": "^[a-zA-Z0-9_](([a-zA-Z0-9_ ]+-)*([a-zA-Z0-9_ ]+))?$",
@@ -419,6 +553,24 @@
           "QUERY_RUNNER"
         ],
         "type": "string"
+      },
+      "OutputColumnThreshold": {
+        "additionalProperties": false,
+        "properties": {
+          "MinimumIdentityCount": {
+            "maximum": 100000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "OutputColumnName": {
+            "$ref": "#/definitions/AnalysisRuleColumnName"
+          }
+        },
+        "required": [
+          "OutputColumnName",
+          "MinimumIdentityCount"
+        ],
+        "type": "object"
       },
       "ScalarFunctions": {
         "enum": [
@@ -448,6 +600,20 @@
           "TRIM"
         ],
         "type": "string"
+      },
+      "SelectedAnalysisMethod": {
+        "enum": [
+          "DIRECT_QUERY",
+          "DIRECT_JOB"
+        ],
+        "type": "string"
+      },
+      "SelectedAnalysisMethods": {
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/SelectedAnalysisMethod"
+        },
+        "type": "array"
       },
       "SnowflakeTableReference": {
         "additionalProperties": false,
@@ -653,6 +819,8 @@
       "update": {
         "permissions": [
           "cleanrooms:UpdateConfiguredTable",
+          "cleanrooms:UpdateConfiguredTableReference",
+          "cleanrooms:UpdateConfiguredTableAllowedColumns",
           "cleanrooms:GetConfiguredTable",
           "cleanrooms:CreateConfiguredTableAnalysisRule",
           "cleanrooms:UpdateConfiguredTableAnalysisRule",
@@ -719,6 +887,9 @@
         "minLength": 1,
         "pattern": "^(?!\\s*$)[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t]*$",
         "type": "string"
+      },
+      "SelectedAnalysisMethods": {
+        "$ref": "#/definitions/SelectedAnalysisMethods"
       },
       "TableReference": {
         "$ref": "#/definitions/TableReference"

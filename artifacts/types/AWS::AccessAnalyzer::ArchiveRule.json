@@ -1,0 +1,152 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AccessAnalyzer-ArchiveRule",
+  "type": "AWS::AccessAnalyzer::ArchiveRule",
+  "time": "2026-10-21T23:21:34.925Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/AnalyzerName",
+        "/properties/RuleName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/AnalyzerName",
+      "/properties/RuleName"
+    ],
+    "description": "Creates an archive rule for the specified analyzer. Archive rules automatically archive new findings that meet the criteria you define when you create the rule.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "access-analyzer:CreateArchiveRule",
+          "access-analyzer:GetArchiveRule"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "access-analyzer:DeleteArchiveRule",
+          "access-analyzer:GetArchiveRule"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "AnalyzerName": {
+              "maxLength": 255,
+              "minLength": 1,
+              "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "AnalyzerName"
+          ]
+        },
+        "permissions": [
+          "access-analyzer:ListArchiveRules"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "access-analyzer:GetArchiveRule"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "access-analyzer:UpdateArchiveRule",
+          "access-analyzer:GetArchiveRule"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "AnalyzerName": {
+        "description": "The name of the analyzer for the archive rule.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$",
+        "type": "string"
+      },
+      "Arn": {
+        "description": "The ARN of the archive rule.",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The time at which the archive rule was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Filter": {
+        "additionalProperties": false,
+        "description": "The criteria for the archive rule. A map of filter criteria property names to their criterion values.",
+        "patternProperties": {
+          "^.+$": {
+            "additionalProperties": false,
+            "properties": {
+              "Contains": {
+                "insertionOrder": false,
+                "items": {
+                  "type": "string"
+                },
+                "maxItems": 20,
+                "minItems": 1,
+                "type": "array"
+              },
+              "Eq": {
+                "insertionOrder": false,
+                "items": {
+                  "type": "string"
+                },
+                "maxItems": 20,
+                "minItems": 1,
+                "type": "array"
+              },
+              "Exists": {
+                "type": "boolean"
+              },
+              "Neq": {
+                "insertionOrder": false,
+                "items": {
+                  "type": "string"
+                },
+                "maxItems": 20,
+                "minItems": 1,
+                "type": "array"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "RuleName": {
+        "description": "The name of the archive rule.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$",
+        "type": "string"
+      },
+      "UpdatedAt": {
+        "description": "The time at which the archive rule was last updated.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "AnalyzerName",
+      "RuleName",
+      "Filter"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::AccessAnalyzer::ArchiveRule"
+  }
+}

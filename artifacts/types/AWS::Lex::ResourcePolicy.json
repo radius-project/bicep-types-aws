@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Lex-ResourcePolicy",
   "type": "AWS::Lex::ResourcePolicy",
-  "time": "2025-01-06T16:13:57.252Z",
+  "time": "2026-10-19T18:06:56.636Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -9,6 +9,9 @@
       ]
     ],
     "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ResourceArn"
+    ],
     "definitions": {
       "PhysicalId": {
         "description": "The Physical ID of the resource policy.",
@@ -32,21 +35,33 @@
         "type": "string"
       }
     },
-    "description": "A resource policy with specified policy statements that attaches to a Lex bot or bot alias.",
+    "description": "Resource Type definition for a resource policy with specified policy statements that attaches to a Lex bot or bot alias.",
     "handlers": {
       "create": {
         "permissions": [
           "lex:CreateResourcePolicy",
-          "lex:DescribeResourcePolicy"
+          "lex:DescribeResourcePolicy",
+          "lex:CreateResourcePolicyStatement"
         ]
       },
       "delete": {
         "permissions": [
           "lex:DeleteResourcePolicy",
-          "lex:DescribeResourcePolicy"
+          "lex:DescribeResourcePolicy",
+          "lex:DeleteResourcePolicyStatement"
         ]
       },
       "list": {
+        "handlerSchema": {
+          "properties": {
+            "ResourceArn": {
+              "$ref": "resource-schema.json#/properties/ResourceArn"
+            }
+          },
+          "required": [
+            "ResourceArn"
+          ]
+        },
         "permissions": [
           "lex:DescribeResourcePolicy"
         ]
@@ -58,8 +73,12 @@
       },
       "update": {
         "permissions": [
+          "lex:CreateResourcePolicy",
           "lex:UpdateResourcePolicy",
-          "lex:DescribeResourcePolicy"
+          "lex:DescribeResourcePolicy",
+          "lex:DeleteResourcePolicy",
+          "lex:CreateResourcePolicyStatement",
+          "lex:DeleteResourcePolicyStatement"
         ]
       }
     },
@@ -85,11 +104,13 @@
       "/properties/RevisionId"
     ],
     "required": [
-      "ResourceArn",
-      "Policy"
+      "Policy",
+      "ResourceArn"
     ],
-    "sourceUrl": "https://docs.aws.amazon.com/lexv2/latest/dg/security_iam_service-with-iam.html#security_iam_service-with-iam-resource-based-policies",
-    "taggable": false,
+    "sourceUrl": "https://docs.aws.amazon.com/lexv2/latest/dg/security_iam_service-with-iam.html",
+    "tagging": {
+      "taggable": false
+    },
     "typeName": "AWS::Lex::ResourcePolicy"
   }
 }

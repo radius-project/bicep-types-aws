@@ -1,0 +1,260 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-WellArchitected-AgentProfile",
+  "type": "AWS::WellArchitected::AgentProfile",
+  "time": "2026-10-21T23:42:43.429Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Name"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name"
+    ],
+    "definitions": {
+      "AggregationConfiguration": {
+        "additionalProperties": false,
+        "description": "Defines an account, its in-scope regions, and the access role used to reach resources in that account.",
+        "properties": {
+          "AccessRoleArn": {
+            "description": "The ARN of the IAM role used to access resources in this account.",
+            "maxLength": 2048,
+            "minLength": 1,
+            "pattern": "^arn:([a-z\\-]+):iam::[0-9]{12}:role/(service-role/)?[a-zA-Z0-9+=,.@\\-_]+$",
+            "type": "string"
+          },
+          "AccountId": {
+            "description": "The target AWS account ID.",
+            "maxLength": 12,
+            "minLength": 12,
+            "pattern": "^[0-9]{12}$",
+            "type": "string"
+          },
+          "Regions": {
+            "description": "The target regions in the account.",
+            "insertionOrder": false,
+            "items": {
+              "maxLength": 64,
+              "pattern": "^[a-z]{2}-[a-z]+-[0-9]{1}$",
+              "type": "string"
+            },
+            "maxItems": 25,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "AccountId",
+          "Regions",
+          "AccessRoleArn"
+        ],
+        "type": "object"
+      },
+      "Pillar": {
+        "description": "A Well-Architected pillar the Agent Profile focuses on.",
+        "enum": [
+          "COST_OPTIMIZATION",
+          "SECURITY",
+          "RESILIENCE",
+          "PERFORMANCE"
+        ],
+        "type": "string"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with the Agent Profile.",
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::WellArchitected::AgentProfile. An Agent Profile defines the execution role, account/region scope (via aggregation configuration access roles), and Well-Architected pillar focus used to generate Well-Architected Agent recommendations.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "wellarchitected:CreateAgentProfile",
+          "wellarchitected:GetAgentProfile",
+          "wellarchitected:TagResource",
+          "wellarchitected:ListTagsForResource",
+          "iam:PassRole"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "wellarchitected:DeleteAgentProfile",
+          "wellarchitected:GetAgentProfile"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "wellarchitected:ListAgentProfiles"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "wellarchitected:GetAgentProfile",
+          "wellarchitected:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "wellarchitected:UpdateAgentProfile",
+          "wellarchitected:GetAgentProfile",
+          "wellarchitected:TagResource",
+          "wellarchitected:UntagResource",
+          "wellarchitected:ListTagsForResource",
+          "iam:PassRole"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "AggregationConfiguration": {
+        "description": "The aggregation configuration entries (account, regions, access role) associated with this profile.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/AggregationConfiguration"
+        },
+        "maxItems": 100,
+        "minItems": 0,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the Agent Profile.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:aws([a-z0-9-]+)?:wellarchitected:[a-z0-9-]{6,64}:[0-9]{12}:agent-profile/([a-zA-Z0-9_-]+)$",
+        "type": "string"
+      },
+      "BusinessOverview": {
+        "description": "A business overview for the profile used to improve recommendation quality.",
+        "maxLength": 512,
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The timestamp when the profile was created.",
+        "format": "date-time",
+        "maxLength": 64,
+        "minLength": 20,
+        "type": "string"
+      },
+      "CreatedBy": {
+        "description": "The identifier of the system or user that created this profile.",
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
+      "DeletionProtection": {
+        "description": "Whether deletion protection is enabled for the profile. When enabled, the profile cannot be deleted until deletion protection is disabled.",
+        "type": "boolean"
+      },
+      "Description": {
+        "description": "A description of the profile.",
+        "maxLength": 512,
+        "type": "string"
+      },
+      "DisplayName": {
+        "description": "The human-readable display name of the profile.",
+        "maxLength": 128,
+        "minLength": 3,
+        "type": "string"
+      },
+      "ExecutionRoleArn": {
+        "description": "The ARN of the IAM role assumed to execute recommendation actions.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:([a-z\\-]+):iam::[0-9]{12}:role/(service-role/)?[a-zA-Z0-9+=,.@\\-_]+$",
+        "type": "string"
+      },
+      "LastModifiedAt": {
+        "description": "The timestamp when the profile was last modified.",
+        "format": "date-time",
+        "maxLength": 64,
+        "minLength": 20,
+        "type": "string"
+      },
+      "LastModifiedBy": {
+        "description": "The identifier of the system or user that last modified this profile.",
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the profile. Unique within the account and used as the last component of the ARN.",
+        "maxLength": 128,
+        "minLength": 3,
+        "pattern": "^[a-zA-Z0-9_-]+$",
+        "type": "string"
+      },
+      "Pillars": {
+        "description": "The list of Well-Architected pillars to focus on.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Pillar"
+        },
+        "maxItems": 4,
+        "minItems": 1,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "Tags": {
+        "description": "Key-value pairs to associate with the Agent Profile.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/CreatedBy",
+      "/properties/CreatedAt",
+      "/properties/LastModifiedBy",
+      "/properties/LastModifiedAt"
+    ],
+    "required": [
+      "Name",
+      "ExecutionRoleArn",
+      "Pillars",
+      "AggregationConfiguration"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "wellarchitected:TagResource",
+        "wellarchitected:UntagResource",
+        "wellarchitected:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::WellArchitected::AgentProfile"
+  }
+}

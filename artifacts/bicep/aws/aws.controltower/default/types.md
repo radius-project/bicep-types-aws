@@ -1,21 +1,24 @@
 # AWS.ControlTower @ default
 
 ## Resource AWS.ControlTower/EnabledBaseline@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ControlTower/EnabledBaselineProperties](#awscontroltowerenabledbaselineproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ControlTower/EnabledControl@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ControlTower/EnabledControlProperties](#awscontroltowerenabledcontrolproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ControlTower/LandingZone@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -47,6 +50,7 @@
 * **LandingZoneIdentifier**: string (ReadOnly, Identifier)
 * **LatestAvailableVersion**: string (ReadOnly)
 * **Manifest**: [LandingZone_Manifest](#landingzonemanifest) (Required)
+* **RemediationTypes**: string[]
 * **Status**: string (ReadOnly)
 * **Tags**: [Tag](#tag)[]
 * **Version**: string (Required)

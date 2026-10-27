@@ -1,9 +1,12 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SES-ConfigurationSetEventDestination",
   "type": "AWS::SES::ConfigurationSetEventDestination",
-  "time": "2025-01-23T10:43:03.583Z",
+  "time": "2026-10-20T08:51:43.928Z",
   "schema": {
     "additionalProperties": false,
+    "conditionalCreateOnlyProperties": [
+      "/properties/EventDestination/Name"
+    ],
     "createOnlyProperties": [
       "/properties/ConfigurationSetName"
     ],
@@ -99,7 +102,7 @@
             "uniqueItems": false
           },
           "Name": {
-            "description": "The name of the event destination set.",
+            "description": "The name of the event destination set. SES cannot rename an event destination, so changing the name replaces it.",
             "pattern": "^[a-zA-Z0-9_-]{0,64}$",
             "type": "string"
           },
@@ -155,12 +158,29 @@
         "permissions": [
           "ses:CreateConfigurationSetEventDestination",
           "ses:GetConfigurationSetEventDestinations",
-          "ses:DescribeConfigurationSet"
+          "ses:DescribeConfigurationSet",
+          "iam:PassRole"
         ]
       },
       "delete": {
         "permissions": [
           "ses:DeleteConfigurationSetEventDestination"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ConfigurationSetName": {
+              "$ref": "resource-schema.json#/properties/ConfigurationSetName"
+            }
+          },
+          "required": [
+            "ConfigurationSetName"
+          ]
+        },
+        "permissions": [
+          "ses:GetConfigurationSetEventDestinations",
+          "ses:DescribeConfigurationSet"
         ]
       },
       "read": {
@@ -172,12 +192,14 @@
       "update": {
         "permissions": [
           "ses:UpdateConfigurationSetEventDestination",
-          "ses:GetConfigurationSetEventDestinations"
+          "ses:GetConfigurationSetEventDestinations",
+          "iam:PassRole"
         ]
       }
     },
     "primaryIdentifier": [
-      "/properties/Id"
+      "/properties/Id",
+      "/properties/ConfigurationSetName"
     ],
     "properties": {
       "ConfigurationSetName": {
@@ -200,7 +222,9 @@
       "EventDestination"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-ses.git",
-    "taggable": false,
+    "tagging": {
+      "taggable": false
+    },
     "typeName": "AWS::SES::ConfigurationSetEventDestination"
   }
 }

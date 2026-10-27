@@ -1,0 +1,86 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Glue-Workflow",
+  "type": "AWS::Glue::Workflow",
+  "time": "2026-08-04T20:35:16.439Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name"
+    ],
+    "description": "Resource Type definition for AWS::Glue::Workflow",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "glue:GetWorkflow",
+          "glue:CreateWorkflow",
+          "glue:TagResource",
+          "glue:GetTags"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "glue:GetWorkflow",
+          "glue:DeleteWorkflow"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "glue:ListWorkflows"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "glue:GetWorkflow",
+          "glue:GetTags"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "glue:GetWorkflow",
+          "glue:UpdateWorkflow",
+          "glue:TagResource",
+          "glue:UntagResource",
+          "glue:GetTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Name"
+    ],
+    "properties": {
+      "DefaultRunProperties": {
+        "description": "A collection of properties to be used as part of each execution of the workflow",
+        "type": "object"
+      },
+      "Description": {
+        "description": "A description of the workflow",
+        "type": "string"
+      },
+      "MaxConcurrentRuns": {
+        "description": "You can use this parameter to prevent unwanted multiple updates to data, to control costs, or in some cases, to prevent exceeding the maximum number of concurrent runs of any of the component jobs. If you leave this parameter blank, there is no limit to the number of concurrent workflow runs.",
+        "type": "integer"
+      },
+      "Name": {
+        "description": "The name of the workflow representing the flow",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags to use with this workflow.",
+        "type": "object"
+      }
+    },
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "glue:GetTags",
+        "glue:TagResource",
+        "glue:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Glue::Workflow"
+  }
+}

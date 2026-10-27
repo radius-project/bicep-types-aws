@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudFormation-GuardHook",
   "type": "AWS::CloudFormation::GuardHook",
-  "time": "2025-01-22T14:54:08.941Z",
+  "time": "2026-07-20T20:00:24.918Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -73,7 +73,20 @@
       "StackName": {
         "description": "CloudFormation Stack name",
         "maxLength": 128,
-        "pattern": "^[a-zA-Z][-a-zA-Z0-9]*$",
+        "pattern": "^[a-zA-Z*?][-a-zA-Z0-9*?]*$",
+        "type": "string"
+      },
+      "StackRole": {
+        "anyOf": [
+          {
+            "pattern": "arn:.+:iam::[0-9]{12}:role/.+"
+          },
+          {
+            "pattern": "^(arn:.+:iam::((?!\\*|\\?)[0-9]{12}|(?=.*\\*)[0-9*?]{1,12}|[0-9?]{12}):role/.+|\\*)$"
+          }
+        ],
+        "description": "IAM Stack Role ARN filter",
+        "maxLength": 256,
         "type": "string"
       },
       "TargetName": {
@@ -180,7 +193,20 @@
         "additionalProperties": false,
         "properties": {
           "InputParams": {
-            "$ref": "#/definitions/S3Location"
+            "description": "Specifies the S3 location of input parameter files for your Guard rules. You can specify either a single S3 location or an array of up to 10 S3 locations.",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/S3Location"
+              },
+              {
+                "items": {
+                  "$ref": "#/definitions/S3Location"
+                },
+                "maxItems": 10,
+                "minItems": 1,
+                "type": "array"
+              }
+            ]
           }
         },
         "required": []
@@ -240,7 +266,7 @@
                 "description": "List of stack roles that the hook is going to be excluded from",
                 "insertionOrder": false,
                 "items": {
-                  "$ref": "#/definitions/Role"
+                  "$ref": "#/definitions/StackRole"
                 },
                 "maxItems": 50,
                 "minItems": 1,
@@ -251,7 +277,7 @@
                 "description": "List of stack roles that the hook is going to target",
                 "insertionOrder": false,
                 "items": {
-                  "$ref": "#/definitions/Role"
+                  "$ref": "#/definitions/StackRole"
                 },
                 "maxItems": 50,
                 "minItems": 1,

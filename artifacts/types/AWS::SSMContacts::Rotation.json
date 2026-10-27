@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SSMContacts-Rotation",
   "type": "AWS::SSMContacts::Rotation",
-  "time": "2025-01-27T16:39:53.338Z",
+  "time": "2026-10-21T17:54:23.108Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -216,8 +216,7 @@
           "ssm-contacts:CreateRotation",
           "ssm-contacts:GetRotation",
           "ssm-contacts:TagResource",
-          "ssm-contacts:ListTagsForResource",
-          "ssm-contacts:UntagResource"
+          "ssm-contacts:ListTagsForResource"
         ]
       },
       "delete": {
@@ -238,9 +237,7 @@
       "read": {
         "permissions": [
           "ssm-contacts:GetRotation",
-          "ssm-contacts:TagResource",
-          "ssm-contacts:ListTagsForResource",
-          "ssm-contacts:UntagResource"
+          "ssm-contacts:ListTagsForResource"
         ]
       },
       "update": {
@@ -308,8 +305,14 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
     "tagging": {
       "cloudFormationSystemTags": false,
+      "permissions": [
+        "ssm-contacts:TagResource",
+        "ssm-contacts:UntagResource",
+        "ssm-contacts:ListTagsForResource"
+      ],
       "tagOnCreate": true,
-      "tagUpdatable": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
       "taggable": true
     },
     "typeName": "AWS::SSMContacts::Rotation"

@@ -1,114 +1,151 @@
 [
   {
     "$type": "ObjectType",
+    "name": "CapacityReservations",
+    "properties": {
+      "ReservationGroupArn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "ReservationPreference": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "ComputeResources",
     "properties": {
       "AllocationStrategy": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "BidPercentage": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 0
       },
+      "CapacityTags": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0,
+        "description": "Capacity-level tags for compute environments."
+      },
       "DesiredvCpus": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "Ec2Configuration": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/20"
         },
-        "flags": 0
+        "flags": 2
       },
       "Ec2KeyPair": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "ImageId": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "InstanceRole": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "InstanceTypes": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/21"
         },
         "flags": 0
       },
       "LaunchTemplate": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "ManagedInstancesProvider": {
+        "type": {
+          "$ref": "#/14"
         },
         "flags": 0
       },
       "MaxvCpus": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 1
       },
       "MinvCpus": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "PlacementGroup": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "ScalingPolicy": {
+        "type": {
+          "$ref": "#/2"
         },
         "flags": 0
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/22"
         },
         "flags": 0
       },
       "SpotIamFleetRole": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Subnets": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/23"
         },
-        "flags": 1
+        "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "A key-value pair to associate with a resource."
       },
       "Type": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "UpdateToLatestImageVersion": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/25"
         },
         "flags": 4
       }
@@ -116,23 +153,41 @@
   },
   {
     "$type": "ObjectType",
+    "name": "ComputeScalingPolicy",
+    "properties": {
+      "MinScaleDownDelayMinutes": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "Ec2ConfigurationObject",
     "properties": {
+      "BatchImageStatus": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
       "ImageIdOverride": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "ImageKubernetesVersion": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "ImageType": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -140,19 +195,148 @@
   },
   {
     "$type": "ObjectType",
+    "name": "EcsSettings",
+    "properties": {
+      "ContainerInsights": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The CloudWatch Container Insights setting applied to the Amazon ECS cluster that backs this compute environment. After you set this property, you can't revert it to the default (unset) state in which the setting is managed outside of AWS Batch. If you remove this property after previously setting it, AWS Batch treats the omission as DISABLED, because the underlying API has no way to unset the value. Because of this, if a stack rollback would return this property to its previous unset state, AWS Batch sets it to DISABLED instead."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EksAccessEntry",
+    "properties": {
+      "DesiredState": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The desired state of the EKS access entry managed by AWS Batch. When omitted, AWS Batch applies INHERIT_FROM_CLUSTER."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "The read-only status of the EKS access entry, returned by DescribeComputeEnvironments."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "EksConfiguration",
     "properties": {
+      "AccessEntry": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
       "EksClusterArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "KubernetesNamespace": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InfrastructureOptimization",
+    "properties": {
+      "ScaleInAfter": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InstanceLaunchTemplate",
+    "properties": {
+      "CapacityOptionType": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "CapacityReservations": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0
+      },
+      "Ec2InstanceProfileArn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      },
+      "FipsEnabled": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0
+      },
+      "InstanceMetadataTagsPropagation": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0
+      },
+      "InstanceRequirements": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      },
+      "LocalStorageConfiguration": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      },
+      "Monitoring": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "NetworkConfiguration": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      },
+      "StorageConfiguration": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InstanceRequirements",
+    "properties": {
+      "AllowedInstanceTypes": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0
       }
     }
   },
@@ -162,25 +346,31 @@
     "properties": {
       "LaunchTemplateId": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "LaunchTemplateName": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Overrides": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/27"
+        },
+        "flags": 0
+      },
+      "UserdataType": {
+        "type": {
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Version": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -192,25 +382,103 @@
     "properties": {
       "LaunchTemplateId": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "LaunchTemplateName": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "TargetInstanceTypes": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/28"
+        },
+        "flags": 0
+      },
+      "UserdataType": {
+        "type": {
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Version": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedInstancesLocalStorageConfiguration",
+    "properties": {
+      "UseLocalStorage": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedInstancesNetworkConfiguration",
+    "properties": {
+      "SecurityGroups": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 1
+      },
+      "Subnets": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedInstancesProvider",
+    "properties": {
+      "InfrastructureOptimization": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "InfrastructureRoleArn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      },
+      "InstanceLaunchTemplate": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "PropagateTags": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedInstancesStorageConfiguration",
+    "properties": {
+      "StorageSizeGiB": {
+        "type": {
+          "$ref": "#/18"
         },
         "flags": 0
       }
@@ -222,13 +490,13 @@
     "properties": {
       "JobExecutionTimeoutMinutes": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "TerminateJobsOnUpdate": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/25"
         },
         "flags": 0
       }
@@ -241,27 +509,32 @@
     "$type": "IntegerType"
   },
   {
+    "$type": "ObjectType",
+    "name": "ComputeEnvironment_CapacityTags",
+    "properties": {}
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/3"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
@@ -275,13 +548,31 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/11"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
     }
   },
   {
@@ -299,74 +590,80 @@
     "properties": {
       "ComputeEnvironmentArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 18
       },
       "ComputeEnvironmentName": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "ComputeResources": {
         "type": {
-          "$ref": "#/0"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "Context": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "EcsSettings": {
+        "type": {
+          "$ref": "#/4"
         },
         "flags": 0
       },
       "EksConfiguration": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/6"
         },
         "flags": 0
       },
       "ReplaceComputeEnvironment": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/25"
         },
         "flags": 4
       },
       "ServiceRole": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "State": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/32"
         },
         "flags": 0,
         "description": "A key-value pair to associate with a resource."
       },
       "Type": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "UnmanagedvCpus": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "UpdatePolicy": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/16"
         },
         "flags": 4
       }
@@ -378,21 +675,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/33"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -402,11 +699,156 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Batch/ComputeEnvironment@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/19"
+      "$ref": "#/34"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResourceArn",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResourceType",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Batch/ConsumableResourceProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConsumableResource_Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Batch/ConsumableResourceProperties",
+    "properties": {
+      "AvailableQuantity": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 2,
+        "description": "Available Quantity of ConsumableResource."
+      },
+      "ConsumableResourceArn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 18
+      },
+      "ConsumableResourceName": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Name of ConsumableResource."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 2
+      },
+      "InUseQuantity": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 2,
+        "description": "In-use Quantity of ConsumableResource."
+      },
+      "ResourceType": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 0,
+        "description": "A key-value pair to associate with a resource."
+      },
+      "TotalQuantity": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 1,
+        "description": "Total Quantity of ConsumableResource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Batch/ConsumableResource",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Batch/ConsumableResource@default",
+    "body": {
+      "$ref": "#/41"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConsumableResourceProperties",
+    "properties": {
+      "ConsumableResourceList": {
+        "type": {
+          "$ref": "#/91"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConsumableResourceRequirement",
+    "properties": {
+      "ConsumableResource": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The ARN of the consumable resource the job definition should consume."
+      },
+      "Quantity": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -414,133 +856,139 @@
     "properties": {
       "Command": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/92"
+        },
+        "flags": 0
+      },
+      "EnableExecuteCommand": {
+        "type": {
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "Environment": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/93"
         },
         "flags": 0
       },
       "EphemeralStorage": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/65"
         },
         "flags": 0
       },
       "ExecutionRoleArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "FargatePlatformConfiguration": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/94"
         },
         "flags": 0
       },
       "Image": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "JobRoleArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "LinuxParameters": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/70"
         },
         "flags": 0
       },
       "LogConfiguration": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/71"
         },
         "flags": 0
       },
       "Memory": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "MountPoints": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/95"
         },
         "flags": 0
       },
       "NetworkConfiguration": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/76"
         },
         "flags": 0
       },
       "Privileged": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "ReadonlyRootFilesystem": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "RepositoryCredentials": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/79"
         },
         "flags": 0
       },
       "ResourceRequirements": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/96"
         },
         "flags": 0
       },
       "RuntimePlatform": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/83"
         },
         "flags": 0
       },
       "Secrets": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/97"
         },
         "flags": 0
       },
       "Ulimits": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/98"
         },
         "flags": 0
       },
       "User": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Vcpus": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "Volumes": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/99"
         },
         "flags": 0
       }
@@ -552,19 +1000,19 @@
     "properties": {
       "ContainerPath": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "HostPath": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Permissions": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/100"
         },
         "flags": 0
       }
@@ -576,13 +1024,13 @@
     "properties": {
       "AccessPointId": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Iam": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -594,31 +1042,31 @@
     "properties": {
       "AuthorizationConfig": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/47"
         },
         "flags": 0
       },
       "FileSystemId": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "RootDirectory": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "TransitEncryption": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "TransitEncryptionPort": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 0
       }
@@ -630,7 +1078,7 @@
     "properties": {
       "TaskProperties": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/101"
         },
         "flags": 1
       }
@@ -642,61 +1090,73 @@
     "properties": {
       "Containers": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/102"
+        },
+        "flags": 0
+      },
+      "EnableExecuteCommand": {
+        "type": {
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "EphemeralStorage": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/65"
         },
         "flags": 0
       },
       "ExecutionRoleArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "IpcMode": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "NetworkConfiguration": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/76"
+        },
+        "flags": 0
+      },
+      "NetworkMode": {
+        "type": {
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "PidMode": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "PlatformVersion": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "RuntimePlatform": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/83"
         },
         "flags": 0
       },
       "TaskRoleArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Volumes": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/103"
         },
         "flags": 0
       }
@@ -708,55 +1168,55 @@
     "properties": {
       "Args": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/104"
         },
         "flags": 0
       },
       "Command": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/105"
         },
         "flags": 0
       },
       "Env": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/106"
         },
         "flags": 0
       },
       "Image": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "ImagePullPolicy": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Resources": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/53"
         },
         "flags": 0
       },
       "SecurityContext": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "VolumeMounts": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/107"
         },
         "flags": 0
       }
@@ -768,13 +1228,13 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -786,13 +1246,13 @@
     "properties": {
       "Limits": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/108"
         },
         "flags": 0
       },
       "Requests": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/109"
         },
         "flags": 0
       }
@@ -804,37 +1264,37 @@
     "properties": {
       "AllowPrivilegeEscalation": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "Privileged": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "ReadOnlyRootFilesystem": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "RunAsGroup": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "RunAsNonRoot": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "RunAsUser": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 0
       }
@@ -846,19 +1306,25 @@
     "properties": {
       "MountPath": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "ReadOnly": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/25"
+        },
+        "flags": 0
+      },
+      "SubPath": {
+        "type": {
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -870,13 +1336,13 @@
     "properties": {
       "Medium": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "SizeLimit": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -888,7 +1354,7 @@
     "properties": {
       "Path": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -898,9 +1364,39 @@
     "$type": "ObjectType",
     "name": "EksMetadata",
     "properties": {
+      "Annotations": {
+        "type": {
+          "$ref": "#/110"
+        },
+        "flags": 0
+      },
       "Labels": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/111"
+        },
+        "flags": 0
+      },
+      "Namespace": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EksPersistentVolumeClaim",
+    "properties": {
+      "ClaimName": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      },
+      "ReadOnly": {
+        "type": {
+          "$ref": "#/25"
         },
         "flags": 0
       }
@@ -912,55 +1408,55 @@
     "properties": {
       "Containers": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/112"
         },
         "flags": 0
       },
       "DnsPolicy": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "HostNetwork": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "ImagePullSecrets": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/113"
         },
         "flags": 0
       },
       "InitContainers": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/114"
         },
         "flags": 0
       },
       "Metadata": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/58"
         },
         "flags": 0
       },
       "ServiceAccountName": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "ShareProcessNamespace": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "Volumes": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/115"
         },
         "flags": 0
       }
@@ -972,7 +1468,7 @@
     "properties": {
       "PodProperties": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/60"
         },
         "flags": 0
       }
@@ -984,13 +1480,13 @@
     "properties": {
       "Optional": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "SecretName": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -1002,25 +1498,31 @@
     "properties": {
       "EmptyDir": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/56"
         },
         "flags": 0
       },
       "HostPath": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/57"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
+      "PersistentVolumeClaim": {
+        "type": {
+          "$ref": "#/59"
+        },
+        "flags": 0
+      },
       "Secret": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/62"
         },
         "flags": 0
       }
@@ -1032,13 +1534,13 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Value": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -1050,7 +1552,7 @@
     "properties": {
       "SizeInGiB": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 1
       }
@@ -1062,25 +1564,25 @@
     "properties": {
       "Action": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "OnExitCode": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "OnReason": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "OnStatusReason": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -1092,7 +1594,7 @@
     "properties": {
       "SourcePath": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -1104,7 +1606,7 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -1116,7 +1618,7 @@
     "properties": {
       "AttemptDurationSeconds": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 0
       }
@@ -1128,37 +1630,37 @@
     "properties": {
       "Devices": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/116"
         },
         "flags": 0
       },
       "InitProcessEnabled": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "MaxSwap": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "SharedMemorySize": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "Swappiness": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "Tmpfs": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/117"
         },
         "flags": 0
       }
@@ -1170,19 +1672,19 @@
     "properties": {
       "LogDriver": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Options": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/118"
         },
         "flags": 0
       },
       "SecretOptions": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/119"
         },
         "flags": 0
       }
@@ -1194,19 +1696,19 @@
     "properties": {
       "ContainerPath": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "ReadOnly": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "SourceVolume": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -1218,127 +1720,133 @@
     "properties": {
       "Command": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/120"
+        },
+        "flags": 0
+      },
+      "EnableExecuteCommand": {
+        "type": {
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "Environment": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/121"
         },
         "flags": 0
       },
       "EphemeralStorage": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/65"
         },
         "flags": 0
       },
       "ExecutionRoleArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Image": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "InstanceType": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "JobRoleArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "LinuxParameters": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/70"
         },
         "flags": 0
       },
       "LogConfiguration": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/71"
         },
         "flags": 0
       },
       "Memory": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "MountPoints": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/122"
         },
         "flags": 0
       },
       "Privileged": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "ReadonlyRootFilesystem": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "RepositoryCredentials": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/79"
         },
         "flags": 0
       },
       "ResourceRequirements": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/123"
         },
         "flags": 0
       },
       "RuntimePlatform": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/83"
         },
         "flags": 0
       },
       "Secrets": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/124"
         },
         "flags": 0
       },
       "Ulimits": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/125"
         },
         "flags": 0
       },
       "User": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Vcpus": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "Volumes": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/126"
         },
         "flags": 0
       }
@@ -1350,7 +1858,7 @@
     "properties": {
       "TaskProperties": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/127"
         },
         "flags": 1
       }
@@ -1362,37 +1870,43 @@
     "properties": {
       "Containers": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/128"
+        },
+        "flags": 0
+      },
+      "EnableExecuteCommand": {
+        "type": {
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "ExecutionRoleArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "IpcMode": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "PidMode": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "TaskRoleArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Volumes": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/129"
         },
         "flags": 0
       }
@@ -1404,7 +1918,7 @@
     "properties": {
       "AssignPublicIp": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -1416,19 +1930,19 @@
     "properties": {
       "MainNode": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 1
       },
       "NodeRangeProperties": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/130"
         },
         "flags": 1
       },
       "NumNodes": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 1
       }
@@ -1438,33 +1952,39 @@
     "$type": "ObjectType",
     "name": "NodeRangeProperty",
     "properties": {
+      "ConsumableResourceProperties": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      },
       "Container": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/73"
         },
         "flags": 0
       },
       "EcsProperties": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/74"
         },
         "flags": 0
       },
       "EksProperties": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/61"
         },
         "flags": 0
       },
       "InstanceTypes": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/131"
         },
         "flags": 0
       },
       "TargetNodes": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -1476,7 +1996,7 @@
     "properties": {
       "CredentialsParameter": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -1488,15 +2008,27 @@
     "properties": {
       "Type": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Value": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResourceRetentionPolicy",
+    "properties": {
+      "SkipDeregisterOnUpdate": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 4
       }
     }
   },
@@ -1506,13 +2038,13 @@
     "properties": {
       "Attempts": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "EvaluateOnExit": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/132"
         },
         "flags": 0
       }
@@ -1524,13 +2056,43 @@
     "properties": {
       "CpuArchitecture": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "OperatingSystemFamily": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3FilesVolumeConfiguration",
+    "properties": {
+      "AccessPointArn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "FileSystemArn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      },
+      "RootDirectory": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "TransitEncryptionPort": {
+        "type": {
+          "$ref": "#/18"
         },
         "flags": 0
       }
@@ -1542,13 +2104,13 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "ValueFrom": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -1560,13 +2122,13 @@
     "properties": {
       "Condition": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "ContainerName": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -1578,97 +2140,115 @@
     "properties": {
       "Command": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/133"
         },
         "flags": 0
       },
       "DependsOn": {
         "type": {
-          "$ref": "#/105"
+          "$ref": "#/134"
         },
         "flags": 0
       },
       "Environment": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/135"
         },
         "flags": 0
       },
       "Essential": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/25"
+        },
+        "flags": 0
+      },
+      "FirelensConfiguration": {
+        "type": {
+          "$ref": "#/137"
         },
         "flags": 0
       },
       "Image": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "LinuxParameters": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/70"
         },
         "flags": 0
       },
       "LogConfiguration": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/71"
         },
         "flags": 0
       },
       "MountPoints": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/138"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Privileged": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "ReadonlyRootFilesystem": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "RepositoryCredentials": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/79"
         },
         "flags": 0
       },
       "ResourceRequirements": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/139"
         },
         "flags": 0
       },
       "Secrets": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/140"
+        },
+        "flags": 0
+      },
+      "StartTimeout": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0
+      },
+      "StopTimeout": {
+        "type": {
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "Ulimits": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/141"
         },
         "flags": 0
       },
       "User": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -1680,19 +2260,19 @@
     "properties": {
       "ContainerPath": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "MountOptions": {
         "type": {
-          "$ref": "#/111"
+          "$ref": "#/142"
         },
         "flags": 0
       },
       "Size": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 1
       }
@@ -1704,19 +2284,19 @@
     "properties": {
       "HardLimit": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 1
       },
       "Name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "SoftLimit": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 1
       }
@@ -1728,19 +2308,25 @@
     "properties": {
       "EfsVolumeConfiguration": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/48"
         },
         "flags": 0
       },
       "Host": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/67"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "S3FilesVolumeConfiguration": {
+        "type": {
+          "$ref": "#/84"
         },
         "flags": 0
       }
@@ -1749,13 +2335,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/44"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/39"
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/64"
     }
   },
   {
@@ -1764,7 +2356,7 @@
     "properties": {
       "PlatformVersion": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -1773,79 +2365,79 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/47"
+      "$ref": "#/72"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/80"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/85"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/89"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/90"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/50"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/87"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/90"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/52"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/55"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/58"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/62"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/63"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/6"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/26"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/60"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/63"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/6"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/6"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/28"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/31"
     }
   },
   {
@@ -1860,43 +2452,48 @@
   },
   {
     "$type": "ObjectType",
+    "name": "JobDefinition_Annotations",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "JobDefinition_Labels",
     "properties": {}
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/27"
+      "$ref": "#/51"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/43"
+      "$ref": "#/68"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/27"
+      "$ref": "#/51"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/38"
+      "$ref": "#/63"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/46"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/61"
+      "$ref": "#/88"
     }
   },
   {
@@ -1907,133 +2504,156 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/58"
+      "$ref": "#/85"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/39"
+      "$ref": "#/64"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/47"
+      "$ref": "#/72"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/55"
+      "$ref": "#/80"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/58"
+      "$ref": "#/85"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/62"
+      "$ref": "#/89"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/63"
+      "$ref": "#/90"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/50"
+      "$ref": "#/75"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/60"
+      "$ref": "#/87"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/63"
+      "$ref": "#/90"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/53"
+      "$ref": "#/78"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/41"
+      "$ref": "#/66"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/59"
+      "$ref": "#/86"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/39"
+      "$ref": "#/64"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JobDefinition_FirelensConfiguration_Options",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JobDefinition_FirelensConfiguration",
+    "properties": {
+      "Options": {
+        "type": {
+          "$ref": "#/136"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      }
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/47"
+      "$ref": "#/72"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/55"
+      "$ref": "#/80"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/58"
+      "$ref": "#/85"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/62"
+      "$ref": "#/89"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
@@ -2048,7 +2668,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/17"
     }
   },
   {
@@ -2060,82 +2680,100 @@
     "$type": "ObjectType",
     "name": "AWS.Batch/JobDefinitionProperties",
     "properties": {
+      "ConsumableResourceProperties": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      },
       "ContainerProperties": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/45"
         },
         "flags": 0
       },
       "EcsProperties": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/49"
         },
         "flags": 0
       },
       "EksProperties": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/61"
         },
         "flags": 0
       },
+      "JobDefinitionArn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2
+      },
       "JobDefinitionName": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 16
       },
       "NodeProperties": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/77"
         },
         "flags": 0
       },
       "Parameters": {
         "type": {
-          "$ref": "#/113"
+          "$ref": "#/144"
         },
         "flags": 0
       },
       "PlatformCapabilities": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/145"
         },
         "flags": 0
       },
       "PropagateTags": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/25"
         },
         "flags": 0
       },
+      "ResourceRetentionPolicy": {
+        "type": {
+          "$ref": "#/81"
+        },
+        "flags": 4
+      },
       "RetryStrategy": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/82"
         },
         "flags": 0
       },
       "SchedulingPriority": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/146"
         },
         "flags": 0,
         "description": "A key-value pair to associate with a resource."
       },
       "Timeout": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/69"
         },
         "flags": 0
       },
       "Type": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -2147,21 +2785,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/147"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2171,11 +2809,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Batch/JobDefinition@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/117"
+      "$ref": "#/148"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -2183,13 +2821,13 @@
     "properties": {
       "ComputeEnvironment": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Order": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 1
       }
@@ -2201,25 +2839,25 @@
     "properties": {
       "Action": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "MaxTimeSeconds": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 1
       },
       "Reason": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "State": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -2231,19 +2869,43 @@
     "properties": {}
   },
   {
+    "$type": "ObjectType",
+    "name": "ServiceEnvironmentOrder",
+    "properties": {
+      "Order": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 1
+      },
+      "ServiceEnvironment": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
     "$type": "StringLiteralType",
     "value": "AWS.Batch/JobQueueProperties"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/119"
+      "$ref": "#/150"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/120"
+      "$ref": "#/151"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/153"
     }
   },
   {
@@ -2257,49 +2919,61 @@
     "properties": {
       "ComputeEnvironmentOrder": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/155"
         },
-        "flags": 1
+        "flags": 0
       },
       "JobQueueArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 18
       },
       "JobQueueName": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "JobQueueType": {
+        "type": {
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "JobStateTimeLimitActions": {
         "type": {
-          "$ref": "#/124"
+          "$ref": "#/156"
         },
         "flags": 0
       },
       "Priority": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 1
       },
       "SchedulingPolicyArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "ServiceEnvironmentOrder": {
+        "type": {
+          "$ref": "#/157"
         },
         "flags": 0
       },
       "State": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/125"
+          "$ref": "#/158"
         },
         "flags": 0,
         "description": "A key-value pair to associate with a resource."
@@ -2312,21 +2986,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/126"
+          "$ref": "#/159"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2336,11 +3010,182 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Batch/JobQueue@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/127"
+      "$ref": "#/160"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QuotaShareCapacityLimit",
+    "properties": {
+      "CapacityUnit": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The unit of compute capacity for the capacityLimit. For example, `ml.m5.large`."
+      },
+      "MaxCapacity": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 1,
+        "description": "The maximum capacity available for the quota share. This value represents the maximum quantity of a resource that can be allocated to jobs in the quota share without borrowing."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QuotaSharePreemptionConfiguration",
+    "properties": {
+      "InSharePreemption": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "Specifies whether jobs within a quota share can be preempted by another, higher priority job in the same quota share."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QuotaShareResourceSharingConfiguration",
+    "properties": {
+      "BorrowLimit": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "The maximum percentage of additional capacity that the quota share can borrow from other shares. `BorrowLimit` can only be applied to quota shares with a strategy of `LEND_AND_BORROW`. This value is expressed as a percentage of the quota share's configured CapacityLimits. The `BorrowLimit` is applied uniformly across all capacity units. For example, if the `BorrowLimit` is 200, the quota share can borrow up to 200% of its configured `maxCapacity` for each capacity unit. The default `BorrowLimit` is -1, which indicates unlimited borrowing."
+      },
+      "Strategy": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The resource sharing strategy for the quota share. The `RESERVE` strategy allows a quota share to reserve idle capacity for itself. `LEND` configures the share to lend its idle capacity to another share in need of capacity. The `LEND_AND_BORROW` strategy configures the share to borrow idle capacity from an underutilized share, as well as lend to another share."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResourceArn",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Batch/QuotaShareProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/162"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QuotaShare_Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Batch/QuotaShareProperties",
+    "properties": {
+      "CapacityLimits": {
+        "type": {
+          "$ref": "#/167"
+        },
+        "flags": 1,
+        "description": "A list that specifies the quantity and type of compute capacity allocated to the quota share."
+      },
+      "JobQueue": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The AWS Batch job queue associated with the quota share. This can be the job queue name or ARN. A job queue must be in the `VALID` state before you can associate it with a quota share."
+      },
+      "PreemptionConfiguration": {
+        "type": {
+          "$ref": "#/163"
+        },
+        "flags": 1,
+        "description": "Specifies the preemption behavior for jobs in a quota share."
+      },
+      "QuotaShareArn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the quota share."
+      },
+      "QuotaShareName": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The name of the quota share. It can be up to 128 characters long. It can contain uppercase and lowercase letters, numbers, hyphens (-), and underscores (_)."
+      },
+      "ResourceSharingConfiguration": {
+        "type": {
+          "$ref": "#/164"
+        },
+        "flags": 1,
+        "description": "Specifies whether a quota share reserves, lends, or both lends and borrows idle compute capacity."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The state of the quota share. If the quota share is `ENABLED`, it is able to accept jobs. If the quota share is `DISABLED`, new jobs won't be accepted but jobs already submitted can finish. The default state is `ENABLED`."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/168"
+        },
+        "flags": 0,
+        "description": "The tags that you apply to the quota share to help you categorize and organize your resources. Each tag consists of a key and an optional value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Batch/QuotaShare",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/169"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Batch/QuotaShare@default",
+    "body": {
+      "$ref": "#/170"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -2348,22 +3193,34 @@
     "properties": {
       "ComputeReservation": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "ShareDecaySeconds": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "ShareDistribution": {
         "type": {
-          "$ref": "#/132"
+          "$ref": "#/176"
         },
         "flags": 0,
         "description": "List of Share Attributes"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QuotaSharePolicy",
+    "properties": {
+      "IdleResourceAssignmentStrategy": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
       }
     }
   },
@@ -2378,13 +3235,13 @@
     "properties": {
       "ShareIdentifier": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "WeightFactor": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 0
       }
@@ -2393,7 +3250,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/131"
+      "$ref": "#/175"
     }
   },
   {
@@ -2411,26 +3268,32 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 18
       },
       "FairsharePolicy": {
         "type": {
-          "$ref": "#/129"
+          "$ref": "#/172"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "Name of Scheduling Policy."
       },
+      "QuotaSharePolicy": {
+        "type": {
+          "$ref": "#/173"
+        },
+        "flags": 0
+      },
       "Tags": {
         "type": {
-          "$ref": "#/134"
+          "$ref": "#/178"
         },
         "flags": 0,
         "description": "A key-value pair to associate with a resource."
@@ -2443,21 +3306,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/17"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/179"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -2467,10 +3330,133 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Batch/SchedulingPolicy@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/136"
+      "$ref": "#/180"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CapacityLimit",
+    "properties": {
+      "CapacityUnit": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "MaxCapacity": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CapacityLimits",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/182"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Batch/ServiceEnvironmentProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/182"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceEnvironment_Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Batch/ServiceEnvironmentProperties",
+    "properties": {
+      "CapacityLimits": {
+        "type": {
+          "$ref": "#/186"
+        },
+        "flags": 1
+      },
+      "ServiceEnvironmentArn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 18
+      },
+      "ServiceEnvironmentName": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "ServiceEnvironmentType": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      },
+      "State": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/187"
+        },
+        "flags": 0,
+        "description": "A key-value pair to associate with a resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Batch/ServiceEnvironment",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/188"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Batch/ServiceEnvironment@default",
+    "body": {
+      "$ref": "#/189"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

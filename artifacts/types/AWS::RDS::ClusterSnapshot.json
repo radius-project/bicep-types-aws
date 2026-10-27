@@ -1,0 +1,218 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-ClusterSnapshot",
+  "type": "AWS::RDS::ClusterSnapshot",
+  "time": "2026-10-21T22:13:25.715Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/DBClusterSnapshotIdentifier"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DBClusterSnapshotIdentifier",
+      "/properties/DBClusterIdentifier"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Creates a snapshot of a DB cluster.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "rds:CreateDBClusterSnapshot",
+          "rds:DescribeDBClusterSnapshots",
+          "rds:DescribeDBClusters",
+          "rds:AddTagsToResource",
+          "rds:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "rds:DeleteDBClusterSnapshot",
+          "rds:DescribeDBClusterSnapshots",
+          "rds:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "rds:DescribeDBClusterSnapshots"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "rds:DescribeDBClusterSnapshots",
+          "rds:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "rds:DescribeDBClusterSnapshots",
+          "rds:ListTagsForResource",
+          "rds:AddTagsToResource",
+          "rds:RemoveTagsFromResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/DBClusterSnapshotArn"
+    ],
+    "properties": {
+      "AllocatedStorage": {
+        "description": "The allocated storage size of the DB cluster snapshot in gibibytes (GiB).",
+        "type": "integer"
+      },
+      "AvailabilityZones": {
+        "description": "The list of Availability Zones where instances in the DB cluster snapshot can be restored.",
+        "insertionOrder": false,
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "ClusterCreateTime": {
+        "description": "The time when the DB cluster was created, in Universal Coordinated Time (UTC).",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DBClusterIdentifier": {
+        "description": "The identifier of the DB cluster to create a snapshot for.",
+        "type": "string"
+      },
+      "DBClusterSnapshotArn": {
+        "description": "The Amazon Resource Name (ARN) for the DB cluster snapshot.",
+        "type": "string"
+      },
+      "DBClusterSnapshotIdentifier": {
+        "description": "The identifier for the DB cluster snapshot. Must contain from 1 to 63 letters, numbers, or hyphens. First character must be a letter. Can't end with a hyphen or contain two consecutive hyphens.",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9]*(-[a-zA-Z0-9]+)*$",
+        "type": "string"
+      },
+      "DbClusterResourceId": {
+        "description": "The resource ID of the DB cluster that this DB cluster snapshot was created from.",
+        "type": "string"
+      },
+      "Engine": {
+        "description": "The name of the database engine for this DB cluster snapshot.",
+        "type": "string"
+      },
+      "EngineMode": {
+        "description": "The engine mode of the database engine for this DB cluster snapshot.",
+        "type": "string"
+      },
+      "EngineVersion": {
+        "description": "The version of the database engine for this DB cluster snapshot.",
+        "type": "string"
+      },
+      "IAMDatabaseAuthenticationEnabled": {
+        "description": "Indicates whether mapping of AWS IAM accounts to database accounts is enabled.",
+        "type": "boolean"
+      },
+      "KmsKeyId": {
+        "description": "If StorageEncrypted is true, the AWS KMS key identifier for the encrypted DB cluster snapshot.",
+        "type": "string"
+      },
+      "LicenseModel": {
+        "description": "The license model information for this DB cluster snapshot.",
+        "type": "string"
+      },
+      "MasterUsername": {
+        "description": "The master username for this DB cluster snapshot.",
+        "type": "string"
+      },
+      "Port": {
+        "description": "The port that the DB cluster was listening on at the time of the snapshot.",
+        "type": "integer"
+      },
+      "SnapshotCreateTime": {
+        "description": "The time when the snapshot was taken, in Universal Coordinated Time (UTC).",
+        "format": "date-time",
+        "type": "string"
+      },
+      "SnapshotType": {
+        "description": "The type of the DB cluster snapshot.",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of this DB cluster snapshot.",
+        "type": "string"
+      },
+      "StorageEncrypted": {
+        "description": "Indicates whether the DB cluster snapshot is encrypted.",
+        "type": "boolean"
+      },
+      "Tags": {
+        "description": "The tags to be assigned to the DB cluster snapshot.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "VpcId": {
+        "description": "The VPC ID associated with the DB cluster snapshot.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/DBClusterSnapshotArn",
+      "/properties/AvailabilityZones",
+      "/properties/Engine",
+      "/properties/EngineVersion",
+      "/properties/SnapshotType",
+      "/properties/AllocatedStorage",
+      "/properties/Status",
+      "/properties/Port",
+      "/properties/VpcId",
+      "/properties/ClusterCreateTime",
+      "/properties/MasterUsername",
+      "/properties/EngineMode",
+      "/properties/LicenseModel",
+      "/properties/StorageEncrypted",
+      "/properties/KmsKeyId",
+      "/properties/IAMDatabaseAuthenticationEnabled",
+      "/properties/DbClusterResourceId",
+      "/properties/SnapshotCreateTime"
+    ],
+    "required": [
+      "DBClusterSnapshotIdentifier",
+      "DBClusterIdentifier"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "rds:AddTagsToResource",
+        "rds:RemoveTagsFromResource",
+        "rds:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::RDS::ClusterSnapshot"
+  }
+}

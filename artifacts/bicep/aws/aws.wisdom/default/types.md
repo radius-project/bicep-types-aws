@@ -1,81 +1,108 @@
 # AWS.Wisdom @ default
 
 ## Resource AWS.Wisdom/AIAgent@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Wisdom/AIAgentProperties](#awswisdomaiagentproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Wisdom/AIAgentVersion@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Wisdom/AIAgentVersionProperties](#awswisdomaiagentversionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Wisdom/AIGuardrail@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Wisdom/AIGuardrailProperties](#awswisdomaiguardrailproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Wisdom/AIGuardrailVersion@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Wisdom/AIGuardrailVersionProperties](#awswisdomaiguardrailversionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Wisdom/AIPrompt@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Wisdom/AIPromptProperties](#awswisdomaipromptproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Wisdom/AIPromptVersion@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Wisdom/AIPromptVersionProperties](#awswisdomaipromptversionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Wisdom/Assistant@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Wisdom/AssistantProperties](#awswisdomassistantproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Wisdom/AssistantAssociation@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Wisdom/AssistantAssociationProperties](#awswisdomassistantassociationproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Wisdom/Content@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Wisdom/ContentProperties](#awswisdomcontentproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Wisdom/KnowledgeBase@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Wisdom/KnowledgeBaseProperties](#awswisdomknowledgebaseproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Wisdom/MessageTemplate@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Wisdom/MessageTemplateProperties](#awswisdommessagetemplateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Wisdom/MessageTemplateVersion@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Wisdom/MessageTemplateVersionProperties](#awswisdommessagetemplateversionproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Wisdom/QuickResponse@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Wisdom/QuickResponseProperties](#awswisdomquickresponseproperties) (Required, Identifier): properties of the resource
 
 ## AgentAttributes
 ### Properties
@@ -112,7 +139,6 @@
 
 ## AssociationData
 ### Properties
-* **KnowledgeBaseId**: string (Required)
 
 ## AWS.Wisdom/AIAgentProperties
 ### Properties
@@ -148,6 +174,7 @@
 * **ContentPolicyConfig**: [AIGuardrailContentPolicyConfig](#aiguardrailcontentpolicyconfig)
 * **ContextualGroundingPolicyConfig**: [AIGuardrailContextualGroundingPolicyConfig](#aiguardrailcontextualgroundingpolicyconfig)
 * **Description**: string: Description of the guardrail or its version
+* **ModifiedTimeSeconds**: int (ReadOnly)
 * **Name**: string
 * **SensitiveInformationPolicyConfig**: [AIGuardrailSensitiveInformationPolicyConfig](#aiguardrailsensitiveinformationpolicyconfig)
 * **Tags**: [Tags](#tags)
@@ -210,6 +237,23 @@
 * **Tags**: [Tag](#tag)[]
 * **Type**: string (Required)
 
+## AWS.Wisdom/ContentProperties
+### Properties
+* **ContentArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the content.
+* **ContentId**: string (ReadOnly): The identifier of the content.
+* **ContentType**: string (ReadOnly): The media type of the content.
+* **KnowledgeBaseArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the knowledge base.
+* **KnowledgeBaseId**: string (Required): The identifier of the knowledge base.
+* **LinkOutUri**: string (ReadOnly): The URI of the content.
+* **Metadata**: [Content_Metadata](#contentmetadata): A key/value map to store attributes without affecting tagging or recommendations.
+* **Name**: string (Required): The name of the content.
+* **OverrideLinkOutUri**: string: The URI you want to use for the article.
+* **RevisionId**: string (ReadOnly): The identifier of the content revision.
+* **Status**: string (ReadOnly): The status of the content.
+* **Tags**: [Tag](#tag)[]: The tags used to organize, track, or control access for this resource.
+* **Title**: string: The title of the content.
+* **UploadId**: string (WriteOnly): A pointer to the uploaded asset. This value is returned by StartContentUpload.
+
 ## AWS.Wisdom/KnowledgeBaseProperties
 ### Properties
 * **Description**: string
@@ -233,6 +277,7 @@
 * **KnowledgeBaseArn**: string (Required): The Amazon Resource Name (ARN) of the knowledge base to which the message template belongs.
 * **Language**: string: The language code value for the language in which the message template is written. The supported language codes include de_DE, en_US, es_ES, fr_FR, id_ID, it_IT, ja_JP, ko_KR, pt_BR, zh_CN, zh_TW
 * **MessageTemplateArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the message template.
+* **MessageTemplateAttachments**: [MessageTemplateAttachment](#messagetemplateattachment)[] (ReadOnly, WriteOnly): List of message template attachments
 * **MessageTemplateContentSha256**: string (ReadOnly): The content SHA256 of the message template.
 * **MessageTemplateId**: string (ReadOnly): The unique identifier of the message template.
 * **Name**: string (Required): The name of the message template.
@@ -245,6 +290,26 @@
 * **MessageTemplateVersionArn**: string (ReadOnly, Identifier): The unqualified Amazon Resource Name (ARN) of the message template version.
 * **MessageTemplateVersionNumber**: int (ReadOnly): Current version number of the message template.
 
+## AWS.Wisdom/QuickResponseProperties
+### Properties
+* **Channels**: string[]: The Amazon Connect contact channels this quick response applies to.
+* **Content**: [QuickResponseContentProvider](#quickresponsecontentprovider) (Required)
+* **Contents**: [QuickResponseContents](#quickresponsecontents) (ReadOnly)
+* **ContentType**: string: The media type of the quick response content.
+- Use application/x.quickresponse;format=plain for quick response written in plain text.
+- Use application/x.quickresponse;format=markdown for quick response written in richtext.
+* **Description**: string: The description of the quick response.
+* **GroupingConfiguration**: [GroupingConfiguration](#groupingconfiguration)
+* **IsActive**: bool: Whether the quick response is active.
+* **KnowledgeBaseArn**: string (Required): The Amazon Resource Name (ARN) of the knowledge base.
+* **Language**: string: The language code value for the language in which the quick response is written. The supported language codes include de_DE, en_US, es_ES, fr_FR, id_ID, it_IT, ja_JP, ko_KR, pt_BR, zh_CN, zh_TW
+* **Name**: string (Required): The name of the quick response.
+* **QuickResponseArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the quick response.
+* **QuickResponseId**: string (ReadOnly): The identifier of the quick response.
+* **ShortcutKey**: string: The shortcut key of the quick response. The value should be unique across the knowledge base.
+* **Status**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
 ## BedrockFoundationModelConfiguration
 ### Properties
 * **ModelArn**: string (Required)
@@ -254,6 +319,9 @@
 ### Properties
 * **EmailMessageTemplateContent**: [EmailMessageTemplateContent](#emailmessagetemplatecontent)
 * **SmsMessageTemplateContent**: [SmsMessageTemplateContent](#smsmessagetemplatecontent)
+
+## Content_Metadata
+### Properties
 
 ## CustomAttributes
 ### Properties
@@ -345,6 +413,11 @@
 * **Criteria**: string (Required): The criteria used for grouping Amazon Q in Connect users.
 * **Values**: string[] (Required): The list of values that define different groups of Amazon Q in Connect users.
 
+## GroupingConfiguration
+### Properties
+* **Criteria**: string (Required): The criteria used for grouping Amazon Q in Connect users.
+* **Values**: string[] (Required): The list of values that define different groups of Amazon Q in Connect users.
+
 ## GuardrailContentFilterConfig
 ### Properties
 * **InputStrength**: string (Required)
@@ -408,6 +481,12 @@
 ### Properties
 * **ParsingPromptText**: string (Required)
 
+## MessageTemplateAttachment
+### Properties
+* **AttachmentId**: string
+* **AttachmentName**: string (Required)
+* **S3PresignedUrl**: string (Required)
+
 ## MessageTemplateAttributes
 ### Properties
 * **AgentAttributes**: [AgentAttributes](#agentattributes)
@@ -418,6 +497,15 @@
 ## MessageTemplateBodyContentProvider
 ### Properties
 * **Content**: string
+
+## QuickResponseContentProvider
+### Properties
+* **Content**: string: The content of the quick response.
+
+## QuickResponseContents
+### Properties
+* **Markdown**: [QuickResponseContentProvider](#quickresponsecontentprovider)
+* **PlainText**: [QuickResponseContentProvider](#quickresponsecontentprovider)
 
 ## RenderingConfiguration
 ### Properties
@@ -472,6 +560,16 @@
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -
 
 ## Tag
 ### Properties

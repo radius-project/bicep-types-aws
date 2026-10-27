@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-InferenceExperiment",
   "type": "AWS::SageMaker::InferenceExperiment",
-  "time": "2025-01-14T17:29:32.32Z",
+  "time": "2026-05-19T16:28:13.663Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -435,11 +435,21 @@
     ],
     "tagging": {
       "cloudFormationSystemTags": false,
+      "permissions": [
+        "sagemaker:AddTags",
+        "sagemaker:DeleteTags",
+        "sagemaker:ListTags"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,
       "taggable": true
     },
-    "typeName": "AWS::SageMaker::InferenceExperiment"
+    "typeName": "AWS::SageMaker::InferenceExperiment",
+    "writeOnlyProperties": [
+      "/properties/StatusReason",
+      "/properties/DesiredState",
+      "/properties/Schedule"
+    ]
   }
 }

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-OpenSearchService-Domain",
   "type": "AWS::OpenSearchService::Domain",
-  "time": "2024-12-18T05:48:48.426Z",
+  "time": "2026-10-20T19:31:10.657Z",
   "schema": {
     "additionalProperties": false,
     "conditionalCreateOnlyProperties": [
@@ -9,9 +9,22 @@
       "/properties/AdvancedSecurityOptions/properties/Enabled"
     ],
     "createOnlyProperties": [
-      "/properties/DomainName"
+      "/properties/DomainName",
+      "/properties/EngineMode"
     ],
     "definitions": {
+      "AIMLOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "S3VectorsEngine": {
+            "$ref": "#/definitions/S3VectorsEngine"
+          },
+          "ServerlessVectorAcceleration": {
+            "$ref": "#/definitions/ServerlessVectorAcceleration"
+          }
+        },
+        "type": "object"
+      },
       "AdvancedSecurityOptionsInput": {
         "additionalProperties": false,
         "properties": {
@@ -23,6 +36,9 @@
           },
           "Enabled": {
             "type": "boolean"
+          },
+          "IAMFederationOptions": {
+            "$ref": "#/definitions/IAMFederationOptions"
           },
           "InternalUserDatabaseEnabled": {
             "type": "boolean"
@@ -37,6 +53,24 @@
             "$ref": "#/definitions/SAMLOptions"
           }
         },
+        "type": "object"
+      },
+      "AutomatedSnapshotPauseOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "Enabled": {
+            "type": "boolean"
+          },
+          "EndTime": {
+            "type": "string"
+          },
+          "StartTime": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Enabled"
+        ],
         "type": "object"
       },
       "ClusterConfig": {
@@ -114,6 +148,19 @@
         },
         "type": "object"
       },
+      "DeploymentStrategyOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "DeploymentStrategy": {
+            "enum": [
+              "Default",
+              "CapacityOptimized"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "DomainEndpointOptions": {
         "additionalProperties": false,
         "properties": {
@@ -163,6 +210,21 @@
             "type": "boolean"
           },
           "KmsKeyId": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "IAMFederationOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "Enabled": {
+            "type": "boolean"
+          },
+          "RolesKey": {
+            "type": "string"
+          },
+          "SubjectKey": {
             "type": "string"
           }
         },
@@ -330,6 +392,19 @@
         ],
         "type": "string"
       },
+      "S3VectorsEngine": {
+        "additionalProperties": false,
+        "properties": {
+          "Enabled": {
+            "description": "Whether to enable S3 vectors engine.",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "Enabled"
+        ],
+        "type": "object"
+      },
       "SAMLOptions": {
         "additionalProperties": false,
         "properties": {
@@ -353,6 +428,16 @@
           },
           "SubjectKey": {
             "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ServerlessVectorAcceleration": {
+        "additionalProperties": false,
+        "properties": {
+          "Enabled": {
+            "description": "Whether to enable serverless vector acceleration.",
+            "type": "boolean"
           }
         },
         "type": "object"
@@ -401,6 +486,9 @@
         "properties": {
           "AutoSoftwareUpdateEnabled": {
             "type": "boolean"
+          },
+          "UseLatestServiceSoftwareForBlueGreen": {
+            "type": "boolean"
           }
         },
         "type": "object"
@@ -439,6 +527,10 @@
       "VPCOptions": {
         "additionalProperties": false,
         "properties": {
+          "EgressEnabled": {
+            "description": "Controls whether egress traffic from the domain is routed through the customer VPC.",
+            "type": "boolean"
+          },
           "SecurityGroupIds": {
             "items": {
               "type": "string"
@@ -493,7 +585,8 @@
           "es:CreateDomain",
           "es:DescribeDomain",
           "es:AddTags",
-          "es:ListTags"
+          "es:ListTags",
+          "es:DescribeDomainChangeProgress"
         ]
       },
       "delete": {
@@ -525,6 +618,9 @@
       "/properties/DomainName"
     ],
     "properties": {
+      "AIMLOptions": {
+        "$ref": "#/definitions/AIMLOptions"
+      },
       "AccessPolicies": {
         "type": "object"
       },
@@ -543,11 +639,17 @@
       "Arn": {
         "type": "string"
       },
+      "AutomatedSnapshotPauseOptions": {
+        "$ref": "#/definitions/AutomatedSnapshotPauseOptions"
+      },
       "ClusterConfig": {
         "$ref": "#/definitions/ClusterConfig"
       },
       "CognitoOptions": {
         "$ref": "#/definitions/CognitoOptions"
+      },
+      "DeploymentStrategyOptions": {
+        "$ref": "#/definitions/DeploymentStrategyOptions"
       },
       "DomainArn": {
         "type": "string"
@@ -578,6 +680,14 @@
       },
       "EncryptionAtRestOptions": {
         "$ref": "#/definitions/EncryptionAtRestOptions"
+      },
+      "EngineMode": {
+        "description": "The engine mode of the domain. Determines whether the domain runs the standard (GENERAL) engine or the optimized multi-engine (OPTIMIZED) engine. This value cannot be changed after the domain is created.",
+        "enum": [
+          "GENERAL",
+          "OPTIMIZED"
+        ],
+        "type": "string"
       },
       "EngineVersion": {
         "type": "string"
@@ -626,9 +736,22 @@
         "type": "array",
         "uniqueItems": true
       },
+      "UseCase": {
+        "description": "The primary use case of the domain. Determines the default configuration tuned for the workload. For GENERAL engine-mode domains, this value can be changed after creation. For OPTIMIZED engine-mode domains, this value cannot be changed after creation.",
+        "enum": [
+          "SEARCH",
+          "VECTOR",
+          "OBSERVABILITY",
+          "MIXED"
+        ],
+        "type": "string"
+      },
       "VPCOptions": {
         "$ref": "#/definitions/VPCOptions"
       }
+    },
+    "propertyTransform": {
+      "/properties/EncryptionAtRestOptions/KmsKeyId": "$split(EncryptionAtRestOptions.KmsKeyId, \"/\")[-1] $OR EncryptionAtRestOptions.KmsKeyId"
     },
     "readOnlyProperties": [
       "/properties/Id",
@@ -643,6 +766,18 @@
       "/properties/IdentityCenterOptions/IdentityStoreId"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "es:AddTags",
+        "es:RemoveTags",
+        "es:ListTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::OpenSearchService::Domain",
     "writeOnlyProperties": [
       "/properties/AdvancedSecurityOptions/MasterUserOptions",

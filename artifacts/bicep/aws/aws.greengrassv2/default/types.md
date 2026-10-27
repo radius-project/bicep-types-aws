@@ -1,14 +1,16 @@
 # AWS.GreengrassV2 @ default
 
 ## Resource AWS.GreengrassV2/ComponentVersion@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.GreengrassV2/ComponentVersionProperties](#awsgreengrassv2componentversionproperties) (Identifier): properties of the resource
 
 ## Resource AWS.GreengrassV2/Deployment@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name

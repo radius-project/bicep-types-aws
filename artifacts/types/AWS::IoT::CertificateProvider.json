@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoT-CertificateProvider",
   "type": "AWS::IoT::CertificateProvider",
-  "time": "2024-11-22T17:33:39.829Z",
+  "time": "2026-09-22T16:03:46.406Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -45,13 +45,15 @@
           "iot:CreateCertificateProvider",
           "iot:DescribeCertificateProvider",
           "iot:TagResource",
-          "iot:ListTagsForResource"
+          "iot:ListTagsForResource",
+          "kms:Decrypt"
         ]
       },
       "delete": {
         "permissions": [
           "iot:DeleteCertificateProvider",
-          "iot:DescribeCertificateProvider"
+          "iot:DescribeCertificateProvider",
+          "kms:Decrypt"
         ]
       },
       "list": {
@@ -62,7 +64,8 @@
       "read": {
         "permissions": [
           "iot:DescribeCertificateProvider",
-          "iot:ListTagsForResource"
+          "iot:ListTagsForResource",
+          "kms:Decrypt"
         ]
       },
       "update": {
@@ -71,7 +74,8 @@
           "iot:DescribeCertificateProvider",
           "iot:TagResource",
           "iot:UntagResource",
-          "iot:ListTagsForResource"
+          "iot:ListTagsForResource",
+          "kms:Decrypt"
         ]
       }
     },
@@ -124,7 +128,12 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
     "tagging": {
-      "cloudFormationSystemTags": true,
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "iot:ListTagsForResource",
+        "iot:TagResource",
+        "iot:UntagResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

@@ -90,7 +90,7 @@
     "properties": {
       "CreatedAt": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0
       },
@@ -102,7 +102,13 @@
       },
       "Status": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
+        },
+        "flags": 0
+      },
+      "WorkerReplacementStrategy": {
+        "type": {
+          "$ref": "#/44"
         },
         "flags": 0
       }
@@ -216,19 +222,19 @@
     "properties": {
       "CloudWatchLogGroupArn": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 2
       },
       "Enabled": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/45"
         },
         "flags": 0
       },
       "LogLevel": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0
       }
@@ -240,13 +246,13 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/45"
         },
         "flags": 0
       },
       "LogLevel": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0
       }
@@ -258,14 +264,14 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/47"
         },
         "flags": 0,
         "description": "A list of security groups to use for the environment."
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/48"
         },
         "flags": 0,
         "description": "A list of subnets to use for the environment. These must be private subnets, in the same VPC, in two different availability zones."
@@ -318,13 +324,13 @@
     "properties": {
       "ErrorCode": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0
       },
       "ErrorMessage": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0
       }
@@ -356,6 +362,11 @@
     "properties": {}
   },
   {
+    "$type": "ObjectType",
+    "name": "WorkerReplacementStrategy",
+    "properties": {}
+  },
+  {
     "$type": "StringType"
   },
   {
@@ -367,13 +378,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/43"
+      "$ref": "#/44"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/43"
+      "$ref": "#/44"
     }
   },
   {
@@ -396,62 +407,62 @@
     "properties": {
       "AirflowConfigurationOptions": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "Key/value pairs representing Airflow configuration variables.\n    Keys are prefixed by their section:\n\n    [core]\n    dags_folder={AIRFLOW_HOME}/dags\n\n    Would be represented as\n\n    \"core.dags_folder\": \"{AIRFLOW_HOME}/dags\""
       },
       "AirflowVersion": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0
       },
       "Arn": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 2
       },
       "CeleryExecutorQueue": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 2
       },
       "DagS3Path": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0
       },
       "DatabaseVpcEndpointService": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 2
       },
       "EndpointManagement": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0
       },
       "EnvironmentClass": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0
       },
       "ExecutionRoleArn": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0
       },
       "KmsKey": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0
       },
@@ -463,31 +474,31 @@
       },
       "MaxWebservers": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/46"
         },
         "flags": 0
       },
       "MaxWorkers": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/46"
         },
         "flags": 0
       },
       "MinWebservers": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/46"
         },
         "flags": 0
       },
       "MinWorkers": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/46"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 17
       },
@@ -499,82 +510,88 @@
       },
       "PluginsS3ObjectVersion": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0
       },
       "PluginsS3Path": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0
       },
       "RequirementsS3ObjectVersion": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0
       },
       "RequirementsS3Path": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0
       },
       "Schedulers": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/46"
         },
         "flags": 0
       },
       "SourceBucketArn": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0
       },
       "StartupScriptS3ObjectVersion": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0
       },
       "StartupScriptS3Path": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "A map of tags for the environment."
       },
       "WebserverAccessMode": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0
       },
       "WebserverUrl": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 2
       },
       "WebserverVpcEndpointService": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 2
       },
       "WeeklyMaintenanceWindowStart": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0
+      },
+      "WorkerReplacementStrategy": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 4
       }
     }
   },
@@ -584,21 +601,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/52"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -608,10 +625,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.MWAA/Environment@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/52"
+      "$ref": "#/53"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

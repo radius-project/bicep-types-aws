@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-KinesisFirehose-DeliveryStream",
   "type": "AWS::KinesisFirehose::DeliveryStream",
-  "time": "2024-11-13T22:49:03.237Z",
+  "time": "2026-08-27T16:16:26.702Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -12,8 +12,9 @@
       "/properties/AmazonOpenSearchServerlessDestinationConfiguration/VpcConfiguration",
       "/properties/DatabaseSourceConfiguration",
       "/properties/KinesisStreamSourceConfiguration",
+      "/properties/DirectPutSourceConfiguration",
       "/properties/MSKSourceConfiguration",
-      "/properties/IcebergDestinationConfiguration",
+      "/properties/IcebergDestinationConfiguration/CatalogConfiguration",
       "/properties/SnowflakeDestinationConfiguration/SnowflakeVpcConfiguration"
     ],
     "definitions": {
@@ -42,10 +43,6 @@
             "maxLength": 512,
             "minLength": 1,
             "pattern": "https:.*",
-            "relationshipRef": {
-              "propertyPath": "/properties/CollectionEndpoint",
-              "typeName": "AWS::OpenSearchServerless::Collection"
-            },
             "type": "string"
           },
           "IndexName": {
@@ -63,10 +60,6 @@
             "maxLength": 512,
             "minLength": 1,
             "pattern": "arn:.*",
-            "relationshipRef": {
-              "propertyPath": "/properties/Arn",
-              "typeName": "AWS::IAM::Role"
-            },
             "type": "string"
           },
           "S3BackupMode": {
@@ -160,10 +153,6 @@
             "maxLength": 512,
             "minLength": 1,
             "pattern": "arn:.*",
-            "relationshipRef": {
-              "propertyPath": "/properties/Arn",
-              "typeName": "AWS::IAM::Role"
-            },
             "type": "string"
           },
           "S3BackupMode": {
@@ -215,10 +204,6 @@
             "maxLength": 512,
             "minLength": 1,
             "pattern": "arn:.*",
-            "relationshipRef": {
-              "propertyPath": "/properties/Arn",
-              "typeName": "AWS::IAM::Role"
-            },
             "type": "string"
           }
         },
@@ -248,6 +233,12 @@
             "minLength": 1,
             "pattern": "arn:.*",
             "type": "string"
+          },
+          "WarehouseLocation": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "pattern": "s3:\\/\\/.*",
+            "type": "string"
           }
         },
         "type": "object"
@@ -259,17 +250,9 @@
             "type": "boolean"
           },
           "LogGroupName": {
-            "relationshipRef": {
-              "propertyPath": "/properties/LogGroupName",
-              "typeName": "AWS::Logs::LogGroup"
-            },
             "type": "string"
           },
           "LogStreamName": {
-            "relationshipRef": {
-              "propertyPath": "/properties/LogStreamName",
-              "typeName": "AWS::Logs::LogStream"
-            },
             "type": "string"
           }
         },
@@ -500,10 +483,6 @@
             "maxLength": 512,
             "minLength": 1,
             "pattern": "arn:.*",
-            "relationshipRef": {
-              "propertyPath": "/properties/Arn",
-              "typeName": "AWS::KMS::Key"
-            },
             "type": "string"
           },
           "KeyType": {
@@ -544,6 +523,19 @@
             "minLength": 1,
             "type": "string"
           },
+          "PartitionSpec": {
+            "additionalProperties": false,
+            "properties": {
+              "Identity": {
+                "items": {
+                  "$ref": "#/definitions/PartitionField"
+                },
+                "type": "array",
+                "uniqueItems": true
+              }
+            },
+            "type": "object"
+          },
           "S3ErrorOutputPrefix": {
             "maxLength": 1024,
             "minLength": 1,
@@ -568,6 +560,17 @@
           "$ref": "#/definitions/DestinationTableConfiguration"
         },
         "type": "array"
+      },
+      "DirectPutSourceConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "ThroughputHintInMBs": {
+            "maximum": 100,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "type": "object"
       },
       "DocumentIdOptions": {
         "additionalProperties": false,
@@ -672,10 +675,6 @@
             "maxLength": 512,
             "minLength": 1,
             "pattern": "arn:.*",
-            "relationshipRef": {
-              "propertyPath": "/properties/Arn",
-              "typeName": "AWS::IAM::Role"
-            },
             "type": "string"
           },
           "S3BackupMode": {
@@ -735,10 +734,6 @@
             "maxLength": 2048,
             "minLength": 1,
             "pattern": "arn:.*",
-            "relationshipRef": {
-              "propertyPath": "/properties/Arn",
-              "typeName": "AWS::S3::Bucket"
-            },
             "type": "string"
           },
           "BufferingHints": {
@@ -794,10 +789,6 @@
             "maxLength": 512,
             "minLength": 1,
             "pattern": "arn:.*",
-            "relationshipRef": {
-              "propertyPath": "/properties/Arn",
-              "typeName": "AWS::IAM::Role"
-            },
             "type": "string"
           },
           "S3BackupConfiguration": {
@@ -899,10 +890,6 @@
             "maxLength": 512,
             "minLength": 1,
             "pattern": "arn:.*",
-            "relationshipRef": {
-              "propertyPath": "/properties/Arn",
-              "typeName": "AWS::IAM::Role"
-            },
             "type": "string"
           },
           "S3BackupMode": {
@@ -946,6 +933,9 @@
       "IcebergDestinationConfiguration": {
         "additionalProperties": false,
         "properties": {
+          "AppendOnly": {
+            "type": "boolean"
+          },
           "BufferingHints": {
             "$ref": "#/definitions/BufferingHints"
           },
@@ -968,14 +958,16 @@
             "maxLength": 512,
             "minLength": 1,
             "pattern": "arn:.*",
-            "relationshipRef": {
-              "propertyPath": "/properties/Arn",
-              "typeName": "AWS::IAM::Role"
-            },
             "type": "string"
           },
           "S3Configuration": {
             "$ref": "#/definitions/S3DestinationConfiguration"
+          },
+          "SchemaEvolutionConfiguration": {
+            "$ref": "#/definitions/SchemaEvolutionConfiguration"
+          },
+          "TableCreationConfiguration": {
+            "$ref": "#/definitions/TableCreationConfiguration"
           },
           "s3BackupMode": {
             "enum": [
@@ -1005,10 +997,6 @@
         "additionalProperties": false,
         "properties": {
           "AWSKMSKeyARN": {
-            "relationshipRef": {
-              "propertyPath": "/properties/Arn",
-              "typeName": "AWS::KMS::Key"
-            },
             "type": "string"
           }
         },
@@ -1024,20 +1012,12 @@
             "maxLength": 512,
             "minLength": 1,
             "pattern": "arn:.*",
-            "relationshipRef": {
-              "propertyPath": "/properties/Arn",
-              "typeName": "AWS::Kinesis::Stream"
-            },
             "type": "string"
           },
           "RoleARN": {
             "maxLength": 512,
             "minLength": 1,
             "pattern": "arn:.*",
-            "relationshipRef": {
-              "propertyPath": "/properties/Arn",
-              "typeName": "AWS::IAM::Role"
-            },
             "type": "string"
           }
         },
@@ -1057,10 +1037,6 @@
             "maxLength": 512,
             "minLength": 1,
             "pattern": "arn:.*",
-            "relationshipRef": {
-              "propertyPath": "/properties/Arn",
-              "typeName": "AWS::MSK::Cluster"
-            },
             "type": "string"
           },
           "ReadFromTimestamp": {
@@ -1174,6 +1150,20 @@
         },
         "type": "object"
       },
+      "PartitionField": {
+        "additionalProperties": false,
+        "properties": {
+          "SourceName": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "SourceName"
+        ],
+        "type": "object"
+      },
       "ProcessingConfiguration": {
         "additionalProperties": false,
         "properties": {
@@ -1282,10 +1272,6 @@
             "maxLength": 512,
             "minLength": 1,
             "pattern": "arn:.*",
-            "relationshipRef": {
-              "propertyPath": "/properties/Arn",
-              "typeName": "AWS::IAM::Role"
-            },
             "type": "string"
           },
           "S3BackupConfiguration": {
@@ -1343,10 +1329,6 @@
             "maxLength": 2048,
             "minLength": 1,
             "pattern": "arn:.*",
-            "relationshipRef": {
-              "propertyPath": "/properties/Arn",
-              "typeName": "AWS::S3::Bucket"
-            },
             "type": "string"
           },
           "BufferingHints": {
@@ -1382,10 +1364,6 @@
             "maxLength": 512,
             "minLength": 1,
             "pattern": "arn:.*",
-            "relationshipRef": {
-              "propertyPath": "/properties/Arn",
-              "typeName": "AWS::IAM::Role"
-            },
             "type": "string"
           }
         },
@@ -1402,10 +1380,6 @@
             "type": "string"
           },
           "DatabaseName": {
-            "relationshipRef": {
-              "propertyPath": "/properties/Id",
-              "typeName": "AWS::Glue::Database"
-            },
             "type": "string"
           },
           "Region": {
@@ -1415,21 +1389,22 @@
             "maxLength": 512,
             "minLength": 1,
             "pattern": "arn:.*",
-            "relationshipRef": {
-              "propertyPath": "/properties/Arn",
-              "typeName": "AWS::IAM::Role"
-            },
             "type": "string"
           },
           "TableName": {
-            "relationshipRef": {
-              "propertyPath": "/properties/Id",
-              "typeName": "AWS::Glue::Table"
-            },
             "type": "string"
           },
           "VersionId": {
             "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "SchemaEvolutionConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "Enabled": {
+            "type": "boolean"
           }
         },
         "type": "object"
@@ -1444,20 +1419,12 @@
             "maxLength": 512,
             "minLength": 1,
             "pattern": "arn:.*:iam::\\d{12}:role/[a-zA-Z_0-9+=,.@\\-_/]+",
-            "relationshipRef": {
-              "propertyPath": "/properties/Arn",
-              "typeName": "AWS::IAM::Role"
-            },
             "type": "string"
           },
           "SecretARN": {
             "maxLength": 2048,
             "minLength": 1,
             "pattern": "arn:.*:secretsmanager:[a-zA-Z0-9\\-]+:\\d{12}:secret:[a-zA-Z0-9\\-/_+=.@]+",
-            "relationshipRef": {
-              "propertyPath": "/properties/Arn",
-              "typeName": "AWS::SecretsManager::Secret"
-            },
             "type": "string"
           }
         },
@@ -1549,10 +1516,6 @@
             "maxLength": 512,
             "minLength": 1,
             "pattern": "arn:.*",
-            "relationshipRef": {
-              "propertyPath": "/properties/Arn",
-              "typeName": "AWS::IAM::Role"
-            },
             "type": "string"
           },
           "S3BackupMode": {
@@ -1713,6 +1676,15 @@
         },
         "type": "object"
       },
+      "TableCreationConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "Enabled": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
       "Tag": {
         "additionalProperties": false,
         "properties": {
@@ -1746,10 +1718,6 @@
             "maxLength": 512,
             "minLength": 1,
             "pattern": "arn:.*",
-            "relationshipRef": {
-              "propertyPath": "/properties/Arn",
-              "typeName": "AWS::IAM::Role"
-            },
             "type": "string"
           },
           "SecurityGroupIds": {
@@ -1806,7 +1774,8 @@
           "iam:GetRole",
           "iam:PassRole",
           "kms:CreateGrant",
-          "kms:DescribeKey"
+          "kms:DescribeKey",
+          "firehose:TagDeliveryStream"
         ]
       },
       "delete": {
@@ -1839,7 +1808,8 @@
           "firehose:UntagDeliveryStream",
           "kms:CreateGrant",
           "kms:RevokeGrant",
-          "kms:DescribeKey"
+          "kms:DescribeKey",
+          "iam:PassRole"
         ]
       }
     },
@@ -1876,6 +1846,9 @@
           "MSKAsSource"
         ],
         "type": "string"
+      },
+      "DirectPutSourceConfiguration": {
+        "$ref": "#/definitions/DirectPutSourceConfiguration"
       },
       "ElasticsearchDestinationConfiguration": {
         "$ref": "#/definitions/ElasticsearchDestinationConfiguration"
@@ -1919,6 +1892,52 @@
     "readOnlyProperties": [
       "/properties/Arn"
     ],
-    "typeName": "AWS::KinesisFirehose::DeliveryStream"
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "firehose:TagDeliveryStream",
+        "firehose:ListTagsForDeliveryStream",
+        "firehose:UntagDeliveryStream"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::KinesisFirehose::DeliveryStream",
+    "writeOnlyProperties": [
+      "/properties/HttpEndpointDestinationConfiguration/EndpointConfiguration/AccessKey",
+      "/properties/RedshiftDestinationConfiguration/Password",
+      "/properties/ElasticsearchDestinationConfiguration/CloudWatchLoggingOptions/Enabled",
+      "/properties/AmazonopensearchserviceDestinationConfiguration",
+      "/properties/ElasticsearchDestinationConfiguration",
+      "/properties/SnowflakeDestinationConfiguration",
+      "/properties/AmazonOpenSearchServerlessDestinationConfiguration",
+      "/properties/DatabaseSourceConfiguration",
+      "/properties/IcebergDestinationConfiguration",
+      "/properties/HttpEndpointDestinationConfiguration/SecretsManagerConfiguration",
+      "/properties/RedshiftDestinationConfiguration/ProcessingConfiguration",
+      "/properties/S3DestinationConfiguration",
+      "/properties/MSKSourceConfiguration",
+      "/properties/KinesisStreamSourceConfiguration",
+      "/properties/SnowflakeDestinationConfiguration/SnowflakeVpcConfiguration",
+      "/properties/HttpEndpointDestinationConfiguration/ProcessingConfiguration",
+      "/properties/RedshiftDestinationConfiguration/S3Configuration/EncryptionConfiguration/KMSEncryptionConfig/AWSKMSKeyARN",
+      "/properties/SplunkDestinationConfiguration/BufferingHints",
+      "/properties/SplunkDestinationConfiguration/SecretsManagerConfiguration",
+      "/properties/SplunkDestinationConfiguration/ProcessingConfiguration",
+      "/properties/SplunkDestinationConfiguration/CloudWatchLoggingOptions",
+      "/properties/SplunkDestinationConfiguration/S3Configuration/EncryptionConfiguration/NoEncryptionConfig",
+      "/properties/RedshiftDestinationConfiguration/S3BackupConfiguration/ErrorOutputPrefix",
+      "/properties/RedshiftDestinationConfiguration/S3BackupConfiguration/EncryptionConfiguration/KMSEncryptionConfig/AWSKMSKeyARN",
+      "/properties/ExtendedS3DestinationConfiguration/FileExtension",
+      "/properties/RedshiftDestinationConfiguration/S3Configuration/ErrorOutputPrefix",
+      "/properties/RedshiftDestinationConfiguration/SecretsManagerConfiguration/Enabled",
+      "/properties/RedshiftDestinationConfiguration/SecretsManagerConfiguration/SecretARN",
+      "/properties/HttpEndpointDestinationConfiguration/S3Configuration/EncryptionConfiguration/KMSEncryptionConfig/AWSKMSKeyARN",
+      "/properties/ExtendedS3DestinationConfiguration/CustomTimeZone",
+      "/properties/RedshiftDestinationConfiguration/SecretsManagerConfiguration/RoleARN",
+      "/properties/DirectPutSourceConfiguration/ThroughputHintInMBs"
+    ]
   }
 }

@@ -138,11 +138,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.MediaLive/ChannelPlacementGroup@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/8"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -231,7 +231,7 @@
         "type": {
           "$ref": "#/2"
         },
-        "flags": 5,
+        "flags": 4,
         "description": "A cloudwatch alarm template group's identifier. Can be either be its id or current name."
       },
       "Id": {
@@ -337,11 +337,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.MediaLive/CloudWatchAlarmTemplate@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/18"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -440,11 +440,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.MediaLive/CloudWatchAlarmTemplateGroup@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/23"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -652,11 +652,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.MediaLive/Cluster@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/36"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -740,7 +740,7 @@
         "type": {
           "$ref": "#/2"
         },
-        "flags": 5,
+        "flags": 4,
         "description": "An eventbridge rule template group's identifier. Can be either be its id or current name."
       },
       "Id": {
@@ -809,11 +809,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.MediaLive/EventBridgeRuleTemplate@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/44"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -912,11 +912,1129 @@
   {
     "$type": "ResourceType",
     "name": "AWS.MediaLive/EventBridgeRuleTemplateGroup@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/49"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Algorithm",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputClass",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputDestination",
+    "properties": {
+      "Ip": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The system-generated static IP address of endpoint.\nIt remains fixed for the lifetime of the input."
+      },
+      "Network": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The ID of the attached network."
+      },
+      "NetworkRoutes": {
+        "type": {
+          "$ref": "#/84"
+        },
+        "flags": 0,
+        "description": "If the push input has an input location of ON-PREM it's a requirement to specify what the route of the input\nis going to be on the customer local network."
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The port number for the input."
+      },
+      "StaticIpAddress": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The static IP address for the input destination."
+      },
+      "StreamName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The stream name for the input destination."
+      },
+      "Url": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "This represents the endpoint that the customer stream will be\npushed to."
+      },
+      "Vpc": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 0,
+        "description": "The properties for a VPC type input destination."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputDestinationRoute",
+    "properties": {
+      "Cidr": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The CIDR of the route."
+      },
+      "Gateway": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "An optional gateway for the route."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputDestinationVpc",
+    "properties": {
+      "AvailabilityZone": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The availability zone of the Input destination."
+      },
+      "NetworkInterfaceId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The network interface ID of the Input destination in the VPC."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputDeviceSettings",
+    "properties": {
+      "Id": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 16,
+        "description": "The unique ID for the device."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputNetworkLocation",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputRequestDestinationRoute",
+    "properties": {
+      "Cidr": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The CIDR of the route."
+      },
+      "Gateway": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "An optional gateway for the route."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputSdpLocation",
+    "properties": {
+      "MediaIndex": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The index of the media stream in the SDP file for one SMPTE 2110 stream."
+      },
+      "SdpUrl": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The URL of the SDP file for one SMPTE 2110 stream."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputSource",
+    "properties": {
+      "PasswordParam": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The key used to extract the password from EC2 Parameter store."
+      },
+      "Url": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "This represents the customer's source URL where stream is\npulled from."
+      },
+      "Username": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The username for the input source."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputSourceType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputState",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputVpcRequest",
+    "properties": {
+      "SecurityGroupIds": {
+        "type": {
+          "$ref": "#/85"
+        },
+        "flags": 0,
+        "description": "A list of up to 5 EC2 VPC security group IDs to attach to the Input VPC network interfaces.\nRequires subnetIds. If none are specified then the VPC default security group will be used."
+      },
+      "SubnetIds": {
+        "type": {
+          "$ref": "#/86"
+        },
+        "flags": 0,
+        "description": "A list of 2 VPC subnet IDs from the same VPC.\nSubnet IDs must be mapped to two unique availability zones (AZ)."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MediaConnectFlow",
+    "properties": {
+      "FlowArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The unique ARN of the MediaConnect Flow being used as a source."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MulticastSettings",
+    "properties": {
+      "Sources": {
+        "type": {
+          "$ref": "#/87"
+        },
+        "flags": 0,
+        "description": "Placeholder documentation for __listOfMulticastSource"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MulticastSource",
+    "properties": {
+      "SourceIp": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "This represents the ip address of the device sending the multicast stream."
+      },
+      "Url": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "This represents the customer's source URL where multicast stream is pulled from."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MulticastSourceCreateRequest",
+    "properties": {
+      "SourceIp": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "This represents the ip address of the device sending the multicast stream."
+      },
+      "Url": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "This represents the customer's source URL where multicast stream is pulled from."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MulticastSourceUpdateRequest",
+    "properties": {
+      "SourceIp": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "This represents the ip address of the device sending the multicast stream."
+      },
+      "Url": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "This represents the customer's source URL where multicast stream is pulled from."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RouterDestinationSettings",
+    "properties": {
+      "AvailabilityZoneName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The Availability Zone (AZ) name this destination is created in."
+      },
+      "RouterOutputArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The ARN of the MediaConnect Router output currently connected to this input."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RouterSettings",
+    "properties": {
+      "Destinations": {
+        "type": {
+          "$ref": "#/88"
+        },
+        "flags": 2,
+        "description": "MediaConnect Router destinations associated with this input."
+      },
+      "EncryptionType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Encryption configuration for the MediaConnect Router association. AUTOMATIC uses a service-managed secret; SECRETS_MANAGER requires SecretArn."
+      },
+      "SecretArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The ARN of the Secrets Manager secret used to encrypt this input. Required when EncryptionType is SECRETS_MANAGER."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Smpte2110ReceiverGroup",
+    "properties": {
+      "SdpSettings": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0,
+        "description": "The single Smpte2110ReceiverGroupSdpSettings that identify the video, audio, and ancillary streams for this receiver group."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Smpte2110ReceiverGroupSdpSettings",
+    "properties": {
+      "AncillarySdps": {
+        "type": {
+          "$ref": "#/89"
+        },
+        "flags": 0,
+        "description": "A list of InputSdpLocations. Each item in the list specifies the SDP file and index for one ancillary SMPTE 2110 stream.\nEach stream encapsulates one captions stream (out of any number you can include) or the single SCTE 35 stream that you can include."
+      },
+      "AudioSdps": {
+        "type": {
+          "$ref": "#/90"
+        },
+        "flags": 0,
+        "description": "A list of InputSdpLocations. Each item in the list specifies the SDP file and index for one audio SMPTE 2110 stream."
+      },
+      "VideoSdp": {
+        "type": {
+          "$ref": "#/59"
+        },
+        "flags": 0,
+        "description": "The InputSdpLocation that specifies the SDP file and index for the single video SMPTE 2110 stream for this 2110 input."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Smpte2110ReceiverGroupSettings",
+    "properties": {
+      "Smpte2110ReceiverGroups": {
+        "type": {
+          "$ref": "#/91"
+        },
+        "flags": 0,
+        "description": "Placeholder documentation for __listOfSmpte2110ReceiverGroup"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SrtCallerDecryption",
+    "properties": {
+      "Algorithm": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The algorithm used to encrypt content."
+      },
+      "PassphraseSecretArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The ARN for the secret in Secrets Manager. Someone in your organization must create a secret and provide you with its ARN. The secret holds the passphrase that MediaLive uses to decrypt the source content."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SrtCallerDecryptionRequest",
+    "properties": {
+      "Algorithm": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The algorithm used to encrypt content."
+      },
+      "PassphraseSecretArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The ARN for the secret in Secrets Manager. Someone in your organization must create a secret and provide you with its ARN. This secret holds the passphrase that MediaLive will use to decrypt the source content."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SrtCallerSource",
+    "properties": {
+      "Decryption": {
+        "type": {
+          "$ref": "#/75"
+        },
+        "flags": 0,
+        "description": "The decryption settings for the SRT caller source. Present only if the source has decryption enabled."
+      },
+      "MinimumLatency": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The preferred latency (in milliseconds) for implementing packet loss and recovery. Packet recovery is a key feature of SRT."
+      },
+      "SrtListenerAddress": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The IP address at the upstream system (the listener) that MediaLive (the caller) connects to."
+      },
+      "SrtListenerPort": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The port at the upstream system (the listener) that MediaLive (the caller) connects to."
+      },
+      "StreamId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The stream ID, if the upstream system uses this identifier."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SrtCallerSourceRequest",
+    "properties": {
+      "Decryption": {
+        "type": {
+          "$ref": "#/76"
+        },
+        "flags": 0,
+        "description": "Complete these parameters only if the content is encrypted."
+      },
+      "MinimumLatency": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The preferred latency (in milliseconds) for implementing packet loss and recovery. Packet recovery is a key feature of SRT. Obtain this value from the operator at the upstream system."
+      },
+      "SrtListenerAddress": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The IP address at the upstream system (the listener) that MediaLive (the caller) will connect to."
+      },
+      "SrtListenerPort": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The port at the upstream system (the listener) that MediaLive (the caller) will connect to."
+      },
+      "StreamId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "This value is required if the upstream system uses this identifier because without it, the SRT handshake between MediaLive (the caller) and the upstream system (the listener) might fail."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SrtListenerDecryption",
+    "properties": {
+      "Algorithm": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The algorithm used to encrypt content."
+      },
+      "PassphraseSecretArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The ARN for the secret in Secrets Manager. Someone in your organization must create a secret and provide you with its ARN. The secret holds the passphrase that MediaLive uses to decrypt the source content."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SrtListenerDecryptionRequest",
+    "properties": {
+      "Algorithm": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The algorithm used to encrypt content."
+      },
+      "PassphraseSecretArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The ARN for the secret in Secrets Manager. Someone in your organization must create a secret and provide you with its ARN. This secret holds the passphrase that MediaLive will use to decrypt the source content."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SrtListenerSettings",
+    "properties": {
+      "Decryption": {
+        "type": {
+          "$ref": "#/79"
+        },
+        "flags": 0,
+        "description": "The decryption settings for the SRT listener source. Present only if the source has decryption enabled."
+      },
+      "MinimumLatency": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The preferred latency (in milliseconds) for implementing packet loss and recovery. Packet recovery is a key feature of SRT."
+      },
+      "StreamId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The stream ID, if the upstream system uses this identifier."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SrtListenerSettingsRequest",
+    "properties": {
+      "Decryption": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 1,
+        "description": "Complete these parameters only if the content is encrypted."
+      },
+      "MinimumLatency": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The preferred latency (in milliseconds) for implementing packet loss and recovery. Packet recovery is a key feature of SRT. Obtain this value from the operator at the upstream system."
+      },
+      "StreamId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "This value is required if the upstream system uses this identifier because without it, the SRT handshake between MediaLive (the listener) and the upstream system (the caller) might fail."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SrtSettings",
+    "properties": {
+      "SrtCallerSources": {
+        "type": {
+          "$ref": "#/92"
+        },
+        "flags": 0,
+        "description": "Placeholder documentation for __listOfSrtCallerSource"
+      },
+      "SrtListenerSettings": {
+        "type": {
+          "$ref": "#/81"
+        },
+        "flags": 0,
+        "description": "Settings for an SRT listener input. Configured only when the input uses the SRT_LISTENER input type."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/54"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/67"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/70"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/59"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/59"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/72"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/77"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaLive/InputProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/53"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/56"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/65"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/60"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Input_Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/InputProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The Unique ARN of the input (generated, immutable)."
+      },
+      "AttachedChannels": {
+        "type": {
+          "$ref": "#/94"
+        },
+        "flags": 2,
+        "description": "A list of channel IDs that that input is attached to (currently an input can only be attached to one channel)."
+      },
+      "DestinationUrls": {
+        "type": {
+          "$ref": "#/95"
+        },
+        "flags": 2,
+        "description": "A list of destination URLs of the input (PUSH-type)."
+      },
+      "Destinations": {
+        "type": {
+          "$ref": "#/96"
+        },
+        "flags": 6,
+        "description": "A list of the destinations of the input (PUSH-type)."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18,
+        "description": "The generated ID of the input (unique for user account, immutable)."
+      },
+      "InputClass": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "STANDARD - MediaLive expects two sources to be connected to this input. If the channel is also STANDARD, both sources will be ingested. If the channel is SINGLE_PIPELINE, only the first source will be ingested; the second source will always be ignored, even if the first source fails.\nSINGLE_PIPELINE - You can connect only one source to this input. If the ChannelClass is also SINGLE_PIPELINE, this value is valid. If the ChannelClass is STANDARD, this value is not valid because the channel requires two sources in the input."
+      },
+      "InputDevices": {
+        "type": {
+          "$ref": "#/97"
+        },
+        "flags": 0,
+        "description": "Settings for the input devices."
+      },
+      "InputNetworkLocation": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The location of this input. AWS, for an input existing in the AWS Cloud, On-Prem for\nan input in a customer network."
+      },
+      "InputPartnerIds": {
+        "type": {
+          "$ref": "#/98"
+        },
+        "flags": 2,
+        "description": "A list of IDs for all Inputs which are partners of this one."
+      },
+      "InputSecurityGroups": {
+        "type": {
+          "$ref": "#/99"
+        },
+        "flags": 4,
+        "description": "A list of security groups referenced by IDs to attach to the input."
+      },
+      "InputSourceType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "Certain pull input sources can be dynamic, meaning that they can have their URL's dynamically changes\nduring input switch actions. Presently, this functionality only works with MP4_FILE and TS_FILE inputs."
+      },
+      "MediaConnectFlows": {
+        "type": {
+          "$ref": "#/100"
+        },
+        "flags": 0,
+        "description": "A list of MediaConnect Flows for this input."
+      },
+      "MulticastSettings": {
+        "type": {
+          "$ref": "#/66"
+        },
+        "flags": 0,
+        "description": "Multicast Input settings."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The user-assigned name (This is a mutable value)."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the role this input assumes during and after creation."
+      },
+      "RouterSettings": {
+        "type": {
+          "$ref": "#/71"
+        },
+        "flags": 0,
+        "description": "Information about the MediaConnect Router association for this input."
+      },
+      "SdiSources": {
+        "type": {
+          "$ref": "#/101"
+        },
+        "flags": 0,
+        "description": "SDI Sources for this Input."
+      },
+      "SecurityGroups": {
+        "type": {
+          "$ref": "#/102"
+        },
+        "flags": 2,
+        "description": "A list of IDs for all the Input Security Groups attached to the input."
+      },
+      "Smpte2110ReceiverGroupSettings": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 0,
+        "description": "Include this parameter if the input is a SMPTE 2110 input, to identify the stream sources for this input."
+      },
+      "SourceUrls": {
+        "type": {
+          "$ref": "#/103"
+        },
+        "flags": 2,
+        "description": "A list of source URLs of the input (PULL-type)."
+      },
+      "Sources": {
+        "type": {
+          "$ref": "#/104"
+        },
+        "flags": 0,
+        "description": "A list of the sources of the input (PULL-type)."
+      },
+      "SrtSettings": {
+        "type": {
+          "$ref": "#/83"
+        },
+        "flags": 0,
+        "description": "The settings associated with an SRT input."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "Placeholder documentation for InputState"
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/105"
+        },
+        "flags": 0,
+        "description": "A collection of key-value pairs."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The different types of inputs that AWS Elemental MediaLive supports."
+      },
+      "Vpc": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 4,
+        "description": "Settings for a private VPC Input.\nWhen this property is specified, the input destination addresses will be created in a VPC rather than with public Internet addresses.\nThis property requires setting the roleArn property on Input creation.\nNot compatible with the inputSecurityGroups property."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/Input",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/106"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MediaLive/Input@default",
+    "body": {
+      "$ref": "#/107"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputWhitelistRule",
+    "properties": {
+      "Cidr": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The IPv4 CIDR that's whitelisted."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaLive/InputSecurityGroupProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputSecurityGroup_Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/109"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/InputSecurityGroupProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "Unique ARN of Input Security Group"
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18,
+        "description": "The Id of the Input Security Group"
+      },
+      "Inputs": {
+        "type": {
+          "$ref": "#/111"
+        },
+        "flags": 2,
+        "description": "The list of inputs currently using this Input Security Group."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/112"
+        },
+        "flags": 0,
+        "description": "A collection of key-value pairs."
+      },
+      "WhitelistRules": {
+        "type": {
+          "$ref": "#/113"
+        },
+        "flags": 0,
+        "description": "Whitelist rules and their sync status"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/InputSecurityGroup",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/114"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MediaLive/InputSecurityGroup@default",
+    "body": {
+      "$ref": "#/115"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -924,7 +2042,7 @@
     "properties": {
       "MultiplexMediaConnectOutputDestinationSettings": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/120"
         },
         "flags": 0,
         "description": "Multiplex MediaConnect output destination settings."
@@ -1009,13 +2127,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/51"
+      "$ref": "#/117"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/53"
+      "$ref": "#/119"
     }
   },
   {
@@ -1031,14 +2149,14 @@
       },
       "AvailabilityZones": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/122"
         },
         "flags": 1,
         "description": "A list of availability zones for the multiplex."
       },
       "Destinations": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/123"
         },
         "flags": 0,
         "description": "A list of the multiplex output destinations."
@@ -1052,7 +2170,7 @@
       },
       "MultiplexSettings": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/118"
         },
         "flags": 1,
         "description": "Configuration for a multiplex event."
@@ -1086,7 +2204,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/124"
         },
         "flags": 0,
         "description": "A collection of key-value pairs."
@@ -1113,7 +2231,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/125"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1123,11 +2241,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.MediaLive/Multiplex@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/60"
+      "$ref": "#/126"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1135,13 +2253,13 @@
     "properties": {
       "AudioPids": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/135"
         },
         "flags": 0
       },
       "DvbSubPids": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/136"
         },
         "flags": 0
       },
@@ -1165,7 +2283,7 @@
       },
       "KlvDataPids": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/137"
         },
         "flags": 0
       },
@@ -1189,7 +2307,7 @@
       },
       "Scte27Pids": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/138"
         },
         "flags": 0
       },
@@ -1272,14 +2390,14 @@
       },
       "ServiceDescriptor": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/130"
         },
         "flags": 0,
         "description": "Transport stream service descriptor configuration for the Multiplex program."
       },
       "VideoSettings": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/133"
         },
         "flags": 0,
         "description": "Program video settings configuration."
@@ -1354,7 +2472,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/63"
+      "$ref": "#/129"
     }
   },
   {
@@ -1377,21 +2495,21 @@
       },
       "MultiplexProgramSettings": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/131"
         },
         "flags": 0,
         "description": "The settings for this multiplex program."
       },
       "PacketIdentifiersMap": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/128"
         },
         "flags": 0,
         "description": "The packet identifier map for this multiplex program."
       },
       "PipelineDetails": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/140"
         },
         "flags": 0,
         "description": "Contains information about the current sources for the specified program in the specified multiplex. Keep in mind that each multiplex pipeline connects to both pipelines in a given source channel (the channel identified by the program). But only one of those channel pipelines is ever active at one time."
@@ -1432,7 +2550,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/141"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1442,11 +2560,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.MediaLive/Multiplexprogram@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/76"
+      "$ref": "#/142"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1517,19 +2635,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/78"
+      "$ref": "#/144"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/80"
+      "$ref": "#/146"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/81"
+      "$ref": "#/147"
     }
   },
   {
@@ -1545,7 +2663,7 @@
       },
       "AssociatedClusterIds": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/149"
         },
         "flags": 2
       },
@@ -1558,7 +2676,7 @@
       },
       "IpPools": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/150"
         },
         "flags": 1,
         "description": "The list of IP address cidr pools for the network"
@@ -1572,7 +2690,7 @@
       },
       "Routes": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/151"
         },
         "flags": 0,
         "description": "The routes for the network"
@@ -1586,7 +2704,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/152"
         },
         "flags": 0,
         "description": "A collection of key-value pairs."
@@ -1613,7 +2731,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/153"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1623,11 +2741,278 @@
   {
     "$type": "ResourceType",
     "name": "AWS.MediaLive/Network@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/88"
+      "$ref": "#/154"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NodeConnectionState",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NodeInterfaceMapping",
+    "properties": {
+      "LogicalInterfaceName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The logical name for this interface."
+      },
+      "NetworkInterfaceMode": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The network interface mode."
+      },
+      "PhysicalInterfaceName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The physical interface name."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NodeInterfaceMappingCreateRequest",
+    "properties": {
+      "LogicalInterfaceName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The logical name for this interface."
+      },
+      "NetworkInterfaceMode": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The network interface mode."
+      },
+      "PhysicalInterfaceName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The physical interface name."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NodeRole",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NodeState",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SdiSourceMapping",
+    "properties": {
+      "CardNumber": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The card number."
+      },
+      "ChannelNumber": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The channel number."
+      },
+      "SdiSource": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The SDI source."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaLive/NodeProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/157"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/161"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/162"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/NodeProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18,
+        "description": "The ARN of the Node. It is automatically assigned when the Node is created."
+      },
+      "ChannelPlacementGroups": {
+        "type": {
+          "$ref": "#/164"
+        },
+        "flags": 2,
+        "description": "An array of IDs. Each ID is one ChannelPlacementGroup that is associated with this Node."
+      },
+      "ClusterId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The ID of the Cluster that the Node belongs to."
+      },
+      "ConnectionState": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The unique ID of the Node. Unique in the Cluster. The ID is the resource-id portion of the ARN."
+      },
+      "InstanceArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The ARN of the EC2 instance hosting the Node."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The user-specified name of the Node."
+      },
+      "NodeInterfaceMappings": {
+        "type": {
+          "$ref": "#/165"
+        },
+        "flags": 0,
+        "description": "An array of interface mappings for the Node."
+      },
+      "Role": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      },
+      "SdiSourceMappings": {
+        "type": {
+          "$ref": "#/166"
+        },
+        "flags": 0,
+        "description": "An array of SDI source mappings."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/167"
+        },
+        "flags": 0,
+        "description": "A collection of key-value pairs."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/Node",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/168"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MediaLive/Node@default",
+    "body": {
+      "$ref": "#/169"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1675,7 +3060,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/93"
+      "$ref": "#/174"
     }
   },
   {
@@ -1698,7 +3083,7 @@
       },
       "Inputs": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/176"
         },
         "flags": 2,
         "description": "The list of inputs currently using this SDI source."
@@ -1724,7 +3109,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/177"
         },
         "flags": 0,
         "description": "A collection of key-value pairs."
@@ -1757,7 +3142,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/178"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1767,11 +3152,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.MediaLive/SdiSource@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/98"
+      "$ref": "#/179"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1784,7 +3169,7 @@
     "properties": {
       "Destinations": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/191"
         },
         "flags": 0
       },
@@ -1797,7 +3182,7 @@
       },
       "Sources": {
         "type": {
-          "$ref": "#/111"
+          "$ref": "#/192"
         },
         "flags": 0
       }
@@ -1896,13 +3281,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/103"
+      "$ref": "#/184"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/103"
+      "$ref": "#/184"
     }
   },
   {
@@ -1949,13 +3334,13 @@
       },
       "CloudWatchAlarmTemplateGroupIdentifiers": {
         "type": {
-          "$ref": "#/113"
+          "$ref": "#/194"
         },
         "flags": 4
       },
       "CloudWatchAlarmTemplateGroupIds": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/195"
         },
         "flags": 2
       },
@@ -1988,25 +3373,25 @@
       },
       "EventBridgeRuleTemplateGroupIdentifiers": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/196"
         },
         "flags": 4
       },
       "EventBridgeRuleTemplateGroupIds": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/197"
         },
         "flags": 2
       },
       "FailedMediaResourceMap": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/181"
         },
         "flags": 2
       },
       "ForceRediscovery": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/198"
         },
         "flags": 4,
         "description": "If true, will force a rediscovery of a signal map if an unchanged discoveryEntryPointArn is provided."
@@ -2032,13 +3417,13 @@
       },
       "LastSuccessfulMonitorDeployment": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/188"
         },
         "flags": 2
       },
       "MediaResourceMap": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/183"
         },
         "flags": 2
       },
@@ -2050,14 +3435,14 @@
       },
       "MonitorChangesPendingDeployment": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/198"
         },
         "flags": 2,
         "description": "If true, there are pending monitor changes for this signal map that can be deployed."
       },
       "MonitorDeployment": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/185"
         },
         "flags": 2
       },
@@ -2076,7 +3461,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/189"
         },
         "flags": 0
       }
@@ -2102,7 +3487,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/118"
+          "$ref": "#/199"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2112,10 +3497,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.MediaLive/SignalMap@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/119"
+      "$ref": "#/200"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

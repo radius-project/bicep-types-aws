@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AppStream-AppBlockBuilder",
   "type": "AWS::AppStream::AppBlockBuilder",
-  "time": "2024-02-26T19:00:54.552Z",
+  "time": "2026-10-21T23:28:05.991Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -79,6 +79,7 @@
           "appstream:AssociateAppBlockBuilderAppBlock",
           "appstream:DescribeAppBlockBuilderAppBlockAssociations",
           "appstream:TagResource",
+          "appstream:ListTagsForResource",
           "iam:PassRole"
         ]
       },
@@ -97,7 +98,8 @@
       },
       "read": {
         "permissions": [
-          "appstream:DescribeAppBlockBuilders"
+          "appstream:DescribeAppBlockBuilders",
+          "appstream:ListTagsForResource"
         ]
       },
       "update": {
@@ -145,6 +147,9 @@
       "Description": {
         "type": "string"
       },
+      "DisableIMDSV1": {
+        "type": "boolean"
+      },
       "DisplayName": {
         "type": "string"
       },
@@ -188,6 +193,11 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-appstream.git",
     "tagging": {
       "cloudFormationSystemTags": false,
+      "permissions": [
+        "appstream:ListTagsForResource",
+        "appstream:TagResource",
+        "appstream:UntagResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,
@@ -195,7 +205,6 @@
     },
     "typeName": "AWS::AppStream::AppBlockBuilder",
     "writeOnlyProperties": [
-      "/properties/Tags",
       "/properties/AppBlockArns"
     ]
   }

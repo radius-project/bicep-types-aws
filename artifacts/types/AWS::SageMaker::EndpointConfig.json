@@ -1,0 +1,842 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-EndpointConfig",
+  "type": "AWS::SageMaker::EndpointConfig",
+  "time": "2026-10-19T17:50:06.318Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/KmsKeyId",
+      "/properties/AsyncInferenceConfig",
+      "/properties/ExecutionRoleArn",
+      "/properties/ShadowProductionVariants",
+      "/properties/EnableNetworkIsolation",
+      "/properties/ProductionVariants",
+      "/properties/DataCaptureConfig",
+      "/properties/ExplainerConfig",
+      "/properties/MetricsConfig",
+      "/properties/EndpointConfigName",
+      "/properties/VpcConfig"
+    ],
+    "definitions": {
+      "AsyncInferenceClientConfig": {
+        "additionalProperties": false,
+        "description": "Configures the behavior of the client used by SageMaker to interact with the model container during asynchronous inference.",
+        "properties": {
+          "MaxConcurrentInvocationsPerInstance": {
+            "description": "The maximum number of concurrent requests sent by the SageMaker client to the model container. If no value is provided, SageMaker will choose an optimal value for you.",
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "AsyncInferenceConfig": {
+        "additionalProperties": false,
+        "description": "Specifies configuration for how an endpoint performs asynchronous inference.",
+        "properties": {
+          "ClientConfig": {
+            "$ref": "#/definitions/AsyncInferenceClientConfig",
+            "description": "Configures the behavior of the client used by SageMaker to interact with the model container during asynchronous inference."
+          },
+          "OutputConfig": {
+            "$ref": "#/definitions/AsyncInferenceOutputConfig",
+            "description": "Specifies the configuration for asynchronous inference invocation outputs."
+          }
+        },
+        "required": [
+          "OutputConfig"
+        ],
+        "type": "object"
+      },
+      "AsyncInferenceNotificationConfig": {
+        "additionalProperties": false,
+        "description": "Specifies the configuration for notifications of inference results for asynchronous inference.",
+        "properties": {
+          "ErrorTopic": {
+            "description": "Amazon SNS topic to post a notification to when an inference fails. If no topic is provided, no notification is sent on failure.",
+            "type": "string"
+          },
+          "IncludeInferenceResponseIn": {
+            "description": "The Amazon SNS topics where you want the inference response to be included.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "SuccessTopic": {
+            "description": "Amazon SNS topic to post a notification to when an inference completes successfully. If no topic is provided, no notification is sent on success.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "AsyncInferenceOutputConfig": {
+        "additionalProperties": false,
+        "description": "Specifies the configuration for asynchronous inference invocation outputs.",
+        "properties": {
+          "KmsKeyId": {
+            "description": "The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt the asynchronous inference output in Amazon S3.",
+            "type": "string"
+          },
+          "NotificationConfig": {
+            "$ref": "#/definitions/AsyncInferenceNotificationConfig",
+            "description": "Specifies the configuration for notifications of inference results for asynchronous inference."
+          },
+          "S3FailurePath": {
+            "description": "The Amazon S3 location to upload failure inference responses to.",
+            "type": "string"
+          },
+          "S3OutputPath": {
+            "description": "The Amazon S3 location to upload inference responses to.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "CapacityReservationConfig": {
+        "additionalProperties": false,
+        "description": "Settings for the capacity reservation for the compute instances that SageMaker AI reserves for an endpoint.",
+        "properties": {
+          "CapacityReservationPreference": {
+            "description": "Options that you can choose for the capacity reservation.",
+            "pattern": "capacity-reservations-only",
+            "type": "string"
+          },
+          "MlReservationArn": {
+            "description": "The Amazon Resource Name (ARN) that uniquely identifies the ML capacity reservation that SageMaker AI applies when it deploys the endpoint.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "CaptureContentTypeHeader": {
+        "additionalProperties": false,
+        "description": "Specifies the JSON and CSV content types of the data that the endpoint captures.",
+        "properties": {
+          "CsvContentTypes": {
+            "description": "A list of the CSV content types of the data that the endpoint captures. For the endpoint to capture the data, you must also specify the content type when you invoke the endpoint.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "JsonContentTypes": {
+            "description": "A list of the JSON content types of the data that the endpoint captures. For the endpoint to capture the data, you must also specify the content type when you invoke the endpoint.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          }
+        },
+        "type": "object"
+      },
+      "CaptureOption": {
+        "additionalProperties": false,
+        "description": "Specifies whether the endpoint captures input data or output data.",
+        "properties": {
+          "CaptureMode": {
+            "description": "Specifies whether the endpoint captures input data or output data.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "CaptureMode"
+        ],
+        "type": "object"
+      },
+      "ClarifyExplainerConfig": {
+        "additionalProperties": false,
+        "description": "The configuration parameters for the SageMaker Clarify explainer.",
+        "properties": {
+          "EnableExplanations": {
+            "description": "A JMESPath boolean expression used to filter which records to explain. Explanations are activated by default.",
+            "maxLength": 64,
+            "minLength": 1,
+            "type": "string"
+          },
+          "InferenceConfig": {
+            "$ref": "#/definitions/ClarifyInferenceConfig",
+            "description": "The inference configuration parameter for the model container."
+          },
+          "ShapConfig": {
+            "$ref": "#/definitions/ClarifyShapConfig",
+            "description": "The configuration for SHAP analysis."
+          }
+        },
+        "required": [
+          "ShapConfig"
+        ],
+        "type": "object"
+      },
+      "ClarifyInferenceConfig": {
+        "additionalProperties": false,
+        "description": "The inference configuration parameter for the model container.",
+        "properties": {
+          "ContentTemplate": {
+            "description": "A template string used to format a JSON record into an acceptable model container input.",
+            "maxLength": 64,
+            "minLength": 1,
+            "type": "string"
+          },
+          "FeatureHeaders": {
+            "description": "The names of the features. If provided, these are included in the endpoint response payload to help readability of the InvokeEndpoint output.",
+            "items": {
+              "maxLength": 64,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 256,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": false
+          },
+          "FeatureTypes": {
+            "description": "A list of data types of the features (optional). Applicable only to NLP explainability. If provided, FeatureTypes must have at least one 'text' string (for example, ['text']). If FeatureTypes is not provided, the explainer infers the feature types based on the baseline data.",
+            "items": {
+              "pattern": "numerical|categorical|text",
+              "type": "string"
+            },
+            "maxItems": 256,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": false
+          },
+          "FeaturesAttribute": {
+            "description": "Provides the JMESPath expression to extract the features from a model container input in JSON Lines format.",
+            "maxLength": 64,
+            "minLength": 1,
+            "type": "string"
+          },
+          "LabelAttribute": {
+            "description": "A JMESPath expression used to locate the list of label headers in the model container output.",
+            "maxLength": 64,
+            "minLength": 1,
+            "type": "string"
+          },
+          "LabelHeaders": {
+            "description": "For multiclass classification problems, the label headers are the names of the classes. Otherwise, the label header is the name of the predicted label.",
+            "items": {
+              "maxLength": 64,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 16,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": false
+          },
+          "LabelIndex": {
+            "description": "A zero-based index used to extract a label header or list of label headers from model container output in CSV format.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "MaxPayloadInMB": {
+            "description": "The maximum payload size (MB) allowed of a request from the explainer to the model container. Defaults to 6 MB.",
+            "maximum": 25,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "MaxRecordCount": {
+            "description": "The maximum number of records in a request that the model container can process when querying the model container for the predictions of a synthetic dataset. A record is a unit of input data that inference can be made on, for example, a single line in CSV data.",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "ProbabilityAttribute": {
+            "description": "A JMESPath expression used to extract the probability (or score) from the model container output if the model container is in JSON Lines format.",
+            "maxLength": 64,
+            "minLength": 1,
+            "type": "string"
+          },
+          "ProbabilityIndex": {
+            "description": "A zero-based index used to extract a probability value (score) or list from model container output in CSV format. If this value is not provided, the entire model container output will be treated as a probability value (score) or list.",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "ClarifyShapBaselineConfig": {
+        "additionalProperties": false,
+        "description": "The configuration for the SHAP baseline (also called the background or reference dataset) of the Kernal SHAP algorithm.",
+        "properties": {
+          "MimeType": {
+            "description": "The MIME type of the baseline data. Choose from 'text/csv' or 'application/jsonlines'. Defaults to 'text/csv'.",
+            "maxLength": 255,
+            "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9])*\\/[a-zA-Z0-9](-*[a-zA-Z0-9+.])*",
+            "type": "string"
+          },
+          "ShapBaseline": {
+            "description": "The inline SHAP baseline data in string format. ShapBaseline can have one or multiple records to be used as the baseline dataset. The format of the SHAP baseline file should be the same format as the training dataset.",
+            "maxLength": 4096,
+            "minLength": 1,
+            "pattern": "[\\s\\S]+",
+            "type": "string"
+          },
+          "ShapBaselineUri": {
+            "description": "The uniform resource identifier (URI) of the S3 bucket where the SHAP baseline file is stored. The format of the SHAP baseline file should be the same format as the format of the training dataset.",
+            "maxLength": 1024,
+            "pattern": "^(https|s3)://([^/]+)/?(.*)$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ClarifyShapConfig": {
+        "additionalProperties": false,
+        "description": "The configuration for SHAP analysis using SageMaker Clarify Explainer.",
+        "properties": {
+          "NumberOfSamples": {
+            "description": "The number of samples to be used for analysis by the Kernal SHAP algorithm.",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "Seed": {
+            "description": "The starting value used to initialize the random number generator in the explainer. Provide a value for this parameter to obtain a deterministic SHAP result.",
+            "type": "integer"
+          },
+          "ShapBaselineConfig": {
+            "$ref": "#/definitions/ClarifyShapBaselineConfig",
+            "description": "The configuration for the SHAP baseline of the Kernal SHAP algorithm."
+          },
+          "TextConfig": {
+            "$ref": "#/definitions/ClarifyTextConfig",
+            "description": "A parameter that indicates if text features are treated as text and explanations are provided for individual units of text. Required for natural language processing (NLP) explainability only."
+          },
+          "UseLogit": {
+            "description": "A Boolean toggle to indicate if you want to use the logit function (true) or log-odds units (false) for model predictions. Defaults to false.",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "ShapBaselineConfig"
+        ],
+        "type": "object"
+      },
+      "ClarifyTextConfig": {
+        "additionalProperties": false,
+        "description": "A parameter used to configure the SageMaker Clarify explainer to treat text features as text so that explanations are provided for individual units of text. Required only for natural language processing (NLP) explainability.",
+        "properties": {
+          "Granularity": {
+            "description": "The unit of granularity for the analysis of text features. For example, if the unit is 'token', then each token (like a word in English) of the text is treated as a feature. SHAP values are computed for each unit/feature.",
+            "pattern": "token|sentence|paragraph",
+            "type": "string"
+          },
+          "Language": {
+            "description": "Specifies the language of the text features in ISO 639-1 or ISO 639-3 code of a supported language.",
+            "pattern": "af|sq|ar|hy|eu|bn|bg|ca|zh|hr|cs|da|nl|en|et|fi|fr|de|el|gu|he|hi|hu|is|id|ga|it|kn|ky|lv|lt|lb|mk|ml|mr|ne|nb|fa|pl|pt|ro|ru|sa|sr|tn|si|sk|sl|es|sv|tl|ta|tt|te|tr|uk|ur|yo|lij|xx",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Language",
+          "Granularity"
+        ],
+        "type": "object"
+      },
+      "CoreDumpConfig": {
+        "additionalProperties": false,
+        "description": "Specifies where SageMaker writes core dumps from the model container when the process crashes, and how it encrypts them.",
+        "properties": {
+          "DestinationS3Uri": {
+            "description": "The Amazon S3 bucket to send the core dump to.",
+            "type": "string"
+          },
+          "KmsKeyId": {
+            "description": "The AWS Key Management Service (AWS KMS) key that SageMaker uses to encrypt the core dump data at rest using Amazon S3 server-side encryption. If you use a KMS key ID or an alias of your KMS key, the SageMaker execution role must include permissions to call kms:Encrypt.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "DestinationS3Uri"
+        ],
+        "type": "object"
+      },
+      "DataCaptureConfig": {
+        "additionalProperties": false,
+        "description": "Specifies how to capture endpoint data for model monitor. The data capture configuration applies to all production variants hosted at the endpoint.",
+        "properties": {
+          "CaptureContentTypeHeader": {
+            "$ref": "#/definitions/CaptureContentTypeHeader",
+            "description": "A list of the JSON and CSV content type that the endpoint captures."
+          },
+          "CaptureOptions": {
+            "description": "Specifies whether the endpoint captures input data to your model, output data from your model, or both.",
+            "items": {
+              "$ref": "#/definitions/CaptureOption"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "DestinationS3Uri": {
+            "description": "The S3 bucket where model monitor stores captured data.",
+            "type": "string"
+          },
+          "EnableCapture": {
+            "description": "Set to True to enable data capture.",
+            "type": "boolean"
+          },
+          "InitialSamplingPercentage": {
+            "description": "The percentage of data to capture.",
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "KmsKeyId": {
+            "description": "The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt the captured data at rest using Amazon S3 server-side encryption.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "CaptureOptions",
+          "DestinationS3Uri",
+          "InitialSamplingPercentage"
+        ],
+        "type": "object"
+      },
+      "ExplainerConfig": {
+        "additionalProperties": false,
+        "description": "A parameter to activate explainers.",
+        "properties": {
+          "ClarifyExplainerConfig": {
+            "$ref": "#/definitions/ClarifyExplainerConfig",
+            "description": "A member of ExplainerConfig that contains configuration parameters for the SageMaker Clarify explainer."
+          }
+        },
+        "type": "object"
+      },
+      "InstancePool": {
+        "additionalProperties": false,
+        "description": "Specifies an instance type and its priority for a heterogeneous endpoint. Use instance pools to configure a production variant with multiple instance types, enabling the endpoint to provision instances across different types based on priority.",
+        "properties": {
+          "InstanceType": {
+            "description": "The ML compute instance type for the instance pool.",
+            "type": "string"
+          },
+          "ModelNameOverride": {
+            "description": "The name of a SageMaker model to use for this instance pool instead of the model specified for the production variant. Use this to deploy a different model optimized for the instance type in this pool.",
+            "type": "string"
+          },
+          "Priority": {
+            "description": "The priority for the instance pool. SageMaker attempts to provision instances in order of priority, starting with the lowest value. If instances for a higher-priority pool are unavailable, SageMaker attempts to provision from the next pool. Valid values: 1 to 5, where 1 is the highest priority.",
+            "maximum": 5,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "InstanceType",
+          "Priority"
+        ],
+        "type": "object"
+      },
+      "ManagedInstanceScaling": {
+        "additionalProperties": false,
+        "description": "Settings that control the range in the number of instances that the endpoint provisions as it scales up or down to accommodate traffic.",
+        "properties": {
+          "MaxInstanceCount": {
+            "description": "The maximum number of instances that the endpoint can provision when it scales up to accommodate an increase in traffic.",
+            "type": "integer"
+          },
+          "MinInstanceCount": {
+            "description": "The minimum number of instances that the endpoint must retain when it scales down to accommodate a decrease in traffic.",
+            "type": "integer"
+          },
+          "ScaleInPolicy": {
+            "$ref": "#/definitions/ScaleInPolicy",
+            "description": "Configures the scale-in behavior for managed instance scaling."
+          },
+          "Status": {
+            "description": "Indicates whether managed instance scaling is enabled.",
+            "maxLength": 10,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "MetricsConfig": {
+        "additionalProperties": false,
+        "description": "Specifies the metrics that the endpoint publishes to Amazon CloudWatch, the frequency of publication, and whether to enable enhanced or detailed observability metrics.",
+        "properties": {
+          "EnableDetailedObservability": {
+            "description": "Specifies whether to enable detailed observability for the endpoint. When set to true, the endpoint publishes container-level inference metrics, per-GPU metrics, per-instance host metrics, and inference component placement metrics.",
+            "type": "boolean"
+          },
+          "EnableEnhancedMetrics": {
+            "description": "Specifies whether to enable enhanced metrics for the endpoint. Enhanced metrics provide utilization and invocation data at instance and container granularity.",
+            "type": "boolean"
+          },
+          "MetricPublishFrequencyInSeconds": {
+            "description": "The interval, in seconds, at which the endpoint publishes metrics to Amazon CloudWatch. Valid values are 10, 30, 60, 120, 180, 240, and 300. The default is 60.",
+            "enum": [
+              10,
+              30,
+              60,
+              120,
+              180,
+              240,
+              300
+            ],
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "PrefixAwareRoutingConfig": {
+        "additionalProperties": false,
+        "description": "The configuration for prefix-aware routing on a SageMaker real-time inference endpoint. Specify PrefixLength and ConcurrencyThreshold to control routing behavior.",
+        "properties": {
+          "ConcurrencyThreshold": {
+            "description": "The maximum number of in-flight requests on the target instance before the endpoint routes to another instance. Required when RoutingStrategy is PREFIX_AWARE. Valid values are 1 to 1024.",
+            "type": "integer"
+          },
+          "PrefixLength": {
+            "description": "The maximum length of the prefix used for routing decisions. Required when RoutingStrategy is PREFIX_AWARE. Valid values are 1024 to 65536.",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "ProductionVariant": {
+        "additionalProperties": false,
+        "description": "Specifies a model that you want to host and the resources to deploy for hosting it.",
+        "properties": {
+          "CapacityReservationConfig": {
+            "$ref": "#/definitions/CapacityReservationConfig",
+            "description": "Settings for the capacity reservation for the compute instances that SageMaker AI reserves for an endpoint."
+          },
+          "ContainerStartupHealthCheckTimeoutInSeconds": {
+            "description": "The timeout value, in seconds, for your inference container to pass health check by SageMaker Hosting.",
+            "maximum": 3600,
+            "minimum": 60,
+            "type": "integer"
+          },
+          "CoreDumpConfig": {
+            "$ref": "#/definitions/CoreDumpConfig",
+            "description": "Specifies configuration for a core dump from the model container when the process crashes."
+          },
+          "EnableSSMAccess": {
+            "description": "You can use this parameter to turn on native AWS Systems Manager (SSM) access for a production variant behind an endpoint. By default, SSM access is disabled for all production variants behind an endpoint.",
+            "type": "boolean"
+          },
+          "InferenceAmiVersion": {
+            "description": "Specifies an option from a collection of preconfigured Amazon Machine Image (AMI) images. Each image is configured by AWS with a set of software and driver versions. AWS optimizes these configurations for different machine learning workloads. By selecting an AMI version, you can ensure that your inference environment is compatible with specific software requirements, such as CUDA driver versions, Linux kernel versions, or AWS Neuron driver versions",
+            "type": "string"
+          },
+          "InitialInstanceCount": {
+            "description": "Number of instances to launch initially.",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "InitialVariantWeight": {
+            "description": "Determines initial traffic distribution among all of the models that you specify in the endpoint configuration.",
+            "minimum": 0,
+            "type": "number"
+          },
+          "InstancePools": {
+            "description": "A list of instance pools for the production variant. Each instance pool specifies an instance type and its priority for provisioning. Use instance pools to configure heterogeneous endpoints that deploy models across multiple instance types.",
+            "items": {
+              "$ref": "#/definitions/InstancePool"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "InstanceType": {
+            "description": "The ML compute instance type.",
+            "type": "string"
+          },
+          "ManagedInstanceScaling": {
+            "$ref": "#/definitions/ManagedInstanceScaling"
+          },
+          "ModelDataDownloadTimeoutInSeconds": {
+            "description": "The timeout value, in seconds, to download and extract the model that you want to host from Amazon S3 to the individual inference instance associated with this production variant.",
+            "maximum": 3600,
+            "minimum": 60,
+            "type": "integer"
+          },
+          "ModelName": {
+            "description": "The name of the model that you want to host. This is the name that you specified when creating the model.",
+            "maxLength": 63,
+            "minLength": 1,
+            "type": "string"
+          },
+          "RoutingConfig": {
+            "$ref": "#/definitions/RoutingConfig",
+            "description": "Settings that control how the endpoint routes incoming traffic to the instances that the endpoint hosts."
+          },
+          "ServerlessConfig": {
+            "$ref": "#/definitions/ServerlessConfig",
+            "description": "The serverless configuration for an endpoint. Specifies a serverless endpoint configuration instead of an instance-based endpoint configuration."
+          },
+          "VariantInstanceProvisionTimeoutInSeconds": {
+            "description": "The timeout value, in seconds, for provisioning instances for the production variant. When SageMaker encounters an insufficient capacity error while provisioning instances, it retries with the next instance pool (if configured) or waits until the timeout expires. This timeout applies only to capacity provisioning and does not include the time for model download or container startup.",
+            "maximum": 3600,
+            "minimum": 300,
+            "type": "integer"
+          },
+          "VariantName": {
+            "description": "The name of the production variant.",
+            "maxLength": 63,
+            "minLength": 1,
+            "type": "string"
+          },
+          "VolumeSizeInGB": {
+            "description": "The size, in GB, of the ML storage volume attached to individual inference instance associated with the production variant. Currently only Amazon EBS gp2 storage volumes are supported.",
+            "maximum": 512,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "VariantName"
+        ],
+        "type": "object"
+      },
+      "RoutingConfig": {
+        "additionalProperties": false,
+        "description": "Settings that control how the endpoint routes incoming traffic to the instances that the endpoint hosts.",
+        "properties": {
+          "PrefixAwareRoutingConfig": {
+            "$ref": "#/definitions/PrefixAwareRoutingConfig",
+            "description": "The configuration for prefix-aware routing. Specify this property only when you set RoutingStrategy to PREFIX_AWARE."
+          },
+          "RoutingStrategy": {
+            "description": "Sets how the endpoint routes incoming traffic.",
+            "maxLength": 63,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ScaleInPolicy": {
+        "additionalProperties": false,
+        "description": "Specifies how the endpoint releases instances when managed instance scaling scales in.",
+        "properties": {
+          "CooldownInMinutes": {
+            "description": "The cooldown period, in minutes, after the last endpoint operation before the endpoint evaluates consolidation scale-in opportunities. Valid values are 5 to 1440. The default is 20.",
+            "type": "integer"
+          },
+          "MaximumStepSize": {
+            "description": "The maximum number of instances that the endpoint can terminate at a time during a consolidation scale-in operation. Valid values are 1 to 100. The default is 1.",
+            "type": "integer"
+          },
+          "Strategy": {
+            "description": "The strategy for scaling in instances. IDLE_RELEASE releases instances that have no hosted inference component copies. CONSOLIDATION consolidates inference component copies onto fewer instances to release more instances.",
+            "maxLength": 63,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Strategy"
+        ],
+        "type": "object"
+      },
+      "ServerlessConfig": {
+        "additionalProperties": false,
+        "description": "Specifies the serverless configuration for an endpoint variant.",
+        "properties": {
+          "MaxConcurrency": {
+            "description": "The maximum number of concurrent invocations your serverless endpoint can process.",
+            "type": "integer"
+          },
+          "MemorySizeInMB": {
+            "description": "The memory size of your serverless endpoint. Valid values are in 1 GB increments: 1024 MB, 2048 MB, 3072 MB, 4096 MB, 5120 MB, or 6144 MB.",
+            "type": "integer"
+          },
+          "ProvisionedConcurrency": {
+            "description": "The amount of provisioned concurrency to allocate for the serverless endpoint. Should be less than or equal to MaxConcurrency.",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "MaxConcurrency",
+          "MemorySizeInMB"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A tag object that consists of a key and an optional value, used to manage metadata for SageMaker AWS resources.",
+        "properties": {
+          "Key": {
+            "description": "The tag key. Tag keys must be unique per resource.",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value",
+          "Key"
+        ],
+        "type": "object"
+      },
+      "VpcConfig": {
+        "additionalProperties": false,
+        "description": "Specifies an Amazon Virtual Private Cloud (VPC) that your SageMaker jobs, hosted models, and compute resources have access to. You can control access to and from your resources by configuring a VPC.",
+        "properties": {
+          "SecurityGroupIds": {
+            "description": "The VPC security group IDs, in the form sg-xxxxxxxx. Specify the security groups for the VPC that is specified in the Subnets field.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "Subnets": {
+            "description": "The ID of the subnets in the VPC to which you want to connect your training job or model.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          }
+        },
+        "required": [
+          "Subnets",
+          "SecurityGroupIds"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::SageMaker::EndpointConfig",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "sagemaker:CreateEndpointConfig",
+          "sagemaker:AddTags",
+          "iam:PassRole",
+          "kms:DescribeKey"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "sagemaker:DeleteEndpointConfig"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "sagemaker:ListEndpointConfigs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "sagemaker:DescribeEndpointConfig",
+          "sagemaker:ListTags"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "sagemaker:AddTags",
+          "sagemaker:DeleteTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/EndpointConfigArn"
+    ],
+    "properties": {
+      "AsyncInferenceConfig": {
+        "$ref": "#/definitions/AsyncInferenceConfig",
+        "description": "Specifies configuration for how an endpoint performs asynchronous inference."
+      },
+      "DataCaptureConfig": {
+        "$ref": "#/definitions/DataCaptureConfig",
+        "description": "Specifies how to capture endpoint data for model monitor. The data capture configuration applies to all production variants hosted at the endpoint."
+      },
+      "EnableNetworkIsolation": {
+        "description": "Sets whether all model containers deployed to the endpoint are isolated. If they are, no inbound or outbound network calls can be made to or from the model containers.",
+        "type": "boolean"
+      },
+      "EndpointConfigArn": {
+        "description": "The Amazon Resource Name (ARN) of the endpoint configuration.",
+        "pattern": "^arn:aws(-[a-z]+)?:sagemaker:[a-z0-9-]+:[0-9]{12}:endpoint-config\\/.+$",
+        "type": "string"
+      },
+      "EndpointConfigName": {
+        "description": "The name of the endpoint configuration.",
+        "maxLength": 63,
+        "minLength": 1,
+        "type": "string"
+      },
+      "ExecutionRoleArn": {
+        "description": "The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker AI can assume to perform actions on your behalf.",
+        "type": "string"
+      },
+      "ExplainerConfig": {
+        "$ref": "#/definitions/ExplainerConfig",
+        "description": "A parameter to activate explainers."
+      },
+      "KmsKeyId": {
+        "description": "The Amazon Resource Name (ARN) of an AWS Key Management Service key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance that hosts the endpoint.",
+        "type": "string"
+      },
+      "MetricsConfig": {
+        "$ref": "#/definitions/MetricsConfig",
+        "description": "Specifies the metrics that the endpoint publishes to Amazon CloudWatch, the frequency of publication, and whether to enable enhanced or detailed observability metrics."
+      },
+      "ProductionVariants": {
+        "description": "A list of ProductionVariant objects, one for each model that you want to host at this endpoint.",
+        "items": {
+          "$ref": "#/definitions/ProductionVariant"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "ShadowProductionVariants": {
+        "description": "Array of ProductionVariant objects. There is one for each model that you want to host at this endpoint in shadow mode with production traffic replicated from the model specified on ProductionVariants. If you use this field, you can only specify one variant for ProductionVariants and one variant for ShadowProductionVariants.",
+        "items": {
+          "$ref": "#/definitions/ProductionVariant"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "Tags": {
+        "description": "A list of key-value pairs to apply to this resource.",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "VpcConfig": {
+        "$ref": "#/definitions/VpcConfig",
+        "description": "Specifies an Amazon Virtual Private Cloud (VPC) that your SageMaker jobs, hosted models, and compute resources have access to. You can control access to and from your resources by configuring a VPC."
+      }
+    },
+    "propertyTransform": {
+      "/properties/AsyncInferenceOutputConfig/KmsKeyId": "$join([\"(^arn:(aws)[-]{0,1}[a-z]{0,2}[-]{0,1}[a-z]{0,3}:kms:[a-z]{2}[-]{1}[a-z]{3,10}[-]{0,1}[a-z]{0,10}[-]{1}[1-9]{1}:[0-9]{12}[:]{1}(key\\/)?|^)\", KmsKeyId])",
+      "/properties/DataCaptureConfig/KmsKeyId": "$join([\"(^arn:(aws)[-]{0,1}[a-z]{0,2}[-]{0,1}[a-z]{0,3}:kms:[a-z]{2}[-]{1}[a-z]{3,10}[-]{0,1}[a-z]{0,10}[-]{1}[1-9]{1}:[0-9]{12}[:]{1}(key\\/)?|^)\", KmsKeyId])",
+      "/properties/KmsKeyId": "$join([\"(^arn:(aws)[-]{0,1}[a-z]{0,2}[-]{0,1}[a-z]{0,3}:kms:[a-z]{2}[-]{1}[a-z]{3,10}[-]{0,1}[a-z]{0,10}[-]{1}[1-9]{1}:[0-9]{12}[:]{1}(key\\/)?|^)\", KmsKeyId])",
+      "/properties/ProductionVariants/*/CoreDumpConfig/KmsKeyId": "$join([\"(^arn:(aws)[-]{0,1}[a-z]{0,2}[-]{0,1}[a-z]{0,3}:kms:[a-z]{2}[-]{1}[a-z]{3,10}[-]{0,1}[a-z]{0,10}[-]{1}[1-9]{1}:[0-9]{12}[:]{1}(key\\/)?|^)\", KmsKeyId])",
+      "/properties/ShadowProductionVariants/*/CoreDumpConfig/KmsKeyId": "$join([\"(^arn:(aws)[-]{0,1}[a-z]{0,2}[-]{0,1}[a-z]{0,3}:kms:[a-z]{2}[-]{1}[a-z]{3,10}[-]{0,1}[a-z]{0,10}[-]{1}[1-9]{1}:[0-9]{12}[:]{1}(key\\/)?|^)\", KmsKeyId])"
+    },
+    "readOnlyProperties": [
+      "/properties/EndpointConfigArn"
+    ],
+    "required": [
+      "ProductionVariants"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "sagemaker:AddTags",
+        "sagemaker:DeleteTags",
+        "sagemaker:ListTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::SageMaker::EndpointConfig"
+  }
+}

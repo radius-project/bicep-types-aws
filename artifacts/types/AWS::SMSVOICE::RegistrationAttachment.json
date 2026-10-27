@@ -1,0 +1,157 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SMSVOICE-RegistrationAttachment",
+  "type": "AWS::SMSVOICE::RegistrationAttachment",
+  "time": "2026-10-21T23:19:42.542Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/RegistrationAttachmentId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/AttachmentBody",
+      "/properties/AttachmentUrl"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key identifier, or name, of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The string value associated with the key of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::SMSVOICE::RegistrationAttachment",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "sms-voice:CreateRegistrationAttachment",
+          "sms-voice:DescribeRegistrationAttachments",
+          "sms-voice:TagResource",
+          "sms-voice:ListTagsForResource",
+          "s3:GetObject"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "sms-voice:DeleteRegistrationAttachment",
+          "sms-voice:DescribeRegistrationAttachments",
+          "sms-voice:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "sms-voice:DescribeRegistrationAttachments"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "sms-voice:DescribeRegistrationAttachments",
+          "sms-voice:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "sms-voice:DescribeRegistrationAttachments",
+          "sms-voice:TagResource",
+          "sms-voice:UntagResource",
+          "sms-voice:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/RegistrationAttachmentArn"
+    ],
+    "properties": {
+      "AttachmentBody": {
+        "description": "The registration file to upload. The maximum file size is 1500KB and valid file extensions are PDF, JPEG and PNG.",
+        "minLength": 1,
+        "type": "string"
+      },
+      "AttachmentStatus": {
+        "description": "The status of the registration attachment.",
+        "enum": [
+          "UPLOAD_IN_PROGRESS",
+          "UPLOAD_COMPLETE",
+          "UPLOAD_FAILED",
+          "DELETED"
+        ],
+        "type": "string"
+      },
+      "AttachmentUrl": {
+        "description": "A URL to the required registration file. For example, the URL to an MMS/shortcode form.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^\\S+$",
+        "type": "string"
+      },
+      "CreatedTimestamp": {
+        "description": "The time when the registration attachment was created, in UNIX epoch time format.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "RegistrationAttachmentArn": {
+        "description": "The Amazon Resource Name (ARN) for the registration attachment.",
+        "pattern": "arn:[a-z0-9-\\.]{1,63}:sms-voice:[a-z0-9-\\.]{0,63}:[0-9]{12}:registration-attachment/[a-z0-9]+",
+        "type": "string"
+      },
+      "RegistrationAttachmentId": {
+        "description": "The unique identifier for the registration attachment.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of tags (key and value pairs) to associate with the registration attachment.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array"
+      },
+      "UploadedAttachmentUrl": {
+        "description": "The URL to the document that was uploaded as the registration attachment, as returned by the service.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/RegistrationAttachmentArn",
+      "/properties/RegistrationAttachmentId",
+      "/properties/AttachmentStatus",
+      "/properties/CreatedTimestamp",
+      "/properties/UploadedAttachmentUrl"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "sms-voice:TagResource",
+        "sms-voice:UntagResource",
+        "sms-voice:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::SMSVOICE::RegistrationAttachment",
+    "writeOnlyProperties": [
+      "/properties/AttachmentBody",
+      "/properties/AttachmentUrl"
+    ]
+  }
+}

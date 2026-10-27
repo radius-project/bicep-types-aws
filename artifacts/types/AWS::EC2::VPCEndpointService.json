@@ -1,10 +1,35 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-VPCEndpointService",
   "type": "AWS::EC2::VPCEndpointService",
-  "time": "2024-12-19T18:07:06.574Z",
+  "time": "2026-08-18T17:24:11.814Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
+      "IpAddressType": {
+        "enum": [
+          "ipv4",
+          "ipv6"
+        ],
+        "type": "string"
+      },
+      "PrivateDnsNameConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "State": {
+            "type": "string"
+          },
+          "Type": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "Tag": {
         "additionalProperties": false,
         "properties": {
@@ -32,6 +57,7 @@
           "cloudwatch:DeleteInsightRules",
           "cloudwatch:PutManagedInsightRules",
           "ec2:DescribeVpcEndpointServiceConfigurations",
+          "vpce:AllowMultiRegion",
           "ec2:CreateTags"
         ]
       },
@@ -41,7 +67,8 @@
           "ec2:DescribeVpcEndpointServiceConfigurations",
           "cloudwatch:ListManagedInsightRules",
           "cloudwatch:DeleteInsightRules",
-          "ec2:DeleteTags"
+          "ec2:DeleteTags",
+          "vpce:AllowMultiRegion"
         ]
       },
       "list": {
@@ -65,7 +92,8 @@
           "cloudwatch:DeleteInsightRules",
           "cloudwatch:PutManagedInsightRules",
           "ec2:CreateTags",
-          "ec2:DeleteTags"
+          "ec2:DeleteTags",
+          "vpce:AllowMultiRegion"
         ]
       }
     },
@@ -100,8 +128,32 @@
       "PayerResponsibility": {
         "type": "string"
       },
+      "PrivateDnsName": {
+        "type": "string"
+      },
+      "PrivateDnsNameConfiguration": {
+        "$ref": "#/definitions/PrivateDnsNameConfiguration"
+      },
       "ServiceId": {
         "type": "string"
+      },
+      "SupportedIpAddressTypes": {
+        "description": "Specify which Ip Address types are supported for VPC endpoint service.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/IpAddressType"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "SupportedRegions": {
+        "description": "The Regions from which service consumers can access the service.",
+        "insertionOrder": false,
+        "items": {
+          "type": "string"
+        },
+        "type": "array",
+        "uniqueItems": true
       },
       "Tags": {
         "description": "The tags to add to the VPC endpoint service.",
@@ -114,10 +166,14 @@
       }
     },
     "readOnlyProperties": [
-      "/properties/ServiceId"
+      "/properties/ServiceId",
+      "/properties/PrivateDnsNameConfiguration/Name",
+      "/properties/PrivateDnsNameConfiguration/State",
+      "/properties/PrivateDnsNameConfiguration/Type",
+      "/properties/PrivateDnsNameConfiguration/Value"
     ],
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "ec2:CreateTags",
         "ec2:DeleteTags"

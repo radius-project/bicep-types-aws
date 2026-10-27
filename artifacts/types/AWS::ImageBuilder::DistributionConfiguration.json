@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ImageBuilder-DistributionConfiguration",
   "type": "AWS::ImageBuilder::DistributionConfiguration",
-  "time": "2025-01-21T17:01:21.415Z",
+  "time": "2026-10-19T16:39:15.604Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -108,6 +108,14 @@
           "Region": {
             "description": "region",
             "type": "string"
+          },
+          "SsmParameterConfigurations": {
+            "description": "The SSM parameter configurations to use for AMI distribution.",
+            "insertionOrder": true,
+            "items": {
+              "$ref": "#/definitions/SsmParameterConfiguration"
+            },
+            "type": "array"
           }
         },
         "required": [
@@ -234,6 +242,32 @@
         "description": "The Amazon Resource Name (ARN) of the License Manager configuration.",
         "type": "string"
       },
+      "SsmParameterConfiguration": {
+        "additionalProperties": false,
+        "description": "The SSM parameter configuration for AMI distribution.",
+        "properties": {
+          "AmiAccountId": {
+            "description": "The account ID for the AMI to update the parameter with.",
+            "type": "string"
+          },
+          "DataType": {
+            "description": "The data type of the SSM parameter.",
+            "enum": [
+              "text",
+              "aws:ec2:image"
+            ],
+            "type": "string"
+          },
+          "ParameterName": {
+            "description": "The name of the SSM parameter.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ParameterName"
+        ],
+        "type": "object"
+      },
       "TargetContainerRepository": {
         "additionalProperties": false,
         "description": "The destination repository for the container image.",
@@ -253,7 +287,7 @@
         "type": "object"
       }
     },
-    "description": "Resource schema for AWS::ImageBuilder::DistributionConfiguration",
+    "description": "Resource Type definition for AWS::ImageBuilder::DistributionConfiguration",
     "handlers": {
       "create": {
         "permissions": [
@@ -262,6 +296,7 @@
           "ec2:DescribeLaunchTemplates",
           "ec2:CreateLaunchTemplateVersion",
           "ec2:ModifyLaunchTemplate",
+          "ssm:GetParameter",
           "imagebuilder:TagResource",
           "imagebuilder:GetDistributionConfiguration",
           "imagebuilder:CreateDistributionConfiguration"
@@ -270,7 +305,7 @@
       "delete": {
         "permissions": [
           "imagebuilder:GetDistributionConfiguration",
-          "imagebuilder:UnTagResource",
+          "imagebuilder:UntagResource",
           "imagebuilder:DeleteDistributionConfiguration"
         ]
       },
@@ -289,8 +324,11 @@
           "ec2:DescribeLaunchTemplates",
           "ec2:CreateLaunchTemplateVersion",
           "ec2:ModifyLaunchTemplate",
+          "ssm:GetParameter",
           "imagebuilder:GetDistributionConfiguration",
-          "imagebuilder:UpdateDistributionConfiguration"
+          "imagebuilder:UpdateDistributionConfiguration",
+          "imagebuilder:TagResource",
+          "imagebuilder:UntagResource"
         ]
       }
     },
@@ -300,6 +338,7 @@
     "properties": {
       "Arn": {
         "description": "The Amazon Resource Name (ARN) of the distribution configuration.",
+        "pattern": "^arn:[^:]+:imagebuilder:[^:]+:[^:]+:distribution-configuration/.+$",
         "type": "string"
       },
       "Description": {
@@ -338,7 +377,15 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-imagebuilder.git",
     "tagging": {
-      "taggable": false
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "imagebuilder:TagResource",
+        "imagebuilder:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
     },
     "typeName": "AWS::ImageBuilder::DistributionConfiguration"
   }

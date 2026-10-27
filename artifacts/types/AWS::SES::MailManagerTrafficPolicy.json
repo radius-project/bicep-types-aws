@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SES-MailManagerTrafficPolicy",
   "type": "AWS::SES::MailManagerTrafficPolicy",
-  "time": "2025-01-23T10:31:24.632Z",
+  "time": "2026-10-21T23:05:02.692Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -9,6 +9,12 @@
         "enum": [
           "ALLOW",
           "DENY"
+        ],
+        "type": "string"
+      },
+      "IngressAddressListEmailAttribute": {
+        "enum": [
+          "RECIPIENT"
         ],
         "type": "string"
       },
@@ -22,7 +28,7 @@
           "ResultField": {
             "maxLength": 256,
             "minLength": 1,
-            "pattern": "^[\\sa-zA-Z0-9_]+$",
+            "pattern": "^(addon\\.)?[\\sa-zA-Z0-9_]+$",
             "type": "string"
           }
         },
@@ -68,6 +74,19 @@
               "Analysis"
             ],
             "title": "Analysis",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "IsInAddressList": {
+                "$ref": "#/definitions/IngressIsInAddressList"
+              }
+            },
+            "required": [
+              "IsInAddressList"
+            ],
+            "title": "IsInAddressList",
             "type": "object"
           }
         ]
@@ -126,6 +145,76 @@
         ],
         "type": "object"
       },
+      "IngressIpv6Attribute": {
+        "enum": [
+          "SENDER_IPV6"
+        ],
+        "type": "string"
+      },
+      "IngressIpv6Expression": {
+        "additionalProperties": false,
+        "properties": {
+          "Evaluate": {
+            "$ref": "#/definitions/IngressIpv6ToEvaluate"
+          },
+          "Operator": {
+            "$ref": "#/definitions/IngressIpOperator"
+          },
+          "Values": {
+            "items": {
+              "maxLength": 49,
+              "pattern": "^(([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:))\\/(12[0-8]|1[0-1][0-9]|[1-9][0-9]|[0-9])$",
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "Evaluate",
+          "Operator",
+          "Values"
+        ],
+        "type": "object"
+      },
+      "IngressIpv6ToEvaluate": {
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Attribute": {
+                "$ref": "#/definitions/IngressIpv6Attribute"
+              }
+            },
+            "required": [
+              "Attribute"
+            ],
+            "title": "Attribute",
+            "type": "object"
+          }
+        ]
+      },
+      "IngressIsInAddressList": {
+        "additionalProperties": false,
+        "properties": {
+          "AddressLists": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 1,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "Attribute": {
+            "$ref": "#/definitions/IngressAddressListEmailAttribute"
+          }
+        },
+        "required": [
+          "AddressLists",
+          "Attribute"
+        ],
+        "type": "object"
+      },
       "IngressStringEmailAttribute": {
         "enum": [
           "RECIPIENT"
@@ -178,6 +267,19 @@
               "Attribute"
             ],
             "title": "Attribute",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Analysis": {
+                "$ref": "#/definitions/IngressAnalysis"
+              }
+            },
+            "required": [
+              "Analysis"
+            ],
+            "title": "Analysis",
             "type": "object"
           }
         ]
@@ -270,6 +372,19 @@
           {
             "additionalProperties": false,
             "properties": {
+              "Ipv6Expression": {
+                "$ref": "#/definitions/IngressIpv6Expression"
+              }
+            },
+            "required": [
+              "Ipv6Expression"
+            ],
+            "title": "Ipv6Expression",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
               "TlsExpression": {
                 "$ref": "#/definitions/IngressTlsProtocolExpression"
               }
@@ -321,13 +436,11 @@
           "Key": {
             "maxLength": 128,
             "minLength": 1,
-            "pattern": "^[a-zA-Z0-9/_\\+=\\.:@\\-]+$",
             "type": "string"
           },
           "Value": {
             "maxLength": 256,
             "minLength": 0,
-            "pattern": "^[a-zA-Z0-9/_\\+=\\.:@\\-]*$",
             "type": "string"
           }
         },

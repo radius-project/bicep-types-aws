@@ -112,7 +112,7 @@
         "type": {
           "$ref": "#/9"
         },
-        "flags": 4,
+        "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       }
     }
@@ -147,11 +147,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CloudTrail/Channel@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/11"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -394,11 +394,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CloudTrail/Dashboard@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/27"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -406,7 +406,7 @@
     "properties": {
       "FieldSelectors": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/35"
         },
         "flags": 1,
         "description": "Contains all selector statements in an advanced event selector."
@@ -426,14 +426,14 @@
     "properties": {
       "EndsWith": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "An operator that includes events that match the last few characters of the event record field specified as the value of Field."
       },
       "Equals": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "An operator that includes events that match the exact value of the event record field specified as the value of Field. This is the only valid operator that you can use with the readOnly, eventCategory, and resources.type fields."
@@ -447,31 +447,51 @@
       },
       "NotEndsWith": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/38"
         },
         "flags": 0,
         "description": "An operator that excludes events that match the last few characters of the event record field specified as the value of Field."
       },
       "NotEquals": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "An operator that excludes events that match the exact value of the event record field specified as the value of Field."
       },
       "NotStartsWith": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "An operator that excludes events that match the first few characters of the event record field specified as the value of Field."
       },
       "StartsWith": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "An operator that includes events that match the first few characters of the event record field specified as the value of Field."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ContextKeySelector",
+    "properties": {
+      "Equals": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 1,
+        "description": "An operator that includes events that match the exact value of the event record field specified in Type."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Specifies the type of the event record field in ContextKeySelector. Valid values include RequestContext, TagContext."
       }
     }
   },
@@ -556,6 +576,12 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
     "$type": "StringLiteralType",
     "value": "AWS.CloudTrail/EventDataStoreProperties"
   },
@@ -578,12 +604,18 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/33"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "AWS.CloudTrail/EventDataStoreProperties",
     "properties": {
       "AdvancedEventSelectors": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/44"
         },
         "flags": 0,
         "description": "The advanced event selectors that were used to select events for the data store."
@@ -594,6 +626,13 @@
         },
         "flags": 0,
         "description": "The mode that the event data store will use to charge for event storage."
+      },
+      "ContextKeySelectors": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0,
+        "description": "An array that enriches event records in an existing event data store by including additional information specified in individual ContexKeySelector entries. If you add ContextKeySelectors, you must set MaxEventSize to Large."
       },
       "CreatedTimestamp": {
         "type": {
@@ -632,7 +671,7 @@
       },
       "InsightSelectors": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "Lets you enable Insights event logging by specifying the Insights selectors that you want to enable on an existing event data store. Both InsightSelectors and InsightsDestination need to have a value in order to enable Insights events on an event data store."
@@ -650,6 +689,13 @@
         },
         "flags": 0,
         "description": "Specifies the KMS key ID to use to encrypt the events delivered by CloudTrail. The value can be an alias name prefixed by 'alias/', a fully specified ARN to an alias, a fully specified ARN to a key, or a globally unique identifier."
+      },
+      "MaxEventSize": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Specifies the maximum size allowed for the event. Valid values are Standard and Large. If you add ContextKeySelectors, this value must be set to Large."
       },
       "MultiRegionEnabled": {
         "type": {
@@ -688,7 +734,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/47"
         },
         "flags": 0
       },
@@ -728,7 +774,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/48"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -738,11 +784,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CloudTrail/EventDataStore@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/46"
+      "$ref": "#/49"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "StringLiteralType",
@@ -757,7 +803,7 @@
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/49"
+        "$ref": "#/52"
       },
       {
         "$ref": "#/6"
@@ -777,7 +823,7 @@
       },
       "ResourcePolicy": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/53"
         },
         "flags": 1,
         "description": "A policy document containing permissions to add to the specified resource. In IAM, you must provide policy documents in JSON format. However, in CloudFormation you can provide the policy in JSON or YAML format because CloudFormation converts YAML to JSON before submitting it to IAM."
@@ -804,7 +850,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/54"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -814,11 +860,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CloudTrail/ResourcePolicy@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/52"
+      "$ref": "#/55"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -826,7 +872,7 @@
     "properties": {
       "FieldSelectors": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/66"
         },
         "flags": 1,
         "description": "Contains all selector statements in an advanced event selector."
@@ -846,14 +892,14 @@
     "properties": {
       "EndsWith": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/67"
         },
         "flags": 0,
         "description": "An operator that includes events that match the last few characters of the event record field specified as the value of Field."
       },
       "Equals": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/68"
         },
         "flags": 0,
         "description": "An operator that includes events that match the exact value of the event record field specified as the value of Field. This is the only valid operator that you can use with the readOnly, eventCategory, and resources.type fields."
@@ -867,31 +913,51 @@
       },
       "NotEndsWith": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": "An operator that excludes events that match the last few characters of the event record field specified as the value of Field."
       },
       "NotEquals": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/70"
         },
         "flags": 0,
         "description": "An operator that excludes events that match the exact value of the event record field specified as the value of Field."
       },
       "NotStartsWith": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/71"
         },
         "flags": 0,
         "description": "An operator that excludes events that match the first few characters of the event record field specified as the value of Field."
       },
       "StartsWith": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/72"
         },
         "flags": 0,
         "description": "An operator that includes events that match the first few characters of the event record field specified as the value of Field."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AggregationConfiguration",
+    "properties": {
+      "EventCategory": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The category of events to be aggregated."
+      },
+      "Templates": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 1,
+        "description": "Contains all templates in an aggregation configuration."
       }
     }
   },
@@ -908,7 +974,7 @@
       },
       "Values": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/74"
         },
         "flags": 0,
         "description": "An array of Amazon Resource Name (ARN) strings or partial ARN strings for the specified objects."
@@ -921,13 +987,13 @@
     "properties": {
       "DataResources": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/75"
         },
         "flags": 0
       },
       "ExcludeManagementEventSources": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/76"
         },
         "flags": 0,
         "description": "An optional list of service event sources from which you do not want management events to be logged on your trail. In this release, the list can be empty (disables the filter), or it can filter out AWS Key Management Service events by containing \"kms.amazonaws.com\". By default, ExcludeManagementEventSources is empty, and AWS KMS events are included in events that are logged to your trail."
@@ -952,6 +1018,13 @@
     "$type": "ObjectType",
     "name": "InsightSelector",
     "properties": {
+      "EventCategories": {
+        "type": {
+          "$ref": "#/77"
+        },
+        "flags": 0,
+        "description": "The categories of events for which to log insights. By default, insights are logged for management events only."
+      },
       "InsightType": {
         "type": {
           "$ref": "#/6"
@@ -960,6 +1033,11 @@
         "description": "The type of insight to log on a trail."
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceEventCategory",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -982,9 +1060,14 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "Template",
+    "properties": {}
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/55"
+      "$ref": "#/58"
     }
   },
   {
@@ -1032,7 +1115,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/56"
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/60"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
     }
   },
   {
@@ -1048,19 +1143,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/54"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
       "$ref": "#/57"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/58"
     }
   },
   {
@@ -1070,15 +1153,40 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/61"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/62"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/64"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "AWS.CloudTrail/TrailProperties",
     "properties": {
       "AdvancedEventSelectors": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/79"
         },
         "flags": 0,
         "description": "The advanced event selectors that were used to select events for the data store."
+      },
+      "AggregationConfigurations": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 0,
+        "description": "Specifies the aggregation configuration to aggregate CloudTrail Events. A maximum of 1 aggregation configuration is allowed."
       },
       "Arn": {
         "type": {
@@ -1109,7 +1217,7 @@
       },
       "EventSelectors": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/81"
         },
         "flags": 0,
         "description": "Use event selectors to further specify the management and data event settings for your trail. By default, trails created without specific event selectors will be configured to log all read and write management events, and no data events. When an event occurs in your account, CloudTrail evaluates the event selector for all trails. For each trail, if the event matches any event selector, the trail processes and logs the event. If the event doesn't match any event selector, the trail doesn't log the event. You can configure up to five event selectors for a trail."
@@ -1123,7 +1231,7 @@
       },
       "InsightSelectors": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/82"
         },
         "flags": 0,
         "description": "Lets you enable Insights event logging by specifying the Insights selectors that you want to enable on an existing trail."
@@ -1185,7 +1293,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/83"
         },
         "flags": 0
       },
@@ -1217,7 +1325,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/84"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1227,10 +1335,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CloudTrail/Trail@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/76"
+      "$ref": "#/85"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

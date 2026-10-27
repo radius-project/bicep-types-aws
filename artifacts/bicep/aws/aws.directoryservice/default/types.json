@@ -30,7 +30,7 @@
   },
   {
     "$type": "StringLiteralType",
-    "value": "AWS.DirectoryService/SimpleADProperties"
+    "value": "AWS.DirectoryService/MicrosoftADProperties"
   },
   {
     "$type": "BooleanType"
@@ -39,6 +39,180 @@
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DirectoryService/MicrosoftADProperties",
+    "properties": {
+      "Alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The alias for a directory"
+      },
+      "CreateAlias": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Specifies an alias for a directory and assigns the alias to the directory. The alias is used to construct the access URL for the directory, such as http://<alias>.awsapps.com. By default, AWS CloudFormation does not create an alias."
+      },
+      "DirectoryId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "Unique identifier for the Microsoft Active Directory"
+      },
+      "DnsIpAddresses": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The IP addresses of the DNS servers for the directory, such as [ \"172.31.3.154\", \"172.31.63.203\" ]."
+      },
+      "Edition": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "AWS Managed Microsoft AD is available in two editions: Standard and Enterprise."
+      },
+      "EnableSso": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Whether to enable single sign-on for a Microsoft Active Directory in AWS. Single sign-on allows users in your directory to access certain AWS services from a computer joined to the directory without having to enter their credentials separately. If you don't specify a value, AWS CloudFormation disables single sign-on by default."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The fully qualified domain name for the AWS Managed Microsoft AD directory, such as corp.example.com. This name will resolve inside your VPC only. It does not need to be publicly resolvable."
+      },
+      "Password": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The password for the default administrative user named Admin. If you need to change the password for the administrator account, see the ResetUserPassword API call in the AWS Directory Service API Reference."
+      },
+      "ShortName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The NetBIOS name for your domain, such as CORP. If you don't specify a NetBIOS name, it will default to the first part of your directory DNS. For example, CORP for the directory DNS corp.example.com. "
+      },
+      "VpcSettings": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 1,
+        "description": "Specifies the VPC settings of the Microsoft AD directory server in AWS."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DirectoryService/MicrosoftAD",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DirectoryService/MicrosoftAD@default",
+    "body": {
+      "$ref": "#/7"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag"
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VpcSettings",
+    "properties": {
+      "SubnetIds": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 1,
+        "description": "The identifiers of the subnets for the directory servers. The two subnets must be in different Availability Zones. AWS Directory Service specifies a directory server and a DNS server in each of these subnets."
+      },
+      "VpcId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The identifier of the VPC in which to create the directory."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DirectoryService/SimpleADProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/9"
     }
   },
   {
@@ -75,7 +249,7 @@
       },
       "DnsIpAddresses": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/13"
         },
         "flags": 2,
         "description": "The IP addresses of the DNS servers for the directory, such as [ \"172.31.3.154\", \"172.31.63.203\" ]."
@@ -115,9 +289,15 @@
         "flags": 1,
         "description": "The size of the directory."
       },
+      "Tags": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0
+      },
       "VpcSettings": {
         "type": {
-          "$ref": "#/0"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "VPC settings of the Simple AD directory server in AWS."
@@ -144,7 +324,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/15"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -154,10 +334,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.DirectoryService/SimpleAD@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/7"
+      "$ref": "#/16"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

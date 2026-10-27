@@ -1,140 +1,160 @@
 # AWS.ApiGateway @ default
 
 ## Resource AWS.ApiGateway/Account@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGateway/AccountProperties](#awsapigatewayaccountproperties) (Identifier): properties of the resource
 
 ## Resource AWS.ApiGateway/ApiKey@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGateway/ApiKeyProperties](#awsapigatewayapikeyproperties) (Identifier): properties of the resource
 
 ## Resource AWS.ApiGateway/Authorizer@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGateway/AuthorizerProperties](#awsapigatewayauthorizerproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ApiGateway/BasePathMapping@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGateway/BasePathMappingProperties](#awsapigatewaybasepathmappingproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ApiGateway/BasePathMappingV2@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGateway/BasePathMappingV2Properties](#awsapigatewaybasepathmappingv2properties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ApiGateway/ClientCertificate@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGateway/ClientCertificateProperties](#awsapigatewayclientcertificateproperties) (Identifier): properties of the resource
 
 ## Resource AWS.ApiGateway/Deployment@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGateway/DeploymentProperties](#awsapigatewaydeploymentproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ApiGateway/DocumentationPart@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGateway/DocumentationPartProperties](#awsapigatewaydocumentationpartproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ApiGateway/DocumentationVersion@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGateway/DocumentationVersionProperties](#awsapigatewaydocumentationversionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ApiGateway/DomainName@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGateway/DomainNameProperties](#awsapigatewaydomainnameproperties) (Identifier): properties of the resource
 
 ## Resource AWS.ApiGateway/DomainNameV2@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGateway/DomainNameV2Properties](#awsapigatewaydomainnamev2properties) (Identifier): properties of the resource
 
 ## Resource AWS.ApiGateway/GatewayResponse@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGateway/GatewayResponseProperties](#awsapigatewaygatewayresponseproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ApiGateway/Method@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGateway/MethodProperties](#awsapigatewaymethodproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ApiGateway/Model@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGateway/ModelProperties](#awsapigatewaymodelproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ApiGateway/RequestValidator@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGateway/RequestValidatorProperties](#awsapigatewayrequestvalidatorproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ApiGateway/Resource@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGateway/ResourceProperties](#awsapigatewayresourceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ApiGateway/RestApi@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGateway/RestApiProperties](#awsapigatewayrestapiproperties) (Identifier): properties of the resource
 
 ## Resource AWS.ApiGateway/Stage@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGateway/StageProperties](#awsapigatewaystageproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ApiGateway/UsagePlan@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGateway/UsagePlanProperties](#awsapigatewayusageplanproperties) (Identifier): properties of the resource
 
 ## Resource AWS.ApiGateway/VpcLink@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -169,7 +189,7 @@
 * **Enabled**: bool
 * **GenerateDistinctId**: bool (WriteOnly)
 * **Name**: string: A name for the API key. If you don't specify a name, CFN generates a unique physical ID and uses that ID for the API key name. For more information, see [Name Type](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-name.html).
- If you specify a name, you cannot perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you must replace the resource, specify a new name.
+  If you specify a name, you cannot perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you must replace the resource, specify a new name.
 * **StageKeys**: [StageKey](#stagekey)[]
 * **Tags**: [Tag](#tag)[]
 * **Value**: string
@@ -237,12 +257,15 @@
 * **DistributionDomainName**: string (ReadOnly)
 * **DistributionHostedZoneId**: string (ReadOnly)
 * **DomainName**: string (Identifier)
-* **EndpointConfiguration**: [EndpointConfiguration](#endpointconfiguration)
+* **DomainNameArn**: string (ReadOnly)
+* **EndpointAccessMode**: string
+* **EndpointConfiguration**: [EndpointConfiguration](#endpointconfiguration): The endpoint configuration of this DomainName showing the endpoint types and IP address types of the domain name.
 * **MutualTlsAuthentication**: [MutualTlsAuthentication](#mutualtlsauthentication)
-* **OwnershipVerificationCertificateArn**: string
+* **OwnershipVerificationCertificateArn**: string: The ARN of the public certificate issued by ACM to validate ownership of your custom domain. Only required when configuring mutual TLS and using an ACM imported or private CA certificate ARN as the RegionalCertificateArn.
 * **RegionalCertificateArn**: string
 * **RegionalDomainName**: string (ReadOnly)
 * **RegionalHostedZoneId**: string (ReadOnly)
+* **RoutingMode**: string
 * **SecurityPolicy**: string
 * **Tags**: [Tag](#tag)[]
 
@@ -252,8 +275,10 @@
 * **DomainName**: string
 * **DomainNameArn**: string (ReadOnly, Identifier): The amazon resource name (ARN) of the domain name resource.
 * **DomainNameId**: string (ReadOnly)
+* **EndpointAccessMode**: string
 * **EndpointConfiguration**: [EndpointConfiguration](#endpointconfiguration)
 * **Policy**: [DomainNameV2_Policy](#domainnamev2policy) | string
+* **RoutingMode**: string: The valid routing modes are [BASE_PATH_MAPPING_ONLY], [ROUTING_RULE_THEN_BASE_PATH_MAPPING] and [ROUTING_RULE_ONLY]. All other inputs are invalid.
 * **SecurityPolicy**: string
 * **Tags**: [Tag](#tag)[]
 
@@ -316,7 +341,8 @@
 * **CloneFrom**: string (WriteOnly)
 * **Description**: string
 * **DisableExecuteApiEndpoint**: bool
-* **EndpointConfiguration**: [EndpointConfiguration](#endpointconfiguration): A list of the endpoint types of the API. Use this property when creating an API. When importing an existing API, specify the endpoint configuration types using the ``Parameters`` property.
+* **EndpointAccessMode**: string
+* **EndpointConfiguration**: [EndpointConfiguration](#endpointconfiguration): A list of the endpoint types and IP address types of the API. Use this property when creating an API. When importing an existing API, specify the endpoint configuration types using the ``Parameters`` property.
 * **FailOnWarnings**: bool (WriteOnly)
 * **MinimumCompressionSize**: int
 * **Mode**: string (WriteOnly): This property applies only when you use OpenAPI to define your REST API. The ``Mode`` determines how API Gateway handles resource updates.
@@ -330,7 +356,9 @@
 * **Policy**: [RestApi_Policy](#restapipolicy) | string: A policy document that contains the permissions for the ``RestApi`` resource. To set the ARN for the policy, use the ``!Join`` intrinsic function with ``""`` as delimiter and values of ``"execute-api:/"`` and ``"*"``.
 * **RestApiId**: string (ReadOnly, Identifier)
 * **RootResourceId**: string (ReadOnly)
+* **SecurityPolicy**: string
 * **Tags**: [Tag](#tag)[]
+* **Version**: string
 
 ## AWS.ApiGateway/StageProperties
 ### Properties
@@ -397,14 +425,17 @@
 
 ## EndpointConfiguration
 ### Properties
+* **IpAddressType**: string
 * **Types**: string[]
 
 ## EndpointConfiguration
 ### Properties
+* **IpAddressType**: string
 * **Types**: string[]
 
 ## EndpointConfiguration
 ### Properties
+* **IpAddressType**: string
 * **Types**: string[]
 * **VpcEndpointIds**: string[]
 
@@ -424,9 +455,11 @@
 * **Credentials**: string
 * **IntegrationHttpMethod**: string
 * **IntegrationResponses**: [IntegrationResponse](#integrationresponse)[]
+* **IntegrationTarget**: string
 * **PassthroughBehavior**: string
 * **RequestParameters**: [Method_RequestParameters](#methodrequestparameters)
 * **RequestTemplates**: [Method_RequestTemplates](#methodrequesttemplates)
+* **ResponseTransferMode**: string
 * **TimeoutInMillis**: int
 * **Type**: string (Required)
 * **Uri**: string
@@ -557,18 +590,23 @@
 
 ## Tag
 ### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Key**: string (Required): A string you can use to assign a value. The combination of tag keys and values can help you organize and categorize your resources.
+* **Value**: string (Required): The value for the specified tag key.
 
 ## Tag
 ### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
+* **Key**: string (Required): A string you can use to assign a value. The combination of tag keys and values can help you organize and categorize your resources.
+* **Value**: string (Required): The value for the specified tag key.
 
 ## Tag
 ### Properties
-* **Key**: string (Required): The key name of the tag
-* **Value**: string (Required): The value for the tag
+* **Key**: string (Required): A string you can use to assign a value. The combination of tag keys and values can help you organize and categorize your resources.
+* **Value**: string (Required): The value for the specified tag key.
+
+## Tag
+### Properties
+* **Key**: string: A string you can use to assign a value. The combination of tag keys and values can help you organize and categorize your resources.
+* **Value**: string: The value for the specified tag key.
 
 ## Tag
 ### Properties
@@ -577,28 +615,23 @@
 
 ## Tag
 ### Properties
-* **Key**: string
-* **Value**: string
+* **Key**: string (Required): A string you can use to assign a value. The combination of tag keys and values can help you organize and categorize your resources.
+* **Value**: string (Required): The value for the specified tag key.
 
 ## Tag
 ### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
+* **Key**: string (Required): A string you can use to assign a value. The combination of tag keys and values can help you organize and categorize your resources.
+* **Value**: string (Required): The value for the specified tag key.
 
 ## Tag
 ### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:.
+* **Key**: string (Required): A string you can use to assign a value. The combination of tag keys and values can help you organize and categorize your resources.
+* **Value**: string (Required): The value for the specified tag key.
 
 ## Tag
 ### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-
-## Tag
-### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
+* **Key**: string (Required): A string you can use to assign a value. The combination of tag keys and values can help you organize and categorize your resources.
+* **Value**: string (Required): The value for the specified tag key.
 
 ## ThrottleSettings
 ### Properties

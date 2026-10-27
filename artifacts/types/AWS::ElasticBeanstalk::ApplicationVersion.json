@@ -1,14 +1,139 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ElasticBeanstalk-ApplicationVersion",
   "type": "AWS::ElasticBeanstalk::ApplicationVersion",
-  "time": "2024-11-01T14:09:04.638Z",
+  "time": "2026-10-13T16:58:18.668Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/SourceBundle",
-      "/properties/ApplicationName"
+      "/properties/ApplicationName",
+      "/properties/ImageConfiguration",
+      "/properties/BuildConfiguration",
+      "/properties/Process"
     ],
     "definitions": {
+      "BuildConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "ArtifactName": {
+            "description": "The name of the build artifact.",
+            "type": "string"
+          },
+          "CodeBuildServiceRole": {
+            "description": "The ARN of the IAM role that AWS CodeBuild assumes to build the application version.",
+            "type": "string"
+          },
+          "ComputeType": {
+            "description": "The compute type for the CodeBuild build environment.",
+            "enum": [
+              "BUILD_GENERAL1_SMALL",
+              "BUILD_GENERAL1_MEDIUM",
+              "BUILD_GENERAL1_LARGE"
+            ],
+            "type": "string"
+          },
+          "Image": {
+            "description": "The CodeBuild image used for the build environment.",
+            "type": "string"
+          },
+          "TimeoutInMinutes": {
+            "description": "The timeout for the CodeBuild build, in minutes.",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "CodeBuildServiceRole",
+          "Image"
+        ],
+        "type": "object"
+      },
+      "ImageBuildConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "Architecture": {
+            "description": "The target architecture for the built container image.",
+            "enum": [
+              "amd64",
+              "arm64"
+            ],
+            "type": "string"
+          },
+          "Buildpack": {
+            "description": "The buildpack to use for building the image.",
+            "type": "string"
+          },
+          "CodeBuildServiceRole": {
+            "description": "The ARN of the IAM role that AWS CodeBuild assumes to build the application version.",
+            "type": "string"
+          },
+          "ComputeType": {
+            "description": "The compute type for the CodeBuild build environment.",
+            "enum": [
+              "BUILD_GENERAL1_SMALL",
+              "BUILD_GENERAL1_MEDIUM",
+              "BUILD_GENERAL1_LARGE"
+            ],
+            "type": "string"
+          },
+          "DockerfileLocation": {
+            "description": "The path to the Dockerfile, relative to the source root.",
+            "type": "string"
+          },
+          "TimeoutInMinutes": {
+            "description": "The timeout for the CodeBuild build, in minutes.",
+            "type": "integer"
+          },
+          "Type": {
+            "description": "The type of image build: docker or buildpack.",
+            "enum": [
+              "docker",
+              "buildpack"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Type",
+          "CodeBuildServiceRole"
+        ],
+        "type": "object"
+      },
+      "ImageConfiguration": {
+        "additionalProperties": false,
+        "oneOf": [
+          {
+            "required": [
+              "Source"
+            ]
+          },
+          {
+            "required": [
+              "Build"
+            ]
+          }
+        ],
+        "properties": {
+          "Build": {
+            "$ref": "#/definitions/ImageBuildConfiguration",
+            "description": "Configuration for building a container image from source code."
+          },
+          "Source": {
+            "$ref": "#/definitions/ImageSource",
+            "description": "The container image source for this version, as an ECR image URI."
+          }
+        },
+        "type": "object"
+      },
+      "ImageSource": {
+        "additionalProperties": false,
+        "properties": {
+          "Uri": {
+            "description": "The URI of the container image, e.g. an ECR image URI.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "SourceBundle": {
         "additionalProperties": false,
         "properties": {
@@ -40,7 +165,8 @@
       },
       "delete": {
         "permissions": [
-          "elasticbeanstalk:DeleteApplicationVersion"
+          "elasticbeanstalk:DeleteApplicationVersion",
+          "elasticbeanstalk:DescribeApplicationVersions"
         ]
       },
       "list": {
@@ -55,7 +181,8 @@
       },
       "update": {
         "permissions": [
-          "elasticbeanstalk:UpdateApplicationVersion"
+          "elasticbeanstalk:UpdateApplicationVersion",
+          "elasticbeanstalk:DescribeApplicationVersions"
         ]
       }
     },
@@ -68,12 +195,24 @@
         "description": "The name of the Elastic Beanstalk application that is associated with this application version. ",
         "type": "string"
       },
+      "BuildConfiguration": {
+        "$ref": "#/definitions/BuildConfiguration",
+        "description": "Settings for an AWS CodeBuild build that packages and builds an application version from source code."
+      },
       "Description": {
         "description": "A description of this application version.",
         "type": "string"
       },
       "Id": {
         "type": "string"
+      },
+      "ImageConfiguration": {
+        "$ref": "#/definitions/ImageConfiguration",
+        "description": "Configuration for image-based application versions."
+      },
+      "Process": {
+        "description": "Pre-process and validate the environment manifest (`env.yaml`) and configuration files in the source bundle. Leave unset for the service default.",
+        "type": "boolean"
       },
       "SourceBundle": {
         "$ref": "#/definitions/SourceBundle",
@@ -84,8 +223,7 @@
       "/properties/Id"
     ],
     "required": [
-      "ApplicationName",
-      "SourceBundle"
+      "ApplicationName"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-elasticbeanstalk.git",
     "tagging": {
@@ -94,6 +232,11 @@
       "tagUpdatable": false,
       "taggable": false
     },
-    "typeName": "AWS::ElasticBeanstalk::ApplicationVersion"
+    "typeName": "AWS::ElasticBeanstalk::ApplicationVersion",
+    "writeOnlyProperties": [
+      "/properties/BuildConfiguration",
+      "/properties/ImageConfiguration",
+      "/properties/Process"
+    ]
   }
 }

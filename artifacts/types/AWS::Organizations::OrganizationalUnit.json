@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Organizations-OrganizationalUnit",
   "type": "AWS::Organizations::OrganizationalUnit",
-  "time": "2025-01-22T17:18:45.049Z",
+  "time": "2026-09-29T21:59:41.85Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -110,6 +110,11 @@
         "pattern": "^(r-[0-9a-z]{4,32})|(ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})$",
         "type": "string"
       },
+      "Path": {
+        "description": "The path in the organization where this OU exists.",
+        "pattern": "^(o-[a-z0-9]{10,32}/r-[0-9a-z]{4,32}(/ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})*(/\\d{12})*)/",
+        "type": "string"
+      },
       "Tags": {
         "description": "A list of tags that you want to attach to the newly created OU.",
         "insertionOrder": false,
@@ -122,7 +127,8 @@
     },
     "readOnlyProperties": [
       "/properties/Arn",
-      "/properties/Id"
+      "/properties/Id",
+      "/properties/Path"
     ],
     "required": [
       "Name",
@@ -130,7 +136,7 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-organizations",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "organizations:TagResource",
         "organizations:UntagResource",

@@ -5,7 +5,7 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "True if the check is enabled."
@@ -40,9 +40,15 @@
         },
         "flags": 0
       },
+      "DeviceCertificateAgeCheck": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
       "DeviceCertificateExpiringCheck": {
         "type": {
-          "$ref": "#/0"
+          "$ref": "#/8"
         },
         "flags": 0
       },
@@ -120,21 +126,21 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "True if notifications to the target are enabled."
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The ARN of the role that grants permission to send notifications to the target."
       },
       "TargetArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The ARN of the target (SNS topic) to which audit notifications are sent."
@@ -154,6 +160,73 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "CertAgeCheckCustomConfiguration",
+    "properties": {
+      "CertAgeThresholdInDays": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CertExpirationCheckCustomConfiguration",
+    "properties": {
+      "CertExpirationThresholdInDays": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConfigValue",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DeviceCertAgeAuditCheckConfiguration",
+    "properties": {
+      "Configuration": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "Enabled": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "True if the check is enabled."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DeviceCertExpirationAuditCheckConfiguration",
+    "properties": {
+      "Configuration": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "Enabled": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "True if the check is enabled."
+      }
+    }
+  },
+  {
     "$type": "BooleanType"
   },
   {
@@ -169,7 +242,7 @@
     "properties": {
       "AccountId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "Your 12-digit account ID (used as the primary identifier for the CloudFormation resource)."
@@ -188,7 +261,7 @@
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The ARN of the role that grants permission to AWS IoT to access information about your devices, policies, certificates and other items as required when performing an audit."
@@ -201,21 +274,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/12"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -225,11 +298,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IoT/AccountAuditConfiguration@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/8"
+      "$ref": "#/13"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -237,13 +310,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -256,7 +329,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/10"
+      "$ref": "#/15"
     }
   },
   {
@@ -270,55 +343,55 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "AuthorizerFunctionArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "AuthorizerName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 16
       },
       "EnableCachingForHttp": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/9"
         },
         "flags": 0
       },
       "SigningDisabled": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/9"
         },
         "flags": 0
       },
       "Status": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "TokenKeyName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "TokenSigningPublicKeys": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/18"
         },
         "flags": 0
       }
@@ -330,21 +403,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/19"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -354,11 +427,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IoT/Authorizer@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/15"
+      "$ref": "#/20"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -366,14 +439,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "Tag key (1-128 chars). No 'aws:' prefix. Allows: [A-Za-z0-9 _.:/=+-]"
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "Tag value (1-256 chars). No 'aws:' prefix. Allows: [A-Za-z0-9 _.:/=+-]"
@@ -390,7 +463,7 @@
     "properties": {
       "BillingGroupDescription": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -399,7 +472,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/17"
+      "$ref": "#/22"
     }
   },
   {
@@ -408,31 +481,31 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "BillingGroupName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 16
       },
       "BillingGroupProperties": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/24"
         },
         "flags": 0
       },
       "Id": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "Tags": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -445,21 +518,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/26"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -469,11 +542,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IoT/BillingGroup@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/22"
+      "$ref": "#/27"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -481,19 +554,19 @@
     "properties": {
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "TemplateBody": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "TemplateName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -505,14 +578,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -526,7 +599,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/30"
     }
   },
   {
@@ -535,62 +608,62 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "AutoRegistrationStatus": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "CACertificatePem": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "CertificateMode": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "Id": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 18
       },
       "RegistrationConfig": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/29"
         },
         "flags": 0
       },
       "RemoveAutoRegistration": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/9"
         },
         "flags": 4
       },
       "Status": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/32"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "VerificationCertificatePem": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 4,
         "description": "The private key verification certificate."
@@ -603,21 +676,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/33"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -627,11 +700,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IoT/CACertificate@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/29"
+      "$ref": "#/34"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "StringLiteralType",
@@ -643,43 +716,43 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "CACertificatePem": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 4
       },
       "CertificateMode": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "CertificatePem": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "CertificateSigningRequest": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 4
       },
       "Id": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 18
       },
       "Status": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -691,21 +764,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/37"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -715,11 +788,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IoT/Certificate@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/33"
+      "$ref": "#/38"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -732,14 +805,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -753,13 +826,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/10"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/36"
+      "$ref": "#/41"
     }
   },
   {
@@ -768,31 +841,31 @@
     "properties": {
       "AccountDefaultForOperations": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/43"
         },
         "flags": 1
       },
       "Arn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "CertificateProviderName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 16
       },
       "LambdaFunctionArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/44"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -805,21 +878,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/45"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -829,11 +902,23 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IoT/CertificateProvider@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/41"
+      "$ref": "#/46"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AwsJsonSubstitutionCommandPreprocessorConfig",
+    "properties": {
+      "OutputFormat": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -841,25 +926,37 @@
     "properties": {
       "DefaultValue": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "Description": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
+      "Type": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
       "Value": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/54"
+        },
+        "flags": 0
+      },
+      "ValueConditions": {
+        "type": {
+          "$ref": "#/67"
         },
         "flags": 0
       }
@@ -882,47 +979,52 @@
   },
   {
     "$type": "ObjectType",
+    "name": "CommandParameterType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "CommandParameterValue",
     "properties": {
       "B": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/9"
         },
         "flags": 0
       },
       "BIN": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "D": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/69"
         },
         "flags": 0
       },
       "I": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/69"
         },
         "flags": 0
       },
       "L": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "S": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "UL": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -930,17 +1032,104 @@
   },
   {
     "$type": "ObjectType",
+    "name": "CommandParameterValueComparisonOperand",
+    "properties": {
+      "Number": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "NumberRange": {
+        "type": {
+          "$ref": "#/59"
+        },
+        "flags": 0
+      },
+      "Numbers": {
+        "type": {
+          "$ref": "#/70"
+        },
+        "flags": 0
+      },
+      "String": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "Strings": {
+        "type": {
+          "$ref": "#/71"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CommandParameterValueComparisonOperator",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CommandParameterValueCondition",
+    "properties": {
+      "ComparisonOperator": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "Operand": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CommandParameterValueConditionList",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CommandParameterValueNumberRange",
+    "properties": {
+      "Max": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "Min": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CommandParameterValueStringList",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "CommandPayload",
     "properties": {
       "Content": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "ContentType": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -953,7 +1142,24 @@
   },
   {
     "$type": "ObjectType",
+    "name": "CommandPreprocessor",
+    "properties": {
+      "AwsJsonSubstitution": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "MimeType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OutputFormat",
     "properties": {}
   },
   {
@@ -962,14 +1168,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The tag's key."
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The tag's value."
@@ -979,11 +1185,41 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/43"
+      "$ref": "#/57"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/49"
     }
   },
   {
     "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/57"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
+    }
   },
   {
     "$type": "StringLiteralType",
@@ -992,13 +1228,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/43"
+      "$ref": "#/49"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/51"
+      "$ref": "#/66"
     }
   },
   {
@@ -1007,91 +1243,105 @@
     "properties": {
       "CommandArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2,
         "description": "The Amazon Resource Name (ARN) of the command."
       },
       "CommandId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "The unique identifier for the command."
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The date and time when the command was created."
       },
       "Deprecated": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "A flag indicating whether the command is deprecated."
       },
       "Description": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The description of the command."
       },
       "DisplayName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The display name for the command."
       },
       "LastUpdatedAt": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 4,
         "description": "The date and time when the command was last updated."
       },
       "MandatoryParameters": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/75"
         },
         "flags": 0,
         "description": "The list of mandatory parameters for the command."
       },
       "Namespace": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The namespace to which the command belongs."
       },
       "Payload": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/61"
         },
         "flags": 0,
         "description": "The payload associated with the command."
       },
+      "PayloadTemplate": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The payload template associated with the command."
+      },
       "PendingDeletion": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "A flag indicating whether the command is pending deletion."
       },
+      "Preprocessor": {
+        "type": {
+          "$ref": "#/63"
+        },
+        "flags": 0,
+        "description": "The command preprocessor configuration."
+      },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The customer role associated with the command."
       },
       "Tags": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/76"
         },
         "flags": 0,
         "description": "The tags to be associated with the command."
@@ -1104,21 +1354,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/77"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1128,11 +1378,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IoT/Command@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/58"
+      "$ref": "#/78"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1140,14 +1390,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The tag's key."
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The tag's value."
@@ -1161,7 +1411,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/60"
+      "$ref": "#/80"
     }
   },
   {
@@ -1170,35 +1420,35 @@
     "properties": {
       "DisplayName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "Field represents a friendly name in the console for the custom metric; it doesn't have to be unique. Don't use this name as the metric identifier in the device metric report. Can be updated once defined."
       },
       "MetricArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2,
         "description": "The Amazon Resource Number (ARN) of the custom metric."
       },
       "MetricName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 16,
         "description": "The name of the custom metric. This will be used in the metric report submitted from the device/thing. Shouldn't begin with aws: . Cannot be updated once defined."
       },
       "MetricType": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The type of the custom metric. Types include string-list, ip-address-list, number-list, and number."
       },
       "Tags": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/82"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1211,21 +1461,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/83"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1235,11 +1485,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IoT/CustomMetric@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/64"
+      "$ref": "#/84"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1247,14 +1497,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The tag's key."
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The tag's value."
@@ -1268,13 +1518,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/10"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/66"
+      "$ref": "#/86"
     }
   },
   {
@@ -1283,35 +1533,35 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2,
         "description": "The ARN (Amazon resource name) of the created dimension."
       },
       "Name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 16,
         "description": "A unique identifier for the dimension."
       },
       "StringValues": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/88"
         },
         "flags": 1,
         "description": "Specifies the value or list of values for the dimension."
       },
       "Tags": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/89"
         },
         "flags": 0,
         "description": "Metadata that can be used to manage the dimension."
       },
       "Type": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "Specifies the type of the dimension."
@@ -1324,21 +1574,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/90"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1348,11 +1598,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IoT/Dimension@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/71"
+      "$ref": "#/91"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1360,13 +1610,13 @@
     "properties": {
       "AllowAuthorizerOverride": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/9"
         },
         "flags": 0
       },
       "DefaultAuthorizerName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -1378,7 +1628,7 @@
     "properties": {
       "ClientCertificateCallbackArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -1390,19 +1640,19 @@
     "properties": {
       "EnableOCSPCheck": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/9"
         },
         "flags": 0
       },
       "OcspAuthorizedResponderArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "OcspLambdaArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -1414,19 +1664,19 @@
     "properties": {
       "ServerCertificateArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "ServerCertificateStatus": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "ServerCertificateStatusDetail": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -1438,13 +1688,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -1456,7 +1706,7 @@
     "properties": {
       "SecurityPolicy": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -1469,19 +1719,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/10"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/76"
+      "$ref": "#/96"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/77"
+      "$ref": "#/97"
     }
   },
   {
@@ -1490,97 +1740,97 @@
     "properties": {
       "ApplicationProtocol": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "Arn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "AuthenticationType": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "AuthorizerConfig": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/93"
         },
         "flags": 0
       },
       "ClientCertificateConfig": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/94"
         },
         "flags": 0
       },
       "DomainConfigurationName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 16
       },
       "DomainConfigurationStatus": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "DomainName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "DomainType": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "ServerCertificateArns": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/100"
         },
         "flags": 4
       },
       "ServerCertificateConfig": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/95"
         },
         "flags": 0
       },
       "ServerCertificates": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/101"
         },
         "flags": 2
       },
       "ServiceType": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/102"
         },
         "flags": 0
       },
       "TlsConfig": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/98"
         },
         "flags": 0
       },
       "ValidationCertificateArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 4
       }
@@ -1592,21 +1842,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/103"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1616,11 +1866,117 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IoT/DomainConfiguration@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/84"
+      "$ref": "#/104"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.IoT/EncryptionConfigurationProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EncryptionConfiguration_ConfigurationDetails",
+    "properties": {
+      "ConfigurationStatus": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "ErrorCode": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "ErrorMessage": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IoT/EncryptionConfigurationProperties",
+    "properties": {
+      "AccountId": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 18
+      },
+      "ConfigurationDetails": {
+        "type": {
+          "$ref": "#/107"
+        },
+        "flags": 2
+      },
+      "EncryptionType": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "KmsAccessRoleArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "LastModifiedDate": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 2
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IoT/EncryptionConfiguration",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/108"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.IoT/EncryptionConfiguration@default",
+    "body": {
+      "$ref": "#/109"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1628,14 +1984,14 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "Fleet Indexing aggregation type names such as Statistics, Percentiles and Cardinality"
       },
       "Values": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/114"
         },
         "flags": 1,
         "description": "Fleet Indexing aggregation type values"
@@ -1648,14 +2004,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The tag's key"
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The tag's value"
@@ -1670,7 +2026,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/10"
     }
   },
   {
@@ -1680,7 +2036,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/87"
+      "$ref": "#/112"
     }
   },
   {
@@ -1689,97 +2045,97 @@
     "properties": {
       "AggregationField": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The aggregation field to perform aggregation and metric emission"
       },
       "AggregationType": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/111"
         },
         "flags": 0
       },
       "CreationDate": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2,
         "description": "The creation date of a fleet metric"
       },
       "Description": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The description of a fleet metric"
       },
       "IndexName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The index name of a fleet metric"
       },
       "LastModifiedDate": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2,
         "description": "The last modified date of a fleet metric"
       },
       "MetricArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2,
         "description": "The Amazon Resource Number (ARN) of a fleet metric metric"
       },
       "MetricName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "The name of the fleet metric"
       },
       "Period": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": "The period of metric emission in seconds"
       },
       "QueryString": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The Fleet Indexing query used by a fleet metric"
       },
       "QueryVersion": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The version of a Fleet Indexing query used by a fleet metric"
       },
       "Tags": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/116"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource"
       },
       "Unit": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The unit of data points emitted by a fleet metric"
       },
       "Version": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/69"
         },
         "flags": 2,
         "description": "The version of a fleet metric"
@@ -1792,21 +2148,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/117"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1816,15 +2172,507 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IoT/FleetMetric@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/93"
+      "$ref": "#/118"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AbortConfig",
+    "properties": {
+      "CriteriaList": {
+        "type": {
+          "$ref": "#/132"
+        },
+        "flags": 1,
+        "description": "The list of criteria that determine when and how to abort the job."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AbortCriteria",
+    "properties": {
+      "Action": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The type of job action to take to initiate the job abort."
+      },
+      "FailureType": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The type of job execution failures that can initiate a job abort."
+      },
+      "MinNumberOfExecutedThings": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 1,
+        "description": "The minimum number of things which must receive job execution notifications before the job can be aborted."
+      },
+      "ThresholdPercentage": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 1,
+        "description": "The minimum percentage of job execution failures that must occur to initiate the job abort."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ExponentialRolloutRate",
+    "properties": {
+      "BaseRatePerMinute": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 1,
+        "description": "The minimum number of things that will be notified of a pending job, per minute at the start of job rollout."
+      },
+      "IncrementFactor": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 1,
+        "description": "The exponential factor to increase the rate of rollout for a job."
+      },
+      "RateIncreaseCriteria": {
+        "type": {
+          "$ref": "#/127"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JobExecutionsRetryConfig",
+    "properties": {
+      "CriteriaList": {
+        "type": {
+          "$ref": "#/133"
+        },
+        "flags": 1,
+        "description": "The list of criteria that determines how many retries are allowed for each failure type for a job."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JobExecutionsRolloutConfig",
+    "properties": {
+      "ExponentialRate": {
+        "type": {
+          "$ref": "#/122"
+        },
+        "flags": 0
+      },
+      "MaximumPerMinute": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0,
+        "description": "The maximum number of things that will be notified of a pending job, per minute. This parameter allows you to create a staged rollout."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MaintenanceWindow",
+    "properties": {
+      "DurationInMinutes": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 1,
+        "description": "Displays the duration of the next maintenance window."
+      },
+      "StartTime": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "Displays the start time of the next maintenance window."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PresignedUrlConfig",
+    "properties": {
+      "ExpiresInSec": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0,
+        "description": "How long (in seconds) pre-signed URLs are valid. Valid values are 60 - 3600, the default value is 3600 seconds."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The ARN of an IAM role that grants permission to download files from the S3 bucket where the job data/updates are stored."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RateIncreaseCriteria",
+    "properties": {
+      "NumberOfNotifiedThings": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0,
+        "description": "The threshold for number of notified things that will initiate the increase in rate of rollout."
+      },
+      "NumberOfSucceededThings": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0,
+        "description": "The threshold for number of succeeded things that will initiate the increase in rate of rollout."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RetryCriteria",
+    "properties": {
+      "FailureType": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The type of job execution failures that can initiate a job retry."
+      },
+      "NumberOfRetries": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 1,
+        "description": "The number of retries allowed for a failure type for the job."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SchedulingConfig",
+    "properties": {
+      "EndBehavior": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "Specifies the end behavior for all job executions after a job reaches the selected endTime."
+      },
+      "EndTime": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The time a job will stop rollout of the job document to all devices in the target group for a job."
+      },
+      "MaintenanceWindows": {
+        "type": {
+          "$ref": "#/134"
+        },
+        "flags": 0,
+        "description": "An optional configuration within the SchedulingConfig to setup a recurring maintenance window."
+      },
+      "StartTime": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The time a job will begin rollout of the job document to all devices in the target group for a job."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The tag's key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The tag's value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TimeoutConfig",
+    "properties": {
+      "InProgressTimeoutInMinutes": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0,
+        "description": "Specifies the amount of time, in minutes, this device has to finish execution of this job. The timeout interval can be anywhere between 1 minute and 7 days (1 to 10080 minutes)."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/121"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/128"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/125"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.IoT/JobProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Job_DocumentParameters",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/130"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IoT/JobProperties",
+    "properties": {
+      "AbortConfig": {
+        "type": {
+          "$ref": "#/120"
+        },
+        "flags": 0
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the job."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 2,
+        "description": "The time when the job was created, in ISO 8601 date-time format."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "A short text description of the job."
+      },
+      "DestinationPackageVersions": {
+        "type": {
+          "$ref": "#/136"
+        },
+        "flags": 0,
+        "description": "The package version Amazon Resource Names (ARNs) that are installed on the device when the job successfully completes."
+      },
+      "Document": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 4,
+        "description": "The job document. Required if you don't specify a value for documentSource."
+      },
+      "DocumentParameters": {
+        "type": {
+          "$ref": "#/137"
+        },
+        "flags": 0,
+        "description": "Parameters of an Amazon Web Services managed template that you can specify to create the job document."
+      },
+      "DocumentSource": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "An S3 link, or S3 object URL, to the job document. The link is an Amazon S3 object URL and is required if you don't specify a value for document."
+      },
+      "JobExecutionsRetryConfig": {
+        "type": {
+          "$ref": "#/123"
+        },
+        "flags": 0
+      },
+      "JobExecutionsRolloutConfig": {
+        "type": {
+          "$ref": "#/124"
+        },
+        "flags": 0
+      },
+      "JobId": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "A job identifier which must be unique for your AWS account. We recommend using a UUID. Alpha-numeric characters, '-' and '_' are valid for use here."
+      },
+      "JobTemplateArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The ARN of the job template used to create the job."
+      },
+      "PresignedUrlConfig": {
+        "type": {
+          "$ref": "#/126"
+        },
+        "flags": 0
+      },
+      "SchedulingConfig": {
+        "type": {
+          "$ref": "#/129"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/138"
+        },
+        "flags": 0,
+        "description": "Metadata which can be used to manage the job."
+      },
+      "TargetSelection": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "Specifies whether the job will continue to run (CONTINUOUS), or will be complete after all those things specified as targets have completed the job (SNAPSHOT)."
+      },
+      "Targets": {
+        "type": {
+          "$ref": "#/139"
+        },
+        "flags": 1,
+        "description": "A list of things and thing groups to which the job should be sent."
+      },
+      "TimeoutConfig": {
+        "type": {
+          "$ref": "#/131"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IoT/Job",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/140"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.IoT/Job@default",
+    "body": {
+      "$ref": "#/141"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EventConfiguration",
+    "properties": {
+      "EventType": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The type of event to log. These include event types like Connect, Publish, and Disconnect."
+      },
+      "LogDestination": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "CloudWatch Log Group for event-based logging. Specifies where log events should be sent. The log destination for event-based logging overrides default Log Group for the specified event type and applies to all resources associated with that event."
+      },
+      "LogLevel": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The logging level for the specified event type. Determines the verbosity of log messages generated for this event type."
+      }
+    }
   },
   {
     "$type": "StringLiteralType",
     "value": "AWS.IoT/LoggingProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/143"
+    }
   },
   {
     "$type": "ObjectType",
@@ -1832,21 +2680,28 @@
     "properties": {
       "AccountId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "Your 12-digit account ID (used as the primary identifier for the CloudFormation resource)."
       },
       "DefaultLogLevel": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The log level to use. Valid values are: ERROR, WARN, INFO, DEBUG, or DISABLED."
       },
+      "EventConfigurations": {
+        "type": {
+          "$ref": "#/145"
+        },
+        "flags": 0,
+        "description": "Configurations for event-based logging that specifies which event types to log and their logging settings. Overrides account-level logging for the specified event"
+      },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The ARN of the role that allows IoT to write to Cloudwatch logs."
@@ -1859,21 +2714,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/146"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1883,11 +2738,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IoT/Logging@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/97"
+      "$ref": "#/147"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1895,37 +2750,37 @@
     "properties": {
       "AddThingsToThingGroupParams": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/150"
         },
         "flags": 0
       },
       "EnableIoTLoggingParams": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/151"
         },
         "flags": 0
       },
       "PublishFindingToSnsParams": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/152"
         },
         "flags": 0
       },
       "ReplaceDefaultPolicyVersionParams": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/153"
         },
         "flags": 0
       },
       "UpdateCACertificateParams": {
         "type": {
-          "$ref": "#/105"
+          "$ref": "#/155"
         },
         "flags": 0
       },
       "UpdateDeviceCertificateParams": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/156"
         },
         "flags": 0
       }
@@ -1937,14 +2792,14 @@
     "properties": {
       "OverrideDynamicGroups": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "Specifies if this mitigation action can move the things that triggered the mitigation action out of one or more dynamic thing groups."
       },
       "ThingGroupNames": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/157"
         },
         "flags": 1,
         "description": "The list of groups to which you want to add the things that triggered the mitigation action."
@@ -1957,14 +2812,14 @@
     "properties": {
       "LogLevel": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": " Specifies which types of information are logged."
       },
       "RoleArnForLogging": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": " The ARN of the IAM role used for logging."
@@ -1977,7 +2832,7 @@
     "properties": {
       "TopicArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The ARN of the topic to which you want to publish the findings."
@@ -1990,7 +2845,7 @@
     "properties": {
       "TemplateName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -2002,14 +2857,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The tag's key."
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The tag's value."
@@ -2022,7 +2877,7 @@
     "properties": {
       "Action": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -2034,7 +2889,7 @@
     "properties": {
       "Action": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -2043,7 +2898,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/10"
     }
   },
   {
@@ -2053,7 +2908,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/104"
+      "$ref": "#/154"
     }
   },
   {
@@ -2062,38 +2917,38 @@
     "properties": {
       "ActionName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 16,
         "description": "A unique identifier for the mitigation action."
       },
       "ActionParams": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/149"
         },
         "flags": 1
       },
       "MitigationActionArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "MitigationActionId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/159"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -2106,21 +2961,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/160"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2130,11 +2985,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IoT/MitigationAction@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/111"
+      "$ref": "#/161"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -2142,13 +2997,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -2167,17 +3022,17 @@
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/115"
+        "$ref": "#/165"
       },
       {
-        "$ref": "#/5"
+        "$ref": "#/10"
       }
     ]
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/163"
     }
   },
   {
@@ -2186,31 +3041,31 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "Id": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 18
       },
       "PolicyDocument": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/166"
         },
         "flags": 1
       },
       "PolicyName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/167"
         },
         "flags": 0
       }
@@ -2222,21 +3077,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/118"
+          "$ref": "#/168"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2246,11 +3101,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IoT/Policy@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/119"
+      "$ref": "#/169"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -2258,13 +3113,13 @@
     "properties": {
       "PayloadVersion": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "TargetArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -2276,13 +3131,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -2295,7 +3150,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/122"
+      "$ref": "#/172"
     }
   },
   {
@@ -2304,55 +3159,55 @@
     "properties": {
       "Description": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "Enabled": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/9"
         },
         "flags": 0
       },
       "PreProvisioningHook": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/171"
         },
         "flags": 0
       },
       "ProvisioningRoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/124"
+          "$ref": "#/174"
         },
         "flags": 0
       },
       "TemplateArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "TemplateBody": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "TemplateName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 16
       },
       "TemplateType": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -2364,21 +3219,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/125"
+          "$ref": "#/175"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2388,11 +3243,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IoT/ProvisioningTemplate@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/126"
+      "$ref": "#/176"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "StringLiteralType",
@@ -2404,28 +3259,28 @@
     "properties": {
       "LogLevel": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The log level for a specific target. Valid values are: ERROR, WARN, INFO, DEBUG, or DISABLED."
       },
       "TargetId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 18,
         "description": "Unique Id for a Target (TargetType:TargetName), this will be internally built to serve as primary identifier for a log target."
       },
       "TargetName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The target name."
       },
       "TargetType": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The target type. Value must be THING_GROUP, CLIENT_ID, SOURCE_IP, PRINCIPAL_ID, or EVENT_TYPE."
@@ -2438,21 +3293,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/129"
+          "$ref": "#/179"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2462,11 +3317,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IoT/ResourceSpecificLogging@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/130"
+      "$ref": "#/180"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -2474,14 +3329,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -2495,7 +3350,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/132"
+      "$ref": "#/182"
     }
   },
   {
@@ -2504,31 +3359,31 @@
     "properties": {
       "CredentialDurationSeconds": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/69"
         },
         "flags": 0
       },
       "RoleAlias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 16
       },
       "RoleAliasArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/134"
+          "$ref": "#/184"
         },
         "flags": 0
       }
@@ -2540,21 +3395,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/185"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2564,11 +3419,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IoT/RoleAlias@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/136"
+      "$ref": "#/186"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -2576,14 +3431,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The tag's key."
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The tag's value."
@@ -2597,13 +3452,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/138"
+      "$ref": "#/188"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/10"
     }
   },
   {
@@ -2612,49 +3467,49 @@
     "properties": {
       "DayOfMonth": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The day of the month on which the scheduled audit takes place. Can be 1 through 31 or LAST. This field is required if the frequency parameter is set to MONTHLY."
       },
       "DayOfWeek": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The day of the week on which the scheduled audit takes place. Can be one of SUN, MON, TUE,WED, THU, FRI, or SAT. This field is required if the frequency parameter is set to WEEKLY or BIWEEKLY."
       },
       "Frequency": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "How often the scheduled audit takes place. Can be one of DAILY, WEEKLY, BIWEEKLY, or MONTHLY."
       },
       "ScheduledAuditArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2,
         "description": "The ARN (Amazon resource name) of the scheduled audit."
       },
       "ScheduledAuditName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 16,
         "description": "The name you want to give to the scheduled audit."
       },
       "Tags": {
         "type": {
-          "$ref": "#/140"
+          "$ref": "#/190"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "TargetCheckNames": {
         "type": {
-          "$ref": "#/141"
+          "$ref": "#/191"
         },
         "flags": 1,
         "description": "Which checks are performed during the scheduled audit. Checks must be enabled for your account."
@@ -2667,21 +3522,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/142"
+          "$ref": "#/192"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2691,11 +3546,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IoT/ScheduledAudit@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/143"
+      "$ref": "#/193"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -2703,14 +3558,14 @@
     "properties": {
       "AlertTargetArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The ARN of the notification target to which alerts are sent."
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The ARN of the role that grants permission to send alerts to the notification target."
@@ -2723,39 +3578,39 @@
     "properties": {
       "Criteria": {
         "type": {
-          "$ref": "#/147"
+          "$ref": "#/197"
         },
         "flags": 0
       },
       "ExportMetric": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/9"
         },
         "flags": 0
       },
       "Metric": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "What is measured by the behavior."
       },
       "MetricDimension": {
         "type": {
-          "$ref": "#/150"
+          "$ref": "#/200"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The name for the behavior."
       },
       "SuppressAlerts": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "Manage Detect alarm SNS notifications by setting behavior notification to on or suppressed. Detect will continue to performing device behavior evaluations. However, suppressed alarms wouldn't be forwarded for SNS notification."
@@ -2768,47 +3623,47 @@
     "properties": {
       "ComparisonOperator": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The operator that relates the thing measured (metric) to the criteria (containing a value or statisticalThreshold)."
       },
       "ConsecutiveDatapointsToAlarm": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": "If a device is in violation of the behavior for the specified number of consecutive datapoints, an alarm occurs. If not specified, the default is 1."
       },
       "ConsecutiveDatapointsToClear": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": "If an alarm has occurred and the offending device is no longer in violation of the behavior for the specified number of consecutive datapoints, the alarm is cleared. If not specified, the default is 1."
       },
       "DurationSeconds": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": "Use this to specify the time duration over which the behavior is evaluated."
       },
       "MlDetectionConfig": {
         "type": {
-          "$ref": "#/149"
+          "$ref": "#/199"
         },
         "flags": 0
       },
       "StatisticalThreshold": {
         "type": {
-          "$ref": "#/153"
+          "$ref": "#/203"
         },
         "flags": 0
       },
       "Value": {
         "type": {
-          "$ref": "#/152"
+          "$ref": "#/202"
         },
         "flags": 0
       }
@@ -2825,7 +3680,7 @@
     "properties": {
       "ConfidenceLevel": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The sensitivity of anomalous behavior evaluation. Can be Low, Medium, or High."
@@ -2838,14 +3693,14 @@
     "properties": {
       "DimensionName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "A unique identifier for the dimension."
       },
       "Operator": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "Defines how the dimensionValues of a dimension are interpreted."
@@ -2858,20 +3713,20 @@
     "properties": {
       "ExportMetric": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/9"
         },
         "flags": 0
       },
       "Metric": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "What is measured by the behavior."
       },
       "MetricDimension": {
         "type": {
-          "$ref": "#/150"
+          "$ref": "#/200"
         },
         "flags": 0
       }
@@ -2883,42 +3738,42 @@
     "properties": {
       "Cidrs": {
         "type": {
-          "$ref": "#/155"
+          "$ref": "#/205"
         },
         "flags": 0,
         "description": "If the ComparisonOperator calls for a set of CIDRs, use this to specify that set to be compared with the metric."
       },
       "Count": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "If the ComparisonOperator calls for a numeric value, use this to specify that (integer) numeric value to be compared with the metric."
       },
       "Number": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": "The numeral value of a metric."
       },
       "Numbers": {
         "type": {
-          "$ref": "#/156"
+          "$ref": "#/206"
         },
         "flags": 0,
         "description": "The numeral values of a metric."
       },
       "Ports": {
         "type": {
-          "$ref": "#/157"
+          "$ref": "#/207"
         },
         "flags": 0,
         "description": "If the ComparisonOperator calls for a set of ports, use this to specify that set to be compared with the metric."
       },
       "Strings": {
         "type": {
-          "$ref": "#/158"
+          "$ref": "#/208"
         },
         "flags": 0,
         "description": "The string values of a metric."
@@ -2931,7 +3786,7 @@
     "properties": {
       "Statistic": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The percentile which resolves to a threshold value by which compliance with a behavior is determined"
@@ -2944,14 +3799,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The tag's key."
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The tag's value."
@@ -2961,25 +3816,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/10"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/53"
+      "$ref": "#/69"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/53"
+      "$ref": "#/69"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/10"
     }
   },
   {
@@ -2989,7 +3844,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/151"
+      "$ref": "#/201"
     }
   },
   {
@@ -3000,7 +3855,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/146"
+      "$ref": "#/196"
     }
   },
   {
@@ -3009,14 +3864,14 @@
     "properties": {
       "MqttTopic": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The topic for metrics export."
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The ARN of the role that grants permission to publish to mqtt topic."
@@ -3026,13 +3881,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/154"
+      "$ref": "#/204"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/10"
     }
   },
   {
@@ -3041,63 +3896,63 @@
     "properties": {
       "AdditionalMetricsToRetainV2": {
         "type": {
-          "$ref": "#/160"
+          "$ref": "#/210"
         },
         "flags": 0,
         "description": "A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's behaviors, but it is also retained for any metric specified here."
       },
       "AlertTargets": {
         "type": {
-          "$ref": "#/161"
+          "$ref": "#/211"
         },
         "flags": 0,
         "description": "Specifies the destinations to which alerts are sent."
       },
       "Behaviors": {
         "type": {
-          "$ref": "#/162"
+          "$ref": "#/212"
         },
         "flags": 0,
         "description": "Specifies the behaviors that, when violated by a device (thing), cause an alert."
       },
       "MetricsExportConfig": {
         "type": {
-          "$ref": "#/163"
+          "$ref": "#/213"
         },
         "flags": 0,
         "description": "A structure containing the mqtt topic for metrics export."
       },
       "SecurityProfileArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2,
         "description": "The ARN (Amazon resource name) of the created security profile."
       },
       "SecurityProfileDescription": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "A description of the security profile."
       },
       "SecurityProfileName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 16,
         "description": "A unique identifier for the security profile."
       },
       "Tags": {
         "type": {
-          "$ref": "#/164"
+          "$ref": "#/214"
         },
         "flags": 0,
         "description": "Metadata that can be used to manage the security profile."
       },
       "TargetArns": {
         "type": {
-          "$ref": "#/165"
+          "$ref": "#/215"
         },
         "flags": 0,
         "description": "A set of target ARNs that the security profile is attached to."
@@ -3110,21 +3965,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/166"
+          "$ref": "#/216"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -3134,11 +3989,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IoT/SecurityProfile@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/167"
+      "$ref": "#/217"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -3146,14 +4001,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
@@ -3167,7 +4022,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/169"
+      "$ref": "#/219"
     }
   },
   {
@@ -3176,25 +4031,25 @@
     "properties": {
       "Description": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "PackageArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "PackageName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 16
       },
       "Tags": {
         "type": {
-          "$ref": "#/171"
+          "$ref": "#/221"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -3207,21 +4062,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/172"
+          "$ref": "#/222"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -3231,11 +4086,23 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IoT/SoftwarePackage@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/173"
+      "$ref": "#/223"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PackageVersionArtifact",
+    "properties": {
+      "S3Location": {
+        "type": {
+          "$ref": "#/228"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -3249,18 +4116,62 @@
   },
   {
     "$type": "ObjectType",
+    "name": "S3Location",
+    "properties": {
+      "Bucket": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The S3 bucket"
+      },
+      "Key": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The S3 key"
+      },
+      "Version": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The S3 version"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Sbom",
+    "properties": {
+      "S3Location": {
+        "type": {
+          "$ref": "#/228"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SbomValidationStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "Tag",
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 1 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
@@ -3274,59 +4185,84 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/177"
+      "$ref": "#/231"
     }
   },
   {
     "$type": "ObjectType",
     "name": "AWS.IoT/SoftwarePackageVersionProperties",
     "properties": {
+      "Artifact": {
+        "type": {
+          "$ref": "#/225"
+        },
+        "flags": 0
+      },
       "Attributes": {
         "type": {
-          "$ref": "#/176"
+          "$ref": "#/227"
         },
         "flags": 0
       },
       "Description": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "ErrorReason": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "PackageName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17
       },
       "PackageVersionArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
+        },
+        "flags": 2
+      },
+      "Recipe": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The inline json job document associated with a software package version"
+      },
+      "Sbom": {
+        "type": {
+          "$ref": "#/229"
+        },
+        "flags": 0
+      },
+      "SbomValidationStatus": {
+        "type": {
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "Status": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "Tags": {
         "type": {
-          "$ref": "#/179"
+          "$ref": "#/233"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "VersionName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 16
       }
@@ -3338,21 +4274,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/180"
+          "$ref": "#/234"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3362,11 +4298,198 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IoT/SoftwarePackageVersion@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/181"
+      "$ref": "#/235"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3Location",
+    "properties": {
+      "Bucket": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The S3 bucket."
+      },
+      "Key": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The S3 key."
+      },
+      "Version": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The S3 bucket version."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StreamFile",
+    "properties": {
+      "FileId": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0,
+        "description": "The file ID."
+      },
+      "S3Location": {
+        "type": {
+          "$ref": "#/237"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The tag's key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The tag's value."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.IoT/StreamProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/238"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/239"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IoT/StreamProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the stream."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 2,
+        "description": "The date when the stream was created."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The description of the stream."
+      },
+      "Files": {
+        "type": {
+          "$ref": "#/241"
+        },
+        "flags": 1,
+        "description": "The files to stream."
+      },
+      "LastUpdatedAt": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 2,
+        "description": "The date when the stream was last updated."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "An IAM role that allows the IoT service principal to access your S3 files."
+      },
+      "StreamId": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The stream ID."
+      },
+      "StreamVersion": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 2,
+        "description": "The stream version."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/242"
+        },
+        "flags": 0,
+        "description": "Metadata which can be used to manage streams."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IoT/Stream",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/243"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.IoT/Stream@default",
+    "body": {
+      "$ref": "#/244"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -3374,7 +4497,7 @@
     "properties": {
       "Attributes": {
         "type": {
-          "$ref": "#/184"
+          "$ref": "#/247"
         },
         "flags": 0
       }
@@ -3395,25 +4518,25 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "AttributePayload": {
         "type": {
-          "$ref": "#/183"
+          "$ref": "#/246"
         },
         "flags": 0
       },
       "Id": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "ThingName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 16
       }
@@ -3425,21 +4548,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/186"
+          "$ref": "#/249"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -3449,11 +4572,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IoT/Thing@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/187"
+      "$ref": "#/250"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -3461,7 +4584,7 @@
     "properties": {
       "Attributes": {
         "type": {
-          "$ref": "#/191"
+          "$ref": "#/254"
         },
         "flags": 0
       }
@@ -3473,14 +4596,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "Tag key (1-128 chars). No 'aws:' prefix. Allows: [A-Za-z0-9 _.:/=+-]"
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "Tag value (1-256 chars). No 'aws:' prefix. Allows: [A-Za-z0-9 _.:/=+-]"
@@ -3499,7 +4622,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/190"
+      "$ref": "#/253"
     }
   },
   {
@@ -3508,13 +4631,13 @@
     "properties": {
       "AttributePayload": {
         "type": {
-          "$ref": "#/189"
+          "$ref": "#/252"
         },
         "flags": 0
       },
       "ThingGroupDescription": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -3526,44 +4649,44 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "Id": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "ParentGroupName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "QueryString": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/193"
+          "$ref": "#/256"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "ThingGroupName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 16
       },
       "ThingGroupProperties": {
         "type": {
-          "$ref": "#/194"
+          "$ref": "#/257"
         },
         "flags": 0
       }
@@ -3575,21 +4698,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/195"
+          "$ref": "#/258"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -3599,11 +4722,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IoT/ThingGroup@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/196"
+      "$ref": "#/259"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -3611,19 +4734,19 @@
     "properties": {
       "ConnectionAttribute": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "ThingAttribute": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "UserPropertyKey": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -3635,14 +4758,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "Tag key (1-128 chars). No 'aws:' prefix. Allows: [A-Za-z0-9 _.:/=+-]"
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1,
         "description": "Tag value (1-256 chars). No 'aws:' prefix. Allows: [A-Za-z0-9 _.:/=+-]"
@@ -3656,13 +4779,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/199"
+      "$ref": "#/262"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/198"
+      "$ref": "#/261"
     }
   },
   {
@@ -3671,7 +4794,7 @@
     "properties": {
       "PropagatingAttributes": {
         "type": {
-          "$ref": "#/202"
+          "$ref": "#/265"
         },
         "flags": 0
       }
@@ -3680,7 +4803,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/10"
     }
   },
   {
@@ -3689,19 +4812,19 @@
     "properties": {
       "Mqtt5Configuration": {
         "type": {
-          "$ref": "#/203"
+          "$ref": "#/266"
         },
         "flags": 0
       },
       "SearchableAttributes": {
         "type": {
-          "$ref": "#/204"
+          "$ref": "#/267"
         },
         "flags": 0
       },
       "ThingTypeDescription": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -3713,38 +4836,38 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "DeprecateThingType": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/9"
         },
         "flags": 0
       },
       "Id": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "Tags": {
         "type": {
-          "$ref": "#/201"
+          "$ref": "#/264"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "ThingTypeName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 16
       },
       "ThingTypeProperties": {
         "type": {
-          "$ref": "#/205"
+          "$ref": "#/268"
         },
         "flags": 0
       }
@@ -3756,21 +4879,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/206"
+          "$ref": "#/269"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -3780,11 +4903,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IoT/ThingType@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/207"
+      "$ref": "#/270"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -3792,133 +4915,139 @@
     "properties": {
       "CloudwatchAlarm": {
         "type": {
-          "$ref": "#/214"
+          "$ref": "#/278"
         },
         "flags": 0
       },
       "CloudwatchLogs": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/279"
         },
         "flags": 0
       },
       "CloudwatchMetric": {
         "type": {
-          "$ref": "#/216"
+          "$ref": "#/280"
         },
         "flags": 0
       },
       "DynamoDB": {
         "type": {
-          "$ref": "#/217"
+          "$ref": "#/281"
         },
         "flags": 0
       },
       "DynamoDBv2": {
         "type": {
-          "$ref": "#/218"
+          "$ref": "#/282"
         },
         "flags": 0
       },
       "Elasticsearch": {
         "type": {
-          "$ref": "#/219"
+          "$ref": "#/283"
         },
         "flags": 0
       },
       "Firehose": {
         "type": {
-          "$ref": "#/220"
+          "$ref": "#/284"
         },
         "flags": 0
       },
       "Http": {
         "type": {
-          "$ref": "#/221"
+          "$ref": "#/285"
+        },
+        "flags": 0
+      },
+      "InfluxDB": {
+        "type": {
+          "$ref": "#/288"
         },
         "flags": 0
       },
       "IotAnalytics": {
         "type": {
-          "$ref": "#/224"
+          "$ref": "#/290"
         },
         "flags": 0
       },
       "IotEvents": {
         "type": {
-          "$ref": "#/225"
+          "$ref": "#/291"
         },
         "flags": 0
       },
       "IotSiteWise": {
         "type": {
-          "$ref": "#/226"
+          "$ref": "#/292"
         },
         "flags": 0
       },
       "Kafka": {
         "type": {
-          "$ref": "#/227"
+          "$ref": "#/293"
         },
         "flags": 0
       },
       "Kinesis": {
         "type": {
-          "$ref": "#/229"
+          "$ref": "#/295"
         },
         "flags": 0
       },
       "Lambda": {
         "type": {
-          "$ref": "#/230"
+          "$ref": "#/296"
         },
         "flags": 0
       },
       "Location": {
         "type": {
-          "$ref": "#/231"
+          "$ref": "#/297"
         },
         "flags": 0
       },
       "OpenSearch": {
         "type": {
-          "$ref": "#/232"
+          "$ref": "#/298"
         },
         "flags": 0
       },
       "Republish": {
         "type": {
-          "$ref": "#/235"
+          "$ref": "#/301"
         },
         "flags": 0
       },
       "S3": {
         "type": {
-          "$ref": "#/238"
+          "$ref": "#/304"
         },
         "flags": 0
       },
       "Sns": {
         "type": {
-          "$ref": "#/240"
+          "$ref": "#/306"
         },
         "flags": 0
       },
       "Sqs": {
         "type": {
-          "$ref": "#/241"
+          "$ref": "#/307"
         },
         "flags": 0
       },
       "StepFunctions": {
         "type": {
-          "$ref": "#/242"
+          "$ref": "#/308"
         },
         "flags": 0
       },
       "Timestream": {
         "type": {
-          "$ref": "#/245"
+          "$ref": "#/311"
         },
         "flags": 0
       }
@@ -3930,13 +5059,13 @@
     "properties": {
       "OffsetInNanos": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "TimeInSeconds": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -3948,19 +5077,19 @@
     "properties": {
       "Quality": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "Timestamp": {
         "type": {
-          "$ref": "#/210"
+          "$ref": "#/273"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/212"
+          "$ref": "#/275"
         },
         "flags": 1
       }
@@ -3972,25 +5101,55 @@
     "properties": {
       "BooleanValue": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "DoubleValue": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "IntegerValue": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "StringValue": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BatchConfig",
+    "properties": {
+      "BatchAcrossTopics": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      },
+      "MaxBatchOpenMs": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0
+      },
+      "MaxBatchSize": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0
+      },
+      "MaxBatchSizeBytes": {
+        "type": {
+          "$ref": "#/69"
         },
         "flags": 0
       }
@@ -4007,25 +5166,25 @@
     "properties": {
       "AlarmName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "StateReason": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "StateValue": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4037,19 +5196,19 @@
     "properties": {
       "BatchMode": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/9"
         },
         "flags": 0
       },
       "LogGroupName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4061,37 +5220,37 @@
     "properties": {
       "MetricName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "MetricNamespace": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "MetricTimestamp": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "MetricUnit": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "MetricValue": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4103,55 +5262,55 @@
     "properties": {
       "HashKeyField": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "HashKeyType": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "HashKeyValue": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "PayloadField": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "RangeKeyField": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "RangeKeyType": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "RangeKeyValue": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "TableName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4163,13 +5322,13 @@
     "properties": {
       "PutItem": {
         "type": {
-          "$ref": "#/234"
+          "$ref": "#/300"
         },
         "flags": 0
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -4181,31 +5340,31 @@
     "properties": {
       "Endpoint": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Id": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Index": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Type": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4217,25 +5376,25 @@
     "properties": {
       "BatchMode": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/9"
         },
         "flags": 0
       },
       "DeliveryStreamName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Separator": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -4247,25 +5406,37 @@
     "properties": {
       "Auth": {
         "type": {
-          "$ref": "#/223"
+          "$ref": "#/287"
+        },
+        "flags": 0
+      },
+      "BatchConfig": {
+        "type": {
+          "$ref": "#/276"
         },
         "flags": 0
       },
       "ConfirmationUrl": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "EnableBatching": {
+        "type": {
+          "$ref": "#/9"
         },
         "flags": 0
       },
       "Headers": {
         "type": {
-          "$ref": "#/252"
+          "$ref": "#/318"
         },
         "flags": 0
       },
       "Url": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4277,13 +5448,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4295,7 +5466,91 @@
     "properties": {
       "Sigv4": {
         "type": {
-          "$ref": "#/239"
+          "$ref": "#/305"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InfluxDBAction",
+    "properties": {
+      "BatchConfig": {
+        "type": {
+          "$ref": "#/289"
+        },
+        "flags": 0
+      },
+      "DatabaseName": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "DestinationArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "Organization": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "TableName": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/319"
+        },
+        "flags": 0
+      },
+      "TimestampUnit": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InfluxDBBatchConfig",
+    "properties": {
+      "BatchAcrossTopics": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      },
+      "MaxBatchOpenMs": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0
+      },
+      "MaxBatchSize": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0
+      },
+      "MaxBatchSizeBytes": {
+        "type": {
+          "$ref": "#/69"
         },
         "flags": 0
       }
@@ -4307,19 +5562,19 @@
     "properties": {
       "BatchMode": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/9"
         },
         "flags": 0
       },
       "ChannelName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4331,25 +5586,25 @@
     "properties": {
       "BatchMode": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/9"
         },
         "flags": 0
       },
       "InputName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "MessageId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4361,13 +5616,13 @@
     "properties": {
       "PutAssetPropertyValueEntries": {
         "type": {
-          "$ref": "#/253"
+          "$ref": "#/320"
         },
         "flags": 1
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4379,37 +5634,37 @@
     "properties": {
       "ClientProperties": {
         "type": {
-          "$ref": "#/254"
+          "$ref": "#/321"
         },
         "flags": 1
       },
       "DestinationArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Headers": {
         "type": {
-          "$ref": "#/255"
+          "$ref": "#/322"
         },
         "flags": 0
       },
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "Partition": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "Topic": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4421,13 +5676,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4439,19 +5694,19 @@
     "properties": {
       "PartitionKey": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "StreamName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4463,7 +5718,7 @@
     "properties": {
       "FunctionArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -4475,37 +5730,37 @@
     "properties": {
       "DeviceId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Latitude": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Longitude": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Timestamp": {
         "type": {
-          "$ref": "#/244"
+          "$ref": "#/310"
         },
         "flags": 0
       },
       "TrackerName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4517,31 +5772,31 @@
     "properties": {
       "Endpoint": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Id": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Index": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Type": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4553,31 +5808,31 @@
     "properties": {
       "AssetId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "EntryId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "PropertyAlias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "PropertyId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "PropertyValues": {
         "type": {
-          "$ref": "#/256"
+          "$ref": "#/323"
         },
         "flags": 1
       }
@@ -4589,7 +5844,7 @@
     "properties": {
       "TableName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4601,25 +5856,25 @@
     "properties": {
       "Headers": {
         "type": {
-          "$ref": "#/236"
+          "$ref": "#/302"
         },
         "flags": 0
       },
       "Qos": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/69"
         },
         "flags": 0
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Topic": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4631,37 +5886,37 @@
     "properties": {
       "ContentType": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "CorrelationData": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "MessageExpiry": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "PayloadFormatIndicator": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "ResponseTopic": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "UserProperties": {
         "type": {
-          "$ref": "#/257"
+          "$ref": "#/324"
         },
         "flags": 0
       }
@@ -4678,25 +5933,25 @@
     "properties": {
       "BucketName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "CannedAcl": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4708,19 +5963,19 @@
     "properties": {
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "ServiceName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "SigningRegion": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4732,19 +5987,19 @@
     "properties": {
       "MessageFormat": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "TargetArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4756,19 +6011,19 @@
     "properties": {
       "QueueUrl": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "UseBase64": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/9"
         },
         "flags": 0
       }
@@ -4780,19 +6035,19 @@
     "properties": {
       "ExecutionNamePrefix": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "StateMachineName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4804,13 +6059,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4822,13 +6077,13 @@
     "properties": {
       "Unit": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4840,31 +6095,31 @@
     "properties": {
       "DatabaseName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Dimensions": {
         "type": {
-          "$ref": "#/258"
+          "$ref": "#/325"
         },
         "flags": 1
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "TableName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Timestamp": {
         "type": {
-          "$ref": "#/248"
+          "$ref": "#/314"
         },
         "flags": 0
       }
@@ -4876,13 +6131,13 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4899,13 +6154,13 @@
     "properties": {
       "Unit": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4917,37 +6172,37 @@
     "properties": {
       "Actions": {
         "type": {
-          "$ref": "#/260"
+          "$ref": "#/327"
         },
         "flags": 1
       },
       "AwsIotSqlVersion": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "Description": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "ErrorAction": {
         "type": {
-          "$ref": "#/209"
+          "$ref": "#/272"
         },
         "flags": 0
       },
       "RuleDisabled": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/9"
         },
         "flags": 0
       },
       "Sql": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4964,13 +6219,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 1
       }
@@ -4979,13 +6234,18 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/222"
+      "$ref": "#/286"
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TopicRule_Tags",
+    "properties": {}
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/233"
+      "$ref": "#/299"
     }
   },
   {
@@ -4996,43 +6256,43 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/228"
+      "$ref": "#/294"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/211"
+      "$ref": "#/274"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/251"
+      "$ref": "#/317"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/246"
+      "$ref": "#/312"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/246"
+      "$ref": "#/312"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/209"
+      "$ref": "#/272"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/251"
+      "$ref": "#/317"
     }
   },
   {
@@ -5042,7 +6302,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/243"
+      "$ref": "#/309"
     }
   },
   {
@@ -5051,25 +6311,25 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2
       },
       "RuleName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 16
       },
       "Tags": {
         "type": {
-          "$ref": "#/263"
+          "$ref": "#/330"
         },
         "flags": 0
       },
       "TopicRulePayload": {
         "type": {
-          "$ref": "#/249"
+          "$ref": "#/315"
         },
         "flags": 1
       }
@@ -5081,21 +6341,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/264"
+          "$ref": "#/331"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -5105,11 +6365,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IoT/TopicRule@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/265"
+      "$ref": "#/332"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -5117,9 +6377,50 @@
     "properties": {
       "ConfirmationUrl": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InfluxDBDestinationProperties",
+    "properties": {
+      "Endpoint": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The endpoint URL of the InfluxDB database."
+      },
+      "InfluxDBVersion": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The version of the InfluxDB database (for example, V2 or V3)."
+      },
+      "SecretId": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The ARN or name of the Secrets Manager secret containing the InfluxDB API token."
+      },
+      "SecretKey": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The key name within the secret that contains the InfluxDB token."
+      },
+      "SecretType": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The type of the secret value (SecretString or SecretBinary)."
       }
     }
   },
@@ -5134,25 +6435,25 @@
     "properties": {
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "SecurityGroups": {
         "type": {
-          "$ref": "#/270"
+          "$ref": "#/338"
         },
         "flags": 0
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/271"
+          "$ref": "#/339"
         },
         "flags": 0
       },
       "VpcId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -5161,13 +6462,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/10"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/10"
     }
   },
   {
@@ -5180,35 +6481,42 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 18,
         "description": "Amazon Resource Name (ARN)."
       },
       "HttpUrlProperties": {
         "type": {
-          "$ref": "#/267"
+          "$ref": "#/334"
         },
         "flags": 0,
         "description": "HTTP URL destination properties."
       },
+      "InfluxDBProperties": {
+        "type": {
+          "$ref": "#/335"
+        },
+        "flags": 0,
+        "description": "InfluxDB destination properties."
+      },
       "Status": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The status of the TopicRuleDestination."
       },
       "StatusReason": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 2,
         "description": "The reasoning for the current status of the TopicRuleDestination."
       },
       "VpcProperties": {
         "type": {
-          "$ref": "#/269"
+          "$ref": "#/337"
         },
         "flags": 0,
         "description": "VPC destination properties."
@@ -5221,21 +6529,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/273"
+          "$ref": "#/341"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -5245,10 +6553,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.IoT/TopicRuleDestination@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/274"
+      "$ref": "#/342"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

@@ -1,7 +1,8 @@
 # AWS.AuditManager @ default
 
 ## Resource AWS.AuditManager/Assessment@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -19,7 +20,7 @@
 * **AssessmentReportsDestination**: [AssessmentReportsDestination](#assessmentreportsdestination)
 * **AwsAccount**: [AWSAccount](#awsaccount)
 * **CreationTime**: int (ReadOnly)
-* **Delegations**: [Delegation](#delegation)[]: The list of delegations.
+* **Delegations**: [Delegation](#delegation)[] (WriteOnly): The list of delegations.
 * **Description**: string (WriteOnly)
 * **FrameworkId**: string
 * **Name**: string (WriteOnly)
@@ -30,9 +31,9 @@
 
 ## AWSAccount
 ### Properties
-* **EmailAddress**: string
+* **EmailAddress**: string (WriteOnly)
 * **Id**: string
-* **Name**: string
+* **Name**: string (WriteOnly)
 
 ## AWSService
 ### Properties
@@ -59,8 +60,8 @@
 
 ## Scope
 ### Properties
-* **AwsAccounts**: [AWSAccount](#awsaccount)[]: The AWS accounts included in scope.
-* **AwsServices**: [AWSService](#awsservice)[]: The AWS services included in scope.
+* **AwsAccounts**: [AWSAccount](#awsaccount)[] (WriteOnly): The AWS accounts included in scope.
+* **AwsServices**: [AWSService](#awsservice)[] (WriteOnly): The AWS services included in scope.
 
 ## Tag
 ### Properties

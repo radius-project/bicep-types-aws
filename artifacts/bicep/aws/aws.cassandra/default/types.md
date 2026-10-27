@@ -1,14 +1,16 @@
 # AWS.Cassandra @ default
 
 ## Resource AWS.Cassandra/Keyspace@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Cassandra/KeyspaceProperties](#awscassandrakeyspaceproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Cassandra/Table@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -28,7 +30,7 @@
 
 ## AWS.Cassandra/KeyspaceProperties
 ### Properties
-* **ClientSideTimestampsEnabled**: bool: Indicates whether client-side timestamps are enabled (true) or disabled (false) for all tables in the keyspace. To add a Region to a single-Region keyspace with at least one table, the value must be set to true. After you enabled client-side timestamps for a table, you can?t disable it again.
+* **ClientSideTimestampsEnabled**: bool (WriteOnly): Indicates whether client-side timestamps are enabled (true) or disabled (false) for all tables in the keyspace. To add a Region to a single-Region keyspace with at least one table, the value must be set to true. After you enabled client-side timestamps for a table, you can?t disable it again.
 * **KeyspaceName**: string (Identifier): Name for Cassandra keyspace
 * **ReplicationSpecification**: [ReplicationSpecification](#replicationspecification)
 * **Tags**: [Tag](#tag)[]
@@ -37,6 +39,7 @@
 ### Properties
 * **AutoScalingSpecifications**: [AutoScalingSpecification](#autoscalingspecification) (WriteOnly)
 * **BillingMode**: [BillingMode](#billingmode)
+* **CdcSpecification**: [CdcSpecification](#cdcspecification)
 * **ClientSideTimestampsEnabled**: bool: Indicates whether client side timestamps are enabled (true) or disabled (false) on the table. False by default, once it is enabled it cannot be disabled again.
 * **ClusteringKeyColumns**: [ClusteringKeyColumn](#clusteringkeycolumn)[]: Clustering key columns of the table
 * **DefaultTimeToLive**: int: Default TTL (Time To Live) in seconds, where zero is disabled. If the value is greater than zero, TTL is enabled for the entire table and an expiration timestamp is added to each column.
@@ -48,11 +51,18 @@
 * **ReplicaSpecifications**: [ReplicaSpecification](#replicaspecification)[] (WriteOnly)
 * **TableName**: string (Identifier): Name for Cassandra table
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource
+* **WarmThroughput**: [WarmThroughput](#warmthroughput)
 
 ## BillingMode
 ### Properties
 * **Mode**: string (Required)
 * **ProvisionedThroughput**: [ProvisionedThroughput](#provisionedthroughput)
+
+## CdcSpecification
+### Properties
+* **Status**: string (Required)
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to the CDC stream resource
+* **ViewType**: string
 
 ## ClusteringKeyColumn
 ### Properties
@@ -82,7 +92,7 @@
 
 ## ReplicationSpecification
 ### Properties
-* **RegionList**: string[]
+* **RegionList**: string[] (WriteOnly)
 * **ReplicationStrategy**: string
 
 ## ScalingPolicy
@@ -105,4 +115,9 @@
 * **ScaleInCooldown**: int
 * **ScaleOutCooldown**: int
 * **TargetValue**: int (Required)
+
+## WarmThroughput
+### Properties
+* **ReadUnitsPerSecond**: int
+* **WriteUnitsPerSecond**: int
 

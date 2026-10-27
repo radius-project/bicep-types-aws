@@ -233,23 +233,46 @@
   {
     "$type": "ResourceType",
     "name": "AWS.B2BI/Capability@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/16"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
     "name": "CapabilityOptions",
     "properties": {
+      "InboundEdi": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0
+      },
       "OutboundEdi": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/36"
         },
         "flags": 0
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InboundEdiOptions",
+    "properties": {
+      "X12": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LineTerminator",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -271,6 +294,77 @@
           "$ref": "#/10"
         },
         "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WrapFormat",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WrapOptions",
+    "properties": {
+      "LineLength": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 0
+      },
+      "LineTerminator": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "WrapBy": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "X12AcknowledgmentOptions",
+    "properties": {
+      "FunctionalAcknowledgment": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "TechnicalAcknowledgment": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "X12ControlNumbers",
+    "properties": {
+      "StartingFunctionalGroupControlNumber": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 0
+      },
+      "StartingInterchangeControlNumber": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 0
+      },
+      "StartingTransactionSetControlNumber": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 0
       }
     }
   },
@@ -304,11 +398,22 @@
     "properties": {
       "Common": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/34"
+        },
+        "flags": 0
+      },
+      "WrapOptions": {
+        "type": {
+          "$ref": "#/24"
         },
         "flags": 0
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "X12FunctionalAcknowledgment",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -329,6 +434,23 @@
       "ResponsibleAgencyCode": {
         "type": {
           "$ref": "#/10"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "X12GS05TimeFormat",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "X12InboundEdiOptions",
+    "properties": {
+      "AcknowledgmentOptions": {
+        "type": {
+          "$ref": "#/25"
         },
         "flags": 0
       }
@@ -386,27 +508,39 @@
     "$type": "ObjectType",
     "name": "X12OutboundEdiHeaders",
     "properties": {
+      "ControlNumbers": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0
+      },
       "Delimiters": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/27"
         },
         "flags": 0
       },
       "FunctionalGroupHeaders": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/30"
+        },
+        "flags": 0
+      },
+      "Gs05TimeFormat": {
+        "type": {
+          "$ref": "#/10"
         },
         "flags": 0
       },
       "InterchangeControlHeaders": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/33"
         },
         "flags": 0
       },
       "ValidateEdi": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/38"
         },
         "flags": 0
       }
@@ -414,8 +548,16 @@
   },
   {
     "$type": "ObjectType",
+    "name": "X12TechnicalAcknowledgment",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "Partnership_OutboundEdiOptions",
     "properties": {}
+  },
+  {
+    "$type": "IntegerType"
   },
   {
     "$type": "BooleanType"
@@ -433,7 +575,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/20"
+      "$ref": "#/22"
     }
   },
   {
@@ -442,7 +584,7 @@
     "properties": {
       "Capabilities": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/40"
         },
         "flags": 1
       },
@@ -502,7 +644,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/41"
         },
         "flags": 0
       },
@@ -534,7 +676,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/42"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -544,11 +686,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.B2BI/Partnership@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/32"
+      "$ref": "#/43"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -580,7 +722,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/35"
+      "$ref": "#/46"
     }
   },
   {
@@ -649,7 +791,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/48"
         },
         "flags": 0
       }
@@ -675,7 +817,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/49"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -685,15 +827,32 @@
   {
     "$type": "ResourceType",
     "name": "AWS.B2BI/Profile@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/39"
+      "$ref": "#/50"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AdvancedOptions",
+    "properties": {
+      "X12": {
+        "type": {
+          "$ref": "#/67"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
     "name": "EdiType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ElementRequirement",
     "properties": {}
   },
   {
@@ -715,9 +874,15 @@
     "$type": "ObjectType",
     "name": "InputConversion",
     "properties": {
+      "AdvancedOptions": {
+        "type": {
+          "$ref": "#/52"
+        },
+        "flags": 0
+      },
       "FormatOptions": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/56"
         },
         "flags": 0
       },
@@ -756,9 +921,15 @@
     "$type": "ObjectType",
     "name": "OutputConversion",
     "properties": {
+      "AdvancedOptions": {
+        "type": {
+          "$ref": "#/52"
+        },
+        "flags": 0
+      },
       "FormatOptions": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/56"
         },
         "flags": 0
       },
@@ -800,7 +971,7 @@
       },
       "Keys": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/78"
         },
         "flags": 1
       }
@@ -836,6 +1007,48 @@
   },
   {
     "$type": "ObjectType",
+    "name": "X12AdvancedOptions",
+    "properties": {
+      "SplitOptions": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0
+      },
+      "ValidationOptions": {
+        "type": {
+          "$ref": "#/75"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "X12CodeListValidationRule",
+    "properties": {
+      "CodesToAdd": {
+        "type": {
+          "$ref": "#/79"
+        },
+        "flags": 0
+      },
+      "CodesToRemove": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 0
+      },
+      "ElementId": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "X12Details",
     "properties": {
       "TransactionSet": {
@@ -854,7 +1067,83 @@
   },
   {
     "$type": "ObjectType",
+    "name": "X12ElementLengthValidationRule",
+    "properties": {
+      "ElementId": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "MaxLength": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 1
+      },
+      "MinLength": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "X12ElementRequirementValidationRule",
+    "properties": {
+      "ElementPosition": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "Requirement": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "X12SplitBy",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "X12SplitOptions",
+    "properties": {
+      "SplitBy": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "X12TransactionSet",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "X12ValidationOptions",
+    "properties": {
+      "ValidationRules": {
+        "type": {
+          "$ref": "#/82"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "X12ValidationRule",
     "properties": {}
   },
   {
@@ -865,7 +1154,30 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/49"
+      "$ref": "#/62"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Transformer_X12ValidationRule",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/81"
     }
   },
   {
@@ -875,7 +1187,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/51"
+      "$ref": "#/64"
     }
   },
   {
@@ -890,7 +1202,7 @@
       },
       "EdiType": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/53"
         },
         "flags": 0
       },
@@ -902,13 +1214,13 @@
       },
       "InputConversion": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/58"
         },
         "flags": 0
       },
       "Mapping": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/59"
         },
         "flags": 0
       },
@@ -933,7 +1245,7 @@
       },
       "OutputConversion": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/61"
         },
         "flags": 0
       },
@@ -946,7 +1258,7 @@
       },
       "SampleDocuments": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/63"
         },
         "flags": 0
       },
@@ -958,7 +1270,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/84"
         },
         "flags": 0
       },
@@ -996,7 +1308,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/85"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1006,10 +1318,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.B2BI/Transformer@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/61"
+      "$ref": "#/86"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

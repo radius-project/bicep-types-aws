@@ -1,13 +1,14 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Neptune-DBCluster",
   "type": "AWS::Neptune::DBCluster",
-  "time": "2025-01-16T07:52:25.228Z",
+  "time": "2026-10-14T14:21:54.5Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/AvailabilityZones",
       "/properties/DBClusterIdentifier",
       "/properties/DBSubnetGroupName",
+      "/properties/GlobalClusterIdentifier",
       "/properties/KmsKeyId",
       "/properties/RestoreToTime",
       "/properties/RestoreType",
@@ -235,12 +236,27 @@
         "description": "Indicates the database engine version.",
         "type": "string"
       },
+      "GlobalClusterIdentifier": {
+        "description": "The ID of the Neptune global database to which this new DB cluster should be added.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[A-Za-z][0-9A-Za-z-:._]*$",
+        "type": "string"
+      },
       "IamAuthEnabled": {
         "description": "True if mapping of Amazon Identity and Access Management (IAM) accounts to database accounts is enabled, and otherwise false.",
         "type": "boolean"
       },
       "KmsKeyId": {
         "description": "The Amazon Resource Name (ARN) of the AWS KMS key that is used to encrypt the database instances in the DB cluster, such as arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef. If you enable the StorageEncrypted property but don't specify this property, the default KMS key is used. If you specify this property, you must set the StorageEncrypted property to true.",
+        "type": "string"
+      },
+      "NetworkType": {
+        "description": "The network type of the DB cluster.",
+        "enum": [
+          "IPV4",
+          "DUAL"
+        ],
         "type": "string"
       },
       "Port": {
@@ -324,6 +340,11 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-neptune",
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "rds:AddTagsToResource",
+        "rds:ListTagsForResource",
+        "rds:RemoveTagsFromResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

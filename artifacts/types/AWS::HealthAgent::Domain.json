@@ -1,0 +1,158 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-HealthAgent-Domain",
+  "type": "AWS::HealthAgent::Domain",
+  "time": "2026-10-21T23:17:53.882Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/DomainId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name"
+    ],
+    "description": "Resource Type definition for AWS::HealthAgent::Domain. Creates and manages a HealthAgent Domain resource.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "health-agent:CreateDomain",
+          "health-agent:GetDomain",
+          "health-agent:TagResource",
+          "iam:PassRole",
+          "kms:DescribeKey",
+          "kms:CreateGrant"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "health-agent:DeleteDomain",
+          "health-agent:GetDomain"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "health-agent:ListDomains"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "health-agent:GetDomain",
+          "health-agent:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "health-agent:GetDomain",
+          "health-agent:TagResource",
+          "health-agent:UntagResource",
+          "health-agent:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the Domain.",
+        "pattern": "^arn:aws[-a-z]*:health-agent:[a-z0-9-]+:[0-9]{12}:domain/(hai-|dom-)[a-z0-9]+$",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The timestamp when the Domain was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DomainId": {
+        "description": "The unique identifier of the Domain.",
+        "maxLength": 25,
+        "minLength": 20,
+        "pattern": "^(hai-|dom-)[a-z0-9]+$",
+        "type": "string"
+      },
+      "EncryptionContext": {
+        "additionalProperties": false,
+        "description": "Encryption context for the Domain.",
+        "properties": {
+          "EncryptionType": {
+            "description": "The type of encryption key used.",
+            "enum": [
+              "AWS_OWNED_KEY",
+              "CUSTOMER_MANAGED_KEY"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "EncryptionType"
+        ],
+        "type": "object"
+      },
+      "Name": {
+        "description": "The name of the Domain.",
+        "maxLength": 64,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the Domain.",
+        "enum": [
+          "ACTIVE",
+          "DELETING",
+          "DELETED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags associated with the Domain.",
+        "insertionOrder": false,
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "Value": {
+              "maxLength": 256,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/DomainId",
+      "/properties/Status",
+      "/properties/EncryptionContext",
+      "/properties/CreatedAt"
+    ],
+    "required": [
+      "Name"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "health-agent:TagResource",
+        "health-agent:UntagResource",
+        "health-agent:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::HealthAgent::Domain"
+  }
+}

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AppRunner-VpcIngressConnection",
   "type": "AWS::AppRunner::VpcIngressConnection",
-  "time": "2024-11-13T19:48:19.403Z",
+  "time": "2025-12-11T19:47:55.922Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -56,7 +56,8 @@
       },
       "delete": {
         "permissions": [
-          "apprunner:DeleteVpcIngressConnection"
+          "apprunner:DeleteVpcIngressConnection",
+          "apprunner:DescribeVpcIngressConnection"
         ]
       },
       "list": {
@@ -71,7 +72,11 @@
       },
       "update": {
         "permissions": [
-          "apprunner:UpdateVpcIngressConnection"
+          "apprunner:UpdateVpcIngressConnection",
+          "apprunner:DescribeVpcIngressConnection",
+          "ec2:DescribeVpcs",
+          "ec2:DescribeVpcEndpoints",
+          "ec2:DescribeSubnets"
         ]
       }
     },
@@ -143,6 +148,11 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-apprunner.git",
     "tagging": {
       "cloudFormationSystemTags": false,
+      "permissions": [
+        "apprunner:TagResource",
+        "apprunner:UntagResource",
+        "apprunner:ListTagsForResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": false,

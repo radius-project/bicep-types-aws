@@ -1,0 +1,185 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Transcribe-MedicalVocabulary",
+  "type": "AWS::Transcribe::MedicalVocabulary",
+  "time": "2026-10-21T16:46:19.94Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/VocabularyName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/VocabularyName",
+      "/properties/LanguageCode"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource type definition for AWS::Transcribe::MedicalVocabulary",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "transcribe:CreateMedicalVocabulary",
+          "transcribe:GetMedicalVocabulary",
+          "transcribe:ListTagsForResource",
+          "transcribe:TagResource",
+          "s3:GetObject"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "transcribe:DeleteMedicalVocabulary",
+          "transcribe:GetMedicalVocabulary",
+          "transcribe:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "transcribe:ListMedicalVocabularies"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "transcribe:GetMedicalVocabulary",
+          "transcribe:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "transcribe:UpdateMedicalVocabulary",
+          "transcribe:GetMedicalVocabulary",
+          "transcribe:TagResource",
+          "transcribe:UntagResource",
+          "transcribe:ListTagsForResource",
+          "s3:GetObject"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the medical vocabulary.",
+        "maxLength": 1011,
+        "minLength": 1,
+        "pattern": "arn:aws(-[^:]+)?:transcribe:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-Z-]*/[0-9a-zA-Z._-]+",
+        "type": "string"
+      },
+      "LanguageCode": {
+        "description": "The language code of the vocabulary entries.",
+        "enum": [
+          "af-ZA",
+          "ar-AE",
+          "ar-SA",
+          "da-DK",
+          "de-CH",
+          "de-DE",
+          "en-AB",
+          "en-AU",
+          "en-GB",
+          "en-IE",
+          "en-IN",
+          "en-US",
+          "en-WL",
+          "es-ES",
+          "es-US",
+          "fa-IR",
+          "fr-CA",
+          "fr-FR",
+          "he-IL",
+          "hi-IN",
+          "id-ID",
+          "it-IT",
+          "ja-JP",
+          "ko-KR",
+          "ms-MY",
+          "nl-NL",
+          "pt-BR",
+          "pt-PT",
+          "ru-RU",
+          "ta-IN",
+          "te-IN",
+          "tr-TR",
+          "zh-CN",
+          "zh-TW",
+          "th-TH",
+          "en-ZA",
+          "en-NZ",
+          "vi-VN",
+          "sv-SE"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags associated with the medical vocabulary.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "minItems": 1,
+        "type": "array"
+      },
+      "VocabularyFileUri": {
+        "description": "The Amazon S3 location of the text file that contains the medical vocabulary.",
+        "maxLength": 2000,
+        "minLength": 1,
+        "pattern": "(s3://|http(s*)://).+",
+        "type": "string"
+      },
+      "VocabularyName": {
+        "description": "The name of the medical vocabulary.",
+        "maxLength": 200,
+        "minLength": 1,
+        "pattern": "^[0-9a-zA-Z._-]+$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn"
+    ],
+    "required": [
+      "VocabularyName",
+      "LanguageCode"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "transcribe:TagResource",
+        "transcribe:UntagResource",
+        "transcribe:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Transcribe::MedicalVocabulary",
+    "writeOnlyProperties": [
+      "/properties/VocabularyFileUri"
+    ]
+  }
+}

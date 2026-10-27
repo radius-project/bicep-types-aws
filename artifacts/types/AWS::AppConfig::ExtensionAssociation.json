@@ -1,16 +1,13 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AppConfig-ExtensionAssociation",
   "type": "AWS::AppConfig::ExtensionAssociation",
-  "time": "2024-12-20T20:33:05.568Z",
+  "time": "2026-10-21T15:27:00.657Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/ExtensionIdentifier",
       "/properties/ResourceIdentifier",
-      "/properties/ExtensionVersionNumber",
-      "/properties/Tags",
-      "/properties/Tags/*/Key",
-      "/properties/Tags/*/Value"
+      "/properties/ExtensionVersionNumber"
     ],
     "definitions": {
       "Tag": {
@@ -58,7 +55,8 @@
       },
       "read": {
         "permissions": [
-          "appconfig:GetExtensionAssociation"
+          "appconfig:GetExtensionAssociation",
+          "appconfig:ListTagsForResource"
         ]
       },
       "update": {
@@ -110,7 +108,7 @@
           "$ref": "#/definitions/Tag"
         },
         "type": "array",
-        "uniqueItems": false
+        "uniqueItems": true
       }
     },
     "readOnlyProperties": [
@@ -135,10 +133,7 @@
     "typeName": "AWS::AppConfig::ExtensionAssociation",
     "writeOnlyProperties": [
       "/properties/ExtensionIdentifier",
-      "/properties/ResourceIdentifier",
-      "/properties/Tags",
-      "/properties/Tags/*/Key",
-      "/properties/Tags/*/Value"
+      "/properties/ResourceIdentifier"
     ]
   }
 }

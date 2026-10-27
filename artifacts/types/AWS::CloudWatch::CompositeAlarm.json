@@ -1,18 +1,69 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudWatch-CompositeAlarm",
   "type": "AWS::CloudWatch::CompositeAlarm",
-  "time": "2024-12-17T10:32:02.942Z",
+  "time": "2026-10-13T10:52:05.735Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/AlarmName"
     ],
     "definitions": {
+      "ActionConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration that applies to the notifications this alarm sends when it performs its actions.",
+        "properties": {
+          "AlarmTagsPropagation": {
+            "$ref": "#/definitions/AlarmTagsPropagation",
+            "description": "Whether the alarm's tags are included in its action notifications and state-change events."
+          }
+        },
+        "type": "object"
+      },
       "AlarmActionARN": {
         "description": "Amazon Resource Name (ARN) of the action",
         "maxLength": 1024,
         "minLength": 1,
         "type": "string"
+      },
+      "AlarmTagsPropagation": {
+        "additionalProperties": false,
+        "description": "Controls whether the alarm's tags are included in its action notifications and state-change events, and which tag keys are included. Specify IncludedTagKeys or ExcludedTagKeys, but not both. Omit both to include every tag.",
+        "properties": {
+          "Enabled": {
+            "description": "Whether the alarm's tags are included in its action notifications and state-change events.",
+            "type": "boolean"
+          },
+          "ExcludedTagKeys": {
+            "description": "The tag keys to leave out. Cannot be specified together with IncludedTagKeys.",
+            "insertionOrder": false,
+            "items": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 50,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "IncludedTagKeys": {
+            "description": "The only tag keys to include. Cannot be specified together with ExcludedTagKeys.",
+            "insertionOrder": false,
+            "items": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 50,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "Enabled"
+        ],
+        "type": "object"
       },
       "Tag": {
         "additionalProperties": false,
@@ -44,7 +95,8 @@
         "permissions": [
           "cloudwatch:DescribeAlarms",
           "cloudwatch:PutCompositeAlarm",
-          "cloudwatch:TagResource"
+          "cloudwatch:TagResource",
+          "cloudwatch:ListTagsForResource"
         ]
       },
       "delete": {
@@ -69,7 +121,8 @@
           "cloudwatch:DescribeAlarms",
           "cloudwatch:PutCompositeAlarm",
           "cloudwatch:TagResource",
-          "cloudwatch:UntagResource"
+          "cloudwatch:UntagResource",
+          "cloudwatch:ListTagsForResource"
         ]
       }
     },
@@ -77,6 +130,10 @@
       "/properties/AlarmName"
     ],
     "properties": {
+      "ActionConfiguration": {
+        "$ref": "#/definitions/ActionConfiguration",
+        "description": "Configuration that applies to the notifications this alarm sends when it performs its actions."
+      },
       "ActionsEnabled": {
         "description": "Indicates whether actions should be executed during any changes to the alarm state. The default is TRUE.",
         "type": "boolean"

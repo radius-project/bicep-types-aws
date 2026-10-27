@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RolesAnywhere-CRL",
   "type": "AWS::RolesAnywhere::CRL",
-  "time": "2025-01-06T17:26:36.284Z",
+  "time": "2026-10-21T22:13:03.125Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -31,8 +31,7 @@
       "create": {
         "permissions": [
           "rolesanywhere:ImportCrl",
-          "rolesanywhere:TagResource",
-          "rolesanywhere:ListTagsForResource"
+          "rolesanywhere:TagResource"
         ]
       },
       "delete": {
@@ -92,6 +91,9 @@
         "pattern": "^arn:aws(-[^:]+)?:rolesanywhere(:.*){2}(:trust-anchor.*)$",
         "type": "string"
       }
+    },
+    "propertyTransform": {
+      "/properties/CrlData": "$replace(CrlData, /\\s+$/, '')"
     },
     "readOnlyProperties": [
       "/properties/CrlId"

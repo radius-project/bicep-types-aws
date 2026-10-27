@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-PCAConnectorAD-Connector",
   "type": "AWS::PCAConnectorAD::Connector",
-  "time": "2024-12-27T15:54:58.805Z",
+  "time": "2026-10-21T20:51:41.443Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -19,9 +19,20 @@
         },
         "type": "object"
       },
+      "Unit": {
+        "additionalProperties": false,
+        "type": "object"
+      },
       "VpcInformation": {
         "additionalProperties": false,
         "properties": {
+          "IpAddressType": {
+            "enum": [
+              "IPV4",
+              "DUALSTACK"
+            ],
+            "type": "string"
+          },
           "SecurityGroupIds": {
             "items": {
               "maxLength": 20,
@@ -41,7 +52,7 @@
         "type": "object"
       }
     },
-    "description": "Definition of AWS::PCAConnectorAD::Connector Resource Type",
+    "description": "Represents a Connector that connects AWS PrivateCA and your directory",
     "handlers": {
       "create": {
         "permissions": [
@@ -93,13 +104,13 @@
       "CertificateAuthorityArn": {
         "maxLength": 200,
         "minLength": 5,
-        "pattern": "^arn:[\\w-]+:acm-pca:[\\w-]+:[0-9]+:certificate-authority(\\/[\\w-]+)$",
+        "pattern": "^arn:[\\w-]+:acm-pca:[\\w-]+:[0-9]+:certificate-authority\\/[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$",
         "type": "string"
       },
       "ConnectorArn": {
         "maxLength": 200,
         "minLength": 5,
-        "pattern": "^arn:[\\w-]+:pca-connector-ad:[\\w-]+:[0-9]+:connector(\\/[\\w-]+)$",
+        "pattern": "^arn:[\\w-]+:pca-connector-ad:[\\w-]+:[0-9]+:connector\\/[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$",
         "type": "string"
       },
       "DirectoryId": {

@@ -1,0 +1,182 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ElastiCache-ServerlessCacheSnapshot",
+  "type": "AWS::ElastiCache::ServerlessCacheSnapshot",
+  "time": "2026-10-21T22:24:04.592Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ServerlessCacheSnapshotName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ServerlessCacheSnapshotName",
+      "/properties/ServerlessCacheName",
+      "/properties/KmsKeyId"
+    ],
+    "definitions": {
+      "ServerlessCacheConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "Engine": {
+            "description": "The engine that the serverless cache is configured with.",
+            "type": "string"
+          },
+          "MajorEngineVersion": {
+            "description": "The engine version number that the serverless cache is configured with.",
+            "type": "string"
+          },
+          "ServerlessCacheName": {
+            "description": "The identifier of the serverless cache.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key for the tag. May not be null.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag's value. May be null.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::ElastiCache::ServerlessCacheSnapshot. A serverless cache snapshot is a point-in-time backup of an ElastiCache serverless cache. Available for Valkey, Redis OSS and Serverless Memcached only.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "elasticache:CreateServerlessCacheSnapshot",
+          "elasticache:DescribeServerlessCacheSnapshots",
+          "elasticache:AddTagsToResource",
+          "elasticache:ListTagsForResource",
+          "kms:DescribeKey",
+          "kms:CreateGrant"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "elasticache:DeleteServerlessCacheSnapshot",
+          "elasticache:DescribeServerlessCacheSnapshots"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "elasticache:DescribeServerlessCacheSnapshots"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "elasticache:DescribeServerlessCacheSnapshots",
+          "elasticache:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "elasticache:AddTagsToResource",
+          "elasticache:RemoveTagsFromResource",
+          "elasticache:ListTagsForResource",
+          "elasticache:DescribeServerlessCacheSnapshots"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ARN"
+    ],
+    "properties": {
+      "ARN": {
+        "description": "The Amazon Resource Name (ARN) of the serverless cache snapshot.",
+        "pattern": "^arn:aws(-[a-z]+)*:elasticache:[a-z0-9-]+:[0-9]{12}:serverlesscachesnapshot:.+$",
+        "type": "string"
+      },
+      "BytesUsedForCache": {
+        "description": "The total size of the serverless cache snapshot, in bytes.",
+        "type": "string"
+      },
+      "CreateTime": {
+        "description": "The date and time that the source serverless cache's metadata and cache data set was obtained for the snapshot.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "KmsKeyId": {
+        "description": "The Amazon Resource Name (ARN) of the AWS KMS key used to encrypt the snapshot. Provide the key ARN: the resource returns the key ARN on read, so supplying a bare key ID or alias for this createOnly property may be reported as drift by CloudFormation.",
+        "maxLength": 2048,
+        "type": "string"
+      },
+      "ServerlessCacheConfiguration": {
+        "$ref": "#/definitions/ServerlessCacheConfiguration",
+        "description": "The configuration of the serverless cache, at the time the snapshot was taken."
+      },
+      "ServerlessCacheName": {
+        "description": "The name of an existing serverless cache. The snapshot is created from this cache.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+        "type": "string"
+      },
+      "ServerlessCacheSnapshotName": {
+        "description": "The name of the serverless cache snapshot. Must be unique for the customer account. This value is stored as a lowercase string.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+        "type": "string"
+      },
+      "SnapshotType": {
+        "description": "The type of snapshot of the serverless cache.",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The current status of the serverless cache snapshot.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A list of tags to be added to the serverless cache snapshot resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ARN",
+      "/properties/SnapshotType",
+      "/properties/Status",
+      "/properties/CreateTime",
+      "/properties/BytesUsedForCache",
+      "/properties/ServerlessCacheConfiguration"
+    ],
+    "required": [
+      "ServerlessCacheSnapshotName",
+      "ServerlessCacheName"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "elasticache:AddTagsToResource",
+        "elasticache:RemoveTagsFromResource",
+        "elasticache:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::ElastiCache::ServerlessCacheSnapshot"
+  }
+}

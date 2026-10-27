@@ -1,0 +1,93 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SES-EmailIdentityCertificate",
+  "type": "AWS::SES::EmailIdentityCertificate",
+  "time": "2026-10-21T18:34:46.028Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/EmailIdentity",
+      "/properties/FromAddress",
+      "/properties/CertificateArn"
+    ],
+    "description": "Associates an AWS Certificate Manager certificate with a sender under an SES email identity, so that SES signs the sender's mail with S/MIME. Removing this resource removes only the association. The ACM certificate itself stays intact. SES stores the sender lower-cased, and this provider matches senders case-insensitively and preserves the casing from the template.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "ses:AssociateEmailIdentityCertificate",
+          "ses:ListEmailIdentityCertificates"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "ses:DisassociateEmailIdentityCertificate",
+          "ses:ListEmailIdentityCertificates"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "EmailIdentity": {
+              "$ref": "resource-schema.json#/properties/EmailIdentity"
+            }
+          },
+          "required": [
+            "EmailIdentity"
+          ]
+        },
+        "permissions": [
+          "ses:ListEmailIdentityCertificates"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ses:ListEmailIdentityCertificates"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "ses:ListEmailIdentityCertificates"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/EmailIdentity",
+      "/properties/FromAddress"
+    ],
+    "properties": {
+      "CertificateArn": {
+        "description": "The ARN of the AWS Certificate Manager certificate to associate with the sender.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws[a-z0-9-]*:acm:[a-z0-9-]+:\\d{12}:certificate/[^\\s]+$",
+        "type": "string"
+      },
+      "EmailIdentity": {
+        "description": "The email identity that owns the sender the certificate is associated with.",
+        "maxLength": 320,
+        "minLength": 1,
+        "type": "string"
+      },
+      "FromAddress": {
+        "description": "The sender the certificate signs for. For an email address identity this is the identity itself.",
+        "maxLength": 320,
+        "minLength": 1,
+        "type": "string"
+      }
+    },
+    "propertyTransform": {
+      "/properties/EmailIdentity": "$lowercase(EmailIdentity) $OR EmailIdentity",
+      "/properties/FromAddress": "$lowercase(FromAddress) $OR FromAddress"
+    },
+    "replacementStrategy": "delete_then_create",
+    "required": [
+      "EmailIdentity",
+      "FromAddress",
+      "CertificateArn"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-ses.git",
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::SES::EmailIdentityCertificate"
+  }
+}

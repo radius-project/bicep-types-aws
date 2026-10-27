@@ -1,0 +1,250 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaConnect-FlowMediaStream",
+  "type": "AWS::MediaConnect::FlowMediaStream",
+  "time": "2026-10-21T23:34:18.363Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/FlowArn",
+      "/properties/MediaStreamName",
+      "/properties/MediaStreamId"
+    ],
+    "definitions": {
+      "Fmtp": {
+        "additionalProperties": false,
+        "description": "A set of parameters that define the media stream.",
+        "properties": {
+          "ChannelOrder": {
+            "description": "The format of the audio channel. Can only be specified for an audio media stream.",
+            "type": "string"
+          },
+          "Colorimetry": {
+            "description": "The format used for the representation of color.",
+            "enum": [
+              "BT601",
+              "BT709",
+              "BT2020",
+              "BT2100",
+              "ST2065-1",
+              "ST2065-3",
+              "XYZ"
+            ],
+            "type": "string"
+          },
+          "ExactFramerate": {
+            "description": "The frame rate for the video stream, in frames/second. For example: 60000/1001.",
+            "type": "string"
+          },
+          "Par": {
+            "description": "The pixel aspect ratio (PAR) of the video.",
+            "type": "string"
+          },
+          "Range": {
+            "description": "The encoding range of the video.",
+            "enum": [
+              "NARROW",
+              "FULL",
+              "FULLPROTECT"
+            ],
+            "type": "string"
+          },
+          "ScanMode": {
+            "description": "The type of compression that was used to smooth the video's appearance.",
+            "enum": [
+              "progressive",
+              "interlace",
+              "progressive-segmented-frame"
+            ],
+            "type": "string"
+          },
+          "Tcs": {
+            "description": "The transfer characteristic system (TCS) that is used in the video.",
+            "enum": [
+              "SDR",
+              "PQ",
+              "HLG",
+              "LINEAR",
+              "BT2100LINPQ",
+              "BT2100LINHLG",
+              "ST2065-1",
+              "ST428-1",
+              "DENSITY"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "MediaStreamAttributes": {
+        "additionalProperties": false,
+        "description": "Attributes that are related to the media stream.",
+        "properties": {
+          "Fmtp": {
+            "$ref": "#/definitions/Fmtp"
+          },
+          "Lang": {
+            "description": "The audio language, in a format that is recognized by the receiver. Can only be specified for an audio media stream.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource schema for AWS::MediaConnect::FlowMediaStream. A media stream represents a single track or stream of media containing video, audio, or ancillary data that is transported using the SMPTE 2110 JPEG XS or CDI protocol.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "mediaconnect:AddFlowMediaStreams",
+          "mediaconnect:TagResource",
+          "mediaconnect:DescribeFlow",
+          "mediaconnect:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "mediaconnect:RemoveFlowMediaStream",
+          "mediaconnect:DescribeFlow"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "FlowArn": {
+              "description": "The Amazon Resource Name (ARN) of the flow whose media streams should be listed.",
+              "pattern": "^arn:(aws[a-zA-Z-]*):mediaconnect:[a-z0-9-]+:[0-9]{12}:flow:[a-zA-Z0-9-]+:[a-zA-Z0-9_-]+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "FlowArn"
+          ]
+        },
+        "permissions": [
+          "mediaconnect:DescribeFlow",
+          "mediaconnect:ListTagsForResource"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "mediaconnect:DescribeFlow",
+          "mediaconnect:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "mediaconnect:UpdateFlowMediaStream",
+          "mediaconnect:DescribeFlow",
+          "mediaconnect:TagResource",
+          "mediaconnect:UntagResource",
+          "mediaconnect:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the media stream, composed of the flow ARN followed by /mediaStream/ and the media stream name.",
+        "type": "string"
+      },
+      "Attributes": {
+        "$ref": "#/definitions/MediaStreamAttributes"
+      },
+      "ClockRate": {
+        "description": "The sample rate (in Hz) for the stream. If the media stream type is video or ancillary data, set this value to 90000. If the media stream type is audio, set this value to either 48000 or 96000.",
+        "type": "integer"
+      },
+      "Description": {
+        "description": "A description that can help you quickly identify what your media stream is used for.",
+        "type": "string"
+      },
+      "FlowArn": {
+        "description": "The Amazon Resource Name (ARN) of the flow that the media stream belongs to.",
+        "pattern": "^arn:(aws[a-zA-Z-]*):mediaconnect:[a-z0-9-]+:[0-9]{12}:flow:[a-zA-Z0-9-]+:[a-zA-Z0-9_-]+$",
+        "type": "string"
+      },
+      "Fmt": {
+        "description": "The format type number (sometimes referred to as RTP payload type) of the media stream. MediaConnect assigns this value to the media stream.",
+        "type": "integer"
+      },
+      "MediaStreamId": {
+        "description": "A unique identifier for the media stream.",
+        "type": "integer"
+      },
+      "MediaStreamName": {
+        "description": "A name that helps you distinguish one media stream from another.",
+        "type": "string"
+      },
+      "MediaStreamType": {
+        "description": "The type of media stream.",
+        "enum": [
+          "video",
+          "audio",
+          "ancillary-data"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The key-value pairs that can be used to tag and organize the media stream.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "VideoFormat": {
+        "description": "The resolution of the video. Required for a video media stream and rejected for other media stream types.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Fmt"
+    ],
+    "replacementStrategy": "delete_then_create",
+    "required": [
+      "FlowArn",
+      "MediaStreamName",
+      "MediaStreamId",
+      "MediaStreamType"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "mediaconnect:TagResource",
+        "mediaconnect:UntagResource",
+        "mediaconnect:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::MediaConnect::FlowMediaStream"
+  }
+}

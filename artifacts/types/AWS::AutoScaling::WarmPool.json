@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AutoScaling-WarmPool",
   "type": "AWS::AutoScaling::WarmPool",
-  "time": "2025-01-13T16:07:10.427Z",
+  "time": "2026-10-21T16:26:30.945Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -30,6 +30,21 @@
       "delete": {
         "permissions": [
           "autoscaling:DeleteWarmPool",
+          "autoscaling:DescribeWarmPool"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "AutoScalingGroupName": {
+              "$ref": "resource-schema.json#/properties/AutoScalingGroupName"
+            }
+          },
+          "required": [
+            "AutoScalingGroupName"
+          ]
+        },
+        "permissions": [
           "autoscaling:DescribeWarmPool"
         ]
       },

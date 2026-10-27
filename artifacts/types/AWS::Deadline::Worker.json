@@ -1,0 +1,213 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Deadline-Worker",
+  "type": "AWS::Deadline::Worker",
+  "time": "2026-10-21T21:02:53.33Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/FarmId",
+        "/properties/FleetId",
+        "/properties/WorkerId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/FarmId",
+      "/properties/FleetId",
+      "/properties/HostProperties"
+    ],
+    "definitions": {
+      "HostPropertiesRequest": {
+        "additionalProperties": false,
+        "description": "The host property details.",
+        "properties": {
+          "HostName": {
+            "description": "The host name.",
+            "pattern": "^[a-zA-Z0-9_\\.\\-]{0,255}$",
+            "type": "string"
+          },
+          "IpAddresses": {
+            "$ref": "#/definitions/IpAddresses"
+          }
+        },
+        "type": "object"
+      },
+      "IpAddresses": {
+        "additionalProperties": false,
+        "description": "The IP addresses for a host.",
+        "properties": {
+          "IpV4Addresses": {
+            "description": "The IpV4 address of the network.",
+            "items": {
+              "pattern": "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$",
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "IpV6Addresses": {
+            "description": "The IpV6 address for the network and node component.",
+            "items": {
+              "pattern": "^(?:[A-F0-9]{1,4}:){7}[A-F0-9]{1,4}$",
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Definition of AWS::Deadline::Worker Resource Type",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "deadline:CreateWorker",
+          "deadline:GetWorker",
+          "deadline:TagResource",
+          "deadline:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "deadline:DeleteWorker",
+          "deadline:GetWorker",
+          "deadline:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "FarmId": {
+              "pattern": "^farm-[0-9a-f]{32}$",
+              "type": "string"
+            },
+            "FleetId": {
+              "pattern": "^fleet-[0-9a-f]{32}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "FarmId",
+            "FleetId"
+          ]
+        },
+        "permissions": [
+          "deadline:ListWorkers"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "deadline:GetWorker",
+          "deadline:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "deadline:GetWorker",
+          "deadline:TagResource",
+          "deadline:UntagResource",
+          "deadline:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the worker.",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The date and time the resource was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "description": "The user or system that created this resource.",
+        "type": "string"
+      },
+      "FarmId": {
+        "description": "The farm ID.",
+        "pattern": "^farm-[0-9a-f]{32}$",
+        "type": "string"
+      },
+      "FleetId": {
+        "description": "The fleet ID.",
+        "pattern": "^fleet-[0-9a-f]{32}$",
+        "type": "string"
+      },
+      "HostProperties": {
+        "$ref": "#/definitions/HostPropertiesRequest",
+        "description": "The IP address and host name of the worker."
+      },
+      "Status": {
+        "description": "The status of the worker.",
+        "enum": [
+          "CREATED",
+          "STARTED",
+          "STOPPING",
+          "STOPPED",
+          "NOT_RESPONDING",
+          "NOT_COMPATIBLE",
+          "RUNNING",
+          "IDLE"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "Value": {
+              "maxLength": 256,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "maxItems": 50,
+        "type": "array"
+      },
+      "WorkerId": {
+        "description": "The worker ID.",
+        "pattern": "^worker-[0-9a-f]{32}$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/WorkerId",
+      "/properties/Status",
+      "/properties/CreatedAt",
+      "/properties/CreatedBy"
+    ],
+    "required": [
+      "FarmId",
+      "FleetId"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "deadline:TagResource",
+        "deadline:UntagResource",
+        "deadline:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Deadline::Worker"
+  }
+}

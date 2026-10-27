@@ -1,0 +1,95 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DocDB-EventSubscription",
+  "type": "AWS::DocDB::EventSubscription",
+  "time": "2026-07-21T20:48:44.762Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/SnsTopicArn",
+      "/properties/SubscriptionName"
+    ],
+    "description": "Resource Type definition for AWS::DocDB::EventSubscription",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "rds:CreateEventSubscription"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "rds:DeleteEventSubscription"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "rds:DescribeEventSubscriptions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "rds:DescribeEventSubscriptions"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "rds:ModifyEventSubscription",
+          "rds:DescribeEventSubscriptions",
+          "rds:AddSourceIdentifierToSubscription",
+          "rds:RemoveSourceIdentifierFromSubscription"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/SubscriptionName"
+    ],
+    "properties": {
+      "Enabled": {
+        "description": "A Boolean value; set to true to activate the subscription, set to false to create the subscription but not active it.",
+        "type": "boolean"
+      },
+      "EventCategories": {
+        "description": "A list of event categories for a SourceType that you want to subscribe to.",
+        "items": {
+          "type": "string"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "SnsTopicArn": {
+        "description": "The Amazon Resource Name (ARN) of the SNS topic created for event notification. Amazon SNS creates the ARN when you create a topic and subscribe to it.",
+        "type": "string"
+      },
+      "SourceIds": {
+        "description": "The list of identifiers of the event sources for which events are returned",
+        "items": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9]$|^[a-zA-Z]$",
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "SourceType": {
+        "description": "The type of source that is generating the events.",
+        "enum": [
+          "db-instance",
+          "db-cluster",
+          "db-parameter-group",
+          "db-security-group",
+          "db-cluster-snapshot"
+        ],
+        "type": "string"
+      },
+      "SubscriptionName": {
+        "description": "The name of the subscription.",
+        "maxLength": 255,
+        "type": "string"
+      }
+    },
+    "required": [
+      "SnsTopicArn"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::DocDB::EventSubscription"
+  }
+}

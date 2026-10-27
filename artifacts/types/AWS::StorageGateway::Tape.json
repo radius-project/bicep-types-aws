@@ -1,0 +1,196 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-StorageGateway-Tape",
+  "type": "AWS::StorageGateway::Tape",
+  "time": "2026-10-21T21:27:34.074Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/TapeBarcode"
+      ],
+      [
+        "/properties/GatewayARN",
+        "/properties/TapeBarcode"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/GatewayARN",
+      "/properties/TapeBarcode",
+      "/properties/TapeSizeInBytes",
+      "/properties/KMSEncrypted",
+      "/properties/KMSKey",
+      "/properties/PoolId",
+      "/properties/Worm"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with the virtual tape.",
+        "properties": {
+          "Key": {
+            "description": "The tag key. Cannot be prefixed with aws:.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Creates a virtual tape with a user-defined barcode on a Tape Gateway (VTL). A virtual tape is stored in Amazon S3 and can be archived to S3 Glacier or S3 Glacier Deep Archive.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "storagegateway:CreateTapeWithBarcode",
+          "storagegateway:AddTagsToResource",
+          "storagegateway:ListTapes",
+          "storagegateway:DescribeTapes",
+          "storagegateway:ListTagsForResource",
+          "kms:DescribeKey",
+          "kms:CreateGrant",
+          "kms:GenerateDataKeyWithoutPlaintext"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "storagegateway:ListTapes",
+          "storagegateway:DescribeTapes",
+          "storagegateway:DeleteTape",
+          "storagegateway:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "storagegateway:ListTapes"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "storagegateway:ListTapes",
+          "storagegateway:DescribeTapes",
+          "storagegateway:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "storagegateway:ListTapes",
+          "storagegateway:DescribeTapes",
+          "storagegateway:AddTagsToResource",
+          "storagegateway:RemoveTagsFromResource",
+          "storagegateway:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/TapeARN"
+    ],
+    "properties": {
+      "GatewayARN": {
+        "description": "The Amazon Resource Name (ARN) of the Tape Gateway that hosts the virtual tape.",
+        "maxLength": 500,
+        "minLength": 50,
+        "type": "string"
+      },
+      "KMSEncrypted": {
+        "description": "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional.",
+        "type": "boolean"
+      },
+      "KMSKey": {
+        "description": "The Amazon Resource Name (ARN) of a symmetric customer master key (CMK) used for Amazon S3 server-side encryption. This value must be set if KMSEncrypted is true.",
+        "maxLength": 2048,
+        "minLength": 7,
+        "pattern": "^(^arn:(aws(|-cn|-us-gov|-iso[A-Za-z0-9_-]*|-eusc)):kms:([a-zA-Z0-9-]+):([0-9]+):(key|alias)/(\\S+)$)|(^alias/(\\S+)$)$",
+        "type": "string"
+      },
+      "PoolId": {
+        "description": "The ID of the pool that you want to add your tape to for archiving. Tapes in this pool are archived in the S3 storage class that is associated with the pool.",
+        "maxLength": 100,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A list of up to 50 tags to assign to the virtual tape.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "TapeARN": {
+        "description": "The Amazon Resource Name (ARN) of the virtual tape.",
+        "maxLength": 500,
+        "minLength": 50,
+        "pattern": "^arn:(aws(|-cn|-us-gov|-iso[A-Za-z0-9_-]*|-eusc)):storagegateway:[a-z\\-0-9]+:[0-9]+:tape\\/[0-9A-Z]{5,16}$",
+        "type": "string"
+      },
+      "TapeBarcode": {
+        "description": "The barcode that you want to assign to the virtual tape. Barcodes cannot be reused, even after a tape is deleted.",
+        "maxLength": 16,
+        "minLength": 5,
+        "pattern": "^[A-Z0-9]*$",
+        "type": "string"
+      },
+      "TapeCreatedDate": {
+        "description": "The date and time that the virtual tape was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "TapeSizeInBytes": {
+        "description": "The size, in bytes, of the virtual tape that you want to create.",
+        "minimum": 1,
+        "type": "number"
+      },
+      "TapeStatus": {
+        "description": "The current status of the virtual tape.",
+        "type": "string"
+      },
+      "TapeUsedInBytes": {
+        "description": "The size, in bytes, of data stored on the virtual tape.",
+        "type": "number"
+      },
+      "Worm": {
+        "description": "Set to true to create a write-once-read-many (WORM) virtual tape.",
+        "type": "boolean"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/TapeARN",
+      "/properties/TapeStatus",
+      "/properties/TapeCreatedDate",
+      "/properties/TapeUsedInBytes"
+    ],
+    "required": [
+      "GatewayARN",
+      "TapeSizeInBytes"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "storagegateway:AddTagsToResource",
+        "storagegateway:RemoveTagsFromResource",
+        "storagegateway:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::StorageGateway::Tape",
+    "writeOnlyProperties": [
+      "/properties/KMSEncrypted"
+    ]
+  }
+}

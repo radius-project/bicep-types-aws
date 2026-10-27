@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ApplicationSignals-ServiceLevelObjective",
   "type": "AWS::ApplicationSignals::ServiceLevelObjective",
-  "time": "2024-11-15T20:25:19.106Z",
+  "time": "2026-10-12T16:13:47.792Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -58,6 +58,70 @@
         ],
         "type": "object"
       },
+      "CompositeSliComponent": {
+        "additionalProperties": false,
+        "properties": {
+          "OperationName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "OperationName"
+        ],
+        "type": "object"
+      },
+      "CompositeSliComponents": {
+        "items": {
+          "$ref": "#/definitions/CompositeSliComponent"
+        },
+        "maxItems": 20,
+        "minItems": 2,
+        "type": "array"
+      },
+      "CompositeSliConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "CompositeSliComponents": {
+            "$ref": "#/definitions/CompositeSliComponents"
+          },
+          "SelectionConfig": {
+            "$ref": "#/definitions/SelectionConfig"
+          }
+        },
+        "required": [
+          "SelectionConfig"
+        ],
+        "type": "object"
+      },
+      "DependencyConfig": {
+        "additionalProperties": false,
+        "description": "Configuration for identifying a dependency and its operation",
+        "properties": {
+          "DependencyKeyAttributes": {
+            "$ref": "#/definitions/DependencyKeyAttributes"
+          },
+          "DependencyOperationName": {
+            "description": "When the SLO monitors a specific operation of the dependency, this field specifies the name of that operation in the dependency.",
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "DependencyKeyAttributes",
+          "DependencyOperationName"
+        ],
+        "type": "object"
+      },
+      "DependencyKeyAttributes": {
+        "additionalProperties": false,
+        "description": "If this SLO is related to a metric collected by Application Signals, you must use this field to specify which dependency the SLO metric is related to.",
+        "patternProperties": {
+          "^.+$": {
+            "type": "string"
+          }
+        }
+      },
       "Dimension": {
         "additionalProperties": false,
         "description": "A dimension is a name/value pair that is part of the identity of a metric. Because dimensions are part of the unique identifier for a metric, whenever you add a unique name/value pair to one of your metrics, you are creating a new variation of that metric. For example, many Amazon EC2 metrics publish `InstanceId` as a dimension name, and the actual instance ID as the value for that dimension. You can assign up to 30 dimensions to a metric.",
@@ -78,17 +142,57 @@
         "type": "object"
       },
       "Duration": {
-        "description": "Specifies the duration of each calendar interval. For example, if `Duration` is 1 and `DurationUnit` is `MONTH`, each interval is one month, aligned with the calendar.",
+        "description": "Specifies the duration of each interval. For example, if `Duration` is 1 and `DurationUnit` is `MONTH`, each interval is one month, aligned with the calendar.",
         "minimum": 1,
         "type": "integer"
       },
       "DurationUnit": {
-        "description": "Specifies the calendar interval unit.",
+        "description": "Specifies the interval unit.",
         "enum": [
+          "MINUTE",
+          "HOUR",
           "DAY",
           "MONTH"
         ],
         "type": "string"
+      },
+      "ExclusionWindow": {
+        "additionalProperties": false,
+        "description": "This object defines a time exclusion window for this SLO. The time exclusion window is used to exclude breaching data points from affecting attainment rate, error budget, and burn rate metrics.",
+        "properties": {
+          "Reason": {
+            "default": "No reason",
+            "description": "An optional reason for scheduling this time exclusion window. Default is 'No reason'.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "type": "string"
+          },
+          "RecurrenceRule": {
+            "$ref": "#/definitions/RecurrenceRule"
+          },
+          "StartTime": {
+            "description": "The time you want the exclusion window to start at. Note that time exclusion windows can only be scheduled in the future, not the past.",
+            "type": "string"
+          },
+          "Window": {
+            "$ref": "#/definitions/Window"
+          }
+        },
+        "required": [
+          "Window"
+        ],
+        "type": "object"
+      },
+      "ExclusionWindows": {
+        "description": "Each object in this array defines a time exclusion window for this SLO. The time exclusion window is used to exclude breaching data points from affecting attainment rate, error budget, and burn rate metrics.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/ExclusionWindow"
+        },
+        "maxItems": 10,
+        "minItems": 0,
+        "type": "array",
+        "uniqueItems": true
       },
       "Goal": {
         "additionalProperties": false,
@@ -193,6 +297,46 @@
         ],
         "type": "object"
       },
+      "MetricName": {
+        "description": "The name of the metric for non-Application Signals services",
+        "maxLength": 255,
+        "minLength": 1,
+        "type": "string"
+      },
+      "MetricSource": {
+        "additionalProperties": false,
+        "description": "Configuration for identifying the source of metrics for non-Application Signals services",
+        "properties": {
+          "MetricSourceAttributes": {
+            "$ref": "#/definitions/MetricSourceAttributes"
+          },
+          "MetricSourceKeyAttributes": {
+            "$ref": "#/definitions/MetricSourceKeyAttributes"
+          }
+        },
+        "required": [
+          "MetricSourceKeyAttributes"
+        ],
+        "type": "object"
+      },
+      "MetricSourceAttributes": {
+        "additionalProperties": false,
+        "description": "Optional additional attributes for the metric source",
+        "patternProperties": {
+          "^.+$": {
+            "type": "string"
+          }
+        }
+      },
+      "MetricSourceKeyAttributes": {
+        "additionalProperties": false,
+        "description": "Required attributes that identify the metric source",
+        "patternProperties": {
+          "^.+$": {
+            "type": "string"
+          }
+        }
+      },
       "MetricStat": {
         "additionalProperties": false,
         "description": "A metric to be used directly for the SLO, or to be used in the math expression that will be used for the SLO. Within one MetricDataQuery object, you must specify either Expression or MetricStat but not both.",
@@ -235,6 +379,22 @@
         },
         "type": "object"
       },
+      "RecurrenceRule": {
+        "additionalProperties": false,
+        "description": "This object defines how often to repeat a time exclusion window.",
+        "properties": {
+          "Expression": {
+            "description": "A cron or rate expression denoting how often to repeat this exclusion window.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Expression"
+        ],
+        "type": "object"
+      },
       "RequestBasedSli": {
         "additionalProperties": false,
         "description": "This structure contains information about the performance metric that a request-based SLO monitors.",
@@ -266,8 +426,20 @@
         "additionalProperties": false,
         "description": "This structure contains the information about the metric that is used for a request-based SLO.",
         "properties": {
+          "CompositeSliConfig": {
+            "$ref": "#/definitions/CompositeSliConfig"
+          },
+          "DependencyConfig": {
+            "$ref": "#/definitions/DependencyConfig"
+          },
           "KeyAttributes": {
             "$ref": "#/definitions/KeyAttributes"
+          },
+          "MetricName": {
+            "$ref": "#/definitions/MetricName"
+          },
+          "MetricSource": {
+            "$ref": "#/definitions/MetricSource"
           },
           "MetricType": {
             "description": "If the SLO monitors either the LATENCY or AVAILABILITY metric that Application Signals collects, this field displays which of those metrics is used.",
@@ -310,6 +482,30 @@
         ],
         "type": "object"
       },
+      "SelectionConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "Pattern": {
+            "pattern": "^.+$",
+            "type": "string"
+          },
+          "Type": {
+            "$ref": "#/definitions/SelectionType"
+          }
+        },
+        "required": [
+          "Type"
+        ],
+        "type": "object"
+      },
+      "SelectionType": {
+        "enum": [
+          "EXPLICIT",
+          "PREFIX",
+          "REGEX"
+        ],
+        "type": "string"
+      },
       "Sli": {
         "additionalProperties": false,
         "description": "This structure contains information about the performance metric that an SLO monitors.",
@@ -343,11 +539,23 @@
         "additionalProperties": false,
         "description": "A structure that contains information about the metric that the SLO monitors.",
         "properties": {
+          "CompositeSliConfig": {
+            "$ref": "#/definitions/CompositeSliConfig"
+          },
+          "DependencyConfig": {
+            "$ref": "#/definitions/DependencyConfig"
+          },
           "KeyAttributes": {
             "$ref": "#/definitions/KeyAttributes"
           },
           "MetricDataQueries": {
             "$ref": "#/definitions/MetricDataQueries"
+          },
+          "MetricName": {
+            "$ref": "#/definitions/MetricName"
+          },
+          "MetricSource": {
+            "$ref": "#/definitions/MetricSource"
           },
           "MetricType": {
             "description": "If the SLO monitors either the LATENCY or AVAILABILITY metric that Application Signals collects, this field displays which of those metrics is used.",
@@ -411,6 +619,23 @@
         "minItems": 1,
         "type": "array",
         "uniqueItems": true
+      },
+      "Window": {
+        "additionalProperties": false,
+        "description": "This object defines the length of time an exclusion window should span.",
+        "properties": {
+          "Duration": {
+            "$ref": "#/definitions/Duration"
+          },
+          "DurationUnit": {
+            "$ref": "#/definitions/DurationUnit"
+          }
+        },
+        "required": [
+          "DurationUnit",
+          "Duration"
+        ],
+        "type": "object"
       }
     },
     "description": "Resource Type definition for AWS::ApplicationSignals::ServiceLevelObjective",
@@ -423,7 +648,11 @@
           "application-signals:GetServiceLevelObjective",
           "application-signals:ListTagsForResource",
           "iam:GetRole",
-          "iam:CreateServiceLinkedRole"
+          "iam:CreateServiceLinkedRole",
+          "application-signals:ListServiceLevelObjectiveExclusionWindows",
+          "application-signals:BatchUpdateExclusionWindows",
+          "rum:GetAppMonitor",
+          "rum:BatchGetRumMetricDefinitions"
         ]
       },
       "delete": {
@@ -436,13 +665,15 @@
       "list": {
         "permissions": [
           "application-signals:ListServiceLevelObjectives",
-          "application-signals:ListTagsForResource"
+          "application-signals:ListTagsForResource",
+          "application-signals:ListServiceLevelObjectiveExclusionWindows"
         ]
       },
       "read": {
         "permissions": [
           "application-signals:GetServiceLevelObjective",
-          "application-signals:ListTagsForResource"
+          "application-signals:ListTagsForResource",
+          "application-signals:ListServiceLevelObjectiveExclusionWindows"
         ]
       },
       "update": {
@@ -452,7 +683,11 @@
           "application-signals:TagResource",
           "application-signals:UntagResource",
           "application-signals:GetServiceLevelObjective",
-          "application-signals:ListTagsForResource"
+          "application-signals:ListTagsForResource",
+          "application-signals:ListServiceLevelObjectiveExclusionWindows",
+          "application-signals:BatchUpdateExclusionWindows",
+          "rum:GetAppMonitor",
+          "rum:BatchGetRumMetricDefinitions"
         ]
       }
     },
@@ -487,6 +722,9 @@
           "RequestBased"
         ],
         "type": "string"
+      },
+      "ExclusionWindows": {
+        "$ref": "#/definitions/ExclusionWindows"
       },
       "Goal": {
         "$ref": "#/definitions/Goal"
