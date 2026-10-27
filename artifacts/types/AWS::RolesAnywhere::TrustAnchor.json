@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RolesAnywhere-TrustAnchor",
   "type": "AWS::RolesAnywhere::TrustAnchor",
-  "time": "2025-01-06T17:23:57.218Z",
+  "time": "2026-10-21T22:10:56.266Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -52,6 +52,10 @@
             "$ref": "#/definitions/TrustAnchorType"
           }
         },
+        "required": [
+          "SourceType",
+          "SourceData"
+        ],
         "type": "object"
       },
       "SourceData": {
@@ -107,8 +111,7 @@
       "TrustAnchorType": {
         "enum": [
           "AWS_ACM_PCA",
-          "CERTIFICATE_BUNDLE",
-          "SELF_SIGNED_REPOSITORY"
+          "CERTIFICATE_BUNDLE"
         ],
         "type": "string"
       }
@@ -119,8 +122,7 @@
         "permissions": [
           "iam:CreateServiceLinkedRole",
           "rolesanywhere:CreateTrustAnchor",
-          "rolesanywhere:TagResource",
-          "rolesanywhere:ListTagsForResource"
+          "rolesanywhere:TagResource"
         ]
       },
       "delete": {
@@ -192,6 +194,9 @@
         "pattern": "[a-f0-9]{8}-([a-z0-9]{4}-){3}[a-z0-9]{12}",
         "type": "string"
       }
+    },
+    "propertyTransform": {
+      "/properties/Source/SourceData/X509CertificateData": "$replace(X509CertificateData, /\\s+$/, '')"
     },
     "readOnlyProperties": [
       "/properties/TrustAnchorId",

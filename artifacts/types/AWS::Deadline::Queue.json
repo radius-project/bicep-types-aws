@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Deadline-Queue",
   "type": "AWS::Deadline::Queue",
-  "time": "2025-01-27T18:05:49.837Z",
+  "time": "2026-10-21T20:26:12.688Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -78,12 +78,114 @@
         ],
         "type": "object"
       },
+      "PriorityBalancedSchedulingConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "RenderingTaskBuffer": {
+            "default": 1,
+            "maximum": 1000,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "PriorityFifoSchedulingConfiguration": {
+        "additionalProperties": false,
+        "type": "object"
+      },
       "RunAs": {
         "enum": [
           "QUEUE_CONFIGURED_USER",
           "WORKER_AGENT_USER"
         ],
         "type": "string"
+      },
+      "SchedulingConfiguration": {
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "PriorityFifo": {
+                "$ref": "#/definitions/PriorityFifoSchedulingConfiguration"
+              }
+            },
+            "required": [
+              "PriorityFifo"
+            ],
+            "title": "PriorityFifo",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "PriorityBalanced": {
+                "$ref": "#/definitions/PriorityBalancedSchedulingConfiguration"
+              }
+            },
+            "required": [
+              "PriorityBalanced"
+            ],
+            "title": "PriorityBalanced",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "WeightedBalanced": {
+                "$ref": "#/definitions/WeightedBalancedSchedulingConfiguration"
+              }
+            },
+            "required": [
+              "WeightedBalanced"
+            ],
+            "title": "WeightedBalanced",
+            "type": "object"
+          }
+        ],
+        "type": "object"
+      },
+      "SchedulingMaxPriorityOverride": {
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "AlwaysScheduleFirst": {
+                "$ref": "#/definitions/SchedulingMaxPriorityOverrideAlwaysScheduleFirst"
+              }
+            },
+            "required": [
+              "AlwaysScheduleFirst"
+            ],
+            "title": "AlwaysScheduleFirst",
+            "type": "object"
+          }
+        ]
+      },
+      "SchedulingMaxPriorityOverrideAlwaysScheduleFirst": {
+        "additionalProperties": false,
+        "type": "object"
+      },
+      "SchedulingMinPriorityOverride": {
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "AlwaysScheduleLast": {
+                "$ref": "#/definitions/SchedulingMinPriorityOverrideAlwaysScheduleLast"
+              }
+            },
+            "required": [
+              "AlwaysScheduleLast"
+            ],
+            "title": "AlwaysScheduleLast",
+            "type": "object"
+          }
+        ]
+      },
+      "SchedulingMinPriorityOverrideAlwaysScheduleLast": {
+        "additionalProperties": false,
+        "type": "object"
       },
       "Tag": {
         "additionalProperties": false,
@@ -106,6 +208,48 @@
           "Key",
           "Value"
         ],
+        "type": "object"
+      },
+      "WeightedBalancedSchedulingConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "ErrorWeight": {
+            "default": -10,
+            "maximum": 10000,
+            "minimum": -10000,
+            "type": "number"
+          },
+          "MaxPriorityOverride": {
+            "$ref": "#/definitions/SchedulingMaxPriorityOverride"
+          },
+          "MinPriorityOverride": {
+            "$ref": "#/definitions/SchedulingMinPriorityOverride"
+          },
+          "PriorityWeight": {
+            "default": 100,
+            "maximum": 10000,
+            "minimum": 0,
+            "type": "number"
+          },
+          "RenderingTaskBuffer": {
+            "default": 1,
+            "maximum": 1000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "RenderingTaskWeight": {
+            "default": -100,
+            "maximum": 10000,
+            "minimum": -10000,
+            "type": "number"
+          },
+          "SubmissionTimeWeight": {
+            "default": 3,
+            "maximum": 10000,
+            "minimum": 0,
+            "type": "number"
+          }
+        },
         "type": "object"
       },
       "WindowsUser": {
@@ -131,7 +275,7 @@
         "type": "object"
       }
     },
-    "description": "Definition of AWS::Deadline::Queue Resource Type",
+    "description": "Resource Type definition for AWS::Deadline::Queue",
     "handlers": {
       "create": {
         "permissions": [
@@ -252,6 +396,9 @@
       "RoleArn": {
         "pattern": "^arn:(aws[a-zA-Z-]*):iam::\\d{12}:role(/[!-.0-~]+)*/[\\w+=,.@-]+$",
         "type": "string"
+      },
+      "SchedulingConfiguration": {
+        "$ref": "#/definitions/SchedulingConfiguration"
       },
       "Tags": {
         "description": "An array of key-value pairs to apply to this resource.",

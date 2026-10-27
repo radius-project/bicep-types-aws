@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DataZone-UserProfile",
   "type": "AWS::DataZone::UserProfile",
-  "time": "2025-01-27T03:43:30.725Z",
+  "time": "2026-10-03T06:08:59.387Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -16,6 +16,14 @@
         "properties": {
           "Arn": {
             "description": "The ARN of the IAM User Profile.",
+            "type": "string"
+          },
+          "GroupProfileId": {
+            "description": "The group profile ID of the IAM User Profile.",
+            "type": "string"
+          },
+          "SessionName": {
+            "description": "The session name of the IAM User Profile.",
             "type": "string"
           }
         },
@@ -96,7 +104,8 @@
         "enum": [
           "IAM_USER",
           "IAM_ROLE",
-          "SSO_USER"
+          "SSO_USER",
+          "IAM_ROLE_SESSION"
         ],
         "type": "string"
       }
@@ -190,6 +199,12 @@
         "description": "The ID of the Amazon DataZone user profile.",
         "type": "string"
       },
+      "SessionName": {
+        "description": "The session name of the user profile.",
+        "maxLength": 64,
+        "minLength": 2,
+        "type": "string"
+      },
       "Status": {
         "$ref": "#/definitions/UserProfileStatus"
       },
@@ -226,7 +241,8 @@
     "writeOnlyProperties": [
       "/properties/DomainIdentifier",
       "/properties/UserIdentifier",
-      "/properties/UserType"
+      "/properties/UserType",
+      "/properties/SessionName"
     ]
   }
 }

@@ -1,0 +1,198 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkManager-Connection",
+  "type": "AWS::NetworkManager::Connection",
+  "time": "2026-10-21T22:49:47.542Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/GlobalNetworkId",
+        "/properties/ConnectionId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/GlobalNetworkId",
+      "/properties/DeviceId",
+      "/properties/ConnectedDeviceId"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with the connection.",
+        "properties": {
+          "Key": {
+            "description": "The tag key. Printable ASCII with at least one non-space character and no leading or trailing space, at most 128 characters, and cannot be prefixed with aws:.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[!-~]([ -~]*[!-~])?$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value. Printable ASCII with at least one non-space character and no leading or trailing space, at most 256 characters, and cannot be prefixed with aws:.",
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "^[!-~]([ -~]*[!-~])?$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::NetworkManager::Connection. Describes a connection between two devices in a global network.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "networkmanager:CreateConnection",
+          "networkmanager:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "networkmanager:DeleteConnection"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "GlobalNetworkId": {
+              "maxLength": 50,
+              "minLength": 1,
+              "pattern": "^global-network-[a-z0-9-]*$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "GlobalNetworkId"
+          ]
+        },
+        "permissions": [
+          "networkmanager:GetConnections"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "networkmanager:GetConnections",
+          "networkmanager:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "networkmanager:UpdateConnection",
+          "networkmanager:TagResource",
+          "networkmanager:UntagResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ConnectionArn"
+    ],
+    "properties": {
+      "ConnectedDeviceId": {
+        "description": "The ID of the second device in the connection.",
+        "maxLength": 50,
+        "minLength": 1,
+        "pattern": "^device-[a-z0-9-]*$",
+        "type": "string"
+      },
+      "ConnectedLinkId": {
+        "description": "The ID of the link for the second device.",
+        "maxLength": 50,
+        "minLength": 1,
+        "pattern": "^link-[a-z0-9-]*$",
+        "type": "string"
+      },
+      "ConnectionArn": {
+        "description": "The Amazon Resource Name (ARN) of the connection.",
+        "maxLength": 500,
+        "pattern": "^arn:[^:]{1,63}:networkmanager:[^:]{0,63}:[^:]{0,63}:connection\\/global-network-[0-9a-f]{8,17}\\/connection-[0-9a-f]{8,17}$",
+        "type": "string"
+      },
+      "ConnectionId": {
+        "description": "The ID of the connection.",
+        "maxLength": 50,
+        "pattern": "^connection-[a-z0-9-]*$",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The date and time that the connection was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description of the connection.",
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
+      "DeviceId": {
+        "description": "The ID of the first device in the connection.",
+        "maxLength": 50,
+        "minLength": 1,
+        "pattern": "^device-[a-z0-9-]*$",
+        "type": "string"
+      },
+      "GlobalNetworkId": {
+        "description": "The ID of the global network that the connection belongs to.",
+        "maxLength": 50,
+        "minLength": 1,
+        "pattern": "^global-network-[a-z0-9-]*$",
+        "type": "string"
+      },
+      "LinkId": {
+        "description": "The ID of the link for the first device.",
+        "maxLength": 50,
+        "minLength": 1,
+        "pattern": "^link-[a-z0-9-]*$",
+        "type": "string"
+      },
+      "State": {
+        "description": "The state of the connection.",
+        "enum": [
+          "PENDING",
+          "AVAILABLE",
+          "DELETING",
+          "UPDATING"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags for the connection.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ConnectionArn",
+      "/properties/ConnectionId",
+      "/properties/CreatedAt",
+      "/properties/State"
+    ],
+    "required": [
+      "GlobalNetworkId",
+      "DeviceId",
+      "ConnectedDeviceId"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-networkmanager",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "networkmanager:TagResource",
+        "networkmanager:UntagResource",
+        "networkmanager:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::NetworkManager::Connection"
+  }
+}

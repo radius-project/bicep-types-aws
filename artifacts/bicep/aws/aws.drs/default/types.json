@@ -1,0 +1,666 @@
+[
+  {
+    "$type": "ObjectType",
+    "name": "Licensing",
+    "properties": {
+      "OsByol": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Whether to enable Bring your own license or not."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DRS/LaunchConfigurationTemplateProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DRS/LaunchConfigurationTemplateProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 18,
+        "description": "ARN of the Launch Configuration Template."
+      },
+      "CopyPrivateIp": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Copy private IP."
+      },
+      "CopyTags": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Copy tags."
+      },
+      "ExportBucketArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "S3 bucket ARN to export Source Network templates."
+      },
+      "LaunchConfigurationTemplateID": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "ID of the Launch Configuration Template."
+      },
+      "LaunchDisposition": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Launch disposition."
+      },
+      "LaunchIntoSourceInstance": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "DRS will set the 'launch into instance ID' of any source server when performing a drill, recovery or failback to the previous region or availability zone, using the instance ID of the source instance."
+      },
+      "Licensing": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0
+      },
+      "PostLaunchEnabled": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Whether we want to activate post-launch actions."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "A set of tags associated with the Launch Configuration Template."
+      },
+      "TargetInstanceTypeRightSizingMethod": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Target instance type right-sizing method."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DRS/LaunchConfigurationTemplate",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DRS/LaunchConfigurationTemplate@default",
+    "body": {
+      "$ref": "#/7"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DRS/RecoveryPlanProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/9"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DRS/RecoveryPlanProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 18,
+        "description": "The ARN of the Recovery Plan."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The timestamp when the Recovery Plan was created."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The description of the Recovery Plan."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The name of the Recovery Plan."
+      },
+      "RecoveryPlanID": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The ID of the Recovery Plan."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The status of the Recovery Plan. ACTIVE means executable. INVALID means the plan has no SERVER type steps and cannot be executed."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "The tags associated with the Recovery Plan."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The timestamp when the Recovery Plan was last updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DRS/RecoveryPlan",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DRS/RecoveryPlan@default",
+    "body": {
+      "$ref": "#/13"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PITPolicyRule",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Whether this rule is enabled or not."
+      },
+      "Interval": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "How often, in the chosen units, a snapshot should be taken."
+      },
+      "RetentionDuration": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The duration to retain a snapshot for, in the chosen units."
+      },
+      "RuleID": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The ID of the rule."
+      },
+      "Units": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The units used to measure the interval and retentionDuration."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The key of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The value of the tag."
+      }
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DRS/ReplicationConfigurationTemplateProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/15"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReplicationConfigurationTemplate_StagingAreaTags",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/16"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DRS/ReplicationConfigurationTemplateProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 18,
+        "description": "The Replication Configuration Template ARN."
+      },
+      "AssociateDefaultSecurityGroup": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Whether to associate the default Elastic Disaster Recovery Security group with the Replication Configuration Template."
+      },
+      "AutoReplicateNewDisks": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Whether to allow the AWS replication agent to automatically replicate newly added disks."
+      },
+      "BandwidthThrottling": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "Configure bandwidth throttling for the outbound data transfer rate of the Source Server in Mbps."
+      },
+      "CreatePublicIP": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Whether to create a Public IP for the Recovery Instance by default."
+      },
+      "DataPlaneRouting": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The data plane routing mechanism that will be used for replication."
+      },
+      "DefaultLargeStagingDiskType": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The Staging Disk EBS volume type to be used during replication."
+      },
+      "EbsEncryption": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The type of EBS encryption to be used during replication."
+      },
+      "EbsEncryptionKeyArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The ARN of the EBS encryption key to be used during replication."
+      },
+      "InternetProtocol": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Which version of the Internet Protocol to use for replication of data."
+      },
+      "PitPolicy": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1,
+        "description": "The Point in time (PIT) policy to manage snapshots taken during replication."
+      },
+      "ReplicationConfigurationTemplateID": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The Replication Configuration Template ID."
+      },
+      "ReplicationServerInstanceType": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The instance type to be used for the replication server."
+      },
+      "ReplicationServersSecurityGroupsIDs": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 1,
+        "description": "The security group IDs that will be used by the replication server."
+      },
+      "StagingAreaSubnetId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The subnet to be used by the replication staging area."
+      },
+      "StagingAreaTags": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1,
+        "description": "A set of tags to be associated with all resources created in the replication staging area: EC2 replication server, EBS volumes, EBS snapshots, etc."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "A set of tags to be associated with the Replication Configuration Template resource."
+      },
+      "UseDedicatedReplicationServer": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Whether to use a dedicated Replication Server in the replication staging area."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DRS/ReplicationConfigurationTemplate",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DRS/ReplicationConfigurationTemplate@default",
+    "body": {
+      "$ref": "#/24"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DRS/SourceNetworkProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/26"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DRS/SourceNetworkProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 18,
+        "description": "The ARN of the Source Network."
+      },
+      "OriginAccountID": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The account ID containing the VPC to protect."
+      },
+      "OriginRegion": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The region containing the VPC to protect."
+      },
+      "SourceNetworkID": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The ID of the Source Network."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 0,
+        "description": "A set of tags associated with the Source Network."
+      },
+      "VpcID": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The VPC ID to protect."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DRS/SourceNetwork",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DRS/SourceNetwork@default",
+    "body": {
+      "$ref": "#/30"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  }
+]

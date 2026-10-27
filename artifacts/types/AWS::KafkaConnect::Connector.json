@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-KafkaConnect-Connector",
   "type": "AWS::KafkaConnect::Connector",
-  "time": "2025-01-23T10:46:59.996Z",
+  "time": "2026-09-16T01:41:17.504Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -19,7 +19,8 @@
       "/properties/LogDelivery",
       "/properties/Plugins",
       "/properties/ServiceExecutionRoleArn",
-      "/properties/WorkerConfiguration"
+      "/properties/WorkerConfiguration",
+      "/properties/NetworkType"
     ],
     "definitions": {
       "ApacheKafkaCluster": {
@@ -44,6 +45,10 @@
         "additionalProperties": false,
         "description": "Details about auto scaling of a connector.",
         "properties": {
+          "MaxAutoscalingTaskCount": {
+            "description": "The maximum number of tasks allocated to the connector during autoscaling operations.",
+            "type": "integer"
+          },
           "MaxWorkerCount": {
             "description": "The maximum number of workers for a connector.",
             "type": "integer"
@@ -262,6 +267,7 @@
           }
         },
         "required": [
+          "McuCount",
           "WorkerCount"
         ],
         "type": "object"
@@ -456,7 +462,6 @@
       "update": {
         "permissions": [
           "kafkaconnect:UpdateConnector",
-          "kafkaconnect:UpdateConnectorConfiguration",
           "kafkaconnect:DescribeConnector",
           "kafkaconnect:DescribeConnectorOperation",
           "kafkaconnect:TagResource",
@@ -523,6 +528,14 @@
       },
       "LogDelivery": {
         "$ref": "#/definitions/LogDelivery"
+      },
+      "NetworkType": {
+        "description": "The network type of the Connector.",
+        "enum": [
+          "IPV4",
+          "DUAL"
+        ],
+        "type": "string"
       },
       "Plugins": {
         "description": "List of plugins to use with the connector.",

@@ -1,14 +1,16 @@
 # AWS.KinesisVideo @ default
 
 ## Resource AWS.KinesisVideo/SignalingChannel@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.KinesisVideo/SignalingChannelProperties](#awskinesisvideosignalingchannelproperties) (Identifier): properties of the resource
 
 ## Resource AWS.KinesisVideo/Stream@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -30,7 +32,12 @@
 * **KmsKeyId**: string: AWS KMS key ID that Kinesis Video Streams uses to encrypt stream data.
 * **MediaType**: string: The media type of the stream. Consumers of the stream can use this information when processing the stream.
 * **Name**: string (Identifier): The name of the Kinesis Video stream.
+* **StreamStorageConfiguration**: [StreamStorageConfiguration](#streamstorageconfiguration): Configuration for the storage tier of the Kinesis Video Stream.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs associated with the Kinesis Video Stream.
+
+## StreamStorageConfiguration
+### Properties
+* **DefaultStorageTier**: string: The storage tier for the Kinesis Video Stream. Determines the storage class used for stream data.
 
 ## Tag
 ### Properties

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-OpenSearchService-Application",
   "type": "AWS::OpenSearchService::Application",
-  "time": "2024-12-18T05:49:39.378Z",
+  "time": "2026-10-20T13:23:40.529Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -10,7 +10,8 @@
     ],
     "additionalProperties": false,
     "createOnlyProperties": [
-      "/properties/Name"
+      "/properties/Name",
+      "/properties/KmsKeyArn"
     ],
     "definitions": {
       "AppConfig": {
@@ -175,6 +176,13 @@
         "minLength": 3,
         "type": "string"
       },
+      "KmsKeyArn": {
+        "description": "The ARN of the KMS key used to encrypt the application.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws(-[a-z]+)*:kms:[a-z0-9-]+:\\d{12}:key/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$",
+        "type": "string"
+      },
       "Name": {
         "description": "The name of the application.",
         "maxLength": 40,
@@ -210,6 +218,9 @@
       "tagUpdatable": true,
       "taggable": true
     },
-    "typeName": "AWS::OpenSearchService::Application"
+    "typeName": "AWS::OpenSearchService::Application",
+    "writeOnlyProperties": [
+      "/properties/KmsKeyArn"
+    ]
   }
 }

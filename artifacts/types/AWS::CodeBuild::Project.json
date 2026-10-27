@@ -1,0 +1,735 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CodeBuild-Project",
+  "type": "AWS::CodeBuild::Project",
+  "time": "2026-10-21T16:19:09.529Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name"
+    ],
+    "definitions": {
+      "Artifacts": {
+        "additionalProperties": false,
+        "properties": {
+          "ArtifactIdentifier": {
+            "description": "An identifier for this artifact definition.",
+            "type": "string"
+          },
+          "EncryptionDisabled": {
+            "description": "Set to true if you do not want your output artifacts encrypted. This option is valid only if your artifacts type is Amazon Simple Storage Service (Amazon S3). If this is set with another artifacts type, an `invalidInputException` is thrown.",
+            "type": "boolean"
+          },
+          "Location": {
+            "description": "Information about the build output artifact location:\n* If `type` is set to `CODEPIPELINE`, AWS CodePipeline ignores this value if specified. This is because CodePipeline manages its build output locations instead of CodeBuild.\n* If `type` is set to `NO_ARTIFACTS`, this value is ignored if specified, because no build output is produced.\n* If `type` is set to `S3`, this is the name of the output bucket.\nIf you specify `CODEPIPELINE` or `NO_ARTIFACTS` for the `Type` property, don't specify this property. For all of the other types, you must specify this property.\n",
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "NamespaceType": {
+            "type": "string"
+          },
+          "OverrideArtifactName": {
+            "type": "boolean"
+          },
+          "Packaging": {
+            "type": "string"
+          },
+          "Path": {
+            "type": "string"
+          },
+          "Type": {
+            "description": "The type of build output artifact. Valid values include:\n* `CODEPIPELINE`: The build project has build output generated through CodePipeline.\n  The `CODEPIPELINE` type is not supported for `secondaryArtifacts`.\n* `NO_ARTIFACTS`: The build project does not produce any build output.\n* `S3`: The build project stores build output in Amazon S3.\n",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Type"
+        ],
+        "type": "object"
+      },
+      "BatchRestrictions": {
+        "additionalProperties": false,
+        "properties": {
+          "ComputeTypesAllowed": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "FleetsAllowed": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "MaximumBuildsAllowed": {
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "BuildStatusConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "Context": {
+            "type": "string"
+          },
+          "TargetUrl": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "CloudWatchLogsConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "GroupName": {
+            "type": "string"
+          },
+          "Status": {
+            "type": "string"
+          },
+          "StreamName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Status"
+        ],
+        "type": "object"
+      },
+      "DockerServer": {
+        "additionalProperties": false,
+        "properties": {
+          "ComputeType": {
+            "description": "Information about the compute resources the docker server uses. Valid Values: BUILD_GENERAL1_SMALL | BUILD_GENERAL1_MEDIUM | BUILD_GENERAL1_LARGE | BUILD_GENERAL1_XLARGE | BUILD_GENERAL1_2XLARGE | BUILD_LAMBDA_1GB | BUILD_LAMBDA_2GB | BUILD_LAMBDA_4GB | BUILD_LAMBDA_8GB | BUILD_LAMBDA_10GB | ATTRIBUTE_BASED_COMPUTE | CUSTOM_INSTANCE_TYPE",
+            "type": "string"
+          },
+          "SecurityGroupIds": {
+            "description": "A list of one or more security groups IDs.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          }
+        },
+        "required": [
+          "ComputeType"
+        ],
+        "type": "object"
+      },
+      "Environment": {
+        "additionalProperties": false,
+        "properties": {
+          "Certificate": {
+            "type": "string"
+          },
+          "ComputeType": {
+            "type": "string"
+          },
+          "DockerServer": {
+            "$ref": "#/definitions/DockerServer",
+            "description": "Contains docker server information."
+          },
+          "EnvironmentVariables": {
+            "items": {
+              "$ref": "#/definitions/EnvironmentVariable"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "Fleet": {
+            "$ref": "#/definitions/ProjectFleet"
+          },
+          "HostKernel": {
+            "description": "The kernel version of the host operating system for the build environment. Allowed values: LINUX_KERNEL_4 | LINUX_KERNEL_6 | LINUX_KERNEL_LATEST",
+            "type": "string"
+          },
+          "Image": {
+            "type": "string"
+          },
+          "ImagePullCredentialsType": {
+            "type": "string"
+          },
+          "PrivilegedMode": {
+            "type": "boolean"
+          },
+          "RegistryCredential": {
+            "$ref": "#/definitions/RegistryCredential"
+          },
+          "Type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Type",
+          "Image",
+          "ComputeType"
+        ],
+        "type": "object"
+      },
+      "EnvironmentVariable": {
+        "additionalProperties": false,
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "Type": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value",
+          "Name"
+        ],
+        "type": "object"
+      },
+      "FilterGroup": {
+        "items": {
+          "$ref": "#/definitions/WebhookFilter"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "GitSubmodulesConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "FetchSubmodules": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "FetchSubmodules"
+        ],
+        "type": "object"
+      },
+      "LogsConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "CloudWatchLogs": {
+            "$ref": "#/definitions/CloudWatchLogsConfig"
+          },
+          "S3Logs": {
+            "$ref": "#/definitions/S3LogsConfig"
+          }
+        },
+        "type": "object"
+      },
+      "ProjectBuildBatchConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "BatchReportMode": {
+            "type": "string"
+          },
+          "CombineArtifacts": {
+            "type": "boolean"
+          },
+          "Restrictions": {
+            "$ref": "#/definitions/BatchRestrictions"
+          },
+          "ServiceRole": {
+            "type": "string"
+          },
+          "TimeoutInMins": {
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "ProjectCache": {
+        "additionalProperties": false,
+        "properties": {
+          "CacheNamespace": {
+            "description": "Defines the scope of the cache. You can use this namespace to share a cache across multiple projects.",
+            "type": "string"
+          },
+          "Location": {
+            "type": "string"
+          },
+          "Modes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "Type": {
+            "description": "The type of cache used by the build project. Allowed values: NO_CACHE | S3 | LOCAL.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Type"
+        ],
+        "type": "object"
+      },
+      "ProjectFileSystemLocation": {
+        "additionalProperties": false,
+        "properties": {
+          "Identifier": {
+            "type": "string"
+          },
+          "Location": {
+            "type": "string"
+          },
+          "MountOptions": {
+            "type": "string"
+          },
+          "MountPoint": {
+            "type": "string"
+          },
+          "Type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "MountPoint",
+          "Type",
+          "Identifier",
+          "Location"
+        ],
+        "type": "object"
+      },
+      "ProjectFleet": {
+        "additionalProperties": false,
+        "properties": {
+          "FleetArn": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ProjectSourceVersion": {
+        "additionalProperties": false,
+        "properties": {
+          "SourceIdentifier": {
+            "type": "string"
+          },
+          "SourceVersion": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "SourceIdentifier"
+        ],
+        "type": "object"
+      },
+      "ProjectTriggers": {
+        "additionalProperties": false,
+        "properties": {
+          "BuildType": {
+            "type": "string"
+          },
+          "FilterGroups": {
+            "items": {
+              "$ref": "#/definitions/FilterGroup"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "PullRequestBuildPolicy": {
+            "$ref": "#/definitions/PullRequestBuildPolicy"
+          },
+          "ScopeConfiguration": {
+            "$ref": "#/definitions/ScopeConfiguration"
+          },
+          "Webhook": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "PullRequestBuildPolicy": {
+        "additionalProperties": false,
+        "properties": {
+          "ApproverRoles": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "RequiresCommentApproval": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "RequiresCommentApproval"
+        ],
+        "type": "object"
+      },
+      "RegistryCredential": {
+        "additionalProperties": false,
+        "properties": {
+          "Credential": {
+            "type": "string"
+          },
+          "CredentialProvider": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Credential",
+          "CredentialProvider"
+        ],
+        "type": "object"
+      },
+      "S3LogsConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "EncryptionDisabled": {
+            "type": "boolean"
+          },
+          "Location": {
+            "type": "string"
+          },
+          "Status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Status"
+        ],
+        "type": "object"
+      },
+      "ScopeConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "Domain": {
+            "description": "The domain of the GitHub Enterprise organization or the GitLab Self Managed group. Note that this parameter is only required if your project's source type is GITHUB_ENTERPRISE or GITLAB_SELF_MANAGED.",
+            "type": "string"
+          },
+          "Name": {
+            "description": "The name of either the enterprise or organization that will send webhook events to CodeBuild, depending on if the webhook is a global or organization webhook respectively.",
+            "type": "string"
+          },
+          "Scope": {
+            "description": "The type of scope for a GitHub or GitLab webhook. The scope default is GITHUB_ORGANIZATION. Allowed values: GITHUB_ORGANIZATION | GITHUB_GLOBAL | GITLAB_GROUP",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name"
+        ],
+        "type": "object"
+      },
+      "Source": {
+        "additionalProperties": false,
+        "properties": {
+          "Auth": {
+            "$ref": "#/definitions/SourceAuth"
+          },
+          "BuildSpec": {
+            "type": "string"
+          },
+          "BuildStatusConfig": {
+            "$ref": "#/definitions/BuildStatusConfig"
+          },
+          "GitCloneDepth": {
+            "type": "integer"
+          },
+          "GitSubmodulesConfig": {
+            "$ref": "#/definitions/GitSubmodulesConfig"
+          },
+          "InsecureSsl": {
+            "type": "boolean"
+          },
+          "Location": {
+            "type": "string"
+          },
+          "ReportBuildStatus": {
+            "type": "boolean"
+          },
+          "SourceIdentifier": {
+            "type": "string"
+          },
+          "Type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Type"
+        ],
+        "type": "object"
+      },
+      "SourceAuth": {
+        "additionalProperties": false,
+        "properties": {
+          "Resource": {
+            "type": "string"
+          },
+          "Type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Type"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value",
+          "Key"
+        ],
+        "type": "object"
+      },
+      "VpcConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "SecurityGroupIds": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 5,
+            "type": "array",
+            "uniqueItems": false
+          },
+          "Subnets": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 16,
+            "type": "array",
+            "uniqueItems": false
+          },
+          "VpcId": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "WebhookFilter": {
+        "additionalProperties": false,
+        "properties": {
+          "ExcludeMatchedPattern": {
+            "type": "boolean"
+          },
+          "Pattern": {
+            "type": "string"
+          },
+          "Type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Type",
+          "Pattern"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource type definition for AWS::CodeBuild::Project",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "codebuild:CreateProject",
+          "codebuild:BatchGetProjects",
+          "codebuild:UpdateProjectVisibility",
+          "codebuild:CreateWebhook",
+          "iam:PassRole"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "codebuild:DeleteProject",
+          "codebuild:BatchGetProjects",
+          "codebuild:DeleteWebhook",
+          "iam:PassRole"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "codebuild:ListProjects"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "codebuild:BatchGetProjects"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "codebuild:UpdateProject",
+          "codebuild:BatchGetProjects",
+          "codebuild:UpdateProjectVisibility",
+          "codebuild:CreateWebhook",
+          "codebuild:UpdateWebhook",
+          "codebuild:DeleteWebhook",
+          "iam:PassRole"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Name"
+    ],
+    "properties": {
+      "Arn": {
+        "pattern": "^arn:.*",
+        "type": "string"
+      },
+      "Artifacts": {
+        "$ref": "#/definitions/Artifacts",
+        "description": "Specifies output settings for artifacts generated by an AWS CodeBuild build."
+      },
+      "AutoRetryLimit": {
+        "type": "integer"
+      },
+      "BadgeEnabled": {
+        "description": "Indicates whether AWS CodeBuild generates a publicly accessible URL for your project's build badge.",
+        "type": "boolean"
+      },
+      "BuildBatchConfig": {
+        "$ref": "#/definitions/ProjectBuildBatchConfig",
+        "description": "Defines the batch build options for the project."
+      },
+      "Cache": {
+        "$ref": "#/definitions/ProjectCache",
+        "description": "Settings that AWS CodeBuild uses to store and reuse build dependencies."
+      },
+      "ConcurrentBuildLimit": {
+        "description": "The maximum number of concurrent builds that are allowed for this project.",
+        "type": "integer"
+      },
+      "Description": {
+        "description": "A description that makes the build project easy to identify.",
+        "type": "string"
+      },
+      "EncryptionKey": {
+        "type": "string"
+      },
+      "Environment": {
+        "$ref": "#/definitions/Environment"
+      },
+      "FileSystemLocations": {
+        "items": {
+          "$ref": "#/definitions/ProjectFileSystemLocation"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "LogsConfig": {
+        "$ref": "#/definitions/LogsConfig"
+      },
+      "Name": {
+        "type": "string"
+      },
+      "QueuedTimeoutInMinutes": {
+        "type": "integer"
+      },
+      "ResourceAccessRole": {
+        "type": "string"
+      },
+      "SecondaryArtifacts": {
+        "items": {
+          "$ref": "#/definitions/Artifacts"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "SecondarySourceVersions": {
+        "items": {
+          "$ref": "#/definitions/ProjectSourceVersion"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "SecondarySources": {
+        "items": {
+          "$ref": "#/definitions/Source"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "ServiceRole": {
+        "type": "string"
+      },
+      "Source": {
+        "$ref": "#/definitions/Source"
+      },
+      "SourceVersion": {
+        "type": "string"
+      },
+      "Tags": {
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "TimeoutInMinutes": {
+        "type": "integer"
+      },
+      "Triggers": {
+        "$ref": "#/definitions/ProjectTriggers"
+      },
+      "Visibility": {
+        "type": "string"
+      },
+      "VpcConfig": {
+        "$ref": "#/definitions/VpcConfig"
+      }
+    },
+    "propertyTransform": {
+      "/properties/Artifacts/NamespaceType": "$uppercase(NamespaceType)",
+      "/properties/Artifacts/Packaging": "$uppercase(Packaging)",
+      "/properties/Artifacts/Type": "$uppercase(Type)",
+      "/properties/BuildBatchConfig/BatchReportMode": "$uppercase(BatchReportMode)",
+      "/properties/Cache/Modes/*": "$uppercase(.)",
+      "/properties/Cache/Type": "$uppercase(Type)",
+      "/properties/EncryptionKey": "$join([\"arn:.*[:]\", EncryptionKey])",
+      "/properties/Environment/EnvironmentVariables/*/Type": "$uppercase(Type)",
+      "/properties/Environment/ImagePullCredentialsType": "$uppercase(ImagePullCredentialsType)",
+      "/properties/Environment/RegistryCredential/CredentialProvider": "$uppercase(CredentialProvider)",
+      "/properties/Environment/Type": "$uppercase(Type)",
+      "/properties/FileSystemLocations/*/Type": "$uppercase(Type)",
+      "/properties/LogsConfig/CloudWatchLogs/Status": "$uppercase(Status)",
+      "/properties/LogsConfig/S3Logs/Status": "$uppercase(Status)",
+      "/properties/SecondaryArtifacts/*/NamespaceType": "$uppercase(NamespaceType)",
+      "/properties/SecondaryArtifacts/*/Packaging": "$uppercase(Packaging)",
+      "/properties/SecondaryArtifacts/*/Type": "$uppercase(Type)",
+      "/properties/SecondarySources/*/Auth/Type": "$uppercase(Type)",
+      "/properties/SecondarySources/*/Type": "$uppercase(Type)",
+      "/properties/Source/Auth/Type": "$uppercase(Type)",
+      "/properties/Source/Type": "$uppercase(Type)",
+      "/properties/Triggers/BuildType": "$uppercase(BuildType)"
+    },
+    "readOnlyProperties": [
+      "/properties/Arn"
+    ],
+    "required": [
+      "Artifacts",
+      "ServiceRole",
+      "Environment",
+      "Source"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::CodeBuild::Project",
+    "writeOnlyProperties": [
+      "/properties/Triggers"
+    ]
+  }
+}

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CustomerProfiles-Domain",
   "type": "AWS::CustomerProfiles::Domain",
-  "time": "2025-01-14T23:25:21.648Z",
+  "time": "2026-09-15T21:37:59.423Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -128,6 +128,20 @@
         ],
         "type": "object"
       },
+      "DataStore": {
+        "additionalProperties": false,
+        "description": "Configuration and status of the data store for the domain.",
+        "properties": {
+          "Enabled": {
+            "description": "Whether the data store is enabled.",
+            "type": "boolean"
+          },
+          "Readiness": {
+            "$ref": "#/definitions/Readiness"
+          }
+        },
+        "type": "object"
+      },
       "DomainStats": {
         "additionalProperties": false,
         "description": "Usage-specific statistics about the domain.",
@@ -249,6 +263,23 @@
         "minItems": 1,
         "type": "array"
       },
+      "Readiness": {
+        "additionalProperties": false,
+        "description": "Progress information for data store setup.",
+        "properties": {
+          "Message": {
+            "description": "A message describing the current progress.",
+            "type": "string"
+          },
+          "ProgressPercentage": {
+            "description": "The percentage of progress completed.",
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
       "RuleBasedMatching": {
         "additionalProperties": false,
         "description": "The process of matching duplicate profiles using the Rule-Based matching. If RuleBasedMatching = true, Amazon Connect Customer Profiles will start to match and merge your profiles according to your configuration in the RuleBasedMatchingRequest. You can use the ListRuleBasedMatches and GetSimilarProfiles API to return and review the results. Also, if you have configured ExportingConfig in the RuleBasedMatchingRequest, you can download the results from S3.",
@@ -352,32 +383,38 @@
       "create": {
         "permissions": [
           "profile:CreateDomain",
-          "profile:TagResource"
+          "profile:TagResource",
+          "kms:CreateGrant",
+          "kms:DescribeKey",
+          "kms:GetKeyPolicy",
+          "kms:PutKeyPolicy",
+          "kms:ListGrants"
         ]
       },
       "delete": {
         "permissions": [
-          "profile:DeleteDomain"
+          "profile:DeleteDomain",
+          "kms:CreateGrant",
+          "kms:DescribeKey",
+          "kms:GetKeyPolicy",
+          "kms:PutKeyPolicy",
+          "kms:ListGrants"
         ]
       },
       "list": {
-        "handlerSchema": {
-          "properties": {
-            "DomainName": {
-              "$ref": "resource-schema.json#/properties/DomainName"
-            }
-          },
-          "required": [
-            "DomainName"
-          ]
-        },
         "permissions": [
           "profile:ListDomains"
         ]
       },
       "read": {
         "permissions": [
-          "profile:GetDomain"
+          "profile:GetDomain",
+          "profile:ListTagsForResource",
+          "kms:CreateGrant",
+          "kms:DescribeKey",
+          "kms:GetKeyPolicy",
+          "kms:PutKeyPolicy",
+          "kms:ListGrants"
         ]
       },
       "update": {
@@ -385,7 +422,13 @@
           "profile:GetDomain",
           "profile:UpdateDomain",
           "profile:UntagResource",
-          "profile:TagResource"
+          "profile:TagResource",
+          "profile:ListTagsForResource",
+          "kms:CreateGrant",
+          "kms:DescribeKey",
+          "kms:GetKeyPolicy",
+          "kms:PutKeyPolicy",
+          "kms:ListGrants"
         ]
       }
     },
@@ -396,6 +439,9 @@
       "CreatedAt": {
         "description": "The time of this integration got created",
         "type": "string"
+      },
+      "DataStore": {
+        "$ref": "#/definitions/DataStore"
       },
       "DeadLetterQueueUrl": {
         "description": "The URL of the SQS dead letter queue",
@@ -449,7 +495,8 @@
       "/properties/LastUpdatedAt",
       "/properties/CreatedAt",
       "/properties/RuleBasedMatching/Status",
-      "/properties/Stats"
+      "/properties/Stats",
+      "/properties/DataStore/Readiness"
     ],
     "required": [
       "DomainName",

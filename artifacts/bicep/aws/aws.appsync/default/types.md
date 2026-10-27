@@ -1,67 +1,100 @@
 # AWS.AppSync @ default
 
 ## Resource AWS.AppSync/Api@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AppSync/ApiProperties](#awsappsyncapiproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.AppSync/ApiCache@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.AppSync/ApiCacheProperties](#awsappsyncapicacheproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.AppSync/ApiKey@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.AppSync/ApiKeyProperties](#awsappsyncapikeyproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.AppSync/ChannelNamespace@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AppSync/ChannelNamespaceProperties](#awsappsyncchannelnamespaceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppSync/DataSource@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AppSync/DataSourceProperties](#awsappsyncdatasourceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppSync/DomainName@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AppSync/DomainNameProperties](#awsappsyncdomainnameproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppSync/DomainNameApiAssociation@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AppSync/DomainNameApiAssociationProperties](#awsappsyncdomainnameapiassociationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppSync/FunctionConfiguration@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AppSync/FunctionConfigurationProperties](#awsappsyncfunctionconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppSync/GraphQLApi@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AppSync/GraphQLApiProperties](#awsappsyncgraphqlapiproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppSync/Resolver@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AppSync/ResolverProperties](#awsappsyncresolverproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppSync/SourceApiAssociation@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AppSync/SourceApiAssociationProperties](#awsappsyncsourceapiassociationproperties) (Identifier): properties of the resource
+
+## Resource AWS.AppSync/Type@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.AppSync/TypeProperties](#awsappsynctypeproperties) (Required, Identifier): properties of the resource
 
 ## AdditionalAuthenticationProvider
 ### Properties
@@ -100,6 +133,26 @@
 * **LambdaAuthorizerConfig**: [LambdaAuthorizerConfig](#lambdaauthorizerconfig)
 * **OpenIDConnectConfig**: [OpenIDConnectConfig](#openidconnectconfig)
 
+## AWS.AppSync/ApiCacheProperties
+### Properties
+* **ApiCachingBehavior**: string (Required): Caching behavior, such as FULL_REQUEST_CACHING, PER_RESOLVER_CACHING, or OPERATION_LEVEL_CACHING
+* **ApiId**: string (Required): Unique AWS AppSync GraphQL API identifier.
+* **AtRestEncryptionEnabled**: bool: At-rest encryption flag for cache. You cannot update this setting after creation.
+* **HealthMetricsConfig**: string: Controls how cache health metrics will be emitted to CloudWatch. Cache health metrics include NetworkBandwidthOutAllowanceExceeded and EngineCPUUtilization
+* **Id**: string (ReadOnly, Identifier): The CloudFormation primary identifier for an ApiCache. Mirrors ApiId once the resource exists; populated by the handler. Customers should reference the ApiCache by ApiId.
+* **TransitEncryptionEnabled**: bool: Transit encryption flag when connecting to cache. You cannot update this setting after creation.
+* **Ttl**: int (Required): TTL in seconds for cache entries. Valid values are 1-3600.
+* **Type**: string (Required): The cache instance type, such as SMALL, LARGE and LARGE_4X
+
+## AWS.AppSync/ApiKeyProperties
+### Properties
+* **ApiId**: string (Required, Identifier): Unique AWS AppSync GraphQL API ID for this API key.
+* **ApiKey**: string (ReadOnly): The API key.
+* **ApiKeyId**: string (ReadOnly, Identifier): The API key ID.
+* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the API key.
+* **Description**: string: Unique description of your API key.
+* **Expires**: int: The time after which the API key expires. The date is represented as seconds since the epoch, rounded down to the nearest hour.
+
 ## AWS.AppSync/ApiProperties
 ### Properties
 * **ApiArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the AppSync Api
@@ -116,6 +169,7 @@
 * **ChannelNamespaceArn**: string (ReadOnly, Identifier)
 * **CodeHandlers**: string
 * **CodeS3Location**: string (WriteOnly): The Amazon S3 endpoint where the code is located.
+* **HandlerConfigs**: [HandlerConfigs](#handlerconfigs)
 * **Name**: string (Required)
 * **PublishAuthModes**: [AuthMode](#authmode)[]: List of AuthModes supported for Publish operations.
 * **SubscribeAuthModes**: [AuthMode](#authmode)[]: List of AuthModes supported for Subscribe operations.
@@ -151,7 +205,9 @@ As of September 2021, Amazon Elasticsearch Service is Amazon OpenSearch Service.
 * **CertificateArn**: string (Required)
 * **Description**: string
 * **DomainName**: string (Required, Identifier)
+* **DomainNameArn**: string (ReadOnly): The Amazon Resource Name (ARN) for the Domain Name.
 * **HostedZoneId**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]
 
 ## AWS.AppSync/FunctionConfigurationProperties
 ### Properties
@@ -175,9 +231,9 @@ As of September 2021, Amazon Elasticsearch Service is Amazon OpenSearch Service.
 ## AWS.AppSync/GraphQLApiProperties
 ### Properties
 * **AdditionalAuthenticationProviders**: [AdditionalAuthenticationProvider](#additionalauthenticationprovider)[]: A list of additional authentication providers for the GraphqlApi API.
-* **ApiId**: string (ReadOnly, Identifier): Unique AWS AppSync GraphQL API identifier.
+* **ApiId**: string (ReadOnly): Unique AWS AppSync GraphQL API identifier.
 * **ApiType**: string: The value that indicates whether the GraphQL API is a standard API (GRAPHQL) or merged API (MERGED).
-* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the API key
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the API key
 * **AuthenticationType**: string (Required): Security configuration for your GraphQL API
 * **EnhancedMetricsConfig**: [EnhancedMetricsConfig](#enhancedmetricsconfig): Enables and controls the enhanced metrics feature. Enhanced metrics emit granular data on API usage and performance such as AppSync request and error counts, latency, and cache hits/misses. All enhanced metric data is sent to your CloudWatch account, and you can configure the types of data that will be sent.
 * **EnvironmentVariables**: [GraphQLApi_EnvironmentVariables](#graphqlapienvironmentvariables): A map containing the list of resources with their properties and environment variables.
@@ -215,8 +271,8 @@ As of September 2021, Amazon Elasticsearch Service is Amazon OpenSearch Service.
 * **DataSourceName**: string: The resolver data source name.
 * **FieldName**: string (Required): The GraphQL field on a type that invokes the resolver.
 * **Kind**: string: The resolver type.
-  +   *UNIT*: A UNIT resolver type. A UNIT resolver is the default resolver type. You can use a UNIT resolver to run a GraphQL query against a single data source.
-  +   *PIPELINE*: A PIPELINE resolver type. You can use a PIPELINE resolver to invoke a series of ``Function`` objects in a serial manner. You can use a pipeline resolver to run a GraphQL query against multiple data sources.
+  +  *UNIT*: A UNIT resolver type. A UNIT resolver is the default resolver type. You can use a UNIT resolver to run a GraphQL query against a single data source.
+  +  *PIPELINE*: A PIPELINE resolver type. You can use a PIPELINE resolver to invoke a series of ``Function`` objects in a serial manner. You can use a pipeline resolver to run a GraphQL query against multiple data sources.
 * **MaxBatchSize**: int: The maximum number of resolver request inputs that will be sent to a single LAMlong function in a ``BatchInvoke`` operation.
 * **MetricsConfig**: string: Enables or disables enhanced resolver metrics for specified resolvers. Note that ``MetricsConfig`` won't be used unless the ``resolverLevelMetricsBehavior`` value is set to ``PER_RESOLVER_METRICS``. If the ``resolverLevelMetricsBehavior`` is set to ``FULL_REQUEST_RESOLVER_METRICS`` instead, ``MetricsConfig`` will be ignored. However, you can still set its value.
 * **PipelineConfig**: [PipelineConfig](#pipelineconfig): Functions linked with the pipeline resolver.
@@ -245,6 +301,14 @@ As of September 2021, Amazon Elasticsearch Service is Amazon OpenSearch Service.
 * **SourceApiAssociationStatusDetail**: string (ReadOnly): Current SourceApiAssociation status details.
 * **SourceApiId**: string (ReadOnly): GraphQLApiId of the source API in the association.
 * **SourceApiIdentifier**: string (WriteOnly): Identifier of the Source GraphQLApi to associate. It could be either GraphQLApi ApiId or ARN
+
+## AWS.AppSync/TypeProperties
+### Properties
+* **ApiId**: string (Required): The API ID.
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the type.
+* **Definition**: string (Required): The type definition, in GraphQL Schema Definition Language (SDL) format.
+* **Format**: string (Required): The type format: SDL or JSON.
+* **Name**: string (ReadOnly): The type name.
 
 ## AwsIamConfig
 ### Properties
@@ -326,10 +390,25 @@ As of September 2021, Amazon Elasticsearch Service is Amazon OpenSearch Service.
 ## GraphQLApi_EnvironmentVariables
 ### Properties
 
+## HandlerConfig
+### Properties
+* **Behavior**: string (Required)
+* **Integration**: [Integration](#integration) (Required)
+
+## HandlerConfigs
+### Properties
+* **OnPublish**: [HandlerConfig](#handlerconfig)
+* **OnSubscribe**: [HandlerConfig](#handlerconfig)
+
 ## HttpConfig
 ### Properties
 * **AuthorizationConfig**: [AuthorizationConfig](#authorizationconfig): The authorization configuration.
 * **Endpoint**: string (Required): The endpoint.
+
+## Integration
+### Properties
+* **DataSourceName**: string (Required): Data source to invoke for this integration.
+* **LambdaConfig**: [LambdaConfig](#lambdaconfig)
 
 ## LambdaAuthorizerConfig
 ### Properties
@@ -345,6 +424,10 @@ As of September 2021, Amazon Elasticsearch Service is Amazon OpenSearch Service.
 
 ## LambdaConfig
 ### Properties
+* **InvokeType**: string (Required)
+
+## LambdaConfig
+### Properties
 * **LambdaFunctionArn**: string (Required): The ARN for the Lambda function.
 
 ## LambdaConflictHandlerConfig
@@ -357,9 +440,9 @@ As of September 2021, Amazon Elasticsearch Service is Amazon OpenSearch Service.
 
 ## LogConfig
 ### Properties
-* **CloudWatchLogsRoleArn**: string: The service role that AWS AppSync will assume to publish to Amazon CloudWatch Logs in your account.
+* **CloudWatchLogsRoleArn**: string (Required): The service role that AWS AppSync will assume to publish to Amazon CloudWatch Logs in your account.
 * **ExcludeVerboseContent**: bool: Set to TRUE to exclude sections that contain information such as headers, context, and evaluated mapping templates, regardless of logging level.
-* **FieldLogLevel**: string: The field logging level. Values can be NONE, ERROR, INFO, DEBUG, or ALL.
+* **FieldLogLevel**: string (Required): The field logging level. Values can be NONE, ERROR, INFO, DEBUG, or ALL.
 
 ## OpenIDConnectConfig
 ### Properties
@@ -412,12 +495,12 @@ As of September 2021, Amazon Elasticsearch Service is Amazon OpenSearch Service.
 ## SyncConfig
 ### Properties
 * **ConflictDetection**: string (Required): The Conflict Detection strategy to use.
-  +   *VERSION*: Detect conflicts based on object versions for this resolver.
-  +   *NONE*: Do not detect conflicts when invoking this resolver.
+  +  *VERSION*: Detect conflicts based on object versions for this resolver.
+  +  *NONE*: Do not detect conflicts when invoking this resolver.
 * **ConflictHandler**: string: The Conflict Resolution strategy to perform in the event of a conflict.
-  +   *OPTIMISTIC_CONCURRENCY*: Resolve conflicts by rejecting mutations when versions don't match the latest version at the server.
-  +   *AUTOMERGE*: Resolve conflicts with the Automerge conflict resolution strategy.
-  +   *LAMBDA*: Resolve conflicts with an LAMlong function supplied in the ``LambdaConflictHandlerConfig``.
+  +  *OPTIMISTIC_CONCURRENCY*: Resolve conflicts by rejecting mutations when versions don't match the latest version at the server.
+  +  *AUTOMERGE*: Resolve conflicts with the Automerge conflict resolution strategy.
+  +  *LAMBDA*: Resolve conflicts with an LAMlong function supplied in the ``LambdaConflictHandlerConfig``.
 * **LambdaConflictHandlerConfig**: [LambdaConflictHandlerConfig](#lambdaconflicthandlerconfig): The ``LambdaConflictHandlerConfig`` when configuring ``LAMBDA`` as the Conflict Handler.
 
 ## Tag
@@ -428,6 +511,11 @@ As of September 2021, Amazon Elasticsearch Service is Amazon OpenSearch Service.
 ## Tag
 ### Properties
 * **Key**: string (Required): A string used to identify this tag. You can specify a maximum of 128 characters for a tag key.
+* **Value**: string (Required): A string containing the value for this tag. You can specify a maximum of 256 characters for a tag value.
+
+## Tag
+### Properties
+* **Key**: string (Required): A string used to identify this tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): A string containing the value for this tag. You can specify a maximum of 256 characters for a tag value.
 
 ## Tag

@@ -1,8 +1,14 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-DBProxyTargetGroup",
   "type": "AWS::RDS::DBProxyTargetGroup",
-  "time": "2024-10-29T17:08:58.636Z",
+  "time": "2026-10-19T18:29:39.977Z",
   "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/DBProxyName",
+        "/properties/TargetGroupName"
+      ]
+    ],
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/DBProxyName",
@@ -42,6 +48,30 @@
           }
         },
         "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with the DB proxy target group.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^(?!aws:|rds:)[\\p{L}\\p{Z}\\p{N}_. :/=+\\-@]+$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "^(?!aws:|rds:)[\\p{L}\\p{Z}\\p{N}_. :/=+\\-@]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key"
+        ],
+        "type": "object"
       }
     },
     "description": "Resource schema for AWS::RDS::DBProxyTargetGroup",
@@ -50,8 +80,10 @@
         "permissions": [
           "rds:DescribeDBProxies",
           "rds:DescribeDBProxyTargetGroups",
+          "rds:DescribeDBProxyTargets",
           "rds:ModifyDBProxyTargetGroup",
-          "rds:RegisterDBProxyTargets"
+          "rds:RegisterDBProxyTargets",
+          "rds:AddTagsToResource"
         ]
       },
       "delete": {
@@ -67,15 +99,20 @@
       "read": {
         "permissions": [
           "rds:DescribeDBProxyTargetGroups",
-          "rds:DescribeDBProxyTargets"
+          "rds:DescribeDBProxyTargets",
+          "rds:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
           "rds:DescribeDBProxyTargetGroups",
+          "rds:DescribeDBProxyTargets",
           "rds:ModifyDBProxyTargetGroup",
           "rds:RegisterDBProxyTargets",
-          "rds:DeregisterDBProxyTargets"
+          "rds:DeregisterDBProxyTargets",
+          "rds:AddTagsToResource",
+          "rds:RemoveTagsFromResource",
+          "rds:ListTagsForResource"
         ]
       }
     },
@@ -106,6 +143,15 @@
         "pattern": "[A-z][0-z]*",
         "type": "string"
       },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
       "TargetGroupArn": {
         "description": "The Amazon Resource Name (ARN) representing the target group.",
         "type": "string"
@@ -118,6 +164,10 @@
         "type": "string"
       }
     },
+    "propertyTransform": {
+      "/properties/DBProxyName": "$lowercase(DBProxyName)",
+      "/properties/TargetGroupName": "$lowercase(TargetGroupName)"
+    },
     "readOnlyProperties": [
       "/properties/TargetGroupArn"
     ],
@@ -127,10 +177,16 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-rds-proxy",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "rds:AddTagsToResource",
+        "rds:RemoveTagsFromResource",
+        "rds:ListTagsForResource"
+      ],
       "tagOnCreate": false,
-      "tagUpdatable": false,
-      "taggable": false
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
     },
     "typeName": "AWS::RDS::DBProxyTargetGroup"
   }

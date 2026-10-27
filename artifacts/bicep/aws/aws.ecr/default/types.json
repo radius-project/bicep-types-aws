@@ -6,6 +6,11 @@
   },
   {
     "$type": "ObjectType",
+    "name": "CustomRoleArn",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "EcrRepositoryPrefix",
     "properties": {}
   },
@@ -15,33 +20,45 @@
     "properties": {
       "CredentialArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "CustomRoleArn": {
+        "type": {
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "EcrRepositoryPrefix": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 17
       },
       "RegistryId": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "UpstreamRegistry": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "UpstreamRegistryUrl": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 1
+      },
+      "UpstreamRepositoryPrefix": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
       }
     }
   },
@@ -61,6 +78,11 @@
     "properties": {}
   },
   {
+    "$type": "ObjectType",
+    "name": "UpstreamRepositoryPrefix",
+    "properties": {}
+  },
+  {
     "$type": "StringType"
   },
   {
@@ -73,31 +95,45 @@
     "properties": {
       "CredentialArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 4,
-        "description": "The Amazon Resource Name (ARN) of the AWS Secrets Manager secret that identifies the credentials to authenticate to the upstream registry."
+        "description": "The ARN of the Secrets Manager secret associated with the pull through cache rule."
+      },
+      "CustomRoleArn": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 4,
+        "description": "The ARN of the IAM role associated with the pull through cache rule."
       },
       "EcrRepositoryPrefix": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 16,
-        "description": "The ECRRepositoryPrefix is a custom alias for upstream registry url."
+        "description": "The Amazon ECR repository prefix associated with the pull through cache rule."
       },
       "UpstreamRegistry": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 4,
-        "description": "The name of the upstream registry."
+        "description": "The name of the upstream source registry associated with the pull through cache rule."
       },
       "UpstreamRegistryUrl": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 0,
-        "description": "The upstreamRegistryUrl is the endpoint of upstream registry url of the public repository to be cached"
+        "description": "The upstream registry URL associated with the pull through cache rule."
+      },
+      "UpstreamRepositoryPrefix": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The upstream repository prefix associated with the pull through cache rule."
       }
     }
   },
@@ -107,21 +143,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/10"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -131,11 +167,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.ECR/PullThroughCacheRule@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/9"
+      "$ref": "#/11"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -157,14 +193,14 @@
     "properties": {
       "PolicyText": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/15"
         },
         "flags": 1,
         "description": "The JSON policy text for your registry."
       },
       "RegistryId": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 18,
         "description": ""
@@ -177,21 +213,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/16"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -201,11 +237,166 @@
   {
     "$type": "ResourceType",
     "name": "AWS.ECR/RegistryPolicy@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/15"
+      "$ref": "#/17"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Filter",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FilterType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RegistryId",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RepositoryFilter",
+    "properties": {
+      "Filter": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The filter to use when scanning."
+      },
+      "FilterType": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The type associated with the filter."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ScanFrequency",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ScanType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ScanningRule",
+    "properties": {
+      "RepositoryFilters": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 1,
+        "description": "The details of a scanning repository filter. For more information on how to use filters, see [Using filters](https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html#image-scanning-filters) in the *Amazon Elastic Container Registry User Guide*."
+      },
+      "ScanFrequency": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The frequency that scans are performed at for a private registry. When the ``ENHANCED`` scan type is specified, the supported scan frequencies are ``CONTINUOUS_SCAN`` and ``SCAN_ON_PUSH``. When the ``BASIC`` scan type is specified, the ``SCAN_ON_PUSH`` scan frequency is supported. If scan on push is not specified, then the ``MANUAL`` scan frequency is set by default."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ScanningRules",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/22"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/25"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ECR/RegistryScanningConfigurationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/25"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ECR/RegistryScanningConfigurationProperties",
+    "properties": {
+      "RegistryId": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 18,
+        "description": ""
+      },
+      "Rules": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1,
+        "description": "The scanning rules associated with the registry."
+      },
+      "ScanType": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The type of scanning configured for the registry."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ECR/RegistryScanningConfiguration",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ECR/RegistryScanningConfiguration@default",
+    "body": {
+      "$ref": "#/32"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -233,10 +424,10 @@
     "properties": {
       "Rules": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/42"
         },
         "flags": 1,
-        "description": "An array of objects representing the replication rules for a replication configuration. A replication configuration may contain a maximum of 10 rules."
+        "description": "An array of objects representing the replication destinations and repository filters for a replication configuration."
       }
     }
   },
@@ -246,15 +437,17 @@
     "properties": {
       "Region": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "The Region to replicate to."
       },
       "RegistryId": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
-        "flags": 17
+        "flags": 17,
+        "description": "The AWS account ID of the Amazon ECR private registry to replicate to. When configuring cross-Region replication within your own registry, specify your own account ID."
       }
     }
   },
@@ -264,17 +457,17 @@
     "properties": {
       "Destinations": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/43"
         },
         "flags": 1,
-        "description": "An array of objects representing the details of a replication destination."
+        "description": "An array of objects representing the destination for a replication rule."
       },
       "RepositoryFilters": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/44"
         },
         "flags": 0,
-        "description": "An array of objects representing the details of a repository filter."
+        "description": "An array of objects representing the filters for a replication rule. Specifying a repository filter for a replication rule provides a method for controlling which repositories in a private registry are replicated."
       }
     }
   },
@@ -284,34 +477,36 @@
     "properties": {
       "Filter": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "The repository filter details. When the ``PREFIX_MATCH`` filter type is specified, this value is required and should be the repository name prefix to configure replication for."
       },
       "FilterType": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "The repository filter type. The only supported value is ``PREFIX_MATCH``, which is a repository name prefix specified with the ``filter`` parameter."
       }
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/40"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/39"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/24"
+      "$ref": "#/41"
     }
   },
   {
@@ -324,16 +519,17 @@
     "properties": {
       "RegistryId": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 18,
-        "description": "The RegistryId associated with the aws account."
+        "description": ""
       },
       "ReplicationConfiguration": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/38"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "The replication configuration for a registry."
       }
     }
   },
@@ -343,21 +539,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/46"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -367,11 +563,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.ECR/ReplicationConfiguration@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/30"
+      "$ref": "#/47"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -384,14 +580,14 @@
     "properties": {
       "EncryptionType": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 1,
-        "description": "The encryption type to use.\n If you use the ``KMS`` encryption type, the contents of the repository will be encrypted using server-side encryption with KMSlong key stored in KMS. When you use KMS to encrypt your data, you can either use the default AWS managed KMS key for Amazon ECR, or specify your own KMS key, which you already created. For more information, see [Protecting data using server-side encryption with an key stored in (SSE-KMS)](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html) in the *Amazon Simple Storage Service Console Developer Guide*.\n If you use the ``AES256`` encryption type, Amazon ECR uses server-side encryption with Amazon S3-managed encryption keys which encrypts the images in the repository using an AES-256 encryption algorithm. For more information, see [Protecting data using server-side encryption with Amazon S3-managed encryption keys (SSE-S3)](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html) in the *Amazon Simple Storage Service Console Developer Guide*."
+        "description": "The encryption type to use.\n If you use the ``KMS`` encryption type, the contents of the repository will be encrypted using server-side encryption with KMSlong key stored in KMS. When you use KMS to encrypt your data, you can either use the default AWS managed KMS key for Amazon ECR, or specify your own KMS key, which you already created.\n If you use the ``KMS_DSSE`` encryption type, the contents of the repository will be encrypted with two layers of encryption using server-side encryption with the KMS Management Service key stored in KMS. Similar to the ``KMS`` encryption type, you can either use the default AWS managed KMS key for Amazon ECR, or specify your own KMS key, which you've already created. \n If you use the ``AES256`` encryption type, Amazon ECR uses server-side encryption with Amazon S3-managed encryption keys which encrypts the images in the repository using an AES256 encryption algorithm.\n For more information, see [Amazon ECR encryption at rest](https://docs.aws.amazon.com/AmazonECR/latest/userguide/encryption-at-rest.html) in the *Amazon Elastic Container Registry User Guide*."
       },
       "KmsKey": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "If you use the ``KMS`` encryption type, specify the KMS key to use for encryption. The alias, key ID, or full ARN of the KMS key can be specified. The key must exist in the same Region as the repository. If no key is specified, the default AWS managed KMS key for Amazon ECR will be used."
@@ -409,12 +605,42 @@
     "properties": {
       "ScanOnPush": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/62"
         },
         "flags": 0,
         "description": "The setting that determines whether images are scanned after being pushed to a repository. If set to ``true``, images will be scanned after being pushed. If this parameter is not specified, it will default to ``false`` and images will not be scanned unless a scan is manually started."
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ImageTagMutabilityExclusionFilter",
+    "properties": {
+      "ImageTagMutabilityExclusionFilterType": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": ""
+      },
+      "ImageTagMutabilityExclusionFilterValue": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": ""
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ImageTagMutabilityExclusionFilterType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ImageTagMutabilityExclusionFilterValue",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -427,14 +653,14 @@
     "properties": {
       "LifecyclePolicyText": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "The JSON repository policy text to apply to the repository."
       },
       "RegistryId": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "The AWS account ID associated with the registry that contains the repository. If you do? not specify a registry, the default registry is assumed."
@@ -462,14 +688,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 1,
         "description": "One part of a key-value pair that make up a tag. A ``key`` is a general label that acts like a category for more specific tag values."
       },
       "Value": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 1,
         "description": "A ``value`` acts as a descriptor within a tag category (key)."
@@ -484,6 +710,12 @@
     "value": "AWS.ECR/RepositoryProperties"
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/53"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "Repository_RepositoryPolicyText",
     "properties": {}
@@ -492,17 +724,17 @@
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/44"
+        "$ref": "#/65"
       },
       {
-        "$ref": "#/6"
+        "$ref": "#/8"
       }
     ]
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/41"
+      "$ref": "#/61"
     }
   },
   {
@@ -511,70 +743,77 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 2,
         "description": ""
       },
       "EmptyOnDelete": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/62"
         },
         "flags": 4,
         "description": "If true, deleting the repository force deletes the contents of the repository. If false, the repository must be empty before attempting to delete it."
       },
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "The encryption configuration for the repository. This determines how the contents of your repository are encrypted at rest."
       },
       "ImageScanningConfiguration": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/52"
         },
         "flags": 0,
-        "description": "The image scanning configuration for the repository. This determines whether images are scanned for known vulnerabilities after being pushed to the repository."
+        "description": "The ``imageScanningConfiguration`` parameter is being deprecated, in favor of specifying the image scanning configuration at the registry level. For more information, see ``PutRegistryScanningConfiguration``.\n  The image scanning configuration for the repository. This determines whether images are scanned for known vulnerabilities after being pushed to the repository."
       },
       "ImageTagMutability": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "The tag mutability setting for the repository. If this parameter is omitted, the default setting of ``MUTABLE`` will be used which will allow image tags to be overwritten. If ``IMMUTABLE`` is specified, all image tags within the repository will be immutable which will prevent them from being overwritten."
       },
+      "ImageTagMutabilityExclusionFilters": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 0,
+        "description": "A list of filters that specify which image tags are excluded from the repository's image tag mutability setting."
+      },
       "LifecyclePolicy": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/57"
         },
         "flags": 0,
         "description": "Creates or updates a lifecycle policy. For information about lifecycle policy syntax, see [Lifecycle policy template](https://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.html)."
       },
       "RepositoryName": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 16,
         "description": "The name to use for the repository. The repository name may be specified on its own (such as ``nginx-web-app``) or it can be prepended with a namespace to group the repository into a category (such as ``project-a/nginx-web-app``). If you don't specify a name, CFNlong generates a unique physical ID and uses that ID for the repository name. For more information, see [Name type](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-name.html).\n The repository name must start with a letter and can only contain lowercase letters, numbers, hyphens, underscores, and forward slashes.\n  If you specify a name, you cannot perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you must replace the resource, specify a new name."
       },
       "RepositoryPolicyText": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/66"
         },
         "flags": 0,
         "description": "The JSON repository policy text to apply to the repository. For more information, see [Amazon ECR repository policies](https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policy-examples.html) in the *Amazon Elastic Container Registry User Guide*."
       },
       "RepositoryUri": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 2,
         "description": ""
       },
       "Tags": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/67"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -587,21 +826,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/68"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -611,11 +850,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.ECR/Repository@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/48"
+      "$ref": "#/69"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -628,15 +867,17 @@
     "properties": {
       "EncryptionType": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "The encryption type to use.\n If you use the ``KMS`` encryption type, the contents of the repository will be encrypted using server-side encryption with KMSlong key stored in KMS. When you use KMS to encrypt your data, you can either use the default AWS managed KMS key for Amazon ECR, or specify your own KMS key, which you already created.\n If you use the ``KMS_DSSE`` encryption type, the contents of the repository will be encrypted with two layers of encryption using server-side encryption with the KMS Management Service key stored in KMS. Similar to the ``KMS`` encryption type, you can either use the default AWS managed KMS key for Amazon ECR, or specify your own KMS key, which you've already created. \n If you use the ``AES256`` encryption type, Amazon ECR uses server-side encryption with Amazon S3-managed encryption keys which encrypts the images in the repository using an AES256 encryption algorithm.\n For more information, see [Amazon ECR encryption at rest](https://docs.aws.amazon.com/AmazonECR/latest/userguide/encryption-at-rest.html) in the *Amazon Elastic Container Registry User Guide*."
       },
       "KmsKey": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "If you use the ``KMS`` encryption type, specify the KMS key to use for encryption. The alias, key ID, or full ARN of the KMS key can be specified. The key must exist in the same Region as the repository. If no key is specified, the default AWS managed KMS key for Amazon ECR will be used."
       }
     }
   },
@@ -644,6 +885,26 @@
     "$type": "ObjectType",
     "name": "EncryptionType",
     "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ImageTagMutabilityExclusionFilter",
+    "properties": {
+      "ImageTagMutabilityExclusionFilterType": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": ""
+      },
+      "ImageTagMutabilityExclusionFilterValue": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": ""
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -656,17 +917,17 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 1,
-        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+        "description": "One part of a key-value pair that make up a tag. A ``key`` is a general label that acts like a category for more specific tag values."
       },
       "Value": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 1,
-        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+        "description": "A ``value`` acts as a descriptor within a tag category (key)."
       }
     }
   },
@@ -677,13 +938,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/8"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/54"
+      "$ref": "#/74"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/76"
     }
   },
   {
@@ -692,79 +959,87 @@
     "properties": {
       "AppliedFor": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/78"
         },
         "flags": 1,
-        "description": "A list of enumerable Strings representing the repository creation scenarios that the template will apply towards."
+        "description": "A list of enumerable Strings representing the repository creation scenarios that this template will apply towards. The supported scenarios are PULL_THROUGH_CACHE, REPLICATION, and CREATE_ON_PUSH"
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 2,
-        "description": "Create timestamp of the template."
+        "description": ""
       },
       "CustomRoleArn": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 0,
-        "description": "The ARN of the role to be assumed by ECR. This role must be in the same account as the registry that you are configuring."
+        "description": "The ARN of the role to be assumed by Amazon ECR. Amazon ECR will assume your supplied role when the customRoleArn is specified. When this field isn't specified, Amazon ECR will use the service-linked role for the repository creation template."
       },
       "Description": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 0,
-        "description": "The description of the template."
+        "description": "The description associated with the repository creation template."
       },
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/72"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "The encryption configuration associated with the repository creation template."
       },
       "ImageTagMutability": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 0,
-        "description": "The image tag mutability setting for the repository."
+        "description": "The tag mutability setting for the repository. If this parameter is omitted, the default setting of ``MUTABLE`` will be used which will allow image tags to be overwritten. If ``IMMUTABLE`` is specified, all image tags within the repository will be immutable which will prevent them from being overwritten."
+      },
+      "ImageTagMutabilityExclusionFilters": {
+        "type": {
+          "$ref": "#/79"
+        },
+        "flags": 0,
+        "description": "A list of filters that specify which image tags are excluded from the repository creation template's image tag mutability setting."
       },
       "LifecyclePolicy": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 0,
-        "description": "The JSON lifecycle policy text to apply to the repository. For information about lifecycle policy syntax, see https://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.html"
+        "description": "The lifecycle policy to use for repositories created using the template."
       },
       "Prefix": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 17,
-        "description": "The prefix use to match the repository name and apply the template."
+        "description": "The repository namespace prefix associated with the repository creation template."
       },
       "RepositoryPolicy": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 0,
-        "description": "The JSON repository policy text to apply to the repository. For more information, see https://docs.aws.amazon.com/AmazonECR/latest/userguide/RepositoryPolicyExamples.html"
+        "description": "The repository policy to apply to repositories created using the template. A repository policy is a permissions policy associated with a repository to control access permissions."
       },
       "ResourceTags": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/80"
         },
         "flags": 0,
-        "description": "An array of key-value pairs to apply to this resource."
+        "description": "The metadata to apply to the repository to help you categorize and organize. Each tag consists of a key and an optional value, both of which you define. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters."
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 2,
-        "description": "Update timestamp of the template."
+        "description": ""
       }
     }
   },
@@ -774,21 +1049,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/8"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/81"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -798,10 +1073,130 @@
   {
     "$type": "ResourceType",
     "name": "AWS.ECR/RepositoryCreationTemplate@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/59"
+      "$ref": "#/82"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Filter",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FilterType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RepositoryFilter",
+    "properties": {
+      "Filter": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "FilterType": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Rule",
+    "properties": {
+      "RepositoryFilters": {
+        "type": {
+          "$ref": "#/88"
+        },
+        "flags": 0,
+        "description": "Optional array of repository filters. If omitted, the rule matches all repositories. If provided, must contain at least one filter. Empty arrays are not allowed."
+      },
+      "SigningProfileArn": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "AWS Signer signing profile ARN to use for matched repositories."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/86"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ECR/SigningConfigurationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/87"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ECR/SigningConfigurationProperties",
+    "properties": {
+      "RegistryId": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 18,
+        "description": "12-digit AWS account ID of the ECR registry."
+      },
+      "Rules": {
+        "type": {
+          "$ref": "#/90"
+        },
+        "flags": 1,
+        "description": "Array of signing rules that define which repositories should be signed and with which signing profiles."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ECR/SigningConfiguration",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/91"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ECR/SigningConfiguration@default",
+    "body": {
+      "$ref": "#/92"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

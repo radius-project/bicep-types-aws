@@ -1,0 +1,180 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-DBClusterEndpoint",
+  "type": "AWS::RDS::DBClusterEndpoint",
+  "time": "2026-10-21T23:43:26.992Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/DBClusterEndpointIdentifier"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DBClusterEndpointIdentifier",
+      "/properties/DBClusterIdentifier"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::RDS::DBClusterEndpoint. Creates a new custom endpoint and associates it with an Amazon Aurora DB cluster. This resource applies only to Aurora DB clusters.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "rds:CreateDBClusterEndpoint",
+          "rds:DescribeDBClusterEndpoints",
+          "rds:AddTagsToResource",
+          "rds:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "rds:DeleteDBClusterEndpoint",
+          "rds:DescribeDBClusterEndpoints"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "rds:DescribeDBClusterEndpoints"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "rds:DescribeDBClusterEndpoints",
+          "rds:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "rds:ModifyDBClusterEndpoint",
+          "rds:DescribeDBClusterEndpoints",
+          "rds:AddTagsToResource",
+          "rds:RemoveTagsFromResource",
+          "rds:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/DBClusterEndpointArn"
+    ],
+    "properties": {
+      "CustomEndpointType": {
+        "description": "The type of the custom endpoint.",
+        "enum": [
+          "READER",
+          "WRITER",
+          "ANY"
+        ],
+        "type": "string"
+      },
+      "DBClusterEndpointArn": {
+        "description": "The Amazon Resource Name (ARN) for the DB cluster endpoint.",
+        "pattern": "^arn:aws(-[a-z0-9]+)*:rds:[a-z0-9-]+:[0-9]{12}:cluster-endpoint:[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+        "type": "string"
+      },
+      "DBClusterEndpointIdentifier": {
+        "description": "The identifier to use for the new endpoint. This parameter is stored as a lowercase string.",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+        "type": "string"
+      },
+      "DBClusterEndpointResourceIdentifier": {
+        "description": "A unique system-generated identifier for an endpoint. It remains the same for the whole life of the endpoint.",
+        "type": "string"
+      },
+      "DBClusterIdentifier": {
+        "description": "The DB cluster identifier of the DB cluster associated with the endpoint. This parameter is stored as a lowercase string.",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+        "type": "string"
+      },
+      "Endpoint": {
+        "description": "The DNS address of the endpoint.",
+        "type": "string"
+      },
+      "EndpointType": {
+        "description": "The endpoint classification returned by Amazon RDS.",
+        "type": "string"
+      },
+      "ExcludedMembers": {
+        "description": "List of DB instance identifiers that aren't part of the custom endpoint group. All other eligible instances are reachable through the custom endpoint. Only relevant if the list of static members is empty. Once either member list is set, it can be changed or replaced by the other list, but both lists cannot be removed in place; removing them requires replacing the endpoint.",
+        "insertionOrder": false,
+        "items": {
+          "type": "string"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "StaticMembers": {
+        "description": "List of DB instance identifiers that are part of the custom endpoint group. Once either member list is set, it can be changed or replaced by the other list, but both lists cannot be removed in place; removing them requires replacing the endpoint.",
+        "insertionOrder": false,
+        "items": {
+          "type": "string"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "Status": {
+        "description": "The current status of the endpoint.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags to be assigned to the DB cluster endpoint.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/DBClusterEndpointArn",
+      "/properties/Endpoint",
+      "/properties/DBClusterEndpointResourceIdentifier",
+      "/properties/EndpointType",
+      "/properties/Status"
+    ],
+    "required": [
+      "DBClusterEndpointIdentifier",
+      "DBClusterIdentifier",
+      "CustomEndpointType"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "rds:AddTagsToResource",
+        "rds:RemoveTagsFromResource",
+        "rds:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::RDS::DBClusterEndpoint"
+  }
+}

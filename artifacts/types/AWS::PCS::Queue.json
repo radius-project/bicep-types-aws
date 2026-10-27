@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-PCS-Queue",
   "type": "AWS::PCS::Queue",
-  "time": "2025-01-27T17:40:10.916Z",
+  "time": "2026-10-21T20:31:57.499Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -34,6 +34,25 @@
           }
         },
         "type": "object"
+      },
+      "SlurmCustomSetting": {
+        "additionalProperties": false,
+        "description": "Additional settings that directly map to Slurm settings.",
+        "properties": {
+          "ParameterName": {
+            "description": "AWS PCS supports configuration of the Slurm parameters for queues:.",
+            "type": "string"
+          },
+          "ParameterValue": {
+            "description": "The value for the configured Slurm setting.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ParameterName",
+          "ParameterValue"
+        ],
+        "type": "object"
       }
     },
     "description": "AWS::PCS::Queue resource creates an AWS PCS queue.",
@@ -53,14 +72,14 @@
           "pcs:ListTagsForResource",
           "pcs:TagResource"
         ],
-        "timeoutInMinutes": 60
+        "timeoutInMinutes": 160
       },
       "delete": {
         "permissions": [
           "pcs:DeleteQueue",
           "pcs:GetQueue"
         ],
-        "timeoutInMinutes": 60
+        "timeoutInMinutes": 160
       },
       "list": {
         "handlerSchema": {
@@ -92,7 +111,7 @@
           "pcs:TagResource",
           "pcs:UntagResource"
         ],
-        "timeoutInMinutes": 60
+        "timeoutInMinutes": 160
       }
     },
     "primaryIdentifier": [
@@ -131,6 +150,21 @@
       "Name": {
         "description": "The name that identifies the queue.",
         "type": "string"
+      },
+      "SlurmConfiguration": {
+        "additionalProperties": false,
+        "description": "The Slurm configuration for the queue.",
+        "properties": {
+          "SlurmCustomSettings": {
+            "description": "Custom Slurm parameters that directly map to Slurm configuration settings.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/SlurmCustomSetting"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
       },
       "Status": {
         "description": "The provisioning status of the queue. The provisioning status doesn't indicate the overall health of the queue.",

@@ -1,12 +1,11 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DataBrew-Project",
   "type": "AWS::DataBrew::Project",
-  "time": "2025-01-14T21:46:00.589Z",
+  "time": "2026-10-20T23:54:26.376Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
-      "/properties/Name",
-      "/properties/Tags"
+      "/properties/Name"
     ],
     "definitions": {
       "Sample": {
@@ -80,13 +79,14 @@
       "read": {
         "permissions": [
           "databrew:DescribeProject",
-          "databrew:ListTagsForResource",
           "iam:ListRoles"
         ]
       },
       "update": {
         "permissions": [
           "databrew:UpdateProject",
+          "databrew:TagResource",
+          "databrew:UntagResource",
           "iam:PassRole"
         ]
       }
@@ -146,7 +146,7 @@
       ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
-      "tagUpdatable": false,
+      "tagUpdatable": true,
       "taggable": true
     },
     "typeName": "AWS::DataBrew::Project"

@@ -1,7 +1,8 @@
 # AWS.Grafana @ default
 
 ## Resource AWS.Grafana/Workspace@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -41,6 +42,7 @@
 * **SsoClientId**: string (ReadOnly): The client ID of the AWS SSO Managed Application.
 * **StackSetName**: string: The name of the AWS CloudFormation stack set to use to generate IAM roles to be used for this workspace.
 * **Status**: string (ReadOnly)
+* **Tags**: [Workspace_Tags](#workspacetags)[]: The list of tags associated with the workspace.
 * **VpcConfiguration**: [VpcConfiguration](#vpcconfiguration)
 
 ## IdpMetadata
@@ -70,4 +72,9 @@
 ### Properties
 * **SecurityGroupIds**: string[] (Required): The list of Amazon EC2 security group IDs attached to the Amazon VPC for your Grafana workspace to connect.
 * **SubnetIds**: string[] (Required): The list of Amazon EC2 subnet IDs created in the Amazon VPC for your Grafana workspace to connect.
+
+## Workspace_Tags
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 

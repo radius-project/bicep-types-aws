@@ -1,0 +1,377 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ECS-Gateway",
+  "type": "AWS::ECS::Gateway",
+  "time": "2026-10-20T14:17:25.701Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/GatewayName",
+      "/properties/Configuration/HostSharedAlb/NetworkConfiguration/Subnets",
+      "/properties/Configuration/HostSharedAlb/NetworkConfiguration/IpAddressType",
+      "/properties/Configuration/HostSharedAlb/Scheme",
+      "/properties/Configuration/HostSharedAlb/Port",
+      "/properties/Configuration/HostSharedAlb/Protocol"
+    ],
+    "definitions": {
+      "AccessType": {
+        "description": "The access type for the gateway.",
+        "enum": [
+          "PUBLIC",
+          "PRIVATE"
+        ],
+        "type": "string"
+      },
+      "GatewayAlbDesyncMitigationMode": {
+        "description": "The HTTP desync mitigation mode for the ALB.",
+        "enum": [
+          "monitor",
+          "defensive",
+          "strictest"
+        ],
+        "type": "string"
+      },
+      "GatewayAlbProtocol": {
+        "description": "The protocol for the ALB listener.",
+        "enum": [
+          "HTTP",
+          "HTTPS"
+        ],
+        "type": "string"
+      },
+      "GatewayAlbTestTrafficRules": {
+        "additionalProperties": false,
+        "description": "The test traffic rules for the gateway ALB.",
+        "properties": {
+          "Header": {
+            "$ref": "#/definitions/GatewayTestTrafficHeader"
+          }
+        },
+        "type": "object"
+      },
+      "GatewayConfiguration": {
+        "additionalProperties": false,
+        "description": "The configuration for the gateway. Currently only supports hostSharedAlb.",
+        "properties": {
+          "HostSharedAlb": {
+            "$ref": "#/definitions/HostSharedAlbConfiguration"
+          }
+        },
+        "required": [
+          "HostSharedAlb"
+        ],
+        "type": "object"
+      },
+      "GatewayElbAccessLogConfiguration": {
+        "additionalProperties": false,
+        "description": "The access log configuration for the gateway ALB. Access logging is enabled by the presence of a destination.",
+        "properties": {
+          "Destination": {
+            "$ref": "#/definitions/GatewayElbAccessLogDestination"
+          }
+        },
+        "type": "object"
+      },
+      "GatewayElbAccessLogDestination": {
+        "additionalProperties": false,
+        "description": "The destination for gateway ALB access logs. Exactly one destination type must be specified.",
+        "oneOf": [
+          {
+            "required": [
+              "S3"
+            ]
+          }
+        ],
+        "properties": {
+          "S3": {
+            "$ref": "#/definitions/GatewayElbAccessLogS3Destination"
+          }
+        },
+        "type": "object"
+      },
+      "GatewayElbAccessLogS3Destination": {
+        "additionalProperties": false,
+        "description": "The S3 destination for gateway ALB access logs.",
+        "properties": {
+          "Bucket": {
+            "description": "The S3 bucket for access logs.",
+            "type": "string"
+          },
+          "Prefix": {
+            "description": "The S3 prefix for access logs.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Bucket"
+        ],
+        "type": "object"
+      },
+      "GatewayElbIpAddressType": {
+        "description": "The IP address type for the ALB.",
+        "enum": [
+          "ipv4",
+          "dualstack",
+          "dualstack-without-public-ipv4"
+        ],
+        "type": "string"
+      },
+      "GatewayElbNetworkConfiguration": {
+        "additionalProperties": false,
+        "description": "The network configuration for the gateway ALB.",
+        "properties": {
+          "InboundSecurityGroup": {
+            "description": "The inbound security group for the ALB.",
+            "type": "string"
+          },
+          "IpAddressType": {
+            "$ref": "#/definitions/GatewayElbIpAddressType"
+          },
+          "Subnets": {
+            "description": "The subnets for the ALB.",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 2,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "GatewayElbScheme": {
+        "description": "The scheme for the ALB.",
+        "enum": [
+          "internet-facing",
+          "internal"
+        ],
+        "type": "string"
+      },
+      "GatewayStatus": {
+        "description": "The status of the gateway.",
+        "enum": [
+          "ACTIVE",
+          "UPDATE_IN_PROGRESS",
+          "UPDATE_COMPLETE",
+          "UPDATE_FAILED",
+          "DELETED"
+        ],
+        "type": "string"
+      },
+      "GatewayTestTrafficHeader": {
+        "additionalProperties": false,
+        "description": "The header configuration for test traffic routing.",
+        "properties": {
+          "Name": {
+            "description": "The name of the header.",
+            "type": "string"
+          },
+          "Values": {
+            "description": "The values for the header.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "Name",
+          "Values"
+        ],
+        "type": "object"
+      },
+      "HostSharedAlbConfiguration": {
+        "additionalProperties": false,
+        "description": "The host shared ALB configuration for the gateway.",
+        "properties": {
+          "AccessLogs": {
+            "$ref": "#/definitions/GatewayElbAccessLogConfiguration"
+          },
+          "CurrentAlbCount": {
+            "description": "The current number of ALBs provisioned for the gateway.",
+            "type": "integer"
+          },
+          "HttpDesync": {
+            "$ref": "#/definitions/GatewayAlbDesyncMitigationMode"
+          },
+          "MaxAlbCount": {
+            "description": "The maximum number of ALBs to provision for the gateway.",
+            "type": "integer"
+          },
+          "NetworkConfiguration": {
+            "$ref": "#/definitions/GatewayElbNetworkConfiguration"
+          },
+          "Port": {
+            "description": "The port on which the ALB listens.",
+            "maximum": 65535,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "Protocol": {
+            "$ref": "#/definitions/GatewayAlbProtocol"
+          },
+          "Scheme": {
+            "$ref": "#/definitions/GatewayElbScheme"
+          },
+          "TestTrafficRules": {
+            "$ref": "#/definitions/GatewayAlbTestTrafficRules"
+          },
+          "WebACLArn": {
+            "description": "The ARN of the WAFv2 web ACL to associate with the ALB.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "PropagateGatewayTags": {
+        "description": "Specifies whether to propagate the tags from the gateway to other resources.",
+        "enum": [
+          "NONE",
+          "GATEWAY"
+        ],
+        "type": "string"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource schema for AWS ECS Gateway",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "ecs:CreateGateway",
+          "ecs:DescribeGateway",
+          "ecs:ListGateways",
+          "ecs:TagResource",
+          "iam:PassRole"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "ecs:DeleteGateway",
+          "ecs:DescribeGateway"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "ecs:ListGateways"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ecs:DescribeGateway",
+          "ecs:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "ecs:UpdateGateway",
+          "ecs:DescribeGateway",
+          "ecs:TagResource",
+          "ecs:UntagResource",
+          "iam:PassRole"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "AccessType": {
+        "$ref": "#/definitions/AccessType",
+        "description": "The access type of the gateway."
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the gateway.",
+        "type": "string"
+      },
+      "Configuration": {
+        "$ref": "#/definitions/GatewayConfiguration",
+        "description": "The configuration for the gateway."
+      },
+      "CreatedAt": {
+        "description": "The timestamp when the gateway was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DeletionProtection": {
+        "default": true,
+        "description": "Whether deletion protection is enabled for the gateway.",
+        "type": "boolean"
+      },
+      "GatewayName": {
+        "description": "The name of the gateway. Up to 255 letters (uppercase and lowercase), numbers, and hyphens are allowed.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9-]+$",
+        "type": "string"
+      },
+      "InfrastructureRoleArn": {
+        "description": "The ARN of the IAM role that ECS uses to manage infrastructure for the gateway.",
+        "type": "string"
+      },
+      "PropagateTags": {
+        "$ref": "#/definitions/PropagateGatewayTags",
+        "description": "Specifies whether to propagate the tags from the gateway to other resources."
+      },
+      "Status": {
+        "$ref": "#/definitions/GatewayStatus",
+        "description": "The status of the gateway."
+      },
+      "Tags": {
+        "description": "The metadata that you apply to the gateway to help you categorize and organize them.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "UpdatedAt": {
+        "description": "The timestamp when the gateway was last updated.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Status",
+      "/properties/AccessType",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt",
+      "/properties/Configuration/HostSharedAlb/CurrentAlbCount"
+    ],
+    "required": [
+      "GatewayName",
+      "InfrastructureRoleArn",
+      "Configuration"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "ecs:TagResource",
+        "ecs:UntagResource",
+        "ecs:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::ECS::Gateway"
+  }
+}

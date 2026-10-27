@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Bedrock-KnowledgeBase",
   "type": "AWS::Bedrock::KnowledgeBase",
-  "time": "2025-01-22T18:18:50.044Z",
+  "time": "2026-09-22T17:35:54.351Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -9,11 +9,48 @@
       "/properties/KnowledgeBaseConfiguration/Type",
       "/properties/KnowledgeBaseConfiguration/VectorKnowledgeBaseConfiguration",
       "/properties/KnowledgeBaseConfiguration/KendraKnowledgeBaseConfiguration",
+      "/properties/KnowledgeBaseConfiguration/ManagedKnowledgeBaseConfiguration",
       "/properties/KnowledgeBaseConfiguration/SqlKnowledgeBaseConfiguration/Type",
       "/properties/KnowledgeBaseConfiguration/SqlKnowledgeBaseConfiguration/RedshiftConfiguration/StorageConfigurations",
       "/properties/KnowledgeBaseConfiguration/SqlKnowledgeBaseConfiguration/RedshiftConfiguration/QueryEngineConfiguration"
     ],
     "definitions": {
+      "AudioConfiguration": {
+        "additionalProperties": false,
+        "description": "Configure the audio configuration for multi modal ingestion.",
+        "properties": {
+          "SegmentationConfiguration": {
+            "$ref": "#/definitions/AudioSegmentationConfiguration"
+          }
+        },
+        "required": [
+          "SegmentationConfiguration"
+        ],
+        "type": "object"
+      },
+      "AudioConfigurations": {
+        "description": "List of audio configurations for multi modal ingestion.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/AudioConfiguration"
+        },
+        "maxItems": 1,
+        "minItems": 1,
+        "type": "array"
+      },
+      "AudioSegmentationConfiguration": {
+        "additionalProperties": false,
+        "description": "Configure the audio segmentation configuration for multi modal ingestion.",
+        "properties": {
+          "FixedLengthDuration": {
+            "$ref": "#/definitions/FixedLengthDuration"
+          }
+        },
+        "required": [
+          "FixedLengthDuration"
+        ],
+        "type": "object"
+      },
       "AwsDataCatalogTableName": {
         "description": "AWS Data Catalog table name",
         "maxLength": 200,
@@ -35,6 +72,9 @@
         "additionalProperties": false,
         "description": "The vector configuration details for the Bedrock embeddings model.",
         "properties": {
+          "Audio": {
+            "$ref": "#/definitions/AudioConfigurations"
+          },
           "Dimensions": {
             "description": "The dimensions details for the vector configuration used on the Bedrock embeddings model.",
             "maximum": 4096,
@@ -48,6 +88,13 @@
               "BINARY"
             ],
             "type": "string"
+          },
+          "ModelConfiguration": {
+            "description": "Model-specific configuration for the embedding model.",
+            "type": "object"
+          },
+          "Video": {
+            "$ref": "#/definitions/VideoConfigurations"
           }
         },
         "type": "object"
@@ -94,6 +141,20 @@
         },
         "type": "object"
       },
+      "EmbeddingModelType": {
+        "description": "The type of embedding model to use for the managed knowledge base.",
+        "enum": [
+          "CUSTOM",
+          "MANAGED"
+        ],
+        "type": "string"
+      },
+      "FixedLengthDuration": {
+        "description": "Duration in seconds to segment the multi modal media",
+        "maximum": 30,
+        "minimum": 1,
+        "type": "integer"
+      },
       "InclusionType": {
         "description": "Include or Exclude status for an entity",
         "enum": [
@@ -127,6 +188,9 @@
           "KendraKnowledgeBaseConfiguration": {
             "$ref": "#/definitions/KendraKnowledgeBaseConfiguration"
           },
+          "ManagedKnowledgeBaseConfiguration": {
+            "$ref": "#/definitions/ManagedKnowledgeBaseConfiguration"
+          },
           "SqlKnowledgeBaseConfiguration": {
             "$ref": "#/definitions/SqlKnowledgeBaseConfiguration"
           },
@@ -150,7 +214,8 @@
           "DELETING",
           "UPDATING",
           "FAILED",
-          "DELETE_UNSUCCESSFUL"
+          "DELETE_UNSUCCESSFUL",
+          "UPDATE_UNSUCCESSFUL"
         ],
         "type": "string"
       },
@@ -160,7 +225,10 @@
           "OPENSEARCH_SERVERLESS",
           "PINECONE",
           "RDS",
-          "MONGO_DB_ATLAS"
+          "MONGO_DB_ATLAS",
+          "NEPTUNE_ANALYTICS",
+          "S3_VECTORS",
+          "OPENSEARCH_MANAGED_CLUSTER"
         ],
         "type": "string"
       },
@@ -169,9 +237,50 @@
         "enum": [
           "VECTOR",
           "KENDRA",
-          "SQL"
+          "SQL",
+          "MANAGED"
         ],
         "type": "string"
+      },
+      "ManagedKnowledgeBaseConfiguration": {
+        "additionalProperties": false,
+        "description": "Contains details about the model used to create vector embeddings for a managed knowledge base.",
+        "properties": {
+          "EmbeddingModelArn": {
+            "description": "The ARN of the model used to create vector embeddings for the knowledge base.",
+            "maxLength": 2048,
+            "minLength": 20,
+            "pattern": "^(arn:aws(-[^:]+)?:[a-z0-9-]+:[a-z0-9-]{1,20}:[0-9]{0,12}:[a-zA-Z0-9-:/._+]+)$",
+            "type": "string"
+          },
+          "EmbeddingModelConfiguration": {
+            "$ref": "#/definitions/EmbeddingModelConfiguration"
+          },
+          "EmbeddingModelType": {
+            "$ref": "#/definitions/EmbeddingModelType"
+          },
+          "ServerSideEncryptionConfiguration": {
+            "$ref": "#/definitions/ManagedKnowledgeBaseServerSideEncryptionConfiguration"
+          },
+          "SupplementalDataStorageConfiguration": {
+            "$ref": "#/definitions/SupplementalDataStorageConfiguration"
+          }
+        },
+        "type": "object"
+      },
+      "ManagedKnowledgeBaseServerSideEncryptionConfiguration": {
+        "additionalProperties": false,
+        "description": "Contains details about the server-side encryption for the managed knowledge base.",
+        "properties": {
+          "KmsKeyArn": {
+            "description": "The ARN of the AWS KMS key used to encrypt the managed knowledge base.",
+            "maxLength": 2048,
+            "minLength": 1,
+            "pattern": "^arn:aws(-cn|-us-gov|-eusc|-iso(-[b-f])?)?:kms:[a-zA-Z0-9-]*:[0-9]{12}:key/[a-zA-Z0-9-]{36}$",
+            "type": "string"
+          }
+        },
+        "type": "object"
       },
       "MongoDbAtlasConfiguration": {
         "additionalProperties": false,
@@ -208,6 +317,12 @@
           },
           "FieldMapping": {
             "$ref": "#/definitions/MongoDbAtlasFieldMapping"
+          },
+          "TextIndexName": {
+            "description": "Name of a MongoDB Atlas text index.",
+            "maxLength": 2048,
+            "pattern": "^.*$",
+            "type": "string"
           },
           "VectorIndexName": {
             "description": "Name of a MongoDB Atlas index.",
@@ -261,6 +376,115 @@
         "maxLength": 1000,
         "minLength": 1,
         "type": "string"
+      },
+      "NeptuneAnalyticsConfiguration": {
+        "additionalProperties": false,
+        "description": "Contains the configurations to use Neptune Analytics as Vector Store.",
+        "properties": {
+          "FieldMapping": {
+            "$ref": "#/definitions/NeptuneAnalyticsFieldMapping"
+          },
+          "GraphArn": {
+            "description": "ARN for Neptune Analytics graph database.",
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": "^arn:aws(|-cn|-us-gov):neptune-graph:[a-zA-Z0-9-]*:[0-9]{12}:graph\\/g-[a-zA-Z0-9]{10}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "GraphArn",
+          "FieldMapping"
+        ],
+        "type": "object"
+      },
+      "NeptuneAnalyticsFieldMapping": {
+        "additionalProperties": false,
+        "description": "A mapping of Bedrock Knowledge Base fields to Neptune Analytics fields.",
+        "properties": {
+          "MetadataField": {
+            "description": "The name of the field in which Amazon Bedrock stores metadata about the vector store.",
+            "maxLength": 2048,
+            "pattern": "^.*$",
+            "type": "string"
+          },
+          "TextField": {
+            "description": "The name of the field in which Amazon Bedrock stores the raw text from your data. The text is split according to the chunking strategy you choose.",
+            "maxLength": 2048,
+            "pattern": "^.*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "TextField",
+          "MetadataField"
+        ],
+        "type": "object"
+      },
+      "OpenSearchManagedClusterConfiguration": {
+        "additionalProperties": false,
+        "description": "Contains the storage configuration of the knowledge base in Amazon OpenSearch Service.",
+        "properties": {
+          "DomainArn": {
+            "description": "The Amazon Resource Name (ARN) of the OpenSearch domain.",
+            "maxLength": 2048,
+            "pattern": "^arn:aws(-cn|-us-gov|-eusc|-iso(-[b-f])?)?:es:([a-z]{2,}-){2,}\\d:\\d{12}:domain/[a-z][a-z0-9-]{3,28}$",
+            "type": "string"
+          },
+          "DomainEndpoint": {
+            "description": "The endpoint URL the OpenSearch domain.",
+            "maxLength": 2048,
+            "pattern": "^https://.*$",
+            "type": "string"
+          },
+          "FieldMapping": {
+            "$ref": "#/definitions/OpenSearchManagedClusterFieldMapping"
+          },
+          "VectorIndexName": {
+            "description": "The name of the vector store.",
+            "maxLength": 2048,
+            "minLength": 1,
+            "pattern": "^(?![\\-_+.])[a-z0-9][a-z0-9\\-_\\.]*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "DomainArn",
+          "DomainEndpoint",
+          "VectorIndexName",
+          "FieldMapping"
+        ],
+        "type": "object"
+      },
+      "OpenSearchManagedClusterFieldMapping": {
+        "additionalProperties": false,
+        "description": "A mapping of Bedrock Knowledge Base fields to OpenSearch Managed Cluster field names",
+        "properties": {
+          "MetadataField": {
+            "description": "The name of the field in which Amazon Bedrock stores metadata about the vector store.",
+            "maxLength": 2048,
+            "pattern": "^.*$",
+            "type": "string"
+          },
+          "TextField": {
+            "description": "The name of the field in which Amazon Bedrock stores the raw text from your data. The text is split according to the chunking strategy you choose.",
+            "maxLength": 2048,
+            "pattern": "^.*$",
+            "type": "string"
+          },
+          "VectorField": {
+            "description": "The name of the field in which Amazon Bedrock stores the vector embeddings for your data sources.",
+            "maxLength": 2048,
+            "pattern": "^.*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "MetadataField",
+          "TextField",
+          "VectorField"
+        ],
+        "type": "object"
       },
       "OpenSearchServerlessConfiguration": {
         "additionalProperties": false,
@@ -522,6 +746,12 @@
         "additionalProperties": false,
         "description": "Contains the names of the fields to which to map information about the vector store.",
         "properties": {
+          "CustomMetadataField": {
+            "description": "The name of the field in which Amazon Bedrock stores custom metadata about the vector store.",
+            "maxLength": 63,
+            "pattern": "^[a-zA-Z0-9_\\-]+$",
+            "type": "string"
+          },
           "MetadataField": {
             "description": "The name of the field in which Amazon Bedrock stores metadata about the vector store.",
             "maxLength": 63,
@@ -844,6 +1074,40 @@
         ],
         "type": "object"
       },
+      "S3VectorsConfiguration": {
+        "additionalProperties": false,
+        "description": "Contains the storage configuration of the knowledge base for S3 vectors.",
+        "oneOf": [
+          {
+            "required": [
+              "IndexArn"
+            ]
+          },
+          {
+            "required": [
+              "VectorBucketArn",
+              "IndexName"
+            ]
+          }
+        ],
+        "properties": {
+          "IndexArn": {
+            "description": "The Amazon Resource Name (ARN) of the vector index used for the knowledge base. This ARN identifies the specific vector index resource within Amazon Bedrock.",
+            "type": "string"
+          },
+          "IndexName": {
+            "description": "The name of the vector index used for the knowledge base. This name identifies the vector index within the Amazon Bedrock service.",
+            "maxLength": 63,
+            "minLength": 3,
+            "type": "string"
+          },
+          "VectorBucketArn": {
+            "description": "The Amazon Resource Name (ARN) of the S3 bucket where vector embeddings are stored. This bucket contains the vector data used by the knowledge base.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "SecretArn": {
         "description": "Arn of a SecretsManager Secret",
         "pattern": "^arn:aws(|-cn|-us-gov):secretsmanager:[a-z0-9-]{1,20}:([0-9]{12}|):secret:[a-zA-Z0-9!/_+=.@-]{1,512}$",
@@ -892,13 +1156,34 @@
           },
           {
             "required": [
+              "NeptuneAnalyticsConfiguration"
+            ]
+          },
+          {
+            "required": [
+              "S3VectorsConfiguration"
+            ]
+          },
+          {
+            "required": [
               "MongoDbAtlasConfiguration"
+            ]
+          },
+          {
+            "required": [
+              "OpensearchManagedClusterConfiguration"
             ]
           }
         ],
         "properties": {
           "MongoDbAtlasConfiguration": {
             "$ref": "#/definitions/MongoDbAtlasConfiguration"
+          },
+          "NeptuneAnalyticsConfiguration": {
+            "$ref": "#/definitions/NeptuneAnalyticsConfiguration"
+          },
+          "OpensearchManagedClusterConfiguration": {
+            "$ref": "#/definitions/OpenSearchManagedClusterConfiguration"
           },
           "OpensearchServerlessConfiguration": {
             "$ref": "#/definitions/OpenSearchServerlessConfiguration"
@@ -908,6 +1193,9 @@
           },
           "RdsConfiguration": {
             "$ref": "#/definitions/RdsConfiguration"
+          },
+          "S3VectorsConfiguration": {
+            "$ref": "#/definitions/S3VectorsConfiguration"
           },
           "Type": {
             "$ref": "#/definitions/KnowledgeBaseStorageType"
@@ -1001,6 +1289,42 @@
         ],
         "type": "object"
       },
+      "VideoConfiguration": {
+        "additionalProperties": false,
+        "description": "Configure the video configuration for multi modal ingestion.",
+        "properties": {
+          "SegmentationConfiguration": {
+            "$ref": "#/definitions/VideoSegmentationConfiguration"
+          }
+        },
+        "required": [
+          "SegmentationConfiguration"
+        ],
+        "type": "object"
+      },
+      "VideoConfigurations": {
+        "description": "List of video configurations for multi modal ingestion.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/VideoConfiguration"
+        },
+        "maxItems": 1,
+        "minItems": 1,
+        "type": "array"
+      },
+      "VideoSegmentationConfiguration": {
+        "additionalProperties": false,
+        "description": "Configure the video segmentation configuration for multi modal ingestion.",
+        "properties": {
+          "FixedLengthDuration": {
+            "$ref": "#/definitions/FixedLengthDuration"
+          }
+        },
+        "required": [
+          "FixedLengthDuration"
+        ],
+        "type": "object"
+      },
       "WorkgroupArn": {
         "description": "Workgroup arn",
         "pattern": "^(arn:(aws(-[a-z]+)*):redshift-serverless:[a-z]{2}(-gov)?-[a-z]+-\\d{1}:\\d{12}:workgroup/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$",
@@ -1016,7 +1340,14 @@
           "bedrock:TagResource",
           "bedrock:ListTagsForResource",
           "bedrock:AssociateThirdPartyKnowledgeBase",
-          "iam:PassRole"
+          "iam:PassRole",
+          "kms:CreateGrant",
+          "kms:RetireGrant",
+          "kms:DescribeKey",
+          "kms:GenerateDataKey",
+          "kms:GenerateDataKeyWithoutPlaintext",
+          "kms:Encrypt",
+          "kms:Decrypt"
         ]
       },
       "delete": {
@@ -1045,7 +1376,14 @@
           "bedrock:UntagResource",
           "bedrock:ListTagsForResource",
           "bedrock:AssociateThirdPartyKnowledgeBase",
-          "iam:PassRole"
+          "iam:PassRole",
+          "kms:CreateGrant",
+          "kms:RetireGrant",
+          "kms:DescribeKey",
+          "kms:GenerateDataKey",
+          "kms:GenerateDataKeyWithoutPlaintext",
+          "kms:Encrypt",
+          "kms:Decrypt"
         ]
       }
     },
@@ -1129,6 +1467,11 @@
     ],
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "bedrock:TagResource",
+        "bedrock:UntagResource",
+        "bedrock:ListTagsForResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

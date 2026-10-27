@@ -1,0 +1,1231 @@
+[
+  {
+    "$type": "ObjectType",
+    "name": "AvailabilitySlo",
+    "properties": {
+      "Target": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Availability target percentage."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataRecoveryTargets",
+    "properties": {
+      "TimeBetweenBackupsInMinutes": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Time between backups in minutes."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MultiAzTargets",
+    "properties": {
+      "DisasterRecoveryApproach": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Multi-AZ disaster recovery approach."
+      },
+      "RpoInMinutes": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Recovery Point Objective in minutes."
+      },
+      "RtoInMinutes": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Recovery Time Objective in minutes."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MultiRegionTargets",
+    "properties": {
+      "DisasterRecoveryApproach": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Multi-Region disaster recovery approach."
+      },
+      "RpoInMinutes": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Recovery Point Objective in minutes."
+      },
+      "RtoInMinutes": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Recovery Time Objective in minutes."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ResilienceHubV2/PolicyProperties"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ResilienceHubV2/PolicyProperties",
+    "properties": {
+      "AssociatedServiceCount": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The number of services associated with this policy."
+      },
+      "AvailabilitySlo": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The timestamp when the policy was created."
+      },
+      "DataRecovery": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The description of the policy."
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 4,
+        "description": "The KMS key ID for encrypting policy data."
+      },
+      "MultiAz": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      },
+      "MultiRegion": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The name of the policy."
+      },
+      "PolicyArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 18,
+        "description": "The ARN of the policy."
+      },
+      "SharingEnabled": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "Whether the policy is enabled to be shared with other members of the Organization. Only applicable if the policy owner is a management account or delegated admin."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "Tags assigned to the policy."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The timestamp when the policy was last updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ResilienceHubV2/Policy",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ResilienceHubV2/Policy@default",
+    "body": {
+      "$ref": "#/11"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AssertionDefinition",
+    "properties": {
+      "Text": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The text of the assertion."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AssociatedSystem",
+    "properties": {
+      "SystemArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The system ARN."
+      },
+      "UserJourneyIds": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 0,
+        "description": "User journey IDs associated with this system."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CrossAccountRoleConfiguration",
+    "properties": {
+      "CrossAccountRoleArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "ARN of the cross-account IAM role."
+      },
+      "ExternalId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "External ID for cross-account access."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DevOpsAgentConfiguration",
+    "properties": {
+      "AgentSpaceArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The ARN of the DevOps Agent Agent Space to link to this service."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DisasterRecoverySource",
+    "properties": {
+      "PolicyName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EffectivePolicyValues",
+    "properties": {
+      "AvailabilitySlo": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 0
+      },
+      "MultiAzDrApproach": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "MultiAzRpo": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0
+      },
+      "MultiAzRto": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0
+      },
+      "MultiRegionDrApproach": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0
+      },
+      "MultiRegionRpo": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0
+      },
+      "MultiRegionRto": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EksLabelSelector",
+    "properties": {
+      "MatchExpressions": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 0,
+        "description": "Label selector requirements an object must satisfy to be discovered. Up to 20 requirements, all of which must match."
+      },
+      "MatchLabels": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0,
+        "description": "Label key/value pairs an object must carry to be discovered. Up to 20 pairs."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EksLabelSelectorRequirement",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Label key the requirement applies to."
+      },
+      "Operator": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Operator applied to the label key."
+      },
+      "Values": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0,
+        "description": "Label values the requirement compares against. Up to 20 values. Required for IN and NOT_IN; omit for EXISTS and DOES_NOT_EXIST."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EksSource",
+    "properties": {
+      "ClusterArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "ARN of the EKS cluster."
+      },
+      "LabelSelector": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0
+      },
+      "Namespaces": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 1,
+        "description": "EKS namespaces."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputSourceDefinition",
+    "properties": {
+      "ResourceConfiguration": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PermissionModel",
+    "properties": {
+      "CrossAccountRoleArns": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 0,
+        "description": "Cross-account role ARNs."
+      },
+      "InvokerRoleName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Name of the invoker IAM role."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReportOutputConfiguration",
+    "properties": {
+      "S3": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResourceConfiguration",
+    "properties": {
+      "CfnStackArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "ARN of a CloudFormation stack."
+      },
+      "DesignFileS3Url": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "S3 URL of a design file."
+      },
+      "Eks": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0
+      },
+      "ResourceTags": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 0,
+        "description": "Resource tags to discover resources."
+      },
+      "TfStateFileUrl": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "URL of a Terraform state file."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResourceTag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Tag key."
+      },
+      "Values": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 1,
+        "description": "Tag values."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3ReportOutputConfiguration",
+    "properties": {
+      "BucketOwner": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Account ID of the bucket owner."
+      },
+      "BucketPath": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "S3 bucket path where reports will be written."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceReportConfiguration",
+    "properties": {
+      "ReportOutput": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 1,
+        "description": "Output destinations for generated reports."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SloSource",
+    "properties": {
+      "PolicyName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TargetSource",
+    "properties": {
+      "PolicyName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/20"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Service_MatchLabels",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/15"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/26"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/24"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ResilienceHubV2/ServiceProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/22"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/30"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ResilienceHubV2/ServiceProperties",
+    "properties": {
+      "Assertions": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0,
+        "description": "Assertions associated with this service."
+      },
+      "AssociatedSystems": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0,
+        "description": "Systems associated with this service."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The timestamp when the service was created."
+      },
+      "DependencyDiscovery": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Dependency discovery state."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The description of the service."
+      },
+      "DevOpsAgentConfiguration": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0
+      },
+      "EffectivePolicyValues": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 2
+      },
+      "InputSources": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0,
+        "description": "Input sources for this service."
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 4,
+        "description": "The KMS key ID for encrypting service data."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The name of the service."
+      },
+      "PermissionModel": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0
+      },
+      "PolicyArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The ARN of the resilience policy to associate."
+      },
+      "Regions": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 1,
+        "description": "AWS regions for the service."
+      },
+      "ReportConfiguration": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 0
+      },
+      "ServiceArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 18,
+        "description": "The ARN of the service."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0,
+        "description": "Tags assigned to the service."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The timestamp when the service was last updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ResilienceHubV2/Service",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ResilienceHubV2/Service@default",
+    "body": {
+      "$ref": "#/48"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ResilienceHubV2/ServiceFunctionProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ResilienceHubV2/ServiceFunctionProperties",
+    "properties": {
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The timestamp when the service function was created."
+      },
+      "Criticality": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The criticality of the service function."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The description of the service function."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The name of the service function."
+      },
+      "ResourceCount": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The number of resources associated with this function."
+      },
+      "ServiceArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "The ARN of the parent service."
+      },
+      "ServiceFunctionId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 18,
+        "description": "The server-generated service function ID."
+      },
+      "Source": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The source of the service function."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The timestamp when the service function was last updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ResilienceHubV2/ServiceFunction",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/51"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ResilienceHubV2/ServiceFunction@default",
+    "body": {
+      "$ref": "#/52"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ResilienceHubV2/SystemProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/54"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ResilienceHubV2/SystemProperties",
+    "properties": {
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The timestamp when the system was created."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The description of the system."
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 4,
+        "description": "The KMS key ID for encrypting system data."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The name of the system."
+      },
+      "SharingEnabled": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "Whether the system is enabled to be shared with other members of the Organization. Only applicable if the system owner is a management account or delegated admin."
+      },
+      "SystemArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 18,
+        "description": "The ARN of the system."
+      },
+      "SystemId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The system ID."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/56"
+        },
+        "flags": 0,
+        "description": "Tags assigned to the system."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The timestamp when the system was last updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ResilienceHubV2/System",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/57"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ResilienceHubV2/System@default",
+    "body": {
+      "$ref": "#/58"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ResilienceHubV2/UserJourneyProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ResilienceHubV2/UserJourneyProperties",
+    "properties": {
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The timestamp when the user journey was created."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The description of the user journey."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The name of the user journey."
+      },
+      "PolicyArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The ARN of the resilience policy to associate with this user journey."
+      },
+      "SystemIdentifier": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "The system ARN or system ID that owns this user journey."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The timestamp when the user journey was last updated."
+      },
+      "UserJourneyId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 18,
+        "description": "The server-generated user journey ID."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ResilienceHubV2/UserJourney",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/61"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ResilienceHubV2/UserJourney@default",
+    "body": {
+      "$ref": "#/62"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  }
+]

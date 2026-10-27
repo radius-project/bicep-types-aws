@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-InspectorV2-Filter",
   "type": "AWS::InspectorV2::Filter",
-  "time": "2024-12-30T17:01:32.07Z",
+  "time": "2026-10-21T23:51:37.184Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -39,6 +39,15 @@
           "AwsAccountId": {
             "$ref": "#/definitions/StringFilterList"
           },
+          "CodeVulnerabilityDetectorName": {
+            "$ref": "#/definitions/StringFilterList"
+          },
+          "CodeVulnerabilityDetectorTags": {
+            "$ref": "#/definitions/StringFilterList"
+          },
+          "CodeVulnerabilityFilePath": {
+            "$ref": "#/definitions/StringFilterList"
+          },
           "ComponentId": {
             "$ref": "#/definitions/StringFilterList"
           },
@@ -60,6 +69,9 @@
           "EcrImageHash": {
             "$ref": "#/definitions/StringFilterList"
           },
+          "EcrImageInUseCount": {
+            "$ref": "#/definitions/NumberFilterList"
+          },
           "EcrImagePushedAt": {
             "$ref": "#/definitions/DateFilterList"
           },
@@ -70,6 +82,12 @@
             "$ref": "#/definitions/StringFilterList"
           },
           "EcrImageTags": {
+            "$ref": "#/definitions/StringFilterList"
+          },
+          "EpssScore": {
+            "$ref": "#/definitions/NumberFilterList"
+          },
+          "ExploitAvailable": {
             "$ref": "#/definitions/StringFilterList"
           },
           "FindingArn": {
@@ -84,8 +102,26 @@
           "FirstObservedAt": {
             "$ref": "#/definitions/DateFilterList"
           },
+          "FixAvailable": {
+            "$ref": "#/definitions/StringFilterList"
+          },
           "InspectorScore": {
             "$ref": "#/definitions/NumberFilterList"
+          },
+          "LambdaFunctionExecutionRoleArn": {
+            "$ref": "#/definitions/StringFilterList"
+          },
+          "LambdaFunctionLastModifiedAt": {
+            "$ref": "#/definitions/DateFilterList"
+          },
+          "LambdaFunctionLayers": {
+            "$ref": "#/definitions/StringFilterList"
+          },
+          "LambdaFunctionName": {
+            "$ref": "#/definitions/StringFilterList"
+          },
+          "LambdaFunctionRuntime": {
+            "$ref": "#/definitions/StringFilterList"
           },
           "LastObservedAt": {
             "$ref": "#/definitions/DateFilterList"
@@ -128,6 +164,16 @@
           },
           "VulnerablePackages": {
             "$ref": "#/definitions/PackageFilterList"
+          }
+        },
+        "type": "object"
+      },
+      "FilterTagMap": {
+        "additionalProperties": false,
+        "patternProperties": {
+          "^.{2,127}$": {
+            "pattern": "^.{1,255}$",
+            "type": "string"
           }
         },
         "type": "object"
@@ -205,10 +251,16 @@
           "Epoch": {
             "$ref": "#/definitions/NumberFilter"
           },
+          "FilePath": {
+            "$ref": "#/definitions/StringFilter"
+          },
           "Name": {
             "$ref": "#/definitions/StringFilter"
           },
           "Release": {
+            "$ref": "#/definitions/StringFilter"
+          },
+          "SourceLambdaLayerArn": {
             "$ref": "#/definitions/StringFilter"
           },
           "SourceLayerHash": {
@@ -303,7 +355,8 @@
       "create": {
         "permissions": [
           "inspector2:CreateFilter",
-          "inspector2:ListFilters"
+          "inspector2:ListFilters",
+          "inspector2:TagResource"
         ]
       },
       "delete": {
@@ -319,13 +372,17 @@
       },
       "read": {
         "permissions": [
-          "inspector2:ListFilters"
+          "inspector2:ListFilters",
+          "inspector2:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
           "inspector2:ListFilters",
-          "inspector2:UpdateFilter"
+          "inspector2:UpdateFilter",
+          "inspector2:TagResource",
+          "inspector2:UntagResource",
+          "inspector2:ListTagsForResource"
         ]
       }
     },
@@ -358,6 +415,9 @@
         "maxLength": 128,
         "minLength": 1,
         "type": "string"
+      },
+      "Tags": {
+        "$ref": "#/definitions/FilterTagMap"
       }
     },
     "readOnlyProperties": [
@@ -370,7 +430,15 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-inspector.git",
     "tagging": {
-      "taggable": false
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "inspector2:TagResource",
+        "inspector2:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
     },
     "typeName": "AWS::InspectorV2::Filter"
   }

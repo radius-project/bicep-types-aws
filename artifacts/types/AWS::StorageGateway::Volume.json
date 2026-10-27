@@ -1,0 +1,230 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-StorageGateway-Volume",
+  "type": "AWS::StorageGateway::Volume",
+  "time": "2026-10-22T00:11:06.315Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/GatewayARN",
+      "/properties/TargetName",
+      "/properties/NetworkInterfaceId",
+      "/properties/VolumeSizeInBytes",
+      "/properties/SnapshotId",
+      "/properties/SourceVolumeARN",
+      "/properties/KMSEncrypted",
+      "/properties/KMSKey"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Creates a cached iSCSI volume on a Storage Gateway. A cached volume stores data in Amazon S3 and retains a copy of frequently accessed data subsets locally.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "storagegateway:CreateCachediSCSIVolume",
+          "storagegateway:DescribeCachediSCSIVolumes",
+          "storagegateway:AddTagsToResource",
+          "kms:DescribeKey",
+          "kms:CreateGrant",
+          "kms:GenerateDataKeyWithoutPlaintext"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "storagegateway:DeleteVolume",
+          "storagegateway:DescribeCachediSCSIVolumes",
+          "storagegateway:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "GatewayARN": {
+              "description": "The Amazon Resource Name (ARN) of the gateway on which to list volumes.",
+              "maxLength": 500,
+              "type": "string"
+            }
+          },
+          "required": [
+            "GatewayARN"
+          ]
+        },
+        "permissions": [
+          "storagegateway:ListVolumes"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "storagegateway:DescribeCachediSCSIVolumes",
+          "storagegateway:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "storagegateway:DescribeCachediSCSIVolumes",
+          "storagegateway:AddTagsToResource",
+          "storagegateway:RemoveTagsFromResource",
+          "storagegateway:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/VolumeARN"
+    ],
+    "properties": {
+      "CreatedDate": {
+        "description": "The date the volume was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "GatewayARN": {
+        "description": "The Amazon Resource Name (ARN) of the gateway on which to create the volume.",
+        "maxLength": 500,
+        "minLength": 50,
+        "type": "string"
+      },
+      "KMSEncrypted": {
+        "description": "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3.",
+        "type": "boolean"
+      },
+      "KMSKey": {
+        "description": "The Amazon Resource Name (ARN) of a symmetric customer master key (CMK) used for Amazon S3 server-side encryption.",
+        "maxLength": 2048,
+        "minLength": 7,
+        "pattern": "^(^arn:(aws(|-cn|-us-gov|-iso[A-Za-z0-9_-]*|-eusc)):kms:([a-zA-Z0-9-]+):([0-9]+):(key|alias)/(\\S+)$)|(^alias/(\\S+)$)$",
+        "type": "string"
+      },
+      "NetworkInterfaceId": {
+        "description": "The network interface of the gateway on which to expose the iSCSI target. Only IPv4 addresses are accepted.",
+        "type": "string"
+      },
+      "SnapshotId": {
+        "description": "The snapshot ID of the snapshot to restore as the new cached volume (e.g., snap-1122aabb).",
+        "pattern": "^snap-([0-9A-Fa-f]{8}|[0-9A-Fa-f]{17})$",
+        "type": "string"
+      },
+      "SourceVolumeARN": {
+        "description": "The ARN of an existing volume from which to create the new volume.",
+        "maxLength": 500,
+        "minLength": 50,
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A list of up to 50 tags to assign to the volume.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array"
+      },
+      "TargetARN": {
+        "description": "The Amazon Resource Name (ARN) of the volume target, which includes the iSCSI target name.",
+        "maxLength": 800,
+        "minLength": 50,
+        "type": "string"
+      },
+      "TargetName": {
+        "description": "The name of the iSCSI target used by an initiator to connect to a volume and used as a suffix for the target ARN.",
+        "maxLength": 200,
+        "minLength": 1,
+        "pattern": "^[-\\.;a-z0-9]+$",
+        "type": "string"
+      },
+      "VolumeARN": {
+        "description": "The Amazon Resource Name (ARN) of the storage volume.",
+        "maxLength": 500,
+        "minLength": 50,
+        "type": "string"
+      },
+      "VolumeAttachmentStatus": {
+        "description": "Indicates whether the storage volume is attached to or detached from the gateway.",
+        "maxLength": 50,
+        "minLength": 3,
+        "type": "string"
+      },
+      "VolumeId": {
+        "description": "The unique identifier of the volume, extracted from the ARN.",
+        "maxLength": 30,
+        "minLength": 12,
+        "type": "string"
+      },
+      "VolumeSizeInBytes": {
+        "description": "The size of the volume in bytes.",
+        "type": "number"
+      },
+      "VolumeStatus": {
+        "description": "The status of the storage volume.",
+        "maxLength": 50,
+        "minLength": 3,
+        "type": "string"
+      },
+      "VolumeType": {
+        "description": "The type of the volume (CACHED iSCSI).",
+        "maxLength": 100,
+        "minLength": 3,
+        "type": "string"
+      },
+      "VolumeUsedInBytes": {
+        "description": "The size of the data stored on the volume in bytes.",
+        "type": "number"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/VolumeARN",
+      "/properties/VolumeId",
+      "/properties/TargetARN",
+      "/properties/VolumeStatus",
+      "/properties/VolumeAttachmentStatus",
+      "/properties/VolumeType",
+      "/properties/VolumeUsedInBytes",
+      "/properties/CreatedDate"
+    ],
+    "required": [
+      "GatewayARN",
+      "TargetName",
+      "NetworkInterfaceId",
+      "VolumeSizeInBytes"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "storagegateway:AddTagsToResource",
+        "storagegateway:RemoveTagsFromResource",
+        "storagegateway:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::StorageGateway::Volume",
+    "writeOnlyProperties": [
+      "/properties/SnapshotId",
+      "/properties/SourceVolumeARN",
+      "/properties/KMSEncrypted"
+    ]
+  }
+}

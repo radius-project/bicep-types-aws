@@ -1,28 +1,32 @@
 # AWS.SSMContacts @ default
 
 ## Resource AWS.SSMContacts/Contact@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SSMContacts/ContactProperties](#awsssmcontactscontactproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SSMContacts/ContactChannel@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SSMContacts/ContactChannelProperties](#awsssmcontactscontactchannelproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SSMContacts/Plan@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SSMContacts/PlanProperties](#awsssmcontactsplanproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SSMContacts/Rotation@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -43,6 +47,7 @@
 * **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the contact.
 * **DisplayName**: string (Required): Name of the contact. String value with 3 to 256 characters. Only alphabetical, space, numeric characters, dash, or underscore allowed.
 * **Plan**: [Stage](#stage)[] (WriteOnly): The stages that an escalation plan or engagement plan engages contacts and contact methods in.
+* **Tags**: [Tag](#tag)[]
 * **Type**: string (Required): Contact type, which specify type of contact. Currently supported values: ?PERSONAL?, ?SHARED?, ?OTHER?.
 
 ## AWS.SSMContacts/PlanProperties
@@ -116,6 +121,11 @@
 ### Properties
 * **DurationInMinutes**: int (Required): The time to wait until beginning the next stage.
 * **Targets**: [Targets](#targets)[]: The contacts or contact methods that the escalation plan or engagement plan is engaging.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag
+* **Value**: string (Required): The value for the tag.
 
 ## Tag
 ### Properties

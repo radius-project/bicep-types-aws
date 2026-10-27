@@ -1,28 +1,32 @@
 # AWS.Evidently @ default
 
 ## Resource AWS.Evidently/Experiment@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Evidently/ExperimentProperties](#awsevidentlyexperimentproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Evidently/Feature@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Evidently/FeatureProperties](#awsevidentlyfeatureproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Evidently/Launch@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Evidently/LaunchProperties](#awsevidentlylaunchproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Evidently/Project@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name

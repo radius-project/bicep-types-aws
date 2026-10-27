@@ -1,0 +1,101 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaConvert-Queue",
+  "type": "AWS::MediaConvert::Queue",
+  "time": "2026-10-19T16:38:40.905Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name"
+    ],
+    "description": "Resource Type definition for AWS::MediaConvert::Queue",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "mediaconvert:CreateQueue",
+          "mediaconvert:GetQueue",
+          "mediaconvert:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "mediaconvert:GetQueue",
+          "mediaconvert:DeleteQueue"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "mediaconvert:ListQueues"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "mediaconvert:GetQueue",
+          "mediaconvert:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "mediaconvert:UpdateQueue",
+          "mediaconvert:TagResource",
+          "mediaconvert:UntagResource",
+          "mediaconvert:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Name"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the queue, such as arn:aws:mediaconvert:us-west-2:123456789012.",
+        "pattern": "arn:(aws|aws-cn|aws-us-gov):mediaconvert:\\w+(?:-\\w+)+:[0-9]*(:queues/.*)?",
+        "type": "string"
+      },
+      "ConcurrentJobs": {
+        "description": "Specify the maximum number of jobs your queue can process concurrently. For on-demand queues, the value you enter is constrained by your service quotas for Maximum concurrent jobs, per on-demand queue and Maximum concurrent jobs, per account. For reserved queues, specify the number of jobs you can process concurrently in your reservation plan instead.",
+        "type": "integer"
+      },
+      "Description": {
+        "description": "A description of the queue that you are creating.",
+        "type": "string"
+      },
+      "MaximumConcurrentFeeds": {
+        "description": "Specify the maximum number of Elemental Inference feeds MediaConvert can process concurrently.",
+        "minimum": 0,
+        "type": "integer"
+      },
+      "Name": {
+        "description": "The name of the queue that you are creating.",
+        "type": "string"
+      },
+      "PricingPlan": {
+        "description": "When you use CloudFormation, you can create only on-demand queues. Therefore, always set PricingPlan to the value ON_DEMAND when declaring an AWS::MediaConvert::Queue in your CloudFormation template. To create a reserved queue, use the AWS Elemental MediaConvert console at https://console.aws.amazon.com/mediaconvert to set up a contract. For more information, see Working with AWS Elemental MediaConvert Queues in the AWS Elemental MediaConvert User Guide.",
+        "type": "string"
+      },
+      "Status": {
+        "description": "Initial state of the queue. Queues can be either ACTIVE or PAUSED. If you create a paused queue, then jobs that you send to that queue won't begin.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "type": "object"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "mediaconvert:TagResource",
+        "mediaconvert:ListTagsForResource",
+        "mediaconvert:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::MediaConvert::Queue"
+  }
+}

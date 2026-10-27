@@ -1,21 +1,24 @@
 # AWS.StepFunctions @ default
 
 ## Resource AWS.StepFunctions/Activity@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.StepFunctions/ActivityProperties](#awsstepfunctionsactivityproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.StepFunctions/StateMachine@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.StepFunctions/StateMachineProperties](#awsstepfunctionsstatemachineproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.StepFunctions/StateMachineAlias@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -35,6 +38,7 @@
 * **Description**: string: An optional description of the alias.
 * **Name**: string: The alias name.
 * **RoutingConfiguration**: [RoutingConfigurationVersion](#routingconfigurationversion)[]
+* **StateMachineArn**: string
 
 ## AWS.StepFunctions/StateMachineProperties
 ### Properties

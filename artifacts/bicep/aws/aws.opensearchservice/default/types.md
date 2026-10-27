@@ -1,14 +1,16 @@
 # AWS.OpenSearchService @ default
 
 ## Resource AWS.OpenSearchService/Application@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.OpenSearchService/ApplicationProperties](#awsopensearchserviceapplicationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.OpenSearchService/Domain@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -19,10 +21,16 @@
 * **AnonymousAuthDisableDate**: string (ReadOnly)
 * **AnonymousAuthEnabled**: bool
 * **Enabled**: bool
+* **IAMFederationOptions**: [IAMFederationOptions](#iamfederationoptions)
 * **InternalUserDatabaseEnabled**: bool
 * **JWTOptions**: [JWTOptions](#jwtoptions)
 * **MasterUserOptions**: [MasterUserOptions](#masteruseroptions) (WriteOnly)
 * **SAMLOptions**: [SAMLOptions](#samloptions)
+
+## AIMLOptions
+### Properties
+* **S3VectorsEngine**: [S3VectorsEngine](#s3vectorsengine)
+* **ServerlessVectorAcceleration**: [ServerlessVectorAcceleration](#serverlessvectoracceleration)
 
 ## AppConfig
 ### Properties
@@ -35,6 +43,12 @@
 * **IamIdentityCenterInstanceArn**: string: The ARN of the IAM Identity Center instance.
 * **IamRoleForIdentityCenterApplicationArn**: string: The ARN of the IAM role for Identity Center application.
 
+## AutomatedSnapshotPauseOptions
+### Properties
+* **Enabled**: bool (Required)
+* **EndTime**: string
+* **StartTime**: string
+
 ## AWS.OpenSearchService/ApplicationProperties
 ### Properties
 * **AppConfigs**: [AppConfig](#appconfig)[]: List of application configurations.
@@ -43,6 +57,7 @@
 * **Endpoint**: string: The endpoint for the application.
 * **IamIdentityCenterOptions**: [Application_IamIdentityCenterOptions](#applicationiamidentitycenteroptions): Options for configuring IAM Identity Center
 * **Id**: string (ReadOnly): The identifier of the application.
+* **KmsKeyArn**: string (WriteOnly): The ARN of the KMS key used to encrypt the application.
 * **Name**: string (Required, Identifier): The name of the application.
 * **Tags**: [Tag](#tag)[]: An arbitrary set of tags (key-value pairs) for this application.
 
@@ -51,9 +66,12 @@
 * **AccessPolicies**: [Domain_AccessPolicies](#domainaccesspolicies)
 * **AdvancedOptions**: [Domain_AdvancedOptions](#domainadvancedoptions)
 * **AdvancedSecurityOptions**: [AdvancedSecurityOptionsInput](#advancedsecurityoptionsinput)
+* **AIMLOptions**: [AIMLOptions](#aimloptions)
 * **Arn**: string (ReadOnly)
+* **AutomatedSnapshotPauseOptions**: [AutomatedSnapshotPauseOptions](#automatedsnapshotpauseoptions)
 * **ClusterConfig**: [ClusterConfig](#clusterconfig)
 * **CognitoOptions**: [CognitoOptions](#cognitooptions)
+* **DeploymentStrategyOptions**: [DeploymentStrategyOptions](#deploymentstrategyoptions)
 * **DomainArn**: string (ReadOnly)
 * **DomainEndpoint**: string (ReadOnly)
 * **DomainEndpointOptions**: [DomainEndpointOptions](#domainendpointoptions)
@@ -62,6 +80,7 @@
 * **DomainName**: string (Identifier)
 * **EBSOptions**: [EBSOptions](#ebsoptions)
 * **EncryptionAtRestOptions**: [EncryptionAtRestOptions](#encryptionatrestoptions)
+* **EngineMode**: string: The engine mode of the domain. Determines whether the domain runs the standard (GENERAL) engine or the optimized multi-engine (OPTIMIZED) engine. This value cannot be changed after the domain is created.
 * **EngineVersion**: string
 * **Id**: string (ReadOnly)
 * **IdentityCenterOptions**: [IdentityCenterOptions](#identitycenteroptions)
@@ -74,6 +93,7 @@
 * **SnapshotOptions**: [SnapshotOptions](#snapshotoptions)
 * **SoftwareUpdateOptions**: [SoftwareUpdateOptions](#softwareupdateoptions)
 * **Tags**: [Tag](#tag)[]: An arbitrary set of tags (key-value pairs) for this Domain.
+* **UseCase**: string: The primary use case of the domain. Determines the default configuration tuned for the workload. For GENERAL engine-mode domains, this value can be changed after creation. For OPTIMIZED engine-mode domains, this value cannot be changed after creation.
 * **VPCOptions**: [VPCOptions](#vpcoptions)
 
 ## ClusterConfig
@@ -108,6 +128,10 @@
 * **DataSourceArn**: string (Required): The ARN of the data source.
 * **DataSourceDescription**: string: Description of the data source.
 
+## DeploymentStrategyOptions
+### Properties
+* **DeploymentStrategy**: string
+
 ## Domain_AccessPolicies
 ### Properties
 
@@ -140,6 +164,12 @@
 ### Properties
 * **Enabled**: bool
 * **KmsKeyId**: string
+
+## IAMFederationOptions
+### Properties
+* **Enabled**: bool
+* **RolesKey**: string
+* **SubjectKey**: string
 
 ## IdentityCenterOptions
 ### Properties
@@ -192,6 +222,10 @@
 * **Enabled**: bool
 * **OffPeakWindow**: [OffPeakWindow](#offpeakwindow)
 
+## S3VectorsEngine
+### Properties
+* **Enabled**: bool (Required): Whether to enable S3 vectors engine.
+
 ## SAMLOptions
 ### Properties
 * **Enabled**: bool
@@ -201,6 +235,10 @@
 * **RolesKey**: string
 * **SessionTimeoutMinutes**: int
 * **SubjectKey**: string
+
+## ServerlessVectorAcceleration
+### Properties
+* **Enabled**: bool: Whether to enable serverless vector acceleration.
 
 ## ServiceSoftwareOptions
 ### Properties
@@ -220,6 +258,7 @@
 ## SoftwareUpdateOptions
 ### Properties
 * **AutoSoftwareUpdateEnabled**: bool
+* **UseLatestServiceSoftwareForBlueGreen**: bool
 
 ## Tag
 ### Properties
@@ -233,6 +272,7 @@
 
 ## VPCOptions
 ### Properties
+* **EgressEnabled**: bool: Controls whether egress traffic from the domain is routed through the customer VPC.
 * **SecurityGroupIds**: string[]
 * **SubnetIds**: string[]
 

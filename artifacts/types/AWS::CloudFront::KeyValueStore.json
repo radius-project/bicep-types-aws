@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudFront-KeyValueStore",
   "type": "AWS::CloudFront::KeyValueStore",
-  "time": "2025-01-24T18:37:07.123Z",
+  "time": "2026-09-28T18:09:26.713Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -26,6 +26,31 @@
           "SourceArn"
         ],
         "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A complex type that contains ``Tag`` key and ``Tag`` value.",
+        "properties": {
+          "Key": {
+            "description": "A string that contains ``Tag`` key.\n The string length should be between 1 and 128 characters. Valid characters include ``a-z``, ``A-Z``, ``0-9``, space, and the special characters ``_ - . : / = + @``.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "A string that contains an optional ``Tag`` value.\n The string length should be between 0 and 256 characters. Valid characters include ``a-z``, ``A-Z``, ``0-9``, space, and the special characters ``_ - . : / = + @``.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
       }
     },
     "description": "The key value store. Use this to separate data from function code, allowing you to update data without having to publish a new version of a function. The key value store holds keys and their corresponding values.",
@@ -34,6 +59,7 @@
         "permissions": [
           "cloudfront:CreateKeyValueStore",
           "cloudfront:DescribeKeyValueStore",
+          "cloudfront:TagResource",
           "s3:GetObject",
           "s3:HeadObject",
           "s3:GetBucketLocation"
@@ -52,13 +78,16 @@
       },
       "read": {
         "permissions": [
-          "cloudfront:DescribeKeyValueStore"
+          "cloudfront:DescribeKeyValueStore",
+          "cloudfront:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
           "cloudfront:UpdateKeyValueStore",
-          "cloudfront:DescribeKeyValueStore"
+          "cloudfront:DescribeKeyValueStore",
+          "cloudfront:TagResource",
+          "cloudfront:UntagResource"
         ]
       }
     },
@@ -71,7 +100,7 @@
         "type": "string"
       },
       "Comment": {
-        "description": "A comment for the key value store.",
+        "description": "A comment to describe the Key Value Store. Omitting ``Comment`` from the template during updates will clear the existing comment (set to empty string). To preserve an existing comment, you must explicitly include it in the template.",
         "type": "string"
       },
       "Id": {
@@ -89,6 +118,14 @@
       "Status": {
         "description": "",
         "type": "string"
+      },
+      "Tags": {
+        "description": "A complex type that contains zero or more ``Tag`` elements.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
       }
     },
     "readOnlyProperties": [
@@ -101,9 +138,15 @@
     ],
     "tagging": {
       "cloudFormationSystemTags": false,
-      "tagOnCreate": false,
-      "tagUpdatable": false,
-      "taggable": false
+      "permissions": [
+        "cloudfront:TagResource",
+        "cloudfront:UntagResource",
+        "cloudfront:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
     },
     "typeName": "AWS::CloudFront::KeyValueStore",
     "writeOnlyProperties": [

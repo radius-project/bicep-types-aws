@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SSO-Instance",
   "type": "AWS::SSO::Instance",
-  "time": "2024-12-19T18:41:20.304Z",
+  "time": "2026-10-21T16:02:25.194Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -38,12 +38,14 @@
           "sso:TagResource",
           "iam:CreateServiceLinkedRole",
           "sso:TagInstance",
-          "sso:ListTagsForResource"
+          "sso:ListTagsForResource",
+          "identitystore:CreateIdentityStore"
         ]
       },
       "delete": {
         "permissions": [
-          "sso:DeleteInstance"
+          "sso:DeleteInstance",
+          "identitystore:DeleteIdentityStore"
         ]
       },
       "list": {
@@ -83,7 +85,7 @@
         "description": "The SSO Instance ARN that is returned upon creation of the Identity Center (SSO) Instance",
         "maxLength": 1224,
         "minLength": 10,
-        "pattern": "^arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso:::instance/(sso)?ins-[a-zA-Z0-9-.]{16}$",
+        "pattern": "^arn:aws(-[a-z]{1,5}){0,3}:sso:::instance/(sso)?ins-[a-zA-Z0-9-.]{16}$",
         "type": "string"
       },
       "Name": {
@@ -128,6 +130,12 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-sso/aws-sso-instance",
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "sso:TagInstance",
+        "sso:TagResource",
+        "sso:UntagResource",
+        "sso:ListTagsForResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

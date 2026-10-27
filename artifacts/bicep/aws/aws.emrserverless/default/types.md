@@ -1,7 +1,8 @@
 # AWS.EMRServerless @ default
 
 ## Resource AWS.EMRServerless/Application@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -35,6 +36,7 @@
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the EMR Serverless Application.
 * **AutoStartConfiguration**: [AutoStartConfiguration](#autostartconfiguration): Configuration for Auto Start of Application.
 * **AutoStopConfiguration**: [AutoStopConfiguration](#autostopconfiguration): Configuration for Auto Stop of Application.
+* **IdentityCenterConfiguration**: [IdentityCenterConfiguration](#identitycenterconfiguration): The IAM IdentityCenter configuration for trusted-identity-propagation on this application. Supported with release labels emr-7.8.0 and above.
 * **ImageConfiguration**: [ImageConfigurationInput](#imageconfigurationinput)
 * **InitialCapacity**: [InitialCapacityConfigKeyValuePair](#initialcapacityconfigkeyvaluepair)[]: Initial capacity initialized when an Application is started.
 * **InteractiveConfiguration**: [InteractiveConfiguration](#interactiveconfiguration)
@@ -63,6 +65,10 @@
 * **Configurations**: [ConfigurationObject](#configurationobject)[]
 * **Properties**: [Application_Properties](#applicationproperties)
 
+## IdentityCenterConfiguration
+### Properties
+* **IdentityCenterInstanceArn**: string: The IAM IdentityCenter instance arn
+
 ## ImageConfigurationInput
 ### Properties
 * **ImageUri**: string: The URI of an image in the Amazon ECR registry. This field is required when you create a new application. If you leave this field blank in an update, Amazon EMR will remove the image configuration.
@@ -80,6 +86,7 @@
 ## InteractiveConfiguration
 ### Properties
 * **LivyEndpointEnabled**: bool: Enables an Apache Livy endpoint that you can connect to and run interactive jobs
+* **SessionEnabled**: bool: Enables interactive sessions on the application
 * **StudioEnabled**: bool: Enabled you to connect an Application to Amazon EMR Studio to run interactive workloads in a notebook
 
 ## LogTypeMapKeyValuePair

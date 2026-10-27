@@ -1,91 +1,112 @@
 # AWS.VpcLattice @ default
 
 ## Resource AWS.VpcLattice/AccessLogSubscription@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.VpcLattice/AccessLogSubscriptionProperties](#awsvpclatticeaccesslogsubscriptionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.VpcLattice/AuthPolicy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.VpcLattice/AuthPolicyProperties](#awsvpclatticeauthpolicyproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.VpcLattice/DomainVerification@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.VpcLattice/DomainVerificationProperties](#awsvpclatticedomainverificationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.VpcLattice/Listener@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.VpcLattice/ListenerProperties](#awsvpclatticelistenerproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.VpcLattice/ResourceConfiguration@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.VpcLattice/ResourceConfigurationProperties](#awsvpclatticeresourceconfigurationproperties) (Identifier): properties of the resource
+* **properties**: [AWS.VpcLattice/ResourceConfigurationProperties](#awsvpclatticeresourceconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.VpcLattice/ResourceGateway@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.VpcLattice/ResourceGatewayProperties](#awsvpclatticeresourcegatewayproperties) (Identifier): properties of the resource
+* **properties**: [AWS.VpcLattice/ResourceGatewayProperties](#awsvpclatticeresourcegatewayproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.VpcLattice/ResourcePolicy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.VpcLattice/ResourcePolicyProperties](#awsvpclatticeresourcepolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.VpcLattice/Rule@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.VpcLattice/RuleProperties](#awsvpclatticeruleproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.VpcLattice/Service@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.VpcLattice/ServiceProperties](#awsvpclatticeserviceproperties) (Identifier): properties of the resource
 
 ## Resource AWS.VpcLattice/ServiceNetwork@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.VpcLattice/ServiceNetworkProperties](#awsvpclatticeservicenetworkproperties) (Identifier): properties of the resource
 
 ## Resource AWS.VpcLattice/ServiceNetworkResourceAssociation@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.VpcLattice/ServiceNetworkResourceAssociationProperties](#awsvpclatticeservicenetworkresourceassociationproperties) (Identifier): properties of the resource
 
 ## Resource AWS.VpcLattice/ServiceNetworkServiceAssociation@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.VpcLattice/ServiceNetworkServiceAssociationProperties](#awsvpclatticeservicenetworkserviceassociationproperties) (Identifier): properties of the resource
 
 ## Resource AWS.VpcLattice/ServiceNetworkVpcAssociation@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.VpcLattice/ServiceNetworkVpcAssociationProperties](#awsvpclatticeservicenetworkvpcassociationproperties) (Identifier): properties of the resource
 
 ## Resource AWS.VpcLattice/TargetGroup@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -116,6 +137,15 @@
 * **ResourceIdentifier**: string (Required, Identifier)
 * **State**: string (ReadOnly)
 
+## AWS.VpcLattice/DomainVerificationProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier)
+* **DomainName**: string (Required)
+* **Id**: string (ReadOnly)
+* **Status**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]
+* **TxtMethodConfig**: [DomainVerification_TxtMethodConfig](#domainverificationtxtmethodconfig) (ReadOnly)
+
 ## AWS.VpcLattice/ListenerProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier)
@@ -133,14 +163,17 @@
 ### Properties
 * **AllowAssociationToSharableServiceNetwork**: bool
 * **Arn**: string (ReadOnly, Identifier)
+* **CustomDomainName**: string
+* **DomainVerificationId**: string
+* **GroupDomain**: string
 * **Id**: string (ReadOnly)
-* **Name**: string
+* **Name**: string (Required)
 * **PortRanges**: string[]
 * **ProtocolType**: string
 * **ResourceConfigurationAuthType**: string (WriteOnly)
 * **ResourceConfigurationDefinition**: [ResourceConfiguration_ResourceConfigurationDefinition](#resourceconfigurationresourceconfigurationdefinition)
 * **ResourceConfigurationGroupId**: string (WriteOnly)
-* **ResourceConfigurationType**: string
+* **ResourceConfigurationType**: string (Required)
 * **ResourceGatewayId**: string
 * **Tags**: [Tag](#tag)[]
 
@@ -149,11 +182,13 @@
 * **Arn**: string (ReadOnly, Identifier)
 * **Id**: string (ReadOnly)
 * **IpAddressType**: string
-* **Name**: string
+* **Ipv4AddressesPerEni**: int: The number of IPv4 addresses to allocate per ENI for the resource gateway
+* **Name**: string (Required)
+* **ResourceConfigDnsResolution**: string
 * **SecurityGroupIds**: string[]: The ID of one or more security groups to associate with the endpoint network interface.
-* **SubnetIds**: string[]: The ID of one or more subnets in which to create an endpoint network interface.
+* **SubnetIds**: string[] (Required): The ID of one or more subnets in which to create an endpoint network interface.
 * **Tags**: [Tag](#tag)[]
-* **VpcIdentifier**: string
+* **VpcIdentifier**: string (Required)
 
 ## AWS.VpcLattice/ResourcePolicyProperties
 ### Properties
@@ -187,6 +222,7 @@
 ### Properties
 * **Arn**: string (ReadOnly, Identifier)
 * **Id**: string (ReadOnly)
+* **PrivateDnsEnabled**: bool
 * **ResourceConfigurationId**: string
 * **ServiceNetworkId**: string
 * **Tags**: [Tag](#tag)[]
@@ -212,7 +248,9 @@
 ### Properties
 * **Arn**: string (ReadOnly, Identifier)
 * **CreatedAt**: string (ReadOnly)
+* **DnsOptions**: [DnsOptions](#dnsoptions)
 * **Id**: string (ReadOnly)
+* **PrivateDnsEnabled**: bool
 * **SecurityGroupIds**: string[]
 * **ServiceNetworkArn**: string (ReadOnly)
 * **ServiceNetworkId**: string (ReadOnly)
@@ -232,6 +270,7 @@
 * **CustomDomainName**: string
 * **DnsEntry**: [DnsEntry](#dnsentry)
 * **Id**: string (ReadOnly)
+* **IdleTimeoutSeconds**: int
 * **LastUpdatedAt**: string (ReadOnly)
 * **Name**: string
 * **Status**: string (ReadOnly)
@@ -264,6 +303,16 @@
 ### Properties
 * **DomainName**: string (ReadOnly)
 * **HostedZoneId**: string (ReadOnly)
+
+## DnsOptions
+### Properties
+* **PrivateDnsPreference**: string
+* **PrivateDnsSpecifiedDomains**: string[]
+
+## DomainVerification_TxtMethodConfig
+### Properties
+* **name**: string
+* **value**: string
 
 ## FixedResponse
 ### Properties
@@ -344,6 +393,11 @@
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string
 
 ## Tag
 ### Properties

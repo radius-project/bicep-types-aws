@@ -1,13 +1,29 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-KinesisVideo-Stream",
   "type": "AWS::KinesisVideo::Stream",
-  "time": "2024-12-12T19:29:29.38Z",
+  "time": "2026-10-21T21:05:55.507Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/Name"
     ],
     "definitions": {
+      "StreamStorageConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration for the storage tier of the Kinesis Video Stream.",
+        "properties": {
+          "DefaultStorageTier": {
+            "default": "HOT",
+            "description": "The storage tier for the Kinesis Video Stream. Determines the storage class used for stream data.",
+            "enum": [
+              "HOT",
+              "WARM"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "Tag": {
         "additionalProperties": false,
         "description": "A key-value pair to associated with the Kinesis Video Stream.",
@@ -37,7 +53,8 @@
       "create": {
         "permissions": [
           "kinesisvideo:DescribeStream",
-          "kinesisvideo:CreateStream"
+          "kinesisvideo:CreateStream",
+          "kinesisvideo:TagStream"
         ]
       },
       "delete": {
@@ -46,16 +63,26 @@
           "kinesisvideo:DeleteStream"
         ]
       },
+      "list": {
+        "permissions": [
+          "kinesisvideo:ListStreams"
+        ]
+      },
       "read": {
         "permissions": [
-          "kinesisvideo:DescribeStream"
+          "kinesisvideo:DescribeStream",
+          "kinesisvideo:ListTagsForStream",
+          "kinesisvideo:DescribeStreamStorageConfiguration"
         ]
       },
       "update": {
         "permissions": [
           "kinesisvideo:DescribeStream",
           "kinesisvideo:UpdateStream",
-          "kinesisvideo:UpdateDataRetention"
+          "kinesisvideo:UpdateDataRetention",
+          "kinesisvideo:TagStream",
+          "kinesisvideo:UntagStream",
+          "kinesisvideo:ListTagsForStream"
         ]
       }
     },
@@ -101,6 +128,10 @@
         "pattern": "[a-zA-Z0-9_.-]+",
         "type": "string"
       },
+      "StreamStorageConfiguration": {
+        "$ref": "#/definitions/StreamStorageConfiguration",
+        "description": "Configuration for the storage tier of the Kinesis Video Stream."
+      },
       "Tags": {
         "description": "An array of key-value pairs associated with the Kinesis Video Stream.",
         "insertionOrder": false,
@@ -118,6 +149,17 @@
     ],
     "required": [],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-kinesisvideo.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "kinesisvideo:TagStream",
+        "kinesisvideo:UntagStream"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
     "typeName": "AWS::KinesisVideo::Stream"
   }
 }

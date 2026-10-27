@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DMS-MigrationProject",
   "type": "AWS::DMS::MigrationProject",
-  "time": "2025-01-23T04:23:32.455Z",
+  "time": "2026-10-21T20:29:14.439Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -57,7 +57,8 @@
       }
     },
     "deprecatedProperties": [
-      "/properties/MigrationProjectCreationTime"
+      "/properties/MigrationProjectCreationTime",
+      "/properties/MigrationProjectIdentifier"
     ],
     "description": "Resource schema for AWS::DMS::MigrationProject",
     "handlers": {
@@ -65,7 +66,6 @@
         "permissions": [
           "dms:CreateMigrationProject",
           "dms:ListMigrationProjects",
-          "dms:DescribeMigrationProjects",
           "dms:AddTagsToResource",
           "dms:ListTagsForResource",
           "iam:PassRole"
@@ -79,13 +79,11 @@
       "list": {
         "permissions": [
           "dms:ListMigrationProjects",
-          "dms:DescribeMigrationProjects",
           "dms:ListTagsForResource"
         ]
       },
       "read": {
         "permissions": [
-          "dms:DescribeMigrationProjects",
           "dms:ListMigrationProjects",
           "dms:ListTagsForResource"
         ]
@@ -142,7 +140,7 @@
         "type": "string"
       },
       "MigrationProjectIdentifier": {
-        "description": "The property describes an identifier for the migration project. It is used for describing/deleting/modifying can be name/arn",
+        "description": "[DEPRECATED] This property is unused and will be ignored. Identity is managed via the resource ARN (primaryIdentifier) and Name (additionalIdentifier).",
         "maxLength": 255,
         "minLength": 1,
         "type": "string"
@@ -199,11 +197,18 @@
       }
     },
     "readOnlyProperties": [
-      "/properties/MigrationProjectArn"
+      "/properties/MigrationProjectArn",
+      "/properties/MigrationProjectCreationTime",
+      "/properties/InstanceProfileArn",
+      "/properties/InstanceProfileName",
+      "/properties/SourceDataProviderDescriptors/*/DataProviderArn",
+      "/properties/SourceDataProviderDescriptors/*/DataProviderName",
+      "/properties/TargetDataProviderDescriptors/*/DataProviderArn",
+      "/properties/TargetDataProviderDescriptors/*/DataProviderName"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-csf.git",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "dms:AddTagsToResource",
         "dms:RemoveTagsFromResource",

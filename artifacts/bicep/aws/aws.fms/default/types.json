@@ -1,11 +1,168 @@
 [
   {
     "$type": "ObjectType",
-    "name": "ResourceArn",
-    "properties": {}
+    "name": "App",
+    "properties": {
+      "AppName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The application's name."
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The application's port number, for example 80."
+      },
+      "Protocol": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The IP protocol name or number. The name can be one of tcp, udp, or icmp. For information on possible numbers, see Protocol Numbers (https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml)."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
   },
   {
     "$type": "StringType"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.FMS/ApplicationsListProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.FMS/ApplicationsListProperties",
+    "properties": {
+      "AppsList": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "An array of applications in the Firewall Manager applications list."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the applications list."
+      },
+      "CreateTime": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The time that the Firewall Manager applications list was created."
+      },
+      "LastUpdateTime": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The time that the Firewall Manager applications list was last updated."
+      },
+      "ListId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The ID of the Firewall Manager applications list."
+      },
+      "ListName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The name of the Firewall Manager applications list."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to the applications list."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.FMS/ApplicationsList",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.FMS/ApplicationsList@default",
+    "body": {
+      "$ref": "#/8"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResourceArn",
+    "properties": {}
   },
   {
     "$type": "StringLiteralType",
@@ -17,13 +174,13 @@
     "properties": {
       "SnsRoleName": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 1
       },
       "SnsTopicArn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 17
       }
@@ -35,21 +192,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/12"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -59,11 +216,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.FMS/NotificationChannel@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/4"
+      "$ref": "#/13"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -86,13 +243,13 @@
     "properties": {
       "ACCOUNT": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/34"
         },
         "flags": 0
       },
       "ORGUNIT": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/35"
         },
         "flags": 0
       }
@@ -109,7 +266,7 @@
     "properties": {
       "NetworkAclEntrySet": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/23"
         },
         "flags": 1
       }
@@ -121,49 +278,49 @@
     "properties": {
       "CidrBlock": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "CIDR block."
       },
       "Egress": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/36"
         },
         "flags": 1,
         "description": "Whether the entry is an egress entry."
       },
       "IcmpTypeCode": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "ICMP type and code."
       },
       "Ipv6CidrBlock": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "IPv6 CIDR block."
       },
       "PortRange": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/38"
         },
         "flags": 0,
         "description": "Port range."
       },
       "Protocol": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "Protocol."
       },
       "RuleAction": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "Rule Action."
@@ -181,25 +338,25 @@
     "properties": {
       "FirstEntries": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/40"
         },
         "flags": 0
       },
       "ForceRemediateForFirstEntries": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/36"
         },
         "flags": 1
       },
       "ForceRemediateForLastEntries": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/36"
         },
         "flags": 1
       },
       "LastEntries": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/41"
         },
         "flags": 0
       }
@@ -211,7 +368,7 @@
     "properties": {
       "FirewallDeploymentModel": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 1
       }
@@ -228,19 +385,19 @@
     "properties": {
       "NetworkAclCommonPolicy": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/20"
         },
         "flags": 0
       },
       "NetworkFirewallPolicy": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/24"
         },
         "flags": 0
       },
       "ThirdPartyFirewallPolicy": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/33"
         },
         "flags": 0
       }
@@ -252,13 +409,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 1
       }
@@ -280,13 +437,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 0
       }
@@ -303,19 +460,19 @@
     "properties": {
       "ManagedServiceData": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 0
       },
       "PolicyOption": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/26"
         },
         "flags": 0
       },
       "Type": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 1
       }
@@ -327,7 +484,7 @@
     "properties": {
       "FirewallDeploymentModel": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 1
       }
@@ -336,20 +493,17 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/2"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/2"
     }
   },
   {
     "$type": "BooleanType"
-  },
-  {
-    "$type": "IntegerType"
   },
   {
     "$type": "ObjectType",
@@ -357,14 +511,14 @@
     "properties": {
       "Code": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "Code."
       },
       "Type": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "Type."
@@ -377,46 +531,18 @@
     "properties": {
       "From": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "From Port."
       },
       "To": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "To Port."
       }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/12"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/12"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/12"
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.FMS/PolicyProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
     }
   },
   {
@@ -428,13 +554,41 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/21"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/18"
+      "$ref": "#/21"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.FMS/PolicyProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/30"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/27"
     }
   },
   {
@@ -443,103 +597,103 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 2
       },
       "DeleteAllPolicyResources": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/36"
         },
         "flags": 4
       },
       "ExcludeMap": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "ExcludeResourceTags": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/36"
         },
         "flags": 1
       },
       "Id": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 18
       },
       "IncludeMap": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "PolicyDescription": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 0
       },
       "PolicyName": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 1
       },
       "RemediationEnabled": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/36"
         },
         "flags": 1
       },
       "ResourceSetIds": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/43"
         },
         "flags": 0
       },
       "ResourceTagLogicalOperator": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 0
       },
       "ResourceTags": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/44"
         },
         "flags": 0
       },
       "ResourceType": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 0
       },
       "ResourceTypeList": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/45"
         },
         "flags": 0
       },
       "ResourcesCleanUp": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/36"
         },
         "flags": 0
       },
       "SecurityServicePolicyData": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/32"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/46"
         },
         "flags": 0
       }
@@ -551,21 +705,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/47"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -575,11 +729,138 @@
   {
     "$type": "ResourceType",
     "name": "AWS.FMS/Policy@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/40"
+      "$ref": "#/48"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.FMS/ProtocolsListProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/50"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.FMS/ProtocolsListProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the protocols list."
+      },
+      "CreateTime": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The time that the Firewall Manager protocols list was created."
+      },
+      "LastUpdateTime": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The time that the Firewall Manager protocols list was last updated."
+      },
+      "ListId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The ID of the Firewall Manager protocols list."
+      },
+      "ListName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The name of the Firewall Manager protocols list."
+      },
+      "ProtocolsList": {
+        "type": {
+          "$ref": "#/52"
+        },
+        "flags": 1,
+        "description": "An array of protocols in the Firewall Manager protocols list."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/53"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to the protocols list."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.FMS/ProtocolsList",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.FMS/ProtocolsList@default",
+    "body": {
+      "$ref": "#/55"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -602,13 +883,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 1
       }
@@ -621,19 +902,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/2"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/2"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/45"
+      "$ref": "#/60"
     }
   },
   {
@@ -642,37 +923,37 @@
     "properties": {
       "Description": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 0
       },
       "Id": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 18
       },
       "Name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 1
       },
       "ResourceTypeList": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/62"
         },
         "flags": 1
       },
       "Resources": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/63"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/64"
         },
         "flags": 0
       }
@@ -684,21 +965,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/65"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -708,10 +989,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.FMS/ResourceSet@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/51"
+      "$ref": "#/66"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

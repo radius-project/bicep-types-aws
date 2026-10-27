@@ -1,0 +1,171 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-SecondaryNetwork",
+  "type": "AWS::EC2::SecondaryNetwork",
+  "time": "2026-10-15T21:56:17.667Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/SecondaryNetworkId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Ipv4CidrBlock",
+      "/properties/NetworkType"
+    ],
+    "definitions": {
+      "Ipv4CidrBlockAssociation": {
+        "additionalProperties": false,
+        "properties": {
+          "AssociationId": {
+            "description": "The association ID for the IPv4 CIDR block.",
+            "type": "string"
+          },
+          "CidrBlock": {
+            "description": "The IPv4 CIDR block.",
+            "type": "string"
+          },
+          "State": {
+            "description": "The state of the CIDR block association.",
+            "enum": [
+              "associating",
+              "associated",
+              "association-failed",
+              "disassociating",
+              "disassociated",
+              "disassociation-failed"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::EC2::SecondaryNetwork. Creates a secondary network for RDMA (Remote Direct Memory Access) connectivity.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "ec2:CreateSecondaryNetwork",
+          "ec2:DescribeSecondaryNetworks",
+          "ec2:CreateTags"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "ec2:DeleteSecondaryNetwork",
+          "ec2:DescribeSecondaryNetworks",
+          "ec2:DescribeTags"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "ec2:DescribeSecondaryNetworks"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ec2:DescribeSecondaryNetworks",
+          "ec2:DescribeTags"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "ec2:DescribeSecondaryNetworks",
+          "ec2:CreateTags",
+          "ec2:DeleteTags",
+          "ec2:DescribeTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/SecondaryNetworkArn"
+    ],
+    "properties": {
+      "Ipv4CidrBlock": {
+        "description": "The IPv4 CIDR block for the secondary network. The CIDR block size must be between /12 and /28.",
+        "type": "string"
+      },
+      "Ipv4CidrBlockAssociations": {
+        "description": "Information about the IPv4 CIDR blocks associated with the secondary network.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Ipv4CidrBlockAssociation"
+        },
+        "type": "array"
+      },
+      "NetworkType": {
+        "description": "The type of secondary network.",
+        "enum": [
+          "rdma"
+        ],
+        "type": "string"
+      },
+      "OwnerId": {
+        "description": "The ID of the Amazon Web Services account that owns the secondary network.",
+        "type": "string"
+      },
+      "SecondaryNetworkArn": {
+        "description": "The Amazon Resource Name (ARN) of the secondary network.",
+        "type": "string"
+      },
+      "SecondaryNetworkId": {
+        "description": "The ID of the secondary network.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags for the secondary network.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/SecondaryNetworkArn",
+      "/properties/SecondaryNetworkId",
+      "/properties/OwnerId",
+      "/properties/Ipv4CidrBlockAssociations"
+    ],
+    "required": [
+      "Ipv4CidrBlock",
+      "NetworkType"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "ec2:CreateTags",
+        "ec2:DeleteTags",
+        "ec2:DescribeTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::EC2::SecondaryNetwork"
+  }
+}

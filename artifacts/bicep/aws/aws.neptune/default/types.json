@@ -204,6 +204,13 @@
         "flags": 0,
         "description": "Indicates the database engine version."
       },
+      "GlobalClusterIdentifier": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The ID of the Neptune global database to which this new DB cluster should be added."
+      },
       "IamAuthEnabled": {
         "type": {
           "$ref": "#/8"
@@ -217,6 +224,13 @@
         },
         "flags": 0,
         "description": "The Amazon Resource Name (ARN) of the AWS KMS key that is used to encrypt the database instances in the DB cluster, such as arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef. If you enable the StorageEncrypted property but don't specify this property, the default KMS key is used. If you specify this property, you must set the StorageEncrypted property to true."
+      },
+      "NetworkType": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The network type of the DB cluster."
       },
       "Port": {
         "type": {
@@ -341,10 +355,762 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Neptune/DBCluster@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/13"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Neptune/DBClusterParameterGroupProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DBClusterParameterGroup_Parameters",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/15"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Neptune/DBClusterParameterGroupProperties",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "Provides the customer-specified description for this DB cluster parameter group."
+      },
+      "Family": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "Must be neptune1 for engine versions prior to 1.2.0.0, or neptune1.2 for engine version 1.2.0.0 and higher."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 16,
+        "description": "Provides the name of the DB cluster parameter group."
+      },
+      "Parameters": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "An array of parameters to be modified. A maximum of 20 parameters can be modified in a single request."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "The list of tags for the cluster parameter group."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Neptune/DBClusterParameterGroup",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Neptune/DBClusterParameterGroup@default",
+    "body": {
+      "$ref": "#/20"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Neptune/DBInstanceProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/22"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Neptune/DBInstanceProperties",
+    "properties": {
+      "AllowMajorVersionUpgrade": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 4,
+        "description": "Indicates that major version upgrades are allowed. Changing this parameter doesn't result in an outage and the change is asynchronously applied as soon as possible. This parameter must be set to true when specifying a value for the EngineVersion parameter that is a different major version than the DB instance's current version."
+      },
+      "AutoMinorVersionUpgrade": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "Indicates that minor version patches are applied automatically.\n\nWhen updating this property, some interruptions may occur."
+      },
+      "AvailabilityZone": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Specifies the name of the Availability Zone the DB instance is located in."
+      },
+      "DBClusterIdentifier": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "If the DB instance is a member of a DB cluster, contains the name of the DB cluster that the DB instance is a member of."
+      },
+      "DBInstanceClass": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "Contains the name of the compute and memory capacity class of the DB instance.\n\nIf you update this property, some interruptions may occur."
+      },
+      "DBInstanceIdentifier": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 16,
+        "description": "Contains a user-supplied database identifier. This identifier is the unique key that identifies a DB instance."
+      },
+      "DBParameterGroupName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The name of an existing DB parameter group or a reference to an AWS::Neptune::DBParameterGroup resource created in the template. If any of the data members of the referenced parameter group are changed during an update, the DB instance might need to be restarted, which causes some interruption. If the parameter group contains static parameters, whether they were changed or not, an update triggers a reboot."
+      },
+      "DBSnapshotIdentifier": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 4,
+        "description": "This parameter is not supported.\n\n`AWS::Neptune::DBInstance` does not support restoring from snapshots.\n\n`AWS::Neptune::DBCluster` does support restoring from snapshots.\n\n"
+      },
+      "DBSubnetGroupName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "A DB subnet group to associate with the DB instance. If you update this value, the new subnet group must be a subnet group in a new virtual private cloud (VPC)."
+      },
+      "Endpoint": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The connection endpoint for the database. For example: `mystack-mydb-1apw1j4phylrk.cg034hpkmmjt.us-east-2.rds.amazonaws.com`."
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The port number on which the database accepts connections. For example: `8182`."
+      },
+      "PreferredMaintenanceWindow": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Specifies the weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC)."
+      },
+      "PubliclyAccessible": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "Indicates that public accessibility is enabled. This should be enabled in combination with IAM Auth enabled on the DBCluster"
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "An arbitrary set of tags (key-value pairs) for this DB instance."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Neptune/DBInstance",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Neptune/DBInstance@default",
+    "body": {
+      "$ref": "#/26"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Neptune/DBParameterGroupProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DBParameterGroup_Parameters",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/28"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Neptune/DBParameterGroupProperties",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "Provides the customer-specified description for this DB parameter group."
+      },
+      "Family": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "Must be `neptune1` for engine versions prior to 1.2.0.0, or `neptune1.2` for engine version `1.2.0.0` and higher."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 16,
+        "description": "Provides the name of the DB parameter group."
+      },
+      "Parameters": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1,
+        "description": "The parameters to set for this DB parameter group.\n\nThe parameters are expressed as a JSON object consisting of key-value pairs.\n\nChanges to dynamic parameters are applied immediately. During an update, if you have static parameters (whether they were changed or not), it triggers AWS CloudFormation to reboot the associated DB instance without failover."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0,
+        "description": "An optional array of key-value pairs to apply to this DB parameter group."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Neptune/DBParameterGroup",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Neptune/DBParameterGroup@default",
+    "body": {
+      "$ref": "#/33"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Neptune/DBSubnetGroupProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/35"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Neptune/DBSubnetGroupProperties",
+    "properties": {
+      "DBSubnetGroupDescription": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The description for the DB subnet group."
+      },
+      "DBSubnetGroupName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 16,
+        "description": "The name for the DB subnet group. This value is stored as a lowercase string.\n\nConstraints: Must contain no more than 255 lowercase alphanumeric characters or hyphens. Must not be \"Default\".\n\nExample: mysubnetgroup\n\n"
+      },
+      "SubnetIds": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 1,
+        "description": "The Amazon EC2 subnet IDs for the DB subnet group."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 0,
+        "description": "An optional array of key-value pairs to apply to this DB subnet group."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Neptune/DBSubnetGroup",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Neptune/DBSubnetGroup@default",
+    "body": {
+      "$ref": "#/40"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Neptune/EventSubscriptionProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/42"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Neptune/EventSubscriptionProperties",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "A Boolean value; set to true to activate the subscription, set to false to create the subscription but not active it."
+      },
+      "EventCategories": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0,
+        "description": "A list of event categories for a SourceType that you want to subscribe to. You can see a list of the categories for a given SourceType in the Events topic in the Amazon Neptune User Guide or by using the DescribeEventCategories action."
+      },
+      "SnsTopicArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the SNS topic created for event notification. The ARN is created by Amazon SNS when you create a topic and subscribe to it."
+      },
+      "SourceIds": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0,
+        "description": "The list of identifiers of the event sources for which events will be returned. If not specified, then all sources are included in the response. An identifier must begin with a letter and must contain only ASCII letters, digits, and hyphens; it cannot end with a hyphen or contain two consecutive hyphens."
+      },
+      "SourceType": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The type of source that will be generating the events. For example, if you want to be notified of events generated by a DB instance, you would set this parameter to db-instance. if this value is not specified, all events are returned."
+      },
+      "SubscriptionName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 16,
+        "description": "The name of the subscription."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Neptune/EventSubscription",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Neptune/EventSubscription@default",
+    "body": {
+      "$ref": "#/48"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Neptune/GlobalClusterProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/50"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Neptune/GlobalClusterProperties",
+    "properties": {
+      "DeletionProtection": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "Whether deletion protection is enabled."
+      },
+      "Engine": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The name of the database engine."
+      },
+      "EngineVersion": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The version number of the database engine."
+      },
+      "GlobalClusterIdentifier": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 16,
+        "description": "The cluster identifier of the global database cluster."
+      },
+      "SourceDBClusterIdentifier": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of an existing Neptune DB cluster to use as the primary cluster of the new global database."
+      },
+      "StorageEncrypted": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "Whether the global database cluster is storage encrypted."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/52"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Neptune/GlobalCluster",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/53"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Neptune/GlobalCluster@default",
+    "body": {
+      "$ref": "#/54"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

@@ -1,0 +1,199 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CustomerProfiles-RecommenderSchema",
+  "type": "AWS::CustomerProfiles::RecommenderSchema",
+  "time": "2026-10-21T23:30:07.224Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/DomainName",
+        "/properties/RecommenderSchemaName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DomainName",
+      "/properties/RecommenderSchemaName",
+      "/properties/Fields"
+    ],
+    "definitions": {
+      "RecommenderSchemaField": {
+        "additionalProperties": false,
+        "properties": {
+          "ContentType": {
+            "enum": [
+              "STRING",
+              "NUMBER"
+            ],
+            "type": "string"
+          },
+          "FeatureType": {
+            "enum": [
+              "TEXTUAL",
+              "CATEGORICAL"
+            ],
+            "type": "string"
+          },
+          "TargetFieldName": {
+            "maxLength": 1000,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "TargetFieldName"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "A recommender schema defining the set of data columns available for training recommenders and filters under an Amazon Connect Customer Profiles domain.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "profile:CreateRecommenderSchema",
+          "profile:GetRecommenderSchema",
+          "profile:ListTagsForResource",
+          "profile:TagResource",
+          "kms:GenerateDataKey",
+          "kms:Decrypt"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "profile:DeleteRecommenderSchema",
+          "profile:GetRecommenderSchema"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "DomainName": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9_-]+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "DomainName"
+          ]
+        },
+        "permissions": [
+          "profile:ListRecommenderSchemas"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "profile:GetRecommenderSchema",
+          "profile:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "profile:GetRecommenderSchema",
+          "profile:ListTagsForResource",
+          "profile:TagResource",
+          "profile:UntagResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "pattern": "^arn:([a-z\\d-]+):profile:.*:.*:.+$",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "format": "date-time",
+        "type": "string"
+      },
+      "DomainName": {
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9_-]+$",
+        "type": "string"
+      },
+      "Fields": {
+        "additionalProperties": false,
+        "maxProperties": 2,
+        "minProperties": 1,
+        "patternProperties": {
+          "^.+$": {
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/RecommenderSchemaField"
+            },
+            "maxItems": 9,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "RecommenderSchemaName": {
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9_-]+$",
+        "type": "string"
+      },
+      "Status": {
+        "enum": [
+          "ACTIVE",
+          "DELETING"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "insertionOrder": false,
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "maxLength": 128,
+              "minLength": 1,
+              "pattern": "^(?!aws:)[a-zA-Z+-=._:/]+$",
+              "type": "string"
+            },
+            "Value": {
+              "maxLength": 256,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "maxItems": 50,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/CreatedAt",
+      "/properties/Status"
+    ],
+    "replacementStrategy": "delete_then_create",
+    "required": [
+      "DomainName",
+      "RecommenderSchemaName",
+      "Fields"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "profile:TagResource",
+        "profile:UntagResource",
+        "profile:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::CustomerProfiles::RecommenderSchema"
+  }
+}

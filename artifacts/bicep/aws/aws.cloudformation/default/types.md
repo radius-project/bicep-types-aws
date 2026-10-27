@@ -1,56 +1,72 @@
 # AWS.CloudFormation @ default
 
+## Resource AWS.CloudFormation/GeneratedTemplate@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudFormation/GeneratedTemplateProperties](#awscloudformationgeneratedtemplateproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.CloudFormation/GuardHook@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFormation/GuardHookProperties](#awscloudformationguardhookproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudFormation/HookDefaultVersion@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFormation/HookDefaultVersionProperties](#awscloudformationhookdefaultversionproperties) (Identifier): properties of the resource
 
 ## Resource AWS.CloudFormation/HookTypeConfig@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFormation/HookTypeConfigProperties](#awscloudformationhooktypeconfigproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudFormation/LambdaHook@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFormation/LambdaHookProperties](#awscloudformationlambdahookproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudFormation/ResourceDefaultVersion@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFormation/ResourceDefaultVersionProperties](#awscloudformationresourcedefaultversionproperties) (Identifier): properties of the resource
 
 ## Resource AWS.CloudFormation/Stack@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFormation/StackProperties](#awscloudformationstackproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudFormation/StackSet@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFormation/StackSetProperties](#awscloudformationstacksetproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudFormation/TypeActivation@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -58,8 +74,20 @@
 
 ## AutoDeployment
 ### Properties
+* **DependsOn**: string[]: A list of StackSet ARNs that this StackSet depends on for auto-deployment operations. When auto-deployment is triggered, operations will be sequenced to ensure all dependencies complete successfully before this StackSet's operation begins.
 * **Enabled**: bool: If set to true, StackSets automatically deploys additional stack instances to AWS Organizations accounts that are added to a target organization or organizational unit (OU) in the specified Regions. If an account is removed from a target organization or OU, StackSets deletes stack instances from the account in the specified Regions.
 * **RetainStacksOnAccountRemoval**: bool: If set to true, stack resources are retained when an account is removed from a target organization or OU. If set to false, stack resources are deleted. Specify only if Enabled is set to True.
+
+## AWS.CloudFormation/GeneratedTemplateProperties
+### Properties
+* **CreationTime**: string (ReadOnly): The time the generated template was created.
+* **GeneratedTemplateId**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the generated template.
+* **GeneratedTemplateName**: string (Required): The name assigned to the generated template.
+* **LastUpdatedTime**: string (ReadOnly): The time the generated template was last updated.
+* **Progress**: [TemplateProgress](#templateprogress) (ReadOnly)
+* **Status**: string (ReadOnly): The status of the template generation.
+* **TemplateConfiguration**: [TemplateConfiguration](#templateconfiguration)
+* **TotalWarnings**: int (ReadOnly): The number of warnings generated for this template.
 
 ## AWS.CloudFormation/GuardHookProperties
 ### Properties
@@ -97,11 +125,13 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 ## AWS.CloudFormation/LambdaHookProperties
 ### Properties
 * **Alias**: string (Required): The typename alias for the hook.
+* **AutoUpdate**: bool (WriteOnly): Whether to automatically update the extension in this account and Region when a new minor version is published by the extension publisher.
 * **ExecutionRole**: string (Required): The execution role ARN assumed by Hooks to invoke Lambda.
 * **FailureMode**: string (Required): Attribute to specify CloudFormation behavior on hook failure.
 * **HookArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the activated hook
 * **HookStatus**: string (Required): Attribute to specify which stacks this hook applies to or should get invoked for
 * **LambdaFunction**: string (Required): Amazon Resource Name (ARN), Partial ARN, name, version, or alias of the Lambda function to invoke with this hook.
+* **LoggingConfig**: [LoggingConfig](#loggingconfig) (WriteOnly): Contains logging configuration information for the hook.
 * **StackFilters**: [LambdaHook_StackFilters](#lambdahookstackfilters): Filters to allow hooks to target specific stack attributes
 * **TargetFilters**: [LambdaHook_TargetFilters](#lambdahooktargetfilters): Attribute to specify which targets should invoke the hook
 * **TargetOperations**: string[] (Required): Which operations should this Hook run against? Resource changes, stacks or change sets.
@@ -137,7 +167,7 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 * **StackStatus**: string (ReadOnly)
 * **StackStatusReason**: string
 * **Tags**: [Tag](#tag)[]
-* **TemplateBody**: [Stack_TemplateBody](#stacktemplatebody)
+* **TemplateBody**: [Stack_TemplateBody](#stacktemplatebody) | string
 * **TemplateURL**: string (WriteOnly)
 * **TimeoutInMinutes**: int
 
@@ -168,7 +198,7 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 * **LoggingConfig**: [LoggingConfig](#loggingconfig) (WriteOnly): Specifies logging configuration information for a type.
 * **MajorVersion**: string (WriteOnly): The Major Version of the type you want to enable
 * **PublicTypeArn**: string: The Amazon Resource Number (ARN) assigned to the public extension upon publication
-* **PublisherId**: string: The publisher id assigned by CloudFormation for publishing in this region.
+* **PublisherId**: string: The reserved publisher id for this type, or the publisher id assigned by CloudFormation for publishing in this region.
 * **Type**: string (WriteOnly): The kind of extension
 * **TypeName**: string: The name of the type being registered.
 
@@ -180,12 +210,15 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 ### Properties
 * **AccountFilterType**: string: The filter type you want to apply on organizational units and accounts.
 * **Accounts**: string[]: AWS accounts that you want to create stack instances in the specified Region(s) for.
-* **AccountsUrl**: string: Returns the value of the AccountsUrl property.
+* **AccountsUrl**: string: Returns the value of the AccountsUrl property. AccountsUrl is currently not supported when using Account Level Targeting (ALT).
 * **OrganizationalUnitIds**: string[]: The organization root ID or organizational unit (OU) IDs to which StackSets deploys.
 
 ## GuardHook_Options
 ### Properties
-* **InputParams**: [S3Location](#s3location)
+* **InputParams**: [GuardHook_Options_InputParams](#guardhookoptionsinputparams): Specifies the S3 location of input parameter files for your Guard rules. You can specify either a single S3 location or an array of up to 10 S3 locations.
+
+## GuardHook_Options_InputParams
+### Properties
 
 ## GuardHook_StackFilters
 ### Properties
@@ -227,6 +260,11 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 
 ## LoggingConfig
 ### Properties
+* **LogGroupName**: string (Required): The Amazon CloudWatch Logs group to which CloudFormation sends error logging information when invoking the extension's handlers.
+* **LogRoleArn**: string (Required): The ARN of the role that CloudFormation should assume when sending log entries to CloudWatch Logs.
+
+## LoggingConfig
+### Properties
 * **LogGroupName**: string: The Amazon CloudWatch log group to which CloudFormation sends error logging information when invoking the type's handlers.
 * **LogRoleArn**: string: The ARN of the role that CloudFormation should assume when sending log entries to CloudWatch logs.
 
@@ -263,9 +301,6 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 ## Stack_StackPolicyBody
 ### Properties
 
-## Stack_TemplateBody
-### Properties
-
 ## StackInstances
 ### Properties
 * **DeploymentTargets**: [DeploymentTargets](#deploymenttargets) (Required)
@@ -285,4 +320,16 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 ### Properties
 * **Key**: string (Required): A string used to identify this tag. You can specify a maximum of 127 characters for a tag key.
 * **Value**: string (Required): A string containing the value for this tag. You can specify a maximum of 256 characters for a tag value.
+
+## TemplateConfiguration
+### Properties
+* **DeletionPolicy**: string: The DeletionPolicy assigned to resources in the generated template.
+* **UpdateReplacePolicy**: string: The UpdateReplacePolicy assigned to resources in the generated template.
+
+## TemplateProgress
+### Properties
+* **ResourcesFailed**: int: The number of resources that failed the template generation.
+* **ResourcesPending**: int: The number of resources that are still pending the template generation.
+* **ResourcesProcessing**: int: The number of resources that are in-process for the template generation.
+* **ResourcesSucceeded**: int: The number of resources that succeeded the template generation.
 

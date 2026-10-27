@@ -1,0 +1,260 @@
+[
+  {
+    "$type": "ObjectType",
+    "name": "Code",
+    "properties": {
+      "BranchName": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Optional. Specifies a branch name to be used as the default branch when importing code into a repository on initial creation. If this property is not set, the name main will be used for the default branch for the repository. Changes to this property are ignored after initial resource creation. We recommend using this parameter to set the name to main to align with the default behavior of CodeCommit unless another name is needed."
+      },
+      "S3": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "Information about the Amazon S3 bucket that contains a ZIP file of code to be committed to the repository. Changes to this property are ignored after initial resource creation."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RepositoryTrigger",
+    "properties": {
+      "Branches": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The branches to be included in the trigger configuration. If you specify an empty array, the trigger applies to all branches."
+      },
+      "CustomData": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Any custom data associated with the trigger to be included in the information sent to the target of the trigger."
+      },
+      "DestinationArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The ARN of the resource that is the target for a trigger (for example, the ARN of a topic in Amazon SNS)."
+      },
+      "Events": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The repository events that cause the trigger to run actions in another service, such as sending a notification through Amazon SNS."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The name of the trigger."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3",
+    "properties": {
+      "Bucket": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The name of the Amazon S3 bucket that contains the ZIP file with the content that will be committed to the new repository. This can be specified using the name of the bucket in the AWS account. Changes to this property are ignored after initial resource creation."
+      },
+      "Key": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The key to use for accessing the Amazon S3 bucket. Changes to this property are ignored after initial resource creation."
+      },
+      "ObjectVersion": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The object version of the ZIP file, if versioning is enabled for the Amazon S3 bucket. Changes to this property are ignored after initial resource creation."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The tag's key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The tag's value."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CodeCommit/RepositoryProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CodeCommit/RepositoryProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the repository."
+      },
+      "CloneUrlHttp": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The URL to use for cloning the repository over HTTPS."
+      },
+      "CloneUrlSsh": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The URL to use for cloning the repository over SSH."
+      },
+      "Code": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 4,
+        "description": "Information about code to be committed to a repository after it is created in an AWS CloudFormation stack. Information about code is only used in resource creation. Updates to a stack will not reflect changes made to code properties after initial resource creation."
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The ID of the AWS Key Management Service encryption key used to encrypt and decrypt the repository."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The repository's name."
+      },
+      "RepositoryDescription": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "A comment or description about the new repository."
+      },
+      "RepositoryId": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 18,
+        "description": "The ID of the repository."
+      },
+      "RepositoryName": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The name of the new repository to be created."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "One or more tag key-value pairs to use when tagging this repository."
+      },
+      "Triggers": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "Information about a trigger for a repository."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CodeCommit/Repository",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CodeCommit/Repository@default",
+    "body": {
+      "$ref": "#/11"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  }
+]

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Organizations-Policy",
   "type": "AWS::Organizations::Policy",
-  "time": "2025-01-22T17:08:40.462Z",
+  "time": "2026-09-29T21:48:24.148Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -49,6 +49,7 @@
       },
       "delete": {
         "permissions": [
+          "organizations:ListTargetsForPolicy",
           "organizations:DetachPolicy",
           "organizations:DeletePolicy"
         ]
@@ -150,15 +151,21 @@
         "uniqueItems": true
       },
       "Type": {
-        "description": "The type of policy to create. You can specify one of the following values: AISERVICES_OPT_OUT_POLICY, BACKUP_POLICY, SERVICE_CONTROL_POLICY, TAG_POLICY, CHATBOT_POLICY, RESOURCE_CONTROL_POLICY,DECLARATIVE_POLICY_EC2",
+        "description": "The type of policy to create. You can specify one of the following values: AISERVICES_OPT_OUT_POLICY, BACKUP_POLICY, BEDROCK_POLICY, CHATBOT_POLICY, DECLARATIVE_POLICY_EC2, INSPECTOR_POLICY, NETWORK_SECURITY_DIRECTOR_POLICY, RESOURCE_CONTROL_POLICY, S3_POLICY, SECURITYHUB_POLICY, SERVICE_CONTROL_POLICY, TAG_POLICY, UPGRADE_ROLLOUT_POLICY",
         "enum": [
-          "SERVICE_CONTROL_POLICY",
           "AISERVICES_OPT_OUT_POLICY",
           "BACKUP_POLICY",
-          "TAG_POLICY",
+          "BEDROCK_POLICY",
           "CHATBOT_POLICY",
+          "DECLARATIVE_POLICY_EC2",
+          "INSPECTOR_POLICY",
+          "NETWORK_SECURITY_DIRECTOR_POLICY",
           "RESOURCE_CONTROL_POLICY",
-          "DECLARATIVE_POLICY_EC2"
+          "S3_POLICY",
+          "SECURITYHUB_POLICY",
+          "SERVICE_CONTROL_POLICY",
+          "TAG_POLICY",
+          "UPGRADE_ROLLOUT_POLICY"
         ],
         "type": "string"
       }
@@ -175,7 +182,7 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-organizations",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "organizations:TagResource",
         "organizations:UntagResource",

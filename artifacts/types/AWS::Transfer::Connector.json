@@ -1,10 +1,98 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Transfer-Connector",
   "type": "AWS::Transfer::Connector",
-  "time": "2024-12-26T15:33:17.945Z",
+  "time": "2026-10-12T15:53:57.406Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
+      "ConnectorAsyncMdnConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "ServerIds": {
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/ServerId"
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "Url": {
+            "description": "URL of the server to receive the MDN response on",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Url",
+          "ServerIds"
+        ],
+        "type": "object"
+      },
+      "ConnectorEgressConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "VpcLattice": {
+            "$ref": "#/definitions/ConnectorVpcLatticeEgressConfig"
+          }
+        },
+        "required": [
+          "VpcLattice"
+        ],
+        "type": "object"
+      },
+      "ConnectorEgressType": {
+        "enum": [
+          "SERVICE_MANAGED",
+          "VPC_LATTICE"
+        ],
+        "type": "string"
+      },
+      "ConnectorStatus": {
+        "enum": [
+          "ACTIVE",
+          "PENDING",
+          "ERRORED"
+        ],
+        "type": "string"
+      },
+      "ConnectorVpcLatticeEgressConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "PortNumber": {
+            "description": "Port to connect to on the target VPC Lattice resource",
+            "maximum": 65535,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "ResourceConfigurationArn": {
+            "description": "ARN of the VPC Lattice resource configuration",
+            "maxLength": 2048,
+            "minLength": 1,
+            "pattern": "^arn:[a-z0-9\\-]+:vpc-lattice:[a-zA-Z0-9\\-]+:\\d{12}:resourceconfiguration/rcfg-[0-9a-z]{17}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ResourceConfigurationArn"
+        ],
+        "type": "object"
+      },
+      "IpAddressType": {
+        "description": "IP address type for Connector",
+        "enum": [
+          "IPV4",
+          "DUALSTACK"
+        ],
+        "type": "string"
+      },
+      "ServerId": {
+        "description": "A unique identifier for the server.",
+        "maxLength": 19,
+        "minLength": 19,
+        "pattern": "^s-([0-9a-f]{17})$",
+        "type": "string"
+      },
       "SftpConnectorTrustedHostKey": {
         "description": "The public host key for the external server to which you are connecting.",
         "maxLength": 2048,
@@ -40,8 +128,12 @@
       "create": {
         "permissions": [
           "transfer:CreateConnector",
+          "transfer:DescribeConnector",
           "transfer:TagResource",
-          "iam:PassRole"
+          "iam:PassRole",
+          "vpc-lattice:CreateServiceNetworkResourceAssociation",
+          "vpc-lattice:GetResourceConfiguration",
+          "vpc-lattice:AssociateViaAWSService"
         ]
       },
       "delete": {
@@ -62,9 +154,13 @@
       "update": {
         "permissions": [
           "transfer:UpdateConnector",
+          "transfer:DescribeConnector",
           "transfer:UnTagResource",
           "transfer:TagResource",
-          "iam:PassRole"
+          "iam:PassRole",
+          "vpc-lattice:CreateServiceNetworkResourceAssociation",
+          "vpc-lattice:GetResourceConfiguration",
+          "vpc-lattice:AssociateViaAWSService"
         ]
       }
     },
@@ -90,6 +186,10 @@
         "additionalProperties": false,
         "description": "Configuration for an AS2 connector.",
         "properties": {
+          "AsyncMdnConfig": {
+            "$ref": "#/definitions/ConnectorAsyncMdnConfig",
+            "description": "Configuration for an AS2 connector with ASYNC MDN Response"
+          },
           "BasicAuthSecretId": {
             "description": "ARN or name of the secret in AWS Secrets Manager which contains the credentials for Basic authentication. If empty, Basic authentication is disabled for the AS2 connector",
             "maxLength": 2048,
@@ -126,6 +226,7 @@
             "description": "MDN Response setting for this AS2 connector configuration.",
             "enum": [
               "SYNC",
+              "ASYNC",
               "NONE"
             ],
             "type": "string"
@@ -156,6 +257,14 @@
             "pattern": "^p-([0-9a-f]{17})$",
             "type": "string"
           },
+          "PreserveContentType": {
+            "description": "Specifies whether to use the AWS S3 object content-type as the content-type for the AS2 message.",
+            "enum": [
+              "ENABLED",
+              "DISABLED"
+            ],
+            "type": "string"
+          },
           "SigningAlgorithm": {
             "description": "Signing algorithm for this AS2 connector configuration.",
             "enum": [
@@ -176,6 +285,22 @@
         "minLength": 19,
         "pattern": "^c-([0-9a-f]{17})$",
         "type": "string"
+      },
+      "EgressConfig": {
+        "$ref": "#/definitions/ConnectorEgressConfig",
+        "description": "Egress configuration for the connector."
+      },
+      "EgressType": {
+        "$ref": "#/definitions/ConnectorEgressType",
+        "description": "Specifies the egress type for the connector."
+      },
+      "ErrorMessage": {
+        "description": "Detailed error message when Connector in ERRORED status",
+        "maxLength": 2048,
+        "type": "string"
+      },
+      "IpAddressType": {
+        "$ref": "#/definitions/IpAddressType"
       },
       "LoggingRole": {
         "description": "Specifies the logging role for the connector.",
@@ -203,6 +328,24 @@
         "additionalProperties": false,
         "description": "Configuration for an SFTP connector.",
         "properties": {
+          "MaxConcurrentConnections": {
+            "default": 1,
+            "description": "Specifies the number of active connections that your connector can establish with the remote server at the same time.",
+            "maximum": 5,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "OrderedUserSecretVersionStages": {
+            "description": "Specifies the order in which the connector attempts to use secret versions during authentication. This enables fallback to alternative credentials if the primary version fails.",
+            "insertionOrder": true,
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 2,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
           "TrustedHostKeys": {
             "description": "List of public host keys, for the external server to which you are connecting.",
             "insertionOrder": false,
@@ -221,6 +364,9 @@
           }
         },
         "type": "object"
+      },
+      "Status": {
+        "$ref": "#/definitions/ConnectorStatus"
       },
       "Tags": {
         "description": "Key-value pairs that can be used to group and search for connectors. Tags are metadata attached to connectors for any purpose.",
@@ -241,14 +387,20 @@
     "readOnlyProperties": [
       "/properties/Arn",
       "/properties/ConnectorId",
-      "/properties/ServiceManagedEgressIpAddresses"
+      "/properties/ServiceManagedEgressIpAddresses",
+      "/properties/Status",
+      "/properties/ErrorMessage"
     ],
     "required": [
-      "AccessRole",
-      "Url"
+      "AccessRole"
     ],
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "transfer:ListTagsForResource",
+        "transfer:UnTagResource",
+        "transfer:TagResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

@@ -1,0 +1,211 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AppConfig-ExperimentRun",
+  "type": "AWS::AppConfig::ExperimentRun",
+  "time": "2026-10-21T16:30:24.859Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ApplicationIdentifier",
+      "/properties/ExperimentDefinitionIdentifier"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "TreatmentOverrides": {
+        "additionalProperties": false,
+        "description": "Treatment overrides for specific entities.",
+        "properties": {
+          "Inline": {
+            "additionalProperties": false,
+            "description": "Map of entity ID to treatment key (t1, t2, ..., or c for control).",
+            "patternProperties": {
+              "^.+$": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::AppConfig::ExperimentRun",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "appconfig:StartExperimentRun",
+          "appconfig:GetExperimentRun",
+          "appconfig:StartDeployment",
+          "appconfig:TagResource",
+          "appconfig:ListTagsForResource",
+          "kms:GenerateDataKey"
+        ],
+        "timeoutInMinutes": 60
+      },
+      "delete": {
+        "permissions": [
+          "appconfig:StopExperimentRun",
+          "appconfig:GetExperimentRun",
+          "appconfig:StartDeployment",
+          "kms:GenerateDataKey"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ApplicationId": {
+              "$ref": "resource-schema.json#/properties/ApplicationId"
+            },
+            "ExperimentDefinitionId": {
+              "$ref": "resource-schema.json#/properties/ExperimentDefinitionId"
+            }
+          },
+          "required": [
+            "ApplicationId",
+            "ExperimentDefinitionId"
+          ]
+        },
+        "permissions": [
+          "appconfig:ListExperimentRuns"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "appconfig:GetExperimentRun",
+          "appconfig:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "appconfig:UpdateExperimentRun",
+          "appconfig:GetExperimentRun",
+          "appconfig:StartDeployment",
+          "appconfig:TagResource",
+          "appconfig:UntagResource",
+          "appconfig:ListTagsForResource",
+          "kms:GenerateDataKey"
+        ],
+        "timeoutInMinutes": 60
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ApplicationId",
+      "/properties/ExperimentDefinitionId",
+      "/properties/Run"
+    ],
+    "properties": {
+      "ApplicationId": {
+        "description": "The resolved application ID.",
+        "pattern": "[a-z0-9]{4,7}",
+        "type": "string"
+      },
+      "ApplicationIdentifier": {
+        "description": "The application name or ID used to create the experiment run.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Description": {
+        "description": "Description of the experiment run.",
+        "maxLength": 1024,
+        "type": "string"
+      },
+      "ExperimentDefinitionId": {
+        "description": "The resolved experiment definition ID.",
+        "pattern": "[a-z0-9]{4,7}",
+        "type": "string"
+      },
+      "ExperimentDefinitionIdentifier": {
+        "description": "The experiment definition name or ID used to create the experiment run.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "type": "string"
+      },
+      "ExposurePercentage": {
+        "description": "Percentage of traffic exposed to the experiment (0-100).",
+        "maximum": 100,
+        "minimum": 0,
+        "type": "number"
+      },
+      "Run": {
+        "description": "The run number (auto-assigned by the service).",
+        "type": "string"
+      },
+      "StartedAt": {
+        "description": "ISO-8601 timestamp when the run started.",
+        "type": "string"
+      },
+      "Status": {
+        "description": "Current status of the run.",
+        "enum": [
+          "RUNNING",
+          "DONE"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags to associate with the experiment run.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "TreatmentOverrides": {
+        "$ref": "#/definitions/TreatmentOverrides"
+      },
+      "UpdatedAt": {
+        "description": "ISO-8601 timestamp when the run was last updated.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ApplicationId",
+      "/properties/ExperimentDefinitionId",
+      "/properties/Run",
+      "/properties/Status",
+      "/properties/StartedAt",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "ApplicationIdentifier",
+      "ExperimentDefinitionIdentifier",
+      "ExposurePercentage"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-appconfig.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "appconfig:TagResource",
+        "appconfig:UntagResource",
+        "appconfig:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::AppConfig::ExperimentRun"
+  }
+}

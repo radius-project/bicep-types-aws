@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CustomerProfiles-Integration",
   "type": "AWS::CustomerProfiles::Integration",
-  "time": "2025-01-15T00:28:25.131Z",
+  "time": "2026-09-15T22:42:48.187Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -573,6 +573,8 @@
           "appflow:CreateFlow",
           "app-integrations:CreateEventIntegrationAssociation",
           "app-integrations:GetEventIntegration",
+          "connect:DescribeInstance",
+          "ds:DescribeDirectories",
           "events:ListTargetsByRule",
           "events:PutRule",
           "events:PutTargets",
@@ -608,7 +610,8 @@
       },
       "read": {
         "permissions": [
-          "profile:GetIntegration"
+          "profile:GetIntegration",
+          "profile:ListTagsForResource"
         ]
       },
       "update": {
@@ -627,7 +630,10 @@
           "events:PutTargets",
           "events:PutEvents",
           "profile:UntagResource",
-          "profile:TagResource"
+          "profile:TagResource",
+          "profile:ListTagsForResource",
+          "connect:DescribeInstance",
+          "ds:DescribeDirectories"
         ]
       }
     },
@@ -680,6 +686,17 @@
           "$ref": "#/definitions/ObjectTypeMapping"
         },
         "type": "array"
+      },
+      "Scope": {
+        "description": "Scope of the integration, such as 'PROFILE' or 'DOMAIN'",
+        "enum": [
+          "PROFILE",
+          "DOMAIN"
+        ],
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z_][a-zA-Z_0-9-]*$",
+        "type": "string"
       },
       "Tags": {
         "description": "The tags (keys and values) associated with the integration",

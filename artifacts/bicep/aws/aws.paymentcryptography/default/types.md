@@ -1,14 +1,16 @@
 # AWS.PaymentCryptography @ default
 
 ## Resource AWS.PaymentCryptography/Alias@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.PaymentCryptography/AliasProperties](#awspaymentcryptographyaliasproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.PaymentCryptography/Key@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -21,6 +23,7 @@
 
 ## AWS.PaymentCryptography/KeyProperties
 ### Properties
+* **DeriveKeyUsage**: string
 * **Enabled**: bool
 * **Exportable**: bool (Required)
 * **KeyAttributes**: [KeyAttributes](#keyattributes) (Required)
@@ -28,6 +31,9 @@
 * **KeyIdentifier**: string (ReadOnly, Identifier)
 * **KeyOrigin**: string (ReadOnly)
 * **KeyState**: string (ReadOnly)
+* **Policy**: string: The resource-based policy attached to the key, in JSON format.
+* **ReplicationRegions**: string[] (WriteOnly)
+* **ReplicationStatus**: [ReplicationStatus](#replicationstatus) (ReadOnly)
 * **Tags**: [Tag](#tag)[]
 
 ## KeyAttributes
@@ -48,6 +54,9 @@
 * **Unwrap**: bool
 * **Verify**: bool
 * **Wrap**: bool
+
+## ReplicationStatus
+### Properties
 
 ## Tag
 ### Properties

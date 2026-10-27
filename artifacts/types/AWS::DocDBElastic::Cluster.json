@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DocDBElastic-Cluster",
   "type": "AWS::DocDBElastic::Cluster",
-  "time": "2024-12-10T22:25:08.594Z",
+  "time": "2026-04-28T19:12:21.281Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -60,7 +60,8 @@
           "kms:GenerateDataKey",
           "kms:Decrypt",
           "iam:CreateServiceLinkedRole"
-        ]
+        ],
+        "timeoutInMinutes": 480
       },
       "delete": {
         "permissions": [
@@ -74,7 +75,8 @@
           "ec2:DescribeVpcAttribute",
           "ec2:DescribeVpcs",
           "ec2:DescribeAvailabilityZones"
-        ]
+        ],
+        "timeoutInMinutes": 240
       },
       "list": {
         "permissions": [
@@ -112,7 +114,8 @@
           "kms:CreateGrant",
           "kms:GenerateDataKey",
           "kms:Decrypt"
-        ]
+        ],
+        "timeoutInMinutes": 2160
       }
     },
     "primaryIdentifier": [
@@ -202,6 +205,11 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-docdbelastic/",
     "tagging": {
       "cloudFormationSystemTags": false,
+      "permissions": [
+        "docdb-elastic:TagResource",
+        "docdb-elastic:UntagResource",
+        "docdb-elastic:ListTagsForResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

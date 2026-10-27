@@ -1,0 +1,147 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DRS-SourceNetwork",
+  "type": "AWS::DRS::SourceNetwork",
+  "time": "2026-10-21T21:38:56.104Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/SourceNetworkID"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/VpcID",
+      "/properties/OriginAccountID",
+      "/properties/OriginRegion"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "A Source Network resource represents a VPC that is protected by AWS Elastic Disaster Recovery.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "drs:CreateSourceNetwork",
+          "drs:DescribeSourceNetworks",
+          "drs:TagResource",
+          "ec2:DescribeVpcs",
+          "ec2:DescribeInstances"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "drs:DeleteSourceNetwork",
+          "drs:DescribeSourceNetworks",
+          "drs:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "drs:DescribeSourceNetworks"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "drs:DescribeSourceNetworks",
+          "drs:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "drs:DescribeSourceNetworks",
+          "drs:TagResource",
+          "drs:UntagResource",
+          "drs:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of the Source Network.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:.{16,2044}$",
+        "type": "string"
+      },
+      "OriginAccountID": {
+        "description": "The account ID containing the VPC to protect.",
+        "maxLength": 12,
+        "minLength": 12,
+        "pattern": "[0-9]{12,}",
+        "type": "string"
+      },
+      "OriginRegion": {
+        "description": "The region containing the VPC to protect.",
+        "maxLength": 255,
+        "pattern": "^(us(-gov)?|ap|ca|cn|eu|eusc|sa|af|me|il)-([a-z]{2}-)?(central|north|(north(?:east|west))|south|south(?:east|west)|east|west)-[0-9]$",
+        "type": "string"
+      },
+      "SourceNetworkID": {
+        "description": "The ID of the Source Network.",
+        "maxLength": 20,
+        "minLength": 20,
+        "pattern": "^sn-[0-9a-zA-Z]{17}$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A set of tags associated with the Source Network.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "VpcID": {
+        "description": "The VPC ID to protect.",
+        "maxLength": 21,
+        "minLength": 12,
+        "pattern": "^vpc-[0-9a-fA-F]{8,}$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/SourceNetworkID"
+    ],
+    "required": [
+      "VpcID",
+      "OriginAccountID",
+      "OriginRegion"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "drs:TagResource",
+        "drs:UntagResource",
+        "drs:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::DRS::SourceNetwork"
+  }
+}

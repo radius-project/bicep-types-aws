@@ -1,0 +1,97 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AppSync-ApiKey",
+  "type": "AWS::AppSync::ApiKey",
+  "time": "2026-10-19T16:57:34.361Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Arn"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ApiId"
+    ],
+    "description": "Resource Type definition for AWS::AppSync::ApiKey",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "appsync:CreateApiKey"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "appsync:DeleteApiKey"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ApiId": {
+              "description": "Unique AWS AppSync GraphQL API ID for this API key.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "ApiId"
+          ]
+        },
+        "permissions": [
+          "appsync:ListApiKeys"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "appsync:ListApiKeys"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "appsync:UpdateApiKey"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ApiId",
+      "/properties/ApiKeyId"
+    ],
+    "properties": {
+      "ApiId": {
+        "description": "Unique AWS AppSync GraphQL API ID for this API key.",
+        "type": "string"
+      },
+      "ApiKey": {
+        "description": "The API key.",
+        "type": "string"
+      },
+      "ApiKeyId": {
+        "description": "The API key ID.",
+        "type": "string"
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the API key.",
+        "type": "string"
+      },
+      "Description": {
+        "description": "Unique description of your API key.",
+        "type": "string"
+      },
+      "Expires": {
+        "description": "The time after which the API key expires. The date is represented as seconds since the epoch, rounded down to the nearest hour.",
+        "type": "number"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ApiKey",
+      "/properties/ApiKeyId",
+      "/properties/Arn"
+    ],
+    "required": [
+      "ApiId"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::AppSync::ApiKey"
+  }
+}

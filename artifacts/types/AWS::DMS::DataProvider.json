@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DMS-DataProvider",
   "type": "AWS::DMS::DataProvider",
-  "time": "2025-01-23T04:59:37.045Z",
+  "time": "2026-10-21T20:29:13.231Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -10,6 +10,13 @@
     ],
     "additionalProperties": false,
     "definitions": {
+      "Db2SslModeValue": {
+        "enum": [
+          "none",
+          "verify-ca"
+        ],
+        "type": "string"
+      },
       "DmsSslModeValue": {
         "enum": [
           "none",
@@ -42,6 +49,14 @@
         ],
         "type": "string"
       },
+      "SybaseSslModeValue": {
+        "enum": [
+          "none",
+          "require",
+          "verify-ca"
+        ],
+        "type": "string"
+      },
       "Tag": {
         "additionalProperties": false,
         "description": "A key-value pair to associate with a resource.",
@@ -66,6 +81,9 @@
         "type": "object"
       }
     },
+    "deprecatedProperties": [
+      "/properties/DataProviderIdentifier"
+    ],
     "description": "Resource schema for AWS::DMS::DataProvider",
     "handlers": {
       "create": {
@@ -104,7 +122,9 @@
           "dms:ModifyDataProvider",
           "dms:AddTagsToResource",
           "dms:RemoveTagsFromResource",
-          "dms:ListTagsForResource"
+          "dms:ListTagsForResource",
+          "iam:GetRole",
+          "iam:PassRole"
         ]
       }
     },
@@ -125,7 +145,7 @@
         "type": "string"
       },
       "DataProviderIdentifier": {
-        "description": "The property describes an identifier for the data provider. It is used for describing/deleting/modifying can be name/arn",
+        "description": "[DEPRECATED] This property is unused and will be ignored. Identity is managed via the resource ARN (primaryIdentifier) and Name (additionalIdentifier).",
         "maxLength": 255,
         "minLength": 1,
         "type": "string"
@@ -154,7 +174,10 @@
           "redshift",
           "mariadb",
           "mongodb",
-          "docdb"
+          "docdb",
+          "db2",
+          "db2_zos",
+          "sybase"
         ],
         "type": "string"
       },
@@ -205,6 +228,21 @@
             "required": [
               "MongoDbSettings"
             ]
+          },
+          {
+            "required": [
+              "IbmDb2LuwSettings"
+            ]
+          },
+          {
+            "required": [
+              "IbmDb2zOsSettings"
+            ]
+          },
+          {
+            "required": [
+              "SybaseAseSettings"
+            ]
           }
         ],
         "description": "The property identifies the exact type of settings for the data provider.",
@@ -226,13 +264,74 @@
                 "type": "string"
               },
               "SslMode": {
-                "$ref": "#/definitions/MongoDbSslModeValue",
-                "type": "object"
+                "$ref": "#/definitions/MongoDbSslModeValue"
               }
             },
             "required": [
               "ServerName",
               "Port",
+              "DatabaseName"
+            ],
+            "type": "object"
+          },
+          "IbmDb2LuwSettings": {
+            "additionalProperties": false,
+            "description": "IbmDb2LuwSettings property identifier.",
+            "properties": {
+              "CertificateArn": {
+                "type": "string"
+              },
+              "DatabaseName": {
+                "type": "string"
+              },
+              "EncryptionAlgorithm": {
+                "type": "integer"
+              },
+              "Port": {
+                "type": "integer"
+              },
+              "SecurityMechanism": {
+                "type": "integer"
+              },
+              "ServerName": {
+                "type": "string"
+              },
+              "SslMode": {
+                "$ref": "#/definitions/Db2SslModeValue"
+              }
+            },
+            "required": [
+              "ServerName",
+              "Port",
+              "SslMode",
+              "DatabaseName"
+            ],
+            "type": "object"
+          },
+          "IbmDb2zOsSettings": {
+            "additionalProperties": false,
+            "description": "IbmDb2zOsSettings property identifier.",
+            "properties": {
+              "CertificateArn": {
+                "type": "string"
+              },
+              "DatabaseName": {
+                "type": "string"
+              },
+              "Port": {
+                "type": "integer"
+              },
+              "ServerName": {
+                "type": "string"
+              },
+              "SslMode": {
+                "$ref": "#/definitions/Db2SslModeValue"
+              }
+            },
+            "required": [
+              "ServerName",
+              "Port",
+              "SslMode",
               "DatabaseName"
             ],
             "type": "object"
@@ -251,8 +350,7 @@
                 "type": "string"
               },
               "SslMode": {
-                "$ref": "#/definitions/DmsSslModeValue",
-                "type": "object"
+                "$ref": "#/definitions/DmsSslModeValue"
               }
             },
             "required": [
@@ -275,12 +373,19 @@
               "Port": {
                 "type": "integer"
               },
+              "S3AccessRoleArn": {
+                "description": "The ARN for the role the application uses to access its Amazon S3 bucket.",
+                "type": "string"
+              },
+              "S3Path": {
+                "description": "The path for the Amazon S3 bucket that the application uses for accessing the user-defined schema.",
+                "type": "string"
+              },
               "ServerName": {
                 "type": "string"
               },
               "SslMode": {
-                "$ref": "#/definitions/DmsSslModeValue",
-                "type": "object"
+                "$ref": "#/definitions/DmsSslModeValue"
               }
             },
             "required": [
@@ -296,15 +401,13 @@
             "description": "MongoDbSettings property identifier.",
             "properties": {
               "AuthMechanism": {
-                "$ref": "#/definitions/MongoDbAuthMechanism",
-                "type": "object"
+                "$ref": "#/definitions/MongoDbAuthMechanism"
               },
               "AuthSource": {
                 "type": "string"
               },
               "AuthType": {
-                "$ref": "#/definitions/MongoDbAuthType",
-                "type": "object"
+                "$ref": "#/definitions/MongoDbAuthType"
               },
               "CertificateArn": {
                 "type": "string"
@@ -319,8 +422,7 @@
                 "type": "string"
               },
               "SslMode": {
-                "$ref": "#/definitions/MongoDbSslModeValue",
-                "type": "object"
+                "$ref": "#/definitions/MongoDbSslModeValue"
               }
             },
             "required": [
@@ -343,8 +445,7 @@
                 "type": "string"
               },
               "SslMode": {
-                "$ref": "#/definitions/DmsSslModeValue",
-                "type": "object"
+                "$ref": "#/definitions/DmsSslModeValue"
               }
             },
             "required": [
@@ -386,8 +487,7 @@
                 "type": "string"
               },
               "SslMode": {
-                "$ref": "#/definitions/DmsSslModeValue",
-                "type": "object"
+                "$ref": "#/definitions/DmsSslModeValue"
               }
             },
             "required": [
@@ -415,8 +515,7 @@
                 "type": "string"
               },
               "SslMode": {
-                "$ref": "#/definitions/DmsSslModeValue",
-                "type": "object"
+                "$ref": "#/definitions/DmsSslModeValue"
               }
             },
             "required": [
@@ -447,6 +546,36 @@
               "DatabaseName"
             ],
             "type": "object"
+          },
+          "SybaseAseSettings": {
+            "additionalProperties": false,
+            "description": "SybaseAseSettings property identifier.",
+            "properties": {
+              "CertificateArn": {
+                "type": "string"
+              },
+              "DatabaseName": {
+                "type": "string"
+              },
+              "EncryptPassword": {
+                "type": "boolean"
+              },
+              "Port": {
+                "type": "integer"
+              },
+              "ServerName": {
+                "type": "string"
+              },
+              "SslMode": {
+                "$ref": "#/definitions/SybaseSslModeValue"
+              }
+            },
+            "required": [
+              "ServerName",
+              "Port",
+              "SslMode"
+            ],
+            "type": "object"
           }
         },
         "type": "object"
@@ -459,6 +588,11 @@
         },
         "type": "array",
         "uniqueItems": true
+      },
+      "Virtual": {
+        "default": false,
+        "description": "Indicates whether the data provider is virtual.",
+        "type": "boolean"
       }
     },
     "readOnlyProperties": [
@@ -470,7 +604,7 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-dms.git",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "dms:AddTagsToResource",
         "dms:RemoveTagsFromResource",
@@ -483,8 +617,8 @@
     },
     "typeName": "AWS::DMS::DataProvider",
     "writeOnlyProperties": [
-      "/properties/DataProviderIdentifier",
-      "/properties/ExactSettings"
+      "/properties/ExactSettings",
+      "/properties/DataProviderIdentifier"
     ]
   }
 }

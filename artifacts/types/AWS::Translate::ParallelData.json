@@ -1,0 +1,251 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Translate-ParallelData",
+  "type": "AWS::Translate::ParallelData",
+  "time": "2026-10-21T23:44:51.192Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Name"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name",
+      "/properties/Description",
+      "/properties/EncryptionKey"
+    ],
+    "description": "A parallel data resource in Amazon Translate used to customize machine translation output.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "translate:CreateParallelData",
+          "translate:GetParallelData",
+          "translate:TagResource",
+          "s3:GetObject",
+          "kms:DescribeKey",
+          "kms:Encrypt",
+          "kms:Decrypt",
+          "kms:GenerateDataKey",
+          "kms:CreateGrant"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "translate:DeleteParallelData",
+          "translate:GetParallelData",
+          "translate:ListTagsForResource",
+          "kms:DescribeKey",
+          "kms:Decrypt"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "translate:ListParallelData"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "translate:GetParallelData",
+          "translate:ListTagsForResource",
+          "kms:DescribeKey",
+          "kms:Decrypt"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "translate:UpdateParallelData",
+          "translate:GetParallelData",
+          "translate:TagResource",
+          "translate:UntagResource",
+          "translate:ListTagsForResource",
+          "s3:GetObject",
+          "kms:DescribeKey",
+          "kms:Encrypt",
+          "kms:Decrypt",
+          "kms:GenerateDataKey",
+          "kms:CreateGrant"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the parallel data resource.",
+        "maxLength": 512,
+        "minLength": 1,
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The time at which the parallel data resource was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "A custom description for the parallel data resource.",
+        "maxLength": 256,
+        "type": "string"
+      },
+      "EncryptionKey": {
+        "additionalProperties": false,
+        "description": "The encryption key used to encrypt this object.",
+        "properties": {
+          "Id": {
+            "description": "The Amazon Resource Name (ARN) of the encryption key.",
+            "maxLength": 400,
+            "minLength": 1,
+            "pattern": "^(arn:aws((-us-gov)|(-iso)|(-iso-b)|(-cn))?:kms:)?([a-z]{2}-[a-z]+(-[a-z]+)?-\\d:)?(\\d{12}:)?(((key/)?[a-zA-Z0-9-_]+)|(alias/[a-zA-Z0-9:/_-]+))$",
+            "type": "string"
+          },
+          "Type": {
+            "description": "The type of encryption key.",
+            "enum": [
+              "KMS"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Type",
+          "Id"
+        ],
+        "type": "object"
+      },
+      "FailedRecordCount": {
+        "description": "The number of records unsuccessfully imported.",
+        "type": "integer"
+      },
+      "ImportedDataSize": {
+        "description": "The number of UTF-8 characters imported from the parallel data input file.",
+        "type": "integer"
+      },
+      "ImportedRecordCount": {
+        "description": "The number of records successfully imported.",
+        "type": "integer"
+      },
+      "LastUpdatedAt": {
+        "description": "The time at which the parallel data resource was last updated.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Name": {
+        "description": "A custom name for the parallel data resource. Must be unique in the account and region.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^([A-Za-z0-9-]_?)+$",
+        "type": "string"
+      },
+      "ParallelDataConfig": {
+        "additionalProperties": false,
+        "description": "Specifies the format and S3 location of the parallel data input file.",
+        "properties": {
+          "Format": {
+            "description": "The format of the parallel data input file.",
+            "enum": [
+              "TSV",
+              "CSV",
+              "TMX"
+            ],
+            "type": "string"
+          },
+          "S3Uri": {
+            "description": "The URI of the Amazon S3 folder that contains the parallel data input file.",
+            "maxLength": 1024,
+            "pattern": "^s3://[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9](/.*)?$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "S3Uri",
+          "Format"
+        ],
+        "type": "object"
+      },
+      "SkippedRecordCount": {
+        "description": "The number of items skipped during import.",
+        "type": "integer"
+      },
+      "SourceLanguageCode": {
+        "description": "The source language of the translations in the parallel data file.",
+        "maxLength": 5,
+        "minLength": 2,
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the parallel data resource.",
+        "enum": [
+          "CREATING",
+          "UPDATING",
+          "ACTIVE",
+          "DELETING",
+          "FAILED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags associated with the parallel data resource.",
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "Value": {
+              "maxLength": 256,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "maxItems": 200,
+        "type": "array"
+      },
+      "TargetLanguageCodes": {
+        "description": "The language codes for the target languages available in the parallel data file.",
+        "items": {
+          "maxLength": 5,
+          "minLength": 2,
+          "type": "string"
+        },
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Status",
+      "/properties/SourceLanguageCode",
+      "/properties/TargetLanguageCodes",
+      "/properties/ImportedDataSize",
+      "/properties/ImportedRecordCount",
+      "/properties/FailedRecordCount",
+      "/properties/SkippedRecordCount",
+      "/properties/CreatedAt",
+      "/properties/LastUpdatedAt"
+    ],
+    "required": [
+      "Name",
+      "ParallelDataConfig"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "translate:TagResource",
+        "translate:UntagResource",
+        "translate:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Translate::ParallelData"
+  }
+}

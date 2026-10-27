@@ -1,21 +1,24 @@
 # AWS.KafkaConnect @ default
 
 ## Resource AWS.KafkaConnect/Connector@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.KafkaConnect/ConnectorProperties](#awskafkaconnectconnectorproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.KafkaConnect/CustomPlugin@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.KafkaConnect/CustomPluginProperties](#awskafkaconnectcustompluginproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.KafkaConnect/WorkerConfiguration@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -28,6 +31,7 @@
 
 ## AutoScaling
 ### Properties
+* **MaxAutoscalingTaskCount**: int: The maximum number of tasks allocated to the connector during autoscaling operations.
 * **MaxWorkerCount**: int (Required): The maximum number of workers for a connector.
 * **McuCount**: int (Required): Specifies how many MSK Connect Units (MCU) as the minimum scaling unit.
 * **MinWorkerCount**: int (Required): The minimum number of workers for a connector.
@@ -46,6 +50,7 @@
 * **KafkaClusterEncryptionInTransit**: [KafkaClusterEncryptionInTransit](#kafkaclusterencryptionintransit) (Required)
 * **KafkaConnectVersion**: string (Required): The version of Kafka Connect. It has to be compatible with both the Kafka cluster's version and the plugins.
 * **LogDelivery**: [LogDelivery](#logdelivery)
+* **NetworkType**: string: The network type of the Connector.
 * **Plugins**: [Plugin](#plugin)[] (Required): List of plugins to use with the connector.
 * **ServiceExecutionRoleArn**: string (Required): The Amazon Resource Name (ARN) of the IAM role used by the connector to access Amazon S3 objects and other external resources.
 * **Tags**: [Tag](#tag)[]: A collection of tags associated with a resource
@@ -125,7 +130,7 @@
 
 ## ProvisionedCapacity
 ### Properties
-* **McuCount**: int: Specifies how many MSK Connect Units (MCU) are allocated to the connector.
+* **McuCount**: int (Required): Specifies how many MSK Connect Units (MCU) are allocated to the connector.
 * **WorkerCount**: int (Required): Number of workers for a connector.
 
 ## S3Location

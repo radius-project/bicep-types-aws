@@ -1,19 +1,22 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-EC2Fleet",
   "type": "AWS::EC2::EC2Fleet",
-  "time": "2025-01-22T20:23:19.266Z",
+  "time": "2026-10-19T18:48:51.857Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/LaunchTemplateConfigs",
       "/properties/OnDemandOptions",
+      "/properties/ReservedCapacityOptions",
       "/properties/ReplaceUnhealthyInstances",
       "/properties/SpotOptions",
       "/properties/TagSpecifications",
       "/properties/TerminateInstancesWithExpiration",
       "/properties/Type",
       "/properties/ValidFrom",
-      "/properties/ValidUntil"
+      "/properties/ValidUntil",
+      "/properties/TargetCapacitySpecification/TargetCapacityUnitType",
+      "/properties/TargetCapacitySpecification/DefaultTargetCapacityType"
     ],
     "definitions": {
       "AcceleratorCountRequest": {
@@ -107,6 +110,26 @@
         },
         "type": "object"
       },
+      "CapacityReservationTargetRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "CapacityReservationIds": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "CapacityReservationResourceGroupArns": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "type": "object"
+      },
       "CpuPerformanceFactorRequest": {
         "additionalProperties": false,
         "properties": {
@@ -135,6 +158,9 @@
           "KmsKeyId": {
             "type": "string"
           },
+          "MultiAvailabilityZoneConfiguration": {
+            "$ref": "#/definitions/MultiAvailabilityZoneConfiguration"
+          },
           "SnapshotId": {
             "type": "string"
           },
@@ -142,15 +168,6 @@
             "type": "integer"
           },
           "VolumeType": {
-            "enum": [
-              "gp2",
-              "gp3",
-              "io1",
-              "io2",
-              "sc1",
-              "st1",
-              "standard"
-            ],
             "type": "string"
           }
         },
@@ -178,14 +195,40 @@
           "AvailabilityZone": {
             "type": "string"
           },
+          "AvailabilityZoneId": {
+            "type": "string"
+          },
+          "BlockDeviceMappings": {
+            "items": {
+              "$ref": "#/definitions/BlockDeviceMapping"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "IamInstanceProfile": {
+            "$ref": "#/definitions/IamInstanceProfileSpecification"
+          },
           "InstanceRequirements": {
             "$ref": "#/definitions/InstanceRequirementsRequest"
           },
           "InstanceType": {
             "type": "string"
           },
+          "KeyName": {
+            "type": "string"
+          },
           "MaxPrice": {
             "type": "string"
+          },
+          "MetadataOptions": {
+            "$ref": "#/definitions/InstanceMetadataOptionsRequest"
+          },
+          "NetworkInterfaces": {
+            "items": {
+              "$ref": "#/definitions/NetworkInterfaceSpecificationRequest"
+            },
+            "type": "array",
+            "uniqueItems": false
           },
           "Placement": {
             "$ref": "#/definitions/Placement"
@@ -214,6 +257,10 @@
             "pattern": "[a-zA-Z0-9\\(\\)\\.\\-/_]+",
             "type": "string"
           },
+          "LaunchTemplateSpecificationUserData": {
+            "format": "password",
+            "type": "string"
+          },
           "Version": {
             "type": "string"
           }
@@ -221,6 +268,41 @@
         "required": [
           "Version"
         ],
+        "type": "object"
+      },
+      "IamInstanceProfileSpecification": {
+        "additionalProperties": false,
+        "properties": {
+          "Arn": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "InstanceMetadataOptionsRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "HttpEndpoint": {
+            "enum": [
+              "disabled",
+              "enabled"
+            ],
+            "type": "string"
+          },
+          "HttpPutResponseHopLimit": {
+            "type": "integer"
+          },
+          "HttpTokens": {
+            "enum": [
+              "optional",
+              "required"
+            ],
+            "type": "string"
+          }
+        },
         "type": "object"
       },
       "InstanceRequirementsRequest": {
@@ -257,7 +339,14 @@
                 "t4",
                 "t4g",
                 "vu9p",
-                "v100"
+                "v100",
+                "l40s",
+                "l4",
+                "gaudi-hl-205",
+                "inferentia2",
+                "trainium",
+                "trainium2",
+                "u30"
               ],
               "type": "string"
             },
@@ -272,7 +361,8 @@
               "enum": [
                 "gpu",
                 "fpga",
-                "inference"
+                "inference",
+                "media"
               ],
               "type": "string"
             },
@@ -382,6 +472,9 @@
           "OnDemandMaxPricePercentageOverLowestPrice": {
             "type": "integer"
           },
+          "RequireEncryptionInTransit": {
+            "type": "boolean"
+          },
           "RequireHibernateSupport": {
             "type": "boolean"
           },
@@ -393,6 +486,15 @@
           },
           "VCpuCount": {
             "$ref": "#/definitions/VCpuCountRangeRequest"
+          }
+        },
+        "type": "object"
+      },
+      "Ipv6AddressRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "Ipv6Address": {
+            "type": "string"
           }
         },
         "type": "object"
@@ -430,6 +532,22 @@
         },
         "type": "object"
       },
+      "MultiAvailabilityZoneConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "ConfigurationType": {
+            "type": "string"
+          },
+          "StandbyAvailabilityZones": {
+            "items": {
+              "$ref": "#/definitions/StandbyAvailabilityZone"
+            },
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "type": "object"
+      },
       "NetworkBandwidthGbpsRequest": {
         "additionalProperties": false,
         "properties": {
@@ -450,6 +568,66 @@
           },
           "Min": {
             "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "NetworkInterfaceSpecificationRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "AssociatePublicIpAddress": {
+            "type": "boolean"
+          },
+          "DeleteOnTermination": {
+            "type": "boolean"
+          },
+          "Description": {
+            "type": "string"
+          },
+          "DeviceIndex": {
+            "type": "integer"
+          },
+          "Groups": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "InterfaceType": {
+            "type": "string"
+          },
+          "Ipv6AddressCount": {
+            "type": "integer"
+          },
+          "Ipv6Addresses": {
+            "items": {
+              "$ref": "#/definitions/Ipv6AddressRequest"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "NetworkCardIndex": {
+            "type": "integer"
+          },
+          "NetworkInterfaceId": {
+            "type": "string"
+          },
+          "PrivateIpAddress": {
+            "type": "string"
+          },
+          "PrivateIpAddresses": {
+            "items": {
+              "$ref": "#/definitions/PrivateIpAddressSpecificationRequest"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "SecondaryPrivateIpAddressCount": {
+            "type": "integer"
+          },
+          "SubnetId": {
+            "type": "string"
           }
         },
         "type": "object"
@@ -517,6 +695,64 @@
         },
         "type": "object"
       },
+      "PrivateIpAddressSpecificationRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "Primary": {
+            "type": "boolean"
+          },
+          "PrivateIpAddress": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ReservedCapacityFallbackOptionsRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "MarketTypes": {
+            "items": {
+              "enum": [
+                "on-demand"
+              ],
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "type": "object"
+      },
+      "ReservedCapacityOptionsRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "AllocationStrategy": {
+            "enum": [
+              "prioritized"
+            ],
+            "type": "string"
+          },
+          "CapacityReservationTarget": {
+            "$ref": "#/definitions/CapacityReservationTargetRequest"
+          },
+          "ReservationTypes": {
+            "items": {
+              "enum": [
+                "on-demand-capacity-reservation",
+                "capacity-block",
+                "interruptible-capacity-reservation"
+              ],
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "ReservedCapacityFallbackOptions": {
+            "$ref": "#/definitions/ReservedCapacityFallbackOptionsRequest"
+          }
+        },
+        "type": "object"
+      },
       "SpotOptionsRequest": {
         "additionalProperties": false,
         "properties": {
@@ -559,6 +795,18 @@
           },
           "SingleInstanceType": {
             "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "StandbyAvailabilityZone": {
+        "additionalProperties": false,
+        "properties": {
+          "AvailabilityZone": {
+            "type": "string"
+          },
+          "AvailabilityZoneId": {
+            "type": "string"
           }
         },
         "type": "object"
@@ -650,7 +898,9 @@
           "DefaultTargetCapacityType": {
             "enum": [
               "on-demand",
-              "spot"
+              "spot",
+              "capacity-block",
+              "reserved-capacity"
             ],
             "type": "string"
           },
@@ -707,16 +957,32 @@
       "create": {
         "permissions": [
           "ec2:CreateFleet",
-          "ec2:DescribeFleets"
+          "ec2:DescribeFleets",
+          "ec2:CreateTags",
+          "ec2:RunInstances",
+          "iam:PassRole",
+          "ec2:DescribeCapacityReservations",
+          "resource-groups:ListGroupResources"
         ]
       },
       "delete": {
         "permissions": [
           "ec2:DescribeFleets",
-          "ec2:DeleteFleets"
-        ]
+          "ec2:DescribeFleetInstances",
+          "ec2:DescribeInstanceStatus",
+          "ec2:DeleteFleets",
+          "ec2:TerminateInstances"
+        ],
+        "timeoutInMinutes": 40
       },
       "list": {
+        "handlerSchema": {
+          "properties": {
+            "Type": {
+              "$ref": "resource-schema.json#/properties/Type"
+            }
+          }
+        },
         "permissions": [
           "ec2:DescribeFleets"
         ]
@@ -764,6 +1030,9 @@
       "ReplaceUnhealthyInstances": {
         "type": "boolean"
       },
+      "ReservedCapacityOptions": {
+        "$ref": "#/definitions/ReservedCapacityOptionsRequest"
+      },
       "SpotOptions": {
         "$ref": "#/definitions/SpotOptionsRequest"
       },
@@ -802,6 +1071,19 @@
       "TargetCapacitySpecification",
       "LaunchTemplateConfigs"
     ],
-    "typeName": "AWS::EC2::EC2Fleet"
+    "sourceUrl": "https://github.com/aws-cloudformation",
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::EC2::EC2Fleet",
+    "writeOnlyProperties": [
+      "/properties/LaunchTemplateConfigs/*/Overrides/*/Placement/HostResourceGroupArn",
+      "/properties/LaunchTemplateConfigs/*/Overrides/*/Placement/Affinity",
+      "/properties/LaunchTemplateConfigs/*/Overrides/*/Placement/SpreadDomain",
+      "/properties/LaunchTemplateConfigs/*/Overrides/*/Placement/AvailabilityZone",
+      "/properties/LaunchTemplateConfigs/*/Overrides/*/Placement/PartitionNumber",
+      "/properties/LaunchTemplateConfigs/*/Overrides/*/Placement/HostId",
+      "/properties/LaunchTemplateConfigs/*/Overrides/*/Placement/Tenancy"
+    ]
   }
 }

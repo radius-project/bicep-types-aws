@@ -1,21 +1,24 @@
 # AWS.AppIntegrations @ default
 
 ## Resource AWS.AppIntegrations/Application@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AppIntegrations/ApplicationProperties](#awsappintegrationsapplicationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppIntegrations/DataIntegration@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AppIntegrations/DataIntegrationProperties](#awsappintegrationsdataintegrationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.AppIntegrations/EventIntegration@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -25,12 +28,21 @@
 ### Properties
 * **ExternalUrlConfig**: [ExternalUrlConfig](#externalurlconfig) (Required)
 
+## ApplicationConfig
+### Properties
+* **ContactHandling**: [ContactHandling](#contacthandling)
+
 ## AWS.AppIntegrations/ApplicationProperties
 ### Properties
 * **ApplicationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the application.
+* **ApplicationConfig**: [ApplicationConfig](#applicationconfig): The application configuration. Cannot be used when IsService is true.
 * **ApplicationSourceConfig**: [Application_ApplicationSourceConfig](#applicationapplicationsourceconfig) (Required): Application source config
-* **Description**: string (Required): The application description.
+* **ApplicationType**: string: The type of application
+* **Description**: string: The application description.
 * **Id**: string (ReadOnly): The id of the application.
+* **IframeConfig**: [IframeConfig](#iframeconfig): The iframe configuration
+* **InitializationTimeout**: int: The initialization timeout in milliseconds. Required when IsService is true.
+* **IsService**: bool: Indicates if the application is a service
 * **Name**: string (Required): The name of the application.
 * **Namespace**: string (Required): The namespace of the application.
 * **Permissions**: string[]: The configuration of events or requests that the application has access to.
@@ -58,6 +70,10 @@
 * **Name**: string (Required, Identifier): The name of the event integration.
 * **Tags**: [Tag](#tag)[]: The tags (keys and values) associated with the event integration.
 
+## ContactHandling
+### Properties
+* **Scope**: string (Required)
+
 ## DataIntegration_Filters
 ### Properties
 
@@ -74,6 +90,11 @@
 ### Properties
 * **Filters**: [DataIntegration_Filters](#dataintegrationfilters): Restrictions for what files should be pulled from the source.
 * **Folders**: string[] (Required): Identifiers for the source folders to pull all files from recursively.
+
+## IframeConfig
+### Properties
+* **Allow**: string[]
+* **Sandbox**: string[]
 
 ## ObjectConfiguration
 ### Properties

@@ -1,21 +1,194 @@
 [
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.SecurityHub/ActionTargetProperties"
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityHub/ActionTargetProperties",
+    "properties": {
+      "ActionTargetArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the custom action target."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The description for the custom action target."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The ID for the custom action target. Can contain up to 20 alphanumeric characters."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the custom action target. Can contain up to 20 characters."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityHub/ActionTarget",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SecurityHub/ActionTarget@default",
+    "body": {
+      "$ref": "#/3"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Region",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tags",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SecurityHub/AggregatorV2Properties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityHub/AggregatorV2Properties",
+    "properties": {
+      "AggregationRegion": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The aggregation Region of the AggregatorV2"
+      },
+      "AggregatorV2Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The ARN of the AggregatorV2 being created and assigned as the unique identifier"
+      },
+      "LinkedRegions": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The list of included Regions"
+      },
+      "RegionLinkingMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Indicates to link a list of included Regions"
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityHub/AggregatorV2",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SecurityHub/AggregatorV2@default",
+    "body": {
+      "$ref": "#/10"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
     "$type": "ObjectType",
     "name": "AutomationRulesAction",
     "properties": {
       "FindingFieldsUpdate": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/13"
         },
         "flags": 1,
         "description": "Specifies that the automation rule action is an update to a finding field."
       },
       "Type": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
-        "description": "Specifies the type of action that Security Hub takes when a finding matches the defined criteria of a rule."
+        "description": "Specifies the type of action that Security Hub CSPM takes when a finding matches the defined criteria of a rule."
       }
     }
   },
@@ -25,63 +198,63 @@
     "properties": {
       "Confidence": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "The rule action updates the ``Confidence`` field of a finding."
       },
       "Criticality": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "The rule action updates the ``Criticality`` field of a finding."
       },
       "Note": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "The rule action will update the ``Note`` field of a finding."
       },
       "RelatedFindings": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "The rule action will update the ``RelatedFindings`` field of a finding."
       },
       "Severity": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/38"
         },
         "flags": 0,
         "description": "The rule action will update the ``Severity`` field of a finding."
       },
       "Types": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "The rule action updates the ``Types`` field of a finding."
       },
       "UserDefinedFields": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/32"
         },
         "flags": 0,
         "description": "The rule action updates the ``UserDefinedFields`` field of a finding."
       },
       "VerificationState": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The rule action updates the ``VerificationState`` field of a finding."
       },
       "Workflow": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "The rule action will update the ``Workflow`` field of a finding."
@@ -94,245 +267,245 @@
     "properties": {
       "AwsAccountId": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The AWS-account ID in which a finding was generated.\n  Array Members: Minimum number of 1 item. Maximum number of 100 items."
       },
       "CompanyName": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "The name of the company for the product that generated the finding. For control-based findings, the company is AWS. \n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "ComplianceAssociatedStandardsId": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "The unique identifier of a standard in which a control is enabled. This field consists of the resource portion of the Amazon Resource Name (ARN) returned for a standard in the [DescribeStandards](https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_DescribeStandards.html) API response.\n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "ComplianceSecurityControlId": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/44"
         },
         "flags": 0,
         "description": "The security control ID for which a finding was generated. Security control IDs are the same across standards.\n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "ComplianceStatus": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "The result of a security check. This field is only used for findings generated from controls. \n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "Confidence": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "The likelihood that a finding accurately identifies the behavior or issue that it was intended to identify. ``Confidence`` is scored on a 0?100 basis using a ratio scale. A value of ``0`` means 0 percent confidence, and a value of ``100`` means 100 percent confidence. For example, a data exfiltration detection based on a statistical deviation of network traffic has low confidence because an actual exfiltration hasn't been verified. For more information, see [Confidence](https://docs.aws.amazon.com/securityhub/latest/userguide/asff-top-level-attributes.html#asff-confidence) in the *User Guide*.\n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/47"
         },
         "flags": 0,
         "description": "A timestamp that indicates when this finding record was created. \n For more information about the validation and formatting of timestamp fields in ASHlong, see [Timestamps](https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps).\n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "Criticality": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/48"
         },
         "flags": 0,
         "description": "The level of importance that is assigned to the resources that are associated with a finding. ``Criticality`` is scored on a 0?100 basis, using a ratio scale that supports only full integers. A score of ``0`` means that the underlying resources have no criticality, and a score of ``100`` is reserved for the most critical resources. For more information, see [Criticality](https://docs.aws.amazon.com/securityhub/latest/userguide/asff-top-level-attributes.html#asff-criticality) in the *User Guide*.\n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "Description": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": "A finding's description. \n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "FirstObservedAt": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "A timestamp that indicates when the potential security issue captured by a finding was first observed by the security findings product. \n For more information about the validation and formatting of timestamp fields in ASHlong, see [Timestamps](https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps).\n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "GeneratorId": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "The identifier for the solution-specific component that generated a finding. \n  Array Members: Minimum number of 1 item. Maximum number of 100 items."
       },
       "Id": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "The product-specific identifier for a finding. \n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "LastObservedAt": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "A timestamp that indicates when the security findings provider most recently observed a change in the resource that is involved in the finding. \n For more information about the validation and formatting of timestamp fields in ASHlong, see [Timestamps](https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps).\n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "NoteText": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/54"
         },
         "flags": 0,
         "description": "The text of a user-defined note that's added to a finding. \n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "NoteUpdatedAt": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/55"
         },
         "flags": 0,
         "description": "The timestamp of when the note was updated.\n For more information about the validation and formatting of timestamp fields in ASHlong, see [Timestamps](https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps).\n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "NoteUpdatedBy": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/56"
         },
         "flags": 0,
         "description": "The principal that created a note. \n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "ProductArn": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/57"
         },
         "flags": 0,
-        "description": "The Amazon Resource Name (ARN) for a third-party product that generated a finding in Security Hub. \n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
+        "description": "The Amazon Resource Name (ARN) for a third-party product that generated a finding in Security Hub CSPM. \n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "ProductName": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/58"
         },
         "flags": 0,
-        "description": "Provides the name of the product that generated the finding. For control-based findings, the product name is Security Hub. \n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
+        "description": "Provides the name of the product that generated the finding. For control-based findings, the product name is Security Hub CSPM. \n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "RecordState": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/59"
         },
         "flags": 0,
         "description": "Provides the current state of a finding. \n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "RelatedFindingsId": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/60"
         },
         "flags": 0,
         "description": "The product-generated identifier for a related finding. \n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "RelatedFindingsProductArn": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/61"
         },
         "flags": 0,
         "description": "The ARN for the product that generated a related finding. \n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "ResourceDetailsOther": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/62"
         },
         "flags": 0,
         "description": "Custom fields and values about the resource that a finding pertains to. \n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "ResourceId": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/63"
         },
         "flags": 0,
         "description": "The identifier for the given resource type. For AWS resources that are identified by Amazon Resource Names (ARNs), this is the ARN. For AWS resources that lack ARNs, this is the identifier as defined by the AWS-service that created the resource. For non-AWS resources, this is a unique identifier that is associated with the resource. \n  Array Members: Minimum number of 1 item. Maximum number of 100 items."
       },
       "ResourcePartition": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/64"
         },
         "flags": 0,
         "description": "The partition in which the resource that the finding pertains to is located. A partition is a group of AWS-Regions. Each AWS-account is scoped to one partition. \n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "ResourceRegion": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/65"
         },
         "flags": 0,
         "description": "The AWS-Region where the resource that a finding pertains to is located. \n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "ResourceTags": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/66"
         },
         "flags": 0,
         "description": "A list of AWS tags associated with a resource at the time the finding was processed. \n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "ResourceType": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/67"
         },
         "flags": 0,
         "description": "A finding's title. \n  Array Members: Minimum number of 1 item. Maximum number of 100 items."
       },
       "SeverityLabel": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/68"
         },
         "flags": 0,
         "description": "The severity value of the finding. \n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "SourceUrl": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": "Provides a URL that links to a page about the current finding in the finding product. \n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "Title": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/70"
         },
         "flags": 0,
         "description": "A finding's title. \n  Array Members: Minimum number of 1 item. Maximum number of 100 items."
       },
       "Type": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/71"
         },
         "flags": 0,
         "description": "One or more finding types in the format of namespace/category/classifier that classify a finding. For a list of namespaces, classifiers, and categories, see [Types taxonomy for ASFF](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-findings-format-type-taxonomy.html) in the *User Guide*.\n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/72"
         },
         "flags": 0,
         "description": "A timestamp that indicates when the finding record was most recently updated. \n For more information about the validation and formatting of timestamp fields in ASHlong, see [Timestamps](https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps).\n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "UserDefinedFields": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/73"
         },
         "flags": 0,
         "description": "A list of user-defined name and value string pairs added to a finding. \n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "VerificationState": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/74"
         },
         "flags": 0,
         "description": "Provides the veracity of a finding. \n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "WorkflowStatus": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/75"
         },
         "flags": 0,
         "description": "Provides information about the status of the investigation into a finding. \n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
@@ -345,7 +518,7 @@
     "properties": {
       "Value": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/76"
         },
         "flags": 1,
         "description": "The value of the boolean."
@@ -358,21 +531,21 @@
     "properties": {
       "DateRange": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/17"
         },
         "flags": 1,
         "description": "A date range for the date filter."
       },
       "End": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "A timestamp that provides the end date for the date filter.\n For more information about the validation and formatting of timestamp fields in ASHlong, see [Timestamps](https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps)."
       },
       "Start": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "A timestamp that provides the start date for the date filter.\n For more information about the validation and formatting of timestamp fields in ASHlong, see [Timestamps](https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps)."
@@ -385,14 +558,14 @@
     "properties": {
       "Unit": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "A date range unit for the date filter."
       },
       "Value": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/34"
         },
         "flags": 1,
         "description": "A date range value for the date filter."
@@ -410,21 +583,21 @@
     "properties": {
       "Comparison": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The condition to apply to the key value when filtering Security Hub findings with a map filter.\n To search for values that have the filter value, use one of the following comparison operators:\n  +  To search for values that include the filter value, use ``CONTAINS``. For example, for the ``ResourceTags`` field, the filter ``Department CONTAINS Security`` matches findings that include the value ``Security`` for the ``Department`` tag. In the same example, a finding with a value of ``Security team`` for the ``Department`` tag is a match.\n  +  To search for values that exactly match the filter value, use ``EQUALS``. For example, for the ``ResourceTags`` field, the filter ``Department EQUALS Security`` matches findings that have the value ``Security`` for the ``Department`` tag.\n  \n  ``CONTAINS`` and ``EQUALS`` filters on the same field are joined by ``OR``. A finding matches if it matches any one of those filters. For example, the filters ``Department CONTAINS Security OR Department CONTAINS Finance`` match a finding that includes either ``Security``, ``Finance``, or both values.\n To search for values that don't have the filter value, use one of the following comparison operators:\n  +  To search for values that exclude the filter value, use ``NOT_CONTAINS``. For example, for the ``ResourceTags`` field, the filter ``Department NOT_CONTAINS Finance`` matches findings that exclude the value ``Finance`` for the ``Department`` tag.\n  +  To search for values other than the filter value, use ``NOT_EQUALS``. For example, for the ``ResourceTags`` field, the filter ``Department NOT_EQUALS Finance`` matches findings that don?t have the value ``Finance`` for the ``Department`` tag.\n  \n  ``NOT_CONTAINS`` and ``NOT_EQUALS`` filters on the same field are joined by ``AND``. A finding matches only if it matches all of those filters. For example, the filters ``Department NOT_CONTAINS Security AND Department NOT_CONTAINS Finance`` match a finding that excludes both the ``Security`` and ``Finance`` values.\n  ``CONTAINS`` filters can only be used with other ``CONTAINS`` filters. ``NOT_CONTAINS`` filters can only be used with other ``NOT_CONTAINS`` filters.\n You can?t have both a ``CONTAINS`` filter and a ``NOT_CONTAINS`` filter on the same field. Similarly, you can?t have both an ``EQUALS`` filter and a ``NOT_EQUALS`` filter on the same field. Combining filters in this way returns an error. \n  ``CONTAINS`` and ``NOT_CONTAINS`` operators can be used only with automation rules. For more information, see [Automation rules](https://docs.aws.amazon.com/securityhub/latest/userguide/automation-rules.html) in the *User Guide*."
+        "description": "The condition to apply to the key value when filtering Security Hub CSPM findings with a map filter.\n To search for values that have the filter value, use one of the following comparison operators:\n  +  To search for values that include the filter value, use ``CONTAINS``. For example, for the ``ResourceTags`` field, the filter ``Department CONTAINS Security`` matches findings that include the value ``Security`` for the ``Department`` tag. In the same example, a finding with a value of ``Security team`` for the ``Department`` tag is a match.\n  +  To search for values that exactly match the filter value, use ``EQUALS``. For example, for the ``ResourceTags`` field, the filter ``Department EQUALS Security`` matches findings that have the value ``Security`` for the ``Department`` tag.\n  \n ``CONTAINS`` and ``EQUALS`` filters on the same field are joined by ``OR``. A finding matches if it matches any one of those filters. For example, the filters ``Department CONTAINS Security OR Department CONTAINS Finance`` match a finding that includes either ``Security``, ``Finance``, or both values.\n To search for values that don't have the filter value, use one of the following comparison operators:\n  +  To search for values that exclude the filter value, use ``NOT_CONTAINS``. For example, for the ``ResourceTags`` field, the filter ``Department NOT_CONTAINS Finance`` matches findings that exclude the value ``Finance`` for the ``Department`` tag.\n  +  To search for values other than the filter value, use ``NOT_EQUALS``. For example, for the ``ResourceTags`` field, the filter ``Department NOT_EQUALS Finance`` matches findings that don?t have the value ``Finance`` for the ``Department`` tag.\n  \n ``NOT_CONTAINS`` and ``NOT_EQUALS`` filters on the same field are joined by ``AND``. A finding matches only if it matches all of those filters. For example, the filters ``Department NOT_CONTAINS Security AND Department NOT_CONTAINS Finance`` match a finding that excludes both the ``Security`` and ``Finance`` values.\n ``CONTAINS`` filters can only be used with other ``CONTAINS`` filters. ``NOT_CONTAINS`` filters can only be used with other ``NOT_CONTAINS`` filters.\n You can?t have both a ``CONTAINS`` filter and a ``NOT_CONTAINS`` filter on the same field. Similarly, you can?t have both an ``EQUALS`` filter and a ``NOT_EQUALS`` filter on the same field. Combining filters in this way returns an error. \n ``CONTAINS`` and ``NOT_CONTAINS`` operators can be used only with automation rules. For more information, see [Automation rules](https://docs.aws.amazon.com/securityhub/latest/userguide/automation-rules.html) in the *User Guide*."
       },
       "Key": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The key of the map filter. For example, for ``ResourceTags``, ``Key`` identifies the name of the tag. For ``UserDefinedFields``, ``Key`` is the name of the field."
       },
       "Value": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The value for the key in the map filter. Filter values are case sensitive. For example, one of the values for a tag called ``Department`` might be ``Security``. If you provide ``security`` as the filter value, then there's no match."
@@ -442,14 +615,14 @@
     "properties": {
       "Text": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The updated note text."
       },
       "UpdatedBy": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/77"
         },
         "flags": 1,
         "description": "The principal that updated the note."
@@ -462,21 +635,21 @@
     "properties": {
       "Eq": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/34"
         },
         "flags": 1,
         "description": "The equal-to condition to be applied to a single field when querying for findings."
       },
       "Gte": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "The greater-than-equal condition to be applied to a single field when querying for findings."
       },
       "Lte": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "The less-than-equal condition to be applied to a single field when querying for findings."
@@ -489,14 +662,14 @@
     "properties": {
       "Id": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/78"
         },
         "flags": 1,
         "description": "The product-generated identifier for a related finding. \n  Array Members: Minimum number of 1 item. Maximum number of 20 items."
       },
       "ProductArn": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) for the product that generated a related finding."
@@ -509,21 +682,21 @@
     "properties": {
       "Label": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
-        "description": "The severity value of the finding. The allowed values are the following.\n  +   ``INFORMATIONAL`` - No issue was found.\n  +   ``LOW`` - The issue does not require action on its own.\n  +   ``MEDIUM`` - The issue must be addressed but not urgently.\n  +   ``HIGH`` - The issue must be addressed as a priority.\n  +   ``CRITICAL`` - The issue must be remediated immediately to avoid it escalating."
+        "description": "The severity value of the finding. The allowed values are the following.\n  +  ``INFORMATIONAL`` - No issue was found.\n  +  ``LOW`` - The issue does not require action on its own.\n  +  ``MEDIUM`` - The issue must be addressed but not urgently.\n  +  ``HIGH`` - The issue must be addressed as a priority.\n  +  ``CRITICAL`` - The issue must be remediated immediately to avoid it escalating."
       },
       "Normalized": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/34"
         },
         "flags": 0,
-        "description": "The normalized severity for the finding. This attribute is to be deprecated in favor of ``Label``.\n If you provide ``Normalized`` and don't provide ``Label``, ``Label`` is set automatically as follows.\n  +  0 - ``INFORMATIONAL`` \n  +  1?39 - ``LOW`` \n  +  40?69 - ``MEDIUM`` \n  +  70?89 - ``HIGH`` \n  +  90?100 - ``CRITICAL``"
+        "description": "The normalized severity for the finding. This attribute is to be deprecated in favor of ``Label``.\n If you provide ``Normalized`` and don't provide ``Label``, ``Label`` is set automatically as follows.\n  +  0 - ``INFORMATIONAL``\n  +  1?39 - ``LOW``\n  +  40?69 - ``MEDIUM``\n  +  70?89 - ``HIGH``\n  +  90?100 - ``CRITICAL``"
       },
       "Product": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "The native severity as defined by the AWS service or integrated partner product that generated the finding."
@@ -536,17 +709,17 @@
     "properties": {
       "Comparison": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The condition to apply to a string value when filtering Security Hub findings.\n To search for values that have the filter value, use one of the following comparison operators:\n  +  To search for values that include the filter value, use ``CONTAINS``. For example, the filter ``Title CONTAINS CloudFront`` matches findings that have a ``Title`` that includes the string CloudFront.\n  +  To search for values that exactly match the filter value, use ``EQUALS``. For example, the filter ``AwsAccountId EQUALS 123456789012`` only matches findings that have an account ID of ``123456789012``.\n  +  To search for values that start with the filter value, use ``PREFIX``. For example, the filter ``ResourceRegion PREFIX us`` matches findings that have a ``ResourceRegion`` that starts with ``us``. A ``ResourceRegion`` that starts with a different value, such as ``af``, ``ap``, or ``ca``, doesn't match.\n  \n  ``CONTAINS``, ``EQUALS``, and ``PREFIX`` filters on the same field are joined by ``OR``. A finding matches if it matches any one of those filters. For example, the filters ``Title CONTAINS CloudFront OR Title CONTAINS CloudWatch`` match a finding that includes either ``CloudFront``, ``CloudWatch``, or both strings in the title.\n To search for values that don?t have the filter value, use one of the following comparison operators:\n  +  To search for values that exclude the filter value, use ``NOT_CONTAINS``. For example, the filter ``Title NOT_CONTAINS CloudFront`` matches findings that have a ``Title`` that excludes the string CloudFront.\n  +  To search for values other than the filter value, use ``NOT_EQUALS``. For example, the filter ``AwsAccountId NOT_EQUALS 123456789012`` only matches findings that have an account ID other than ``123456789012``.\n  +  To search for values that don't start with the filter value, use ``PREFIX_NOT_EQUALS``. For example, the filter ``ResourceRegion PREFIX_NOT_EQUALS us`` matches findings with a ``ResourceRegion`` that starts with a value other than ``us``.\n  \n  ``NOT_CONTAINS``, ``NOT_EQUALS``, and ``PREFIX_NOT_EQUALS`` filters on the same field are joined by ``AND``. A finding matches only if it matches all of those filters. For example, the filters ``Title NOT_CONTAINS CloudFront AND Title NOT_CONTAINS CloudWatch`` match a finding that excludes both ``CloudFront`` and ``CloudWatch`` in the title.\n You can?t have both a ``CONTAINS`` filter and a ``NOT_CONTAINS`` filter on the same field. Similarly, you can't provide both an ``EQUALS`` filter and a ``NOT_EQUALS`` or ``PREFIX_NOT_EQUALS`` filter on the same field. Combining filters in this way returns an error. ``CONTAINS`` filters can only be used with other ``CONTAINS`` filters. ``NOT_CONTAINS`` filters can only be used with other ``NOT_CONTAINS`` filters. \n You can combine ``PREFIX`` filters with ``NOT_EQUALS`` or ``PREFIX_NOT_EQUALS`` filters for the same field. Security Hub first processes the ``PREFIX`` filters, and then the ``NOT_EQUALS`` or ``PREFIX_NOT_EQUALS`` filters.\n For example, for the following filters, Security Hub first identifies findings that have resource types that start with either ``AwsIam`` or ``AwsEc2``. It then excludes findings that have a resource type of ``AwsIamPolicy`` and findings that have a resource type of ``AwsEc2NetworkInterface``.\n  +   ``ResourceType PREFIX AwsIam`` \n  +   ``ResourceType PREFIX AwsEc2`` \n  +   ``ResourceType NOT_EQUALS AwsIamPolicy`` \n  +   ``ResourceType NOT_EQUALS AwsEc2NetworkInterface`` \n  \n  ``CONTAINS`` and ``NOT_CONTAINS`` operators can be used only with automation rules. For more information, see [Automation rules](https://docs.aws.amazon.com/securityhub/latest/userguide/automation-rules.html) in the *User Guide*."
+        "description": "The condition to apply to a string value when filtering Security Hub CSPM findings.\n To search for values that have the filter value, use one of the following comparison operators:\n  +  To search for values that include the filter value, use ``CONTAINS``. For example, the filter ``Title CONTAINS CloudFront`` matches findings that have a ``Title`` that includes the string CloudFront.\n  +  To search for values that exactly match the filter value, use ``EQUALS``. For example, the filter ``AwsAccountId EQUALS 123456789012`` only matches findings that have an account ID of ``123456789012``.\n  +  To search for values that start with the filter value, use ``PREFIX``. For example, the filter ``ResourceRegion PREFIX us`` matches findings that have a ``ResourceRegion`` that starts with ``us``. A ``ResourceRegion`` that starts with a different value, such as ``af``, ``ap``, or ``ca``, doesn't match.\n  \n ``CONTAINS``, ``EQUALS``, and ``PREFIX`` filters on the same field are joined by ``OR``. A finding matches if it matches any one of those filters. For example, the filters ``Title CONTAINS CloudFront OR Title CONTAINS CloudWatch`` match a finding that includes either ``CloudFront``, ``CloudWatch``, or both strings in the title.\n To search for values that don?t have the filter value, use one of the following comparison operators:\n  +  To search for values that exclude the filter value, use ``NOT_CONTAINS``. For example, the filter ``Title NOT_CONTAINS CloudFront`` matches findings that have a ``Title`` that excludes the string CloudFront.\n  +  To search for values other than the filter value, use ``NOT_EQUALS``. For example, the filter ``AwsAccountId NOT_EQUALS 123456789012`` only matches findings that have an account ID other than ``123456789012``.\n  +  To search for values that don't start with the filter value, use ``PREFIX_NOT_EQUALS``. For example, the filter ``ResourceRegion PREFIX_NOT_EQUALS us`` matches findings with a ``ResourceRegion`` that starts with a value other than ``us``.\n  \n ``NOT_CONTAINS``, ``NOT_EQUALS``, and ``PREFIX_NOT_EQUALS`` filters on the same field are joined by ``AND``. A finding matches only if it matches all of those filters. For example, the filters ``Title NOT_CONTAINS CloudFront AND Title NOT_CONTAINS CloudWatch`` match a finding that excludes both ``CloudFront`` and ``CloudWatch`` in the title.\n You can?t have both a ``CONTAINS`` filter and a ``NOT_CONTAINS`` filter on the same field. Similarly, you can't provide both an ``EQUALS`` filter and a ``NOT_EQUALS`` or ``PREFIX_NOT_EQUALS`` filter on the same field. Combining filters in this way returns an error. ``CONTAINS`` filters can only be used with other ``CONTAINS`` filters. ``NOT_CONTAINS`` filters can only be used with other ``NOT_CONTAINS`` filters. \n You can combine ``PREFIX`` filters with ``NOT_EQUALS`` or ``PREFIX_NOT_EQUALS`` filters for the same field. Security Hub CSPM first processes the ``PREFIX`` filters, and then the ``NOT_EQUALS`` or ``PREFIX_NOT_EQUALS`` filters.\n For example, for the following filters, Security Hub CSPM first identifies findings that have resource types that start with either ``AwsIam`` or ``AwsEc2``. It then excludes findings that have a resource type of ``AwsIamPolicy`` and findings that have a resource type of ``AwsEc2NetworkInterface``.\n  +   ``ResourceType PREFIX AwsIam`` \n  +   ``ResourceType PREFIX AwsEc2`` \n  +   ``ResourceType NOT_EQUALS AwsIamPolicy`` \n  +   ``ResourceType NOT_EQUALS AwsEc2NetworkInterface`` \n  \n The ``CONTAINS`` operator works with automation rules V1 and V2. The ``NOT_CONTAINS`` operator works only with automation rules V1. The ``CONTAINS_WORD`` operator works only in the ``GetFindingsV2``, ``GetFindingStatisticsV2``, ``GetResourcesV2``, and ``GetResourcesStatisticsV2`` APIs. For more information, see [Automation rules](https://docs.aws.amazon.com/securityhub/latest/userguide/automation-rules.html) in the *User Guide*."
       },
       "Value": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The string filter value. Filter values are case sensitive. For example, the product name for control-based findings is ``Security Hub``. If you provide ``security hub`` as the filter value, there's no match."
+        "description": "The string filter value. Filter values are case sensitive. For example, the product name for control-based findings is ``Security Hub CSPM``. If you provide ``security hub`` as the filter value, there's no match."
       }
     }
   },
@@ -566,10 +739,10 @@
     "properties": {
       "Status": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The status of the investigation into the finding. The workflow status is specific to an individual finding. It does not affect the generation of new findings. For example, setting the workflow status to ``SUPPRESSED`` or ``RESOLVED`` does not prevent a new finding for the same issue.\n The allowed values are the following.\n  +   ``NEW`` - The initial state of a finding, before it is reviewed.\n Security Hub also resets ``WorkFlowStatus`` from ``NOTIFIED`` or ``RESOLVED`` to ``NEW`` in the following cases:\n  +  The record state changes from ``ARCHIVED`` to ``ACTIVE``.\n  +  The compliance status changes from ``PASSED`` to either ``WARNING``, ``FAILED``, or ``NOT_AVAILABLE``.\n  \n  +   ``NOTIFIED`` - Indicates that you notified the resource owner about the security issue. Used when the initial reviewer is not the resource owner, and needs intervention from the resource owner.\n  +   ``RESOLVED`` - The finding was reviewed and remediated and is now considered resolved.\n  +   ``SUPPRESSED`` - Indicates that you reviewed the finding and don't believe that any action is needed. The finding is no longer updated."
+        "description": "The status of the investigation into the finding. The workflow status is specific to an individual finding. It does not affect the generation of new findings. For example, setting the workflow status to ``SUPPRESSED`` or ``RESOLVED`` does not prevent a new finding for the same issue.\n The allowed values are the following.\n  +  ``NEW`` - The initial state of a finding, before it is reviewed.\n Security Hub CSPM also resets ``WorkFlowStatus`` from ``NOTIFIED`` or ``RESOLVED`` to ``NEW`` in the following cases:\n  +  The record state changes from ``ARCHIVED`` to ``ACTIVE``.\n  +  The compliance status changes from ``PASSED`` to either ``WARNING``, ``FAILED``, or ``NOT_AVAILABLE``.\n  \n  +  ``NOTIFIED`` - Indicates that you notified the resource owner about the security issue. Used when the initial reviewer is not the resource owner, and needs intervention from the resource owner.\n  +  ``RESOLVED`` - The finding was reviewed and remediated and is now considered resolved.\n  +  ``SUPPRESSED`` - Indicates that you reviewed the finding and don't believe that any action is needed. The finding is no longer updated."
       }
     }
   },
@@ -599,9 +772,6 @@
     "properties": {}
   },
   {
-    "$type": "StringType"
-  },
-  {
     "$type": "IntegerType"
   },
   {
@@ -615,14 +785,14 @@
     "properties": {
       "Text": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The updated note text."
       },
       "UpdatedBy": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/35"
         },
         "flags": 1,
         "description": "The principal that updated the note."
@@ -632,7 +802,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/23"
     }
   },
   {
@@ -641,21 +811,21 @@
     "properties": {
       "Label": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
-        "description": "The severity value of the finding. The allowed values are the following.\n  +   ``INFORMATIONAL`` - No issue was found.\n  +   ``LOW`` - The issue does not require action on its own.\n  +   ``MEDIUM`` - The issue must be addressed but not urgently.\n  +   ``HIGH`` - The issue must be addressed as a priority.\n  +   ``CRITICAL`` - The issue must be remediated immediately to avoid it escalating."
+        "description": "The severity value of the finding. The allowed values are the following.\n  +  ``INFORMATIONAL`` - No issue was found.\n  +  ``LOW`` - The issue does not require action on its own.\n  +  ``MEDIUM`` - The issue must be addressed but not urgently.\n  +  ``HIGH`` - The issue must be addressed as a priority.\n  +  ``CRITICAL`` - The issue must be remediated immediately to avoid it escalating."
       },
       "Normalized": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/34"
         },
         "flags": 0,
-        "description": "The normalized severity for the finding. This attribute is to be deprecated in favor of ``Label``.\n If you provide ``Normalized`` and don't provide ``Label``, ``Label`` is set automatically as follows.\n  +  0 - ``INFORMATIONAL`` \n  +  1?39 - ``LOW`` \n  +  40?69 - ``MEDIUM`` \n  +  70?89 - ``HIGH`` \n  +  90?100 - ``CRITICAL``"
+        "description": "The normalized severity for the finding. This attribute is to be deprecated in favor of ``Label``.\n If you provide ``Normalized`` and don't provide ``Label``, ``Label`` is set automatically as follows.\n  +  0 - ``INFORMATIONAL``\n  +  1?39 - ``LOW``\n  +  40?69 - ``MEDIUM``\n  +  70?89 - ``HIGH``\n  +  90?100 - ``CRITICAL``"
       },
       "Product": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "The native severity as defined by the AWS service or integrated partner product that generated the finding."
@@ -665,7 +835,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/1"
     }
   },
   {
@@ -674,221 +844,221 @@
     "properties": {
       "Status": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
-        "description": "The status of the investigation into the finding. The workflow status is specific to an individual finding. It does not affect the generation of new findings. For example, setting the workflow status to ``SUPPRESSED`` or ``RESOLVED`` does not prevent a new finding for the same issue.\n The allowed values are the following.\n  +   ``NEW`` - The initial state of a finding, before it is reviewed.\n Security Hub also resets ``WorkFlowStatus`` from ``NOTIFIED`` or ``RESOLVED`` to ``NEW`` in the following cases:\n  +  The record state changes from ``ARCHIVED`` to ``ACTIVE``.\n  +  The compliance status changes from ``PASSED`` to either ``WARNING``, ``FAILED``, or ``NOT_AVAILABLE``.\n  \n  +   ``NOTIFIED`` - Indicates that you notified the resource owner about the security issue. Used when the initial reviewer is not the resource owner, and needs intervention from the resource owner.\n  +   ``RESOLVED`` - The finding was reviewed and remediated and is now considered resolved.\n  +   ``SUPPRESSED`` - Indicates that you reviewed the finding and don't believe that any action is needed. The finding is no longer updated."
+        "description": "The status of the investigation into the finding. The workflow status is specific to an individual finding. It does not affect the generation of new findings. For example, setting the workflow status to ``SUPPRESSED`` or ``RESOLVED`` does not prevent a new finding for the same issue.\n The allowed values are the following.\n  +  ``NEW`` - The initial state of a finding, before it is reviewed.\n Security Hub CSPM also resets ``WorkFlowStatus`` from ``NOTIFIED`` or ``RESOLVED`` to ``NEW`` in the following cases:\n  +  The record state changes from ``ARCHIVED`` to ``ACTIVE``.\n  +  The compliance status changes from ``PASSED`` to either ``WARNING``, ``FAILED``, or ``NOT_AVAILABLE``.\n  \n  +  ``NOTIFIED`` - Indicates that you notified the resource owner about the security issue. Used when the initial reviewer is not the resource owner, and needs intervention from the resource owner.\n  +  ``RESOLVED`` - The finding was reviewed and remediated and is now considered resolved.\n  +  ``SUPPRESSED`` - Indicates that you reviewed the finding and don't believe that any action is needed. The finding is no longer updated."
       }
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/25"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/25"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/25"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/25"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/25"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/10"
+      "$ref": "#/22"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/16"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/10"
+      "$ref": "#/22"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/25"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/16"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/25"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/25"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/16"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/25"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/16"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/25"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/25"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/25"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/25"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/25"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/25"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/7"
+      "$ref": "#/19"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/25"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/25"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/25"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/7"
+      "$ref": "#/19"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/25"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/25"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/25"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/25"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/25"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/16"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/7"
+      "$ref": "#/19"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/25"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/25"
     }
   },
   {
@@ -911,7 +1081,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/0"
+      "$ref": "#/12"
     }
   },
   {
@@ -920,84 +1090,84 @@
     "properties": {
       "Actions": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/80"
         },
         "flags": 1,
         "description": "One or more actions to update finding fields if a finding matches the conditions specified in ``Criteria``."
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": ""
       },
       "CreatedBy": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": ""
       },
       "Criteria": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/14"
         },
         "flags": 1,
         "description": "A set of [Security Finding Format (ASFF)](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-findings-format.html) finding field attributes and corresponding expected values that ASH uses to filter findings. If a rule is enabled and a finding matches the criteria specified in this parameter, ASH applies the rule action to the finding."
       },
       "Description": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "A description of the rule."
       },
       "IsTerminal": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/76"
         },
         "flags": 0,
-        "description": "Specifies whether a rule is the last to be applied with respect to a finding that matches the rule criteria. This is useful when a finding matches the criteria for multiple rules, and each rule has different actions. If a rule is terminal, Security Hub applies the rule action to a finding that matches the rule criteria and doesn't evaluate other rules for the finding. By default, a rule isn't terminal."
+        "description": "Specifies whether a rule is the last to be applied with respect to a finding that matches the rule criteria. This is useful when a finding matches the criteria for multiple rules, and each rule has different actions. If a rule is terminal, Security Hub CSPM applies the rule action to a finding that matches the rule criteria and doesn't evaluate other rules for the finding. By default, a rule isn't terminal."
       },
       "RuleArn": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": ""
       },
       "RuleName": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name of the rule."
       },
       "RuleOrder": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/34"
         },
         "flags": 1,
-        "description": "An integer ranging from 1 to 1000 that represents the order in which the rule action is applied to findings. Security Hub applies rules with lower values for this parameter first."
+        "description": "An integer ranging from 1 to 1000 that represents the order in which the rule action is applied to findings. Security Hub CSPM applies rules with lower values for this parameter first."
       },
       "RuleStatus": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Whether the rule is active after it is created. If this parameter is equal to ``ENABLED``, ASH applies the rule to findings and finding updates after the rule is created."
       },
       "Tags": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "User-defined tags associated with an automation rule."
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": ""
@@ -1010,21 +1180,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/81"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1034,11 +1204,560 @@
   {
     "$type": "ResourceType",
     "name": "AWS.SecurityHub/AutomationRule@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/71"
+      "$ref": "#/82"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AllowedOperators",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AutomationRulesActionV2",
+    "properties": {
+      "ExternalIntegrationConfiguration": {
+        "type": {
+          "$ref": "#/92"
+        },
+        "flags": 0
+      },
+      "FindingFieldsUpdate": {
+        "type": {
+          "$ref": "#/86"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The category of action to be executed by the automation rule"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AutomationRulesFindingFieldsUpdateV2",
+    "properties": {
+      "Comment": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Notes or contextual information for findings that are modified by the automation rule"
+      },
+      "SeverityId": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0,
+        "description": "The severity level to be assigned to findings that match the automation rule criteria"
+      },
+      "StatusId": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0,
+        "description": "The status to be applied to findings that match automation rule criteria"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BooleanFilter",
+    "properties": {
+      "Value": {
+        "type": {
+          "$ref": "#/76"
+        },
+        "flags": 1,
+        "description": "The value of the boolean"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CompositeFilter",
+    "properties": {
+      "BooleanFilters": {
+        "type": {
+          "$ref": "#/105"
+        },
+        "flags": 0,
+        "description": "Enables filtering based on boolean field values"
+      },
+      "DateFilters": {
+        "type": {
+          "$ref": "#/106"
+        },
+        "flags": 0,
+        "description": "Enables filtering based on date and timestamp fields"
+      },
+      "MapFilters": {
+        "type": {
+          "$ref": "#/107"
+        },
+        "flags": 0,
+        "description": "Enables filtering based on map field value"
+      },
+      "NumberFilters": {
+        "type": {
+          "$ref": "#/108"
+        },
+        "flags": 0,
+        "description": "Enables filtering based on numerical field values"
+      },
+      "Operator": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "StringFilters": {
+        "type": {
+          "$ref": "#/109"
+        },
+        "flags": 0,
+        "description": "Enables filtering based on string field values"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Criteria",
+    "properties": {
+      "OcsfFindingCriteria": {
+        "type": {
+          "$ref": "#/98"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DateFilter",
+    "properties": {
+      "DateRange": {
+        "type": {
+          "$ref": "#/91"
+        },
+        "flags": 0
+      },
+      "End": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Start": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DateRange",
+    "properties": {
+      "Unit": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "A date range unit for the date filter"
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 1,
+        "description": "A date range value for the date filter"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ExternalIntegrationConfiguration",
+    "properties": {
+      "ConnectorArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ARN of the connector that establishes the integration"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ISO8601DateString",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MapFilter",
+    "properties": {
+      "Comparison": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The condition to apply to the key value when filtering findings with a map filter"
+      },
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key of the map filter"
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the key in the map filter"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NumberFilter",
+    "properties": {
+      "Eq": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0,
+        "description": "The equal-to condition to be applied to a single field when querying for findings"
+      },
+      "Gte": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0,
+        "description": "The greater-than-equal condition to be applied to a single field when querying for findings"
+      },
+      "Lte": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0,
+        "description": "The less-than-equal condition to be applied to a single field when querying for findings"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OcsfBooleanFilter",
+    "properties": {
+      "FieldName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the field"
+      },
+      "Filter": {
+        "type": {
+          "$ref": "#/87"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OcsfDateFilter",
+    "properties": {
+      "FieldName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the field"
+      },
+      "Filter": {
+        "type": {
+          "$ref": "#/90"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OcsfFindingFilters",
+    "properties": {
+      "CompositeFilters": {
+        "type": {
+          "$ref": "#/110"
+        },
+        "flags": 0,
+        "description": "Enables the creation of complex filtering conditions by combining filter"
+      },
+      "CompositeOperator": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OcsfMapFilter",
+    "properties": {
+      "FieldName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the field"
+      },
+      "Filter": {
+        "type": {
+          "$ref": "#/94"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OcsfNumberFilter",
+    "properties": {
+      "FieldName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the field"
+      },
+      "Filter": {
+        "type": {
+          "$ref": "#/95"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OcsfStringField",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OcsfStringFilter",
+    "properties": {
+      "FieldName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Filter": {
+        "type": {
+          "$ref": "#/103"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StringFilter",
+    "properties": {
+      "Comparison": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The condition to apply to a string value when filtering findings"
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The string filter value"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/96"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/97"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/99"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/100"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/102"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/88"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SecurityHub/AutomationRuleV2Properties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/85"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityHub/AutomationRuleV2Properties",
+    "properties": {
+      "Actions": {
+        "type": {
+          "$ref": "#/112"
+        },
+        "flags": 1,
+        "description": "A list of actions to be performed when the rule criteria is met"
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      },
+      "Criteria": {
+        "type": {
+          "$ref": "#/89"
+        },
+        "flags": 1
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "A description of the automation rule"
+      },
+      "RuleArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The ARN of the automation rule"
+      },
+      "RuleId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ID of the automation rule"
+      },
+      "RuleName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the automation rule"
+      },
+      "RuleOrder": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 1,
+        "description": "The value for the rule priority"
+      },
+      "RuleStatus": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The status of the automation rule"
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/104"
+        },
+        "flags": 0
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityHub/AutomationRuleV2",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/113"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SecurityHub/AutomationRuleV2@default",
+    "body": {
+      "$ref": "#/114"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1046,13 +1765,13 @@
     "properties": {
       "Value": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/117"
         },
         "flags": 0
       },
       "ValueType": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "Identifies whether a control parameter uses a custom user-defined value or subscribes to the default AWS Security Hub behavior."
@@ -1065,56 +1784,56 @@
     "properties": {
       "Boolean": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/76"
         },
         "flags": 0,
         "description": "A control parameter that is a boolean."
       },
       "Double": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "A control parameter that is a double."
       },
       "Enum": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "A control parameter that is an enum."
       },
       "EnumList": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/123"
         },
         "flags": 0,
         "description": "A control parameter that is a list of enums."
       },
       "Integer": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "A control parameter that is an integer."
       },
       "IntegerList": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/124"
         },
         "flags": 0,
         "description": "A control parameter that is a list of integers."
       },
       "String": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "A control parameter that is a string."
       },
       "StringList": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/125"
         },
         "flags": 0,
         "description": "A control parameter that is a list of strings."
@@ -1127,7 +1846,7 @@
     "properties": {
       "SecurityHub": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/121"
         },
         "flags": 0
       }
@@ -1139,14 +1858,14 @@
     "properties": {
       "Parameters": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/126"
         },
         "flags": 0,
         "description": "An object that specifies parameter values for a control in a configuration policy."
       },
       "SecurityControlId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The ID of the security control."
@@ -1159,21 +1878,21 @@
     "properties": {
       "DisabledSecurityControlIdentifiers": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/127"
         },
         "flags": 0,
         "description": "A list of security controls that are disabled in the configuration policy"
       },
       "EnabledSecurityControlIdentifiers": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/128"
         },
         "flags": 0,
         "description": "A list of security controls that are enabled in the configuration policy."
       },
       "SecurityControlCustomParameters": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/129"
         },
         "flags": 0,
         "description": "A list of security controls and control parameter values that are included in a configuration policy."
@@ -1186,20 +1905,20 @@
     "properties": {
       "EnabledStandardIdentifiers": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/130"
         },
         "flags": 0,
         "description": "A list that defines which security standards are enabled in the configuration policy."
       },
       "SecurityControlsConfiguration": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/120"
         },
         "flags": 0
       },
       "ServiceEnabled": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/76"
         },
         "flags": 0,
         "description": "Indicates whether Security Hub is enabled in the policy."
@@ -1214,19 +1933,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/34"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/1"
     }
   },
   {
@@ -1237,25 +1956,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/76"
+      "$ref": "#/119"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/1"
     }
   },
   {
@@ -1268,61 +1987,61 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the configuration policy."
       },
       "ConfigurationPolicy": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/118"
         },
         "flags": 1
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The date and time, in UTC and ISO 8601 format."
       },
       "Description": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The description of the configuration policy."
       },
       "Id": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The universally unique identifier (UUID) of the configuration policy."
       },
       "Name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name of the configuration policy."
       },
       "ServiceEnabled": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/76"
         },
         "flags": 2,
         "description": "Indicates whether the service that the configuration policy applies to is enabled in the policy."
       },
       "Tags": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/122"
         },
         "flags": 0
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The date and time, in UTC and ISO 8601 format."
@@ -1335,21 +2054,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/132"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1359,11 +2078,561 @@
   {
     "$type": "ResourceType",
     "name": "AWS.SecurityHub/ConfigurationPolicy@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/90"
+      "$ref": "#/133"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AzureProviderConfiguration",
+    "properties": {
+      "AWSConfigConnectorArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The ARN of the multi-cloud configuration connector used to establish the connection to Azure."
+      },
+      "AzureRegions": {
+        "type": {
+          "$ref": "#/144"
+        },
+        "flags": 1,
+        "description": "The list of Azure regions to monitor."
+      },
+      "ScopeConfiguration": {
+        "type": {
+          "$ref": "#/136"
+        },
+        "flags": 1,
+        "description": "The scope configuration that defines which Azure resources are monitored."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AzureScopeConfiguration",
+    "properties": {
+      "ScopeType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The type of scope. Valid values are ``tenant`` and ``subscription``."
+      },
+      "ScopeValues": {
+        "type": {
+          "$ref": "#/145"
+        },
+        "flags": 0,
+        "description": "The list of scope values, such as subscription IDs, when the scope type is ``subscription``."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectorStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EnablementStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "HealthIssue",
+    "properties": {
+      "Code": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The error code that identifies the type of health issue."
+      },
+      "Message": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "A human-readable message that describes the health issue."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "HealthIssueCode",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ISO8601DateString",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Provider",
+    "properties": {
+      "Azure": {
+        "type": {
+          "$ref": "#/135"
+        },
+        "flags": 1,
+        "description": ""
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SecurityHub/ConnectorProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/139"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityHub/ConnectorProperties",
+    "properties": {
+      "ConnectorArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": ""
+      },
+      "ConnectorId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": ""
+      },
+      "ConnectorStatus": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": ""
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": ""
+      },
+      "CreatedBy": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": ""
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The description of the connector."
+      },
+      "EnablementStatus": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": ""
+      },
+      "Issues": {
+        "type": {
+          "$ref": "#/147"
+        },
+        "flags": 2,
+        "description": ""
+      },
+      "LastCheckedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": ""
+      },
+      "LastUpdatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": ""
+      },
+      "Message": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": ""
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the connector."
+      },
+      "Provider": {
+        "type": {
+          "$ref": "#/142"
+        },
+        "flags": 1,
+        "description": ""
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/143"
+        },
+        "flags": 0,
+        "description": ""
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityHub/Connector",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/148"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SecurityHub/Connector@default",
+    "body": {
+      "$ref": "#/149"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AuthStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AzureProviderConfiguration",
+    "properties": {
+      "AWSConfigConnectorArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The ARN of the AWS Config connector used for the Azure integration"
+      },
+      "AzureRegions": {
+        "type": {
+          "$ref": "#/160"
+        },
+        "flags": 1,
+        "description": "The list of Azure regions to include in the connector scope"
+      },
+      "ScopeConfiguration": {
+        "type": {
+          "$ref": "#/153"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AzureScopeConfiguration",
+    "properties": {
+      "ScopeType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The scope type for the Azure connector"
+      },
+      "ScopeValues": {
+        "type": {
+          "$ref": "#/161"
+        },
+        "flags": 0,
+        "description": "The list of scope values for the Azure connector"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "HealthIssue",
+    "properties": {
+      "Code": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The code identifying the type of health issue"
+      },
+      "Message": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The message describing the health issue"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ISO8601DateString",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JiraCloudProviderConfiguration",
+    "properties": {
+      "ProjectKey": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The project key for a Jira Cloud instance"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Provider",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceNowProviderConfiguration",
+    "properties": {
+      "InstanceName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The instance name of ServiceNow ITSM"
+      },
+      "SecretArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the AWS Secrets Manager secret that contains the ServiceNow credentials"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SecurityHub/ConnectorV2Properties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/154"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityHub/ConnectorV2Properties",
+    "properties": {
+      "ConnectorArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The ARN of the connector"
+      },
+      "ConnectorId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ID of the connector"
+      },
+      "ConnectorStatus": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The status of the connector"
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A description of the connector"
+      },
+      "EnablementStatus": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The enablement status of the connector"
+      },
+      "EnablementStatusReason": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The reason for the enablement status of the connector"
+      },
+      "Issues": {
+        "type": {
+          "$ref": "#/163"
+        },
+        "flags": 2,
+        "description": "The list of health issues associated with the connector"
+      },
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ARN of KMS key used for the connector"
+      },
+      "LastCheckedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      },
+      "LastUpdatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      },
+      "Message": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The message of the connector status change"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the connector"
+      },
+      "Provider": {
+        "type": {
+          "$ref": "#/157"
+        },
+        "flags": 1
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/159"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityHub/ConnectorV2",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/164"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SecurityHub/ConnectorV2@default",
+    "body": {
+      "$ref": "#/165"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1377,7 +2646,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/1"
     }
   },
   {
@@ -1386,28 +2655,28 @@
     "properties": {
       "FindingAggregationRegion": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": ""
       },
       "FindingAggregatorArn": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": ""
       },
       "RegionLinkingMode": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
-        "description": "Indicates whether to aggregate findings from all of the available Regions in the current partition. Also determines whether to automatically aggregate findings from new Regions as Security Hub supports them and you opt into them.\n The selected option also determines how to use the Regions provided in the Regions list.\n In CFN, the options for this property are as follows:\n  +   ``ALL_REGIONS`` - Indicates to aggregate findings from all of the Regions where Security Hub is enabled. When you choose this option, Security Hub also automatically aggregates findings from new Regions as Security Hub supports them and you opt into them. \n  +   ``ALL_REGIONS_EXCEPT_SPECIFIED`` - Indicates to aggregate findings from all of the Regions where Security Hub is enabled, except for the Regions listed in the ``Regions`` parameter. When you choose this option, Security Hub also automatically aggregates findings from new Regions as Security Hub supports them and you opt into them. \n  +   ``SPECIFIED_REGIONS`` - Indicates to aggregate findings only from the Regions listed in the ``Regions`` parameter. Security Hub does not automatically aggregate findings from new Regions."
+        "description": "Indicates whether to aggregate findings from all of the available Regions in the current partition. Also determines whether to automatically aggregate findings from new Regions as Security Hub supports them and you opt into them.\n The selected option also determines how to use the Regions provided in the Regions list.\n In CFN, the options for this property are as follows:\n  +  ``ALL_REGIONS`` - Indicates to aggregate findings from all of the Regions where Security Hub is enabled. When you choose this option, Security Hub also automatically aggregates findings from new Regions as Security Hub supports them and you opt into them. \n  +  ``ALL_REGIONS_EXCEPT_SPECIFIED`` - Indicates to aggregate findings from all of the Regions where Security Hub is enabled, except for the Regions listed in the ``Regions`` parameter. When you choose this option, Security Hub also automatically aggregates findings from new Regions as Security Hub supports them and you opt into them. \n  +  ``SPECIFIED_REGIONS`` - Indicates to aggregate findings only from the Regions listed in the ``Regions`` parameter. Security Hub does not automatically aggregate findings from new Regions."
       },
       "Regions": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/169"
         },
         "flags": 0,
         "description": "If ``RegionLinkingMode`` is ``ALL_REGIONS_EXCEPT_SPECIFIED``, then this is a space-separated list of Regions that do not aggregate findings to the aggregation Region.\n If ``RegionLinkingMode`` is ``SPECIFIED_REGIONS``, then this is a space-separated list of Regions that do aggregate findings to the aggregation Region."
@@ -1420,21 +2689,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/170"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1444,11 +2713,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.SecurityHub/FindingAggregator@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/96"
+      "$ref": "#/171"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1465,42 +2734,42 @@
     "properties": {
       "ARN": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "An ARN is automatically created for the customer."
       },
       "AutoEnableControls": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/76"
         },
         "flags": 0,
         "description": "Whether to automatically enable new controls when they are added to standards that are enabled"
       },
       "ControlFindingGenerator": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "This field, used when enabling Security Hub, specifies whether the calling account has consolidated control findings turned on. If the value for this field is set to SECURITY_CONTROL, Security Hub generates a single finding for a control check even when the check applies to multiple enabled standards.  If the value for this field is set to STANDARD_CONTROL, Security Hub generates separate findings for a control check when the check applies to multiple enabled standards."
       },
       "EnableDefaultStandards": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/76"
         },
         "flags": 4,
         "description": "Whether to enable the security standards that Security Hub has designated as automatically enabled."
       },
       "SubscribedAt": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The date and time when Security Hub was enabled in the account."
       },
       "Tags": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/173"
         },
         "flags": 0
       }
@@ -1512,21 +2781,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/175"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1536,11 +2805,105 @@
   {
     "$type": "ResourceType",
     "name": "AWS.SecurityHub/Hub@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/101"
+      "$ref": "#/176"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ISO8601DateString",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NetworkScanning",
+    "properties": {
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Whether the Network Scanning feature is enabled for this account and Region."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tags",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SecurityHub/HubV2Properties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityHub/HubV2Properties",
+    "properties": {
+      "HubV2Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name of the Security Hub V2 resource."
+      },
+      "NetworkScanning": {
+        "type": {
+          "$ref": "#/179"
+        },
+        "flags": 0
+      },
+      "SubscribedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/180"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityHub/HubV2",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/182"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SecurityHub/HubV2@default",
+    "body": {
+      "$ref": "#/183"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1548,728 +2911,728 @@
     "properties": {
       "AwsAccountId": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/197"
         },
         "flags": 0,
         "description": "The AWS account ID in which a finding is generated."
       },
       "AwsAccountName": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/198"
         },
         "flags": 0,
         "description": "The name of the AWS account in which a finding is generated."
       },
       "CompanyName": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/199"
         },
         "flags": 0,
         "description": "The name of the findings provider (company) that owns the solution (product) that generates findings."
       },
       "ComplianceAssociatedStandardsId": {
         "type": {
-          "$ref": "#/118"
+          "$ref": "#/200"
         },
         "flags": 0,
         "description": "The unique identifier of a standard in which a control is enabled."
       },
       "ComplianceSecurityControlId": {
         "type": {
-          "$ref": "#/119"
+          "$ref": "#/201"
         },
         "flags": 0,
         "description": "The unique identifier of a control across standards."
       },
       "ComplianceSecurityControlParametersName": {
         "type": {
-          "$ref": "#/120"
+          "$ref": "#/202"
         },
         "flags": 0,
         "description": "The name of a security control parameter."
       },
       "ComplianceSecurityControlParametersValue": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/203"
         },
         "flags": 0,
         "description": "The current value of a security control parameter."
       },
       "ComplianceStatus": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/204"
         },
         "flags": 0,
         "description": "Exclusive to findings that are generated as the result of a check run against a specific rule in a supported standard."
       },
       "Confidence": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/205"
         },
         "flags": 0,
         "description": "A finding's confidence."
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/124"
+          "$ref": "#/206"
         },
         "flags": 0,
         "description": "An ISO8601-formatted timestamp that indicates when the security findings provider captured the potential security issue that a finding captured."
       },
       "Criticality": {
         "type": {
-          "$ref": "#/125"
+          "$ref": "#/207"
         },
         "flags": 0,
         "description": "The level of importance assigned to the resources associated with the finding."
       },
       "Description": {
         "type": {
-          "$ref": "#/126"
+          "$ref": "#/208"
         },
         "flags": 0,
         "description": "A finding's description."
       },
       "FindingProviderFieldsConfidence": {
         "type": {
-          "$ref": "#/127"
+          "$ref": "#/209"
         },
         "flags": 0,
         "description": "The finding provider value for the finding confidence."
       },
       "FindingProviderFieldsCriticality": {
         "type": {
-          "$ref": "#/128"
+          "$ref": "#/210"
         },
         "flags": 0,
         "description": "The finding provider value for the level of importance assigned to the resources associated with the findings."
       },
       "FindingProviderFieldsRelatedFindingsId": {
         "type": {
-          "$ref": "#/129"
+          "$ref": "#/211"
         },
         "flags": 0,
         "description": "The finding identifier of a related finding that is identified by the finding provider."
       },
       "FindingProviderFieldsRelatedFindingsProductArn": {
         "type": {
-          "$ref": "#/130"
+          "$ref": "#/212"
         },
         "flags": 0,
         "description": "The ARN of the solution that generated a related finding that is identified by the finding provider."
       },
       "FindingProviderFieldsSeverityLabel": {
         "type": {
-          "$ref": "#/131"
+          "$ref": "#/213"
         },
         "flags": 0,
         "description": "The finding provider value for the severity label."
       },
       "FindingProviderFieldsSeverityOriginal": {
         "type": {
-          "$ref": "#/132"
+          "$ref": "#/214"
         },
         "flags": 0,
         "description": "The finding provider's original value for the severity."
       },
       "FindingProviderFieldsTypes": {
         "type": {
-          "$ref": "#/133"
+          "$ref": "#/215"
         },
         "flags": 0,
         "description": "One or more finding types that the finding provider assigned to the finding."
       },
       "FirstObservedAt": {
         "type": {
-          "$ref": "#/134"
+          "$ref": "#/216"
         },
         "flags": 0,
         "description": "An ISO8601-formatted timestamp that indicates when the security findings provider first observed the potential security issue that a finding captured."
       },
       "GeneratorId": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/217"
         },
         "flags": 0,
         "description": "The identifier for the solution-specific component (a discrete unit of logic) that generated a finding."
       },
       "Id": {
         "type": {
-          "$ref": "#/136"
+          "$ref": "#/218"
         },
         "flags": 0,
         "description": "The security findings provider-specific identifier for a finding."
       },
       "Keyword": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/219"
         },
         "flags": 0,
         "description": "A keyword for a finding."
       },
       "LastObservedAt": {
         "type": {
-          "$ref": "#/138"
+          "$ref": "#/220"
         },
         "flags": 0,
         "description": "An ISO8601-formatted timestamp that indicates when the security findings provider most recently observed the potential security issue that a finding captured."
       },
       "MalwareName": {
         "type": {
-          "$ref": "#/139"
+          "$ref": "#/221"
         },
         "flags": 0,
         "description": "The name of the malware that was observed."
       },
       "MalwarePath": {
         "type": {
-          "$ref": "#/140"
+          "$ref": "#/222"
         },
         "flags": 0,
         "description": "The filesystem path of the malware that was observed."
       },
       "MalwareState": {
         "type": {
-          "$ref": "#/141"
+          "$ref": "#/223"
         },
         "flags": 0,
         "description": "The state of the malware that was observed."
       },
       "MalwareType": {
         "type": {
-          "$ref": "#/142"
+          "$ref": "#/224"
         },
         "flags": 0,
         "description": "The type of the malware that was observed."
       },
       "NetworkDestinationDomain": {
         "type": {
-          "$ref": "#/143"
+          "$ref": "#/225"
         },
         "flags": 0,
         "description": "The destination domain of network-related information about a finding."
       },
       "NetworkDestinationIpV4": {
         "type": {
-          "$ref": "#/144"
+          "$ref": "#/226"
         },
         "flags": 0,
         "description": "The destination IPv4 address of network-related information about a finding."
       },
       "NetworkDestinationIpV6": {
         "type": {
-          "$ref": "#/145"
+          "$ref": "#/227"
         },
         "flags": 0,
         "description": "The destination IPv6 address of network-related information about a finding."
       },
       "NetworkDestinationPort": {
         "type": {
-          "$ref": "#/146"
+          "$ref": "#/228"
         },
         "flags": 0,
         "description": "The destination port of network-related information about a finding."
       },
       "NetworkDirection": {
         "type": {
-          "$ref": "#/147"
+          "$ref": "#/229"
         },
         "flags": 0,
         "description": "Indicates the direction of network traffic associated with a finding."
       },
       "NetworkProtocol": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/230"
         },
         "flags": 0,
         "description": "The protocol of network-related information about a finding."
       },
       "NetworkSourceDomain": {
         "type": {
-          "$ref": "#/149"
+          "$ref": "#/231"
         },
         "flags": 0,
         "description": "The source domain of network-related information about a finding."
       },
       "NetworkSourceIpV4": {
         "type": {
-          "$ref": "#/150"
+          "$ref": "#/232"
         },
         "flags": 0,
         "description": "The source IPv4 address of network-related information about a finding."
       },
       "NetworkSourceIpV6": {
         "type": {
-          "$ref": "#/151"
+          "$ref": "#/233"
         },
         "flags": 0,
         "description": "The source IPv6 address of network-related information about a finding."
       },
       "NetworkSourceMac": {
         "type": {
-          "$ref": "#/152"
+          "$ref": "#/234"
         },
         "flags": 0,
         "description": "The source media access control (MAC) address of network-related information about a finding."
       },
       "NetworkSourcePort": {
         "type": {
-          "$ref": "#/153"
+          "$ref": "#/235"
         },
         "flags": 0,
         "description": "The source port of network-related information about a finding."
       },
       "NoteText": {
         "type": {
-          "$ref": "#/154"
+          "$ref": "#/236"
         },
         "flags": 0,
         "description": "The text of a note."
       },
       "NoteUpdatedAt": {
         "type": {
-          "$ref": "#/155"
+          "$ref": "#/237"
         },
         "flags": 0,
         "description": "The timestamp of when the note was updated."
       },
       "NoteUpdatedBy": {
         "type": {
-          "$ref": "#/156"
+          "$ref": "#/238"
         },
         "flags": 0,
         "description": "The principal that created a note."
       },
       "ProcessLaunchedAt": {
         "type": {
-          "$ref": "#/157"
+          "$ref": "#/239"
         },
         "flags": 0,
         "description": "A timestamp that identifies when the process was launched."
       },
       "ProcessName": {
         "type": {
-          "$ref": "#/158"
+          "$ref": "#/240"
         },
         "flags": 0,
         "description": "The name of the process."
       },
       "ProcessParentPid": {
         "type": {
-          "$ref": "#/159"
+          "$ref": "#/241"
         },
         "flags": 0,
         "description": "The parent process ID."
       },
       "ProcessPath": {
         "type": {
-          "$ref": "#/160"
+          "$ref": "#/242"
         },
         "flags": 0,
         "description": "The path to the process executable."
       },
       "ProcessPid": {
         "type": {
-          "$ref": "#/161"
+          "$ref": "#/243"
         },
         "flags": 0,
         "description": "The process ID."
       },
       "ProcessTerminatedAt": {
         "type": {
-          "$ref": "#/162"
+          "$ref": "#/244"
         },
         "flags": 0,
         "description": "A timestamp that identifies when the process was terminated."
       },
       "ProductArn": {
         "type": {
-          "$ref": "#/163"
+          "$ref": "#/245"
         },
         "flags": 0,
         "description": "The ARN generated by Security Hub that uniquely identifies a third-party company (security findings provider) after this provider's product (solution that generates findings) is registered with Security Hub."
       },
       "ProductFields": {
         "type": {
-          "$ref": "#/164"
+          "$ref": "#/246"
         },
         "flags": 0,
         "description": "A data type where security findings providers can include additional solution-specific details that aren't part of the defined AwsSecurityFinding format."
       },
       "ProductName": {
         "type": {
-          "$ref": "#/165"
+          "$ref": "#/247"
         },
         "flags": 0,
         "description": "The name of the solution (product) that generates findings."
       },
       "RecommendationText": {
         "type": {
-          "$ref": "#/166"
+          "$ref": "#/248"
         },
         "flags": 0,
         "description": "The recommendation of what to do about the issue described in a finding."
       },
       "RecordState": {
         "type": {
-          "$ref": "#/167"
+          "$ref": "#/249"
         },
         "flags": 0,
         "description": "The updated record state for the finding."
       },
       "Region": {
         "type": {
-          "$ref": "#/168"
+          "$ref": "#/250"
         },
         "flags": 0,
         "description": "The Region from which the finding was generated."
       },
       "RelatedFindingsId": {
         "type": {
-          "$ref": "#/169"
+          "$ref": "#/251"
         },
         "flags": 0,
         "description": "The solution-generated identifier for a related finding."
       },
       "RelatedFindingsProductArn": {
         "type": {
-          "$ref": "#/170"
+          "$ref": "#/252"
         },
         "flags": 0,
         "description": "The ARN of the solution that generated a related finding."
       },
       "ResourceApplicationArn": {
         "type": {
-          "$ref": "#/171"
+          "$ref": "#/253"
         },
         "flags": 0,
         "description": "The ARN of the application that is related to a finding."
       },
       "ResourceApplicationName": {
         "type": {
-          "$ref": "#/172"
+          "$ref": "#/254"
         },
         "flags": 0,
         "description": "The name of the application that is related to a finding."
       },
       "ResourceAwsEc2InstanceIamInstanceProfileArn": {
         "type": {
-          "$ref": "#/173"
+          "$ref": "#/255"
         },
         "flags": 0,
         "description": "The IAM profile ARN of the instance."
       },
       "ResourceAwsEc2InstanceImageId": {
         "type": {
-          "$ref": "#/174"
+          "$ref": "#/256"
         },
         "flags": 0,
         "description": "The Amazon Machine Image (AMI) ID of the instance."
       },
       "ResourceAwsEc2InstanceIpV4Addresses": {
         "type": {
-          "$ref": "#/175"
+          "$ref": "#/257"
         },
         "flags": 0,
         "description": "The IPv4 addresses associated with the instance."
       },
       "ResourceAwsEc2InstanceIpV6Addresses": {
         "type": {
-          "$ref": "#/176"
+          "$ref": "#/258"
         },
         "flags": 0,
         "description": "The IPv6 addresses associated with the instance."
       },
       "ResourceAwsEc2InstanceKeyName": {
         "type": {
-          "$ref": "#/177"
+          "$ref": "#/259"
         },
         "flags": 0,
         "description": "The key name associated with the instance."
       },
       "ResourceAwsEc2InstanceLaunchedAt": {
         "type": {
-          "$ref": "#/178"
+          "$ref": "#/260"
         },
         "flags": 0,
         "description": "The date and time the instance was launched."
       },
       "ResourceAwsEc2InstanceSubnetId": {
         "type": {
-          "$ref": "#/179"
+          "$ref": "#/261"
         },
         "flags": 0,
         "description": "The identifier of the subnet that the instance was launched in."
       },
       "ResourceAwsEc2InstanceType": {
         "type": {
-          "$ref": "#/180"
+          "$ref": "#/262"
         },
         "flags": 0,
         "description": "The instance type of the instance."
       },
       "ResourceAwsEc2InstanceVpcId": {
         "type": {
-          "$ref": "#/181"
+          "$ref": "#/263"
         },
         "flags": 0,
         "description": "The identifier of the VPC that the instance was launched in."
       },
       "ResourceAwsIamAccessKeyCreatedAt": {
         "type": {
-          "$ref": "#/182"
+          "$ref": "#/264"
         },
         "flags": 0,
         "description": "The creation date/time of the IAM access key related to a finding."
       },
       "ResourceAwsIamAccessKeyPrincipalName": {
         "type": {
-          "$ref": "#/183"
+          "$ref": "#/265"
         },
         "flags": 0,
         "description": "The name of the principal that is associated with an IAM access key."
       },
       "ResourceAwsIamAccessKeyStatus": {
         "type": {
-          "$ref": "#/184"
+          "$ref": "#/266"
         },
         "flags": 0,
         "description": "The status of the IAM access key related to a finding."
       },
       "ResourceAwsIamAccessKeyUserName": {
         "type": {
-          "$ref": "#/185"
+          "$ref": "#/267"
         },
         "flags": 0,
         "description": "The user associated with the IAM access key related to a finding."
       },
       "ResourceAwsIamUserUserName": {
         "type": {
-          "$ref": "#/186"
+          "$ref": "#/268"
         },
         "flags": 0,
         "description": "The name of an IAM user."
       },
       "ResourceAwsS3BucketOwnerId": {
         "type": {
-          "$ref": "#/187"
+          "$ref": "#/269"
         },
         "flags": 0,
         "description": "The canonical user ID of the owner of the S3 bucket."
       },
       "ResourceAwsS3BucketOwnerName": {
         "type": {
-          "$ref": "#/188"
+          "$ref": "#/270"
         },
         "flags": 0,
         "description": "The display name of the owner of the S3 bucket."
       },
       "ResourceContainerImageId": {
         "type": {
-          "$ref": "#/189"
+          "$ref": "#/271"
         },
         "flags": 0,
         "description": "The identifier of the image related to a finding."
       },
       "ResourceContainerImageName": {
         "type": {
-          "$ref": "#/190"
+          "$ref": "#/272"
         },
         "flags": 0,
         "description": "The name of the image related to a finding."
       },
       "ResourceContainerLaunchedAt": {
         "type": {
-          "$ref": "#/191"
+          "$ref": "#/273"
         },
         "flags": 0,
         "description": "A timestamp that identifies when the container was started."
       },
       "ResourceContainerName": {
         "type": {
-          "$ref": "#/192"
+          "$ref": "#/274"
         },
         "flags": 0,
         "description": "The name of the container related to a finding."
       },
       "ResourceDetailsOther": {
         "type": {
-          "$ref": "#/193"
+          "$ref": "#/275"
         },
         "flags": 0,
         "description": "The details of a resource that doesn't have a specific subfield for the resource type defined."
       },
       "ResourceId": {
         "type": {
-          "$ref": "#/194"
+          "$ref": "#/276"
         },
         "flags": 0,
         "description": "The canonical identifier for the given resource type."
       },
       "ResourcePartition": {
         "type": {
-          "$ref": "#/195"
+          "$ref": "#/277"
         },
         "flags": 0,
         "description": "The canonical AWS partition name that the Region is assigned to."
       },
       "ResourceRegion": {
         "type": {
-          "$ref": "#/196"
+          "$ref": "#/278"
         },
         "flags": 0,
         "description": "The canonical AWS external Region name where this resource is located."
       },
       "ResourceTags": {
         "type": {
-          "$ref": "#/197"
+          "$ref": "#/279"
         },
         "flags": 0,
         "description": "A list of AWS tags associated with a resource at the time the finding was processed."
       },
       "ResourceType": {
         "type": {
-          "$ref": "#/198"
+          "$ref": "#/280"
         },
         "flags": 0,
         "description": "Specifies the type of the resource that details are provided for."
       },
       "Sample": {
         "type": {
-          "$ref": "#/199"
+          "$ref": "#/281"
         },
         "flags": 0,
         "description": "Indicates whether or not sample findings are included in the filter results."
       },
       "SeverityLabel": {
         "type": {
-          "$ref": "#/200"
+          "$ref": "#/282"
         },
         "flags": 0,
         "description": "The label of a finding's severity."
       },
       "SeverityNormalized": {
         "type": {
-          "$ref": "#/201"
+          "$ref": "#/283"
         },
         "flags": 0,
         "description": "The normalized severity of a finding."
       },
       "SeverityProduct": {
         "type": {
-          "$ref": "#/202"
+          "$ref": "#/284"
         },
         "flags": 0,
         "description": "The native severity as defined by the security findings provider's solution that generated the finding."
       },
       "SourceUrl": {
         "type": {
-          "$ref": "#/203"
+          "$ref": "#/285"
         },
         "flags": 0,
         "description": "A URL that links to a page about the current finding in the security findings provider's solution."
       },
       "ThreatIntelIndicatorCategory": {
         "type": {
-          "$ref": "#/204"
+          "$ref": "#/286"
         },
         "flags": 0,
         "description": "The category of a threat intelligence indicator."
       },
       "ThreatIntelIndicatorLastObservedAt": {
         "type": {
-          "$ref": "#/205"
+          "$ref": "#/287"
         },
         "flags": 0,
         "description": "A timestamp that identifies the last observation of a threat intelligence indicator."
       },
       "ThreatIntelIndicatorSource": {
         "type": {
-          "$ref": "#/206"
+          "$ref": "#/288"
         },
         "flags": 0,
         "description": "The source of the threat intelligence."
       },
       "ThreatIntelIndicatorSourceUrl": {
         "type": {
-          "$ref": "#/207"
+          "$ref": "#/289"
         },
         "flags": 0,
         "description": "The URL for more details from the source of the threat intelligence."
       },
       "ThreatIntelIndicatorType": {
         "type": {
-          "$ref": "#/208"
+          "$ref": "#/290"
         },
         "flags": 0,
         "description": "The type of a threat intelligence indicator."
       },
       "ThreatIntelIndicatorValue": {
         "type": {
-          "$ref": "#/209"
+          "$ref": "#/291"
         },
         "flags": 0,
         "description": "The value of a threat intelligence indicator."
       },
       "Title": {
         "type": {
-          "$ref": "#/210"
+          "$ref": "#/292"
         },
         "flags": 0,
         "description": "A finding's title."
       },
       "Type": {
         "type": {
-          "$ref": "#/211"
+          "$ref": "#/293"
         },
         "flags": 0,
         "description": "A finding type in the format of namespace/category/classifier that classifies a finding."
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/212"
+          "$ref": "#/294"
         },
         "flags": 0,
         "description": "An ISO8601-formatted timestamp that indicates when the security findings provider last updated the finding record."
       },
       "UserDefinedFields": {
         "type": {
-          "$ref": "#/213"
+          "$ref": "#/295"
         },
         "flags": 0,
         "description": "A list of name/value string pairs associated with the finding."
       },
       "VerificationState": {
         "type": {
-          "$ref": "#/214"
+          "$ref": "#/296"
         },
         "flags": 0,
         "description": "The veracity of a finding."
       },
       "VulnerabilitiesExploitAvailable": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/297"
         },
         "flags": 0,
         "description": "Indicates whether a software vulnerability in your environment has a known exploit."
       },
       "VulnerabilitiesFixAvailable": {
         "type": {
-          "$ref": "#/216"
+          "$ref": "#/298"
         },
         "flags": 0,
         "description": "Indicates whether a vulnerability is fixed in a newer version of the affected software packages."
       },
       "WorkflowState": {
         "type": {
-          "$ref": "#/217"
+          "$ref": "#/299"
         },
         "flags": 0,
         "description": "The workflow state of a finding."
       },
       "WorkflowStatus": {
         "type": {
-          "$ref": "#/218"
+          "$ref": "#/300"
         },
         "flags": 0,
         "description": "The status of the investigation into a finding."
@@ -2282,7 +3645,7 @@
     "properties": {
       "Value": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/76"
         },
         "flags": 1,
         "description": "The value of the boolean."
@@ -2295,19 +3658,19 @@
     "properties": {
       "DateRange": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/188"
         },
         "flags": 0
       },
       "End": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "Start": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0
       }
@@ -2319,14 +3682,14 @@
     "properties": {
       "Unit": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "A date range unit for the date filter."
       },
       "Value": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/34"
         },
         "flags": 1,
         "description": "A date range value for the date filter."
@@ -2344,7 +3707,7 @@
     "properties": {
       "Cidr": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "A finding's CIDR value."
@@ -2357,7 +3720,7 @@
     "properties": {
       "Value": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "A value for the keyword."
@@ -2370,20 +3733,20 @@
     "properties": {
       "Comparison": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The condition to apply to the key value when filtering Security Hub findings with a map filter."
       },
       "Key": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1
       }
@@ -2400,21 +3763,21 @@
     "properties": {
       "Eq": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "The equal-to condition to be applied to a single field when querying for findings."
       },
       "Gte": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "The greater-than-equal condition to be applied to a single field when querying for findings."
       },
       "Lte": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "The less-than-equal condition to be applied to a single field when querying for findings."
@@ -2427,13 +3790,13 @@
     "properties": {
       "Comparison": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1
       }
@@ -2447,625 +3810,625 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/112"
+      "$ref": "#/194"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/105"
+      "$ref": "#/187"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/112"
+      "$ref": "#/194"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/112"
+      "$ref": "#/194"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/112"
+      "$ref": "#/194"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/105"
+      "$ref": "#/187"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/109"
+      "$ref": "#/191"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/105"
+      "$ref": "#/187"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/108"
+      "$ref": "#/190"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/108"
+      "$ref": "#/190"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/112"
+      "$ref": "#/194"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/108"
+      "$ref": "#/190"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/108"
+      "$ref": "#/190"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/112"
+      "$ref": "#/194"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/105"
+      "$ref": "#/187"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/105"
+      "$ref": "#/187"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/112"
+      "$ref": "#/194"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/112"
+      "$ref": "#/194"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/105"
+      "$ref": "#/187"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/110"
+      "$ref": "#/192"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/108"
+      "$ref": "#/190"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/108"
+      "$ref": "#/190"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/105"
+      "$ref": "#/187"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/105"
+      "$ref": "#/187"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/105"
+      "$ref": "#/187"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/110"
+      "$ref": "#/192"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/110"
+      "$ref": "#/192"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/104"
+      "$ref": "#/186"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/112"
+      "$ref": "#/194"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/112"
+      "$ref": "#/194"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/105"
+      "$ref": "#/187"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/105"
+      "$ref": "#/187"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/110"
+      "$ref": "#/192"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/195"
     }
   },
   {
@@ -3078,28 +4441,28 @@
     "properties": {
       "Filters": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/185"
         },
         "flags": 1,
         "description": "One or more attributes used to filter the findings included in the insight"
       },
       "GroupByAttribute": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The grouping attribute for the insight's findings"
       },
       "InsightArn": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "The ARN of a Security Hub insight"
       },
       "Name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name of a Security Hub insight"
@@ -3112,21 +4475,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/220"
+          "$ref": "#/302"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3136,11 +4499,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.SecurityHub/Insight@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/221"
+      "$ref": "#/303"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "StringLiteralType",
@@ -3152,49 +4515,49 @@
     "properties": {
       "AutoEnable": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/76"
         },
         "flags": 1,
         "description": "Whether to automatically enable Security Hub in new member accounts when they join the organization."
       },
       "AutoEnableStandards": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Whether to automatically enable Security Hub default standards in new member accounts when they join the organization."
       },
       "ConfigurationType": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Indicates whether the organization uses local or central configuration."
       },
       "MemberAccountLimitReached": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/76"
         },
         "flags": 2,
         "description": "Whether the maximum number of allowed member accounts are already associated with the Security Hub administrator account."
       },
       "OrganizationConfigurationIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "The identifier of the OrganizationConfiguration being created and assigned as the unique identifier."
       },
       "Status": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "Describes whether central configuration could be enabled as the ConfigurationType for the organization."
       },
       "StatusMessage": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "Provides an explanation if the value of Status is equal to FAILED when ConfigurationType is equal to CENTRAL."
@@ -3207,21 +4570,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/224"
+          "$ref": "#/306"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3231,11 +4594,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.SecurityHub/OrganizationConfiguration@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/225"
+      "$ref": "#/307"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "StringLiteralType",
@@ -3247,56 +4610,56 @@
     "properties": {
       "AssociationIdentifier": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "A unique identifier to indicates if the target has an association"
       },
       "AssociationStatus": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The current status of the association between the specified target and the configuration"
       },
       "AssociationStatusMessage": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "An explanation for a FAILED value for AssociationStatus"
       },
       "AssociationType": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "Indicates whether the association between the specified target and the configuration was directly applied by the Security Hub delegated administrator or inherited from a parent"
       },
       "ConfigurationPolicyId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The universally unique identifier (UUID) of the configuration policy or a value of SELF_MANAGED_SECURITY_HUB for a self-managed configuration"
       },
       "TargetId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The identifier of the target account, organizational unit, or the root"
       },
       "TargetType": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "Indicates whether the target is an AWS account, organizational unit, or the organization root"
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The date and time, in UTC and ISO 8601 format, that the configuration policy association was last updated"
@@ -3309,21 +4672,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/228"
+          "$ref": "#/310"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3333,11 +4696,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.SecurityHub/PolicyAssociation@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/229"
+      "$ref": "#/311"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -3360,13 +4723,13 @@
     "properties": {
       "Value": {
         "type": {
-          "$ref": "#/235"
+          "$ref": "#/317"
         },
         "flags": 0
       },
       "ValueType": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1
       }
@@ -3378,56 +4741,56 @@
     "properties": {
       "Boolean": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/76"
         },
         "flags": 0,
         "description": "A control parameter that is a boolean."
       },
       "Double": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "A control parameter that is a double."
       },
       "Enum": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "A control parameter that is a enum."
       },
       "EnumList": {
         "type": {
-          "$ref": "#/239"
+          "$ref": "#/321"
         },
         "flags": 0,
         "description": "A control parameter that is a list of enums."
       },
       "Integer": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "A control parameter that is a integer."
       },
       "IntegerList": {
         "type": {
-          "$ref": "#/240"
+          "$ref": "#/322"
         },
         "flags": 0,
         "description": "A control parameter that is a list of integers."
       },
       "String": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "A control parameter that is a string."
       },
       "StringList": {
         "type": {
-          "$ref": "#/241"
+          "$ref": "#/323"
         },
         "flags": 0,
         "description": "A control parameter that is a list of strings."
@@ -3442,31 +4805,31 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/34"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/34"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/1"
     }
   },
   {
@@ -3479,28 +4842,28 @@
     "properties": {
       "LastUpdateReason": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The most recent reason for updating the customizable properties of a security control. This differs from the UpdateReason field of the BatchUpdateStandardsControlAssociations API, which tracks the reason for updating the enablement status of a control. This field accepts alphanumeric characters in addition to white spaces, dashes, and underscores."
       },
       "Parameters": {
         "type": {
-          "$ref": "#/236"
+          "$ref": "#/318"
         },
         "flags": 1,
         "description": "An object that identifies the name of a control parameter, its current value, and whether it has been customized."
       },
       "SecurityControlArn": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The Amazon Resource Name (ARN) for a security control across standards, such as `arn:aws:securityhub:eu-central-1:123456789012:security-control/S3.1`. This parameter doesn't mention a specific standard."
       },
       "SecurityControlId": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 16,
         "description": "The unique identifier of a security control across standards. Values for this field typically consist of an AWS service name and a number, such as APIGateway.3."
@@ -3513,21 +4876,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/243"
+          "$ref": "#/325"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3537,11 +4900,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.SecurityHub/SecurityControl@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/244"
+      "$ref": "#/326"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -3549,14 +4912,14 @@
     "properties": {
       "Reason": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "A user-defined reason for changing a control's enablement status in a specified standard. If you are disabling a control, then this property is required."
       },
       "StandardsControlArn": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) of the control."
@@ -3570,7 +4933,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/246"
+      "$ref": "#/328"
     }
   },
   {
@@ -3579,21 +4942,21 @@
     "properties": {
       "DisabledStandardsControls": {
         "type": {
-          "$ref": "#/248"
+          "$ref": "#/330"
         },
         "flags": 0,
-        "description": "Specifies which controls are to be disabled in a standard. \n  *Maximum*: ``100``"
+        "description": "Specifies which controls are to be disabled in a standard. \n *Maximum*: ``100``"
       },
       "StandardsArn": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The ARN of the standard that you want to enable. To view a list of available ASH standards and their ARNs, use the [DescribeStandards](https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_DescribeStandards.html) API operation."
       },
       "StandardsSubscriptionArn": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": ""
@@ -3606,21 +4969,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/249"
+          "$ref": "#/331"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3630,10 +4993,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.SecurityHub/Standard@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/250"
+      "$ref": "#/332"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

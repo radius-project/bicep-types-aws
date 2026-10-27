@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SES-MailManagerArchive",
   "type": "AWS::SES::MailManagerArchive",
-  "time": "2025-01-23T10:28:29.063Z",
+  "time": "2026-10-21T23:05:18.676Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -59,13 +59,11 @@
           "Key": {
             "maxLength": 128,
             "minLength": 1,
-            "pattern": "^[a-zA-Z0-9/_\\+=\\.:@\\-]+$",
             "type": "string"
           },
           "Value": {
             "maxLength": 256,
             "minLength": 0,
-            "pattern": "^[a-zA-Z0-9/_\\+=\\.:@\\-]*$",
             "type": "string"
           }
         },
@@ -84,6 +82,7 @@
           "ses:ListTagsForResource",
           "ses:GetArchive",
           "ses:CreateArchive",
+          "iam:CreateServiceLinkedRole",
           "kms:DescribeKey",
           "kms:Decrypt",
           "kms:GenerateDataKey"
@@ -138,7 +137,7 @@
         "$ref": "#/definitions/ArchiveState"
       },
       "KmsKeyArn": {
-        "pattern": "^arn:aws(|-cn|-us-gov):kms:[a-z0-9-]{1,20}:[0-9]{12}:(key|alias)/.+$",
+        "pattern": "^arn:aws(|-cn|-us-gov|-eusc):kms:[a-z0-9-]{1,20}:[0-9]{12}:(key|alias)/.+$",
         "type": "string"
       },
       "Retention": {

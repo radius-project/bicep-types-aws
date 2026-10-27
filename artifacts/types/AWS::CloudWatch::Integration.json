@@ -1,0 +1,212 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudWatch-Integration",
+  "type": "AWS::CloudWatch::Integration",
+  "time": "2026-10-21T22:14:06.834Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/IntegrationId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/IntegrationType",
+      "/properties/Name"
+    ],
+    "definitions": {
+      "IntegrationCredential": {
+        "additionalProperties": false,
+        "description": "Write-only API-key credential material for the integration. Stored encrypted and never returned on read.",
+        "properties": {
+          "ApiKeyCredential": {
+            "additionalProperties": false,
+            "description": "API-key credential material that can be rotated in place on update.",
+            "properties": {
+              "ApiKeyValue": {
+                "maxLength": 4096,
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "ApiKeyValue"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "ApiKeyCredential"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::CloudWatch::Integration. Manages a CloudWatch (Amazon CloudWatch Observability / Omni) account-scoped integration. V1 supports AWS_CONFIG_SLREC, AWS_INTEGRATION, and EXTERNAL_AGENT.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "cloudwatch:CreateIntegration",
+          "cloudwatch:GetIntegration",
+          "cloudwatch:TagResource",
+          "cloudwatch:ListTagsForResource",
+          "iam:PassRole"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "cloudwatch:DeleteIntegration",
+          "cloudwatch:GetIntegration",
+          "cloudwatch:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "cloudwatch:ListIntegrations"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "cloudwatch:GetIntegration",
+          "cloudwatch:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "cloudwatch:UpdateIntegration",
+          "cloudwatch:GetIntegration",
+          "cloudwatch:TagResource",
+          "cloudwatch:UntagResource",
+          "cloudwatch:ListTagsForResource",
+          "iam:PassRole"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/IntegrationArn"
+    ],
+    "properties": {
+      "CreatedAt": {
+        "description": "The time at which the integration was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Credential": {
+        "$ref": "#/definitions/IntegrationCredential"
+      },
+      "IntegrationArn": {
+        "description": "The ARN of the integration. arn:aws:cloudwatch:{region}:{account}:integration/{integrationId}.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "type": "string"
+      },
+      "IntegrationAttributes": {
+        "additionalProperties": false,
+        "description": "Type-specific configuration attributes (max 50 entries). EXTERNAL_AGENT requires 'catalogId'. On update, supplied attributes merge into the existing map; omitting a key does not remove it.",
+        "maxProperties": 50,
+        "patternProperties": {
+          "^.+$": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "IntegrationId": {
+        "description": "The service-generated unique identifier (UUID) of the integration.",
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
+      "IntegrationType": {
+        "description": "The type of integration. Immutable after creation.",
+        "enum": [
+          "AWS_CONFIG_SLREC",
+          "AWS_INTEGRATION",
+          "EXTERNAL_AGENT"
+        ],
+        "type": "string"
+      },
+      "Name": {
+        "description": "The customer-supplied name of the integration. Unique per account.",
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
+      "RoleArn": {
+        "description": "IAM role ARN the integration assumes. Required for AWS_INTEGRATION (a valid, service-assumable IAM role ARN). Not used by AWS_CONFIG_SLREC or EXTERNAL_AGENT.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Status": {
+        "description": "Lifecycle status of the integration.",
+        "enum": [
+          "PENDING",
+          "PENDING_OAUTH",
+          "ACTIVE",
+          "ERROR",
+          "FAILED",
+          "DELETED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags associated with the integration.",
+        "insertionOrder": false,
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "Value": {
+              "maxLength": 256,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "UpdatedAt": {
+        "description": "The time at which the integration was last updated.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/IntegrationArn",
+      "/properties/IntegrationId",
+      "/properties/Status",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "IntegrationType",
+      "Name"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "cloudwatch:TagResource",
+        "cloudwatch:UntagResource",
+        "cloudwatch:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::CloudWatch::Integration",
+    "writeOnlyProperties": [
+      "/properties/Credential"
+    ]
+  }
+}

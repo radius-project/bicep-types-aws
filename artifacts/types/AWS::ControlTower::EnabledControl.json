@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ControlTower-EnabledControl",
   "type": "AWS::ControlTower::EnabledControl",
-  "time": "2025-01-27T17:52:02.723Z",
+  "time": "2026-10-19T17:16:31.422Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -98,7 +98,8 @@
           "organizations:DetachPolicy",
           "organizations:ListPoliciesForTarget",
           "organizations:ListTargetsForPolicy",
-          "organizations:DescribePolicy"
+          "organizations:DescribePolicy",
+          "controltower:ListTagsForResource"
         ],
         "timeoutInMinutes": 720
       },
@@ -115,21 +116,12 @@
           "organizations:DetachPolicy",
           "organizations:ListPoliciesForTarget",
           "organizations:ListTargetsForPolicy",
-          "organizations:DescribePolicy"
+          "organizations:DescribePolicy",
+          "controltower:ListTagsForResource"
         ],
         "timeoutInMinutes": 720
       },
       "list": {
-        "handlerSchema": {
-          "properties": {
-            "TargetIdentifier": {
-              "$ref": "resource-schema.json#/properties/TargetIdentifier"
-            }
-          },
-          "required": [
-            "TargetIdentifier"
-          ]
-        },
         "permissions": [
           "controltower:ListEnabledControls"
         ]
@@ -155,7 +147,8 @@
           "organizations:DetachPolicy",
           "organizations:ListPoliciesForTarget",
           "organizations:ListTargetsForPolicy",
-          "organizations:DescribePolicy"
+          "organizations:DescribePolicy",
+          "controltower:ListTagsForResource"
         ],
         "timeoutInMinutes": 720
       }

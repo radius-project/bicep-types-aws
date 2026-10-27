@@ -1,63 +1,97 @@
 # AWS.Transfer @ default
 
 ## Resource AWS.Transfer/Agreement@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Transfer/AgreementProperties](#awstransferagreementproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Transfer/Certificate@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Transfer/CertificateProperties](#awstransfercertificateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Transfer/Connector@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Transfer/ConnectorProperties](#awstransferconnectorproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Transfer/HostKey@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Transfer/HostKeyProperties](#awstransferhostkeyproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Transfer/Profile@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Transfer/ProfileProperties](#awstransferprofileproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Transfer/Server@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Transfer/ServerProperties](#awstransferserverproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Transfer/User@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Transfer/UserProperties](#awstransferuserproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Transfer/WebApp@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Transfer/WebAppProperties](#awstransferwebappproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Transfer/Workflow@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Transfer/WorkflowProperties](#awstransferworkflowproperties) (Required, Identifier): properties of the resource
+
+## Agreement_CustomDirectories
+### Properties
+* **FailedFilesDirectory**: string (Required): Specifies a location to store the failed files for an AS2 message.
+* **MdnFilesDirectory**: string (Required): Specifies a location to store the MDN file for an AS2 message.
+* **PayloadFilesDirectory**: string (Required): Specifies a location to store the payload file for an AS2 message.
+* **StatusFilesDirectory**: string (Required): Specifies a location to store the status file for an AS2 message.
+* **TemporaryFilesDirectory**: string (Required): Specifies a location to store the temporary processing file for an AS2 message.
 
 ## AWS.Transfer/AgreementProperties
 ### Properties
 * **AccessRole**: string (Required): Specifies the access role for the agreement.
 * **AgreementId**: string (ReadOnly, Identifier): A unique identifier for the agreement.
 * **Arn**: string (ReadOnly): Specifies the unique Amazon Resource Name (ARN) for the agreement.
-* **BaseDirectory**: string (Required): Specifies the base directory for the agreement.
+* **BaseDirectory**: string: Specifies the base directory for the agreement.
+* **CustomDirectories**: [Agreement_CustomDirectories](#agreementcustomdirectories): Specifies a separate directory for each type of file to store for an AS2 message.
 * **Description**: string: A textual description for the agreement.
+* **EnforceMessageSigning**: string: Specifies whether to enforce an AS2 message is signed for this agreement.
 * **LocalProfileId**: string (Required): A unique identifier for the local profile.
 * **PartnerProfileId**: string (Required): A unique identifier for the partner profile.
+* **PreserveFilename**: string: Specifies whether to preserve the filename received for this agreement.
 * **ServerId**: string (Required, Identifier): A unique identifier for the server.
 * **Status**: string: Specifies the status of the agreement.
 * **Tags**: [Tag](#tag)[]: Key-value pairs that can be used to group and search for agreements. Tags are metadata attached to agreements for any purpose.
@@ -86,12 +120,32 @@
 * **Arn**: string (ReadOnly): Specifies the unique Amazon Resource Name (ARN) for the connector.
 * **As2Config**: [Connector_As2Config](#connectoras2config): Configuration for an AS2 connector.
 * **ConnectorId**: string (ReadOnly, Identifier): A unique identifier for the connector.
+* **EgressConfig**: [ConnectorEgressConfig](#connectoregressconfig): Egress configuration for the connector.
+* **EgressType**: string: Specifies the egress type for the connector.
+* **ErrorMessage**: string (ReadOnly): Detailed error message when Connector in ERRORED status
+* **IpAddressType**: string
 * **LoggingRole**: string: Specifies the logging role for the connector.
 * **SecurityPolicyName**: string: Security policy for SFTP Connector
 * **ServiceManagedEgressIpAddresses**: string[] (ReadOnly): The list of egress IP addresses of this connector. These IP addresses are assigned automatically when you create the connector.
 * **SftpConfig**: [Connector_SftpConfig](#connectorsftpconfig): Configuration for an SFTP connector.
+* **Status**: string (ReadOnly)
 * **Tags**: [Tag](#tag)[]: Key-value pairs that can be used to group and search for connectors. Tags are metadata attached to connectors for any purpose.
-* **Url**: string (Required): URL for Connector
+* **Url**: string: URL for Connector
+
+## AWS.Transfer/HostKeyProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The unique Amazon Resource Name (ARN) for the host key.
+* **DateImported**: string (ReadOnly): The date on which the host key was added to the server.
+* **Description**: string: The text description for this host key.
+* **HostKeyBody**: string (WriteOnly): The private key portion of an SSH key pair. Transfer Family accepts RSA, ECDSA, and ED25519 keys.
+* **HostKeyFingerprint**: string (ReadOnly): The public key fingerprint, which is a short sequence of bytes used to identify the longer public key.
+* **HostKeyId**: string (ReadOnly): A unique identifier for the host key.
+* **KmsKey**: string (WriteOnly): The Amazon Resource Name (ARN) of a customer managed key used to encrypt the Secrets Manager secret that holds the host key. Applies only when StorageType is SECRETS_MANAGER. If omitted, the AWS managed key is used.
+* **SecretId**: string (ReadOnly): The Amazon Resource Name (ARN) of the Secrets Manager secret that holds the host key. Returned only when StorageType is SECRETS_MANAGER.
+* **ServerId**: string (Required): The identifier of the server that contains the host key.
+* **StorageType**: string: The type of storage used for the host key. SERVICE_MANAGED keys are stored within the Transfer Family service. SECRETS_MANAGER keys are stored in an AWS Secrets Manager secret in your account.
+* **Tags**: [Tag](#tag)[]: Key-value pairs that can be used to group and search for host keys.
+* **Type**: string (ReadOnly): The encryption algorithm that is used for the host key.
 
 ## AWS.Transfer/ProfileProperties
 ### Properties
@@ -107,11 +161,13 @@
 * **Arn**: string (ReadOnly, Identifier)
 * **As2ServiceManagedEgressIpAddresses**: string[] (ReadOnly): The list of egress IP addresses of this server. These IP addresses are only relevant for servers that use the AS2 protocol. They are used for sending asynchronous MDNs. These IP addresses are assigned automatically when you create an AS2 server. Additionally, if you update an existing server and add the AS2 protocol, static IP addresses are assigned as well.
 * **Certificate**: string
+* **CreateWithHostKey**: bool (WriteOnly): When this property is `true`, AWS Transfer Family will generate an initial host key for your server, making it immediately available to SFTP clients. When set to `false`, clients will not be able to establish an SFTP session until you import one or more host keys (see AWS::Transfer::HostKey). This property cannot be changed after resource creation. Default: `true`.
 * **Domain**: string
 * **EndpointDetails**: [EndpointDetails](#endpointdetails)
 * **EndpointType**: string
 * **IdentityProviderDetails**: [IdentityProviderDetails](#identityproviderdetails)
-* **IdentityProviderType**: string (WriteOnly)
+* **IdentityProviderType**: string
+* **IpAddressType**: string
 * **LoggingRole**: string
 * **PostAuthenticationLoginBanner**: string
 * **PreAuthenticationLoginBanner**: string
@@ -139,6 +195,19 @@
 * **Tags**: [Tag](#tag)[]
 * **UserName**: string (Required)
 
+## AWS.Transfer/WebAppProperties
+### Properties
+* **AccessEndpoint**: string: The AccessEndpoint is the URL that you provide to your users for them to interact with the Transfer Family web app. You can specify a custom URL or use the default value.
+* **Arn**: string (ReadOnly, Identifier): Specifies the unique Amazon Resource Name (ARN) for the web app.
+* **EndpointDetails**: [EndpointDetails](#endpointdetails)
+* **IdentityProviderDetails**: [IdentityProviderDetails](#identityproviderdetails) (Required)
+* **Tags**: [Tag](#tag)[]: Key-value pairs that can be used to group and search for web apps.
+* **VpcEndpointId**: string (ReadOnly)
+* **WebAppCustomization**: [WebAppCustomization](#webappcustomization)
+* **WebAppEndpointPolicy**: string
+* **WebAppId**: string (ReadOnly): A unique identifier for the web app.
+* **WebAppUnits**: [WebAppUnits](#webappunits)
+
 ## AWS.Transfer/WorkflowProperties
 ### Properties
 * **Arn**: string (ReadOnly): Specifies the unique Amazon Resource Name (ARN) for the workflow.
@@ -150,6 +219,7 @@
 
 ## Connector_As2Config
 ### Properties
+* **AsyncMdnConfig**: [ConnectorAsyncMdnConfig](#connectorasyncmdnconfig): Configuration for an AS2 connector with ASYNC MDN Response
 * **BasicAuthSecretId**: string: ARN or name of the secret in AWS Secrets Manager which contains the credentials for Basic authentication. If empty, Basic authentication is disabled for the AS2 connector
 * **Compression**: string: Compression setting for this AS2 connector configuration.
 * **EncryptionAlgorithm**: string: Encryption algorithm for this AS2 connector configuration.
@@ -158,12 +228,29 @@
 * **MdnSigningAlgorithm**: string: MDN Signing algorithm for this AS2 connector configuration.
 * **MessageSubject**: string: The message subject for this AS2 connector configuration.
 * **PartnerProfileId**: string: A unique identifier for the partner profile.
+* **PreserveContentType**: string: Specifies whether to use the AWS S3 object content-type as the content-type for the AS2 message.
 * **SigningAlgorithm**: string: Signing algorithm for this AS2 connector configuration.
 
 ## Connector_SftpConfig
 ### Properties
+* **MaxConcurrentConnections**: int: Specifies the number of active connections that your connector can establish with the remote server at the same time.
+* **OrderedUserSecretVersionStages**: string[]: Specifies the order in which the connector attempts to use secret versions during authentication. This enables fallback to alternative credentials if the primary version fails.
 * **TrustedHostKeys**: string[]: List of public host keys, for the external server to which you are connecting.
 * **UserSecretId**: string: ARN or name of the secret in AWS Secrets Manager which contains the SFTP user's private keys or passwords.
+
+## ConnectorAsyncMdnConfig
+### Properties
+* **ServerIds**: string[] (Required)
+* **Url**: string (Required): URL of the server to receive the MDN response on
+
+## ConnectorEgressConfig
+### Properties
+* **VpcLattice**: [ConnectorVpcLatticeEgressConfig](#connectorvpclatticeegressconfig) (Required)
+
+## ConnectorVpcLatticeEgressConfig
+### Properties
+* **PortNumber**: int: Port to connect to on the target VPC Lattice resource
+* **ResourceConfigurationArn**: string (Required): ARN of the VPC Lattice resource configuration
 
 ## EfsInputFileLocation
 ### Properties
@@ -178,6 +265,10 @@
 * **VpcEndpointId**: string
 * **VpcId**: string
 
+## EndpointDetails
+### Properties
+* **Vpc**: [Vpc](#vpc)
+
 ## HomeDirectoryMapEntry
 ### Properties
 * **Entry**: string (Required)
@@ -191,6 +282,12 @@
 * **InvocationRole**: string
 * **SftpAuthenticationMethods**: string
 * **Url**: string
+
+## IdentityProviderDetails
+### Properties
+* **ApplicationArn**: string (ReadOnly)
+* **InstanceArn**: string: The Amazon Resource Name (ARN) for the IAM Identity Center used for the web app.
+* **Role**: string: The IAM role in IAM Identity Center used for the web app.
 
 ## InputFileLocation
 ### Properties
@@ -207,8 +304,13 @@
 ### Properties
 * **As2Transports**: string[]
 * **PassiveIp**: string
+* **ProxyConfig**: [ProxyConfig](#proxyconfig)
 * **SetStatOption**: string
 * **TlsSessionResumptionMode**: string
+
+## ProxyConfig
+### Properties
+* **SftpMode**: string
 
 ## S3FileLocation
 ### Properties
@@ -250,6 +352,16 @@
 
 ## Tag
 ### Properties
+* **Key**: string (Required): The name assigned to the tag that you create.
+* **Value**: string (Required): Contains one or more values that you assigned to the key name you create.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
 
@@ -262,6 +374,22 @@
 ### Properties
 * **Key**: string (Required): The name assigned to the tag that you create.
 * **Value**: string (Required): Contains one or more values that you assigned to the key name you create.
+
+## Vpc
+### Properties
+* **IpAddressType**: string (WriteOnly): The IP address type for the VPC endpoint used by the web app.
+* **SecurityGroupIds**: string[] (WriteOnly)
+* **SubnetIds**: string[]
+* **VpcId**: string
+
+## WebAppCustomization
+### Properties
+* **FaviconFile**: string: Specifies a favicon to display in the browser tab.
+* **LogoFile**: string: Specifies a logo to display on the web app.
+* **Title**: string: Specifies a title to display on the web app.
+
+## WebAppUnits
+### Properties
 
 ## Workflow_CopyStepDetails
 ### Properties

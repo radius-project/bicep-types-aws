@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Redshift-ClusterSubnetGroup",
   "type": "AWS::Redshift::ClusterSubnetGroup",
-  "time": "2024-12-21T01:22:37.406Z",
+  "time": "2026-10-01T16:11:47.561Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -29,7 +29,7 @@
         "type": "object"
       }
     },
-    "description": "Specifies an Amazon Redshift subnet group.",
+    "description": "Resource Type definition for AWS::Redshift::ClusterSubnetGroup. Specifies an Amazon Redshift subnet group.",
     "handlers": {
       "create": {
         "permissions": [
@@ -54,6 +54,7 @@
           "redshift:DeleteClusterSubnetGroup",
           "redshift:DescribeClusterSubnetGroups",
           "redshift:DescribeTags",
+          "redshift:DeleteTags",
           "ec2:AllocateAddress",
           "ec2:AssociateAddress",
           "ec2:AttachNetworkInterface",
@@ -163,13 +164,17 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-redshift",
     "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "redshift:DescribeTags",
+        "redshift:CreateTags",
+        "redshift:DeleteTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
       "taggable": true
     },
-    "typeName": "AWS::Redshift::ClusterSubnetGroup",
-    "writeOnlyProperties": [
-      "/properties/Tags",
-      "/properties/Tags/*/Key",
-      "/properties/Tags/*/Value"
-    ]
+    "typeName": "AWS::Redshift::ClusterSubnetGroup"
   }
 }

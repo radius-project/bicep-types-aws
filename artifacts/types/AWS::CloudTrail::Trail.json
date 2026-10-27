@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudTrail-Trail",
   "type": "AWS::CloudTrail::Trail",
-  "time": "2025-01-08T18:19:22.723Z",
+  "time": "2026-07-29T01:51:20.957Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -10,7 +10,7 @@
     "definitions": {
       "AdvancedEventSelector": {
         "additionalProperties": false,
-        "description": "Advanced event selectors let you create fine-grained selectors for the following AWS CloudTrail event record ?elds. They help you control costs by logging only those events that are important to you.",
+        "description": "Advanced event selectors let you create fine-grained selectors for the following AWS CloudTrail event record fields. They help you control costs by logging only those events that are important to you.",
         "properties": {
           "FieldSelectors": {
             "description": "Contains all selector statements in an advanced event selector.",
@@ -129,6 +129,35 @@
         ],
         "type": "object"
       },
+      "AggregationConfiguration": {
+        "additionalProperties": false,
+        "description": "Configure to add aggregation rules to aggregate CloudTrail Events.",
+        "properties": {
+          "EventCategory": {
+            "description": "The category of events to be aggregated.",
+            "enum": [
+              "Data"
+            ],
+            "type": "string"
+          },
+          "Templates": {
+            "description": "Contains all templates in an aggregation configuration.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/Template"
+            },
+            "maxItems": 50,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "EventCategory",
+          "Templates"
+        ],
+        "type": "object"
+      },
       "DataResource": {
         "additionalProperties": false,
         "description": "CloudTrail supports data event logging for Amazon S3 objects and AWS Lambda functions. You can specify up to 250 resources for an individual event selector, but the total number of data resources cannot exceed 250 across all event selectors in a trail. This limit does not apply if you configure resource logging for all data events.",
@@ -193,12 +222,29 @@
         "additionalProperties": false,
         "description": "A string that contains insight types that are logged on a trail.",
         "properties": {
+          "EventCategories": {
+            "description": "The categories of events for which to log insights. By default, insights are logged for management events only.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/SourceEventCategory"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
           "InsightType": {
             "description": "The type of insight to log on a trail.",
             "type": "string"
           }
         },
         "type": "object"
+      },
+      "SourceEventCategory": {
+        "description": "Event category for an insight selector.",
+        "enum": [
+          "Management",
+          "Data"
+        ],
+        "type": "string"
       },
       "Tag": {
         "additionalProperties": false,
@@ -218,6 +264,15 @@
           "Key"
         ],
         "type": "object"
+      },
+      "Template": {
+        "description": "A template used to configure aggregation rules.",
+        "enum": [
+          "API_ACTIVITY",
+          "RESOURCE_ACCESS",
+          "USER_ACTIONS"
+        ],
+        "type": "string"
       }
     },
     "description": "Creates a trail that specifies the settings for delivery of log data to an Amazon S3 bucket. A maximum of five trails can exist in a region, irrespective of the region in which they were created.",
@@ -229,6 +284,7 @@
           "CloudTrail:AddTags",
           "CloudTrail:PutEventSelectors",
           "CloudTrail:PutInsightSelectors",
+          "CloudTrail:PutEventConfiguration",
           "iam:GetRole",
           "iam:PassRole",
           "iam:CreateServiceLinkedRole",
@@ -259,6 +315,7 @@
           "CloudTrail:ListTags",
           "CloudTrail:GetEventSelectors",
           "CloudTrail:GetInsightSelectors",
+          "CloudTrail:GetEventConfiguration",
           "CloudTrail:DescribeTrails"
         ]
       },
@@ -271,6 +328,7 @@
           "CloudTrail:RemoveTags",
           "CloudTrail:PutEventSelectors",
           "CloudTrail:PutInsightSelectors",
+          "CloudTrail:PutEventConfiguration",
           "iam:GetRole",
           "iam:PassRole",
           "iam:CreateServiceLinkedRole",
@@ -291,6 +349,16 @@
         "items": {
           "$ref": "#/definitions/AdvancedEventSelector"
         },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "AggregationConfigurations": {
+        "description": "Specifies the aggregation configuration to aggregate CloudTrail Events. A maximum of 1 aggregation configuration is allowed.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/AggregationConfiguration"
+        },
+        "maxItems": 1,
         "type": "array",
         "uniqueItems": true
       },
@@ -381,7 +449,7 @@
       }
     },
     "propertyTransform": {
-      "/properties/KMSKeyId": "$join([\"arn:(aws)[-]{0,1}[a-z]{0,2}[-]{0,1}[a-z]{0,3}:kms:[a-z]{2}[-]{1}[a-z]{3,10}[-]{0,1}[a-z]{0,10}[-]{1}[1-3]{1}:[0-9]{12}[:]{1}key\\/\", KMSKeyId])"
+      "/properties/KMSKeyId": "KMSKeyId $OR $join([\"arn:(aws)[-]{0,1}[a-z]{0,2}[-]{0,1}[a-z]{0,3}:kms:[a-z]{2}[-]{1}[a-z]{3,10}[-]{0,1}[a-z]{0,10}[-]{1}[1-3]{1}:[0-9]{12}[:]{1}key\\/\", KMSKeyId])"
     },
     "readOnlyProperties": [
       "/properties/Arn",
@@ -393,7 +461,7 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-cloudtrail.git",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "CloudTrail:AddTags",
         "CloudTrail:RemoveTags",

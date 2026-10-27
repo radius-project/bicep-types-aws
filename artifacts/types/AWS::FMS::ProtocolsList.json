@@ -1,0 +1,156 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-FMS-ProtocolsList",
+  "type": "AWS::FMS::ProtocolsList",
+  "time": "2026-10-21T21:22:48.631Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ListId"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A tag to associate with the protocols list. A tag is a key-value pair.",
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Creates an AWS Firewall Manager protocols list.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "fms:PutProtocolsList",
+          "fms:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "fms:DeleteProtocolsList"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "fms:ListProtocolsLists"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "fms:GetProtocolsList",
+          "fms:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "fms:PutProtocolsList",
+          "fms:GetProtocolsList",
+          "fms:TagResource",
+          "fms:UntagResource",
+          "fms:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the protocols list.",
+        "maxLength": 1024,
+        "minLength": 1,
+        "pattern": "^arn:aws(-[a-z0-9-]+)?:fms:[a-z0-9-]*:[0-9]{12}:protocols-list/[a-z0-9A-Z-]{36}$",
+        "type": "string"
+      },
+      "CreateTime": {
+        "description": "The time that the Firewall Manager protocols list was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "LastUpdateTime": {
+        "description": "The time that the Firewall Manager protocols list was last updated.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ListId": {
+        "description": "The ID of the Firewall Manager protocols list.",
+        "maxLength": 36,
+        "minLength": 36,
+        "pattern": "^[a-z0-9A-Z-]{36}$",
+        "type": "string"
+      },
+      "ListName": {
+        "description": "The name of the Firewall Manager protocols list.",
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+        "type": "string"
+      },
+      "ProtocolsList": {
+        "description": "An array of protocols in the Firewall Manager protocols list.",
+        "insertionOrder": false,
+        "items": {
+          "description": "The IP protocol name or number. The name can be one of tcp, udp, or icmp. For information on possible numbers, see Protocol Numbers (https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).",
+          "maxLength": 20,
+          "minLength": 1,
+          "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to the protocols list.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/ListId",
+      "/properties/CreateTime",
+      "/properties/LastUpdateTime"
+    ],
+    "required": [
+      "ListName",
+      "ProtocolsList"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-fms.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "fms:TagResource",
+        "fms:UntagResource",
+        "fms:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::FMS::ProtocolsList"
+  }
+}

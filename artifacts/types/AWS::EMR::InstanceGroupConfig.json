@@ -1,0 +1,370 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EMR-InstanceGroupConfig",
+  "type": "AWS::EMR::InstanceGroupConfig",
+  "time": "2026-09-29T18:38:16.93Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/InstanceRole",
+      "/properties/JobFlowId",
+      "/properties/Name",
+      "/properties/InstanceType",
+      "/properties/CustomAmiId",
+      "/properties/Configurations",
+      "/properties/EbsConfiguration",
+      "/properties/Market",
+      "/properties/BidPrice"
+    ],
+    "definitions": {
+      "AppConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "Classification": {
+            "type": "string"
+          },
+          "ConfigurationProperties": {
+            "additionalProperties": false,
+            "patternProperties": {
+              "^.*$": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "Configurations": {
+            "items": {
+              "$ref": "#/definitions/AppConfiguration"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "AutoScalingPolicy": {
+        "additionalProperties": false,
+        "properties": {
+          "Constraints": {
+            "$ref": "#/definitions/ScalingConstraints"
+          },
+          "Rules": {
+            "items": {
+              "$ref": "#/definitions/ScalingRule"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "Constraints",
+          "Rules"
+        ],
+        "type": "object"
+      },
+      "CloudWatchAlarmDefinition": {
+        "additionalProperties": false,
+        "properties": {
+          "ComparisonOperator": {
+            "type": "string"
+          },
+          "Dimensions": {
+            "items": {
+              "$ref": "#/definitions/MetricDimension"
+            },
+            "type": "array"
+          },
+          "EvaluationPeriods": {
+            "type": "integer"
+          },
+          "MetricName": {
+            "type": "string"
+          },
+          "Namespace": {
+            "type": "string"
+          },
+          "Period": {
+            "type": "integer"
+          },
+          "Statistic": {
+            "type": "string"
+          },
+          "Threshold": {
+            "type": "number"
+          },
+          "Unit": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "MetricName",
+          "ComparisonOperator",
+          "Period",
+          "Threshold"
+        ],
+        "type": "object"
+      },
+      "EbsBlockDeviceConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "VolumeSpecification": {
+            "$ref": "#/definitions/VolumeSpecification"
+          },
+          "VolumesPerInstance": {
+            "description": "Use of this property can confuse CloudFormation drift detection. The EbsBlockDeviceConfigs read from the system may return a list with one entry per volume, replacing any entry specified in the template with a VolumesPerInstance greater than one by that many entries containing only the VolumeSpecification. Thus to avoid false drift detection, it is recommended to supply repeated entries in EbsBlockDeviceConfigs for any VolumeSpecification which is intended to be repeated and not to use this property.\n",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "VolumeSpecification"
+        ],
+        "type": "object"
+      },
+      "EbsConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "EbsBlockDeviceConfigs": {
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/EbsBlockDeviceConfig"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "EbsOptimized": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "MetricDimension": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value",
+          "Key"
+        ],
+        "type": "object"
+      },
+      "ScalingAction": {
+        "additionalProperties": false,
+        "properties": {
+          "Market": {
+            "type": "string"
+          },
+          "SimpleScalingPolicyConfiguration": {
+            "$ref": "#/definitions/SimpleScalingPolicyConfiguration"
+          }
+        },
+        "required": [
+          "SimpleScalingPolicyConfiguration"
+        ],
+        "type": "object"
+      },
+      "ScalingConstraints": {
+        "additionalProperties": false,
+        "properties": {
+          "MaxCapacity": {
+            "type": "integer"
+          },
+          "MinCapacity": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "MinCapacity",
+          "MaxCapacity"
+        ],
+        "type": "object"
+      },
+      "ScalingRule": {
+        "additionalProperties": false,
+        "properties": {
+          "Action": {
+            "$ref": "#/definitions/ScalingAction"
+          },
+          "Description": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Trigger": {
+            "$ref": "#/definitions/ScalingTrigger"
+          }
+        },
+        "required": [
+          "Action",
+          "Trigger",
+          "Name"
+        ],
+        "type": "object"
+      },
+      "ScalingTrigger": {
+        "additionalProperties": false,
+        "properties": {
+          "CloudWatchAlarmDefinition": {
+            "$ref": "#/definitions/CloudWatchAlarmDefinition"
+          }
+        },
+        "required": [
+          "CloudWatchAlarmDefinition"
+        ],
+        "type": "object"
+      },
+      "SimpleScalingPolicyConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "AdjustmentType": {
+            "type": "string"
+          },
+          "CoolDown": {
+            "type": "integer"
+          },
+          "ScalingAdjustment": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "ScalingAdjustment"
+        ],
+        "type": "object"
+      },
+      "VolumeSpecification": {
+        "additionalProperties": false,
+        "properties": {
+          "Iops": {
+            "type": "integer"
+          },
+          "SizeInGB": {
+            "type": "integer"
+          },
+          "Throughput": {
+            "type": "integer"
+          },
+          "VolumeType": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "SizeInGB",
+          "VolumeType"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::EMR::InstanceGroupConfig",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "elasticmapreduce:AddInstanceGroups",
+          "elasticmapreduce:ListInstanceGroups",
+          "elasticmapreduce:DescribeCluster"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "elasticmapreduce:ModifyInstanceGroups",
+          "elasticmapreduce:RemoveAutoScalingPolicy",
+          "elasticmapreduce:ListInstanceGroups",
+          "elasticmapreduce:DescribeCluster"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "JobFlowId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "JobFlowId"
+          ]
+        },
+        "permissions": [
+          "elasticmapreduce:ListInstanceGroups"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "elasticmapreduce:ListInstanceGroups",
+          "elasticmapreduce:ListClusters"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "elasticmapreduce:ModifyInstanceGroups",
+          "elasticmapreduce:PutAutoScalingPolicy",
+          "elasticmapreduce:RemoveAutoScalingPolicy",
+          "elasticmapreduce:ListInstanceGroups",
+          "elasticmapreduce:DescribeCluster"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/InstanceGroupId",
+      "/properties/JobFlowId"
+    ],
+    "properties": {
+      "AutoScalingPolicy": {
+        "$ref": "#/definitions/AutoScalingPolicy"
+      },
+      "BidPrice": {
+        "type": "string"
+      },
+      "Configurations": {
+        "items": {
+          "$ref": "#/definitions/AppConfiguration"
+        },
+        "type": "array"
+      },
+      "CustomAmiId": {
+        "type": "string"
+      },
+      "EbsConfiguration": {
+        "$ref": "#/definitions/EbsConfiguration"
+      },
+      "InstanceCount": {
+        "type": "integer"
+      },
+      "InstanceGroupId": {
+        "type": "string"
+      },
+      "InstanceRole": {
+        "type": "string"
+      },
+      "InstanceType": {
+        "type": "string"
+      },
+      "JobFlowId": {
+        "type": "string"
+      },
+      "Market": {
+        "type": "string"
+      },
+      "Name": {
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/InstanceGroupId"
+    ],
+    "required": [
+      "JobFlowId",
+      "InstanceCount",
+      "InstanceRole",
+      "InstanceType"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::EMR::InstanceGroupConfig",
+    "writeOnlyProperties": [
+      "/properties/EbsConfiguration/EbsBlockDeviceConfigs/*/VolumesPerInstance"
+    ]
+  }
+}

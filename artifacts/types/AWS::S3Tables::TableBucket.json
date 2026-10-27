@@ -1,13 +1,120 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-S3Tables-TableBucket",
   "type": "AWS::S3Tables::TableBucket",
-  "time": "2025-01-21T16:53:20.862Z",
+  "time": "2026-10-12T16:43:59.704Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/TableBucketName"
     ],
     "definitions": {
+      "EncryptionConfiguration": {
+        "additionalProperties": false,
+        "description": "Specifies encryption settings for the table bucket",
+        "properties": {
+          "KMSKeyArn": {
+            "description": "ARN of the KMS key to use for encryption",
+            "type": "string"
+          },
+          "SSEAlgorithm": {
+            "description": "Server-side encryption algorithm",
+            "enum": [
+              "AES256",
+              "aws:kms"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "MetricsConfiguration": {
+        "additionalProperties": false,
+        "description": "Settings governing the Metric configuration for the table bucket.",
+        "properties": {
+          "Status": {
+            "default": "Disabled",
+            "description": "Indicates whether Metrics are enabled.",
+            "enum": [
+              "Enabled",
+              "Disabled"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ReplicationConfiguration": {
+        "additionalProperties": false,
+        "description": "Specifies replication configuration for the table bucket",
+        "properties": {
+          "Role": {
+            "description": "The ARN of the IAM role to use for replication",
+            "type": "string"
+          },
+          "Rules": {
+            "description": "List of replication rules",
+            "items": {
+              "$ref": "#/definitions/ReplicationRule"
+            },
+            "maxItems": 1,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "Role",
+          "Rules"
+        ],
+        "type": "object"
+      },
+      "ReplicationDestination": {
+        "additionalProperties": false,
+        "description": "A replication destination",
+        "properties": {
+          "DestinationTableBucketARN": {
+            "description": "The ARN of the destination table bucket",
+            "type": "string"
+          }
+        },
+        "required": [
+          "DestinationTableBucketARN"
+        ],
+        "type": "object"
+      },
+      "ReplicationRule": {
+        "additionalProperties": false,
+        "description": "A replication rule for the table bucket",
+        "properties": {
+          "Destinations": {
+            "description": "List of replication destinations",
+            "items": {
+              "$ref": "#/definitions/ReplicationDestination"
+            },
+            "maxItems": 5,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "Destinations"
+        ],
+        "type": "object"
+      },
+      "StorageClassConfiguration": {
+        "additionalProperties": false,
+        "description": "Specifies storage class settings for the table bucket",
+        "properties": {
+          "StorageClass": {
+            "description": "The storage class for the table bucket",
+            "enum": [
+              "STANDARD",
+              "INTELLIGENT_TIERING"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "TableBucketARN": {
         "description": "The Amazon Resource Name (ARN) of the specified table bucket.",
         "examples": [
@@ -20,6 +127,27 @@
         "maxLength": 63,
         "minLength": 3,
         "type": "string"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "Tag key must be between 1 to 128 characters in length. Tag key cannot start with 'aws:' and can only contain alphanumeric characters, spaces, _, ., /, =, +, -, and @.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "Tag value must be between 0 to 256 characters in length. Tag value can only contain alphanumeric characters, spaces, _, ., /, =, +, -, and @.",
+            "maxLength": 256,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
       },
       "UnreferencedFileRemoval": {
         "additionalProperties": false,
@@ -53,8 +181,20 @@
         "permissions": [
           "s3tables:CreateTableBucket",
           "s3tables:PutTableBucketMaintenanceConfiguration",
+          "s3tables:PutTableBucketMetricsConfiguration",
+          "s3tables:PutTableBucketEncryption",
+          "s3tables:PutTableBucketStorageClass",
+          "s3tables:PutTableBucketReplication",
           "s3tables:GetTableBucket",
-          "s3tables:GetTableBucketMaintenanceConfiguration"
+          "s3tables:GetTableBucketMaintenanceConfiguration",
+          "s3tables:GetTableBucketMetricsConfiguration",
+          "s3tables:GetTableBucketEncryption",
+          "s3tables:GetTableBucketStorageClass",
+          "s3tables:GetTableBucketReplication",
+          "kms:DescribeKey",
+          "s3tables:TagResource",
+          "s3tables:ListTagsForResource",
+          "iam:PassRole"
         ]
       },
       "delete": {
@@ -70,14 +210,35 @@
       "read": {
         "permissions": [
           "s3tables:GetTableBucket",
-          "s3tables:GetTableBucketMaintenanceConfiguration"
+          "s3tables:GetTableBucketMaintenanceConfiguration",
+          "s3tables:GetTableBucketMetricsConfiguration",
+          "s3tables:GetTableBucketEncryption",
+          "s3tables:GetTableBucketStorageClass",
+          "s3tables:GetTableBucketReplication",
+          "s3tables:ListTagsForResource"
         ]
       },
       "update": {
         "permissions": [
+          "s3tables:DeleteTableBucketMetricsConfiguration",
           "s3tables:PutTableBucketMaintenanceConfiguration",
+          "s3tables:PutTableBucketMetricsConfiguration",
+          "s3tables:PutTableBucketEncryption",
+          "s3tables:PutTableBucketStorageClass",
+          "s3tables:PutTableBucketReplication",
+          "s3tables:DeleteTableBucketReplication",
+          "s3tables:GetTableBucketMaintenanceConfiguration",
+          "s3tables:GetTableBucketMetricsConfiguration",
+          "s3tables:GetTableBucketEncryption",
+          "s3tables:GetTableBucketStorageClass",
+          "s3tables:GetTableBucketReplication",
+          "s3tables:DeleteTableBucketEncryption",
           "s3tables:GetTableBucket",
-          "s3tables:GetTableBucketMaintenanceConfiguration"
+          "kms:DescribeKey",
+          "s3tables:TagResource",
+          "s3tables:UntagResource",
+          "s3tables:ListTagsForResource",
+          "iam:PassRole"
         ]
       }
     },
@@ -85,11 +246,32 @@
       "/properties/TableBucketARN"
     ],
     "properties": {
+      "EncryptionConfiguration": {
+        "$ref": "#/definitions/EncryptionConfiguration"
+      },
+      "MetricsConfiguration": {
+        "$ref": "#/definitions/MetricsConfiguration"
+      },
+      "ReplicationConfiguration": {
+        "$ref": "#/definitions/ReplicationConfiguration"
+      },
+      "StorageClassConfiguration": {
+        "$ref": "#/definitions/StorageClassConfiguration"
+      },
       "TableBucketARN": {
         "$ref": "#/definitions/TableBucketARN"
       },
       "TableBucketName": {
         "$ref": "#/definitions/TableBucketName"
+      },
+      "Tags": {
+        "description": "User tags (key-value pairs) to associate with the table bucket.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
       },
       "UnreferencedFileRemoval": {
         "$ref": "#/definitions/UnreferencedFileRemoval"
@@ -102,10 +284,16 @@
       "TableBucketName"
     ],
     "tagging": {
-      "cloudFormationSystemTags": false,
-      "tagOnCreate": false,
-      "tagUpdatable": false,
-      "taggable": false
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "s3tables:TagResource",
+        "s3tables:UntagResource",
+        "s3tables:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
     },
     "typeName": "AWS::S3Tables::TableBucket"
   }

@@ -20,6 +20,13 @@
         "flags": 2,
         "description": "The arn of the api destination."
       },
+      "ArnForPolicy": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The arn of the api destination to be used in IAM policies."
+      },
       "ConnectionArn": {
         "type": {
           "$ref": "#/1"
@@ -91,11 +98,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Events/ApiDestination@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/4"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "StringLiteralType",
@@ -131,6 +138,12 @@
       "EventPattern": {
         "type": {
           "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "KmsKeyIdentifier": {
+        "type": {
+          "$ref": "#/1"
         },
         "flags": 0
       },
@@ -178,11 +191,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Events/Archive@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/9"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -430,6 +443,13 @@
         "flags": 2,
         "description": "The arn of the connection resource."
       },
+      "ArnForPolicy": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The arn of the connection resource to be used in IAM policies."
+      },
       "AuthParameters": {
         "type": {
           "$ref": "#/12"
@@ -455,6 +475,12 @@
         },
         "flags": 0,
         "description": "The private resource the HTTP request will be sent to."
+      },
+      "KmsKeyIdentifier": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
       },
       "Name": {
         "type": {
@@ -502,11 +528,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Events/Connection@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/27"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -729,11 +755,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Events/Endpoint@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/44"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -771,6 +797,26 @@
   },
   {
     "$type": "ObjectType",
+    "name": "EventBus_LogConfig",
+    "properties": {
+      "IncludeDetail": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Configures whether or not to include event detail, input transformer details, target properties, and target input in the applicable log messages."
+      },
+      "Level": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Configures the log level of the EventBus and determines which log messages are sent to Ingestion Hub for delivery."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "EventBus_Policy",
     "properties": {}
   },
@@ -778,7 +824,7 @@
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/49"
+        "$ref": "#/50"
       },
       {
         "$ref": "#/1"
@@ -830,6 +876,13 @@
         "flags": 0,
         "description": "Kms Key Identifier used to encrypt events at rest in the event bus."
       },
+      "LogConfig": {
+        "type": {
+          "$ref": "#/49"
+        },
+        "flags": 0,
+        "description": "The logging configuration settings for vended logs."
+      },
       "Name": {
         "type": {
           "$ref": "#/1"
@@ -839,14 +892,14 @@
       },
       "Policy": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "A JSON string that describes the permission policy statement for the event bus."
       },
       "Tags": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "Any tags assigned to the event bus."
@@ -873,7 +926,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/53"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -883,11 +936,130 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Events/EventBus@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/53"
+      "$ref": "#/54"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Condition",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies the value for the key. Currently, this must be the ID of the organization."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies the type of condition. Currently the only supported value is StringEquals."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies the key for the condition. Currently the only supported key is aws:PrincipalOrgID."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Events/EventBusPolicyProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EventBusPolicy_Statement",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Events/EventBusPolicyProperties",
+    "properties": {
+      "Action": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The action that you are enabling the other account to perform."
+      },
+      "Condition": {
+        "type": {
+          "$ref": "#/56"
+        },
+        "flags": 4
+      },
+      "EventBusName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The name of the event bus associated with the rule. If you omit this, the default event bus is used."
+      },
+      "Principal": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The 12-digit AWS account ID that you are permitting to put events to your default event bus. Specify \"*\" to permit any account to put events to your default event bus."
+      },
+      "Statement": {
+        "type": {
+          "$ref": "#/58"
+        },
+        "flags": 0,
+        "description": "A JSON string that describes the permission policy statement. You can include a Policy parameter in the request instead of using the StatementId, Action, Principal, or Condition parameters."
+      },
+      "StatementId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "An identifier string for the external account that you are granting permissions to"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Events/EventBusPolicy",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/59"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Events/EventBusPolicy@default",
+    "body": {
+      "$ref": "#/60"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -913,13 +1085,13 @@
       },
       "SecurityGroups": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/85"
         },
         "flags": 0
       },
       "Subnets": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/86"
         },
         "flags": 1
       }
@@ -943,7 +1115,7 @@
     "properties": {
       "ArrayProperties": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/64"
         },
         "flags": 0
       },
@@ -961,7 +1133,7 @@
       },
       "RetryStrategy": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/66"
         },
         "flags": 0
       }
@@ -1021,7 +1193,7 @@
     "properties": {
       "CapacityProviderStrategy": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/87"
         },
         "flags": 0
       },
@@ -1051,19 +1223,19 @@
       },
       "NetworkConfiguration": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/73"
         },
         "flags": 0
       },
       "PlacementConstraints": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/88"
         },
         "flags": 0
       },
       "PlacementStrategies": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/89"
         },
         "flags": 0
       },
@@ -1087,7 +1259,7 @@
       },
       "TagList": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/90"
         },
         "flags": 0
       },
@@ -1111,19 +1283,19 @@
     "properties": {
       "HeaderParameters": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/91"
         },
         "flags": 0
       },
       "PathParameterValues": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/92"
         },
         "flags": 0
       },
       "QueryStringParameters": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/93"
         },
         "flags": 0
       }
@@ -1135,7 +1307,7 @@
     "properties": {
       "InputPathsMap": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/94"
         },
         "flags": 0
       },
@@ -1165,7 +1337,7 @@
     "properties": {
       "AwsVpcConfiguration": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/63"
         },
         "flags": 0
       }
@@ -1237,7 +1409,7 @@
       },
       "Sqls": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/95"
         },
         "flags": 0
       },
@@ -1279,7 +1451,7 @@
     "properties": {
       "RunCommandTargets": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/96"
         },
         "flags": 1
       }
@@ -1297,7 +1469,7 @@
       },
       "Values": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/97"
         },
         "flags": 1
       }
@@ -1327,7 +1499,7 @@
     "properties": {
       "PipelineParameterList": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/98"
         },
         "flags": 0
       }
@@ -1369,7 +1541,7 @@
     "properties": {
       "AppSyncParameters": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/62"
         },
         "flags": 0
       },
@@ -1381,25 +1553,25 @@
       },
       "BatchParameters": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/65"
         },
         "flags": 0
       },
       "DeadLetterConfig": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/68"
         },
         "flags": 0
       },
       "EcsParameters": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/69"
         },
         "flags": 0
       },
       "HttpParameters": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/70"
         },
         "flags": 0
       },
@@ -1423,25 +1595,25 @@
       },
       "InputTransformer": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/71"
         },
         "flags": 0
       },
       "KinesisParameters": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/72"
         },
         "flags": 0
       },
       "RedshiftDataParameters": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/76"
         },
         "flags": 0
       },
       "RetryPolicy": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/77"
         },
         "flags": 0
       },
@@ -1453,19 +1625,19 @@
       },
       "RunCommandParameters": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/78"
         },
         "flags": 0
       },
       "SageMakerPipelineParameters": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/81"
         },
         "flags": 0
       },
       "SqsParameters": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/82"
         },
         "flags": 0
       }
@@ -1486,25 +1658,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/60"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
       "$ref": "#/67"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/68"
+      "$ref": "#/74"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/76"
+      "$ref": "#/75"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/83"
     }
   },
   {
@@ -1537,7 +1709,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/72"
+      "$ref": "#/79"
     }
   },
   {
@@ -1549,7 +1721,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/73"
+      "$ref": "#/80"
     }
   },
   {
@@ -1568,14 +1740,20 @@
         "$ref": "#/1"
       },
       {
-        "$ref": "#/93"
+        "$ref": "#/100"
       }
     ]
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/77"
+      "$ref": "#/83"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/84"
     }
   },
   {
@@ -1605,7 +1783,7 @@
       },
       "EventPattern": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/101"
         },
         "flags": 0,
         "description": "The event pattern of the rule. For more information, see Events and Event Patterns in the Amazon EventBridge User Guide."
@@ -1624,6 +1802,13 @@
         "flags": 0,
         "description": "The Amazon Resource Name (ARN) of the role that is used for target invocation."
       },
+      "RuleName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The name of the rule, exposed as a read-only attribute for use with Fn::GetAtt."
+      },
       "ScheduleExpression": {
         "type": {
           "$ref": "#/1"
@@ -1638,9 +1823,16 @@
         "flags": 0,
         "description": "The state of the rule."
       },
+      "Tags": {
+        "type": {
+          "$ref": "#/102"
+        },
+        "flags": 0,
+        "description": "Any tags assigned to the event rule."
+      },
       "Targets": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/103"
         },
         "flags": 0,
         "description": "Adds the specified targets to the specified rule, or updates the targets if they are already associated with the rule.\nTargets are the resources that are invoked when a rule is triggered."
@@ -1667,7 +1859,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/104"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1677,10 +1869,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Events/Rule@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/97"
+      "$ref": "#/105"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

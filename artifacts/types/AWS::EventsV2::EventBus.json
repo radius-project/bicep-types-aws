@@ -1,0 +1,218 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EventsV2-EventBus",
+  "type": "AWS::EventsV2::EventBus",
+  "time": "2026-10-11T00:29:16.475Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name"
+    ],
+    "definitions": {
+      "EncryptionConfiguration": {
+        "additionalProperties": false,
+        "description": "Encryption configuration for an event bus.",
+        "properties": {
+          "KmsKeyIdentifier": {
+            "description": "The identifier of the AWS KMS customer managed key that the event bus uses to encrypt events. You can specify the key ARN, key ID, alias name, or alias ARN. If you do not specify a key, EventBridge uses an AWS owned key.",
+            "maxLength": 2048,
+            "pattern": "^[a-zA-Z0-9_\\-/:]*$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "StorageConfiguration": {
+        "additionalProperties": false,
+        "description": "Storage (retention) configuration for the event bus.",
+        "properties": {
+          "RetentionPeriodInDays": {
+            "description": "The number of days events are retained on the event bus for replay, 1-365.",
+            "maximum": 365,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with the resource.",
+        "properties": {
+          "Key": {
+            "description": "The tag key. For each resource, each tag key must be unique and each key can have only one value; keys are case sensitive. A key cannot begin or end with a whitespace character; whitespace inside the key is allowed.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^\\S([\\s\\S]*\\S)?(?![\\s\\S])",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value. May be empty. A value cannot begin or end with a whitespace character; whitespace inside the value is allowed.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^(\\S([\\s\\S]*\\S)?)?(?![\\s\\S])",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource type definition for AWS::EventsV2::EventBus, an Amazon EventBridge custom event bus that receives events and delivers them to matching subscribers.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "events:CreateEventBus",
+          "events:DescribeEventBus",
+          "events:ListEventBuses",
+          "events:ListTagsForResource",
+          "events:TagResource",
+          "kms:DescribeKey",
+          "kms:GenerateDataKeyWithoutPlaintext",
+          "kms:ReEncryptFrom",
+          "kms:ReEncryptTo",
+          "kms:Decrypt",
+          "kms:Encrypt"
+        ],
+        "timeoutInMinutes": 120
+      },
+      "delete": {
+        "permissions": [
+          "events:DeleteEventBus",
+          "events:DescribeEventBus"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "events:ListEventBuses"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "events:DescribeEventBus",
+          "events:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "events:UpdateEventBus",
+          "events:DescribeEventBus",
+          "events:TagResource",
+          "events:UntagResource",
+          "kms:DescribeKey",
+          "kms:GenerateDataKeyWithoutPlaintext",
+          "kms:ReEncryptFrom",
+          "kms:ReEncryptTo",
+          "kms:Decrypt",
+          "kms:Encrypt"
+        ],
+        "timeoutInMinutes": 180
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/EventBusArn"
+    ],
+    "properties": {
+      "CreationTime": {
+        "description": "The time the event bus was created, as an ISO 8601 timestamp.",
+        "type": "string"
+      },
+      "Description": {
+        "description": "A description of the event bus. Control characters and Unicode line separators are not allowed.",
+        "maxLength": 512,
+        "pattern": "^[^\\u0000-\\u001F\\u007F-\\u009F\\u2028\\u2029]*(?![\\s\\S])",
+        "type": "string"
+      },
+      "EncryptionConfiguration": {
+        "$ref": "#/definitions/EncryptionConfiguration",
+        "description": "Encryption configuration for the event bus. The service stores and returns the customer managed key as its key ARN. The key ARN is recommended so that drift detection stays accurate. A key ID is also accepted and is matched to the returned key ARN when CloudFormation checks for drift; a key alias is accepted but can be reported as a value difference, because an alias cannot be matched to the key ARN it points to."
+      },
+      "EventBusArn": {
+        "description": "The Amazon Resource Name (ARN) of the event bus.",
+        "maxLength": 1011,
+        "minLength": 1,
+        "pattern": "^arn:aws(-[a-z0-9]+)*:events:[a-z][a-z0-9]*(-[a-z0-9]+)*:([0-9]{12}):event-busv2\\/[A-Za-z0-9][\\.\\-_A-Za-z0-9]{0,255}\\/[a-z0-9]{25}$",
+        "type": "string"
+      },
+      "LastModifiedTime": {
+        "description": "The time the event bus was last modified, as an ISO 8601 timestamp.",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the event bus. The first character must be alphanumeric; the remaining characters may also include '.', '-', and '_'.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9][\\.\\-_A-Za-z0-9]*$",
+        "type": "string"
+      },
+      "State": {
+        "description": "The lifecycle state of the event bus. The settled operational state is ACTIVE.",
+        "enum": [
+          "CREATING",
+          "ACTIVE",
+          "UPDATING",
+          "CREATE_FAILED",
+          "UPDATE_FAILED",
+          "DELETE_FAILED",
+          "DELETING"
+        ],
+        "type": "string"
+      },
+      "StorageConfiguration": {
+        "$ref": "#/definitions/StorageConfiguration",
+        "description": "The event storage configuration for the event bus, which controls the number of days events are retained on the bus."
+      },
+      "Tags": {
+        "description": "The tags assigned to the event bus.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "propertyTransform": {
+      "/properties/EncryptionConfiguration/KmsKeyIdentifier": "KmsKeyIdentifier $OR $join([\"arn:(aws)[-]{0,1}[a-z]{0,2}[-]{0,1}[a-z]{0,3}:kms:[a-z]{2}[-]{1}[a-z]{3,10}[-]{0,1}[a-z]{0,10}[-]{1}[1-3]{1}:[0-9]{12}[:]{1}key\\/\", KmsKeyIdentifier])"
+    },
+    "readOnlyProperties": [
+      "/properties/EventBusArn",
+      "/properties/State",
+      "/properties/CreationTime",
+      "/properties/LastModifiedTime"
+    ],
+    "required": [
+      "Name"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "events:TagResource",
+        "events:UntagResource",
+        "events:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeConfiguration": {
+      "additionalProperties": false,
+      "properties": {
+        "DeploymentStage": {
+          "description": "Which deployment of the EventsV2 service this registration targets. Prod resolves the production endpoint for the handler's AWS Region. When the property is absent, the handler uses a non-empty EVENTSV2_ENDPOINT override if one is configured and otherwise Prod. The handler accepts Beta and Gamma only in us-east-1; setting either in another Region fails the operation with InvalidRequest.",
+          "enum": [
+            "Beta",
+            "Gamma",
+            "Prod"
+          ],
+          "type": "string"
+        }
+      }
+    },
+    "typeName": "AWS::EventsV2::EventBus"
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-SubnetCidrReservation",
+  "type": "AWS::EC2::SubnetCidrReservation",
+  "time": "2026-10-08T20:16:18.573Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/SubnetId",
+      "/properties/Cidr",
+      "/properties/ReservationType",
+      "/properties/Description"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key of the tag. Amazon EC2 reserves keys beginning with 'aws:' for internal use and rejects them for this resource. Amazon EC2 accepts a maximum of 128 Unicode characters.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^(?![aA][wW][sS]:).+$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag. Amazon EC2 accepts a maximum of 256 Unicode characters.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for a CIDR range reserved inside an Amazon EC2 subnet.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "ec2:CreateSubnetCidrReservation",
+          "ec2:CreateTags"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "ec2:DeleteSubnetCidrReservation",
+          "ec2:DescribeTags",
+          "ec2:GetSubnetCidrReservations"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "SubnetId": {
+              "description": "The identifier of the subnet whose CIDR reservations are listed.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "SubnetId"
+          ]
+        },
+        "permissions": [
+          "ec2:GetSubnetCidrReservations"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ec2:GetSubnetCidrReservations",
+          "ec2:DescribeTags"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "ec2:CreateTags",
+          "ec2:DeleteTags",
+          "ec2:DescribeTags",
+          "ec2:GetSubnetCidrReservations"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/SubnetId",
+      "/properties/SubnetCidrReservationId"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the subnet CIDR reservation.",
+        "type": "string"
+      },
+      "Cidr": {
+        "description": "The IPv4 or IPv6 CIDR range to reserve. Must lie inside the subnet's CIDR block and must not overlap an existing reservation. Supply an IPv6 range exactly as the service returns it: Amazon EC2 stores an IPv6 CIDR in RFC 5952 compressed form, and a noncanonical spelling of the same range is reported as drift because this property is create-only and read back.",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description of the subnet CIDR reservation.",
+        "type": "string"
+      },
+      "OwnerId": {
+        "description": "The identifier of the AWS account that owns the subnet CIDR reservation.",
+        "type": "string"
+      },
+      "ReservationType": {
+        "description": "The type of reservation. A prefix reservation is used for an IPv6 prefix delegated to a network interface; an explicit reservation is used for a range that Amazon EC2 must not assign automatically.",
+        "enum": [
+          "prefix",
+          "explicit"
+        ],
+        "type": "string"
+      },
+      "SubnetCidrReservationId": {
+        "description": "The identifier of the subnet CIDR reservation.",
+        "type": "string"
+      },
+      "SubnetId": {
+        "description": "The identifier of the subnet the CIDR range is reserved in.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags assigned to the subnet CIDR reservation.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/SubnetCidrReservationId",
+      "/properties/OwnerId"
+    ],
+    "replacementStrategy": "delete_then_create",
+    "required": [
+      "SubnetId",
+      "Cidr",
+      "ReservationType"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "ec2:CreateTags",
+        "ec2:DeleteTags",
+        "ec2:DescribeTags"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::EC2::SubnetCidrReservation"
+  }
+}

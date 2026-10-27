@@ -1,9 +1,22 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AppSync-GraphQLApi",
   "type": "AWS::AppSync::GraphQLApi",
-  "time": "2024-10-29T05:17:51.677Z",
+  "time": "2026-10-19T22:59:55.455Z",
   "schema": {
     "additionalProperties": false,
+    "conditionalCreateOnlyProperties": [
+      "/properties/LambdaAuthorizerConfig/AuthorizerResultTtlInSeconds",
+      "/properties/LambdaAuthorizerConfig/AuthorizerUri",
+      "/properties/LambdaAuthorizerConfig/IdentityValidationExpression",
+      "/properties/UserPoolConfig/AppIdClientRegex",
+      "/properties/UserPoolConfig/AwsRegion",
+      "/properties/UserPoolConfig/DefaultAction",
+      "/properties/UserPoolConfig/UserPoolId",
+      "/properties/OpenIDConnectConfig/AuthTTL",
+      "/properties/OpenIDConnectConfig/IatTTL",
+      "/properties/OpenIDConnectConfig/Issuer",
+      "/properties/OpenIDConnectConfig/ClientId"
+    ],
     "definitions": {
       "AdditionalAuthenticationProvider": {
         "additionalProperties": false,
@@ -102,6 +115,10 @@
             "type": "string"
           }
         },
+        "required": [
+          "FieldLogLevel",
+          "CloudWatchLogsRoleArn"
+        ],
         "type": "object"
       },
       "OpenIDConnectConfig": {
@@ -170,7 +187,9 @@
       "create": {
         "permissions": [
           "appsync:CreateGraphqlApi",
-          "appsync:TagResource"
+          "appsync:TagResource",
+          "iam:PassRole",
+          "appsync:PutGraphqlApiEnvironmentVariables"
         ]
       },
       "delete": {
@@ -195,12 +214,15 @@
           "appsync:GetGraphqlApi",
           "appsync:UpdateGraphqlApi",
           "appsync:TagResource",
-          "appsync:UntagResource"
+          "appsync:UntagResource",
+          "iam:PassRole",
+          "appsync:GetGraphqlApiEnvironmentVariables",
+          "appsync:PutGraphqlApiEnvironmentVariables"
         ]
       }
     },
     "primaryIdentifier": [
-      "/properties/ApiId"
+      "/properties/Arn"
     ],
     "properties": {
       "AdditionalAuthenticationProviders": {
@@ -221,6 +243,7 @@
       },
       "Arn": {
         "description": "The Amazon Resource Name (ARN) of the API key",
+        "pattern": "^arn:.*",
         "type": "string"
       },
       "AuthenticationType": {
@@ -332,11 +355,10 @@
       "AuthenticationType"
     ],
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "appsync:TagResource",
-        "appsync:UntagResource",
-        "appsync:ListTagsForResource"
+        "appsync:UntagResource"
       ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",

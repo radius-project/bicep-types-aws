@@ -1,35 +1,40 @@
 # AWS.Organizations @ default
 
 ## Resource AWS.Organizations/Account@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Organizations/AccountProperties](#awsorganizationsaccountproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Organizations/Organization@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Organizations/OrganizationProperties](#awsorganizationsorganizationproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Organizations/OrganizationalUnit@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Organizations/OrganizationalUnitProperties](#awsorganizationsorganizationalunitproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Organizations/Policy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Organizations/PolicyProperties](#awsorganizationspolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Organizations/ResourcePolicy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -44,7 +49,9 @@
 * **JoinedMethod**: string (ReadOnly): The method by which the account joined the organization.
 * **JoinedTimestamp**: string (ReadOnly): The date the account became a part of the organization.
 * **ParentIds**: string[]: List of parent nodes for the member account. Currently only one parent at a time is supported. Default is root.
+* **Paths**: string[] (ReadOnly): The paths in the organization where the account exists.
 * **RoleName**: string (WriteOnly): The name of an IAM role that AWS Organizations automatically preconfigures in the new member account. Default name is OrganizationAccountAccessRole if not specified.
+* **State**: string (ReadOnly): The state of the account in the organization.
 * **Status**: string (ReadOnly): The status of the account in the organization.
 * **Tags**: [Tag](#tag)[]: A list of tags that you want to attach to the newly created account. For each tag in the list, you must specify both a tag key and a value.
 
@@ -54,6 +61,7 @@
 * **Id**: string (ReadOnly, Identifier): The unique identifier (ID) associated with this OU.
 * **Name**: string (Required): The friendly name of this OU.
 * **ParentId**: string (Required): The unique identifier (ID) of the parent root or OU that you want to create the new OU in.
+* **Path**: string (ReadOnly): The path in the organization where this OU exists.
 * **Tags**: [Tag](#tag)[]: A list of tags that you want to attach to the newly created OU.
 
 ## AWS.Organizations/OrganizationProperties
@@ -76,7 +84,7 @@
 * **Name**: string (Required): Name of the Policy
 * **Tags**: [Tag](#tag)[]: A list of tags that you want to attach to the newly created policy. For each tag in the list, you must specify both a tag key and a value. You can set the value to an empty string, but you can't set it to null.
 * **TargetIds**: string[]: List of unique identifiers (IDs) of the root, OU, or account that you want to attach the policy to
-* **Type**: string (Required): The type of policy to create. You can specify one of the following values: AISERVICES_OPT_OUT_POLICY, BACKUP_POLICY, SERVICE_CONTROL_POLICY, TAG_POLICY, CHATBOT_POLICY, RESOURCE_CONTROL_POLICY,DECLARATIVE_POLICY_EC2
+* **Type**: string (Required): The type of policy to create. You can specify one of the following values: AISERVICES_OPT_OUT_POLICY, BACKUP_POLICY, BEDROCK_POLICY, CHATBOT_POLICY, DECLARATIVE_POLICY_EC2, INSPECTOR_POLICY, NETWORK_SECURITY_DIRECTOR_POLICY, RESOURCE_CONTROL_POLICY, S3_POLICY, SECURITYHUB_POLICY, SERVICE_CONTROL_POLICY, TAG_POLICY, UPGRADE_ROLLOUT_POLICY
 
 ## AWS.Organizations/ResourcePolicyProperties
 ### Properties

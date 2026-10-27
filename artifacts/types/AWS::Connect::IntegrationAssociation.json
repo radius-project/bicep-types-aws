@@ -1,13 +1,16 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Connect-IntegrationAssociation",
   "type": "AWS::Connect::IntegrationAssociation",
-  "time": "2025-01-22T22:44:25.807Z",
+  "time": "2026-10-21T21:53:20.699Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/InstanceId",
       "/properties/IntegrationArn",
-      "/properties/IntegrationType"
+      "/properties/IntegrationType",
+      "/properties/SourceType",
+      "/properties/SourceApplicationName",
+      "/properties/SourceApplicationUrl"
     ],
     "definitions": {
       "InstanceId": {
@@ -25,7 +28,6 @@
       },
       "IntegrationAssociationId": {
         "description": "Identifier of the association with Connect Instance",
-        "pattern": "^[a-zA-Z]{1}(?:-?[a-zA-Z0-9])*$",
         "type": "string"
       },
       "IntegrationType": {
@@ -33,9 +35,64 @@
         "enum": [
           "LEX_BOT",
           "LAMBDA_FUNCTION",
-          "APPLICATION"
+          "APPLICATION",
+          "CASES_DOMAIN",
+          "WISDOM_ASSISTANT",
+          "WISDOM_KNOWLEDGE_BASE",
+          "WISDOM_QUICK_RESPONSES",
+          "FILE_SCANNER",
+          "MESSAGE_PROCESSOR",
+          "Q_MESSAGE_TEMPLATES",
+          "SES_IDENTITY",
+          "EVENT"
         ],
         "type": "string"
+      },
+      "SourceApplicationName": {
+        "description": "The name of the external application. This is only supported for the EVENT integration type",
+        "maxLength": 100,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9_ -]+$",
+        "type": "string"
+      },
+      "SourceApplicationUrl": {
+        "description": "The URL for the external application. This is only supported for the EVENT integration type",
+        "maxLength": 2000,
+        "minLength": 1,
+        "type": "string"
+      },
+      "SourceType": {
+        "description": "The type of the data source. This is only supported for the EVENT integration type",
+        "enum": [
+          "SALESFORCE",
+          "ZENDESK",
+          "CASES"
+        ],
+        "type": "string"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^(?!aws:)[a-zA-Z+-=._:/]+$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
       }
     },
     "description": "Resource Type definition for AWS::Connect::IntegrationAssociation",
@@ -49,13 +106,17 @@
           "cases:GetDomain",
           "wisdom:GetAssistant",
           "wisdom:GetKnowledgeBase",
+          "wisdom:GetQuickResponse",
+          "wisdom:GetMessageTemplate",
           "wisdom:TagResource",
           "voiceid:DescribeDomain",
           "events:PutTargets",
+          "ses:GetIdentityVerificationAttributes",
           "events:PutRule",
           "connect:AssociateBot",
           "connect:AssociateLambdaFunction",
           "connect:CreateIntegrationAssociation",
+          "connect:TagResource",
           "connect:ListBots",
           "connect:ListLambdaFunctions",
           "connect:ListIntegrationAssociations",
@@ -111,18 +172,25 @@
         "permissions": [
           "connect:ListBots",
           "connect:ListLambdaFunctions",
-          "connect:ListIntegrationAssociations"
+          "connect:ListIntegrationAssociations",
+          "connect:ListTagsForResource"
         ]
       },
       "read": {
         "permissions": [
           "connect:ListBots",
           "connect:ListLambdaFunctions",
-          "connect:ListIntegrationAssociations"
+          "connect:ListIntegrationAssociations",
+          "connect:ListTagsForResource"
         ]
       },
       "update": {
-        "permissions": []
+        "permissions": [
+          "connect:TagResource",
+          "connect:UntagResource",
+          "connect:ListTagsForResource",
+          "connect:ListIntegrationAssociations"
+        ]
       }
     },
     "primaryIdentifier": [
@@ -142,6 +210,24 @@
       },
       "IntegrationType": {
         "$ref": "#/definitions/IntegrationType"
+      },
+      "SourceApplicationName": {
+        "$ref": "#/definitions/SourceApplicationName"
+      },
+      "SourceApplicationUrl": {
+        "$ref": "#/definitions/SourceApplicationUrl"
+      },
+      "SourceType": {
+        "$ref": "#/definitions/SourceType"
+      },
+      "Tags": {
+        "description": "The tags used to organize, track, or control access for this resource.",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "minItems": 0,
+        "type": "array"
       }
     },
     "readOnlyProperties": [
@@ -154,10 +240,17 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-connect",
     "tagging": {
-      "cloudFormationSystemTags": false,
-      "tagOnCreate": false,
-      "tagUpdatable": false,
-      "taggable": false
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "connect:TagResource",
+        "connect:UntagResource",
+        "connect:ListTagsForResource",
+        "connect:ListIntegrationAssociations"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
     },
     "typeName": "AWS::Connect::IntegrationAssociation"
   }

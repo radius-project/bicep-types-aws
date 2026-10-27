@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaPackageV2-Channel",
   "type": "AWS::MediaPackageV2::Channel",
-  "time": "2025-01-06T19:27:14.551Z",
+  "time": "2026-10-21T16:48:02.262Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -13,7 +13,8 @@
     "createOnlyProperties": [
       "/properties/ChannelGroupName",
       "/properties/ChannelName",
-      "/properties/InputType"
+      "/properties/InputType",
+      "/properties/OutputLockingMode"
     ],
     "definitions": {
       "IngestEndpoint": {
@@ -31,10 +32,90 @@
         },
         "type": "object"
       },
+      "InputSwitchConfiguration": {
+        "additionalProperties": false,
+        "description": "\u003cp\u003eThe configuration for input switching based on the media quality confidence score (MQCS) as provided from AWS Elemental MediaLive.\u003c/p\u003e",
+        "properties": {
+          "MQCSInputSwitching": {
+            "description": "\u003cp\u003eWhen true, AWS Elemental MediaPackage performs input switching based on the MQCS. Default is false. This setting is valid only when \u003ccode\u003eInputType\u003c/code\u003e is \u003ccode\u003eCMAF\u003c/code\u003e.\u003c/p\u003e",
+            "type": "boolean"
+          },
+          "PreferredInput": {
+            "description": "\u003cp\u003eFor CMAF inputs, indicates which input MediaPackage should prefer when both inputs have equal MQCS scores. Select \u003ccode\u003e1\u003c/code\u003e to prefer the first ingest endpoint, or \u003ccode\u003e2\u003c/code\u003e to prefer the second ingest endpoint. If you don't specify a preferred input, MediaPackage uses its default switching behavior when MQCS scores are equal.\u003c/p\u003e",
+            "maximum": 2,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
       "InputType": {
         "enum": [
           "HLS",
-          "CMAF"
+          "CMAF",
+          "MULTIVIEW"
+        ],
+        "type": "string"
+      },
+      "MultiviewConfiguration": {
+        "additionalProperties": false,
+        "description": "\u003cp\u003eThe multiview configuration for a channel. A multiview channel composites video from several source channels into a single tiled output stream. Players receive one standard HLS or DASH stream instead of several separate streams. This setting is required when \u003ccode\u003eInputType\u003c/code\u003e is \u003ccode\u003eMULTIVIEW\u003c/code\u003e, and can't be set for any other input type.\u003c/p\u003e",
+        "properties": {
+          "AvailableLayouts": {
+            "description": "\u003cp\u003eThe tile layouts that players can request from this multiview channel's origin endpoints. Only the layouts that you list here are available. Each layout must appear at most once.\u003c/p\u003e",
+            "items": {
+              "$ref": "#/definitions/MultiviewLayoutType"
+            },
+            "maxItems": 6,
+            "minItems": 1,
+            "type": "array"
+          },
+          "AvailableSources": {
+            "description": "\u003cp\u003eThe channels that players can use as tiles in this multiview channel's output. Each source channel must be in the same channel group as the multiview channel, and must have an \u003ccode\u003eInputType\u003c/code\u003e of \u003ccode\u003eCMAF\u003c/code\u003e. Only the channels that you list here are available as tiles.\u003c/p\u003e",
+            "items": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9_-]+$",
+              "type": "string"
+            },
+            "maxItems": 50,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "AvailableLayouts",
+          "AvailableSources"
+        ],
+        "type": "object"
+      },
+      "MultiviewLayoutType": {
+        "description": "\u003cp\u003eA tile layout for a multiview channel. Each layout determines how many source tiles are composited into the output and how those tiles are arranged.\u003c/p\u003e \u003cp\u003eThe allowed values are:\u003c/p\u003e \u003cul\u003e \u003cli\u003e \u003cp\u003e \u003ccode\u003eLAYOUT_2EH\u003c/code\u003e ? Two tiles of equal size, arranged horizontally.\u003c/p\u003e \u003c/li\u003e \u003cli\u003e \u003cp\u003e \u003ccode\u003eLAYOUT_2PL\u003c/code\u003e ? Two tiles, with one larger primary tile.\u003c/p\u003e \u003c/li\u003e \u003cli\u003e \u003cp\u003e \u003ccode\u003eLAYOUT_3EL\u003c/code\u003e ? Three tiles of equal size, arranged in two columns.\u003c/p\u003e \u003c/li\u003e \u003cli\u003e \u003cp\u003e \u003ccode\u003eLAYOUT_3PL\u003c/code\u003e ? Three tiles, with one larger primary tile on the left and two stacked on the right.\u003c/p\u003e \u003c/li\u003e \u003cli\u003e \u003cp\u003e \u003ccode\u003eLAYOUT_4E\u003c/code\u003e ? Four tiles of equal size, arranged in a two-by-two grid.\u003c/p\u003e \u003c/li\u003e \u003cli\u003e \u003cp\u003e \u003ccode\u003eLAYOUT_4PL\u003c/code\u003e ? Four tiles, with one larger primary tile on the left and three stacked on the right.\u003c/p\u003e \u003c/li\u003e \u003c/ul\u003e",
+        "enum": [
+          "LAYOUT_2EH",
+          "LAYOUT_2PL",
+          "LAYOUT_3EL",
+          "LAYOUT_3PL",
+          "LAYOUT_4E",
+          "LAYOUT_4PL"
+        ],
+        "type": "string"
+      },
+      "OutputHeaderConfiguration": {
+        "additionalProperties": false,
+        "description": "\u003cp\u003eThe settings for what common media server data (CMSD) headers AWS Elemental MediaPackage includes in responses to the CDN.\u003c/p\u003e",
+        "properties": {
+          "PublishMQCS": {
+            "description": "\u003cp\u003eWhen true, AWS Elemental MediaPackage includes the MQCS in responses to the CDN. This setting is valid only when \u003ccode\u003eInputType\u003c/code\u003e is \u003ccode\u003eCMAF\u003c/code\u003e.\u003c/p\u003e",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "OutputLockingMode": {
+        "enum": [
+          "EPOCH_LOCKED",
+          "NON_EPOCH_LOCKED"
         ],
         "type": "string"
       },
@@ -102,6 +183,16 @@
         "description": "\u003cp\u003eThe Amazon Resource Name (ARN) associated with the resource.\u003c/p\u003e",
         "type": "string"
       },
+      "AttachedMultiviewChannels": {
+        "description": "\u003cp\u003eThe multiview channels, in the same channel group, that list this channel as an available source. This is a read-only field. You can't delete a channel while any multiview channel still lists it as a source. Use this field to find the multiview channels that you need to update first.\u003c/p\u003e",
+        "items": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "type": "string"
+        },
+        "type": "array"
+      },
       "ChannelGroupName": {
         "maxLength": 256,
         "minLength": 1,
@@ -138,6 +229,9 @@
         },
         "type": "array"
       },
+      "InputSwitchConfiguration": {
+        "$ref": "#/definitions/InputSwitchConfiguration"
+      },
       "InputType": {
         "$ref": "#/definitions/InputType"
       },
@@ -145,6 +239,15 @@
         "description": "\u003cp\u003eThe date and time the channel was modified.\u003c/p\u003e",
         "format": "date-time",
         "type": "string"
+      },
+      "MultiviewConfiguration": {
+        "$ref": "#/definitions/MultiviewConfiguration"
+      },
+      "OutputHeaderConfiguration": {
+        "$ref": "#/definitions/OutputHeaderConfiguration"
+      },
+      "OutputLockingMode": {
+        "$ref": "#/definitions/OutputLockingMode"
       },
       "Tags": {
         "insertionOrder": false,
@@ -159,7 +262,8 @@
       "/properties/CreatedAt",
       "/properties/IngestEndpoints",
       "/properties/IngestEndpointUrls",
-      "/properties/ModifiedAt"
+      "/properties/ModifiedAt",
+      "/properties/AttachedMultiviewChannels"
     ],
     "required": [
       "ChannelGroupName",
@@ -167,7 +271,7 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-mediapackagev2",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "mediapackagev2:TagResource",
         "mediapackagev2:UntagResource",

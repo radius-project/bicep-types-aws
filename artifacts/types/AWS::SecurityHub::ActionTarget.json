@@ -1,0 +1,81 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SecurityHub-ActionTarget",
+  "type": "AWS::SecurityHub::ActionTarget",
+  "time": "2026-10-21T21:15:00.276Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Id"
+    ],
+    "description": "Creates a custom action target in Security Hub.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "securityhub:CreateActionTarget",
+          "securityhub:DescribeActionTargets"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "securityhub:DeleteActionTarget"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "securityhub:DescribeActionTargets"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "securityhub:DescribeActionTargets"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "securityhub:UpdateActionTarget"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ActionTargetArn"
+    ],
+    "properties": {
+      "ActionTargetArn": {
+        "description": "The Amazon Resource Name (ARN) of the custom action target.",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description for the custom action target.",
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "Id": {
+        "description": "The ID for the custom action target. Can contain up to 20 alphanumeric characters.",
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the custom action target. Can contain up to 20 characters.",
+        "pattern": "\\S",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ActionTargetArn"
+    ],
+    "required": [
+      "Name",
+      "Description",
+      "Id"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::SecurityHub::ActionTarget"
+  }
+}

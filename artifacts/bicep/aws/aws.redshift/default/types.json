@@ -236,7 +236,7 @@
           "$ref": "#/7"
         },
         "flags": 4,
-        "description": "An integer indicating the duration of the maintenance window in days. If you specify a duration, you can't specify an end time. The duration must be 45 days or less."
+        "description": "An integer indicating the duration of the maintenance window in days. If you specify a duration, you can't specify an end time. The duration must be 60 days or less."
       },
       "DeferMaintenanceEndTime": {
         "type": {
@@ -395,7 +395,7 @@
           "$ref": "#/3"
         },
         "flags": 1,
-        "description": "The node type to be provisioned for the cluster.Valid Values: ds2.xlarge | ds2.8xlarge | dc1.large | dc1.8xlarge | dc2.large | dc2.8xlarge | ra3.4xlarge | ra3.16xlarge"
+        "description": "The node type to be provisioned for the cluster.Valid Values: ds2.xlarge | ds2.8xlarge | dc1.large | dc1.8xlarge | dc2.large | dc2.8xlarge | ra3.large | ra3.4xlarge | ra3.16xlarge | rg.large | rg.xlarge | rg.4xlarge | rg.12xlarge"
       },
       "NumberOfNodes": {
         "type": {
@@ -533,11 +533,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Redshift/Cluster@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/14"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -631,7 +631,7 @@
         "type": {
           "$ref": "#/20"
         },
-        "flags": 4,
+        "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       }
     }
@@ -666,11 +666,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Redshift/ClusterParameterGroup@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/22"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -737,7 +737,7 @@
         "type": {
           "$ref": "#/27"
         },
-        "flags": 4,
+        "flags": 0,
         "description": "The list of tags for the cluster parameter group."
       }
     }
@@ -772,11 +772,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Redshift/ClusterSubnetGroup@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/29"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -994,11 +994,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Redshift/EndpointAccess@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/39"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1146,11 +1146,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Redshift/EndpointAuthorization@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/47"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1305,7 +1305,7 @@
         "type": {
           "$ref": "#/55"
         },
-        "flags": 4,
+        "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       }
     }
@@ -1340,11 +1340,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Redshift/EventSubscription@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/57"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1483,11 +1483,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Redshift/Integration@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/66"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1694,10 +1694,605 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Redshift/ScheduledAction@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/76"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The key, or name, for the resource tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The value for the resource tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Redshift/SnapshotProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/78"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Redshift/SnapshotProperties",
+    "properties": {
+      "AvailabilityZone": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The Availability Zone in which the cluster was created."
+      },
+      "ClusterCreateTime": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The time (UTC) when the cluster was originally created."
+      },
+      "ClusterIdentifier": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The cluster identifier for which you want a snapshot."
+      },
+      "ClusterVersion": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The version ID of the Amazon Redshift engine that is running on the cluster."
+      },
+      "DBName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The name of the database that was created when the cluster was created."
+      },
+      "Encrypted": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "If true, the data in the snapshot is encrypted at rest."
+      },
+      "EncryptedWithHSM": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "A boolean that indicates whether the snapshot data is encrypted using the HSM keys of the source cluster."
+      },
+      "EngineFullVersion": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The engine full version of the cluster at the time the snapshot was taken."
+      },
+      "EnhancedVpcRouting": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "An option that specifies whether to create the cluster with enhanced VPC routing enabled."
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The Key Management Service (KMS) key ID of the encryption key that was used to encrypt data in the cluster from which the snapshot was taken."
+      },
+      "MaintenanceTrackName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The name of the maintenance track for the snapshot."
+      },
+      "ManualSnapshotRetentionPeriod": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The number of days that a manual snapshot is retained. If the value is -1, the manual snapshot is retained indefinitely. The value must be either -1 or an integer between 1 and 3653."
+      },
+      "MasterUsername": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The admin user name for the cluster."
+      },
+      "NodeType": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The node type that the cluster is provisioned with."
+      },
+      "NumberOfNodes": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The number of nodes in the cluster."
+      },
+      "OwnerAccount": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The Amazon Web Services account that owns the snapshot."
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The port that the cluster is listening on."
+      },
+      "SnapshotArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the snapshot."
+      },
+      "SnapshotCreateTime": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The time (in UTC format) when Amazon Redshift began the snapshot."
+      },
+      "SnapshotIdentifier": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "A unique identifier for the snapshot that you are requesting. This identifier must be unique for all snapshots within the Amazon Web Services account."
+      },
+      "SnapshotType": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The snapshot type. Snapshots created using CreateClusterSnapshot and CopyClusterSnapshot are of type manual."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The snapshot status. The value of the status depends on the API operation used: CreateClusterSnapshot and CopyClusterSnapshot returns status as creating. DescribeClusterSnapshots returns status as creating, available, final snapshot, or failed. DeleteClusterSnapshot returns status as deleted."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 0,
+        "description": "A list of tag instances."
+      },
+      "VpcId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The VPC identifier of the cluster if the snapshot is from a cluster in a VPC."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Redshift/Snapshot",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/81"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Redshift/Snapshot@default",
+    "body": {
+      "$ref": "#/82"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The key, or name, for the resource tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The value for the resource tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Redshift/SnapshotCopyGrantProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/84"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Redshift/SnapshotCopyGrantProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the snapshot copy grant."
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 4,
+        "description": "The unique identifier of the encrypted symmetric key to which to grant Amazon Redshift permission. If no key is specified, the default key is used. Marked writeOnly because Create accepts aliases/key-ids but Describe returns the resolved key ARN, which would fail drift detection."
+      },
+      "SnapshotCopyGrantName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The name of the snapshot copy grant. This name must be unique in the region for the AWS account."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/86"
+        },
+        "flags": 0,
+        "description": "A list of tag instances."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Redshift/SnapshotCopyGrant",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/87"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Redshift/SnapshotCopyGrant@default",
+    "body": {
+      "$ref": "#/88"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The key, or name, for the resource tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The value for the resource tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Redshift/SnapshotScheduleProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/90"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Redshift/SnapshotScheduleProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the snapshot schedule."
+      },
+      "AssociatedClusterCount": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The number of clusters associated with the schedule."
+      },
+      "ScheduleDefinitions": {
+        "type": {
+          "$ref": "#/92"
+        },
+        "flags": 1,
+        "description": "The definition of the snapshot schedule. The definition is made up of schedule expressions, for example \"cron(30 12 *)\" or \"rate(12 hours)\"."
+      },
+      "ScheduleDescription": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The description of the snapshot schedule."
+      },
+      "ScheduleIdentifier": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "A unique identifier for the snapshot schedule. Only alphanumeric characters are allowed."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/93"
+        },
+        "flags": 0,
+        "description": "An optional set of tags for the snapshot schedule."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Redshift/SnapshotSchedule",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/94"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Redshift/SnapshotSchedule@default",
+    "body": {
+      "$ref": "#/95"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The key, or name, for the resource tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The value for the resource tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Redshift/UsageLimitProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/97"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Redshift/UsageLimitProperties",
+    "properties": {
+      "Amount": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The limit amount. If time-based, this amount is in minutes. If data-based, this amount is in terabytes (TB). The value must be a positive number."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the usage limit."
+      },
+      "BreachAction": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The action that Amazon Redshift takes when the limit is reached. The default is log."
+      },
+      "ClusterIdentifier": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The identifier of the cluster that you want to limit usage."
+      },
+      "FeatureType": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The Amazon Redshift feature that you want to limit."
+      },
+      "LimitType": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The type of limit. Depending on the feature type, this can be based on a time duration or data size. If FeatureType is spectrum, then LimitType must be data-scanned. If FeatureType is concurrency-scaling, then LimitType must be time. If FeatureType is cross-region-datasharing, then LimitType must be data-scanned."
+      },
+      "Period": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The time period that the amount applies to. A weekly period begins on Sunday. The default is monthly."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/99"
+        },
+        "flags": 0,
+        "description": "A list of tag instances."
+      },
+      "UsageLimitId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The identifier of the usage limit."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Redshift/UsageLimit",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/100"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Redshift/UsageLimit@default",
+    "body": {
+      "$ref": "#/101"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

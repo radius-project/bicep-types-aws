@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Deadline-Fleet",
   "type": "AWS::Deadline::Fleet",
-  "time": "2025-01-27T17:57:13.672Z",
+  "time": "2026-10-21T20:41:55.768Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -54,7 +54,8 @@
               "t4",
               "a10g",
               "l4",
-              "l40s"
+              "l40s",
+              "rtx-pro-server-6000"
             ],
             "type": "string"
           },
@@ -108,15 +109,42 @@
         ],
         "type": "string"
       },
+      "CustomerManagedAutoScalingConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "ScaleOutWorkersPerMinute": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "StandbyWorkerCount": {
+            "maximum": 2147483647,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "WorkerIdleDurationSeconds": {
+            "maximum": 2147483647,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
       "CustomerManagedFleetConfiguration": {
         "additionalProperties": false,
         "properties": {
+          "AutoScalingConfiguration": {
+            "$ref": "#/definitions/CustomerManagedAutoScalingConfiguration"
+          },
           "Mode": {
             "$ref": "#/definitions/AutoScalingMode"
           },
           "StorageProfileId": {
             "pattern": "^sp-[0-9a-f]{32}$",
             "type": "string"
+          },
+          "TagPropagationMode": {
+            "$ref": "#/definitions/TagPropagationMode"
           },
           "WorkerCapabilities": {
             "$ref": "#/definitions/CustomerManagedWorkerCapabilities"
@@ -213,7 +241,8 @@
       "Ec2MarketType": {
         "enum": [
           "on-demand",
-          "spot"
+          "spot",
+          "wait-and-save"
         ],
         "type": "string"
       },
@@ -318,15 +347,54 @@
           }
         ]
       },
+      "FleetSoftwareAddOn": {
+        "additionalProperties": false,
+        "properties": {
+          "Name": {
+            "$ref": "#/definitions/FleetSoftwareAddOnName"
+          }
+        },
+        "required": [
+          "Name"
+        ],
+        "type": "object"
+      },
+      "FleetSoftwareAddOnName": {
+        "enum": [
+          "docker"
+        ],
+        "type": "string"
+      },
       "FleetStatus": {
         "enum": [
           "ACTIVE",
           "CREATE_IN_PROGRESS",
           "UPDATE_IN_PROGRESS",
           "CREATE_FAILED",
-          "UPDATE_FAILED"
+          "UPDATE_FAILED",
+          "SUSPENDED"
         ],
         "type": "string"
+      },
+      "HostConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "ScriptBody": {
+            "maxLength": 15000,
+            "minLength": 0,
+            "type": "string"
+          },
+          "ScriptTimeoutSeconds": {
+            "default": 300,
+            "maximum": 3600,
+            "minimum": 300,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "ScriptBody"
+        ],
+        "type": "object"
       },
       "MemoryMiBRange": {
         "additionalProperties": false,
@@ -347,14 +415,86 @@
         ],
         "type": "object"
       },
+      "PersistentVolumeConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "Iops": {
+            "default": 3000,
+            "maximum": 80000,
+            "minimum": 100,
+            "type": "integer"
+          },
+          "LastUsedTtlHours": {
+            "default": 168,
+            "maximum": 8760,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "MountPath": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          },
+          "SizeGiB": {
+            "default": 250,
+            "maximum": 65536,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "ThroughputMiB": {
+            "default": 125,
+            "maximum": 2000,
+            "minimum": 125,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "MountPath"
+        ],
+        "type": "object"
+      },
+      "ServiceManagedEc2AutoScalingConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "ScaleOutWorkersPerMinute": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "StandbyWorkerCount": {
+            "maximum": 2147483647,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "WorkerIdleDurationSeconds": {
+            "maximum": 86400,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
       "ServiceManagedEc2FleetConfiguration": {
         "additionalProperties": false,
         "properties": {
+          "AutoScalingConfiguration": {
+            "$ref": "#/definitions/ServiceManagedEc2AutoScalingConfiguration"
+          },
           "InstanceCapabilities": {
             "$ref": "#/definitions/ServiceManagedEc2InstanceCapabilities"
           },
           "InstanceMarketOptions": {
             "$ref": "#/definitions/ServiceManagedEc2InstanceMarketOptions"
+          },
+          "PersistentVolumeConfiguration": {
+            "$ref": "#/definitions/PersistentVolumeConfiguration"
+          },
+          "StorageProfileId": {
+            "pattern": "^sp-[0-9a-f]{32}$",
+            "type": "string"
+          },
+          "VpcConfiguration": {
+            "$ref": "#/definitions/VpcConfiguration"
           }
         },
         "required": [
@@ -371,7 +511,8 @@
           },
           "AllowedInstanceTypes": {
             "items": {
-              "pattern": "^[a-zA-Z0-9]+\\.[a-zA-Z0-9]+$",
+              "maxLength": 100,
+              "minLength": 1,
               "type": "string"
             },
             "maxItems": 100,
@@ -399,7 +540,8 @@
           },
           "ExcludedInstanceTypes": {
             "items": {
-              "pattern": "^[a-zA-Z0-9]+\\.[a-zA-Z0-9]+$",
+              "maxLength": 100,
+              "minLength": 1,
               "type": "string"
             },
             "maxItems": 100,
@@ -414,6 +556,15 @@
           },
           "RootEbsVolume": {
             "$ref": "#/definitions/Ec2EbsVolume"
+          },
+          "SoftwareAddOns": {
+            "items": {
+              "$ref": "#/definitions/FleetSoftwareAddOn"
+            },
+            "maxItems": 10,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
           },
           "VCpuCount": {
             "$ref": "#/definitions/VCpuCountRange"
@@ -469,6 +620,13 @@
         ],
         "type": "object"
       },
+      "TagPropagationMode": {
+        "enum": [
+          "NO_PROPAGATION",
+          "PROPAGATE_TAGS_TO_WORKERS_AT_LAUNCH"
+        ],
+        "type": "string"
+      },
       "VCpuCountRange": {
         "additionalProperties": false,
         "properties": {
@@ -487,9 +645,23 @@
           "Min"
         ],
         "type": "object"
+      },
+      "VpcConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "ResourceConfigurationArns": {
+            "items": {
+              "maxLength": 2048,
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
       }
     },
-    "description": "Definition of AWS::Deadline::Fleet Resource Type",
+    "description": "Resource Type definition for AWS::Deadline::Fleet",
     "handlers": {
       "create": {
         "permissions": [
@@ -499,7 +671,13 @@
           "identitystore:ListGroupMembershipsForMember",
           "logs:CreateLogGroup",
           "deadline:TagResource",
-          "deadline:ListTagsForResource"
+          "deadline:ListTagsForResource",
+          "vpc-lattice:GetResourceGateway",
+          "vpc-lattice:GetResourceConfiguration",
+          "ec2:CreateVpcEndpoint",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeVpcs"
         ]
       },
       "delete": {
@@ -542,7 +720,13 @@
           "identitystore:ListGroupMembershipsForMember",
           "deadline:TagResource",
           "deadline:UntagResource",
-          "deadline:ListTagsForResource"
+          "deadline:ListTagsForResource",
+          "vpc-lattice:GetResourceGateway",
+          "vpc-lattice:GetResourceConfiguration",
+          "ec2:CreateVpcEndpoint",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeVpcs"
         ]
       }
     },
@@ -579,6 +763,9 @@
         "pattern": "^fleet-[0-9a-f]{32}$",
         "type": "string"
       },
+      "HostConfiguration": {
+        "$ref": "#/definitions/HostConfiguration"
+      },
       "MaxWorkerCount": {
         "maximum": 2147483647,
         "minimum": 0,
@@ -596,6 +783,9 @@
       },
       "Status": {
         "$ref": "#/definitions/FleetStatus"
+      },
+      "StatusMessage": {
+        "type": "string"
       },
       "Tags": {
         "description": "An array of key-value pairs to apply to this resource.",
@@ -615,6 +805,7 @@
       "/properties/Capabilities",
       "/properties/FleetId",
       "/properties/Status",
+      "/properties/StatusMessage",
       "/properties/WorkerCount",
       "/properties/Arn"
     ],

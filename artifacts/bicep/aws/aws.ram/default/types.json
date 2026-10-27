@@ -1,18 +1,45 @@
 [
   {
     "$type": "ObjectType",
+    "name": "PermissionTemplateParameterDeclaration",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "A description of the template parameter that helps consumers understand what value to provide."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The name of the template parameter."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The type of the template parameter. STRING substitutes a single string value directly into the template; STRING_LIST expands one or more string values to an array in the rendered policy."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "Tag",
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -37,7 +64,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/0"
+      "$ref": "#/1"
     }
   },
   {
@@ -46,53 +73,53 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 18
       },
       "IsResourceTypeDefault": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 2,
         "description": "Set to true to use this as the default permission."
       },
       "Name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The name of the permission."
       },
       "PermissionType": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 2
       },
       "PolicyTemplate": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "Policy template for the permission."
       },
       "ResourceType": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The resource type this permission can be used with."
       },
       "Tags": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 0
       },
       "Version": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 2,
         "description": "Version of the permission."
@@ -105,21 +132,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/7"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -129,11 +156,206 @@
   {
     "$type": "ResourceType",
     "name": "AWS.RAM/Permission@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/7"
+      "$ref": "#/8"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PermissionTemplateParameter",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The name of the template parameter."
+      },
+      "Values": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 1,
+        "description": "The values for the template parameter."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.RAM/PermissionAssociationProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.RAM/PermissionAssociationProperties",
+    "properties": {
+      "AssociationStatus": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The current status of the association between the permission and the resource share."
+      },
+      "FeatureSet": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The feature set of the resource share."
+      },
+      "IsDefault": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "Indicates whether the associated resource share is using the default version of the permission."
+      },
+      "LastUpdatedTime": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The date and time when the association between the permission and the resource share was last updated."
+      },
+      "PermissionArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "Specifies the [Amazon Resource Name (ARN)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of the AWS RAM permission to associate with the resource share."
+      },
+      "PermissionVersion": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The version of the permission currently associated with the resource share."
+      },
+      "Replace": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 4,
+        "description": "Specifies whether to replace the existing permission on the resource share. Use `true` to replace the current permission. Use `false` to add the permission when no permission is currently associated. The default value is `false`. Updating an existing association also requires `true`, because AWS RAM applies the change by re-associating the permission."
+      },
+      "ResourceShareArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "Specifies the [Amazon Resource Name (ARN)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of the resource share."
+      },
+      "ResourceType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The resource type to which the permission applies."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.RAM/PermissionAssociation",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.RAM/PermissionAssociation@default",
+    "body": {
+      "$ref": "#/14"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PermissionArnTemplateParameters",
+    "properties": {
+      "PermissionArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the permission."
+      },
+      "PermissionTemplateParameters": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "The template parameters for the permission."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PermissionTemplateParameter",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The name of the template parameter."
+      },
+      "Values": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1,
+        "description": "The values for the template parameter."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResourceShareConfiguration",
+    "properties": {
+      "ExclusiveAccountAccess": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The resource share restricts access to an account"
+      },
+      "RetainSharingOnAccountLeaveOrganization": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Specifies whether the consumer account retains access to the resource share after leaving the organization."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -141,18 +363,30 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
     }
   },
   {
@@ -162,31 +396,31 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/2"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/2"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/2"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/2"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/9"
+      "$ref": "#/19"
     }
   },
   {
@@ -195,55 +429,97 @@
     "properties": {
       "AllowExternalPrincipals": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "Specifies whether principals outside your organization in AWS Organizations can be associated with a resource share. A value of `true` lets you share with individual AWS accounts that are not in your organization. A value of `false` only has meaning if your account is a member of an AWS Organization. The default value is `true`."
       },
       "Arn": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 18
       },
+      "CreationTime": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The date and time when the resource share was created."
+      },
+      "FeatureSet": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The feature set of the resource share."
+      },
+      "LastUpdatedTime": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The date and time when the resource share was last updated."
+      },
       "Name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "Specifies the name of the resource share."
       },
+      "OwningAccountId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The ID of the AWS account that owns the resource share."
+      },
       "PermissionArns": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/23"
         },
         "flags": 4,
         "description": "Specifies the [Amazon Resource Names (ARNs)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of the AWS RAM permission to associate with the resource share. If you do not specify an ARN for the permission, AWS RAM automatically attaches the default version of the permission for each resource type. You can associate only one permission with each resource type included in the resource share."
       },
       "Principals": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/24"
         },
         "flags": 4,
         "description": "Specifies the principals to associate with the resource share. The possible values are:\n\n- An AWS account ID\n\n- An Amazon Resource Name (ARN) of an organization in AWS Organizations\n\n- An ARN of an organizational unit (OU) in AWS Organizations\n\n- An ARN of an IAM role\n\n- An ARN of an IAM user"
       },
       "ResourceArns": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/25"
         },
         "flags": 4,
         "description": "Specifies a list of one or more ARNs of the resources to associate with the resource share."
       },
+      "ResourceShareConfiguration": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "Specifies the configuration for the resource share"
+      },
       "Sources": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/26"
         },
         "flags": 4,
         "description": "Specifies from which source accounts the service principal has access to the resources in this resource share."
       },
+      "Status": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The current status of the resource share."
+      },
       "Tags": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Specifies one or more tags to attach to the resource share itself. It doesn't attach the tags to the resources associated with the resource share."
@@ -256,21 +532,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/28"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -280,10 +556,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.RAM/ResourceShare@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/17"
+      "$ref": "#/29"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

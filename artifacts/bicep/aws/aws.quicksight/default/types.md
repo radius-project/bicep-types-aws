@@ -1,85 +1,188 @@
 # AWS.QuickSight @ default
 
+## Resource AWS.QuickSight/ActionConnector@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.QuickSight/ActionConnectorProperties](#awsquicksightactionconnectorproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.QuickSight/Agent@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.QuickSight/AgentProperties](#awsquicksightagentproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.QuickSight/Analysis@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.QuickSight/AnalysisProperties](#awsquicksightanalysisproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.QuickSight/ApprovalPolicy@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.QuickSight/ApprovalPolicyProperties](#awsquicksightapprovalpolicyproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.QuickSight/CustomPermissions@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.QuickSight/CustomPermissionsProperties](#awsquicksightcustompermissionsproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.QuickSight/Dashboard@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.QuickSight/DashboardProperties](#awsquicksightdashboardproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.QuickSight/DataSet@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.QuickSight/DataSetProperties](#awsquicksightdatasetproperties) (Identifier): properties of the resource
 
 ## Resource AWS.QuickSight/DataSource@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.QuickSight/DataSourceProperties](#awsquicksightdatasourceproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.QuickSight/DLPSetting@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.QuickSight/DLPSettingProperties](#awsquicksightdlpsettingproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.QuickSight/Flow@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.QuickSight/FlowProperties](#awsquicksightflowproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.QuickSight/Folder@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.QuickSight/FolderProperties](#awsquicksightfolderproperties) (Identifier): properties of the resource
 
+## Resource AWS.QuickSight/KnowledgeBase@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.QuickSight/KnowledgeBaseProperties](#awsquicksightknowledgebaseproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.QuickSight/LimitsProfile@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.QuickSight/LimitsProfileProperties](#awsquicksightlimitsprofileproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.QuickSight/OAuthClientApplication@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.QuickSight/OAuthClientApplicationProperties](#awsquicksightoauthclientapplicationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.QuickSight/RefreshSchedule@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.QuickSight/RefreshScheduleProperties](#awsquicksightrefreshscheduleproperties) (Identifier): properties of the resource
 
+## Resource AWS.QuickSight/Space@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.QuickSight/SpaceProperties](#awsquicksightspaceproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.QuickSight/Template@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.QuickSight/TemplateProperties](#awsquicksighttemplateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.QuickSight/Theme@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.QuickSight/ThemeProperties](#awsquicksightthemeproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.QuickSight/Topic@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.QuickSight/TopicProperties](#awsquicksighttopicproperties) (Identifier): properties of the resource
 
+## Resource AWS.QuickSight/TopicV2@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.QuickSight/TopicV2Properties](#awsquicksighttopicv2properties) (Identifier): properties of the resource
+
 ## Resource AWS.QuickSight/VPCConnection@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.QuickSight/VPCConnectionProperties](#awsquicksightvpcconnectionproperties) (Identifier): properties of the resource
 
+## AccessControlConfiguration
+### Properties
+* **IsACLEnabled**: bool
+
+## ActionConnector_AuthenticationMetadata
+### Properties
+
 ## AdHocFilteringOption
 ### Properties
 * **AvailabilityStatus**: string
+
+## AgentTag
+### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
 
 ## AggregationFunction
 ### Properties
@@ -140,15 +243,6 @@
 ### Properties
 * **Domain**: string (Required): <p>The OpenSearch domain.</p>
 
-## Analysis_AvailabilityStatus
-### Properties
-
-## Analysis_Interactions
-### Properties
-
-## Analysis_Interactions
-### Properties
-
 ## AnalysisDefaults
 ### Properties
 * **DefaultNewSheetConfiguration**: [DefaultNewSheetConfiguration](#defaultnewsheetconfiguration) (Required)
@@ -172,7 +266,8 @@
 * **ParameterDeclarations**: [ParameterDeclaration](#parameterdeclaration)[]
 * **QueryExecutionOptions**: [QueryExecutionOptions](#queryexecutionoptions)
 * **Sheets**: [SheetDefinition](#sheetdefinition)[]
-* **StaticFiles**: [StaticFile](#staticfile)[]
+* **StaticFiles**: [StaticFile](#staticfile)[]: <p>The static files for the definition.</p>
+* **TopicIdentifierDeclarations**: [TopicIdentifierDeclaration](#topicidentifierdeclaration)[]
 
 ## AnalysisError
 ### Properties
@@ -188,6 +283,7 @@
 ### Properties
 * **Arn**: string (Required): <p>The Amazon Resource Name (ARN) of the source template of an analysis.</p>
 * **DataSetReferences**: [DataSetReference](#datasetreference)[] (Required): <p>The dataset references of the source template of an analysis.</p>
+* **TopicReferences**: [TopicReference](#topicreference)[]
 
 ## AnchorDateConfiguration
 ### Properties
@@ -203,6 +299,20 @@
 ### Properties
 * **AnchorOption**: string
 * **ParameterName**: string
+
+## ApplicableTo
+### Properties
+* **GroupArns**: string[]: Required when type = GROUP. One or more group ARNs.
+* **Type**: [ApprovalPolicy_Type](#approvalpolicytype) (Required)
+
+## ApprovalPolicy_Actions
+### Properties
+
+## ApprovalPolicy_AssetTypes
+### Properties
+
+## ApprovalPolicy_Type
+### Properties
 
 ## ArcAxisConfiguration
 ### Properties
@@ -268,6 +378,8 @@
 
 ## AssetOptions
 ### Properties
+* **ExcludedDataSetArns**: string[]
+* **QBusinessInsightsStatus**: string
 * **Timezone**: string
 * **WeekStart**: string
 
@@ -278,6 +390,8 @@
 
 ## AthenaParameters
 ### Properties
+* **ConsumerAccountRoleArn**: string
+* **IdentityCenterConfiguration**: [IdentityCenterConfiguration](#identitycenterconfiguration)
 * **RoleArn**: string: <p>Use the <code>RoleArn</code> structure to override an account-wide role for a specific Athena data source. For example, say an account administrator has turned off all Athena access with an account-wide role. The administrator can then use <code>RoleArn</code> to bypass the account-wide role and allow Athena access for the single Athena data source that is specified in the structure, even if the account-wide role forbidding Athena access is still active.</p>
 * **WorkGroup**: string: <p>The workgroup that Amazon Athena uses.</p>
 
@@ -296,6 +410,10 @@
 * **SimpleAttributeAggregation**: string
 * **ValueForMultipleValues**: string
 
+## AudioExtractionConfiguration
+### Properties
+* **AudioExtractionStatus**: string (Required)
+
 ## AuroraParameters
 ### Properties
 * **Database**: string (Required): <p>Database.</p>
@@ -307,6 +425,50 @@
 * **Database**: string (Required): <p>The Amazon Aurora PostgreSQL database to connect to.</p>
 * **Host**: string (Required): <p>The Amazon Aurora PostgreSQL-Compatible host to connect to.</p>
 * **Port**: int (Required): <p>The port that Amazon Aurora PostgreSQL is listening on.</p>
+
+## AuthConfig
+### Properties
+* **AuthenticationMetadata**: [ActionConnector_AuthenticationMetadata](#actionconnectorauthenticationmetadata) (Required)
+* **AuthenticationType**: string (Required)
+
+## AWS.QuickSight/ActionConnectorProperties
+### Properties
+* **ActionConnectorId**: string (Required, Identifier)
+* **Arn**: string (ReadOnly)
+* **AuthenticationConfig**: [AuthConfig](#authconfig) (Required, WriteOnly)
+* **AwsAccountId**: string (Required, Identifier)
+* **CreatedTime**: string (ReadOnly)
+* **Description**: string
+* **EnabledActions**: string[] (ReadOnly)
+* **LastUpdatedTime**: string (ReadOnly)
+* **Name**: string (Required)
+* **Permissions**: [ResourcePermission](#resourcepermission)[]
+* **Status**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]
+* **Type**: string (Required)
+* **VpcConnectionArn**: string (WriteOnly)
+
+## AWS.QuickSight/AgentProperties
+### Properties
+* **ActionConnectors**: string[]: A list of ActionConnector ARNs (max 10) attached to the agent.
+* **AgentId**: string (Required, Identifier): The unique identifier for the agent.
+* **AgentLifecycle**: string: The lifecycle stage of the agent. PREVIEW or PUBLISHED.
+* **AgentStatus**: string (ReadOnly): The current status of the agent. One of ACTIVE, CREATING, UPDATING, or FAILED.
+* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the agent.
+* **AwsAccountId**: string (Required, Identifier): The ID of the Amazon Web Services account where the agent is being created.
+* **CreatedAt**: string (ReadOnly): The date and time the agent was created.
+* **Creator**: string (ReadOnly): The ARN of the user who created the agent.
+* **CustomPromptInput**: [CustomPromptInput](#custompromptinput) (WriteOnly)
+* **CustomPromptInterface**: [CustomPromptInterface](#custompromptinterface) (ReadOnly)
+* **Description**: string: A description of the agent.
+* **ErrorMessage**: string (ReadOnly): The error message if the agent is in FAILED status.
+* **IconId**: string: The icon identifier for the agent.
+* **Name**: string (Required): The display name of the agent.
+* **Spaces**: string[]: A list of Space ARNs (max 10) attached to the agent.
+* **StarterPrompts**: string[]: A list of up to 3 starter prompts displayed to users.
+* **Tags**: [AgentTag](#agenttag)[]: A list of key-value pairs to associate with the agent resource.
+* **UpdatedAt**: string (ReadOnly): The date and time the agent was last updated.
+* **WelcomeMessage**: string: The welcome message displayed when a user opens the agent.
 
 ## AWS.QuickSight/AnalysisProperties
 ### Properties
@@ -328,6 +490,22 @@
 * **Tags**: [Tag](#tag)[]
 * **ThemeArn**: string: <p>The ARN of the theme of the analysis.</p>
 * **ValidationStrategy**: [ValidationStrategy](#validationstrategy) (WriteOnly)
+
+## AWS.QuickSight/ApprovalPolicyProperties
+### Properties
+* **Actions**: [ApprovalPolicy_Actions](#approvalpolicyactions)[] (Required): List of governed actions a policy applies to.
+* **ApplicableTo**: [ApplicableTo](#applicableto) (Required)
+* **ApprovalGroups**: string[] (Required): List of approval group ARNs (e.g. QuickSight group ARNs).
+At least one approval group is required; the upper bound is enforced
+per-account at the service layer via the configurable approver-group limit.
+* **AssetTypes**: [ApprovalPolicy_AssetTypes](#approvalpolicyassettypes)[] (Required): List of asset types a policy applies to.
+At least one asset type is required.
+* **CreatedAt**: string (ReadOnly)
+* **Description**: string
+* **Name**: string (Required)
+* **PolicyArn**: string (ReadOnly)
+* **PolicyId**: string (Required, Identifier)
+* **UpdatedAt**: string (ReadOnly)
 
 ## AWS.QuickSight/CustomPermissionsProperties
 ### Properties
@@ -371,6 +549,7 @@
 * **ConsumedSpiceCapacityInBytes**: int (ReadOnly): <p>The amount of SPICE capacity used by this dataset. This is 0 if the dataset isn't
             imported into SPICE.</p>
 * **CreatedTime**: string (ReadOnly): <p>The time that this dataset was created.</p>
+* **DataPrepConfiguration**: [DataPrepConfiguration](#dataprepconfiguration)
 * **DataSetId**: string (Identifier)
 * **DatasetParameters**: [DatasetParameter](#datasetparameter)[]: <p>The parameter declarations of the dataset.</p>
 * **DataSetRefreshProperties**: [DataSetRefreshProperties](#datasetrefreshproperties)
@@ -389,7 +568,9 @@
 * **PhysicalTableMap**: [PhysicalTableMap](#physicaltablemap)
 * **RowLevelPermissionDataSet**: [RowLevelPermissionDataSet](#rowlevelpermissiondataset)
 * **RowLevelPermissionTagConfiguration**: [RowLevelPermissionTagConfiguration](#rowlevelpermissiontagconfiguration)
+* **SemanticModelConfiguration**: [SemanticModelConfiguration](#semanticmodelconfiguration)
 * **Tags**: [Tag](#tag)[]: <p>Contains a map of the key-value pairs for the resource tag or tags assigned to the dataset.</p>
+* **UseAs**: string
 
 ## AWS.QuickSight/DataSourceProperties
 ### Properties
@@ -419,6 +600,35 @@
 * **Type**: string (Required)
 * **VpcConnectionProperties**: [VpcConnectionProperties](#vpcconnectionproperties)
 
+## AWS.QuickSight/DLPSettingProperties
+### Properties
+* **Arn**: string (ReadOnly)
+* **AwsAccountId**: string (Identifier)
+* **CreatedAt**: string (ReadOnly)
+* **DlpSettingId**: string (Required, Identifier)
+* **Enabled**: bool (Required)
+* **Name**: string (Required)
+* **ProviderConfig**: [ProviderConfig](#providerconfig) (Required)
+* **ProviderOutageAction**: string (Required)
+* **ProviderType**: string (Required)
+* **Status**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]
+* **UpdatedAt**: string (ReadOnly)
+
+## AWS.QuickSight/FlowProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier)
+* **AwsAccountId**: string (Required)
+* **CreatedTime**: string (ReadOnly)
+* **Description**: string
+* **FlowDefinition**: [Flow_FlowDefinition](#flowflowdefinition) (Required)
+* **FlowId**: string (ReadOnly)
+* **LastUpdatedTime**: string (ReadOnly)
+* **Name**: string (Required)
+* **Permissions**: [Permission](#permission)[] (WriteOnly)
+* **PublishState**: string (ReadOnly)
+* **StepAliases**: [StepAliasMapping](#stepaliasmapping)[] (ReadOnly)
+
 ## AWS.QuickSight/FolderProperties
 ### Properties
 * **Arn**: string (ReadOnly): <p>The Amazon Resource Name (ARN) for the folder.</p>
@@ -433,12 +643,77 @@
 * **SharingModel**: string
 * **Tags**: [Tag](#tag)[]
 
+## AWS.QuickSight/KnowledgeBaseProperties
+### Properties
+* **AccessControlConfiguration**: [AccessControlConfiguration](#accesscontrolconfiguration)
+* **AwsAccountId**: string (Required, Identifier)
+* **CreatedAt**: string (ReadOnly)
+* **DataSourceArn**: string (Required)
+* **Description**: string
+* **DocumentCount**: int (ReadOnly)
+* **IsEmailNotificationOptedForIngestionFailures**: bool
+* **KnowledgeBaseArn**: string (ReadOnly)
+* **KnowledgeBaseConfiguration**: [KnowledgeBaseConfiguration](#knowledgebaseconfiguration) (Required)
+* **KnowledgeBaseId**: string (Required, Identifier)
+* **KnowledgeBaseSizeBytes**: int (ReadOnly)
+* **MediaExtractionConfiguration**: [MediaExtractionConfiguration](#mediaextractionconfiguration)
+* **Name**: string (Required)
+* **Permissions**: [ResourcePermission](#resourcepermission)[]
+* **PrimaryOwnerArn**: string
+* **PrimaryOwnerUsername**: string (ReadOnly)
+* **Status**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]
+* **Type**: string (ReadOnly)
+* **UpdatedAt**: string (ReadOnly)
+
+## AWS.QuickSight/LimitsProfileProperties
+### Properties
+* **AccountId**: string (Required, Identifier)
+* **Arn**: string (ReadOnly)
+* **CreatedAt**: string (ReadOnly)
+* **Description**: string
+* **ProfileId**: string (ReadOnly, Identifier)
+* **ProfileName**: string (Required)
+* **ResourceLimits**: [ResourceLimitsMap](#resourcelimitsmap) (Required)
+* **UpdatedAt**: string (ReadOnly)
+
+## AWS.QuickSight/OAuthClientApplicationProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier)
+* **ClientId**: string (WriteOnly)
+* **ClientSecret**: string (WriteOnly)
+* **CreatedTime**: string (ReadOnly)
+* **DataSourceType**: string
+* **IdentityProviderVpcConnectionProperties**: [IdentityProviderVpcConnectionProperties](#identityprovidervpcconnectionproperties)
+* **LastUpdatedTime**: string (ReadOnly)
+* **Name**: string (Required)
+* **OAuthAuthorizationEndpointUrl**: string
+* **OAuthClientApplicationId**: string (Required)
+* **OAuthClientAuthenticationType**: string (Required)
+* **OAuthScopes**: string
+* **OAuthTokenEndpointUrl**: string (Required)
+* **Tags**: [Tag](#tag)[]
+
 ## AWS.QuickSight/RefreshScheduleProperties
 ### Properties
 * **Arn**: string (ReadOnly): <p>The Amazon Resource Name (ARN) of the data source.</p>
 * **AwsAccountId**: string (Identifier)
 * **DataSetId**: string (Identifier)
 * **Schedule**: [RefreshScheduleMap](#refreshschedulemap)
+
+## AWS.QuickSight/SpaceProperties
+### Properties
+* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the space.
+* **AwsAccountId**: string (Required, Identifier): The ID of the Amazon Web Services account where the space is being created.
+* **CreatedAt**: string (ReadOnly): The date and time the space was created.
+* **CreatedBy**: string (ReadOnly): The user name of the principal who created the space.
+* **Description**: string: A description of the space.
+* **Name**: string (Required): The display name of the space.
+* **Permissions**: [ResourcePermission](#resourcepermission)[]: A list of permissions granted on the space.
+* **Resources**: [SpaceResource](#spaceresource)[]: A list of QuickSight resources attached to the space.
+* **SpaceId**: string (Required, Identifier): The unique identifier for the space.
+* **Tags**: [Tag](#tag)[]: A list of key-value pairs to associate with the space resource.
+* **UpdatedAt**: string (ReadOnly): The date and time the space was last updated.
 
 ## AWS.QuickSight/TemplateProperties
 ### Properties
@@ -460,8 +735,8 @@
 ### Properties
 * **Arn**: string (ReadOnly): <p>The Amazon Resource Name (ARN) of the theme.</p>
 * **AwsAccountId**: string (Required, Identifier)
-* **BaseThemeId**: string (Required, WriteOnly)
-* **Configuration**: [ThemeConfiguration](#themeconfiguration) (Required, WriteOnly)
+* **BaseThemeId**: string (Required)
+* **Configuration**: [ThemeConfiguration](#themeconfiguration) (Required)
 * **CreatedTime**: string (ReadOnly): <p>The date and time that the theme was created.</p>
 * **LastUpdatedTime**: string (ReadOnly): <p>The date and time that the theme was last updated.</p>
 * **Name**: string (Required)
@@ -470,19 +745,35 @@
 * **ThemeId**: string (Required, Identifier)
 * **Type**: string (ReadOnly)
 * **Version**: [ThemeVersion](#themeversion) (ReadOnly)
-* **VersionDescription**: string (WriteOnly)
+* **VersionDescription**: string
 
 ## AWS.QuickSight/TopicProperties
 ### Properties
 * **Arn**: string (ReadOnly)
 * **AwsAccountId**: string (Identifier)
 * **ConfigOptions**: [TopicConfigOptions](#topicconfigoptions)
+* **CustomInstructions**: [CustomInstructions](#custominstructions)
 * **DataSets**: [DatasetMetadata](#datasetmetadata)[]
 * **Description**: string
 * **FolderArns**: string[] (WriteOnly)
 * **Name**: string
+* **Tags**: [Tag](#tag)[]
 * **TopicId**: string (Identifier)
 * **UserExperienceVersion**: string
+
+## AWS.QuickSight/TopicV2Properties
+### Properties
+* **Arn**: string (ReadOnly)
+* **AwsAccountId**: string (Identifier)
+* **CustomInstructions**: [CustomInstructions](#custominstructions)
+* **DataSetRelations**: [DataSetRelation](#datasetrelation)[]
+* **DataSets**: [DataSetReference](#datasetreference)[] (WriteOnly)
+* **Description**: string
+* **FolderArns**: string[] (WriteOnly)
+* **Name**: string
+* **Permissions**: [ResourcePermission](#resourcepermission)[]
+* **Tags**: [Tag](#tag)[]
+* **TopicId**: string (Identifier)
 
 ## AWS.QuickSight/VPCConnectionProperties
 ### Properties
@@ -561,10 +852,10 @@
 
 ## AxisDisplayOptions
 ### Properties
-* **AxisLineVisibility**: [Template_AxisLineVisibility](#templateaxislinevisibility)
+* **AxisLineVisibility**: string
 * **AxisOffset**: string: String based length that is composed of value and unit in px
 * **DataOptions**: [AxisDataOptions](#axisdataoptions)
-* **GridLineVisibility**: [Template_GridLineVisibility](#templategridlinevisibility)
+* **GridLineVisibility**: string
 * **ScrollbarOptions**: [ScrollBarOptions](#scrollbaroptions)
 * **TickLabelOptions**: [AxisTickLabelOptions](#axisticklabeloptions)
 
@@ -702,10 +993,13 @@
 * **ColorLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **ContributionAnalysisDefaults**: [ContributionAnalysisDefault](#contributionanalysisdefault)[]
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
+* **DefaultSeriesSettings**: [BarChartDefaultSeriesSettings](#barchartdefaultseriessettings)
 * **FieldWells**: [BarChartFieldWells](#barchartfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **Orientation**: string
 * **ReferenceLines**: [ReferenceLine](#referenceline)[]
+* **Series**: [BarSeriesItem](#barseriesitem)[]
 * **SmallMultiplesOptions**: [SmallMultiplesOptions](#smallmultiplesoptions)
 * **SortConfiguration**: [BarChartSortConfiguration](#barchartsortconfiguration)
 * **Tooltip**: [TooltipOptions](#tooltipoptions)
@@ -721,10 +1015,13 @@
 * **ColorLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **ContributionAnalysisDefaults**: [ContributionAnalysisDefault](#contributionanalysisdefault)[]
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
+* **DefaultSeriesSettings**: [BarChartDefaultSeriesSettings](#barchartdefaultseriessettings)
 * **FieldWells**: [BarChartFieldWells](#barchartfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **Orientation**: string
 * **ReferenceLines**: [ReferenceLine](#referenceline)[]
+* **Series**: [BarSeriesItem](#barseriesitem)[]
 * **SmallMultiplesOptions**: [SmallMultiplesOptions](#smallmultiplesoptions)
 * **SortConfiguration**: [BarChartSortConfiguration](#barchartsortconfiguration)
 * **Tooltip**: [TooltipOptions](#tooltipoptions)
@@ -740,10 +1037,13 @@
 * **ColorLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **ContributionAnalysisDefaults**: [ContributionAnalysisDefault](#contributionanalysisdefault)[]
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
+* **DefaultSeriesSettings**: [BarChartDefaultSeriesSettings](#barchartdefaultseriessettings)
 * **FieldWells**: [BarChartFieldWells](#barchartfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **Orientation**: string
 * **ReferenceLines**: [ReferenceLine](#referenceline)[]
+* **Series**: [BarSeriesItem](#barseriesitem)[]
 * **SmallMultiplesOptions**: [SmallMultiplesOptions](#smallmultiplesoptions)
 * **SortConfiguration**: [BarChartSortConfiguration](#barchartsortconfiguration)
 * **Tooltip**: [TooltipOptions](#tooltipoptions)
@@ -751,6 +1051,21 @@
 * **ValueLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **VisualPalette**: [VisualPalette](#visualpalette)
 
+## BarChartDefaultSeriesSettings
+### Properties
+* **BorderSettings**: [BorderSettings](#bordersettings)
+* **DecalSettings**: [DecalSettings](#decalsettings)
+
+## BarChartDefaultSeriesSettings
+### Properties
+* **BorderSettings**: [BorderSettings](#bordersettings)
+* **DecalSettings**: [DecalSettings](#decalsettings)
+
+## BarChartDefaultSeriesSettings
+### Properties
+* **BorderSettings**: [BorderSettings](#bordersettings)
+* **DecalSettings**: [DecalSettings](#decalsettings)
+
 ## BarChartFieldWells
 ### Properties
 * **BarChartAggregatedFieldWells**: [BarChartAggregatedFieldWells](#barchartaggregatedfieldwells)
@@ -820,6 +1135,15 @@
 * **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
+## BarSeriesItem
+### Properties
+
+## BarSeriesItem
+### Properties
+
+## BarSeriesItem
+### Properties
+
 ## BinCountOptions
 ### Properties
 * **Value**: int
@@ -851,6 +1175,7 @@
 ### Properties
 * **Content**: [BodySectionContent](#bodysectioncontent) (Required)
 * **PageBreakConfiguration**: [SectionPageBreakConfiguration](#sectionpagebreakconfiguration)
+* **RepeatConfiguration**: [BodySectionRepeatConfiguration](#bodysectionrepeatconfiguration)
 * **SectionId**: string (Required)
 * **Style**: [SectionStyle](#sectionstyle)
 
@@ -858,6 +1183,7 @@
 ### Properties
 * **Content**: [BodySectionContent](#bodysectioncontent) (Required)
 * **PageBreakConfiguration**: [SectionPageBreakConfiguration](#sectionpagebreakconfiguration)
+* **RepeatConfiguration**: [BodySectionRepeatConfiguration](#bodysectionrepeatconfiguration)
 * **SectionId**: string (Required)
 * **Style**: [SectionStyle](#sectionstyle)
 
@@ -865,6 +1191,7 @@
 ### Properties
 * **Content**: [BodySectionContent](#bodysectioncontent) (Required)
 * **PageBreakConfiguration**: [SectionPageBreakConfiguration](#sectionpagebreakconfiguration)
+* **RepeatConfiguration**: [BodySectionRepeatConfiguration](#bodysectionrepeatconfiguration)
 * **SectionId**: string (Required)
 * **Style**: [SectionStyle](#sectionstyle)
 
@@ -879,10 +1206,111 @@
 ## BodySectionContent
 ### Properties
 * **Layout**: [SectionLayoutConfiguration](#sectionlayoutconfiguration)
+
+## BodySectionDynamicCategoryDimensionConfiguration
+### Properties
+* **Column**: [ColumnIdentifier](#columnidentifier) (Required)
+* **Limit**: int
+* **SortByMetrics**: [ColumnSort](#columnsort)[]
+
+## BodySectionDynamicCategoryDimensionConfiguration
+### Properties
+* **Column**: [ColumnIdentifier](#columnidentifier) (Required)
+* **Limit**: int
+* **SortByMetrics**: [ColumnSort](#columnsort)[]
+
+## BodySectionDynamicCategoryDimensionConfiguration
+### Properties
+* **Column**: [ColumnIdentifier](#columnidentifier) (Required)
+* **Limit**: int
+* **SortByMetrics**: [ColumnSort](#columnsort)[]
+
+## BodySectionDynamicNumericDimensionConfiguration
+### Properties
+* **Column**: [ColumnIdentifier](#columnidentifier) (Required)
+* **Limit**: int
+* **SortByMetrics**: [ColumnSort](#columnsort)[]
+
+## BodySectionDynamicNumericDimensionConfiguration
+### Properties
+* **Column**: [ColumnIdentifier](#columnidentifier) (Required)
+* **Limit**: int
+* **SortByMetrics**: [ColumnSort](#columnsort)[]
+
+## BodySectionDynamicNumericDimensionConfiguration
+### Properties
+* **Column**: [ColumnIdentifier](#columnidentifier) (Required)
+* **Limit**: int
+* **SortByMetrics**: [ColumnSort](#columnsort)[]
+
+## BodySectionRepeatConfiguration
+### Properties
+* **DimensionConfigurations**: [BodySectionRepeatDimensionConfiguration](#bodysectionrepeatdimensionconfiguration)[]
+* **NonRepeatingVisuals**: string[]
+* **PageBreakConfiguration**: [BodySectionRepeatPageBreakConfiguration](#bodysectionrepeatpagebreakconfiguration)
+
+## BodySectionRepeatConfiguration
+### Properties
+* **DimensionConfigurations**: [BodySectionRepeatDimensionConfiguration](#bodysectionrepeatdimensionconfiguration)[]
+* **NonRepeatingVisuals**: string[]
+* **PageBreakConfiguration**: [BodySectionRepeatPageBreakConfiguration](#bodysectionrepeatpagebreakconfiguration)
+
+## BodySectionRepeatConfiguration
+### Properties
+* **DimensionConfigurations**: [BodySectionRepeatDimensionConfiguration](#bodysectionrepeatdimensionconfiguration)[]
+* **NonRepeatingVisuals**: string[]
+* **PageBreakConfiguration**: [BodySectionRepeatPageBreakConfiguration](#bodysectionrepeatpagebreakconfiguration)
+
+## BodySectionRepeatDimensionConfiguration
+### Properties
+* **DynamicCategoryDimensionConfiguration**: [BodySectionDynamicCategoryDimensionConfiguration](#bodysectiondynamiccategorydimensionconfiguration)
+* **DynamicNumericDimensionConfiguration**: [BodySectionDynamicNumericDimensionConfiguration](#bodysectiondynamicnumericdimensionconfiguration)
+
+## BodySectionRepeatDimensionConfiguration
+### Properties
+* **DynamicCategoryDimensionConfiguration**: [BodySectionDynamicCategoryDimensionConfiguration](#bodysectiondynamiccategorydimensionconfiguration)
+* **DynamicNumericDimensionConfiguration**: [BodySectionDynamicNumericDimensionConfiguration](#bodysectiondynamicnumericdimensionconfiguration)
+
+## BodySectionRepeatDimensionConfiguration
+### Properties
+* **DynamicCategoryDimensionConfiguration**: [BodySectionDynamicCategoryDimensionConfiguration](#bodysectiondynamiccategorydimensionconfiguration)
+* **DynamicNumericDimensionConfiguration**: [BodySectionDynamicNumericDimensionConfiguration](#bodysectiondynamicnumericdimensionconfiguration)
+
+## BodySectionRepeatPageBreakConfiguration
+### Properties
+* **After**: [SectionAfterPageBreak](#sectionafterpagebreak)
+
+## BodySectionRepeatPageBreakConfiguration
+### Properties
+* **After**: [SectionAfterPageBreak](#sectionafterpagebreak)
+
+## BodySectionRepeatPageBreakConfiguration
+### Properties
+* **After**: [SectionAfterPageBreak](#sectionafterpagebreak)
+
+## BorderSettings
+### Properties
+* **BorderColor**: string
+* **BorderVisibility**: string
+* **BorderWidth**: string: String based length that is composed of value and unit in px
+
+## BorderSettings
+### Properties
+* **BorderColor**: string
+* **BorderVisibility**: string
+* **BorderWidth**: string: String based length that is composed of value and unit in px
+
+## BorderSettings
+### Properties
+* **BorderColor**: string
+* **BorderVisibility**: string
+* **BorderWidth**: string: String based length that is composed of value and unit in px
 
 ## BorderStyle
 ### Properties
+* **Color**: string: String to encapsulate the most generic way Color can be formatted (words, hexStrings etc)
 * **Show**: bool: <p>The option to enable display of borders for visuals.</p>
+* **Width**: string: String to encapsulate the most generic way Width can be formatted with whatever units (px, em etc)
 
 ## BoxPlotAggregatedFieldWells
 ### Properties
@@ -905,6 +1333,7 @@
 * **CategoryAxis**: [AxisDisplayOptions](#axisdisplayoptions)
 * **CategoryLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **FieldWells**: [BoxPlotFieldWells](#boxplotfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **PrimaryYAxisDisplayOptions**: [AxisDisplayOptions](#axisdisplayoptions)
 * **PrimaryYAxisLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
@@ -919,6 +1348,7 @@
 * **CategoryAxis**: [AxisDisplayOptions](#axisdisplayoptions)
 * **CategoryLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **FieldWells**: [BoxPlotFieldWells](#boxplotfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **PrimaryYAxisDisplayOptions**: [AxisDisplayOptions](#axisdisplayoptions)
 * **PrimaryYAxisLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
@@ -933,6 +1363,7 @@
 * **CategoryAxis**: [AxisDisplayOptions](#axisdisplayoptions)
 * **CategoryLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **FieldWells**: [BoxPlotFieldWells](#boxplotfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **PrimaryYAxisDisplayOptions**: [AxisDisplayOptions](#axisdisplayoptions)
 * **PrimaryYAxisLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
@@ -967,8 +1398,8 @@
 
 ## BoxPlotOptions
 ### Properties
-* **AllDataPointsVisibility**: [Template_AllDataPointsVisibility](#templatealldatapointsvisibility)
-* **OutlierVisibility**: [Template_OutlierVisibility](#templateoutliervisibility)
+* **AllDataPointsVisibility**: string
+* **OutlierVisibility**: string
 * **StyleOptions**: [BoxPlotStyleOptions](#boxplotstyleoptions)
 
 ## BoxPlotSortConfiguration
@@ -1030,21 +1461,24 @@
 
 ## CalculatedField
 ### Properties
-* **DataSetIdentifier**: string (Required)
+* **DataSetIdentifier**: string
 * **Expression**: string (Required)
 * **Name**: string (Required)
+* **TopicIdentifier**: string
 
 ## CalculatedField
 ### Properties
-* **DataSetIdentifier**: string (Required)
+* **DataSetIdentifier**: string
 * **Expression**: string (Required)
 * **Name**: string (Required)
+* **TopicIdentifier**: string
 
 ## CalculatedField
 ### Properties
-* **DataSetIdentifier**: string (Required)
+* **DataSetIdentifier**: string
 * **Expression**: string (Required)
 * **Name**: string (Required)
+* **TopicIdentifier**: string
 
 ## CalculatedMeasureField
 ### Properties
@@ -1063,23 +1497,232 @@
 
 ## Capabilities
 ### Properties
+* **AccessAppsNativeDataStore**: string
+* **Action**: string
 * **AddOrRunAnomalyDetectionForAnalyses**: string
+* **AmazonBedrockARSAction**: string
+* **AmazonBedrockFSAction**: string
+* **AmazonBedrockKRSAction**: string
+* **AmazonSThreeAction**: string
+* **Analysis**: string
+* **ApproveFlowShareRequests**: string
+* **Apps**: string
+* **AsanaAction**: string
+* **Automate**: string
+* **BambooHRAction**: string
+* **BoxAgentAction**: string
+* **BuildCalculatedFieldWithQ**: string
+* **CanvaAgentAction**: string
+* **ChatAgent**: string
+* **ComprehendAction**: string
+* **ComprehendMedicalAction**: string
+* **ConfluenceAction**: string
+* **CreateAndUpdateAmazonBedrockARSAction**: string
+* **CreateAndUpdateAmazonBedrockFSAction**: string
+* **CreateAndUpdateAmazonBedrockKRSAction**: string
+* **CreateAndUpdateAmazonSThreeAction**: string
+* **CreateAndUpdateApps**: string
+* **CreateAndUpdateAsanaAction**: string
+* **CreateAndUpdateBambooHRAction**: string
+* **CreateAndUpdateBoxAgentAction**: string
+* **CreateAndUpdateCanvaAgentAction**: string
+* **CreateAndUpdateComprehendAction**: string
+* **CreateAndUpdateComprehendMedicalAction**: string
+* **CreateAndUpdateConfluenceAction**: string
 * **CreateAndUpdateDashboardEmailReports**: string
 * **CreateAndUpdateDatasets**: string
 * **CreateAndUpdateDataSources**: string
+* **CreateAndUpdateFactSetAction**: string
+* **CreateAndUpdateGenericHTTPAction**: string
+* **CreateAndUpdateGithubAction**: string
+* **CreateAndUpdateGoogleCalendarAction**: string
+* **CreateAndUpdateHubspotAction**: string
+* **CreateAndUpdateHuggingFaceAction**: string
+* **CreateAndUpdateIntercomAction**: string
+* **CreateAndUpdateJiraAction**: string
+* **CreateAndUpdateKnowledgeBases**: string
+* **CreateAndUpdateLinearAction**: string
+* **CreateAndUpdateMCPAction**: string
+* **CreateAndUpdateMondayAction**: string
+* **CreateAndUpdateMSExchangeAction**: string
+* **CreateAndUpdateMSTeamsAction**: string
+* **CreateAndUpdateNewRelicAction**: string
+* **CreateAndUpdateNotionAction**: string
+* **CreateAndUpdateOneDriveAction**: string
+* **CreateAndUpdateOpenAPIAction**: string
+* **CreateAndUpdatePagerDutyAction**: string
+* **CreateAndUpdateSalesforceAction**: string
+* **CreateAndUpdateSandPGlobalEnergyAction**: string
+* **CreateAndUpdateSandPGMIAction**: string
+* **CreateAndUpdateSAPBillOfMaterialAction**: string
+* **CreateAndUpdateSAPBusinessPartnerAction**: string
+* **CreateAndUpdateSAPMaterialStockAction**: string
+* **CreateAndUpdateSAPPhysicalInventoryAction**: string
+* **CreateAndUpdateSAPProductMasterDataAction**: string
+* **CreateAndUpdateServiceNowAction**: string
+* **CreateAndUpdateSharePointAction**: string
+* **CreateAndUpdateSlackAction**: string
+* **CreateAndUpdateSmartsheetAction**: string
+* **CreateAndUpdateTextractAction**: string
 * **CreateAndUpdateThemes**: string
 * **CreateAndUpdateThresholdAlerts**: string
+* **CreateAndUpdateZendeskAction**: string
+* **CreateChatAgents**: string
+* **CreateDashboardExecutiveSummaryWithQ**: string
 * **CreateSharedFolders**: string
+* **CreateSpaces**: string
 * **CreateSPICEDataset**: string
+* **Dashboard**: string
+* **EditVisualWithQ**: string
 * **ExportToCsv**: string
+* **ExportToCsvInScheduledReports**: string
 * **ExportToExcel**: string
+* **ExportToExcelInScheduledReports**: string
+* **ExportToPdf**: string
+* **ExportToPdfInScheduledReports**: string
+* **Extension**: string
+* **FactSetAction**: string
+* **Flow**: string
+* **GenericHTTPAction**: string
+* **GithubAction**: string
+* **GoogleCalendarAction**: string
+* **HubspotAction**: string
+* **HuggingFaceAction**: string
+* **IncludeContentInScheduledReportsEmail**: string
+* **IntercomAction**: string
+* **InvokeAppsAIInference**: string
+* **JiraAction**: string
+* **KnowledgeBase**: string
+* **LinearAction**: string
+* **ManageSharedFolders**: string
+* **MCPAction**: string
+* **MondayAction**: string
+* **MSExchangeAction**: string
+* **MSTeamsAction**: string
+* **NewRelicAction**: string
+* **NotionAction**: string
+* **OneDriveAction**: string
+* **OpenAPIAction**: string
+* **PagerDutyAction**: string
+* **PerformFlowUiTask**: string
+* **PrintReports**: string
+* **PublishWithoutApproval**: string
 * **RenameSharedFolders**: string
+* **Research**: string
+* **SalesforceAction**: string
+* **SandPGlobalEnergyAction**: string
+* **SandPGMIAction**: string
+* **SAPBillOfMaterialAction**: string
+* **SAPBusinessPartnerAction**: string
+* **SAPMaterialStockAction**: string
+* **SAPPhysicalInventoryAction**: string
+* **SAPProductMasterDataAction**: string
+* **ServiceNowAction**: string
+* **ShareAmazonBedrockARSAction**: string
+* **ShareAmazonBedrockFSAction**: string
+* **ShareAmazonBedrockKRSAction**: string
+* **ShareAmazonSThreeAction**: string
 * **ShareAnalyses**: string
+* **ShareApps**: string
+* **ShareAsanaAction**: string
+* **ShareBambooHRAction**: string
+* **ShareBoxAgentAction**: string
+* **ShareCanvaAgentAction**: string
+* **ShareChatAgents**: string
+* **ShareComprehendAction**: string
+* **ShareComprehendMedicalAction**: string
+* **ShareConfluenceAction**: string
 * **ShareDashboards**: string
 * **ShareDatasets**: string
 * **ShareDataSources**: string
+* **ShareFactSetAction**: string
+* **ShareGenericHTTPAction**: string
+* **ShareGithubAction**: string
+* **ShareGoogleCalendarAction**: string
+* **ShareHubspotAction**: string
+* **ShareHuggingFaceAction**: string
+* **ShareIntercomAction**: string
+* **ShareJiraAction**: string
+* **ShareKnowledgeBases**: string
+* **ShareLinearAction**: string
+* **ShareMCPAction**: string
+* **ShareMondayAction**: string
+* **ShareMSExchangeAction**: string
+* **ShareMSTeamsAction**: string
+* **ShareNewRelicAction**: string
+* **ShareNotionAction**: string
+* **ShareOneDriveAction**: string
+* **ShareOpenAPIAction**: string
+* **SharePagerDutyAction**: string
+* **SharePointAction**: string
+* **ShareSalesforceAction**: string
+* **ShareSandPGlobalEnergyAction**: string
+* **ShareSandPGMIAction**: string
+* **ShareSAPBillOfMaterialAction**: string
+* **ShareSAPBusinessPartnerAction**: string
+* **ShareSAPMaterialStockAction**: string
+* **ShareSAPPhysicalInventoryAction**: string
+* **ShareSAPProductMasterDataAction**: string
+* **ShareServiceNowAction**: string
+* **ShareSharePointAction**: string
+* **ShareSlackAction**: string
+* **ShareSmartsheetAction**: string
+* **ShareSpaces**: string
+* **ShareTextractAction**: string
+* **ShareZendeskAction**: string
+* **SlackAction**: string
+* **SmartsheetAction**: string
+* **Space**: string
 * **SubscribeDashboardEmailReports**: string
+* **TextractAction**: string
+* **Topic**: string
+* **UseAgentWebSearch**: string
+* **UseAmazonBedrockARSAction**: string
+* **UseAmazonBedrockFSAction**: string
+* **UseAmazonBedrockKRSAction**: string
+* **UseAmazonSThreeAction**: string
+* **UseAsanaAction**: string
+* **UseBambooHRAction**: string
+* **UseBedrockModels**: string
+* **UseBoxAgentAction**: string
+* **UseCanvaAgentAction**: string
+* **UseComprehendAction**: string
+* **UseComprehendMedicalAction**: string
+* **UseConfluenceAction**: string
+* **UseFactSetAction**: string
+* **UseGenericHTTPAction**: string
+* **UseGithubAction**: string
+* **UseGoogleCalendarAction**: string
+* **UseHubspotAction**: string
+* **UseHuggingFaceAction**: string
+* **UseIntercomAction**: string
+* **UseJiraAction**: string
+* **UseLinearAction**: string
+* **UseMCPAction**: string
+* **UseMondayAction**: string
+* **UseMSExchangeAction**: string
+* **UseMSTeamsAction**: string
+* **UseNewRelicAction**: string
+* **UseNotionAction**: string
+* **UseOneDriveAction**: string
+* **UseOpenAPIAction**: string
+* **UsePagerDutyAction**: string
+* **UseSalesforceAction**: string
+* **UseSandPGlobalEnergyAction**: string
+* **UseSandPGMIAction**: string
+* **UseSAPBillOfMaterialAction**: string
+* **UseSAPBusinessPartnerAction**: string
+* **UseSAPMaterialStockAction**: string
+* **UseSAPPhysicalInventoryAction**: string
+* **UseSAPProductMasterDataAction**: string
+* **UseServiceNowAction**: string
+* **UseSharePointAction**: string
+* **UseSlackAction**: string
+* **UseSmartsheetAction**: string
+* **UseTextractAction**: string
+* **UseZendeskAction**: string
 * **ViewAccountSPICECapacity**: string
+* **ZendeskAction**: string
 
 ## CascadingControlConfiguration
 ### Properties
@@ -1242,8 +1885,8 @@
 ## ChartAxisLabelOptions
 ### Properties
 * **AxisLabelOptions**: [AxisLabelOptions](#axislabeloptions)[]
-* **SortIconVisibility**: [Template_SortIconVisibility](#templatesorticonvisibility)
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **SortIconVisibility**: string
+* **Visibility**: string
 
 ## ClusterMarker
 ### Properties
@@ -1307,6 +1950,7 @@
 ### Properties
 * **ColorsConfiguration**: [ColorsConfiguration](#colorsconfiguration)
 * **Column**: [ColumnIdentifier](#columnidentifier) (Required)
+* **DecalSettingsConfiguration**: [DecalSettingsConfiguration](#decalsettingsconfiguration)
 * **FormatConfiguration**: [FormatConfiguration](#formatconfiguration)
 * **Role**: string
 
@@ -1314,6 +1958,7 @@
 ### Properties
 * **ColorsConfiguration**: [ColorsConfiguration](#colorsconfiguration)
 * **Column**: [ColumnIdentifier](#columnidentifier) (Required)
+* **DecalSettingsConfiguration**: [DecalSettingsConfiguration](#decalsettingsconfiguration)
 * **FormatConfiguration**: [FormatConfiguration](#formatconfiguration)
 * **Role**: string
 
@@ -1321,6 +1966,7 @@
 ### Properties
 * **ColorsConfiguration**: [ColorsConfiguration](#colorsconfiguration)
 * **Column**: [ColumnIdentifier](#columnidentifier) (Required)
+* **DecalSettingsConfiguration**: [DecalSettingsConfiguration](#decalsettingsconfiguration)
 * **FormatConfiguration**: [FormatConfiguration](#formatconfiguration)
 * **Role**: string
 
@@ -1358,17 +2004,20 @@
 ## ColumnIdentifier
 ### Properties
 * **ColumnName**: string (Required)
-* **DataSetIdentifier**: string (Required)
+* **DataSetIdentifier**: string
+* **TopicIdentifier**: string
 
 ## ColumnIdentifier
 ### Properties
 * **ColumnName**: string (Required)
-* **DataSetIdentifier**: string (Required)
+* **DataSetIdentifier**: string
+* **TopicIdentifier**: string
 
 ## ColumnIdentifier
 ### Properties
 * **ColumnName**: string (Required)
-* **DataSetIdentifier**: string (Required)
+* **DataSetIdentifier**: string
+* **TopicIdentifier**: string
 
 ## ColumnLevelPermissionRule
 ### Properties
@@ -1421,7 +2070,7 @@
 * **Column**: [ColumnIdentifier](#columnidentifier) (Required)
 * **Label**: string
 * **TooltipTarget**: string
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
 
 ## ComboChartAggregatedFieldWells
 ### Properties
@@ -1451,7 +2100,9 @@
 * **CategoryAxis**: [AxisDisplayOptions](#axisdisplayoptions)
 * **CategoryLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **ColorLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
+* **DefaultSeriesSettings**: [ComboChartDefaultSeriesSettings](#combochartdefaultseriessettings)
 * **FieldWells**: [ComboChartFieldWells](#combochartfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **LineDataLabels**: [DataLabelOptions](#datalabeloptions)
 * **PrimaryYAxisDisplayOptions**: [AxisDisplayOptions](#axisdisplayoptions)
@@ -1459,6 +2110,7 @@
 * **ReferenceLines**: [ReferenceLine](#referenceline)[]
 * **SecondaryYAxisDisplayOptions**: [AxisDisplayOptions](#axisdisplayoptions)
 * **SecondaryYAxisLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
+* **Series**: [ComboSeriesItem](#comboseriesitem)[]
 * **SingleAxisOptions**: [SingleAxisOptions](#singleaxisoptions)
 * **SortConfiguration**: [ComboChartSortConfiguration](#combochartsortconfiguration)
 * **Tooltip**: [TooltipOptions](#tooltipoptions)
@@ -1471,7 +2123,9 @@
 * **CategoryAxis**: [AxisDisplayOptions](#axisdisplayoptions)
 * **CategoryLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **ColorLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
+* **DefaultSeriesSettings**: [ComboChartDefaultSeriesSettings](#combochartdefaultseriessettings)
 * **FieldWells**: [ComboChartFieldWells](#combochartfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **LineDataLabels**: [DataLabelOptions](#datalabeloptions)
 * **PrimaryYAxisDisplayOptions**: [AxisDisplayOptions](#axisdisplayoptions)
@@ -1479,6 +2133,7 @@
 * **ReferenceLines**: [ReferenceLine](#referenceline)[]
 * **SecondaryYAxisDisplayOptions**: [AxisDisplayOptions](#axisdisplayoptions)
 * **SecondaryYAxisLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
+* **Series**: [ComboSeriesItem](#comboseriesitem)[]
 * **SingleAxisOptions**: [SingleAxisOptions](#singleaxisoptions)
 * **SortConfiguration**: [ComboChartSortConfiguration](#combochartsortconfiguration)
 * **Tooltip**: [TooltipOptions](#tooltipoptions)
@@ -1491,7 +2146,9 @@
 * **CategoryAxis**: [AxisDisplayOptions](#axisdisplayoptions)
 * **CategoryLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **ColorLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
+* **DefaultSeriesSettings**: [ComboChartDefaultSeriesSettings](#combochartdefaultseriessettings)
 * **FieldWells**: [ComboChartFieldWells](#combochartfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **LineDataLabels**: [DataLabelOptions](#datalabeloptions)
 * **PrimaryYAxisDisplayOptions**: [AxisDisplayOptions](#axisdisplayoptions)
@@ -1499,10 +2156,32 @@
 * **ReferenceLines**: [ReferenceLine](#referenceline)[]
 * **SecondaryYAxisDisplayOptions**: [AxisDisplayOptions](#axisdisplayoptions)
 * **SecondaryYAxisLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
+* **Series**: [ComboSeriesItem](#comboseriesitem)[]
 * **SingleAxisOptions**: [SingleAxisOptions](#singleaxisoptions)
 * **SortConfiguration**: [ComboChartSortConfiguration](#combochartsortconfiguration)
 * **Tooltip**: [TooltipOptions](#tooltipoptions)
 * **VisualPalette**: [VisualPalette](#visualpalette)
+
+## ComboChartDefaultSeriesSettings
+### Properties
+* **BorderSettings**: [BorderSettings](#bordersettings)
+* **DecalSettings**: [DecalSettings](#decalsettings)
+* **LineStyleSettings**: [LineChartLineStyleSettings](#linechartlinestylesettings)
+* **MarkerStyleSettings**: [LineChartMarkerStyleSettings](#linechartmarkerstylesettings)
+
+## ComboChartDefaultSeriesSettings
+### Properties
+* **BorderSettings**: [BorderSettings](#bordersettings)
+* **DecalSettings**: [DecalSettings](#decalsettings)
+* **LineStyleSettings**: [LineChartLineStyleSettings](#linechartlinestylesettings)
+* **MarkerStyleSettings**: [LineChartMarkerStyleSettings](#linechartmarkerstylesettings)
+
+## ComboChartDefaultSeriesSettings
+### Properties
+* **BorderSettings**: [BorderSettings](#bordersettings)
+* **DecalSettings**: [DecalSettings](#decalsettings)
+* **LineStyleSettings**: [LineChartLineStyleSettings](#linechartlinestylesettings)
+* **MarkerStyleSettings**: [LineChartMarkerStyleSettings](#linechartmarkerstylesettings)
 
 ## ComboChartFieldWells
 ### Properties
@@ -1566,6 +2245,15 @@
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
 * **VisualContentAltText**: string
 * **VisualId**: string (Required)
+
+## ComboSeriesItem
+### Properties
+
+## ComboSeriesItem
+### Properties
+
+## ComboSeriesItem
+### Properties
 
 ## ComparativeOrder
 ### Properties
@@ -1765,6 +2453,18 @@
 * **Color**: string
 * **Expression**: string (Required)
 
+## ContextMenuOption
+### Properties
+* **AvailabilityStatus**: string
+
+## ContextMenuOption
+### Properties
+* **AvailabilityStatus**: string
+
+## ContextMenuOption
+### Properties
+* **AvailabilityStatus**: string
+
 ## ContributionAnalysisDefault
 ### Properties
 * **ContributorDimensions**: [ColumnIdentifier](#columnidentifier)[] (Required)
@@ -1904,26 +2604,30 @@
 * **ContentType**: string
 * **ContentUrl**: string
 * **ImageScaling**: string
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 
 ## CustomContentConfiguration
 ### Properties
 * **ContentType**: string
 * **ContentUrl**: string
 * **ImageScaling**: string
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 
 ## CustomContentConfiguration
 ### Properties
 * **ContentType**: string
 * **ContentUrl**: string
 * **ImageScaling**: string
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 
 ## CustomContentVisual
 ### Properties
 * **Actions**: [VisualCustomAction](#visualcustomaction)[]
 * **ChartConfiguration**: [CustomContentConfiguration](#customcontentconfiguration)
-* **DataSetIdentifier**: string (Required)
+* **DataSetIdentifier**: string
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **TopicIdentifier**: string
 * **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
@@ -1931,9 +2635,10 @@
 ### Properties
 * **Actions**: [VisualCustomAction](#visualcustomaction)[]
 * **ChartConfiguration**: [CustomContentConfiguration](#customcontentconfiguration)
-* **DataSetIdentifier**: string (Required)
+* **DataSetIdentifier**: string
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **TopicIdentifier**: string
 * **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
@@ -1941,9 +2646,10 @@
 ### Properties
 * **Actions**: [VisualCustomAction](#visualcustomaction)[]
 * **ChartConfiguration**: [CustomContentConfiguration](#customcontentconfiguration)
-* **DataSetIdentifier**: string (Required)
+* **DataSetIdentifier**: string
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **TopicIdentifier**: string
 * **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
@@ -1992,6 +2698,18 @@
 * **NullOption**: string (Required)
 * **SelectAllOptions**: string
 
+## CustomInstruction
+### Properties
+* **InlineCustomInstruction**: [InlineCustomInstruction](#inlinecustominstruction)
+
+## CustomInstructions
+### Properties
+* **CustomInstructionsString**: string (Required): <p>A text field for providing additional guidance or context for response generation.</p>
+
+## CustomInstructions
+### Properties
+* **CustomInstructionsString**: string (Required)
+
 ## CustomNarrativeOptions
 ### Properties
 * **Narrative**: string (Required)
@@ -2025,10 +2743,36 @@
 * **IntegerValues**: int[]
 * **StringValues**: string[]
 
-## CustomValuesConfiguration
+## CustomPromptInput
 ### Properties
-* **CustomValues**: [CustomParameterValues](#customparametervalues) (Required)
-* **IncludeNullValue**: bool
+* **ExistingPrompt**: [CustomPromptProfile](#custompromptprofile)
+* **NewPrompt**: [CustomPromptInputParameters](#custompromptinputparameters)
+
+## CustomPromptInputParameters
+### Properties
+* **CustomInstructions**: string: Custom instructions for the agent behavior.
+* **Identity**: string: The identity or persona of the agent.
+* **OutputStyle**: string: The output style for the agent responses.
+* **ResponseLength**: string: The desired response length for the agent.
+* **Tone**: string: The tone used in agent responses.
+
+## CustomPromptInterface
+### Properties
+* **CustomInstructions**: string: Custom instructions for the agent behavior.
+* **Identity**: string: The identity or persona of the agent.
+* **ModelProfileId**: string: The identifier of the model profile.
+* **OutputStyle**: string: The output style for the agent responses.
+* **PromptSummary**: string: A summary of the resolved prompt.
+* **QbsAwsAccountId**: string: The QBS AWS account identifier.
+* **ResponseLength**: string: The desired response length for the agent.
+* **SubscriptionId**: string: The subscription identifier.
+* **Tone**: string: The tone used in agent responses.
+
+## CustomPromptProfile
+### Properties
+* **ModelProfileId**: string (Required): The identifier of the model profile.
+* **QbsAwsAccountId**: string (Required): The QBS AWS account identifier.
+* **SubscriptionId**: string (Required): The subscription identifier.
 
 ## CustomValuesConfiguration
 ### Properties
@@ -2040,14 +2784,10 @@
 * **CustomValues**: [CustomParameterValues](#customparametervalues) (Required)
 * **IncludeNullValue**: bool
 
-## Dashboard_Interactions
+## CustomValuesConfiguration
 ### Properties
-
-## Dashboard_Interactions
-### Properties
-
-## Dashboard_VisualMenuOption
-### Properties
+* **CustomValues**: [CustomParameterValues](#customparametervalues) (Required)
+* **IncludeNullValue**: bool
 
 ## DashboardError
 ### Properties
@@ -2061,12 +2801,16 @@
 * **DataPointDrillUpDownOption**: [DataPointDrillUpDownOption](#datapointdrillupdownoption)
 * **DataPointMenuLabelOption**: [DataPointMenuLabelOption](#datapointmenulabeloption)
 * **DataPointTooltipOption**: [DataPointTooltipOption](#datapointtooltipoption)
+* **DataQAEnabledOption**: [DataQAEnabledOption](#dataqaenabledoption)
+* **DataStoriesSharingOption**: [DataStoriesSharingOption](#datastoriessharingoption)
+* **ExecutiveSummaryOption**: [ExecutiveSummaryOption](#executivesummaryoption)
 * **ExportToCSVOption**: [ExportToCSVOption](#exporttocsvoption)
 * **ExportWithHiddenFieldsOption**: [ExportWithHiddenFieldsOption](#exportwithhiddenfieldsoption)
+* **QuickSuiteActionsOption**: [QuickSuiteActionsOption](#quicksuiteactionsoption)
 * **SheetControlsOption**: [SheetControlsOption](#sheetcontrolsoption)
 * **SheetLayoutElementMaximizationOption**: [SheetLayoutElementMaximizationOption](#sheetlayoutelementmaximizationoption)
 * **VisualAxisSortOption**: [VisualAxisSortOption](#visualaxissortoption)
-* **VisualMenuOption**: [Dashboard_VisualMenuOption](#dashboardvisualmenuoption)
+* **VisualMenuOption**: [VisualMenuOption](#visualmenuoption)
 * **VisualPublishOptions**: [DashboardVisualPublishOptions](#dashboardvisualpublishoptions)
 
 ## DashboardSourceEntity
@@ -2077,6 +2821,7 @@
 ### Properties
 * **Arn**: string (Required): <p>The Amazon Resource Name (ARN) of the resource.</p>
 * **DataSetReferences**: [DataSetReference](#datasetreference)[] (Required): <p>Dataset references.</p>
+* **TopicReferences**: [TopicReference](#topicreference)[]
 
 ## DashboardVersion
 ### Properties
@@ -2102,7 +2847,8 @@
 * **Options**: [AssetOptions](#assetoptions)
 * **ParameterDeclarations**: [ParameterDeclaration](#parameterdeclaration)[]
 * **Sheets**: [SheetDefinition](#sheetdefinition)[]
-* **StaticFiles**: [StaticFile](#staticfile)[]
+* **StaticFiles**: [StaticFile](#staticfile)[]: <p>The static files for the definition.</p>
+* **TopicIdentifierDeclarations**: [TopicIdentifierDeclaration](#topicidentifierdeclaration)[]
 
 ## DashboardVisualPublishOptions
 ### Properties
@@ -2133,7 +2879,9 @@
 
 ## DatabricksParameters
 ### Properties
+* **AuthenticationType**: string
 * **Host**: string (Required): <p>The host name of the Databricks data source.</p>
+* **OAuthParameters**: [OAuthParameters](#oauthparameters)
 * **Port**: int (Required): <p>The port for the Databricks data source.</p>
 * **SqlEndpointPath**: string (Required): <p>The HTTP path of the Databricks data source.</p>
 
@@ -2208,16 +2956,16 @@
 
 ## DataLabelOptions
 ### Properties
-* **CategoryLabelVisibility**: [Template_CategoryLabelVisibility](#templatecategorylabelvisibility)
+* **CategoryLabelVisibility**: string
 * **DataLabelTypes**: [DataLabelType](#datalabeltype)[]
 * **LabelColor**: string
 * **LabelContent**: string
 * **LabelFontConfiguration**: [FontConfiguration](#fontconfiguration)
-* **MeasureLabelVisibility**: [Template_MeasureLabelVisibility](#templatemeasurelabelvisibility)
+* **MeasureLabelVisibility**: string
 * **Overlap**: string
 * **Position**: string
-* **TotalsVisibility**: [Template_TotalsVisibility](#templatetotalsvisibility)
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **TotalsVisibility**: string
+* **Visibility**: string
 
 ## DataLabelType
 ### Properties
@@ -2277,7 +3025,7 @@
 ### Properties
 * **FieldId**: string
 * **FieldValue**: string
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
 
 ## DataPathSort
 ### Properties
@@ -2336,6 +3084,16 @@
 ### Properties
 * **AvailabilityStatus**: string
 
+## DataPrepConfiguration
+### Properties
+* **DestinationTableMap**: [DestinationTableMap](#destinationtablemap) (Required)
+* **SourceTableMap**: [SourceTableMap](#sourcetablemap) (Required)
+* **TransformStepMap**: [TransformStepMap](#transformstepmap) (Required)
+
+## DataQAEnabledOption
+### Properties
+* **AvailabilityStatus**: string
+
 ## DataSetConfiguration
 ### Properties
 * **ColumnGroupSchemaList**: [ColumnGroupSchema](#columngroupschema)[]: <p>A structure containing the list of column group schemas.</p>
@@ -2385,13 +3143,38 @@
 * **DataSetArn**: string (Required): <p>Dataset Amazon Resource Name (ARN).</p>
 * **DataSetPlaceholder**: string (Required): <p>Dataset placeholder.</p>
 
+## DataSetReference
+### Properties
+* **DataSetArn**: string (Required)
+* **DataSetName**: string
+
 ## DataSetRefreshProperties
 ### Properties
+* **FailureConfiguration**: [RefreshFailureConfiguration](#refreshfailureconfiguration)
 * **RefreshConfiguration**: [RefreshConfiguration](#refreshconfiguration)
+
+## DataSetRelation
+### Properties
+* **Left**: [DataSetRelationEndpoint](#datasetrelationendpoint) (Required)
+* **Right**: [DataSetRelationEndpoint](#datasetrelationendpoint) (Required)
+
+## DataSetRelationEndpoint
+### Properties
+* **ColumnNames**: string[] (Required)
+* **DataSetArn**: string (Required)
 
 ## DataSetSchema
 ### Properties
 * **ColumnSchemaList**: [ColumnSchema](#columnschema)[]: <p>A structure containing the list of column schemas.</p>
+
+## DataSetSemanticDescription
+### Properties
+* **Text**: string (Required)
+
+## DataSetSemanticMetadata
+### Properties
+* **CustomInstructions**: [CustomInstruction](#custominstruction)[]
+* **Description**: [DataSetSemanticDescription](#datasetsemanticdescription)
 
 ## DataSetUsageConfiguration
 ### Properties
@@ -2405,6 +3188,8 @@
             data source in the ARN is used as the credentials for the
             <code>DataSourceCredentials</code> structure.</p>
 * **CredentialPair**: [CredentialPair](#credentialpair)
+* **KeyPairCredentials**: [KeyPairCredentials](#keypaircredentials)
+* **OAuthClientCredentials**: [OAuthClientCredentials](#oauthclientcredentials)
 * **SecretArn**: string: <p>The Amazon Resource Name (ARN) of the secret associated with the data source in Amazon Secrets Manager.</p>
 
 ## DataSourceErrorInfo
@@ -2428,6 +3213,7 @@
 * **RdsParameters**: [RdsParameters](#rdsparameters)
 * **RedshiftParameters**: [RedshiftParameters](#redshiftparameters)
 * **S3Parameters**: [S3Parameters](#s3parameters)
+* **S3TablesParameters**: [S3TablesParameters](#s3tablesparameters)
 * **SnowflakeParameters**: [SnowflakeParameters](#snowflakeparameters)
 * **SparkParameters**: [SparkParameters](#sparkparameters)
 * **SqlServerParameters**: [SqlServerParameters](#sqlserverparameters)
@@ -2435,9 +3221,9 @@
 * **TeradataParameters**: [TeradataParameters](#teradataparameters)
 * **TrinoParameters**: [TrinoParameters](#trinoparameters)
 
-## DateAxisOptions
+## DataStoriesSharingOption
 ### Properties
-* **MissingDateVisibility**: string
+* **AvailabilityStatus**: string
 
 ## DateAxisOptions
 ### Properties
@@ -2445,7 +3231,11 @@
 
 ## DateAxisOptions
 ### Properties
-* **MissingDateVisibility**: [Template_MissingDateVisibility](#templatemissingdatevisibility)
+* **MissingDateVisibility**: string
+
+## DateAxisOptions
+### Properties
+* **MissingDateVisibility**: string
 
 ## DateDimensionField
 ### Properties
@@ -2591,19 +3381,25 @@
 
 ## DateTimePickerControlDisplayOptions
 ### Properties
+* **DateIconVisibility**: string
 * **DateTimeFormat**: string
+* **HelperTextVisibility**: string
 * **InfoIconLabelOptions**: [SheetControlInfoIconLabelOptions](#sheetcontrolinfoiconlabeloptions)
 * **TitleOptions**: [LabelOptions](#labeloptions)
 
 ## DateTimePickerControlDisplayOptions
 ### Properties
+* **DateIconVisibility**: string
 * **DateTimeFormat**: string
+* **HelperTextVisibility**: string
 * **InfoIconLabelOptions**: [SheetControlInfoIconLabelOptions](#sheetcontrolinfoiconlabeloptions)
 * **TitleOptions**: [LabelOptions](#labeloptions)
 
 ## DateTimePickerControlDisplayOptions
 ### Properties
+* **DateIconVisibility**: string
 * **DateTimeFormat**: string
+* **HelperTextVisibility**: string
 * **InfoIconLabelOptions**: [SheetControlInfoIconLabelOptions](#sheetcontrolinfoiconlabeloptions)
 * **TitleOptions**: [LabelOptions](#labeloptions)
 
@@ -2621,6 +3417,42 @@
 ### Properties
 * **CustomValue**: string
 * **ValueWhenUnsetOption**: string
+
+## DecalSettings
+### Properties
+* **DecalColor**: string
+* **DecalPatternType**: string
+* **DecalStyleType**: string
+* **DecalVisibility**: string
+* **ElementValue**: string
+
+## DecalSettings
+### Properties
+* **DecalColor**: string
+* **DecalPatternType**: string
+* **DecalStyleType**: string
+* **DecalVisibility**: string
+* **ElementValue**: string
+
+## DecalSettings
+### Properties
+* **DecalColor**: string
+* **DecalPatternType**: string
+* **DecalStyleType**: string
+* **DecalVisibility**: string
+* **ElementValue**: string
+
+## DecalSettingsConfiguration
+### Properties
+* **CustomDecalSettings**: [DecalSettings](#decalsettings)[]
+
+## DecalSettingsConfiguration
+### Properties
+* **CustomDecalSettings**: [DecalSettings](#decalsettings)[]
+
+## DecalSettingsConfiguration
+### Properties
+* **CustomDecalSettings**: [DecalSettings](#decalsettings)[]
 
 ## DecimalDatasetParameter
 ### Properties
@@ -2987,6 +3819,9 @@
 * **SourceField**: string
 * **SourceParameterName**: string
 
+## DestinationTableMap
+### Properties
+
 ## DimensionField
 ### Properties
 * **CategoricalDimensionField**: [CategoricalDimensionField](#categoricaldimensionfield)
@@ -3030,7 +3865,7 @@
 
 ## DonutCenterOptions
 ### Properties
-* **LabelVisibility**: [Template_LabelVisibility](#templatelabelvisibility)
+* **LabelVisibility**: string
 
 ## DonutOptions
 ### Properties
@@ -3104,19 +3939,22 @@
 ## EmptyVisual
 ### Properties
 * **Actions**: [VisualCustomAction](#visualcustomaction)[]
-* **DataSetIdentifier**: string (Required)
+* **DataSetIdentifier**: string
+* **TopicIdentifier**: string
 * **VisualId**: string (Required)
 
 ## EmptyVisual
 ### Properties
 * **Actions**: [VisualCustomAction](#visualcustomaction)[]
-* **DataSetIdentifier**: string (Required)
+* **DataSetIdentifier**: string
+* **TopicIdentifier**: string
 * **VisualId**: string (Required)
 
 ## EmptyVisual
 ### Properties
 * **Actions**: [VisualCustomAction](#visualcustomaction)[]
-* **DataSetIdentifier**: string (Required)
+* **DataSetIdentifier**: string
+* **TopicIdentifier**: string
 * **VisualId**: string (Required)
 
 ## Entity
@@ -3148,6 +3986,10 @@
 * **Amount**: int (Required)
 * **Granularity**: string (Required)
 * **Status**: string
+
+## ExecutiveSummaryOption
+### Properties
+* **AvailabilityStatus**: string
 
 ## ExplicitHierarchy
 ### Properties
@@ -3193,7 +4035,7 @@
 
 ## FieldBasedTooltip
 ### Properties
-* **AggregationVisibility**: [Template_AggregationVisibility](#templateaggregationvisibility)
+* **AggregationVisibility**: string
 * **TooltipFields**: [TooltipItem](#tooltipitem)[]
 * **TooltipTitleType**: string
 
@@ -3213,7 +4055,7 @@
 ## FieldLabelType
 ### Properties
 * **FieldId**: string
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
 
 ## FieldSeriesItem
 ### Properties
@@ -3282,7 +4124,7 @@
 * **FieldId**: string (Required)
 * **Label**: string
 * **TooltipTarget**: string
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
 
 ## FilledMapAggregatedFieldWells
 ### Properties
@@ -3326,6 +4168,7 @@
 ## FilledMapConfiguration
 ### Properties
 * **FieldWells**: [FilledMapFieldWells](#filledmapfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **MapStyleOptions**: [GeospatialMapStyleOptions](#geospatialmapstyleoptions)
 * **SortConfiguration**: [FilledMapSortConfiguration](#filledmapsortconfiguration)
@@ -3335,6 +4178,7 @@
 ## FilledMapConfiguration
 ### Properties
 * **FieldWells**: [FilledMapFieldWells](#filledmapfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **MapStyleOptions**: [GeospatialMapStyleOptions](#geospatialmapstyleoptions)
 * **SortConfiguration**: [FilledMapSortConfiguration](#filledmapsortconfiguration)
@@ -3344,6 +4188,7 @@
 ## FilledMapConfiguration
 ### Properties
 * **FieldWells**: [FilledMapFieldWells](#filledmapfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **MapStyleOptions**: [GeospatialMapStyleOptions](#geospatialmapstyleoptions)
 * **SortConfiguration**: [FilledMapSortConfiguration](#filledmapsortconfiguration)
@@ -3799,6 +4644,9 @@
 * **FilterControlId**: string (Required)
 * **SourceFilterId**: string (Required)
 * **Title**: string (Required)
+
+## Flow_FlowDefinition
+### Properties
 
 ## Font
 ### Properties
@@ -3808,6 +4656,7 @@
 ### Properties
 * **FontColor**: string
 * **FontDecoration**: string
+* **FontFamily**: string: <p>The font family that you want to use.</p>
 * **FontSize**: [FontSize](#fontsize)
 * **FontStyle**: string
 * **FontWeight**: [FontWeight](#fontweight)
@@ -3816,6 +4665,7 @@
 ### Properties
 * **FontColor**: string
 * **FontDecoration**: string
+* **FontFamily**: string: <p>The font family that you want to use.</p>
 * **FontSize**: [FontSize](#fontsize)
 * **FontStyle**: string
 * **FontWeight**: [FontWeight](#fontweight)
@@ -3824,24 +4674,43 @@
 ### Properties
 * **FontColor**: string
 * **FontDecoration**: string
+* **FontFamily**: string: <p>The font family that you want to use.</p>
+* **FontSize**: [FontSize](#fontsize)
+* **FontStyle**: string
+* **FontWeight**: [FontWeight](#fontweight)
+
+## FontConfiguration
+### Properties
+* **FontColor**: string
+* **FontDecoration**: string
+* **FontFamily**: string: <p>The font family that you want to use.</p>
 * **FontSize**: [FontSize](#fontsize)
 * **FontStyle**: string
 * **FontWeight**: [FontWeight](#fontweight)
 
 ## FontSize
 ### Properties
-* **Absolute**: string: String based length that is composed of value and unit in px
+* **Absolute**: string: <p>The font size that you want to use in px.</p>
 * **Relative**: string
 
 ## FontSize
 ### Properties
-* **Absolute**: string: String based length that is composed of value and unit in px
+* **Absolute**: string: <p>The font size that you want to use in px.</p>
 * **Relative**: string
 
 ## FontSize
 ### Properties
+* **Absolute**: string: <p>The font size that you want to use in px.</p>
 * **Relative**: string
 
+## FontSize
+### Properties
+* **Absolute**: string: <p>The font size that you want to use in px.</p>
+
+## FontWeight
+### Properties
+* **Name**: string
+
 ## FontWeight
 ### Properties
 * **Name**: string
@@ -3960,25 +4829,47 @@
 ### Properties
 * **CanvasSizeOptions**: [FreeFormLayoutCanvasSizeOptions](#freeformlayoutcanvassizeoptions)
 * **Elements**: [FreeFormLayoutElement](#freeformlayoutelement)[] (Required)
+* **Groups**: [SheetLayoutGroup](#sheetlayoutgroup)[]
 
 ## FreeFormLayoutConfiguration
 ### Properties
 * **CanvasSizeOptions**: [FreeFormLayoutCanvasSizeOptions](#freeformlayoutcanvassizeoptions)
 * **Elements**: [FreeFormLayoutElement](#freeformlayoutelement)[] (Required)
+* **Groups**: [SheetLayoutGroup](#sheetlayoutgroup)[]
 
 ## FreeFormLayoutConfiguration
 ### Properties
 * **CanvasSizeOptions**: [FreeFormLayoutCanvasSizeOptions](#freeformlayoutcanvassizeoptions)
 * **Elements**: [FreeFormLayoutElement](#freeformlayoutelement)[] (Required)
+* **Groups**: [SheetLayoutGroup](#sheetlayoutgroup)[]
 
 ## FreeFormLayoutElement
 ### Properties
 * **BackgroundStyle**: [FreeFormLayoutElementBackgroundStyle](#freeformlayoutelementbackgroundstyle)
+* **BorderRadius**: string
 * **BorderStyle**: [FreeFormLayoutElementBorderStyle](#freeformlayoutelementborderstyle)
 * **ElementId**: string (Required)
 * **ElementType**: string (Required)
 * **Height**: string (Required): String based length that is composed of value and unit in px
 * **LoadingAnimation**: [LoadingAnimation](#loadinganimation)
+* **Padding**: string
+* **RenderingRules**: [SheetElementRenderingRule](#sheetelementrenderingrule)[]
+* **SelectedBorderStyle**: [FreeFormLayoutElementBorderStyle](#freeformlayoutelementborderstyle)
+* **Visibility**: string
+* **Width**: string (Required): String based length that is composed of value and unit in px
+* **XAxisLocation**: string (Required): String based length that is composed of value and unit in px
+* **YAxisLocation**: string (Required): String based length that is composed of value and unit in px with Integer.MAX_VALUE as maximum value
+
+## FreeFormLayoutElement
+### Properties
+* **BackgroundStyle**: [FreeFormLayoutElementBackgroundStyle](#freeformlayoutelementbackgroundstyle)
+* **BorderRadius**: string
+* **BorderStyle**: [FreeFormLayoutElementBorderStyle](#freeformlayoutelementborderstyle)
+* **ElementId**: string (Required)
+* **ElementType**: string (Required)
+* **Height**: string (Required): String based length that is composed of value and unit in px
+* **LoadingAnimation**: [LoadingAnimation](#loadinganimation)
+* **Padding**: string
 * **RenderingRules**: [SheetElementRenderingRule](#sheetelementrenderingrule)[]
 * **SelectedBorderStyle**: [FreeFormLayoutElementBorderStyle](#freeformlayoutelementborderstyle)
 * **Visibility**: string
@@ -4001,21 +4892,6 @@
 * **XAxisLocation**: string (Required): String based length that is composed of value and unit in px
 * **YAxisLocation**: string (Required): String based length that is composed of value and unit in px with Integer.MAX_VALUE as maximum value
 
-## FreeFormLayoutElement
-### Properties
-* **BackgroundStyle**: [FreeFormLayoutElementBackgroundStyle](#freeformlayoutelementbackgroundstyle)
-* **BorderStyle**: [FreeFormLayoutElementBorderStyle](#freeformlayoutelementborderstyle)
-* **ElementId**: string (Required)
-* **ElementType**: string (Required)
-* **Height**: string (Required): String based length that is composed of value and unit in px
-* **LoadingAnimation**: [LoadingAnimation](#loadinganimation)
-* **RenderingRules**: [SheetElementRenderingRule](#sheetelementrenderingrule)[]
-* **SelectedBorderStyle**: [FreeFormLayoutElementBorderStyle](#freeformlayoutelementborderstyle)
-* **Visibility**: [Template_Visibility](#templatevisibility)
-* **Width**: string (Required): String based length that is composed of value and unit in px
-* **XAxisLocation**: string (Required): String based length that is composed of value and unit in px
-* **YAxisLocation**: string (Required): String based length that is composed of value and unit in px with Integer.MAX_VALUE as maximum value
-
 ## FreeFormLayoutElementBackgroundStyle
 ### Properties
 * **Color**: string
@@ -4029,22 +4905,24 @@
 ## FreeFormLayoutElementBackgroundStyle
 ### Properties
 * **Color**: string
-* **Visibility**: [Template_Visibility](#templatevisibility)
-
-## FreeFormLayoutElementBorderStyle
-### Properties
-* **Color**: string
 * **Visibility**: string
 
 ## FreeFormLayoutElementBorderStyle
 ### Properties
 * **Color**: string
 * **Visibility**: string
+* **Width**: string: String to encapsulate the most generic way Width can be formatted with whatever units (px, em etc)
 
 ## FreeFormLayoutElementBorderStyle
 ### Properties
 * **Color**: string
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
+* **Width**: string: String to encapsulate the most generic way Width can be formatted with whatever units (px, em etc)
+
+## FreeFormLayoutElementBorderStyle
+### Properties
+* **Color**: string
+* **Visibility**: string
 
 ## FreeFormLayoutScreenCanvasSizeOptions
 ### Properties
@@ -4090,6 +4968,7 @@
 * **CategoryLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **DataLabelOptions**: [FunnelChartDataLabelOptions](#funnelchartdatalabeloptions)
 * **FieldWells**: [FunnelChartFieldWells](#funnelchartfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **SortConfiguration**: [FunnelChartSortConfiguration](#funnelchartsortconfiguration)
 * **Tooltip**: [TooltipOptions](#tooltipoptions)
 * **ValueLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
@@ -4100,6 +4979,7 @@
 * **CategoryLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **DataLabelOptions**: [FunnelChartDataLabelOptions](#funnelchartdatalabeloptions)
 * **FieldWells**: [FunnelChartFieldWells](#funnelchartfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **SortConfiguration**: [FunnelChartSortConfiguration](#funnelchartsortconfiguration)
 * **Tooltip**: [TooltipOptions](#tooltipoptions)
 * **ValueLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
@@ -4110,6 +4990,7 @@
 * **CategoryLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **DataLabelOptions**: [FunnelChartDataLabelOptions](#funnelchartdatalabeloptions)
 * **FieldWells**: [FunnelChartFieldWells](#funnelchartfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **SortConfiguration**: [FunnelChartSortConfiguration](#funnelchartsortconfiguration)
 * **Tooltip**: [TooltipOptions](#tooltipoptions)
 * **ValueLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
@@ -4137,13 +5018,13 @@
 
 ## FunnelChartDataLabelOptions
 ### Properties
-* **CategoryLabelVisibility**: [Template_CategoryLabelVisibility](#templatecategorylabelvisibility)
+* **CategoryLabelVisibility**: string
 * **LabelColor**: string
 * **LabelFontConfiguration**: [FontConfiguration](#fontconfiguration)
 * **MeasureDataLabelStyle**: string
-* **MeasureLabelVisibility**: [Template_MeasureLabelVisibility](#templatemeasurelabelvisibility)
+* **MeasureLabelVisibility**: string
 * **Position**: string
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
 
 ## FunnelChartFieldWells
 ### Properties
@@ -4213,6 +5094,21 @@
 ## GaugeChartArcConditionalFormatting
 ### Properties
 * **ForegroundColor**: [ConditionalFormattingColor](#conditionalformattingcolor)
+
+## GaugeChartColorConfiguration
+### Properties
+* **BackgroundColor**: string
+* **ForegroundColor**: string
+
+## GaugeChartColorConfiguration
+### Properties
+* **BackgroundColor**: string
+* **ForegroundColor**: string
+
+## GaugeChartColorConfiguration
+### Properties
+* **BackgroundColor**: string
+* **ForegroundColor**: string
 
 ## GaugeChartConditionalFormatting
 ### Properties
@@ -4243,25 +5139,31 @@
 
 ## GaugeChartConfiguration
 ### Properties
+* **ColorConfiguration**: [GaugeChartColorConfiguration](#gaugechartcolorconfiguration)
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
 * **FieldWells**: [GaugeChartFieldWells](#gaugechartfieldwells)
 * **GaugeChartOptions**: [GaugeChartOptions](#gaugechartoptions)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **TooltipOptions**: [TooltipOptions](#tooltipoptions)
 * **VisualPalette**: [VisualPalette](#visualpalette)
 
 ## GaugeChartConfiguration
 ### Properties
+* **ColorConfiguration**: [GaugeChartColorConfiguration](#gaugechartcolorconfiguration)
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
 * **FieldWells**: [GaugeChartFieldWells](#gaugechartfieldwells)
 * **GaugeChartOptions**: [GaugeChartOptions](#gaugechartoptions)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **TooltipOptions**: [TooltipOptions](#tooltipoptions)
 * **VisualPalette**: [VisualPalette](#visualpalette)
 
 ## GaugeChartConfiguration
 ### Properties
+* **ColorConfiguration**: [GaugeChartColorConfiguration](#gaugechartcolorconfiguration)
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
 * **FieldWells**: [GaugeChartFieldWells](#gaugechartfieldwells)
 * **GaugeChartOptions**: [GaugeChartOptions](#gaugechartoptions)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **TooltipOptions**: [TooltipOptions](#tooltipoptions)
 * **VisualPalette**: [VisualPalette](#visualpalette)
 
@@ -4363,6 +5265,13 @@
 * **NullDataSettings**: [GeospatialNullDataSettings](#geospatialnulldatasettings)
 * **NullDataVisibility**: string
 
+## GeospatialCategoricalColor
+### Properties
+* **CategoryDataColors**: [GeospatialCategoricalDataColor](#geospatialcategoricaldatacolor)[] (Required)
+* **DefaultOpacity**: int
+* **NullDataSettings**: [GeospatialNullDataSettings](#geospatialnulldatasettings)
+* **NullDataVisibility**: string
+
 ## GeospatialCategoricalDataColor
 ### Properties
 * **Color**: string (Required)
@@ -4372,6 +5281,15 @@
 ### Properties
 * **Color**: string (Required)
 * **DataValue**: string (Required)
+
+## GeospatialCategoricalDataColor
+### Properties
+* **Color**: string (Required)
+* **DataValue**: string (Required)
+
+## GeospatialCircleRadius
+### Properties
+* **Radius**: int
 
 ## GeospatialCircleRadius
 ### Properties
@@ -4394,6 +5312,19 @@
 * **FillColor**: [GeospatialColor](#geospatialcolor)
 * **StrokeColor**: [GeospatialColor](#geospatialcolor)
 * **StrokeWidth**: [GeospatialLineWidth](#geospatiallinewidth)
+
+## GeospatialCircleSymbolStyle
+### Properties
+* **CircleRadius**: [GeospatialCircleRadius](#geospatialcircleradius)
+* **FillColor**: [GeospatialColor](#geospatialcolor)
+* **StrokeColor**: [GeospatialColor](#geospatialcolor)
+* **StrokeWidth**: [GeospatialLineWidth](#geospatiallinewidth)
+
+## GeospatialColor
+### Properties
+* **Categorical**: [GeospatialCategoricalColor](#geospatialcategoricalcolor)
+* **Gradient**: [GeospatialGradientColor](#geospatialgradientcolor)
+* **Solid**: [GeospatialSolidColor](#geospatialsolidcolor)
 
 ## GeospatialColor
 ### Properties
@@ -4442,6 +5373,10 @@
 ### Properties
 * **StaticFileDataSource**: [GeospatialStaticFileSource](#geospatialstaticfilesource)
 
+## GeospatialDataSourceItem
+### Properties
+* **StaticFileDataSource**: [GeospatialStaticFileSource](#geospatialstaticfilesource)
+
 ## GeospatialGradientColor
 ### Properties
 * **DefaultOpacity**: int
@@ -4455,6 +5390,18 @@
 * **NullDataSettings**: [GeospatialNullDataSettings](#geospatialnulldatasettings)
 * **NullDataVisibility**: string
 * **StepColors**: [GeospatialGradientStepColor](#geospatialgradientstepcolor)[] (Required)
+
+## GeospatialGradientColor
+### Properties
+* **DefaultOpacity**: int
+* **NullDataSettings**: [GeospatialNullDataSettings](#geospatialnulldatasettings)
+* **NullDataVisibility**: string
+* **StepColors**: [GeospatialGradientStepColor](#geospatialgradientstepcolor)[] (Required)
+
+## GeospatialGradientStepColor
+### Properties
+* **Color**: string (Required)
+* **DataValue**: int (Required)
 
 ## GeospatialGradientStepColor
 ### Properties
@@ -4512,6 +5459,11 @@
 * **ColorDimensionsFields**: [DimensionField](#dimensionfield)[]
 * **ColorValuesFields**: [MeasureField](#measurefield)[]
 
+## GeospatialLayerColorField
+### Properties
+* **ColorDimensionsFields**: [DimensionField](#dimensionfield)[]
+* **ColorValuesFields**: [MeasureField](#measurefield)[]
+
 ## GeospatialLayerDefinition
 ### Properties
 * **LineLayer**: [GeospatialLineLayer](#geospatiallinelayer)
@@ -4523,6 +5475,24 @@
 * **LineLayer**: [GeospatialLineLayer](#geospatiallinelayer)
 * **PointLayer**: [GeospatialPointLayer](#geospatialpointlayer)
 * **PolygonLayer**: [GeospatialPolygonLayer](#geospatialpolygonlayer)
+
+## GeospatialLayerDefinition
+### Properties
+* **LineLayer**: [GeospatialLineLayer](#geospatiallinelayer)
+* **PointLayer**: [GeospatialPointLayer](#geospatialpointlayer)
+* **PolygonLayer**: [GeospatialPolygonLayer](#geospatialpolygonlayer)
+
+## GeospatialLayerItem
+### Properties
+* **Actions**: [LayerCustomAction](#layercustomaction)[]
+* **DataSource**: [GeospatialDataSourceItem](#geospatialdatasourceitem)
+* **JoinDefinition**: [GeospatialLayerJoinDefinition](#geospatiallayerjoindefinition)
+* **Label**: string
+* **LayerDefinition**: [GeospatialLayerDefinition](#geospatiallayerdefinition)
+* **LayerId**: string (Required)
+* **LayerType**: string
+* **Tooltip**: [TooltipOptions](#tooltipoptions)
+* **Visibility**: string
 
 ## GeospatialLayerItem
 ### Properties
@@ -4560,9 +5530,15 @@
 * **DatasetKeyField**: [UnaggregatedField](#unaggregatedfield)
 * **ShapeKeyField**: string
 
+## GeospatialLayerJoinDefinition
+### Properties
+* **ColorField**: [GeospatialLayerColorField](#geospatiallayercolorfield)
+* **DatasetKeyField**: [UnaggregatedField](#unaggregatedfield)
+* **ShapeKeyField**: string
+
 ## GeospatialLayerMapConfiguration
 ### Properties
-* **Interactions**: [Analysis_Interactions](#analysisinteractions)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **MapLayers**: [GeospatialLayerItem](#geospatiallayeritem)[]
 * **MapState**: [GeospatialMapState](#geospatialmapstate)
@@ -4570,7 +5546,15 @@
 
 ## GeospatialLayerMapConfiguration
 ### Properties
-* **Interactions**: [Dashboard_Interactions](#dashboardinteractions)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
+* **Legend**: [LegendOptions](#legendoptions)
+* **MapLayers**: [GeospatialLayerItem](#geospatiallayeritem)[]
+* **MapState**: [GeospatialMapState](#geospatialmapstate)
+* **MapStyle**: [GeospatialMapStyle](#geospatialmapstyle)
+
+## GeospatialLayerMapConfiguration
+### Properties
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **MapLayers**: [GeospatialLayerItem](#geospatiallayeritem)[]
 * **MapState**: [GeospatialMapState](#geospatialmapstate)
@@ -4583,6 +5567,14 @@
 ## GeospatialLineLayer
 ### Properties
 * **Style**: [GeospatialLineStyle](#geospatiallinestyle) (Required)
+
+## GeospatialLineLayer
+### Properties
+* **Style**: [GeospatialLineStyle](#geospatiallinestyle) (Required)
+
+## GeospatialLineStyle
+### Properties
+* **LineSymbolStyle**: [GeospatialLineSymbolStyle](#geospatiallinesymbolstyle)
 
 ## GeospatialLineStyle
 ### Properties
@@ -4602,6 +5594,15 @@
 * **FillColor**: [GeospatialColor](#geospatialcolor)
 * **LineWidth**: [GeospatialLineWidth](#geospatiallinewidth)
 
+## GeospatialLineSymbolStyle
+### Properties
+* **FillColor**: [GeospatialColor](#geospatialcolor)
+* **LineWidth**: [GeospatialLineWidth](#geospatiallinewidth)
+
+## GeospatialLineWidth
+### Properties
+* **LineWidth**: int
+
 ## GeospatialLineWidth
 ### Properties
 * **LineWidth**: int
@@ -4631,7 +5632,7 @@
 ## GeospatialMapConfiguration
 ### Properties
 * **FieldWells**: [GeospatialMapFieldWells](#geospatialmapfieldwells)
-* **Interactions**: [Analysis_Interactions](#analysisinteractions)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **MapStyleOptions**: [GeospatialMapStyleOptions](#geospatialmapstyleoptions)
 * **PointStyleOptions**: [GeospatialPointStyleOptions](#geospatialpointstyleoptions)
@@ -4642,7 +5643,7 @@
 ## GeospatialMapConfiguration
 ### Properties
 * **FieldWells**: [GeospatialMapFieldWells](#geospatialmapfieldwells)
-* **Interactions**: [Dashboard_Interactions](#dashboardinteractions)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **MapStyleOptions**: [GeospatialMapStyleOptions](#geospatialmapstyleoptions)
 * **PointStyleOptions**: [GeospatialPointStyleOptions](#geospatialpointstyleoptions)
@@ -4653,6 +5654,7 @@
 ## GeospatialMapConfiguration
 ### Properties
 * **FieldWells**: [GeospatialMapFieldWells](#geospatialmapfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **MapStyleOptions**: [GeospatialMapStyleOptions](#geospatialmapstyleoptions)
 * **PointStyleOptions**: [GeospatialPointStyleOptions](#geospatialpointstyleoptions)
@@ -4681,6 +5683,17 @@
 ### Properties
 * **Bounds**: [GeospatialCoordinateBounds](#geospatialcoordinatebounds)
 * **MapNavigation**: string
+
+## GeospatialMapState
+### Properties
+* **Bounds**: [GeospatialCoordinateBounds](#geospatialcoordinatebounds)
+* **MapNavigation**: string
+
+## GeospatialMapStyle
+### Properties
+* **BackgroundColor**: string
+* **BaseMapStyle**: string
+* **BaseMapVisibility**: string
 
 ## GeospatialMapStyle
 ### Properties
@@ -4744,6 +5757,16 @@
 ### Properties
 * **SymbolStyle**: [GeospatialNullSymbolStyle](#geospatialnullsymbolstyle) (Required)
 
+## GeospatialNullDataSettings
+### Properties
+* **SymbolStyle**: [GeospatialNullSymbolStyle](#geospatialnullsymbolstyle) (Required)
+
+## GeospatialNullSymbolStyle
+### Properties
+* **FillColor**: string
+* **StrokeColor**: string
+* **StrokeWidth**: int
+
 ## GeospatialNullSymbolStyle
 ### Properties
 * **FillColor**: string
@@ -4763,6 +5786,14 @@
 ## GeospatialPointLayer
 ### Properties
 * **Style**: [GeospatialPointStyle](#geospatialpointstyle) (Required)
+
+## GeospatialPointLayer
+### Properties
+* **Style**: [GeospatialPointStyle](#geospatialpointstyle) (Required)
+
+## GeospatialPointStyle
+### Properties
+* **CircleSymbolStyle**: [GeospatialCircleSymbolStyle](#geospatialcirclesymbolstyle)
 
 ## GeospatialPointStyle
 ### Properties
@@ -4798,6 +5829,10 @@
 ### Properties
 * **Style**: [GeospatialPolygonStyle](#geospatialpolygonstyle) (Required)
 
+## GeospatialPolygonLayer
+### Properties
+* **Style**: [GeospatialPolygonStyle](#geospatialpolygonstyle) (Required)
+
 ## GeospatialPolygonStyle
 ### Properties
 * **PolygonSymbolStyle**: [GeospatialPolygonSymbolStyle](#geospatialpolygonsymbolstyle)
@@ -4805,6 +5840,16 @@
 ## GeospatialPolygonStyle
 ### Properties
 * **PolygonSymbolStyle**: [GeospatialPolygonSymbolStyle](#geospatialpolygonsymbolstyle)
+
+## GeospatialPolygonStyle
+### Properties
+* **PolygonSymbolStyle**: [GeospatialPolygonSymbolStyle](#geospatialpolygonsymbolstyle)
+
+## GeospatialPolygonSymbolStyle
+### Properties
+* **FillColor**: [GeospatialColor](#geospatialcolor)
+* **StrokeColor**: [GeospatialColor](#geospatialcolor)
+* **StrokeWidth**: [GeospatialLineWidth](#geospatiallinewidth)
 
 ## GeospatialPolygonSymbolStyle
 ### Properties
@@ -4828,6 +5873,15 @@
 * **Color**: string (Required)
 * **State**: string
 
+## GeospatialSolidColor
+### Properties
+* **Color**: string (Required)
+* **State**: string
+
+## GeospatialStaticFileSource
+### Properties
+* **StaticFileId**: string (Required)
+
 ## GeospatialStaticFileSource
 ### Properties
 * **StaticFileId**: string (Required)
@@ -4925,30 +5979,81 @@
 
 ## GridLayoutElement
 ### Properties
+* **BackgroundStyle**: [GridLayoutElementBackgroundStyle](#gridlayoutelementbackgroundstyle)
+* **BorderRadius**: string
+* **BorderStyle**: [GridLayoutElementBorderStyle](#gridlayoutelementborderstyle)
 * **ColumnIndex**: int
 * **ColumnSpan**: int (Required)
 * **ElementId**: string (Required)
 * **ElementType**: string (Required)
+* **LoadingAnimation**: [LoadingAnimation](#loadinganimation)
+* **Padding**: string
 * **RowIndex**: int
 * **RowSpan**: int (Required)
+* **SelectedBorderStyle**: [GridLayoutElementBorderStyle](#gridlayoutelementborderstyle)
 
 ## GridLayoutElement
 ### Properties
+* **BackgroundStyle**: [GridLayoutElementBackgroundStyle](#gridlayoutelementbackgroundstyle)
+* **BorderRadius**: string
+* **BorderStyle**: [GridLayoutElementBorderStyle](#gridlayoutelementborderstyle)
 * **ColumnIndex**: int
 * **ColumnSpan**: int (Required)
 * **ElementId**: string (Required)
 * **ElementType**: string (Required)
+* **LoadingAnimation**: [LoadingAnimation](#loadinganimation)
+* **Padding**: string
 * **RowIndex**: int
 * **RowSpan**: int (Required)
+* **SelectedBorderStyle**: [GridLayoutElementBorderStyle](#gridlayoutelementborderstyle)
 
 ## GridLayoutElement
 ### Properties
+* **BackgroundStyle**: [GridLayoutElementBackgroundStyle](#gridlayoutelementbackgroundstyle)
+* **BorderRadius**: string
+* **BorderStyle**: [GridLayoutElementBorderStyle](#gridlayoutelementborderstyle)
 * **ColumnIndex**: int
 * **ColumnSpan**: int (Required)
 * **ElementId**: string (Required)
 * **ElementType**: string (Required)
+* **LoadingAnimation**: [LoadingAnimation](#loadinganimation)
+* **Padding**: string
 * **RowIndex**: int
 * **RowSpan**: int (Required)
+* **SelectedBorderStyle**: [GridLayoutElementBorderStyle](#gridlayoutelementborderstyle)
+
+## GridLayoutElementBackgroundStyle
+### Properties
+* **Color**: string
+* **Visibility**: string
+
+## GridLayoutElementBackgroundStyle
+### Properties
+* **Color**: string
+* **Visibility**: string
+
+## GridLayoutElementBackgroundStyle
+### Properties
+* **Color**: string
+* **Visibility**: string
+
+## GridLayoutElementBorderStyle
+### Properties
+* **Color**: string
+* **Visibility**: string
+* **Width**: string: String to encapsulate the most generic way Width can be formatted with whatever units (px, em etc)
+
+## GridLayoutElementBorderStyle
+### Properties
+* **Color**: string
+* **Visibility**: string
+* **Width**: string: String to encapsulate the most generic way Width can be formatted with whatever units (px, em etc)
+
+## GridLayoutElementBorderStyle
+### Properties
+* **Color**: string
+* **Visibility**: string
+* **Width**: string: String to encapsulate the most generic way Width can be formatted with whatever units (px, em etc)
 
 ## GridLayoutScreenCanvasSizeOptions
 ### Properties
@@ -5036,6 +6141,7 @@
 * **ColumnLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
 * **FieldWells**: [HeatMapFieldWells](#heatmapfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **RowLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **SortConfiguration**: [HeatMapSortConfiguration](#heatmapsortconfiguration)
@@ -5047,6 +6153,7 @@
 * **ColumnLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
 * **FieldWells**: [HeatMapFieldWells](#heatmapfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **RowLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **SortConfiguration**: [HeatMapSortConfiguration](#heatmapsortconfiguration)
@@ -5058,6 +6165,7 @@
 * **ColumnLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
 * **FieldWells**: [HeatMapFieldWells](#heatmapfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **RowLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **SortConfiguration**: [HeatMapSortConfiguration](#heatmapsortconfiguration)
@@ -5164,6 +6272,7 @@
 * **BinOptions**: [HistogramBinOptions](#histogrambinoptions)
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
 * **FieldWells**: [HistogramFieldWells](#histogramfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Tooltip**: [TooltipOptions](#tooltipoptions)
 * **VisualPalette**: [VisualPalette](#visualpalette)
 * **XAxisDisplayOptions**: [AxisDisplayOptions](#axisdisplayoptions)
@@ -5175,6 +6284,7 @@
 * **BinOptions**: [HistogramBinOptions](#histogrambinoptions)
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
 * **FieldWells**: [HistogramFieldWells](#histogramfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Tooltip**: [TooltipOptions](#tooltipoptions)
 * **VisualPalette**: [VisualPalette](#visualpalette)
 * **XAxisDisplayOptions**: [AxisDisplayOptions](#axisdisplayoptions)
@@ -5186,6 +6296,7 @@
 * **BinOptions**: [HistogramBinOptions](#histogrambinoptions)
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
 * **FieldWells**: [HistogramFieldWells](#histogramfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Tooltip**: [TooltipOptions](#tooltipoptions)
 * **VisualPalette**: [VisualPalette](#visualpalette)
 * **XAxisDisplayOptions**: [AxisDisplayOptions](#axisdisplayoptions)
@@ -5235,6 +6346,10 @@
 ### Properties
 * **EnableIdentityPropagation**: bool: <p>A Boolean option that controls whether Trusted Identity Propagation should be used.</p>
 
+## IdentityProviderVpcConnectionProperties
+### Properties
+* **VpcConnectionArn**: string (Required)
+
 ## ImageCustomAction
 ### Properties
 * **ActionOperations**: [ImageCustomActionOperation](#imagecustomactionoperation)[] (Required)
@@ -5277,9 +6392,9 @@
 * **SetParametersOperation**: [CustomActionSetParametersOperation](#customactionsetparametersoperation)
 * **URLOperation**: [CustomActionURLOperation](#customactionurloperation)
 
-## ImageInteractionOptions
+## ImageExtractionConfiguration
 ### Properties
-* **ImageMenuOption**: [ImageMenuOption](#imagemenuoption)
+* **ImageExtractionStatus**: string (Required)
 
 ## ImageInteractionOptions
 ### Properties
@@ -5289,9 +6404,9 @@
 ### Properties
 * **ImageMenuOption**: [ImageMenuOption](#imagemenuoption)
 
-## ImageMenuOption
+## ImageInteractionOptions
 ### Properties
-* **AvailabilityStatus**: [Analysis_AvailabilityStatus](#analysisavailabilitystatus)
+* **ImageMenuOption**: [ImageMenuOption](#imagemenuoption)
 
 ## ImageMenuOption
 ### Properties
@@ -5299,7 +6414,16 @@
 
 ## ImageMenuOption
 ### Properties
-* **AvailabilityStatus**: [Template_AvailabilityStatus](#templateavailabilitystatus)
+* **AvailabilityStatus**: string
+
+## ImageMenuOption
+### Properties
+* **AvailabilityStatus**: string
+
+## ImageStaticFile
+### Properties
+* **Source**: [StaticFileSource](#staticfilesource)
+* **StaticFileId**: string (Required)
 
 ## ImageStaticFile
 ### Properties
@@ -5322,6 +6446,11 @@
 * **WaitForSpiceIngestion**: bool: <p>Wait for SPICE ingestion to finish to mark dataset creation/update successful. Default (true).
   Applicable only when DataSetImportMode mode is set to SPICE.</p>
 
+## InlineCustomInstruction
+### Properties
+* **InstructionText**: string (Required)
+* **UploadedDocumentMetadata**: [UploadedDocumentMetadata](#uploadeddocumentmetadata)
+
 ## InnerFilter
 ### Properties
 * **CategoryInnerFilter**: [CategoryInnerFilter](#categoryinnerfilter)
@@ -5338,44 +6467,50 @@
 ### Properties
 * **Computations**: [Computation](#computation)[]
 * **CustomNarrative**: [CustomNarrativeOptions](#customnarrativeoptions)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 
 ## InsightConfiguration
 ### Properties
 * **Computations**: [Computation](#computation)[]
 * **CustomNarrative**: [CustomNarrativeOptions](#customnarrativeoptions)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 
 ## InsightConfiguration
 ### Properties
 * **Computations**: [Computation](#computation)[]
 * **CustomNarrative**: [CustomNarrativeOptions](#customnarrativeoptions)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 
 ## InsightVisual
 ### Properties
 * **Actions**: [VisualCustomAction](#visualcustomaction)[]
-* **DataSetIdentifier**: string (Required)
+* **DataSetIdentifier**: string
 * **InsightConfiguration**: [InsightConfiguration](#insightconfiguration)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **TopicIdentifier**: string
 * **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## InsightVisual
 ### Properties
 * **Actions**: [VisualCustomAction](#visualcustomaction)[]
-* **DataSetIdentifier**: string (Required)
+* **DataSetIdentifier**: string
 * **InsightConfiguration**: [InsightConfiguration](#insightconfiguration)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **TopicIdentifier**: string
 * **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## InsightVisual
 ### Properties
 * **Actions**: [VisualCustomAction](#visualcustomaction)[]
-* **DataSetIdentifier**: string (Required)
+* **DataSetIdentifier**: string
 * **InsightConfiguration**: [InsightConfiguration](#insightconfiguration)
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **TopicIdentifier**: string
 * **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
@@ -5469,6 +6604,23 @@
 * **ItemsLimit**: int
 * **OtherCategories**: string
 
+## KbTemplateConfiguration
+### Properties
+* **Template**: [KnowledgeBase_Template](#knowledgebasetemplate)
+
+## KeyPairCredentials
+### Properties
+* **KeyPairUsername**: string (Required)
+* **PrivateKey**: string (Required)
+* **PrivateKeyPassphrase**: string
+
+## KnowledgeBase_Template
+### Properties
+
+## KnowledgeBaseConfiguration
+### Properties
+* **TemplateConfiguration**: [KbTemplateConfiguration](#kbtemplateconfiguration)
+
 ## KPIActualValueConditionalFormatting
 ### Properties
 * **Icon**: [ConditionalFormattingIcon](#conditionalformattingicon)
@@ -5535,18 +6687,21 @@
 ## KPIConfiguration
 ### Properties
 * **FieldWells**: [KPIFieldWells](#kpifieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **KPIOptions**: [KPIOptions](#kpioptions)
 * **SortConfiguration**: [KPISortConfiguration](#kpisortconfiguration)
 
 ## KPIConfiguration
 ### Properties
 * **FieldWells**: [KPIFieldWells](#kpifieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **KPIOptions**: [KPIOptions](#kpioptions)
 * **SortConfiguration**: [KPISortConfiguration](#kpisortconfiguration)
 
 ## KPIConfiguration
 ### Properties
 * **FieldWells**: [KPIFieldWells](#kpifieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **KPIOptions**: [KPIOptions](#kpioptions)
 * **SortConfiguration**: [KPISortConfiguration](#kpisortconfiguration)
 
@@ -5660,9 +6815,9 @@
 ## KPISparklineOptions
 ### Properties
 * **Color**: string
-* **TooltipVisibility**: [Template_TooltipVisibility](#templatetooltipvisibility)
+* **TooltipVisibility**: string
 * **Type**: string (Required)
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
 
 ## KPIVisual
 ### Properties
@@ -5737,7 +6892,15 @@
 ### Properties
 * **CustomLabel**: string
 * **FontConfiguration**: [FontConfiguration](#fontconfiguration)
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
+
+## LayerCustomAction
+### Properties
+* **ActionOperations**: [LayerCustomActionOperation](#layercustomactionoperation)[] (Required)
+* **CustomActionId**: string (Required)
+* **Name**: string (Required)
+* **Status**: string
+* **Trigger**: string (Required)
 
 ## LayerCustomAction
 ### Properties
@@ -5769,21 +6932,40 @@
 * **SetParametersOperation**: [CustomActionSetParametersOperation](#customactionsetparametersoperation)
 * **URLOperation**: [CustomActionURLOperation](#customactionurloperation)
 
+## LayerCustomActionOperation
+### Properties
+* **FilterOperation**: [CustomActionFilterOperation](#customactionfilteroperation)
+* **NavigationOperation**: [CustomActionNavigationOperation](#customactionnavigationoperation)
+* **SetParametersOperation**: [CustomActionSetParametersOperation](#customactionsetparametersoperation)
+* **URLOperation**: [CustomActionURLOperation](#customactionurloperation)
+
 ## LayerMapVisual
 ### Properties
 * **ChartConfiguration**: [GeospatialLayerMapConfiguration](#geospatiallayermapconfiguration)
-* **DataSetIdentifier**: string (Required)
+* **DataSetIdentifier**: string
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **TopicIdentifier**: string
 * **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
 ## LayerMapVisual
 ### Properties
 * **ChartConfiguration**: [GeospatialLayerMapConfiguration](#geospatiallayermapconfiguration)
-* **DataSetIdentifier**: string (Required)
+* **DataSetIdentifier**: string
 * **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
 * **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **TopicIdentifier**: string
+* **VisualContentAltText**: string
+* **VisualId**: string (Required)
+
+## LayerMapVisual
+### Properties
+* **ChartConfiguration**: [GeospatialLayerMapConfiguration](#geospatiallayermapconfiguration)
+* **DataSetIdentifier**: string
+* **Subtitle**: [VisualSubtitleLabelOptions](#visualsubtitlelabeloptions)
+* **Title**: [VisualTitleLabelOptions](#visualtitlelabeloptions)
+* **TopicIdentifier**: string
 * **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
@@ -5841,7 +7023,7 @@
 * **Position**: string
 * **Title**: [LabelOptions](#labeloptions)
 * **ValueFontConfiguration**: [FontConfiguration](#fontconfiguration)
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
 * **Width**: string: String based length that is composed of value and unit in px
 
 ## LineChartAggregatedFieldWells
@@ -5872,6 +7054,7 @@
 * **DefaultSeriesSettings**: [LineChartDefaultSeriesSettings](#linechartdefaultseriessettings)
 * **FieldWells**: [LineChartFieldWells](#linechartfieldwells)
 * **ForecastConfigurations**: [ForecastConfiguration](#forecastconfiguration)[]
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **PrimaryYAxisDisplayOptions**: [LineSeriesAxisDisplayOptions](#lineseriesaxisdisplayoptions)
 * **PrimaryYAxisLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
@@ -5895,6 +7078,7 @@
 * **DefaultSeriesSettings**: [LineChartDefaultSeriesSettings](#linechartdefaultseriessettings)
 * **FieldWells**: [LineChartFieldWells](#linechartfieldwells)
 * **ForecastConfigurations**: [ForecastConfiguration](#forecastconfiguration)[]
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **PrimaryYAxisDisplayOptions**: [LineSeriesAxisDisplayOptions](#lineseriesaxisdisplayoptions)
 * **PrimaryYAxisLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
@@ -5918,6 +7102,7 @@
 * **DefaultSeriesSettings**: [LineChartDefaultSeriesSettings](#linechartdefaultseriessettings)
 * **FieldWells**: [LineChartFieldWells](#linechartfieldwells)
 * **ForecastConfigurations**: [ForecastConfiguration](#forecastconfiguration)[]
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **PrimaryYAxisDisplayOptions**: [LineSeriesAxisDisplayOptions](#lineseriesaxisdisplayoptions)
 * **PrimaryYAxisLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
@@ -5937,18 +7122,21 @@
 ## LineChartDefaultSeriesSettings
 ### Properties
 * **AxisBinding**: string
+* **DecalSettings**: [DecalSettings](#decalsettings)
 * **LineStyleSettings**: [LineChartLineStyleSettings](#linechartlinestylesettings)
 * **MarkerStyleSettings**: [LineChartMarkerStyleSettings](#linechartmarkerstylesettings)
 
 ## LineChartDefaultSeriesSettings
 ### Properties
 * **AxisBinding**: string
+* **DecalSettings**: [DecalSettings](#decalsettings)
 * **LineStyleSettings**: [LineChartLineStyleSettings](#linechartlinestylesettings)
 * **MarkerStyleSettings**: [LineChartMarkerStyleSettings](#linechartmarkerstylesettings)
 
 ## LineChartDefaultSeriesSettings
 ### Properties
 * **AxisBinding**: string
+* **DecalSettings**: [DecalSettings](#decalsettings)
 * **LineStyleSettings**: [LineChartLineStyleSettings](#linechartlinestylesettings)
 * **MarkerStyleSettings**: [LineChartMarkerStyleSettings](#linechartmarkerstylesettings)
 
@@ -5982,7 +7170,7 @@
 ### Properties
 * **LineInterpolation**: string
 * **LineStyle**: string
-* **LineVisibility**: [Template_LineVisibility](#templatelinevisibility)
+* **LineVisibility**: string
 * **LineWidth**: string: String based length that is composed of value and unit in px
 
 ## LineChartMarkerStyleSettings
@@ -6004,20 +7192,23 @@
 * **MarkerColor**: string
 * **MarkerShape**: string
 * **MarkerSize**: string: String based length that is composed of value and unit in px
-* **MarkerVisibility**: [Template_MarkerVisibility](#templatemarkervisibility)
+* **MarkerVisibility**: string
 
 ## LineChartSeriesSettings
 ### Properties
+* **DecalSettings**: [DecalSettings](#decalsettings)
 * **LineStyleSettings**: [LineChartLineStyleSettings](#linechartlinestylesettings)
 * **MarkerStyleSettings**: [LineChartMarkerStyleSettings](#linechartmarkerstylesettings)
 
 ## LineChartSeriesSettings
 ### Properties
+* **DecalSettings**: [DecalSettings](#decalsettings)
 * **LineStyleSettings**: [LineChartLineStyleSettings](#linechartlinestylesettings)
 * **MarkerStyleSettings**: [LineChartMarkerStyleSettings](#linechartmarkerstylesettings)
 
 ## LineChartSeriesSettings
 ### Properties
+* **DecalSettings**: [DecalSettings](#decalsettings)
 * **LineStyleSettings**: [LineChartLineStyleSettings](#linechartlinestylesettings)
 * **MarkerStyleSettings**: [LineChartMarkerStyleSettings](#linechartmarkerstylesettings)
 
@@ -6125,10 +7316,6 @@
 
 ## ListControlSearchOptions
 ### Properties
-* **Visibility**: [Template_Visibility](#templatevisibility)
-
-## ListControlSelectAllOptions
-### Properties
 * **Visibility**: string
 
 ## ListControlSelectAllOptions
@@ -6137,7 +7324,11 @@
 
 ## ListControlSelectAllOptions
 ### Properties
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
+
+## ListControlSelectAllOptions
+### Properties
+* **Visibility**: string
 
 ## LoadingAnimation
 ### Properties
@@ -6149,7 +7340,7 @@
 
 ## LoadingAnimation
 ### Properties
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
 
 ## LocalNavigationConfiguration
 ### Properties
@@ -6227,7 +7418,7 @@
 
 ## MaximumLabelType
 ### Properties
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
 
 ## MaximumMinimumComputation
 ### Properties
@@ -6273,6 +7464,12 @@
 * **CategoricalMeasureField**: [CategoricalMeasureField](#categoricalmeasurefield)
 * **DateMeasureField**: [DateMeasureField](#datemeasurefield)
 * **NumericalMeasureField**: [NumericalMeasureField](#numericalmeasurefield)
+
+## MediaExtractionConfiguration
+### Properties
+* **AudioExtractionConfiguration**: [AudioExtractionConfiguration](#audioextractionconfiguration)
+* **ImageExtractionConfiguration**: [ImageExtractionConfiguration](#imageextractionconfiguration)
+* **VideoExtractionConfiguration**: [VideoExtractionConfiguration](#videoextractionconfiguration)
 
 ## MetricComparisonComputation
 ### Properties
@@ -6308,7 +7505,7 @@
 
 ## MinimumLabelType
 ### Properties
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
 
 ## MissingDataConfiguration
 ### Properties
@@ -6651,6 +7848,12 @@
 * **DecimalSeparator**: string
 * **ThousandsSeparator**: [ThousandSeparatorOptions](#thousandseparatoroptions)
 
+## OAuthClientCredentials
+### Properties
+* **ClientId**: string
+* **ClientSecret**: string
+* **Username**: string
+
 ## OAuthParameters
 ### Properties
 * **IdentityProviderResourceUri**: string
@@ -6663,10 +7866,12 @@
 * **Database**: string (Required): <p>The database.</p>
 * **Host**: string (Required): <p>An Oracle host.</p>
 * **Port**: int (Required): <p>The port.</p>
+* **UseServiceName**: bool
 
 ## OutputColumn
 ### Properties
 * **Description**: string: <p>A description for a column.</p>
+* **Id**: string
 * **Name**: string: <p>The display name of the column..</p>
 * **SubType**: string
 * **Type**: string
@@ -6713,13 +7918,13 @@
 ## PanelConfiguration
 ### Properties
 * **BackgroundColor**: string
-* **BackgroundVisibility**: [Template_BackgroundVisibility](#templatebackgroundvisibility)
+* **BackgroundVisibility**: string
 * **BorderColor**: string
 * **BorderStyle**: string
 * **BorderThickness**: string: String based length that is composed of value and unit in px
-* **BorderVisibility**: [Template_BorderVisibility](#templatebordervisibility)
+* **BorderVisibility**: string
 * **GutterSpacing**: string: String based length that is composed of value and unit in px
-* **GutterVisibility**: [Template_GutterVisibility](#templateguttervisibility)
+* **GutterVisibility**: string
 * **Title**: [PanelTitleOptions](#paneltitleoptions)
 
 ## PanelTitleOptions
@@ -6738,7 +7943,7 @@
 ### Properties
 * **FontConfiguration**: [FontConfiguration](#fontconfiguration)
 * **HorizontalTextAlignment**: string
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
 
 ## ParameterControl
 ### Properties
@@ -7079,6 +8284,11 @@
 * **Time**: [DimensionField](#dimensionfield)
 * **Value**: [MeasureField](#measurefield)
 
+## Permission
+### Properties
+* **Actions**: string[] (Required)
+* **Principal**: string (Required)
+
 ## PhysicalTableMap
 ### Properties
 
@@ -7107,6 +8317,7 @@
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
 * **DonutOptions**: [DonutOptions](#donutoptions)
 * **FieldWells**: [PieChartFieldWells](#piechartfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **SmallMultiplesOptions**: [SmallMultiplesOptions](#smallmultiplesoptions)
 * **SortConfiguration**: [PieChartSortConfiguration](#piechartsortconfiguration)
@@ -7121,6 +8332,7 @@
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
 * **DonutOptions**: [DonutOptions](#donutoptions)
 * **FieldWells**: [PieChartFieldWells](#piechartfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **SmallMultiplesOptions**: [SmallMultiplesOptions](#smallmultiplesoptions)
 * **SortConfiguration**: [PieChartSortConfiguration](#piechartsortconfiguration)
@@ -7135,6 +8347,7 @@
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
 * **DonutOptions**: [DonutOptions](#donutoptions)
 * **FieldWells**: [PieChartFieldWells](#piechartfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **SmallMultiplesOptions**: [SmallMultiplesOptions](#smallmultiplesoptions)
 * **SortConfiguration**: [PieChartSortConfiguration](#piechartsortconfiguration)
@@ -7299,6 +8512,7 @@
 ### Properties
 * **FieldOptions**: [PivotTableFieldOptions](#pivottablefieldoptions)
 * **FieldWells**: [PivotTableFieldWells](#pivottablefieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **PaginatedReportOptions**: [PivotTablePaginatedReportOptions](#pivottablepaginatedreportoptions)
 * **SortConfiguration**: [PivotTableSortConfiguration](#pivottablesortconfiguration)
 * **TableOptions**: [PivotTableOptions](#pivottableoptions)
@@ -7308,6 +8522,7 @@
 ### Properties
 * **FieldOptions**: [PivotTableFieldOptions](#pivottablefieldoptions)
 * **FieldWells**: [PivotTableFieldWells](#pivottablefieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **PaginatedReportOptions**: [PivotTablePaginatedReportOptions](#pivottablepaginatedreportoptions)
 * **SortConfiguration**: [PivotTableSortConfiguration](#pivottablesortconfiguration)
 * **TableOptions**: [PivotTableOptions](#pivottableoptions)
@@ -7317,6 +8532,7 @@
 ### Properties
 * **FieldOptions**: [PivotTableFieldOptions](#pivottablefieldoptions)
 * **FieldWells**: [PivotTableFieldWells](#pivottablefieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **PaginatedReportOptions**: [PivotTablePaginatedReportOptions](#pivottablepaginatedreportoptions)
 * **SortConfiguration**: [PivotTableSortConfiguration](#pivottablesortconfiguration)
 * **TableOptions**: [PivotTableOptions](#pivottableoptions)
@@ -7383,7 +8599,7 @@
 ### Properties
 * **CustomLabel**: string
 * **FieldId**: string (Required)
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
 
 ## PivotTableFieldOptions
 ### Properties
@@ -7462,9 +8678,9 @@
 ## PivotTableOptions
 ### Properties
 * **CellStyle**: [TableCellStyle](#tablecellstyle)
-* **CollapsedRowDimensionsVisibility**: [Template_CollapsedRowDimensionsVisibility](#templatecollapsedrowdimensionsvisibility)
+* **CollapsedRowDimensionsVisibility**: string
 * **ColumnHeaderStyle**: [TableCellStyle](#tablecellstyle)
-* **ColumnNamesVisibility**: [Template_ColumnNamesVisibility](#templatecolumnnamesvisibility)
+* **ColumnNamesVisibility**: string
 * **DefaultCellWidth**: string: String based length that is composed of value and unit in px
 * **MetricPlacement**: string
 * **RowAlternateColorOptions**: [RowAlternateColorOptions](#rowalternatecoloroptions)
@@ -7472,8 +8688,8 @@
 * **RowHeaderStyle**: [TableCellStyle](#tablecellstyle)
 * **RowsLabelOptions**: [PivotTableRowsLabelOptions](#pivottablerowslabeloptions)
 * **RowsLayout**: string
-* **SingleMetricVisibility**: [Template_SingleMetricVisibility](#templatesinglemetricvisibility)
-* **ToggleButtonsVisibility**: [Template_ToggleButtonsVisibility](#templatetogglebuttonsvisibility)
+* **SingleMetricVisibility**: string
+* **ToggleButtonsVisibility**: string
 
 ## PivotTablePaginatedReportOptions
 ### Properties
@@ -7487,8 +8703,8 @@
 
 ## PivotTablePaginatedReportOptions
 ### Properties
-* **OverflowColumnHeaderVisibility**: [Template_OverflowColumnHeaderVisibility](#templateoverflowcolumnheadervisibility)
-* **VerticalOverflowVisibility**: [Template_VerticalOverflowVisibility](#templateverticaloverflowvisibility)
+* **OverflowColumnHeaderVisibility**: string
+* **VerticalOverflowVisibility**: string
 
 ## PivotTableRowsLabelOptions
 ### Properties
@@ -7503,7 +8719,7 @@
 ## PivotTableRowsLabelOptions
 ### Properties
 * **CustomLabel**: string
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
 
 ## PivotTableSortBy
 ### Properties
@@ -7616,7 +8832,7 @@
 * **ScrollStatus**: string
 * **TotalAggregationOptions**: [TotalAggregationOption](#totalaggregationoption)[]
 * **TotalCellStyle**: [TableCellStyle](#tablecellstyle)
-* **TotalsVisibility**: [Template_TotalsVisibility](#templatetotalsvisibility)
+* **TotalsVisibility**: string
 * **ValueCellStyle**: [TableCellStyle](#tablecellstyle)
 
 ## PluginVisual
@@ -7791,7 +9007,10 @@
 
 ## ProgressBarOptions
 ### Properties
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
+
+## ProviderConfig
+### Properties
 
 ## QueryExecutionOptions
 ### Properties
@@ -7800,6 +9019,10 @@
 ## QueryExecutionOptions
 ### Properties
 * **QueryExecutionMode**: string
+
+## QuickSuiteActionsOption
+### Properties
+* **AvailabilityStatus**: string
 
 ## RadarChartAggregatedFieldWells
 ### Properties
@@ -7829,7 +9052,7 @@
 
 ## RadarChartAreaStyleSettings
 ### Properties
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
 
 ## RadarChartConfiguration
 ### Properties
@@ -7843,6 +9066,7 @@
 * **ColorAxis**: [AxisDisplayOptions](#axisdisplayoptions)
 * **ColorLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **FieldWells**: [RadarChartFieldWells](#radarchartfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **Shape**: string
 * **SortConfiguration**: [RadarChartSortConfiguration](#radarchartsortconfiguration)
@@ -7861,6 +9085,7 @@
 * **ColorAxis**: [AxisDisplayOptions](#axisdisplayoptions)
 * **ColorLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **FieldWells**: [RadarChartFieldWells](#radarchartfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **Shape**: string
 * **SortConfiguration**: [RadarChartSortConfiguration](#radarchartsortconfiguration)
@@ -7869,7 +9094,7 @@
 
 ## RadarChartConfiguration
 ### Properties
-* **AlternateBandColorsVisibility**: [Template_AlternateBandColorsVisibility](#templatealternatebandcolorsvisibility)
+* **AlternateBandColorsVisibility**: string
 * **AlternateBandEvenColor**: string
 * **AlternateBandOddColor**: string
 * **AxesRangeScale**: string
@@ -7879,6 +9104,7 @@
 * **ColorAxis**: [AxisDisplayOptions](#axisdisplayoptions)
 * **ColorLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **FieldWells**: [RadarChartFieldWells](#radarchartfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **Shape**: string
 * **SortConfiguration**: [RadarChartSortConfiguration](#radarchartsortconfiguration)
@@ -7975,7 +9201,7 @@
 
 ## RangeEndsLabelType
 ### Properties
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
 
 ## RdsParameters
 ### Properties
@@ -8144,6 +9370,14 @@
 ### Properties
 * **IncrementalRefresh**: [IncrementalRefresh](#incrementalrefresh) (Required)
 
+## RefreshFailureConfiguration
+### Properties
+* **EmailAlert**: [RefreshFailureEmailAlert](#refreshfailureemailalert)
+
+## RefreshFailureEmailAlert
+### Properties
+* **AlertStatus**: string
+
 ## RefreshSchedule_ScheduleFrequency
 ### Properties
 * **Interval**: string
@@ -8223,6 +9457,9 @@
 * **InfoIconLabelOptions**: [SheetControlInfoIconLabelOptions](#sheetcontrolinfoiconlabeloptions)
 * **TitleOptions**: [LabelOptions](#labeloptions)
 
+## ResourceLimitsMap
+### Properties
+
 ## ResourcePermission
 ### Properties
 * **Actions**: string[] (Required): <p>The IAM action to grant or revoke permissions on.</p>
@@ -8249,10 +9486,29 @@
             following:</p>
          <ul>
             <li>
-               <p>The ARN of an Amazon QuickSight user or group associated with a data source or dataset. (This is common.)</p>
+               <p>The ARN of an Amazon Quick user or group associated with a data source or dataset. (This is common.)</p>
             </li>
             <li>
-               <p>The ARN of an Amazon QuickSight user, group, or namespace associated with an analysis, dashboard, template, or theme. (This is common.)</p>
+               <p>The ARN of an Amazon Quick user, group, or namespace associated with an analysis, dashboard, template, or theme. (This is common.)</p>
+            </li>
+            <li>
+               <p>The ARN of an Amazon Web Services account root: This is an IAM ARN rather than a QuickSight
+                    ARN. Use this option only to share resources (templates) across Amazon Web Services accounts.
+                    (This is less common.) </p>
+            </li>
+         </ul>
+
+## ResourcePermission
+### Properties
+* **Actions**: string[] (Required): <p>The IAM action to grant or revoke permissions on.</p>
+* **Principal**: string (Required): <p>The Amazon Resource Name (ARN) of the principal. This can be one of the
+            following:</p>
+         <ul>
+            <li>
+               <p>The ARN of an Amazon Quick user or group associated with a data source or dataset. (This is common.)</p>
+            </li>
+            <li>
+               <p>The ARN of an Amazon Quick user, group, or namespace associated with an analysis, dashboard, template, or theme. (This is common.)</p>
             </li>
             <li>
                <p>The ARN of an Amazon Web Services account root: This is an IAM ARN rather than a QuickSight
@@ -8326,10 +9582,35 @@
             following:</p>
          <ul>
             <li>
-               <p>The ARN of an Amazon QuickSight user or group associated with a data source or dataset. (This is common.)</p>
+               <p>The ARN of an Amazon Quick user or group associated with a data source or dataset. (This is common.)</p>
             </li>
             <li>
-               <p>The ARN of an Amazon QuickSight user, group, or namespace associated with an analysis, dashboard, template, or theme. (This is common.)</p>
+               <p>The ARN of an Amazon Quick user, group, or namespace associated with an analysis, dashboard, template, or theme. (This is common.)</p>
+            </li>
+            <li>
+               <p>The ARN of an Amazon Web Services account root: This is an IAM ARN rather than a QuickSight
+                    ARN. Use this option only to share resources (templates) across Amazon Web Services accounts.
+                    (This is less common.) </p>
+            </li>
+         </ul>
+* **Resource**: string
+
+## ResourcePermission
+### Properties
+* **Actions**: string[] (Required): The list of actions granted to the principal.
+* **Principal**: string (Required): The ARN of the principal (user or group) receiving the permission.
+
+## ResourcePermission
+### Properties
+* **Actions**: string[] (Required): <p>The IAM action to grant or revoke permissions on.</p>
+* **Principal**: string (Required): <p>The Amazon Resource Name (ARN) of the principal. This can be one of the
+            following:</p>
+         <ul>
+            <li>
+               <p>The ARN of an Amazon Quick user or group associated with a data source or dataset. (This is common.)</p>
+            </li>
+            <li>
+               <p>The ARN of an Amazon Quick user, group, or namespace associated with an analysis, dashboard, template, or theme. (This is common.)</p>
             </li>
             <li>
                <p>The ARN of an Amazon Web Services account root: This is an IAM ARN rather than a QuickSight
@@ -8345,10 +9626,10 @@
             following:</p>
          <ul>
             <li>
-               <p>The ARN of an Amazon QuickSight user or group associated with a data source or dataset. (This is common.)</p>
+               <p>The ARN of an Amazon Quick user or group associated with a data source or dataset. (This is common.)</p>
             </li>
             <li>
-               <p>The ARN of an Amazon QuickSight user, group, or namespace associated with an analysis, dashboard, template, or theme. (This is common.)</p>
+               <p>The ARN of an Amazon Quick user, group, or namespace associated with an analysis, dashboard, template, or theme. (This is common.)</p>
             </li>
             <li>
                <p>The ARN of an Amazon Web Services account root: This is an IAM ARN rather than a QuickSight
@@ -8356,6 +9637,11 @@
                     (This is less common.) </p>
             </li>
          </ul>
+
+## ResourcePermission
+### Properties
+* **Actions**: string[] (Required)
+* **Principal**: string (Required)
 
 ## RollingDateConfiguration
 ### Properties
@@ -8416,6 +9702,10 @@
 * **ManifestFileLocation**: [ManifestFileLocation](#manifestfilelocation) (Required)
 * **RoleArn**: string: <p>Use the <code>RoleArn</code> structure to override an account-wide role for a specific S3 data source. For example, say an account administrator has turned off all S3 access with an account-wide role. The administrator can then use <code>RoleArn</code> to bypass the account-wide role and allow S3 access for the single S3 data source that is specified in the structure, even if the account-wide role forbidding S3 access is still active.</p>
 
+## S3TablesParameters
+### Properties
+* **TableBucketArn**: string
+
 ## SameSheetTargetVisualConfiguration
 ### Properties
 * **TargetVisualOptions**: string
@@ -8453,18 +9743,21 @@
 ### Properties
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
 * **FieldWells**: [SankeyDiagramFieldWells](#sankeydiagramfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **SortConfiguration**: [SankeyDiagramSortConfiguration](#sankeydiagramsortconfiguration)
 
 ## SankeyDiagramChartConfiguration
 ### Properties
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
 * **FieldWells**: [SankeyDiagramFieldWells](#sankeydiagramfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **SortConfiguration**: [SankeyDiagramSortConfiguration](#sankeydiagramsortconfiguration)
 
 ## SankeyDiagramChartConfiguration
 ### Properties
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
 * **FieldWells**: [SankeyDiagramFieldWells](#sankeydiagramfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **SortConfiguration**: [SankeyDiagramSortConfiguration](#sankeydiagramsortconfiguration)
 
 ## SankeyDiagramFieldWells
@@ -8552,7 +9845,9 @@
 ### Properties
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
 * **FieldWells**: [ScatterPlotFieldWells](#scatterplotfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
+* **SortConfiguration**: [ScatterPlotSortConfiguration](#scatterplotsortconfiguration)
 * **Tooltip**: [TooltipOptions](#tooltipoptions)
 * **VisualPalette**: [VisualPalette](#visualpalette)
 * **XAxisDisplayOptions**: [AxisDisplayOptions](#axisdisplayoptions)
@@ -8564,7 +9859,9 @@
 ### Properties
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
 * **FieldWells**: [ScatterPlotFieldWells](#scatterplotfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
+* **SortConfiguration**: [ScatterPlotSortConfiguration](#scatterplotsortconfiguration)
 * **Tooltip**: [TooltipOptions](#tooltipoptions)
 * **VisualPalette**: [VisualPalette](#visualpalette)
 * **XAxisDisplayOptions**: [AxisDisplayOptions](#axisdisplayoptions)
@@ -8576,7 +9873,9 @@
 ### Properties
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
 * **FieldWells**: [ScatterPlotFieldWells](#scatterplotfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
+* **SortConfiguration**: [ScatterPlotSortConfiguration](#scatterplotsortconfiguration)
 * **Tooltip**: [TooltipOptions](#tooltipoptions)
 * **VisualPalette**: [VisualPalette](#visualpalette)
 * **XAxisDisplayOptions**: [AxisDisplayOptions](#axisdisplayoptions)
@@ -8599,6 +9898,18 @@
 * **ScatterPlotCategoricallyAggregatedFieldWells**: [ScatterPlotCategoricallyAggregatedFieldWells](#scatterplotcategoricallyaggregatedfieldwells)
 * **ScatterPlotUnaggregatedFieldWells**: [ScatterPlotUnaggregatedFieldWells](#scatterplotunaggregatedfieldwells)
 
+## ScatterPlotSortConfiguration
+### Properties
+* **ScatterPlotLimitConfiguration**: [ItemsLimitConfiguration](#itemslimitconfiguration)
+
+## ScatterPlotSortConfiguration
+### Properties
+* **ScatterPlotLimitConfiguration**: [ItemsLimitConfiguration](#itemslimitconfiguration)
+
+## ScatterPlotSortConfiguration
+### Properties
+* **ScatterPlotLimitConfiguration**: [ItemsLimitConfiguration](#itemslimitconfiguration)
+
 ## ScatterPlotUnaggregatedFieldWells
 ### Properties
 * **Category**: [DimensionField](#dimensionfield)[]
@@ -8665,7 +9976,7 @@
 
 ## ScrollBarOptions
 ### Properties
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
 * **VisibleRange**: [VisibleRangeOptions](#visiblerangeoptions)
 
 ## SecondaryValueOptions
@@ -8678,7 +9989,7 @@
 
 ## SecondaryValueOptions
 ### Properties
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
 
 ## SectionAfterPageBreak
 ### Properties
@@ -8800,6 +10111,14 @@
 * **TypeName**: string
 * **TypeParameters**: [TypeParameters](#typeparameters)
 
+## SemanticModelConfiguration
+### Properties
+* **SemanticMetadata**: [DataSetSemanticMetadata](#datasetsemanticmetadata)[]
+* **TableMap**: [SemanticTableMap](#semantictablemap)
+
+## SemanticTableMap
+### Properties
+
 ## SemanticType
 ### Properties
 * **FalseyCellValue**: string
@@ -8854,24 +10173,26 @@
 
 ## Sheet
 ### Properties
-* **Images**: [SheetImage](#sheetimage)[]
-* **Name**: string: <p>The name of a sheet. This name is displayed on the sheet's tab in the Amazon QuickSight
+* **Name**: string: <p>The name of a sheet. This name is displayed on the sheet's tab in the Quick
             console.</p>
 * **SheetId**: string: <p>The unique identifier associated with a sheet.</p>
 
 ## Sheet
 ### Properties
-* **Images**: [SheetImage](#sheetimage)[]
-* **Name**: string: <p>The name of a sheet. This name is displayed on the sheet's tab in the Amazon QuickSight
+* **Name**: string: <p>The name of a sheet. This name is displayed on the sheet's tab in the Quick
             console.</p>
 * **SheetId**: string: <p>The unique identifier associated with a sheet.</p>
 
 ## Sheet
 ### Properties
-* **Images**: [SheetImage](#sheetimage)[]
-* **Name**: string: <p>The name of a sheet. This name is displayed on the sheet's tab in the Amazon QuickSight
+* **Name**: string: <p>The name of a sheet. This name is displayed on the sheet's tab in the Quick
             console.</p>
 * **SheetId**: string: <p>The unique identifier associated with a sheet.</p>
+
+## SheetBackgroundStyle
+### Properties
+* **Color**: string: String to encapsulate the most generic way Color can be formatted (words, hexStrings etc)
+* **Gradient**: string
 
 ## SheetControlInfoIconLabelOptions
 ### Properties
@@ -8886,7 +10207,7 @@
 ## SheetControlInfoIconLabelOptions
 ### Properties
 * **InfoIconText**: string
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
 
 ## SheetControlLayout
 ### Properties
@@ -8971,7 +10292,7 @@
 
 ## SheetElementConfigurationOverrides
 ### Properties
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
 
 ## SheetElementRenderingRule
 ### Properties
@@ -9067,7 +10388,7 @@
 ## SheetImageTooltipConfiguration
 ### Properties
 * **TooltipText**: [SheetImageTooltipText](#sheetimagetooltiptext)
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
 
 ## SheetImageTooltipText
 ### Properties
@@ -9085,8 +10406,39 @@
 ### Properties
 * **AvailabilityStatus**: string
 
+## SheetLayoutGroup
+### Properties
+* **Id**: string (Required)
+* **Members**: [SheetLayoutGroupMember](#sheetlayoutgroupmember)[] (Required)
+
+## SheetLayoutGroup
+### Properties
+* **Id**: string (Required)
+* **Members**: [SheetLayoutGroupMember](#sheetlayoutgroupmember)[] (Required)
+
+## SheetLayoutGroup
+### Properties
+* **Id**: string (Required)
+* **Members**: [SheetLayoutGroupMember](#sheetlayoutgroupmember)[] (Required)
+
+## SheetLayoutGroupMember
+### Properties
+* **Id**: string (Required)
+* **Type**: string (Required)
+
+## SheetLayoutGroupMember
+### Properties
+* **Id**: string (Required)
+* **Type**: string (Required)
+
+## SheetLayoutGroupMember
+### Properties
+* **Id**: string (Required)
+* **Type**: string (Required)
+
 ## SheetStyle
 ### Properties
+* **Background**: [SheetBackgroundStyle](#sheetbackgroundstyle)
 * **Tile**: [TileStyle](#tilestyle)
 * **TileLayout**: [TileLayoutStyle](#tilelayoutstyle)
 
@@ -9225,12 +10577,13 @@
 * **OAuthParameters**: [OAuthParameters](#oauthparameters)
 * **Warehouse**: string (Required): <p>Warehouse.</p>
 
-## Spacing
+## SourceTableMap
 ### Properties
-* **Bottom**: string: String based length that is composed of value and unit
-* **Left**: string: String based length that is composed of value and unit
-* **Right**: string: String based length that is composed of value and unit
-* **Top**: string: String based length that is composed of value and unit
+
+## SpaceResource
+### Properties
+* **ResourceArn**: string (Required): The ARN of the QuickSight resource.
+* **ResourceType**: string (Required): The type of QuickSight resource.
 
 ## Spacing
 ### Properties
@@ -9245,11 +10598,59 @@
 * **Left**: string: String based length that is composed of value and unit
 * **Right**: string: String based length that is composed of value and unit
 * **Top**: string: String based length that is composed of value and unit
+
+## Spacing
+### Properties
+* **Bottom**: string: String based length that is composed of value and unit
+* **Left**: string: String based length that is composed of value and unit
+* **Right**: string: String based length that is composed of value and unit
+* **Top**: string: String based length that is composed of value and unit
+
+## SparklinesOptions
+### Properties
+* **AllPointsMarker**: [LineChartMarkerStyleSettings](#linechartmarkerstylesettings)
+* **FieldId**: string (Required)
+* **LineColor**: string
+* **LineInterpolation**: string
+* **MaxValueMarker**: [LineChartMarkerStyleSettings](#linechartmarkerstylesettings)
+* **MinValueMarker**: [LineChartMarkerStyleSettings](#linechartmarkerstylesettings)
+* **VisualType**: string
+* **XAxisField**: [DimensionField](#dimensionfield) (Required)
+* **YAxisBehavior**: string
+
+## SparklinesOptions
+### Properties
+* **AllPointsMarker**: [LineChartMarkerStyleSettings](#linechartmarkerstylesettings)
+* **FieldId**: string (Required)
+* **LineColor**: string
+* **LineInterpolation**: string
+* **MaxValueMarker**: [LineChartMarkerStyleSettings](#linechartmarkerstylesettings)
+* **MinValueMarker**: [LineChartMarkerStyleSettings](#linechartmarkerstylesettings)
+* **VisualType**: string
+* **XAxisField**: [DimensionField](#dimensionfield) (Required)
+* **YAxisBehavior**: string
+
+## SparklinesOptions
+### Properties
+* **AllPointsMarker**: [LineChartMarkerStyleSettings](#linechartmarkerstylesettings)
+* **FieldId**: string (Required)
+* **LineColor**: string
+* **LineInterpolation**: string
+* **MaxValueMarker**: [LineChartMarkerStyleSettings](#linechartmarkerstylesettings)
+* **MinValueMarker**: [LineChartMarkerStyleSettings](#linechartmarkerstylesettings)
+* **VisualType**: string
+* **XAxisField**: [DimensionField](#dimensionfield) (Required)
+* **YAxisBehavior**: string
 
 ## SparkParameters
 ### Properties
 * **Host**: string (Required): <p>Host.</p>
 * **Port**: int (Required): <p>Port.</p>
+
+## SpatialStaticFile
+### Properties
+* **Source**: [StaticFileSource](#staticfilesource)
+* **StaticFileId**: string (Required)
 
 ## SpatialStaticFile
 ### Properties
@@ -9291,6 +10692,17 @@
 * **ImageStaticFile**: [ImageStaticFile](#imagestaticfile)
 * **SpatialStaticFile**: [SpatialStaticFile](#spatialstaticfile)
 
+## StaticFile
+### Properties
+* **ImageStaticFile**: [ImageStaticFile](#imagestaticfile)
+* **SpatialStaticFile**: [SpatialStaticFile](#spatialstaticfile)
+
+## StaticFileS3SourceOptions
+### Properties
+* **BucketName**: string (Required)
+* **ObjectKey**: string (Required)
+* **Region**: string (Required)
+
 ## StaticFileS3SourceOptions
 ### Properties
 * **BucketName**: string (Required)
@@ -9313,6 +10725,11 @@
 * **S3Options**: [StaticFileS3SourceOptions](#staticfiles3sourceoptions)
 * **UrlOptions**: [StaticFileUrlSourceOptions](#staticfileurlsourceoptions)
 
+## StaticFileSource
+### Properties
+* **S3Options**: [StaticFileS3SourceOptions](#staticfiles3sourceoptions)
+* **UrlOptions**: [StaticFileUrlSourceOptions](#staticfileurlsourceoptions)
+
 ## StaticFileUrlSourceOptions
 ### Properties
 * **Url**: string (Required)
@@ -9320,6 +10737,15 @@
 ## StaticFileUrlSourceOptions
 ### Properties
 * **Url**: string (Required)
+
+## StaticFileUrlSourceOptions
+### Properties
+* **Url**: string (Required)
+
+## StepAliasMapping
+### Properties
+* **StepAlias**: string (Required)
+* **StepId**: string (Required)
 
 ## StringDatasetParameter
 ### Properties
@@ -9441,7 +10867,7 @@
 * **MetricHeaderCellStyle**: [TableCellStyle](#tablecellstyle)
 * **StyleTargets**: [TableStyleTarget](#tablestyletarget)[]
 * **TotalCellStyle**: [TableCellStyle](#tablecellstyle)
-* **TotalsVisibility**: [Template_TotalsVisibility](#templatetotalsvisibility)
+* **TotalsVisibility**: string
 * **ValueCellStyle**: [TableCellStyle](#tablecellstyle)
 
 ## TableAggregatedFieldWells
@@ -9535,7 +10961,7 @@
 * **HorizontalTextAlignment**: string
 * **TextWrap**: string
 * **VerticalTextAlignment**: string
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
 
 ## TableConditionalFormatting
 ### Properties
@@ -9568,6 +10994,7 @@
 ### Properties
 * **FieldOptions**: [TableFieldOptions](#tablefieldoptions)
 * **FieldWells**: [TableFieldWells](#tablefieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **PaginatedReportOptions**: [TablePaginatedReportOptions](#tablepaginatedreportoptions)
 * **SortConfiguration**: [TableSortConfiguration](#tablesortconfiguration)
 * **TableInlineVisualizations**: [TableInlineVisualization](#tableinlinevisualization)[]
@@ -9578,6 +11005,7 @@
 ### Properties
 * **FieldOptions**: [TableFieldOptions](#tablefieldoptions)
 * **FieldWells**: [TableFieldWells](#tablefieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **PaginatedReportOptions**: [TablePaginatedReportOptions](#tablepaginatedreportoptions)
 * **SortConfiguration**: [TableSortConfiguration](#tablesortconfiguration)
 * **TableInlineVisualizations**: [TableInlineVisualization](#tableinlinevisualization)[]
@@ -9588,6 +11016,7 @@
 ### Properties
 * **FieldOptions**: [TableFieldOptions](#tablefieldoptions)
 * **FieldWells**: [TableFieldWells](#tablefieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **PaginatedReportOptions**: [TablePaginatedReportOptions](#tablepaginatedreportoptions)
 * **SortConfiguration**: [TableSortConfiguration](#tablesortconfiguration)
 * **TableInlineVisualizations**: [TableInlineVisualization](#tableinlinevisualization)[]
@@ -9684,7 +11113,7 @@
 * **CustomLabel**: string
 * **FieldId**: string (Required)
 * **URLStyling**: [TableFieldURLConfiguration](#tablefieldurlconfiguration)
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
 * **Width**: string: String based length that is composed of value and unit in px
 
 ## TableFieldOptions
@@ -9692,18 +11121,21 @@
 * **Order**: string[]
 * **PinnedFieldOptions**: [TablePinnedFieldOptions](#tablepinnedfieldoptions)
 * **SelectedFieldOptions**: [TableFieldOption](#tablefieldoption)[]
+* **TransposedTableOptions**: [TransposedTableOption](#transposedtableoption)[]
 
 ## TableFieldOptions
 ### Properties
 * **Order**: string[]
 * **PinnedFieldOptions**: [TablePinnedFieldOptions](#tablepinnedfieldoptions)
 * **SelectedFieldOptions**: [TableFieldOption](#tablefieldoption)[]
+* **TransposedTableOptions**: [TransposedTableOption](#transposedtableoption)[]
 
 ## TableFieldOptions
 ### Properties
 * **Order**: string[]
 * **PinnedFieldOptions**: [TablePinnedFieldOptions](#tablepinnedfieldoptions)
 * **SelectedFieldOptions**: [TableFieldOption](#tablefieldoption)[]
+* **TransposedTableOptions**: [TransposedTableOption](#transposedtableoption)[]
 
 ## TableFieldURLConfiguration
 ### Properties
@@ -9738,14 +11170,17 @@
 ## TableInlineVisualization
 ### Properties
 * **DataBars**: [DataBarsOptions](#databarsoptions)
+* **Sparklines**: [SparklinesOptions](#sparklinesoptions)
 
 ## TableInlineVisualization
 ### Properties
 * **DataBars**: [DataBarsOptions](#databarsoptions)
+* **Sparklines**: [SparklinesOptions](#sparklinesoptions)
 
 ## TableInlineVisualization
 ### Properties
 * **DataBars**: [DataBarsOptions](#databarsoptions)
+* **Sparklines**: [SparklinesOptions](#sparklinesoptions)
 
 ## TableOptions
 ### Properties
@@ -9780,8 +11215,8 @@
 
 ## TablePaginatedReportOptions
 ### Properties
-* **OverflowColumnHeaderVisibility**: [Template_OverflowColumnHeaderVisibility](#templateoverflowcolumnheadervisibility)
-* **VerticalOverflowVisibility**: [Template_VerticalOverflowVisibility](#templateverticaloverflowvisibility)
+* **OverflowColumnHeaderVisibility**: string
+* **VerticalOverflowVisibility**: string
 
 ## TablePinnedFieldOptions
 ### Properties
@@ -9951,212 +11386,40 @@
 * **Key**: string (Required): <p>Tag key.</p>
 * **Value**: string (Required): <p>Tag value.</p>
 
-## Template_AggregationVisibility
+## Tag
 ### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
-## Template_AllDataPointsVisibility
+## Tag
 ### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
 
-## Template_AlternateBandColorsVisibility
+## Tag
 ### Properties
+* **Key**: string (Required): <p>Tag key.</p>
+* **Value**: string (Required): <p>Tag value.</p>
 
-## Template_AvailabilityStatus
+## Tag
 ### Properties
+* **Key**: string (Required): <p>Tag key.</p>
+* **Value**: string (Required): <p>Tag value.</p>
 
-## Template_AxisLineVisibility
+## Tag
 ### Properties
+* **Key**: string (Required): <p>Tag key.</p>
+* **Value**: string (Required): <p>Tag value.</p>
 
-## Template_BackgroundVisibility
+## Tag
 ### Properties
+* **Key**: string (Required): <p>Tag key.</p>
+* **Value**: string (Required): <p>Tag value.</p>
 
-## Template_BorderVisibility
+## Tag
 ### Properties
-
-## Template_CategoryLabelVisibility
-### Properties
-
-## Template_CategoryLabelVisibility
-### Properties
-
-## Template_CollapsedRowDimensionsVisibility
-### Properties
-
-## Template_ColumnNamesVisibility
-### Properties
-
-## Template_GridLineVisibility
-### Properties
-
-## Template_GutterVisibility
-### Properties
-
-## Template_LabelVisibility
-### Properties
-
-## Template_LineVisibility
-### Properties
-
-## Template_MarkerVisibility
-### Properties
-
-## Template_MeasureLabelVisibility
-### Properties
-
-## Template_MeasureLabelVisibility
-### Properties
-
-## Template_MissingDateVisibility
-### Properties
-
-## Template_OutlierVisibility
-### Properties
-
-## Template_OverflowColumnHeaderVisibility
-### Properties
-
-## Template_OverflowColumnHeaderVisibility
-### Properties
-
-## Template_SingleMetricVisibility
-### Properties
-
-## Template_SortIconVisibility
-### Properties
-
-## Template_ToggleButtonsVisibility
-### Properties
-
-## Template_TooltipVisibility
-### Properties
-
-## Template_TooltipVisibility
-### Properties
-
-## Template_TotalsVisibility
-### Properties
-
-## Template_TotalsVisibility
-### Properties
-
-## Template_TotalsVisibility
-### Properties
-
-## Template_TotalsVisibility
-### Properties
-
-## Template_VerticalOverflowVisibility
-### Properties
-
-## Template_VerticalOverflowVisibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
-
-## Template_Visibility
-### Properties
+* **Key**: string (Required): <p>Tag key.</p>
+* **Value**: string (Required): <p>Tag value.</p>
 
 ## TemplateError
 ### Properties
@@ -10169,6 +11432,7 @@
 * **Arn**: string (Required): <p>The Amazon Resource Name (ARN) of the resource.</p>
 * **DataSetReferences**: [DataSetReference](#datasetreference)[] (Required): <p>A structure containing information about the dataset references used as placeholders
             in the template.</p>
+* **TopicReferences**: [TopicReference](#topicreference)[]
 
 ## TemplateSourceEntity
 ### Properties
@@ -10205,6 +11469,8 @@
 * **ParameterDeclarations**: [ParameterDeclaration](#parameterdeclaration)[]
 * **QueryExecutionOptions**: [QueryExecutionOptions](#queryexecutionoptions)
 * **Sheets**: [SheetDefinition](#sheetdefinition)[]
+* **StaticFiles**: [StaticFile](#staticfile)[]: <p>The static files for the definition.</p>
+* **TopicConfigurations**: [TopicConfiguration](#topicconfiguration)[]
 
 ## TeradataParameters
 ### Properties
@@ -10258,7 +11524,7 @@
 
 ## TextControlPlaceholderOptions
 ### Properties
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
 
 ## TextFieldControlDisplayOptions
 ### Properties
@@ -10293,8 +11559,8 @@
 ## ThemeVersion
 ### Properties
 * **Arn**: string: <p>The Amazon Resource Name (ARN) of the resource.</p>
-* **BaseThemeId**: string: <p>The Amazon QuickSight-defined ID of the theme that a custom theme inherits from. All
-            themes initially inherit from a default Amazon QuickSight theme.</p>
+* **BaseThemeId**: string: <p>The Amazon Quick-defined ID of the theme that a custom theme inherits from. All
+            themes initially inherit from a default Quick theme.</p>
 * **Configuration**: [ThemeConfiguration](#themeconfiguration)
 * **CreatedTime**: string: <p>The date and time that this theme version was created.</p>
 * **Description**: string: <p>The description of the theme.</p>
@@ -10304,18 +11570,21 @@
 
 ## ThousandSeparatorOptions
 ### Properties
+* **GroupingStyle**: string
 * **Symbol**: string
 * **Visibility**: string
 
 ## ThousandSeparatorOptions
 ### Properties
+* **GroupingStyle**: string
 * **Symbol**: string
 * **Visibility**: string
 
 ## ThousandSeparatorOptions
 ### Properties
+* **GroupingStyle**: string
 * **Symbol**: string
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
 
 ## TileLayoutStyle
 ### Properties
@@ -10324,7 +11593,10 @@
 
 ## TileStyle
 ### Properties
+* **BackgroundColor**: string: String to encapsulate the most generic way Color can be formatted (words, hexStrings etc)
 * **Border**: [BorderStyle](#borderstyle)
+* **BorderRadius**: string
+* **Padding**: string
 
 ## TimeBasedForecastProperties
 ### Properties
@@ -10492,7 +11764,7 @@
 ### Properties
 * **FieldBasedTooltip**: [FieldBasedTooltip](#fieldbasedtooltip)
 * **SelectedTooltipType**: string
-* **TooltipVisibility**: [Template_TooltipVisibility](#templatetooltipvisibility)
+* **TooltipVisibility**: string
 
 ## TopBottomFilter
 ### Properties
@@ -10641,6 +11913,12 @@
 ### Properties
 * **QBusinessInsightsEnabled**: bool
 
+## TopicConfiguration
+### Properties
+* **ColumnGroupSchemaList**: [ColumnGroupSchema](#columngroupschema)[]
+* **DataSetSchema**: [DataSetSchema](#datasetschema)
+* **Placeholder**: string
+
 ## TopicDateRangeFilter
 ### Properties
 * **Constant**: [TopicRangeFilterConstant](#topicrangefilterconstant)
@@ -10659,6 +11937,16 @@
 * **NumericRangeFilter**: [TopicNumericRangeFilter](#topicnumericrangefilter)
 * **OperandFieldName**: string (Required)
 * **RelativeDateFilter**: [TopicRelativeDateFilter](#topicrelativedatefilter)
+
+## TopicIdentifierDeclaration
+### Properties
+* **Identifier**: string (Required)
+* **TopicArn**: string (Required)
+
+## TopicIdentifierDeclaration
+### Properties
+* **Identifier**: string (Required)
+* **TopicArn**: string (Required)
 
 ## TopicNamedEntity
 ### Properties
@@ -10683,6 +11971,21 @@
 ### Properties
 * **ConstantType**: string
 * **RangeConstant**: [RangeConstant](#rangeconstant)
+
+## TopicReference
+### Properties
+* **TopicArn**: string (Required)
+* **TopicPlaceholder**: string (Required)
+
+## TopicReference
+### Properties
+* **TopicArn**: string (Required)
+* **TopicPlaceholder**: string (Required)
+
+## TopicReference
+### Properties
+* **TopicArn**: string (Required)
+* **TopicPlaceholder**: string (Required)
 
 ## TopicRelativeDateFilter
 ### Properties
@@ -10765,7 +12068,28 @@
 * **ScrollStatus**: string
 * **TotalAggregationOptions**: [TotalAggregationOption](#totalaggregationoption)[]
 * **TotalCellStyle**: [TableCellStyle](#tablecellstyle)
-* **TotalsVisibility**: [Template_TotalsVisibility](#templatetotalsvisibility)
+* **TotalsVisibility**: string
+
+## TransformStepMap
+### Properties
+
+## TransposedTableOption
+### Properties
+* **ColumnIndex**: int
+* **ColumnType**: string (Required)
+* **ColumnWidth**: string: String based length that is composed of value and unit in px
+
+## TransposedTableOption
+### Properties
+* **ColumnIndex**: int
+* **ColumnType**: string (Required)
+* **ColumnWidth**: string: String based length that is composed of value and unit in px
+
+## TransposedTableOption
+### Properties
+* **ColumnIndex**: int
+* **ColumnType**: string (Required)
+* **ColumnWidth**: string: String based length that is composed of value and unit in px
 
 ## TreeMapAggregatedFieldWells
 ### Properties
@@ -10792,6 +12116,7 @@
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
 * **FieldWells**: [TreeMapFieldWells](#treemapfieldwells)
 * **GroupLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **SizeLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **SortConfiguration**: [TreeMapSortConfiguration](#treemapsortconfiguration)
@@ -10804,6 +12129,7 @@
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
 * **FieldWells**: [TreeMapFieldWells](#treemapfieldwells)
 * **GroupLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **SizeLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **SortConfiguration**: [TreeMapSortConfiguration](#treemapsortconfiguration)
@@ -10816,6 +12142,7 @@
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
 * **FieldWells**: [TreeMapFieldWells](#treemapfieldwells)
 * **GroupLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **SizeLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **SortConfiguration**: [TreeMapSortConfiguration](#treemapsortconfiguration)
@@ -10888,7 +12215,7 @@
 
 ## TrendArrowOptions
 ### Properties
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
 
 ## TrinoParameters
 ### Properties
@@ -10901,7 +12228,14 @@
 
 ## Typography
 ### Properties
+* **AxisLabelFontConfiguration**: [FontConfiguration](#fontconfiguration)
+* **AxisTitleFontConfiguration**: [FontConfiguration](#fontconfiguration)
+* **DataLabelFontConfiguration**: [FontConfiguration](#fontconfiguration)
 * **FontFamilies**: [Font](#font)[]
+* **LegendTitleFontConfiguration**: [FontConfiguration](#fontconfiguration)
+* **LegendValueFontConfiguration**: [FontConfiguration](#fontconfiguration)
+* **VisualSubtitleFontConfiguration**: [VisualSubtitleFontConfiguration](#visualsubtitlefontconfiguration)
+* **VisualTitleFontConfiguration**: [VisualTitleFontConfiguration](#visualtitlefontconfiguration)
 
 ## UIColorPalette
 ### Properties
@@ -10972,9 +12306,9 @@
 * **ComputationId**: string (Required)
 * **Name**: string
 
-## ValidationStrategy
+## UploadedDocumentMetadata
 ### Properties
-* **Mode**: string (Required)
+* **Name**: string
 
 ## ValidationStrategy
 ### Properties
@@ -10983,6 +12317,15 @@
 ## ValidationStrategy
 ### Properties
 * **Mode**: string (Required)
+
+## ValidationStrategy
+### Properties
+* **Mode**: string (Required)
+
+## VideoExtractionConfiguration
+### Properties
+* **VideoExtractionStatus**: string (Required)
+* **VideoExtractionType**: string
 
 ## VisibleRangeOptions
 ### Properties
@@ -11067,6 +12410,7 @@
 * **HistogramVisual**: [HistogramVisual](#histogramvisual)
 * **InsightVisual**: [InsightVisual](#insightvisual)
 * **KPIVisual**: [KPIVisual](#kpivisual)
+* **LayerMapVisual**: [LayerMapVisual](#layermapvisual)
 * **LineChartVisual**: [LineChartVisual](#linechartvisual)
 * **PieChartVisual**: [PieChartVisual](#piechartvisual)
 * **PivotTableVisual**: [PivotTableVisual](#pivottablevisual)
@@ -11128,10 +12472,32 @@
 * **SetParametersOperation**: [CustomActionSetParametersOperation](#customactionsetparametersoperation)
 * **URLOperation**: [CustomActionURLOperation](#customactionurloperation)
 
-## VisualPalette
+## VisualInteractionOptions
 ### Properties
-* **ChartColor**: string
-* **ColorMap**: [DataPathColor](#datapathcolor)[]
+* **ContextMenuOption**: [ContextMenuOption](#contextmenuoption)
+* **VisualMenuOption**: [VisualMenuOption](#visualmenuoption)
+
+## VisualInteractionOptions
+### Properties
+* **ContextMenuOption**: [ContextMenuOption](#contextmenuoption)
+* **VisualMenuOption**: [VisualMenuOption](#visualmenuoption)
+
+## VisualInteractionOptions
+### Properties
+* **ContextMenuOption**: [ContextMenuOption](#contextmenuoption)
+* **VisualMenuOption**: [VisualMenuOption](#visualmenuoption)
+
+## VisualMenuOption
+### Properties
+* **AvailabilityStatus**: string
+
+## VisualMenuOption
+### Properties
+* **AvailabilityStatus**: string
+
+## VisualMenuOption
+### Properties
+* **AvailabilityStatus**: string
 
 ## VisualPalette
 ### Properties
@@ -11142,6 +12508,17 @@
 ### Properties
 * **ChartColor**: string
 * **ColorMap**: [DataPathColor](#datapathcolor)[]
+
+## VisualPalette
+### Properties
+* **ChartColor**: string
+* **ColorMap**: [DataPathColor](#datapathcolor)[]
+
+## VisualSubtitleFontConfiguration
+### Properties
+* **FontConfiguration**: [FontConfiguration](#fontconfiguration)
+* **TextAlignment**: string
+* **TextTransform**: string
 
 ## VisualSubtitleLabelOptions
 ### Properties
@@ -11156,7 +12533,13 @@
 ## VisualSubtitleLabelOptions
 ### Properties
 * **FormatText**: [LongFormatText](#longformattext)
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
+
+## VisualTitleFontConfiguration
+### Properties
+* **FontConfiguration**: [FontConfiguration](#fontconfiguration)
+* **TextAlignment**: string
+* **TextTransform**: string
 
 ## VisualTitleLabelOptions
 ### Properties
@@ -11171,7 +12554,7 @@
 ## VisualTitleLabelOptions
 ### Properties
 * **FormatText**: [ShortFormatText](#shortformattext)
-* **Visibility**: [Template_Visibility](#templatevisibility)
+* **Visibility**: string
 
 ## VpcConnectionProperties
 ### Properties
@@ -11214,6 +12597,7 @@
 * **ColorConfiguration**: [WaterfallChartColorConfiguration](#waterfallchartcolorconfiguration)
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
 * **FieldWells**: [WaterfallChartFieldWells](#waterfallchartfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **PrimaryYAxisDisplayOptions**: [AxisDisplayOptions](#axisdisplayoptions)
 * **PrimaryYAxisLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
@@ -11228,6 +12612,7 @@
 * **ColorConfiguration**: [WaterfallChartColorConfiguration](#waterfallchartcolorconfiguration)
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
 * **FieldWells**: [WaterfallChartFieldWells](#waterfallchartfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **PrimaryYAxisDisplayOptions**: [AxisDisplayOptions](#axisdisplayoptions)
 * **PrimaryYAxisLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
@@ -11242,6 +12627,7 @@
 * **ColorConfiguration**: [WaterfallChartColorConfiguration](#waterfallchartcolorconfiguration)
 * **DataLabels**: [DataLabelOptions](#datalabeloptions)
 * **FieldWells**: [WaterfallChartFieldWells](#waterfallchartfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **Legend**: [LegendOptions](#legendoptions)
 * **PrimaryYAxisDisplayOptions**: [AxisDisplayOptions](#axisdisplayoptions)
 * **PrimaryYAxisLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
@@ -11388,6 +12774,7 @@
 ### Properties
 * **CategoryLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **FieldWells**: [WordCloudFieldWells](#wordcloudfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **SortConfiguration**: [WordCloudSortConfiguration](#wordcloudsortconfiguration)
 * **WordCloudOptions**: [WordCloudOptions](#wordcloudoptions)
 
@@ -11395,6 +12782,7 @@
 ### Properties
 * **CategoryLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **FieldWells**: [WordCloudFieldWells](#wordcloudfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **SortConfiguration**: [WordCloudSortConfiguration](#wordcloudsortconfiguration)
 * **WordCloudOptions**: [WordCloudOptions](#wordcloudoptions)
 
@@ -11402,6 +12790,7 @@
 ### Properties
 * **CategoryLabelOptions**: [ChartAxisLabelOptions](#chartaxislabeloptions)
 * **FieldWells**: [WordCloudFieldWells](#wordcloudfieldwells)
+* **Interactions**: [VisualInteractionOptions](#visualinteractionoptions)
 * **SortConfiguration**: [WordCloudSortConfiguration](#wordcloudsortconfiguration)
 * **WordCloudOptions**: [WordCloudOptions](#wordcloudoptions)
 

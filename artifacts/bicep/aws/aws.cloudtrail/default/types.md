@@ -1,35 +1,40 @@
 # AWS.CloudTrail @ default
 
 ## Resource AWS.CloudTrail/Channel@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudTrail/ChannelProperties](#awscloudtrailchannelproperties) (Identifier): properties of the resource
 
 ## Resource AWS.CloudTrail/Dashboard@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudTrail/DashboardProperties](#awscloudtraildashboardproperties) (Identifier): properties of the resource
 
 ## Resource AWS.CloudTrail/EventDataStore@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudTrail/EventDataStoreProperties](#awscloudtraileventdatastoreproperties) (Identifier): properties of the resource
 
 ## Resource AWS.CloudTrail/ResourcePolicy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudTrail/ResourcePolicyProperties](#awscloudtrailresourcepolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudTrail/Trail@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -65,13 +70,18 @@
 * **NotStartsWith**: string[]: An operator that excludes events that match the first few characters of the event record field specified as the value of Field.
 * **StartsWith**: string[]: An operator that includes events that match the first few characters of the event record field specified as the value of Field.
 
+## AggregationConfiguration
+### Properties
+* **EventCategory**: string (Required): The category of events to be aggregated.
+* **Templates**: string[] (Required): Contains all templates in an aggregation configuration.
+
 ## AWS.CloudTrail/ChannelProperties
 ### Properties
 * **ChannelArn**: string (ReadOnly, Identifier)
 * **Destinations**: [Destination](#destination)[]: One or more resources to which events arriving through a channel are logged and stored.
 * **Name**: string
 * **Source**: string: The ARN of an on-premises storage solution or application, or a partner event source.
-* **Tags**: [Tag](#tag)[] (WriteOnly): An array of key-value pairs to apply to this resource.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
 ## AWS.CloudTrail/DashboardProperties
 ### Properties
@@ -90,6 +100,7 @@
 ### Properties
 * **AdvancedEventSelectors**: [AdvancedEventSelector](#advancedeventselector)[]: The advanced event selectors that were used to select events for the data store.
 * **BillingMode**: string: The mode that the event data store will use to charge for event storage.
+* **ContextKeySelectors**: [ContextKeySelector](#contextkeyselector)[]: An array that enriches event records in an existing event data store by including additional information specified in individual ContexKeySelector entries. If you add ContextKeySelectors, you must set MaxEventSize to Large.
 * **CreatedTimestamp**: string (ReadOnly): The timestamp of the event data store's creation.
 * **EventDataStoreArn**: string (ReadOnly, Identifier): The ARN of the event data store.
 * **FederationEnabled**: bool: Indicates whether federation is enabled on an event data store.
@@ -98,6 +109,7 @@
 * **InsightsDestination**: string: Specifies the ARN of the event data store that will collect Insights events. Both InsightSelectors and InsightsDestination need to have a value in order to enable Insights events on an event data store
 * **InsightSelectors**: [InsightSelector](#insightselector)[]: Lets you enable Insights event logging by specifying the Insights selectors that you want to enable on an existing event data store. Both InsightSelectors and InsightsDestination need to have a value in order to enable Insights events on an event data store.
 * **KmsKeyId**: string: Specifies the KMS key ID to use to encrypt the events delivered by CloudTrail. The value can be an alias name prefixed by 'alias/', a fully specified ARN to an alias, a fully specified ARN to a key, or a globally unique identifier.
+* **MaxEventSize**: string: Specifies the maximum size allowed for the event. Valid values are Standard and Large. If you add ContextKeySelectors, this value must be set to Large.
 * **MultiRegionEnabled**: bool: Indicates whether the event data store includes events from all regions, or only from the region in which it was created.
 * **Name**: string: The name of the event data store.
 * **OrganizationEnabled**: bool: Indicates that an event data store is collecting logged events for an organization.
@@ -115,6 +127,7 @@
 ## AWS.CloudTrail/TrailProperties
 ### Properties
 * **AdvancedEventSelectors**: [AdvancedEventSelector](#advancedeventselector)[]: The advanced event selectors that were used to select events for the data store.
+* **AggregationConfigurations**: [AggregationConfiguration](#aggregationconfiguration)[]: Specifies the aggregation configuration to aggregate CloudTrail Events. A maximum of 1 aggregation configuration is allowed.
 * **Arn**: string (ReadOnly)
 * **CloudWatchLogsLogGroupArn**: string: Specifies a log group name using an Amazon Resource Name (ARN), a unique identifier that represents the log group to which CloudTrail logs will be delivered. Not required unless you specify CloudWatchLogsRoleArn.
 * **CloudWatchLogsRoleArn**: string: Specifies the role for the CloudWatch Logs endpoint to assume to write to a user's log group.
@@ -132,6 +145,11 @@
 * **SnsTopicName**: string: Specifies the name of the Amazon SNS topic defined for notification of log file delivery. The maximum length is 256 characters.
 * **Tags**: [Tag](#tag)[]
 * **TrailName**: string (Identifier)
+
+## ContextKeySelector
+### Properties
+* **Equals**: string[] (Required): An operator that includes events that match the exact value of the event record field specified in Type.
+* **Type**: string (Required): Specifies the type of the event record field in ContextKeySelector. Valid values include RequestContext, TagContext.
 
 ## Dashboard_Frequency
 ### Properties
@@ -164,6 +182,7 @@
 
 ## InsightSelector
 ### Properties
+* **EventCategories**: string[]: The categories of events for which to log insights. By default, insights are logged for management events only.
 * **InsightType**: string: The type of insight to log on a trail.
 
 ## RefreshSchedule

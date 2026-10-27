@@ -1,70 +1,112 @@
 # AWS.Lightsail @ default
 
 ## Resource AWS.Lightsail/Alarm@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Lightsail/AlarmProperties](#awslightsailalarmproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Lightsail/Bucket@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Lightsail/BucketProperties](#awslightsailbucketproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Lightsail/Certificate@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Lightsail/CertificateProperties](#awslightsailcertificateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Lightsail/Container@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Lightsail/ContainerProperties](#awslightsailcontainerproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Lightsail/Database@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Lightsail/DatabaseProperties](#awslightsaildatabaseproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Lightsail/DatabaseSnapshot@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Lightsail/DatabaseSnapshotProperties](#awslightsaildatabasesnapshotproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Lightsail/Disk@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Lightsail/DiskProperties](#awslightsaildiskproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Lightsail/DiskSnapshot@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Lightsail/DiskSnapshotProperties](#awslightsaildisksnapshotproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Lightsail/Instance@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Lightsail/InstanceProperties](#awslightsailinstanceproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Lightsail/InstanceSnapshot@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Lightsail/InstanceSnapshotProperties](#awslightsailinstancesnapshotproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Lightsail/KeyPair@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Lightsail/KeyPairProperties](#awslightsailkeypairproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Lightsail/LoadBalancer@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Lightsail/LoadBalancerProperties](#awslightsailloadbalancerproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Lightsail/LoadBalancerTlsCertificate@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Lightsail/LoadBalancerTlsCertificateProperties](#awslightsailloadbalancertlscertificateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Lightsail/StaticIp@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -166,6 +208,26 @@
 * **RotateMasterUserPassword**: bool (WriteOnly): When true, the master user password is changed to a new strong password generated by Lightsail. Use the get relational database master user password operation to get the new password.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
+## AWS.Lightsail/DatabaseSnapshotProperties
+### Properties
+* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the database snapshot.
+* **CreatedAt**: string (ReadOnly): The timestamp when the database snapshot was created.
+* **Engine**: string (ReadOnly): The software of the database snapshot (for example, MySQL).
+* **EngineVersion**: string (ReadOnly): The database engine version for the database snapshot (for example, 5.7.23).
+* **FromRelationalDatabaseArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the database from which the database snapshot was created.
+* **FromRelationalDatabaseBlueprintId**: string (ReadOnly): The blueprint ID of the database from which the database snapshot was created. A blueprint describes the major engine version of a database.
+* **FromRelationalDatabaseBundleId**: string (ReadOnly): The bundle ID of the database from which the database snapshot was created.
+* **FromRelationalDatabaseName**: string (ReadOnly): The name of the source database from which the database snapshot was created.
+* **Location**: [DatabaseSnapshot_Location](#databasesnapshotlocation) (ReadOnly): The Region name and Availability Zone where the database snapshot is located.
+* **Name**: string (ReadOnly): The name of the database snapshot.
+* **RelationalDatabaseName**: string (Required): The name of the database on which to base your new snapshot.
+* **RelationalDatabaseSnapshotName**: string (Required, Identifier): The name for your new database snapshot.
+* **ResourceType**: string (ReadOnly): The Lightsail resource type.
+* **SizeInGb**: int (ReadOnly): The size of the disk in GB (for example, 32) for the database snapshot.
+* **State**: string (ReadOnly): The state of the database snapshot.
+* **SupportCode**: string (ReadOnly): The support code for the database snapshot. Include this code in your email to support when you have questions about a database snapshot in Lightsail. This code enables our support team to look up your Lightsail information more easily.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
 ## AWS.Lightsail/DiskProperties
 ### Properties
 * **AddOns**: [AddOn](#addon)[]: An array of objects representing the add-ons to enable for the new instance.
@@ -182,6 +244,22 @@
 * **SizeInGb**: int (Required): Size of the Lightsail disk
 * **State**: string (ReadOnly): State of the Lightsail disk
 * **SupportCode**: string (ReadOnly): Support code to help identify any issues
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## AWS.Lightsail/DiskSnapshotProperties
+### Properties
+* **CreatedAt**: string (ReadOnly): The timestamp when the disk snapshot was created.
+* **DiskName**: string (Required): The name of the source disk from which the snapshot was created.
+* **DiskSnapshotArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the disk snapshot.
+* **DiskSnapshotName**: string (Required, Identifier): The name of the disk snapshot (e.g., my-disk-snapshot).
+* **FromDiskName**: string (ReadOnly): The name of the source disk from which the disk snapshot was created.
+* **IsFromAutoSnapshot**: bool (ReadOnly): A Boolean value indicating whether the snapshot was created from an automatic snapshot.
+* **Location**: [DiskSnapshot_Location](#disksnapshotlocation) (ReadOnly): The AWS Region and Availability Zone where the disk snapshot was created.
+* **Progress**: string (ReadOnly): The progress of the disk snapshot creation operation.
+* **ResourceType**: string (ReadOnly): The Lightsail resource type (DiskSnapshot).
+* **SizeInGb**: int (ReadOnly): The size of the disk snapshot in GB.
+* **State**: string (ReadOnly): The status of the disk snapshot operation.
+* **SupportCode**: string (ReadOnly): The support code. Include this code in your email to support when you have questions about an instance or another resource in Lightsail.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
 ## AWS.Lightsail/InstanceProperties
@@ -207,6 +285,32 @@
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **UserData**: string (WriteOnly): A launch script you can create that configures a server with additional user data. For example, you might want to run apt-get -y update.
 * **UserName**: string (ReadOnly): Username of the  Lightsail instance.
+
+## AWS.Lightsail/InstanceSnapshotProperties
+### Properties
+* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the snapshot.
+* **FromInstanceArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the instance from which the snapshot was created.
+* **FromInstanceName**: string (ReadOnly): The instance from which the snapshot was created.
+* **InstanceName**: string (Required): The instance from which the snapshot was created.
+* **InstanceSnapshotName**: string (Required, Identifier): The name of the snapshot.
+* **IsFromAutoSnapshot**: bool (ReadOnly): A Boolean value indicating whether the snapshot was created from an automatic snapshot.
+* **Location**: [Location](#location) (ReadOnly)
+* **ResourceType**: string (ReadOnly): The type of resource (usually InstanceSnapshot).
+* **SizeInGb**: int (ReadOnly): The size in GB of the SSD
+* **State**: string (ReadOnly): The state the snapshot is in.
+* **SupportCode**: string (ReadOnly): Support code to help identify any issues
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## AWS.Lightsail/KeyPairProperties
+### Properties
+* **CreatedAt**: string (ReadOnly): The timestamp when the key pair was created.
+* **Fingerprint**: string (ReadOnly): The RSA fingerprint of the key pair.
+* **KeyPairArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the key pair.
+* **KeyPairName**: string (Required, Identifier): The name of the key pair.
+* **Location**: [ResourceLocation](#resourcelocation) (ReadOnly)
+* **ResourceType**: string (ReadOnly): The Lightsail resource type (KeyPair).
+* **SupportCode**: string (ReadOnly): The support code. Include this code in your email to support when you have questions about a key pair in Lightsail.
+* **Tags**: [Tag](#tag)[]: The tag keys and optional values to add to the resource during create.
 
 ## AWS.Lightsail/LoadBalancerProperties
 ### Properties
@@ -258,6 +362,11 @@
 * **Containers**: [Container](#container)[]: An object that describes the configuration for the containers of the deployment.
 * **PublicEndpoint**: [PublicEndpoint](#publicendpoint): An object that describes the endpoint of the deployment.
 
+## DatabaseSnapshot_Location
+### Properties
+* **AvailabilityZone**: string: The Availability Zone where the database snapshot was created.
+* **RegionName**: string: The AWS Region where the database snapshot was created.
+
 ## Disk
 ### Properties
 * **AttachedTo**: string: Instance attached to the disk.
@@ -267,6 +376,11 @@
 * **IsSystemDisk**: bool: Is the Attached disk is the system disk of the Instance.
 * **Path**: string (Required): Path of the disk attached to the instance.
 * **SizeInGb**: string: Size of the disk attached to the Instance.
+
+## DiskSnapshot_Location
+### Properties
+* **AvailabilityZone**: string: The Availability Zone where the disk snapshot was created.
+* **RegionName**: string: The AWS Region where the disk snapshot was created.
 
 ## EnvironmentVariable
 ### Properties
@@ -297,6 +411,11 @@
 ### Properties
 * **AvailabilityZone**: string (ReadOnly): The Availability Zone in which to create your instance. Use the following format: us-east-2a (case sensitive). Be sure to add the include Availability Zones parameter to your request.
 * **RegionName**: string (ReadOnly): The Region Name in which to create your instance.
+
+## Location
+### Properties
+* **AvailabilityZone**: string: The Availability Zone. Follows the format us-east-2a (case-sensitive).
+* **RegionName**: string: The AWS Region name.
 
 ## MonthlyTransfer
 ### Properties
@@ -351,6 +470,11 @@
 * **ParameterName**: string: Specifies the name of the parameter.
 * **ParameterValue**: string: Specifies the value of the parameter.
 
+## ResourceLocation
+### Properties
+* **AvailabilityZone**: string: The Availability Zone. Follows the format us-east-2a (case-sensitive).
+* **RegionName**: string: The AWS Region name.
+
 ## State
 ### Properties
 * **Code**: int (ReadOnly): Status code of the Instance.
@@ -385,6 +509,26 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key of the tag.
+* **Value**: string (Required): The value of the tag.
 
 ## Tag
 ### Properties

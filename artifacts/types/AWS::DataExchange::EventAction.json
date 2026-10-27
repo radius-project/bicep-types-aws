@@ -1,0 +1,231 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DataExchange-EventAction",
+  "type": "AWS::DataExchange::EventAction",
+  "time": "2026-10-21T21:13:38.881Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/EventActionId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Event"
+    ],
+    "definitions": {
+      "Action": {
+        "additionalProperties": false,
+        "description": "What occurs after a certain event.",
+        "properties": {
+          "ExportRevisionToS3": {
+            "$ref": "#/definitions/AutoExportRevisionToS3RequestDetails"
+          }
+        },
+        "type": "object"
+      },
+      "AutoExportRevisionDestinationEntry": {
+        "additionalProperties": false,
+        "description": "A revision destination is the Amazon S3 bucket folder destination to where the export will be sent.",
+        "properties": {
+          "Bucket": {
+            "description": "The Amazon S3 bucket that is the destination for the event action.",
+            "type": "string"
+          },
+          "KeyPattern": {
+            "description": "A string representing the pattern for generated names of the individual assets in the revision.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Bucket"
+        ],
+        "type": "object"
+      },
+      "AutoExportRevisionToS3RequestDetails": {
+        "additionalProperties": false,
+        "description": "Details of the operation to be performed by the job.",
+        "properties": {
+          "Encryption": {
+            "$ref": "#/definitions/ExportServerSideEncryption"
+          },
+          "RevisionDestination": {
+            "$ref": "#/definitions/AutoExportRevisionDestinationEntry"
+          }
+        },
+        "required": [
+          "RevisionDestination"
+        ],
+        "type": "object"
+      },
+      "Event": {
+        "additionalProperties": false,
+        "description": "What occurs to start an action.",
+        "properties": {
+          "RevisionPublished": {
+            "$ref": "#/definitions/RevisionPublished"
+          }
+        },
+        "type": "object"
+      },
+      "ExportServerSideEncryption": {
+        "additionalProperties": false,
+        "description": "Encryption configuration of the export job.",
+        "properties": {
+          "KmsKeyArn": {
+            "description": "The Amazon Resource Name (ARN) of the AWS KMS key you want to use to encrypt the Amazon S3 objects.",
+            "type": "string"
+          },
+          "Type": {
+            "description": "The type of server side encryption used for encrypting the objects in Amazon S3.",
+            "enum": [
+              "aws:kms",
+              "AES256"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Type"
+        ],
+        "type": "object"
+      },
+      "RevisionPublished": {
+        "additionalProperties": false,
+        "description": "Information about the published revision.",
+        "properties": {
+          "DataSetId": {
+            "description": "The data set ID of the published revision.",
+            "pattern": "^[a-zA-Z0-9]{30,40}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "DataSetId"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "An event action is an AWS Data Exchange resource that automatically exports data set revisions to Amazon S3 when a revision is published.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "dataexchange:CreateEventAction",
+          "dataexchange:GetEventAction",
+          "dataexchange:TagResource",
+          "kms:CreateGrant"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "dataexchange:DeleteEventAction",
+          "dataexchange:GetEventAction",
+          "kms:RevokeGrant"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "dataexchange:ListEventActions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "dataexchange:GetEventAction",
+          "dataexchange:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "dataexchange:UpdateEventAction",
+          "dataexchange:GetEventAction",
+          "dataexchange:TagResource",
+          "dataexchange:UntagResource",
+          "dataexchange:ListTagsForResource",
+          "kms:CreateGrant"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Action": {
+        "$ref": "#/definitions/Action",
+        "description": "What occurs after a certain event."
+      },
+      "Arn": {
+        "description": "The ARN for the event action.",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The date and time that the event action was created, in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Event": {
+        "$ref": "#/definitions/Event",
+        "description": "What occurs to start an action."
+      },
+      "EventActionId": {
+        "description": "The unique identifier for the event action.",
+        "pattern": "^[a-zA-Z0-9]{30,40}$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags for the event action.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "UpdatedAt": {
+        "description": "The date and time that the event action was last updated, in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/EventActionId",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "Action",
+      "Event"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "dataexchange:TagResource",
+        "dataexchange:UntagResource",
+        "dataexchange:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::DataExchange::EventAction"
+  }
+}

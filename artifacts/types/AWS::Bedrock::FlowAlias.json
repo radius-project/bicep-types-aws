@@ -1,13 +1,38 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Bedrock-FlowAlias",
   "type": "AWS::Bedrock::FlowAlias",
-  "time": "2025-01-16T01:44:36.192Z",
+  "time": "2026-10-19T17:11:37.875Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/FlowArn"
     ],
     "definitions": {
+      "ConcurrencyType": {
+        "enum": [
+          "Automatic",
+          "Manual"
+        ],
+        "type": "string"
+      },
+      "FlowAliasConcurrencyConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "MaxConcurrency": {
+            "description": "Number of nodes executed concurrently at a time",
+            "maximum": 100,
+            "minimum": 1,
+            "type": "number"
+          },
+          "Type": {
+            "$ref": "#/definitions/ConcurrencyType"
+          }
+        },
+        "required": [
+          "Type"
+        ],
+        "type": "object"
+      },
       "FlowAliasRoutingConfigurationListItem": {
         "additionalProperties": false,
         "description": "Details about the routing configuration for a Flow alias.",
@@ -94,6 +119,9 @@
         "pattern": "^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:flow/[0-9a-zA-Z]{10}/alias/[0-9a-zA-Z]{10}$",
         "type": "string"
       },
+      "ConcurrencyConfiguration": {
+        "$ref": "#/definitions/FlowAliasConcurrencyConfiguration"
+      },
       "CreatedAt": {
         "description": "Time Stamp.",
         "format": "date-time",
@@ -161,7 +189,7 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-bedrock-flows",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "bedrock:TagResource",
         "bedrock:UntagResource",

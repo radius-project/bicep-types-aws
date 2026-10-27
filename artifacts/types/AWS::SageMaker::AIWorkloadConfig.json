@@ -1,0 +1,236 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-AIWorkloadConfig",
+  "type": "AWS::SageMaker::AIWorkloadConfig",
+  "time": "2026-10-21T20:57:50.799Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/AIWorkloadConfigName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/AIWorkloadConfigName",
+      "/properties/DatasetConfig",
+      "/properties/AIWorkloadConfigs"
+    ],
+    "definitions": {
+      "AIDatasetConfig": {
+        "additionalProperties": false,
+        "description": "The dataset configuration for an AI workload.",
+        "properties": {
+          "InputDataConfig": {
+            "description": "An array of input data channel configurations for the workload.",
+            "insertionOrder": true,
+            "items": {
+              "$ref": "#/definitions/AIWorkloadInputDataConfig"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "InputDataConfig"
+        ],
+        "type": "object"
+      },
+      "AIWorkloadConfigs": {
+        "additionalProperties": false,
+        "description": "The benchmark tool configuration for an AI workload.",
+        "properties": {
+          "WorkloadSpec": {
+            "$ref": "#/definitions/WorkloadSpec",
+            "description": "The workload specification that defines benchmark parameters."
+          }
+        },
+        "required": [
+          "WorkloadSpec"
+        ],
+        "type": "object"
+      },
+      "AIWorkloadDataSource": {
+        "additionalProperties": false,
+        "description": "The data source for an AI workload input data channel.",
+        "properties": {
+          "S3DataSource": {
+            "$ref": "#/definitions/AIWorkloadS3DataSource",
+            "description": "The Amazon S3 data source configuration."
+          }
+        },
+        "type": "object"
+      },
+      "AIWorkloadInputDataConfig": {
+        "additionalProperties": false,
+        "description": "A channel of input data for an AI workload configuration.",
+        "properties": {
+          "ChannelName": {
+            "description": "The logical name for the data channel.",
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9\\.\\-_]+$",
+            "type": "string"
+          },
+          "DataSource": {
+            "$ref": "#/definitions/AIWorkloadDataSource",
+            "description": "The data source for this channel."
+          }
+        },
+        "required": [
+          "ChannelName",
+          "DataSource"
+        ],
+        "type": "object"
+      },
+      "AIWorkloadS3DataSource": {
+        "additionalProperties": false,
+        "description": "The Amazon S3 data source for an AI workload.",
+        "properties": {
+          "S3Uri": {
+            "description": "The Amazon S3 URI of the data.",
+            "maxLength": 1024,
+            "pattern": "^(https|s3)://([^/]+)/?(.*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "S3Uri"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The tag key. Tag keys must be unique per resource.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "WorkloadSpec": {
+        "additionalProperties": false,
+        "description": "The workload specification for benchmark tool configuration.",
+        "properties": {
+          "Inline": {
+            "description": "An inline YAML or JSON string that defines benchmark parameters. The service validates the document against its own benchmark schema: it must declare a benchmark object whose type member matches the pattern ^(aiperf)$.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Inline"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::SageMaker::AIWorkloadConfig. A reusable AI workload configuration that defines datasets, data sources and benchmark tool settings for consistent performance testing of generative AI inference deployments on Amazon SageMaker AI.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "sagemaker:CreateAIWorkloadConfig",
+          "sagemaker:DescribeAIWorkloadConfig",
+          "sagemaker:ListTags",
+          "sagemaker:AddTags"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "sagemaker:DeleteAIWorkloadConfig",
+          "sagemaker:DescribeAIWorkloadConfig"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "sagemaker:ListAIWorkloadConfigs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "sagemaker:DescribeAIWorkloadConfig",
+          "sagemaker:ListTags"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "sagemaker:DescribeAIWorkloadConfig",
+          "sagemaker:ListTags",
+          "sagemaker:AddTags",
+          "sagemaker:DeleteTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/AIWorkloadConfigArn"
+    ],
+    "properties": {
+      "AIWorkloadConfigArn": {
+        "description": "The Amazon Resource Name (ARN) of the AI workload configuration. The name segment is restricted to lowercase for the same reason as AIWorkloadConfigName: the engine derives that property from this ARN, so a permissive ARN would yield a derived name the schema itself rejects.",
+        "maxLength": 256,
+        "pattern": "^arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:ai-workload-config/[a-z0-9](-*[a-z0-9]){0,62}$",
+        "type": "string"
+      },
+      "AIWorkloadConfigName": {
+        "description": "The name of the AI workload configuration. The name must be unique within your AWS account in the current AWS Region. Only lowercase letters and digits are accepted: DeleteAIWorkloadConfig lowercases the name before looking it up, so a name containing an uppercase letter produces a configuration that can be created and read but never deleted.",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^[a-z0-9](-*[a-z0-9]){0,62}$",
+        "type": "string"
+      },
+      "AIWorkloadConfigs": {
+        "$ref": "#/definitions/AIWorkloadConfigs",
+        "description": "The benchmark tool configuration and workload specification."
+      },
+      "CreationTime": {
+        "description": "A timestamp that indicates when the AI workload configuration was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DatasetConfig": {
+        "$ref": "#/definitions/AIDatasetConfig",
+        "description": "The dataset configuration for the workload. Specify input data channels with their data sources for benchmark workloads."
+      },
+      "Tags": {
+        "description": "The metadata that you apply to the AI workload configuration to help you categorize and organize it.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/AIWorkloadConfigArn",
+      "/properties/CreationTime"
+    ],
+    "required": [
+      "AIWorkloadConfigName"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "sagemaker:AddTags",
+        "sagemaker:DeleteTags",
+        "sagemaker:ListTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::SageMaker::AIWorkloadConfig"
+  }
+}

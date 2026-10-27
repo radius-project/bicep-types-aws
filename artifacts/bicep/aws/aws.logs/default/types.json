@@ -84,11 +84,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Logs/AccountPolicy@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/3"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -245,11 +245,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Logs/Delivery@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/13"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -264,14 +264,14 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "The name of the delivery destination to assign this policy to"
       },
       "DeliveryDestinationPolicy": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/18"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "The contents of the policy attached to the delivery destination"
       }
     }
@@ -297,13 +297,38 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "DeliveryDestination_DeliveryDestinationPolicy",
+    "properties": {}
+  },
+  {
     "$type": "StringLiteralType",
     "value": "AWS.Logs/DeliveryDestinationProperties"
   },
   {
     "$type": "ObjectType",
-    "name": "DeliveryDestination_DeliveryDestinationPolicy",
+    "name": "DeliveryDestination_DestinationPolicy_DeliveryDestinationPolicy",
     "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DeliveryDestination_DestinationPolicy",
+    "properties": {
+      "DeliveryDestinationName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the delivery destination to assign this policy to"
+      },
+      "DeliveryDestinationPolicy": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "The contents of the policy attached to the delivery destination"
+      }
+    }
   },
   {
     "$type": "ArrayType",
@@ -324,17 +349,17 @@
       },
       "DeliveryDestinationPolicy": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/21"
         },
-        "flags": 0,
+        "flags": 4,
         "description": "IAM policy that grants permissions to CloudWatch Logs to deliver logs cross-account to a specified destination in this account.\n\nThe policy must be in JSON string format.\n\nLength Constraints: Maximum length of 51200"
       },
       "DeliveryDestinationType": {
         "type": {
           "$ref": "#/1"
         },
-        "flags": 2,
-        "description": "Displays whether this delivery destination is CloudWatch Logs, Amazon S3, or Kinesis Data Firehose."
+        "flags": 0,
+        "description": "Displays whether this delivery destination is CloudWatch Logs, Amazon S3, Kinesis Data Firehose, or XRay."
       },
       "DestinationResourceArn": {
         "type": {
@@ -359,7 +384,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/22"
         },
         "flags": 0,
         "description": "The tags that have been assigned to this delivery destination."
@@ -386,7 +411,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/23"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -396,11 +421,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Logs/DeliveryDestination@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/22"
+      "$ref": "#/24"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -432,6 +457,11 @@
     "value": "AWS.Logs/DeliverySourceProperties"
   },
   {
+    "$type": "ObjectType",
+    "name": "DeliverySource_DeliverySourceConfiguration",
+    "properties": {}
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/1"
@@ -440,7 +470,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/27"
     }
   },
   {
@@ -453,6 +483,13 @@
         },
         "flags": 2,
         "description": "The Amazon Resource Name (ARN) that uniquely identifies this delivery source."
+      },
+      "DeliverySourceConfiguration": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 0,
+        "description": "A map of key-value pairs to configure the delivery source. Both keys and values must be between 1 and 255 characters in length."
       },
       "LogType": {
         "type": {
@@ -477,7 +514,7 @@
       },
       "ResourceArns": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/30"
         },
         "flags": 2,
         "description": "This array contains the ARN of the AWS resource that sends logs and is represented by this delivery source. Currently, only one ARN can be in the array."
@@ -489,9 +526,23 @@
         "flags": 2,
         "description": "The AWS service that is sending logs."
       },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The status of this delivery source. The value can be ACTIVE or INACTIVE."
+      },
+      "StatusReason": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The reason for the status of this delivery source, such as RESOURCE_DELETED."
+      },
       "Tags": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "The tags that have been assigned to this delivery source."
@@ -518,7 +569,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/32"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -528,15 +579,41 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Logs/DeliverySource@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/30"
+      "$ref": "#/33"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., :, /, =, +, - and @."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., :, /, =, +, - and @."
+      }
+    }
   },
   {
     "$type": "StringLiteralType",
     "value": "AWS.Logs/DestinationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/35"
+    }
   },
   {
     "$type": "ObjectType",
@@ -569,6 +646,13 @@
         "flags": 1,
         "description": "The ARN of an IAM role that permits CloudWatch Logs to send data to the specified AWS resource"
       },
+      "Tags": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
       "TargetArn": {
         "type": {
           "$ref": "#/1"
@@ -598,7 +682,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/38"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -608,11 +692,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Logs/Destination@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/34"
+      "$ref": "#/39"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "StringLiteralType",
@@ -654,14 +738,14 @@
       },
       "AnomalyVisibilityTime": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": ""
       },
       "CreationTimeStamp": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/42"
         },
         "flags": 2,
         "description": "When detector was created."
@@ -696,14 +780,14 @@
       },
       "LastModifiedTimeStamp": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/42"
         },
         "flags": 2,
         "description": "When detector was lsat modified."
       },
       "LogGroupArnList": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "List of Arns for the given log group"
@@ -730,7 +814,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/44"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -740,11 +824,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Logs/LogAnomalyDetector@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/40"
+      "$ref": "#/45"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -783,13 +867,18 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/45"
+      "$ref": "#/50"
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LogGroup_ResourcePolicyDocument",
+    "properties": {}
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/42"
+      "$ref": "#/47"
     }
   },
   {
@@ -803,16 +892,30 @@
         "flags": 2,
         "description": ""
       },
-      "DataProtectionPolicy": {
+      "BearerTokenAuthenticationEnabled": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/10"
         },
         "flags": 0,
-        "description": "Creates a data protection policy and assigns it to the log group. A data protection policy can help safeguard sensitive data that's ingested by the log group by auditing and masking the sensitive log data. When a user who does not have permission to view masked data views a log event that includes masked data, the sensitive data is replaced by asterisks.\n For more information, including a list of types of data that can be audited and masked, see [Protect sensitive log data with masking](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/mask-sensitive-log-data.html)."
+        "description": "Indicates whether bearer token authentication is enabled for this log group. When enabled, bearer token authentication is allowed on operations until it is explicitly disabled."
+      },
+      "DataProtectionPolicy": {
+        "type": {
+          "$ref": "#/49"
+        },
+        "flags": 0,
+        "description": "Creates a data protection policy and assigns it to the log group. A data protection policy can help safeguard sensitive data that's ingested by the log group by auditing and masking the sensitive log data. When a user who does not have permission to view masked data views a log event that includes masked data, the sensitive data is replaced by asterisks."
+      },
+      "DeletionProtectionEnabled": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "Indicates whether deletion protection is enabled for this log group. When enabled, deletion protection blocks all deletion operations until it is explicitly disabled."
       },
       "FieldIndexPolicies": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "Creates or updates a *field index policy* for the specified log group. Only log groups in the Standard log class support field index policies. For more information about log classes, see [Log classes](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch_Logs_Log_Classes.html).\n You can use field index policies to create *field indexes* on fields found in log events in the log group. Creating field indexes lowers the costs for CWL Insights queries that reference those field indexes, because these queries attempt to skip the processing of log events that are known to not match the indexed field. Good fields to index are fields that you often need to query for and fields that have high cardinality of values Common examples of indexes include request ID, session ID, userID, and instance IDs. For more information, see [Create field indexes to improve query performance and reduce costs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Field-Indexing.html).\n Currently, this array supports only one field index policy object."
@@ -838,16 +941,23 @@
         "flags": 16,
         "description": "The name of the log group. If you don't specify a name, CFNlong generates a unique ID for the log group."
       },
-      "RetentionInDays": {
+      "ResourcePolicyDocument": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/52"
         },
         "flags": 0,
-        "description": "The number of days to retain the log events in the specified log group. Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096, 1827, 2192, 2557, 2922, 3288, and 3653.\n To set a log group so that its log events do not expire, use [DeleteRetentionPolicy](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DeleteRetentionPolicy.html)."
+        "description": "Creates or updates a resource policy for the specified log group that allows other services to put log events to this account. A LogGroup can have 1 resource policy."
+      },
+      "RetentionInDays": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0,
+        "description": "The number of days to retain the log events in the specified log group. Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096, 1827, 2192, 2557, 2922, 3288, and 3653.\n To set a log group so that its log events do not expire, do not specify this property."
       },
       "Tags": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to the log group.\n For more information, see [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html)."
@@ -874,7 +984,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/54"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -884,11 +994,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Logs/LogGroup@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/49"
+      "$ref": "#/55"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -916,14 +1026,14 @@
     "properties": {
       "DefaultValue": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "(Optional) The value to emit when a filter pattern does not match a log event. This value can be null."
       },
       "Dimensions": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/59"
         },
         "flags": 0,
         "description": "The fields to use as dimensions for the metric. One metric filter can include as many as three dimensions.\n  Metrics extracted from log events are charged as custom metrics. To prevent unexpected high charges, do not specify high-cardinality fields such as ``IPAddress`` or ``requestID`` as dimensions. Each different value found for a dimension is treated as a separate metric and accrues charges as a separate custom metric. \n CloudWatch Logs disables a metric filter if it generates 1000 different name/value pairs for your specified dimensions within a certain amount of time. This helps to prevent accidental high charges.\n You can also set up a billing alarm to alert you if your charges are higher than expected. For more information, see [Creating a Billing Alarm to Monitor Your Estimated Charges](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html)."
@@ -961,7 +1071,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/51"
+      "$ref": "#/57"
     }
   },
   {
@@ -971,7 +1081,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/52"
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/58"
     }
   },
   {
@@ -984,6 +1100,20 @@
         },
         "flags": 0,
         "description": "This parameter is valid only for log groups that have an active log transformer. For more information about log transformers, see [PutTransformer](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutTransformer.html).\n If this value is ``true``, the metric filter is applied on the transformed version of the log events instead of the original ingested log events."
+      },
+      "EmitSystemFieldDimensions": {
+        "type": {
+          "$ref": "#/61"
+        },
+        "flags": 0,
+        "description": "The list of system fields that are emitted as additional dimensions in the generated metrics. Returns the ``emitSystemFieldDimensions`` value if it was specified when the metric filter was created."
+      },
+      "FieldSelectionCriteria": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The filter expression that specifies which log events are processed by this metric filter based on system fields. Returns the ``fieldSelectionCriteria`` value if it was specified when the metric filter was created."
       },
       "FilterName": {
         "type": {
@@ -1008,7 +1138,7 @@
       },
       "MetricTransformations": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/62"
         },
         "flags": 1,
         "description": "The metric transformations."
@@ -1035,7 +1165,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/63"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1045,16 +1175,43 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Logs/MetricFilter@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/57"
+      "$ref": "#/64"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
     "name": "LogGroup",
     "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "QueryParameter",
+    "properties": {
+      "DefaultValue": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The default value to use for this query parameter if no value is supplied at execution time."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A description of the query parameter that explains its purpose or expected values."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the query parameter. A query parameter name must start with a letter or underscore, and contain only letters, digits, and underscores."
+      }
+    }
   },
   {
     "$type": "StringLiteralType",
@@ -1067,12 +1224,18 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/67"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "AWS.Logs/QueryDefinitionProperties",
     "properties": {
       "LogGroupNames": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": "Optionally define specific log groups as part of your query definition"
@@ -1083,6 +1246,13 @@
         },
         "flags": 1,
         "description": "A name for the saved query definition"
+      },
+      "Parameters": {
+        "type": {
+          "$ref": "#/70"
+        },
+        "flags": 0,
+        "description": "Use this parameter to include specific query parameters as part of your query definition. Query parameters are supported only for Logs Insights QL queries. Query parameters allow you to use placeholder variables in your query string that are substituted with values at execution time. Use the {{parameterName}} syntax in your query string to reference a parameter."
       },
       "QueryDefinitionId": {
         "type": {
@@ -1127,7 +1297,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/71"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1137,11 +1307,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Logs/QueryDefinition@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/63"
+      "$ref": "#/72"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "StringLiteralType",
@@ -1149,11 +1319,27 @@
   },
   {
     "$type": "ObjectType",
+    "name": "ResourcePolicy_PolicyDocument",
+    "properties": {}
+  },
+  {
+    "$type": "UnionType",
+    "elements": [
+      {
+        "$ref": "#/1"
+      },
+      {
+        "$ref": "#/75"
+      }
+    ]
+  },
+  {
+    "$type": "ObjectType",
     "name": "AWS.Logs/ResourcePolicyProperties",
     "properties": {
       "PolicyDocument": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/76"
         },
         "flags": 1,
         "description": "The policy document"
@@ -1187,7 +1373,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/77"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1197,15 +1383,313 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Logs/ResourcePolicy@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/67"
+      "$ref": "#/78"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DestinationConfiguration",
+    "properties": {
+      "S3Configuration": {
+        "type": {
+          "$ref": "#/81"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3Configuration",
+    "properties": {
+      "DestinationIdentifier": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ScheduledQueryState",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Logs/ScheduledQueryProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ScheduledQuery_Tags",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/85"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Logs/ScheduledQueryProperties",
+    "properties": {
+      "CreationTime": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 2
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "DestinationConfiguration": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 0
+      },
+      "ExecutionRoleArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "LastExecutionStatus": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      },
+      "LastTriggeredTime": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 2
+      },
+      "LastUpdatedTime": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 2
+      },
+      "LogGroupIdentifiers": {
+        "type": {
+          "$ref": "#/84"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "QueryLanguage": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "QueryString": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "ScheduleEndTime": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0
+      },
+      "ScheduleExpression": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "ScheduleStartTime": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0
+      },
+      "ScheduledQueryArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18
+      },
+      "StartTimeOffset": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0
+      },
+      "State": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/86"
+        },
+        "flags": 0
+      },
+      "Timezone": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Logs/ScheduledQuery",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/87"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Logs/ScheduledQuery@default",
+    "body": {
+      "$ref": "#/88"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Logs/StorageTierPolicyProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Logs/StorageTierPolicyProperties",
+    "properties": {
+      "AccountId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The AWS account ID that owns this storage tier policy."
+      },
+      "LastUpdatedTime": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 2,
+        "description": "Timestamp (milliseconds after Jan 1, 1970 00:00:00 UTC) when the storage tier policy was last updated."
+      },
+      "StorageTier": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The storage tier to apply. Only INTELLIGENT_TIERING is accepted for creation."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Logs/StorageTierPolicy",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/91"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Logs/StorageTierPolicy@default",
+    "body": {
+      "$ref": "#/92"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "StringLiteralType",
     "value": "AWS.Logs/SubscriptionFilterProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
   },
   {
     "$type": "ObjectType",
@@ -1231,6 +1715,20 @@
         },
         "flags": 0,
         "description": "The method used to distribute log data to the destination, which can be either random or grouped by log stream."
+      },
+      "EmitSystemFields": {
+        "type": {
+          "$ref": "#/95"
+        },
+        "flags": 0,
+        "description": "The list of system fields that are included in the log events sent to the subscription destination. Returns the ``emitSystemFields`` value if it was specified when the subscription filter was created."
+      },
+      "FieldSelectionCriteria": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The filter expression that specifies which log events are processed by this subscription filter based on system fields. Returns the ``fieldSelectionCriteria`` value if it was specified when the subscription filter was created."
       },
       "FilterName": {
         "type": {
@@ -1282,7 +1780,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/96"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1292,11 +1790,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Logs/SubscriptionFilter@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/71"
+      "$ref": "#/97"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1353,6 +1851,16 @@
   },
   {
     "$type": "ObjectType",
+    "name": "EventSource",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MappingVersion",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "MatchPattern",
     "properties": {}
   },
@@ -1397,6 +1905,11 @@
   },
   {
     "$type": "ObjectType",
+    "name": "OcsfVersion",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "ParseCloudfront",
     "properties": {
       "Source": {
@@ -1423,6 +1936,36 @@
     "$type": "ObjectType",
     "name": "ParseRoute53",
     "properties": {
+      "Source": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ParseToOCSF",
+    "properties": {
+      "EventSource": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "MappingVersion": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "OcsfVersion": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
       "Source": {
         "type": {
           "$ref": "#/1"
@@ -1461,133 +2004,139 @@
     "properties": {
       "AddKeys": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/123"
         },
         "flags": 0
       },
       "CopyValue": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/125"
         },
         "flags": 0
       },
       "Csv": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/128"
         },
         "flags": 0
       },
       "DateTimeConverter": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/131"
         },
         "flags": 0
       },
       "DeleteKeys": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/133"
         },
         "flags": 0
       },
       "Grok": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/134"
         },
         "flags": 0
       },
       "ListToMap": {
         "type": {
-          "$ref": "#/105"
+          "$ref": "#/135"
         },
         "flags": 0
       },
       "LowerCaseString": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/137"
         },
         "flags": 0
       },
       "MoveKeys": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/139"
         },
         "flags": 0
       },
       "ParseCloudfront": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/110"
         },
         "flags": 0
       },
       "ParseJSON": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/140"
         },
         "flags": 0
       },
       "ParseKeyValue": {
         "type": {
-          "$ref": "#/111"
+          "$ref": "#/141"
         },
         "flags": 0
       },
       "ParsePostgres": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/111"
         },
         "flags": 0
       },
       "ParseRoute53": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/112"
         },
         "flags": 0
       },
-      "ParseVPC": {
-        "type": {
-          "$ref": "#/84"
-        },
-        "flags": 0
-      },
-      "ParseWAF": {
-        "type": {
-          "$ref": "#/85"
-        },
-        "flags": 0
-      },
-      "RenameKeys": {
+      "ParseToOCSF": {
         "type": {
           "$ref": "#/113"
         },
         "flags": 0
       },
-      "SplitString": {
+      "ParseVPC": {
+        "type": {
+          "$ref": "#/114"
+        },
+        "flags": 0
+      },
+      "ParseWAF": {
         "type": {
           "$ref": "#/115"
         },
         "flags": 0
       },
+      "RenameKeys": {
+        "type": {
+          "$ref": "#/143"
+        },
+        "flags": 0
+      },
+      "SplitString": {
+        "type": {
+          "$ref": "#/145"
+        },
+        "flags": 0
+      },
       "SubstituteString": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/147"
         },
         "flags": 0
       },
       "TrimString": {
         "type": {
-          "$ref": "#/119"
+          "$ref": "#/149"
         },
         "flags": 0
       },
       "TypeConverter": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/151"
         },
         "flags": 0
       },
       "UpperCaseString": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/153"
         },
         "flags": 0
       }
@@ -1685,7 +2234,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/73"
+      "$ref": "#/99"
     }
   },
   {
@@ -1694,7 +2243,7 @@
     "properties": {
       "Entries": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/122"
         },
         "flags": 1
       }
@@ -1703,7 +2252,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/75"
+      "$ref": "#/101"
     }
   },
   {
@@ -1712,7 +2261,7 @@
     "properties": {
       "Entries": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/124"
         },
         "flags": 1
       }
@@ -1726,7 +2275,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/96"
+      "$ref": "#/126"
     }
   },
   {
@@ -1735,7 +2284,7 @@
     "properties": {
       "Columns": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/127"
         },
         "flags": 0
       },
@@ -1767,7 +2316,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/99"
+      "$ref": "#/129"
     }
   },
   {
@@ -1782,7 +2331,7 @@
       },
       "MatchPatterns": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/130"
         },
         "flags": 1
       },
@@ -1830,7 +2379,7 @@
     "properties": {
       "WithKeys": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/132"
         },
         "flags": 1
       }
@@ -1908,7 +2457,7 @@
     "properties": {
       "WithKeys": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/136"
         },
         "flags": 1
       }
@@ -1917,7 +2466,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/78"
+      "$ref": "#/106"
     }
   },
   {
@@ -1926,7 +2475,7 @@
     "properties": {
       "Entries": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/138"
         },
         "flags": 1
       }
@@ -2001,7 +2550,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/87"
+      "$ref": "#/117"
     }
   },
   {
@@ -2010,7 +2559,7 @@
     "properties": {
       "Entries": {
         "type": {
-          "$ref": "#/112"
+          "$ref": "#/142"
         },
         "flags": 1
       }
@@ -2019,7 +2568,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/88"
+      "$ref": "#/118"
     }
   },
   {
@@ -2028,7 +2577,7 @@
     "properties": {
       "Entries": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/144"
         },
         "flags": 1
       }
@@ -2037,7 +2586,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/89"
+      "$ref": "#/119"
     }
   },
   {
@@ -2046,7 +2595,7 @@
     "properties": {
       "Entries": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/146"
         },
         "flags": 1
       }
@@ -2064,7 +2613,7 @@
     "properties": {
       "WithKeys": {
         "type": {
-          "$ref": "#/118"
+          "$ref": "#/148"
         },
         "flags": 1
       }
@@ -2073,7 +2622,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/90"
+      "$ref": "#/120"
     }
   },
   {
@@ -2082,7 +2631,7 @@
     "properties": {
       "Entries": {
         "type": {
-          "$ref": "#/120"
+          "$ref": "#/150"
         },
         "flags": 1
       }
@@ -2100,7 +2649,7 @@
     "properties": {
       "WithKeys": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/152"
         },
         "flags": 1
       }
@@ -2113,7 +2662,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/86"
+      "$ref": "#/116"
     }
   },
   {
@@ -2129,7 +2678,7 @@
       },
       "TransformerConfig": {
         "type": {
-          "$ref": "#/125"
+          "$ref": "#/155"
         },
         "flags": 1,
         "description": "List of processors in a transformer"
@@ -2156,7 +2705,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/126"
+          "$ref": "#/156"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2166,10 +2715,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.Logs/Transformer@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/127"
+      "$ref": "#/157"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

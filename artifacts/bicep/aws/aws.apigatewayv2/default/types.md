@@ -1,81 +1,144 @@
 # AWS.ApiGatewayV2 @ default
 
 ## Resource AWS.ApiGatewayV2/Api@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGatewayV2/ApiProperties](#awsapigatewayv2apiproperties) (Identifier): properties of the resource
 
+## Resource AWS.ApiGatewayV2/ApiGatewayManagedOverrides@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ApiGatewayV2/ApiGatewayManagedOverridesProperties](#awsapigatewayv2apigatewaymanagedoverridesproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.ApiGatewayV2/ApiMapping@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGatewayV2/ApiMappingProperties](#awsapigatewayv2apimappingproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ApiGatewayV2/Authorizer@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGatewayV2/AuthorizerProperties](#awsapigatewayv2authorizerproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ApiGatewayV2/Deployment@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGatewayV2/DeploymentProperties](#awsapigatewayv2deploymentproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ApiGatewayV2/DomainName@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGatewayV2/DomainNameProperties](#awsapigatewayv2domainnameproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ApiGatewayV2/Integration@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGatewayV2/IntegrationProperties](#awsapigatewayv2integrationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ApiGatewayV2/IntegrationResponse@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGatewayV2/IntegrationResponseProperties](#awsapigatewayv2integrationresponseproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ApiGatewayV2/Model@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGatewayV2/ModelProperties](#awsapigatewayv2modelproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.ApiGatewayV2/PortalProduct@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ApiGatewayV2/PortalProductProperties](#awsapigatewayv2portalproductproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.ApiGatewayV2/Route@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGatewayV2/RouteProperties](#awsapigatewayv2routeproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ApiGatewayV2/RouteResponse@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGatewayV2/RouteResponseProperties](#awsapigatewayv2routeresponseproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.ApiGatewayV2/RoutingRule@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ApiGatewayV2/RoutingRuleProperties](#awsapigatewayv2routingruleproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.ApiGatewayV2/Stage@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ApiGatewayV2/StageProperties](#awsapigatewayv2stageproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.ApiGatewayV2/VpcLink@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGatewayV2/VpcLinkProperties](#awsapigatewayv2vpclinkproperties) (Required, Identifier): properties of the resource
+
+## AccessLogSettings
+### Properties
+* **DestinationArn**: string: The ARN of the CloudWatch Logs log group to receive access logs.
+* **Format**: string: A single line format of the access logs of data, as specified by selected $context variables. The format must include at least $context.requestId.
+
+## AccessLogSettings
+### Properties
+* **DestinationArn**: string
+* **Format**: string
+
+## Action
+### Properties
+* **InvokeApi**: [ActionInvokeApi](#actioninvokeapi) (Required): Represents an InvokeApi action.
+
+## ActionInvokeApi
+### Properties
+* **ApiId**: string (Required): The API identifier of the target API.
+* **Stage**: string (Required): The name of the target stage.
+* **StripBasePath**: bool: The strip base path setting. When true, API Gateway strips the incoming matched base path when forwarding the request to the target API.
 
 ## Api_Body
 ### Properties
@@ -83,9 +146,23 @@
 ## Api_Tags
 ### Properties
 
+## ApiGatewayManagedOverrides_RouteSettings
+### Properties
+
+## ApiGatewayManagedOverrides_StageVariables
+### Properties
+
+## AWS.ApiGatewayV2/ApiGatewayManagedOverridesProperties
+### Properties
+* **ApiId**: string (Required, Identifier): The ID of the API for which to override the configuration of API Gateway-managed resources.
+* **Id**: string (ReadOnly): A TPS Code is automatically generated on creation and assigned as the unique identifier.
+* **Integration**: [IntegrationOverrides](#integrationoverrides): Overrides the integration configuration for an API Gateway-managed integration.
+* **Route**: [RouteOverrides](#routeoverrides): Overrides the route configuration for an API Gateway-managed route.
+* **Stage**: [StageOverrides](#stageoverrides): Overrides the stage configuration for an API Gateway-managed stage.
+
 ## AWS.ApiGatewayV2/ApiMappingProperties
 ### Properties
-* **ApiId**: string (Required): The identifier of the API.
+* **ApiId**: string (Required): The API identifier.
 * **ApiMappingId**: string (ReadOnly, Identifier)
 * **ApiMappingKey**: string: The API mapping key.
 * **DomainName**: string (Required, Identifier): The domain name.
@@ -104,7 +181,10 @@
 * **Description**: string: The description of the API.
 * **DisableExecuteApiEndpoint**: bool: Specifies whether clients can invoke your API by using the default ``execute-api`` endpoint. By default, clients can invoke your API with the default https://{api_id}.execute-api.{region}.amazonaws.com endpoint. To require that clients use a custom domain name to invoke your API, disable the default endpoint.
 * **DisableSchemaValidation**: bool (WriteOnly): Avoid validating models when creating a deployment. Supported only for WebSocket APIs.
+* **ExecuteApiArn**: string (ReadOnly)
 * **FailOnWarnings**: bool (WriteOnly): Specifies whether to rollback the API creation when a warning is encountered. By default, API creation continues if a warning is encountered.
+* **IpAddressType**: string: The IP address types that can invoke the API. Use ``ipv4`` to allow only IPv4 addresses to invoke your API, or use ``dualstack`` to allow both IPv4 and IPv6 addresses to invoke your API.
+ Don?t use IP address type for an HTTP API based on an OpenAPI specification. Instead, specify the IP address type in the OpenAPI specification.
 * **Name**: string: The name of the API. Required unless you specify an OpenAPI definition for ``Body`` or ``S3BodyLocation``.
 * **ProtocolType**: string: The API protocol. Valid values are ``WEBSOCKET`` or ``HTTP``. Required unless you specify an OpenAPI definition for ``Body`` or ``S3BodyLocation``.
 * **RouteKey**: string (WriteOnly): This property is part of quick create. If you don't specify a ``routeKey``, a default route of ``$default`` is created. The ``$default`` route acts as a catch-all for any request made to your API, for a particular stage. The ``$default`` route key can't be modified. You can add routes after creating the API, and you can update the route keys of additional routes. Supported only for HTTP APIs.
@@ -116,13 +196,13 @@
 ## AWS.ApiGatewayV2/AuthorizerProperties
 ### Properties
 * **ApiId**: string (Required, Identifier): The API identifier.
-* **AuthorizerCredentialsArn**: string: Specifies the required credentials as an IAM role for API Gateway to invoke the authorizer. To specify an IAM role for API Gateway to assume, use the role's Amazon Resource Name (ARN). To use resource-based permissions on the Lambda function, specify null. Supported only for ``REQUEST`` authorizers.
+* **AuthorizerCredentialsArn**: string (WriteOnly): Specifies the required credentials as an IAM role for API Gateway to invoke the authorizer. To specify an IAM role for API Gateway to assume, use the role's Amazon Resource Name (ARN). To use resource-based permissions on the Lambda function, specify null. Supported only for ``REQUEST`` authorizers.
 * **AuthorizerId**: string (ReadOnly, Identifier)
-* **AuthorizerPayloadFormatVersion**: string: Specifies the format of the payload sent to an HTTP API Lambda authorizer. Required for HTTP API Lambda authorizers. Supported values are ``1.0`` and ``2.0``. To learn more, see [Working with Lambda authorizers for HTTP APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-lambda-authorizer.html).
-* **AuthorizerResultTtlInSeconds**: int: The time to live (TTL) for cached authorizer results, in seconds. If it equals 0, authorization caching is disabled. If it is greater than 0, API Gateway caches authorizer responses. The maximum value is 3600, or 1 hour. Supported only for HTTP API Lambda authorizers.
+* **AuthorizerPayloadFormatVersion**: string (WriteOnly): Specifies the format of the payload sent to an HTTP API Lambda authorizer. Required for HTTP API Lambda authorizers. Supported values are ``1.0`` and ``2.0``. To learn more, see [Working with Lambda authorizers for HTTP APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-lambda-authorizer.html).
+* **AuthorizerResultTtlInSeconds**: int (WriteOnly): The time to live (TTL) for cached authorizer results, in seconds. If it equals 0, authorization caching is disabled. If it is greater than 0, API Gateway caches authorizer responses. The maximum value is 3600, or 1 hour. Supported only for HTTP API Lambda authorizers.
 * **AuthorizerType**: string (Required): The authorizer type. Specify ``REQUEST`` for a Lambda function using incoming request parameters. Specify ``JWT`` to use JSON Web Tokens (supported only for HTTP APIs).
-* **AuthorizerUri**: string: The authorizer's Uniform Resource Identifier (URI). For ``REQUEST`` authorizers, this must be a well-formed Lambda function URI, for example, ``arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:{account_id}:function:{lambda_function_name}/invocations``. In general, the URI has this form: ``arn:aws:apigateway:{region}:lambda:path/{service_api}``, where *{region}* is the same as the region hosting the Lambda function, path indicates that the remaining substring in the URI should be treated as the path to the resource, including the initial ``/``. For Lambda functions, this is usually of the form ``/2015-03-31/functions/[FunctionARN]/invocations``.
-* **EnableSimpleResponses**: bool: Specifies whether a Lambda authorizer returns a response in a simple format. By default, a Lambda authorizer must return an IAM policy. If enabled, the Lambda authorizer can return a boolean value instead of an IAM policy. Supported only for HTTP APIs. To learn more, see [Working with Lambda authorizers for HTTP APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-lambda-authorizer.html).
+* **AuthorizerUri**: string (WriteOnly): The authorizer's Uniform Resource Identifier (URI). For ``REQUEST`` authorizers, this must be a well-formed Lambda function URI, for example, ``arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:{account_id}:function:{lambda_function_name}/invocations``. In general, the URI has this form: ``arn:aws:apigateway:{region}:lambda:path/{service_api}``, where *{region}* is the same as the region hosting the Lambda function, path indicates that the remaining substring in the URI should be treated as the path to the resource, including the initial ``/``. For Lambda functions, this is usually of the form ``/2015-03-31/functions/[FunctionARN]/invocations``.
+* **EnableSimpleResponses**: bool (WriteOnly): Specifies whether a Lambda authorizer returns a response in a simple format. By default, a Lambda authorizer must return an IAM policy. If enabled, the Lambda authorizer can return a boolean value instead of an IAM policy. Supported only for HTTP APIs. To learn more, see [Working with Lambda authorizers for HTTP APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-lambda-authorizer.html).
 * **IdentitySource**: string[]: The identity source for which authorization is requested.
  For a ``REQUEST`` authorizer, this is optional. The value is a set of one or more mapping expressions of the specified request parameters. The identity source can be headers, query string parameters, stage variables, and context parameters. For example, if an Auth header and a Name query string parameter are defined as identity sources, this value is route.request.header.Auth, route.request.querystring.Name for WebSocket APIs. For HTTP APIs, use selection expressions prefixed with ``$``, for example, ``$request.header.Auth``, ``$request.querystring.Name``. These parameters are used to perform runtime validation for Lambda-based authorizers by verifying all of the identity-related request parameters are present in the request, not null, and non-empty. Only when this is true does the authorizer invoke the authorizer Lambda function. Otherwise, it returns a 401 Unauthorized response without calling the Lambda function. For HTTP APIs, identity sources are also used as the cache key when caching is enabled. To learn more, see [Working with Lambda authorizers for HTTP APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-lambda-authorizer.html).
  For ``JWT``, a single entry that specifies where to extract the JSON Web Token (JWT) from inbound requests. Currently only header-based and query parameter-based selections are supported, for example ``$request.header.Authorization``.
@@ -140,10 +220,12 @@
 ## AWS.ApiGatewayV2/DomainNameProperties
 ### Properties
 * **DomainName**: string (Required, Identifier): The custom domain name for your API in Amazon API Gateway. Uppercase letters and the underscore (``_``) character are not supported.
+* **DomainNameArn**: string (ReadOnly)
 * **DomainNameConfigurations**: [DomainNameConfiguration](#domainnameconfiguration)[]: The domain name configurations.
 * **MutualTlsAuthentication**: [MutualTlsAuthentication](#mutualtlsauthentication): The mutual TLS authentication configuration for a custom domain name.
 * **RegionalDomainName**: string (ReadOnly)
 * **RegionalHostedZoneId**: string (ReadOnly)
+* **RoutingMode**: string: The routing mode API Gateway uses to route traffic to your APIs.
 * **Tags**: [DomainName_Tags](#domainnametags): The collection of tags associated with a domain name.
 
 ## AWS.ApiGatewayV2/IntegrationProperties
@@ -172,8 +254,8 @@
 ### Properties
 * **ApiId**: string (Required, Identifier): The API identifier.
 * **ContentHandlingStrategy**: string: Supported only for WebSocket APIs. Specifies how to handle response payload content type conversions. Supported values are ``CONVERT_TO_BINARY`` and ``CONVERT_TO_TEXT``, with the following behaviors:
-  ``CONVERT_TO_BINARY``: Converts a response payload from a Base64-encoded string to the corresponding binary blob.
-  ``CONVERT_TO_TEXT``: Converts a response payload from a binary blob to a Base64-encoded string.
+ ``CONVERT_TO_BINARY``: Converts a response payload from a Base64-encoded string to the corresponding binary blob.
+ ``CONVERT_TO_TEXT``: Converts a response payload from a binary blob to a Base64-encoded string.
  If this property is not defined, the response payload will be passed through from the integration response to the route response or method response without modification.
 * **IntegrationId**: string (Required, Identifier): The integration ID.
 * **IntegrationResponseId**: string (ReadOnly, Identifier)
@@ -190,6 +272,15 @@
 * **ModelId**: string (ReadOnly, Identifier)
 * **Name**: string (Required): The name of the model.
 * **Schema**: [Model_Schema](#modelschema) (Required): The schema for the model. For application/json models, this should be JSON schema draft 4 model.
+
+## AWS.ApiGatewayV2/PortalProductProperties
+### Properties
+* **Description**: string: A description of the portal product.
+* **DisplayName**: string (Required): The name of the portal product as it appears in a published portal.
+* **LastModified**: string (ReadOnly): The timestamp when the portal product was last modified.
+* **PortalProductArn**: string (ReadOnly, Identifier): The ARN of the portal product.
+* **PortalProductId**: string (ReadOnly): The portal product identifier.
+* **Tags**: [Tag](#tag)[]: The collection of tags associated with the portal product.
 
 ## AWS.ApiGatewayV2/RouteProperties
 ### Properties
@@ -217,6 +308,29 @@
 * **RouteResponseId**: string (ReadOnly, Identifier)
 * **RouteResponseKey**: string (Required): The route response key.
 
+## AWS.ApiGatewayV2/RoutingRuleProperties
+### Properties
+* **Actions**: [Action](#action)[] (Required): The resulting action based on matching a routing rules condition. Only InvokeApi is supported.
+* **Conditions**: [Condition](#condition)[] (Required): The conditions of the routing rule.
+* **DomainNameArn**: string (Required): The ARN of the domain name.
+* **Priority**: int (Required): The order in which API Gateway evaluates a rule. Priority is evaluated from the lowest value to the highest value. Rules can't have the same priority. Priority values 1-1,000,000 are supported.
+* **RoutingRuleArn**: string (ReadOnly, Identifier)
+* **RoutingRuleId**: string (ReadOnly)
+
+## AWS.ApiGatewayV2/StageProperties
+### Properties
+* **AccessLogSettings**: [AccessLogSettings](#accesslogsettings): Settings for logging access in this stage.
+* **ApiId**: string (Required, Identifier): The API identifier.
+* **AutoDeploy**: bool: Specifies whether updates to an API automatically trigger a new deployment. The default value is false.
+* **ClientCertificateId**: string: The identifier of a client certificate for a Stage. Supported only for WebSocket APIs.
+* **DefaultRouteSettings**: [RouteSettings](#routesettings): The default route settings for the stage.
+* **DeploymentId**: string: The deployment identifier for the API stage. Can't be updated if autoDeploy is enabled.
+* **Description**: string: The description for the API stage.
+* **RouteSettings**: [Stage_RouteSettings](#stageroutesettings): Route settings for the stage.
+* **StageName**: string (Required, Identifier): The stage name. Stage names can contain only alphanumeric characters, hyphens, and underscores, or be $default. Maximum length is 128 characters.
+* **StageVariables**: [Stage_StageVariables](#stagestagevariables): A map that defines the stage variables for a Stage. Variable names can have alphanumeric and underscore characters, and the values must match [A-Za-z0-9-._~:/?#&=,]+.
+* **Tags**: [Stage_Tags](#stagetags): The collection of tags. Each tag element is associated with a given resource.
+
 ## AWS.ApiGatewayV2/VpcLinkProperties
 ### Properties
 * **Name**: string (Required): The name of the VPC link.
@@ -231,6 +345,11 @@
 * **Etag**: string (WriteOnly): The Etag of the S3 object.
 * **Key**: string (WriteOnly): The key of the S3 object. Required if you specify a ``BodyS3Location`` for an API.
 * **Version**: string (WriteOnly): The version of the S3 object.
+
+## Condition
+### Properties
+* **MatchBasePaths**: [MatchBasePaths](#matchbasepaths): The base path to be matched.
+* **MatchHeaders**: [MatchHeaders](#matchheaders): The headers to be matched.
 
 ## Cors
 ### Properties
@@ -249,6 +368,7 @@
 * **CertificateArn**: string: An AWS-managed certificate that will be used by the edge-optimized endpoint for this domain name. AWS Certificate Manager is the only supported source.
 * **CertificateName**: string: The user-friendly name of the certificate that will be used by the edge-optimized endpoint for this domain name.
 * **EndpointType**: string: The endpoint type.
+* **IpAddressType**: string: The IP address types that can invoke the domain name. Use ``ipv4`` to allow only IPv4 addresses to invoke your domain name, or use ``dualstack`` to allow both IPv4 and IPv6 addresses to invoke your domain name.
 * **OwnershipVerificationCertificateArn**: string: The Amazon resource name (ARN) for the public certificate issued by ACMlong. This ARN is used to validate custom domain ownership. It's required only if you configure mutual TLS and use either an ACM-imported or a private CA certificate ARN as the regionalCertificateArn.
 * **SecurityPolicy**: string: The Transport Layer Security (TLS) version of the security policy for this domain name. The valid values are ``TLS_1_0`` and ``TLS_1_2``.
 
@@ -261,6 +381,13 @@
 ## Integration_ResponseParameters
 ### Properties
 
+## IntegrationOverrides
+### Properties
+* **Description**: string: The description of the integration.
+* **IntegrationMethod**: string: Specifies the integration's HTTP method type. For WebSocket APIs, if you use a Lambda integration, you must set the integration method to POST.
+* **PayloadFormatVersion**: string: Specifies the format of the payload sent to an integration. Required for HTTP APIs. For HTTP APIs, supported values for Lambda proxy integrations are 1.0 and 2.0. For all other integrations, 1.0 is the only supported value
+* **TimeoutInMillis**: int: Custom timeout between 50 and 29,000 milliseconds for WebSocket APIs and between 50 and 30,000 milliseconds for HTTP APIs. The default timeout is 29 seconds for WebSocket APIs and 30 seconds for HTTP APIs.
+
 ## IntegrationResponse_ResponseParameters
 ### Properties
 
@@ -271,6 +398,19 @@
 ### Properties
 * **Audience**: string[]: A list of the intended recipients of the JWT. A valid JWT must provide an ``aud`` that matches at least one entry in this list. See [RFC 7519](https://docs.aws.amazon.com/https://tools.ietf.org/html/rfc7519#section-4.1.3). Required for the ``JWT`` authorizer type. Supported only for HTTP APIs.
 * **Issuer**: string: The base domain of the identity provider that issues JSON Web Tokens. For example, an Amazon Cognito user pool has the following format: ``https://cognito-idp.{region}.amazonaws.com/{userPoolId}``. Required for the ``JWT`` authorizer type. Supported only for HTTP APIs.
+
+## MatchBasePaths
+### Properties
+* **AnyOf**: string[] (Required): The string of the case sensitive base path to be matched.
+
+## MatchHeaders
+### Properties
+* **AnyOf**: [MatchHeaderValue](#matchheadervalue)[] (Required): The header name and header value glob to be matched. The matchHeaders condition is matched if any of the header name and header value globs are matched.
+
+## MatchHeaderValue
+### Properties
+* **Header**: string (Required): The case insensitive header name to be matched. The header name must be less than 40 characters and the only allowed characters are ``a-z``, ``A-Z``, ``0-9``, and the following special characters: ``*?-!#$%&'.^_`|~.``.
+* **ValueGlob**: string (Required): The case sensitive header glob value to be matched against entire header value. The header glob value must be less than 128 characters and the only allowed characters are ``a-z``, ``A-Z``, ``0-9``, and the following special characters: ``*?-!#$%&'.^_`|~``. Wildcard matching is supported for header glob values but must be for ``*prefix-match``, ``suffix-match*``, or ``*infix*-match``.
 
 ## Model_Schema
 ### Properties
@@ -286,11 +426,56 @@
 ## Route_RequestParameters
 ### Properties
 
+## RouteOverrides
+### Properties
+* **AuthorizationScopes**: string[]: The authorization scopes supported by this route.
+* **AuthorizationType**: string: The authorization type for the route. To learn more, see AuthorizationType.
+* **AuthorizerId**: string: The identifier of the Authorizer resource to be associated with this route. The authorizer identifier is generated by API Gateway when you created the authorizer.
+* **OperationName**: string: The operation name for the route.
+* **Target**: string: For HTTP integrations, specify a fully qualified URL. For Lambda integrations, specify a function ARN. The type of the integration will be HTTP_PROXY or AWS_PROXY, respectively.
+
 ## RouteParameters
 ### Properties
 
 ## RouteResponse_ResponseModels
 ### Properties
+
+## RouteSettings
+### Properties
+* **DetailedMetricsEnabled**: bool: Specifies whether detailed metrics are enabled.
+* **ThrottlingBurstLimit**: int: Specifies the throttling burst limit.
+* **ThrottlingRateLimit**: int: Specifies the throttling rate limit.
+
+## RouteSettings
+### Properties
+* **DataTraceEnabled**: bool
+* **DetailedMetricsEnabled**: bool
+* **LoggingLevel**: string
+* **ThrottlingBurstLimit**: int
+* **ThrottlingRateLimit**: int
+
+## Stage_RouteSettings
+### Properties
+
+## Stage_StageVariables
+### Properties
+
+## Stage_Tags
+### Properties
+
+## StageOverrides
+### Properties
+* **AccessLogSettings**: [AccessLogSettings](#accesslogsettings): Settings for logging access in a stage.
+* **AutoDeploy**: bool: Specifies whether updates to an API automatically trigger a new deployment. The default value is true.
+* **DefaultRouteSettings**: [RouteSettings](#routesettings): The default route settings for the stage.
+* **Description**: string: The description for the API stage.
+* **RouteSettings**: [ApiGatewayManagedOverrides_RouteSettings](#apigatewaymanagedoverridesroutesettings): Route settings for the stage.
+* **StageVariables**: [ApiGatewayManagedOverrides_StageVariables](#apigatewaymanagedoverridesstagevariables): A map that defines the stage variables for a Stage. Variable names can have alphanumeric and underscore characters, and the values must match [A-Za-z0-9-._~:/?#&=,]+.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
 
 ## TlsConfig
 ### Properties

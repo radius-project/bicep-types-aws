@@ -1,21 +1,24 @@
 # AWS.Lex @ default
 
 ## Resource AWS.Lex/Bot@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Lex/BotProperties](#awslexbotproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Lex/BotAlias@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Lex/BotAliasProperties](#awslexbotaliasproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Lex/ResourcePolicy@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -24,6 +27,14 @@
 ## AdvancedRecognitionSetting
 ### Properties
 * **AudioRecognitionStrategy**: string
+
+## AudioFillerSettings
+### Properties
+* **AudioType**: string
+* **Enabled**: bool (Required)
+* **MinimumPlayDurationInMilliseconds**: int
+* **ResponseDeliveryDelayInMilliseconds**: int
+* **StartDelayInMilliseconds**: int
 
 ## AudioLogDestination
 ### Properties
@@ -50,7 +61,7 @@
 * **BotAliasLocaleSettings**: [BotAliasLocaleSettingsItem](#botaliaslocalesettingsitem)[]
 * **BotAliasName**: string (Required)
 * **BotAliasStatus**: string (ReadOnly)
-* **BotAliasTags**: [Tag](#tag)[] (WriteOnly): A list of tags to add to the bot alias.
+* **BotAliasTags**: [Tag](#tag)[]: A list of tags to add to the bot alias.
 * **BotId**: string (Required, Identifier)
 * **BotVersion**: string
 * **ConversationLogSettings**: [ConversationLogSettings](#conversationlogsettings)
@@ -60,19 +71,22 @@
 ## AWS.Lex/BotProperties
 ### Properties
 * **Arn**: string (ReadOnly)
-* **AutoBuildBotLocales**: bool (WriteOnly): Specifies whether to build the bot locales after bot creation completes.
+* **AutoBuildBotLocales**: bool (WriteOnly)
 * **BotFileS3Location**: [S3Location](#s3location) (WriteOnly)
-* **BotLocales**: [BotLocale](#botlocale)[] (WriteOnly): List of bot locales
-* **BotTags**: [Tag](#tag)[] (WriteOnly): A list of tags to add to the bot, which can only be added at bot creation.
-* **DataPrivacy**: [Bot_DataPrivacy](#botdataprivacy) (Required): Data privacy setting of the Bot.
+* **BotLocales**: [BotLocale](#botlocale)[] (WriteOnly)
+* **BotMembers**: [BotMember](#botmember)[] (WriteOnly): The list of bot members in a network to be created.
+* **BotTags**: [Tag](#tag)[]
+* **BotType**: string: The type of a bot to create.
+* **DataPrivacy**: [Bot_DataPrivacy](#botdataprivacy) (Required)
 * **Description**: string
+* **ErrorLogSettings**: [Bot_ErrorLogSettings](#boterrorlogsettings)
 * **Id**: string (ReadOnly, Identifier)
-* **IdleSessionTTLInSeconds**: int (Required): IdleSessionTTLInSeconds of the resource
+* **IdleSessionTTLInSeconds**: int (Required)
 * **Name**: string (Required)
 * **Replication**: [Replication](#replication) (WriteOnly)
 * **RoleArn**: string (Required)
-* **TestBotAliasSettings**: [TestBotAliasSettings](#testbotaliassettings)
-* **TestBotAliasTags**: [Tag](#tag)[] (WriteOnly): A list of tags to add to the test alias for a bot, , which can only be added at bot/bot alias creation.
+* **TestBotAliasSettings**: [TestBotAliasSettings](#testbotaliassettings) (WriteOnly)
+* **TestBotAliasTags**: [Tag](#tag)[] (WriteOnly)
 
 ## AWS.Lex/ResourcePolicyProperties
 ### Properties
@@ -81,16 +95,119 @@
 * **ResourceArn**: string (Required)
 * **RevisionId**: string (ReadOnly)
 
+## BedrockAgentIntentConfiguration
+### Properties
+* **BedrockAgentConfiguration**: [Bot_BedrockAgentConfiguration](#botbedrockagentconfiguration)
+* **BedrockAgentIntentKnowledgeBaseConfiguration**: [Bot_BedrockAgentIntentKnowledgeBaseConfiguration](#botbedrockagentintentknowledgebaseconfiguration)
+
+## BedrockModelSpecification
+### Properties
+* **BedrockGuardrailConfiguration**: [Bot_BedrockGuardrailConfiguration](#botbedrockguardrailconfiguration)
+* **BedrockModelCustomPrompt**: string
+* **BedrockTraceStatus**: string
+* **ModelArn**: string (Required)
+
+## Bot_BedrockAgentConfiguration
+### Properties
+* **BedrockAgentAliasId**: string
+* **BedrockAgentId**: string
+
+## Bot_BedrockAgentIntentKnowledgeBaseConfiguration
+### Properties
+* **BedrockKnowledgeBaseArn**: string (Required)
+* **BedrockModelConfiguration**: [BedrockModelSpecification](#bedrockmodelspecification) (Required)
+
+## Bot_BedrockGuardrailConfiguration
+### Properties
+* **BedrockGuardrailIdentifier**: string
+* **BedrockGuardrailVersion**: string
+
+## Bot_BuildtimeSettings
+### Properties
+* **DescriptiveBotBuilderSpecification**: [Bot_BuildtimeSettings_DescriptiveBotBuilderSpecification](#botbuildtimesettingsdescriptivebotbuilderspecification)
+* **SampleUtteranceGenerationSpecification**: [Bot_BuildtimeSettings_SampleUtteranceGenerationSpecification](#botbuildtimesettingssampleutterancegenerationspecification)
+
+## Bot_BuildtimeSettings_DescriptiveBotBuilderSpecification
+### Properties
+* **BedrockModelSpecification**: [BedrockModelSpecification](#bedrockmodelspecification)
+* **Enabled**: bool (Required)
+
+## Bot_BuildtimeSettings_SampleUtteranceGenerationSpecification
+### Properties
+* **BedrockModelSpecification**: [BedrockModelSpecification](#bedrockmodelspecification)
+* **Enabled**: bool (Required)
+
 ## Bot_DataPrivacy
 ### Properties
 * **ChildDirected**: bool (Required)
 
+## Bot_DataSourceConfiguration
+### Properties
+* **BedrockKnowledgeStoreConfiguration**: [Bot_DataSourceConfiguration_BedrockKnowledgeStoreConfiguration](#botdatasourceconfigurationbedrockknowledgestoreconfiguration)
+* **KendraConfiguration**: [QnAKendraConfiguration](#qnakendraconfiguration)
+* **OpensearchConfiguration**: [Bot_DataSourceConfiguration_OpensearchConfiguration](#botdatasourceconfigurationopensearchconfiguration)
+
+## Bot_DataSourceConfiguration_BedrockKnowledgeStoreConfiguration
+### Properties
+* **BedrockKnowledgeBaseArn**: string
+* **BKBExactResponseFields**: [Bot_DataSourceConfiguration_BedrockKnowledgeStoreConfiguration_BKBExactResponseFields](#botdatasourceconfigurationbedrockknowledgestoreconfigurationbkbexactresponsefields)
+* **ExactResponse**: bool
+
+## Bot_DataSourceConfiguration_BedrockKnowledgeStoreConfiguration_BKBExactResponseFields
+### Properties
+* **AnswerField**: string
+
+## Bot_DataSourceConfiguration_OpensearchConfiguration
+### Properties
+* **DomainEndpoint**: string
+* **ExactResponse**: bool
+* **ExactResponseFields**: [Bot_DataSourceConfiguration_OpensearchConfiguration_ExactResponseFields](#botdatasourceconfigurationopensearchconfigurationexactresponsefields)
+* **IncludeFields**: string[]
+* **IndexName**: string
+
+## Bot_DataSourceConfiguration_OpensearchConfiguration_ExactResponseFields
+### Properties
+* **AnswerField**: string
+* **QuestionField**: string
+
+## Bot_ErrorLogSettings
+### Properties
+* **Enabled**: bool (Required)
+
 ## Bot_PromptAttemptsSpecification
 ### Properties
 
+## Bot_QInConnectAssistantConfiguration
+### Properties
+* **AssistantArn**: string (Required)
+
+## Bot_RuntimeSettings
+### Properties
+* **NluImprovementSpecification**: [Bot_RuntimeSettings_NluImprovementSpecification](#botruntimesettingsnluimprovementspecification)
+* **SlotResolutionImprovementSpecification**: [Bot_RuntimeSettings_SlotResolutionImprovementSpecification](#botruntimesettingsslotresolutionimprovementspecification)
+
+## Bot_RuntimeSettings_NluImprovementSpecification
+### Properties
+* **AssistedNluMode**: string
+* **Enabled**: bool (Required)
+* **IntentDisambiguationSettings**: [IntentDisambiguationSettings](#intentdisambiguationsettings)
+
+## Bot_RuntimeSettings_SlotResolutionImprovementSpecification
+### Properties
+* **BedrockModelSpecification**: [BedrockModelSpecification](#bedrockmodelspecification)
+* **Enabled**: bool (Required)
+
 ## Bot_SentimentAnalysisSettings
 ### Properties
-* **DetectSentiment**: bool (Required): Enable to call Amazon Comprehend for Sentiment natively within Lex
+* **DetectSentiment**: bool (Required)
+
+## Bot_SlotSpecifications
+### Properties
+
+## Bot_SpeechFoundationModel
+### Properties
+* **ModelArn**: string (Required)
+* **VoiceId**: string
 
 ## BotAlias_SentimentAnalysisSettings
 ### Properties
@@ -99,7 +216,7 @@
 ## BotAliasLocaleSettings
 ### Properties
 * **CodeHookSpecification**: [CodeHookSpecification](#codehookspecification)
-* **Enabled**: bool (Required): Whether the Lambda code hook is enabled
+* **Enabled**: bool (Required)
 
 ## BotAliasLocaleSettings
 ### Properties
@@ -109,7 +226,7 @@
 ## BotAliasLocaleSettingsItem
 ### Properties
 * **BotAliasLocaleSetting**: [BotAliasLocaleSettings](#botaliaslocalesettings) (Required)
-* **LocaleId**: string (Required): A string used to identify the locale
+* **LocaleId**: string (Required)
 
 ## BotAliasLocaleSettingsItem
 ### Properties
@@ -118,23 +235,36 @@
 
 ## BotLocale
 ### Properties
+* **AudioFillerSettings**: [AudioFillerSettings](#audiofillersettings)
 * **CustomVocabulary**: [CustomVocabulary](#customvocabulary)
 * **Description**: string
-* **Intents**: [Intent](#intent)[]: List of intents
+* **GenerativeAISettings**: [GenerativeAISettings](#generativeaisettings)
+* **Intents**: [Intent](#intent)[]
 * **LocaleId**: string (Required)
 * **NluConfidenceThreshold**: int (Required)
-* **SlotTypes**: [SlotType](#slottype)[]: List of SlotTypes
+* **SlotTypes**: [SlotType](#slottype)[]
+* **SpeechDetectionSensitivity**: string
+* **SpeechRecognitionSettings**: [SpeechRecognitionSettings](#speechrecognitionsettings)
+* **UnifiedSpeechSettings**: [UnifiedSpeechSettings](#unifiedspeechsettings)
 * **VoiceSettings**: [VoiceSettings](#voicesettings)
+
+## BotMember
+### Properties
+* **BotMemberAliasId**: string (Required): The alias ID of a bot that is a member of this network of bots.
+* **BotMemberAliasName**: string (Required): The alias name of a bot that is a member of this network of bots.
+* **BotMemberId**: string (Required): The unique ID of a bot that is a member of this network of bots.
+* **BotMemberName**: string (Required): The unique name of a bot that is a member of this network of bots.
+* **BotMemberVersion**: string (Required): The version of a bot that is a member of this network of bots.
 
 ## Button
 ### Properties
-* **Text**: string (Required): The text that appears on the button.
-* **Value**: string (Required): The value returned to Amazon Lex when the user chooses this button.
+* **Text**: string (Required)
+* **Value**: string (Required)
 
 ## CloudWatchLogGroupLogDestination
 ### Properties
-* **CloudWatchLogGroupArn**: string (Required): A string used to identify the groupArn for the Cloudwatch Log Group
-* **LogPrefix**: string (Required): A string containing the value for the Log Prefix
+* **CloudWatchLogGroupArn**: string (Required)
+* **LogPrefix**: string (Required)
 
 ## CloudWatchLogGroupLogDestination
 ### Properties
@@ -148,23 +278,27 @@
 ## CodeHookSpecification
 ### Properties
 * **LambdaCodeHook**: [LambdaCodeHook](#lambdacodehook) (Required)
+
+## CompositeSlotTypeSetting
+### Properties
+* **SubSlots**: [SubSlotTypeComposition](#subslottypecomposition)[]
 
 ## Condition
 ### Properties
-* **ExpressionString**: string (Required): The expression string that is evaluated.
+* **ExpressionString**: string (Required)
 
 ## ConditionalBranch
 ### Properties
-* **Condition**: [Condition](#condition) (Required): Contains the expression to evaluate. If the condition is true, the branch's actions are taken.
-* **Name**: string (Required): The name of the branch.
-* **NextStep**: [DialogState](#dialogstate) (Required): The next step in the conversation.
-* **Response**: [ResponseSpecification](#responsespecification): Specifies a list of message groups that Amazon Lex uses to respond the user input.
+* **Condition**: [Condition](#condition) (Required)
+* **Name**: string (Required)
+* **NextStep**: [DialogState](#dialogstate) (Required)
+* **Response**: [ResponseSpecification](#responsespecification)
 
 ## ConditionalSpecification
 ### Properties
-* **ConditionalBranches**: [ConditionalBranch](#conditionalbranch)[] (Required): A list of conditional branches. A conditional branch is made up of a condition, a response and a next step. The response and next step are executed when the condition is true.
-* **DefaultBranch**: [DefaultConditionalBranch](#defaultconditionalbranch) (Required): The conditional branch that should be followed when the conditions for other branches are not satisfied. A conditional branch is made up of a condition, a response and a next step.
-* **IsActive**: bool (Required): Determines whether a conditional branch is active. When active is false, the conditions are not evaluated.
+* **ConditionalBranches**: [ConditionalBranch](#conditionalbranch)[] (Required)
+* **DefaultBranch**: [DefaultConditionalBranch](#defaultconditionalbranch) (Required)
+* **IsActive**: bool (Required)
 
 ## ConversationLogSettings
 ### Properties
@@ -178,7 +312,7 @@
 
 ## CustomPayload
 ### Properties
-* **Value**: string (Required): The string that is sent to your application.
+* **Value**: string (Required)
 
 ## CustomVocabulary
 ### Properties
@@ -186,27 +320,32 @@
 
 ## CustomVocabularyItem
 ### Properties
-* **DisplayAs**: string: Defines how you want your phrase to look in your transcription output.
-* **Phrase**: string (Required): Phrase that should be recognized.
-* **Weight**: int: The degree to which the phrase recognition is boosted. The weight 0 means that no boosting will be applied and the entry will only be used for performing replacements using the displayAs field.
+* **DisplayAs**: string
+* **Phrase**: string (Required)
+* **Weight**: int
+
+## DeepgramSpeechModelConfig
+### Properties
+* **ApiTokenSecretArn**: string (Required)
+* **ModelId**: string
 
 ## DefaultConditionalBranch
 ### Properties
-* **NextStep**: [DialogState](#dialogstate): The next step in the conversation.
-* **Response**: [ResponseSpecification](#responsespecification): Specifies a list of message groups that Amazon Lex uses to respond the user input.
+* **NextStep**: [DialogState](#dialogstate)
+* **Response**: [ResponseSpecification](#responsespecification)
 
 ## DialogAction
 ### Properties
-* **SlotToElicit**: string: If the dialog action is ElicitSlot, defines the slot to elicit from the user.
-* **SuppressNextMessage**: bool: When true the next message for the intent is not used.
-* **Type**: string (Required): The action that the bot should execute.
+* **SlotToElicit**: string
+* **SuppressNextMessage**: bool
+* **Type**: string (Required)
 
 ## DialogCodeHookInvocationSetting
 ### Properties
-* **EnableCodeHookInvocation**: bool (Required): Indicates whether a Lambda function should be invoked for the dialog.
-* **InvocationLabel**: string: A label that indicates the dialog step from which the dialog code hook is happening.
-* **IsActive**: bool (Required): Determines whether a dialog code hook is used when the intent is activated.
-* **PostCodeHookSpecification**: [PostDialogCodeHookInvocationSpecification](#postdialogcodehookinvocationspecification) (Required): Contains the responses and actions that Amazon Lex takes after the Lambda function is complete.
+* **EnableCodeHookInvocation**: bool (Required)
+* **InvocationLabel**: string
+* **IsActive**: bool (Required)
+* **PostCodeHookSpecification**: [PostDialogCodeHookInvocationSpecification](#postdialogcodehookinvocationspecification) (Required)
 
 ## DialogCodeHookSetting
 ### Properties
@@ -214,14 +353,14 @@
 
 ## DialogState
 ### Properties
-* **DialogAction**: [DialogAction](#dialogaction): Defines the action that the bot executes at runtime when the conversation reaches this step.
-* **Intent**: [IntentOverride](#intentoverride): Override settings to configure the intent state.
-* **SessionAttributes**: [SessionAttribute](#sessionattribute)[]: List of session attributes to be applied when the conversation reaches this step.
+* **DialogAction**: [DialogAction](#dialogaction)
+* **Intent**: [IntentOverride](#intentoverride)
+* **SessionAttributes**: [SessionAttribute](#sessionattribute)[]
 
 ## ElicitationCodeHookInvocationSetting
 ### Properties
-* **EnableCodeHookInvocation**: bool (Required): Indicates whether a Lambda function should be invoked for the dialog.
-* **InvocationLabel**: string: A label that indicates the dialog step from which the dialog code hook is happening.
+* **EnableCodeHookInvocation**: bool (Required)
+* **InvocationLabel**: string
 
 ## ExternalSourceSetting
 ### Properties
@@ -231,27 +370,32 @@
 ### Properties
 * **Enabled**: bool (Required)
 * **FulfillmentUpdatesSpecification**: [FulfillmentUpdatesSpecification](#fulfillmentupdatesspecification)
-* **IsActive**: bool: Determines whether the fulfillment code hook is used. When active is false, the code hook doesn't run.
+* **IsActive**: bool
 * **PostFulfillmentStatusSpecification**: [PostFulfillmentStatusSpecification](#postfulfillmentstatusspecification)
 
 ## FulfillmentStartResponseSpecification
 ### Properties
-* **AllowInterrupt**: bool: Determines whether the user can interrupt the start message while it is playing.
-* **DelayInSeconds**: int (Required): The delay between when the Lambda fulfillment function starts running and the start message is played. If the Lambda function returns before the delay is over, the start message isn't played.
+* **AllowInterrupt**: bool
+* **DelayInSeconds**: int (Required)
 * **MessageGroups**: [MessageGroup](#messagegroup)[] (Required)
 
 ## FulfillmentUpdateResponseSpecification
 ### Properties
-* **AllowInterrupt**: bool: Determines whether the user can interrupt an update message while it is playing.
-* **FrequencyInSeconds**: int (Required): The frequency that a message is sent to the user. When the period ends, Amazon Lex chooses a message from the message groups and plays it to the user. If the fulfillment Lambda returns before the first period ends, an update message is not played to the user.
+* **AllowInterrupt**: bool
+* **FrequencyInSeconds**: int (Required)
 * **MessageGroups**: [MessageGroup](#messagegroup)[] (Required)
 
 ## FulfillmentUpdatesSpecification
 ### Properties
-* **Active**: bool (Required): Determines whether fulfillment updates are sent to the user. When this field is true, updates are sent.
+* **Active**: bool (Required)
 * **StartResponse**: [FulfillmentStartResponseSpecification](#fulfillmentstartresponsespecification)
-* **TimeoutInSeconds**: int: The length of time that the fulfillment Lambda function should run before it times out.
+* **TimeoutInSeconds**: int
 * **UpdateResponse**: [FulfillmentUpdateResponseSpecification](#fulfillmentupdateresponsespecification)
+
+## GenerativeAISettings
+### Properties
+* **BuildtimeSettings**: [Bot_BuildtimeSettings](#botbuildtimesettings)
+* **RuntimeSettings**: [Bot_RuntimeSettings](#botruntimesettings)
 
 ## GrammarSlotTypeSetting
 ### Properties
@@ -259,83 +403,93 @@
 
 ## GrammarSlotTypeSource
 ### Properties
-* **KmsKeyArn**: string: The Amazon KMS key required to decrypt the contents of the grammar, if any.
-* **S3BucketName**: string (Required): The name of the S3 bucket that contains the grammar source.
-* **S3ObjectKey**: string (Required): The path to the grammar in the S3 bucket.
+* **KmsKeyArn**: string
+* **S3BucketName**: string (Required)
+* **S3ObjectKey**: string (Required)
 
 ## ImageResponseCard
 ### Properties
-* **Buttons**: [Button](#button)[]: A list of buttons that should be displayed on the response card.
-* **ImageUrl**: string: The URL of an image to display on the response card.
-* **Subtitle**: string: The subtitle to display on the response card.
-* **Title**: string (Required): The title to display on the response card.
+* **Buttons**: [Button](#button)[]
+* **ImageUrl**: string
+* **Subtitle**: string
+* **Title**: string (Required)
 
 ## InitialResponseSetting
 ### Properties
-* **CodeHook**: [DialogCodeHookInvocationSetting](#dialogcodehookinvocationsetting): Settings that specify the dialog code hook that is called by Amazon Lex at a step of the conversation.
-* **Conditional**: [ConditionalSpecification](#conditionalspecification): Provides a list of conditional branches. Branches are evaluated in the order that they are entered in the list. The first branch with a condition that evaluates to true is executed. The last branch in the list is the default branch. The default branch should not have any condition expression. The default branch is executed if no other branch has a matching condition.
-* **InitialResponse**: [ResponseSpecification](#responsespecification): Specifies a list of message groups that Amazon Lex uses to respond the user input.
-* **NextStep**: [DialogState](#dialogstate): The next step in the conversation.
+* **CodeHook**: [DialogCodeHookInvocationSetting](#dialogcodehookinvocationsetting)
+* **Conditional**: [ConditionalSpecification](#conditionalspecification)
+* **InitialResponse**: [ResponseSpecification](#responsespecification)
+* **NextStep**: [DialogState](#dialogstate)
 
 ## InputContext
 ### Properties
-* **Name**: string (Required): The name of the context.
+* **Name**: string (Required)
 
 ## Intent
 ### Properties
-* **Description**: string: Description of thr intent.
+* **BedrockAgentIntentConfiguration**: [BedrockAgentIntentConfiguration](#bedrockagentintentconfiguration)
+* **Description**: string: Resource Type definition for the intent.
 * **DialogCodeHook**: [DialogCodeHookSetting](#dialogcodehooksetting)
+* **DisplayName**: string
 * **FulfillmentCodeHook**: [FulfillmentCodeHookSetting](#fulfillmentcodehooksetting)
-* **InitialResponseSetting**: [InitialResponseSetting](#initialresponsesetting): Configuration setting for a response sent to the user before Amazon Lex starts eliciting slots.
+* **InitialResponseSetting**: [InitialResponseSetting](#initialresponsesetting)
 * **InputContexts**: [InputContext](#inputcontext)[]
 * **IntentClosingSetting**: [IntentClosingSetting](#intentclosingsetting)
 * **IntentConfirmationSetting**: [IntentConfirmationSetting](#intentconfirmationsetting)
 * **KendraConfiguration**: [KendraConfiguration](#kendraconfiguration)
-* **Name**: string (Required): The name of the intent.
+* **Name**: string (Required)
 * **OutputContexts**: [OutputContext](#outputcontext)[]
 * **ParentIntentSignature**: string
-* **SampleUtterances**: [SampleUtterance](#sampleutterance)[]: A sample utterance that invokes an intent or respond to a slot elicitation prompt.
+* **QInConnectIntentConfiguration**: [QInConnectIntentConfiguration](#qinconnectintentconfiguration)
+* **QnAIntentConfiguration**: [QnAIntentConfiguration](#qnaintentconfiguration)
+* **SampleUtterances**: [SampleUtterance](#sampleutterance)[]
 * **SlotPriorities**: [SlotPriority](#slotpriority)[]
-* **Slots**: [Slot](#slot)[]: List of slots
+* **Slots**: [Slot](#slot)[]
 
 ## IntentClosingSetting
 ### Properties
-* **ClosingResponse**: [ResponseSpecification](#responsespecification): The response that Amazon Lex sends to the user when the intent is complete.
-* **Conditional**: [ConditionalSpecification](#conditionalspecification): A list of conditional branches associated with the intent's closing response. These branches are executed when the nextStep attribute is set to EvalutateConditional.
-* **IsActive**: bool: Specifies whether an intent's closing response is used. When this field is false, the closing response isn't sent to the user. If the active field isn't specified, the default is true.
-* **NextStep**: [DialogState](#dialogstate): Specifies the next step that the bot executes after playing the intent's closing response.
+* **ClosingResponse**: [ResponseSpecification](#responsespecification)
+* **Conditional**: [ConditionalSpecification](#conditionalspecification)
+* **IsActive**: bool
+* **NextStep**: [DialogState](#dialogstate)
 
 ## IntentConfirmationSetting
 ### Properties
-* **CodeHook**: [DialogCodeHookInvocationSetting](#dialogcodehookinvocationsetting): The DialogCodeHookInvocationSetting object associated with intent's confirmation step. The dialog code hook is triggered based on these invocation settings when the confirmation next step or declination next step or failure next step is InvokeDialogCodeHook.
-* **ConfirmationConditional**: [ConditionalSpecification](#conditionalspecification): A list of conditional branches to evaluate after the intent is closed.
-* **ConfirmationNextStep**: [DialogState](#dialogstate): Specifies the next step that the bot executes when the customer confirms the intent.
-* **ConfirmationResponse**: [ResponseSpecification](#responsespecification): Specifies a list of message groups that Amazon Lex uses to respond the user input.
-* **DeclinationConditional**: [ConditionalSpecification](#conditionalspecification): A list of conditional branches to evaluate after the intent is declined.
-* **DeclinationNextStep**: [DialogState](#dialogstate): Specifies the next step that the bot executes when the customer declines the intent.
-* **DeclinationResponse**: [ResponseSpecification](#responsespecification): When the user answers "no" to the question defined in promptSpecification, Amazon Lex responds with this response to acknowledge that the intent was canceled.
-* **ElicitationCodeHook**: [ElicitationCodeHookInvocationSetting](#elicitationcodehookinvocationsetting): The DialogCodeHookInvocationSetting used when the code hook is invoked during confirmation prompt retries.
-* **FailureConditional**: [ConditionalSpecification](#conditionalspecification): Provides a list of conditional branches. Branches are evaluated in the order that they are entered in the list. The first branch with a condition that evaluates to true is executed. The last branch in the list is the default branch. The default branch should not have any condition expression. The default branch is executed if no other branch has a matching condition.
-* **FailureNextStep**: [DialogState](#dialogstate): The next step to take in the conversation if the confirmation step fails.
-* **FailureResponse**: [ResponseSpecification](#responsespecification): Specifies a list of message groups that Amazon Lex uses to respond the user input.
-* **IsActive**: bool: Specifies whether the intent's confirmation is sent to the user. When this field is false, confirmation and declination responses aren't sent. If the active field isn't specified, the default is true.
-* **PromptSpecification**: [PromptSpecification](#promptspecification) (Required): Prompts the user to confirm the intent. This question should have a yes or no answer.
+* **CodeHook**: [DialogCodeHookInvocationSetting](#dialogcodehookinvocationsetting)
+* **ConfirmationConditional**: [ConditionalSpecification](#conditionalspecification)
+* **ConfirmationNextStep**: [DialogState](#dialogstate)
+* **ConfirmationResponse**: [ResponseSpecification](#responsespecification)
+* **DeclinationConditional**: [ConditionalSpecification](#conditionalspecification)
+* **DeclinationNextStep**: [DialogState](#dialogstate)
+* **DeclinationResponse**: [ResponseSpecification](#responsespecification)
+* **ElicitationCodeHook**: [ElicitationCodeHookInvocationSetting](#elicitationcodehookinvocationsetting)
+* **FailureConditional**: [ConditionalSpecification](#conditionalspecification)
+* **FailureNextStep**: [DialogState](#dialogstate)
+* **FailureResponse**: [ResponseSpecification](#responsespecification)
+* **IsActive**: bool
+* **PromptSpecification**: [PromptSpecification](#promptspecification) (Required)
+
+## IntentDisambiguationSettings
+### Properties
+* **CustomDisambiguationMessage**: string
+* **Enabled**: bool (Required)
+* **MaxDisambiguationIntents**: int
 
 ## IntentOverride
 ### Properties
-* **Name**: string: The name of the intent. Only required when you're switching intents.
-* **Slots**: [SlotValueOverrideMap](#slotvalueoverridemap)[]: A map of all of the slot value overrides for the intent.
+* **Name**: string
+* **Slots**: [SlotValueOverrideMap](#slotvalueoverridemap)[]
 
 ## KendraConfiguration
 ### Properties
 * **KendraIndex**: string (Required)
 * **QueryFilterString**: string
-* **QueryFilterStringEnabled**: bool: Determines whether the AMAZON.KendraSearchIntent intent uses a custom query string to query the Amazon Kendra index.
+* **QueryFilterStringEnabled**: bool
 
 ## LambdaCodeHook
 ### Properties
-* **CodeHookInterfaceVersion**: string (Required): The version of the request-response that you want Amazon Lex to use to invoke your Lambda function.
-* **LambdaArn**: string (Required): The Amazon Resource Name (ARN) of the Lambda function.
+* **CodeHookInterfaceVersion**: string (Required)
+* **LambdaArn**: string (Required)
 
 ## LambdaCodeHook
 ### Properties
@@ -352,7 +506,7 @@
 ## MessageGroup
 ### Properties
 * **Message**: [Message](#message) (Required)
-* **Variations**: [Message](#message)[]: Message variations to send to the user.
+* **Variations**: [Message](#message)[]
 
 ## MultipleValuesSetting
 ### Properties
@@ -360,7 +514,7 @@
 
 ## ObfuscationSetting
 ### Properties
-* **ObfuscationSettingType**: string (Required): Value that determines whether Amazon Lex obscures slot values in conversation logs. The default is to obscure the values.
+* **ObfuscationSettingType**: string (Required)
 
 ## OutputContext
 ### Properties
@@ -370,57 +524,73 @@
 
 ## PlainTextMessage
 ### Properties
-* **Value**: string (Required): The message to send to the user.
+* **Value**: string (Required)
 
 ## Policy
 ### Properties
 
 ## PostDialogCodeHookInvocationSpecification
 ### Properties
-* **FailureConditional**: [ConditionalSpecification](#conditionalspecification): A list of conditional branches to evaluate after the dialog code hook throws an exception or returns with the State field of the Intent object set to Failed.
-* **FailureNextStep**: [DialogState](#dialogstate): Specifies the next step the bot runs after the dialog code hook throws an exception or returns with the State field of the Intent object set to Failed.
-* **FailureResponse**: [ResponseSpecification](#responsespecification): Specifies a list of message groups that Amazon Lex uses to respond the user input.
-* **SuccessConditional**: [ConditionalSpecification](#conditionalspecification): A list of conditional branches to evaluate after the dialog code hook finishes successfully.
-* **SuccessNextStep**: [DialogState](#dialogstate): Specifics the next step the bot runs after the dialog code hook finishes successfully.
-* **SuccessResponse**: [ResponseSpecification](#responsespecification): Specifies a list of message groups that Amazon Lex uses to respond the user input.
-* **TimeoutConditional**: [ConditionalSpecification](#conditionalspecification): A list of conditional branches to evaluate if the code hook times out.
-* **TimeoutNextStep**: [DialogState](#dialogstate): Specifies the next step that the bot runs when the code hook times out.
-* **TimeoutResponse**: [ResponseSpecification](#responsespecification): Specifies a list of message groups that Amazon Lex uses to respond the user input.
+* **FailureConditional**: [ConditionalSpecification](#conditionalspecification)
+* **FailureNextStep**: [DialogState](#dialogstate)
+* **FailureResponse**: [ResponseSpecification](#responsespecification)
+* **SuccessConditional**: [ConditionalSpecification](#conditionalspecification)
+* **SuccessNextStep**: [DialogState](#dialogstate)
+* **SuccessResponse**: [ResponseSpecification](#responsespecification)
+* **TimeoutConditional**: [ConditionalSpecification](#conditionalspecification)
+* **TimeoutNextStep**: [DialogState](#dialogstate)
+* **TimeoutResponse**: [ResponseSpecification](#responsespecification)
 
 ## PostFulfillmentStatusSpecification
 ### Properties
-* **FailureConditional**: [ConditionalSpecification](#conditionalspecification): A list of conditional branches to evaluate after the fulfillment code hook throws an exception or returns with the State field of the Intent object set to Failed.
-* **FailureNextStep**: [DialogState](#dialogstate): Specifies the next step the bot runs after the fulfillment code hook throws an exception or returns with the State field of the Intent object set to Failed.
-* **FailureResponse**: [ResponseSpecification](#responsespecification): Specifies a list of message groups that Amazon Lex uses to respond the user input.
-* **SuccessConditional**: [ConditionalSpecification](#conditionalspecification): A list of conditional branches to evaluate after the fulfillment code hook finishes successfully.
-* **SuccessNextStep**: [DialogState](#dialogstate): Specifies the next step in the conversation that Amazon Lex invokes when the fulfillment code hook completes successfully.
-* **SuccessResponse**: [ResponseSpecification](#responsespecification): Specifies a list of message groups that Amazon Lex uses to respond the user input.
-* **TimeoutConditional**: [ConditionalSpecification](#conditionalspecification): A list of conditional branches to evaluate if the fulfillment code hook times out.
-* **TimeoutNextStep**: [DialogState](#dialogstate): Specifies the next step that the bot runs when the fulfillment code hook times out.
-* **TimeoutResponse**: [ResponseSpecification](#responsespecification): Specifies a list of message groups that Amazon Lex uses to respond the user input.
+* **FailureConditional**: [ConditionalSpecification](#conditionalspecification)
+* **FailureNextStep**: [DialogState](#dialogstate)
+* **FailureResponse**: [ResponseSpecification](#responsespecification)
+* **SuccessConditional**: [ConditionalSpecification](#conditionalspecification)
+* **SuccessNextStep**: [DialogState](#dialogstate)
+* **SuccessResponse**: [ResponseSpecification](#responsespecification)
+* **TimeoutConditional**: [ConditionalSpecification](#conditionalspecification)
+* **TimeoutNextStep**: [DialogState](#dialogstate)
+* **TimeoutResponse**: [ResponseSpecification](#responsespecification)
 
 ## PromptSpecification
 ### Properties
-* **AllowInterrupt**: bool: Indicates whether the user can interrupt a speech prompt from the bot.
+* **AllowInterrupt**: bool
 * **MaxRetries**: int (Required)
 * **MessageGroupsList**: [MessageGroup](#messagegroup)[] (Required)
 * **MessageSelectionStrategy**: string
-* **PromptAttemptsSpecification**: [Bot_PromptAttemptsSpecification](#botpromptattemptsspecification): Specifies the advanced settings on each attempt of the prompt.
+* **PromptAttemptsSpecification**: [Bot_PromptAttemptsSpecification](#botpromptattemptsspecification)
+
+## QInConnectIntentConfiguration
+### Properties
+* **QInConnectAssistantConfiguration**: [Bot_QInConnectAssistantConfiguration](#botqinconnectassistantconfiguration)
+
+## QnAIntentConfiguration
+### Properties
+* **BedrockModelConfiguration**: [BedrockModelSpecification](#bedrockmodelspecification) (Required)
+* **DataSourceConfiguration**: [Bot_DataSourceConfiguration](#botdatasourceconfiguration) (Required)
+
+## QnAKendraConfiguration
+### Properties
+* **ExactResponse**: bool (Required)
+* **KendraIndex**: string (Required)
+* **QueryFilterString**: string
+* **QueryFilterStringEnabled**: bool (Required)
 
 ## Replication
 ### Properties
-* **ReplicaRegions**: string[] (Required): List of secondary regions for bot replication.
+* **ReplicaRegions**: string[] (Required)
 
 ## ResponseSpecification
 ### Properties
-* **AllowInterrupt**: bool: Indicates whether the user can interrupt a speech prompt from the bot.
+* **AllowInterrupt**: bool
 * **MessageGroupsList**: [MessageGroup](#messagegroup)[] (Required)
 
 ## S3BucketLogDestination
 ### Properties
-* **KmsKeyArn**: string: The Amazon Resource Name (ARN) of an AWS Key Management Service (KMS) key for encrypting audio log files stored in an S3 bucket.
-* **LogPrefix**: string (Required): The Amazon S3 key of the deployment package.
-* **S3BucketArn**: string (Required): The Amazon Resource Name (ARN) of an Amazon S3 bucket where audio log files are stored.
+* **KmsKeyArn**: string
+* **LogPrefix**: string (Required)
+* **S3BucketArn**: string (Required)
 
 ## S3BucketLogDestination
 ### Properties
@@ -430,9 +600,9 @@
 
 ## S3Location
 ### Properties
-* **S3Bucket**: string (Required): An Amazon S3 bucket in the same AWS Region as your function. The bucket can be in a different AWS account.
-* **S3ObjectKey**: string (Required): The Amazon S3 key of the deployment package.
-* **S3ObjectVersion**: string: For versioned objects, the version of the deployment package object to use. If not specified, the current object version will be used.
+* **S3Bucket**: string (Required)
+* **S3ObjectKey**: string (Required)
+* **S3ObjectVersion**: string
 
 ## SampleUtterance
 ### Properties
@@ -440,7 +610,7 @@
 
 ## SampleValue
 ### Properties
-* **Value**: string (Required): The value that can be used for a slot type.
+* **Value**: string (Required)
 
 ## SessionAttribute
 ### Properties
@@ -454,34 +624,36 @@
 * **Name**: string (Required)
 * **ObfuscationSetting**: [ObfuscationSetting](#obfuscationsetting)
 * **SlotTypeName**: string (Required)
+* **SubSlotSetting**: [SubSlotSetting](#subslotsetting)
 * **ValueElicitationSetting**: [SlotValueElicitationSetting](#slotvalueelicitationsetting) (Required)
 
 ## SlotCaptureSetting
 ### Properties
-* **CaptureConditional**: [ConditionalSpecification](#conditionalspecification): A list of conditional branches to evaluate after the slot value is captured.
-* **CaptureNextStep**: [DialogState](#dialogstate): Specifies the next step that the bot runs when the slot value is captured before the code hook times out.
-* **CaptureResponse**: [ResponseSpecification](#responsespecification): Specifies a list of message groups that Amazon Lex uses to respond the user input.
-* **CodeHook**: [DialogCodeHookInvocationSetting](#dialogcodehookinvocationsetting): Code hook called after Amazon Lex successfully captures a slot value.
-* **ElicitationCodeHook**: [ElicitationCodeHookInvocationSetting](#elicitationcodehookinvocationsetting): Code hook called when Amazon Lex doesn't capture a slot value.
-* **FailureConditional**: [ConditionalSpecification](#conditionalspecification): A list of conditional branches to evaluate when the slot value isn't captured.
-* **FailureNextStep**: [DialogState](#dialogstate): Specifies the next step that the bot runs when the slot value code is not recognized.
-* **FailureResponse**: [ResponseSpecification](#responsespecification): Specifies a list of message groups that Amazon Lex uses to respond the user input.
+* **CaptureConditional**: [ConditionalSpecification](#conditionalspecification)
+* **CaptureNextStep**: [DialogState](#dialogstate)
+* **CaptureResponse**: [ResponseSpecification](#responsespecification)
+* **CodeHook**: [DialogCodeHookInvocationSetting](#dialogcodehookinvocationsetting)
+* **ElicitationCodeHook**: [ElicitationCodeHookInvocationSetting](#elicitationcodehookinvocationsetting)
+* **FailureConditional**: [ConditionalSpecification](#conditionalspecification)
+* **FailureNextStep**: [DialogState](#dialogstate)
+* **FailureResponse**: [ResponseSpecification](#responsespecification)
 
 ## SlotDefaultValue
 ### Properties
-* **DefaultValue**: string (Required): The default value to use when a user doesn't provide a value for a slot.
+* **DefaultValue**: string (Required)
 
 ## SlotDefaultValueSpecification
 ### Properties
-* **DefaultValueList**: [SlotDefaultValue](#slotdefaultvalue)[] (Required): A list of slot default values
+* **DefaultValueList**: [SlotDefaultValue](#slotdefaultvalue)[] (Required)
 
 ## SlotPriority
 ### Properties
 * **Priority**: int (Required)
-* **SlotName**: string (Required): The name of the slot.
+* **SlotName**: string (Required)
 
 ## SlotType
 ### Properties
+* **CompositeSlotTypeSetting**: [CompositeSlotTypeSetting](#compositeslottypesetting)
 * **Description**: string
 * **ExternalSourceSetting**: [ExternalSourceSetting](#externalsourcesetting)
 * **Name**: string (Required)
@@ -496,22 +668,22 @@
 
 ## SlotValue
 ### Properties
-* **InterpretedValue**: string: The value that Amazon Lex determines for the slot.
+* **InterpretedValue**: string
 
 ## SlotValueElicitationSetting
 ### Properties
-* **DefaultValueSpecification**: [SlotDefaultValueSpecification](#slotdefaultvaluespecification): A list of default values for a slot.
-* **PromptSpecification**: [PromptSpecification](#promptspecification): The prompt that Amazon Lex uses to elicit the slot value from the user.
-* **SampleUtterances**: [SampleUtterance](#sampleutterance)[]: If you know a specific pattern that users might respond to an Amazon Lex request for a slot value, you can provide those utterances to improve accuracy.
-* **SlotCaptureSetting**: [SlotCaptureSetting](#slotcapturesetting): Specifies the next stage in the conversation after capturing the slot.
-* **SlotConstraint**: string (Required): Specifies whether the slot is required or optional.
-* **WaitAndContinueSpecification**: [WaitAndContinueSpecification](#waitandcontinuespecification): Specifies the prompts that Amazon Lex uses while a bot is waiting for customer input.
+* **DefaultValueSpecification**: [SlotDefaultValueSpecification](#slotdefaultvaluespecification)
+* **PromptSpecification**: [PromptSpecification](#promptspecification)
+* **SampleUtterances**: [SampleUtterance](#sampleutterance)[]
+* **SlotCaptureSetting**: [SlotCaptureSetting](#slotcapturesetting)
+* **SlotConstraint**: string (Required)
+* **WaitAndContinueSpecification**: [WaitAndContinueSpecification](#waitandcontinuespecification)
 
 ## SlotValueOverride
 ### Properties
-* **Shape**: string: When the shape value is List, it indicates that the values field contains a list of slot values. When the value is Scalar, it indicates that the value field contains a single value.
-* **Value**: [SlotValue](#slotvalue): The current value of the slot.
-* **Values**: [SlotValueOverride](#slotvalueoverride)[]: A list of one or more values that the user provided for the slot. For example, for a slot that elicits pizza toppings, the values might be "pepperoni" and "pineapple."
+* **Shape**: string
+* **Value**: [SlotValue](#slotvalue)
+* **Values**: [SlotValueOverride](#slotvalueoverride)[]
 
 ## SlotValueOverrideMap
 ### Properties
@@ -520,7 +692,7 @@
 
 ## SlotValueRegexFilter
 ### Properties
-* **Pattern**: string (Required): Regex pattern
+* **Pattern**: string (Required)
 
 ## SlotValueSelectionSetting
 ### Properties
@@ -528,21 +700,41 @@
 * **RegexFilter**: [SlotValueRegexFilter](#slotvalueregexfilter)
 * **ResolutionStrategy**: string (Required)
 
+## SpeechModelConfig
+### Properties
+* **DeepgramConfig**: [DeepgramSpeechModelConfig](#deepgramspeechmodelconfig)
+
+## SpeechRecognitionSettings
+### Properties
+* **SpeechModelConfig**: [SpeechModelConfig](#speechmodelconfig)
+* **SpeechModelPreference**: string
+
 ## SSMLMessage
 ### Properties
-* **Value**: string (Required): The SSML text that defines the prompt.
+* **Value**: string (Required)
 
 ## StillWaitingResponseSpecification
 ### Properties
-* **AllowInterrupt**: bool: Indicates whether the user can interrupt a speech prompt from the bot.
+* **AllowInterrupt**: bool
 * **FrequencyInSeconds**: int (Required)
 * **MessageGroupsList**: [MessageGroup](#messagegroup)[] (Required)
 * **TimeoutInSeconds**: int (Required)
 
+## SubSlotSetting
+### Properties
+* **Expression**: string
+* **SlotSpecifications**: [Bot_SlotSpecifications](#botslotspecifications)
+
+## SubSlotTypeComposition
+### Properties
+* **Name**: string (Required)
+* **SlotTypeId**: string
+* **SlotTypeName**: string
+
 ## Tag
 ### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties
@@ -554,7 +746,7 @@
 * **BotAliasLocaleSettings**: [BotAliasLocaleSettingsItem](#botaliaslocalesettingsitem)[]
 * **ConversationLogSettings**: [ConversationLogSettings](#conversationlogsettings)
 * **Description**: string
-* **SentimentAnalysisSettings**: [Bot_SentimentAnalysisSettings](#botsentimentanalysissettings): Determines whether Amazon Lex will use Amazon Comprehend to detect the sentiment of user utterances.
+* **SentimentAnalysisSettings**: [Bot_SentimentAnalysisSettings](#botsentimentanalysissettings)
 
 ## TextLogDestination
 ### Properties
@@ -573,16 +765,20 @@
 ### Properties
 * **Destination**: [TextLogDestination](#textlogdestination) (Required)
 * **Enabled**: bool (Required)
+
+## UnifiedSpeechSettings
+### Properties
+* **SpeechFoundationModel**: [Bot_SpeechFoundationModel](#botspeechfoundationmodel) (Required)
 
 ## VoiceSettings
 ### Properties
-* **Engine**: string: Indicates the type of Amazon Polly voice that Amazon Lex should use for voice interaction with the user. For more information, see the engine parameter of the SynthesizeSpeech operation in the Amazon Polly developer guide.
-* **VoiceId**: string (Required): The Amazon Polly voice ID that Amazon Lex uses for voice interaction with the user.
+* **Engine**: string
+* **VoiceId**: string (Required)
 
 ## WaitAndContinueSpecification
 ### Properties
-* **ContinueResponse**: [ResponseSpecification](#responsespecification) (Required): The response that Amazon Lex sends to indicate that the bot is ready to continue the conversation.
-* **IsActive**: bool: Specifies whether the bot will wait for a user to respond.
-* **StillWaitingResponse**: [StillWaitingResponseSpecification](#stillwaitingresponsespecification): The response that Amazon Lex sends periodically to the user to indicate that the bot is still waiting for input from the user.
-* **WaitingResponse**: [ResponseSpecification](#responsespecification) (Required): The response that Amazon Lex sends to indicate that the bot is waiting for the conversation to continue.
+* **ContinueResponse**: [ResponseSpecification](#responsespecification) (Required)
+* **IsActive**: bool
+* **StillWaitingResponse**: [StillWaitingResponseSpecification](#stillwaitingresponsespecification)
+* **WaitingResponse**: [ResponseSpecification](#responsespecification) (Required)
 

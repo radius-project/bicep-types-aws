@@ -103,7 +103,7 @@
         "type": {
           "$ref": "#/5"
         },
-        "flags": 0,
+        "flags": 4,
         "description": "The URL of a sign-up page where users can sign up for an external service and perform initial configuration of the action provided by that service."
       }
     }
@@ -249,11 +249,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CodePipeline/CustomActionType@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/11"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -267,21 +267,28 @@
       },
       "Commands": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "The shell commands to run with your compute action in CodePipeline."
       },
       "Configuration": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "The action's configuration. These are key-value pairs that specify input values for an action."
       },
+      "EnvironmentVariables": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "The list of environment variables that are input to a compute based action."
+      },
       "InputArtifacts": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/42"
         },
         "flags": 0
       },
@@ -301,13 +308,13 @@
       },
       "OutputArtifacts": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/43"
         },
         "flags": 0
       },
       "OutputVariables": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/44"
         },
         "flags": 0,
         "description": "The list of variables that are to be exported from the compute action."
@@ -427,7 +434,7 @@
     "properties": {
       "Conditions": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/45"
         },
         "flags": 0
       }
@@ -466,7 +473,7 @@
       },
       "Rules": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/46"
         },
         "flags": 0
       }
@@ -494,11 +501,38 @@
   },
   {
     "$type": "ObjectType",
+    "name": "EnvironmentVariable",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "The name of the environment variable."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The type of the environment variable."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The value of the environment variable."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "FailureConditions",
     "properties": {
       "Conditions": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/47"
         },
         "flags": 0
       },
@@ -511,7 +545,7 @@
       },
       "RetryConfiguration": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/48"
         },
         "flags": 0,
         "description": "The configuration that specifies the retry configuration for a stage"
@@ -524,14 +558,14 @@
     "properties": {
       "Excludes": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": "The list of patterns of Git branches that, when a commit is pushed, are to be excluded from starting the pipeline."
       },
       "Includes": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "The list of patterns of Git branches that, when a commit is pushed, are to be included as criteria that starts the pipeline."
@@ -544,14 +578,14 @@
     "properties": {
       "PullRequest": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "The field where the repository event that will start the pipeline is specified as pull requests."
       },
       "Push": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "The field where the repository event that will start the pipeline, such as pushing Git tags, is specified with details."
@@ -571,14 +605,14 @@
     "properties": {
       "Excludes": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "The list of patterns of Git repository file paths that, when a commit is pushed, are to be excluded from starting the pipeline."
       },
       "Includes": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/54"
         },
         "flags": 0,
         "description": "The list of patterns of Git repository file paths that, when a commit is pushed, are to be included as criteria that starts the pipeline."
@@ -591,20 +625,20 @@
     "properties": {
       "Branches": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/23"
         },
         "flags": 0
       },
       "Events": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/55"
         },
         "flags": 0,
         "description": "The field that specifies which pull request events to filter on (opened, updated, closed) for the trigger configuration."
       },
       "FilePaths": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/25"
         },
         "flags": 0
       }
@@ -616,19 +650,19 @@
     "properties": {
       "Branches": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/23"
         },
         "flags": 0
       },
       "FilePaths": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/28"
         },
         "flags": 0
       }
@@ -640,14 +674,14 @@
     "properties": {
       "Excludes": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/56"
         },
         "flags": 0,
         "description": "The list of patterns of Git tags that, when pushed, are to be excluded from starting the pipeline."
       },
       "Includes": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/57"
         },
         "flags": 0,
         "description": "The list of patterns of Git tags that, when pushed, are to be included as criteria that starts the pipeline."
@@ -673,7 +707,7 @@
     "properties": {
       "Files": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/58"
         },
         "flags": 0,
         "description": "The files that you want to associate with the output artifact that will be exported from the compute action."
@@ -693,7 +727,7 @@
     "properties": {
       "GitConfiguration": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0
       },
@@ -712,21 +746,21 @@
     "properties": {
       "Commands": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/59"
         },
         "flags": 0,
         "description": "The shell commands to run with your compute action in CodePipeline."
       },
       "Configuration": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/60"
         },
         "flags": 0,
         "description": "The rule's configuration. These are key-value pairs that specify input values for a rule."
       },
       "InputArtifacts": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/61"
         },
         "flags": 0
       },
@@ -753,7 +787,7 @@
       },
       "RuleTypeId": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/33"
         },
         "flags": 0
       }
@@ -799,20 +833,20 @@
     "properties": {
       "Actions": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/62"
         },
         "flags": 1
       },
       "BeforeEntry": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/64"
         },
         "flags": 0,
         "description": "The method to use before stage runs."
       },
       "Blockers": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/65"
         },
         "flags": 0
       },
@@ -825,14 +859,14 @@
       },
       "OnFailure": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/68"
         },
         "flags": 0,
         "description": "The method to use when a stage has not completed successfully"
       },
       "OnSuccess": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/70"
         },
         "flags": 0,
         "description": "The method to use when a stage has completed successfully"
@@ -865,7 +899,7 @@
     "properties": {
       "Conditions": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/71"
         },
         "flags": 0
       }
@@ -932,13 +966,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/28"
+      "$ref": "#/21"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/29"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/30"
     }
   },
   {
@@ -956,7 +996,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/31"
+      "$ref": "#/32"
     }
   },
   {
@@ -993,13 +1033,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/26"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/26"
+      "$ref": "#/27"
     }
   },
   {
@@ -1052,7 +1092,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/28"
+      "$ref": "#/29"
     }
   },
   {
@@ -1073,7 +1113,7 @@
     "properties": {
       "Conditions": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/63"
         },
         "flags": 0
       }
@@ -1110,7 +1150,7 @@
     "properties": {
       "Conditions": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/66"
         },
         "flags": 0
       },
@@ -1123,7 +1163,7 @@
       },
       "RetryConfiguration": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/67"
         },
         "flags": 0,
         "description": "The configuration that specifies the retry configuration for a stage"
@@ -1142,7 +1182,7 @@
     "properties": {
       "Conditions": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/69"
         },
         "flags": 0
       }
@@ -1167,25 +1207,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
+      "$ref": "#/35"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
       "$ref": "#/34"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/33"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/36"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/30"
     }
   },
   {
@@ -1195,9 +1223,28 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/31"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/38"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "AWS.CodePipeline/PipelineProperties",
     "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the pipeline."
+      },
       "ArtifactStore": {
         "type": {
           "$ref": "#/15"
@@ -1207,14 +1254,14 @@
       },
       "ArtifactStores": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/73"
         },
         "flags": 0,
         "description": "A mapping of artifactStore objects and their corresponding AWS Regions. There must be an artifact store for the pipeline Region and for each cross-region action in the pipeline."
       },
       "DisableInboundStageTransitions": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/74"
         },
         "flags": 0,
         "description": "Represents the input of a DisableStageTransition action."
@@ -1256,28 +1303,28 @@
       },
       "Stages": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/75"
         },
         "flags": 1,
         "description": "Represents information about a stage and its definition."
       },
       "Tags": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/76"
         },
         "flags": 0,
         "description": "Specifies the tags applied to the pipeline."
       },
       "Triggers": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/77"
         },
         "flags": 0,
         "description": "The trigger configuration specifying a type of event, such as Git tags, that starts the pipeline."
       },
       "Variables": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/78"
         },
         "flags": 0,
         "description": "A list that defines the pipeline variables for a pipeline resource. Variable names can have alphanumeric and underscore characters, and the values must match [A-Za-z0-9@\\-_]+."
@@ -1311,7 +1358,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/79"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1321,10 +1368,205 @@
   {
     "$type": "ResourceType",
     "name": "AWS.CodePipeline/Pipeline@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/78"
+      "$ref": "#/80"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WebhookAuthConfiguration",
+    "properties": {
+      "AllowedIPRange": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The property used to configure acceptance of webhooks in an IP address range. For IP, only the AllowedIPRange property must be set. This property must be set to a valid CIDR range."
+      },
+      "SecretToken": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 4,
+        "description": "The property used to configure GitHub authentication. For GITHUB_HMAC, only the SecretToken property must be set."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WebhookFilterRule",
+    "properties": {
+      "JsonPath": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "A JsonPath expression that is applied to the body/payload of the webhook. The value selected by the JsonPath expression must match the value specified in the MatchEquals field. Otherwise, the request is ignored."
+      },
+      "MatchEquals": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The value selected by the JsonPath expression must match what is supplied in the MatchEquals field. Otherwise, the request is ignored."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CodePipeline/WebhookProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/84"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/82"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CodePipeline/WebhookProperties",
+    "properties": {
+      "Authentication": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "Supported options are GITHUB_HMAC, IP, and UNAUTHENTICATED."
+      },
+      "AuthenticationConfiguration": {
+        "type": {
+          "$ref": "#/83"
+        },
+        "flags": 1,
+        "description": "Properties that configure the authentication applied to incoming webhook trigger requests"
+      },
+      "Filters": {
+        "type": {
+          "$ref": "#/86"
+        },
+        "flags": 1,
+        "description": "A list of rules applied to the body/payload sent in the POST request to a webhook URL"
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "logical id of the webhook"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The name of the webhook"
+      },
+      "RegisterWithThirdParty": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 4,
+        "description": "Configures a connection between the webhook that was created and the external tool with events to be detected."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/87"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
+      "TargetAction": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The name of the action in a pipeline you want to connect to the webhook."
+      },
+      "TargetPipeline": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The name of the pipeline you want to connect to the webhook."
+      },
+      "TargetPipelineVersion": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 4,
+        "description": "The version number of the pipeline to be connected to the trigger request."
+      },
+      "Url": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The webhook URL generated by AWS CodePipeline"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CodePipeline/Webhook",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/88"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CodePipeline/Webhook@default",
+    "body": {
+      "$ref": "#/89"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

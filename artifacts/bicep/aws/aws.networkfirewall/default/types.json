@@ -1,6 +1,205 @@
 [
   {
     "$type": "ObjectType",
+    "name": "ContainerAttribute",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The attribute key to filter on."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The attribute value to match."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ContainerMonitoringConfiguration",
+    "properties": {
+      "AttributeFilters": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Key-value pairs that filter which containers are tracked. For Amazon EKS, you can filter by namespace and Kubernetes labels. For Amazon ECS, you can filter by container instance attributes (EC2 launch type only)."
+      },
+      "ClusterArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The ARN of the Amazon ECS or Amazon EKS cluster to monitor. The cluster must be in the same Region and account as the container association."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The part of the key:value pair that defines a tag. Tag keys are case-sensitive."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The part of the key:value pair that defines a tag. Tag values are case-sensitive."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.NetworkFirewall/ContainerAssociationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.NetworkFirewall/ContainerAssociationProperties",
+    "properties": {
+      "ContainerAssociationArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the container association."
+      },
+      "ContainerAssociationName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The descriptive name of the container association. You can't change the name of a container association after you create it."
+      },
+      "ContainerMonitoringConfigurations": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The monitoring configurations for the container association. Each configuration specifies an Amazon ECS or Amazon EKS cluster to monitor and optional attribute filters to narrow which containers are tracked."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "A description of the container association."
+      },
+      "ResolvedCidrCount": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The number of CIDR blocks resolved from the monitored containers."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The current status of the container association."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The type of containers to monitor. You can't change the container type after creation."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.NetworkFirewall/ContainerAssociation",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.NetworkFirewall/ContainerAssociation@default",
+    "body": {
+      "$ref": "#/10"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AvailabilityZoneMapping",
+    "properties": {
+      "AvailabilityZone": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "A AvailabilityZone"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "EnabledAnalysisType",
     "properties": {}
   },
@@ -20,14 +219,14 @@
     "properties": {
       "IPAddressType": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "A IPAddressType"
       },
       "SubnetId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "A SubnetId."
@@ -40,20 +239,17 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       }
     }
-  },
-  {
-    "$type": "StringType"
   },
   {
     "$type": "StringLiteralType",
@@ -65,7 +261,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/12"
     }
   },
   {
@@ -77,84 +273,127 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/16"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ObjectType",
     "name": "AWS.NetworkFirewall/FirewallProperties",
     "properties": {
+      "AvailabilityZoneChangeProtection": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0
+      },
+      "AvailabilityZoneMappings": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      },
       "DeleteProtection": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/19"
         },
         "flags": 0
       },
       "Description": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0
       },
+      "EnabledAnalysisTypes": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The types of analysis to enable for the firewall. Can be TLS_SNI, HTTP_HOST, or both."
+      },
       "EndpointIds": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/22"
         },
         "flags": 2
       },
       "FirewallArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 18
       },
       "FirewallId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 2
       },
       "FirewallName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "FirewallPolicyArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "FirewallPolicyChangeProtection": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/19"
         },
         "flags": 0
       },
       "SubnetChangeProtection": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/19"
         },
         "flags": 0
       },
       "SubnetMappings": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/23"
         },
-        "flags": 1
+        "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
+      "TransitGatewayAttachmentId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2
+      },
+      "TransitGatewayId": {
+        "type": {
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "VpcId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
-        "flags": 1
+        "flags": 0
       }
     }
   },
@@ -164,21 +403,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/25"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -188,11 +427,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.NetworkFirewall/Firewall@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/12"
+      "$ref": "#/26"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -200,7 +439,7 @@
     "properties": {
       "PublishMetricAction": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/35"
         },
         "flags": 0
       }
@@ -212,13 +451,13 @@
     "properties": {
       "ActionDefinition": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/28"
         },
         "flags": 1
       },
       "ActionName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       }
@@ -230,7 +469,7 @@
     "properties": {
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       }
@@ -240,57 +479,63 @@
     "$type": "ObjectType",
     "name": "FirewallPolicy",
     "properties": {
+      "EnableTLSSessionHolding": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0
+      },
       "PolicyVariables": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/46"
         },
         "flags": 0
       },
       "StatefulDefaultActions": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/47"
         },
         "flags": 0
       },
       "StatefulEngineOptions": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/39"
         },
         "flags": 0
       },
       "StatefulRuleGroupReferences": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/48"
         },
         "flags": 0
       },
       "StatelessCustomActions": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/49"
         },
         "flags": 0
       },
       "StatelessDefaultActions": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/50"
         },
         "flags": 1
       },
       "StatelessFragmentDefaultActions": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/51"
         },
         "flags": 1
       },
       "StatelessRuleGroupReferences": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/52"
         },
         "flags": 0
       },
       "TLSInspectionConfigurationArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0
       }
@@ -302,7 +547,7 @@
     "properties": {
       "Definition": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/53"
         },
         "flags": 0
       }
@@ -324,7 +569,7 @@
     "properties": {
       "Dimensions": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/54"
         },
         "flags": 1
       }
@@ -351,19 +596,19 @@
     "properties": {
       "FlowTimeouts": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/55"
         },
         "flags": 0
       },
       "RuleOrder": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "StreamExceptionPolicy": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0
       }
@@ -375,7 +620,7 @@
     "properties": {
       "Action": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0
       }
@@ -385,21 +630,27 @@
     "$type": "ObjectType",
     "name": "StatefulRuleGroupReference",
     "properties": {
-      "Override": {
+      "DeepThreatInspection": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/19"
         },
         "flags": 0
       },
-      "Priority": {
+      "Override": {
         "type": {
           "$ref": "#/40"
         },
         "flags": 0
       },
+      "Priority": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
       "ResourceArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       }
@@ -411,13 +662,13 @@
     "properties": {
       "Priority": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/7"
         },
         "flags": 1
       },
       "ResourceArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       }
@@ -434,13 +685,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       }
@@ -457,7 +708,7 @@
     "properties": {
       "RuleVariables": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/38"
         },
         "flags": 0
       }
@@ -466,52 +717,49 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/3"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/27"
+      "$ref": "#/41"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/15"
+      "$ref": "#/29"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/3"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/3"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/28"
+      "$ref": "#/42"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/3"
     }
-  },
-  {
-    "$type": "IntegerType"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/16"
+      "$ref": "#/30"
     }
   },
   {
@@ -520,7 +768,7 @@
     "properties": {
       "TcpIdleTimeoutSeconds": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/7"
         },
         "flags": 0
       }
@@ -533,7 +781,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/30"
+      "$ref": "#/44"
     }
   },
   {
@@ -542,37 +790,37 @@
     "properties": {
       "Description": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "FirewallPolicy": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/31"
         },
         "flags": 1
       },
       "FirewallPolicyArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 18
       },
       "FirewallPolicyId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 2
       },
       "FirewallPolicyName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/57"
         },
         "flags": 0
       }
@@ -584,21 +832,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/58"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -608,11 +856,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.NetworkFirewall/FirewallPolicy@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/46"
+      "$ref": "#/59"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -620,20 +868,20 @@
     "properties": {
       "LogDestination": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/64"
         },
         "flags": 1,
         "description": "A key-value pair to configure the logDestinations."
       },
       "LogDestinationType": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "LogType": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       }
@@ -645,7 +893,7 @@
     "properties": {
       "LogDestinationConfigs": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/65"
         },
         "flags": 1
       }
@@ -664,7 +912,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/48"
+      "$ref": "#/61"
     }
   },
   {
@@ -675,21 +923,27 @@
     "$type": "ObjectType",
     "name": "AWS.NetworkFirewall/LoggingConfigurationProperties",
     "properties": {
+      "EnableMonitoringDashboard": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0
+      },
       "FirewallArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 17
       },
       "FirewallName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "LoggingConfiguration": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/62"
         },
         "flags": 1
       }
@@ -701,21 +955,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/67"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -725,11 +979,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.NetworkFirewall/LoggingConfiguration@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/55"
+      "$ref": "#/68"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -737,7 +991,7 @@
     "properties": {
       "PublishMetricAction": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/84"
         },
         "flags": 0
       }
@@ -749,7 +1003,7 @@
     "properties": {
       "AddressDefinition": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       }
@@ -761,13 +1015,13 @@
     "properties": {
       "ActionDefinition": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/70"
         },
         "flags": 1
       },
       "ActionName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       }
@@ -779,7 +1033,7 @@
     "properties": {
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       }
@@ -796,37 +1050,37 @@
     "properties": {
       "Destination": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "DestinationPort": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "Direction": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "Protocol": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "Source": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "SourcePort": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       }
@@ -838,7 +1092,7 @@
     "properties": {
       "Definition": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/106"
         },
         "flags": 0
       }
@@ -850,7 +1104,7 @@
     "properties": {
       "ReferenceArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0
       }
@@ -862,37 +1116,37 @@
     "properties": {
       "DestinationPorts": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/107"
         },
         "flags": 0
       },
       "Destinations": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/108"
         },
         "flags": 0
       },
       "Protocols": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/109"
         },
         "flags": 0
       },
       "SourcePorts": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/110"
         },
         "flags": 0
       },
       "Sources": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/111"
         },
         "flags": 0
       },
       "TCPFlags": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/112"
         },
         "flags": 0
       }
@@ -909,13 +1163,13 @@
     "properties": {
       "FromPort": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/7"
         },
         "flags": 1
       },
       "ToPort": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/7"
         },
         "flags": 1
       }
@@ -932,7 +1186,7 @@
     "properties": {
       "Definition": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/113"
         },
         "flags": 0
       }
@@ -949,7 +1203,7 @@
     "properties": {
       "Dimensions": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/114"
         },
         "flags": 1
       }
@@ -961,7 +1215,7 @@
     "properties": {
       "IPSetReferences": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/115"
         },
         "flags": 0
       }
@@ -978,13 +1232,13 @@
     "properties": {
       "Actions": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/116"
         },
         "flags": 1
       },
       "MatchAttributes": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/78"
         },
         "flags": 1
       }
@@ -996,25 +1250,25 @@
     "properties": {
       "ReferenceSets": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/85"
         },
         "flags": 0
       },
       "RuleVariables": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/91"
         },
         "flags": 0
       },
       "RulesSource": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/92"
         },
         "flags": 1
       },
       "StatefulRuleOptions": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/97"
         },
         "flags": 0
       }
@@ -1026,13 +1280,13 @@
     "properties": {
       "Keyword": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "Settings": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/117"
         },
         "flags": 0
       }
@@ -1049,13 +1303,13 @@
     "properties": {
       "IPSets": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/118"
         },
         "flags": 0
       },
       "PortSets": {
         "type": {
-          "$ref": "#/105"
+          "$ref": "#/119"
         },
         "flags": 0
       }
@@ -1067,25 +1321,25 @@
     "properties": {
       "RulesSourceList": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/93"
         },
         "flags": 0
       },
       "RulesString": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "StatefulRules": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/120"
         },
         "flags": 0
       },
       "StatelessRulesAndCustomActions": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/99"
         },
         "flags": 0
       }
@@ -1097,19 +1351,19 @@
     "properties": {
       "GeneratedRulesType": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "TargetTypes": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/121"
         },
         "flags": 1
       },
       "Targets": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/122"
         },
         "flags": 1
       }
@@ -1131,19 +1385,19 @@
     "properties": {
       "Action": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "Header": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/75"
         },
         "flags": 1
       },
       "RuleOptions": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/123"
         },
         "flags": 1
       }
@@ -1155,7 +1409,7 @@
     "properties": {
       "RuleOrder": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0
       }
@@ -1167,13 +1421,13 @@
     "properties": {
       "Priority": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/7"
         },
         "flags": 1
       },
       "RuleDefinition": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/87"
         },
         "flags": 1
       }
@@ -1185,17 +1439,22 @@
     "properties": {
       "CustomActions": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/124"
         },
         "flags": 0
       },
       "StatelessRules": {
         "type": {
-          "$ref": "#/111"
+          "$ref": "#/125"
         },
         "flags": 1
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SummaryRuleOption",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -1208,13 +1467,13 @@
     "properties": {
       "Flags": {
         "type": {
-          "$ref": "#/112"
+          "$ref": "#/126"
         },
         "flags": 1
       },
       "Masks": {
         "type": {
-          "$ref": "#/113"
+          "$ref": "#/127"
         },
         "flags": 0
       }
@@ -1226,13 +1485,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       }
@@ -1251,55 +1510,55 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/3"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/67"
+      "$ref": "#/80"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/58"
+      "$ref": "#/71"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/40"
+      "$ref": "#/7"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/67"
+      "$ref": "#/80"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/58"
+      "$ref": "#/71"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/88"
+      "$ref": "#/102"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/3"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/60"
+      "$ref": "#/73"
     }
   },
   {
@@ -1310,13 +1569,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/3"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/3"
     }
   },
   {
@@ -1332,49 +1591,49 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/83"
+      "$ref": "#/96"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/3"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/3"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/76"
+      "$ref": "#/89"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/59"
+      "$ref": "#/72"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/85"
+      "$ref": "#/98"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/3"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/3"
     }
   },
   {
@@ -1384,7 +1643,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/89"
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RuleGroup_SummaryConfiguration",
+    "properties": {
+      "RuleOptions": {
+        "type": {
+          "$ref": "#/129"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/103"
     }
   },
   {
@@ -1393,49 +1670,55 @@
     "properties": {
       "Capacity": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/7"
         },
         "flags": 1
       },
       "Description": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "RuleGroup": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/88"
         },
         "flags": 0
       },
       "RuleGroupArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 18
       },
       "RuleGroupId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 2
       },
       "RuleGroupName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       },
+      "SummaryConfiguration": {
+        "type": {
+          "$ref": "#/130"
+        },
+        "flags": 0
+      },
       "Tags": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/131"
         },
         "flags": 0
       },
       "Type": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       }
@@ -1447,21 +1730,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/132"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1471,11 +1754,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.NetworkFirewall/RuleGroup@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/117"
+      "$ref": "#/133"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1483,7 +1766,7 @@
     "properties": {
       "AddressDefinition": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       }
@@ -1495,13 +1778,13 @@
     "properties": {
       "FromPort": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/7"
         },
         "flags": 1
       },
       "ToPort": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/7"
         },
         "flags": 1
       }
@@ -1533,7 +1816,7 @@
     "properties": {
       "ResourceArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0
       }
@@ -1545,25 +1828,25 @@
     "properties": {
       "CertificateAuthorityArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "CheckCertificateRevocationStatus": {
         "type": {
-          "$ref": "#/131"
+          "$ref": "#/147"
         },
         "flags": 0
       },
       "Scopes": {
         "type": {
-          "$ref": "#/132"
+          "$ref": "#/148"
         },
         "flags": 0
       },
       "ServerCertificates": {
         "type": {
-          "$ref": "#/133"
+          "$ref": "#/149"
         },
         "flags": 0
       }
@@ -1575,31 +1858,31 @@
     "properties": {
       "DestinationPorts": {
         "type": {
-          "$ref": "#/134"
+          "$ref": "#/150"
         },
         "flags": 0
       },
       "Destinations": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/151"
         },
         "flags": 0
       },
       "Protocols": {
         "type": {
-          "$ref": "#/136"
+          "$ref": "#/152"
         },
         "flags": 0
       },
       "SourcePorts": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/153"
         },
         "flags": 0
       },
       "Sources": {
         "type": {
-          "$ref": "#/138"
+          "$ref": "#/154"
         },
         "flags": 0
       }
@@ -1611,7 +1894,7 @@
     "properties": {
       "ServerCertificateConfigurations": {
         "type": {
-          "$ref": "#/139"
+          "$ref": "#/155"
         },
         "flags": 0
       }
@@ -1623,13 +1906,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       }
@@ -1646,13 +1929,13 @@
     "properties": {
       "RevokedStatusAction": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "UnknownStatusAction": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0
       }
@@ -1661,49 +1944,49 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/127"
+      "$ref": "#/143"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/125"
+      "$ref": "#/141"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/120"
+      "$ref": "#/136"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/119"
+      "$ref": "#/135"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/40"
+      "$ref": "#/7"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/120"
+      "$ref": "#/136"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/119"
+      "$ref": "#/135"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/126"
+      "$ref": "#/142"
     }
   },
   {
@@ -1713,7 +1996,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/129"
+      "$ref": "#/145"
     }
   },
   {
@@ -1722,37 +2005,37 @@
     "properties": {
       "Description": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "TLSInspectionConfiguration": {
         "type": {
-          "$ref": "#/128"
+          "$ref": "#/144"
         },
         "flags": 1
       },
       "TLSInspectionConfigurationArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 18
       },
       "TLSInspectionConfigurationId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 2
       },
       "TLSInspectionConfigurationName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/141"
+          "$ref": "#/157"
         },
         "flags": 0
       }
@@ -1764,21 +2047,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/3"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/142"
+          "$ref": "#/158"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1788,10 +2071,173 @@
   {
     "$type": "ResourceType",
     "name": "AWS.NetworkFirewall/TLSInspectionConfiguration@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/143"
+      "$ref": "#/159"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Description",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EndpointId",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResourceArn",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResourceId",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SubnetMapping",
+    "properties": {
+      "IPAddressType": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "A IPAddressType"
+      },
+      "SubnetId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "A SubnetId."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VpcId",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.NetworkFirewall/VpcEndpointAssociationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/166"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.NetworkFirewall/VpcEndpointAssociationProperties",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "EndpointId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2
+      },
+      "FirewallArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1
+      },
+      "SubnetMapping": {
+        "type": {
+          "$ref": "#/165"
+        },
+        "flags": 1
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/169"
+        },
+        "flags": 0
+      },
+      "VpcEndpointAssociationArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 18
+      },
+      "VpcEndpointAssociationId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2
+      },
+      "VpcId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.NetworkFirewall/VpcEndpointAssociation",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/170"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.NetworkFirewall/VpcEndpointAssociation@default",
+    "body": {
+      "$ref": "#/171"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

@@ -1,19 +1,25 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Logs-LogAnomalyDetector",
   "type": "AWS::Logs::LogAnomalyDetector",
-  "time": "2025-01-27T17:29:19.688Z",
+  "time": "2026-10-19T17:30:58.245Z",
   "schema": {
     "additionalProperties": false,
     "description": "The AWS::Logs::LogAnomalyDetector resource specifies a CloudWatch Logs LogAnomalyDetector.",
     "handlers": {
       "create": {
         "permissions": [
-          "logs:CreateLogAnomalyDetector"
+          "logs:CreateLogAnomalyDetector",
+          "kms:Encrypt",
+          "kms:Decrypt",
+          "kms:GenerateDataKey",
+          "kms:DescribeKey"
         ]
       },
       "delete": {
         "permissions": [
-          "logs:DeleteLogAnomalyDetector"
+          "logs:DeleteLogAnomalyDetector",
+          "kms:Decrypt",
+          "kms:DescribeKey"
         ]
       },
       "list": {
@@ -23,12 +29,18 @@
       },
       "read": {
         "permissions": [
-          "logs:GetLogAnomalyDetector"
+          "logs:GetLogAnomalyDetector",
+          "kms:Decrypt",
+          "kms:DescribeKey"
         ]
       },
       "update": {
         "permissions": [
-          "logs:UpdateLogAnomalyDetector"
+          "logs:UpdateLogAnomalyDetector",
+          "kms:Encrypt",
+          "kms:Decrypt",
+          "kms:GenerateDataKey",
+          "kms:DescribeKey"
         ]
       }
     },

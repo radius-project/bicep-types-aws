@@ -1,0 +1,161 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DevOpsAgent-Trigger",
+  "type": "AWS::DevOpsAgent::Trigger",
+  "time": "2026-10-14T13:51:52.478Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/AgentSpaceId",
+      "/properties/Type",
+      "/properties/Condition",
+      "/properties/Action"
+    ],
+    "definitions": {
+      "Condition": {
+        "additionalProperties": false,
+        "description": "The condition that causes the trigger to fire.",
+        "properties": {
+          "Schedule": {
+            "$ref": "#/definitions/Schedule"
+          }
+        },
+        "required": [
+          "Schedule"
+        ],
+        "type": "object"
+      },
+      "Schedule": {
+        "additionalProperties": false,
+        "description": "Schedule configuration for a time-based trigger.",
+        "properties": {
+          "Expression": {
+            "description": "A cron or rate expression that defines when the trigger fires.",
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Expression"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::DevOpsAgent::Trigger. A trigger defines an automated action that fires on a schedule within an Agent Space.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "aidevops:CreateTrigger",
+          "aidevops:GetTrigger"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "aidevops:DeleteTrigger",
+          "aidevops:GetTrigger"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "AgentSpaceId": {
+              "$ref": "resource-schema.json#/properties/AgentSpaceId"
+            }
+          },
+          "required": [
+            "AgentSpaceId"
+          ]
+        },
+        "permissions": [
+          "aidevops:ListTriggers"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "aidevops:GetTrigger"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "aidevops:UpdateTrigger",
+          "aidevops:GetTrigger"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/AgentSpaceId",
+      "/properties/TriggerId"
+    ],
+    "properties": {
+      "Action": {
+        "description": "The action to perform when the trigger fires. A JSON object containing actionType and task.",
+        "type": "object"
+      },
+      "AgentSpaceId": {
+        "description": "The unique identifier of the parent Agent Space.",
+        "maxLength": 255,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the trigger. Nested under the parent Agent Space: arn:\u003cpartition\u003e:aidevops:\u003cregion\u003e:\u003caccount-id\u003e:agentspace/\u003cagentspace-id\u003e/trigger/\u003ctrigger-id\u003e.",
+        "type": "string"
+      },
+      "Condition": {
+        "$ref": "#/definitions/Condition"
+      },
+      "CreatedAt": {
+        "description": "The timestamp when the trigger was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Status": {
+        "default": "Active",
+        "description": "The status of the trigger. Active triggers fire on schedule; Inactive triggers are paused.",
+        "enum": [
+          "Active",
+          "Inactive"
+        ],
+        "type": "string"
+      },
+      "TriggerId": {
+        "description": "The unique identifier of the trigger (assigned by the service on Create).",
+        "maxLength": 255,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Type": {
+        "description": "The type of trigger.",
+        "enum": [
+          "TIME_BASED"
+        ],
+        "type": "string"
+      },
+      "UpdatedAt": {
+        "description": "The timestamp when the trigger was last updated.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/TriggerId",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt",
+      "/properties/Arn"
+    ],
+    "required": [
+      "AgentSpaceId",
+      "Type",
+      "Condition",
+      "Action"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": false,
+      "tagUpdatable": false,
+      "taggable": false
+    },
+    "typeName": "AWS::DevOpsAgent::Trigger"
+  }
+}

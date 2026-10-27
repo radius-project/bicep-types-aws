@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Bedrock-DataSource",
   "type": "AWS::Bedrock::DataSource",
-  "time": "2025-01-22T17:11:16.24Z",
+  "time": "2026-09-22T17:55:01.014Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -11,6 +11,19 @@
       "/properties/DataSourceConfiguration/Type"
     ],
     "definitions": {
+      "AudioExtractionConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration for audio extraction.",
+        "properties": {
+          "AudioExtractionStatus": {
+            "$ref": "#/definitions/EnabledOrDisabledState"
+          }
+        },
+        "required": [
+          "AudioExtractionStatus"
+        ],
+        "type": "object"
+      },
       "BedrockDataAutomationConfiguration": {
         "additionalProperties": false,
         "description": "Settings for a Bedrock Data Automation used to parse documents for a data source.",
@@ -26,11 +39,7 @@
         "description": "Settings for a foundation model used to parse documents for a data source.",
         "properties": {
           "ModelArn": {
-            "description": "The model's ARN.",
-            "maxLength": 2048,
-            "minLength": 1,
-            "pattern": "^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}::foundation-model/([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.]?[a-z0-9-]{1,63})([:][a-z0-9-]{1,63}){0,2})|(arn:aws(|-us-gov|-cn|-iso|-iso-b):bedrock:(|[0-9a-z-]{1,20}):(|[0-9]{12}):(inference-profile|application-inference-profile)/[a-zA-Z0-9-:.]+)$",
-            "type": "string"
+            "$ref": "#/definitions/ModelArn"
           },
           "ParsingModality": {
             "$ref": "#/definitions/ParsingModality"
@@ -40,6 +49,23 @@
           }
         },
         "required": [
+          "ModelArn"
+        ],
+        "type": "object"
+      },
+      "BedrockFoundationModelContextEnrichmentConfiguration": {
+        "additionalProperties": false,
+        "description": "Bedrock Foundation Model configuration to be used for Context Enrichment.",
+        "properties": {
+          "EnrichmentStrategyConfiguration": {
+            "$ref": "#/definitions/EnrichmentStrategyConfiguration"
+          },
+          "ModelArn": {
+            "$ref": "#/definitions/ModelArn"
+          }
+        },
+        "required": [
+          "EnrichmentStrategyConfiguration",
           "ModelArn"
         ],
         "type": "object"
@@ -142,6 +168,29 @@
         ],
         "type": "object"
       },
+      "ContextEnrichmentConfiguration": {
+        "additionalProperties": false,
+        "description": "Additional Enrichment Configuration for example when using GraphRag.",
+        "properties": {
+          "BedrockFoundationModelConfiguration": {
+            "$ref": "#/definitions/BedrockFoundationModelContextEnrichmentConfiguration"
+          },
+          "Type": {
+            "$ref": "#/definitions/ContextEnrichmentType"
+          }
+        },
+        "required": [
+          "Type"
+        ],
+        "type": "object"
+      },
+      "ContextEnrichmentType": {
+        "description": "Enrichment type to be used for the vector database.",
+        "enum": [
+          "BEDROCK_FOUNDATION_MODEL"
+        ],
+        "type": "string"
+      },
       "CrawlFilterConfiguration": {
         "additionalProperties": false,
         "description": "The type of filtering that you want to apply to certain objects or content of the data source. For example, the PATTERN type is regular expression patterns you can apply to filter your content.",
@@ -186,6 +235,11 @@
         ],
         "type": "object"
       },
+      "DailySchedule": {
+        "additionalProperties": false,
+        "description": "A daily refresh. The run time is system-chosen (off-peak) and not customer-configurable.",
+        "type": "object"
+      },
       "DataDeletionPolicy": {
         "description": "The deletion policy for the data source.",
         "enum": [
@@ -200,6 +254,9 @@
         "properties": {
           "ConfluenceConfiguration": {
             "$ref": "#/definitions/ConfluenceDataSourceConfiguration"
+          },
+          "ManagedKnowledgeBaseConnectorConfiguration": {
+            "$ref": "#/definitions/ManagedKnowledgeBaseConnectorConfiguration"
           },
           "S3Configuration": {
             "$ref": "#/definitions/S3DataSourceConfiguration"
@@ -227,7 +284,10 @@
         "enum": [
           "AVAILABLE",
           "DELETING",
-          "DELETE_UNSUCCESSFUL"
+          "DELETE_UNSUCCESSFUL",
+          "CREATING",
+          "UPDATING",
+          "FAILED"
         ],
         "type": "string"
       },
@@ -240,7 +300,99 @@
           "SHAREPOINT",
           "WEB",
           "CUSTOM",
-          "REDSHIFT_METADATA"
+          "REDSHIFT_METADATA",
+          "MANAGED_KNOWLEDGE_BASE_CONNECTOR"
+        ],
+        "type": "string"
+      },
+      "DayOfMonth": {
+        "additionalProperties": false,
+        "description": "Day of the month on which a monthly refresh runs. Exactly one variant is set: an explicit day number, or the last calendar day of the month.",
+        "oneOf": [
+          {
+            "required": [
+              "DayNumber"
+            ]
+          },
+          {
+            "required": [
+              "LastDayOfMonth"
+            ]
+          }
+        ],
+        "properties": {
+          "DayNumber": {
+            "description": "Specific day of the month, 1 through 28 (capped at 28 to avoid month-length ambiguity).",
+            "maximum": 28,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "LastDayOfMonth": {
+            "additionalProperties": false,
+            "description": "Run on the last calendar day of each month.",
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "DayOfWeek": {
+        "description": "Day of the week.",
+        "enum": [
+          "SUNDAY",
+          "MONDAY",
+          "TUESDAY",
+          "WEDNESDAY",
+          "THURSDAY",
+          "FRIDAY",
+          "SATURDAY"
+        ],
+        "type": "string"
+      },
+      "DeletionProtectionConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration for deletion protection.",
+        "properties": {
+          "DeletionProtectionStatus": {
+            "$ref": "#/definitions/EnabledOrDisabledState"
+          },
+          "DeletionProtectionThreshold": {
+            "default": 15,
+            "description": "Threshold for deletion protection.",
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "DeletionProtectionStatus"
+        ],
+        "type": "object"
+      },
+      "EnabledOrDisabledState": {
+        "description": "Indicates whether a feature is enabled or disabled.",
+        "enum": [
+          "ENABLED",
+          "DISABLED"
+        ],
+        "type": "string"
+      },
+      "EnrichmentStrategyConfiguration": {
+        "additionalProperties": false,
+        "description": "Strategy to be used when using Bedrock Foundation Model for Context Enrichment.",
+        "properties": {
+          "Method": {
+            "$ref": "#/definitions/EnrichmentStrategyMethod"
+          }
+        },
+        "required": [
+          "Method"
+        ],
+        "type": "object"
+      },
+      "EnrichmentStrategyMethod": {
+        "description": "Enrichment Strategy method.",
+        "enum": [
+          "CHUNK_ENTITY_EXTRACTION"
         ],
         "type": "string"
       },
@@ -320,6 +472,19 @@
         ],
         "type": "object"
       },
+      "ImageExtractionConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration for image extraction.",
+        "properties": {
+          "ImageExtractionStatus": {
+            "$ref": "#/definitions/EnabledOrDisabledState"
+          }
+        },
+        "required": [
+          "ImageExtractionStatus"
+        ],
+        "type": "object"
+      },
       "IntermediateStorage": {
         "additionalProperties": false,
         "description": "A location for storing content from data sources temporarily as it is processed by custom components in the ingestion pipeline.",
@@ -330,6 +495,62 @@
         },
         "required": [
           "S3Location"
+        ],
+        "type": "object"
+      },
+      "ManagedKnowledgeBaseConnectorConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration for managed knowledge base connector data sources.",
+        "properties": {
+          "ConnectorParameters": {
+            "description": "Connector-specific parameters.",
+            "type": "object"
+          },
+          "DeletionProtectionConfiguration": {
+            "$ref": "#/definitions/DeletionProtectionConfiguration"
+          },
+          "MediaExtractionConfiguration": {
+            "$ref": "#/definitions/MediaExtractionConfiguration"
+          },
+          "SyncSchedule": {
+            "$ref": "#/definitions/SyncSchedule"
+          }
+        },
+        "type": "object"
+      },
+      "MediaExtractionConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration for media extraction settings.",
+        "properties": {
+          "AudioExtractionConfiguration": {
+            "$ref": "#/definitions/AudioExtractionConfiguration"
+          },
+          "ImageExtractionConfiguration": {
+            "$ref": "#/definitions/ImageExtractionConfiguration"
+          },
+          "VideoExtractionConfiguration": {
+            "$ref": "#/definitions/VideoExtractionConfiguration"
+          }
+        },
+        "type": "object"
+      },
+      "ModelArn": {
+        "description": "The model's ARN.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^(arn:aws(-cn|-us-gov|-eusc|-iso(-[b-f])?)?:(bedrock):[a-z0-9-]{1,20}:([0-9]{12})?:([a-z-]+/)?)?([a-zA-Z0-9.-]{1,63}){0,2}(([:][a-z0-9-]{1,63}){0,2})?(/[a-z0-9]{1,12})?$",
+        "type": "string"
+      },
+      "MonthlySchedule": {
+        "additionalProperties": false,
+        "description": "A monthly refresh on a specified day of the month.",
+        "properties": {
+          "DayOfMonth": {
+            "$ref": "#/definitions/DayOfMonth"
+          }
+        },
+        "required": [
+          "DayOfMonth"
         ],
         "type": "object"
       },
@@ -379,7 +600,9 @@
         "description": "The parsing strategy for the data source.",
         "enum": [
           "BEDROCK_FOUNDATION_MODEL",
-          "BEDROCK_DATA_AUTOMATION"
+          "BEDROCK_DATA_AUTOMATION",
+          "SMART_PARSING",
+          "MULTI_MODAL_EMBEDDINGS"
         ],
         "type": "string"
       },
@@ -435,7 +658,7 @@
             "description": "The ARN of the bucket that contains the data source.",
             "maxLength": 2048,
             "minLength": 1,
-            "pattern": "^arn:aws(|-cn|-us-gov):s3:::[a-z0-9][a-z0-9.-]{1,61}[a-z0-9]$",
+            "pattern": "^arn:aws(-cn|-us-gov|-eusc|-iso(-[b-f])?)?:s3:::[a-z0-9][a-z0-9.-]{1,61}[a-z0-9]$",
             "type": "string"
           },
           "BucketOwnerAccountId": {
@@ -600,7 +823,7 @@
             "description": "The ARN of the AWS KMS key used to encrypt the resource.",
             "maxLength": 2048,
             "minLength": 1,
-            "pattern": "^arn:aws(|-cn|-us-gov):kms:[a-zA-Z0-9-]*:[0-9]{12}:key/[a-zA-Z0-9-]{36}$",
+            "pattern": "^arn:aws(-cn|-us-gov|-eusc|-iso(-[b-f])?)?:kms:[a-zA-Z0-9-]*:[0-9]{12}:key/[a-zA-Z0-9-]{36}$",
             "type": "string"
           }
         },
@@ -639,7 +862,8 @@
           "AuthType": {
             "description": "The supported authentication type to authenticate and connect to your SharePoint site/sites.",
             "enum": [
-              "OAUTH2_CLIENT_CREDENTIALS"
+              "OAUTH2_CLIENT_CREDENTIALS",
+              "OAUTH2_SHAREPOINT_APP_ONLY_CLIENT_CREDENTIALS"
             ],
             "type": "string"
           },
@@ -686,6 +910,39 @@
           "AuthType",
           "CredentialsSecretArn"
         ],
+        "type": "object"
+      },
+      "SyncSchedule": {
+        "additionalProperties": false,
+        "description": "Recurring schedule on which the connector automatically refreshes ingested content. Exactly one frequency variant is set.",
+        "oneOf": [
+          {
+            "required": [
+              "Daily"
+            ]
+          },
+          {
+            "required": [
+              "Weekly"
+            ]
+          },
+          {
+            "required": [
+              "Monthly"
+            ]
+          }
+        ],
+        "properties": {
+          "Daily": {
+            "$ref": "#/definitions/DailySchedule"
+          },
+          "Monthly": {
+            "$ref": "#/definitions/MonthlySchedule"
+          },
+          "Weekly": {
+            "$ref": "#/definitions/WeeklySchedule"
+          }
+        },
         "type": "object"
       },
       "Transformation": {
@@ -759,6 +1016,9 @@
           "ChunkingConfiguration": {
             "$ref": "#/definitions/ChunkingConfiguration"
           },
+          "ContextEnrichmentConfiguration": {
+            "$ref": "#/definitions/ContextEnrichmentConfiguration"
+          },
           "CustomTransformationConfiguration": {
             "$ref": "#/definitions/CustomTransformationConfiguration"
           },
@@ -766,6 +1026,19 @@
             "$ref": "#/definitions/ParsingConfiguration"
           }
         },
+        "type": "object"
+      },
+      "VideoExtractionConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration for video extraction.",
+        "properties": {
+          "VideoExtractionStatus": {
+            "$ref": "#/definitions/EnabledOrDisabledState"
+          }
+        },
+        "required": [
+          "VideoExtractionStatus"
+        ],
         "type": "object"
       },
       "WebCrawlerConfiguration": {
@@ -783,6 +1056,18 @@
           },
           "Scope": {
             "$ref": "#/definitions/WebScopeType"
+          },
+          "UserAgent": {
+            "description": "The suffix that will be included in the user agent header.",
+            "maxLength": 40,
+            "minLength": 15,
+            "type": "string"
+          },
+          "UserAgentHeader": {
+            "description": "The full user agent header, including UUID and suffix.",
+            "maxLength": 86,
+            "minLength": 61,
+            "type": "string"
           }
         },
         "type": "object"
@@ -791,6 +1076,11 @@
         "additionalProperties": false,
         "description": "Limit settings for the web crawler.",
         "properties": {
+          "MaxPages": {
+            "description": "Maximum number of pages the crawler can crawl.",
+            "minimum": 1,
+            "type": "integer"
+          },
           "RateLimit": {
             "description": "Rate of web URLs retrieved per minute.",
             "maximum": 300,
@@ -836,6 +1126,19 @@
           "UrlConfiguration"
         ],
         "type": "object"
+      },
+      "WeeklySchedule": {
+        "additionalProperties": false,
+        "description": "A weekly refresh on a specified day of the week.",
+        "properties": {
+          "DayOfWeek": {
+            "$ref": "#/definitions/DayOfWeek"
+          }
+        },
+        "required": [
+          "DayOfWeek"
+        ],
+        "type": "object"
       }
     },
     "description": "Definition of AWS::Bedrock::DataSource Resource Type",
@@ -844,14 +1147,18 @@
         "permissions": [
           "bedrock:CreateDataSource",
           "bedrock:GetDataSource",
-          "bedrock:GetKnowledgeBase"
-        ]
+          "bedrock:GetKnowledgeBase",
+          "kms:GenerateDataKey",
+          "kms:Decrypt"
+        ],
+        "timeoutInMinutes": 60
       },
       "delete": {
         "permissions": [
           "bedrock:GetDataSource",
           "bedrock:DeleteDataSource"
-        ]
+        ],
+        "timeoutInMinutes": 60
       },
       "list": {
         "handlerSchema": {
@@ -876,7 +1183,9 @@
       "update": {
         "permissions": [
           "bedrock:GetDataSource",
-          "bedrock:UpdateDataSource"
+          "bedrock:UpdateDataSource",
+          "kms:GenerateDataKey",
+          "kms:Decrypt"
         ]
       }
     },
@@ -946,7 +1255,8 @@
       "/properties/DataSourceStatus",
       "/properties/CreatedAt",
       "/properties/UpdatedAt",
-      "/properties/FailureReasons"
+      "/properties/FailureReasons",
+      "/properties/DataSourceConfiguration/WebConfiguration/CrawlerConfiguration/UserAgentHeader"
     ],
     "required": [
       "DataSourceConfiguration",

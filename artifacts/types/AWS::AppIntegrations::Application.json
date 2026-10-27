@@ -1,15 +1,40 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AppIntegrations-Application",
   "type": "AWS::AppIntegrations::Application",
-  "time": "2025-01-22T22:37:56.54Z",
+  "time": "2026-10-21T21:31:10.811Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
+      "ApplicationConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "ContactHandling": {
+            "$ref": "#/definitions/ContactHandling"
+          }
+        },
+        "type": "object"
+      },
       "ApprovedOrigins": {
         "maxLength": 1000,
         "minLength": 1,
         "pattern": "^\\w+\\:\\/\\/.*$",
         "type": "string"
+      },
+      "ContactHandling": {
+        "additionalProperties": false,
+        "properties": {
+          "Scope": {
+            "enum": [
+              "CROSS_CONTACTS",
+              "PER_CONTACT"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Scope"
+        ],
+        "type": "object"
       },
       "ExternalUrlConfig": {
         "additionalProperties": false,
@@ -33,6 +58,26 @@
         "required": [
           "AccessUrl"
         ],
+        "type": "object"
+      },
+      "IframeConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "Allow": {
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "Sandbox": {
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
         "type": "object"
       },
       "Permissions": {
@@ -110,6 +155,10 @@
         "pattern": "^arn:aws[-a-z0-9]*:app-integrations:[-a-z0-9]*:[0-9]{12}:application/[-a-zA-Z0-9]*",
         "type": "string"
       },
+      "ApplicationConfig": {
+        "$ref": "#/definitions/ApplicationConfig",
+        "description": "The application configuration. Cannot be used when IsService is true."
+      },
       "ApplicationSourceConfig": {
         "additionalProperties": false,
         "description": "Application source config",
@@ -123,6 +172,15 @@
         ],
         "type": "object"
       },
+      "ApplicationType": {
+        "description": "The type of application",
+        "enum": [
+          "STANDARD",
+          "SERVICE",
+          "MCP_SERVER"
+        ],
+        "type": "string"
+      },
       "Description": {
         "description": "The application description.",
         "maxLength": 1000,
@@ -135,6 +193,19 @@
         "minLength": 1,
         "pattern": "^[a-zA-Z0-9/\\._\\-]+$",
         "type": "string"
+      },
+      "IframeConfig": {
+        "$ref": "#/definitions/IframeConfig",
+        "description": "The iframe configuration"
+      },
+      "InitializationTimeout": {
+        "description": "The initialization timeout in milliseconds. Required when IsService is true.",
+        "type": "integer"
+      },
+      "IsService": {
+        "default": false,
+        "description": "Indicates if the application is a service",
+        "type": "boolean"
       },
       "Name": {
         "description": "The name of the application.",
@@ -177,7 +248,6 @@
     "required": [
       "Name",
       "Namespace",
-      "Description",
       "ApplicationSourceConfig"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",

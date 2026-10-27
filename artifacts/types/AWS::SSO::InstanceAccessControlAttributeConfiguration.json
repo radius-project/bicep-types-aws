@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SSO-InstanceAccessControlAttributeConfiguration",
   "type": "AWS::SSO::InstanceAccessControlAttributeConfiguration",
-  "time": "2025-01-09T16:52:28.013Z",
+  "time": "2026-10-21T22:07:32.674Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -81,6 +81,16 @@
         ]
       },
       "list": {
+        "handlerSchema": {
+          "properties": {
+            "InstanceArn": {
+              "$ref": "resource-schema.json#/properties/InstanceArn"
+            }
+          },
+          "required": [
+            "InstanceArn"
+          ]
+        },
         "permissions": [
           "sso:DescribeInstanceAccessControlAttributeConfiguration"
         ]
@@ -121,7 +131,7 @@
         "description": "The ARN of the AWS SSO instance under which the operation will be executed.",
         "maxLength": 1224,
         "minLength": 10,
-        "pattern": "arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso:::instance/(sso)?ins-[a-zA-Z0-9-.]{16}",
+        "pattern": "arn:aws(-[a-z]{1,5}){0,3}:sso:::instance/(sso)?ins-[a-zA-Z0-9-.]{16}",
         "type": "string"
       }
     },

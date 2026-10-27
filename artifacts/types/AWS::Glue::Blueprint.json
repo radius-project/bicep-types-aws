@@ -1,0 +1,170 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Glue-Blueprint",
+  "type": "AWS::Glue::Blueprint",
+  "time": "2026-10-21T23:09:50.751Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Name"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Glue::Blueprint. Registers a blueprint with AWS Glue.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "glue:CreateBlueprint",
+          "glue:GetBlueprint",
+          "glue:TagResource",
+          "glue:GetTags",
+          "s3:GetObject"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "glue:DeleteBlueprint",
+          "glue:GetBlueprint",
+          "glue:GetTags"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "glue:ListBlueprints"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "glue:GetBlueprint",
+          "glue:GetTags"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "glue:UpdateBlueprint",
+          "glue:GetBlueprint",
+          "glue:TagResource",
+          "glue:UntagResource",
+          "glue:GetTags",
+          "s3:GetObject"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the blueprint.",
+        "type": "string"
+      },
+      "BlueprintLocation": {
+        "description": "Specifies a path in Amazon S3 where the blueprint is published.",
+        "maxLength": 8192,
+        "minLength": 1,
+        "pattern": "^s3://([^/]+)/([^/]+/)*([^/]+)$",
+        "type": "string"
+      },
+      "CreatedOn": {
+        "description": "The date and time the blueprint was registered.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "A description of the blueprint.",
+        "maxLength": 512,
+        "minLength": 1,
+        "type": "string"
+      },
+      "LastModifiedOn": {
+        "description": "The date and time the blueprint was last modified.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the blueprint.",
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[\\.\\-_A-Za-z0-9]+$",
+        "type": "string"
+      },
+      "ParameterSpec": {
+        "description": "A JSON string that indicates the list of parameter specifications for the blueprint.",
+        "maxLength": 131072,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the blueprint registration.",
+        "enum": [
+          "CREATING",
+          "ACTIVE",
+          "UPDATING",
+          "FAILED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags to be applied to this blueprint.",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "minItems": 0,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Status",
+      "/properties/CreatedOn",
+      "/properties/LastModifiedOn",
+      "/properties/ParameterSpec"
+    ],
+    "required": [
+      "Name",
+      "BlueprintLocation"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-glue",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "glue:TagResource",
+        "glue:UntagResource",
+        "glue:GetTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Glue::Blueprint"
+  }
+}

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ControlTower-LandingZone",
   "type": "AWS::ControlTower::LandingZone",
-  "time": "2025-01-22T20:49:36.096Z",
+  "time": "2026-10-19T16:03:54.03Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -19,6 +19,15 @@
           "FAILED"
         ],
         "type": "string"
+      },
+      "RemediationTypes": {
+        "items": {
+          "enum": [
+            "INHERITANCE_DRIFT"
+          ],
+          "type": "string"
+        },
+        "type": "array"
       },
       "Tag": {
         "additionalProperties": false,
@@ -68,9 +77,14 @@
           "organizations:EnablePolicyType",
           "organizations:EnableAWSServiceAccess",
           "organizations:ListRoots",
+          "organizations:DescribeOrganization",
+          "organizations:DescribeAccount",
           "sso:GetPeregrineStatus",
           "sso:ListDirectoryAssociations",
           "sso:StartPeregrine",
+          "iam:CreateServiceLinkedRole",
+          "iam:GetRole",
+          "cloudformation:EnableOrganizationsAccess",
           "sso:RegisterRegion"
         ]
       },
@@ -83,6 +97,7 @@
           "servicecatalog:ListPortfolios",
           "servicecatalog:ListProvisioningArtifacts",
           "servicecatalog:SearchProductsAsAdmin",
+          "servicecatalog:UpdateProvisioningArtifact",
           "servicecatalog:DeleteProvisioningArtifact",
           "servicecatalog:ListPrincipalsForPortfolio",
           "servicecatalog:DeleteProduct",
@@ -93,10 +108,15 @@
           "organizations:DetachPolicy",
           "organizations:DeletePolicy",
           "organizations:ListRoots",
+          "organizations:DescribeOrganization",
+          "organizations:DescribeAccount",
           "sso:GetPeregrineStatus",
           "sso:ListDirectoryAssociations",
+          "iam:CreateServiceLinkedRole",
+          "iam:GetRole",
           "iam:DeleteRolePolicy",
           "iam:DetachRolePolicy",
+          "cloudformation:EnableOrganizationsAccess",
           "iam:DeleteRole"
         ]
       },
@@ -130,9 +150,8 @@
           "servicecatalog:SearchProductsAsAdmin",
           "servicecatalog:UpdatePortfolio",
           "servicecatalog:UpdateProvisioningArtifact",
-          "servicecatalog:ListPrincipalsForPortfolio",
+          "servicecatalog:DeleteProvisioningArtifact",
           "organizations:CreateOrganizationalUnit",
-          "organizations:CreateOrganization",
           "organizations:UpdatePolicy",
           "organizations:CreatePolicy",
           "organizations:AttachPolicy",
@@ -141,7 +160,12 @@
           "organizations:EnablePolicyType",
           "organizations:EnableAWSServiceAccess",
           "organizations:ListRoots",
+          "organizations:DescribeOrganization",
+          "organizations:DescribeAccount",
           "sso:GetPeregrineStatus",
+          "iam:CreateServiceLinkedRole",
+          "iam:GetRole",
+          "cloudformation:EnableOrganizationsAccess",
           "sso:ListDirectoryAssociations",
           "sso:StartPeregrine",
           "sso:RegisterRegion"
@@ -171,6 +195,9 @@
         "type": "string"
       },
       "Manifest": {},
+      "RemediationTypes": {
+        "$ref": "#/definitions/RemediationTypes"
+      },
       "Status": {
         "$ref": "#/definitions/LandingZoneStatus"
       },

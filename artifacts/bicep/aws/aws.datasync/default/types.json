@@ -136,11 +136,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.DataSync/Agent@default",
-    "scopeType": 0,
     "body": {
       "$ref": "#/7"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -152,6 +152,98 @@
         },
         "flags": 1,
         "description": "Specifies the shared access signature (SAS) token, which indicates the permissions DataSync needs to access your Azure Blob Storage container."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AzureFederatedIdentityConfig",
+    "properties": {
+      "AwsIamRole": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies the ARN of the AWS Identity and Access Management (IAM) role that DataSync assumes to mint the OIDC token used to authenticate with the identity provider."
+      },
+      "AzureOidc": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AzureOidcConfig",
+    "properties": {
+      "ClientId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies the client ID of the Microsoft Entra (Azure AD) identity that DataSync uses to obtain an access token."
+      },
+      "TenantId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies the Microsoft Entra (Azure AD) tenant ID that the identity belongs to."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CmkSecretConfig",
+    "properties": {
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies the ARN for the customer-managed AWS KMS key used to encrypt the secret specified for SecretArn. DataSync provides this key to AWS Secrets Manager."
+      },
+      "SecretArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Specifies the ARN for an AWS Secrets Manager secret, managed by DataSync."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomSecretConfig",
+    "properties": {
+      "SecretAccessRoleArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies the ARN for the AWS Identity and Access Management role that DataSync uses to access the secret specified for SecretArn."
+      },
+      "SecretArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies the ARN for a customer created AWS Secrets Manager secret."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedSecretConfig",
+    "properties": {
+      "SecretArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies the ARN for an AWS Secrets Manager secret."
       }
     }
   },
@@ -188,7 +280,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/10"
+      "$ref": "#/15"
     }
   },
   {
@@ -197,10 +289,10 @@
     "properties": {
       "AgentArns": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/17"
         },
-        "flags": 1,
-        "description": "The Amazon Resource Names (ARNs) of agents to use for an Azure Blob Location."
+        "flags": 0,
+        "description": "Specifies the Amazon Resource Name (ARN) of the DataSync agent that can connect with your Azure Blob Storage container. If you are setting up an agentless cross-cloud transfer, you do not need to specify a value for this parameter."
       },
       "AzureAccessTier": {
         "type": {
@@ -236,6 +328,24 @@
         "flags": 0,
         "description": "Specifies a blob type for the objects you're transferring into your Azure Blob Storage container."
       },
+      "CmkSecretConfig": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      },
+      "CustomSecretConfig": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "FederatedIdentity": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
       "LocationArn": {
         "type": {
           "$ref": "#/1"
@@ -250,6 +360,12 @@
         "flags": 2,
         "description": "The URL of the Azure Blob Location that was described."
       },
+      "ManagedSecretConfig": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 2
+      },
       "Subdirectory": {
         "type": {
           "$ref": "#/1"
@@ -259,7 +375,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -286,7 +402,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/19"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -296,11 +412,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.DataSync/LocationAzureBlob@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/15"
+      "$ref": "#/20"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -308,7 +424,7 @@
     "properties": {
       "SecurityGroupArns": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The Amazon Resource Names (ARNs) of the security groups that are configured for the Amazon EC2 resource."
@@ -355,7 +471,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/18"
+      "$ref": "#/23"
     }
   },
   {
@@ -371,7 +487,7 @@
       },
       "Ec2Config": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/22"
         },
         "flags": 1
       },
@@ -419,7 +535,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/26"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -446,7 +562,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/27"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -456,11 +572,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.DataSync/LocationEFS@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/23"
+      "$ref": "#/28"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -495,7 +611,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/30"
     }
   },
   {
@@ -525,7 +641,7 @@
       },
       "SecurityGroupArns": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/32"
         },
         "flags": 1,
         "description": "The ARNs of the security groups that are to use to configure the FSx for Lustre file system."
@@ -539,7 +655,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -566,7 +682,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/34"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -576,11 +692,64 @@
   {
     "$type": "ResourceType",
     "name": "AWS.DataSync/LocationFSxLustre@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/30"
+      "$ref": "#/35"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CmkSecretConfig",
+    "properties": {
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies the ARN for the customer-managed AWS KMS key used to encrypt the secret specified for SecretArn. DataSync provides this key to AWS Secrets Manager."
+      },
+      "SecretArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Specifies the ARN for an AWS Secrets Manager secret, managed by DataSync."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomSecretConfig",
+    "properties": {
+      "SecretAccessRoleArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies the ARN for the AWS Identity and Access Management role that DataSync uses to access the secret specified for SecretArn."
+      },
+      "SecretArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies the ARN for a customer created AWS Secrets Manager secret."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedSecretConfig",
+    "properties": {
+      "SecretArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies the ARN for an AWS Secrets Manager secret."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -588,7 +757,7 @@
     "properties": {
       "MountOptions": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/41"
         },
         "flags": 1
       }
@@ -613,13 +782,13 @@
     "properties": {
       "NFS": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/40"
         },
         "flags": 0
       },
       "SMB": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/43"
         },
         "flags": 0
       }
@@ -629,6 +798,18 @@
     "$type": "ObjectType",
     "name": "SMB",
     "properties": {
+      "CmkSecretConfig": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 0
+      },
+      "CustomSecretConfig": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 0
+      },
       "Domain": {
         "type": {
           "$ref": "#/1"
@@ -636,9 +817,15 @@
         "flags": 0,
         "description": "The name of the Windows domain that the SMB server belongs to."
       },
+      "ManagedSecretConfig": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 2
+      },
       "MountOptions": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/44"
         },
         "flags": 1
       },
@@ -646,7 +833,7 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 4,
         "description": "The password of the user who can mount the share and has the permissions to access files and folders in the SMB share."
       },
       "User": {
@@ -704,7 +891,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/37"
+      "$ref": "#/45"
     }
   },
   {
@@ -734,13 +921,13 @@
       },
       "Protocol": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/42"
         },
-        "flags": 4
+        "flags": 0
       },
       "SecurityGroupArns": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/47"
         },
         "flags": 1,
         "description": "The ARNs of the security groups that are to use to configure the FSx ONTAP file system."
@@ -761,7 +948,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/48"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -788,7 +975,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/49"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -798,11 +985,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.DataSync/LocationFSxONTAP@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/42"
+      "$ref": "#/50"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -823,7 +1010,7 @@
     "properties": {
       "MountOptions": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/52"
         },
         "flags": 1
       }
@@ -835,7 +1022,7 @@
     "properties": {
       "NFS": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/53"
         },
         "flags": 0
       }
@@ -874,7 +1061,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/47"
+      "$ref": "#/55"
     }
   },
   {
@@ -904,13 +1091,13 @@
       },
       "Protocol": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/54"
         },
         "flags": 1
       },
       "SecurityGroupArns": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/57"
         },
         "flags": 1,
         "description": "The ARNs of the security groups that are to use to configure the FSx OpenZFS file system."
@@ -924,7 +1111,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/58"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -951,7 +1138,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/59"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -961,11 +1148,64 @@
   {
     "$type": "ResourceType",
     "name": "AWS.DataSync/LocationFSxOpenZFS@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/52"
+      "$ref": "#/60"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CmkSecretConfig",
+    "properties": {
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies the ARN for the customer-managed AWS KMS key used to encrypt the secret specified for SecretArn. DataSync provides this key to AWS Secrets Manager."
+      },
+      "SecretArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Specifies the ARN for an AWS Secrets Manager secret, managed by DataSync."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomSecretConfig",
+    "properties": {
+      "SecretAccessRoleArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies the ARN for the AWS Identity and Access Management role that DataSync uses to access the secret specified for SecretArn."
+      },
+      "SecretArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies the ARN for a customer created AWS Secrets Manager secret."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedSecretConfig",
+    "properties": {
+      "SecretArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies the ARN for an AWS Secrets Manager secret."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -1000,13 +1240,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/54"
+      "$ref": "#/65"
     }
   },
   {
     "$type": "ObjectType",
     "name": "AWS.DataSync/LocationFSxWindowsProperties",
     "properties": {
+      "CmkSecretConfig": {
+        "type": {
+          "$ref": "#/62"
+        },
+        "flags": 0
+      },
+      "CustomSecretConfig": {
+        "type": {
+          "$ref": "#/63"
+        },
+        "flags": 0
+      },
       "Domain": {
         "type": {
           "$ref": "#/1"
@@ -1035,6 +1287,12 @@
         "flags": 2,
         "description": "The URL of the FSx for Windows location that was described."
       },
+      "ManagedSecretConfig": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 2
+      },
       "Password": {
         "type": {
           "$ref": "#/1"
@@ -1044,7 +1302,7 @@
       },
       "SecurityGroupArns": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/67"
         },
         "flags": 1,
         "description": "The ARNs of the security groups that are to use to configure the FSx for Windows file system."
@@ -1058,7 +1316,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/68"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1092,7 +1350,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/69"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1102,11 +1360,64 @@
   {
     "$type": "ResourceType",
     "name": "AWS.DataSync/LocationFSxWindows@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/59"
+      "$ref": "#/70"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CmkSecretConfig",
+    "properties": {
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies the ARN for the customer-managed AWS KMS key used to encrypt the secret specified for SecretArn. DataSync provides this key to AWS Secrets Manager."
+      },
+      "SecretArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Specifies the ARN for an AWS Secrets Manager secret, managed by DataSync."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomSecretConfig",
+    "properties": {
+      "SecretAccessRoleArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies the ARN for the AWS Identity and Access Management role that DataSync uses to access the secret specified for SecretArn."
+      },
+      "SecretArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies the ARN for a customer created AWS Secrets Manager secret."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedSecretConfig",
+    "properties": {
+      "SecretArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies the ARN for an AWS Secrets Manager secret."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -1121,7 +1432,7 @@
       },
       "Port": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/78"
         },
         "flags": 1,
         "description": "The port on which the Name Node is listening on for client requests."
@@ -1184,13 +1495,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/61"
+      "$ref": "#/75"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/63"
+      "$ref": "#/77"
     }
   },
   {
@@ -1199,7 +1510,7 @@
     "properties": {
       "AgentArns": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/80"
         },
         "flags": 1,
         "description": "ARN(s) of the agent(s) to use for an HDFS location."
@@ -1213,10 +1524,22 @@
       },
       "BlockSize": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/78"
         },
         "flags": 0,
         "description": "Size of chunks (blocks) in bytes that the data is divided into when stored in the HDFS cluster."
+      },
+      "CmkSecretConfig": {
+        "type": {
+          "$ref": "#/72"
+        },
+        "flags": 0
+      },
+      "CustomSecretConfig": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0
       },
       "KerberosKeytab": {
         "type": {
@@ -1260,22 +1583,28 @@
         "flags": 2,
         "description": "The URL of the HDFS location that was described."
       },
+      "ManagedSecretConfig": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 2
+      },
       "NameNodes": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/81"
         },
         "flags": 1,
         "description": "An array of Name Node(s) of the HDFS location."
       },
       "QopConfiguration": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/76"
         },
         "flags": 0
       },
       "ReplicationFactor": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/78"
         },
         "flags": 0,
         "description": "Number of copies of each block that exists inside the HDFS cluster."
@@ -1296,7 +1625,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/82"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1323,7 +1652,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/83"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1333,11 +1662,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.DataSync/LocationHDFS@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/70"
+      "$ref": "#/84"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1358,7 +1687,7 @@
     "properties": {
       "AgentArns": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/89"
         },
         "flags": 1,
         "description": "ARN(s) of the agent(s) to use for an NFS location."
@@ -1398,7 +1727,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/74"
+      "$ref": "#/88"
     }
   },
   {
@@ -1421,13 +1750,13 @@
       },
       "MountOptions": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/86"
         },
         "flags": 0
       },
       "OnPremConfig": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/87"
         },
         "flags": 1
       },
@@ -1447,7 +1776,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/91"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1474,7 +1803,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/92"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1484,11 +1813,129 @@
   {
     "$type": "ResourceType",
     "name": "AWS.DataSync/LocationNFS@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/79"
+      "$ref": "#/93"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CmkSecretConfig",
+    "properties": {
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies the ARN for the customer-managed AWS KMS key used to encrypt the secret specified for SecretArn. DataSync provides this key to AWS Secrets Manager."
+      },
+      "SecretArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Specifies the ARN for an AWS Secrets Manager secret, managed by DataSync."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomSecretConfig",
+    "properties": {
+      "SecretAccessRoleArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies the ARN for the AWS Identity and Access Management role that DataSync uses to access the secret specified for SecretArn."
+      },
+      "SecretArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies the ARN for a customer created AWS Secrets Manager secret."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GoogleOidcConfig",
+    "properties": {
+      "IdentityPoolName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the Google Cloud workload identity pool that DataSync federates with."
+      },
+      "IdentityProviderName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the OIDC identity provider configured in the Google Cloud workload identity pool."
+      },
+      "ProjectName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The human-readable Google Cloud project name."
+      },
+      "ProjectNumber": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The numeric Google Cloud project ID, as a string."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedSecretConfig",
+    "properties": {
+      "SecretArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies the ARN for an AWS Secrets Manager secret."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ObjectStorageExternalIdentityConfig",
+    "properties": {
+      "GoogleOidc": {
+        "type": {
+          "$ref": "#/97"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ObjectStorageFederatedIdentityConfig",
+    "properties": {
+      "AwsIamRole": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies the ARN of the AWS Identity and Access Management (IAM) role that DataSync assumes to mint the OIDC token used to authenticate with the identity provider."
+      },
+      "ExternalIdentity": {
+        "type": {
+          "$ref": "#/99"
+        },
+        "flags": 0
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -1523,7 +1970,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/81"
+      "$ref": "#/101"
     }
   },
   {
@@ -1539,10 +1986,10 @@
       },
       "AgentArns": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/103"
         },
-        "flags": 1,
-        "description": "The Amazon Resource Name (ARN) of the agents associated with the self-managed object storage server location."
+        "flags": 0,
+        "description": "Specifies the Amazon Resource Names (ARNs) of the DataSync agents that can connect with your object storage system. If you are setting up an agentless cross-cloud transfer, you do not need to specify a value for this parameter."
       },
       "BucketName": {
         "type": {
@@ -1550,6 +1997,24 @@
         },
         "flags": 4,
         "description": "The name of the bucket on the self-managed object storage server."
+      },
+      "CmkSecretConfig": {
+        "type": {
+          "$ref": "#/95"
+        },
+        "flags": 0
+      },
+      "CustomSecretConfig": {
+        "type": {
+          "$ref": "#/96"
+        },
+        "flags": 0
+      },
+      "FederatedIdentity": {
+        "type": {
+          "$ref": "#/100"
+        },
+        "flags": 0
       },
       "LocationArn": {
         "type": {
@@ -1564,6 +2029,12 @@
         },
         "flags": 2,
         "description": "The URL of the object storage location that was described."
+      },
+      "ManagedSecretConfig": {
+        "type": {
+          "$ref": "#/98"
+        },
+        "flags": 2
       },
       "SecretKey": {
         "type": {
@@ -1588,7 +2059,7 @@
       },
       "ServerPort": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/78"
         },
         "flags": 0,
         "description": "The port that your self-managed server accepts inbound network traffic on."
@@ -1609,7 +2080,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/104"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1636,9 +2107,9 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/105"
         },
-        "flags": 17,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -1646,11 +2117,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.DataSync/LocationObjectStorage@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/86"
+      "$ref": "#/106"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1692,7 +2163,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/89"
+      "$ref": "#/109"
     }
   },
   {
@@ -1722,7 +2193,7 @@
       },
       "S3Config": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/108"
         },
         "flags": 1
       },
@@ -1742,7 +2213,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/111"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1769,7 +2240,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/112"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1779,11 +2250,64 @@
   {
     "$type": "ResourceType",
     "name": "AWS.DataSync/LocationS3@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/93"
+      "$ref": "#/113"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CmkSecretConfig",
+    "properties": {
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies the ARN for the customer-managed AWS KMS key used to encrypt the secret specified for SecretArn. DataSync provides this key to AWS Secrets Manager."
+      },
+      "SecretArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Specifies the ARN for an AWS Secrets Manager secret, managed by DataSync."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomSecretConfig",
+    "properties": {
+      "SecretAccessRoleArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies the ARN for the AWS Identity and Access Management role that DataSync uses to access the secret specified for SecretArn."
+      },
+      "SecretArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies the ARN for a customer created AWS Secrets Manager secret."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedSecretConfig",
+    "properties": {
+      "SecretArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specifies the ARN for an AWS Secrets Manager secret."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -1831,7 +2355,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/96"
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/119"
     }
   },
   {
@@ -1840,10 +2370,36 @@
     "properties": {
       "AgentArns": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/121"
         },
         "flags": 1,
         "description": "The Amazon Resource Names (ARNs) of agents to use for a Simple Message Block (SMB) location."
+      },
+      "AuthenticationType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The authentication mode used to determine identity of user."
+      },
+      "CmkSecretConfig": {
+        "type": {
+          "$ref": "#/115"
+        },
+        "flags": 0
+      },
+      "CustomSecretConfig": {
+        "type": {
+          "$ref": "#/116"
+        },
+        "flags": 0
+      },
+      "DnsIpAddresses": {
+        "type": {
+          "$ref": "#/122"
+        },
+        "flags": 0,
+        "description": "Specifies the IPv4 addresses for the DNS servers that your SMB file server belongs to. This parameter applies only if AuthenticationType is set to KERBEROS. If you have multiple domains in your environment, configuring this parameter makes sure that DataSync connects to the right SMB file server."
       },
       "Domain": {
         "type": {
@@ -1851,6 +2407,27 @@
         },
         "flags": 0,
         "description": "The name of the Windows domain that the SMB server belongs to."
+      },
+      "KerberosKeytab": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The Base64 string representation of the Keytab file. Specifies your Kerberos key table (keytab) file, which includes mappings between your service principal name (SPN) and encryption keys. To avoid task execution errors, make sure that the SPN in the keytab file matches exactly what you specify for KerberosPrincipal and in your krb5.conf file."
+      },
+      "KerberosKrb5Conf": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The string representation of the Krb5Conf file, or the presigned URL to access the Krb5.conf file within an S3 bucket. Specifies a Kerberos configuration file (krb5.conf) that defines your Kerberos realm configuration. To avoid task execution errors, make sure that the service principal name (SPN) in the krb5.conf file matches exactly what you specify for KerberosPrincipal and in your keytab file."
+      },
+      "KerberosPrincipal": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies a service principal name (SPN), which is an identity in your Kerberos realm that has permission to access the files, folders, and file metadata in your SMB file server. SPNs are case sensitive and must include a prepended cifs/. For example, an SPN might look like cifs/kerberosuser@EXAMPLE.COM. Your task execution will fail if the SPN that you provide for this parameter doesn't match exactly what's in your keytab or krb5.conf files."
       },
       "LocationArn": {
         "type": {
@@ -1866,9 +2443,15 @@
         "flags": 2,
         "description": "The URL of the SMB location that was described."
       },
+      "ManagedSecretConfig": {
+        "type": {
+          "$ref": "#/117"
+        },
+        "flags": 2
+      },
       "MountOptions": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/118"
         },
         "flags": 0
       },
@@ -1895,7 +2478,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/123"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1904,7 +2487,7 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "The user who can mount the share, has the permissions to access files and folders in the SMB share."
       }
     }
@@ -1929,7 +2512,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/124"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1939,197 +2522,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.DataSync/LocationSMB@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/101"
+      "$ref": "#/125"
     },
-    "flags": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ServerConfiguration",
-    "properties": {
-      "ServerHostname": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1,
-        "description": "The domain name or IP address of the storage system's management interface."
-      },
-      "ServerPort": {
-        "type": {
-          "$ref": "#/64"
-        },
-        "flags": 0,
-        "description": "The network port needed to access the system's management interface"
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ServerCredentials",
-    "properties": {
-      "Password": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1,
-        "description": "The password for your storage system's management interface"
-      },
-      "Username": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1,
-        "description": "The username for your storage system's management interface."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1,
-        "description": "The key for an AWS resource tag."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1,
-        "description": "The value for an AWS resource tag."
-      }
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.DataSync/StorageSystemProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/105"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.DataSync/StorageSystemProperties",
-    "properties": {
-      "AgentArns": {
-        "type": {
-          "$ref": "#/107"
-        },
-        "flags": 1,
-        "description": "The ARN of the DataSync agent that connects to and reads from the on-premises storage system's management interface."
-      },
-      "CloudWatchLogGroupArn": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "The ARN of the Amazon CloudWatch log group used to monitor and log discovery job events."
-      },
-      "ConnectivityStatus": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 2,
-        "description": "Indicates whether the DataSync agent can access the on-premises storage system."
-      },
-      "Name": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "A familiar name for the on-premises storage system."
-      },
-      "SecretsManagerArn": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 2,
-        "description": "The ARN of a secret stored by AWS Secrets Manager."
-      },
-      "ServerConfiguration": {
-        "type": {
-          "$ref": "#/103"
-        },
-        "flags": 1
-      },
-      "ServerCredentials": {
-        "type": {
-          "$ref": "#/104"
-        },
-        "flags": 4
-      },
-      "StorageSystemArn": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 18,
-        "description": "The ARN of the on-premises storage system added to DataSync Discovery."
-      },
-      "SystemType": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1,
-        "description": "The type of on-premises storage system that DataSync Discovery will analyze."
-      },
-      "Tags": {
-        "type": {
-          "$ref": "#/108"
-        },
-        "flags": 0,
-        "description": "An array of key-value pairs to apply to this resource."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.DataSync/StorageSystem",
-    "properties": {
-      "name": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "the resource name"
-      },
-      "alias": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 17,
-        "description": "the resource alias"
-      },
-      "properties": {
-        "type": {
-          "$ref": "#/109"
-        },
-        "flags": 17,
-        "description": "properties of the resource"
-      }
-    }
-  },
-  {
-    "$type": "ResourceType",
-    "name": "AWS.DataSync/StorageSystem@default",
-    "scopeType": 0,
-    "body": {
-      "$ref": "#/110"
-    },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -2176,7 +2573,7 @@
       },
       "Source": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/138"
         },
         "flags": 1,
         "description": "Specifies the manifest that you want DataSync to use and where it's hosted."
@@ -2230,7 +2627,7 @@
       },
       "BytesPerSecond": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/78"
         },
         "flags": 0,
         "description": "A value that limits the bandwidth used by AWS DataSync."
@@ -2255,6 +2652,13 @@
         },
         "flags": 0,
         "description": "A value that indicates the last time that a file was modified (that is, a file was written to) before the PREPARING phase."
+      },
+      "ObjectMetadata": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A value that determines whether source object metadata should be copied to the destination. PRESERVE copies metadata; NONE copies only file-mtime."
       },
       "ObjectTags": {
         "type": {
@@ -2359,7 +2763,7 @@
     "properties": {
       "Destination": {
         "type": {
-          "$ref": "#/125"
+          "$ref": "#/140"
         },
         "flags": 1,
         "description": "Specifies where DataSync uploads your task report."
@@ -2380,7 +2784,7 @@
       },
       "Overrides": {
         "type": {
-          "$ref": "#/130"
+          "$ref": "#/145"
         },
         "flags": 0,
         "description": "Customizes the reporting level for aspects of your task report. For example, your report might generally only include errors, but you could specify that you want a list of successes and errors just for the files that Datasync attempted to delete in your destination location."
@@ -2453,7 +2857,7 @@
     "properties": {
       "S3": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/130"
         },
         "flags": 0
       }
@@ -2471,7 +2875,7 @@
     "properties": {
       "S3": {
         "type": {
-          "$ref": "#/120"
+          "$ref": "#/135"
         },
         "flags": 0
       }
@@ -2535,28 +2939,28 @@
     "properties": {
       "Deleted": {
         "type": {
-          "$ref": "#/126"
+          "$ref": "#/141"
         },
         "flags": 0,
         "description": "Specifies the level of reporting for the files, objects, and directories that Datasync attempted to delete in your destination location. This only applies if you configure your task to delete data in the destination that isn't in the source."
       },
       "Skipped": {
         "type": {
-          "$ref": "#/127"
+          "$ref": "#/142"
         },
         "flags": 0,
         "description": "Specifies the level of reporting for the files, objects, and directories that Datasync attempted to skip during your transfer."
       },
       "Transferred": {
         "type": {
-          "$ref": "#/128"
+          "$ref": "#/143"
         },
         "flags": 0,
         "description": "Specifies the level of reporting for the files, objects, and directories that Datasync attempted to transfer."
       },
       "Verified": {
         "type": {
-          "$ref": "#/129"
+          "$ref": "#/144"
         },
         "flags": 0,
         "description": "Specifies the level of reporting for the files, objects, and directories that Datasync attempted to verify at the end of your transfer. This only applies if you configure your task to verify data during and after the transfer (which Datasync does by default)"
@@ -2576,13 +2980,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/128"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/128"
     }
   },
   {
@@ -2594,7 +2998,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/118"
+      "$ref": "#/133"
     }
   },
   {
@@ -2617,25 +3021,25 @@
       },
       "DestinationNetworkInterfaceArns": {
         "type": {
-          "$ref": "#/132"
+          "$ref": "#/147"
         },
         "flags": 2
       },
       "Excludes": {
         "type": {
-          "$ref": "#/133"
+          "$ref": "#/148"
         },
         "flags": 0
       },
       "Includes": {
         "type": {
-          "$ref": "#/134"
+          "$ref": "#/149"
         },
         "flags": 0
       },
       "ManifestConfig": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/129"
         },
         "flags": 0
       },
@@ -2648,13 +3052,13 @@
       },
       "Options": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/131"
         },
         "flags": 0
       },
       "Schedule": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/136"
         },
         "flags": 0
       },
@@ -2667,7 +3071,7 @@
       },
       "SourceNetworkInterfaceArns": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/150"
         },
         "flags": 2
       },
@@ -2680,7 +3084,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/136"
+          "$ref": "#/151"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -2701,7 +3105,7 @@
       },
       "TaskReportConfig": {
         "type": {
-          "$ref": "#/119"
+          "$ref": "#/134"
         },
         "flags": 0
       }
@@ -2727,7 +3131,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/152"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2737,10 +3141,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.DataSync/Task@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/138"
+      "$ref": "#/153"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

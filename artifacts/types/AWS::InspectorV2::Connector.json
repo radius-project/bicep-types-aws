@@ -1,0 +1,334 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-InspectorV2-Connector",
+  "type": "AWS::InspectorV2::Connector",
+  "time": "2026-10-22T00:09:50.303Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Provider",
+      "/properties/Name",
+      "/properties/ProviderConfiguration/Azure/AwsConfigConnectorArn"
+    ],
+    "definitions": {
+      "AzureProviderConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "AutoInstallVMScanner": {
+            "default": true,
+            "description": "Whether to automatically install the VM scanner. Defaults to true.",
+            "type": "boolean"
+          },
+          "AwsConfigConnectorArn": {
+            "description": "The ARN of the AWS Config connector used for Azure resource discovery.",
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "arn:([^:]+):config:([^:]+):([^:]+):connector/([^/]+)/([^/]+)/([^/:\\s]+)",
+            "type": "string"
+          },
+          "AzureRegions": {
+            "description": "List of Azure regions to scan.",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "ScopeConfiguration": {
+            "$ref": "#/definitions/AzureScopeConfigurationMap"
+          }
+        },
+        "required": [
+          "AwsConfigConnectorArn",
+          "ScopeConfiguration",
+          "AzureRegions"
+        ],
+        "type": "object"
+      },
+      "AzureScopeConfigurationMap": {
+        "additionalProperties": false,
+        "description": "Defines which resource types to scan and at what scope level.",
+        "properties": {
+          "ContainerImageScanning": {
+            "$ref": "#/definitions/ScopeConfiguration"
+          },
+          "ServerlessScanning": {
+            "$ref": "#/definitions/ScopeConfiguration"
+          },
+          "VmScanning": {
+            "$ref": "#/definitions/ScopeConfiguration"
+          }
+        },
+        "type": "object"
+      },
+      "CloudProvider": {
+        "enum": [
+          "AZURE"
+        ],
+        "type": "string"
+      },
+      "ConnectorHealth": {
+        "additionalProperties": false,
+        "properties": {
+          "ConnectorStatus": {
+            "$ref": "#/definitions/ConnectorHealthStatus"
+          },
+          "LastCheckedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "Message": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ConnectorHealthStatus": {
+        "enum": [
+          "CONNECTED",
+          "DEGRADED",
+          "FAILED_TO_CONNECT",
+          "PENDING_AUTHORIZATION",
+          "PENDING_CONFIGURATION",
+          "UNKNOWN"
+        ],
+        "type": "string"
+      },
+      "ConnectorState": {
+        "enum": [
+          "ENABLED",
+          "PENDING_ENABLEMENT",
+          "FAILED_TO_ENABLE",
+          "PENDING_UPDATE",
+          "FAILED_TO_UPDATE",
+          "PENDING_DELETION",
+          "DELETED",
+          "FAILED_TO_DELETE"
+        ],
+        "type": "string"
+      },
+      "ProviderConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "Azure": {
+            "$ref": "#/definitions/AzureProviderConfiguration"
+          }
+        },
+        "required": [
+          "Azure"
+        ],
+        "type": "object"
+      },
+      "ScopeConfiguration": {
+        "additionalProperties": false,
+        "description": "Defines the scope of Azure resources to monitor for a specific resource type.",
+        "properties": {
+          "ScopeType": {
+            "$ref": "#/definitions/ScopeType"
+          },
+          "ScopeValues": {
+            "description": "List of subscription IDs. Empty for TENANT scope.",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 100,
+            "type": "array"
+          },
+          "State": {
+            "$ref": "#/definitions/ScopeState"
+          },
+          "StateReason": {
+            "description": "Reason for the current scope state.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ScopeType"
+        ],
+        "type": "object"
+      },
+      "ScopeState": {
+        "enum": [
+          "ACTIVE",
+          "PENDING",
+          "ERROR",
+          "DISABLED"
+        ],
+        "type": "string"
+      },
+      "ScopeType": {
+        "enum": [
+          "TENANT",
+          "SUBSCRIPTION"
+        ],
+        "type": "string"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9 _.:/=+\\-@]+$",
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9 _.:/=+\\-@]*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Creates and manages a multi-cloud connector for Amazon Inspector, enabling vulnerability scanning of Azure resources.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "inspector2:CreateConnector",
+          "inspector2:ListConnectors",
+          "inspector2:TagResource",
+          "inspector2:ListTagsForResource",
+          "iam:CreateServiceLinkedRole",
+          "config:GetConnector",
+          "config:ListConnectors"
+        ],
+        "timeoutInMinutes": 120
+      },
+      "delete": {
+        "permissions": [
+          "inspector2:DeleteConnector",
+          "inspector2:ListConnectors"
+        ],
+        "timeoutInMinutes": 120
+      },
+      "list": {
+        "permissions": [
+          "inspector2:ListConnectors"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "inspector2:ListConnectors",
+          "inspector2:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "inspector2:UpdateConnector",
+          "inspector2:ListConnectors",
+          "inspector2:TagResource",
+          "inspector2:UntagResource",
+          "inspector2:ListTagsForResource",
+          "config:GetConnector",
+          "config:ListConnectors"
+        ],
+        "timeoutInMinutes": 120
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ConnectorArn"
+    ],
+    "properties": {
+      "ConnectorArn": {
+        "description": "The Amazon Resource Name (ARN) of the connector.",
+        "maxLength": 128,
+        "pattern": "^arn:aws(-[a-z]+)?:inspector2:[a-z0-9-]+:[0-9]{12}:connector/[a-f0-9-]+$",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "Timestamp when the connector was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "Optional description of the connector.",
+        "maxLength": 200,
+        "minLength": 0,
+        "type": "string"
+      },
+      "EnablementStatus": {
+        "$ref": "#/definitions/ConnectorState",
+        "description": "The enablement status of the connector."
+      },
+      "EnablementStatusReason": {
+        "description": "Reason for the current enablement status, if applicable.",
+        "type": "string"
+      },
+      "Health": {
+        "$ref": "#/definitions/ConnectorHealth",
+        "description": "Health status of the connector."
+      },
+      "LastUpdatedAt": {
+        "description": "Timestamp when the connector was last updated.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Name": {
+        "description": "Display name for the connector.",
+        "maxLength": 50,
+        "minLength": 1,
+        "pattern": "^[\\p{L}\\p{N}_-]+$",
+        "type": "string"
+      },
+      "Provider": {
+        "$ref": "#/definitions/CloudProvider",
+        "description": "The cloud provider for this connector."
+      },
+      "ProviderConfiguration": {
+        "$ref": "#/definitions/ProviderConfiguration",
+        "description": "Provider-specific configuration including regions and scope."
+      },
+      "Tags": {
+        "description": "Tags to apply to the connector.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ConnectorArn",
+      "/properties/EnablementStatus",
+      "/properties/EnablementStatusReason",
+      "/properties/Health",
+      "/properties/CreatedAt",
+      "/properties/LastUpdatedAt",
+      "/properties/ProviderConfiguration/Azure/ScopeConfiguration/VmScanning/State",
+      "/properties/ProviderConfiguration/Azure/ScopeConfiguration/VmScanning/StateReason",
+      "/properties/ProviderConfiguration/Azure/ScopeConfiguration/ContainerImageScanning/State",
+      "/properties/ProviderConfiguration/Azure/ScopeConfiguration/ContainerImageScanning/StateReason",
+      "/properties/ProviderConfiguration/Azure/ScopeConfiguration/ServerlessScanning/State",
+      "/properties/ProviderConfiguration/Azure/ScopeConfiguration/ServerlessScanning/StateReason"
+    ],
+    "replacementStrategy": "delete_then_create",
+    "required": [
+      "Name",
+      "Provider",
+      "ProviderConfiguration"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-inspector2",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "inspector2:TagResource",
+        "inspector2:UntagResource",
+        "inspector2:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::InspectorV2::Connector"
+  }
+}

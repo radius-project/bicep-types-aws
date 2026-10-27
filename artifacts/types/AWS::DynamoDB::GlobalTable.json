@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DynamoDB-GlobalTable",
   "type": "AWS::DynamoDB::GlobalTable",
-  "time": "2025-01-24T17:34:55.142Z",
+  "time": "2026-10-12T15:26:07.117Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -12,10 +12,13 @@
       ]
     ],
     "additionalProperties": false,
-    "createOnlyProperties": [
+    "conditionalCreateOnlyProperties": [
       "/properties/LocalSecondaryIndexes",
-      "/properties/TableName",
+      "/properties/GlobalTableSourceArn",
       "/properties/KeySchema"
+    ],
+    "createOnlyProperties": [
+      "/properties/TableName"
     ],
     "definitions": {
       "AttributeDefinition": {
@@ -67,11 +70,28 @@
         "properties": {
           "Enabled": {
             "type": "boolean"
+          },
+          "Mode": {
+            "enum": [
+              "ACCESSED_AND_THROTTLED_KEYS",
+              "THROTTLED_KEYS"
+            ],
+            "type": "string"
           }
         },
         "required": [
           "Enabled"
         ],
+        "type": "object"
+      },
+      "GlobalReadProvisionedThroughputSettings": {
+        "additionalProperties": false,
+        "properties": {
+          "ReadCapacityUnits": {
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
         "type": "object"
       },
       "GlobalSecondaryIndex": {
@@ -86,13 +106,19 @@
             "items": {
               "$ref": "#/definitions/KeySchema"
             },
-            "maxItems": 2,
+            "maxItems": 8,
             "minItems": 1,
             "type": "array",
             "uniqueItems": true
           },
           "Projection": {
             "$ref": "#/definitions/Projection"
+          },
+          "ReadOnDemandThroughputSettings": {
+            "$ref": "#/definitions/ReadOnDemandThroughputSettings"
+          },
+          "ReadProvisionedThroughputSettings": {
+            "$ref": "#/definitions/GlobalReadProvisionedThroughputSettings"
           },
           "WarmThroughput": {
             "$ref": "#/definitions/WarmThroughput"
@@ -109,6 +135,15 @@
           "Projection",
           "KeySchema"
         ],
+        "type": "object"
+      },
+      "GlobalTableWitness": {
+        "additionalProperties": false,
+        "properties": {
+          "Region": {
+            "type": "string"
+          }
+        },
         "type": "object"
       },
       "KeySchema": {
@@ -140,10 +175,6 @@
             "type": "string"
           },
           "StreamArn": {
-            "relationshipRef": {
-              "propertyPath": "/properties/Arn",
-              "typeName": "AWS::Kinesis::Stream"
-            },
             "type": "string"
           }
         },
@@ -311,6 +342,13 @@
             "type": "array",
             "uniqueItems": true
           },
+          "GlobalTableSettingsReplicationMode": {
+            "enum": [
+              "ENABLED",
+              "DISABLED"
+            ],
+            "type": "string"
+          },
           "KinesisStreamSpecification": {
             "$ref": "#/definitions/KinesisStreamSpecification"
           },
@@ -354,14 +392,31 @@
       },
       "ReplicaStreamSpecification": {
         "additionalProperties": false,
+        "anyOf": [
+          {
+            "required": [
+              "ResourcePolicy"
+            ]
+          },
+          {
+            "required": [
+              "Tags"
+            ]
+          }
+        ],
         "properties": {
           "ResourcePolicy": {
             "$ref": "#/definitions/ResourcePolicy"
+          },
+          "Tags": {
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/Tag"
+            },
+            "type": "array",
+            "uniqueItems": true
           }
         },
-        "required": [
-          "ResourcePolicy"
-        ],
         "type": "object"
       },
       "ResourcePolicy": {
@@ -388,6 +443,26 @@
         },
         "required": [
           "SSEEnabled"
+        ],
+        "type": "object"
+      },
+      "SearchSchemaElement": {
+        "additionalProperties": false,
+        "properties": {
+          "AttributeName": {
+            "type": "string"
+          },
+          "SearchSchemaElementType": {
+            "enum": [
+              "HASH",
+              "INLINE_FILTER"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "AttributeName",
+          "SearchSchemaElementType"
         ],
         "type": "object"
       },
@@ -458,6 +533,62 @@
         ],
         "type": "object"
       },
+      "VectorAttribute": {
+        "additionalProperties": false,
+        "properties": {
+          "AttributeName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "AttributeName"
+        ],
+        "type": "object"
+      },
+      "VectorIndex": {
+        "additionalProperties": false,
+        "properties": {
+          "Dimensions": {
+            "maximum": 4096,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "DistanceFunction": {
+            "enum": [
+              "COSINE",
+              "DOT_PRODUCT",
+              "EUCLIDEAN"
+            ],
+            "type": "string"
+          },
+          "IndexName": {
+            "type": "string"
+          },
+          "Projection": {
+            "$ref": "#/definitions/Projection"
+          },
+          "SearchSchema": {
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/SearchSchemaElement"
+            },
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "VectorAttribute": {
+            "$ref": "#/definitions/VectorAttribute"
+          }
+        },
+        "required": [
+          "IndexName",
+          "VectorAttribute",
+          "Projection",
+          "Dimensions",
+          "DistanceFunction"
+        ],
+        "type": "object"
+      },
       "WarmThroughput": {
         "additionalProperties": false,
         "anyOf": [
@@ -511,6 +642,7 @@
           "dynamodb:CreateTable",
           "dynamodb:CreateTableReplica",
           "dynamodb:Describe*",
+          "dynamodb:UpdateTable",
           "dynamodb:UpdateTimeToLive",
           "dynamodb:UpdateContributorInsights",
           "dynamodb:UpdateContinuousBackups",
@@ -526,7 +658,6 @@
           "dynamodb:EnableKinesisStreamingDestination",
           "dynamodb:DisableKinesisStreamingDestination",
           "dynamodb:UpdateTableReplicaAutoScaling",
-          "dynamodb:TagResource",
           "dynamodb:GetResourcePolicy",
           "dynamodb:PutResourcePolicy",
           "application-autoscaling:DeleteScalingPolicy",
@@ -595,6 +726,7 @@
           "dynamodb:BatchWriteItem",
           "dynamodb:DeleteTable",
           "dynamodb:DeleteTableReplica",
+          "dynamodb:DisassociateTableReplica",
           "dynamodb:UpdateItem",
           "dynamodb:TagResource",
           "dynamodb:UntagResource",
@@ -651,6 +783,19 @@
         "type": "array",
         "uniqueItems": true
       },
+      "GlobalTableSourceArn": {
+        "type": "string"
+      },
+      "GlobalTableWitnesses": {
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/GlobalTableWitness"
+        },
+        "maxItems": 1,
+        "minItems": 1,
+        "type": "array",
+        "uniqueItems": true
+      },
       "KeySchema": {
         "items": {
           "$ref": "#/definitions/KeySchema"
@@ -668,8 +813,18 @@
         "type": "array",
         "uniqueItems": true
       },
-      "PointInTimeRecoverySpecification": {
-        "$ref": "#/definitions/PointInTimeRecoverySpecification"
+      "MultiRegionConsistency": {
+        "enum": [
+          "EVENTUAL",
+          "STRONG"
+        ],
+        "type": "string"
+      },
+      "ReadOnDemandThroughputSettings": {
+        "$ref": "#/definitions/ReadOnDemandThroughputSettings"
+      },
+      "ReadProvisionedThroughputSettings": {
+        "$ref": "#/definitions/GlobalReadProvisionedThroughputSettings"
       },
       "Replicas": {
         "insertionOrder": false,
@@ -698,6 +853,15 @@
       "TimeToLiveSpecification": {
         "$ref": "#/definitions/TimeToLiveSpecification"
       },
+      "VectorIndexes": {
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/VectorIndex"
+        },
+        "minItems": 1,
+        "type": "array",
+        "uniqueItems": true
+      },
       "WarmThroughput": {
         "$ref": "#/definitions/WarmThroughput"
       },
@@ -708,14 +872,16 @@
         "$ref": "#/definitions/WriteProvisionedThroughputSettings"
       }
     },
+    "propertyTransform": {
+      "/properties/Replicas/*/GlobalTableSettingsReplicationMode": "GlobalTableSettingsReplicationMode $OR ($exists(GlobalTableSettingsReplicationMode) ? null : \"DISABLED\") $OR ($exists(GlobalTableSettingsReplicationMode) ? null : \"ENABLED_WITH_OVERRIDES\")",
+      "/properties/Replicas/*/SSESpecification/KMSMasterKeyId": "$split(KMSMasterKeyId, '/')[-1]"
+    },
     "readOnlyProperties": [
       "/properties/Arn",
       "/properties/StreamArn",
       "/properties/TableId"
     ],
     "required": [
-      "KeySchema",
-      "AttributeDefinitions",
       "Replicas"
     ],
     "typeName": "AWS::DynamoDB::GlobalTable",
@@ -723,7 +889,8 @@
       "/properties/Replicas/*/ReadProvisionedThroughputSettings/ReadCapacityAutoScalingSettings/SeedCapacity",
       "/properties/Replicas/*/GlobalSecondaryIndexes/*/ReadProvisionedThroughputSettings/ReadCapacityAutoScalingSettings/SeedCapacity",
       "/properties/WriteProvisionedThroughputSettings/WriteCapacityAutoScalingSettings/SeedCapacity",
-      "/properties/GlobalSecondaryIndexes/*/WriteProvisionedThroughputSettings/WriteCapacityAutoScalingSettings/SeedCapacity"
+      "/properties/GlobalSecondaryIndexes/*/WriteProvisionedThroughputSettings/WriteCapacityAutoScalingSettings/SeedCapacity",
+      "/properties/GlobalTableSourceArn"
     ]
   }
 }

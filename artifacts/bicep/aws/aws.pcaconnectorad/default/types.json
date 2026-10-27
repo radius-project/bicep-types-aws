@@ -6,11 +6,22 @@
   },
   {
     "$type": "ObjectType",
+    "name": "Unit",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "VpcInformation",
     "properties": {
-      "SecurityGroupIds": {
+      "IpAddressType": {
         "type": {
           "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "SecurityGroupIds": {
+        "type": {
+          "$ref": "#/4"
         },
         "flags": 1
       }
@@ -22,7 +33,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/3"
     }
   },
   {
@@ -35,19 +46,19 @@
     "properties": {
       "CertificateAuthorityArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "ConnectorArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 18
       },
       "DirectoryId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 1
       },
@@ -59,7 +70,7 @@
       },
       "VpcInformation": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 1
       }
@@ -71,21 +82,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -95,11 +106,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.PCAConnectorAD/Connector@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/6"
+      "$ref": "#/7"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -116,19 +127,19 @@
     "properties": {
       "DirectoryId": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "DirectoryRegistrationArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 18
       },
       "Tags": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/9"
         },
         "flags": 0
       }
@@ -140,21 +151,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/11"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -164,11 +175,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.PCAConnectorAD/DirectoryRegistration@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/11"
+      "$ref": "#/12"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -176,13 +187,13 @@
     "properties": {
       "Critical": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "Policies": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/56"
         },
         "flags": 1
       }
@@ -204,13 +215,13 @@
     "properties": {
       "RenewalPeriod": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/52"
         },
         "flags": 1
       },
       "ValidityPeriod": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/52"
         },
         "flags": 1
       }
@@ -237,31 +248,31 @@
     "properties": {
       "EnableKeyReuseOnNtTokenKeysetStorageFull": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "IncludeSymmetricAlgorithms": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "NoSecurityExtension": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "RemoveInvalidCertificateFromPersonalStore": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "UserInteractionRequired": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       }
@@ -273,31 +284,31 @@
     "properties": {
       "EnableKeyReuseOnNtTokenKeysetStorageFull": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "IncludeSymmetricAlgorithms": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "NoSecurityExtension": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "RemoveInvalidCertificateFromPersonalStore": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "UserInteractionRequired": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       }
@@ -309,31 +320,31 @@
     "properties": {
       "EnableKeyReuseOnNtTokenKeysetStorageFull": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "IncludeSymmetricAlgorithms": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "NoSecurityExtension": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "RemoveInvalidCertificateFromPersonalStore": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "UserInteractionRequired": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       }
@@ -345,13 +356,13 @@
     "properties": {
       "ApplicationPolicies": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/14"
         },
         "flags": 0
       },
       "KeyUsage": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/32"
         },
         "flags": 1
       }
@@ -363,13 +374,13 @@
     "properties": {
       "ApplicationPolicies": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/14"
         },
         "flags": 0
       },
       "KeyUsage": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/32"
         },
         "flags": 1
       }
@@ -381,13 +392,13 @@
     "properties": {
       "ApplicationPolicies": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/14"
         },
         "flags": 0
       },
       "KeyUsage": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/32"
         },
         "flags": 1
       }
@@ -399,13 +410,13 @@
     "properties": {
       "AutoEnrollment": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "MachineType": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       }
@@ -417,13 +428,13 @@
     "properties": {
       "AutoEnrollment": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "MachineType": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       }
@@ -435,13 +446,13 @@
     "properties": {
       "AutoEnrollment": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "MachineType": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       }
@@ -463,13 +474,13 @@
     "properties": {
       "Critical": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "UsageFlags": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/33"
         },
         "flags": 1
       }
@@ -481,31 +492,31 @@
     "properties": {
       "DataEncipherment": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "DigitalSignature": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "KeyAgreement": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "KeyEncipherment": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "NonRepudiation": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       }
@@ -522,19 +533,19 @@
     "properties": {
       "Decrypt": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "KeyAgreement": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "Sign": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       }
@@ -556,19 +567,19 @@
     "properties": {
       "CryptoProviders": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/57"
         },
         "flags": 0
       },
       "KeySpec": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "MinimalKeyLength": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/58"
         },
         "flags": 1
       }
@@ -580,31 +591,31 @@
     "properties": {
       "Algorithm": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "CryptoProviders": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/59"
         },
         "flags": 0
       },
       "KeySpec": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "KeyUsageProperty": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/34"
         },
         "flags": 1
       },
       "MinimalKeyLength": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/58"
         },
         "flags": 1
       }
@@ -616,31 +627,31 @@
     "properties": {
       "Algorithm": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "CryptoProviders": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/60"
         },
         "flags": 0
       },
       "KeySpec": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "KeyUsageProperty": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/34"
         },
         "flags": 0
       },
       "MinimalKeyLength": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/58"
         },
         "flags": 1
       }
@@ -652,19 +663,19 @@
     "properties": {
       "ClientVersion": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "ExportableKey": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "StrongKeyProtectionRequired": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       }
@@ -676,25 +687,25 @@
     "properties": {
       "ClientVersion": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "ExportableKey": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "RequireAlternateSignatureAlgorithm": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "StrongKeyProtectionRequired": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       }
@@ -706,37 +717,37 @@
     "properties": {
       "ClientVersion": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "ExportableKey": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "RequireAlternateSignatureAlgorithm": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "RequireSameKeyRenewal": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "StrongKeyProtectionRequired": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "UseLegacyProvider": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       }
@@ -748,61 +759,61 @@
     "properties": {
       "RequireCommonName": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "RequireDirectoryPath": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "RequireDnsAsCn": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "RequireEmail": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "SanRequireDirectoryGuid": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "SanRequireDns": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "SanRequireDomainDns": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "SanRequireEmail": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "SanRequireSpn": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "SanRequireUpn": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       }
@@ -814,61 +825,61 @@
     "properties": {
       "RequireCommonName": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "RequireDirectoryPath": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "RequireDnsAsCn": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "RequireEmail": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "SanRequireDirectoryGuid": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "SanRequireDns": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "SanRequireDomainDns": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "SanRequireEmail": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "SanRequireSpn": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "SanRequireUpn": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       }
@@ -880,61 +891,61 @@
     "properties": {
       "RequireCommonName": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "RequireDirectoryPath": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "RequireDnsAsCn": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "RequireEmail": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "SanRequireDirectoryGuid": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "SanRequireDns": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "SanRequireDomainDns": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "SanRequireEmail": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "SanRequireSpn": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "SanRequireUpn": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       }
@@ -956,61 +967,7 @@
     "properties": {
       "CertificateValidity": {
         "type": {
-          "$ref": "#/16"
-        },
-        "flags": 1
-      },
-      "EnrollmentFlags": {
-        "type": {
-          "$ref": "#/20"
-        },
-        "flags": 1
-      },
-      "Extensions": {
-        "type": {
-          "$ref": "#/23"
-        },
-        "flags": 1
-      },
-      "GeneralFlags": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 1
-      },
-      "PrivateKeyAttributes": {
-        "type": {
-          "$ref": "#/37"
-        },
-        "flags": 1
-      },
-      "PrivateKeyFlags": {
-        "type": {
-          "$ref": "#/40"
-        },
-        "flags": 1
-      },
-      "SubjectNameFlags": {
-        "type": {
-          "$ref": "#/43"
-        },
-        "flags": 1
-      },
-      "SupersededTemplates": {
-        "type": {
-          "$ref": "#/60"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "TemplateV3",
-    "properties": {
-      "CertificateValidity": {
-        "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 1
       },
@@ -1029,12 +986,6 @@
       "GeneralFlags": {
         "type": {
           "$ref": "#/27"
-        },
-        "flags": 1
-      },
-      "HashAlgorithm": {
-        "type": {
-          "$ref": "#/2"
         },
         "flags": 1
       },
@@ -1066,11 +1017,11 @@
   },
   {
     "$type": "ObjectType",
-    "name": "TemplateV4",
+    "name": "TemplateV3",
     "properties": {
       "CertificateValidity": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 1
       },
@@ -1094,9 +1045,9 @@
       },
       "HashAlgorithm": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
-        "flags": 0
+        "flags": 1
       },
       "PrivateKeyAttributes": {
         "type": {
@@ -1126,17 +1077,77 @@
   },
   {
     "$type": "ObjectType",
+    "name": "TemplateV4",
+    "properties": {
+      "CertificateValidity": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      },
+      "EnrollmentFlags": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1
+      },
+      "Extensions": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 1
+      },
+      "GeneralFlags": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 1
+      },
+      "HashAlgorithm": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "PrivateKeyAttributes": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 1
+      },
+      "PrivateKeyFlags": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 1
+      },
+      "SubjectNameFlags": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 1
+      },
+      "SupersededTemplates": {
+        "type": {
+          "$ref": "#/63"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "ValidityPeriod",
     "properties": {
       "Period": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/58"
         },
         "flags": 1
       },
       "PeriodType": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 1
       }
@@ -1158,13 +1169,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/54"
+      "$ref": "#/55"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/3"
     }
   },
   {
@@ -1173,31 +1184,31 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/3"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/3"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/3"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/3"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/3"
     }
   },
   {
@@ -1210,37 +1221,37 @@
     "properties": {
       "ConnectorArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "Definition": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/48"
         },
         "flags": 1
       },
       "Name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "ReenrollAllCertificateHolders": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 4
       },
       "Tags": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/47"
         },
         "flags": 0
       },
       "TemplateArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 18
       }
@@ -1252,21 +1263,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/65"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1276,11 +1287,11 @@
   {
     "$type": "ResourceType",
     "name": "AWS.PCAConnectorAD/Template@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/65"
+      "$ref": "#/66"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   },
   {
     "$type": "ObjectType",
@@ -1293,13 +1304,13 @@
     "properties": {
       "AutoEnroll": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "Enroll": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 0
       }
@@ -1315,27 +1326,27 @@
     "properties": {
       "AccessRights": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/69"
         },
         "flags": 5
       },
       "GroupDisplayName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 5
       },
       "GroupSecurityIdentifier": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
-        "flags": 16
+        "flags": 17
       },
       "TemplateArn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
-        "flags": 16
+        "flags": 17
       }
     }
   },
@@ -1345,21 +1356,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/71"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1369,10 +1380,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.PCAConnectorAD/TemplateGroupAccessControlEntry@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/71"
+      "$ref": "#/72"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

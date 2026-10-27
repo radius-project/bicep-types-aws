@@ -1,25 +1,52 @@
 # AWS.Kendra @ default
 
 ## Resource AWS.Kendra/DataSource@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Kendra/DataSourceProperties](#awskendradatasourceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Kendra/Faq@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Kendra/FaqProperties](#awskendrafaqproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Kendra/FeaturedResultsSet@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Kendra/FeaturedResultsSetProperties](#awskendrafeaturedresultssetproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Kendra/Index@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Kendra/IndexProperties](#awskendraindexproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Kendra/QuerySuggestionsBlockList@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Kendra/QuerySuggestionsBlockListProperties](#awskendraquerysuggestionsblocklistproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Kendra/Thesaurus@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Kendra/ThesaurusProperties](#awskendrathesaurusproperties) (Required, Identifier): properties of the resource
 
 ## AccessControlListConfiguration
 ### Properties
@@ -57,6 +84,18 @@
 * **S3Path**: [S3Path](#s3path) (Required): FAQ S3 path
 * **Tags**: [Tag](#tag)[]: Tags for labeling the FAQ
 
+## AWS.Kendra/FeaturedResultsSetProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the featured results set.
+* **Description**: string: A description for the set of featured results.
+* **FeaturedDocuments**: [FeaturedDocument](#featureddocument)[] (WriteOnly): A list of document IDs for the documents you want to feature at the top of the search results page.
+* **FeaturedResultsSetId**: string (ReadOnly): The identifier of the set of featured results.
+* **FeaturedResultsSetName**: string (Required): A name for the set of featured results.
+* **IndexId**: string (Required): The identifier of the index that you want to use for featuring results.
+* **QueryTexts**: string[]: A list of queries for featuring results.
+* **Status**: string: The current status of the set of featured results. When the value is ACTIVE, featured results are ready for use.
+* **Tags**: [Tag](#tag)[]: A list of key-value pairs that identify or categorize the featured results set.
+
 ## AWS.Kendra/IndexProperties
 ### Properties
 * **Arn**: string (ReadOnly)
@@ -71,6 +110,28 @@
 * **Tags**: [Tag](#tag)[]: Tags for labeling the index
 * **UserContextPolicy**: string
 * **UserTokenConfigurations**: [UserTokenConfiguration](#usertokenconfiguration)[]
+
+## AWS.Kendra/QuerySuggestionsBlockListProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the query suggestions block list.
+* **Description**: string: A description for the block list.
+* **Id**: string (ReadOnly): The identifier of the block list.
+* **IndexId**: string (Required): The identifier of the index for the block list.
+* **Name**: string (Required): The name of the block list.
+* **RoleArn**: string (Required): The Amazon Resource Name (ARN) of an IAM role with permission to access the S3 bucket that contains the block list text file.
+* **SourceS3Path**: [S3Path](#s3path) (Required)
+* **Tags**: [Tag](#tag)[]: A list of key-value pairs that identify or categorize the block list.
+
+## AWS.Kendra/ThesaurusProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the thesaurus.
+* **Description**: string: A description for the thesaurus.
+* **Id**: string (ReadOnly): The identifier of the thesaurus.
+* **IndexId**: string (Required): The identifier of the index for the thesaurus.
+* **Name**: string (Required): A name for the thesaurus.
+* **RoleArn**: string (Required): An IAM role that gives Amazon Kendra permissions to access the thesaurus file specified in SourceS3Path.
+* **SourceS3Path**: [S3Path](#s3path) (Required)
+* **Tags**: [Tag](#tag)[]: A list of key-value pairs that identify or categorize the thesaurus.
 
 ## CapacityUnitsConfiguration
 ### Properties
@@ -167,6 +228,9 @@
 * **SqlConfiguration**: [SqlConfiguration](#sqlconfiguration)
 * **VpcConfiguration**: [DataSourceVpcConfiguration](#datasourcevpcconfiguration)
 
+## DataSource_Template
+### Properties
+
 ## DataSourceConfiguration
 ### Properties
 * **ConfluenceConfiguration**: [ConfluenceConfiguration](#confluenceconfiguration)
@@ -177,6 +241,7 @@
 * **SalesforceConfiguration**: [SalesforceConfiguration](#salesforceconfiguration)
 * **ServiceNowConfiguration**: [ServiceNowConfiguration](#servicenowconfiguration)
 * **SharePointConfiguration**: [SharePointConfiguration](#sharepointconfiguration)
+* **TemplateConfiguration**: [TemplateConfiguration](#templateconfiguration)
 * **WebCrawlerConfiguration**: [WebCrawlerConfiguration](#webcrawlerconfiguration)
 * **WorkDocsConfiguration**: [WorkDocsConfiguration](#workdocsconfiguration)
 
@@ -220,6 +285,10 @@
 ## DocumentsMetadataConfiguration
 ### Properties
 * **S3Prefix**: string
+
+## FeaturedDocument
+### Properties
+* **Id**: string: The identifier of the document to feature in the search results.
 
 ## GoogleDriveConfiguration
 ### Properties
@@ -305,6 +374,16 @@
 ### Properties
 * **Bucket**: string (Required)
 * **Key**: string (Required)
+
+## S3Path
+### Properties
+* **Bucket**: string (Required): The name of the S3 bucket that contains the file.
+* **Key**: string (Required): The name of the file.
+
+## S3Path
+### Properties
+* **Bucket**: string (Required): The name of the S3 bucket that contains the file.
+* **Key**: string (Required): The name of the file.
 
 ## SalesforceChatterFeedConfiguration
 ### Properties
@@ -426,8 +505,27 @@
 
 ## Tag
 ### Properties
+* **Key**: string (Required): The key for the tag.
+* **Value**: string (Required): The value associated with the tag.
+
+## Tag
+### Properties
 * **Key**: string (Required): A string used to identify this tag
 * **Value**: string (Required): A string containing the value for the tag
+
+## Tag
+### Properties
+* **Key**: string (Required): The key for the tag.
+* **Value**: string (Required): The value associated with the tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key for the tag.
+* **Value**: string (Required): The value associated with the tag.
+
+## TemplateConfiguration
+### Properties
+* **Template**: [DataSource_Template](#datasourcetemplate) (Required)
 
 ## UserTokenConfiguration
 ### Properties

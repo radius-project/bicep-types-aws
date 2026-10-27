@@ -1,0 +1,210 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Cases-RelatedItem",
+  "type": "AWS::Cases::RelatedItem",
+  "time": "2026-10-21T19:27:28.875Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/DomainId",
+        "/properties/CaseId",
+        "/properties/RelatedItemId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DomainId",
+      "/properties/CaseId",
+      "/properties/Type",
+      "/properties/Content"
+    ],
+    "definitions": {
+      "CommentContent": {
+        "additionalProperties": false,
+        "description": "Represents a comment.",
+        "properties": {
+          "Body": {
+            "description": "Text in the body of a comment.",
+            "maxLength": 15000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "ContentType": {
+            "description": "Type of the text in the comment.",
+            "enum": [
+              "Text/Plain"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Body",
+          "ContentType"
+        ],
+        "type": "object"
+      },
+      "RelatedItemContent": {
+        "additionalProperties": false,
+        "description": "Represents the content of a related item.",
+        "properties": {
+          "Comment": {
+            "$ref": "#/definitions/CommentContent"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A tag associated with the resource.",
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Cases::RelatedItem. Creates a related item (comments) and associates it with a case.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "cases:CreateRelatedItem",
+          "cases:SearchRelatedItems",
+          "cases:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "cases:DeleteRelatedItem"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "CaseId": {
+              "maxLength": 500,
+              "minLength": 1,
+              "type": "string"
+            },
+            "DomainId": {
+              "maxLength": 500,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "DomainId",
+            "CaseId"
+          ]
+        },
+        "permissions": [
+          "cases:SearchRelatedItems"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "cases:SearchRelatedItems",
+          "cases:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "cases:UpdateRelatedItem",
+          "cases:TagResource",
+          "cases:UntagResource",
+          "cases:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/RelatedItemArn"
+    ],
+    "properties": {
+      "CaseId": {
+        "description": "A unique identifier of the case.",
+        "maxLength": 500,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Content": {
+        "$ref": "#/definitions/RelatedItemContent",
+        "description": "The content of a related item to be created."
+      },
+      "DomainId": {
+        "description": "The unique identifier of the Cases domain.",
+        "maxLength": 500,
+        "minLength": 1,
+        "type": "string"
+      },
+      "RelatedItemArn": {
+        "description": "The Amazon Resource Name (ARN) of the related item.",
+        "maxLength": 500,
+        "minLength": 1,
+        "pattern": "^arn:aws[-a-z]*:cases:[-a-z0-9]*:[0-9]{12}:domain/[-a-z0-9]*/case/[-a-z0-9]*/related-item/[-a-z0-9]*$",
+        "type": "string"
+      },
+      "RelatedItemId": {
+        "description": "The unique identifier of the related item.",
+        "maxLength": 500,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A list of tags on the related item.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array"
+      },
+      "Type": {
+        "description": "The type of a related item.",
+        "enum": [
+          "Contact",
+          "Comment",
+          "File",
+          "Sla",
+          "ConnectCase",
+          "Custom"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/RelatedItemArn",
+      "/properties/RelatedItemId"
+    ],
+    "required": [
+      "DomainId",
+      "CaseId",
+      "Type",
+      "Content"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "cases:TagResource",
+        "cases:UntagResource",
+        "cases:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Cases::RelatedItem"
+  }
+}

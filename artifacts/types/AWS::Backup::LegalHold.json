@@ -1,0 +1,180 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Backup-LegalHold",
+  "type": "AWS::Backup::LegalHold",
+  "time": "2026-10-21T16:38:10.63Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/LegalHoldId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Title",
+      "/properties/Description",
+      "/properties/RecoveryPointSelection"
+    ],
+    "description": "Creates a legal hold on recovery points (backups). A legal hold prevents backups from being deleted while under hold.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "backup:CreateLegalHold",
+          "backup:GetLegalHold",
+          "backup:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "backup:CancelLegalHold",
+          "backup:GetLegalHold"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "backup:ListLegalHolds"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "backup:GetLegalHold",
+          "backup:ListTags"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "backup:GetLegalHold",
+          "backup:TagResource",
+          "backup:UntagResource",
+          "backup:ListTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the legal hold.",
+        "type": "string"
+      },
+      "CreationDate": {
+        "description": "The time when the legal hold was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description of the legal hold.",
+        "type": "string"
+      },
+      "LegalHoldId": {
+        "description": "The ID of the legal hold.",
+        "type": "string"
+      },
+      "RecoveryPointSelection": {
+        "additionalProperties": false,
+        "description": "The criteria to assign a set of resources, such as resource types or backup vaults.",
+        "properties": {
+          "DateRange": {
+            "additionalProperties": false,
+            "description": "A date range for filtering recovery points.",
+            "properties": {
+              "FromDate": {
+                "description": "The beginning date, inclusive. ISO 8601 date-time.",
+                "format": "date-time",
+                "type": "string"
+              },
+              "ToDate": {
+                "description": "The end date, inclusive. ISO 8601 date-time.",
+                "format": "date-time",
+                "type": "string"
+              }
+            },
+            "required": [
+              "FromDate",
+              "ToDate"
+            ],
+            "type": "object"
+          },
+          "ResourceIdentifiers": {
+            "description": "The resources included in the resource selection.",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "VaultNames": {
+            "description": "The names of the vaults in which the selected recovery points are contained.",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "Status": {
+        "description": "The status of the legal hold.",
+        "enum": [
+          "CREATING",
+          "ACTIVE",
+          "CANCELING",
+          "CANCELED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Optional tags to include.",
+        "insertionOrder": false,
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "description": "The key name of the tag.",
+              "type": "string"
+            },
+            "Value": {
+              "description": "The value for the tag.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "Title": {
+        "description": "The title of the legal hold.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/LegalHoldId",
+      "/properties/Status",
+      "/properties/CreationDate"
+    ],
+    "required": [
+      "Title",
+      "Description",
+      "RecoveryPointSelection"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "backup:TagResource",
+        "backup:UntagResource",
+        "backup:ListTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Backup::LegalHold"
+  }
+}

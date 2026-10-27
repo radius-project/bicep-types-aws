@@ -1,17 +1,1078 @@
 [
   {
     "$type": "ObjectType",
-    "name": "ApplicationSettings",
+    "name": "AccessEndpoint",
     "properties": {
-      "SettingsGroup": {
+      "AccessEndpointType": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates the type of access endpoint."
+      },
+      "VpcEndpointId": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates the VPC endpoint to use for access."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AccessEndpointConfig",
+    "properties": {
+      "AccessEndpoints": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "Indicates a list of access endpoints associated with this directory."
+      },
+      "InternetFallbackProtocols": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Indicates a list of protocols that fallback to using the public Internet when streaming over a VPC endpoint is not available."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ActiveDirectoryConfig",
+    "properties": {
+      "DomainName": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The name of the domain."
+      },
+      "ServiceAccountSecretArn": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "Indicates the secret ARN on the service account."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CertificateBasedAuthProperties",
+    "properties": {
+      "CertificateAuthorityArn": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the Amazon Web Services Certificate Manager Private CA resource."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The status of the certificate-based authentication properties."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DefaultWorkspaceCreationProperties",
+    "properties": {
+      "CustomSecurityGroupId": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The identifier of the default security group to apply to WorkSpaces when they are created."
+      },
+      "DefaultOu": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The organizational unit (OU) in the directory for the WorkSpace machine accounts."
+      },
+      "EnableInternetAccess": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "Specifies whether to automatically assign an Elastic public IP address to WorkSpaces in this directory by default."
+      },
+      "EnableMaintenanceMode": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "Specifies whether maintenance mode is enabled for WorkSpaces."
+      },
+      "InstanceIamRoleArn": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates the IAM role ARN of the instance."
+      },
+      "UserEnabledAsLocalAdministrator": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "Specifies whether WorkSpace users are local administrators on their WorkSpaces."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GlobalAcceleratorForDirectory",
+    "properties": {
+      "Mode": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "Indicates if Global Accelerator for directory is enabled or disabled."
+      },
+      "PreferredProtocol": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates the preferred protocol for Global Accelerator."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IDCConfig",
+    "properties": {
+      "ApplicationArn": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the application."
+      },
+      "InstanceArn": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the identity center instance."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MicrosoftEntraConfig",
+    "properties": {
+      "ApplicationConfigSecretArn": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the application config."
+      },
+      "TenantId": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The identifier of the tenant."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SamlProperties",
+    "properties": {
+      "RelayStateParameterName": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The relay state parameter name supported by the SAML 2.0 identity provider (IdP)."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates the status of SAML 2.0 authentication."
+      },
+      "UserAccessUrl": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The SAML 2.0 identity provider (IdP) user access URL."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SelfservicePermissions",
+    "properties": {
+      "ChangeComputeType": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Specifies whether users can change the compute type (bundle) for their WorkSpace."
+      },
+      "IncreaseVolumeSize": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Specifies whether users can increase the volume size of the drives on their WorkSpace."
+      },
+      "RebuildWorkspace": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Specifies whether users can rebuild the operating system of a WorkSpace to its original state."
+      },
+      "RestartWorkspace": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Specifies whether users can restart their WorkSpace."
+      },
+      "SwitchRunningMode": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Specifies whether users can switch the running mode of their WorkSpace."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StorageConnector",
+    "properties": {
+      "ConnectorType": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The type of connector used to save user files."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "Indicates if the storage connector is enabled or disabled."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StreamingProperties",
+    "properties": {
+      "GlobalAccelerator": {
         "type": {
           "$ref": "#/5"
         },
         "flags": 0
       },
+      "StorageConnectors": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0,
+        "description": "Indicates the storage connector used."
+      },
+      "StreamingExperiencePreferredProtocol": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates the type of preferred protocol for the streaming experience."
+      },
+      "UserSettings": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "Indicates the permission settings associated with the user."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The key of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The value of the tag."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "UserSetting",
+    "properties": {
+      "Action": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "Indicates the type of action."
+      },
+      "MaximumLength": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "Indicates the maximum character length for the specified user setting."
+      },
+      "Permission": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "Indicates if the setting is enabled or disabled."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WorkspaceAccessProperties",
+    "properties": {
+      "AccessEndpointConfig": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "DeviceTypeAndroid": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates whether users can use Android and Android-compatible Chrome OS devices to access their WorkSpaces."
+      },
+      "DeviceTypeChromeOs": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates whether users can use Chromebooks to access their WorkSpaces."
+      },
+      "DeviceTypeIos": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates whether users can use iOS devices to access their WorkSpaces."
+      },
+      "DeviceTypeLinux": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates whether users can use Linux clients to access their WorkSpaces."
+      },
+      "DeviceTypeOsx": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates whether users can use macOS clients to access their WorkSpaces."
+      },
+      "DeviceTypeWeb": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates whether users can access their WorkSpaces through a web browser."
+      },
+      "DeviceTypeWindows": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates whether users can use Windows clients to access their WorkSpaces."
+      },
+      "DeviceTypeWorkSpacesThinClient": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates whether users can access their WorkSpaces through a WorkSpaces Thin Client."
+      },
+      "DeviceTypeZeroClient": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates whether users can use zero client devices to access their WorkSpaces."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/15"
+    }
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.WorkSpaces/DirectoryProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/15"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/15"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/15"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/15"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/12"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.WorkSpaces/DirectoryProperties",
+    "properties": {
+      "ActiveDirectoryConfig": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      },
+      "Alias": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The directory alias."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the WorkSpace directory."
+      },
+      "CertificateBasedAuthProperties": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "CustomerUserName": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The user name for the service account."
+      },
+      "DirectoryId": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The directory identifier."
+      },
+      "DirectoryName": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The name of the directory."
+      },
+      "DirectoryType": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The directory type."
+      },
+      "DnsIpAddresses": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 2,
+        "description": "The IP addresses of the DNS servers for the directory."
+      },
+      "DnsIpv6Addresses": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 2,
+        "description": "The IPv6 addresses of the DNS servers for the directory."
+      },
+      "EnableSelfService": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 4,
+        "description": "Indicates whether self-service capabilities are enabled or disabled."
+      },
+      "EndpointEncryptionMode": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Endpoint encryption mode that allows you to configure the specified directory between Standard TLS and FIPS 140-2 validated mode."
+      },
+      "IDCConfig": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2
+      },
+      "IamRoleId": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The identifier of the IAM role."
+      },
+      "IdcInstanceArn": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 4,
+        "description": "The Amazon Resource Name (ARN) of the identity center instance."
+      },
+      "IpGroupIds": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0,
+        "description": "The identifiers of the IP access control groups associated with the directory."
+      },
+      "MicrosoftEntraConfig": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "RegistrationCode": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The registration code for the directory."
+      },
+      "SamlProperties": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "SelfservicePermissions": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      },
+      "State": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The state of the directory's registration with Amazon WorkSpaces."
+      },
+      "StreamingProperties": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0
+      },
+      "SubnetIds": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0,
+        "description": "The identifiers of the subnets for your virtual private cloud (VPC)."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0,
+        "description": "The tags associated with the directory."
+      },
+      "Tenancy": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates whether your WorkSpace directory is dedicated or shared."
+      },
+      "UserIdentityType": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The type of identity management the user is using."
+      },
+      "WorkspaceAccessProperties": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0
+      },
+      "WorkspaceCreationProperties": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "WorkspaceDirectoryDescription": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Description of the directory to register."
+      },
+      "WorkspaceDirectoryName": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The name of the directory to register."
+      },
+      "WorkspaceSecurityGroupId": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The identifier of the security group that is assigned to new WorkSpaces."
+      },
+      "WorkspaceType": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Indicates whether the directory's WorkSpace type is personal or pools."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.WorkSpaces/Directory",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.WorkSpaces/Directory@default",
+    "body": {
+      "$ref": "#/29"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WorkspaceProperties",
+    "properties": {
+      "ComputeTypeName": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
+      "RootVolumeSizeGib": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0
+      },
+      "RunningMode": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
+      "RunningModeAutoStopTimeoutInMinutes": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0
+      },
+      "UserVolumeSizeGib": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.WorkSpaces/WorkspaceProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/31"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.WorkSpaces/WorkspaceProperties",
+    "properties": {
+      "BundleId": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1
+      },
+      "DirectoryId": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2
+      },
+      "RootVolumeEncryptionEnabled": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0
+      },
+      "UserName": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1
+      },
+      "UserVolumeEncryptionEnabled": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0
+      },
+      "VolumeEncryptionKey": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
+      "WorkspaceId": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 18
+      },
+      "WorkspaceProperties": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.WorkSpaces/Workspace",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.WorkSpaces/Workspace@default",
+    "body": {
+      "$ref": "#/36"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IpRuleItem",
+    "properties": {
+      "IpRule": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The IP address range, in CIDR notation."
+      },
+      "RuleDesc": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The description of the rule."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The key of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The value of the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.WorkSpaces/WorkspaceIpGroupProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/39"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/38"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.WorkSpaces/WorkspaceIpGroupProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the IP access control group."
+      },
+      "GroupDesc": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The description of the group."
+      },
+      "GroupId": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The identifier of the IP access control group."
+      },
+      "GroupName": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The name of the group."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "The tags for the IP access control group."
+      },
+      "UserRules": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0,
+        "description": "The rules for the IP access control group."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.WorkSpaces/WorkspaceIpGroup",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.WorkSpaces/WorkspaceIpGroup@default",
+    "body": {
+      "$ref": "#/44"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ApplicationSettings",
+    "properties": {
+      "SettingsGroup": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
       "Status": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/15"
         },
         "flags": 1
       }
@@ -28,7 +1089,7 @@
     "properties": {
       "DesiredUserSessions": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/21"
         },
         "flags": 1
       }
@@ -36,17 +1097,22 @@
   },
   {
     "$type": "ObjectType",
+    "name": "RunningMode",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "Tag",
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/15"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/15"
         },
         "flags": 1
       }
@@ -58,29 +1124,23 @@
     "properties": {
       "DisconnectTimeoutInSeconds": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/21"
         },
         "flags": 0
       },
       "IdleDisconnectTimeoutInSeconds": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/21"
         },
         "flags": 0
       },
       "MaxUserDurationInSeconds": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/21"
         },
         "flags": 0
       }
     }
-  },
-  {
-    "$type": "StringType"
-  },
-  {
-    "$type": "IntegerType"
   },
   {
     "$type": "StringLiteralType",
@@ -89,7 +1149,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/50"
     }
   },
   {
@@ -98,67 +1158,73 @@
     "properties": {
       "ApplicationSettings": {
         "type": {
-          "$ref": "#/0"
+          "$ref": "#/46"
         },
         "flags": 0
       },
       "BundleId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/15"
         },
         "flags": 1
       },
       "Capacity": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/48"
         },
         "flags": 1
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/15"
         },
         "flags": 2
       },
       "Description": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/15"
         },
         "flags": 0
       },
       "DirectoryId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/15"
         },
         "flags": 1
       },
       "PoolArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/15"
         },
         "flags": 2
       },
       "PoolId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/15"
         },
         "flags": 18
       },
       "PoolName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/15"
         },
         "flags": 1
       },
+      "RunningMode": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
       "Tags": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/53"
         },
         "flags": 0
       },
       "TimeoutSettings": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/51"
         },
         "flags": 0
       }
@@ -170,21 +1236,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/15"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/54"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -194,10 +1260,10 @@
   {
     "$type": "ResourceType",
     "name": "AWS.WorkSpaces/WorkspacesPool@default",
-    "scopeType": 0,
     "body": {
-      "$ref": "#/10"
+      "$ref": "#/55"
     },
-    "flags": 0
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

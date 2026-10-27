@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ApiGatewayV2-Api",
   "type": "AWS::ApiGatewayV2::Api",
-  "time": "2025-01-13T17:09:08.517Z",
+  "time": "2026-08-25T16:03:34.651Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -113,6 +113,7 @@
           "apigateway:GET",
           "apigateway:PUT",
           "apigateway:POST",
+          "apigateway:DELETE",
           "s3:getObject"
         ]
       }
@@ -165,9 +166,18 @@
         "description": "Avoid validating models when creating a deployment. Supported only for WebSocket APIs.",
         "type": "boolean"
       },
+      "ExecuteApiArn": {
+        "description": "",
+        "pattern": "arn:aws(-[\\w]+)*:execute-api:[a-z0-9-]+:[0-9]{12}:.+",
+        "type": "string"
+      },
       "FailOnWarnings": {
         "description": "Specifies whether to rollback the API creation when a warning is encountered. By default, API creation continues if a warning is encountered.",
         "type": "boolean"
+      },
+      "IpAddressType": {
+        "description": "The IP address types that can invoke the API. Use ``ipv4`` to allow only IPv4 addresses to invoke your API, or use ``dualstack`` to allow both IPv4 and IPv6 addresses to invoke your API.\n Don?t use IP address type for an HTTP API based on an OpenAPI specification. Instead, specify the IP address type in the OpenAPI specification.",
+        "type": "string"
       },
       "Name": {
         "description": "The name of the API. Required unless you specify an OpenAPI definition for ``Body`` or ``S3BodyLocation``.",
@@ -206,10 +216,17 @@
     },
     "readOnlyProperties": [
       "/properties/ApiId",
-      "/properties/ApiEndpoint"
+      "/properties/ApiEndpoint",
+      "/properties/ExecuteApiArn"
     ],
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "apigateway:GET",
+        "apigateway:PUT",
+        "apigateway:PATCH",
+        "apigateway:DELETE"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,
@@ -217,8 +234,8 @@
     },
     "typeName": "AWS::ApiGatewayV2::Api",
     "writeOnlyProperties": [
-      "/properties/BasePath",
       "/properties/Body",
+      "/properties/BasePath",
       "/properties/BodyS3Location",
       "/properties/BodyS3Location/Etag",
       "/properties/BodyS3Location/Bucket",

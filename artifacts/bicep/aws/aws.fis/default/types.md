@@ -1,14 +1,16 @@
 # AWS.FIS @ default
 
 ## Resource AWS.FIS/ExperimentTemplate@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.FIS/ExperimentTemplateProperties](#awsfisexperimenttemplateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.FIS/TargetAccountConfiguration@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
@@ -24,7 +26,7 @@
 * **LogConfiguration**: [ExperimentTemplateLogConfiguration](#experimenttemplatelogconfiguration)
 * **RoleArn**: string (Required)
 * **StopConditions**: [ExperimentTemplateStopCondition](#experimenttemplatestopcondition)[] (Required)
-* **Tags**: [ExperimentTemplate_Tags](#experimenttemplatetags) (Required)
+* **Tags**: [ExperimentTemplate_Tags](#experimenttemplatetags)
 * **Targets**: [ExperimentTemplateTargetMap](#experimenttemplatetargetmap) (Required)
 
 ## AWS.FIS/TargetAccountConfigurationProperties

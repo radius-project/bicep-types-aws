@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-WAFv2-IPSet",
   "type": "AWS::WAFv2::IPSet",
-  "time": "2024-10-29T23:13:34.134Z",
+  "time": "2026-09-21T16:26:37.291Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -73,7 +73,9 @@
         "permissions": [
           "wafv2:CreateIPSet",
           "wafv2:GetIPSet",
-          "wafv2:ListTagsForResource"
+          "wafv2:ListTagsForResource",
+          "wafv2:TagResource",
+          "wafv2:UntagResource"
         ]
       },
       "delete": {
@@ -164,6 +166,11 @@
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-wafv2.git",
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "wafv2:TagResource",
+        "wafv2:UntagResource",
+        "wafv2:ListTagsForResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
       "tagUpdatable": true,

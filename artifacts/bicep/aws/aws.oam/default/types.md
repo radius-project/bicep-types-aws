@@ -1,14 +1,16 @@
 # AWS.Oam @ default
 
 ## Resource AWS.Oam/Link@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Oam/LinkProperties](#awsoamlinkproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Oam/Sink@default
-* **Valid Scope(s)**: Unknown
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
