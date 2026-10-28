@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/signal"
 	"path"
+	"reflect"
 	"strings"
 	"time"
 
@@ -155,14 +156,15 @@ func run(cmd *cobra.Command, args []string) error {
 			}
 
 			timestamp := time.Time{}
+			var previous *TypeRecord
 			if len(existing) > 0 {
-				record := TypeRecord{}
-				err := json.Unmarshal(existing, &record)
+				previous = &TypeRecord{}
+				err := json.Unmarshal(existing, previous)
 				if err != nil {
 					return fmt.Errorf("file %s has invalid JSON: %w", filename, err)
 				}
 
-				timestamp = record.Timestamp
+				timestamp = previous.Timestamp
 			}
 
 			if isSkippedResource(*typeSummary.TypeName) ||
@@ -178,8 +180,6 @@ func run(cmd *cobra.Command, args []string) error {
 				return err
 			}
 
-			fmt.Printf("Writing: %s\n", *typeSummary.TypeName)
-
 			schema := map[string]interface{}{}
 			err = json.Unmarshal([]byte(*response.Schema), &schema)
 			if err != nil {
@@ -192,6 +192,13 @@ func run(cmd *cobra.Command, args []string) error {
 				Type:      *typeSummary.TypeName,
 				Timestamp: *typeSummary.LastUpdated,
 			}
+
+			if previous != nil && sameContent(*previous, record) {
+				fmt.Printf("Skipping: %s - schema unchanged\n", *typeSummary.TypeName)
+				continue
+			}
+
+			fmt.Printf("Writing: %s\n", *typeSummary.TypeName)
 
 			result, err := json.MarshalIndent(&record, "", "  ")
 			if err != nil {
@@ -223,6 +230,14 @@ type TypeRecord struct {
 	Type      string                 `json:"type"`
 	Timestamp time.Time              `json:"time"`
 	Schema    map[string]interface{} `json:"schema"`
+}
+
+// sameContent reports whether two records describe the same type with the same
+// schema. AWS moves the last updated time of a type when it redeploys the type,
+// even if the schema did not change, so the time is not compared. Keeping the
+// file as it is then avoids changes that only move the time.
+func sameContent(a, b TypeRecord) bool {
+	return a.ARN == b.ARN && a.Type == b.Type && reflect.DeepEqual(a.Schema, b.Schema)
 }
 
 func Execute() {

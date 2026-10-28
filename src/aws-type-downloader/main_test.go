@@ -2,10 +2,12 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"os"
 	"path/filepath"
 	"strings"
 	"testing"
+	"time"
 )
 
 func writeRecord(t *testing.T, dir, typeName, schema string) {
@@ -105,6 +107,49 @@ func TestBreakingChangesCommand_Errors(t *testing.T) {
 			_, err := runCommand(t, append([]string{"breaking-changes"}, tt.args...)...)
 			if err == nil || !strings.Contains(err.Error(), tt.want) {
 				t.Errorf("got error %v, want one containing %q", err, tt.want)
+			}
+		})
+	}
+}
+
+func TestSameContent(t *testing.T) {
+	parse := func(schema string) map[string]interface{} {
+		t.Helper()
+		result := map[string]interface{}{}
+		if err := json.Unmarshal([]byte(schema), &result); err != nil {
+			t.Fatal(err)
+		}
+		return result
+	}
+	record := func(arn, typeName, schema, timestamp string) TypeRecord {
+		t.Helper()
+		parsed, err := time.Parse(time.RFC3339, timestamp)
+		if err != nil {
+			t.Fatal(err)
+		}
+		return TypeRecord{ARN: arn, Type: typeName, Timestamp: parsed, Schema: parse(schema)}
+	}
+
+	schema := `{"properties": {"Name": {"type": "string", "maxLength": 64}}, "required": ["Name"]}`
+	stored := record("arn:a", "AWS::Test::Thing", schema, "2026-10-21T00:00:00Z")
+
+	tests := []struct {
+		name  string
+		other TypeRecord
+		want  bool
+	}{
+		{name: "only the time moved", other: record("arn:a", "AWS::Test::Thing", schema, "2026-10-28T00:00:00Z"), want: true},
+		{name: "same schema with keys in another order", other: record("arn:a", "AWS::Test::Thing", `{"required": ["Name"], "properties": {"Name": {"maxLength": 64, "type": "string"}}}`, "2026-10-28T00:00:00Z"), want: true},
+		{name: "schema changed", other: record("arn:a", "AWS::Test::Thing", `{"properties": {"Name": {"type": "string", "maxLength": 128}}, "required": ["Name"]}`, "2026-10-28T00:00:00Z")},
+		{name: "required list changed", other: record("arn:a", "AWS::Test::Thing", `{"properties": {"Name": {"type": "string", "maxLength": 64}}, "required": ["Name", "Name"]}`, "2026-10-28T00:00:00Z")},
+		{name: "arn changed", other: record("arn:b", "AWS::Test::Thing", schema, "2026-10-28T00:00:00Z")},
+		{name: "type changed", other: record("arn:a", "AWS::Test::Other", schema, "2026-10-28T00:00:00Z")},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := sameContent(stored, tt.other); got != tt.want {
+				t.Errorf("got %v, want %v", got, tt.want)
 			}
 		})
 	}
