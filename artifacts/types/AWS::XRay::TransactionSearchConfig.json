@@ -1,14 +1,30 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-XRay-TransactionSearchConfig",
   "type": "AWS::XRay::TransactionSearchConfig",
-  "time": "2026-09-16T21:02:05.207Z",
+  "time": "2026-10-28T16:52:19.551Z",
   "schema": {
     "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/CloudWatchLogsConfiguration"
+    ],
     "definitions": {
       "AccountId": {
         "description": "User account id, used as the primary identifier for the resource",
         "pattern": "^\\d{12}$",
         "type": "string"
+      },
+      "CloudWatchLogsConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration for the CloudWatch Logs log group that X-Ray creates when this resource enables Transaction Search. It is used only at that time and is never returned",
+        "properties": {
+          "SpansLogGroupKmsKeyId": {
+            "description": "The ARN of a symmetric customer managed AWS KMS key in the same account and Region, used to encrypt the aws/spans log group. Key IDs and alias ARNs are not supported, so for an AWS::KMS::Key use Fn::GetAtt Arn, not Ref. X-Ray applies the key only when it creates aws/spans while enabling Transaction Search. If aws/spans already exists, for example from an earlier enablement or an earlier create that failed partway, the create fails and X-Ray does not enable Transaction Search or change the log group. Remove this property to use the existing log group with its current encryption, and use the CloudWatch Logs AssociateKmsKey API to change its key. The caller needs kms:DescribeKey on the key, and the key policy must allow CloudWatch Logs to use it. Adding, changing or removing this property replaces the resource, which fails while Transaction Search is enabled",
+            "maxLength": 256,
+            "pattern": "^arn:aws[a-z-]*:kms:[a-z0-9-]+:\\d{12}:key/[a-zA-Z0-9-]+$",
+            "type": "string"
+          }
+        },
+        "type": "object"
       },
       "IndexingPercentage": {
         "description": "Determines the percentage of traces indexed from CloudWatch Logs to X-Ray",
@@ -23,6 +39,7 @@
         "permissions": [
           "application-signals:StartDiscovery",
           "iam:CreateServiceLinkedRole",
+          "kms:DescribeKey",
           "logs:CreateLogGroup",
           "logs:CreateLogStream",
           "logs:PutRetentionPolicy",
@@ -66,6 +83,9 @@
       "AccountId": {
         "$ref": "#/definitions/AccountId"
       },
+      "CloudWatchLogsConfiguration": {
+        "$ref": "#/definitions/CloudWatchLogsConfiguration"
+      },
       "IndexingPercentage": {
         "$ref": "#/definitions/IndexingPercentage"
       }
@@ -77,6 +97,9 @@
     "tagging": {
       "taggable": false
     },
-    "typeName": "AWS::XRay::TransactionSearchConfig"
+    "typeName": "AWS::XRay::TransactionSearchConfig",
+    "writeOnlyProperties": [
+      "/properties/CloudWatchLogsConfiguration"
+    ]
   }
 }

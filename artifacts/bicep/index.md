@@ -830,6 +830,9 @@
 * **Link**: [default](aws/aws.cloudtrail/default/types.md#resource-awscloudtrailtraildefault)
 
 ## aws.cloudwatch
+### aws.cloudwatch/accessprofile
+* **Link**: [default](aws/aws.cloudwatch/default/types.md#resource-awscloudwatchaccessprofiledefault)
+
 ### aws.cloudwatch/alarm
 * **Link**: [default](aws/aws.cloudwatch/default/types.md#resource-awscloudwatchalarmdefault)
 
@@ -841,6 +844,12 @@
 
 ### aws.cloudwatch/dashboard
 * **Link**: [default](aws/aws.cloudwatch/default/types.md#resource-awscloudwatchdashboarddefault)
+
+### aws.cloudwatch/domain
+* **Link**: [default](aws/aws.cloudwatch/default/types.md#resource-awscloudwatchdomaindefault)
+
+### aws.cloudwatch/domainfororganization
+* **Link**: [default](aws/aws.cloudwatch/default/types.md#resource-awscloudwatchdomainfororganizationdefault)
 
 ### aws.cloudwatch/insightrule
 * **Link**: [default](aws/aws.cloudwatch/default/types.md#resource-awscloudwatchinsightruledefault)
@@ -854,11 +863,17 @@
 ### aws.cloudwatch/metricstream
 * **Link**: [default](aws/aws.cloudwatch/default/types.md#resource-awscloudwatchmetricstreamdefault)
 
+### aws.cloudwatch/omnidashboard
+* **Link**: [default](aws/aws.cloudwatch/default/types.md#resource-awscloudwatchomnidashboarddefault)
+
 ### aws.cloudwatch/otelenrichment
 * **Link**: [default](aws/aws.cloudwatch/default/types.md#resource-awscloudwatchotelenrichmentdefault)
 
 ### aws.cloudwatch/resourcemetricsconfiguration
 * **Link**: [default](aws/aws.cloudwatch/default/types.md#resource-awscloudwatchresourcemetricsconfigurationdefault)
+
+### aws.cloudwatch/space
+* **Link**: [default](aws/aws.cloudwatch/default/types.md#resource-awscloudwatchspacedefault)
 
 ### aws.cloudwatch/view
 * **Link**: [default](aws/aws.cloudwatch/default/types.md#resource-awscloudwatchviewdefault)
@@ -1673,6 +1688,9 @@
 ### aws.ec2/securitygroupingress
 * **Link**: [default](aws/aws.ec2/default/types.md#resource-awsec2securitygroupingressdefault)
 
+### aws.ec2/snapshot
+* **Link**: [default](aws/aws.ec2/default/types.md#resource-awsec2snapshotdefault)
+
 ### aws.ec2/snapshotblockpublicaccess
 * **Link**: [default](aws/aws.ec2/default/types.md#resource-awsec2snapshotblockpublicaccessdefault)
 
@@ -1705,6 +1723,9 @@
 
 ### aws.ec2/transitgatewayattachment
 * **Link**: [default](aws/aws.ec2/default/types.md#resource-awsec2transitgatewayattachmentdefault)
+
+### aws.ec2/transitgatewayattachmentnatconfiguration
+* **Link**: [default](aws/aws.ec2/default/types.md#resource-awsec2transitgatewayattachmentnatconfigurationdefault)
 
 ### aws.ec2/transitgatewayconnect
 * **Link**: [default](aws/aws.ec2/default/types.md#resource-awsec2transitgatewayconnectdefault)
@@ -2484,6 +2505,9 @@
 ### aws.iot/mitigationaction
 * **Link**: [default](aws/aws.iot/default/types.md#resource-awsiotmitigationactiondefault)
 
+### aws.iot/otaupdate
+* **Link**: [default](aws/aws.iot/default/types.md#resource-awsiototaupdatedefault)
+
 ### aws.iot/policy
 * **Link**: [default](aws/aws.iot/default/types.md#resource-awsiotpolicydefault)
 
@@ -3124,6 +3148,9 @@
 * **Link**: [default](aws/aws.memorydb/default/types.md#resource-awsmemorydbuserdefault)
 
 ## aws.mgn
+### aws.mgn/application
+* **Link**: [default](aws/aws.mgn/default/types.md#resource-awsmgnapplicationdefault)
+
 ### aws.mgn/connector
 * **Link**: [default](aws/aws.mgn/default/types.md#resource-awsmgnconnectordefault)
 
@@ -3132,6 +3159,12 @@
 
 ### aws.mgn/networkmigrationdefinition
 * **Link**: [default](aws/aws.mgn/default/types.md#resource-awsmgnnetworkmigrationdefinitiondefault)
+
+### aws.mgn/replicationconfigurationtemplate
+* **Link**: [default](aws/aws.mgn/default/types.md#resource-awsmgnreplicationconfigurationtemplatedefault)
+
+### aws.mgn/wave
+* **Link**: [default](aws/aws.mgn/default/types.md#resource-awsmgnwavedefault)
 
 ## aws.msk
 ### aws.msk/batchscramsecret
@@ -3270,6 +3303,22 @@
 ## aws.networkmonitor
 ### aws.networkmonitor/monitor
 * **Link**: [default](aws/aws.networkmonitor/default/types.md#resource-awsnetworkmonitormonitordefault)
+
+### aws.networkmonitor/probe
+* **Link**: [default](aws/aws.networkmonitor/default/types.md#resource-awsnetworkmonitorprobedefault)
+
+## aws.networksecuritymanager
+### aws.networksecuritymanager/policy
+* **Link**: [default](aws/aws.networksecuritymanager/default/types.md#resource-awsnetworksecuritymanagerpolicydefault)
+
+### aws.networksecuritymanager/rule
+* **Link**: [default](aws/aws.networksecuritymanager/default/types.md#resource-awsnetworksecuritymanagerruledefault)
+
+### aws.networksecuritymanager/scope
+* **Link**: [default](aws/aws.networksecuritymanager/default/types.md#resource-awsnetworksecuritymanagerscopedefault)
+
+### aws.networksecuritymanager/template
+* **Link**: [default](aws/aws.networksecuritymanager/default/types.md#resource-awsnetworksecuritymanagertemplatedefault)
 
 ## aws.nimblestudio
 ### aws.nimblestudio/launchprofile
@@ -3483,6 +3532,9 @@
 
 ### aws.personalize/metricattribution
 * **Link**: [default](aws/aws.personalize/default/types.md#resource-awspersonalizemetricattributiondefault)
+
+### aws.personalize/recommender
+* **Link**: [default](aws/aws.personalize/default/types.md#resource-awspersonalizerecommenderdefault)
 
 ## aws.pinpoint
 ### aws.pinpoint/inapptemplate
@@ -4166,6 +4218,9 @@
 
 ### aws.securityagent/pentest
 * **Link**: [default](aws/aws.securityagent/default/types.md#resource-awssecurityagentpentestdefault)
+
+### aws.securityagent/privateconnection
+* **Link**: [default](aws/aws.securityagent/default/types.md#resource-awssecurityagentprivateconnectiondefault)
 
 ### aws.securityagent/securityrequirementpack
 * **Link**: [default](aws/aws.securityagent/default/types.md#resource-awssecurityagentsecurityrequirementpackdefault)

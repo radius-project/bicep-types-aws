@@ -40,6 +40,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Personalize/MetricAttributionProperties](#awspersonalizemetricattributionproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Personalize/Recommender@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Personalize/RecommenderProperties](#awspersonalizerecommenderproperties) (Required, Identifier): properties of the resource
+
 ## AWS.Personalize/CampaignProperties
 ### Properties
 * **CampaignArn**: string (ReadOnly, Identifier): The ARN of the campaign.
@@ -90,6 +98,18 @@
 * **Name**: string (Required): The name of the metric attribution.
 * **Status**: string (ReadOnly): The status of the metric attribution.
 
+## AWS.Personalize/RecommenderProperties
+### Properties
+* **CreationDateTime**: string (ReadOnly): The time at which the recommender was created.
+* **DatasetGroupArn**: string (Required): The ARN of the Domain dataset group that the recommender is created for.
+* **LastUpdatedDateTime**: string (ReadOnly): The time at which the recommender was last updated.
+* **Name**: string (Required): The name of the recommender.
+* **RecipeArn**: string (Required): The ARN of the recipe (Domain dataset group use case) that the recommender uses.
+* **RecommenderArn**: string (ReadOnly, Identifier): The ARN of the recommender.
+* **RecommenderConfig**: [RecommenderConfig](#recommenderconfig)
+* **Status**: string (ReadOnly): The status of the recommender.
+* **Tags**: [Tag](#tag)[]: Tags to associate with the recommender.
+
 ## Campaign_ItemExplorationConfig
 ### Properties
 
@@ -126,6 +146,19 @@
 * **RoleArn**: string (Required): The ARN of the IAM role for the metric attribution.
 * **S3DataDestination**: [S3DataDestination](#s3datadestination)
 
+## Recommender_ExcludedDatasetColumns
+### Properties
+
+## Recommender_ItemExplorationConfig
+### Properties
+
+## RecommenderConfig
+### Properties
+* **EnableMetadataWithRecommendations**: bool: Whether metadata with recommendations is enabled for the recommender.
+* **ItemExplorationConfig**: [Recommender_ItemExplorationConfig](#recommenderitemexplorationconfig): Specifies the exploration configuration hyperparameters.
+* **MinRecommendationRequestsPerSecond**: int: Specifies the requested minimum provisioned recommendation requests per second.
+* **TrainingDataConfig**: [TrainingDataConfig](#trainingdataconfig)
+
 ## S3DataDestination
 ### Properties
 * **KmsKeyArn**: string: The ARN of the KMS key.
@@ -150,4 +183,13 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag.
 * **Value**: string (Required): The value for the tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
+
+## TrainingDataConfig
+### Properties
+* **ExcludedDatasetColumns**: [Recommender_ExcludedDatasetColumns](#recommenderexcludeddatasetcolumns): Specifies the columns to exclude from training. Each key is a dataset type, and each value is a list of columns.
 

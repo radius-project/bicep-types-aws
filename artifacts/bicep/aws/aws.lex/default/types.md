@@ -467,7 +467,7 @@
 * **FailureNextStep**: [DialogState](#dialogstate)
 * **FailureResponse**: [ResponseSpecification](#responsespecification)
 * **IsActive**: bool
-* **PromptSpecification**: [PromptSpecification](#promptspecification) (Required)
+* **PromptSpecification**: [PromptSpecification](#promptspecification)
 
 ## IntentDisambiguationSettings
 ### Properties
@@ -777,8 +777,8 @@
 
 ## WaitAndContinueSpecification
 ### Properties
-* **ContinueResponse**: [ResponseSpecification](#responsespecification) (Required)
+* **ContinueResponse**: [ResponseSpecification](#responsespecification)
 * **IsActive**: bool
 * **StillWaitingResponse**: [StillWaitingResponseSpecification](#stillwaitingresponsespecification)
-* **WaitingResponse**: [ResponseSpecification](#responsespecification) (Required)
+* **WaitingResponse**: [ResponseSpecification](#responsespecification)
 

@@ -401,9 +401,16 @@
         "flags": 0,
         "description": "An expression that evaluates to the request body for the AWS service API call. The body must conform to the input format that the target service operation expects. Applies only when the target operation accepts a request body. The maximum size after evaluation is 64 KB."
       },
+      "Cache": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 0,
+        "description": "The optional response-caching configuration for the function. When present, MediaTailor caches the responses that the function receives from the AWS service, within the time-to-live (TTL) bounds that you specify. Omit this configuration to disable response caching."
+      },
       "Headers": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "A map of HTTP header names to expression values. MediaTailor evaluates each header value expression at runtime and includes the result in the outbound request to the AWS service. Use this to pass any headers required by the target service operation. You can include a maximum of 50 headers."
@@ -416,7 +423,7 @@
       },
       "Output": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "A map of output bindings. Each key is a namespaced output path, such as player_params.device_type. Each value is an expression that MediaTailor evaluates at runtime and can reference the response object from the target service. For more information, see JSONata expression reference (https://docs.aws.amazon.com/mediatailor/latest/ug/monetization-functions-jsonata.html) in the MediaTailor User Guide."
@@ -463,7 +470,7 @@
     "properties": {
       "FunctionList": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "The list of 1 to 10 child functions that MediaTailor runs in parallel. Each entry specifies a child function to execute and an optional run condition expression that controls whether the function runs. Child functions cannot themselves be executors, and each child function's resolved namespace must be unique across the list."
@@ -477,7 +484,7 @@
       },
       "Output": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 1,
         "description": "A map of output bindings that controls which bindings the executor commits to the session state after all child functions complete. Each key is a namespaced output path, and each value is an expression that MediaTailor evaluates against the combined results of the child functions."
@@ -503,7 +510,7 @@
     "properties": {
       "Output": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/38"
         },
         "flags": 0,
         "description": "A map of output key-value pairs that define the custom output."
@@ -551,6 +558,33 @@
   },
   {
     "$type": "ObjectType",
+    "name": "HttpRequestCacheConfiguration",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "A JSONata expression that MediaTailor evaluates to a custom cache key. By default, the cache key is a hash of the HTTP URL, request body, and HTTP method; request headers are not included. The evaluated key must be smaller than 1 KB."
+      },
+      "TtlMaximumSeconds": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 1,
+        "description": "The upper bound, in seconds, on how long MediaTailor caches a response. This value must be greater than or equal to TtlMinimumSeconds."
+      },
+      "TtlMinimumSeconds": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 1,
+        "description": "The lower bound, in seconds, on how long MediaTailor caches a response. MediaTailor also uses this value as the cache duration when a response has no Cache-Control max-age directive."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "HttpRequestConfiguration",
     "properties": {
       "Body": {
@@ -560,9 +594,16 @@
         "flags": 0,
         "description": "The body of the HTTP request."
       },
+      "Cache": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 0,
+        "description": "The optional response-caching configuration for the function. When present, MediaTailor caches the responses that the function receives from the HTTP endpoint, within the time-to-live (TTL) bounds that you specify. Omit this configuration to disable response caching."
+      },
       "Headers": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/38"
         },
         "flags": 0,
         "description": "A map of HTTP headers to include in the request."
@@ -576,7 +617,7 @@
       },
       "Output": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/38"
         },
         "flags": 0,
         "description": "A map of output key-value pairs. Keys must start with session., temp., avail., scte., or be a valid adsRequest directive."
@@ -620,14 +661,14 @@
     "properties": {
       "FunctionList": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/45"
         },
         "flags": 1,
         "description": "An ordered list of 1 to 10 steps. Each step specifies a child function to execute and an optional run condition expression that controls whether the step runs. MediaTailor executes the steps in order, passing data between steps through temporary data. Each step's resolved namespace must be unique across the list."
       },
       "Output": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "A map of output bindings that controls which bindings the sequence commits to the session state after all steps complete. Each key is a namespaced output path, and each value is an expression that MediaTailor evaluates against the accumulated results of the steps."
@@ -681,9 +722,16 @@
         "flags": 0,
         "description": "An expression that evaluates to the request body, for example to send an OpenRTB bid request. The expression can be up to 100,000 characters, and the body after evaluation can be up to 64 KB."
       },
+      "Cache": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 0,
+        "description": "The optional response-caching configuration for the function. When present, MediaTailor caches the responses that the function receives from the HTTP endpoint, within the time-to-live (TTL) bounds that you specify. Omit this configuration to disable response caching."
+      },
       "Headers": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/47"
         },
         "flags": 0,
         "description": "A map of HTTP header names to expression values. MediaTailor evaluates each header value expression at runtime and includes the result in the outbound request. Headers beginning with X-Amz- are reserved by the service, and method override headers are not allowed."
@@ -696,7 +744,7 @@
       },
       "Output": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/48"
         },
         "flags": 0,
         "description": "A map of output bindings. Each key is a namespaced output path (such as temp.wrappedAds), and each value is an expression that MediaTailor evaluates at runtime. Output expressions in a VAST_REQUEST function can reference the response object, which exposes response.parsedAds, the ads parsed from the VAST response after schema validation and wrapper resolution, and response.statusCode. For more information about expression syntax, see JSONata expression reference (https://docs.aws.amazon.com/mediatailor/latest/ug/monetization-functions-jsonata.html) in the MediaTailor User Guide."
@@ -772,7 +820,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/38"
+      "$ref": "#/39"
     }
   },
   {
@@ -828,26 +876,26 @@
       },
       "HttpRequestConfiguration": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/34"
         },
         "flags": 0
       },
       "SequentialExecutorConfiguration": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/37"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "The tags to assign to the function resource."
       },
       "VastRequestConfiguration": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/40"
         },
         "flags": 0
       }
@@ -873,7 +921,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/51"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -884,7 +932,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaTailor/Function@default",
     "body": {
-      "$ref": "#/51"
+      "$ref": "#/52"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -945,13 +993,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/53"
+      "$ref": "#/54"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/54"
+      "$ref": "#/55"
     }
   },
   {
@@ -967,7 +1015,7 @@
       },
       "HttpPackageConfigurations": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/58"
         },
         "flags": 1,
         "description": "<p>A list of HTTP package configuration parameters for this live source.</p>"
@@ -986,7 +1034,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/59"
         },
         "flags": 0,
         "description": "The tags to assign to the live source."
@@ -1013,7 +1061,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/60"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1024,7 +1072,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaTailor/LiveSource@default",
     "body": {
-      "$ref": "#/60"
+      "$ref": "#/61"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1047,13 +1095,13 @@
     "properties": {
       "HttpRequest": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/78"
         },
         "flags": 0
       },
       "VastResponse": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/88"
         },
         "flags": 0
       }
@@ -1070,7 +1118,7 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/89"
         },
         "flags": 0,
         "description": "Enables ad marker passthrough for your configuration."
@@ -1083,14 +1131,14 @@
     "properties": {
       "ExcludeEventTypes": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/90"
         },
         "flags": 0,
         "description": "Indicates that MediaTailor won't emit the selected events in the logs for playback sessions that are initialized with this configuration."
       },
       "PublishOptInEventTypes": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/91"
         },
         "flags": 0,
         "description": "Indicates that MediaTailor emits RAW_ADS_RESPONSE logs for playback sessions that are initialized with this configuration."
@@ -1103,7 +1151,7 @@
     "properties": {
       "EnableVodVastParallelization": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/89"
         },
         "flags": 0,
         "description": "Enables parallel processing of ADS requests in VOD workflows when the ADS returns VAST responses. The default is false."
@@ -1191,7 +1239,7 @@
     "properties": {
       "ClientSide": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/74"
         },
         "flags": 0,
         "description": "The beaconing settings for client-side reporting sessions. If you omit this object, MediaTailor uses INSIGHTS reporting mode."
@@ -1244,7 +1292,7 @@
     "properties": {
       "AdditionalEventTypes": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/92"
         },
         "flags": 0,
         "description": "The player operation events to report on, in addition to the ad progress events that MediaTailor always reports on. Valid values are MUTE, UNMUTE, PAUSE, and SKIP. The default is an empty list. This parameter is valid only when ReportingMode is INSIGHTS. MediaTailor rejects the request if you specify a value while ReportingMode is DISABLED, or if you specify duplicate values."
@@ -1323,7 +1371,7 @@
       },
       "Headers": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/65"
         },
         "flags": 0
       },
@@ -1347,7 +1395,7 @@
     "properties": {
       "AdDecisionServerConfiguration": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/84"
         },
         "flags": 0
       },
@@ -1373,21 +1421,21 @@
     "properties": {
       "AdsInteractionLog": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/67"
         },
         "flags": 0,
         "description": "The event types that MediaTailor emits in logs for interactions with the ADS."
       },
       "EnabledLoggingStrategies": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/93"
         },
         "flags": 0,
         "description": "The method used for collecting logs from AWS Elemental MediaTailor. To configure MediaTailor to send logs directly to Amazon CloudWatch Logs, choose LEGACY_CLOUDWATCH. To configure MediaTailor to send logs to CloudWatch, which then vends the logs to your destination of choice, choose VENDED_LOGS. Supported destinations are CloudWatch Logs log group, Amazon S3 bucket, and Amazon Data Firehose stream. To use vended logs, you must configure the delivery destination in Amazon CloudWatch"
       },
       "ManifestServiceInteractionLog": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/83"
         },
         "flags": 0,
         "description": "The event types that MediaTailor emits in logs for interactions with the origin server."
@@ -1407,7 +1455,7 @@
     "properties": {
       "AdMarkerPassthrough": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/66"
         },
         "flags": 0,
         "description": "For HLS, when set to true, MediaTailor passes through EXT-X-CUE-IN, EXT-X-CUE-OUT, and EXT-X-SPLICEPOINT-SCTE35 ad markers from the origin manifest to the MediaTailor personalized manifest. No logic is applied to these ad markers. For example, if EXT-X-CUE-OUT has a value of 60, but no ads are filled for that ad break, MediaTailor will not set the value to 0."
@@ -1420,7 +1468,7 @@
     "properties": {
       "ExcludeEventTypes": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "Indicates that MediaTailor won't emit the selected events in the logs for playback sessions that are initialized with this configuration."
@@ -1433,7 +1481,7 @@
     "properties": {
       "VastResponse": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/85"
         },
         "flags": 0
       }
@@ -1533,7 +1581,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/86"
+      "$ref": "#/87"
     }
   },
   {
@@ -1542,13 +1590,13 @@
     "properties": {
       "AdConditioningConfiguration": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/63"
         },
         "flags": 0
       },
       "AdDecisionServerConfiguration": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/64"
         },
         "flags": 0
       },
@@ -1561,70 +1609,70 @@
       },
       "AdsPersonalizationConcurrency": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/68"
         },
         "flags": 0,
         "description": "The settings that control how many concurrent requests MediaTailor makes to the ad decision server (ADS)."
       },
       "AdsPersonalizationTimeouts": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": "The ad decision server (ADS) request timeouts and personalization time budgets for live, VOD, and prefetch workflows."
       },
       "AvailSuppression": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/70"
         },
         "flags": 0,
         "description": "The configuration for avail suppression, also known as ad suppression. For more information about ad suppression, see Ad Suppression (https://docs.aws.amazon.com/mediatailor/latest/ug/ad-behavior.html)."
       },
       "BeaconingConfiguration": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/71"
         },
         "flags": 0,
         "description": "The beaconing configuration for this playback configuration, which controls whether AWS Elemental MediaTailor includes beacons of its own in the ad tracking response. If you omit this setting, MediaTailor uses INSIGHTS."
       },
       "Bumper": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/72"
         },
         "flags": 0,
         "description": "The configuration for bumpers. Bumpers are short audio or video clips that play at the start or before the end of an ad break. To learn more about bumpers, see Bumpers (https://docs.aws.amazon.com/mediatailor/latest/ug/bumpers.html)."
       },
       "CdnConfiguration": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/73"
         },
         "flags": 0,
         "description": "The configuration for using a content delivery network (CDN), like Amazon CloudFront, for content and ad segment management."
       },
       "ConfigurationAliases": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/75"
         },
         "flags": 0,
         "description": "The player parameters and aliases used as dynamic variables during session initialization. For more information, see Domain Variables. "
       },
       "DashConfiguration": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/76"
         },
         "flags": 0,
         "description": "The configuration for DASH content."
       },
       "FunctionMapping": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/96"
         },
         "flags": 0,
         "description": "A map of event names to function identifiers for custom processing during session lifecycle events."
       },
       "HlsConfiguration": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/77"
         },
         "flags": 0,
         "description": "The configuration for HLS content."
@@ -1638,21 +1686,21 @@
       },
       "LivePreRollConfiguration": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/80"
         },
         "flags": 0,
         "description": "The configuration for pre-roll ad insertion."
       },
       "LogConfiguration": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/81"
         },
         "flags": 0,
         "description": "The configuration that defines where AWS Elemental MediaTailor sends logs for the playback configuration."
       },
       "ManifestProcessingRules": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/82"
         },
         "flags": 0,
         "description": "The configuration for manifest processing rules. Manifest processing rules enable customization of the personalized manifests created by MediaTailor."
@@ -1701,7 +1749,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/97"
         },
         "flags": 0,
         "description": "The tags to assign to the playback configuration."
@@ -1742,7 +1790,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/98"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1753,7 +1801,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaTailor/PlaybackConfiguration@default",
     "body": {
-      "$ref": "#/98"
+      "$ref": "#/99"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1784,7 +1832,7 @@
     "properties": {
       "AvailMatchingCriteria": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/110"
         },
         "flags": 0,
         "description": "If you only want MediaTailor to insert prefetched ads into avails that match specific dynamic variables, set the avail matching criteria."
@@ -1811,7 +1859,7 @@
     "properties": {
       "DynamicVariables": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/111"
         },
         "flags": 0,
         "description": "The dynamic variables to use for substitution during prefetch requests to the ad decision server (ADS)."
@@ -1832,13 +1880,13 @@
       },
       "TrafficShapingRetrievalWindow": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/108"
         },
         "flags": 0
       },
       "TrafficShapingTpsConfiguration": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/109"
         },
         "flags": 0
       },
@@ -1857,7 +1905,7 @@
     "properties": {
       "AvailMatchingCriteria": {
         "type": {
-          "$ref": "#/111"
+          "$ref": "#/112"
         },
         "flags": 0,
         "description": "The configuration for the dynamic variables that determine which ad breaks that MediaTailor inserts prefetched ads in."
@@ -1884,13 +1932,13 @@
       },
       "RecurringConsumption": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/104"
         },
         "flags": 1
       },
       "RecurringRetrieval": {
         "type": {
-          "$ref": "#/105"
+          "$ref": "#/106"
         },
         "flags": 1
       },
@@ -1916,20 +1964,20 @@
       },
       "DynamicVariables": {
         "type": {
-          "$ref": "#/112"
+          "$ref": "#/113"
         },
         "flags": 0,
         "description": "The dynamic variables to use for substitution during prefetch requests to the ADS."
       },
       "TrafficShapingRetrievalWindow": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/108"
         },
         "flags": 0
       },
       "TrafficShapingTpsConfiguration": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/109"
         },
         "flags": 0
       },
@@ -1996,7 +2044,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/100"
+      "$ref": "#/101"
     }
   },
   {
@@ -2007,7 +2055,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/100"
+      "$ref": "#/101"
     }
   },
   {
@@ -2022,7 +2070,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/106"
+      "$ref": "#/107"
     }
   },
   {
@@ -2038,7 +2086,7 @@
       },
       "Consumption": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/102"
         },
         "flags": 0
       },
@@ -2058,13 +2106,13 @@
       },
       "RecurringPrefetchConfiguration": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/105"
         },
         "flags": 0
       },
       "Retrieval": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/103"
         },
         "flags": 0
       },
@@ -2084,7 +2132,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/115"
         },
         "flags": 0,
         "description": "The tags assigned to the prefetch schedule."
@@ -2111,7 +2159,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/116"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2122,7 +2170,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaTailor/PrefetchSchedule@default",
     "body": {
-      "$ref": "#/116"
+      "$ref": "#/117"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2133,7 +2181,7 @@
     "properties": {
       "AdBreakMetadata": {
         "type": {
-          "$ref": "#/129"
+          "$ref": "#/130"
         },
         "flags": 0,
         "description": "Defines a list of key/value pairs that MediaTailor generates within the EXT-X-ASSET tag for SCTE35_ENHANCED output."
@@ -2154,19 +2202,19 @@
       },
       "Slate": {
         "type": {
-          "$ref": "#/125"
+          "$ref": "#/126"
         },
         "flags": 0
       },
       "SpliceInsertMessage": {
         "type": {
-          "$ref": "#/126"
+          "$ref": "#/127"
         },
         "flags": 0
       },
       "TimeSignalMessage": {
         "type": {
-          "$ref": "#/127"
+          "$ref": "#/128"
         },
         "flags": 0
       }
@@ -2178,14 +2226,14 @@
     "properties": {
       "AdBreaks": {
         "type": {
-          "$ref": "#/130"
+          "$ref": "#/131"
         },
         "flags": 0,
         "description": "Ad break configuration parameters defined in AlternateMedia."
       },
       "ClipRange": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/122"
         },
         "flags": 0
       },
@@ -2232,7 +2280,7 @@
     "properties": {
       "AlternateMedia": {
         "type": {
-          "$ref": "#/131"
+          "$ref": "#/132"
         },
         "flags": 0,
         "description": "The list of AlternateMedia defined in AudienceMedia."
@@ -2292,13 +2340,13 @@
     "properties": {
       "ClipRange": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/122"
         },
         "flags": 0
       },
       "Transition": {
         "type": {
-          "$ref": "#/128"
+          "$ref": "#/129"
         },
         "flags": 1
       }
@@ -2426,7 +2474,7 @@
     "properties": {
       "SegmentationDescriptors": {
         "type": {
-          "$ref": "#/132"
+          "$ref": "#/133"
         },
         "flags": 0,
         "description": "The configurations for the SCTE-35 segmentation_descriptor message(s)."
@@ -2477,13 +2525,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/122"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/118"
+      "$ref": "#/123"
     }
   },
   {
@@ -2495,7 +2537,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/124"
+      "$ref": "#/120"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/125"
     }
   },
   {
@@ -2505,13 +2553,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/118"
+      "$ref": "#/119"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/120"
+      "$ref": "#/121"
     }
   },
   {
@@ -2520,7 +2568,7 @@
     "properties": {
       "AdBreaks": {
         "type": {
-          "$ref": "#/134"
+          "$ref": "#/135"
         },
         "flags": 0,
         "description": "The ad break configuration settings."
@@ -2534,7 +2582,7 @@
       },
       "AudienceMedia": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/136"
         },
         "flags": 0,
         "description": "The list of AudienceMedia defined in program."
@@ -2548,7 +2596,7 @@
       },
       "ClipRange": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/122"
         },
         "flags": 2,
         "description": "The clip range configuration settings."
@@ -2583,7 +2631,7 @@
       },
       "ScheduleConfiguration": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/124"
         },
         "flags": 4,
         "description": "The schedule configuration settings."
@@ -2631,7 +2679,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/136"
+          "$ref": "#/137"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2642,7 +2690,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaTailor/Program@default",
     "body": {
-      "$ref": "#/137"
+      "$ref": "#/138"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2659,7 +2707,7 @@
       },
       "SecretsManagerAccessTokenConfiguration": {
         "type": {
-          "$ref": "#/143"
+          "$ref": "#/144"
         },
         "flags": 0
       }
@@ -2768,13 +2816,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/144"
+      "$ref": "#/145"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/145"
+      "$ref": "#/146"
     }
   },
   {
@@ -2783,7 +2831,7 @@
     "properties": {
       "AccessConfiguration": {
         "type": {
-          "$ref": "#/139"
+          "$ref": "#/140"
         },
         "flags": 0
       },
@@ -2796,19 +2844,19 @@
       },
       "DefaultSegmentDeliveryConfiguration": {
         "type": {
-          "$ref": "#/141"
+          "$ref": "#/142"
         },
         "flags": 0
       },
       "HttpConfiguration": {
         "type": {
-          "$ref": "#/142"
+          "$ref": "#/143"
         },
         "flags": 1
       },
       "SegmentDeliveryConfigurations": {
         "type": {
-          "$ref": "#/147"
+          "$ref": "#/148"
         },
         "flags": 0,
         "description": "<p>A list of the segment delivery configurations associated with this resource.</p>"
@@ -2821,7 +2869,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/149"
         },
         "flags": 0,
         "description": "The tags to assign to the source location."
@@ -2848,7 +2896,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/149"
+          "$ref": "#/150"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2859,7 +2907,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaTailor/SourceLocation@default",
     "body": {
-      "$ref": "#/150"
+      "$ref": "#/151"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2920,13 +2968,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/152"
+      "$ref": "#/153"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/153"
+      "$ref": "#/154"
     }
   },
   {
@@ -2942,7 +2990,7 @@
       },
       "HttpPackageConfigurations": {
         "type": {
-          "$ref": "#/156"
+          "$ref": "#/157"
         },
         "flags": 1,
         "description": "<p>A list of HTTP package configuration parameters for this VOD source.</p>"
@@ -2955,7 +3003,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/157"
+          "$ref": "#/158"
         },
         "flags": 0,
         "description": "The tags to assign to the VOD source."
@@ -2988,7 +3036,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/158"
+          "$ref": "#/159"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2999,7 +3047,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaTailor/VodSource@default",
     "body": {
-      "$ref": "#/159"
+      "$ref": "#/160"
     },
     "readableScopes": 0,
     "writableScopes": 0

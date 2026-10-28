@@ -1,5 +1,13 @@
 # AWS.CloudWatch @ default
 
+## Resource AWS.CloudWatch/AccessProfile@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudWatch/AccessProfileProperties](#awscloudwatchaccessprofileproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.CloudWatch/Alarm@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -31,6 +39,22 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudWatch/DashboardProperties](#awscloudwatchdashboardproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.CloudWatch/Domain@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudWatch/DomainProperties](#awscloudwatchdomainproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.CloudWatch/DomainForOrganization@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudWatch/DomainForOrganizationProperties](#awscloudwatchdomainfororganizationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudWatch/InsightRule@default
 * **Readable Scope(s)**: None
@@ -64,6 +88,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.CloudWatch/MetricStreamProperties](#awscloudwatchmetricstreamproperties) (Identifier): properties of the resource
 
+## Resource AWS.CloudWatch/OmniDashboard@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudWatch/OmniDashboardProperties](#awscloudwatchomnidashboardproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.CloudWatch/OTelEnrichment@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -79,6 +111,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudWatch/ResourceMetricsConfigurationProperties](#awscloudwatchresourcemetricsconfigurationproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.CloudWatch/Space@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudWatch/SpaceProperties](#awscloudwatchspaceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudWatch/View@default
 * **Readable Scope(s)**: None
@@ -140,6 +180,19 @@
 * **Enabled**: bool (Required): Whether the alarm's tags are included in its action notifications and state-change events.
 * **ExcludedTagKeys**: string[]: The tag keys to leave out. Cannot be specified together with IncludedTagKeys.
 * **IncludedTagKeys**: string[]: The only tag keys to include. Cannot be specified together with ExcludedTagKeys.
+
+## AWS.CloudWatch/AccessProfileProperties
+### Properties
+* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the access profile.
+* **AssumeStatus**: string (ReadOnly): Whether the calling principal is authorized to assume the access profile.
+* **CreatedAt**: string (ReadOnly): The time the access profile was created.
+* **Description**: string: The description of the access profile.
+* **Name**: string (Required): The name of the access profile.
+* **ProfileId**: string (ReadOnly, Identifier): The unique identifier of the access profile.
+* **ProfileType**: string (ReadOnly): Whether the access profile is managed by the service or by the customer.
+* **SpaceId**: string (Required, Identifier): The unique identifier of the space the access profile belongs to.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **UpdatedAt**: string (ReadOnly): The time the access profile was last updated.
 
 ## AWS.CloudWatch/AlarmMuteRuleProperties
 ### Properties
@@ -223,6 +276,41 @@
 * **DashboardName**: string (Identifier): The name of the dashboard. The name must be between 1 and 255 characters. If you do not specify a name, one will be generated automatically.
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs to associate with the cloudwatch dashboard. You can associate up to 50 tags with a dashboard
 
+## AWS.CloudWatch/DomainForOrganizationProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the resource.
+* **CreatedAt**: string (ReadOnly): The timestamp when the domain was created.
+* **CustomEndpointUrls**: string[] (ReadOnly): Additional endpoint URLs derived from the domain name.
+* **DomainAccessRoleArn**: string (Required): The ARN of an IAM role in the management account that CloudWatch Omni assumes for domain-scoped credential vending.
+* **DomainEndpointUrl**: string (ReadOnly): The HTTPS endpoint URL for accessing the domain.
+* **DomainId**: string (ReadOnly): The unique ID of the domain.
+* **IdentityCenterApplicationArn**: string (ReadOnly): The ARN of the Identity Center application. Absent for IAM-only domains.
+* **IdentityProviderConfiguration**: [IdentityProviderConfiguration](#identityproviderconfiguration)
+* **IdentityProviders**: string[] (Required): The identity providers configured for the domain.
+* **Name**: string (Required): A name that identifies the domain.
+* **OrganizationId**: string (ReadOnly): The ID of the AWS Organization this domain belongs to.
+* **OwnerAccountId**: string (ReadOnly): The account ID of the organization's management account, which owns this domain.
+* **Region**: string (ReadOnly): The Region where this domain was created.
+* **Status**: string (ReadOnly): Current status of the domain.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **UpdatedAt**: string (ReadOnly): The timestamp when the domain was last updated.
+
+## AWS.CloudWatch/DomainProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the resource.
+* **CreatedAt**: string (ReadOnly): The timestamp when the domain was created.
+* **CustomEndpointUrls**: string[] (ReadOnly): Additional endpoint URLs derived from the domain name.
+* **DomainEndpointUrl**: string (ReadOnly): The HTTPS endpoint URL for accessing the domain.
+* **DomainId**: string (ReadOnly): The unique ID of the domain.
+* **IdentityCenterApplicationArn**: string (ReadOnly): The ARN of the Identity Center application. Absent for IAM-only domains.
+* **IdentityProviderConfiguration**: [IdentityProviderConfiguration](#identityproviderconfiguration)
+* **IdentityProviders**: string[] (Required): The identity providers configured for the domain.
+* **Name**: string (Required): A name that identifies the domain.
+* **Region**: string (ReadOnly): The Region where this domain was created.
+* **Status**: string (ReadOnly): Current status of the domain.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **UpdatedAt**: string (ReadOnly): The timestamp when the domain was last updated.
+
 ## AWS.CloudWatch/InsightRuleProperties
 ### Properties
 * **ApplyOnTransformedLogs**: bool
@@ -283,6 +371,19 @@
 * **StatisticsConfigurations**: [MetricStreamStatisticsConfiguration](#metricstreamstatisticsconfiguration)[]: By default, a metric stream always sends the MAX, MIN, SUM, and SAMPLECOUNT statistics for each metric that is streamed. You can use this parameter to have the metric stream also send additional statistics in the stream. This array can have up to 100 members.
 * **Tags**: [Tag](#tag)[]: A set of tags to assign to the delivery stream.
 
+## AWS.CloudWatch/OmniDashboardProperties
+### Properties
+* **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the dashboard.
+* **Body**: string (Required): The dashboard body, a JSON document describing the dashboard's widgets and layout.
+* **CreatedAt**: string (ReadOnly): The time the dashboard was created.
+* **CreatedBy**: string (ReadOnly): The principal that created the dashboard.
+* **DashboardId**: string (ReadOnly, Identifier): The unique identifier of the dashboard.
+* **Description**: string: The description of the dashboard.
+* **Name**: string (Required): The name of the dashboard.
+* **SpaceId**: string (Required, Identifier): The unique identifier of the space the dashboard belongs to.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **UpdatedAt**: string (ReadOnly): The time the dashboard was last updated.
+
 ## AWS.CloudWatch/OTelEnrichmentProperties
 ### Properties
 * **AccountId**: string (ReadOnly, Identifier): The AWS account ID. This is the primary identifier for this singleton resource.
@@ -296,6 +397,22 @@
 * **MetricSelections**: [ResourceMetricSelection](#resourcemetricselection)[]: The metric selections that define which metrics are enabled for detailed monitoring on the resource.
 * **ResourceArn**: string (Required, Identifier): The Amazon Resource Name (ARN) of the resource for which the detailed monitoring metrics configuration is managed.
 * **UpdatedAt**: string (ReadOnly): The time at which the resource metrics configuration was last updated.
+
+## AWS.CloudWatch/SpaceProperties
+### Properties
+* **AgentCoreEvaluationRoleArn**: string: The Amazon Resource Name (ARN) of the IAM role used for AgentCore evaluation.
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the space.
+* **CreatedAt**: string (ReadOnly): The time the space was created.
+* **DataAccessRoleArn**: string (Required): The Amazon Resource Name (ARN) of the IAM role the space uses to access observability data.
+* **DomainId**: string (Required): The identifier of the domain the space belongs to.
+* **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
+* **Name**: string (Required): The name of the space.
+* **OwnerAccountId**: string (ReadOnly): The AWS account that owns the space.
+* **Region**: string (ReadOnly): The AWS Region the space resides in.
+* **SpaceId**: string (ReadOnly): The unique identifier of the space.
+* **Status**: string (ReadOnly): The status of the space.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **UpdatedAt**: string (ReadOnly): The time the space was last updated.
 
 ## AWS.CloudWatch/ViewProperties
 ### Properties
@@ -313,6 +430,11 @@
 * **Name**: string (Required): The name of the dimension, from 1–255 characters in length. This dimension name must have been included when the metric was published.
 * **Value**: string (Required): The value for the dimension, from 1–255 characters in length.
 
+## EncryptionConfiguration
+### Properties
+* **EncryptionStrategy**: string (Required): Whether the space is encrypted with an AWS owned key or a customer managed key.
+* **KmsKeyArn**: string: The Amazon Resource Name (ARN) of the customer managed KMS key. Required when encryptionStrategy is CUSTOMER_MANAGED.
+
 ## EvaluationCriteria
 ### Properties
 * **PromQLCriteria**: [AlarmPromQLCriteria](#alarmpromqlcriteria): The PromQL criteria for the alarm evaluation.
@@ -321,6 +443,22 @@
 ### Properties
 * **SlidingWindow**: [Alarm_SlidingWindow](#alarmslidingwindow): A sliding window, which advances each time the alarm is evaluated, forming a rolling time window. This is the default evaluation window.
 * **WallClockWindow**: [WallClockWindow](#wallclockwindow): A wall clock window, which aligns the evaluated range to fixed clock boundaries that match the alarm's period, such as the top of the hour, midnight, or the start of the calendar week.
+
+## IdentityCenterConfiguration
+### Properties
+* **IdentityCenterInstanceArn**: string: Identity Center instance ARN
+
+## IdentityCenterConfiguration
+### Properties
+* **IdentityCenterInstanceArn**: string: Identity Center instance ARN
+
+## IdentityProviderConfiguration
+### Properties
+* **IdentityCenterConfiguration**: [IdentityCenterConfiguration](#identitycenterconfiguration)
+
+## IdentityProviderConfiguration
+### Properties
+* **IdentityCenterConfiguration**: [IdentityCenterConfiguration](#identitycenterconfiguration)
 
 ## Integration_ApiKeyCredential
 ### Properties
@@ -411,6 +549,11 @@
 
 ## Tag
 ### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
+
+## Tag
+### Properties
 * **Key**: string (Required): A string that you can use to assign a value. The combination of tag keys and values can help you organize and categorize your resources.
 * **Value**: string (Required): The value for the specified tag key.
 
@@ -431,6 +574,16 @@
 
 ## Tag
 ### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
+
+## Tag
+### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
 
@@ -443,6 +596,16 @@
 ### Properties
 * **Key**: string (Required): A unique identifier for the tag.
 * **Value**: string (Required): String which you can use to describe or define the tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
 
 ## Tag
 ### Properties

@@ -13731,6 +13731,167 @@
   },
   {
     "$type": "StringLiteralType",
+    "value": "AWS.EC2/SnapshotProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Snapshot_Tags",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/636"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EC2/SnapshotProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the snapshot."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "A description for the snapshot."
+      },
+      "Encrypted": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 2,
+        "description": "Indicates whether the snapshot is encrypted."
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the KMS key that was used to protect the volume encryption key for the parent volume."
+      },
+      "OwnerId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The ID of the Amazon Web Services account that owns the EBS snapshot."
+      },
+      "Progress": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The progress of the snapshot, as a percentage."
+      },
+      "SnapshotId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The ID of the snapshot."
+      },
+      "StartTime": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The time stamp when the snapshot was initiated."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The snapshot state."
+      },
+      "StorageTier": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The storage tier in which the snapshot is stored."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/637"
+        },
+        "flags": 0,
+        "description": "Any tags assigned to the snapshot."
+      },
+      "VolumeId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The ID of the Amazon EBS volume."
+      },
+      "VolumeSize": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The size of the volume, in GiB."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EC2/Snapshot",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/638"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.EC2/Snapshot@default",
+    "body": {
+      "$ref": "#/639"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
     "value": "AWS.EC2/SnapshotBlockPublicAccessProperties"
   },
   {
@@ -13773,7 +13934,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/636"
+          "$ref": "#/642"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -13784,7 +13945,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/SnapshotBlockPublicAccess@default",
     "body": {
-      "$ref": "#/637"
+      "$ref": "#/643"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -13849,7 +14010,7 @@
     "properties": {
       "Cpu": {
         "type": {
-          "$ref": "#/646"
+          "$ref": "#/652"
         },
         "flags": 0
       }
@@ -13867,7 +14028,7 @@
       },
       "Ebs": {
         "type": {
-          "$ref": "#/647"
+          "$ref": "#/653"
         },
         "flags": 0
       },
@@ -13903,7 +14064,7 @@
     "properties": {
       "ClassicLoadBalancers": {
         "type": {
-          "$ref": "#/675"
+          "$ref": "#/681"
         },
         "flags": 1
       }
@@ -13915,7 +14076,7 @@
     "properties": {
       "References": {
         "type": {
-          "$ref": "#/676"
+          "$ref": "#/682"
         },
         "flags": 0
       }
@@ -14053,7 +14214,7 @@
       },
       "Groups": {
         "type": {
-          "$ref": "#/677"
+          "$ref": "#/683"
         },
         "flags": 0
       },
@@ -14065,7 +14226,7 @@
       },
       "Ipv6Addresses": {
         "type": {
-          "$ref": "#/678"
+          "$ref": "#/684"
         },
         "flags": 0
       },
@@ -14077,7 +14238,7 @@
       },
       "PrivateIpAddresses": {
         "type": {
-          "$ref": "#/679"
+          "$ref": "#/685"
         },
         "flags": 0
       },
@@ -14101,37 +14262,37 @@
     "properties": {
       "AcceleratorCount": {
         "type": {
-          "$ref": "#/639"
+          "$ref": "#/645"
         },
         "flags": 0
       },
       "AcceleratorManufacturers": {
         "type": {
-          "$ref": "#/680"
+          "$ref": "#/686"
         },
         "flags": 0
       },
       "AcceleratorNames": {
         "type": {
-          "$ref": "#/681"
+          "$ref": "#/687"
         },
         "flags": 0
       },
       "AcceleratorTotalMemoryMiB": {
         "type": {
-          "$ref": "#/640"
+          "$ref": "#/646"
         },
         "flags": 0
       },
       "AcceleratorTypes": {
         "type": {
-          "$ref": "#/682"
+          "$ref": "#/688"
         },
         "flags": 0
       },
       "AllowedInstanceTypes": {
         "type": {
-          "$ref": "#/683"
+          "$ref": "#/689"
         },
         "flags": 0
       },
@@ -14143,13 +14304,13 @@
       },
       "BaselineEbsBandwidthMbps": {
         "type": {
-          "$ref": "#/641"
+          "$ref": "#/647"
         },
         "flags": 0
       },
       "BaselinePerformanceFactors": {
         "type": {
-          "$ref": "#/642"
+          "$ref": "#/648"
         },
         "flags": 0
       },
@@ -14161,19 +14322,19 @@
       },
       "CpuManufacturers": {
         "type": {
-          "$ref": "#/684"
+          "$ref": "#/690"
         },
         "flags": 0
       },
       "ExcludedInstanceTypes": {
         "type": {
-          "$ref": "#/685"
+          "$ref": "#/691"
         },
         "flags": 0
       },
       "InstanceGenerations": {
         "type": {
-          "$ref": "#/686"
+          "$ref": "#/692"
         },
         "flags": 0
       },
@@ -14185,7 +14346,7 @@
       },
       "LocalStorageTypes": {
         "type": {
-          "$ref": "#/687"
+          "$ref": "#/693"
         },
         "flags": 0
       },
@@ -14197,25 +14358,25 @@
       },
       "MemoryGiBPerVCpu": {
         "type": {
-          "$ref": "#/657"
+          "$ref": "#/663"
         },
         "flags": 0
       },
       "MemoryMiB": {
         "type": {
-          "$ref": "#/658"
+          "$ref": "#/664"
         },
         "flags": 0
       },
       "NetworkBandwidthGbps": {
         "type": {
-          "$ref": "#/659"
+          "$ref": "#/665"
         },
         "flags": 0
       },
       "NetworkInterfaceCount": {
         "type": {
-          "$ref": "#/660"
+          "$ref": "#/666"
         },
         "flags": 0
       },
@@ -14245,13 +14406,13 @@
       },
       "TotalLocalStorageGB": {
         "type": {
-          "$ref": "#/673"
+          "$ref": "#/679"
         },
         "flags": 0
       },
       "VCpuCount": {
         "type": {
-          "$ref": "#/674"
+          "$ref": "#/680"
         },
         "flags": 0
       }
@@ -14263,13 +14424,13 @@
     "properties": {
       "LaunchTemplateSpecification": {
         "type": {
-          "$ref": "#/648"
+          "$ref": "#/654"
         },
         "flags": 0
       },
       "Overrides": {
         "type": {
-          "$ref": "#/688"
+          "$ref": "#/694"
         },
         "flags": 0
       }
@@ -14293,7 +14454,7 @@
       },
       "InstanceRequirements": {
         "type": {
-          "$ref": "#/653"
+          "$ref": "#/659"
         },
         "flags": 0
       },
@@ -14335,13 +14496,13 @@
     "properties": {
       "ClassicLoadBalancersConfig": {
         "type": {
-          "$ref": "#/645"
+          "$ref": "#/651"
         },
         "flags": 0
       },
       "TargetGroupsConfig": {
         "type": {
-          "$ref": "#/672"
+          "$ref": "#/678"
         },
         "flags": 0
       }
@@ -14473,7 +14634,7 @@
     "properties": {
       "BlockDeviceMappings": {
         "type": {
-          "$ref": "#/689"
+          "$ref": "#/695"
         },
         "flags": 0
       },
@@ -14485,7 +14646,7 @@
       },
       "IamInstanceProfile": {
         "type": {
-          "$ref": "#/650"
+          "$ref": "#/656"
         },
         "flags": 0
       },
@@ -14497,7 +14658,7 @@
       },
       "InstanceRequirements": {
         "type": {
-          "$ref": "#/653"
+          "$ref": "#/659"
         },
         "flags": 0
       },
@@ -14521,19 +14682,19 @@
       },
       "Monitoring": {
         "type": {
-          "$ref": "#/665"
+          "$ref": "#/671"
         },
         "flags": 0
       },
       "NetworkInterfaces": {
         "type": {
-          "$ref": "#/690"
+          "$ref": "#/696"
         },
         "flags": 0
       },
       "Placement": {
         "type": {
-          "$ref": "#/669"
+          "$ref": "#/675"
         },
         "flags": 0
       },
@@ -14545,7 +14706,7 @@
       },
       "SecurityGroups": {
         "type": {
-          "$ref": "#/691"
+          "$ref": "#/697"
         },
         "flags": 0
       },
@@ -14563,7 +14724,7 @@
       },
       "TagSpecifications": {
         "type": {
-          "$ref": "#/692"
+          "$ref": "#/698"
         },
         "flags": 0
       },
@@ -14635,19 +14796,19 @@
       },
       "LaunchSpecifications": {
         "type": {
-          "$ref": "#/693"
+          "$ref": "#/699"
         },
         "flags": 4
       },
       "LaunchTemplateConfigs": {
         "type": {
-          "$ref": "#/694"
+          "$ref": "#/700"
         },
         "flags": 0
       },
       "LoadBalancersConfig": {
         "type": {
-          "$ref": "#/656"
+          "$ref": "#/662"
         },
         "flags": 0
       },
@@ -14677,7 +14838,7 @@
       },
       "SpotMaintenanceStrategies": {
         "type": {
-          "$ref": "#/668"
+          "$ref": "#/674"
         },
         "flags": 0
       },
@@ -14695,7 +14856,7 @@
       },
       "TagSpecifications": {
         "type": {
-          "$ref": "#/695"
+          "$ref": "#/701"
         },
         "flags": 4
       },
@@ -14749,7 +14910,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/696"
+          "$ref": "#/702"
         },
         "flags": 0
       }
@@ -14761,7 +14922,7 @@
     "properties": {
       "CapacityRebalance": {
         "type": {
-          "$ref": "#/663"
+          "$ref": "#/669"
         },
         "flags": 0
       }
@@ -14833,7 +14994,7 @@
     "properties": {
       "TargetGroups": {
         "type": {
-          "$ref": "#/697"
+          "$ref": "#/703"
         },
         "flags": 1
       }
@@ -14878,7 +15039,79 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/644"
+      "$ref": "#/650"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/667"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/657"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/668"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
     }
   },
   {
@@ -14890,67 +15123,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/649"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/651"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/662"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/5"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/5"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/5"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/5"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/5"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/5"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/5"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/658"
     }
   },
   {
@@ -14962,43 +15141,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/643"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/652"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/649"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/667"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/664"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/654"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/667"
+      "$ref": "#/673"
     }
   },
   {
@@ -15010,7 +15153,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/671"
+      "$ref": "#/660"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/673"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/676"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/677"
     }
   },
   {
@@ -15020,7 +15181,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/670"
+      "$ref": "#/676"
     }
   },
   {
@@ -15035,13 +15196,13 @@
       },
       "SpotFleetRequestConfigData": {
         "type": {
-          "$ref": "#/666"
+          "$ref": "#/672"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/699"
+          "$ref": "#/705"
         },
         "flags": 0,
         "description": "The tags to specify in SpotFleetRequestConfigData"
@@ -15068,7 +15229,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/700"
+          "$ref": "#/706"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -15079,7 +15240,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/SpotFleet@default",
     "body": {
-      "$ref": "#/701"
+      "$ref": "#/707"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -15169,7 +15330,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/709"
+          "$ref": "#/715"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -15180,7 +15341,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/SqlHaStandbyDetectedInstance@default",
     "body": {
-      "$ref": "#/710"
+      "$ref": "#/716"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -15255,7 +15416,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/712"
+      "$ref": "#/718"
     }
   },
   {
@@ -15285,7 +15446,7 @@
       },
       "BlockPublicAccessStates": {
         "type": {
-          "$ref": "#/714"
+          "$ref": "#/720"
         },
         "flags": 2,
         "description": ""
@@ -15334,7 +15495,7 @@
       },
       "Ipv6CidrBlocks": {
         "type": {
-          "$ref": "#/715"
+          "$ref": "#/721"
         },
         "flags": 2,
         "description": ""
@@ -15383,7 +15544,7 @@
       },
       "PrivateDnsNameOptionsOnLaunch": {
         "type": {
-          "$ref": "#/716"
+          "$ref": "#/722"
         },
         "flags": 0,
         "description": "The hostname type for EC2 instances launched into this subnet and how DNS A and AAAA record queries to the instances should be handled. For more information, see [Amazon EC2 instance hostname types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-naming.html) in the *User Guide*.\n Available options:\n  +  EnableResourceNameDnsAAAARecord (true | false)\n  +  EnableResourceNameDnsARecord (true | false)\n  +  HostnameType (ip-name | resource-name)"
@@ -15397,7 +15558,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/717"
+          "$ref": "#/723"
         },
         "flags": 0,
         "description": "Any tags assigned to the subnet."
@@ -15431,7 +15592,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/718"
+          "$ref": "#/724"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -15442,7 +15603,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/Subnet@default",
     "body": {
-      "$ref": "#/719"
+      "$ref": "#/725"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -15474,7 +15635,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/721"
+      "$ref": "#/727"
     }
   },
   {
@@ -15532,7 +15693,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/723"
+          "$ref": "#/729"
         },
         "flags": 0,
         "description": "The tags assigned to the subnet CIDR reservation."
@@ -15559,7 +15720,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/724"
+          "$ref": "#/730"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -15570,7 +15731,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/SubnetCidrReservation@default",
     "body": {
-      "$ref": "#/725"
+      "$ref": "#/731"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -15611,7 +15772,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/727"
+      "$ref": "#/733"
     }
   },
   {
@@ -15634,14 +15795,14 @@
       },
       "NetworkServices": {
         "type": {
-          "$ref": "#/730"
+          "$ref": "#/736"
         },
         "flags": 0,
         "description": "The network service that is associated with the traffic mirror filter."
       },
       "Tags": {
         "type": {
-          "$ref": "#/731"
+          "$ref": "#/737"
         },
         "flags": 0,
         "description": "The tags for a traffic mirror filter."
@@ -15668,7 +15829,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/732"
+          "$ref": "#/738"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -15679,7 +15840,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/TrafficMirrorFilter@default",
     "body": {
-      "$ref": "#/733"
+      "$ref": "#/739"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -15739,7 +15900,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/735"
+      "$ref": "#/741"
     }
   },
   {
@@ -15762,7 +15923,7 @@
       },
       "DestinationPortRange": {
         "type": {
-          "$ref": "#/737"
+          "$ref": "#/743"
         },
         "flags": 0,
         "description": "The destination port range."
@@ -15797,14 +15958,14 @@
       },
       "SourcePortRange": {
         "type": {
-          "$ref": "#/737"
+          "$ref": "#/743"
         },
         "flags": 0,
         "description": "The source port range."
       },
       "Tags": {
         "type": {
-          "$ref": "#/740"
+          "$ref": "#/746"
         },
         "flags": 0,
         "description": "Any tags assigned to the Traffic Mirror Filter rule."
@@ -15852,7 +16013,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/741"
+          "$ref": "#/747"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -15863,7 +16024,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/TrafficMirrorFilterRule@default",
     "body": {
-      "$ref": "#/742"
+      "$ref": "#/748"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -15898,7 +16059,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/744"
+      "$ref": "#/750"
     }
   },
   {
@@ -15949,7 +16110,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/747"
+          "$ref": "#/753"
         },
         "flags": 0,
         "description": "The tags assigned to the Traffic Mirror session."
@@ -15997,7 +16158,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/748"
+          "$ref": "#/754"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -16008,7 +16169,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/TrafficMirrorSession@default",
     "body": {
-      "$ref": "#/749"
+      "$ref": "#/755"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -16038,7 +16199,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/751"
+      "$ref": "#/757"
     }
   },
   {
@@ -16081,7 +16242,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/753"
+          "$ref": "#/759"
         },
         "flags": 0,
         "description": " The tags to assign to the Traffic Mirror target."
@@ -16108,7 +16269,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/754"
+          "$ref": "#/760"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -16119,7 +16280,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/TrafficMirrorTarget@default",
     "body": {
-      "$ref": "#/755"
+      "$ref": "#/761"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -16149,7 +16310,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/757"
+      "$ref": "#/763"
     }
   },
   {
@@ -16242,7 +16403,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/759"
+          "$ref": "#/765"
         },
         "flags": 0
       },
@@ -16254,7 +16415,7 @@
       },
       "TransitGatewayCidrBlocks": {
         "type": {
-          "$ref": "#/760"
+          "$ref": "#/766"
         },
         "flags": 0
       },
@@ -16286,7 +16447,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/761"
+          "$ref": "#/767"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -16297,7 +16458,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/TransitGateway@default",
     "body": {
-      "$ref": "#/762"
+      "$ref": "#/768"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -16367,7 +16528,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/764"
+      "$ref": "#/770"
     }
   },
   {
@@ -16382,20 +16543,20 @@
       },
       "Options": {
         "type": {
-          "$ref": "#/766"
+          "$ref": "#/772"
         },
         "flags": 0,
         "description": "The options for the transit gateway vpc attachment."
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/767"
+          "$ref": "#/773"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/768"
+          "$ref": "#/774"
         },
         "flags": 0
       },
@@ -16433,7 +16594,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/769"
+          "$ref": "#/775"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -16444,7 +16605,121 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/TransitGatewayAttachment@default",
     "body": {
-      "$ref": "#/770"
+      "$ref": "#/776"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NatRule",
+    "properties": {
+      "MatchSourceCidr": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The source CIDR that the rule matches on."
+      },
+      "NatCidr": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The CIDR that the matched source addresses are translated to."
+      },
+      "RuleNumber": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The rule number."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.EC2/TransitGatewayAttachmentNatConfigurationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/778"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EC2/TransitGatewayAttachmentNatConfigurationProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "Synthetic ARN encoding the NAT configuration's identity (the transit gateway attachment ID). Transit Gateway does not issue an ARN for a NAT configuration; this value exists so the configuration has a primary identifier, and it is not accepted by any EC2 API."
+      },
+      "NatGatewayRules": {
+        "type": {
+          "$ref": "#/780"
+        },
+        "flags": 1,
+        "description": "The complete set of NAT rules for the attachment. Updating this property replaces the entire rule set: rules omitted from the new value are removed."
+      },
+      "NatGatewaySupport": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "Whether NAT gateway support is enabled on the attachment. Set to disable to stage NAT rules without activating them; the rules are retained and become active when this is later set to enable."
+      },
+      "NatSystemRouteSupport": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Whether routes for the NAT CIDRs are installed into the transit gateway route tables associated with the attachment. Whether this is configurable depends on the attachment; where the value is forced, supplying the opposite value is rejected. Omitting this property leaves the setting to the service: on a new configuration the service applies the attachment's default, but on an attachment where the value is configurable it keeps the value already in effect rather than reverting to that default. Removing this property from a template, or deleting this resource, therefore leaves the setting at its last value rather than restoring the default, and a resource later created on the same attachment without this property inherits that value."
+      },
+      "TransitGatewayAttachmentId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The ID of the transit gateway attachment to configure NAT on."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EC2/TransitGatewayAttachmentNatConfiguration",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/781"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.EC2/TransitGatewayAttachmentNatConfiguration@default",
+    "body": {
+      "$ref": "#/782"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -16489,7 +16764,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/772"
+      "$ref": "#/784"
     }
   },
   {
@@ -16505,7 +16780,7 @@
       },
       "Options": {
         "type": {
-          "$ref": "#/773"
+          "$ref": "#/785"
         },
         "flags": 1,
         "description": "The Connect attachment options."
@@ -16519,7 +16794,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/775"
+          "$ref": "#/787"
         },
         "flags": 0,
         "description": "The tags for the attachment."
@@ -16567,7 +16842,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/776"
+          "$ref": "#/788"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -16578,7 +16853,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/TransitGatewayConnect@default",
     "body": {
-      "$ref": "#/777"
+      "$ref": "#/789"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -16650,14 +16925,14 @@
     "properties": {
       "BgpConfigurations": {
         "type": {
-          "$ref": "#/782"
+          "$ref": "#/794"
         },
         "flags": 2,
         "description": "The BGP configuration details."
       },
       "InsideCidrBlocks": {
         "type": {
-          "$ref": "#/783"
+          "$ref": "#/795"
         },
         "flags": 1,
         "description": "The range of interior BGP peer IP addresses."
@@ -16688,7 +16963,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/780"
+      "$ref": "#/792"
     }
   },
   {
@@ -16704,7 +16979,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/779"
+      "$ref": "#/791"
     }
   },
   {
@@ -16713,7 +16988,7 @@
     "properties": {
       "ConnectPeerConfiguration": {
         "type": {
-          "$ref": "#/781"
+          "$ref": "#/793"
         },
         "flags": 1,
         "description": "The Connect peer details."
@@ -16734,7 +17009,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/785"
+          "$ref": "#/797"
         },
         "flags": 0,
         "description": "The tags for the Connect Peer."
@@ -16775,7 +17050,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/786"
+          "$ref": "#/798"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -16786,7 +17061,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/TransitGatewayConnectPeer@default",
     "body": {
-      "$ref": "#/787"
+      "$ref": "#/799"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -16822,7 +17097,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/789"
+      "$ref": "#/801"
     }
   },
   {
@@ -16831,7 +17106,7 @@
     "properties": {
       "MiddleboxAttachmentIds": {
         "type": {
-          "$ref": "#/791"
+          "$ref": "#/803"
         },
         "flags": 0,
         "description": "Middle box attachment Ids"
@@ -16845,7 +17120,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/792"
+          "$ref": "#/804"
         },
         "flags": 0
       },
@@ -16892,7 +17167,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/793"
+          "$ref": "#/805"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -16903,7 +17178,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/TransitGatewayMeteringPolicy@default",
     "body": {
-      "$ref": "#/794"
+      "$ref": "#/806"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -16962,7 +17237,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/796"
+      "$ref": "#/808"
     }
   },
   {
@@ -16978,7 +17253,7 @@
       },
       "Options": {
         "type": {
-          "$ref": "#/798"
+          "$ref": "#/810"
         },
         "flags": 0,
         "description": "The options for the transit gateway multicast domain."
@@ -16992,7 +17267,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/799"
+          "$ref": "#/811"
         },
         "flags": 0,
         "description": "The tags for the transit gateway multicast domain."
@@ -17040,7 +17315,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/800"
+          "$ref": "#/812"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -17051,7 +17326,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/TransitGatewayMulticastDomain@default",
     "body": {
-      "$ref": "#/801"
+      "$ref": "#/813"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -17103,7 +17378,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/804"
+      "$ref": "#/816"
     }
   },
   {
@@ -17147,14 +17422,14 @@
       },
       "Status": {
         "type": {
-          "$ref": "#/803"
+          "$ref": "#/815"
         },
         "flags": 2,
         "description": "The status of the transit gateway peering attachment."
       },
       "Tags": {
         "type": {
-          "$ref": "#/806"
+          "$ref": "#/818"
         },
         "flags": 0,
         "description": "The tags for the transit gateway peering attachment."
@@ -17195,7 +17470,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/807"
+          "$ref": "#/819"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -17206,7 +17481,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/TransitGatewayPeeringAttachment@default",
     "body": {
-      "$ref": "#/808"
+      "$ref": "#/820"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -17236,7 +17511,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/810"
+      "$ref": "#/822"
     }
   },
   {
@@ -17259,7 +17534,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/812"
+          "$ref": "#/824"
         },
         "flags": 0
       },
@@ -17299,7 +17574,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/813"
+          "$ref": "#/825"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -17310,7 +17585,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/TransitGatewayPolicyTable@default",
     "body": {
-      "$ref": "#/814"
+      "$ref": "#/826"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -17366,7 +17641,7 @@
     "properties": {
       "PolicyRule": {
         "type": {
-          "$ref": "#/816"
+          "$ref": "#/828"
         },
         "flags": 1,
         "description": "The policy rule associated with the entry."
@@ -17421,7 +17696,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/818"
+          "$ref": "#/830"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -17432,7 +17707,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/TransitGatewayPolicyTableEntry@default",
     "body": {
-      "$ref": "#/819"
+      "$ref": "#/831"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -17464,7 +17739,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/821"
+      "$ref": "#/833"
     }
   },
   {
@@ -17473,7 +17748,7 @@
     "properties": {
       "Tags": {
         "type": {
-          "$ref": "#/823"
+          "$ref": "#/835"
         },
         "flags": 0,
         "description": "Tags are composed of a Key/Value pair. You can use tags to categorize and track each parameter group. The tag value null is permitted."
@@ -17514,7 +17789,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/824"
+          "$ref": "#/836"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -17525,7 +17800,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/TransitGatewayRouteTable@default",
     "body": {
-      "$ref": "#/825"
+      "$ref": "#/837"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -17607,7 +17882,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/827"
+      "$ref": "#/839"
     }
   },
   {
@@ -17616,7 +17891,7 @@
     "properties": {
       "AddSubnetIds": {
         "type": {
-          "$ref": "#/829"
+          "$ref": "#/841"
         },
         "flags": 4
       },
@@ -17628,26 +17903,26 @@
       },
       "Options": {
         "type": {
-          "$ref": "#/830"
+          "$ref": "#/842"
         },
         "flags": 0,
         "description": "The options for the transit gateway vpc attachment."
       },
       "RemoveSubnetIds": {
         "type": {
-          "$ref": "#/831"
+          "$ref": "#/843"
         },
         "flags": 4
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/832"
+          "$ref": "#/844"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/833"
+          "$ref": "#/845"
         },
         "flags": 0
       },
@@ -17685,7 +17960,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/834"
+          "$ref": "#/846"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -17696,7 +17971,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/TransitGatewayVpcAttachment@default",
     "body": {
-      "$ref": "#/835"
+      "$ref": "#/847"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -17769,7 +18044,7 @@
       },
       "ResourceExclusions": {
         "type": {
-          "$ref": "#/840"
+          "$ref": "#/852"
         },
         "flags": 2,
         "description": "Information about resource exclusions for the VPC Encryption Control configuration."
@@ -17851,56 +18126,56 @@
     "properties": {
       "EgressOnlyInternetGateway": {
         "type": {
-          "$ref": "#/839"
+          "$ref": "#/851"
         },
         "flags": 2,
         "description": "The exclusion configuration for egress-only internet gateway traffic."
       },
       "ElasticFileSystem": {
         "type": {
-          "$ref": "#/839"
+          "$ref": "#/851"
         },
         "flags": 2,
         "description": "The exclusion configuration for Elastic File System traffic."
       },
       "InternetGateway": {
         "type": {
-          "$ref": "#/839"
+          "$ref": "#/851"
         },
         "flags": 2,
         "description": "The exclusion configuration for internet gateway traffic."
       },
       "Lambda": {
         "type": {
-          "$ref": "#/839"
+          "$ref": "#/851"
         },
         "flags": 2,
         "description": "The exclusion configuration for Lambda function traffic."
       },
       "NatGateway": {
         "type": {
-          "$ref": "#/839"
+          "$ref": "#/851"
         },
         "flags": 2,
         "description": "The exclusion configuration for NAT gateway traffic."
       },
       "VirtualPrivateGateway": {
         "type": {
-          "$ref": "#/839"
+          "$ref": "#/851"
         },
         "flags": 2,
         "description": "The exclusion configuration for virtual private gateway traffic."
       },
       "VpcLattice": {
         "type": {
-          "$ref": "#/839"
+          "$ref": "#/851"
         },
         "flags": 2,
         "description": "The exclusion configuration for VPC Lattice traffic."
       },
       "VpcPeering": {
         "type": {
-          "$ref": "#/839"
+          "$ref": "#/851"
         },
         "flags": 2,
         "description": "The exclusion configuration for VPC peering connection traffic."
@@ -17926,7 +18201,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/837"
+      "$ref": "#/849"
     }
   },
   {
@@ -17942,7 +18217,7 @@
       },
       "CidrBlockAssociations": {
         "type": {
-          "$ref": "#/842"
+          "$ref": "#/854"
         },
         "flags": 2,
         "description": ""
@@ -17998,21 +18273,21 @@
       },
       "Ipv6CidrBlocks": {
         "type": {
-          "$ref": "#/843"
+          "$ref": "#/855"
         },
         "flags": 2,
         "description": ""
       },
       "Tags": {
         "type": {
-          "$ref": "#/844"
+          "$ref": "#/856"
         },
         "flags": 0,
         "description": "The tags for the VPC."
       },
       "VpcEncryptionControl": {
         "type": {
-          "$ref": "#/838"
+          "$ref": "#/850"
         },
         "flags": 0,
         "description": "Describes the configuration and state of VPC encryption controls.\n For more information, see [Enforce VPC encryption in transit](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-encryption-controls.html) in the *Amazon VPC User Guide*."
@@ -18046,7 +18321,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/845"
+          "$ref": "#/857"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -18057,7 +18332,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/VPC@default",
     "body": {
-      "$ref": "#/846"
+      "$ref": "#/858"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -18089,7 +18364,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/848"
+      "$ref": "#/860"
     }
   },
   {
@@ -18119,7 +18394,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/850"
+          "$ref": "#/862"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -18153,7 +18428,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/851"
+          "$ref": "#/863"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -18164,7 +18439,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/VPCBlockPublicAccessExclusion@default",
     "body": {
-      "$ref": "#/852"
+      "$ref": "#/864"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -18220,7 +18495,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/855"
+          "$ref": "#/867"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -18231,7 +18506,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/VPCBlockPublicAccessOptions@default",
     "body": {
-      "$ref": "#/856"
+      "$ref": "#/868"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -18280,7 +18555,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/859"
+          "$ref": "#/871"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -18291,7 +18566,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/VPCDHCPOptionsAssociation@default",
     "body": {
-      "$ref": "#/860"
+      "$ref": "#/872"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -18302,49 +18577,49 @@
     "properties": {
       "EgressOnlyInternetGateway": {
         "type": {
-          "$ref": "#/864"
+          "$ref": "#/876"
         },
         "flags": 2
       },
       "ElasticFileSystem": {
         "type": {
-          "$ref": "#/864"
+          "$ref": "#/876"
         },
         "flags": 2
       },
       "InternetGateway": {
         "type": {
-          "$ref": "#/864"
+          "$ref": "#/876"
         },
         "flags": 2
       },
       "Lambda": {
         "type": {
-          "$ref": "#/864"
+          "$ref": "#/876"
         },
         "flags": 2
       },
       "NatGateway": {
         "type": {
-          "$ref": "#/864"
+          "$ref": "#/876"
         },
         "flags": 2
       },
       "VirtualPrivateGateway": {
         "type": {
-          "$ref": "#/864"
+          "$ref": "#/876"
         },
         "flags": 2
       },
       "VpcLattice": {
         "type": {
-          "$ref": "#/864"
+          "$ref": "#/876"
         },
         "flags": 2
       },
       "VpcPeering": {
         "type": {
-          "$ref": "#/864"
+          "$ref": "#/876"
         },
         "flags": 2
       }
@@ -18395,7 +18670,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/863"
+      "$ref": "#/875"
     }
   },
   {
@@ -18446,7 +18721,7 @@
       },
       "ResourceExclusions": {
         "type": {
-          "$ref": "#/862"
+          "$ref": "#/874"
         },
         "flags": 2,
         "description": "Enumerates the states of all the VPC encryption control resource exclusions"
@@ -18467,7 +18742,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/866"
+          "$ref": "#/878"
         },
         "flags": 0,
         "description": "The tags to assign to the VPC encryption control."
@@ -18529,7 +18804,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/867"
+          "$ref": "#/879"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -18540,7 +18815,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/VPCEncryptionControl@default",
     "body": {
-      "$ref": "#/868"
+      "$ref": "#/880"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -18572,7 +18847,7 @@
       },
       "PrivateDnsSpecifiedDomains": {
         "type": {
-          "$ref": "#/872"
+          "$ref": "#/884"
         },
         "flags": 0,
         "description": "Indicates which of the private domains to create private hosted zones for and associate with the specified VPC. Only supported when private DNS is enabled and the private DNS preference is ``VERIFIED_DOMAINS_AND_SPECIFIED_DOMAINS`` or ``SPECIFIED_DOMAINS_ONLY``."
@@ -18633,7 +18908,7 @@
         "$ref": "#/5"
       },
       {
-        "$ref": "#/876"
+        "$ref": "#/888"
       }
     ]
   },
@@ -18658,7 +18933,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/871"
+      "$ref": "#/883"
     }
   },
   {
@@ -18674,14 +18949,14 @@
       },
       "DnsEntries": {
         "type": {
-          "$ref": "#/874"
+          "$ref": "#/886"
         },
         "flags": 2,
         "description": ""
       },
       "DnsOptions": {
         "type": {
-          "$ref": "#/870"
+          "$ref": "#/882"
         },
         "flags": 0,
         "description": "Describes the DNS options for an endpoint."
@@ -18702,14 +18977,14 @@
       },
       "NetworkInterfaceIds": {
         "type": {
-          "$ref": "#/875"
+          "$ref": "#/887"
         },
         "flags": 2,
         "description": ""
       },
       "PolicyDocument": {
         "type": {
-          "$ref": "#/877"
+          "$ref": "#/889"
         },
         "flags": 0,
         "description": "An endpoint policy, which controls access to the service from the VPC. The default endpoint policy allows full access to the service. Endpoint policies are supported only for gateway and interface endpoints.\n For CloudFormation templates in YAML, you can provide the policy in JSON or YAML format. For example, if you have a JSON policy, you can convert it to YAML before including it in the YAML template, and CFNlong converts the policy to JSON format before calling the API actions for privatelink. Alternatively, you can include the JSON directly in the YAML, as shown in the following ``Properties`` section:\n ``Properties: VpcEndpointType: 'Interface' ServiceName: !Sub 'com.amazonaws.${AWS::Region}.logs' PolicyDocument: '{ \"Version\":\"2012-10-17\", \"Statement\": [{ \"Effect\":\"Allow\", \"Principal\":\"*\", \"Action\":[\"logs:Describe*\",\"logs:Get*\",\"logs:List*\",\"logs:FilterLogEvents\"], \"Resource\":\"*\" }] }'``"
@@ -18730,14 +19005,14 @@
       },
       "RouteTableIds": {
         "type": {
-          "$ref": "#/878"
+          "$ref": "#/890"
         },
         "flags": 0,
         "description": "The IDs of the route tables. Routing is supported only for gateway endpoints."
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/879"
+          "$ref": "#/891"
         },
         "flags": 0,
         "description": "The IDs of the security groups to associate with the endpoint network interfaces. If this parameter is not specified, we use the default security group for the VPC. Security groups are supported only for interface endpoints."
@@ -18765,14 +19040,14 @@
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/880"
+          "$ref": "#/892"
         },
         "flags": 0,
         "description": "The IDs of the subnets in which to create endpoint network interfaces. You must specify this property for an interface endpoint or a Gateway Load Balancer endpoint. You can't specify this property for a gateway endpoint. For a Gateway Load Balancer endpoint, you can specify only one subnet."
       },
       "Tags": {
         "type": {
-          "$ref": "#/881"
+          "$ref": "#/893"
         },
         "flags": 0,
         "description": "The tags to associate with the endpoint."
@@ -18813,7 +19088,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/882"
+          "$ref": "#/894"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -18824,7 +19099,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/VPCEndpoint@default",
     "body": {
-      "$ref": "#/883"
+      "$ref": "#/895"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -18845,7 +19120,7 @@
     "properties": {
       "ConnectionEvents": {
         "type": {
-          "$ref": "#/886"
+          "$ref": "#/898"
         },
         "flags": 1,
         "description": "The endpoint events for which to receive notifications."
@@ -18900,7 +19175,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/887"
+          "$ref": "#/899"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -18911,7 +19186,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/VPCEndpointConnectionNotification@default",
     "body": {
-      "$ref": "#/888"
+      "$ref": "#/900"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -19000,7 +19275,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/892"
+      "$ref": "#/904"
     }
   },
   {
@@ -19021,13 +19296,13 @@
       },
       "GatewayLoadBalancerArns": {
         "type": {
-          "$ref": "#/894"
+          "$ref": "#/906"
         },
         "flags": 0
       },
       "NetworkLoadBalancerArns": {
         "type": {
-          "$ref": "#/895"
+          "$ref": "#/907"
         },
         "flags": 0
       },
@@ -19045,7 +19320,7 @@
       },
       "PrivateDnsNameConfiguration": {
         "type": {
-          "$ref": "#/891"
+          "$ref": "#/903"
         },
         "flags": 0
       },
@@ -19057,21 +19332,21 @@
       },
       "SupportedIpAddressTypes": {
         "type": {
-          "$ref": "#/896"
+          "$ref": "#/908"
         },
         "flags": 0,
         "description": "Specify which Ip Address types are supported for VPC endpoint service."
       },
       "SupportedRegions": {
         "type": {
-          "$ref": "#/897"
+          "$ref": "#/909"
         },
         "flags": 0,
         "description": "The Regions from which service consumers can access the service."
       },
       "Tags": {
         "type": {
-          "$ref": "#/898"
+          "$ref": "#/910"
         },
         "flags": 0,
         "description": "The tags to add to the VPC endpoint service."
@@ -19098,7 +19373,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/899"
+          "$ref": "#/911"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -19109,7 +19384,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/VPCEndpointService@default",
     "body": {
-      "$ref": "#/900"
+      "$ref": "#/912"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -19130,7 +19405,7 @@
     "properties": {
       "AllowedPrincipals": {
         "type": {
-          "$ref": "#/903"
+          "$ref": "#/915"
         },
         "flags": 0
       },
@@ -19162,7 +19437,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/904"
+          "$ref": "#/916"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -19173,7 +19448,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/VPCEndpointServicePermissions@default",
     "body": {
-      "$ref": "#/905"
+      "$ref": "#/917"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -19236,7 +19511,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/908"
+          "$ref": "#/920"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -19247,7 +19522,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/VPCGatewayAttachment@default",
     "body": {
-      "$ref": "#/909"
+      "$ref": "#/921"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -19279,7 +19554,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/911"
+      "$ref": "#/923"
     }
   },
   {
@@ -19329,7 +19604,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/913"
+          "$ref": "#/925"
         },
         "flags": 0
       },
@@ -19362,7 +19637,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/914"
+          "$ref": "#/926"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -19373,7 +19648,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/VPCPeeringConnection@default",
     "body": {
-      "$ref": "#/915"
+      "$ref": "#/927"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -19405,7 +19680,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/917"
+      "$ref": "#/929"
     }
   },
   {
@@ -19414,7 +19689,7 @@
     "properties": {
       "Tags": {
         "type": {
-          "$ref": "#/919"
+          "$ref": "#/931"
         },
         "flags": 0,
         "description": "Any tags assigned to the VPN concentrator."
@@ -19469,7 +19744,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/920"
+          "$ref": "#/932"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -19480,7 +19755,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/VPNConcentrator@default",
     "body": {
-      "$ref": "#/921"
+      "$ref": "#/933"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -19650,7 +19925,7 @@
     "properties": {
       "CloudwatchLogOptions": {
         "type": {
-          "$ref": "#/923"
+          "$ref": "#/935"
         },
         "flags": 0,
         "description": "Options for sending VPN tunnel logs to CloudWatch."
@@ -19684,35 +19959,35 @@
       },
       "IKEVersions": {
         "type": {
-          "$ref": "#/934"
+          "$ref": "#/946"
         },
         "flags": 0,
         "description": "The IKE versions that are permitted for the VPN tunnel.\n Valid values: ``ikev1`` | ``ikev2``"
       },
       "LogOptions": {
         "type": {
-          "$ref": "#/932"
+          "$ref": "#/944"
         },
         "flags": 0,
         "description": "Options for logging VPN tunnel activity."
       },
       "Phase1DHGroupNumbers": {
         "type": {
-          "$ref": "#/935"
+          "$ref": "#/947"
         },
         "flags": 0,
         "description": "One or more Diffie-Hellman group numbers that are permitted for the VPN tunnel for phase 1 IKE negotiations.\n Valid values: ``2`` | ``14`` | ``15`` | ``16`` | ``17`` | ``18`` | ``19`` | ``20`` | ``21`` | ``22`` | ``23`` | ``24``"
       },
       "Phase1EncryptionAlgorithms": {
         "type": {
-          "$ref": "#/936"
+          "$ref": "#/948"
         },
         "flags": 0,
         "description": "One or more encryption algorithms that are permitted for the VPN tunnel for phase 1 IKE negotiations.\n Valid values: ``AES128`` | ``AES256`` | ``AES128-GCM-16`` | ``AES256-GCM-16``"
       },
       "Phase1IntegrityAlgorithms": {
         "type": {
-          "$ref": "#/937"
+          "$ref": "#/949"
         },
         "flags": 0,
         "description": "One or more integrity algorithms that are permitted for the VPN tunnel for phase 1 IKE negotiations.\n Valid values: ``SHA1`` | ``SHA2-256`` | ``SHA2-384`` | ``SHA2-512``"
@@ -19726,21 +20001,21 @@
       },
       "Phase2DHGroupNumbers": {
         "type": {
-          "$ref": "#/938"
+          "$ref": "#/950"
         },
         "flags": 0,
         "description": "One or more Diffie-Hellman group numbers that are permitted for the VPN tunnel for phase 2 IKE negotiations.\n Valid values: ``2`` | ``5`` | ``14`` | ``15`` | ``16`` | ``17`` | ``18`` | ``19`` | ``20`` | ``21`` | ``22`` | ``23`` | ``24``"
       },
       "Phase2EncryptionAlgorithms": {
         "type": {
-          "$ref": "#/939"
+          "$ref": "#/951"
         },
         "flags": 0,
         "description": "One or more encryption algorithms that are permitted for the VPN tunnel for phase 2 IKE negotiations.\n Valid values: ``AES128`` | ``AES256`` | ``AES128-GCM-16`` | ``AES256-GCM-16``"
       },
       "Phase2IntegrityAlgorithms": {
         "type": {
-          "$ref": "#/940"
+          "$ref": "#/952"
         },
         "flags": 0,
         "description": "One or more integrity algorithms that are permitted for the VPN tunnel for phase 2 IKE negotiations.\n Valid values: ``SHA1`` | ``SHA2-256`` | ``SHA2-384`` | ``SHA2-512``"
@@ -19806,43 +20081,43 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/924"
+      "$ref": "#/936"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/925"
+      "$ref": "#/937"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/926"
+      "$ref": "#/938"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/927"
+      "$ref": "#/939"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/928"
+      "$ref": "#/940"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/929"
+      "$ref": "#/941"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/930"
+      "$ref": "#/942"
     }
   },
   {
@@ -19852,13 +20127,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/931"
+      "$ref": "#/943"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/933"
+      "$ref": "#/945"
     }
   },
   {
@@ -19930,7 +20205,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/942"
+          "$ref": "#/954"
         },
         "flags": 0,
         "description": "Any tags assigned to the VPN connection."
@@ -19993,7 +20268,7 @@
       },
       "VpnTunnelOptionsSpecifications": {
         "type": {
-          "$ref": "#/943"
+          "$ref": "#/955"
         },
         "flags": 4,
         "description": "The tunnel options for the VPN connection."
@@ -20020,7 +20295,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/944"
+          "$ref": "#/956"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -20031,7 +20306,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/VPNConnection@default",
     "body": {
-      "$ref": "#/945"
+      "$ref": "#/957"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -20063,7 +20338,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/947"
+      "$ref": "#/959"
     }
   },
   {
@@ -20079,7 +20354,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/949"
+          "$ref": "#/961"
         },
         "flags": 0,
         "description": "Any tags assigned to the virtual private gateway."
@@ -20120,7 +20395,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/950"
+          "$ref": "#/962"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -20131,7 +20406,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/VPNGateway@default",
     "body": {
-      "$ref": "#/951"
+      "$ref": "#/963"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -20149,7 +20424,7 @@
       },
       "PortRanges": {
         "type": {
-          "$ref": "#/962"
+          "$ref": "#/974"
         },
         "flags": 0,
         "description": "The list of port range."
@@ -20163,7 +20438,7 @@
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/963"
+          "$ref": "#/975"
         },
         "flags": 0,
         "description": "The IDs of the subnets."
@@ -20190,7 +20465,7 @@
       },
       "PortRanges": {
         "type": {
-          "$ref": "#/964"
+          "$ref": "#/976"
         },
         "flags": 0,
         "description": "The list of port range."
@@ -20204,7 +20479,7 @@
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/965"
+          "$ref": "#/977"
         },
         "flags": 0,
         "description": "The IDs of the subnets."
@@ -20231,7 +20506,7 @@
       },
       "PortRanges": {
         "type": {
-          "$ref": "#/966"
+          "$ref": "#/978"
         },
         "flags": 0,
         "description": "The list of port ranges."
@@ -20313,7 +20588,7 @@
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/967"
+          "$ref": "#/979"
         },
         "flags": 0,
         "description": "The IDs of the subnets."
@@ -20373,7 +20648,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/956"
+      "$ref": "#/968"
     }
   },
   {
@@ -20385,7 +20660,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/956"
+      "$ref": "#/968"
     }
   },
   {
@@ -20397,7 +20672,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/956"
+      "$ref": "#/968"
     }
   },
   {
@@ -20419,7 +20694,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/961"
+      "$ref": "#/973"
     }
   },
   {
@@ -20442,7 +20717,7 @@
       },
       "CidrOptions": {
         "type": {
-          "$ref": "#/953"
+          "$ref": "#/965"
         },
         "flags": 0,
         "description": "The options for cidr type endpoint."
@@ -20505,14 +20780,14 @@
       },
       "LoadBalancerOptions": {
         "type": {
-          "$ref": "#/954"
+          "$ref": "#/966"
         },
         "flags": 0,
         "description": "The load balancer details if creating the AWS Verified Access endpoint as load-balancer type."
       },
       "NetworkInterfaceOptions": {
         "type": {
-          "$ref": "#/955"
+          "$ref": "#/967"
         },
         "flags": 0,
         "description": "The options for network-interface type endpoint."
@@ -20533,21 +20808,21 @@
       },
       "RdsOptions": {
         "type": {
-          "$ref": "#/957"
+          "$ref": "#/969"
         },
         "flags": 0,
         "description": "The options for rds type endpoint."
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/969"
+          "$ref": "#/981"
         },
         "flags": 0,
         "description": "The IDs of the security groups for the endpoint."
       },
       "SseSpecification": {
         "type": {
-          "$ref": "#/959"
+          "$ref": "#/971"
         },
         "flags": 0,
         "description": "The configuration options for customer provided KMS encryption."
@@ -20561,7 +20836,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/970"
+          "$ref": "#/982"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -20609,7 +20884,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/971"
+          "$ref": "#/983"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -20620,7 +20895,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/VerifiedAccessEndpoint@default",
     "body": {
-      "$ref": "#/972"
+      "$ref": "#/984"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -20672,7 +20947,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/975"
+      "$ref": "#/987"
     }
   },
   {
@@ -20723,14 +20998,14 @@
       },
       "SseSpecification": {
         "type": {
-          "$ref": "#/974"
+          "$ref": "#/986"
         },
         "flags": 0,
         "description": "The configuration options for customer provided KMS encryption."
       },
       "Tags": {
         "type": {
-          "$ref": "#/977"
+          "$ref": "#/989"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -20778,7 +21053,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/978"
+          "$ref": "#/990"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -20789,7 +21064,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/VerifiedAccessGroup@default",
     "body": {
-      "$ref": "#/979"
+      "$ref": "#/991"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -20825,7 +21100,7 @@
     "properties": {
       "CloudWatchLogs": {
         "type": {
-          "$ref": "#/986"
+          "$ref": "#/998"
         },
         "flags": 0,
         "description": "Sends Verified Access logs to CloudWatch Logs."
@@ -20839,7 +21114,7 @@
       },
       "KinesisDataFirehose": {
         "type": {
-          "$ref": "#/987"
+          "$ref": "#/999"
         },
         "flags": 0,
         "description": "Sends Verified Access logs to Kinesis."
@@ -20853,7 +21128,7 @@
       },
       "S3": {
         "type": {
-          "$ref": "#/988"
+          "$ref": "#/1000"
         },
         "flags": 0,
         "description": "Sends Verified Access logs to Amazon S3."
@@ -20993,7 +21268,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/982"
+      "$ref": "#/994"
     }
   },
   {
@@ -21005,7 +21280,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/984"
+      "$ref": "#/996"
     }
   },
   {
@@ -21021,7 +21296,7 @@
       },
       "CidrEndpointsCustomSubDomainNameServers": {
         "type": {
-          "$ref": "#/990"
+          "$ref": "#/1002"
         },
         "flags": 2,
         "description": "Property to represent the name servers assoicated with the domain that AVA manages (say, ['ns1.amazonaws.com', 'ns2.amazonaws.com', 'ns3.amazonaws.com', 'ns4.amazonaws.com'])."
@@ -21056,14 +21331,14 @@
       },
       "LoggingConfigurations": {
         "type": {
-          "$ref": "#/983"
+          "$ref": "#/995"
         },
         "flags": 0,
         "description": "The configuration options for AWS Verified Access instances."
       },
       "Tags": {
         "type": {
-          "$ref": "#/991"
+          "$ref": "#/1003"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -21077,14 +21352,14 @@
       },
       "VerifiedAccessTrustProviderIds": {
         "type": {
-          "$ref": "#/992"
+          "$ref": "#/1004"
         },
         "flags": 0,
         "description": "The IDs of the AWS Verified Access trust providers."
       },
       "VerifiedAccessTrustProviders": {
         "type": {
-          "$ref": "#/993"
+          "$ref": "#/1005"
         },
         "flags": 0,
         "description": "AWS Verified Access trust providers."
@@ -21111,7 +21386,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/994"
+          "$ref": "#/1006"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -21122,7 +21397,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/VerifiedAccessInstance@default",
     "body": {
-      "$ref": "#/995"
+      "$ref": "#/1007"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -21316,7 +21591,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1001"
+      "$ref": "#/1013"
     }
   },
   {
@@ -21339,7 +21614,7 @@
       },
       "DeviceOptions": {
         "type": {
-          "$ref": "#/997"
+          "$ref": "#/1009"
         },
         "flags": 0
       },
@@ -21359,13 +21634,13 @@
       },
       "NativeApplicationOidcOptions": {
         "type": {
-          "$ref": "#/998"
+          "$ref": "#/1010"
         },
         "flags": 0
       },
       "OidcOptions": {
         "type": {
-          "$ref": "#/999"
+          "$ref": "#/1011"
         },
         "flags": 0
       },
@@ -21378,14 +21653,14 @@
       },
       "SseSpecification": {
         "type": {
-          "$ref": "#/1003"
+          "$ref": "#/1015"
         },
         "flags": 0,
         "description": "The configuration options for customer provided KMS encryption."
       },
       "Tags": {
         "type": {
-          "$ref": "#/1004"
+          "$ref": "#/1016"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -21433,7 +21708,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/1005"
+          "$ref": "#/1017"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -21444,7 +21719,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/VerifiedAccessTrustProvider@default",
     "body": {
-      "$ref": "#/1006"
+      "$ref": "#/1018"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -21476,7 +21751,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1008"
+      "$ref": "#/1020"
     }
   },
   {
@@ -21562,7 +21837,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/1010"
+          "$ref": "#/1022"
         },
         "flags": 0,
         "description": "The tags to apply to the volume during creation."
@@ -21617,7 +21892,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/1011"
+          "$ref": "#/1023"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -21628,7 +21903,7 @@
     "$type": "ResourceType",
     "name": "AWS.EC2/Volume@default",
     "body": {
-      "$ref": "#/1012"
+      "$ref": "#/1024"
     },
     "readableScopes": 0,
     "writableScopes": 0

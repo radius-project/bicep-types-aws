@@ -24,7 +24,6 @@
 * **ApplicationSystemRollbackConfiguration**: [ApplicationSystemRollbackConfiguration](#applicationsystemrollbackconfiguration): Describes whether system initiated rollbacks are enabled for a Flink-based Kinesis Data Analytics application.
 * **EnvironmentProperties**: [EnvironmentProperties](#environmentproperties) (WriteOnly): Describes execution properties for a Flink-based Kinesis Data Analytics application.
 * **FlinkApplicationConfiguration**: [FlinkApplicationConfiguration](#flinkapplicationconfiguration): The creation and update parameters for a Flink-based Kinesis Data Analytics application.
-* **SqlApplicationConfiguration**: [SqlApplicationConfiguration](#sqlapplicationconfiguration): The creation and update parameters for a SQL-based Kinesis Data Analytics application.
 * **VpcConfigurations**: [VpcConfiguration](#vpcconfiguration)[]: The array of descriptions of VPC configurations available to the application.
 * **ZeppelinApplicationConfiguration**: [ZeppelinApplicationConfiguration](#zeppelinapplicationconfiguration): The configuration parameters for a Kinesis Data Analytics Studio notebook.
 
@@ -40,10 +39,12 @@
 ## ApplicationRestoreConfiguration
 ### Properties
 * **ApplicationRestoreType**: string (Required): Specifies how the application should be restored.
-* **SnapshotName**: string: The identifier of an existing snapshot of application state to use to restart an application. The application uses this value if RESTORE_FROM_CUSTOM_SNAPSHOT is specified for the ApplicationRestoreType.
+* **SnapshotArn**: string: The ARN of an existing snapshot to use to restart an application. The application uses this value if RESTORE_FROM_CUSTOM_SNAPSHOT is specified for the ApplicationRestoreType. Specify either SnapshotName or SnapshotArn, not both.
+* **SnapshotName**: string: The identifier of an existing snapshot of application state to use to restart an application. The application uses this value if RESTORE_FROM_CUSTOM_SNAPSHOT is specified for the ApplicationRestoreType. Specify either SnapshotName or SnapshotArn, not both.
 
 ## ApplicationSnapshotConfiguration
 ### Properties
+* **SnapshotMode**: string: The snapshot mode of a Flink-based Kinesis Data Analytics application. Changing from APPLICATION_SNAPSHOTS_LEGACY to ENHANCED_SNAPSHOTS is one-way; an application in ENHANCED_SNAPSHOTS mode cannot return to APPLICATION_SNAPSHOTS_LEGACY.
 * **SnapshotsEnabled**: bool (Required): Describes whether snapshots are enabled for a Flink-based Kinesis Data Analytics application.
 
 ## ApplicationSystemRollbackConfiguration
@@ -76,13 +77,8 @@
 ## CodeContent
 ### Properties
 * **S3ContentLocation**: [S3ContentLocation](#s3contentlocation): Information about the Amazon S3 bucket that contains the application code.
-* **TextContent**: string: The text-format code for a Flink-based Kinesis Data Analytics application.
+* **TextContent**: string: The text-format code for a Kinesis Data Analytics Studio notebook, as a Zeppelin note JSON object.
 * **ZipFileContent**: string (WriteOnly): The zip-format code for a Flink-based Kinesis Data Analytics application.
-
-## CSVMappingParameters
-### Properties
-* **RecordColumnDelimiter**: string (Required): The column delimiter. For example, in a CSV format, a comma (",") is the typical column delimiter.
-* **RecordRowDelimiter**: string (Required): The row delimiter. For example, in a CSV format, '\n' is the typical row delimiter.
 
 ## CustomArtifactConfiguration
 ### Properties
@@ -112,50 +108,6 @@
 ### Properties
 * **DatabaseARN**: string: The Amazon Resource Name (ARN) of the database.
 
-## Input
-### Properties
-* **InputParallelism**: [InputParallelism](#inputparallelism): Describes the number of in-application streams to create.
-* **InputProcessingConfiguration**: [InputProcessingConfiguration](#inputprocessingconfiguration): The InputProcessingConfiguration for the input. An input processor transforms records as they are received from the stream, before the application's SQL code executes. Currently, the only input processing configuration available is InputLambdaProcessor.
-* **InputSchema**: [InputSchema](#inputschema) (Required): Describes the format of the data in the streaming source, and how each data element maps to corresponding columns in the in-application stream that is being created.
-* **KinesisFirehoseInput**: [KinesisFirehoseInput](#kinesisfirehoseinput): If the streaming source is an Amazon Kinesis Data Firehose delivery stream, identifies the delivery stream's ARN.
-* **KinesisStreamsInput**: [KinesisStreamsInput](#kinesisstreamsinput): If the streaming source is an Amazon Kinesis data stream, identifies the stream's Amazon Resource Name (ARN).
-* **NamePrefix**: string (Required): The name prefix to use when creating an in-application stream. Suppose that you specify a prefix `"MyInApplicationStream"`. Kinesis Data Analytics then creates one or more (as per the InputParallelism count you specified) in-application streams with the names `"MyInApplicationStream_001"`, `"MyInApplicationStream_002"`, and so on.
-
-## InputLambdaProcessor
-### Properties
-* **ResourceARN**: string (Required): The ARN of the Amazon Lambda function that operates on records in the stream.
-
-## InputParallelism
-### Properties
-* **Count**: int: The number of in-application streams to create.
-
-## InputProcessingConfiguration
-### Properties
-* **InputLambdaProcessor**: [InputLambdaProcessor](#inputlambdaprocessor): The InputLambdaProcessor that is used to preprocess the records in the stream before being processed by your application code.
-
-## InputSchema
-### Properties
-* **RecordColumns**: [RecordColumn](#recordcolumn)[] (Required): A list of `RecordColumn` objects.
-* **RecordEncoding**: string: Specifies the encoding of the records in the streaming source. For example, UTF-8.
-* **RecordFormat**: [RecordFormat](#recordformat) (Required): Specifies the format of the records on the streaming source.
-
-## JSONMappingParameters
-### Properties
-* **RecordRowPath**: string (Required): The path to the top-level parent that contains the records.
-
-## KinesisFirehoseInput
-### Properties
-* **ResourceARN**: string (Required): The Amazon Resource Name (ARN) of the delivery stream.
-
-## KinesisStreamsInput
-### Properties
-* **ResourceARN**: string (Required): The ARN of the input Kinesis data stream to read.
-
-## MappingParameters
-### Properties
-* **CSVMappingParameters**: [CSVMappingParameters](#csvmappingparameters): Provides additional mapping information when the record format uses delimiters (for example, CSV).
-* **JSONMappingParameters**: [JSONMappingParameters](#jsonmappingparameters): Provides additional mapping information when JSON is the record format on the streaming source.
-
 ## MavenReference
 ### Properties
 * **ArtifactId**: string (Required): The artifact ID of the Maven reference.
@@ -180,17 +132,6 @@
 * **PropertyGroupId**: string: Describes the key of an application execution property key-value pair.
 * **PropertyMap**: [Application_PropertyMap](#applicationpropertymap): Describes the value of an application execution property key-value pair.
 
-## RecordColumn
-### Properties
-* **Mapping**: string: A reference to the data element in the streaming input or the reference data source.
-* **Name**: string (Required): The name of the column that is created in the in-application input stream or reference table.
-* **SqlType**: string (Required): The type of column created in the in-application input stream or reference table.
-
-## RecordFormat
-### Properties
-* **MappingParameters**: [MappingParameters](#mappingparameters): When you configure application input at the time of creating or updating an application, provides additional mapping information specific to the record format (such as JSON, CSV, or record fields delimited by some delimiter) on the streaming source.
-* **RecordFormatType**: string (Required): The type of record format.
-
 ## RunConfiguration
 ### Properties
 * **ApplicationRestoreConfiguration**: [ApplicationRestoreConfiguration](#applicationrestoreconfiguration): Describes the restore behavior of a restarting application.
@@ -206,10 +147,6 @@
 * **BucketARN**: string (Required): The Amazon Resource Name (ARN) for the S3 bucket containing the application code.
 * **FileKey**: string (Required): The file key for the object containing the application code.
 * **ObjectVersion**: string: The version of the object containing the application code.
-
-## SqlApplicationConfiguration
-### Properties
-* **Inputs**: [Input](#input)[]: The array of Input objects describing the input streams used by the application.
 
 ## Tag
 ### Properties

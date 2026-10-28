@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-BedrockAgentCore-GatewayTarget",
   "type": "AWS::BedrockAgentCore::GatewayTarget",
-  "time": "2026-09-24T21:38:10.684Z",
+  "time": "2026-10-27T01:48:41.693Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -167,6 +167,36 @@
               "Oauth2"
             ],
             "title": "Oauth2",
+            "type": "object"
+          }
+        ]
+      },
+      "CertificateConfiguration": {
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "S3": {
+                "$ref": "#/definitions/S3CertificateConfiguration"
+              }
+            },
+            "required": [
+              "S3"
+            ],
+            "title": "S3",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "SecretsManager": {
+                "$ref": "#/definitions/SecretsManagerCertificateConfiguration"
+              }
+            },
+            "required": [
+              "SecretsManager"
+            ],
+            "title": "SecretsManager",
             "type": "object"
           }
         ]
@@ -630,7 +660,7 @@
           "LambdaArn": {
             "maxLength": 170,
             "minLength": 1,
-            "pattern": "^arn:(aws[a-zA-Z-]*)?:lambda:([a-z]{2}(-gov)?-[a-z]+-\\d{1}):(\\d{12}):function:([a-zA-Z0-9-_.]+)(:(\\$LATEST|[a-zA-Z0-9-_]+))?$",
+            "pattern": "^arn:(aws[a-zA-Z-]*)?:lambda:([a-z0-9-]+):(\\d{12}):function:([a-zA-Z0-9-_.]+)(:(\\$LATEST|[a-zA-Z0-9-_]+))?$",
             "type": "string"
           },
           "ToolSchema": {
@@ -1035,6 +1065,23 @@
         ],
         "type": "object"
       },
+      "S3CertificateConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "BucketOwnerAccountId": {
+            "pattern": "^[0-9]{12}$",
+            "type": "string"
+          },
+          "Uri": {
+            "pattern": "^s3://.{1,2043}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Uri"
+        ],
+        "type": "object"
+      },
       "S3Configuration": {
         "additionalProperties": false,
         "properties": {
@@ -1095,6 +1142,19 @@
           "integer"
         ],
         "type": "string"
+      },
+      "SecretsManagerCertificateConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "SecretArn": {
+            "pattern": "^arn:aws(-[^:]+)?:secretsmanager:[a-z0-9-]+:[0-9]{12}:secret:.+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "SecretArn"
+        ],
+        "type": "object"
       },
       "SelfManagedLatticeResource": {
         "oneOf": [
@@ -1383,6 +1443,14 @@
       "AuthorizationData": {
         "$ref": "#/definitions/AuthorizationData"
       },
+      "CertificateConfigurations": {
+        "items": {
+          "$ref": "#/definitions/CertificateConfiguration"
+        },
+        "maxItems": 1,
+        "minItems": 1,
+        "type": "array"
+      },
       "CreatedAt": {
         "format": "date-time",
         "type": "string"
@@ -1401,7 +1469,7 @@
         "type": "string"
       },
       "GatewayArn": {
-        "pattern": "^arn:aws(|-cn|-us-gov):bedrock-agentcore:[a-z0-9-]{1,20}:[0-9]{12}:gateway/([0-9a-z][-]?){1,48}-[a-z0-9]{10}$",
+        "pattern": "^arn:(aws(-[a-z]+)*):bedrock-agentcore:[a-z0-9-]{1,20}:[0-9]{12}:gateway/([0-9a-z][-]?){1,48}-[a-z0-9]{10}$",
         "type": "string"
       },
       "GatewayIdentifier": {

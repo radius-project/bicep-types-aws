@@ -48,6 +48,7 @@
 * **DeploymentConfigName**: string: A deployment configuration name or a predefined configuration name. With predefined configurations, you can deploy application revisions to one instance at a time (CodeDeployDefault.OneAtATime), half of the instances at a time (CodeDeployDefault.HalfAtATime), or all the instances at once (CodeDeployDefault.AllAtOnce).
 * **DeploymentGroupName**: string (Identifier): A name for the deployment group. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the deployment group name.
 * **DeploymentStyle**: [DeploymentStyle](#deploymentstyle): Attributes that determine the type of deployment to run and whether to route deployment traffic behind a load balancer. If you specify this property with a blue/green deployment type, don't specify the AutoScalingGroups, LoadBalancerInfo, or Deployment properties.
+* **Ec2DeploymentOptions**: [Ec2DeploymentOptions](#ec2deploymentoptions): Options that control how CodeDeploy manages Amazon EC2 Auto Scaling groups during deployments to the deployment group. Applies only to in-place deployment groups on the EC2/On-premises compute platform that include at least one Auto Scaling group.
 * **Ec2TagFilters**: [EC2TagFilter](#ec2tagfilter)[]: The Amazon EC2 tags that are already applied to Amazon EC2 instances that you want to include in the deployment group. CodeDeploy includes all Amazon EC2 instances identified by any of the tags you specify in this deployment group. Duplicates are not allowed. You can specify EC2TagFilters or Ec2TagSet, but not both.
 * **Ec2TagSet**: [EC2TagSet](#ec2tagset): Information about groups of tags applied to Amazon EC2 instances. Use when the deployment group includes only Amazon EC2 instances identified by all the tag groups. Cannot be used in the same call as ec2TagFilter.
 * **ECSServices**: [ECSService](#ecsservice)[]: The target Amazon ECS services in the deployment group. This applies only to deployment groups that use the Amazon ECS compute platform. A target Amazon ECS service is specified as an Amazon ECS cluster and service name pair using the format <clustername>:<servicename>.
@@ -86,6 +87,10 @@
 ### Properties
 * **DeploymentOption**: string: Indicates whether to route deployment traffic behind a load balancer.
 * **DeploymentType**: string: Indicates whether to run an in-place or blue/green deployment.
+
+## Ec2DeploymentOptions
+### Properties
+* **AutoScalingGroupProcessesToSuspend**: string[]: The Amazon EC2 Auto Scaling processes to suspend during an in-place deployment. CodeDeploy suspends these processes before it deploys to instances in an Auto Scaling group, and resumes them when the deployment succeeds, fails, or is stopped. Valid values are Terminate, AZRebalance, InstanceRefresh, and ScheduledActions. Process names are case sensitive. To stop suspending processes, remove the property.
 
 ## EC2TagFilter
 ### Properties

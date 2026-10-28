@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CodeDeploy-DeploymentGroup",
   "type": "AWS::CodeDeploy::DeploymentGroup",
-  "time": "2026-10-21T11:28:47.146Z",
+  "time": "2026-10-26T14:30:19.319Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -223,6 +223,24 @@
           "Name": {
             "description": "For blue/green deployments, the name of the load balancer that is used to route traffic from original instances to replacement instances in a blue/green deployment. For in-place deployments, the name of the load balancer that instances are deregistered from so they are not serving traffic during a deployment, and then re-registered with after the deployment is complete.",
             "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Ec2DeploymentOptions": {
+        "additionalProperties": false,
+        "description": "Options that control how CodeDeploy manages Amazon EC2 Auto Scaling groups during deployments to the deployment group.",
+        "minProperties": 1,
+        "properties": {
+          "AutoScalingGroupProcessesToSuspend": {
+            "description": "The Amazon EC2 Auto Scaling processes to suspend during an in-place deployment. CodeDeploy suspends these processes before it deploys to instances in an Auto Scaling group, and resumes them when the deployment succeeds, fails, or is stopped. Valid values are Terminate, AZRebalance, InstanceRefresh, and ScheduledActions. Process names are case sensitive. To stop suspending processes, remove the property.",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
           }
         },
         "type": "object"
@@ -597,6 +615,10 @@
         "type": "array",
         "uniqueItems": true
       },
+      "Ec2DeploymentOptions": {
+        "$ref": "#/definitions/Ec2DeploymentOptions",
+        "description": "Options that control how CodeDeploy manages Amazon EC2 Auto Scaling groups during deployments to the deployment group. Applies only to in-place deployment groups on the EC2/On-premises compute platform that include at least one Auto Scaling group."
+      },
       "Ec2TagFilters": {
         "description": "The Amazon EC2 tags that are already applied to Amazon EC2 instances that you want to include in the deployment group. CodeDeploy includes all Amazon EC2 instances identified by any of the tags you specify in this deployment group. Duplicates are not allowed. You can specify EC2TagFilters or Ec2TagSet, but not both.",
         "items": {
@@ -663,7 +685,7 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "codedeploy:TagResource",
         "codedeploy:UntagResource",

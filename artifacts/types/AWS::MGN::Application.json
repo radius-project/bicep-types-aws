@@ -1,0 +1,155 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MGN-Application",
+  "type": "AWS::MGN::Application",
+  "time": "2026-10-28T23:00:18.854Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ApplicationID"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "An MGN Application is a logical grouping of source servers being migrated together using AWS Application Migration Service.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "mgn:CreateApplication",
+          "mgn:TagResource",
+          "mgn:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "mgn:DeleteApplication",
+          "mgn:ListApplications",
+          "mgn:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "mgn:ListApplications"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "mgn:ListApplications",
+          "mgn:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "mgn:UpdateApplication",
+          "mgn:TagResource",
+          "mgn:UntagResource",
+          "mgn:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "ApplicationID": {
+        "description": "The ID of the application.",
+        "maxLength": 21,
+        "minLength": 21,
+        "pattern": "^app-[0-9a-zA-Z]{17}$",
+        "type": "string"
+      },
+      "Arn": {
+        "description": "The ARN of the application.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "type": "string"
+      },
+      "CreationDateTime": {
+        "description": "The date and time the application was created.",
+        "maxLength": 32,
+        "minLength": 19,
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description of the application.",
+        "maxLength": 600,
+        "minLength": 0,
+        "pattern": "^[^\\x00]*$",
+        "type": "string"
+      },
+      "IsArchived": {
+        "description": "Whether the application is archived.",
+        "type": "boolean"
+      },
+      "LastModifiedDateTime": {
+        "description": "The date and time the application was last modified.",
+        "maxLength": 32,
+        "minLength": 19,
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the application.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^[^\\s\\x00]( *[^\\s\\x00])*$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A set of tags to associate with the application.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ApplicationID",
+      "/properties/Arn",
+      "/properties/IsArchived",
+      "/properties/CreationDateTime",
+      "/properties/LastModifiedDateTime"
+    ],
+    "required": [
+      "Name"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "mgn:TagResource",
+        "mgn:UntagResource",
+        "mgn:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::MGN::Application"
+  }
+}

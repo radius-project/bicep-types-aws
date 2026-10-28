@@ -26,6 +26,7 @@
 
 ## AWS.NeptuneGraph/GraphProperties
 ### Properties
+* **CreateTime**: string (ReadOnly): The time at which the graph was created.
 * **DeletionProtection**: bool: Value that indicates whether the Graph has deletion protection enabled. The graph can't be deleted when deletion protection is enabled.
 
 _Default_: If not specified, the default value is true.
@@ -52,6 +53,7 @@ _Default_: If not specified, the default value is false.
 Replica Count should always be less than or equal to 2.
 
 _Default_: If not specified, the default value is 1.
+* **Status**: string (ReadOnly): The current status of the graph.
 * **Tags**: [Tag](#tag)[]: The tags associated with this graph.
 * **VectorSearchConfiguration**: [VectorSearchConfiguration](#vectorsearchconfiguration): Vector Search Configuration
 
