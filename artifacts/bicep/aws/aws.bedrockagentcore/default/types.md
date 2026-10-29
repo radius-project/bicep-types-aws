@@ -461,6 +461,7 @@ Always present in responses.
 ## AWS.BedrockAgentCore/GatewayTargetProperties
 ### Properties
 * **AuthorizationData**: [AuthorizationData](#authorizationdata) (ReadOnly)
+* **CertificateConfigurations**: [CertificateConfiguration](#certificateconfiguration)[]
 * **CreatedAt**: string (ReadOnly)
 * **CredentialProviderConfigurations**: [CredentialProviderConfiguration](#credentialproviderconfiguration)[]
 * **Description**: string
@@ -756,6 +757,9 @@ Always present in responses.
 ## Certificate
 ### Properties
 * **CertificateLocation**: [CertificateLocation](#certificatelocation) (Required): Certificate location in Secrets Manager.
+
+## CertificateConfiguration
+### Properties
 
 ## CertificateLocation
 ### Properties

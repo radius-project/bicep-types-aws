@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NeptuneGraph-Graph",
   "type": "AWS::NeptuneGraph::Graph",
-  "time": "2026-10-12T09:40:45.29Z",
+  "time": "2026-10-28T03:01:10.002Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -232,6 +232,11 @@
       "/properties/GraphId"
     ],
     "properties": {
+      "CreateTime": {
+        "description": "The time at which the graph was created.",
+        "format": "date-time",
+        "type": "string"
+      },
       "DeletionProtection": {
         "description": "Value that indicates whether the Graph has deletion protection enabled. The graph can't be deleted when deletion protection is enabled.\n\n_Default_: If not specified, the default value is true.",
         "type": "boolean"
@@ -278,6 +283,10 @@
         "description": "Specifies the number of replicas you want when finished. All replicas will be provisioned in different availability zones.\n\nReplica Count should always be less than or equal to 2.\n\n_Default_: If not specified, the default value is 1.",
         "type": "integer"
       },
+      "Status": {
+        "description": "The current status of the graph.",
+        "type": "string"
+      },
       "Tags": {
         "description": "The tags associated with this graph.",
         "insertionOrder": false,
@@ -300,7 +309,9 @@
     "readOnlyProperties": [
       "/properties/GraphArn",
       "/properties/GraphId",
-      "/properties/Endpoint"
+      "/properties/Endpoint",
+      "/properties/Status",
+      "/properties/CreateTime"
     ],
     "required": [
       "ProvisionedMemory"

@@ -1,0 +1,176 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudWatch-OmniDashboard",
+  "type": "AWS::CloudWatch::OmniDashboard",
+  "time": "2026-10-28T20:38:09.13Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/SpaceId"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource type definition for AWS::CloudWatch::OmniDashboard",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "cloudwatch:CreateOmniDashboard",
+          "cloudwatch:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "cloudwatch:DeleteOmniDashboard",
+          "cloudwatch:GetOmniDashboard",
+          "cloudwatch:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "SpaceId": {
+              "description": "The unique identifier of the space to list dashboards for.",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "SpaceId"
+          ]
+        },
+        "permissions": [
+          "cloudwatch:ListOmniDashboards"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "cloudwatch:GetOmniDashboard",
+          "cloudwatch:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "cloudwatch:ListTagsForResource",
+          "cloudwatch:TagResource",
+          "cloudwatch:UntagResource",
+          "cloudwatch:UpdateOmniDashboard"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/SpaceId",
+      "/properties/DashboardId"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the dashboard.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:.+$",
+        "type": "string"
+      },
+      "Body": {
+        "description": "The dashboard body, a JSON document describing the dashboard's widgets and layout.",
+        "maxLength": 1048576,
+        "minLength": 1,
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The time the dashboard was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "description": "The principal that created the dashboard.",
+        "type": "string"
+      },
+      "DashboardId": {
+        "description": "The unique identifier of the dashboard.",
+        "maxLength": 36,
+        "minLength": 36,
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description of the dashboard.",
+        "maxLength": 1024,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the dashboard.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9_.@~()-]+$",
+        "type": "string"
+      },
+      "SpaceId": {
+        "description": "The unique identifier of the space the dashboard belongs to.",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "UpdatedAt": {
+        "description": "The time the dashboard was last updated.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/DashboardId",
+      "/properties/CreatedBy",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "SpaceId",
+      "Name",
+      "Body"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "cloudwatch:ListTagsForResource",
+        "cloudwatch:TagResource",
+        "cloudwatch:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::CloudWatch::OmniDashboard"
+  }
+}

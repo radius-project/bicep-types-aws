@@ -540,6 +540,13 @@
         },
         "flags": 0
       },
+      "EncryptionMode": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The type of encryption at rest applied to the domain's data. Valid values are DISK and NATIVE. DISK is the default and uses volume-level encryption. NATIVE uses engine-native, index-level encryption and requires encryption at rest to be enabled and OpenSearch version 3.3 or later. After the mode is set to NATIVE, it can't be changed back to DISK."
+      },
       "KmsKeyId": {
         "type": {
           "$ref": "#/4"
@@ -1063,6 +1070,12 @@
     "value": "AWS.OpenSearchService/DomainProperties"
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "Domain_AccessPolicies",
     "properties": {}
@@ -1098,15 +1111,22 @@
         },
         "flags": 0
       },
-      "AccessPolicies": {
+      "AcceptedWarnings": {
         "type": {
           "$ref": "#/52"
+        },
+        "flags": 4,
+        "description": "Warning codes to accept for this domain configuration update. Accepting a warning lets the update proceed past a validation that would otherwise block it. This property applies only to the current update and is not persisted on the domain. You can find warning codes in the ValidationFailures returned by DescribeDomainChangeProgress or DescribeDryRunProgress."
+      },
+      "AccessPolicies": {
+        "type": {
+          "$ref": "#/53"
         },
         "flags": 0
       },
       "AdvancedOptions": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
@@ -1172,7 +1192,7 @@
       },
       "DomainEndpoints": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/55"
         },
         "flags": 2
       },
@@ -1227,7 +1247,7 @@
       },
       "LogPublishingOptions": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/56"
         },
         "flags": 0
       },
@@ -1269,7 +1289,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/57"
         },
         "flags": 0,
         "description": "An arbitrary set of tags (key-value pairs) for this Domain."
@@ -1309,7 +1329,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/58"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1320,7 +1340,7 @@
     "$type": "ResourceType",
     "name": "AWS.OpenSearchService/Domain@default",
     "body": {
-      "$ref": "#/58"
+      "$ref": "#/59"
     },
     "readableScopes": 0,
     "writableScopes": 0

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-QuickSight-ApprovalPolicy",
   "type": "AWS::QuickSight::ApprovalPolicy",
-  "time": "2026-08-14T12:14:06.375Z",
+  "time": "2026-10-28T13:03:38.249Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -10,7 +10,7 @@
     "definitions": {
       "ApplicableTo": {
         "additionalProperties": false,
-        "description": "Scoping: who the policy applies to.\nGROUP: `groupArns` required (one or more group ARNs).",
+        "description": "Scoping: who the policy applies to.",
         "properties": {
           "GroupArns": {
             "description": "Required when type = GROUP. One or more group ARNs.",
@@ -20,12 +20,37 @@
             "minItems": 1,
             "type": "array"
           },
-          "Type": {}
+          "Type": {
+            "$ref": "#/definitions/ApplicableToType"
+          }
         },
         "required": [
           "Type"
         ],
         "type": "object"
+      },
+      "ApplicableToType": {
+        "enum": [
+          "GROUP"
+        ],
+        "type": "string"
+      },
+      "AssetType": {
+        "description": "Asset types that can be governed by approval policies.",
+        "enum": [
+          "AGENT",
+          "SPACE",
+          "KNOWLEDGE_BASE",
+          "FLOW"
+        ],
+        "type": "string"
+      },
+      "GovernedAction": {
+        "description": "Actions that can be governed by approval policies.",
+        "enum": [
+          "SHARE"
+        ],
+        "type": "string"
       }
     },
     "description": "Definition of the AWS::QuickSight::ApprovalPolicy Resource Type.",
@@ -65,7 +90,9 @@
     "properties": {
       "Actions": {
         "description": "List of governed actions a policy applies to.",
-        "items": {},
+        "items": {
+          "$ref": "#/definitions/GovernedAction"
+        },
         "maxItems": 10,
         "minItems": 1,
         "type": "array"
@@ -74,7 +101,7 @@
         "$ref": "#/definitions/ApplicableTo"
       },
       "ApprovalGroups": {
-        "description": "List of approval group ARNs (e.g. QuickSight group ARNs).\nAt least one approval group is required; the upper bound is enforced\nper-account at the service layer via the configurable approver-group limit.",
+        "description": "List of approval group ARNs (e.g. QuickSight group ARNs).\nAt least one approval group is required.",
         "items": {
           "type": "string"
         },
@@ -83,7 +110,9 @@
       },
       "AssetTypes": {
         "description": "List of asset types a policy applies to.\nAt least one asset type is required.",
-        "items": {},
+        "items": {
+          "$ref": "#/definitions/AssetType"
+        },
         "minItems": 1,
         "type": "array"
       },

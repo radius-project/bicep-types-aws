@@ -1,0 +1,676 @@
+[
+  {
+    "$type": "ObjectType",
+    "name": "AssociatedTemplateAndRule",
+    "properties": {
+      "RuleArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "ARN of the associated rule."
+      },
+      "TemplateArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "ARN of the associated template."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PolicyConfiguration",
+    "properties": {
+      "RemediationEnabled": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Controls automatic remediation of non-compliant resources."
+      },
+      "ResourcesCleanUp": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Controls automatic cleanup of unused resources."
+      },
+      "WafConfig": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WafConfig",
+    "properties": {
+      "ConflictResolution": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "Conflict-resolution strategy applied to AWS WAF policies."
+      },
+      "ExistingCustomerWebACLResolution": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "Controls how Network Security Manager handles remediation when a resource already has a customer-created WebACL."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.NetworkSecurityManager/PolicyProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.NetworkSecurityManager/PolicyProperties",
+    "properties": {
+      "AssociatedTemplateAndRuleList": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "List of templates and rules associated with this policy."
+      },
+      "FirewallType": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The type of firewall."
+      },
+      "PolicyArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 18,
+        "description": "The ARN of the policy."
+      },
+      "PolicyConfiguration": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Configuration settings for policy behavior."
+      },
+      "PolicyDescription": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "A description of the policy."
+      },
+      "PolicyId": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the policy."
+      },
+      "PolicyName": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The name of the policy."
+      },
+      "Priority": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The priority of the policy."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The status of the policy."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The tags associated with the policy."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "An ISO 8601 timestamp indicating when the policy was last modified."
+      },
+      "Version": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The version number."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.NetworkSecurityManager/Policy",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.NetworkSecurityManager/Policy@default",
+    "body": {
+      "$ref": "#/11"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.NetworkSecurityManager/RuleProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.NetworkSecurityManager/RuleProperties",
+    "properties": {
+      "Configuration": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The rule configuration as a JSON string."
+      },
+      "FirewallType": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The type of firewall for this rule."
+      },
+      "RuleArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the rule."
+      },
+      "RuleDescription": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "A description of the rule."
+      },
+      "RuleId": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the rule."
+      },
+      "RuleName": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The name of the rule."
+      },
+      "RuleType": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The type of rule."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The status of the rule."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The tags associated with the rule."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "An ISO 8601 timestamp indicating when the rule was last modified."
+      },
+      "Version": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The version number of the rule."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.NetworkSecurityManager/Rule",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.NetworkSecurityManager/Rule@default",
+    "body": {
+      "$ref": "#/17"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.NetworkSecurityManager/ScopeProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/19"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.NetworkSecurityManager/ScopeProperties",
+    "properties": {
+      "ScopeArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the scope."
+      },
+      "ScopeConfiguration": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The scope configuration as a JSON string."
+      },
+      "ScopeDescription": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "A description of the scope."
+      },
+      "ScopeId": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the scope."
+      },
+      "ScopeName": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The name of the scope."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The status of the scope."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The tags associated with the scope."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "An ISO 8601 timestamp indicating when the scope was last modified."
+      },
+      "Version": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The version number of the scope."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.NetworkSecurityManager/Scope",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.NetworkSecurityManager/Scope@default",
+    "body": {
+      "$ref": "#/23"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AssociatedRule",
+    "properties": {
+      "RuleArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "ARN of the associated rule."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.NetworkSecurityManager/TemplateProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/25"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/26"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.NetworkSecurityManager/TemplateProperties",
+    "properties": {
+      "AssociatedRuleList": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 0,
+        "description": "List of rules associated with this template."
+      },
+      "FirewallType": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The type of firewall."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The status of the template."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 0,
+        "description": "The tags associated with the template."
+      },
+      "TemplateArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 18,
+        "description": "The ARN of the template."
+      },
+      "TemplateDescription": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "A description of the template."
+      },
+      "TemplateId": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the template."
+      },
+      "TemplateName": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The name of the template."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "An ISO 8601 timestamp indicating when the template was last modified."
+      },
+      "Version": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The version number."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.NetworkSecurityManager/Template",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.NetworkSecurityManager/Template@default",
+    "body": {
+      "$ref": "#/31"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  }
+]

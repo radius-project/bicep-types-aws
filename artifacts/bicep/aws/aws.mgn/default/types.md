@@ -1,5 +1,13 @@
 # AWS.MGN @ default
 
+## Resource AWS.MGN/Application@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MGN/ApplicationProperties](#awsmgnapplicationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.MGN/Connector@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -23,6 +31,33 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.MGN/NetworkMigrationDefinitionProperties](#awsmgnnetworkmigrationdefinitionproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.MGN/ReplicationConfigurationTemplate@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MGN/ReplicationConfigurationTemplateProperties](#awsmgnreplicationconfigurationtemplateproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.MGN/Wave@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MGN/WaveProperties](#awsmgnwaveproperties) (Required, Identifier): properties of the resource
+
+## AWS.MGN/ApplicationProperties
+### Properties
+* **ApplicationID**: string (ReadOnly): The ID of the application.
+* **Arn**: string (ReadOnly, Identifier): The ARN of the application.
+* **CreationDateTime**: string (ReadOnly): The date and time the application was created.
+* **Description**: string: The description of the application.
+* **IsArchived**: bool (ReadOnly): Whether the application is archived.
+* **LastModifiedDateTime**: string (ReadOnly): The date and time the application was last modified.
+* **Name**: string (Required): The name of the application.
+* **Tags**: [Tag](#tag)[]: A set of tags to associate with the application.
 
 ## AWS.MGN/ConnectorProperties
 ### Properties
@@ -69,6 +104,39 @@
 * **TargetNetwork**: [TargetNetwork](#targetnetwork) (Required): The target network configuration including topology and CIDR ranges.
 * **TargetS3Configuration**: [TargetS3Configuration](#targets3configuration) (Required): The S3 configuration for storing the target network artifacts.
 * **UpdatedAt**: string (ReadOnly): The timestamp when the network migration definition was last updated.
+
+## AWS.MGN/ReplicationConfigurationTemplateProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Replication Configuration Template ARN.
+* **AssociateDefaultSecurityGroup**: bool (Required): Whether to associate the default Application Migration Service Security Group with the Replication Configuration Template.
+* **BandwidthThrottling**: int (Required): Configure bandwidth throttling for the outbound data transfer rate of the Source Server in Mbps.
+* **CreatePublicIP**: bool (Required): Whether to create a Public IP for the Recovery Instance by default.
+* **DataPlaneRouting**: string (Required): The data plane routing mechanism that will be used for replication.
+* **DefaultLargeStagingDiskType**: string (Required): The Staging Disk EBS volume type to be used during replication.
+* **EbsEncryption**: string (Required): The type of EBS encryption to be used during replication.
+* **EbsEncryptionKeyArn**: string: The ARN of the EBS encryption key to be used during replication.
+* **InternetProtocol**: string: Which internet protocol to use for replication of data.
+* **ReplicationConfigurationTemplateID**: string (ReadOnly): The Replication Configuration Template ID.
+* **ReplicationServerInstanceType**: string (Required): The instance type to be used for the replication server.
+* **ReplicationServersSecurityGroupsIDs**: string[] (Required): The security group IDs that will be used by the replication server.
+* **StagingAreaSubnetId**: string (Required): The subnet to be used by the replication staging area.
+* **StagingAreaTags**: [StagingAreaTagsMap](#stagingareatagsmap) (Required)
+* **StoreSnapshotOnLocalZone**: bool: Whether to store the Snapshot in the Local Zone of the replication staging area subnet.
+* **Tags**: [Tag](#tag)[]: A set of tags to be associated with the Replication Configuration Template resource.
+* **UseDedicatedReplicationServer**: bool (Required): Whether to use a dedicated Replication Server in the replication staging area.
+* **UseFipsEndpoint**: bool: Whether to use a FIPS endpoint when initiating the agent connection to the Application Migration Service service.
+
+## AWS.MGN/WaveProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the wave.
+* **CreationDateTime**: string (ReadOnly): The timestamp when the wave was created.
+* **Description**: string: A description of the wave.
+* **IsArchived**: bool (ReadOnly): Whether the wave is archived.
+* **LastModifiedDateTime**: string (ReadOnly): The timestamp when the wave was last modified.
+* **Name**: string (Required): The name of the wave.
+* **Tags**: [Tag](#tag)[]: Tags to assign to the wave.
+* **WaveAggregatedStatus**: [WaveAggregatedStatus](#waveaggregatedstatus) (ReadOnly): The aggregated migration status of the wave.
+* **WaveID**: string (ReadOnly): The unique identifier of the wave.
 
 ## ConnectorSsmCommandConfig
 ### Properties
@@ -124,6 +192,24 @@
 ## SsmDocumentParameters
 ### Properties
 
+## StagingAreaTagsMap
+### Properties
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
+
 ## Tag
 ### Properties
 * **Key**: string (Required): The key name of the tag.
@@ -150,4 +236,10 @@
 ### Properties
 * **S3Bucket**: string (Required): The name of the S3 bucket for target artifacts.
 * **S3BucketOwner**: string (Required): The AWS account ID of the S3 bucket owner.
+
+## WaveAggregatedStatus
+### Properties
+* **HealthStatus**: string: The health status of the wave.
+* **ProgressStatus**: string: The progress status of the wave.
+* **TotalApplications**: int: The total number of applications in the wave.
 

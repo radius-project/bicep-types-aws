@@ -1,0 +1,214 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Personalize-Recommender",
+  "type": "AWS::Personalize::Recommender",
+  "time": "2026-10-27T18:34:39.711Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Name"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name",
+      "/properties/DatasetGroupArn",
+      "/properties/RecipeArn"
+    ],
+    "definitions": {
+      "RecommenderConfig": {
+        "additionalProperties": false,
+        "description": "The configuration details of the recommender.",
+        "properties": {
+          "EnableMetadataWithRecommendations": {
+            "description": "Whether metadata with recommendations is enabled for the recommender.",
+            "type": "boolean"
+          },
+          "ItemExplorationConfig": {
+            "additionalProperties": false,
+            "description": "Specifies the exploration configuration hyperparameters.",
+            "patternProperties": {
+              "^.+$": {
+                "maxLength": 1000,
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "MinRecommendationRequestsPerSecond": {
+            "description": "Specifies the requested minimum provisioned recommendation requests per second.",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "TrainingDataConfig": {
+            "$ref": "#/definitions/TrainingDataConfig"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "TrainingDataConfig": {
+        "additionalProperties": false,
+        "description": "The training data configuration to use when creating a domain recommender.",
+        "properties": {
+          "ExcludedDatasetColumns": {
+            "additionalProperties": false,
+            "description": "Specifies the columns to exclude from training. Each key is a dataset type, and each value is a list of columns.",
+            "patternProperties": {
+              "^[A-Za-z_]+$": {
+                "items": {
+                  "maxLength": 150,
+                  "pattern": "^[A-Za-z_][A-Za-z\\d_]*$",
+                  "type": "string"
+                },
+                "maxItems": 50,
+                "type": "array"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "A recommender for a Domain dataset group that generates recommendations using a domain use case recipe.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "personalize:CreateRecommender",
+          "personalize:DescribeRecommender",
+          "personalize:TagResource",
+          "personalize:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "personalize:DeleteRecommender",
+          "personalize:DescribeRecommender"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "personalize:ListRecommenders"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "personalize:DescribeRecommender",
+          "personalize:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "personalize:UpdateRecommender",
+          "personalize:DescribeRecommender",
+          "personalize:TagResource",
+          "personalize:UntagResource",
+          "personalize:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/RecommenderArn"
+    ],
+    "properties": {
+      "CreationDateTime": {
+        "description": "The time at which the recommender was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DatasetGroupArn": {
+        "description": "The ARN of the Domain dataset group that the recommender is created for.",
+        "maxLength": 256,
+        "pattern": "arn:([a-z\\d-]+):personalize:.*:.*:.+",
+        "type": "string"
+      },
+      "LastUpdatedDateTime": {
+        "description": "The time at which the recommender was last updated.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the recommender.",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9\\-_]*$",
+        "type": "string"
+      },
+      "RecipeArn": {
+        "description": "The ARN of the recipe (Domain dataset group use case) that the recommender uses.",
+        "maxLength": 256,
+        "pattern": "arn:([a-z\\d-]+):personalize:.*:.*:.+",
+        "type": "string"
+      },
+      "RecommenderArn": {
+        "description": "The ARN of the recommender.",
+        "maxLength": 256,
+        "pattern": "arn:([a-z\\d-]+):personalize:.*:.*:.+",
+        "type": "string"
+      },
+      "RecommenderConfig": {
+        "$ref": "#/definitions/RecommenderConfig"
+      },
+      "Status": {
+        "description": "The status of the recommender.",
+        "maxLength": 256,
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags to associate with the recommender.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/RecommenderArn",
+      "/properties/Status",
+      "/properties/CreationDateTime",
+      "/properties/LastUpdatedDateTime"
+    ],
+    "required": [
+      "Name",
+      "DatasetGroupArn",
+      "RecipeArn"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "personalize:TagResource",
+        "personalize:UntagResource",
+        "personalize:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Personalize::Recommender"
+  }
+}

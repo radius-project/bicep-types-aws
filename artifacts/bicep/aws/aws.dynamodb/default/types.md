@@ -48,6 +48,7 @@
 * **StreamSpecification**: [StreamSpecification](#streamspecification)
 * **TableId**: string (ReadOnly)
 * **TableName**: string (Identifier)
+* **TableType**: string
 * **TimeToLiveSpecification**: [TimeToLiveSpecification](#timetolivespecification)
 * **VectorIndexes**: [VectorIndex](#vectorindex)[]
 * **WarmThroughput**: [WarmThroughput](#warmthroughput)
@@ -275,6 +276,7 @@
 ### Properties
 * **ContributorInsightsSpecification**: [ContributorInsightsSpecification](#contributorinsightsspecification)
 * **DeletionProtectionEnabled**: bool
+* **DisassociationProtectionEnabled**: bool
 * **GlobalSecondaryIndexes**: [ReplicaGlobalSecondaryIndexSpecification](#replicaglobalsecondaryindexspecification)[]
 * **GlobalTableSettingsReplicationMode**: string
 * **KinesisStreamSpecification**: [KinesisStreamSpecification](#kinesisstreamspecification)

@@ -121,7 +121,7 @@
 * **JobQueue**: string (Required): The AWS Batch job queue associated with the quota share. This can be the job queue name or ARN. A job queue must be in the `VALID` state before you can associate it with a quota share.
 * **PreemptionConfiguration**: [QuotaSharePreemptionConfiguration](#quotasharepreemptionconfiguration) (Required): Specifies the preemption behavior for jobs in a quota share.
 * **QuotaShareArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the quota share.
-* **QuotaShareName**: string (Required): The name of the quota share. It can be up to 128 characters long. It can contain uppercase and lowercase letters, numbers, hyphens (-), and underscores (_).
+* **QuotaShareName**: string: The name of the quota share. It can be up to 128 characters long. It can contain uppercase and lowercase letters, numbers, hyphens (-), and underscores (_).
 * **ResourceSharingConfiguration**: [QuotaShareResourceSharingConfiguration](#quotashareresourcesharingconfiguration) (Required): Specifies whether a quota share reserves, lends, or both lends and borrows idle compute capacity.
 * **State**: string: The state of the quota share. If the quota share is `ENABLED`, it is able to accept jobs. If the quota share is `DISABLED`, new jobs won't be accepted but jobs already submitted can finish. The default state is `ENABLED`.
 * **Tags**: [QuotaShare_Tags](#quotasharetags): The tags that you apply to the quota share to help you categorize and organize your resources. Each tag consists of a key and an optional value.

@@ -1,0 +1,155 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkSecurityManager-Scope",
+  "type": "AWS::NetworkSecurityManager::Scope",
+  "time": "2026-10-27T19:21:40.643Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ScopeId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ScopeName"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::NetworkSecurityManager::Scope. Creates and manages a Network Security Manager scope.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "network-security-manager:CreateScope",
+          "network-security-manager:GetScope",
+          "network-security-manager:TagResource",
+          "network-security-manager:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "network-security-manager:DeleteScope",
+          "network-security-manager:GetScope",
+          "network-security-manager:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "network-security-manager:ListScopes"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "network-security-manager:GetScope",
+          "network-security-manager:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "network-security-manager:UpdateScope",
+          "network-security-manager:GetScope",
+          "network-security-manager:TagResource",
+          "network-security-manager:UntagResource",
+          "network-security-manager:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ScopeArn"
+    ],
+    "properties": {
+      "ScopeArn": {
+        "description": "The Amazon Resource Name (ARN) of the scope.",
+        "type": "string"
+      },
+      "ScopeConfiguration": {
+        "description": "The scope configuration as a JSON string.",
+        "type": "string"
+      },
+      "ScopeDescription": {
+        "description": "A description of the scope.",
+        "type": "string"
+      },
+      "ScopeId": {
+        "description": "The unique identifier of the scope.",
+        "type": "string"
+      },
+      "ScopeName": {
+        "description": "The name of the scope.",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the scope.",
+        "enum": [
+          "DRAFT",
+          "ACTIVE",
+          "DISABLED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags associated with the scope.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "UpdatedAt": {
+        "description": "An ISO 8601 timestamp indicating when the scope was last modified.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Version": {
+        "description": "The version number of the scope.",
+        "maxLength": 10,
+        "minLength": 1,
+        "pattern": "^[1-9][0-9]*$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ScopeId",
+      "/properties/ScopeArn",
+      "/properties/Status",
+      "/properties/Version",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "ScopeName"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "network-security-manager:TagResource",
+        "network-security-manager:UntagResource",
+        "network-security-manager:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::NetworkSecurityManager::Scope"
+  }
+}

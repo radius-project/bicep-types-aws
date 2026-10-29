@@ -109,11 +109,16 @@
 * **FirewallName**: string (Required)
 * **FirewallPolicyArn**: string (Required)
 * **FirewallPolicyChangeProtection**: bool
+* **NatGatewayMappings**: [NatGatewayMapping](#natgatewaymapping)[]: The NAT gateways that the firewall proxies egress traffic through when NoSourcePreservation is true.
+* **NoSourcePreservation**: bool: Indicates whether the firewall operates in proxy mode, where the source IP address of traffic is not preserved. When true, specify NatGatewayMappings and VpcEndpoint instead of the top-level VpcId and SubnetMappings. You can't change this setting after you create the firewall.
+* **NumberOfAssociations**: int (ReadOnly): The number of VPC endpoint associations attached to the firewall.
+* **ProxySettings**: [ProxySettings](#proxysettings)
 * **SubnetChangeProtection**: bool
 * **SubnetMappings**: [SubnetMapping](#subnetmapping)[]
 * **Tags**: [Tag](#tag)[]
 * **TransitGatewayAttachmentId**: string (ReadOnly)
 * **TransitGatewayId**: string
+* **VpcEndpoint**: [VpcEndpoint](#vpcendpoint)
 * **VpcId**: string
 
 ## AWS.NetworkFirewall/LoggingConfigurationProperties
@@ -213,6 +218,11 @@
 * **Source**: string (Required)
 * **SourcePort**: string (Required)
 
+## ListenerProperty
+### Properties
+* **Port**: int: The port the proxy listener accepts traffic on.
+* **Type**: string: The protocol the proxy listener uses.
+
 ## LogDestinationConfig
 ### Properties
 * **LogDestination**: [LoggingConfiguration_LogDestination](#loggingconfigurationlogdestination) (Required): A key-value pair to configure the logDestinations.
@@ -235,6 +245,10 @@
 * **Sources**: [Address](#address)[]
 * **TCPFlags**: [TCPFlagField](#tcpflagfield)[]
 
+## NatGatewayMapping
+### Properties
+* **NatGatewayId**: string (Required): The unique identifier of a NAT gateway.
+
 ## PortRange
 ### Properties
 * **FromPort**: int (Required)
@@ -244,6 +258,10 @@
 ### Properties
 * **FromPort**: int (Required)
 * **ToPort**: int (Required)
+
+## ProxySettings
+### Properties
+* **ListenerProperties**: [ListenerProperty](#listenerproperty)[]
 
 ## PublishMetricAction
 ### Properties
@@ -422,4 +440,9 @@
 ### Properties
 * **RevokedStatusAction**: string
 * **UnknownStatusAction**: string
+
+## VpcEndpoint
+### Properties
+* **SubnetMappings**: [SubnetMapping](#subnetmapping)[]
+* **VpcId**: string: The unique identifier of the VPC for the firewall endpoint.
 
