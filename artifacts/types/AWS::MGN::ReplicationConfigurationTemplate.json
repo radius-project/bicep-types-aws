@@ -1,0 +1,263 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MGN-ReplicationConfigurationTemplate",
+  "type": "AWS::MGN::ReplicationConfigurationTemplate",
+  "time": "2026-10-28T23:53:18.167Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ReplicationConfigurationTemplateID"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "StagingAreaTagsMap": {
+        "additionalProperties": false,
+        "description": "A set of tags to be associated with all resources created in the replication staging area: EC2 replication server, EBS volumes, EBS snapshots, etc.",
+        "maxProperties": 50,
+        "minProperties": 0,
+        "patternProperties": {
+          "^.{0,256}$": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with the Replication Configuration Template.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Account level Replication Configuration Template for AWS Application Migration Service.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "mgn:CreateReplicationConfigurationTemplate",
+          "mgn:TagResource",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeSecurityGroups",
+          "ec2:CreateSecurityGroup",
+          "kms:DescribeKey",
+          "kms:CreateGrant",
+          "ec2:CreateTags",
+          "ec2:AuthorizeSecurityGroupIngress",
+          "ec2:AuthorizeSecurityGroupEgress",
+          "ec2:RevokeSecurityGroupEgress",
+          "ec2:DescribeVpcs",
+          "ec2:DescribeInstanceTypes",
+          "ec2:GetEbsEncryptionByDefault",
+          "ec2:GetEbsDefaultKmsKeyId"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "mgn:DeleteReplicationConfigurationTemplate"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "mgn:DescribeReplicationConfigurationTemplates"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "mgn:DescribeReplicationConfigurationTemplates",
+          "mgn:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "mgn:UpdateReplicationConfigurationTemplate",
+          "mgn:ListTagsForResource",
+          "mgn:TagResource",
+          "mgn:UntagResource",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeSecurityGroups",
+          "ec2:CreateSecurityGroup",
+          "kms:DescribeKey",
+          "kms:CreateGrant",
+          "ec2:CreateTags",
+          "ec2:AuthorizeSecurityGroupIngress",
+          "ec2:AuthorizeSecurityGroupEgress",
+          "ec2:RevokeSecurityGroupEgress",
+          "ec2:DescribeVpcs",
+          "ec2:DescribeInstanceTypes",
+          "ec2:GetEbsEncryptionByDefault",
+          "ec2:GetEbsDefaultKmsKeyId"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Replication Configuration Template ARN.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "type": "string"
+      },
+      "AssociateDefaultSecurityGroup": {
+        "description": "Whether to associate the default Application Migration Service Security Group with the Replication Configuration Template.",
+        "type": "boolean"
+      },
+      "BandwidthThrottling": {
+        "description": "Configure bandwidth throttling for the outbound data transfer rate of the Source Server in Mbps.",
+        "maximum": 10000,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "CreatePublicIP": {
+        "description": "Whether to create a Public IP for the Recovery Instance by default.",
+        "type": "boolean"
+      },
+      "DataPlaneRouting": {
+        "description": "The data plane routing mechanism that will be used for replication.",
+        "enum": [
+          "PRIVATE_IP",
+          "PUBLIC_IP"
+        ],
+        "type": "string"
+      },
+      "DefaultLargeStagingDiskType": {
+        "description": "The Staging Disk EBS volume type to be used during replication.",
+        "enum": [
+          "GP2",
+          "ST1",
+          "GP3"
+        ],
+        "type": "string"
+      },
+      "EbsEncryption": {
+        "description": "The type of EBS encryption to be used during replication.",
+        "enum": [
+          "DEFAULT",
+          "CUSTOM"
+        ],
+        "type": "string"
+      },
+      "EbsEncryptionKeyArn": {
+        "description": "The ARN of the EBS encryption key to be used during replication.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "type": "string"
+      },
+      "InternetProtocol": {
+        "description": "Which internet protocol to use for replication of data.",
+        "enum": [
+          "IPV4",
+          "IPV6"
+        ],
+        "type": "string"
+      },
+      "ReplicationConfigurationTemplateID": {
+        "description": "The Replication Configuration Template ID.",
+        "maxLength": 21,
+        "minLength": 21,
+        "pattern": "^rct-[0-9a-zA-Z]{17}$",
+        "type": "string"
+      },
+      "ReplicationServerInstanceType": {
+        "description": "The instance type to be used for the replication server.",
+        "maxLength": 255,
+        "minLength": 0,
+        "type": "string"
+      },
+      "ReplicationServersSecurityGroupsIDs": {
+        "description": "The security group IDs that will be used by the replication server.",
+        "insertionOrder": false,
+        "items": {
+          "maxLength": 255,
+          "minLength": 0,
+          "pattern": "^sg-[0-9a-fA-F]{8,}$",
+          "type": "string"
+        },
+        "maxItems": 32,
+        "minItems": 0,
+        "type": "array"
+      },
+      "StagingAreaSubnetId": {
+        "description": "The subnet to be used by the replication staging area.",
+        "maxLength": 255,
+        "minLength": 0,
+        "pattern": "^subnet-[0-9a-fA-F]{8,}$",
+        "type": "string"
+      },
+      "StagingAreaTags": {
+        "$ref": "#/definitions/StagingAreaTagsMap"
+      },
+      "StoreSnapshotOnLocalZone": {
+        "description": "Whether to store the Snapshot in the Local Zone of the replication staging area subnet.",
+        "type": "boolean"
+      },
+      "Tags": {
+        "description": "A set of tags to be associated with the Replication Configuration Template resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array"
+      },
+      "UseDedicatedReplicationServer": {
+        "description": "Whether to use a dedicated Replication Server in the replication staging area.",
+        "type": "boolean"
+      },
+      "UseFipsEndpoint": {
+        "description": "Whether to use a FIPS endpoint when initiating the agent connection to the Application Migration Service service.",
+        "type": "boolean"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/ReplicationConfigurationTemplateID"
+    ],
+    "replacementStrategy": "delete_then_create",
+    "required": [
+      "StagingAreaSubnetId",
+      "AssociateDefaultSecurityGroup",
+      "ReplicationServersSecurityGroupsIDs",
+      "ReplicationServerInstanceType",
+      "UseDedicatedReplicationServer",
+      "DefaultLargeStagingDiskType",
+      "EbsEncryption",
+      "BandwidthThrottling",
+      "DataPlaneRouting",
+      "CreatePublicIP",
+      "StagingAreaTags"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "mgn:TagResource",
+        "mgn:UntagResource",
+        "mgn:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::MGN::ReplicationConfigurationTemplate"
+  }
+}

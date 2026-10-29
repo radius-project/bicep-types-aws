@@ -1,0 +1,222 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudWatch-Domain",
+  "type": "AWS::CloudWatch::Domain",
+  "time": "2026-10-27T19:56:48.471Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/DomainId"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "IdentityCenterConfiguration": {
+        "additionalProperties": false,
+        "description": "Identity Center configuration. Required when identityProviders includes IDC.",
+        "properties": {
+          "IdentityCenterInstanceArn": {
+            "description": "Identity Center instance ARN",
+            "maxLength": 2048,
+            "minLength": 1,
+            "pattern": "^arn:aws[a-z-]*:sso:::instance/[a-zA-Z0-9-]+$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "IdentityProviderConfiguration": {
+        "additionalProperties": false,
+        "description": "Identity provider configuration for the domain.",
+        "properties": {
+          "IdentityCenterConfiguration": {
+            "$ref": "#/definitions/IdentityCenterConfiguration"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "The account-level boundary for CloudWatch Omni. A domain configures the\nidentity providers users sign in through and exposes the endpoint URLs used\nto reach CloudWatch Omni. Spaces are created within a domain.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "cloudwatch:CreateDomain",
+          "cloudwatch:TagResource",
+          "sso:CreateApplication",
+          "sso:CreateApplicationAssignment",
+          "sso:DescribeInstance",
+          "sso:ListRegions",
+          "sso:PutApplicationAccessScope",
+          "sso:PutApplicationAssignmentConfiguration",
+          "sso:PutApplicationAuthenticationMethod",
+          "sso:PutApplicationGrant"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "cloudwatch:DeleteDomain",
+          "cloudwatch:GetDomain",
+          "cloudwatch:ListTagsForResource",
+          "sso:DeleteApplication",
+          "sso:DeleteApplicationAssignment"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "cloudwatch:ListDomains"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "cloudwatch:GetDomain",
+          "cloudwatch:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "cloudwatch:TagResource",
+          "cloudwatch:UntagResource",
+          "cloudwatch:UpdateDomain"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the resource.",
+        "pattern": "^arn:[^:]+:cloudwatch:[^:]*:[0-9]{12}:domain/(?:d-[0-9a-z]{1,25})$",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The timestamp when the domain was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "CustomEndpointUrls": {
+        "description": "Additional endpoint URLs derived from the domain name.",
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "DomainEndpointUrl": {
+        "description": "The HTTPS endpoint URL for accessing the domain.",
+        "type": "string"
+      },
+      "DomainId": {
+        "description": "The unique ID of the domain.",
+        "pattern": "^d-[0-9a-z]{1,25}$",
+        "type": "string"
+      },
+      "IdentityCenterApplicationArn": {
+        "description": "The ARN of the Identity Center application. Absent for IAM-only domains.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:.+$",
+        "type": "string"
+      },
+      "IdentityProviderConfiguration": {
+        "$ref": "#/definitions/IdentityProviderConfiguration"
+      },
+      "IdentityProviders": {
+        "description": "The identity providers configured for the domain.",
+        "items": {
+          "enum": [
+            "IAM",
+            "IDC"
+          ],
+          "type": "string"
+        },
+        "maxItems": 2,
+        "minItems": 1,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "Name": {
+        "description": "A name that identifies the domain.",
+        "maxLength": 63,
+        "minLength": 3,
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+        "type": "string"
+      },
+      "Region": {
+        "description": "The Region where this domain was created.",
+        "type": "string"
+      },
+      "Status": {
+        "description": "Current status of the domain.",
+        "enum": [
+          "ACTIVE"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "UpdatedAt": {
+        "description": "The timestamp when the domain was last updated.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/DomainEndpointUrl",
+      "/properties/CustomEndpointUrls",
+      "/properties/IdentityCenterApplicationArn",
+      "/properties/Region",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt",
+      "/properties/Status",
+      "/properties/DomainId",
+      "/properties/Arn"
+    ],
+    "required": [
+      "Name",
+      "IdentityProviders"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "cloudwatch:ListTagsForResource",
+        "cloudwatch:TagResource",
+        "cloudwatch:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::CloudWatch::Domain"
+  }
+}

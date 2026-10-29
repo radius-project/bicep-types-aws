@@ -1,11 +1,145 @@
 [
   {
     "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MGN/ApplicationProperties"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MGN/ApplicationProperties",
+    "properties": {
+      "ApplicationID": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ID of the application."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The ARN of the application."
+      },
+      "CreationDateTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The date and time the application was created."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The description of the application."
+      },
+      "IsArchived": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "Whether the application is archived."
+      },
+      "LastModifiedDateTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The date and time the application was last modified."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the application."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "A set of tags to associate with the application."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MGN/Application",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MGN/Application@default",
+    "body": {
+      "$ref": "#/6"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "ConnectorSsmCommandConfig",
     "properties": {
       "CloudWatchLogGroupName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The CloudWatch Logs group name for SSM command output."
@@ -19,7 +153,7 @@
       },
       "OutputS3BucketName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The S3 bucket name for SSM command output."
@@ -39,25 +173,19 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The key name of the tag."
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The value for the tag."
       }
     }
-  },
-  {
-    "$type": "StringType"
-  },
-  {
-    "$type": "BooleanType"
   },
   {
     "$type": "StringLiteralType",
@@ -66,7 +194,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/9"
     }
   },
   {
@@ -75,41 +203,41 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the connector."
       },
       "ConnectorID": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The unique identifier of the connector."
       },
       "Name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name of the connector."
       },
       "SsmCommandConfig": {
         "type": {
-          "$ref": "#/0"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "SsmInstanceID": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The SSM instance ID associated with this connector."
       },
       "Tags": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "Tags to assign to the connector."
@@ -122,21 +250,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/12"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -147,7 +275,7 @@
     "$type": "ResourceType",
     "name": "AWS.MGN/Connector@default",
     "body": {
-      "$ref": "#/7"
+      "$ref": "#/13"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -158,21 +286,21 @@
     "properties": {
       "Iops": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Launch template disk IOPS configuration."
       },
       "Throughput": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Launch template disk throughput configuration, in MiB/s."
       },
       "VolumeType": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Launch template disk volume type configuration."
@@ -198,35 +326,35 @@
     "properties": {
       "CloudWatchLogGroupName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "AWS Systems Manager Command's CloudWatch log group name."
       },
       "Deployment": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Deployment type in which AWS Systems Manager Documents will be executed."
       },
       "S3LogBucket": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "AWS Systems Manager Command's logs S3 log bucket."
       },
       "S3OutputKeyPrefix": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "AWS Systems Manager Command's logs S3 output key prefix."
       },
       "SsmDocuments": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "AWS Systems Manager Documents to execute, in order."
@@ -239,14 +367,14 @@
     "properties": {
       "ActionName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "User-friendly name for the AWS Systems Manager Document."
       },
       "ExternalParameters": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/19"
         },
         "flags": 0
       },
@@ -259,20 +387,20 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/20"
         },
         "flags": 0
       },
       "SsmDocumentName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "AWS Systems Manager Document name or full ARN."
       },
       "TimeoutSeconds": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "AWS Systems Manager Document timeout, in seconds."
@@ -295,7 +423,7 @@
     "properties": {
       "DynamicPath": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "AWS Systems Manager Document external parameter dynamic path."
@@ -308,14 +436,14 @@
     "properties": {
       "ParameterName": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "AWS Systems Manager Parameter Store parameter name."
       },
       "ParameterType": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "AWS Systems Manager Parameter Store parameter type."
@@ -328,14 +456,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The key name of the tag."
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The value for the tag."
@@ -348,7 +476,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/12"
+      "$ref": "#/18"
     }
   },
   {
@@ -358,7 +486,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/17"
+      "$ref": "#/23"
     }
   },
   {
@@ -367,7 +495,7 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "ARN of the Launch Configuration Template."
@@ -381,7 +509,7 @@
       },
       "BootMode": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Launch configuration template boot mode."
@@ -402,7 +530,7 @@
       },
       "Ec2LaunchTemplateID": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "ID of the EC2 launch template backing the Launch Configuration Template."
@@ -423,73 +551,73 @@
       },
       "LargeVolumeConf": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/15"
         },
         "flags": 0
       },
       "LaunchConfigurationTemplateID": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "ID of the Launch Configuration Template."
       },
       "LaunchDisposition": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Launch disposition."
       },
       "Licensing": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "MapAutoTaggingMpeID": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Launch configuration template map auto tagging MPE ID."
       },
       "ParametersEncryptionKey": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "ARN of the KMS key used to encrypt the AWS Systems Manager parameters used by post launch actions."
       },
       "PostLaunchActions": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "SmallVolumeConf": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/15"
         },
         "flags": 0
       },
       "SmallVolumeMaxSize": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Small volume maximum size, in GiB."
       },
       "Tags": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "A set of tags to be associated with the Launch Configuration Template."
       },
       "TargetInstanceTypeRightSizingMethod": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Target instance type right-sizing method."
@@ -502,21 +630,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/28"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -527,7 +655,7 @@
     "$type": "ResourceType",
     "name": "AWS.MGN/LaunchConfigurationTemplate@default",
     "body": {
-      "$ref": "#/23"
+      "$ref": "#/29"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -543,14 +671,14 @@
     "properties": {
       "SourceEnvironment": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The source environment type."
       },
       "SourceS3Configuration": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/33"
         },
         "flags": 1
       }
@@ -562,21 +690,21 @@
     "properties": {
       "S3Bucket": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name of the S3 bucket containing source data."
       },
       "S3BucketOwner": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The AWS account ID of the S3 bucket owner."
       },
       "S3Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The S3 key (path) for the source data."
@@ -589,14 +717,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The key name of the tag."
       },
       "Value": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The value for the tag."
@@ -609,28 +737,28 @@
     "properties": {
       "InboundCidr": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The CIDR block for inbound traffic in the target network."
       },
       "InspectionCidr": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The CIDR block for inspection traffic in the target network."
       },
       "OutboundCidr": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The CIDR block for outbound traffic in the target network."
       },
       "Topology": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The network topology type for the target environment."
@@ -643,14 +771,14 @@
     "properties": {
       "S3Bucket": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name of the S3 bucket for target artifacts."
       },
       "S3BucketOwner": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The AWS account ID of the S3 bucket owner."
@@ -664,13 +792,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/26"
+      "$ref": "#/32"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/28"
+      "$ref": "#/34"
     }
   },
   {
@@ -679,84 +807,84 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the network migration definition."
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The timestamp when the network migration definition was created."
       },
       "Description": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "A description of the network migration definition."
       },
       "Name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The name of the network migration definition."
       },
       "NetworkMigrationDefinitionID": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The unique identifier of the network migration definition."
       },
       "ScopeTags": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "Scope tags for the network migration definition."
       },
       "SourceConfigurations": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/38"
         },
         "flags": 1,
         "description": "A list of source configurations for the network migration."
       },
       "Tags": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "Tags to assign to the network migration definition."
       },
       "TargetDeployment": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The target deployment configuration for the migrated network."
       },
       "TargetNetwork": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/35"
         },
         "flags": 1,
         "description": "The target network configuration including topology and CIDR ranges."
       },
       "TargetS3Configuration": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/36"
         },
         "flags": 1,
         "description": "The S3 configuration for storing the target network artifacts."
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The timestamp when the network migration definition was last updated."
@@ -769,21 +897,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/40"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -794,7 +922,377 @@
     "$type": "ResourceType",
     "name": "AWS.MGN/NetworkMigrationDefinition@default",
     "body": {
-      "$ref": "#/35"
+      "$ref": "#/41"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StagingAreaTagsMap",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MGN/ReplicationConfigurationTemplateProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/44"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MGN/ReplicationConfigurationTemplateProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Replication Configuration Template ARN."
+      },
+      "AssociateDefaultSecurityGroup": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "Whether to associate the default Application Migration Service Security Group with the Replication Configuration Template."
+      },
+      "BandwidthThrottling": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1,
+        "description": "Configure bandwidth throttling for the outbound data transfer rate of the Source Server in Mbps."
+      },
+      "CreatePublicIP": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "Whether to create a Public IP for the Recovery Instance by default."
+      },
+      "DataPlaneRouting": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The data plane routing mechanism that will be used for replication."
+      },
+      "DefaultLargeStagingDiskType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The Staging Disk EBS volume type to be used during replication."
+      },
+      "EbsEncryption": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The type of EBS encryption to be used during replication."
+      },
+      "EbsEncryptionKeyArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ARN of the EBS encryption key to be used during replication."
+      },
+      "InternetProtocol": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Which internet protocol to use for replication of data."
+      },
+      "ReplicationConfigurationTemplateID": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The Replication Configuration Template ID."
+      },
+      "ReplicationServerInstanceType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The instance type to be used for the replication server."
+      },
+      "ReplicationServersSecurityGroupsIDs": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 1,
+        "description": "The security group IDs that will be used by the replication server."
+      },
+      "StagingAreaSubnetId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The subnet to be used by the replication staging area."
+      },
+      "StagingAreaTags": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 1
+      },
+      "StoreSnapshotOnLocalZone": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Whether to store the Snapshot in the Local Zone of the replication staging area subnet."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 0,
+        "description": "A set of tags to be associated with the Replication Configuration Template resource."
+      },
+      "UseDedicatedReplicationServer": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "Whether to use a dedicated Replication Server in the replication staging area."
+      },
+      "UseFipsEndpoint": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Whether to use a FIPS endpoint when initiating the agent connection to the Application Migration Service service."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MGN/ReplicationConfigurationTemplate",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MGN/ReplicationConfigurationTemplate@default",
+    "body": {
+      "$ref": "#/49"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WaveAggregatedStatus",
+    "properties": {
+      "HealthStatus": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The health status of the wave."
+      },
+      "ProgressStatus": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The progress status of the wave."
+      },
+      "TotalApplications": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "The total number of applications in the wave."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MGN/WaveProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/51"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MGN/WaveProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the wave."
+      },
+      "CreationDateTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The timestamp when the wave was created."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A description of the wave."
+      },
+      "IsArchived": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "Whether the wave is archived."
+      },
+      "LastModifiedDateTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The timestamp when the wave was last modified."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the wave."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 0,
+        "description": "Tags to assign to the wave."
+      },
+      "WaveAggregatedStatus": {
+        "type": {
+          "$ref": "#/52"
+        },
+        "flags": 2,
+        "description": "The aggregated migration status of the wave."
+      },
+      "WaveID": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the wave."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MGN/Wave",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MGN/Wave@default",
+    "body": {
+      "$ref": "#/56"
     },
     "readableScopes": 0,
     "writableScopes": 0

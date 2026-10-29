@@ -32,6 +32,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SecurityAgent/PentestProperties](#awssecurityagentpentestproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.SecurityAgent/PrivateConnection@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SecurityAgent/PrivateConnectionProperties](#awssecurityagentprivateconnectionproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.SecurityAgent/SecurityRequirementPack@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -113,6 +121,7 @@
 ### Properties
 * **AgentSpaceId**: string (Required, Identifier): Identifier of agent space where the pentest should be created
 * **Assets**: [Assets](#assets) (Required): Collection of assets to be tested or used during the penetration test
+* **CiCdConfiguration**: [CiCdConfiguration](#cicdconfiguration) (WriteOnly): Configuration for running pentests automatically from a CI/CD pipeline
 * **CleanUpStrategy**: string: Strategy for cleaning up resources after pentest job completion
 * **CodeRemediationStrategy**: string: Strategy for code remediation on findings
 * **CreatedAt**: string (ReadOnly): Timestamp when the pentest was created
@@ -128,6 +137,22 @@
 * **Title**: string: Title of the penetration test
 * **UpdatedAt**: string (ReadOnly): Timestamp when the pentest was last updated
 * **VpcConfig**: [VpcConfig](#vpcconfig): VPC configuration that the security testing environment accesses
+
+## AWS.SecurityAgent/PrivateConnectionProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the private connection.
+* **Certificate**: string (WriteOnly): The PEM-encoded certificate chain for the private connection.
+* **CertificateExpiryTime**: string (ReadOnly): The date and time the connection's certificate expires, in UTC format.
+* **DnsResolution**: string (ReadOnly): The DNS resolution mode for the resource gateway.
+* **HostAddress**: string (ReadOnly): The IP address or DNS name of the target resource.
+* **Mode**: [Mode](#mode) (WriteOnly)
+* **PrivateConnectionName**: string (Required): A unique name for the private connection within your account.
+* **ResourceConfigurationId**: string (ReadOnly): The identifier or ARN of the VPC Lattice resource configuration.
+* **ResourceGatewayId**: string (ReadOnly): The identifier or ARN of the VPC Lattice resource gateway.
+* **Status**: string (ReadOnly): The current status of the private connection.
+* **Tags**: [Tag](#tag)[]: The tags attached to the private connection.
+* **Type**: string (ReadOnly): The type of the private connection, indicating whether it is service-managed or self-managed.
+* **VpcId**: string (ReadOnly): The identifier of the VPC the resource gateway is created in.
 
 ## AWS.SecurityAgent/SecurityRequirementPackProperties
 ### Properties
@@ -193,6 +218,10 @@
 * **ArtifactId**: string: Artifact ID of an uploaded certificate file
 * **InlinePem**: string: PEM-encoded X.509 certificate supplied inline
 * **S3Location**: string: Amazon S3 location URI of a customer-staged certificate
+
+## CiCdConfiguration
+### Properties
+* **Enabled**: bool (Required): Whether CI/CD pentesting is enabled. When enabled, the pentest must have at least one entry in Assets.IntegratedRepositories
 
 ## CloudWatchLog
 ### Properties
@@ -301,6 +330,11 @@
 * **Integration**: string (Required): Unique identifier of the Provider Integration
 * **ProviderResources**: [ProviderResource](#providerresource)[] (Required): List of selected Resources from the Integration
 
+## Mode
+### Properties
+* **SelfManaged**: [SelfManaged](#selfmanaged)
+* **ServiceManaged**: [ServiceManaged](#servicemanaged)
+
 ## NetworkTrafficConfig
 ### Properties
 * **CustomHeaders**: [CustomHeader](#customheader)[]: Custom headers to include in outbound requests
@@ -358,6 +392,21 @@
 * **Name**: string (Required): Name of the security requirement
 * **Remediation**: string: How to remediate non-compliance
 
+## SelfManaged
+### Properties
+* **ResourceConfigurationId**: string (Required): The identifier or ARN of the resource configuration.
+
+## ServiceManaged
+### Properties
+* **DnsResolution**: string: The DNS resolution mode for the resource gateway.
+* **HostAddress**: string (Required): The IP address or DNS name of the target resource.
+* **IpAddressType**: string: The IP address type of the service-managed resource gateway.
+* **Ipv4AddressesPerEni**: int: The number of IPv4 addresses in each elastic network interface for the service-managed resource gateway.
+* **PortRanges**: string[]: The TCP port ranges that a consumer can use to access the resource.
+* **SecurityGroupIds**: string[]: The security groups to attach to the service-managed resource gateway.
+* **SubnetIds**: string[] (Required): The subnets that the service-managed resource gateway spans.
+* **VpcId**: string (Required): The VPC to create the service-managed resource gateway in.
+
 ## SourceCodeRepository
 ### Properties
 * **S3Location**: string: S3 source code location
@@ -371,6 +420,11 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag
 * **Value**: string (Required): The value for the tag
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
 
 ## Tag
 ### Properties

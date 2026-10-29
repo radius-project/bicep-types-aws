@@ -1,0 +1,251 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkSecurityManager-Policy",
+  "type": "AWS::NetworkSecurityManager::Policy",
+  "time": "2026-10-27T20:32:08.567Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/PolicyId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/PolicyName",
+      "/properties/FirewallType"
+    ],
+    "definitions": {
+      "AssociatedTemplateAndRule": {
+        "additionalProperties": false,
+        "description": "Associates either a template or a rule with a policy.",
+        "properties": {
+          "RuleArn": {
+            "description": "ARN of the associated rule.",
+            "type": "string"
+          },
+          "TemplateArn": {
+            "description": "ARN of the associated template.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "PolicyConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration settings for policy behavior.",
+        "properties": {
+          "RemediationEnabled": {
+            "description": "Controls automatic remediation of non-compliant resources.",
+            "type": "boolean"
+          },
+          "ResourcesCleanUp": {
+            "description": "Controls automatic cleanup of unused resources.",
+            "type": "boolean"
+          },
+          "WafConfig": {
+            "$ref": "#/definitions/WafConfig"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "WafConfig": {
+        "additionalProperties": false,
+        "description": "WAF-specific policy settings. Populated only for WAF firewall type policies.",
+        "properties": {
+          "ConflictResolution": {
+            "description": "Conflict-resolution strategy applied to AWS WAF policies.",
+            "enum": [
+              "MERGE_WHERE_APPLICABLE"
+            ],
+            "type": "string"
+          },
+          "ExistingCustomerWebACLResolution": {
+            "description": "Controls how Network Security Manager handles remediation when a resource already has a customer-created WebACL.",
+            "enum": [
+              "RETROFIT",
+              "OVERRIDE_ASSOCIATION",
+              "NO_REMEDIATION"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "ExistingCustomerWebACLResolution",
+          "ConflictResolution"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::NetworkSecurityManager::Policy. Creates and manages a Network Security Manager policy.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "network-security-manager:CreatePolicy",
+          "network-security-manager:GetPolicy",
+          "network-security-manager:TagResource",
+          "network-security-manager:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "network-security-manager:DeletePolicy",
+          "network-security-manager:GetPolicy",
+          "network-security-manager:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "network-security-manager:ListPolicies"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "network-security-manager:GetPolicy",
+          "network-security-manager:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "network-security-manager:UpdatePolicy",
+          "network-security-manager:GetPolicy",
+          "network-security-manager:TagResource",
+          "network-security-manager:UntagResource",
+          "network-security-manager:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/PolicyArn"
+    ],
+    "properties": {
+      "AssociatedTemplateAndRuleList": {
+        "description": "List of templates and rules associated with this policy.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/AssociatedTemplateAndRule"
+        },
+        "type": "array"
+      },
+      "FirewallType": {
+        "description": "The type of firewall.",
+        "enum": [
+          "WAF",
+          "SHIELD_ADVANCED"
+        ],
+        "type": "string"
+      },
+      "PolicyArn": {
+        "description": "The ARN of the policy.",
+        "maxLength": 1010,
+        "minLength": 20,
+        "pattern": "^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-9]+)*)?){2}:(.+)$",
+        "type": "string"
+      },
+      "PolicyConfiguration": {
+        "$ref": "#/definitions/PolicyConfiguration",
+        "description": "Configuration settings for policy behavior."
+      },
+      "PolicyDescription": {
+        "description": "A description of the policy.",
+        "maxLength": 256,
+        "pattern": "^[a-zA-Z0-9 _.:/=+\\-@]*$",
+        "type": "string"
+      },
+      "PolicyId": {
+        "description": "The unique identifier of the policy.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[a-z0-9]{1,64}$",
+        "type": "string"
+      },
+      "PolicyName": {
+        "description": "The name of the policy.",
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9 _.:/=+\\-@]*$",
+        "type": "string"
+      },
+      "Priority": {
+        "description": "The priority of the policy.",
+        "minimum": 1,
+        "type": "integer"
+      },
+      "Status": {
+        "description": "The status of the policy.",
+        "enum": [
+          "DRAFT",
+          "ACTIVE",
+          "DISABLED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags associated with the policy.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "UpdatedAt": {
+        "description": "An ISO 8601 timestamp indicating when the policy was last modified.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Version": {
+        "description": "The version number.",
+        "maxLength": 10,
+        "minLength": 1,
+        "pattern": "^[1-9][0-9]*$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/PolicyId",
+      "/properties/PolicyArn",
+      "/properties/Status",
+      "/properties/Version",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "PolicyName",
+      "Priority",
+      "FirewallType",
+      "PolicyConfiguration"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "network-security-manager:TagResource",
+        "network-security-manager:UntagResource",
+        "network-security-manager:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::NetworkSecurityManager::Policy"
+  }
+}

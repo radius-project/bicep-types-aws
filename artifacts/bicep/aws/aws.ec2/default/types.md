@@ -424,6 +424,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/SecurityGroupIngressProperties](#awsec2securitygroupingressproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.EC2/Snapshot@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/SnapshotProperties](#awsec2snapshotproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.EC2/SnapshotBlockPublicAccess@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -511,6 +519,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/TransitGatewayAttachmentProperties](#awsec2transitgatewayattachmentproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.EC2/TransitGatewayAttachmentNatConfiguration@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/TransitGatewayAttachmentNatConfigurationProperties](#awsec2transitgatewayattachmentnatconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/TransitGatewayConnect@default
 * **Readable Scope(s)**: None
@@ -1655,6 +1671,22 @@ Use this for ICMP and any protocol that uses ports.
 * **AccountId**: string (ReadOnly, Identifier): The identifier for the specified AWS account.
 * **State**: string (Required): The state of EBS Snapshot Block Public Access.
 
+## AWS.EC2/SnapshotProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the snapshot.
+* **Description**: string: A description for the snapshot.
+* **Encrypted**: bool (ReadOnly): Indicates whether the snapshot is encrypted.
+* **KmsKeyId**: string (ReadOnly): The Amazon Resource Name (ARN) of the KMS key that was used to protect the volume encryption key for the parent volume.
+* **OwnerId**: string (ReadOnly): The ID of the Amazon Web Services account that owns the EBS snapshot.
+* **Progress**: string (ReadOnly): The progress of the snapshot, as a percentage.
+* **SnapshotId**: string (ReadOnly): The ID of the snapshot.
+* **StartTime**: string (ReadOnly): The time stamp when the snapshot was initiated.
+* **State**: string (ReadOnly): The snapshot state.
+* **StorageTier**: string (ReadOnly): The storage tier in which the snapshot is stored.
+* **Tags**: [Snapshot_Tags](#snapshottags)[]: Any tags assigned to the snapshot.
+* **VolumeId**: string (Required): The ID of the Amazon EBS volume.
+* **VolumeSize**: int (ReadOnly): The size of the volume, in GiB.
+
 ## AWS.EC2/SpotFleetProperties
 ### Properties
 * **Id**: string (ReadOnly, Identifier)
@@ -1758,6 +1790,14 @@ Use this for ICMP and any protocol that uses ports.
 * **NetworkInterfaceId**: string: The network interface ID that is associated with the target.
 * **NetworkLoadBalancerArn**: string: The Amazon Resource Name (ARN) of the Network Load Balancer that is associated with the target.
 * **Tags**: [Tag](#tag)[]:  The tags to assign to the Traffic Mirror target.
+
+## AWS.EC2/TransitGatewayAttachmentNatConfigurationProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): Synthetic ARN encoding the NAT configuration's identity (the transit gateway attachment ID). Transit Gateway does not issue an ARN for a NAT configuration; this value exists so the configuration has a primary identifier, and it is not accepted by any EC2 API.
+* **NatGatewayRules**: [NatRule](#natrule)[] (Required): The complete set of NAT rules for the attachment. Updating this property replaces the entire rule set: rules omitted from the new value are removed.
+* **NatGatewaySupport**: string (Required): Whether NAT gateway support is enabled on the attachment. Set to disable to stage NAT rules without activating them; the rules are retained and become active when this is later set to enable.
+* **NatSystemRouteSupport**: string: Whether routes for the NAT CIDRs are installed into the transit gateway route tables associated with the attachment. Whether this is configurable depends on the attachment; where the value is forced, supplying the opposite value is rejected. Omitting this property leaves the setting to the service: on a new configuration the service applies the attachment's default, but on an attachment where the value is configurable it keeps the value already in effect rather than reverting to that default. Removing this property from a template, or deleting this resource, therefore leaves the setting at its last value rather than restoring the default, and a resource later created on the same attachment without this property inherits that value.
+* **TransitGatewayAttachmentId**: string (Required): The ID of the transit gateway attachment to configure NAT on.
 
 ## AWS.EC2/TransitGatewayAttachmentProperties
 ### Properties
@@ -3170,6 +3210,12 @@ Use this for ICMP and any protocol that uses ports.
 * **TokenEndpoint**: string: The OIDC token endpoint.
 * **UserInfoEndpoint**: string: The OIDC user info endpoint.
 
+## NatRule
+### Properties
+* **MatchSourceCidr**: string (Required): The source CIDR that the rule matches on.
+* **NatCidr**: string (Required): The CIDR that the matched source addresses are translated to.
+* **RuleNumber**: int (Required): The rule number.
+
 ## NetworkBandwidthGbps
 ### Properties
 * **Max**: int: The maximum amount of network bandwidth, in Gbps. To specify no maximum limit, omit this parameter.
@@ -3516,6 +3562,11 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **Resources**: string[]
 * **ResourceTypes**: string[]
+
+## Snapshot_Tags
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## SourceResource
 ### Properties

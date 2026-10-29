@@ -120,6 +120,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/MitigationActionProperties](#awsiotmitigationactionproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.IoT/OTAUpdate@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IoT/OTAUpdateProperties](#awsiototaupdateproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.IoT/Policy@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -530,6 +538,26 @@
 * **RoleArn**: string (Required)
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
+## AWS.IoT/OTAUpdateProperties
+### Properties
+* **AdditionalParameters**: [OTAUpdate_AdditionalParameters](#otaupdateadditionalparameters): A list of additional OTA update parameters, which are name-value pairs.
+* **AwsJobAbortConfig**: [AwsJobAbortConfig](#awsjobabortconfig) (WriteOnly)
+* **AwsJobExecutionsRolloutConfig**: [AwsJobExecutionsRolloutConfig](#awsjobexecutionsrolloutconfig)
+* **AwsJobPresignedUrlConfig**: [AwsJobPresignedUrlConfig](#awsjobpresignedurlconfig)
+* **AwsJobTimeoutConfig**: [AwsJobTimeoutConfig](#awsjobtimeoutconfig) (WriteOnly)
+* **CreationDate**: string (ReadOnly): The date when the OTA update was created.
+* **Description**: string: The description of the OTA update.
+* **Files**: [OTAUpdateFile](#otaupdatefile)[] (Required): The files to be streamed by the OTA update.
+* **LastModifiedDate**: string (ReadOnly): The date when the OTA update was last updated.
+* **OtaUpdateArn**: string (ReadOnly, Identifier): The OTA update ARN.
+* **OtaUpdateId**: string (Required): The ID of the OTA update to be created.
+* **OtaUpdateStatus**: string (ReadOnly): The status of the OTA update.
+* **Protocols**: string[]: The protocol used to transfer the OTA update image.
+* **RoleArn**: string (WriteOnly): The IAM role that grants AWS IoT Core access to the Amazon S3, IoT jobs and AWS Code Signing resources to create an OTA update job.
+* **Tags**: [Tag](#tag)[]: Metadata which can be used to manage updates.
+* **Targets**: string[] (Required): The devices targeted to receive OTA updates.
+* **TargetSelection**: string: Specifies whether the update will continue to run (CONTINUOUS), or will be complete after all things specified as targets have completed the update (SNAPSHOT).
+
 ## AWS.IoT/PolicyProperties
 ### Properties
 * **Arn**: string (ReadOnly)
@@ -663,6 +691,41 @@
 * **Tags**: [Tag](#tag)[]
 * **TopicRulePayload**: [TopicRulePayload](#topicrulepayload) (Required)
 
+## AwsJobAbortConfig
+### Properties
+* **AbortCriteriaList**: [AwsJobAbortCriteria](#awsjobabortcriteria)[] (Required): The list of criteria that determine when and how to abort the job.
+
+## AwsJobAbortCriteria
+### Properties
+* **Action**: string (Required): The type of job action to take to initiate the job abort.
+* **FailureType**: string (Required): The type of job execution failures that can initiate a job abort.
+* **MinNumberOfExecutedThings**: int (Required): The minimum number of things which must receive job execution notifications before the job can be aborted.
+* **ThresholdPercentage**: int (Required): The minimum percentage of job execution failures that must occur to initiate the job abort.
+
+## AwsJobExecutionsRolloutConfig
+### Properties
+* **ExponentialRate**: [AwsJobExponentialRolloutRate](#awsjobexponentialrolloutrate) (WriteOnly)
+* **MaximumPerMinute**: int: The maximum number of OTA update job executions started per minute.
+
+## AwsJobExponentialRolloutRate
+### Properties
+* **BaseRatePerMinute**: int (Required): The minimum number of things that will be notified of a pending job, per minute, at the start of the job rollout.
+* **IncrementFactor**: int (Required): The rate of increase for a job rollout.
+* **RateIncreaseCriteria**: [AwsJobRateIncreaseCriteria](#awsjobrateincreasecriteria) (Required)
+
+## AwsJobPresignedUrlConfig
+### Properties
+* **ExpiresInSec**: int: How long (in seconds) pre-signed URLs are valid. Valid values are 60 - 3600, the default value is 1800 seconds.
+
+## AwsJobRateIncreaseCriteria
+### Properties
+* **NumberOfNotifiedThings**: int: When this number of things have been notified, it will initiate an increase in the rollout rate.
+* **NumberOfSucceededThings**: int: When this number of things have succeeded in their job execution, it will initiate an increase in the rollout rate.
+
+## AwsJobTimeoutConfig
+### Properties
+* **InProgressTimeoutInMinutes**: int: Specifies the amount of time, in minutes, this device has to finish execution of this job.
+
 ## AwsJsonSubstitutionCommandPreprocessorConfig
 ### Properties
 * **OutputFormat**: string (Required)
@@ -731,6 +794,21 @@
 * **MetricValue**: string (Required)
 * **RoleArn**: string (Required)
 
+## CodeSigning
+### Properties
+* **AwsSignerJobId**: string: The ID of the AWSSignerJob which was created to sign the file.
+* **CustomCodeSigning**: [CustomCodeSigning](#customcodesigning)
+* **StartSigningJobParameter**: [StartSigningJobParameter](#startsigningjobparameter)
+
+## CodeSigningCertificateChain
+### Properties
+* **CertificateName**: string: The name of the certificate.
+* **InlineDocument**: string: A base64 encoded binary representation of the code signing certificate chain.
+
+## CodeSigningSignature
+### Properties
+* **InlineDocument**: string: A base64 encoded binary representation of the code signing signature.
+
 ## CommandParameter
 ### Properties
 * **DefaultValue**: [CommandParameterValue](#commandparametervalue)
@@ -776,6 +854,17 @@
 ## CommandPreprocessor
 ### Properties
 * **AwsJsonSubstitution**: [AwsJsonSubstitutionCommandPreprocessorConfig](#awsjsonsubstitutioncommandpreprocessorconfig)
+
+## CustomCodeSigning
+### Properties
+* **CertificateChain**: [CodeSigningCertificateChain](#codesigningcertificatechain)
+* **HashAlgorithm**: string: The hash algorithm used to code sign the file.
+* **Signature**: [CodeSigningSignature](#codesigningsignature)
+* **SignatureAlgorithm**: string: The signature algorithm used to code sign the file.
+
+## Destination
+### Properties
+* **S3Destination**: [S3Destination](#s3destination)
 
 ## DeviceCertAgeAuditCheckConfiguration
 ### Properties
@@ -834,6 +923,11 @@
 * **BaseRatePerMinute**: int (Required): The minimum number of things that will be notified of a pending job, per minute at the start of job rollout.
 * **IncrementFactor**: int (Required): The exponential factor to increase the rate of rollout for a job.
 * **RateIncreaseCriteria**: [RateIncreaseCriteria](#rateincreasecriteria) (Required)
+
+## FileLocation
+### Properties
+* **S3Location**: [S3Location](#s3location)
+* **Stream**: [Stream](#stream)
 
 ## FirehoseAction
 ### Properties
@@ -990,6 +1084,21 @@
 * **RoleArn**: string (Required)
 * **Type**: string (Required)
 
+## OTAUpdate_AdditionalParameters
+### Properties
+
+## OTAUpdate_Attributes
+### Properties
+
+## OTAUpdateFile
+### Properties
+* **Attributes**: [OTAUpdate_Attributes](#otaupdateattributes): A list of name-attribute pairs.
+* **CodeSigning**: [CodeSigning](#codesigning)
+* **FileLocation**: [FileLocation](#filelocation)
+* **FileName**: string: The name of the file.
+* **FileType**: int: An integer value you can include in the job document to allow your devices to identify the type of file received from the cloud.
+* **FileVersion**: string: The file version.
+
 ## PackageVersionArtifact
 ### Properties
 * **S3Location**: [S3Location](#s3location) (Required)
@@ -1072,6 +1181,17 @@
 * **Key**: string (Required)
 * **RoleArn**: string (Required)
 
+## S3Destination
+### Properties
+* **Bucket**: string: The S3 bucket that contains the updated firmware.
+* **Prefix**: string: The S3 prefix.
+
+## S3Location
+### Properties
+* **Bucket**: string: The S3 bucket.
+* **Key**: string: The S3 key.
+* **Version**: string: The S3 bucket version.
+
 ## S3Location
 ### Properties
 * **Bucket**: string (Required): The S3 bucket
@@ -1115,6 +1235,12 @@
 * **ServerCertificateStatus**: string
 * **ServerCertificateStatusDetail**: string
 
+## SigningProfileParameter
+### Properties
+* **CertificateArn**: string: Certificate ARN.
+* **CertificatePathOnDevice**: string: The location of the code-signing certificate on your device.
+* **Platform**: string: The hardware platform of your device.
+
 ## SigV4Authorization
 ### Properties
 * **RoleArn**: string (Required)
@@ -1133,6 +1259,12 @@
 * **RoleArn**: string (Required)
 * **UseBase64**: bool
 
+## StartSigningJobParameter
+### Properties
+* **Destination**: [Destination](#destination)
+* **SigningProfileName**: string: The code-signing profile name.
+* **SigningProfileParameter**: [SigningProfileParameter](#signingprofileparameter)
+
 ## StatisticalThreshold
 ### Properties
 * **Statistic**: string: The percentile which resolves to a threshold value by which compliance with a behavior is determined
@@ -1142,6 +1274,11 @@
 * **ExecutionNamePrefix**: string
 * **RoleArn**: string (Required)
 * **StateMachineName**: string (Required)
+
+## Stream
+### Properties
+* **FileId**: int: The ID of a file associated with a stream.
+* **StreamId**: string: The stream ID.
 
 ## StreamFile
 ### Properties
@@ -1202,6 +1339,11 @@
 ### Properties
 * **Key**: string (Required): The tag's key.
 * **Value**: string (Required): The tag's value.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

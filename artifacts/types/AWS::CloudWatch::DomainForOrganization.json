@@ -1,0 +1,249 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudWatch-DomainForOrganization",
+  "type": "AWS::CloudWatch::DomainForOrganization",
+  "time": "2026-10-28T19:38:48.134Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/DomainId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DomainAccessRoleArn"
+    ],
+    "definitions": {
+      "IdentityCenterConfiguration": {
+        "additionalProperties": false,
+        "description": "Identity Center configuration. Required when identityProviders includes IDC.",
+        "properties": {
+          "IdentityCenterInstanceArn": {
+            "description": "Identity Center instance ARN",
+            "maxLength": 2048,
+            "minLength": 1,
+            "pattern": "^arn:aws[a-z-]*:sso:::instance/[a-zA-Z0-9-]+$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "IdentityProviderConfiguration": {
+        "additionalProperties": false,
+        "description": "Identity provider configuration for the domain.",
+        "properties": {
+          "IdentityCenterConfiguration": {
+            "$ref": "#/definitions/IdentityCenterConfiguration"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::CloudWatch::DomainForOrganization. The organization-level boundary for CloudWatch Omni: an organization domain configures the identity providers users sign in through for the whole AWS Organization and exposes the endpoint URLs used to reach CloudWatch Omni. It can only be created by the organization's management account.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "cloudwatch:CreateDomainForOrganization",
+          "cloudwatch:TagResource",
+          "iam:PassRole",
+          "sso:CreateApplication",
+          "sso:CreateApplicationAssignment",
+          "sso:DescribeInstance",
+          "sso:ListRegions",
+          "sso:PutApplicationAccessScope",
+          "sso:PutApplicationAssignmentConfiguration",
+          "sso:PutApplicationAuthenticationMethod",
+          "sso:PutApplicationGrant"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "cloudwatch:DeleteDomainForOrganization",
+          "cloudwatch:GetDomainForOrganization",
+          "cloudwatch:ListTagsForResource",
+          "sso:DeleteApplication",
+          "sso:DeleteApplicationAssignment"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "cloudwatch:ListDomains"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "cloudwatch:GetDomainForOrganization",
+          "cloudwatch:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "cloudwatch:TagResource",
+          "cloudwatch:UntagResource",
+          "cloudwatch:UpdateDomainForOrganization"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the resource.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:[^:]+:cloudwatch:[^:]*:[0-9]{12}:organization-domain/(?:d-[0-9a-z]{1,25})$",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The timestamp when the domain was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "CustomEndpointUrls": {
+        "description": "Additional endpoint URLs derived from the domain name.",
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "DomainAccessRoleArn": {
+        "description": "The ARN of an IAM role in the management account that CloudWatch Omni assumes for domain-scoped credential vending.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws[a-zA-Z-]*:iam::[0-9]{12}:role/.+$",
+        "type": "string"
+      },
+      "DomainEndpointUrl": {
+        "description": "The HTTPS endpoint URL for accessing the domain.",
+        "type": "string"
+      },
+      "DomainId": {
+        "description": "The unique ID of the domain.",
+        "pattern": "^d-[0-9a-z]{1,25}$",
+        "type": "string"
+      },
+      "IdentityCenterApplicationArn": {
+        "description": "The ARN of the Identity Center application. Absent for IAM-only domains.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:.+$",
+        "type": "string"
+      },
+      "IdentityProviderConfiguration": {
+        "$ref": "#/definitions/IdentityProviderConfiguration"
+      },
+      "IdentityProviders": {
+        "description": "The identity providers configured for the domain.",
+        "items": {
+          "enum": [
+            "IAM",
+            "IDC"
+          ],
+          "type": "string"
+        },
+        "maxItems": 2,
+        "minItems": 1,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "Name": {
+        "description": "A name that identifies the domain.",
+        "maxLength": 63,
+        "minLength": 3,
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+        "type": "string"
+      },
+      "OrganizationId": {
+        "description": "The ID of the AWS Organization this domain belongs to.",
+        "type": "string"
+      },
+      "OwnerAccountId": {
+        "description": "The account ID of the organization's management account, which owns this domain.",
+        "maxLength": 12,
+        "minLength": 12,
+        "pattern": "^[0-9]{12}$",
+        "type": "string"
+      },
+      "Region": {
+        "description": "The Region where this domain was created.",
+        "type": "string"
+      },
+      "Status": {
+        "description": "Current status of the domain.",
+        "enum": [
+          "ACTIVE"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "UpdatedAt": {
+        "description": "The timestamp when the domain was last updated.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/DomainEndpointUrl",
+      "/properties/CustomEndpointUrls",
+      "/properties/OrganizationId",
+      "/properties/OwnerAccountId",
+      "/properties/IdentityCenterApplicationArn",
+      "/properties/Region",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt",
+      "/properties/Status",
+      "/properties/DomainId",
+      "/properties/Arn"
+    ],
+    "required": [
+      "Name",
+      "IdentityProviders",
+      "DomainAccessRoleArn"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "cloudwatch:ListTagsForResource",
+        "cloudwatch:TagResource",
+        "cloudwatch:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::CloudWatch::DomainForOrganization"
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudWatch-AccessProfile",
+  "type": "AWS::CloudWatch::AccessProfile",
+  "time": "2026-10-28T20:15:53.094Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/SpaceId"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource type definition for AWS::CloudWatch::AccessProfile",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "cloudwatch:CreateAccessProfile",
+          "cloudwatch:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "cloudwatch:DeleteAccessProfile",
+          "cloudwatch:GetAccessProfile",
+          "cloudwatch:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "SpaceId": {
+              "description": "The unique identifier of the space to list access profiles for.",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "SpaceId"
+          ]
+        },
+        "permissions": [
+          "cloudwatch:ListAccessProfiles"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "cloudwatch:GetAccessProfile",
+          "cloudwatch:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "cloudwatch:ListTagsForResource",
+          "cloudwatch:TagResource",
+          "cloudwatch:UntagResource",
+          "cloudwatch:UpdateAccessProfile"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/SpaceId",
+      "/properties/ProfileId"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the access profile.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:[^:]+:cloudwatch:[^:]*:[0-9]{12}:access-profile/[a-zA-Z0-9_-]{1,64}$",
+        "type": "string"
+      },
+      "AssumeStatus": {
+        "description": "Whether the calling principal is authorized to assume the access profile.",
+        "enum": [
+          "ALLOWED",
+          "DENIED"
+        ],
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The time the access profile was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description of the access profile.",
+        "maxLength": 1024,
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the access profile.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9 _.:/=+@-]+$",
+        "type": "string"
+      },
+      "ProfileId": {
+        "description": "The unique identifier of the access profile.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9_-]+$",
+        "type": "string"
+      },
+      "ProfileType": {
+        "description": "Whether the access profile is managed by the service or by the customer.",
+        "enum": [
+          "SERVICE_MANAGED",
+          "CUSTOMER_MANAGED"
+        ],
+        "type": "string"
+      },
+      "SpaceId": {
+        "description": "The unique identifier of the space the access profile belongs to.",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "UpdatedAt": {
+        "description": "The time the access profile was last updated.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/ProfileId",
+      "/properties/ProfileType",
+      "/properties/AssumeStatus",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "SpaceId",
+      "Name"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "cloudwatch:ListTagsForResource",
+        "cloudwatch:TagResource",
+        "cloudwatch:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::CloudWatch::AccessProfile"
+  }
+}

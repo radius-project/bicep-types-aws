@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-KinesisAnalyticsV2-Application",
   "type": "AWS::KinesisAnalyticsV2::Application",
-  "time": "2026-04-01T01:36:58.734Z",
+  "time": "2026-10-28T22:16:29.158Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -59,10 +59,6 @@
           "FlinkApplicationConfiguration": {
             "$ref": "#/definitions/FlinkApplicationConfiguration",
             "description": "The creation and update parameters for a Flink-based Kinesis Data Analytics application."
-          },
-          "SqlApplicationConfiguration": {
-            "$ref": "#/definitions/SqlApplicationConfiguration",
-            "description": "The creation and update parameters for a SQL-based Kinesis Data Analytics application."
           },
           "VpcConfigurations": {
             "$ref": "#/definitions/VpcConfigurations",
@@ -128,8 +124,14 @@
             ],
             "type": "string"
           },
+          "SnapshotArn": {
+            "description": "The ARN of an existing snapshot to use to restart an application. The application uses this value if RESTORE_FROM_CUSTOM_SNAPSHOT is specified for the ApplicationRestoreType. Specify either SnapshotName or SnapshotArn, not both.",
+            "maxLength": 2048,
+            "minLength": 1,
+            "type": "string"
+          },
           "SnapshotName": {
-            "description": "The identifier of an existing snapshot of application state to use to restart an application. The application uses this value if RESTORE_FROM_CUSTOM_SNAPSHOT is specified for the ApplicationRestoreType.",
+            "description": "The identifier of an existing snapshot of application state to use to restart an application. The application uses this value if RESTORE_FROM_CUSTOM_SNAPSHOT is specified for the ApplicationRestoreType. Specify either SnapshotName or SnapshotArn, not both.",
             "maxLength": 256,
             "minLength": 1,
             "pattern": "^[a-zA-Z0-9_.-]+$",
@@ -145,6 +147,14 @@
         "additionalProperties": false,
         "description": "Describes whether snapshots are enabled for a Flink-based Kinesis Data Analytics application.",
         "properties": {
+          "SnapshotMode": {
+            "description": "The snapshot mode of a Flink-based Kinesis Data Analytics application. Changing from APPLICATION_SNAPSHOTS_LEGACY to ENHANCED_SNAPSHOTS is one-way; an application in ENHANCED_SNAPSHOTS mode cannot return to APPLICATION_SNAPSHOTS_LEGACY.",
+            "enum": [
+              "APPLICATION_SNAPSHOTS_LEGACY",
+              "ENHANCED_SNAPSHOTS"
+            ],
+            "type": "string"
+          },
           "SnapshotsEnabled": {
             "description": "Describes whether snapshots are enabled for a Flink-based Kinesis Data Analytics application.",
             "type": "boolean"
@@ -175,29 +185,6 @@
         "minLength": 1,
         "pattern": "^arn:.*$",
         "type": "string"
-      },
-      "CSVMappingParameters": {
-        "additionalProperties": false,
-        "description": "For a SQL-based Kinesis Data Analytics application, provides additional mapping information when the record format uses delimiters, such as CSV. For example, the following sample records use CSV format, where the records use the '\\n' as the row delimiter and a comma (\",\") as the column delimiter:\n`\"name1\", \"address1\"`\n`\"name2\", \"address2\"`",
-        "properties": {
-          "RecordColumnDelimiter": {
-            "description": "The column delimiter. For example, in a CSV format, a comma (\",\") is the typical column delimiter.",
-            "maxLength": 1024,
-            "minLength": 1,
-            "type": "string"
-          },
-          "RecordRowDelimiter": {
-            "description": "The row delimiter. For example, in a CSV format, '\\n' is the typical row delimiter.",
-            "maxLength": 1024,
-            "minLength": 1,
-            "type": "string"
-          }
-        },
-        "required": [
-          "RecordRowDelimiter",
-          "RecordColumnDelimiter"
-        ],
-        "type": "object"
       },
       "CatalogConfiguration": {
         "additionalProperties": false,
@@ -255,7 +242,7 @@
             "description": "Information about the Amazon S3 bucket that contains the application code."
           },
           "TextContent": {
-            "description": "The text-format code for a Flink-based Kinesis Data Analytics application.",
+            "description": "The text-format code for a Kinesis Data Analytics Studio notebook, as a Zeppelin note JSON object.",
             "maxLength": 102400,
             "minLength": 1,
             "type": "string"
@@ -372,174 +359,6 @@
           "DatabaseARN": {
             "$ref": "#/definitions/Arn",
             "description": "The Amazon Resource Name (ARN) of the database."
-          }
-        },
-        "type": "object"
-      },
-      "Input": {
-        "additionalProperties": false,
-        "description": "When you configure the application input for a SQL-based Kinesis Data Analytics application, you specify the streaming source, the in-application stream name that is created, and the mapping between the two.",
-        "properties": {
-          "InputParallelism": {
-            "$ref": "#/definitions/InputParallelism",
-            "description": "Describes the number of in-application streams to create."
-          },
-          "InputProcessingConfiguration": {
-            "$ref": "#/definitions/InputProcessingConfiguration",
-            "description": "The InputProcessingConfiguration for the input. An input processor transforms records as they are received from the stream, before the application's SQL code executes. Currently, the only input processing configuration available is InputLambdaProcessor."
-          },
-          "InputSchema": {
-            "$ref": "#/definitions/InputSchema",
-            "description": "Describes the format of the data in the streaming source, and how each data element maps to corresponding columns in the in-application stream that is being created."
-          },
-          "KinesisFirehoseInput": {
-            "$ref": "#/definitions/KinesisFirehoseInput",
-            "description": "If the streaming source is an Amazon Kinesis Data Firehose delivery stream, identifies the delivery stream's ARN."
-          },
-          "KinesisStreamsInput": {
-            "$ref": "#/definitions/KinesisStreamsInput",
-            "description": "If the streaming source is an Amazon Kinesis data stream, identifies the stream's Amazon Resource Name (ARN)."
-          },
-          "NamePrefix": {
-            "description": "The name prefix to use when creating an in-application stream. Suppose that you specify a prefix `\"MyInApplicationStream\"`. Kinesis Data Analytics then creates one or more (as per the InputParallelism count you specified) in-application streams with the names `\"MyInApplicationStream_001\"`, `\"MyInApplicationStream_002\"`, and so on.",
-            "maxLength": 32,
-            "minLength": 1,
-            "pattern": "^[^-\\s\u003c\u003e\u0026]*$",
-            "type": "string"
-          }
-        },
-        "required": [
-          "NamePrefix",
-          "InputSchema"
-        ],
-        "type": "object"
-      },
-      "InputLambdaProcessor": {
-        "additionalProperties": false,
-        "description": "An object that contains the Amazon Resource Name (ARN) of the Amazon Lambda function that is used to preprocess records in the stream in a SQL-based Kinesis Data Analytics application.",
-        "properties": {
-          "ResourceARN": {
-            "$ref": "#/definitions/Arn",
-            "description": "The ARN of the Amazon Lambda function that operates on records in the stream."
-          }
-        },
-        "required": [
-          "ResourceARN"
-        ],
-        "type": "object"
-      },
-      "InputParallelism": {
-        "additionalProperties": false,
-        "description": "For a SQL-based Kinesis Data Analytics application, describes the number of in-application streams to create for a given streaming source.",
-        "properties": {
-          "Count": {
-            "description": "The number of in-application streams to create.",
-            "maximum": 64,
-            "minimum": 1,
-            "type": "integer"
-          }
-        },
-        "type": "object"
-      },
-      "InputProcessingConfiguration": {
-        "additionalProperties": false,
-        "description": "For an SQL-based Amazon Kinesis Data Analytics application, describes a processor that is used to preprocess the records in the stream before being processed by your application code. Currently, the only input processor available is Amazon Lambda.",
-        "properties": {
-          "InputLambdaProcessor": {
-            "$ref": "#/definitions/InputLambdaProcessor",
-            "description": "The InputLambdaProcessor that is used to preprocess the records in the stream before being processed by your application code."
-          }
-        },
-        "type": "object"
-      },
-      "InputSchema": {
-        "additionalProperties": false,
-        "description": "For a SQL-based Kinesis Data Analytics application, describes the format of the data in the streaming source, and how each data element maps to corresponding columns created in the in-application stream.",
-        "properties": {
-          "RecordColumns": {
-            "description": "A list of `RecordColumn` objects.",
-            "insertionOrder": false,
-            "items": {
-              "$ref": "#/definitions/RecordColumn"
-            },
-            "maxItems": 1000,
-            "type": "array",
-            "uniqueItems": false
-          },
-          "RecordEncoding": {
-            "description": "Specifies the encoding of the records in the streaming source. For example, UTF-8.",
-            "enum": [
-              "UTF-8"
-            ],
-            "type": "string"
-          },
-          "RecordFormat": {
-            "$ref": "#/definitions/RecordFormat",
-            "description": "Specifies the format of the records on the streaming source."
-          }
-        },
-        "required": [
-          "RecordColumns",
-          "RecordFormat"
-        ],
-        "type": "object"
-      },
-      "JSONMappingParameters": {
-        "additionalProperties": false,
-        "description": "For a SQL-based Kinesis Data Analytics application, provides additional mapping information when JSON is the record format on the streaming source.",
-        "properties": {
-          "RecordRowPath": {
-            "description": "The path to the top-level parent that contains the records.",
-            "maxLength": 65535,
-            "minLength": 1,
-            "pattern": "^(?=^\\$)(?=^\\S+$).*$",
-            "type": "string"
-          }
-        },
-        "required": [
-          "RecordRowPath"
-        ],
-        "type": "object"
-      },
-      "KinesisFirehoseInput": {
-        "additionalProperties": false,
-        "description": "For a SQL-based Kinesis Data Analytics application, identifies a Kinesis Data Firehose delivery stream as the streaming source. You provide the delivery stream's Amazon Resource Name (ARN).",
-        "properties": {
-          "ResourceARN": {
-            "$ref": "#/definitions/Arn",
-            "description": "The Amazon Resource Name (ARN) of the delivery stream."
-          }
-        },
-        "required": [
-          "ResourceARN"
-        ],
-        "type": "object"
-      },
-      "KinesisStreamsInput": {
-        "additionalProperties": false,
-        "description": "Identifies a Kinesis data stream as the streaming source. You provide the stream's Amazon Resource Name (ARN).",
-        "properties": {
-          "ResourceARN": {
-            "$ref": "#/definitions/Arn",
-            "description": "The ARN of the input Kinesis data stream to read."
-          }
-        },
-        "required": [
-          "ResourceARN"
-        ],
-        "type": "object"
-      },
-      "MappingParameters": {
-        "additionalProperties": false,
-        "description": "When you configure a SQL-based Kinesis Data Analytics application's input at the time of creating or updating an application, provides additional mapping information specific to the record format (such as JSON, CSV, or record fields delimited by some delimiter) on the streaming source.",
-        "properties": {
-          "CSVMappingParameters": {
-            "$ref": "#/definitions/CSVMappingParameters",
-            "description": "Provides additional mapping information when the record format uses delimiters (for example, CSV)."
-          },
-          "JSONMappingParameters": {
-            "$ref": "#/definitions/JSONMappingParameters",
-            "description": "Provides additional mapping information when JSON is the record format on the streaming source."
           }
         },
         "type": "object"
@@ -674,58 +493,6 @@
         },
         "type": "object"
       },
-      "RecordColumn": {
-        "additionalProperties": false,
-        "description": "For a SQL-based Kinesis Data Analytics application, describes the mapping of each data element in the streaming source to the corresponding column in the in-application stream.\nAlso used to describe the format of the reference data source.",
-        "properties": {
-          "Mapping": {
-            "description": "A reference to the data element in the streaming input or the reference data source.",
-            "maxLength": 65535,
-            "minLength": 1,
-            "type": "string"
-          },
-          "Name": {
-            "description": "The name of the column that is created in the in-application input stream or reference table.",
-            "maxLength": 256,
-            "minLength": 1,
-            "pattern": "^[^-\\s\u003c\u003e\u0026]*$",
-            "type": "string"
-          },
-          "SqlType": {
-            "description": "The type of column created in the in-application input stream or reference table.",
-            "maxLength": 100,
-            "minLength": 1,
-            "type": "string"
-          }
-        },
-        "required": [
-          "SqlType",
-          "Name"
-        ],
-        "type": "object"
-      },
-      "RecordFormat": {
-        "additionalProperties": false,
-        "description": "For a SQL-based Kinesis Data Analytics application, describes the record format and relevant mapping information that should be applied to schematize the records on the stream.",
-        "properties": {
-          "MappingParameters": {
-            "$ref": "#/definitions/MappingParameters",
-            "description": "When you configure application input at the time of creating or updating an application, provides additional mapping information specific to the record format (such as JSON, CSV, or record fields delimited by some delimiter) on the streaming source."
-          },
-          "RecordFormatType": {
-            "description": "The type of record format.",
-            "enum": [
-              "CSV",
-              "JSON"
-            ],
-            "type": "string"
-          }
-        },
-        "required": [
-          "RecordFormatType"
-        ],
-        "type": "object"
-      },
       "RunConfiguration": {
         "additionalProperties": false,
         "description": "Identifies the run configuration (start parameters) of a Kinesis Data Analytics application. This section is evaluated only on stack updates for applications in running RUNNING state and has no effect during manual application start.",
@@ -787,23 +554,6 @@
           "BucketARN",
           "FileKey"
         ],
-        "type": "object"
-      },
-      "SqlApplicationConfiguration": {
-        "additionalProperties": false,
-        "description": "Describes the inputs, outputs, and reference data sources for a SQL-based Kinesis Data Analytics application.",
-        "properties": {
-          "Inputs": {
-            "description": "The array of Input objects describing the input streams used by the application.",
-            "insertionOrder": false,
-            "items": {
-              "$ref": "#/definitions/Input"
-            },
-            "maxItems": 1,
-            "type": "array",
-            "uniqueItems": false
-          }
-        },
         "type": "object"
       },
       "Tag": {
@@ -914,7 +664,7 @@
         "type": "object"
       }
     },
-    "description": "Creates an Amazon Kinesis Data Analytics application. For information about creating a Kinesis Data Analytics application, see [Creating an Application](https://docs.aws.amazon.com/kinesisanalytics/latest/java/getting-started.html).",
+    "description": "Resource Type definition for AWS::KinesisAnalyticsV2::Application. Creates an Amazon Kinesis Data Analytics application. For information about creating a Kinesis Data Analytics application, see [Creating an Application](https://docs.aws.amazon.com/kinesisanalytics/latest/java/getting-started.html).",
     "handlers": {
       "create": {
         "permissions": [
@@ -953,6 +703,8 @@
           "iam:PassRole",
           "kinesisanalytics:UpdateApplication",
           "kinesisanalytics:DescribeApplication",
+          "kinesisanalytics:RestoreFromSnapshot",
+          "kinesisanalytics:CreateSystemSnapshot",
           "kinesisanalytics:TagResource",
           "kinesisanalytics:UntagResource",
           "kinesisanalytics:AddApplicationVpcConfiguration",

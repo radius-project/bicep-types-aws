@@ -1,0 +1,194 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MGN-Wave",
+  "type": "AWS::MGN::Wave",
+  "time": "2026-10-28T20:04:06.988Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/WaveID"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "WaveAggregatedStatus": {
+        "additionalProperties": false,
+        "description": "The aggregated migration status of the wave.",
+        "properties": {
+          "HealthStatus": {
+            "description": "The health status of the wave.",
+            "enum": [
+              "HEALTHY",
+              "LAGGING",
+              "ERROR"
+            ],
+            "type": "string"
+          },
+          "ProgressStatus": {
+            "description": "The progress status of the wave.",
+            "enum": [
+              "NOT_STARTED",
+              "IN_PROGRESS",
+              "COMPLETED"
+            ],
+            "type": "string"
+          },
+          "TotalApplications": {
+            "description": "The total number of applications in the wave.",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource schema for AWS::MGN::Wave. A Wave is a logical grouping used in Application Migration Service to organize and manage the migration of applications.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "mgn:CreateWave",
+          "mgn:ListWaves",
+          "mgn:TagResource",
+          "mgn:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "mgn:DeleteWave",
+          "mgn:ListWaves",
+          "mgn:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "mgn:ListWaves"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "mgn:ListWaves",
+          "mgn:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "mgn:UpdateWave",
+          "mgn:ListWaves",
+          "mgn:TagResource",
+          "mgn:UntagResource",
+          "mgn:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the wave.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "type": "string"
+      },
+      "CreationDateTime": {
+        "description": "The timestamp when the wave was created.",
+        "maxLength": 32,
+        "minLength": 19,
+        "pattern": "^[1-9][0-9]*-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([0-1][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$",
+        "type": "string"
+      },
+      "Description": {
+        "description": "A description of the wave.",
+        "maxLength": 600,
+        "minLength": 0,
+        "pattern": "^[^\\x00]*$",
+        "type": "string"
+      },
+      "IsArchived": {
+        "description": "Whether the wave is archived.",
+        "type": "boolean"
+      },
+      "LastModifiedDateTime": {
+        "description": "The timestamp when the wave was last modified.",
+        "maxLength": 32,
+        "minLength": 19,
+        "pattern": "^[1-9][0-9]*-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([0-1][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the wave.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^[^\\s\\x00]( *[^\\s\\x00])*$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags to assign to the wave.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "WaveAggregatedStatus": {
+        "$ref": "#/definitions/WaveAggregatedStatus",
+        "description": "The aggregated migration status of the wave."
+      },
+      "WaveID": {
+        "description": "The unique identifier of the wave.",
+        "maxLength": 22,
+        "minLength": 22,
+        "pattern": "^wave-[0-9a-zA-Z]{17}$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/WaveID",
+      "/properties/Arn",
+      "/properties/IsArchived",
+      "/properties/WaveAggregatedStatus",
+      "/properties/CreationDateTime",
+      "/properties/LastModifiedDateTime"
+    ],
+    "required": [
+      "Name"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "mgn:TagResource",
+        "mgn:UntagResource",
+        "mgn:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::MGN::Wave"
+  }
+}

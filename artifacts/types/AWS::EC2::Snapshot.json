@@ -1,0 +1,169 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-Snapshot",
+  "type": "AWS::EC2::Snapshot",
+  "time": "2026-10-28T23:01:51.425Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/SnapshotId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/VolumeId",
+      "/properties/Description"
+    ],
+    "description": "Creates a snapshot of an EBS volume and stores it in Amazon S3.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "ec2:CreateSnapshot",
+          "ec2:DescribeSnapshots",
+          "ec2:CreateTags"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "ec2:DeleteSnapshot",
+          "ec2:DescribeSnapshots"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "ec2:DescribeSnapshots"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ec2:DescribeSnapshots"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "ec2:DescribeSnapshots",
+          "ec2:CreateTags",
+          "ec2:DeleteTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the snapshot.",
+        "type": "string"
+      },
+      "Description": {
+        "description": "A description for the snapshot.",
+        "type": "string"
+      },
+      "Encrypted": {
+        "description": "Indicates whether the snapshot is encrypted.",
+        "type": "boolean"
+      },
+      "KmsKeyId": {
+        "description": "The Amazon Resource Name (ARN) of the KMS key that was used to protect the volume encryption key for the parent volume.",
+        "type": "string"
+      },
+      "OwnerId": {
+        "description": "The ID of the Amazon Web Services account that owns the EBS snapshot.",
+        "type": "string"
+      },
+      "Progress": {
+        "description": "The progress of the snapshot, as a percentage.",
+        "type": "string"
+      },
+      "SnapshotId": {
+        "description": "The ID of the snapshot.",
+        "type": "string"
+      },
+      "StartTime": {
+        "description": "The time stamp when the snapshot was initiated.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "State": {
+        "description": "The snapshot state.",
+        "enum": [
+          "pending",
+          "completed",
+          "error",
+          "recoverable",
+          "recovering"
+        ],
+        "type": "string"
+      },
+      "StorageTier": {
+        "description": "The storage tier in which the snapshot is stored.",
+        "enum": [
+          "archive",
+          "standard"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Any tags assigned to the snapshot.",
+        "insertionOrder": false,
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "Value": {
+              "maxLength": 256,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "VolumeId": {
+        "description": "The ID of the Amazon EBS volume.",
+        "type": "string"
+      },
+      "VolumeSize": {
+        "description": "The size of the volume, in GiB.",
+        "type": "integer"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/SnapshotId",
+      "/properties/VolumeSize",
+      "/properties/Encrypted",
+      "/properties/KmsKeyId",
+      "/properties/OwnerId",
+      "/properties/Progress",
+      "/properties/StartTime",
+      "/properties/State",
+      "/properties/StorageTier"
+    ],
+    "required": [
+      "VolumeId"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "ec2:CreateTags",
+        "ec2:DeleteTags",
+        "ec2:DescribeSnapshots"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::EC2::Snapshot"
+  }
+}

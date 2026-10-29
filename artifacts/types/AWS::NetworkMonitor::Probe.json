@@ -1,0 +1,215 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkMonitor-Probe",
+  "type": "AWS::NetworkMonitor::Probe",
+  "time": "2026-10-28T23:34:13.113Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/MonitorName",
+      "/properties/SourceArn"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "An Amazon CloudWatch Network Monitor probe that measures network traffic between a source subnet and a destination.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "networkmonitor:CreateProbe",
+          "networkmonitor:GetProbe",
+          "networkmonitor:TagResource",
+          "ec2:CreateNetworkInterface",
+          "ec2:CreateSecurityGroup",
+          "ec2:CreateTags"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "networkmonitor:DeleteProbe",
+          "networkmonitor:GetProbe"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "MonitorName": {
+              "description": "The name of the monitor whose probes are listed.",
+              "maxLength": 200,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9_-]+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "MonitorName"
+          ]
+        },
+        "permissions": [
+          "networkmonitor:GetMonitor"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "networkmonitor:GetProbe"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "networkmonitor:UpdateProbe",
+          "networkmonitor:GetProbe",
+          "networkmonitor:TagResource",
+          "networkmonitor:UntagResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/MonitorName",
+      "/properties/ProbeId"
+    ],
+    "properties": {
+      "AddressFamily": {
+        "description": "The IP address family the probe uses, computed by the service from the source and destination.",
+        "enum": [
+          "IPV4",
+          "IPV6"
+        ],
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The time and date when the probe was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Destination": {
+        "description": "The literal IPv4 or IPv6 address the probe sends traffic to. The service rejects a domain name and a CIDR block.",
+        "maxLength": 255,
+        "minLength": 1,
+        "type": "string"
+      },
+      "DestinationPort": {
+        "description": "The port the probe sends traffic to. Applies to the TCP protocol only.",
+        "maximum": 65536,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "ModifiedAt": {
+        "description": "The time and date when the probe was last modified.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "MonitorName": {
+        "description": "The name of the monitor the probe belongs to.",
+        "maxLength": 200,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9_-]+$",
+        "type": "string"
+      },
+      "PacketSize": {
+        "description": "The size, in bytes, of the packets the probe sends.",
+        "maximum": 8500,
+        "minimum": 56,
+        "type": "integer"
+      },
+      "ProbeArn": {
+        "description": "The ARN of the probe.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:.*$",
+        "type": "string"
+      },
+      "ProbeId": {
+        "description": "The ID of the probe.",
+        "pattern": "^probe-[a-z0-9A-Z-]{21,64}$",
+        "type": "string"
+      },
+      "Protocol": {
+        "description": "The protocol the probe uses.",
+        "enum": [
+          "TCP",
+          "ICMP"
+        ],
+        "type": "string"
+      },
+      "SourceArn": {
+        "description": "The ARN of the subnet the probe sends traffic from.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:.*$",
+        "type": "string"
+      },
+      "State": {
+        "description": "The state of the probe.",
+        "enum": [
+          "PENDING",
+          "ACTIVE",
+          "INACTIVE",
+          "ERROR",
+          "DELETING",
+          "DELETED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags for the probe.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array"
+      },
+      "VpcId": {
+        "description": "The ID of the VPC containing the probe's source subnet.",
+        "pattern": "^vpc-[a-zA-Z0-9]{8,32}$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ProbeId",
+      "/properties/ProbeArn",
+      "/properties/AddressFamily",
+      "/properties/VpcId",
+      "/properties/State",
+      "/properties/CreatedAt",
+      "/properties/ModifiedAt"
+    ],
+    "required": [
+      "MonitorName",
+      "SourceArn",
+      "Destination",
+      "Protocol"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "networkmonitor:TagResource",
+        "networkmonitor:UntagResource",
+        "networkmonitor:GetProbe"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::NetworkMonitor::Probe"
+  }
+}
