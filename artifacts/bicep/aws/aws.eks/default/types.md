@@ -282,6 +282,7 @@
 ## ElasticLoadBalancing
 ### Properties
 * **Enabled**: bool: Todo: add description
+* **GatewayApi**: [GatewayApi](#gatewayapi): The Gateway API configuration for the cluster.
 
 ## EncryptionConfig
 ### Properties
@@ -291,6 +292,14 @@
 ## EtcdPlacement
 ### Properties
 * **SpreadLevel**: string: Optional parameter to specify the placement group spread level for etcd instances. If not provided, EKS will deploy etcd instances without a placement group.
+
+## GatewayApi
+### Properties
+* **Crds**: [GatewayApiCrds](#gatewayapicrds) (Required): The Gateway API Custom Resource Definition (CRD) configuration.
+
+## GatewayApiCrds
+### Properties
+* **Managed**: bool (Required): Indicates whether EKS manages the lifecycle of the Gateway API CRDs on the cluster. If true, EKS installs and upgrades the Gateway API CRDs. Requires ElasticLoadBalancing to be enabled.
 
 ## HorizontalPodAutoscalerControllerConfig
 ### Properties

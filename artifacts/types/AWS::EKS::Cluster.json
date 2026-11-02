@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EKS-Cluster",
   "type": "AWS::EKS::Cluster",
-  "time": "2026-10-20T01:20:51.84Z",
+  "time": "2026-10-30T07:49:35.129Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -153,6 +153,10 @@
           "Enabled": {
             "description": "Todo: add description",
             "type": "boolean"
+          },
+          "GatewayApi": {
+            "$ref": "#/definitions/GatewayApi",
+            "description": "The Gateway API configuration for the cluster."
           }
         },
         "type": "object"
@@ -193,6 +197,34 @@
             "type": "string"
           }
         },
+        "type": "object"
+      },
+      "GatewayApi": {
+        "additionalProperties": false,
+        "description": "The Gateway API configuration for the load balancing capability of EKS Auto Mode.",
+        "properties": {
+          "Crds": {
+            "$ref": "#/definitions/GatewayApiCrds",
+            "description": "The Gateway API Custom Resource Definition (CRD) configuration."
+          }
+        },
+        "required": [
+          "Crds"
+        ],
+        "type": "object"
+      },
+      "GatewayApiCrds": {
+        "additionalProperties": false,
+        "description": "The Gateway API Custom Resource Definition (CRD) configuration for the cluster.",
+        "properties": {
+          "Managed": {
+            "description": "Indicates whether EKS manages the lifecycle of the Gateway API CRDs on the cluster. If true, EKS installs and upgrades the Gateway API CRDs. Requires ElasticLoadBalancing to be enabled.",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "Managed"
+        ],
         "type": "object"
       },
       "HorizontalPodAutoscalerControllerConfig": {

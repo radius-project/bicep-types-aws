@@ -278,22 +278,22 @@
 
 ## AWS.CloudWatch/DomainForOrganizationProperties
 ### Properties
-* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the resource.
-* **CreatedAt**: string (ReadOnly): The timestamp when the domain was created.
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the organization domain.
+* **CreatedAt**: string (ReadOnly): The timestamp when the organization domain was created.
 * **CustomEndpointUrls**: string[] (ReadOnly): Additional endpoint URLs derived from the domain name.
-* **DomainAccessRoleArn**: string (Required): The ARN of an IAM role in the management account that CloudWatch Omni assumes for domain-scoped credential vending.
-* **DomainEndpointUrl**: string (ReadOnly): The HTTPS endpoint URL for accessing the domain.
-* **DomainId**: string (ReadOnly): The unique ID of the domain.
+* **DomainAccessRoleArn**: string (Required): The ARN of the customer-provided IAM role in the management account used for domain access.
+* **DomainEndpointUrl**: string (ReadOnly): The HTTPS endpoint URL for accessing the organization domain.
+* **DomainId**: string (ReadOnly): The unique ID of the organization domain.
 * **IdentityCenterApplicationArn**: string (ReadOnly): The ARN of the Identity Center application. Absent for IAM-only domains.
-* **IdentityProviderConfiguration**: [IdentityProviderConfiguration](#identityproviderconfiguration)
-* **IdentityProviders**: string[] (Required): The identity providers configured for the domain.
-* **Name**: string (Required): A name that identifies the domain.
-* **OrganizationId**: string (ReadOnly): The ID of the AWS Organization this domain belongs to.
-* **OwnerAccountId**: string (ReadOnly): The account ID of the organization's management account, which owns this domain.
-* **Region**: string (ReadOnly): The Region where this domain was created.
-* **Status**: string (ReadOnly): Current status of the domain.
+* **IdentityProviderConfiguration**: [IdentityProviderConfiguration](#identityproviderconfiguration): Identity provider configuration for the organization domain.
+* **IdentityProviders**: string[] (Required): The identity providers configured for the organization domain.
+* **Name**: string (Required): A name that identifies the organization domain.
+* **OrganizationId**: string (ReadOnly): The ID of the AWS Organization that owns the domain.
+* **OwnerAccountId**: string (ReadOnly): The AWS account ID that owns the organization domain.
+* **Region**: string (ReadOnly): The Region where this organization domain was created.
+* **Status**: string (ReadOnly): Current status of the organization domain.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-* **UpdatedAt**: string (ReadOnly): The timestamp when the domain was last updated.
+* **UpdatedAt**: string (ReadOnly): The timestamp when the organization domain was last updated.
 
 ## AWS.CloudWatch/DomainProperties
 ### Properties
@@ -374,15 +374,15 @@
 ## AWS.CloudWatch/OmniDashboardProperties
 ### Properties
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the dashboard.
-* **Body**: string (Required): The dashboard body, a JSON document describing the dashboard's widgets and layout.
-* **CreatedAt**: string (ReadOnly): The time the dashboard was created.
+* **Body**: string (Required): The dashboard definition.
+* **CreatedAt**: string (ReadOnly): The timestamp when the dashboard was created.
 * **CreatedBy**: string (ReadOnly): The principal that created the dashboard.
-* **DashboardId**: string (ReadOnly, Identifier): The unique identifier of the dashboard.
-* **Description**: string: The description of the dashboard.
-* **Name**: string (Required): The name of the dashboard.
-* **SpaceId**: string (Required, Identifier): The unique identifier of the space the dashboard belongs to.
+* **DashboardId**: string (ReadOnly, Identifier): The unique ID of the dashboard.
+* **Description**: string: An optional description of the dashboard.
+* **Name**: string (Required): A name that identifies the dashboard.
+* **SpaceId**: string (Required, Identifier): The unique ID of the space to create the dashboard in.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-* **UpdatedAt**: string (ReadOnly): The time the dashboard was last updated.
+* **UpdatedAt**: string (ReadOnly): The timestamp when the dashboard was last updated.
 
 ## AWS.CloudWatch/OTelEnrichmentProperties
 ### Properties
@@ -405,7 +405,7 @@
 * **CreatedAt**: string (ReadOnly): The time the space was created.
 * **DataAccessRoleArn**: string (Required): The Amazon Resource Name (ARN) of the IAM role the space uses to access observability data.
 * **DomainId**: string (Required): The identifier of the domain the space belongs to.
-* **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
+* **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration): The encryption configuration for the space.
 * **Name**: string (Required): The name of the space.
 * **OwnerAccountId**: string (ReadOnly): The AWS account that owns the space.
 * **Region**: string (ReadOnly): The AWS Region the space resides in.

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaLive-Node",
   "type": "AWS::MediaLive::Node",
-  "time": "2026-07-24T14:55:24.511Z",
+  "time": "2026-11-01T18:30:46.568Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -147,14 +147,16 @@
       "delete": {
         "permissions": [
           "medialive:DeleteNode",
-          "medialive:DescribeNode"
+          "medialive:DescribeNode",
+          "medialive:ListTagsForResource"
         ]
       },
       "list": {
         "handlerSchema": {
           "properties": {
             "ClusterId": {
-              "$ref": "resource-schema.json#/properties/ClusterId"
+              "description": "The ID of the Cluster that the Node belongs to.",
+              "type": "string"
             }
           },
           "required": [

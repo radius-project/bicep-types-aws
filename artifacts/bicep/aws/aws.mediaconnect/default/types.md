@@ -24,6 +24,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.MediaConnect/BridgeSourceProperties](#awsmediaconnectbridgesourceproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.MediaConnect/DestinationEndpoint@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MediaConnect/DestinationEndpointProperties](#awsmediaconnectdestinationendpointproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.MediaConnect/Flow@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -96,6 +104,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.MediaConnect/RouterOutputProperties](#awsmediaconnectrouteroutputproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.MediaConnect/SourceEndpoint@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MediaConnect/SourceEndpointProperties](#awsmediaconnectsourceendpointproperties) (Required, Identifier): properties of the resource
+
 ## AudioMonitoringSetting
 ### Properties
 * **SilentAudio**: [SilentAudio](#silentaudio)
@@ -124,6 +140,25 @@
 * **FlowSource**: [BridgeFlowSource](#bridgeflowsource)
 * **Name**: string (Required, Identifier): The name of the source.
 * **NetworkSource**: [BridgeNetworkSource](#bridgenetworksource)
+
+## AWS.MediaConnect/DestinationEndpointProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier)
+* **AssociatedResourceDetails**: [DestinationEndpointAssociatedResourceDetails](#destinationendpointassociatedresourcedetails) (ReadOnly)
+* **AvailabilityZone**: string (ReadOnly): The Availability Zone in which the destination endpoint is located.
+* **AvailabilityZoneId**: string (ReadOnly): The ID of the Availability Zone in which the destination endpoint is located.
+* **Configuration**: [DestinationEndpointConfiguration](#destinationendpointconfiguration) (Required)
+* **ConnectionState**: string (ReadOnly)
+* **CreatedAt**: string (ReadOnly): The date and time when the destination endpoint was created.
+* **Description**: string: The description of the destination endpoint.
+* **DestinationType**: string (ReadOnly)
+* **Id**: string (ReadOnly): The unique identifier of the destination endpoint.
+* **LifecycleManagement**: string (ReadOnly)
+* **Name**: string (ReadOnly): The name of the destination endpoint.
+* **RegionName**: string: The name of the Amazon Web Services Region in which the destination endpoint is located.
+* **RegistrationState**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]: The tags associated with the destination endpoint. Each tag is a key-value pair.
+* **UpdatedAt**: string (ReadOnly): The date and time when the destination endpoint was last updated.
 
 ## AWS.MediaConnect/FlowEntitlementProperties
 ### Properties
@@ -235,6 +270,7 @@
 ## AWS.MediaConnect/RouterInputProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier)
+* **AssociatedDestinationEndpointArns**: string[] (ReadOnly): The Amazon Resource Names (ARNs) of one or more destination endpoints that are associated with this router input.
 * **AvailabilityZone**: string: The Availability Zone where you want to create the router input. This must be a valid Availability Zone for the region specified by regionName, or the current region if no regionName is provided.
 * **Configuration**: [RouterInputConfiguration](#routerinputconfiguration) (Required)
 * **ContentQualityAnalysisConfiguration**: [RouterContentQualityAnalysisConfiguration](#routercontentqualityanalysisconfiguration)
@@ -266,7 +302,7 @@
 * **Id**: string (ReadOnly): The unique identifier of the router network interface.
 * **Name**: string (Required): The name of the router network interface.
 * **NetworkInterfaceType**: string (ReadOnly)
-* **RegionName**: string: The AWS Region for the router network interface. Defaults to the current region if not specified.
+* **RegionName**: string: The Amazon Web Services Region for the router network interface. Defaults to the current region if not specified.
 * **State**: string (ReadOnly)
 * **Tags**: [Tag](#tag)[]: Key-value pairs that can be used to tag and organize this router network interface.
 * **UpdatedAt**: string (ReadOnly): The timestamp when the router network interface was last updated.
@@ -274,6 +310,7 @@
 ## AWS.MediaConnect/RouterOutputProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier)
+* **AssociatedSourceEndpointArns**: string[] (ReadOnly): The Amazon Resource Names (ARNs) of one or more source endpoints that are associated with this router output.
 * **AvailabilityZone**: string: The Availability Zone where you want to create the router output. This must be a valid Availability Zone for the region specified by regionName, or the current region if no regionName is provided.
 * **Configuration**: [RouterOutputConfiguration](#routeroutputconfiguration) (Required)
 * **CreatedAt**: string (ReadOnly): The timestamp when the router output was created.
@@ -292,6 +329,25 @@
 * **Tags**: [Tag](#tag)[]: Key-value pairs that can be used to tag this router output.
 * **Tier**: string (Required)
 * **UpdatedAt**: string (ReadOnly): The timestamp when the router output was last updated.
+
+## AWS.MediaConnect/SourceEndpointProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier)
+* **AssociatedResourceDetails**: [SourceEndpointAssociatedResourceDetails](#sourceendpointassociatedresourcedetails) (ReadOnly)
+* **AvailabilityZone**: string (ReadOnly): The Availability Zone in which the source endpoint is located.
+* **AvailabilityZoneId**: string (ReadOnly): The ID of the Availability Zone in which the source endpoint is located.
+* **Configuration**: [SourceEndpointConfiguration](#sourceendpointconfiguration) (Required)
+* **ConnectionState**: string (ReadOnly)
+* **CreatedAt**: string (ReadOnly): The date and time when the source endpoint was created.
+* **Description**: string: The description of the source endpoint.
+* **Id**: string (ReadOnly): The unique identifier of the source endpoint.
+* **LifecycleManagement**: string (ReadOnly)
+* **Name**: string (ReadOnly): The name of the source endpoint.
+* **RegionName**: string: The name of the Amazon Web Services Region in which the source endpoint is located.
+* **RegistrationState**: string (ReadOnly)
+* **SourceType**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]: The tags associated with the source endpoint. Each tag is a key-value pair.
+* **UpdatedAt**: string (ReadOnly): The date and time when the source endpoint was last updated.
 
 ## BlackFrames
 ### Properties
@@ -366,6 +422,12 @@
 * **DestinationIp**: string (Required): The IP address where contents of the media stream will be sent.
 * **DestinationPort**: int (Required): The port to use when the content of the media stream is distributed to the output.
 * **Interface**: [Interface](#interface) (Required): The VPC interface that is used for the media stream associated with the output.
+
+## DestinationEndpointAssociatedResourceDetails
+### Properties
+
+## DestinationEndpointConfiguration
+### Properties
 
 ## EncodingConfig
 ### Properties
@@ -630,6 +692,12 @@
 * **VpcInterfaceName**: string: The name of the VPC Interface this Source is configured with.
 * **WhitelistCidr**: string: The range of IP addresses that should be allowed to contribute content to your source. These IP addresses should be in the form of a Classless Inter-Domain Routing (CIDR) block; for example, 10.0.0.0/16.
 
+## SourceEndpointAssociatedResourceDetails
+### Properties
+
+## SourceEndpointConfiguration
+### Properties
+
 ## SourceMonitoringConfig
 ### Properties
 * **AudioMonitoringSettings**: [AudioMonitoringSetting](#audiomonitoringsetting)[]: Contains the settings for audio stream metrics monitoring.
@@ -653,8 +721,18 @@
 
 ## Tag
 ### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
 * **Key**: string (Required): The key name of the tag.
 * **Value**: string (Required): The value for the tag.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

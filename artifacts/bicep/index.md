@@ -382,6 +382,9 @@
 * **Link**: [default](aws/aws.b2bi/default/types.md#resource-awsb2bitransformerdefault)
 
 ## aws.backup
+### aws.backup/backupaccesspoint
+* **Link**: [default](aws/aws.backup/default/types.md#resource-awsbackupbackupaccesspointdefault)
+
 ### aws.backup/backupplan
 * **Link**: [default](aws/aws.backup/default/types.md#resource-awsbackupbackupplandefault)
 
@@ -2991,6 +2994,9 @@
 ### aws.mediaconnect/bridgesource
 * **Link**: [default](aws/aws.mediaconnect/default/types.md#resource-awsmediaconnectbridgesourcedefault)
 
+### aws.mediaconnect/destinationendpoint
+* **Link**: [default](aws/aws.mediaconnect/default/types.md#resource-awsmediaconnectdestinationendpointdefault)
+
 ### aws.mediaconnect/flow
 * **Link**: [default](aws/aws.mediaconnect/default/types.md#resource-awsmediaconnectflowdefault)
 
@@ -3017,6 +3023,9 @@
 
 ### aws.mediaconnect/routeroutput
 * **Link**: [default](aws/aws.mediaconnect/default/types.md#resource-awsmediaconnectrouteroutputdefault)
+
+### aws.mediaconnect/sourceendpoint
+* **Link**: [default](aws/aws.mediaconnect/default/types.md#resource-awsmediaconnectsourceendpointdefault)
 
 ## aws.mediaconvert
 ### aws.mediaconvert/jobtemplate

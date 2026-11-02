@@ -72,6 +72,10 @@
 ### Properties
 * **AddressDefinition**: string (Required)
 
+## Address
+### Properties
+* **AddressDefinition**: string (Required)
+
 ## AvailabilityZoneMapping
 ### Properties
 * **AvailabilityZone**: string (Required): A AvailabilityZone
@@ -192,6 +196,7 @@
 ### Properties
 * **EnableTLSSessionHolding**: bool
 * **PolicyVariables**: [FirewallPolicy_PolicyVariables](#firewallpolicypolicyvariables)
+* **Route53ResolvedIPValidation**: [Route53ResolvedIPValidation](#route53resolvedipvalidation)
 * **StatefulDefaultActions**: string[]
 * **StatefulEngineOptions**: [StatefulEngineOptions](#statefulengineoptions)
 * **StatefulRuleGroupReferences**: [StatefulRuleGroupReference](#statefulrulegroupreference)[]
@@ -274,6 +279,14 @@
 ## ReferenceSets
 ### Properties
 * **IPSetReferences**: [RuleGroup_IPSetReferences](#rulegroupipsetreferences)
+
+## Route53ResolvedIPValidation
+### Properties
+* **Action**: string (Required)
+* **BypassDestinationValidationIPRanges**: [Address](#address)[]
+* **DNSExpiryExceptionPolicy**: string (Required)
+* **DNSFirewallRuleGroupId**: string (Required)
+* **SourceIPRanges**: [Address](#address)[]
 
 ## RuleDefinition
 ### Properties

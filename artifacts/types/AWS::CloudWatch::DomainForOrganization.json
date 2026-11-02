@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudWatch-DomainForOrganization",
   "type": "AWS::CloudWatch::DomainForOrganization",
-  "time": "2026-10-28T19:38:48.134Z",
+  "time": "2026-11-01T18:39:48.279Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -61,7 +61,7 @@
         "type": "object"
       }
     },
-    "description": "Resource Type definition for AWS::CloudWatch::DomainForOrganization. The organization-level boundary for CloudWatch Omni: an organization domain configures the identity providers users sign in through for the whole AWS Organization and exposes the endpoint URLs used to reach CloudWatch Omni. It can only be created by the organization's management account.",
+    "description": "Resource Type definition for AWS::CloudWatch::DomainForOrganization. An organization domain provides a single sign-in URL and centralized identity provider configuration for your AWS Organization, removing the need for each account to configure its own domain. Only the management account can create it.",
     "handlers": {
       "create": {
         "permissions": [
@@ -111,14 +111,14 @@
     ],
     "properties": {
       "Arn": {
-        "description": "The Amazon Resource Name (ARN) of the resource.",
+        "description": "The Amazon Resource Name (ARN) of the organization domain.",
         "maxLength": 2048,
         "minLength": 1,
         "pattern": "^arn:[^:]+:cloudwatch:[^:]*:[0-9]{12}:organization-domain/(?:d-[0-9a-z]{1,25})$",
         "type": "string"
       },
       "CreatedAt": {
-        "description": "The timestamp when the domain was created.",
+        "description": "The timestamp when the organization domain was created.",
         "format": "date-time",
         "type": "string"
       },
@@ -130,18 +130,18 @@
         "type": "array"
       },
       "DomainAccessRoleArn": {
-        "description": "The ARN of an IAM role in the management account that CloudWatch Omni assumes for domain-scoped credential vending.",
+        "description": "The ARN of the customer-provided IAM role in the management account used for domain access.",
         "maxLength": 2048,
         "minLength": 20,
         "pattern": "^arn:aws[a-zA-Z-]*:iam::[0-9]{12}:role/.+$",
         "type": "string"
       },
       "DomainEndpointUrl": {
-        "description": "The HTTPS endpoint URL for accessing the domain.",
+        "description": "The HTTPS endpoint URL for accessing the organization domain.",
         "type": "string"
       },
       "DomainId": {
-        "description": "The unique ID of the domain.",
+        "description": "The unique ID of the organization domain.",
         "pattern": "^d-[0-9a-z]{1,25}$",
         "type": "string"
       },
@@ -153,10 +153,11 @@
         "type": "string"
       },
       "IdentityProviderConfiguration": {
-        "$ref": "#/definitions/IdentityProviderConfiguration"
+        "$ref": "#/definitions/IdentityProviderConfiguration",
+        "description": "Identity provider configuration for the organization domain."
       },
       "IdentityProviders": {
-        "description": "The identity providers configured for the domain.",
+        "description": "The identity providers configured for the organization domain.",
         "items": {
           "enum": [
             "IAM",
@@ -170,29 +171,29 @@
         "uniqueItems": true
       },
       "Name": {
-        "description": "A name that identifies the domain.",
+        "description": "A name that identifies the organization domain.",
         "maxLength": 63,
         "minLength": 3,
         "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
         "type": "string"
       },
       "OrganizationId": {
-        "description": "The ID of the AWS Organization this domain belongs to.",
+        "description": "The ID of the AWS Organization that owns the domain.",
         "type": "string"
       },
       "OwnerAccountId": {
-        "description": "The account ID of the organization's management account, which owns this domain.",
+        "description": "The AWS account ID that owns the organization domain.",
         "maxLength": 12,
         "minLength": 12,
         "pattern": "^[0-9]{12}$",
         "type": "string"
       },
       "Region": {
-        "description": "The Region where this domain was created.",
+        "description": "The Region where this organization domain was created.",
         "type": "string"
       },
       "Status": {
-        "description": "Current status of the domain.",
+        "description": "Current status of the organization domain.",
         "enum": [
           "ACTIVE"
         ],
@@ -209,7 +210,7 @@
         "uniqueItems": true
       },
       "UpdatedAt": {
-        "description": "The timestamp when the domain was last updated.",
+        "description": "The timestamp when the organization domain was last updated.",
         "format": "date-time",
         "type": "string"
       }
