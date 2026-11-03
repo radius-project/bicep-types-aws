@@ -25,7 +25,7 @@ go run . added-types --old <copy of the previous types> --new ../../artifacts/ty
 
 The generator also applies the schemas and extra properties Radius owns, from the commit the `radius` submodule pins, and the pull request body names that commit. If AWS publishes a type or a property with the same name as one Radius provides, the generator keeps Radius's type and AWS's property, and the workflow opens an issue titled "AWS types clash with Radius types" instead of failing. A run that finds the same clashes as any issue with that title, open or closed, changes nothing. A run that finds different clashes adds them as a comment on the open issue, or opens a new one if none is open. A clash is reported when either side is new, compared with what the checked-in types were generated from: `artifacts/types` on `main`, and the Radius commit recorded in `artifacts/radius-commit`, which the workflow updates on every run. A type clash is new if either the AWS type or Radius's hand-written schema is new. A property clash is new if either the type's property or Radius's extra property is new, where the type's property comes from AWS's schema or Radius's, whichever the extension used. A clash both sides already had isn't reported again, so a clash a person reviewed and kept stays quiet. Close the issue after the pull request that refreshes the types merges.
 
-Merging the pull request publishes the updated types through `publish-bicep.yaml`.
+Merging the pull request publishes the updated types through `publish-main-bicep.yaml`.
 
 The workflow needs these repository secrets: `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` to read the AWS CloudFormation registry, and `RADIUS_TYPES_BOT_CLIENT_ID` and `RADIUS_TYPES_BOT_PRIVATE_KEY` for the GitHub App that opens the pull request. The app needs read and write access to contents and pull requests on this repository. The issue is opened with the workflow's own token.
 Its secret-bearing job runs only on canonical protected current main. It uses the
@@ -37,9 +37,9 @@ must be reviewed independently of the smaller token scopes requested by the job.
 
 | Workflow | Source | Writes |
 | --- | --- | --- |
-| `publish-main-bicep.yaml` | Protected current main, push or manual dispatch | `ghcr.io/radius-project/bicep-types-aws:edge` and the same manifest digest at `biceptypes.azurecr.io/aws:latest` |
+| `publish-main-bicep.yaml` | Protected current main, push or manual dispatch | Publishes GHCR `bicep-types-aws:edge`, then requests the private publisher copy its exact digest to ACR `aws:latest` |
 | `publish-release-bicep.yaml` | Trusted main-history `vX.Y.Z` or `vX.Y.Z-rc.N` tag | GHCR full stable/RC version without `v` ONLY |
-| Existing approved Radius R3 finalizer | Coordinated tagged release | GHCR stable `latest`/`X.Y` and tagged ACR channel/full-RC compatibility |
+| Existing approved Radius R3 finalizer | Coordinated tagged release | GHCR stable `latest`/`X.Y`; requests private full stable/RC ACR copies and eligible stable channel promotion |
 
 The current legacy `publish-bicep.yaml` dispatcher is removed by this handoff.
 Old tags still contain its caller YAML, so the separately authorized private
@@ -62,19 +62,11 @@ lookup errors fail closed. Do not expect legacy ACR main generation to continue
 normally after bootstrap. Tagged legacy requests and Test remain unchanged by
 that main-specific gate.
 
-The new AWS release producer never writes stable aliases or compatibility tags.
-The coordinated Radius finalizer will own GHCR stable `latest`/`X.Y` promotion
-and request approved tagged ACR copies. Production ACR credentials stay in
-`azure-octo/radius-publisher`: `radius-project` workflows cannot publish there.
-The subsequent AWS handoff must request an exact-digest GHCR `edge` to ACR
-`aws:latest` copy from that private publisher before retiring the old main
-publisher. This staging PR adds neither that request nor direct Azure authority.
-=======
 The AWS release producer never writes stable aliases or ACR compatibility tags.
-The existing approved Radius R3 finalizer alone owns those tagged writes after
-activation. Its evidence ABI, source identity and immutable full-version rules
-are unchanged; main's compatibility receipt is not a new release record format.
->>>>>>> 09003b6d (feat(ci): hand off AWS main compatibility mirror)
+The existing approved Radius R3 finalizer alone coordinates tagged compatibility
+after activation. Production Azure login and ACR writes remain exclusively in
+`azure-octo/radius-publisher`: `radius-project` workflows cannot publish there.
+Source identity, immutable full-version rules and the R3 record ABI are unchanged.
 
 ## Capture and credential boundary
 
@@ -98,14 +90,15 @@ key or AWS credentials. No repository-wide write defaults or publishing PAT are
 needed. Existing PR-caller controls, App authority and main protection must still
 be verified before operational package grants; package access is repository-scoped.
 
-Only the main uploader also receives `id-token: write` and the existing source
-repository secret names `BICEPTYPES_CLIENT_ID`, `BICEPTYPES_TENANT_ID` and
-`BICEPTYPES_SUBSCRIPTION_ID`. Pinned `azure/login` v3.1.0 uses the new source-main
-federation; runner `az acr login --name biceptypes` targets the explicit registry.
-Both registry logins use a runner-temporary isolated `DOCKER_CONFIG`. Confirming
-these secret names does not prove their values, ACR permissions, or the new
-federated trust: all remain admin gates. Neither schema capture nor the tagged
-producer receives Azure authority.
+Only a separate trusted-main mirror job receives the existing
+`RADIUS_PUBLISHER_BOT_APP_ID` and `RADIUS_PUBLISHER_BOT_PRIVATE_KEY`. Its App token
+is scoped to `azure-octo/radius-publisher` with Contents write, Actions read and
+Metadata read for dispatch and correlated monitoring. Source evidence uses this
+repository's read-only `GITHUB_TOKEN`. Neither token is forwarded in the payload.
+There is no Azure login, production ACR write, `id-token: write`, or new source-org
+OIDC trust in this workflow. The mirror job has no package-write permission, AWS
+credentials, npm execution or generated-code execution. The GHCR uploader and
+schema capture receive no publisher App key.
 
 Bicep `0.46.1` and ORAS `1.3.4` are checksum-pinned. Packaging uses an explicit
 temporary `ociEnabled: true` configuration. Generated resource identities remain
@@ -116,10 +109,10 @@ RC). OCI full-version tags and annotations are separate from these type settings
 
 Start with an authorized current-main publication. Its first write can create
 `ghcr.io/radius-project/bicep-types-aws` as a private package; it does not require
-the package to exist or be public before upload. The main uploader copies the
-captured GHCR digest to ACR and verifies both, then checks Public visibility.
-A private-upload failure retains both registries' progress and the digest in its
-receipt. A package administrator must then use Package settings ->
+the package to exist or be public before upload. The uploader retains its digest
+and pending-mirror receipt, then checks Public visibility and anonymous access
+**before** the private copy job can run. A private-upload failure does not dispatch
+or regenerate. A package administrator must then use Package settings ->
 Change visibility -> Public. Retry the same run/snapshot, or publish current main
 again, and verify restore with an empty credential store/cache.
 
@@ -134,18 +127,67 @@ supersedes an older snapshot even at the **same SHA**, because live schemas may
 have changed. A superseded first attempt performs no writes; an ambiguous old
 retry fails and requires recovery from current main.
 
-The serialized pair first writes GHCR `edge` from the original OCI layout, then
-copies `ghcr.io/radius-project/bicep-types-aws@sha256:<captured digest>` to ACR
-`aws:latest`; it never resolves `edge` again as the copy source. It checks the
-resulting ACR digest and rechecks GHCR `edge`. The receipt checkpoints the uploaded
-GHCR digest and mirror `pending`/`copying`/`verified` progress. Any copy, digest,
-visibility or anonymous-verification failure fails the job, not a success-shaped
-partial result. A failed run/job retry authenticates and reuses the **original**
-snapshot, never refreshed schema output. Supersession is checked again before
-either write: an old partial run cannot repair its mirror over a newer main run,
-even when both runs have the same source SHA. Recover through current main instead.
-The pair is serialized, not registry-transactional; a transient parity gap can
-exist after the first write until recovery succeeds.
+After GHCR succeeds, the mirror job downloads that run's receipt, validates source
+and original capture metadata, and sends `mode: copy` to the existing
+`bicep-types-aws` event / `publish-bicep-types-aws.yml` private workflow. Fixed
+allowlists derive GHCR `edge` and ACR `aws:latest`; no arbitrary destination is
+accepted. The private publisher copies `source@digest` without regeneration,
+annotation rewriting or recompression. The source caller then anonymously fetches
+the ACR manifest and verifies its SHA-256, as well as current GHCR `edge`.
+
+The shared payload is:
+
+```json
+{
+  "mode": "copy",
+  "source_repository": "radius-project/bicep-types-aws",
+  "source_ref": "refs/heads/main",
+  "source_sha": "<40 lowercase hex>",
+  "registry_target": "aws",
+  "rel_channel": "edge",
+  "digest": "sha256:<final GHCR manifest hash>",
+  "release_identifier": "copy-aws-edge-<source_sha>-<generation_run_id>-<generation_run_attempt>-<manifest digest hex>",
+  "source_evidence": {
+    "run_id": 123,
+    "run_attempt": 1,
+    "artifact_id": 456,
+    "artifact_digest": "sha256:<original raw snapshot hash>"
+  }
+}
+```
+
+Evidence points to the original generation TAR, not the publication receipt ZIP.
+The source caller validates the captured bundle and its binding to the digest.
+The private receiver trusts the approved App caller for that binding and validates
+public Actions metadata, canonical source identity, manifest provenance and current
+edge. It does not independently download source artifacts or private release plans.
+No new cross-repository artifact-read credential or result artifact is required.
+
+The correlation identifier is stable across publication retries of the same
+capture. The public Radius correlation monitor is reused with
+`REUSE_SUCCESSFUL=false`: active matching work is reused, completed successes are
+reconciled again, and uncertain dispatch acceptance is monitored without blindly
+redispatching. Inspect the retained receipt and remote run before retrying an
+unknown outcome. Private workflow success alone is insufficient without matching
+anonymous destination bytes. The 25-minute mirror job leaves room around the
+monitor's 15-minute budget for validation and receipt upload.
+
+`aws-bicep-edge-<run_id>-<attempt>/receipt.json` records GHCR progress:
+`uploaded` (possibly awaiting Public) or `ghcr-published`, with mirror `pending`.
+`aws-bicep-mirror-<run_id>-<attempt>/receipt.json` retains `mirror-pending` plus
+remote correlation/run identity, conclusion or unknown state on failure.
+Only successful remote completion and digest verification set `status: published`
+and `mirror.status: verified`. Errors and timeouts fail visibly and retain receipts.
+Retry uses the original snapshot/evidence, never refreshed schema output.
+
+The private service serializes copy, legacy generation and promotion per target,
+then rechecks protected main SHA, current edge digest and generation run-number
+freshness immediately before writing. A newer canonical run, even queued/failed at
+the same SHA, supersedes an older request. The source caller checks freshness too,
+but source-side serialization alone cannot protect delayed private copies.
+The first authenticated fresh copy may replace unannotated legacy development
+`latest`; immutable full-version conflicts still fail and stable alias guards remain.
+The pair is not registry-transactional; a parity gap can persist until recovery.
 
 ## Versioned evidence and recovery
 
@@ -209,13 +251,24 @@ tag. The AWS producer does not modify the Deployment Engine lock.
 
 This is a cross-repository, non-atomic rollout, not a feature toggle:
 
-<<<<<<< HEAD
+Keep this handoff **DRAFT and MERGE-BLOCKED** until the private copy capability,
+scoped publisher App grants, package access/Public availability and controlled
+writer-drain plan are ready. No new Azure federation or production credential
+grant in `radius-project` is part of these prerequisites.
+
+The companion implementation is
+[azure-octo/radius-publisher#38](https://github.com/azure-octo/radius-publisher/pull/38)
+at `ead5df1d6f553e6807d6b6ebed5be21054c739ee`. It is a draft dependency, not a
+claim that the receiver is deployed. Deploy the receiver before activating this
+caller or the first public `edge`. Drain queued/running old workflow revisions,
+including those using old concurrency keys; the new lock cannot stop them.
+
 1. Prepare the GHCR staging producer, verify the schema identity, and validate
    stable/RC evidence and original-snapshot recovery. Before bootstrapping Public
    `edge`, merge the A2 caller described below after this producer. The private
    copy capability is already deployed; its legacy main-generation gate rejects
    requests once `edge` exists.
-2. Prepare the AWS follow-up that requests a copy of main's exact GHCR digest to
+2. Prepare this AWS caller that requests a copy of main's exact GHCR digest to
    ACR `aws:latest` from the existing private publisher and removes the legacy
    schema-regenerating production dispatcher. Keep existing Azure authentication
    in `azure-octo/radius-publisher`; do not add Azure login, federation or ACR
@@ -223,8 +276,11 @@ This is a cross-repository, non-atomic rollout, not a feature toggle:
    and copy the fixed digest without regenerating schemas.
 3. Use the deployed private publisher's authenticated exact-digest copy path and
    legacy main gate, which permits regeneration only on positively absent
-   canonical GHCR `edge`. Preserve tagged
-   legacy requests, explicit `test/aws` and all unrelated workflows. Coordinate
+   canonical GHCR `edge`, before generation
+   and again before writing under its target lock. A validated edge rejects legacy
+   main requests with `use mode:copy`; auth, network and invalid-manifest errors
+   never mean absence. Preserve tagged legacy requests, explicit `test/aws` and
+   all unrelated/needed Radius, DE and SWA workflows. Coordinate
    retirement of tagged legacy writers with the release cutover; old tags retain
    old dispatch YAML, so deleting only the current-main caller is insufficient.
 4. Confirm Radius's existing release App can request AWS-only evidence reads.
