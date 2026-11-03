@@ -25,4 +25,5 @@ for _ in {1..30}; do
 done
 [[ "$ready" == true ]] || { echo "Local registry did not become ready" >&2; exit 1; }
 AWS_BICEP_TEST_REGISTRY="localhost:${port}" \
-  AWS_BICEP_TEST_MIRROR="localhost:${mirror_port}" node --test .github/scripts/publish-bicep.test.mjs
+  AWS_BICEP_TEST_MIRROR="localhost:${mirror_port}" node --test \
+    .github/scripts/publish-bicep.test.mjs .github/scripts/monitor-remote-workflow_test.mjs
