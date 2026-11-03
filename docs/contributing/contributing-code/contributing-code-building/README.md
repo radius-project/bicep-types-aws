@@ -39,7 +39,7 @@ API versions (`@default`) or the OCI publication tag.
 The publishing helper tests require no dependencies beyond Node:
 
 ```bash
-node --test .github/scripts/publish-bicep.test.mjs
+node --test .github/scripts/publish-bicep.test.mjs .github/scripts/monitor-remote-workflow_test.mjs
 ```
 
 For native fixtures, install checksum-pinned tools into a user-owned directory,
@@ -54,7 +54,12 @@ These fixtures use checked-in generated types and raw schemas; they test native
 packaging, full-version publishing/retry/conflict, a representative AWS compile,
 and exact-digest development parity across two local registries. They interrupt
 main after its first write, recover from the original snapshot, and reject an
-older retry after a newer capture at the same source SHA.
+older retry after a newer capture at the same source SHA. A local mock of the
+private receiver performs the second-registry copy; the source caller only
+dispatches a mocked request and anonymously verifies bytes. These tests do not
+run or embed the private publisher implementation. Correlation-monitor tests
+cover active-run reuse, fresh reconciliation of completed copies, unknown
+dispatch acceptance, failures and bounded retries.
 They do not call AWS, GHCR or ACR, and do not establish live credential readiness.
 The local HTTP registries are disposable and removed when the fixture exits.
 OCI-enabled publication to literal TLS `localhost` can select HTTP; use a trusted

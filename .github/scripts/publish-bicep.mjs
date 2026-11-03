@@ -404,19 +404,6 @@ export async function publish(github, source, receipt, directory, run = tool) {
     assert.equal(hash(await run(["oras", "manifest", "fetch", record.reference])), record.digest);
     receipt.status = "uploaded";
     receipt.uploadedDigest = record.digest;
-    if (source.workflow === mainWorkflow) {
-      receipt.mirror.status = "copying";
-      await save(join(directory, "receipt.json"), receipt);
-      // Pin the source to the captured digest, never resolve mutable edge again for copying.
-      await run(["oras", "cp", `${target}@${record.digest}`, developmentMirror]);
-      assert.equal(hash(await run(["oras", "manifest", "fetch", developmentMirror])),
-        record.digest, "ACR development mirror digest mismatch");
-      assert.equal(hash(await run(["oras", "manifest", "fetch", record.reference])),
-        record.digest, "GHCR edge changed during compatibility publication");
-      receipt.mirror.status = "verified";
-      receipt.mirror.digest = record.digest;
-      await save(join(directory, "receipt.json"), receipt);
-    }
     const pkg = await packageInfo(github);
     receipt.visibility = pkg?.visibility ?? "unknown";
     assert.equal(receipt.visibility, "public",
@@ -427,7 +414,7 @@ export async function publish(github, source, receipt, directory, run = tool) {
     assert.equal(hash(await run(["oras", "manifest", "fetch", record.reference], {
       env: { ...process.env, DOCKER_CONFIG: anonymous }
     })), record.digest, "Anonymous manifest verification failed");
-    receipt.status = "published";
+    receipt.status = source.workflow === mainWorkflow ? "ghcr-published" : "published";
     await mkdir(join(directory, "record"), { recursive: true });
     await save(join(directory, "record/aws-bicep-extension.json"), record);
     return record;
