@@ -48,11 +48,22 @@ Its independent AWS schema refresh can differ from GHCR's capture; staging does
 not promise registry digest parity. ACR development `latest` maps to GHCR `edge`,
 not GHCR stable `latest`.
 
+Deploy the private exact-digest copy capability and prepare the A2 caller before
+the first public `edge` publication/cutover. The private main-generation gate
+rejects legacy production-main requests once canonical GHCR `edge` exists: the
+old payload cannot prove ordering between live schema refreshes at the same SHA.
+Only positively absent `edge` permits legacy main generation; authorization or
+lookup errors fail closed. Do not expect legacy ACR main generation to continue
+normally after bootstrap. Tagged legacy requests and Test remain unchanged by
+that main-specific gate.
+
 The new AWS release producer never writes stable aliases or compatibility tags.
-The coordinated Radius finalizer will own GHCR stable `latest`/`X.Y` and tagged
-ACR mirrors after approval. The subsequent AWS handoff must establish a same-digest
-GHCR `edge` to ACR `aws:latest` copy in the trusted-main uploader before retiring
-the old main publisher.
+The coordinated Radius finalizer will own GHCR stable `latest`/`X.Y` promotion
+and request approved tagged ACR copies. Production ACR credentials stay in
+`azure-octo/radius-publisher`: `radius-project` workflows cannot publish there.
+The subsequent AWS handoff must request an exact-digest GHCR `edge` to ACR
+`aws:latest` copy from that private publisher before retiring the old main
+publisher. This staging PR adds neither that request nor direct Azure authority.
 
 ## Capture and credential boundary
 
@@ -158,20 +169,23 @@ tag. The AWS producer does not modify the Deployment Engine lock.
 
 This is a cross-repository, non-atomic rollout, not a feature toggle:
 
-1. Deploy the GHCR staging producer, verify the schema identity, bootstrap Public
-   `edge`, and validate stable/RC evidence and original-snapshot recovery.
-2. Prepare the AWS follow-up that mirrors main's exact GHCR digest to ACR
-   `aws:latest` and removes the legacy production dispatcher. Reuse the existing
-   `BICEPTYPES_CLIENT_ID`, `BICEPTYPES_TENANT_ID` and
-   `BICEPTYPES_SUBSCRIPTION_ID` only after verifying their values, ACR scope and
-   federation for the new main uploader's actual OIDC claims. Existing trust for
-   the private publisher does not authorize this repository automatically.
+1. Prepare the GHCR staging producer, verify the schema identity, and validate
+   stable/RC evidence and original-snapshot recovery. Before bootstrapping Public
+   `edge`, deploy the private copy capability and prepare the A2 caller described
+   below; the legacy main-generation gate will reject requests once `edge` exists.
+2. Prepare the AWS follow-up that requests a copy of main's exact GHCR digest to
+   ACR `aws:latest` from the existing private publisher and removes the legacy
+   schema-regenerating production dispatcher. Keep existing Azure authentication
+   in `azure-octo/radius-publisher`; do not add Azure login, federation or ACR
+   credentials to this repository. Authenticate the source-owned GHCR evidence
+   and copy the fixed digest without regenerating schemas.
 3. Prepare a separately authorized change in
    `azure-octo/radius-publisher/.github/workflows/publish-bicep-types-aws.yml`
-   that rejects production `aws` requests, including the missing-target default,
-   before checkout/credentials, while preserving explicit `test/aws` and all
-   unrelated workflows. Old tags retain old dispatch YAML, so deleting only the
-   current-main caller is insufficient.
+   that provides authenticated exact-digest copies and gates legacy production
+   main generation on positively absent canonical GHCR `edge`. Preserve tagged
+   legacy requests, explicit `test/aws` and all unrelated workflows. Coordinate
+   retirement of tagged legacy writers with the release cutover; old tags retain
+   old dispatch YAML, so deleting only the current-main caller is insufficient.
 4. Confirm Radius's existing release App can request AWS-only evidence reads.
    Grant the Radius repository explicit Write under the AWS package's Manage
    Actions access only after its candidate-writer boundary is ready. This is
@@ -180,8 +194,8 @@ This is a cross-repository, non-atomic rollout, not a feature toggle:
    an AWS main-publication maintenance window, and drain queued/running old
    production Bicep writers. A new private guard does not stop already-running
    jobs. Preserve reconciliation of already-published historical releases.
-6. Apply the private guard and AWS main-mirror/dispatch handoff, verify main
-   digest parity, then activate the Radius release finalizer. Rehearse paired RC
+6. Apply the private publisher and AWS copy-request handoff, verify main digest
+   parity, then activate the Radius release finalizer. Rehearse paired RC
    and approved stable publication, aliases, partial recovery and ACR compatibility
    before resuming releases. A deliberate publication gap is safer than competing
    writers; existing ACR reads remain available.
