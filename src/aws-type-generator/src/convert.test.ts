@@ -3,7 +3,7 @@ import path from "path";
 import { describe, expect, test } from '@jest/globals';
 import { convertSchemaRecordToTypes } from './convert'
 import { SchemaRecord } from "./schemarecord";
-import { ArrayType, IntegerType, ObjectTypePropertyFlags, ObjectType, ResourceType, ScopeType, BicepType, TypeReference, TypeBaseKind, StringType, BooleanType, ObjectTypeProperty } from "bicep-types";
+import { All, ArrayType, IntegerType, ObjectTypePropertyFlags, ObjectType, ResourceType, ScopeType, BicepType, TypeReference, TypeBaseKind, StringType, BooleanType, ObjectTypeProperty } from "bicep-types";
 
 describe('convert', () => {
     test('AWS::Kinesis::Stream', () => {
@@ -129,6 +129,53 @@ describe('convert', () => {
             },
             additionalProperties: undefined,
             sensitive: undefined});
+    });
+
+    test('read-only type AWS::Bedrock::FoundationModel', () => {
+        const file = fs.readFileSync(path.resolve('./testdata/AWS::Bedrock::FoundationModel.json'), { encoding: 'utf8' });
+
+        const schemaRecord: SchemaRecord = JSON.parse(file);
+        const types = convertSchemaRecordToTypes([schemaRecord]);
+
+        const resourceType = lookupResourceType(types, "AWS.Bedrock/FoundationModel@default");
+        expect(resourceType).toStrictEqual({
+            type: TypeBaseKind.ResourceType,
+            name: "AWS.Bedrock/FoundationModel@default",
+            body: new TypeReference(lookupObjectTypeIndex(types, "AWS.Bedrock/FoundationModel")),
+            readableScopes: All,
+            writableScopes: ScopeType.None,
+            functions: undefined,
+        });
+
+        // The primary identifier stays settable so `existing` can set it. Other read-only properties stay read-only.
+        const propertiesType = lookupObjectType(types, "AWS.Bedrock/FoundationModelProperties");
+        expect(propertiesType?.properties["ModelArn"].flags).toBe(ObjectTypePropertyFlags.Identifier);
+        expect(propertiesType?.properties["ModelId"].flags).toBe(ObjectTypePropertyFlags.ReadOnly);
+    });
+
+    test.each([
+        { name: 'fully mutable', handlers: { create: {}, read: {}, update: {}, delete: {} }, readableScopes: ScopeType.None, readOnlyIdentifier: true },
+        { name: 'create-and-delete-only', handlers: { create: {}, read: {}, delete: {} }, readableScopes: ScopeType.None, readOnlyIdentifier: true },
+        { name: 'read and list', handlers: { read: {}, list: {} }, readableScopes: All, readOnlyIdentifier: false },
+        { name: 'read only', handlers: { read: {} }, readableScopes: All, readOnlyIdentifier: false },
+        { name: 'list only', handlers: { list: {} }, readableScopes: ScopeType.None, readOnlyIdentifier: true },
+        { name: 'no handlers', handlers: undefined, readableScopes: ScopeType.None, readOnlyIdentifier: true },
+    ])('scopes and identifier flags for a $name type', ({ handlers, readableScopes, readOnlyIdentifier }) => {
+        const schemaRecord = {
+            arn: "arn",
+            type: "AWS::Test::Thing",
+            time: "0001-01-01T00:00:00Z",
+            schema: { typeName: "AWS::Test::Thing", primaryIdentifier: ["/properties/Name"], readOnlyProperties: ["/properties/Name"], properties: { Name: { type: "string" } }, handlers: handlers },
+        } as unknown as SchemaRecord;
+        const types = convertSchemaRecordToTypes([schemaRecord]);
+
+        const resourceType = lookupResourceType(types, "AWS.Test/Thing@default");
+        expect(resourceType?.readableScopes).toBe(readableScopes);
+        expect(resourceType?.writableScopes).toBe(ScopeType.None);
+
+        const name = lookupObjectType(types, "AWS.Test/ThingProperties")?.properties["Name"];
+        const readOnly = readOnlyIdentifier ? ObjectTypePropertyFlags.ReadOnly : ObjectTypePropertyFlags.None;
+        expect(name?.flags).toBe(ObjectTypePropertyFlags.Identifier | readOnly);
     });
 
     test('AWS::Redshift::ScheduledAction', () => {

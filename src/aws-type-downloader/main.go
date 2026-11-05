@@ -39,12 +39,14 @@ func init() {
 	Root.Flags().BoolP("clean", "c", false, "clean files for removed types")
 	_ = Root.MarkFlagRequired("output")
 
-	BreakingChanges.Flags().String("old", "", "directory with the previous type records")
-	BreakingChanges.Flags().String("new", "", "directory with the new type records")
-	BreakingChanges.Flags().Int("max-length", 0, "maximum report length in bytes, 0 for no limit")
-	_ = BreakingChanges.MarkFlagRequired("old")
-	_ = BreakingChanges.MarkFlagRequired("new")
-	Root.AddCommand(BreakingChanges)
+	for _, cmd := range []*cobra.Command{BreakingChanges, AddedTypes} {
+		cmd.Flags().String("old", "", "directory with the previous type records")
+		cmd.Flags().String("new", "", "directory with the new type records")
+		cmd.Flags().Int("max-length", 0, "maximum report length in bytes, 0 for no limit")
+		_ = cmd.MarkFlagRequired("old")
+		_ = cmd.MarkFlagRequired("new")
+		Root.AddCommand(cmd)
+	}
 }
 
 var BreakingChanges = &cobra.Command{
@@ -54,34 +56,62 @@ var BreakingChanges = &cobra.Command{
 	RunE:  runBreakingChanges,
 }
 
+var AddedTypes = &cobra.Command{
+	Use:   "added-types",
+	Short: "Print a Markdown list of new read-only and create-and-delete-only types",
+	Args:  cobra.NoArgs,
+	RunE:  runAddedTypes,
+}
+
 func runBreakingChanges(cmd *cobra.Command, args []string) error {
-	oldDirectory, err := cmd.Flags().GetString("old")
+	oldSchemas, newSchemas, maxLength, err := loadReportInput(cmd)
 	if err != nil {
 		return err
-	}
-
-	newDirectory, err := cmd.Flags().GetString("new")
-	if err != nil {
-		return err
-	}
-
-	maxLength, err := cmd.Flags().GetInt("max-length")
-	if err != nil {
-		return err
-	}
-
-	oldSchemas, err := breaking.LoadDir(oldDirectory)
-	if err != nil {
-		return fmt.Errorf("could not read the previous types: %w", err)
-	}
-
-	newSchemas, err := breaking.LoadDir(newDirectory)
-	if err != nil {
-		return fmt.Errorf("could not read the new types: %w", err)
 	}
 
 	_, err = fmt.Fprint(cmd.OutOrStdout(), breaking.Report(breaking.Compare(oldSchemas, newSchemas), maxLength))
 	return err
+}
+
+func runAddedTypes(cmd *cobra.Command, args []string) error {
+	oldSchemas, newSchemas, maxLength, err := loadReportInput(cmd)
+	if err != nil {
+		return err
+	}
+
+	_, err = fmt.Fprint(cmd.OutOrStdout(), breaking.AddedReport(breaking.AddedTypes(oldSchemas, newSchemas), maxLength))
+	return err
+}
+
+// loadReportInput reads the --old, --new, and --max-length flags of a report
+// command and loads the type records in both directories.
+func loadReportInput(cmd *cobra.Command) (map[string]*breaking.Schema, map[string]*breaking.Schema, int, error) {
+	oldDirectory, err := cmd.Flags().GetString("old")
+	if err != nil {
+		return nil, nil, 0, err
+	}
+
+	newDirectory, err := cmd.Flags().GetString("new")
+	if err != nil {
+		return nil, nil, 0, err
+	}
+
+	maxLength, err := cmd.Flags().GetInt("max-length")
+	if err != nil {
+		return nil, nil, 0, err
+	}
+
+	oldSchemas, err := breaking.LoadDir(oldDirectory)
+	if err != nil {
+		return nil, nil, 0, fmt.Errorf("could not read the previous types: %w", err)
+	}
+
+	newSchemas, err := breaking.LoadDir(newDirectory)
+	if err != nil {
+		return nil, nil, 0, fmt.Errorf("could not read the new types: %w", err)
+	}
+
+	return oldSchemas, newSchemas, maxLength, nil
 }
 
 func run(cmd *cobra.Command, args []string) error {
@@ -120,94 +150,54 @@ func run(cmd *cobra.Command, args []string) error {
 	cfg.RetryMode = aws.RetryModeAdaptive
 	cfg.RetryMaxAttempts = 50
 
-	client := cloudformation.NewFromConfig(cfg)
+	return download(cmd.Context(), cloudformation.NewFromConfig(cfg), outputDirectory, existing, clean)
+}
 
-	// We want to get AWS built-in types. This require setting Type to Resource
-	// and Visiblity to Public.
-	//
-	// This will also return the set withFULL cloud-control support. In the future we might also want
-	// to consider 'types.ProvisioningTypeImmutable' as well.
-	paginator := cloudformation.NewListTypesPaginator(client, &cloudformation.ListTypesInput{
-		Filters: &types.TypeFilters{
-			Category: types.CategoryAwsTypes,
-		},
-		ProvisioningType: types.ProvisioningTypeFullyMutable,
-		Type:             types.RegistryTypeResource,
-		Visibility:       types.VisibilityPublic,
-	})
+// registryClient is the part of the CloudFormation API that the download uses.
+type registryClient interface {
+	cloudformation.ListTypesAPIClient
+	DescribeType(ctx context.Context, params *cloudformation.DescribeTypeInput, optFns ...func(*cloudformation.Options)) (*cloudformation.DescribeTypeOutput, error)
+}
 
-	for paginator.HasMorePages() {
-		response, err := paginator.NextPage(cmd.Context())
-		if err != nil {
-			return err
-		}
+// provisioningTypes are the provisioning types to download. Cloud Control can
+// create, read, and delete FULLY_MUTABLE and IMMUTABLE types. It can't create
+// NON_PROVISIONABLE types, so only the read-only ones are kept.
+var provisioningTypes = []types.ProvisioningType{
+	types.ProvisioningTypeFullyMutable,
+	types.ProvisioningTypeImmutable,
+	types.ProvisioningTypeNonProvisionable,
+}
 
-		for _, typeSummary := range response.TypeSummaries {
-			fmt.Printf("Processing Type: %s\n", *typeSummary.TypeName)
-			filename := *typeSummary.TypeName + ".json"
-			delete(existing, filename)
+// download writes a record for every public AWS type that is kept, to
+// outputDirectory. existing holds the names of the record files already there.
+// With clean, it deletes the files of types that are no longer kept.
+func download(ctx context.Context, client registryClient, outputDirectory string, existing map[string]bool, clean bool) error {
+	for _, provisioningType := range provisioningTypes {
+		// We want to get AWS built-in types. This require setting Type to Resource
+		// and Visiblity to Public.
+		paginator := cloudformation.NewListTypesPaginator(client, &cloudformation.ListTypesInput{
+			Filters: &types.TypeFilters{
+				Category: types.CategoryAwsTypes,
+			},
+			ProvisioningType: provisioningType,
+			Type:             types.RegistryTypeResource,
+			Visibility:       types.VisibilityPublic,
+		})
 
-			existing, err := os.ReadFile(path.Join(outputDirectory, filename))
-			if os.IsNotExist(err) {
-				// This is fine
-
-			} else if err != nil {
+		for paginator.HasMorePages() {
+			response, err := paginator.NextPage(ctx)
+			if err != nil {
 				return err
 			}
 
-			timestamp := time.Time{}
-			var previous *TypeRecord
-			if len(existing) > 0 {
-				previous = &TypeRecord{}
-				err := json.Unmarshal(existing, previous)
+			for _, typeSummary := range response.TypeSummaries {
+				kept, err := downloadType(ctx, client, outputDirectory, typeSummary, provisioningType)
 				if err != nil {
-					return fmt.Errorf("file %s has invalid JSON: %w", filename, err)
+					return err
 				}
-
-				timestamp = previous.Timestamp
-			}
-
-			if isSkippedResource(*typeSummary.TypeName) ||
-				typeSummary.LastUpdated != nil && (timestamp.Equal(*typeSummary.LastUpdated) || timestamp.After(*typeSummary.LastUpdated)) {
-				fmt.Printf("Skipping: %s - already up to date\n", *typeSummary.TypeName)
-				continue
-			}
-
-			response, err := client.DescribeType(cmd.Context(), &cloudformation.DescribeTypeInput{
-				Arn: typeSummary.TypeArn,
-			})
-			if err != nil {
-				return err
-			}
-
-			schema := map[string]interface{}{}
-			err = json.Unmarshal([]byte(*response.Schema), &schema)
-			if err != nil {
-				return fmt.Errorf("type %s could not be converted to JSON JSON: %w", *typeSummary.TypeName, err)
-			}
-
-			record := TypeRecord{
-				ARN:       *typeSummary.TypeArn,
-				Schema:    schema,
-				Type:      *typeSummary.TypeName,
-				Timestamp: *typeSummary.LastUpdated,
-			}
-
-			if previous != nil && sameContent(*previous, record) {
-				fmt.Printf("Skipping: %s - schema unchanged\n", *typeSummary.TypeName)
-				continue
-			}
-
-			fmt.Printf("Writing: %s\n", *typeSummary.TypeName)
-
-			result, err := json.MarshalIndent(&record, "", "  ")
-			if err != nil {
-				return err
-			}
-
-			err = os.WriteFile(path.Join(outputDirectory, filename), result, 0644)
-			if err != nil {
-				return err
+				if kept {
+					delete(existing, aws.ToString(typeSummary.TypeName)+".json")
+				}
 			}
 		}
 	}
@@ -215,7 +205,7 @@ func run(cmd *cobra.Command, args []string) error {
 	if clean {
 		for filename := range existing {
 			fmt.Printf("Deleting: %s\n", filename)
-			err = os.Remove(path.Join(outputDirectory, filename))
+			err := os.Remove(path.Join(outputDirectory, filename))
 			if err != nil {
 				fmt.Printf("Failed to delete: %s - %s\n", filename, err)
 			}
@@ -223,6 +213,87 @@ func run(cmd *cobra.Command, args []string) error {
 	}
 
 	return nil
+}
+
+// downloadType writes the record of one type to outputDirectory when its
+// schema changed. It returns false when the type is not kept, so that a record
+// left from an earlier download is cleaned.
+func downloadType(ctx context.Context, client registryClient, outputDirectory string, typeSummary types.TypeSummary, provisioningType types.ProvisioningType) (bool, error) {
+	typeName := aws.ToString(typeSummary.TypeName)
+	fmt.Printf("Processing Type: %s\n", typeName)
+	filename := typeName + ".json"
+
+	content, err := os.ReadFile(path.Join(outputDirectory, filename))
+	if err != nil && !os.IsNotExist(err) {
+		return false, err
+	}
+
+	var previous *TypeRecord
+	if len(content) > 0 {
+		previous = &TypeRecord{}
+		err := json.Unmarshal(content, previous)
+		if err != nil {
+			return false, fmt.Errorf("file %s has invalid JSON: %w", filename, err)
+		}
+	}
+
+	// Some types have no last updated time, so they are always read again.
+	if isSkippedResource(typeName) ||
+		previous != nil && typeSummary.LastUpdated != nil && !previous.Timestamp.Before(*typeSummary.LastUpdated) {
+		fmt.Printf("Skipping: %s - already up to date\n", typeName)
+		return true, nil
+	}
+
+	response, err := client.DescribeType(ctx, &cloudformation.DescribeTypeInput{
+		Arn: typeSummary.TypeArn,
+	})
+	if err != nil {
+		return false, err
+	}
+
+	schema := map[string]interface{}{}
+	err = json.Unmarshal([]byte(aws.ToString(response.Schema)), &schema)
+	if err != nil {
+		return false, fmt.Errorf("type %s could not be converted to JSON: %w", typeName, err)
+	}
+
+	if provisioningType == types.ProvisioningTypeNonProvisionable {
+		parsed := breaking.Schema{}
+		err = json.Unmarshal([]byte(aws.ToString(response.Schema)), &parsed)
+		if err != nil {
+			return false, fmt.Errorf("type %s has a schema that could not be read: %w", typeName, err)
+		}
+		if !parsed.ReadOnly() {
+			fmt.Printf("Skipping: %s - not read-only, and Cloud Control can't create it\n", typeName)
+			return false, nil
+		}
+	}
+
+	record := TypeRecord{
+		ARN:       aws.ToString(typeSummary.TypeArn),
+		Schema:    schema,
+		Type:      typeName,
+		Timestamp: aws.ToTime(typeSummary.LastUpdated),
+	}
+
+	if previous != nil && sameContent(*previous, record) {
+		fmt.Printf("Skipping: %s - schema unchanged\n", typeName)
+		return true, nil
+	}
+
+	fmt.Printf("Writing: %s\n", typeName)
+
+	result, err := json.MarshalIndent(&record, "", "  ")
+	if err != nil {
+		return false, err
+	}
+
+	err = os.WriteFile(path.Join(outputDirectory, filename), result, 0644)
+	if err != nil {
+		return false, err
+	}
+
+	return true, nil
 }
 
 type TypeRecord struct {
