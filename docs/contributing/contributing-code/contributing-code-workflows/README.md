@@ -4,7 +4,7 @@ This document describes the workflows that run during pull requests to the bicep
 
 ## `build.yaml`
 
-This workflow is used to build and test the AWS downloader and AWS generator to ensure that no errors or bugs are present when we download the AWS resource type schema from the CloudControl API. The generator tests are in `src/aws-type-generator/src/convert.test.ts`, and the downloader tests, including the breaking change check, are in `src/aws-type-downloader`.
+This workflow is used to build and test the AWS downloader and AWS generator to ensure that no errors or bugs are present when we download the AWS resource type schema from the CloudControl API. The generator tests are in `src/aws-type-generator/src/*.test.ts`, and the downloader tests, including the breaking change check, are in `src/aws-type-downloader`.
 
 ## `generate-types.yaml`
 
@@ -17,9 +17,11 @@ cd src/aws-type-downloader
 go run . breaking-changes --old <copy of the previous types> --new ../../artifacts/types
 ```
 
+The generator also applies the schemas and extra properties Radius owns, from the commit the `radius` submodule pins, and the pull request body names that commit. If AWS publishes a type or a property with the same name as one Radius provides, the generator keeps Radius's type and AWS's property, and the workflow opens an issue titled "AWS types clash with Radius types" instead of failing. While that issue is open, a run that finds different clashes adds them as a comment, and a run that finds the same ones changes nothing. A clash is reported only while the AWS type or property that causes it is not yet in `artifacts/types` on `main`, so once the pull request merges, a clash a person reviewed and kept is not reported again. Close the issue once the clashes are reviewed.
+
 Merging the pull request publishes the updated types through `publish-bicep.yaml`.
 
-The workflow needs these repository secrets: `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` to read the AWS CloudFormation registry, and `RADIUS_TYPES_BOT_CLIENT_ID` and `RADIUS_TYPES_BOT_PRIVATE_KEY` for the GitHub App that opens the pull request. The app needs read and write access to contents and pull requests on this repository.
+The workflow needs these repository secrets: `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` to read the AWS CloudFormation registry, and `RADIUS_TYPES_BOT_CLIENT_ID` and `RADIUS_TYPES_BOT_PRIVATE_KEY` for the GitHub App that opens the pull request. The app needs read and write access to contents and pull requests on this repository. The issue is opened with the workflow's own token.
 
 ## `approve-publish.yaml` and `publish-bicep.yaml`
 
