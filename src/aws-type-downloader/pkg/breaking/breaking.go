@@ -1,5 +1,6 @@
 // Package breaking compares two sets of downloaded AWS resource schemas and
-// lists the changes that can break existing Bicep templates.
+// lists the changes that can break existing Bicep templates. It also lists the
+// new types that templates can't fully manage, for a reviewer to check.
 package breaking
 
 import (
@@ -15,10 +16,12 @@ import (
 type Kind string
 
 const (
-	TypeRemoved      Kind = "type removed"
-	PropertyRemoved  Kind = "property removed"
-	PropertyRequired Kind = "property now required"
-	PropertyType     Kind = "property type changed"
+	TypeRemoved             Kind = "type removed"
+	TypeReadOnly            Kind = "type became read-only"
+	TypeCreateAndDeleteOnly Kind = "type can no longer be updated"
+	PropertyRemoved         Kind = "property removed"
+	PropertyRequired        Kind = "property now required"
+	PropertyType            Kind = "property type changed"
 )
 
 // Change is one change that can break existing templates.
@@ -26,7 +29,8 @@ type Change struct {
 	// ResourceType is the AWS resource type, for example AWS::S3::Bucket.
 	ResourceType string
 	Kind         Kind
-	// Property is the dotted path of the property. It is empty for TypeRemoved.
+	// Property is the dotted path of the property. It is empty for TypeRemoved,
+	// TypeReadOnly, and TypeCreateAndDeleteOnly.
 	// Array items are written as Name[] and map values as Name.*.
 	Property string
 	OldType  string
@@ -45,6 +49,10 @@ type Schema struct {
 	OneOf                []*Schema            `json:"oneOf"`
 	Definitions          map[string]*Schema   `json:"definitions"`
 	ReadOnlyProperties   []string             `json:"readOnlyProperties"`
+	PrimaryIdentifier    []string             `json:"primaryIdentifier"`
+	// Handlers holds the handlers of a resource schema, keyed by name, such as
+	// create or read.
+	Handlers map[string]json.RawMessage `json:"handlers"`
 
 	// requiredBranches holds the required lists of the oneOf branches that the
 	// type generator uses to decide which properties are required.
@@ -73,6 +81,25 @@ func (a *AdditionalProperties) UnmarshalJSON(b []byte) error {
 	}
 	*a = AdditionalProperties{Schema: schema, set: true}
 	return nil
+}
+
+// ReadOnly reports whether a resource schema describes a type that AWS
+// creates on its own: it has a read handler but no create handler. Templates
+// can only reference these types with `existing`. Radius uses the same rule.
+func (s *Schema) ReadOnly() bool {
+	return s.hasHandler("read") && !s.hasHandler("create")
+}
+
+// CreateAndDeleteOnly reports whether a resource schema describes a type that
+// AWS can create and delete but not update: it has a create handler but no
+// update handler.
+func (s *Schema) CreateAndDeleteOnly() bool {
+	return s.hasHandler("create") && !s.hasHandler("update")
+}
+
+func (s *Schema) hasHandler(name string) bool {
+	_, ok := s.Handlers[name]
+	return ok
 }
 
 func (a AdditionalProperties) allowed() bool {
@@ -131,13 +158,20 @@ func Compare(oldSchemas, newSchemas map[string]*Schema) []Change {
 			changes = append(changes, Change{ResourceType: typeName, Kind: TypeRemoved})
 			continue
 		}
+		if !oldSchema.ReadOnly() && newSchema.ReadOnly() {
+			changes = append(changes, Change{ResourceType: typeName, Kind: TypeReadOnly})
+		}
+		// A deployment that changes an existing resource of the type now fails.
+		if oldSchema.hasHandler("update") && newSchema.CreateAndDeleteOnly() {
+			changes = append(changes, Change{ResourceType: typeName, Kind: TypeCreateAndDeleteOnly})
+		}
 
 		c := comparer{
 			resourceType: typeName,
 			oldRoot:      normalize(oldSchema),
 			newRoot:      normalize(newSchema),
-			oldReadOnly:  toSet(oldSchema.ReadOnlyProperties),
-			newReadOnly:  toSet(newSchema.ReadOnlyProperties),
+			oldReadOnly:  readOnlyProperties(oldSchema),
+			newReadOnly:  readOnlyProperties(newSchema),
 			seen:         map[schemaPair]bool{},
 		}
 		c.compareObject(c.oldRoot, c.newRoot, "", "/properties")
@@ -240,6 +274,19 @@ type comparer struct {
 func (c *comparer) add(change Change) {
 	change.ResourceType = c.resourceType
 	c.changes = append(c.changes, change)
+}
+
+// readOnlyProperties returns the properties templates can't set. The type
+// generator keeps the primary identifier of a read-only type settable, so
+// `existing` can set it, even when AWS lists it as read-only.
+func readOnlyProperties(schema *Schema) map[string]bool {
+	readOnly := toSet(schema.ReadOnlyProperties)
+	if schema.ReadOnly() {
+		for _, p := range schema.PrimaryIdentifier {
+			delete(readOnly, p)
+		}
+	}
+	return readOnly
 }
 
 // isReadOnly reports whether the property at pointer, or any property that

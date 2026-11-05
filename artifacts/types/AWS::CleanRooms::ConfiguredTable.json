@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CleanRooms-ConfiguredTable",
   "type": "AWS::CleanRooms::ConfiguredTable",
-  "time": "2026-10-08T16:09:57.315Z",
+  "time": "2026-10-29T22:48:44.492Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -481,6 +481,78 @@
         ],
         "type": "string"
       },
+      "DatabricksConnectionType": {
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "DeltaSharing": {
+                "$ref": "#/definitions/DatabricksDeltaSharingConnection"
+              }
+            },
+            "required": [
+              "DeltaSharing"
+            ],
+            "title": "DeltaSharing",
+            "type": "object"
+          }
+        ]
+      },
+      "DatabricksDeltaSharingConnection": {
+        "additionalProperties": false,
+        "properties": {
+          "DeltaShareEndpoint": {
+            "maxLength": 1024,
+            "minLength": 10,
+            "pattern": "^https://(?:[a-zA-Z0-9.-]+\\.cloud\\.databricks\\.com/api/2\\.0/delta-sharing|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\\.opensharing\\.[a-z0-9-]+\\.cloud\\.databricks\\.com/api/2\\.0/opensharing)/metastores/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/recipients/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+            "type": "string"
+          },
+          "ShareName": {
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": "^[\\p{L}\\p{M}\\p{N}\\p{Pc}\\p{Pd}]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "DeltaShareEndpoint",
+          "ShareName"
+        ],
+        "type": "object"
+      },
+      "DatabricksTableReference": {
+        "additionalProperties": false,
+        "properties": {
+          "ConnectionType": {
+            "$ref": "#/definitions/DatabricksConnectionType"
+          },
+          "SchemaName": {
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": "^[\\p{L}\\p{M}\\p{N}\\p{Pc}\\p{Pd}]+$",
+            "type": "string"
+          },
+          "TableName": {
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": "^[\\p{L}\\p{M}\\p{N}\\p{Pc}\\p{Pd}]+$",
+            "type": "string"
+          },
+          "WorkspaceUrl": {
+            "maxLength": 256,
+            "minLength": 10,
+            "pattern": "^https://[a-zA-Z0-9.-]+\\.cloud\\.databricks\\.com/?$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ConnectionType",
+          "SchemaName",
+          "TableName",
+          "WorkspaceUrl"
+        ],
+        "type": "object"
+      },
       "DifferentialPrivacy": {
         "additionalProperties": false,
         "properties": {
@@ -736,6 +808,19 @@
               "Athena"
             ],
             "title": "Athena",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Databricks": {
+                "$ref": "#/definitions/DatabricksTableReference"
+              }
+            },
+            "required": [
+              "Databricks"
+            ],
+            "title": "Databricks",
             "type": "object"
           }
         ]

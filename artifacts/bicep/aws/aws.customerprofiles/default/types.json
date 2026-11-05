@@ -1300,7 +1300,7 @@
     "properties": {
       "EventTriggerDimensions": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/110"
         },
         "flags": 1
       },
@@ -1323,7 +1323,7 @@
     "properties": {
       "ObjectAttributes": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/112"
         },
         "flags": 1
       }
@@ -1346,7 +1346,7 @@
       },
       "Periods": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/114"
         },
         "flags": 0
       }
@@ -1360,6 +1360,98 @@
   {
     "$type": "ObjectType",
     "name": "EventTriggerName",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Intent",
+    "properties": {
+      "IntentDomain": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "The domain of the intent."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "The type of the intent."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IntentFilterCondition",
+    "properties": {
+      "ComparisonOperator": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "The operator used to compare the predicted intent against a list of values."
+      },
+      "Intent": {
+        "type": {
+          "$ref": "#/96"
+        },
+        "flags": 1
+      },
+      "Values": {
+        "type": {
+          "$ref": "#/115"
+        },
+        "flags": 1,
+        "description": "A list of intent values used for comparison."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IntentFilterConditions",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IntentFilterDefinition",
+    "properties": {
+      "Groups": {
+        "type": {
+          "$ref": "#/117"
+        },
+        "flags": 1
+      },
+      "LogicalOperator": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IntentFilterGroup",
+    "properties": {
+      "Conditions": {
+        "type": {
+          "$ref": "#/118"
+        },
+        "flags": 1
+      },
+      "LogicalOperator": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IntentFilterGroups",
     "properties": {}
   },
   {
@@ -1389,7 +1481,7 @@
       },
       "Values": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/120"
         },
         "flags": 1,
         "description": "A list of attribute values used for comparison."
@@ -1490,7 +1582,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/96"
+      "$ref": "#/102"
     }
   },
   {
@@ -1502,7 +1594,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/99"
+      "$ref": "#/105"
     }
   },
   {
@@ -1514,19 +1606,49 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/96"
+      "$ref": "#/97"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/99"
+      "$ref": "#/100"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/97"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/100"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/23"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/102"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/105"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/108"
     }
   },
   {
@@ -1542,7 +1664,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/102"
+      "$ref": "#/108"
     }
   },
   {
@@ -1570,7 +1692,7 @@
       },
       "EventTriggerConditions": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/125"
         },
         "flags": 1
       },
@@ -1585,6 +1707,12 @@
           "$ref": "#/23"
         },
         "flags": 17
+      },
+      "IntentFilterDefinition": {
+        "type": {
+          "$ref": "#/99"
+        },
+        "flags": 0
       },
       "LastUpdatedAt": {
         "type": {
@@ -1607,7 +1735,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/126"
         },
         "flags": 0
       }
@@ -1633,7 +1761,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/127"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1644,7 +1772,7 @@
     "$type": "ResourceType",
     "name": "AWS.CustomerProfiles/EventTrigger@default",
     "body": {
-      "$ref": "#/117"
+      "$ref": "#/128"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1724,19 +1852,19 @@
       },
       "SourceFlowConfig": {
         "type": {
-          "$ref": "#/139"
+          "$ref": "#/150"
         },
         "flags": 1
       },
       "Tasks": {
         "type": {
-          "$ref": "#/149"
+          "$ref": "#/160"
         },
         "flags": 1
       },
       "TriggerConfig": {
         "type": {
-          "$ref": "#/144"
+          "$ref": "#/155"
         },
         "flags": 1
       }
@@ -1927,31 +2055,31 @@
     "properties": {
       "Marketo": {
         "type": {
-          "$ref": "#/126"
+          "$ref": "#/137"
         },
         "flags": 0
       },
       "S3": {
         "type": {
-          "$ref": "#/132"
+          "$ref": "#/143"
         },
         "flags": 0
       },
       "Salesforce": {
         "type": {
-          "$ref": "#/134"
+          "$ref": "#/145"
         },
         "flags": 0
       },
       "ServiceNow": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/148"
         },
         "flags": 0
       },
       "Zendesk": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/159"
         },
         "flags": 0
       }
@@ -1975,13 +2103,13 @@
       },
       "IncrementalPullConfig": {
         "type": {
-          "$ref": "#/124"
+          "$ref": "#/135"
         },
         "flags": 0
       },
       "SourceConnectorProperties": {
         "type": {
-          "$ref": "#/138"
+          "$ref": "#/149"
         },
         "flags": 1
       }
@@ -2011,7 +2139,7 @@
     "properties": {
       "ConnectorOperator": {
         "type": {
-          "$ref": "#/119"
+          "$ref": "#/130"
         },
         "flags": 0
       },
@@ -2023,13 +2151,13 @@
       },
       "SourceFields": {
         "type": {
-          "$ref": "#/150"
+          "$ref": "#/161"
         },
         "flags": 1
       },
       "TaskProperties": {
         "type": {
-          "$ref": "#/151"
+          "$ref": "#/162"
         },
         "flags": 0
       },
@@ -2070,7 +2198,7 @@
     "properties": {
       "TriggerProperties": {
         "type": {
-          "$ref": "#/145"
+          "$ref": "#/156"
         },
         "flags": 0
       },
@@ -2088,7 +2216,7 @@
     "properties": {
       "Scheduled": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/146"
         },
         "flags": 0
       }
@@ -2119,7 +2247,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/141"
+      "$ref": "#/152"
     }
   },
   {
@@ -2131,7 +2259,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/142"
+      "$ref": "#/153"
     }
   },
   {
@@ -2147,13 +2275,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/128"
+      "$ref": "#/139"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/140"
+      "$ref": "#/151"
     }
   },
   {
@@ -2176,14 +2304,14 @@
       },
       "EventTriggerNames": {
         "type": {
-          "$ref": "#/153"
+          "$ref": "#/164"
         },
         "flags": 0,
         "description": "A list of unique names for active event triggers associated with the integration."
       },
       "FlowDefinition": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/134"
         },
         "flags": 4
       },
@@ -2203,7 +2331,7 @@
       },
       "ObjectTypeNames": {
         "type": {
-          "$ref": "#/154"
+          "$ref": "#/165"
         },
         "flags": 0,
         "description": "The mapping between 3rd party event types and ObjectType names"
@@ -2217,7 +2345,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/155"
+          "$ref": "#/166"
         },
         "flags": 0,
         "description": "The tags (keys and values) associated with the integration"
@@ -2251,7 +2379,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/156"
+          "$ref": "#/167"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2262,7 +2390,7 @@
     "$type": "ResourceType",
     "name": "AWS.CustomerProfiles/Integration@default",
     "body": {
-      "$ref": "#/157"
+      "$ref": "#/168"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2279,7 +2407,7 @@
       },
       "ObjectTypeField": {
         "type": {
-          "$ref": "#/161"
+          "$ref": "#/172"
         },
         "flags": 0
       }
@@ -2297,7 +2425,7 @@
       },
       "ObjectTypeKeyList": {
         "type": {
-          "$ref": "#/164"
+          "$ref": "#/175"
         },
         "flags": 0
       }
@@ -2336,14 +2464,14 @@
     "properties": {
       "FieldNames": {
         "type": {
-          "$ref": "#/165"
+          "$ref": "#/176"
         },
         "flags": 0,
         "description": "The reference for the key name of the fields map. "
       },
       "StandardIdentifiers": {
         "type": {
-          "$ref": "#/166"
+          "$ref": "#/177"
         },
         "flags": 0,
         "description": "The types of keys that a ProfileObject can have. Each ProfileObject can have only 1 UNIQUE key but multiple PROFILE keys. PROFILE means that this key can be used to tie an object to a PROFILE. UNIQUE means that it can be used to uniquely identify an object. If a key a is marked as SECONDARY, it will be used to search for profiles after all other PROFILE keys have been searched. A LOOKUP_ONLY key is only used to match a profile but is not persisted to be used for searching of the profile. A NEW_ONLY key is only used if the profile does not already exist before the object is ingested, otherwise it is only used for matching objects to profiles."
@@ -2371,7 +2499,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/162"
+      "$ref": "#/173"
     }
   },
   {
@@ -2393,19 +2521,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/159"
+      "$ref": "#/170"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/160"
+      "$ref": "#/171"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/163"
+      "$ref": "#/174"
     }
   },
   {
@@ -2456,14 +2584,14 @@
       },
       "Fields": {
         "type": {
-          "$ref": "#/168"
+          "$ref": "#/179"
         },
         "flags": 0,
         "description": "A list of the name and ObjectType field."
       },
       "Keys": {
         "type": {
-          "$ref": "#/169"
+          "$ref": "#/180"
         },
         "flags": 0,
         "description": "A list of unique keys that can be used to map data to the profile."
@@ -2512,7 +2640,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/170"
+          "$ref": "#/181"
         },
         "flags": 0,
         "description": "The tags (keys and values) associated with the integration."
@@ -2546,7 +2674,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/171"
+          "$ref": "#/182"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2557,7 +2685,7 @@
     "$type": "ResourceType",
     "name": "AWS.CustomerProfiles/ObjectType@default",
     "body": {
-      "$ref": "#/172"
+      "$ref": "#/183"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2598,7 +2726,7 @@
     "properties": {
       "EventParametersList": {
         "type": {
-          "$ref": "#/185"
+          "$ref": "#/196"
         },
         "flags": 1,
         "description": "List of event parameters with their value thresholds"
@@ -2611,7 +2739,7 @@
     "properties": {
       "EventsConfig": {
         "type": {
-          "$ref": "#/177"
+          "$ref": "#/188"
         },
         "flags": 0
       }
@@ -2659,7 +2787,7 @@
       },
       "RecommenderConfig": {
         "type": {
-          "$ref": "#/178"
+          "$ref": "#/189"
         },
         "flags": 0
       },
@@ -2695,7 +2823,7 @@
     "properties": {
       "Metrics": {
         "type": {
-          "$ref": "#/186"
+          "$ref": "#/197"
         },
         "flags": 0,
         "description": "Training metrics by type"
@@ -2712,7 +2840,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/176"
+      "$ref": "#/187"
     }
   },
   {
@@ -2764,13 +2892,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/183"
+      "$ref": "#/194"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/184"
+      "$ref": "#/195"
     }
   },
   {
@@ -2812,7 +2940,7 @@
       },
       "LatestRecommenderUpdate": {
         "type": {
-          "$ref": "#/182"
+          "$ref": "#/193"
         },
         "flags": 2
       },
@@ -2825,7 +2953,7 @@
       },
       "RecommenderConfig": {
         "type": {
-          "$ref": "#/178"
+          "$ref": "#/189"
         },
         "flags": 0
       },
@@ -2849,14 +2977,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/188"
+          "$ref": "#/199"
         },
         "flags": 0,
         "description": "The tags used to organize, track, or control access for this resource."
       },
       "TrainingMetrics": {
         "type": {
-          "$ref": "#/189"
+          "$ref": "#/200"
         },
         "flags": 2
       }
@@ -2882,7 +3010,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/190"
+          "$ref": "#/201"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2893,7 +3021,7 @@
     "$type": "ResourceType",
     "name": "AWS.CustomerProfiles/Recommender@default",
     "body": {
-      "$ref": "#/191"
+      "$ref": "#/202"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2952,7 +3080,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/196"
+      "$ref": "#/207"
     }
   },
   {
@@ -2979,7 +3107,7 @@
       },
       "Fields": {
         "type": {
-          "$ref": "#/195"
+          "$ref": "#/206"
         },
         "flags": 1
       },
@@ -2997,7 +3125,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/197"
+          "$ref": "#/208"
         },
         "flags": 0
       }
@@ -3023,7 +3151,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/198"
+          "$ref": "#/209"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3034,7 +3162,7 @@
     "$type": "ResourceType",
     "name": "AWS.CustomerProfiles/RecommenderSchema@default",
     "body": {
-      "$ref": "#/199"
+      "$ref": "#/210"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3045,37 +3173,37 @@
     "properties": {
       "City": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/226"
         },
         "flags": 0
       },
       "Country": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/226"
         },
         "flags": 0
       },
       "County": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/226"
         },
         "flags": 0
       },
       "PostalCode": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/226"
         },
         "flags": 0
       },
       "Province": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/226"
         },
         "flags": 0
       },
       "State": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/226"
         },
         "flags": 0
       }
@@ -3093,7 +3221,7 @@
       },
       "Values": {
         "type": {
-          "$ref": "#/229"
+          "$ref": "#/240"
         },
         "flags": 1
       }
@@ -3110,7 +3238,7 @@
     "properties": {
       "ConditionOverrides": {
         "type": {
-          "$ref": "#/206"
+          "$ref": "#/217"
         },
         "flags": 0
       },
@@ -3122,7 +3250,7 @@
       },
       "Values": {
         "type": {
-          "$ref": "#/230"
+          "$ref": "#/241"
         },
         "flags": 1
       }
@@ -3139,7 +3267,7 @@
     "properties": {
       "Range": {
         "type": {
-          "$ref": "#/219"
+          "$ref": "#/230"
         },
         "flags": 0
       }
@@ -3162,7 +3290,7 @@
       },
       "Values": {
         "type": {
-          "$ref": "#/231"
+          "$ref": "#/242"
         },
         "flags": 1
       }
@@ -3190,7 +3318,7 @@
       },
       "Values": {
         "type": {
-          "$ref": "#/232"
+          "$ref": "#/243"
         },
         "flags": 1
       }
@@ -3202,13 +3330,13 @@
     "properties": {
       "Dimensions": {
         "type": {
-          "$ref": "#/233"
+          "$ref": "#/244"
         },
         "flags": 0
       },
       "SourceSegments": {
         "type": {
-          "$ref": "#/234"
+          "$ref": "#/245"
         },
         "flags": 0
       },
@@ -3237,133 +3365,133 @@
     "properties": {
       "AccountNumber": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/226"
         },
         "flags": 0
       },
       "AdditionalInformation": {
         "type": {
-          "$ref": "#/211"
+          "$ref": "#/222"
         },
         "flags": 0
       },
       "Address": {
         "type": {
-          "$ref": "#/201"
+          "$ref": "#/212"
         },
         "flags": 0
       },
       "Attributes": {
         "type": {
-          "$ref": "#/207"
+          "$ref": "#/218"
         },
         "flags": 0
       },
       "BillingAddress": {
         "type": {
-          "$ref": "#/201"
+          "$ref": "#/212"
         },
         "flags": 0
       },
       "BirthDate": {
         "type": {
-          "$ref": "#/208"
+          "$ref": "#/219"
         },
         "flags": 0
       },
       "BusinessEmailAddress": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/226"
         },
         "flags": 0
       },
       "BusinessName": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/226"
         },
         "flags": 0
       },
       "BusinessPhoneNumber": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/226"
         },
         "flags": 0
       },
       "EmailAddress": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/226"
         },
         "flags": 0
       },
       "FirstName": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/226"
         },
         "flags": 0
       },
       "GenderString": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/226"
         },
         "flags": 0
       },
       "HomePhoneNumber": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/226"
         },
         "flags": 0
       },
       "LastName": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/226"
         },
         "flags": 0
       },
       "MailingAddress": {
         "type": {
-          "$ref": "#/201"
+          "$ref": "#/212"
         },
         "flags": 0
       },
       "MiddleName": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/226"
         },
         "flags": 0
       },
       "MobilePhoneNumber": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/226"
         },
         "flags": 0
       },
       "PartyTypeString": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/226"
         },
         "flags": 0
       },
       "PersonalEmailAddress": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/226"
         },
         "flags": 0
       },
       "PhoneNumber": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/226"
         },
         "flags": 0
       },
       "ProfileType": {
         "type": {
-          "$ref": "#/217"
+          "$ref": "#/228"
         },
         "flags": 0
       },
       "ShippingAddress": {
         "type": {
-          "$ref": "#/201"
+          "$ref": "#/212"
         },
         "flags": 0
       }
@@ -3381,7 +3509,7 @@
       },
       "Values": {
         "type": {
-          "$ref": "#/235"
+          "$ref": "#/246"
         },
         "flags": 1
       }
@@ -3404,7 +3532,7 @@
       },
       "Values": {
         "type": {
-          "$ref": "#/236"
+          "$ref": "#/247"
         },
         "flags": 1
       }
@@ -3448,7 +3576,7 @@
     "properties": {
       "Groups": {
         "type": {
-          "$ref": "#/237"
+          "$ref": "#/248"
         },
         "flags": 0
       },
@@ -3466,7 +3594,7 @@
     "properties": {
       "Attributes": {
         "type": {
-          "$ref": "#/238"
+          "$ref": "#/249"
         },
         "flags": 1,
         "description": "A list of attributes used to sort the segments and their ordering preferences."
@@ -3583,19 +3711,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/210"
+      "$ref": "#/221"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/226"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/237"
     }
   },
   {
@@ -3607,13 +3729,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/212"
+      "$ref": "#/23"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/224"
+      "$ref": "#/223"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/235"
     }
   },
   {
@@ -3623,7 +3751,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/228"
+      "$ref": "#/239"
     }
   },
   {
@@ -3674,14 +3802,14 @@
       },
       "SegmentGroups": {
         "type": {
-          "$ref": "#/220"
+          "$ref": "#/231"
         },
         "flags": 0,
         "description": "An array that defines the set of segment criteria to evaluate when handling segment groups for the segment."
       },
       "SegmentSort": {
         "type": {
-          "$ref": "#/221"
+          "$ref": "#/232"
         },
         "flags": 0,
         "description": "The segment sort configuration for ordering segment results."
@@ -3702,7 +3830,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/240"
+          "$ref": "#/251"
         },
         "flags": 0,
         "description": "The tags used to organize, track, or control access for this resource."
@@ -3729,7 +3857,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/241"
+          "$ref": "#/252"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3740,7 +3868,7 @@
     "$type": "ResourceType",
     "name": "AWS.CustomerProfiles/SegmentDefinition@default",
     "body": {
-      "$ref": "#/242"
+      "$ref": "#/253"
     },
     "readableScopes": 0,
     "writableScopes": 0

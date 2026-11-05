@@ -700,11 +700,520 @@
   },
   {
     "$type": "ObjectType",
+    "name": "DestinationEndpointAssociatedResourceDetails",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DestinationEndpointConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DestinationEndpointConnectionState",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DestinationEndpointNetworkingType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DestinationEndpointProtocol",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DestinationEndpointRegistrationState",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DestinationEndpointType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EndpointEncryptionSecretConfiguration",
+    "properties": {
+      "SecretArn": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The ARN of the Secrets Manager secret that holds the key or passphrase. The secret must be encrypted with a customer managed Amazon Web Services KMS key that is enabled and symmetric; it cannot use the Amazon Web Services managed key aws/secretsmanager. The secret must be in the same Amazon Web Services account and Region as the endpoint."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EndpointLifecycle",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ForwardErrorCorrectionState",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PublicDestinationEndpointNetworkingConfiguration",
+    "properties": {
+      "DestinationAllowRules": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 1,
+        "description": "The rules that specify which CIDR blocks can connect to the destination endpoint. You can specify up to 10 rules."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PublicDestinationEndpointNetworkingConfigurationAllowRule",
+    "properties": {
+      "Cidr": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The CIDR block that is allowed to connect to the destination endpoint, in CIDR notation."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RistStandardDestinationEndpointConfiguration",
+    "properties": {
+      "DestinationAddress": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The IP address on which the destination endpoint receives content."
+      },
+      "DestinationIngestPort": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The port on which the destination endpoint receives content. The valid range is 1024 to 65531."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RouterInputDestinationEndpointAssociatedResourceDetails",
+    "properties": {
+      "MaximumBitrate": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The maximum bitrate of the router input, in bits per second."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The name of the router input."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RouterInputDestinationEndpointConfiguration",
+    "properties": {
+      "RouterInputArn": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the router input that the destination endpoint represents."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RouterInputState",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RtpStandardDestinationEndpointConfiguration",
+    "properties": {
+      "DestinationAddress": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The IP address on which the destination endpoint receives content."
+      },
+      "DestinationIngestPort": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The port on which the destination endpoint receives content. The valid range is 1024 to 65531."
+      },
+      "ForwardErrorCorrectionState": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SrtCallerStandardDestinationEndpointConfiguration",
+    "properties": {
+      "EncryptionPassphrase": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0
+      },
+      "MinimumLatencyMilliseconds": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The minimum latency, in milliseconds, for the SRT connection. The valid range is 10 to 10000."
+      },
+      "SourceListenerPort": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The port on which the source listens for the connection. The valid range is 3000 to 30000."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SrtListenerStandardDestinationEndpointConfiguration",
+    "properties": {
+      "DestinationAddress": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The IP address on which the destination endpoint listens for incoming connections."
+      },
+      "DestinationIngestPort": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The port on which the destination endpoint listens for incoming connections. The valid range is 0 to 65531."
+      },
+      "EncryptionPassphrase": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0
+      },
+      "MinimumLatencyMilliseconds": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The minimum latency, in milliseconds, for the SRT connection. The valid range is 10 to 10000."
+      },
+      "StreamId": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The stream ID that identifies the content for the SRT connection."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StandardDestinationEndpointAssociatedResourceDetails",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StandardDestinationEndpointConfiguration",
+    "properties": {
+      "DestinationNetworkingConfiguration": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 1
+      },
+      "DestinationNetworkingType": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The name of the destination endpoint."
+      },
+      "Protocol": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
+      "ProtocolConfiguration": {
+        "type": {
+          "$ref": "#/66"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StandardDestinationEndpointNetworkingConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StandardDestinationEndpointProtocolConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VpcDestinationEndpointNetworkingConfiguration",
+    "properties": {
+      "SecurityGroupIds": {
+        "type": {
+          "$ref": "#/67"
+        },
+        "flags": 1,
+        "description": "The IDs of the security groups to associate with the destination endpoint. You can specify from 1 to 5 security groups."
+      },
+      "SubnetId": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The ID of the subnet to use for the destination endpoint."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/50"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DestinationEndpoint_StandardDestinationEndpointNetworkingConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DestinationEndpoint_StandardDestinationEndpointProtocolConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/15"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaConnect/DestinationEndpointProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/62"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaConnect/DestinationEndpointProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 18
+      },
+      "AssociatedResourceDetails": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 2
+      },
+      "AvailabilityZone": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The Availability Zone in which the destination endpoint is located."
+      },
+      "AvailabilityZoneId": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The ID of the Availability Zone in which the destination endpoint is located."
+      },
+      "Configuration": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 1
+      },
+      "ConnectionState": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The date and time when the destination endpoint was created."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The description of the destination endpoint."
+      },
+      "DestinationType": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the destination endpoint."
+      },
+      "LifecycleManagement": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The name of the destination endpoint."
+      },
+      "RegionName": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The name of the Amazon Web Services Region in which the destination endpoint is located."
+      },
+      "RegistrationState": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0,
+        "description": "The tags associated with the destination endpoint. Each tag is a key-value pair."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The date and time when the destination endpoint was last updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaConnect/DestinationEndpoint",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/70"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MediaConnect/DestinationEndpoint@default",
+    "body": {
+      "$ref": "#/71"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "AudioMonitoringSetting",
     "properties": {
       "SilentAudio": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/97"
         },
         "flags": 0
       }
@@ -848,7 +1357,7 @@
       },
       "SourcePriority": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/104"
         },
         "flags": 0,
         "description": "The priority you want to assign to a source. You can have a primary stream and a backup stream or two equally prioritized streams."
@@ -867,7 +1376,7 @@
     "properties": {
       "EncryptionKeyConfiguration": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/105"
         },
         "flags": 1
       },
@@ -977,7 +1486,7 @@
       },
       "VpcInterfaceAttachment": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/103"
         },
         "flags": 0,
         "description": "The name of the VPC interface attachment to use for this bridge source."
@@ -997,7 +1506,7 @@
       },
       "Interface": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/87"
         },
         "flags": 1,
         "description": "The VPC interface where the media stream comes in from."
@@ -1043,7 +1552,7 @@
     "properties": {
       "Attributes": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/90"
         },
         "flags": 0,
         "description": "Attributes that are related to the media stream."
@@ -1092,7 +1601,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/106"
         },
         "flags": 0,
         "description": "Key-value pairs that can be used to tag this media stream."
@@ -1112,7 +1621,7 @@
     "properties": {
       "Fmtp": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/83"
         },
         "flags": 0,
         "description": "A set of parameters that define the media stream."
@@ -1139,7 +1648,7 @@
       },
       "InputConfigurations": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/107"
         },
         "flags": 0,
         "description": "The media streams that you want to associate with the source."
@@ -1166,7 +1675,7 @@
       },
       "NdiDiscoveryServers": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/108"
         },
         "flags": 0,
         "description": "A list of up to three NDI discovery server configurations. While not required by the API, this configuration is necessary for NDI functionality to work properly."
@@ -1277,7 +1786,7 @@
     "properties": {
       "Decryption": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/78"
         },
         "flags": 0,
         "description": "The type of decryption that is used on the content ingested from this source."
@@ -1298,7 +1807,7 @@
       },
       "GatewayBridgeSource": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/85"
         },
         "flags": 0,
         "description": "The source configuration for cloud flows receiving a stream from a bridge."
@@ -1340,7 +1849,7 @@
       },
       "MediaStreamSourceConfigurations": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/109"
         },
         "flags": 0,
         "description": "The media stream that is associated with the source, and the parameters for that association."
@@ -1361,7 +1870,7 @@
       },
       "NdiSourceSettings": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "The settings for the NDI flow source. This includes the exact name of the upstream NDI sender that you want to connect to your flow source."
@@ -1381,7 +1890,7 @@
       },
       "RouterIntegrationTransitDecryption": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/80"
         },
         "flags": 0
       },
@@ -1436,7 +1945,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/110"
         },
         "flags": 0,
         "description": "Key-value pairs that can be used to tag this source."
@@ -1463,7 +1972,7 @@
     "properties": {
       "AudioMonitoringSettings": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/111"
         },
         "flags": 0,
         "description": "Contains the settings for audio stream metrics monitoring."
@@ -1484,7 +1993,7 @@
       },
       "VideoMonitoringSettings": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/112"
         },
         "flags": 0,
         "description": "Contains the settings for video stream metrics monitoring."
@@ -1515,13 +2024,13 @@
     "properties": {
       "BlackFrames": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/75"
         },
         "flags": 0
       },
       "FrozenFrames": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/84"
         },
         "flags": 0
       }
@@ -1540,7 +2049,7 @@
       },
       "NetworkInterfaceIds": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/113"
         },
         "flags": 0,
         "description": "IDs of the network interfaces created in customer's account by MediaConnect."
@@ -1561,7 +2070,7 @@
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/114"
         },
         "flags": 1,
         "description": "Security Group IDs to be used on ENI."
@@ -1575,7 +2084,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/115"
         },
         "flags": 0,
         "description": "Key-value pairs that can be used to tag this VPC interface."
@@ -1616,49 +2125,43 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/66"
+      "$ref": "#/100"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/52"
+      "$ref": "#/86"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/59"
+      "$ref": "#/93"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/57"
+      "$ref": "#/91"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/66"
+      "$ref": "#/100"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/39"
+      "$ref": "#/73"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/67"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/15"
+      "$ref": "#/101"
     }
   },
   {
@@ -1670,7 +2173,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/66"
+      "$ref": "#/15"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/100"
     }
   },
   {
@@ -1680,19 +2189,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/55"
+      "$ref": "#/89"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/66"
+      "$ref": "#/100"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/68"
+      "$ref": "#/102"
     }
   },
   {
@@ -1715,7 +2224,7 @@
       },
       "EncodingConfig": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/76"
         },
         "flags": 0,
         "description": "The encoding configuration to apply to the NDI source content when transcoding it to a transport stream (TS) for downstream distribution. You can choose between several predefined encoding profiles based on common use cases."
@@ -1750,14 +2259,14 @@
       },
       "Maintenance": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/88"
         },
         "flags": 0,
         "description": "The maintenance settings you want to use for the flow."
       },
       "MediaStreams": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/117"
         },
         "flags": 0,
         "description": "The media streams associated with the flow. You can associate any of these media streams with sources and outputs on the flow."
@@ -1771,42 +2280,42 @@
       },
       "NdiConfig": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/92"
         },
         "flags": 0,
         "description": "Specifies the configuration settings for NDI sources and outputs. Required when the flow includes NDI sources or outputs."
       },
       "Source": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/98"
         },
         "flags": 1,
         "description": "The source of the flow."
       },
       "SourceFailoverConfig": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/79"
         },
         "flags": 0,
         "description": "The source failover config of the flow."
       },
       "SourceMonitoringConfig": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/99"
         },
         "flags": 0,
         "description": "The source monitoring config of the flow."
       },
       "Tags": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/118"
         },
         "flags": 0,
         "description": "Key-value pairs that can be used to tag this flow."
       },
       "VpcInterfaces": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/119"
         },
         "flags": 0,
         "description": "The VPC interfaces that you added to this flow."
@@ -1833,7 +2342,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/120"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1844,7 +2353,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaConnect/Flow@default",
     "body": {
-      "$ref": "#/87"
+      "$ref": "#/121"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1949,7 +2458,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/90"
+      "$ref": "#/124"
     }
   },
   {
@@ -1972,7 +2481,7 @@
       },
       "Encryption": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/123"
         },
         "flags": 0,
         "description": "The type of encryption that will be used on the output that is associated with this entitlement."
@@ -2007,14 +2516,14 @@
       },
       "Subscribers": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/126"
         },
         "flags": 1,
         "description": "The AWS account IDs that you want to share your content with. The receiving accounts (subscribers) will be allowed to create their own flow using your content as the source."
       },
       "Tags": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/127"
         },
         "flags": 0,
         "description": "Key-value pairs that can be used to tag and organize this flow entitlement."
@@ -2041,7 +2550,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/128"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2052,7 +2561,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaConnect/FlowEntitlement@default",
     "body": {
-      "$ref": "#/95"
+      "$ref": "#/129"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2118,7 +2627,7 @@
     "properties": {
       "Fmtp": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/131"
         },
         "flags": 0
       },
@@ -2158,7 +2667,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/99"
+      "$ref": "#/133"
     }
   },
   {
@@ -2174,7 +2683,7 @@
       },
       "Attributes": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/132"
         },
         "flags": 0
       },
@@ -2229,7 +2738,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/135"
         },
         "flags": 0,
         "description": "The key-value pairs that can be used to tag and organize the media stream."
@@ -2263,7 +2772,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/136"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2274,7 +2783,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaConnect/FlowMediaStream@default",
     "body": {
-      "$ref": "#/103"
+      "$ref": "#/137"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2304,7 +2813,7 @@
       },
       "Interface": {
         "type": {
-          "$ref": "#/112"
+          "$ref": "#/146"
         },
         "flags": 1,
         "description": "The VPC interface that is used for the media stream associated with the output."
@@ -2371,7 +2880,7 @@
     "properties": {
       "EncryptionKeyConfiguration": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/151"
         },
         "flags": 1
       },
@@ -2412,7 +2921,7 @@
     "properties": {
       "DestinationConfigurations": {
         "type": {
-          "$ref": "#/118"
+          "$ref": "#/152"
         },
         "flags": 0,
         "description": "The media streams that you want to associate with the output."
@@ -2426,7 +2935,7 @@
       },
       "EncodingParameters": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/141"
         },
         "flags": 0,
         "description": "A collection of parameters that determine how MediaConnect will convert the content. These fields only apply to outputs on flows that have a CDI source."
@@ -2499,7 +3008,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/106"
+      "$ref": "#/140"
     }
   },
   {
@@ -2515,13 +3024,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/147"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/115"
+      "$ref": "#/149"
     }
   },
   {
@@ -2530,7 +3039,7 @@
     "properties": {
       "CidrAllowList": {
         "type": {
-          "$ref": "#/120"
+          "$ref": "#/154"
         },
         "flags": 0,
         "description": "The range of IP addresses that should be allowed to initiate output requests to this flow. These IP addresses should be in the form of a Classless Inter-Domain Routing (CIDR) block; for example, 10.0.0.0/16."
@@ -2551,7 +3060,7 @@
       },
       "Encryption": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/142"
         },
         "flags": 0,
         "description": "The type of key used for the encryption. If no keyType is provided, the service will use the default setting (static-key)."
@@ -2572,7 +3081,7 @@
       },
       "MediaStreamOutputConfigurations": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/155"
         },
         "flags": 0,
         "description": "The definition for each media stream that is associated with the output."
@@ -2662,7 +3171,7 @@
       },
       "RouterIntegrationTransitEncryption": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/143"
         },
         "flags": 0
       },
@@ -2682,14 +3191,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/156"
         },
         "flags": 0,
         "description": "Key-value pairs that can be used to tag and organize this flow output."
       },
       "VpcInterfaceAttachment": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/150"
         },
         "flags": 0,
         "description": "The name of the VPC interface attachment to use for this output."
@@ -2716,7 +3225,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/157"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2727,7 +3236,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaConnect/FlowOutput@default",
     "body": {
-      "$ref": "#/124"
+      "$ref": "#/158"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2814,7 +3323,7 @@
       },
       "VpcInterfaceAttachment": {
         "type": {
-          "$ref": "#/129"
+          "$ref": "#/163"
         },
         "flags": 0,
         "description": "The name of the VPC interface attachment to use for this bridge source."
@@ -2859,7 +3368,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/128"
+      "$ref": "#/162"
     }
   },
   {
@@ -2868,7 +3377,7 @@
     "properties": {
       "Decryption": {
         "type": {
-          "$ref": "#/126"
+          "$ref": "#/160"
         },
         "flags": 0,
         "description": "The type of encryption that is used on the content ingested from this source."
@@ -2896,7 +3405,7 @@
       },
       "GatewayBridgeSource": {
         "type": {
-          "$ref": "#/127"
+          "$ref": "#/161"
         },
         "flags": 0,
         "description": "The source configuration for cloud flows receiving a stream from a bridge."
@@ -3001,7 +3510,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/131"
+          "$ref": "#/165"
         },
         "flags": 0,
         "description": "Key-value pairs that can be used to tag and organize this flow source."
@@ -3042,7 +3551,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/132"
+          "$ref": "#/166"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3053,7 +3562,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaConnect/FlowSource@default",
     "body": {
-      "$ref": "#/133"
+      "$ref": "#/167"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3095,7 +3604,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/135"
+      "$ref": "#/169"
     }
   },
   {
@@ -3118,7 +3627,7 @@
       },
       "NetworkInterfaceIds": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/171"
         },
         "flags": 2,
         "description": "IDs of the network interfaces created in customer's account by MediaConnect."
@@ -3132,7 +3641,7 @@
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/138"
+          "$ref": "#/172"
         },
         "flags": 1,
         "description": "Security Group IDs to be used on ENI."
@@ -3146,7 +3655,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/139"
+          "$ref": "#/173"
         },
         "flags": 0,
         "description": "Key-value pairs that can be used to tag and organize this VPC network interface."
@@ -3173,7 +3682,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/140"
+          "$ref": "#/174"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3184,7 +3693,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaConnect/FlowVpcInterface@default",
     "body": {
-      "$ref": "#/141"
+      "$ref": "#/175"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3192,6 +3701,11 @@
   {
     "$type": "ObjectType",
     "name": "AutomaticEncryptionKeyConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AutomaticEndpointEncryptionConfiguration",
     "properties": {}
   },
   {
@@ -3219,19 +3733,19 @@
     "properties": {
       "BlackFrames": {
         "type": {
-          "$ref": "#/144"
+          "$ref": "#/179"
         },
         "flags": 0
       },
       "FrozenFrames": {
         "type": {
-          "$ref": "#/156"
+          "$ref": "#/197"
         },
         "flags": 0
       },
       "SilentAudio": {
         "type": {
-          "$ref": "#/183"
+          "$ref": "#/225"
         },
         "flags": 0
       }
@@ -3250,6 +3764,63 @@
   {
     "$type": "ObjectType",
     "name": "DefaultMaintenanceConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DestinationEndpointRouterInputConfiguration",
+    "properties": {
+      "EndpointLifecycleManagement": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1
+      },
+      "SourceTransitDecryption": {
+        "type": {
+          "$ref": "#/231"
+        },
+        "flags": 1
+      },
+      "SourceTransitDecryptionType": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EndpointEncryptionConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EndpointEncryptionSecretConfiguration",
+    "properties": {
+      "SecretArn": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The ARN of the Secrets Manager secret that holds the key or passphrase. The secret must be encrypted with a customer managed Amazon Web Services KMS key that is enabled and symmetric; it cannot use the Amazon Web Services managed key aws/secretsmanager. The secret must be in the same Amazon Web Services account and Region as the endpoint."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EndpointEncryptionSecretType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EndpointEncryptionType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EndpointLifecycle",
     "properties": {}
   },
   {
@@ -3277,7 +3848,7 @@
       },
       "ProtocolConfigurations": {
         "type": {
-          "$ref": "#/190"
+          "$ref": "#/233"
         },
         "flags": 1,
         "description": "A list of exactly two protocol configurations for the failover input sources. Both must use the same protocol type."
@@ -3301,7 +3872,7 @@
     "properties": {
       "EncryptionKeyConfiguration": {
         "type": {
-          "$ref": "#/191"
+          "$ref": "#/234"
         },
         "flags": 1
       },
@@ -3377,7 +3948,7 @@
       },
       "SourceTransitDecryption": {
         "type": {
-          "$ref": "#/152"
+          "$ref": "#/193"
         },
         "flags": 1
       }
@@ -3414,7 +3985,7 @@
       },
       "SourceTransitDecryption": {
         "type": {
-          "$ref": "#/162"
+          "$ref": "#/203"
         },
         "flags": 1
       }
@@ -3426,7 +3997,7 @@
     "properties": {
       "EncryptionKeyConfiguration": {
         "type": {
-          "$ref": "#/192"
+          "$ref": "#/235"
         },
         "flags": 1
       },
@@ -3468,7 +4039,7 @@
       },
       "ProtocolConfigurations": {
         "type": {
-          "$ref": "#/194"
+          "$ref": "#/237"
         },
         "flags": 1,
         "description": "A list of exactly two protocol configurations for the merge input sources. Both must use the same protocol type."
@@ -3560,7 +4131,7 @@
     "properties": {
       "EncryptionKeyConfiguration": {
         "type": {
-          "$ref": "#/195"
+          "$ref": "#/238"
         },
         "flags": 1
       },
@@ -3633,6 +4204,24 @@
   },
   {
     "$type": "ObjectType",
+    "name": "SecretsManagerEndpointEncryptionConfiguration",
+    "properties": {
+      "EncryptionSecret": {
+        "type": {
+          "$ref": "#/186"
+        },
+        "flags": 1
+      },
+      "EncryptionSecretType": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "SilentAudioConfiguration",
     "properties": {
       "State": {
@@ -3656,7 +4245,7 @@
     "properties": {
       "DecryptionConfiguration": {
         "type": {
-          "$ref": "#/185"
+          "$ref": "#/227"
         },
         "flags": 0
       },
@@ -3696,7 +4285,7 @@
     "properties": {
       "EncryptionKey": {
         "type": {
-          "$ref": "#/182"
+          "$ref": "#/223"
         },
         "flags": 1
       }
@@ -3708,7 +4297,7 @@
     "properties": {
       "DecryptionConfiguration": {
         "type": {
-          "$ref": "#/185"
+          "$ref": "#/227"
         },
         "flags": 0
       },
@@ -3747,7 +4336,7 @@
       },
       "ProtocolConfiguration": {
         "type": {
-          "$ref": "#/173"
+          "$ref": "#/214"
         },
         "flags": 1
       }
@@ -3773,13 +4362,18 @@
   },
   {
     "$type": "ObjectType",
+    "name": "RouterInput_EndpointEncryptionConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "RouterInput_FailoverRouterInputProtocolConfiguration",
     "properties": {}
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/189"
+      "$ref": "#/232"
     }
   },
   {
@@ -3800,7 +4394,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/193"
+      "$ref": "#/236"
     }
   },
   {
@@ -3815,7 +4409,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/188"
+      "$ref": "#/15"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/230"
     }
   },
   {
@@ -3828,6 +4428,13 @@
         },
         "flags": 18
       },
+      "AssociatedDestinationEndpointArns": {
+        "type": {
+          "$ref": "#/240"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Names (ARNs) of one or more destination endpoints that are associated with this router input."
+      },
       "AvailabilityZone": {
         "type": {
           "$ref": "#/15"
@@ -3837,13 +4444,13 @@
       },
       "Configuration": {
         "type": {
-          "$ref": "#/171"
+          "$ref": "#/212"
         },
         "flags": 1
       },
       "ContentQualityAnalysisConfiguration": {
         "type": {
-          "$ref": "#/169"
+          "$ref": "#/210"
         },
         "flags": 0
       },
@@ -3882,7 +4489,7 @@
       },
       "MaintenanceConfiguration": {
         "type": {
-          "$ref": "#/157"
+          "$ref": "#/198"
         },
         "flags": 0
       },
@@ -3934,7 +4541,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/197"
+          "$ref": "#/241"
         },
         "flags": 0,
         "description": "Key-value pairs that can be used to tag and organize this router input."
@@ -3947,7 +4554,7 @@
       },
       "TransitEncryption": {
         "type": {
-          "$ref": "#/176"
+          "$ref": "#/217"
         },
         "flags": 0
       },
@@ -3980,7 +4587,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/198"
+          "$ref": "#/242"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3991,7 +4598,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaConnect/RouterInput@default",
     "body": {
-      "$ref": "#/199"
+      "$ref": "#/243"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -4002,7 +4609,7 @@
     "properties": {
       "AllowRules": {
         "type": {
-          "$ref": "#/209"
+          "$ref": "#/252"
         },
         "flags": 1,
         "description": "The list of allowed CIDR blocks for the public router network interface."
@@ -4057,16 +4664,11 @@
   },
   {
     "$type": "ObjectType",
-    "name": "Unit",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
     "name": "VpcRouterNetworkInterfaceConfiguration",
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/210"
+          "$ref": "#/253"
         },
         "flags": 1,
         "description": "The IDs of the security groups to associate with the router network interface within the VPC."
@@ -4083,7 +4685,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/202"
+      "$ref": "#/246"
     }
   },
   {
@@ -4099,7 +4701,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/206"
+      "$ref": "#/250"
     }
   },
   {
@@ -4128,7 +4730,7 @@
       },
       "Configuration": {
         "type": {
-          "$ref": "#/203"
+          "$ref": "#/247"
         },
         "flags": 1
       },
@@ -4164,7 +4766,7 @@
           "$ref": "#/15"
         },
         "flags": 0,
-        "description": "The AWS Region for the router network interface. Defaults to the current region if not specified."
+        "description": "The Amazon Web Services Region for the router network interface. Defaults to the current region if not specified."
       },
       "State": {
         "type": {
@@ -4174,7 +4776,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/212"
+          "$ref": "#/255"
         },
         "flags": 0,
         "description": "Key-value pairs that can be used to tag and organize this router network interface."
@@ -4208,7 +4810,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/213"
+          "$ref": "#/256"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4219,7 +4821,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaConnect/RouterNetworkInterface@default",
     "body": {
-      "$ref": "#/214"
+      "$ref": "#/257"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -4231,12 +4833,50 @@
   },
   {
     "$type": "ObjectType",
+    "name": "AutomaticEndpointEncryptionConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "Day",
     "properties": {}
   },
   {
     "$type": "ObjectType",
     "name": "DefaultMaintenanceConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EndpointEncryptionConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EndpointEncryptionSecretConfiguration",
+    "properties": {
+      "SecretArn": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The ARN of the Secrets Manager secret that holds the key or passphrase. The secret must be encrypted with a customer managed Amazon Web Services KMS key that is enabled and symmetric; it cannot use the Amazon Web Services managed key aws/secretsmanager. The secret must be in the same Amazon Web Services account and Region as the endpoint."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EndpointEncryptionSecretType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EndpointEncryptionType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EndpointLifecycle",
     "properties": {}
   },
   {
@@ -4262,7 +4902,7 @@
     "properties": {
       "EncryptionKeyConfiguration": {
         "type": {
-          "$ref": "#/255"
+          "$ref": "#/306"
         },
         "flags": 1
       },
@@ -4305,7 +4945,7 @@
     "properties": {
       "DestinationTransitEncryption": {
         "type": {
-          "$ref": "#/221"
+          "$ref": "#/270"
         },
         "flags": 1
       },
@@ -4336,7 +4976,7 @@
     "properties": {
       "DestinationTransitEncryption": {
         "type": {
-          "$ref": "#/230"
+          "$ref": "#/279"
         },
         "flags": 1
       },
@@ -4361,7 +5001,7 @@
     "properties": {
       "EncryptionKeyConfiguration": {
         "type": {
-          "$ref": "#/256"
+          "$ref": "#/307"
         },
         "flags": 1
       },
@@ -4501,7 +5141,7 @@
       },
       "TlsEncryption": {
         "type": {
-          "$ref": "#/252"
+          "$ref": "#/303"
         },
         "flags": 0
       }
@@ -4555,6 +5195,48 @@
   },
   {
     "$type": "ObjectType",
+    "name": "SecretsManagerEndpointEncryptionConfiguration",
+    "properties": {
+      "EncryptionSecret": {
+        "type": {
+          "$ref": "#/264"
+        },
+        "flags": 1
+      },
+      "EncryptionSecretType": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceEndpointRouterOutputConfiguration",
+    "properties": {
+      "DestinationTransitEncryption": {
+        "type": {
+          "$ref": "#/263"
+        },
+        "flags": 1
+      },
+      "DestinationTransitEncryptionType": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
+      "EndpointLifecycleManagement": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "SrtCallerRouterOutputConfiguration",
     "properties": {
       "DestinationAddress": {
@@ -4573,7 +5255,7 @@
       },
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/248"
+          "$ref": "#/299"
         },
         "flags": 0
       },
@@ -4599,7 +5281,7 @@
     "properties": {
       "EncryptionKey": {
         "type": {
-          "$ref": "#/246"
+          "$ref": "#/295"
         },
         "flags": 1
       }
@@ -4611,7 +5293,7 @@
     "properties": {
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/248"
+          "$ref": "#/299"
         },
         "flags": 0
       },
@@ -4650,7 +5332,7 @@
       },
       "ProtocolConfiguration": {
         "type": {
-          "$ref": "#/238"
+          "$ref": "#/287"
         },
         "flags": 1
       }
@@ -4680,7 +5362,7 @@
     "properties": {
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/257"
+          "$ref": "#/308"
         },
         "flags": 1
       },
@@ -4724,7 +5406,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/251"
+      "$ref": "#/15"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/302"
     }
   },
   {
@@ -4737,6 +5425,13 @@
         },
         "flags": 18
       },
+      "AssociatedSourceEndpointArns": {
+        "type": {
+          "$ref": "#/310"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Names (ARNs) of one or more source endpoints that are associated with this router output."
+      },
       "AvailabilityZone": {
         "type": {
           "$ref": "#/15"
@@ -4746,7 +5441,7 @@
       },
       "Configuration": {
         "type": {
-          "$ref": "#/236"
+          "$ref": "#/285"
         },
         "flags": 1
       },
@@ -4759,7 +5454,7 @@
       },
       "FabricConfiguration": {
         "type": {
-          "$ref": "#/219"
+          "$ref": "#/268"
         },
         "flags": 0
       },
@@ -4779,7 +5474,7 @@
       },
       "MaintenanceConfiguration": {
         "type": {
-          "$ref": "#/225"
+          "$ref": "#/274"
         },
         "flags": 0
       },
@@ -4836,7 +5531,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/259"
+          "$ref": "#/311"
         },
         "flags": 0,
         "description": "Key-value pairs that can be used to tag this router output."
@@ -4876,7 +5571,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/260"
+          "$ref": "#/312"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4887,7 +5582,509 @@
     "$type": "ResourceType",
     "name": "AWS.MediaConnect/RouterOutput@default",
     "body": {
-      "$ref": "#/261"
+      "$ref": "#/313"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EndpointEncryptionSecretConfiguration",
+    "properties": {
+      "SecretArn": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The ARN of the Secrets Manager secret that holds the key or passphrase. The secret must be encrypted with a customer managed Amazon Web Services KMS key that is enabled and symmetric; it cannot use the Amazon Web Services managed key aws/secretsmanager. The secret must be in the same Amazon Web Services account and Region as the endpoint."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EndpointLifecycle",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ForwardErrorCorrectionState",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PublicSourceEndpointNetworkingConfiguration",
+    "properties": {
+      "SourceAllowRules": {
+        "type": {
+          "$ref": "#/340"
+        },
+        "flags": 1,
+        "description": "The rules that specify which CIDR blocks can connect to the source endpoint. You can specify up to 10 rules."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PublicSourceEndpointNetworkingConfigurationAllowRule",
+    "properties": {
+      "Cidr": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The CIDR block that is allowed to connect to the source endpoint, in CIDR notation."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RistStandardSourceEndpointConfiguration",
+    "properties": {
+      "DestinationIngestPort": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The port on the destination that receives the content. The valid range is 3000 to 30000."
+      },
+      "RecoveryLatencyMilliseconds": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The amount of time, in milliseconds, that the source endpoint allows for recovering lost packets. The valid range is 10 to 10000."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RouterOutputSourceEndpointAssociatedResourceDetails",
+    "properties": {
+      "MaximumBitrate": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The maximum bitrate of the router output, in bits per second."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The name of the router output."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RouterOutputSourceEndpointConfiguration",
+    "properties": {
+      "RouterOutputArn": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the router output that the source endpoint represents."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RouterOutputState",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RtpStandardSourceEndpointConfiguration",
+    "properties": {
+      "DestinationIngestPort": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The port on the destination that receives the content. The valid range is 3000 to 30000."
+      },
+      "ForwardErrorCorrectionState": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceEndpointAssociatedResourceDetails",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceEndpointConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceEndpointConnectionState",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceEndpointNetworkingType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceEndpointProtocol",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceEndpointRegistrationState",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceEndpointType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SrtCallerStandardSourceEndpointConfiguration",
+    "properties": {
+      "DestinationIngestPort": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The port on which the destination listens for the connection. The valid range is 3000 to 30000."
+      },
+      "EncryptionPassphrase": {
+        "type": {
+          "$ref": "#/315"
+        },
+        "flags": 0
+      },
+      "MinimumLatencyMilliseconds": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The minimum latency, in milliseconds, for the SRT connection. The valid range is 10 to 10000."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SrtListenerStandardSourceEndpointConfiguration",
+    "properties": {
+      "EncryptionPassphrase": {
+        "type": {
+          "$ref": "#/315"
+        },
+        "flags": 0
+      },
+      "MinimumLatencyMilliseconds": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The minimum latency, in milliseconds, for the SRT connection. The valid range is 10 to 10000."
+      },
+      "SourceAddress": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The IP address that the source endpoint listens on for incoming connections."
+      },
+      "SourceListenerPort": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The port that the source endpoint listens on for incoming connections. The valid range is 1024 to 65535."
+      },
+      "StreamId": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The stream ID that identifies the content for the SRT connection."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StandardSourceEndpointAssociatedResourceDetails",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StandardSourceEndpointConfiguration",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The name of the source endpoint."
+      },
+      "Protocol": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
+      "ProtocolConfiguration": {
+        "type": {
+          "$ref": "#/341"
+        },
+        "flags": 1
+      },
+      "SourceNetworkingConfiguration": {
+        "type": {
+          "$ref": "#/342"
+        },
+        "flags": 1
+      },
+      "SourceNetworkingType": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StandardSourceEndpointNetworkingConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StandardSourceEndpointProtocolConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VpcSourceEndpointNetworkingConfiguration",
+    "properties": {
+      "SecurityGroupIds": {
+        "type": {
+          "$ref": "#/343"
+        },
+        "flags": 1,
+        "description": "The IDs of the security groups to associate with the source endpoint. You can specify from 1 to 5 security groups."
+      },
+      "SubnetId": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The ID of the subnet to use for the source endpoint."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/319"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceEndpoint_StandardSourceEndpointProtocolConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceEndpoint_StandardSourceEndpointNetworkingConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/15"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaConnect/SourceEndpointProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/338"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaConnect/SourceEndpointProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 18
+      },
+      "AssociatedResourceDetails": {
+        "type": {
+          "$ref": "#/325"
+        },
+        "flags": 2
+      },
+      "AvailabilityZone": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The Availability Zone in which the source endpoint is located."
+      },
+      "AvailabilityZoneId": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The ID of the Availability Zone in which the source endpoint is located."
+      },
+      "Configuration": {
+        "type": {
+          "$ref": "#/326"
+        },
+        "flags": 1
+      },
+      "ConnectionState": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The date and time when the source endpoint was created."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The description of the source endpoint."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the source endpoint."
+      },
+      "LifecycleManagement": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The name of the source endpoint."
+      },
+      "RegionName": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The name of the Amazon Web Services Region in which the source endpoint is located."
+      },
+      "RegistrationState": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2
+      },
+      "SourceType": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/345"
+        },
+        "flags": 0,
+        "description": "The tags associated with the source endpoint. Each tag is a key-value pair."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The date and time when the source endpoint was last updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaConnect/SourceEndpoint",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/346"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MediaConnect/SourceEndpoint@default",
+    "body": {
+      "$ref": "#/347"
     },
     "readableScopes": 0,
     "writableScopes": 0

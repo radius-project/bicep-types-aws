@@ -18,6 +18,8 @@ import os
 import sys
 import json
 
+LIMITATIONS_URL = "https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md"
+
 
 def generate_reference_table(base_directory, output_filename):
     with open(output_filename, "w") as output_file:
@@ -33,18 +35,32 @@ def generate_reference_table(base_directory, output_filename):
                 resource_type = data["type"]
                 resource_schema = data["schema"]
                 primary_identifiers = resource_schema["primaryIdentifier"]
-                is_nonidempotent = False
-                for primary_identifier in primary_identifiers:
-                    if "readOnlyProperties" in resource_schema:
-                        property_list = resource_schema["readOnlyProperties"]
-                        if primary_identifier in property_list:
-                            is_nonidempotent = True
+                handlers = resource_schema.get("handlers", {})
+                # Same rules as the downloader: a read-only type has a read
+                # handler but no create handler, and a create-and-delete-only
+                # type has a create handler but no update handler.
+                is_read_only = "read" in handlers and "create" not in handlers
+                is_create_and_delete_only = "create" in handlers and "update" not in handlers
 
-                primary_identifiers_output = ", ".join(primary_identifiers)
-                notes_output = ""
+                # Templates never create a read-only type, so it can't be
+                # non-idempotent.
+                is_nonidempotent = False
+                if not is_read_only:
+                    for primary_identifier in primary_identifiers:
+                        if "readOnlyProperties" in resource_schema:
+                            property_list = resource_schema["readOnlyProperties"]
+                            if primary_identifier in property_list:
+                                is_nonidempotent = True
+
+                notes = []
+                if is_read_only:
+                    notes.append(f"This resource type is read-only. Reference it with `existing`. See [here]({LIMITATIONS_URL}#read-only-resource-types) for more information.")
+                if is_create_and_delete_only:
+                    notes.append(f"This resource type can only be created and deleted. See [here]({LIMITATIONS_URL}#create-and-delete-only-resource-types) for more information.")
                 if is_nonidempotent:
-                    notes_output = "\u26a0 This resource type is non-idempotent. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md) for more information."
-                
+                    notes.append(f"\u26a0 This resource type is non-idempotent. See [here]({LIMITATIONS_URL}) for more information.")
+                notes_output = " ".join(notes)
+
                 aws_resource_type = resource_type.split("::")[1].lower()
                 resource_api_version = "default"
                 resource_link = f"https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.{aws_resource_type}/{resource_api_version}/types.md"

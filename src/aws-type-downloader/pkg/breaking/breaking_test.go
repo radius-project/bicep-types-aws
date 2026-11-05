@@ -64,6 +64,64 @@ func TestCompare_TypeRemovedAndAdded(t *testing.T) {
 	assertChanges(t, changes, Change{ResourceType: "AWS::Test::Old", Kind: TypeRemoved})
 }
 
+func TestCompare_TypeBecameReadOnly(t *testing.T) {
+	mutable := `{"properties": {"Name": {"type": "string"}}, "handlers": {"create": {}, "read": {}, "update": {}, "delete": {}}}`
+	readOnly := `{"properties": {"Name": {"type": "string"}}, "handlers": {"read": {}, "list": {}}}`
+
+	assertChanges(t, compareOne(t, mutable, readOnly), Change{Kind: TypeReadOnly})
+	assertChanges(t, compareOne(t, readOnly, readOnly))
+	assertChanges(t, compareOne(t, readOnly, mutable))
+
+	// Property changes of a type that became read-only still break templates
+	// that reference it with existing.
+	assertChanges(t, compareOne(t, mutable, `{"properties": {}, "handlers": {"read": {}}}`),
+		Change{Kind: PropertyRemoved, Property: "Name"},
+		Change{Kind: TypeReadOnly},
+	)
+}
+
+func TestCompare_TypeBecameCreateAndDeleteOnly(t *testing.T) {
+	mutable := `{"properties": {}, "handlers": {"create": {}, "read": {}, "update": {}, "delete": {}}}`
+	createAndDelete := `{"properties": {}, "handlers": {"create": {}, "read": {}, "delete": {}}}`
+	readOnly := `{"properties": {}, "handlers": {"read": {}}}`
+
+	assertChanges(t, compareOne(t, mutable, createAndDelete), Change{Kind: TypeCreateAndDeleteOnly})
+	assertChanges(t, compareOne(t, createAndDelete, createAndDelete))
+	assertChanges(t, compareOne(t, createAndDelete, mutable))
+	// A read-only type was never updatable from a template.
+	assertChanges(t, compareOne(t, readOnly, createAndDelete))
+	// Losing create too is reported as becoming read-only.
+	assertChanges(t, compareOne(t, mutable, readOnly), Change{Kind: TypeReadOnly})
+}
+
+func TestCompare_ReadOnlyTypeIdentifierIsSettable(t *testing.T) {
+	// The generator keeps a read-only type's primary identifier settable, so
+	// the comparison does not treat it as read-only.
+	schema := func(readOnly, required string) string {
+		return `{
+			"properties": {"Arn": {"type": "string"}, "Name": {"type": "string"}},
+			"primaryIdentifier": ["/properties/Arn"],
+			"readOnlyProperties": ` + readOnly + `,
+			"required": ` + required + `,
+			"handlers": {"read": {}, "list": {}}
+		}`
+	}
+	both := `["/properties/Arn", "/properties/Name"]`
+
+	t.Run("identifier became required", func(t *testing.T) {
+		assertChanges(t, compareOne(t, schema(both, `[]`), schema(both, `["Arn"]`)),
+			Change{Kind: PropertyRequired, Property: "Arn"})
+	})
+
+	t.Run("identifier lost its read-only mark", func(t *testing.T) {
+		assertChanges(t, compareOne(t, schema(both, `["Arn"]`), schema(`["/properties/Name"]`, `["Arn"]`)))
+	})
+
+	t.Run("other read-only property became required", func(t *testing.T) {
+		assertChanges(t, compareOne(t, schema(both, `[]`), schema(both, `["Name"]`)))
+	})
+}
+
 func TestCompare_PropertyAddedIsNotBreaking(t *testing.T) {
 	changes := compareOne(t,
 		`{"properties": {"Name": {"type": "string"}}}`,

@@ -1,7 +1,7 @@
 import { Dictionary } from "lodash";
 import { boolean } from "yargs";
 import { Context, SchemaDefinition, SchemaRecord } from "./schemarecord";
-import { TypeBaseKind, TypeFactory, ObjectTypeProperty, ObjectTypePropertyFlags, ObjectType, ResourceType, ScopeType, BicepType, TypeReference } from "bicep-types";
+import { All, TypeBaseKind, TypeFactory, ObjectTypeProperty, ObjectTypePropertyFlags, ObjectType, ResourceType, ScopeType, BicepType, TypeReference } from "bicep-types";
 
 export function convertSchemaRecordToTypes(records: SchemaRecord[]): BicepType[] {
     const factory = new TypeFactory()
@@ -26,8 +26,12 @@ function visitSchemaRecord(factory: TypeFactory, record: SchemaRecord): Resource
 
     // Because createOnlyProperties and readOnlyProperties can be nested, we need to traverse the type
     // graph after the types have all been built.
+    //
+    // A template references a read-only type with `existing` and sets its primary identifier, so the
+    // identifier stays settable even though AWS lists it as read-only.
+    const settable = isReadOnly(record) ? record.schema.primaryIdentifier ?? [] : []
     if (record.schema.readOnlyProperties) {
-        record.schema.readOnlyProperties.forEach(p => {
+        record.schema.readOnlyProperties.filter(p => !settable.includes(p)).forEach(p => {
             const parts = p.split('/').filter(s => s.length > 0)
             parts.shift()
 
@@ -112,8 +116,19 @@ function visitSchemaRecord(factory: TypeFactory, record: SchemaRecord): Resource
         },
         undefined)
 
-    const resourceType = factory.addResourceType(`${typeName}@default`, body, ScopeType.None, ScopeType.None)
+    // Bicep treats no readable and no writable scopes as every scope. A
+    // read-only type is readable but not writable, so Bicep allows it with
+    // `existing` and warns about a declaration that would create it (BCP245).
+    const readableScopes = isReadOnly(record) ? All : ScopeType.None
+    const resourceType = factory.addResourceType(`${typeName}@default`, body, readableScopes, ScopeType.None)
     return factory.lookupType(resourceType) as ResourceType
+}
+
+// isReadOnly reports whether the record is a type that AWS creates on its own:
+// its schema has a read handler but no create handler. Radius uses the same rule.
+function isReadOnly(record: SchemaRecord): boolean {
+    const handlers = record.schema.handlers ?? {}
+    return 'read' in handlers && !('create' in handlers)
 }
 
 function convertOneOfPropertiesToUnion(context: Context, factory: TypeFactory, record: SchemaRecord, properties: TypeReference, typeName: string, oneofInDefinitions: boolean) {

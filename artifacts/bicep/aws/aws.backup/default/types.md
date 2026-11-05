@@ -1,5 +1,13 @@
 # AWS.Backup @ default
 
+## Resource AWS.Backup/BackupAccessPoint@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Backup/BackupAccessPointProperties](#awsbackupbackupaccesspointproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Backup/BackupPlan@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -72,10 +80,32 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Backup/TieringConfigurationProperties](#awsbackuptieringconfigurationproperties) (Required, Identifier): properties of the resource
 
+## AccessPointMetadata
+### Properties
+* **AccessPointInTime**: string (ReadOnly): For a continuous recovery point, the point in time the backup access point exposes, echoed back by the service as supplied at create time. Absent for snapshot recovery points. A plain string rather than a date-time, because it is one entry of the service's string-to-string metadata map.
+* **S3AccessPointAlias**: string (ReadOnly): The alias of the Amazon S3 access point that Backup provisioned. Use this with standard Amazon S3 read APIs to access the backup data. Populated once the backup access point reaches the AVAILABLE status.
+* **S3AccessPointArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the Amazon S3 access point that Backup provisioned. Use this with standard Amazon S3 read APIs to access the backup data. Populated once the backup access point reaches the AVAILABLE status.
+
 ## AdvancedBackupSettingResourceType
 ### Properties
 * **BackupOptions**: [BackupPlan_BackupOptions](#backupplanbackupoptions) (Required)
 * **ResourceType**: string (Required)
+
+## AWS.Backup/BackupAccessPointProperties
+### Properties
+* **AccessPointInTime**: string (WriteOnly): For continuous (point-in-time) recovery points, the timestamp in ISO 8601 format (for example 2021-11-27T03:30:27Z) that determines the point-in-time view of the backup data. The timestamp must be within the continuous backup's retention period at the time the access point is created. Do not specify this for snapshot recovery points. The service reports it back under AccessPointMetadata.
+* **AccessPointMetadata**: [AccessPointMetadata](#accesspointmetadata) (ReadOnly)
+* **AccessPointPolicy**: [BackupAccessPoint_AccessPointPolicy](#backupaccesspointaccesspointpolicy) (WriteOnly): An optional resource-based policy document, in JSON, to apply to the underlying Amazon S3 access point. The policy controls how backup data can be accessed through the access point. If you do not specify a policy, access is governed by the caller's IAM permissions. The serialized policy may not exceed 200000 characters. This value is not returned by the service and cannot be updated in place.
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) that uniquely identifies the backup access point.
+* **BackupVaultArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the backup vault that contains the recovery point.
+* **BackupVaultName**: string (ReadOnly): The name of the backup vault that contains the recovery point.
+* **CreationTime**: string (ReadOnly): The date and time that the backup access point was created.
+* **Name**: string: The name of the backup access point. This name is shared with the Amazon S3 access point namespace. It must be unique within your account and Region and cannot conflict with an existing Amazon S3 access point. If omitted, a name is generated.
+* **RecoveryPointArn**: string (Required): The Amazon Resource Name (ARN) of the recovery point for which to create the backup access point. The recovery point must be an Amazon S3 recovery point in the AVAILABLE, STOPPED, or COMPLETED state.
+* **ResourceArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the resource that was backed up, such as an Amazon S3 bucket.
+* **ResourceType**: string (ReadOnly): The type of Amazon Web Services resource associated with the recovery point. For example, S3 for Amazon Simple Storage Service.
+* **Status**: string (ReadOnly): The current status of the backup access point.
+* **Tags**: [Tag](#tag)[]: The tags to assign to the backup access point.
 
 ## AWS.Backup/BackupPlanProperties
 ### Properties
@@ -178,6 +208,9 @@
 * **TieringConfigurationArn**: string (ReadOnly)
 * **TieringConfigurationName**: string (Required, Identifier)
 * **TieringConfigurationTags**: [TieringConfiguration_TieringConfigurationTags](#tieringconfigurationtieringconfigurationtags)
+
+## BackupAccessPoint_AccessPointPolicy
+### Properties
 
 ## BackupPlan_BackupOptions
 ### Properties
@@ -332,6 +365,11 @@
 
 ## SensitiveStringMap
 ### Properties
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
 
 ## Tag
 ### Properties
