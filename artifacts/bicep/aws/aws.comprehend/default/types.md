@@ -1,5 +1,13 @@
 # AWS.Comprehend @ default
 
+## Resource AWS.Comprehend/DocumentClassificationJob@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Comprehend/DocumentClassificationJobProperties](#awscomprehenddocumentclassificationjobproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Comprehend/DocumentClassifier@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -15,6 +23,22 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Comprehend/DocumentClassifierEndpointProperties](#awscomprehenddocumentclassifierendpointproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Comprehend/DominantLanguageDetectionJob@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Comprehend/DominantLanguageDetectionJobProperties](#awscomprehenddominantlanguagedetectionjobproperties) (Identifier): properties of the resource
+
+## Resource AWS.Comprehend/EntitiesDetectionJob@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Comprehend/EntitiesDetectionJobProperties](#awscomprehendentitiesdetectionjobproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Comprehend/EntityRecognizer@default
 * **Readable Scope(s)**: None
@@ -40,6 +64,38 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Comprehend/FlywheelProperties](#awscomprehendflywheelproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Comprehend/FlywheelDataset@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Comprehend/FlywheelDatasetProperties](#awscomprehendflywheeldatasetproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Comprehend/PiiEntitiesDetectionJob@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Comprehend/PiiEntitiesDetectionJobProperties](#awscomprehendpiientitiesdetectionjobproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Comprehend/SentimentDetectionJob@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Comprehend/SentimentDetectionJobProperties](#awscomprehendsentimentdetectionjobproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Comprehend/TargetedSentimentDetectionJob@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Comprehend/TargetedSentimentDetectionJobProperties](#awscomprehendtargetedsentimentdetectionjobproperties) (Required, Identifier): properties of the resource
+
 ## AugmentedManifestsListItem
 ### Properties
 * **AttributeNames**: string[] (Required)
@@ -54,6 +110,19 @@
 * **S3Uri**: string (Required): The Amazon S3 location of the augmented manifest file.
 * **SourceDocumentsS3Uri**: string: The S3 prefix to the source files (PDFs) that are referred to in the augmented manifest file.
 * **Split**: string: The purpose of the data you've provided in the augmented manifest.
+
+## AWS.Comprehend/DocumentClassificationJobProperties
+### Properties
+* **DataAccessRoleArn**: string (Required): The Amazon Resource Name (ARN) of the IAM role that grants Amazon Comprehend read access to your input data.
+* **DocumentClassifierArn**: string (Required): The Amazon Resource Name (ARN) of the document classifier to use to process the job.
+* **InputDataConfig**: [InputDataConfig](#inputdataconfig) (Required): Specifies the format and location of the input data for the job.
+* **JobArn**: string (Identifier): The Amazon Resource Name (ARN) of the document classification job.
+* **JobId**: string (ReadOnly): The identifier assigned to the document classification job.
+* **JobName**: string: The name that you assigned the document classification job.
+* **JobStatus**: string (ReadOnly): The current status of the document classification job.
+* **OutputDataConfig**: [OutputDataConfig](#outputdataconfig) (ReadOnly): Specifies where to send the output files.
+* **SubmitTime**: string (ReadOnly): The time that the document classification job was submitted for processing.
+* **Tags**: [Tag](#tag)[]: Tags associated with the document classification job.
 
 ## AWS.Comprehend/DocumentClassifierEndpointProperties
 ### Properties
@@ -81,6 +150,31 @@
 * **VersionName**: string
 * **VolumeKmsKeyId**: string
 * **VpcConfig**: [VpcConfig](#vpcconfig)
+
+## AWS.Comprehend/DominantLanguageDetectionJobProperties
+### Properties
+* **DataAccessRoleArn**: string: The Amazon Resource Name (ARN) of the IAM role that grants Amazon Comprehend read access to your input data.
+* **InputDataConfig**: [InputDataConfig](#inputdataconfig)
+* **JobArn**: string (Identifier): The Amazon Resource Name (ARN) of the dominant language detection job.
+* **JobId**: string (ReadOnly): The identifier assigned to the dominant language detection job.
+* **JobName**: string: The name that you assigned to the dominant language detection job.
+* **JobStatus**: string (ReadOnly): The current status of the dominant language detection job.
+* **OutputDataConfig**: [OutputDataConfig](#outputdataconfig) (ReadOnly)
+* **Tags**: [Tag](#tag)[]: Tags associated with the dominant language detection job.
+* **VolumeKmsKeyId**: string: ID for the AWS KMS key that Amazon Comprehend uses to encrypt data on the storage volume attached to the ML compute instance(s) that process the job.
+
+## AWS.Comprehend/EntitiesDetectionJobProperties
+### Properties
+* **DataAccessRoleArn**: string (Required): The Amazon Resource Name (ARN) of the IAM role that grants Amazon Comprehend read access to your input data.
+* **InputDataConfig**: [InputDataConfig](#inputdataconfig) (Required): Specifies the format and location of the input data for the job.
+* **JobArn**: string (Identifier): The Amazon Resource Name (ARN) of the entities detection job.
+* **JobId**: string (ReadOnly): The identifier assigned to the entities detection job.
+* **JobName**: string: The name that you assigned the entities detection job.
+* **JobStatus**: string (ReadOnly): The current status of the entities detection job.
+* **LanguageCode**: string (Required): The language of the input documents.
+* **OutputDataConfig**: [OutputDataConfig](#outputdataconfig) (ReadOnly): Specifies where to send the output files.
+* **SubmitTime**: string (ReadOnly): The time that the entities detection job was submitted for processing.
+* **Tags**: [Tag](#tag)[]: Tags associated with the entities detection job.
 
 ## AWS.Comprehend/EntityRecognizerEndpointProperties
 ### Properties
@@ -110,6 +204,19 @@
 * **VolumeKmsKeyId**: string: ID for the AWS KMS key that Amazon Comprehend uses to encrypt data on the storage volume attached to the ML compute instance(s).
 * **VpcConfig**: [VpcConfig](#vpcconfig): Configuration parameters for an optional private VPC containing the resources you are using for your custom entity recognizer.
 
+## AWS.Comprehend/FlywheelDatasetProperties
+### Properties
+* **CreationTime**: string (ReadOnly): Creation time of the dataset.
+* **DatasetArn**: string (Identifier): The ARN of the dataset.
+* **DatasetName**: string (Required): Name of the dataset.
+* **DatasetS3Uri**: string (ReadOnly): The S3 URI where the dataset is stored.
+* **DatasetType**: string: The dataset type (training data or test data).
+* **Description**: string: Description of the dataset.
+* **FlywheelArn**: string (Required): The Amazon Resource Number (ARN) of the flywheel.
+* **NumberOfDocuments**: int (ReadOnly): The number of documents in the dataset.
+* **Status**: string (ReadOnly): The dataset status.
+* **Tags**: [Tag](#tag)[]: Tags for the dataset.
+
 ## AWS.Comprehend/FlywheelProperties
 ### Properties
 * **ActiveModelArn**: string
@@ -121,6 +228,47 @@
 * **ModelType**: string
 * **Tags**: [Tag](#tag)[]
 * **TaskConfig**: [TaskConfig](#taskconfig)
+
+## AWS.Comprehend/PiiEntitiesDetectionJobProperties
+### Properties
+* **DataAccessRoleArn**: string (Required): The Amazon Resource Name (ARN) of the IAM role that grants Amazon Comprehend read access to your input data.
+* **InputDataConfig**: [PiiEntitiesDetectionJob_InputDataConfig](#piientitiesdetectionjobinputdataconfig) (Required): The input properties for a PII entities detection job.
+* **JobArn**: string (Identifier): The Amazon Resource Name (ARN) of the PII entities detection job.
+* **JobId**: string (ReadOnly): The identifier assigned to the PII entities detection job.
+* **JobName**: string: The identifier of the job.
+* **JobStatus**: string (ReadOnly): The current status of the PII entities detection job.
+* **LanguageCode**: string (Required): The language of the input documents.
+* **Mode**: string (Required): Specifies whether the output provides the locations (offsets) of PII entities or a file in which PII entities are redacted.
+* **OutputDataConfig**: [PiiEntitiesDetectionJob_OutputDataConfig](#piientitiesdetectionjoboutputdataconfig) (ReadOnly): Provides configuration parameters for the output of PII entity detection jobs.
+* **RedactionConfig**: [PiiEntitiesDetectionJob_RedactionConfig](#piientitiesdetectionjobredactionconfig): Provides configuration parameters for PII entity redaction.
+* **SubmitTime**: string (ReadOnly): The time that the PII entities detection job was submitted for processing.
+* **Tags**: [PiiEntitiesDetectionJob_Tags](#piientitiesdetectionjobtags)[]: Tags associated with the PII entities detection job.
+
+## AWS.Comprehend/SentimentDetectionJobProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the sentiment detection job.
+* **DataAccessRoleArn**: string (Required): The Amazon Resource Name (ARN) of the IAM role that grants Amazon Comprehend read access to your input data.
+* **InputDataConfig**: [InputDataConfig](#inputdataconfig) (Required)
+* **JobId**: string (ReadOnly): The identifier assigned to the sentiment detection job.
+* **JobName**: string: The name that you assigned to the sentiment detection job.
+* **JobStatus**: string (ReadOnly): The current status of the sentiment detection job.
+* **LanguageCode**: string (Required): The language of the input documents.
+* **Tags**: [Tag](#tag)[]: Tags associated with the sentiment detection job.
+
+## AWS.Comprehend/TargetedSentimentDetectionJobProperties
+### Properties
+* **DataAccessRoleArn**: string (Required): The Amazon Resource Name (ARN) of the IAM role that grants Amazon Comprehend read access to your input data.
+* **EndTime**: string (ReadOnly): The time that the targeted sentiment detection job completed.
+* **InputDataConfig**: [TargetedSentimentDetectionJob_InputDataConfig](#targetedsentimentdetectionjobinputdataconfig) (Required): The input properties for a targeted sentiment detection job.
+* **JobArn**: string (Identifier): The Amazon Resource Name (ARN) of the targeted sentiment detection job.
+* **JobId**: string (ReadOnly): The identifier assigned to the targeted sentiment detection job.
+* **JobName**: string: The identifier of the job.
+* **JobStatus**: string (ReadOnly): The current status of the targeted sentiment detection job.
+* **LanguageCode**: string (Required): The language of the input documents. Currently, English is the only supported language.
+* **OutputDataConfig**: [TargetedSentimentDetectionJob_OutputDataConfig](#targetedsentimentdetectionjoboutputdataconfig) (ReadOnly): Provides configuration parameters for the output of targeted sentiment detection jobs.
+* **SubmitTime**: string (ReadOnly): The time that the targeted sentiment detection job was submitted for processing.
+* **Tags**: [TargetedSentimentDetectionJob_Tags](#targetedsentimentdetectionjobtags)[]: Tags associated with the targeted sentiment detection job.
+* **VolumeKmsKeyId**: string: ID for the AWS KMS key that Amazon Comprehend uses to encrypt data on the storage volume attached to the ML compute instance(s) that process the analysis job.
 
 ## DataSecurityConfig
 ### Properties
@@ -197,6 +345,64 @@
 ### Properties
 * **Type**: string (Required)
 
+## InputDataConfig
+### Properties
+* **InputFormat**: string: Specifies how the text in an input file should be processed.
+* **S3Uri**: string (Required): The Amazon S3 URI for the input data.
+
+## InputDataConfig
+### Properties
+* **InputFormat**: string: Specifies how the text in an input file should be processed.
+* **S3Uri**: string (Required): The Amazon S3 URI for the input data.
+
+## InputDataConfig
+### Properties
+* **InputFormat**: string: Specifies how the text in an input file should be processed.
+* **S3Uri**: string (Required): The Amazon S3 URI for the input data.
+
+## InputDataConfig
+### Properties
+* **InputFormat**: string: Specifies how the text in an input file should be processed.
+* **S3Uri**: string (Required): The Amazon S3 URI for the input data.
+
+## OutputDataConfig
+### Properties
+* **S3Uri**: string (Required): When you use the OutputDataConfig object with asynchronous operations, you specify the Amazon S3 location where you want to write the output data.
+
+## OutputDataConfig
+### Properties
+* **KmsKeyId**: string: ID for the AWS KMS key that Amazon Comprehend uses to encrypt the output results.
+* **S3Uri**: string (Required): The Amazon S3 URI for the output data.
+
+## OutputDataConfig
+### Properties
+* **S3Uri**: string (Required): When you use the OutputDataConfig object with asynchronous operations, you specify the Amazon S3 location where you want to write the output data.
+
+## PiiEntitiesDetectionJob_InputDataConfig
+### Properties
+* **InputFormat**: string: Specifies how the text in an input file should be processed.
+* **S3Uri**: string (Required): The Amazon S3 URI for the input data.
+
+## PiiEntitiesDetectionJob_OutputDataConfig
+### Properties
+* **S3Uri**: string (Required): The Amazon S3 URI where the output is written.
+
+## PiiEntitiesDetectionJob_RedactionConfig
+### Properties
+* **MaskCharacter**: string: A character that replaces each character in the redacted PII entity.
+* **MaskMode**: string: Specifies whether the PII entity is redacted with the mask character or the entity type.
+* **PiiEntityTypes**: string[]: An array of the types of PII entities that Amazon Comprehend detects.
+
+## PiiEntitiesDetectionJob_Tags
+### Properties
+* **Key**: string (Required): The key of the tag.
+* **Value**: string (Required): The value of the tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key of the tag.
+* **Value**: string (Required): The value of the tag.
+
 ## Tag
 ### Properties
 * **Key**: string (Required)
@@ -206,6 +412,16 @@
 ### Properties
 * **Key**: string (Required): The initial part of a key-value pair that forms a tag associated with a given resource.
 * **Value**: string (Required): The second part of a key-value pair that forms a tag associated with a given resource.
+
+## Tag
+### Properties
+* **Key**: string (Required): The initial part of a key-value pair.
+* **Value**: string (Required): The second part of a key-value pair.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key of the tag.
+* **Value**: string (Required): The value of the tag.
 
 ## Tag
 ### Properties
@@ -221,6 +437,31 @@
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The key for the tag.
+* **Value**: string (Required): The value for the tag.
+
+## TargetedSentimentDetectionJob_InputDataConfig
+### Properties
+* **InputFormat**: string: Specifies how the text in an input file should be processed.
+* **S3Uri**: string (Required): The Amazon S3 URI for the input data.
+
+## TargetedSentimentDetectionJob_OutputDataConfig
+### Properties
+* **KmsKeyId**: string: ID for the AWS KMS key that Amazon Comprehend uses to encrypt the output results.
+* **S3Uri**: string (Required): The Amazon S3 URI where the output is written.
+
+## TargetedSentimentDetectionJob_Tags
+### Properties
+* **Key**: string (Required): The key of the tag.
+* **Value**: string (Required): The value of the tag.
 
 ## TaskConfig
 ### Properties

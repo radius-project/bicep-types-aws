@@ -1,0 +1,215 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Chime-MediaStreamPipeline",
+  "type": "AWS::Chime::MediaStreamPipeline",
+  "time": "2026-11-05T21:16:00.413Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/MediaPipelineId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Sources",
+      "/properties/Sinks",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "MediaStreamSink": {
+        "additionalProperties": false,
+        "description": "Structure that contains the settings for a media stream sink.",
+        "properties": {
+          "MediaStreamType": {
+            "description": "The media stream sink's media stream type.",
+            "enum": [
+              "MixedAudio",
+              "IndividualAudio"
+            ],
+            "type": "string"
+          },
+          "ReservedStreamCapacity": {
+            "description": "Specifies the number of streams that the sink can accept.",
+            "maximum": 10,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "SinkArn": {
+            "description": "The ARN of the Kinesis Video Stream pool returned by the CreateMediaPipelineKinesisVideoStreamPool API.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "pattern": "^arn[\\/\\:\\-\\_\\.a-zA-Z0-9]+$",
+            "type": "string"
+          },
+          "SinkType": {
+            "description": "The media stream sink's type.",
+            "enum": [
+              "KinesisVideoStreamPool"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "SinkArn",
+          "SinkType",
+          "ReservedStreamCapacity",
+          "MediaStreamType"
+        ],
+        "type": "object"
+      },
+      "MediaStreamSource": {
+        "additionalProperties": false,
+        "description": "Structure that contains the settings for media stream sources.",
+        "properties": {
+          "SourceArn": {
+            "description": "The ARN of the meeting.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "pattern": "^arn[\\/\\:\\-\\_\\.a-zA-Z0-9]+$",
+            "type": "string"
+          },
+          "SourceType": {
+            "description": "The type of media stream source.",
+            "enum": [
+              "ChimeSdkMeeting"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "SourceType",
+          "SourceArn"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with the resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Chime::MediaStreamPipeline",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "chime:ListMediaPipelines"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "chime:GetMediaPipeline",
+          "chime:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/MediaPipelineArn"
+    ],
+    "properties": {
+      "CreatedTimestamp": {
+        "description": "The time at which the media stream pipeline was created, in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "MediaPipelineArn": {
+        "description": "The ARN of the media stream pipeline.",
+        "maxLength": 1011,
+        "minLength": 1,
+        "pattern": "^arn[\\/\\:\\-\\_\\.a-zA-Z0-9]+$",
+        "type": "string"
+      },
+      "MediaPipelineId": {
+        "description": "The ID of the media stream pipeline.",
+        "maxLength": 36,
+        "minLength": 36,
+        "pattern": "^[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}$",
+        "type": "string"
+      },
+      "Sinks": {
+        "description": "The media stream pipeline's data sinks.",
+        "insertionOrder": true,
+        "items": {
+          "$ref": "#/definitions/MediaStreamSink"
+        },
+        "maxItems": 2,
+        "minItems": 1,
+        "type": "array"
+      },
+      "Sources": {
+        "description": "The media stream pipeline's data sources.",
+        "insertionOrder": true,
+        "items": {
+          "$ref": "#/definitions/MediaStreamSource"
+        },
+        "minItems": 1,
+        "type": "array"
+      },
+      "Status": {
+        "description": "The status of the media stream pipeline.",
+        "enum": [
+          "Initializing",
+          "InProgress",
+          "Failed",
+          "Stopping",
+          "Stopped",
+          "Paused",
+          "NotStarted"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tag key-value pairs.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array"
+      },
+      "UpdatedTimestamp": {
+        "description": "The time at which the media stream pipeline was updated, in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/MediaPipelineId",
+      "/properties/MediaPipelineArn",
+      "/properties/Status",
+      "/properties/CreatedTimestamp",
+      "/properties/UpdatedTimestamp"
+    ],
+    "required": [
+      "Sources",
+      "Sinks"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "chime:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Chime::MediaStreamPipeline"
+  }
+}

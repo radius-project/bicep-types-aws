@@ -1,0 +1,149 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-FIS-Experiment",
+  "type": "AWS::FIS::Experiment",
+  "time": "2026-10-30T02:43:59.427Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ExperimentOptions",
+      "/properties/ExperimentTemplateId"
+    ],
+    "definitions": {
+      "ExperimentOptions": {
+        "additionalProperties": false,
+        "description": "The experiment options.",
+        "properties": {
+          "ActionsMode": {
+            "description": "The actions mode.",
+            "enum": [
+              "skip-all",
+              "run-all"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair.",
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Represents a fault injection experiment run in AWS Fault Injection Service.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "fis:ListExperiments"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "fis:GetExperiment",
+          "fis:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the experiment.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^[\\S]+$",
+        "type": "string"
+      },
+      "CreationTime": {
+        "description": "The time that the experiment was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "EndTime": {
+        "description": "The time that the experiment ended.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ExperimentOptions": {
+        "$ref": "#/definitions/ExperimentOptions"
+      },
+      "ExperimentTemplateId": {
+        "description": "The ID of the experiment template.",
+        "maxLength": 64,
+        "pattern": "^[\\S]+$",
+        "type": "string"
+      },
+      "Id": {
+        "description": "The ID of the experiment.",
+        "maxLength": 64,
+        "pattern": "^[\\S]+$",
+        "type": "string"
+      },
+      "RoleArn": {
+        "description": "The Amazon Resource Name (ARN) of an IAM role that grants the FIS service permission to perform service actions on your behalf.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^[\\S]+$",
+        "type": "string"
+      },
+      "StartTime": {
+        "description": "The time that the experiment started.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags for the experiment.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Id",
+      "/properties/RoleArn",
+      "/properties/CreationTime",
+      "/properties/StartTime",
+      "/properties/EndTime",
+      "/properties/Tags"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "fis:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::FIS::Experiment"
+  }
+}

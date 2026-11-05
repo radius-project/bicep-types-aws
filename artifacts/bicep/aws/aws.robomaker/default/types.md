@@ -24,6 +24,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.RoboMaker/RobotApplicationProperties](#awsrobomakerrobotapplicationproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.RoboMaker/RobotApplicationVersion@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.RoboMaker/RobotApplicationVersionProperties](#awsrobomakerrobotapplicationversionproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.RoboMaker/SimulationApplication@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -31,6 +39,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.RoboMaker/SimulationApplicationProperties](#awsrobomakersimulationapplicationproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.RoboMaker/SimulationApplicationVersion@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.RoboMaker/SimulationApplicationVersionProperties](#awsrobomakersimulationapplicationversionproperties) (Required, Identifier): properties of the resource
 
 ## AWS.RoboMaker/FleetProperties
 ### Properties
@@ -47,6 +63,13 @@
 * **RobotSoftwareSuite**: [RobotSoftwareSuite](#robotsoftwaresuite) (Required)
 * **Sources**: [SourceConfig](#sourceconfig)[] (WriteOnly): The sources of the robot application.
 * **Tags**: [Tags](#tags)
+
+## AWS.RoboMaker/RobotApplicationVersionProperties
+### Properties
+* **Application**: string (Required)
+* **ApplicationVersion**: string (ReadOnly)
+* **Arn**: string (ReadOnly, Identifier)
+* **CurrentRevisionId**: string: The revision ID of robot application.
 
 ## AWS.RoboMaker/RobotProperties
 ### Properties
@@ -68,6 +91,13 @@
 * **SimulationSoftwareSuite**: [SimulationSoftwareSuite](#simulationsoftwaresuite) (Required): The simulation software suite used by the simulation application.
 * **Sources**: [SourceConfig](#sourceconfig)[] (WriteOnly): The sources of the simulation application.
 * **Tags**: [Tags](#tags)
+
+## AWS.RoboMaker/SimulationApplicationVersionProperties
+### Properties
+* **Application**: string (Required)
+* **ApplicationVersion**: string (ReadOnly)
+* **Arn**: string (ReadOnly, Identifier)
+* **CurrentRevisionId**: string: The revision ID of robot application.
 
 ## RenderingEngine
 ### Properties

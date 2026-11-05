@@ -1,0 +1,74 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RoboMaker-SimulationApplicationVersion",
+  "type": "AWS::RoboMaker::SimulationApplicationVersion",
+  "time": "2024-02-20T16:52:46.501Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Application",
+      "/properties/CurrentRevisionId"
+    ],
+    "definitions": {
+      "Arn": {
+        "pattern": "arn:[\\w+=/,.@-]+:[\\w+=/,.@-]+:[\\w+=/,.@-]*:[0-9]*:[\\w+=,.@-]+(/[\\w+=,.@-]+)*",
+        "type": "string"
+      }
+    },
+    "description": "AWS::RoboMaker::SimulationApplicationVersion resource creates an AWS RoboMaker SimulationApplicationVersion. This helps you control which code your simulation uses.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "robomaker:CreateSimulationApplicationVersion",
+          "s3:GetObject",
+          "ecr:BatchGetImage",
+          "ecr:GetAuthorizationToken",
+          "ecr:BatchCheckLayerAvailability",
+          "ecr-public:GetAuthorizationToken",
+          "sts:GetServiceBearerToken"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "robomaker:DeleteSimulationApplication",
+          "robomaker:DescribeSimulationApplication"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "robomaker:DescribeSimulationApplication"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Application": {
+        "$ref": "#/definitions/Arn"
+      },
+      "ApplicationVersion": {
+        "type": "string"
+      },
+      "Arn": {
+        "$ref": "#/definitions/Arn"
+      },
+      "CurrentRevisionId": {
+        "description": "The revision ID of robot application.",
+        "maxLength": 40,
+        "minLength": 1,
+        "pattern": "[a-zA-Z0-9_.\\-]*",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ApplicationVersion",
+      "/properties/Arn"
+    ],
+    "required": [
+      "Application"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "taggable": false,
+    "typeName": "AWS::RoboMaker::SimulationApplicationVersion"
+  }
+}

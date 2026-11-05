@@ -407,11 +407,251 @@
   },
   {
     "$type": "ObjectType",
+    "name": "JobAction",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JobActionOptions",
+    "properties": {
+      "ValidateAddress": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JobInputFormat",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JobInputOptions",
+    "properties": {
+      "Format": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "Location": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JobOutputFormat",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JobOutputOptions",
+    "properties": {
+      "Format": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "Location": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JobStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ValidateAddressActionOptions",
+    "properties": {
+      "AdditionalFeatures": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Location/JobProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/34"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Location/JobProperties",
+    "properties": {
+      "Action": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The action to perform on the input data."
+      },
+      "ActionOptions": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 0,
+        "description": "Additional parameters for configuring job action."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "Job creation time in ISO 8601 format."
+      },
+      "ExecutionRoleArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The ARN of the IAM role that Amazon Location Service assumes during job processing."
+      },
+      "InputOptions": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1,
+        "description": "Configuration for input data location and format."
+      },
+      "JobArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the job."
+      },
+      "JobId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the job."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "An optional name for the job resource."
+      },
+      "OutputOptions": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 1,
+        "description": "Configuration for output data location and format."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "Current job status."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 0,
+        "description": "Tags associated with the job."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "Last update time in ISO 8601 format."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Location/Job",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Location/Job@default",
+    "body": {
+      "$ref": "#/40"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "MapConfiguration",
     "properties": {
       "CustomLayers": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/47"
         },
         "flags": 0
       },
@@ -477,7 +717,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/29"
+      "$ref": "#/44"
     }
   },
   {
@@ -492,7 +732,7 @@
       },
       "Configuration": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/42"
         },
         "flags": 1
       },
@@ -528,7 +768,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -561,7 +801,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/50"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -572,7 +812,7 @@
     "$type": "ResourceType",
     "name": "AWS.Location/Map@default",
     "body": {
-      "$ref": "#/36"
+      "$ref": "#/51"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -636,7 +876,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/41"
+      "$ref": "#/56"
     }
   },
   {
@@ -663,7 +903,7 @@
       },
       "DataSourceConfiguration": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/53"
         },
         "flags": 0
       },
@@ -693,7 +933,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/60"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -726,7 +966,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/61"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -737,7 +977,7 @@
     "$type": "ResourceType",
     "name": "AWS.Location/PlaceIndex@default",
     "body": {
-      "$ref": "#/47"
+      "$ref": "#/62"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -784,7 +1024,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/50"
+      "$ref": "#/65"
     }
   },
   {
@@ -835,7 +1075,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -868,7 +1108,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/70"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -879,7 +1119,7 @@
     "$type": "ResourceType",
     "name": "AWS.Location/RouteCalculator@default",
     "body": {
-      "$ref": "#/56"
+      "$ref": "#/71"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -931,7 +1171,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/60"
+      "$ref": "#/75"
     }
   },
   {
@@ -995,7 +1235,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/79"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1040,7 +1280,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/80"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1051,7 +1291,65 @@
     "$type": "ResourceType",
     "name": "AWS.Location/Tracker@default",
     "body": {
-      "$ref": "#/66"
+      "$ref": "#/81"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Location/TrackerConsumerProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Location/TrackerConsumerProperties",
+    "properties": {
+      "ConsumerArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17
+      },
+      "TrackerName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Location/TrackerConsumer",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/84"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Location/TrackerConsumer@default",
+    "body": {
+      "$ref": "#/85"
     },
     "readableScopes": 0,
     "writableScopes": 0

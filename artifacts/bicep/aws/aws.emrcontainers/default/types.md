@@ -8,6 +8,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.EMRContainers/EndpointProperties](#awsemrcontainersendpointproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.EMRContainers/JobRun@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EMRContainers/JobRunProperties](#awsemrcontainersjobrunproperties) (Identifier): properties of the resource
+
+## Resource AWS.EMRContainers/JobTemplate@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EMRContainers/JobTemplateProperties](#awsemrcontainersjobtemplateproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.EMRContainers/SecurityConfiguration@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -59,6 +75,35 @@
 * **Type**: string (Required): The type of the managed endpoint.
 * **VirtualClusterId**: string (Required): The ID of the virtual cluster for which the managed endpoint is created.
 
+## AWS.EMRContainers/JobRunProperties
+### Properties
+* **Arn**: string (Identifier): The ARN of the job run.
+* **ConfigurationOverrides**: [ConfigurationOverrides](#configurationoverrides)
+* **CreatedAt**: string (ReadOnly): The date and time when the job run was created.
+* **CreatedBy**: string (ReadOnly): The user who created the job run.
+* **ExecutionRoleArn**: string: The execution role ARN of the job run.
+* **FailureReason**: string (ReadOnly): The reasons why the job run has failed.
+* **FinishedAt**: string (ReadOnly): The date and time when the job run has finished.
+* **Id**: string (ReadOnly): The ID of the job run.
+* **JobDriver**: [JobDriver](#jobdriver)
+* **Name**: string: The name of the job run.
+* **ReleaseLabel**: string: The release version of Amazon EMR.
+* **RetryPolicyConfiguration**: [RetryPolicyConfiguration](#retrypolicyconfiguration)
+* **RetryPolicyExecution**: [RetryPolicyExecution](#retrypolicyexecution) (ReadOnly)
+* **State**: string (ReadOnly): The state of the job run.
+* **Tags**: [Tag](#tag)[]: The assigned tags of the job run.
+* **VirtualClusterId**: string: The ID of the job run's virtual cluster.
+
+## AWS.EMRContainers/JobTemplateProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The ARN of the job template.
+* **CreatedAt**: string (ReadOnly): The date and time when the job template was created.
+* **CreatedBy**: string (ReadOnly): The user who created the job template.
+* **Id**: string (ReadOnly): The ID of the job template.
+* **JobTemplateData**: [JobTemplateData](#jobtemplatedata) (Required)
+* **Name**: string (Required): The specified name of the job template.
+* **Tags**: [Tag](#tag)[]: The tags that are associated with the job template.
+
 ## AWS.EMRContainers/SecurityConfigurationProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): The ARN of the security configuration.
@@ -88,9 +133,31 @@
 * **LogGroupName**: string (Required)
 * **LogStreamNamePrefix**: string
 
+## CloudWatchMonitoringConfiguration
+### Properties
+* **LogGroupName**: string (Required)
+* **LogStreamNamePrefix**: string
+
+## Configuration
+### Properties
+* **Classification**: string (Required): The classification within a configuration.
+* **Configurations**: [Configuration](#configuration)[]
+* **Properties**: [JobRun_Properties](#jobrunproperties)
+
+## Configuration
+### Properties
+* **Classification**: string (Required): The classification within a configuration.
+* **Configurations**: [Configuration](#configuration)[]
+* **Properties**: [JobTemplate_Properties](#jobtemplateproperties): A set of properties specified within a configuration classification.
+
 ## ConfigurationOverrides
 ### Properties
 * **ApplicationConfiguration**: [EMREKSConfiguration](#emreksconfiguration)[]
+* **MonitoringConfiguration**: [MonitoringConfiguration](#monitoringconfiguration)
+
+## ConfigurationOverrides
+### Properties
+* **ApplicationConfiguration**: [Configuration](#configuration)[]
 * **MonitoringConfiguration**: [MonitoringConfiguration](#monitoringconfiguration)
 
 ## ContainerInfo
@@ -100,6 +167,11 @@
 ## ContainerInfo
 ### Properties
 * **EksInfo**: [EksInfo](#eksinfo) (Required)
+
+## ContainerLogRotationConfiguration
+### Properties
+* **MaxFilesToKeep**: int (Required)
+* **RotationSize**: string (Required)
 
 ## ContainerLogRotationConfiguration
 ### Properties
@@ -154,6 +226,37 @@
 ### Properties
 * **TLSCertificateConfiguration**: [TLSCertificateConfiguration](#tlscertificateconfiguration)
 
+## JobDriver
+### Properties
+* **SparkSqlJobDriver**: [SparkSqlJobDriver](#sparksqljobdriver)
+* **SparkSubmitJobDriver**: [SparkSubmitJobDriver](#sparksubmitjobdriver)
+
+## JobDriver
+### Properties
+* **SparkSqlJobDriver**: [SparkSqlJobDriver](#sparksqljobdriver)
+* **SparkSubmitJobDriver**: [SparkSubmitJobDriver](#sparksubmitjobdriver)
+
+## JobRun_Properties
+### Properties
+
+## JobTemplate_JobTags
+### Properties
+
+## JobTemplate_ParameterConfiguration
+### Properties
+
+## JobTemplate_Properties
+### Properties
+
+## JobTemplateData
+### Properties
+* **ConfigurationOverrides**: [ParametricConfigurationOverrides](#parametricconfigurationoverrides)
+* **ExecutionRoleArn**: string (Required): The execution role ARN of the job run, or a template parameter reference.
+* **JobDriver**: [JobDriver](#jobdriver) (Required)
+* **JobTags**: [JobTemplate_JobTags](#jobtemplatejobtags): The tags assigned to jobs started using the job template.
+* **ParameterConfiguration**: [JobTemplate_ParameterConfiguration](#jobtemplateparameterconfiguration): The configuration of parameters existing in the job template.
+* **ReleaseLabel**: string (Required): The release version of Amazon EMR, or a template parameter reference.
+
 ## LakeFormationConfiguration
 ### Properties
 * **AuthorizedSessionTagValue**: string: The session tag to authorize Lake Formation access.
@@ -166,6 +269,11 @@
 * **AwsKmsKeyId**: string: The AWS KMS key ID.
 * **EncryptionKeyProviderType**: string: The encryption key provider type.
 
+## ManagedLogs
+### Properties
+* **AllowAWSToRetainLogs**: string
+* **EncryptionKeyArn**: string
+
 ## MonitoringConfiguration
 ### Properties
 * **CloudWatchMonitoringConfiguration**: [CloudWatchMonitoringConfiguration](#cloudwatchmonitoringconfiguration)
@@ -173,10 +281,50 @@
 * **PersistentAppUI**: string
 * **S3MonitoringConfiguration**: [S3MonitoringConfiguration](#s3monitoringconfiguration)
 
+## MonitoringConfiguration
+### Properties
+* **CloudWatchMonitoringConfiguration**: [CloudWatchMonitoringConfiguration](#cloudwatchmonitoringconfiguration)
+* **ContainerLogRotationConfiguration**: [ContainerLogRotationConfiguration](#containerlogrotationconfiguration)
+* **ManagedLogs**: [ManagedLogs](#managedlogs)
+* **PersistentAppUI**: string
+* **S3MonitoringConfiguration**: [S3MonitoringConfiguration](#s3monitoringconfiguration)
+
+## ParametricCloudWatchMonitoringConfiguration
+### Properties
+* **LogGroupName**: string: The name of the log group for log publishing, or a template parameter reference.
+* **LogStreamNamePrefix**: string: The specified name prefix for log streams.
+
+## ParametricConfigurationOverrides
+### Properties
+* **ApplicationConfiguration**: [Configuration](#configuration)[]
+* **MonitoringConfiguration**: [ParametricMonitoringConfiguration](#parametricmonitoringconfiguration)
+
+## ParametricMonitoringConfiguration
+### Properties
+* **CloudWatchMonitoringConfiguration**: [ParametricCloudWatchMonitoringConfiguration](#parametriccloudwatchmonitoringconfiguration)
+* **PersistentAppUI**: string: Monitoring configurations for the persistent application UI, or a template parameter reference.
+* **S3MonitoringConfiguration**: [ParametricS3MonitoringConfiguration](#parametrics3monitoringconfiguration)
+
+## ParametricS3MonitoringConfiguration
+### Properties
+* **LogUri**: string: Amazon S3 destination URI for log publishing.
+
+## RetryPolicyConfiguration
+### Properties
+* **MaxAttempts**: int (Required): The maximum number of attempts on the job's driver.
+
+## RetryPolicyExecution
+### Properties
+* **CurrentAttemptCount**: int (Required): The current number of attempts made on the driver of the job.
+
 ## S3EncryptionConfiguration
 ### Properties
 * **EncryptionOption**: string: The S3 encryption option.
 * **KMSKeyId**: string: The KMS key ID for encryption.
+
+## S3MonitoringConfiguration
+### Properties
+* **LogUri**: string (Required)
 
 ## S3MonitoringConfiguration
 ### Properties
@@ -193,10 +341,42 @@
 * **AuthorizationConfiguration**: [AuthorizationConfiguration](#authorizationconfiguration)
 * **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
 
+## SparkSqlJobDriver
+### Properties
+* **EntryPoint**: string
+* **SparkSqlParameters**: string
+
+## SparkSqlJobDriver
+### Properties
+* **EntryPoint**: string
+* **SparkSqlParameters**: string
+
+## SparkSubmitJobDriver
+### Properties
+* **EntryPoint**: string (Required)
+* **EntryPointArguments**: string[]
+* **SparkSubmitParameters**: string
+
+## SparkSubmitJobDriver
+### Properties
+* **EntryPoint**: string (Required)
+* **EntryPointArguments**: string[]
+* **SparkSubmitParameters**: string
+
 ## Tag
 ### Properties
 * **Key**: string (Required): A user-defined key, which is the minimum required information for a valid tag.
 * **Value**: string (Required): A user-defined value, which is optional in a tag.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

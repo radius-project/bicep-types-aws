@@ -80,6 +80,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.DataZone/GroupProfileProperties](#awsdatazonegroupprofileproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.DataZone/Owner@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.DataZone/OwnerProperties](#awsdatazoneownerproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.DataZone/PolicyGrant@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.DataZone/PolicyGrantProperties](#awsdatazonepolicygrantproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.DataZone/Project@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -300,6 +316,27 @@
 * **RolePrincipalId**: string (ReadOnly): The ID of the role principal for the group profile.
 * **Status**: string
 
+## AWS.DataZone/OwnerProperties
+### Properties
+* **DomainIdentifier**: string (Required, Identifier): The ID of the domain in which you want to add the entity owner.
+* **EntityIdentifier**: string (Required, Identifier): The ID of the entity to which you want to add an owner.
+* **EntityType**: string (Required, Identifier): The type of an entity.
+* **Owner**: [OwnerProperties](#ownerproperties) (Required, WriteOnly): The owner that you want to add to the entity.
+* **OwnerIdentifier**: string (ReadOnly, Identifier)
+* **OwnerType**: string (ReadOnly, Identifier)
+
+## AWS.DataZone/PolicyGrantProperties
+### Properties
+* **CreatedAt**: string (ReadOnly): Specifies the timestamp at which policy grant member was created.
+* **CreatedBy**: string (ReadOnly): Specifies the user who created the policy grant member.
+* **Detail**: [PolicyGrant_PolicyGrantDetail](#policygrantpolicygrantdetail) (Required)
+* **DomainIdentifier**: string (Required, Identifier)
+* **EntityIdentifier**: string (Required, Identifier)
+* **EntityType**: string (Required, Identifier)
+* **GrantId**: string (ReadOnly, Identifier): The unique identifier of the policy grant returned by the AddPolicyGrant API
+* **PolicyType**: string (Required, Identifier)
+* **Principal**: [PolicyGrant_PolicyGrantPrincipal](#policygrantpolicygrantprincipal) (Required)
+
 ## AWS.DataZone/ProjectMembershipProperties
 ### Properties
 * **Designation**: string (Required, WriteOnly)
@@ -493,7 +530,26 @@
 ## Member
 ### Properties
 
+## OwnerGroupProperties
+### Properties
+* **GroupIdentifier**: string: The ID of the domain unit owners group.
+
+## OwnerProperties
+### Properties
+* **Group**: [OwnerGroupProperties](#ownergroupproperties)
+* **User**: [OwnerUserProperties](#owneruserproperties)
+
+## OwnerUserProperties
+### Properties
+* **UserIdentifier**: string: The ID of the owner user.
+
 ## Parameter
+### Properties
+
+## PolicyGrant_PolicyGrantDetail
+### Properties
+
+## PolicyGrant_PolicyGrantPrincipal
 ### Properties
 
 ## ProjectMembershipAssignment

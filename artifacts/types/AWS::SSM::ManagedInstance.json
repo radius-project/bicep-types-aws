@@ -1,0 +1,144 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SSM-ManagedInstance",
+  "type": "AWS::SSM::ManagedInstance",
+  "time": "2026-10-28T22:26:54.167Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/InstanceId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Tags"
+    ],
+    "description": "Resource schema for an AWS Systems Manager managed instance. This is a read-only resource that provides information about managed nodes registered with Systems Manager.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "ssm:DescribeInstanceInformation"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ssm:DescribeInstanceInformation",
+          "ssm:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "AgentVersion": {
+        "description": "The version of SSM Agent running on the managed node.",
+        "type": "string"
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the managed instance.",
+        "pattern": "^arn:aws[a-zA-Z-]*:ssm:[a-z0-9-]+:[0-9]{12}:managed-instance/[\\w-]+$",
+        "type": "string"
+      },
+      "ComputerName": {
+        "description": "The fully qualified host name of the managed node.",
+        "type": "string"
+      },
+      "IPAddress": {
+        "description": "The IP address of the managed node.",
+        "type": "string"
+      },
+      "InstanceId": {
+        "description": "The managed node ID.",
+        "pattern": "^(^i-(\\w{8}|\\w{17})$)|(^mi-\\w{17}$)$",
+        "type": "string"
+      },
+      "IsLatestVersion": {
+        "description": "Indicates whether the latest version of SSM Agent is running on the managed node.",
+        "type": "boolean"
+      },
+      "PingStatus": {
+        "description": "Connection status of SSM Agent.",
+        "enum": [
+          "Online",
+          "ConnectionLost",
+          "Inactive"
+        ],
+        "type": "string"
+      },
+      "PlatformName": {
+        "description": "The name of the operating system platform running on the managed node.",
+        "type": "string"
+      },
+      "PlatformType": {
+        "description": "The operating system platform type.",
+        "enum": [
+          "Windows",
+          "Linux",
+          "MacOS"
+        ],
+        "type": "string"
+      },
+      "PlatformVersion": {
+        "description": "The version of the OS platform running on the managed node.",
+        "type": "string"
+      },
+      "ResourceType": {
+        "description": "The type of instance. Instances are either EC2 instances or managed instances.",
+        "enum": [
+          "ManagedInstance",
+          "Document",
+          "EC2Instance"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags assigned to the managed instance.",
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "Value": {
+              "maxLength": 256,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/InstanceId",
+      "/properties/PingStatus",
+      "/properties/AgentVersion",
+      "/properties/IsLatestVersion",
+      "/properties/PlatformType",
+      "/properties/PlatformName",
+      "/properties/PlatformVersion",
+      "/properties/ResourceType",
+      "/properties/IPAddress",
+      "/properties/ComputerName"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "ssm:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::SSM::ManagedInstance"
+  }
+}

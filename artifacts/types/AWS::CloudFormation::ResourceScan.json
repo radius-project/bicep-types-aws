@@ -1,0 +1,100 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudFormation-ResourceScan",
+  "type": "AWS::CloudFormation::ResourceScan",
+  "time": "2026-11-05T21:07:08.285Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ScanId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ScanFilters"
+    ],
+    "definitions": {
+      "ScanFilter": {
+        "additionalProperties": false,
+        "description": "A filter that is used to specify which resource types to scan.",
+        "properties": {
+          "Types": {
+            "description": "An array of strings where each string represents an AWS resource type to scan.",
+            "items": {
+              "maxLength": 100,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 100,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Represents a CloudFormation resource scan that discovers existing AWS resources in an account and region.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "cloudformation:ListResourceScans"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "cloudformation:DescribeResourceScan"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ResourceScanId"
+    ],
+    "properties": {
+      "PercentageCompleted": {
+        "description": "The percentage of the resource scan that has been completed.",
+        "type": "number"
+      },
+      "ResourceScanId": {
+        "description": "The Amazon Resource Name (ARN) of the resource scan.",
+        "type": "string"
+      },
+      "ScanFilters": {
+        "description": "The scan filters to use.",
+        "items": {
+          "$ref": "#/definitions/ScanFilter"
+        },
+        "maxItems": 1,
+        "minItems": 1,
+        "type": "array"
+      },
+      "ScanId": {
+        "description": "The unique identifier portion of the resource scan ARN.",
+        "type": "string"
+      },
+      "StartTime": {
+        "description": "The time that the resource scan was started.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Status": {
+        "description": "Status of the resource scan.",
+        "enum": [
+          "IN_PROGRESS",
+          "FAILED",
+          "COMPLETE",
+          "EXPIRED"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ResourceScanId",
+      "/properties/ScanId",
+      "/properties/Status",
+      "/properties/StartTime",
+      "/properties/PercentageCompleted"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::CloudFormation::ResourceScan"
+  }
+}

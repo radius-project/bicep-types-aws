@@ -1,0 +1,106 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Lambda-DurableExecution",
+  "type": "AWS::Lambda::DurableExecution",
+  "time": "2026-11-05T21:10:35.901Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/FunctionName"
+    ],
+    "description": "Represents a Lambda durable execution, which is a long-running, checkpoint-based execution of a durable function.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "FunctionName": {
+              "description": "The name or ARN of the Lambda function.",
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "FunctionName"
+          ]
+        },
+        "permissions": [
+          "lambda:ListDurableExecutionsByFunction"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "lambda:GetDurableExecution"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/DurableExecutionArn"
+    ],
+    "properties": {
+      "DurableExecutionArn": {
+        "description": "The Amazon Resource Name (ARN) of the durable execution.",
+        "maxLength": 1024,
+        "minLength": 1,
+        "type": "string"
+      },
+      "DurableExecutionName": {
+        "description": "The name of the durable execution.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9-_]+$",
+        "type": "string"
+      },
+      "EndTimestamp": {
+        "description": "The date and time when the durable execution ended, in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "FunctionArn": {
+        "description": "The Amazon Resource Name (ARN) of the Lambda function that was invoked to start this durable execution.",
+        "maxLength": 10000,
+        "type": "string"
+      },
+      "FunctionName": {
+        "description": "The name or ARN of the Lambda function. Used as a filter for the List operation.",
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
+      "StartTimestamp": {
+        "description": "The date and time when the durable execution started, in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The current status of the durable execution.",
+        "enum": [
+          "RUNNING",
+          "SUCCEEDED",
+          "FAILED",
+          "TIMED_OUT",
+          "STOPPED"
+        ],
+        "type": "string"
+      },
+      "Version": {
+        "description": "The version of the Lambda function that was invoked for this durable execution.",
+        "maxLength": 1024,
+        "minLength": 1,
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/DurableExecutionArn",
+      "/properties/DurableExecutionName",
+      "/properties/FunctionArn",
+      "/properties/Status",
+      "/properties/StartTimestamp",
+      "/properties/EndTimestamp",
+      "/properties/Version"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::Lambda::DurableExecution"
+  }
+}

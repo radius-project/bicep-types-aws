@@ -1,0 +1,828 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Timestream-InfluxDBParameterGroup",
+  "type": "AWS::Timestream::InfluxDBParameterGroup",
+  "time": "2026-11-05T21:24:10.831Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Description",
+      "/properties/Name",
+      "/properties/Parameters",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "Duration": {
+        "additionalProperties": false,
+        "properties": {
+          "DurationType": {
+            "description": "The type of duration for InfluxDB parameters.",
+            "enum": [
+              "hours",
+              "minutes",
+              "seconds",
+              "milliseconds",
+              "days"
+            ],
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of duration for InfluxDB parameters.",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "DurationType",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "InfluxDBv2Parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "FluxLogEnabled": {
+            "description": "Include option to show detailed logs for Flux queries.\n         Default: false",
+            "type": "boolean"
+          },
+          "HttpIdleTimeout": {
+            "$ref": "#/definitions/Duration",
+            "description": "Maximum duration the server should keep established connections alive while waiting for new requests. Set to 0 for no timeout.\n         Default: 3 minutes"
+          },
+          "HttpReadHeaderTimeout": {
+            "$ref": "#/definitions/Duration",
+            "description": "Maximum duration the server should try to read HTTP headers for new requests. Set to 0 for no timeout.\n         Default: 10 seconds"
+          },
+          "HttpReadTimeout": {
+            "$ref": "#/definitions/Duration",
+            "description": "Maximum duration the server should try to read the entirety of new requests. Set to 0 for no timeout.\n         Default: 0"
+          },
+          "HttpWriteTimeout": {
+            "$ref": "#/definitions/Duration",
+            "description": "Maximum duration the server should spend processing and responding to write requests. Set to 0 for no timeout.\n         Default: 0"
+          },
+          "InfluxqlMaxSelectBuckets": {
+            "description": "Maximum number of group by time buckets a SELECT statement can create. 0 allows an unlimited number of buckets.\n         Default: 0",
+            "maximum": 1000000000000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "InfluxqlMaxSelectPoint": {
+            "description": "Maximum number of points a SELECT statement can process. 0 allows an unlimited number of points. InfluxDB checks the point count every second (so queries exceeding the maximum aren’t immediately aborted).\n         Default: 0",
+            "maximum": 1000000000000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "InfluxqlMaxSelectSeries": {
+            "description": "Maximum number of series a SELECT statement can return. 0 allows an unlimited number of series.\n         Default: 0",
+            "maximum": 1000000000000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "LogLevel": {
+            "description": "Log output level. InfluxDB outputs log entries with severity levels greater than or equal to the level specified.\n         Default: info",
+            "enum": [
+              "debug",
+              "info",
+              "error"
+            ],
+            "type": "string"
+          },
+          "MetricsDisabled": {
+            "description": "Disable the HTTP /metrics endpoint which exposes internal InfluxDB metrics.\n         Default: false",
+            "type": "boolean"
+          },
+          "NoTasks": {
+            "description": "Disable the task scheduler. If problematic tasks prevent InfluxDB from starting, use this option to start InfluxDB without scheduling or executing tasks.\n         Default: false",
+            "type": "boolean"
+          },
+          "PprofDisabled": {
+            "description": "Disable the /debug/pprof HTTP endpoint. This endpoint provides runtime profiling data and can be helpful when debugging.\n         Default: true",
+            "type": "boolean"
+          },
+          "QueryConcurrency": {
+            "description": "Number of queries allowed to execute concurrently. Setting to 0 allows an unlimited number of concurrent queries.\n         Default: 0",
+            "maximum": 256,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "QueryInitialMemoryBytes": {
+            "description": "Initial bytes of memory allocated for a query.\n         Default: 0",
+            "maximum": 1000000000000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "QueryMaxMemoryBytes": {
+            "description": "Maximum number of queries allowed in execution queue. When queue limit is reached, new queries are rejected. Setting to 0 allows an unlimited number of queries in the queue.\n         Default: 0",
+            "maximum": 1000000000000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "QueryMemoryBytes": {
+            "description": "Maximum bytes of memory allowed for a single query. Must be greater or equal to queryInitialMemoryBytes.\n         Default: 0",
+            "maximum": 1000000000000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "QueryQueueSize": {
+            "description": "Maximum number of queries allowed in execution queue. When queue limit is reached, new queries are rejected. Setting to 0 allows an unlimited number of queries in the queue.\n         Default: 0",
+            "maximum": 256,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "SessionLength": {
+            "description": "Specifies the Time to Live (TTL) in minutes for newly created user sessions.\n         Default: 60",
+            "maximum": 2880,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "SessionRenewDisabled": {
+            "description": "Disables automatically extending a user’s session TTL on each request. By default, every request sets the session’s expiration time to five minutes from now. When disabled, sessions expire after the specified session length and the user is redirected to the login page, even if recently active.\n         Default: false",
+            "type": "boolean"
+          },
+          "StorageCacheMaxMemorySize": {
+            "description": "Maximum size (in bytes) a shard’s cache can reach before it starts rejecting writes. Must be greater than storageCacheSnapShotMemorySize and lower than instance’s total memory capacity. We recommend setting it to below 15% of the total memory capacity.\n         Default: 1073741824",
+            "maximum": 1000000000000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "StorageCacheSnapshotMemorySize": {
+            "description": "Size (in bytes) at which the storage engine will snapshot the cache and write it to a TSM file to make more memory available. Must not be greater than storageCacheMaxMemorySize.\n         Default: 26214400",
+            "maximum": 1000000000000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "StorageCacheSnapshotWriteColdDuration": {
+            "$ref": "#/definitions/Duration",
+            "description": "Duration at which the storage engine will snapshot the cache and write it to a new TSM file if the shard hasn’t received writes or deletes.\n         Default: 10 minutes"
+          },
+          "StorageCompactFullWriteColdDuration": {
+            "$ref": "#/definitions/Duration",
+            "description": "Duration at which the storage engine will compact all TSM files in a shard if it hasn't received writes or deletes.\n         Default: 4 hours"
+          },
+          "StorageCompactThroughputBurst": {
+            "description": "Rate limit (in bytes per second) that TSM compactions can write to disk.\n         Default: 50331648",
+            "maximum": 1000000000000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "StorageMaxConcurrentCompactions": {
+            "description": "Maximum number of full and level compactions that can run concurrently. A value of 0 results in 50% of runtime.GOMAXPROCS(0) used at runtime. Any number greater than zero limits compactions to that value. This setting does not apply to cache snapshotting.\n         Default: 0",
+            "maximum": 64,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "StorageMaxIndexLogFileSize": {
+            "description": "Size (in bytes) at which an index write-ahead log (WAL) file will compact into an index file. Lower sizes will cause log files to be compacted more quickly and result in lower heap usage at the expense of write throughput.\n         Default: 1048576",
+            "maximum": 1000000000000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "StorageNoValidateFieldSize": {
+            "description": "Skip field size validation on incoming write requests.\n         Default: false",
+            "type": "boolean"
+          },
+          "StorageRetentionCheckInterval": {
+            "$ref": "#/definitions/Duration",
+            "description": "Interval of retention policy enforcement checks. Must be greater than 0.\n         Default: 30 minutes"
+          },
+          "StorageSeriesFileMaxConcurrentSnapshotCompactions": {
+            "description": "Maximum number of snapshot compactions that can run concurrently across all series partitions in a database.\n         Default: 0",
+            "maximum": 64,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "StorageSeriesIdSetCacheSize": {
+            "description": "Size of the internal cache used in the TSI index to store previously calculated series results. Cached results are returned quickly rather than needing to be recalculated when a subsequent query with the same tag key/value predicate is executed. Setting this value to 0 will disable the cache and may decrease query performance.\n         Default: 100",
+            "maximum": 1000000000000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "StorageWalMaxConcurrentWrites": {
+            "description": "Maximum number writes to the WAL directory to attempt at the same time. Setting this value to 0 results in number of processing units available x2.\n         Default: 0",
+            "maximum": 256,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "StorageWalMaxWriteDelay": {
+            "$ref": "#/definitions/Duration",
+            "description": "Maximum amount of time a write request to the WAL directory will wait when the maximum number of concurrent active writes to the WAL directory has been met. Set to 0 to disable the timeout.\n         Default: 10 minutes"
+          },
+          "TracingType": {
+            "description": "Enable tracing in InfluxDB and specifies the tracing type. Tracing is disabled by default.",
+            "enum": [
+              "log",
+              "jaeger",
+              "disabled"
+            ],
+            "type": "string"
+          },
+          "UiDisabled": {
+            "description": "Disable the InfluxDB user interface (UI). The UI is enabled by default.\n         Default: false",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "InfluxDBv3CoreParameters": {
+        "additionalProperties": false,
+        "properties": {
+          "DataFusionConfig": {
+            "description": "Provides custom configuration to DataFusion as a comma-separated list of key:value pairs.",
+            "type": "string"
+          },
+          "DataFusionMaxParquetFanout": {
+            "description": "When multiple parquet files are required in a sorted way (deduplication for example), specifies the maximum fanout.\n         Default: 1000",
+            "maximum": 1000000,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "DataFusionNumThreads": {
+            "description": "Sets the maximum number of DataFusion runtime threads to use.",
+            "maximum": 2048,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "DataFusionRuntimeDisableLifoSlot": {
+            "description": "Disables the LIFO slot of the DataFusion runtime.",
+            "type": "boolean"
+          },
+          "DataFusionRuntimeEventInterval": {
+            "description": "Sets the number of scheduler ticks after which the scheduler of the DataFusion tokio runtime polls for external events–for example: timers, I/O.",
+            "maximum": 128,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "DataFusionRuntimeGlobalQueueInterval": {
+            "description": "Sets the number of scheduler ticks after which the scheduler of the DataFusion runtime polls the global task queue.",
+            "maximum": 128,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "DataFusionRuntimeMaxBlockingThreads": {
+            "description": "Specifies the limit for additional threads spawned by the DataFusion runtime.",
+            "maximum": 1024,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "DataFusionRuntimeMaxIoEventsPerTick": {
+            "description": "Configures the maximum number of events processed per tick by the tokio DataFusion runtime.",
+            "maximum": 4096,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "DataFusionRuntimeThreadKeepAlive": {
+            "$ref": "#/definitions/Duration",
+            "description": "Sets a custom timeout for a thread in the blocking pool of the tokio DataFusion runtime."
+          },
+          "DataFusionRuntimeThreadPriority": {
+            "description": "Sets the thread priority for tokio DataFusion runtime workers.\n         Default: 10",
+            "maximum": 19,
+            "minimum": -20,
+            "type": "integer"
+          },
+          "DataFusionRuntimeType": {
+            "description": "Specifies the DataFusion tokio runtime type.\n         Default: multi-thread",
+            "enum": [
+              "multi-thread",
+              "multi-thread-alt"
+            ],
+            "type": "string"
+          },
+          "DataFusionUseCachedParquetLoader": {
+            "description": "Uses a cached parquet loader when reading parquet files from the object store.",
+            "type": "boolean"
+          },
+          "DeleteGracePeriod": {
+            "$ref": "#/definitions/Duration",
+            "description": "Specifies the grace period before permanently deleting data.\n         Default: 24h"
+          },
+          "DisableParquetMemCache": {
+            "description": "Disables the in-memory Parquet cache. By default, the cache is enabled.",
+            "type": "boolean"
+          },
+          "DistinctCacheEvictionInterval": {
+            "$ref": "#/definitions/Duration",
+            "description": "Specifies the interval to evict expired entries from the distinct value cache, expressed as a human-readable duration–for example: 20s, 1m, 1h.\n         Default: 10s"
+          },
+          "ExecMemPoolBytes": {
+            "$ref": "#/definitions/PercentOrAbsoluteLong",
+            "description": "Specifies the size of memory pool used during query execution. Can be given as absolute value in bytes or as a percentage of the total available memory–for example: 8000000000 or 10%.\n         Default: 20%"
+          },
+          "ForceSnapshotMemThreshold": {
+            "$ref": "#/definitions/PercentOrAbsoluteLong",
+            "description": "Specifies the threshold for the internal memory buffer. Supports either a percentage (portion of available memory) or absolute value in MB–for example: 70% or 100\n         Default: 70%"
+          },
+          "Gen1Duration": {
+            "$ref": "#/definitions/Duration",
+            "description": "Specifies the duration that Parquet files are arranged into. Data timestamps land each row into a file of this duration. Supported durations are 1m, 5m, and 10m. These files are known as “generation 1” files that the compactor in InfluxDB 3 Enterprise can merge into larger generations.\n         Default: 10m"
+          },
+          "Gen1LookbackDuration": {
+            "$ref": "#/definitions/Duration",
+            "description": "Specifies how far back to look when creating generation 1 Parquet files.\n         Default: 24h"
+          },
+          "HardDeleteDefaultDuration": {
+            "$ref": "#/definitions/Duration",
+            "description": "Sets the default duration for hard deletion of data.\n         Default: 90d"
+          },
+          "LastCacheEvictionInterval": {
+            "$ref": "#/definitions/Duration",
+            "description": "Specifies the interval to evict expired entries from the Last-N-Value cache, expressed as a human-readable duration–for example: 20s, 1m, 1h.\n         Default: 10s"
+          },
+          "LogFilter": {
+            "description": "Sets the filter directive for logs.",
+            "type": "string"
+          },
+          "LogFormat": {
+            "description": "Defines the message format for logs.\n         Default: full",
+            "enum": [
+              "full"
+            ],
+            "type": "string"
+          },
+          "MaxHttpRequestSize": {
+            "description": "Specifies the maximum size of HTTP requests.\n         Default: 10485760",
+            "maximum": 16777216,
+            "minimum": 1024,
+            "type": "integer"
+          },
+          "ParquetMemCachePruneInterval": {
+            "$ref": "#/definitions/Duration",
+            "description": "Sets the interval to check if the in-memory Parquet cache needs to be pruned.\n         Default: 1s"
+          },
+          "ParquetMemCachePrunePercentage": {
+            "description": "Specifies the percentage of entries to prune during a prune operation on the in-memory Parquet cache.\n         Default: 0.1",
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "ParquetMemCacheQueryPathDuration": {
+            "$ref": "#/definitions/Duration",
+            "description": "Specifies the time window for caching recent Parquet files in memory.\n         Default: 5h"
+          },
+          "ParquetMemCacheSize": {
+            "$ref": "#/definitions/PercentOrAbsoluteLong",
+            "description": "Specifies the size of the in-memory Parquet cache in megabytes or percentage of total available memory.\n         Default: 20%"
+          },
+          "PreemptiveCacheAge": {
+            "$ref": "#/definitions/Duration",
+            "description": "Specifies the interval to prefetch into the Parquet cache during compaction.\n         Default: 3d"
+          },
+          "QueryFileLimit": {
+            "description": "Limits the number of Parquet files a query can access. If a query attempts to read more than this limit, InfluxDB 3 returns an error.\n         Default: 432",
+            "maximum": 1024,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "QueryLogSize": {
+            "description": "Defines the size of the query log. Up to this many queries remain in the log before older queries are evicted to make room for new ones.\n         Default: 1000",
+            "maximum": 10000,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "RetentionCheckInterval": {
+            "$ref": "#/definitions/Duration",
+            "description": "The interval at which retention policies are checked and enforced. Enter as a human-readable time–for example: 30m or 1h.\n         Default: 30m"
+          },
+          "SnapshottedWalFilesToKeep": {
+            "description": "Specifies the number of snapshotted WAL files to retain in the object store. Flushing the WAL files does not clear the WAL files immediately; they are deleted when the number of snapshotted WAL files exceeds this number.\n         Default: 300",
+            "maximum": 10000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "TableIndexCacheConcurrencyLimit": {
+            "description": "Limits the concurrency level for table index cache operations.\n         Default: 8",
+            "maximum": 100,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "TableIndexCacheMaxEntries": {
+            "description": "Specifies the maximum number of entries in the table index cache.\n         Default: 1000",
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "WalMaxWriteBufferSize": {
+            "description": "Specifies the maximum number of write requests that can be buffered before a flush must be executed and succeed.\n         Default: 100000",
+            "maximum": 1000000,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "WalReplayConcurrencyLimit": {
+            "description": "Concurrency limit during WAL replay. Setting this number too high can lead to OOM. The default is dynamically determined.\n         Default: max(num_cpus, 10)",
+            "maximum": 100,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "WalReplayFailOnError": {
+            "description": "Determines whether WAL replay should fail when encountering errors.\n         Default: false",
+            "type": "boolean"
+          },
+          "WalSnapshotSize": {
+            "description": "Defines the number of WAL files to attempt to remove in a snapshot. This, multiplied by the interval, determines how often snapshots are taken.\n         Default: 600",
+            "maximum": 10000,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "InfluxDBv3EnterpriseParameters": {
+        "additionalProperties": false,
+        "properties": {
+          "CatalogSyncInterval": {
+            "$ref": "#/definitions/Duration",
+            "description": "Defines how often the catalog synchronizes across cluster nodes.\n         Default: 10s"
+          },
+          "CompactionCheckInterval": {
+            "$ref": "#/definitions/Duration",
+            "description": "Specifies how often the compactor checks for new compaction work to perform.\n         Default: 10s"
+          },
+          "CompactionCleanupWait": {
+            "$ref": "#/definitions/Duration",
+            "description": "Specifies the amount of time that the compactor waits after finishing a compaction run to delete files marked as needing deletion during that compaction run.\n         Default: 10m"
+          },
+          "CompactionGen2Duration": {
+            "$ref": "#/definitions/Duration",
+            "description": "Specifies the duration of the first level of compaction (gen2). Later levels of compaction are multiples of this duration. This value should be equal to or greater than the gen1 duration.\n         Default: 20m"
+          },
+          "CompactionMaxNumFilesPerPlan": {
+            "description": "Sets the maximum number of files included in any compaction plan.\n         Default: 500",
+            "maximum": 10000,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "CompactionMultipliers": {
+            "description": "Specifies a comma-separated list of multiples defining the duration of each level of compaction. The number of elements in the list determines the number of compaction levels. The first element specifies the duration of the first level (gen3); subsequent levels are multiples of the previous level.\n         Default: 3,4,6,5",
+            "type": "string"
+          },
+          "CompactionRowLimit": {
+            "description": "Specifies the soft limit for the number of rows per file that the compactor writes. The compactor may write more rows than this limit.\n         Default: 1000000",
+            "maximum": 100000000,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "DataFusionConfig": {
+            "description": "Provides custom configuration to DataFusion as a comma-separated list of key:value pairs.",
+            "type": "string"
+          },
+          "DataFusionMaxParquetFanout": {
+            "description": "When multiple parquet files are required in a sorted way (deduplication for example), specifies the maximum fanout.\n         Default: 1000",
+            "maximum": 1000000,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "DataFusionNumThreads": {
+            "description": "Sets the maximum number of DataFusion runtime threads to use.",
+            "maximum": 2048,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "DataFusionRuntimeDisableLifoSlot": {
+            "description": "Disables the LIFO slot of the DataFusion runtime.",
+            "type": "boolean"
+          },
+          "DataFusionRuntimeEventInterval": {
+            "description": "Sets the number of scheduler ticks after which the scheduler of the DataFusion tokio runtime polls for external events–for example: timers, I/O.",
+            "maximum": 128,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "DataFusionRuntimeGlobalQueueInterval": {
+            "description": "Sets the number of scheduler ticks after which the scheduler of the DataFusion runtime polls the global task queue.",
+            "maximum": 128,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "DataFusionRuntimeMaxBlockingThreads": {
+            "description": "Specifies the limit for additional threads spawned by the DataFusion runtime.",
+            "maximum": 1024,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "DataFusionRuntimeMaxIoEventsPerTick": {
+            "description": "Configures the maximum number of events processed per tick by the tokio DataFusion runtime.",
+            "maximum": 4096,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "DataFusionRuntimeThreadKeepAlive": {
+            "$ref": "#/definitions/Duration",
+            "description": "Sets a custom timeout for a thread in the blocking pool of the tokio DataFusion runtime."
+          },
+          "DataFusionRuntimeThreadPriority": {
+            "description": "Sets the thread priority for tokio DataFusion runtime workers.\n         Default: 10",
+            "maximum": 19,
+            "minimum": -20,
+            "type": "integer"
+          },
+          "DataFusionRuntimeType": {
+            "description": "Specifies the DataFusion tokio runtime type.\n         Default: multi-thread",
+            "enum": [
+              "multi-thread",
+              "multi-thread-alt"
+            ],
+            "type": "string"
+          },
+          "DataFusionUseCachedParquetLoader": {
+            "description": "Uses a cached parquet loader when reading parquet files from the object store.",
+            "type": "boolean"
+          },
+          "DedicatedCompactor": {
+            "description": "Specifies if the compactor instance should be a standalone instance or not.",
+            "type": "boolean"
+          },
+          "DeleteGracePeriod": {
+            "$ref": "#/definitions/Duration",
+            "description": "Specifies the grace period before permanently deleting data.\n         Default: 24h"
+          },
+          "DisableParquetMemCache": {
+            "description": "Disables the in-memory Parquet cache. By default, the cache is enabled.",
+            "type": "boolean"
+          },
+          "DistinctCacheEvictionInterval": {
+            "$ref": "#/definitions/Duration",
+            "description": "Specifies the interval to evict expired entries from the distinct value cache, expressed as a human-readable duration–for example: 20s, 1m, 1h.\n         Default: 10s"
+          },
+          "DistinctValueCacheDisableFromHistory": {
+            "description": "Disables populating the distinct value cache from historical data. If disabled, the cache is still populated with data from the write-ahead log (WAL).",
+            "type": "boolean"
+          },
+          "ExecMemPoolBytes": {
+            "$ref": "#/definitions/PercentOrAbsoluteLong",
+            "description": "Specifies the size of memory pool used during query execution. Can be given as absolute value in bytes or as a percentage of the total available memory–for example: 8000000000 or 10%.\n         Default: 20%"
+          },
+          "ForceSnapshotMemThreshold": {
+            "$ref": "#/definitions/PercentOrAbsoluteLong",
+            "description": "Specifies the threshold for the internal memory buffer. Supports either a percentage (portion of available memory) or absolute value in MB–for example: 70% or 100\n         Default: 70%"
+          },
+          "Gen1Duration": {
+            "$ref": "#/definitions/Duration",
+            "description": "Specifies the duration that Parquet files are arranged into. Data timestamps land each row into a file of this duration. Supported durations are 1m, 5m, and 10m. These files are known as “generation 1” files, which the compactor can merge into larger generations.\n         Default: 10m"
+          },
+          "Gen1LookbackDuration": {
+            "$ref": "#/definitions/Duration",
+            "description": "Specifies how far back to look when creating generation 1 Parquet files.\n         Default: 24h"
+          },
+          "HardDeleteDefaultDuration": {
+            "$ref": "#/definitions/Duration",
+            "description": "Sets the default duration for hard deletion of data.\n         Default: 90d"
+          },
+          "IngestQueryInstances": {
+            "description": "Specifies number of instances in the DbCluster which can both ingest and query.",
+            "maximum": 4,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "LastCacheEvictionInterval": {
+            "$ref": "#/definitions/Duration",
+            "description": "Specifies the interval to evict expired entries from the Last-N-Value cache, expressed as a human-readable duration–for example: 20s, 1m, 1h.\n         Default: 10s"
+          },
+          "LastValueCacheDisableFromHistory": {
+            "description": "Disables populating the last-N-value cache from historical data. If disabled, the cache is still populated with data from the write-ahead log (WAL).",
+            "type": "boolean"
+          },
+          "LogFilter": {
+            "description": "Sets the filter directive for logs.",
+            "type": "string"
+          },
+          "LogFormat": {
+            "description": "Defines the message format for logs.\n         Default: full",
+            "enum": [
+              "full"
+            ],
+            "type": "string"
+          },
+          "MaxHttpRequestSize": {
+            "description": "Specifies the maximum size of HTTP requests.\n         Default: 10485760",
+            "maximum": 16777216,
+            "minimum": 1024,
+            "type": "integer"
+          },
+          "ParquetMemCachePruneInterval": {
+            "$ref": "#/definitions/Duration",
+            "description": "Sets the interval to check if the in-memory Parquet cache needs to be pruned.\n         Default: 1s"
+          },
+          "ParquetMemCachePrunePercentage": {
+            "description": "Specifies the percentage of entries to prune during a prune operation on the in-memory Parquet cache.\n         Default: 0.1",
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "ParquetMemCacheQueryPathDuration": {
+            "$ref": "#/definitions/Duration",
+            "description": "Specifies the time window for caching recent Parquet files in memory.\n         Default: 5h"
+          },
+          "ParquetMemCacheSize": {
+            "$ref": "#/definitions/PercentOrAbsoluteLong",
+            "description": "Specifies the size of the in-memory Parquet cache in megabytes or percentage of total available memory.\n         Default: 20%"
+          },
+          "PreemptiveCacheAge": {
+            "$ref": "#/definitions/Duration",
+            "description": "Specifies the interval to prefetch into the Parquet cache during compaction.\n         Default: 3d"
+          },
+          "QueryFileLimit": {
+            "description": "Limits the number of Parquet files a query can access. If a query attempts to read more than this limit, InfluxDB 3 returns an error.\n         Default: 432",
+            "maximum": 1024,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "QueryLogSize": {
+            "description": "Defines the size of the query log. Up to this many queries remain in the log before older queries are evicted to make room for new ones.\n         Default: 1000",
+            "maximum": 10000,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "QueryOnlyInstances": {
+            "description": "Specifies number of instances in the DbCluster which can only query.",
+            "maximum": 10,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "ReplicationInterval": {
+            "$ref": "#/definitions/Duration",
+            "description": "Specifies the interval at which data replication occurs between cluster nodes.\n         Default: 250ms"
+          },
+          "RetentionCheckInterval": {
+            "$ref": "#/definitions/Duration",
+            "description": "The interval at which retention policies are checked and enforced. Enter as a human-readable time–for example: 30m or 1h.\n         Default: 30m"
+          },
+          "SnapshottedWalFilesToKeep": {
+            "description": "Specifies the number of snapshotted WAL files to retain in the object store. Flushing the WAL files does not clear the WAL files immediately; they are deleted when the number of snapshotted WAL files exceeds this number.\n         Default: 300",
+            "maximum": 10000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "TableIndexCacheConcurrencyLimit": {
+            "description": "Limits the concurrency level for table index cache operations.\n         Default: 8",
+            "maximum": 100,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "TableIndexCacheMaxEntries": {
+            "description": "Specifies the maximum number of entries in the table index cache.\n         Default: 1000",
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "WalMaxWriteBufferSize": {
+            "description": "Specifies the maximum number of write requests that can be buffered before a flush must be executed and succeed.\n         Default: 100000",
+            "maximum": 1000000,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "WalReplayConcurrencyLimit": {
+            "description": "Concurrency limit during WAL replay. Setting this number too high can lead to OOM. The default is dynamically determined.\n         Default: max(num_cpus, 10)",
+            "maximum": 100,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "WalReplayFailOnError": {
+            "description": "Determines whether WAL replay should fail when encountering errors.\n         Default: false",
+            "type": "boolean"
+          },
+          "WalSnapshotSize": {
+            "description": "Defines the number of WAL files to attempt to remove in a snapshot. This, multiplied by the interval, determines how often snapshots are taken.\n         Default: 600",
+            "maximum": 10000,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "IngestQueryInstances",
+          "QueryOnlyInstances",
+          "DedicatedCompactor"
+        ],
+        "type": "object"
+      },
+      "Parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "InfluxDBv2": {
+            "$ref": "#/definitions/InfluxDBv2Parameters"
+          },
+          "InfluxDBv3Core": {
+            "$ref": "#/definitions/InfluxDBv3CoreParameters"
+          },
+          "InfluxDBv3Enterprise": {
+            "$ref": "#/definitions/InfluxDBv3EnterpriseParameters"
+          }
+        },
+        "type": "object"
+      },
+      "PercentOrAbsoluteLong": {
+        "additionalProperties": false,
+        "properties": {
+          "Absolute": {
+            "description": "Absolute long for InfluxDB parameters.",
+            "maximum": 1610612736000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "Percent": {
+            "description": "Percent for InfluxDB parameters.",
+            "maxLength": 4,
+            "minLength": 2,
+            "pattern": "^(?:100|[1-9]?[0-9])%$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Represents a Timestream for InfluxDB DB parameter group.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "timestream-influxdb:ListDbParameterGroups"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "timestream-influxdb:GetDbParameterGroup",
+          "timestream-influxdb:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the DB parameter group.",
+        "maxLength": 1011,
+        "minLength": 1,
+        "pattern": "^arn:aws[a-z\\-]*:timestream\\-influxdb:[a-z0-9\\-]+:[0-9]{12}:(db\\-instance|db\\-cluster|db\\-parameter\\-group)/[a-zA-Z0-9]{3,64}$",
+        "type": "string"
+      },
+      "Description": {
+        "description": "A description of the DB parameter group.",
+        "maxLength": 500,
+        "minLength": 0,
+        "type": "string"
+      },
+      "Id": {
+        "description": "A service-generated unique identifier.",
+        "maxLength": 64,
+        "minLength": 3,
+        "pattern": "^[a-zA-Z0-9]+$",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the DB parameter group. The name must be unique per customer and per region.",
+        "maxLength": 64,
+        "minLength": 3,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9]*(-[a-zA-Z0-9]+)*$",
+        "type": "string"
+      },
+      "Parameters": {
+        "$ref": "#/definitions/Parameters"
+      },
+      "Tags": {
+        "description": "A list of key-value pairs to associate with the DB parameter group.",
+        "insertionOrder": false,
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "Value": {
+              "maxLength": 256,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "maxItems": 200,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Id",
+      "/properties/Arn"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "timestream-influxdb:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Timestream::InfluxDBParameterGroup"
+  }
+}

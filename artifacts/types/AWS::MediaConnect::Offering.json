@@ -1,0 +1,95 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaConnect-Offering",
+  "type": "AWS::MediaConnect::Offering",
+  "time": "2026-11-05T21:05:54.633Z",
+  "schema": {
+    "additionalProperties": false,
+    "description": "Represents a savings plan offering that provides discounted pricing for AWS Elemental MediaConnect Flows.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "mediaconnect:ListOfferings"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "mediaconnect:DescribeOffering"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/OfferingArn"
+    ],
+    "properties": {
+      "CurrencyCode": {
+        "description": "The type of currency that is used for billing. The currencyCode used for all reservations is US dollars.",
+        "type": "string"
+      },
+      "Duration": {
+        "description": "The length of time that your reservation would be active.",
+        "type": "integer"
+      },
+      "DurationUnits": {
+        "description": "The unit of measurement for the duration of the offering.",
+        "enum": [
+          "MONTHS"
+        ],
+        "type": "string"
+      },
+      "OfferingArn": {
+        "description": "The Amazon Resource Name (ARN) that MediaConnect assigns to the offering.",
+        "type": "string"
+      },
+      "OfferingDescription": {
+        "description": "A description of the offering.",
+        "type": "string"
+      },
+      "PricePerUnit": {
+        "description": "The cost of a single unit. This value, in combination with priceUnits, makes up the rate.",
+        "type": "string"
+      },
+      "PriceUnits": {
+        "description": "The unit of measurement that is used for billing. This value, in combination with pricePerUnit, makes up the rate.",
+        "enum": [
+          "HOURLY"
+        ],
+        "type": "string"
+      },
+      "ResourceSpecification": {
+        "additionalProperties": false,
+        "description": "A definition of the amount of outbound bandwidth that you would be reserving if you purchase the offering.",
+        "properties": {
+          "ReservedBitrate": {
+            "description": "The amount of outbound bandwidth that is discounted in the offering.",
+            "type": "integer"
+          },
+          "ResourceType": {
+            "description": "The type of resource and the unit that is being billed for.",
+            "enum": [
+              "Mbps_Outbound_Bandwidth"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "ResourceType"
+        ],
+        "type": "object"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/OfferingArn",
+      "/properties/CurrencyCode",
+      "/properties/Duration",
+      "/properties/DurationUnits",
+      "/properties/OfferingDescription",
+      "/properties/PricePerUnit",
+      "/properties/PriceUnits",
+      "/properties/ResourceSpecification"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::MediaConnect::Offering"
+  }
+}

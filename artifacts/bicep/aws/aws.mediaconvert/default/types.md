@@ -1,5 +1,21 @@
 # AWS.MediaConvert @ default
 
+## Resource AWS.MediaConvert/CertificateAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MediaConvert/CertificateAssociationProperties](#awsmediaconvertcertificateassociationproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.MediaConvert/Job@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MediaConvert/JobProperties](#awsmediaconvertjobproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.MediaConvert/JobTemplate@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -27,6 +43,38 @@
 ## AccelerationSettings
 ### Properties
 * **Mode**: string (Required): Specify the conditions when the service will run your job with accelerated transcoding.
+
+## AccelerationSettings
+### Properties
+* **Mode**: string (Required): Specify the conditions when the service will run your job with accelerated transcoding.
+
+## AWS.MediaConvert/CertificateAssociationProperties
+### Properties
+* **Arn**: string (Required, Identifier): The ARN of the ACM certificate to associate with MediaConvert.
+
+## AWS.MediaConvert/JobProperties
+### Properties
+* **AccelerationSettings**: [AccelerationSettings](#accelerationsettings)
+* **AccelerationStatus**: string (ReadOnly): Describes whether the current job is running with accelerated transcoding.
+* **Arn**: string (Identifier): An identifier for this resource that is unique within all of AWS.
+* **BillingTagsSource**: string: Optional. Choose a tag type that AWS Billing and Cost Management will use to sort your AWS Elemental MediaConvert costs on any billing report that you set up.
+* **CreatedAt**: string (ReadOnly): The time, in Unix epoch format in seconds, that the job was created.
+* **HopDestinations**: [HopDestination](#hopdestination)[]: Optional. Use queue hopping to avoid overly long waits in the backlog of the queue that you submit your job to.
+* **Id**: string (ReadOnly): A portion of the job's ARN, unique within your AWS Elemental MediaConvert resources.
+* **JobTemplate**: string: Optional. When you create a job, you can either specify a job template or specify the transcoding settings individually.
+* **Messages**: [JobMessages](#jobmessages) (ReadOnly)
+* **OutputGroupDetails**: [OutputGroupDetail](#outputgroupdetail)[] (ReadOnly): List of output group details.
+* **Priority**: int: Optional. Specify the relative priority for this job. In any given queue, the service begins processing the job with the highest value first.
+* **Queue**: string: Optional. When you create a job, you can specify a queue to send it to. If you don't specify, the job will go to the default queue.
+* **Role**: string (Required): The IAM role you use for creating this job. For details about permissions, see the User Guide topic at the User Guide at https://docs.aws.amazon.com/mediaconvert/latest/ug/iam-role.html.
+* **SettingsJson**: [Job_SettingsJson](#jobsettingsjson) (Required): JobSettings contains all the transcode settings for a job. Specified as an opaque JSON object, matching the representation used by AWS::MediaConvert::JobTemplate and AWS::MediaConvert::Preset.
+* **ShareStatus**: string (ReadOnly): Indicates whether the job is sharable with AWS Support.
+* **SimulateReservedQueue**: string: Optional. Enable this setting when you run a test job to estimate how many reserved transcoding slots (RTS) you need.
+* **Status**: string (ReadOnly): A job's status can be SUBMITTED, PROGRESSING, COMPLETE, CANCELED, or ERROR.
+* **StatusUpdateInterval**: string: Optional. Specify how often MediaConvert sends STATUS_UPDATE events to Amazon CloudWatch Events.
+* **Tags**: [Tag](#tag)[]: Optional. The tags that you want to add to the resource.
+* **Timing**: [Timing](#timing) (ReadOnly)
+* **UserMetadata**: [Job_UserMetadata](#jobusermetadata): Optional. User-defined metadata that you want to associate with an MediaConvert job.
 
 ## AWS.MediaConvert/JobTemplateProperties
 ### Properties
@@ -64,15 +112,41 @@
 
 ## HopDestination
 ### Properties
+* **Priority**: int: Optional. When you set up a job to use queue hopping, you can specify a different relative priority for the job in the destination queue.
+* **Queue**: string: Optional unless the job is submitted on the default queue. When you set up a job to use queue hopping, you can specify a destination queue.
+* **WaitMinutes**: int: Required for setting up a job to use queue hopping. Minimum wait time in minutes until the job can hop to the destination queue.
+
+## HopDestination
+### Properties
 * **Priority**: int: Optional. A different relative priority for the job in the destination queue.
 * **Queue**: string: Optional. The destination queue for queue hopping.
 * **WaitMinutes**: int: Required for queue hopping. Minimum wait time in minutes until the job can hop to the destination queue.
+
+## Job_SettingsJson
+### Properties
+
+## Job_UserMetadata
+### Properties
+
+## JobMessages
+### Properties
+* **Info**: string[]: List of messages that are informational only and don't indicate a problem with your job.
+* **Warning**: string[]: List of messages that warn about conditions that might cause your job not to run or to fail.
 
 ## JobTemplate_SettingsJson
 ### Properties
 
 ## JobTemplate_Tags
 ### Properties
+
+## OutputDetail
+### Properties
+* **DurationInMs**: int: Duration in milliseconds.
+* **VideoDetails**: [VideoDetail](#videodetail)
+
+## OutputGroupDetail
+### Properties
+* **OutputDetails**: [OutputDetail](#outputdetail)[]: Details about the output.
 
 ## Preset_SettingsJson
 ### Properties
@@ -82,4 +156,20 @@
 
 ## Queue_Tags
 ### Properties
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
+
+## Timing
+### Properties
+* **FinishTime**: string: The time, in Unix epoch format, that the transcoding job finished.
+* **StartTime**: string: The time, in Unix epoch format, that transcoding for the job began.
+* **SubmitTime**: string: The time, in Unix epoch format, that you submitted the job.
+
+## VideoDetail
+### Properties
+* **HeightInPx**: int: Height in pixels for the output.
+* **WidthInPx**: int: Width in pixels for the output.
 

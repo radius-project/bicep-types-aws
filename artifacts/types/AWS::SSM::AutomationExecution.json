@@ -1,0 +1,156 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SSM-AutomationExecution",
+  "type": "AWS::SSM::AutomationExecution",
+  "time": "2026-11-05T17:30:07.055Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/AutomationExecutionId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DocumentName",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Returns information about an AWS Systems Manager Automation execution, which is a run of an Automation runbook (SSM document). Automation executions are ephemeral, job-type resources; this type provides read-only visibility (Read and List) into them.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "ssm:DescribeAutomationExecutions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ssm:GetAutomationExecution",
+          "ssm:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the Automation execution.",
+        "type": "string"
+      },
+      "AutomationExecutionId": {
+        "description": "The unique identifier of the Automation execution.",
+        "maxLength": 36,
+        "minLength": 36,
+        "type": "string"
+      },
+      "AutomationExecutionStatus": {
+        "description": "The execution status of the Automation.",
+        "enum": [
+          "Pending",
+          "InProgress",
+          "Waiting",
+          "Success",
+          "TimedOut",
+          "Cancelling",
+          "Cancelled",
+          "Failed",
+          "PendingApproval",
+          "Approved",
+          "Rejected",
+          "Scheduled",
+          "RunbookInProgress",
+          "PendingChangeCalendarOverride",
+          "ChangeCalendarOverrideApproved",
+          "ChangeCalendarOverrideRejected",
+          "CompletedWithSuccess",
+          "CompletedWithFailure",
+          "Exited"
+        ],
+        "type": "string"
+      },
+      "DocumentName": {
+        "description": "The name of the Automation runbook (SSM document) used during the execution.",
+        "pattern": "^[a-zA-Z0-9_\\-.]{3,128}$",
+        "type": "string"
+      },
+      "DocumentVersion": {
+        "description": "The version of the Automation runbook used during the execution.",
+        "pattern": "^([$]LATEST|[$]DEFAULT|[1-9][0-9]*)$",
+        "type": "string"
+      },
+      "ExecutedBy": {
+        "description": "The Amazon Resource Name (ARN) of the user or role that ran the automation.",
+        "type": "string"
+      },
+      "ExecutionStartTime": {
+        "description": "The time, in ISO-8601 Extended format, when the execution started.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Mode": {
+        "description": "The automation execution mode.",
+        "enum": [
+          "Auto",
+          "Interactive"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Optional metadata assigned to the Automation execution.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/AutomationExecutionId",
+      "/properties/DocumentVersion",
+      "/properties/AutomationExecutionStatus",
+      "/properties/Mode",
+      "/properties/ExecutionStartTime",
+      "/properties/ExecutedBy"
+    ],
+    "required": [
+      "DocumentName"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "ssm:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::SSM::AutomationExecution"
+  }
+}

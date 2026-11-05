@@ -1,0 +1,145 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoTSiteWise-TimeSeries",
+  "type": "AWS::IoTSiteWise::TimeSeries",
+  "time": "2026-11-05T17:55:36.554Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/AssetId"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource schema for AWS::IoTSiteWise::TimeSeries. A time series is a data stream in AWS IoT SiteWise that stores the historical values of an industrial measurement and is identified by a property alias.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "iotsitewise:ListTimeSeries"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "iotsitewise:DescribeTimeSeries",
+          "iotsitewise:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Alias",
+      "/properties/TimeSeriesId"
+    ],
+    "properties": {
+      "Alias": {
+        "description": "The alias that identifies the time series.",
+        "minLength": 1,
+        "pattern": "^[^\\u0000-\\u001F\\u007F]+$",
+        "type": "string"
+      },
+      "AssetId": {
+        "description": "The ID of the asset in which the asset property was created.",
+        "maxLength": 139,
+        "minLength": 13,
+        "pattern": "^(?!00000000-0000-0000-0000-000000000000)[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$|^externalId:[a-zA-Z0-9_][a-zA-Z_\\-0-9.:]*[a-zA-Z0-9_]+$",
+        "type": "string"
+      },
+      "DataType": {
+        "description": "The data type of the time series.",
+        "enum": [
+          "STRING",
+          "INTEGER",
+          "DOUBLE",
+          "BOOLEAN",
+          "STRUCT",
+          "VIDEO",
+          "ANNOTATION",
+          "JSON"
+        ],
+        "type": "string"
+      },
+      "PropertyId": {
+        "description": "The ID of the asset property with which the time series is associated.",
+        "maxLength": 36,
+        "minLength": 36,
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A list of key-value pairs that contain metadata for the time series.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "TimeSeriesArn": {
+        "description": "The ARN of the time series.",
+        "maxLength": 1600,
+        "minLength": 1,
+        "pattern": "^arn:aws(-cn|-us-gov)?:[a-zA-Z0-9-:\\/_\\.]+$",
+        "type": "string"
+      },
+      "TimeSeriesCreationDate": {
+        "description": "The date that the time series was created, in Unix epoch time.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "TimeSeriesId": {
+        "description": "The ID of the time series.",
+        "maxLength": 73,
+        "minLength": 36,
+        "type": "string"
+      },
+      "TimeSeriesLastUpdateDate": {
+        "description": "The date that the time series was last updated, in Unix epoch time.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Alias",
+      "/properties/TimeSeriesId",
+      "/properties/TimeSeriesArn",
+      "/properties/DataType",
+      "/properties/PropertyId",
+      "/properties/TimeSeriesCreationDate",
+      "/properties/TimeSeriesLastUpdateDate",
+      "/properties/Tags"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-iotsitewise",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "iotsitewise:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::IoTSiteWise::TimeSeries"
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Macie2-ClassificationJob",
+  "type": "AWS::Macie2::ClassificationJob",
+  "time": "2026-11-05T21:15:23.467Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/JobId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Description",
+      "/properties/InitialRun",
+      "/properties/JobType",
+      "/properties/ManagedDataIdentifierSelector",
+      "/properties/Name",
+      "/properties/S3JobDefinition",
+      "/properties/SamplingPercentage",
+      "/properties/ScheduleFrequency",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "JobScheduleFrequency": {
+        "additionalProperties": false,
+        "description": "Specifies the recurrence pattern for running the job.",
+        "properties": {
+          "WeeklySchedule": {
+            "$ref": "#/definitions/WeeklySchedule"
+          }
+        },
+        "type": "object"
+      },
+      "S3BucketDefinitionForJob": {
+        "additionalProperties": false,
+        "properties": {
+          "AccountId": {
+            "description": "The account ID for the account that owns the buckets.",
+            "type": "string"
+          },
+          "Buckets": {
+            "description": "An array of bucket names.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "AccountId",
+          "Buckets"
+        ],
+        "type": "object"
+      },
+      "S3JobDefinition": {
+        "additionalProperties": false,
+        "description": "Specifies which S3 buckets contain objects to analyze.",
+        "properties": {
+          "BucketDefinitions": {
+            "items": {
+              "$ref": "#/definitions/S3BucketDefinitionForJob"
+            },
+            "type": "array"
+          },
+          "Scoping": {
+            "description": "Property- and tag-based conditions for object scoping.",
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "WeeklySchedule": {
+        "additionalProperties": false,
+        "properties": {
+          "DayOfWeek": {
+            "enum": [
+              "SUNDAY",
+              "MONDAY",
+              "TUESDAY",
+              "WEDNESDAY",
+              "THURSDAY",
+              "FRIDAY",
+              "SATURDAY"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Represents a classification job that Amazon Macie runs to analyze objects in S3 buckets for sensitive data.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "macie2:ListClassificationJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "macie2:DescribeClassificationJob",
+          "macie2:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/JobArn"
+    ],
+    "properties": {
+      "CreatedAt": {
+        "description": "The date and time when the job was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "A custom description of the job.",
+        "maxLength": 200,
+        "type": "string"
+      },
+      "InitialRun": {
+        "description": "Whether the job analyzes all existing eligible objects immediately after being created.",
+        "type": "boolean"
+      },
+      "JobArn": {
+        "description": "The Amazon Resource Name (ARN) of the job.",
+        "type": "string"
+      },
+      "JobId": {
+        "description": "The unique identifier for the job.",
+        "type": "string"
+      },
+      "JobStatus": {
+        "description": "The current status of the job.",
+        "enum": [
+          "RUNNING",
+          "PAUSED",
+          "CANCELLED",
+          "COMPLETE",
+          "IDLE",
+          "USER_PAUSED"
+        ],
+        "type": "string"
+      },
+      "JobType": {
+        "description": "The schedule for running the job.",
+        "enum": [
+          "ONE_TIME",
+          "SCHEDULED"
+        ],
+        "type": "string"
+      },
+      "ManagedDataIdentifierSelector": {
+        "description": "The selection type for managed data identifiers.",
+        "enum": [
+          "ALL",
+          "EXCLUDE",
+          "INCLUDE",
+          "NONE",
+          "RECOMMENDED"
+        ],
+        "type": "string"
+      },
+      "Name": {
+        "description": "A custom name for the job.",
+        "type": "string"
+      },
+      "S3JobDefinition": {
+        "$ref": "#/definitions/S3JobDefinition"
+      },
+      "SamplingPercentage": {
+        "description": "The sampling depth as a percentage.",
+        "type": "integer"
+      },
+      "ScheduleFrequency": {
+        "$ref": "#/definitions/JobScheduleFrequency"
+      },
+      "Tags": {
+        "description": "The tags associated with the job.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/JobArn",
+      "/properties/JobId",
+      "/properties/JobStatus",
+      "/properties/CreatedAt",
+      "/properties/S3JobDefinition/Scoping"
+    ],
+    "required": [
+      "JobType",
+      "S3JobDefinition",
+      "Name"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "macie2:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Macie2::ClassificationJob"
+  }
+}

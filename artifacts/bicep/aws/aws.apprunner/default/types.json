@@ -1,18 +1,278 @@
 [
   {
     "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.AppRunner/AutoScalingConfigurationProperties"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AppRunner/AutoScalingConfigurationProperties",
+    "properties": {
+      "AutoScalingConfigurationArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of this auto scaling configuration."
+      },
+      "AutoScalingConfigurationName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The customer-provided auto scaling configuration name.  When you use it for the first time in an AWS Region, App Runner creates revision number 1 of this name. When you use the same name in subsequent calls, App Runner creates incremental revisions of the configuration. The auto scaling configuration name can be used in multiple revisions of a configuration."
+      },
+      "AutoScalingConfigurationRevision": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The revision of this auto scaling configuration. It's unique among all the active configurations (\"Status\": \"ACTIVE\") that share the same AutoScalingConfigurationName."
+      },
+      "Latest": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "It's set to true for the configuration with the highest Revision among all configurations that share the same AutoScalingConfigurationName. It's set to false otherwise. App Runner temporarily doubles the number of provisioned instances during deployments, to maintain the same capacity for both old and new code."
+      },
+      "MaxConcurrency": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The maximum number of concurrent requests that an instance processes. If the number of concurrent requests exceeds this limit, App Runner scales the service up to use more instances to process the requests."
+      },
+      "MaxSize": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The maximum number of instances that an App Runner service scales up to. At most MaxSize instances actively serve traffic for your service."
+      },
+      "MinSize": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The minimum number of instances that App Runner provisions for a service. The service always has at least MinSize provisioned instances. Some of them actively serve traffic. The rest of them (provisioned and inactive instances) are a cost-effective compute capacity reserve and are ready to be quickly activated. You pay for memory usage of all the provisioned instances. You pay for CPU usage of only the active subset."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "A list of metadata items that you can associate with your auto scaling configuration resource. A tag is a key-value pair."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AppRunner/AutoScalingConfiguration",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.AppRunner/AutoScalingConfiguration@default",
+    "body": {
+      "$ref": "#/7"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TraceConfiguration",
+    "properties": {
+      "Vendor": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The implementation provider chosen for tracing App Runner services."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.AppRunner/ObservabilityConfigurationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/9"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AppRunner/ObservabilityConfigurationProperties",
+    "properties": {
+      "Latest": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "It's set to true for the configuration with the highest Revision among all configurations that share the same Name. It's set to false otherwise."
+      },
+      "ObservabilityConfigurationArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of this ObservabilityConfiguration"
+      },
+      "ObservabilityConfigurationName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A name for the observability configuration. When you use it for the first time in an AWS Region, App Runner creates revision number 1 of this name. When you use the same name in subsequent calls, App Runner creates incremental revisions of the configuration."
+      },
+      "ObservabilityConfigurationRevision": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The revision of this observability configuration. It's unique among all the active configurations ('Status': 'ACTIVE') that share the same ObservabilityConfigurationName."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 4,
+        "description": "A list of metadata items that you can associate with your observability configuration resource. A tag is a key-value pair."
+      },
+      "TraceConfiguration": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The configuration of the tracing feature within this observability configuration. If you don't specify it, App Runner doesn't enable tracing."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AppRunner/ObservabilityConfiguration",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.AppRunner/ObservabilityConfiguration@default",
+    "body": {
+      "$ref": "#/14"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "AuthenticationConfiguration",
     "properties": {
       "AccessRoleArn": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Access Role Arn"
       },
       "ConnectionArn": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Connection Arn"
@@ -25,13 +285,13 @@
     "properties": {
       "CodeConfigurationValues": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "ConfigurationSource": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "Configuration Source"
@@ -44,41 +304,41 @@
     "properties": {
       "BuildCommand": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Build Command"
       },
       "Port": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Port"
       },
       "Runtime": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "Runtime"
       },
       "RuntimeEnvironmentSecrets": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "The secrets and parameters that get referenced by your service as environment variables"
       },
       "RuntimeEnvironmentVariables": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/35"
         },
         "flags": 0
       },
       "StartCommand": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Start Command"
@@ -91,26 +351,26 @@
     "properties": {
       "CodeConfiguration": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "RepositoryUrl": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "Repository Url"
       },
       "SourceCodeVersion": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/31"
         },
         "flags": 1
       },
       "SourceDirectory": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Source Directory"
@@ -123,14 +383,14 @@
     "properties": {
       "EgressType": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "Network egress type."
       },
       "VpcConnectorArn": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The Amazon Resource Name (ARN) of the App Runner VpcConnector."
@@ -143,7 +403,7 @@
     "properties": {
       "KmsKey": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The KMS Key"
@@ -156,42 +416,42 @@
     "properties": {
       "HealthyThreshold": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "Health check Healthy Threshold"
       },
       "Interval": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "Health check Interval"
       },
       "Path": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Health check Path"
       },
       "Protocol": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Health Check Protocol"
       },
       "Timeout": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "Health check Timeout"
       },
       "UnhealthyThreshold": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "Health check Unhealthy Threshold"
@@ -204,27 +464,27 @@
     "properties": {
       "Port": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Port"
       },
       "RuntimeEnvironmentSecrets": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "The secrets and parameters that get referenced by your service as environment variables"
       },
       "RuntimeEnvironmentVariables": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/37"
         },
         "flags": 0
       },
       "StartCommand": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Start Command"
@@ -237,20 +497,20 @@
     "properties": {
       "ImageConfiguration": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/23"
         },
         "flags": 0
       },
       "ImageIdentifier": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "Image Identifier"
       },
       "ImageRepositoryType": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "Image Repository Type"
@@ -263,7 +523,7 @@
     "properties": {
       "IsPubliclyAccessible": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "It's set to true if the Apprunner service is publicly accessible. It's set to false otherwise."
@@ -276,21 +536,21 @@
     "properties": {
       "Cpu": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "CPU"
       },
       "InstanceRoleArn": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Instance Role Arn"
       },
       "Memory": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Memory"
@@ -303,13 +563,13 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "Value": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 0
       }
@@ -321,19 +581,19 @@
     "properties": {
       "EgressConfiguration": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/20"
         },
         "flags": 0
       },
       "IngressConfiguration": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "IpAddressType": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "App Runner service endpoint IP address type"
@@ -351,14 +611,14 @@
     "properties": {
       "ObservabilityConfigurationArn": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The Amazon Resource Name (ARN) of the App Runner ObservabilityConfiguration."
       },
       "ObservabilityEnabled": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "Observability enabled"
@@ -371,14 +631,14 @@
     "properties": {
       "Type": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "Source Code Version Type"
       },
       "Value": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "Source Code Version Value"
@@ -391,26 +651,26 @@
     "properties": {
       "AuthenticationConfiguration": {
         "type": {
-          "$ref": "#/0"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "AutoDeploymentsEnabled": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "Auto Deployment enabled"
       },
       "CodeRepository": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/19"
         },
         "flags": 0
       },
       "ImageRepository": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/24"
         },
         "flags": 0
       }
@@ -422,50 +682,41 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "Value": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 0
       }
     }
   },
   {
-    "$type": "StringType"
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/27"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
-    }
-  },
-  {
-    "$type": "IntegerType"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/27"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/27"
     }
   },
   {
-    "$type": "BooleanType"
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/27"
+    }
   },
   {
     "$type": "StringLiteralType",
@@ -474,7 +725,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/17"
+      "$ref": "#/33"
     }
   },
   {
@@ -483,85 +734,85 @@
     "properties": {
       "AutoScalingConfigurationArn": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 4,
         "description": "Autoscaling configuration ARN"
       },
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/21"
         },
         "flags": 0
       },
       "HealthCheckConfiguration": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/22"
         },
         "flags": 0
       },
       "InstanceConfiguration": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/26"
         },
         "flags": 0
       },
       "NetworkConfiguration": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/28"
         },
         "flags": 0
       },
       "ObservabilityConfiguration": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/30"
         },
         "flags": 0
       },
       "ServiceArn": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the AppRunner Service."
       },
       "ServiceId": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The AppRunner Service Id"
       },
       "ServiceName": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The AppRunner Service Name."
       },
       "ServiceUrl": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The Service Url of the AppRunner Service."
       },
       "SourceConfiguration": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/32"
         },
         "flags": 1
       },
       "Status": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "AppRunner Service status."
       },
       "Tags": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/39"
         },
         "flags": 4
       }
@@ -573,21 +824,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/40"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -598,7 +849,131 @@
     "$type": "ResourceType",
     "name": "AWS.AppRunner/Service@default",
     "body": {
-      "$ref": "#/28"
+      "$ref": "#/41"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.AppRunner/VpcConnectorProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/43"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AppRunner/VpcConnectorProperties",
+    "properties": {
+      "SecurityGroups": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0,
+        "description": "A list of IDs of security groups that App Runner should use for access to AWS resources under the specified subnets. If not specified, App Runner uses the default security group of the Amazon VPC. The default security group allows all outbound traffic."
+      },
+      "Subnets": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 1,
+        "description": "A list of IDs of subnets that App Runner should use when it associates your service with a custom Amazon VPC. Specify IDs of subnets of a single Amazon VPC. App Runner determines the Amazon VPC from the subnets you specify."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 4,
+        "description": "A list of metadata items that you can associate with your VPC connector resource. A tag is a key-value pair."
+      },
+      "VpcConnectorArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of this VPC connector."
+      },
+      "VpcConnectorName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A name for the VPC connector. If you don't specify a name, AWS CloudFormation generates a name for your VPC connector."
+      },
+      "VpcConnectorRevision": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The revision of this VPC connector. It's unique among all the active connectors (\"Status\": \"ACTIVE\") that share the same Name."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AppRunner/VpcConnector",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.AppRunner/VpcConnector@default",
+    "body": {
+      "$ref": "#/49"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -609,14 +984,14 @@
     "properties": {
       "VpcEndpointId": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The ID of the VPC endpoint that your App Runner service connects to."
       },
       "VpcId": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The ID of the VPC that the VPC endpoint is used in."
@@ -629,13 +1004,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "Value": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 0
       }
@@ -648,7 +1023,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/31"
+      "$ref": "#/52"
     }
   },
   {
@@ -657,47 +1032,47 @@
     "properties": {
       "DomainName": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The Domain name associated with the VPC Ingress Connection."
       },
       "IngressVpcConfiguration": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/51"
         },
         "flags": 1
       },
       "ServiceArn": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) of the service."
       },
       "Status": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The current status of the VpcIngressConnection."
       },
       "Tags": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/54"
         },
         "flags": 4
       },
       "VpcIngressConnectionArn": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the VpcIngressConnection."
       },
       "VpcIngressConnectionName": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The customer-provided Vpc Ingress Connection name."
@@ -710,21 +1085,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/55"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -735,7 +1110,7 @@
     "$type": "ResourceType",
     "name": "AWS.AppRunner/VpcIngressConnection@default",
     "body": {
-      "$ref": "#/35"
+      "$ref": "#/56"
     },
     "readableScopes": 0,
     "writableScopes": 0

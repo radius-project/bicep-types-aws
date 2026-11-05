@@ -8,6 +8,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.AutoScaling/AutoScalingGroupProperties](#awsautoscalingautoscalinggroupproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.AutoScaling/LaunchConfiguration@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.AutoScaling/LaunchConfigurationProperties](#awsautoscalinglaunchconfigurationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.AutoScaling/LifecycleHook@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -129,6 +137,28 @@
   When you update ``VPCZoneIdentifier``, this retains the same Auto Scaling group and replaces old instances with new ones, according to the specified subnets. To control how CloudFormation replaces the instances, add an [UpdatePolicy attribute](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html) to your stack. Set the update policy to ``AutoScalingInstanceRefresh``. For more information, see the [AutoScalingInstanceRefresh policy](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html#cfn-attributes-updatepolicy-instancerefresh).
   Required to launch instances into a nondefault VPC. If you specify ``VPCZoneIdentifier`` with ``AvailabilityZones``, the subnets that you specify for this property must reside in those Availability Zones.
 
+## AWS.AutoScaling/LaunchConfigurationProperties
+### Properties
+* **AssociatePublicIpAddress**: bool: For Auto Scaling groups that are running in a virtual private cloud (VPC), specifies whether to assign a public IP address to the group's instances.
+* **BlockDeviceMappings**: [BlockDeviceMapping](#blockdevicemapping)[]: Specifies how block devices are exposed to the instance. You can specify virtual devices and EBS volumes.
+* **ClassicLinkVPCId**: string (WriteOnly): The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances to.
+* **ClassicLinkVPCSecurityGroups**: string[] (WriteOnly): The IDs of one or more security groups for the VPC that you specified in the ClassicLinkVPCId property.
+* **EbsOptimized**: bool: Specifies whether the launch configuration is optimized for EBS I/O (true) or not (false).
+* **IamInstanceProfile**: string: Provides the name or the Amazon Resource Name (ARN) of the instance profile associated with the IAM role for the instance. The instance profile contains the IAM role.
+* **ImageId**: string (Required): Provides the unique ID of the Amazon Machine Image (AMI) that was assigned during registration.
+* **InstanceId**: string (WriteOnly): The ID of the Amazon EC2 instance you want to use to create the launch configuration.
+* **InstanceMonitoring**: bool: Controls whether instances in this group are launched with detailed (true) or basic (false) monitoring.
+* **InstanceType**: string (Required): Specifies the instance type of the EC2 instance.
+* **KernelId**: string (WriteOnly): Provides the ID of the kernel associated with the EC2 AMI.
+* **KeyName**: string: Provides the name of the EC2 key pair.
+* **LaunchConfigurationName**: string (Identifier): The name of the launch configuration. This name must be unique per Region per account.
+* **MetadataOptions**: [MetadataOptions](#metadataoptions): The metadata options for the instances.
+* **PlacementTenancy**: string: The tenancy of the instance, either default or dedicated.
+* **RamDiskId**: string (WriteOnly): The ID of the RAM disk to select.
+* **SecurityGroups**: string[]: A list that contains the security groups to assign to the instances in the Auto Scaling group.
+* **SpotPrice**: string: The maximum hourly price you are willing to pay for any Spot Instances launched to fulfill the request.
+* **UserData**: string: The Base64-encoded user data to make available to the launched EC2 instances.
+
 ## AWS.AutoScaling/LifecycleHookProperties
 ### Properties
 * **AutoScalingGroupName**: string (Required, Identifier): The name of the Auto Scaling group for the lifecycle hook.
@@ -184,6 +214,23 @@
 ## BaselinePerformanceFactorsRequest
 ### Properties
 * **Cpu**: [CpuPerformanceFactorRequest](#cpuperformancefactorrequest): The CPU performance to consider, using an instance family as the baseline reference.
+
+## BlockDevice
+### Properties
+* **DeleteOnTermination**: bool: Indicates whether the volume is deleted on instance termination. 
+* **Encrypted**: bool: Specifies whether the volume should be encrypted. 
+* **Iops**: int: The number of input/output (I/O) operations per second (IOPS) to provision for the volume. 
+* **SnapshotId**: string: The snapshot ID of the volume to use.
+* **Throughput**: int: The throughput (MiBps) to provision for a gp3 volume.
+* **VolumeSize**: int: The volume size, in GiBs.
+* **VolumeType**: string: The volume type.
+
+## BlockDeviceMapping
+### Properties
+* **DeviceName**: string (Required): The device name exposed to the EC2 instance (for example, /dev/sdh or xvdh). 
+* **Ebs**: [BlockDevice](#blockdevice): Parameters used to automatically set up EBS volumes when an instance is launched.
+* **NoDevice**: bool: Setting this value to true suppresses the specified device included in the block device mapping of the AMI.
+* **VirtualName**: string: The name of the virtual device.
 
 ## CapacityReservationSpecification
 ### Properties
@@ -405,6 +452,12 @@
 ### Properties
 * **Max**: int: The memory maximum in MiB.
 * **Min**: int: The memory minimum in MiB.
+
+## MetadataOptions
+### Properties
+* **HttpEndpoint**: string: This parameter enables or disables the HTTP metadata endpoint on your instances.
+* **HttpPutResponseHopLimit**: int: The desired HTTP PUT response hop limit for instance metadata requests.
+* **HttpTokens**: string: The state of token usage for your instance metadata requests.
 
 ## Metric
 ### Properties

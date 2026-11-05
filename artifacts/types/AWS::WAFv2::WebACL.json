@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-WAFv2-WebACL",
   "type": "AWS::WAFv2::WebACL",
-  "time": "2026-09-21T17:42:57.435Z",
+  "time": "2026-11-04T19:11:47.593Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -181,7 +181,11 @@
       "AssociationConfig": {
         "additionalProperties": false,
         "description": "AssociationConfig for body inspection",
+        "minProperties": 1,
         "properties": {
+          "ChallengeJavascriptSdkInjection": {
+            "$ref": "#/definitions/ChallengeJavascriptSdkInjection"
+          },
           "RequestBody": {
             "$ref": "#/definitions/RequestBody"
           }
@@ -322,6 +326,22 @@
             "$ref": "#/definitions/ImmunityTimeProperty"
           }
         },
+        "type": "object"
+      },
+      "ChallengeJavascriptSdkInjection": {
+        "additionalProperties": false,
+        "description": "Map of AssociatedResourceType and ChallengeJavascriptSdkInjectionConfig",
+        "minProperties": 1,
+        "patternProperties": {
+          "^(CLOUDFRONT)$": {
+            "$ref": "#/definitions/ChallengeJavascriptSdkInjectionConfig"
+          }
+        },
+        "type": "object"
+      },
+      "ChallengeJavascriptSdkInjectionConfig": {
+        "additionalProperties": false,
+        "description": "Configures the challenge JavaScript SDK injection for the associated resource.",
         "type": "object"
       },
       "ClientSideAction": {
@@ -1039,7 +1059,7 @@
         "type": "object"
       },
       "LabelMatchKey": {
-        "pattern": "^[0-9A-Za-z_:-]{1,1024}$",
+        "pattern": "^[0-9A-Za-z_:.-]{1,1024}$",
         "type": "string"
       },
       "LabelMatchScope": {
@@ -1067,7 +1087,7 @@
       },
       "LabelName": {
         "description": "Name of the Label.",
-        "pattern": "^[0-9A-Za-z_:-]{1,1024}$",
+        "pattern": "^[0-9A-Za-z_:.-]{1,1024}$",
         "type": "string"
       },
       "ManagedRuleGroupConfig": {
@@ -1565,7 +1585,7 @@
         "properties": {
           "Namespace": {
             "description": "The namespace to use for aggregation.",
-            "pattern": "^[0-9A-Za-z_:-]{1,1024}$",
+            "pattern": "^[0-9A-Za-z_:.-]{1,1024}$",
             "type": "string"
           }
         },

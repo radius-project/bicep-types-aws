@@ -1,0 +1,143 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-ReplaceRootVolumeTask",
+  "type": "AWS::EC2::ReplaceRootVolumeTask",
+  "time": "2026-11-05T20:40:51.069Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ReplaceRootVolumeTaskId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/InstanceId",
+      "/properties/DeleteReplacedRootVolume",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource schema for an EC2 Replace Root Volume Task. This is a read-only resource representing a root volume replacement operation.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "InstanceId": {
+              "description": "The ID of the instance for which to list root volume replacement tasks.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "InstanceId"
+          ]
+        },
+        "permissions": [
+          "ec2:DescribeReplaceRootVolumeTasks"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ec2:DescribeReplaceRootVolumeTasks",
+          "ec2:DescribeTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of the replace root volume task.",
+        "type": "string"
+      },
+      "CompleteTime": {
+        "description": "The time the task completed.",
+        "type": "string"
+      },
+      "DeleteReplacedRootVolume": {
+        "description": "Indicates whether the original root volume is to be deleted after the root volume replacement task completes.",
+        "type": "boolean"
+      },
+      "InstanceId": {
+        "description": "The ID of the instance for which the root volume replacement task was created.",
+        "type": "string"
+      },
+      "ReplaceRootVolumeTaskId": {
+        "description": "The ID of the root volume replacement task.",
+        "type": "string"
+      },
+      "SnapshotId": {
+        "description": "The ID of the snapshot used to create the replacement root volume.",
+        "type": "string"
+      },
+      "StartTime": {
+        "description": "The time the task was started.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags assigned to the task.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "TaskState": {
+        "description": "The state of the task.",
+        "enum": [
+          "pending",
+          "in-progress",
+          "failing",
+          "succeeded",
+          "failed",
+          "failed-detached"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/ReplaceRootVolumeTaskId",
+      "/properties/TaskState",
+      "/properties/StartTime",
+      "/properties/CompleteTime",
+      "/properties/SnapshotId"
+    ],
+    "required": [
+      "InstanceId"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "ec2:DescribeTags"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::EC2::ReplaceRootVolumeTask"
+  }
+}

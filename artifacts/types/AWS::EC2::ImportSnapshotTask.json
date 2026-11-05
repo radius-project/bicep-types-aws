@@ -1,0 +1,135 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-ImportSnapshotTask",
+  "type": "AWS::EC2::ImportSnapshotTask",
+  "time": "2026-11-05T21:12:10.155Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ImportTaskId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Description",
+      "/properties/Encrypted",
+      "/properties/Format",
+      "/properties/Tags",
+      "/properties/UserBucket"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "UserBucket": {
+        "additionalProperties": false,
+        "description": "Describes the Amazon S3 bucket for the disk image.",
+        "properties": {
+          "S3Bucket": {
+            "description": "The name of the Amazon S3 bucket where the disk image is located.",
+            "type": "string"
+          },
+          "S3Key": {
+            "description": "The file name of the disk image.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource schema for an EC2 import snapshot task. This is a read-only resource representing a VM Import/Export job that converts a disk image into an EBS snapshot.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "ec2:DescribeImportSnapshotTasks"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ec2:DescribeImportSnapshotTasks"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of the import snapshot task.",
+        "type": "string"
+      },
+      "Description": {
+        "description": "A description of the import snapshot task.",
+        "type": "string"
+      },
+      "DiskImageSize": {
+        "description": "The size of the disk in the snapshot.",
+        "type": "number"
+      },
+      "Encrypted": {
+        "description": "Indicates whether the snapshot is encrypted.",
+        "type": "boolean"
+      },
+      "Format": {
+        "description": "The format of the disk image from which the snapshot is created.",
+        "type": "string"
+      },
+      "ImportTaskId": {
+        "description": "The ID of the import snapshot task.",
+        "type": "string"
+      },
+      "SnapshotId": {
+        "description": "The ID of the snapshot created from the imported disk. Populated once the import task completes.",
+        "type": "string"
+      },
+      "Status": {
+        "description": "A brief status for the import snapshot task.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags for the import snapshot task.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "UserBucket": {
+        "$ref": "#/definitions/UserBucket"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/DiskImageSize",
+      "/properties/ImportTaskId",
+      "/properties/SnapshotId",
+      "/properties/Status"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "ec2:DescribeImportSnapshotTasks"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::EC2::ImportSnapshotTask"
+  }
+}

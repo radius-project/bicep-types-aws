@@ -171,6 +171,12 @@
         },
         "flags": 1
       },
+      "NitroEnclavesEnabled": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0
+      },
       "StorageConfiguration": {
         "type": {
           "$ref": "#/12"
@@ -1187,11 +1193,306 @@
   },
   {
     "$type": "ObjectType",
+    "name": "Attribute",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The name of the attribute. The name must contain between 1 and 128 characters."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The value of the attribute. The value must contain between 1 and 128 characters."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Resource",
+    "properties": {
+      "DoubleValue": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "When the doubleValue type is set, the value of the resource must be a double precision floating-point type."
+      },
+      "IntegerValue": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "When the integerValue type is set, the value of the resource must be an integer."
+      },
+      "LongValue": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "When the longValue type is set, the value of the resource must be an extended precision floating-point type."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The name of the resource, such as CPU, MEMORY, PORTS, PORTS_UDP, or a user-defined resource."
+      },
+      "StringSetValue": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0,
+        "description": "When the stringSetValue type is set, the value of the resource must be a string type."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The type of the resource, such as INTEGER, DOUBLE, LONG, or STRINGSET."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "One part of a key-value pair that makes up a tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The optional part of a key-value pair that makes up a tag."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VersionInfo",
+    "properties": {
+      "AgentHash": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The Git commit hash for the Amazon ECS container agent build."
+      },
+      "AgentVersion": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The version number of the Amazon ECS container agent."
+      },
+      "DockerVersion": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The Docker version that's running on the container instance."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/22"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ECS/ContainerInstanceProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/69"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/70"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/70"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/71"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ECS/ContainerInstanceProperties",
+    "properties": {
+      "AgentConnected": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 2,
+        "description": "This parameter returns true if the agent is connected to Amazon ECS."
+      },
+      "Attributes": {
+        "type": {
+          "$ref": "#/75"
+        },
+        "flags": 2,
+        "description": "The attributes set for the container instance, either by the Amazon ECS container agent at instance registration or manually with the PutAttributes operation."
+      },
+      "Cluster": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The short name or full Amazon Resource Name (ARN) of the cluster that hosts the container instance."
+      },
+      "ContainerInstanceArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the container instance."
+      },
+      "ContainerInstanceId": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The Amazon ECS container instance identifier (the trailing segment of the container instance ARN)."
+      },
+      "Ec2InstanceId": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The ID of the container instance. For Amazon EC2 instances, this value is the Amazon EC2 instance ID. For external instances, this value is the AWS Systems Manager managed instance ID."
+      },
+      "PendingTasksCount": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 2,
+        "description": "The number of tasks on the container instance that are in the PENDING status."
+      },
+      "RegisteredAt": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The Unix timestamp for the time when the container instance was registered."
+      },
+      "RegisteredResources": {
+        "type": {
+          "$ref": "#/76"
+        },
+        "flags": 2,
+        "description": "For CPU and memory resource types, this parameter describes the amount of each resource that was available on the container instance when the container agent registered it with Amazon ECS."
+      },
+      "RemainingResources": {
+        "type": {
+          "$ref": "#/77"
+        },
+        "flags": 2,
+        "description": "For CPU and memory resource types, this parameter describes the remaining CPU and memory that wasn't already allocated to tasks and is therefore available for new tasks."
+      },
+      "RunningTasksCount": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 2,
+        "description": "The number of tasks on the container instance that have a desired status (desiredStatus) of RUNNING."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The status of the container instance. The valid values are REGISTERING, REGISTRATION_FAILED, ACTIVE, INACTIVE, DEREGISTERING, or DRAINING."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/78"
+        },
+        "flags": 2,
+        "description": "The metadata applied to the container instance to help you categorize and organize them."
+      },
+      "Version": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 2,
+        "description": "The version counter for the container instance. Every time a container instance experiences a change that triggers a CloudWatch event, the version counter is incremented."
+      },
+      "VersionInfo": {
+        "type": {
+          "$ref": "#/72"
+        },
+        "flags": 2
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ECS/ContainerInstance",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/79"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ECS/ContainerInstance@default",
+    "body": {
+      "$ref": "#/80"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "DaemonAlarmConfiguration",
     "properties": {
       "AlarmNames": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/86"
         },
         "flags": 0,
         "description": "The CloudWatch alarm names to monitor during a daemon deployment."
@@ -1211,7 +1512,7 @@
     "properties": {
       "Alarms": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/82"
         },
         "flags": 0,
         "description": "The CloudWatch alarm configuration for the daemon deployment. When alarms are triggered during a deployment, the deployment can be automatically rolled back."
@@ -1276,7 +1577,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/72"
+      "$ref": "#/85"
     }
   },
   {
@@ -1285,7 +1586,7 @@
     "properties": {
       "CapacityProviderArns": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/88"
         },
         "flags": 4,
         "description": "The Amazon Resource Names (ARNs) of the capacity providers associated with the daemon."
@@ -1348,7 +1649,7 @@
       },
       "DeploymentConfiguration": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/83"
         },
         "flags": 4,
         "description": "The deployment configuration used for this daemon deployment."
@@ -1376,7 +1677,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/89"
         },
         "flags": 0,
         "description": ""
@@ -1410,7 +1711,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/90"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1421,9 +1722,503 @@
     "$type": "ResourceType",
     "name": "AWS.ECS/Daemon@default",
     "body": {
-      "$ref": "#/78"
+      "$ref": "#/91"
     },
     "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DaemonAlarmConfiguration",
+    "properties": {
+      "AlarmNames": {
+        "type": {
+          "$ref": "#/99"
+        },
+        "flags": 0,
+        "description": "The CloudWatch alarm names to monitor during a daemon deployment."
+      },
+      "Enable": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "Determines whether to use the CloudWatch alarm option in the daemon deployment process."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DaemonCircuitBreaker",
+    "properties": {
+      "FailureCount": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The number of times the circuit breaker detected a daemon deployment failure."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The circuit breaker status. Amazon ECS is not using the circuit breaker for daemon deployment failures when the status is DISABLED."
+      },
+      "Threshold": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The threshold which determines that the daemon deployment failed."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DaemonDeploymentAlarms",
+    "properties": {
+      "AlarmNames": {
+        "type": {
+          "$ref": "#/100"
+        },
+        "flags": 0,
+        "description": "The name of the CloudWatch alarms that determine when a daemon deployment failed."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The status of the alarms check. Amazon ECS is not using alarms for daemon deployment failures when the status is DISABLED."
+      },
+      "TriggeredAlarmNames": {
+        "type": {
+          "$ref": "#/101"
+        },
+        "flags": 0,
+        "description": "One or more CloudWatch alarm names that have been triggered during the daemon deployment."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DaemonDeploymentCapacityProvider",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the capacity provider."
+      },
+      "DrainingInstanceCount": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The number of instances being drained on this capacity provider during the deployment."
+      },
+      "RunningInstanceCount": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The number of instances running daemon tasks on this capacity provider."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DaemonDeploymentConfiguration",
+    "properties": {
+      "Alarms": {
+        "type": {
+          "$ref": "#/93"
+        },
+        "flags": 0
+      },
+      "BakeTimeInMinutes": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The amount of time (in minutes) to wait after a successful deployment step before proceeding."
+      },
+      "DrainPercent": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The percentage of container instances to drain simultaneously during a daemon deployment."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DaemonDeploymentRevisionDetail",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the daemon revision."
+      },
+      "CapacityProviders": {
+        "type": {
+          "$ref": "#/102"
+        },
+        "flags": 0,
+        "description": "The capacity providers associated with this daemon revision during the deployment."
+      },
+      "TotalDrainingInstanceCount": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The total number of instances being drained for this revision during the deployment."
+      },
+      "TotalRunningInstanceCount": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The total number of instances running daemon tasks for this revision."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/22"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/22"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/22"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/96"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ECS/DaemonDeploymentProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/98"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ECS/DaemonDeploymentProperties",
+    "properties": {
+      "Alarms": {
+        "type": {
+          "$ref": "#/95"
+        },
+        "flags": 2
+      },
+      "CircuitBreaker": {
+        "type": {
+          "$ref": "#/94"
+        },
+        "flags": 2
+      },
+      "ClusterArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the cluster that hosts the daemon."
+      },
+      "ClusterName": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The name of the cluster that hosts the daemon (the cluster segment of the daemon deployment ARN)."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The time the daemon deployment was created."
+      },
+      "DaemonDeploymentArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the daemon deployment."
+      },
+      "DaemonDeploymentId": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The daemon deployment identifier (the trailing segment of the daemon deployment ARN)."
+      },
+      "DaemonName": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The name of the daemon (the daemon segment of the daemon deployment ARN)."
+      },
+      "DeploymentConfiguration": {
+        "type": {
+          "$ref": "#/97"
+        },
+        "flags": 2
+      },
+      "FinishedAt": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The time the daemon deployment finished."
+      },
+      "SourceDaemonRevisions": {
+        "type": {
+          "$ref": "#/104"
+        },
+        "flags": 2,
+        "description": "The currently deployed daemon revisions that are being replaced."
+      },
+      "StartedAt": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The time the daemon deployment started."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The status of the daemon deployment."
+      },
+      "TargetDaemonRevision": {
+        "type": {
+          "$ref": "#/98"
+        },
+        "flags": 2
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ECS/DaemonDeployment",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/105"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ECS/DaemonDeployment@default",
+    "body": {
+      "$ref": "#/106"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ContainerImage",
+    "properties": {
+      "ContainerName": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The name of the container."
+      },
+      "Image": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The container image."
+      },
+      "ImageDigest": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The container image digest."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ECS/DaemonRevisionProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/108"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ECS/DaemonRevisionProperties",
+    "properties": {
+      "Cluster": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The short name of the cluster that hosts the daemon (the cluster segment of the daemon revision ARN)."
+      },
+      "ClusterArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the cluster that hosts the daemon."
+      },
+      "ContainerImages": {
+        "type": {
+          "$ref": "#/110"
+        },
+        "flags": 2,
+        "description": "The container images used by the daemon revision."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The time that the daemon revision was created."
+      },
+      "DaemonArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the daemon for this revision."
+      },
+      "DaemonName": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The name of the daemon (the daemon segment of the daemon revision ARN)."
+      },
+      "DaemonRevisionArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the daemon revision."
+      },
+      "DaemonRevisionId": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The ID of the daemon revision (the revision segment of the daemon revision ARN)."
+      },
+      "DaemonTaskDefinitionArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the daemon task definition used by this revision."
+      },
+      "EnableECSManagedTags": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "Specifies whether Amazon ECS managed tags are turned on for the daemon tasks."
+      },
+      "EnableExecuteCommand": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "Specifies whether the execute command functionality is turned on for the daemon tasks."
+      },
+      "PropagateTags": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Specifies whether tags are propagated from the daemon to the daemon tasks."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ECS/DaemonRevision",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/111"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ECS/DaemonRevision@default",
+    "body": {
+      "$ref": "#/112"
+    },
+    "readableScopes": 31,
     "writableScopes": 0
   },
   {
@@ -1452,7 +2247,7 @@
     "properties": {
       "Command": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/135"
         },
         "flags": 0,
         "description": "The command that's passed to the container."
@@ -1466,28 +2261,28 @@
       },
       "DependsOn": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/136"
         },
         "flags": 0,
         "description": "The dependencies defined for container startup and shutdown. A container can contain multiple dependencies on other containers in a task definition."
       },
       "EntryPoint": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/137"
         },
         "flags": 0,
         "description": "The entry point that's passed to the container."
       },
       "Environment": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/138"
         },
         "flags": 0,
         "description": "The environment variables to pass to a container."
       },
       "EnvironmentFiles": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/139"
         },
         "flags": 0,
         "description": "A list of files containing the environment variables to pass to a container."
@@ -1501,14 +2296,14 @@
       },
       "FirelensConfiguration": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/118"
         },
         "flags": 0,
         "description": "The FireLens configuration for the container. This is used to specify and configure a log router for container logs."
       },
       "HealthCheck": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/119"
         },
         "flags": 0,
         "description": "The container health check command and associated configuration parameters for the container."
@@ -1529,14 +2324,14 @@
       },
       "LinuxParameters": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/123"
         },
         "flags": 0,
         "description": "Linux-specific modifications that are applied to the container configuration, such as Linux kernel capabilities."
       },
       "LogConfiguration": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/124"
         },
         "flags": 0,
         "description": "The log configuration specification for the container."
@@ -1557,7 +2352,7 @@
       },
       "MountPoints": {
         "type": {
-          "$ref": "#/105"
+          "$ref": "#/140"
         },
         "flags": 0,
         "description": "The mount points for data volumes in your container."
@@ -1592,21 +2387,21 @@
       },
       "RepositoryCredentials": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/127"
         },
         "flags": 0,
         "description": "The private repository authentication credentials to use."
       },
       "RestartPolicy": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/128"
         },
         "flags": 0,
         "description": "The restart policy for the container. When you set up a restart policy, Amazon ECS can restart the container without needing to replace the task."
       },
       "Secrets": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/141"
         },
         "flags": 0,
         "description": "The secrets to pass to the container."
@@ -1627,14 +2422,14 @@
       },
       "SystemControls": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/142"
         },
         "flags": 0,
         "description": "A list of namespaced kernel parameters to set in the container."
       },
       "Ulimits": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/143"
         },
         "flags": 0,
         "description": "A list of ``ulimits`` to set in the container."
@@ -1675,7 +2470,7 @@
       },
       "Permissions": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/144"
         },
         "flags": 0,
         "description": "The explicit permissions to provide to the container for the device. By default, the container has permissions for ``read``, ``write``, and ``mknod`` for the device."
@@ -1708,7 +2503,7 @@
     "properties": {
       "Options": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/145"
         },
         "flags": 0,
         "description": "The options to use when configuring the log router. This field is optional and can be used to specify a custom configuration file or to add additional metadata, such as the task, task definition, cluster, and container instance details to the log event. If specified, the syntax to use is ``\"options\":{\"enable-ecs-log-metadata\":\"true|false\",\"config-file-type:\"s3|file\",\"config-file-value\":\"arn:aws:s3:::mybucket/fluent.conf|filepath\"}``. For more information, see [Creating a task definition that uses a FireLens configuration](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_firelens.html#firelens-taskdef) in the *Amazon Elastic Container Service Developer Guide*.\n  Tasks hosted on FARGATElong only support the ``file`` configuration file type."
@@ -1728,7 +2523,7 @@
     "properties": {
       "Command": {
         "type": {
-          "$ref": "#/111"
+          "$ref": "#/146"
         },
         "flags": 0,
         "description": "A string array representing the command that the container runs to determine if it is healthy. The string array must start with ``CMD`` to run the command arguments directly, or ``CMD-SHELL`` to run the command with the container's default shell. \n  When you use the AWS Management Console JSON panel, the CLIlong, or the APIs, enclose the list of commands in double quotes and brackets.\n  ``[ \"CMD-SHELL\", \"curl -f http://localhost/ || exit 1\" ]`` \n You don't include the double quotes and brackets when you use the AWS Management Console.\n  ``CMD-SHELL, curl -f http://localhost/ || exit 1`` \n An exit code of 0 indicates success, and non-zero exit code indicates failure. For more information, see ``HealthCheck`` in the docker container create command."
@@ -1782,14 +2577,14 @@
     "properties": {
       "Add": {
         "type": {
-          "$ref": "#/112"
+          "$ref": "#/147"
         },
         "flags": 0,
         "description": "The Linux capabilities for the container that have been added to the default configuration provided by Docker. This parameter maps to ``CapAdd`` in the docker container create command and the ``--cap-add`` option to docker run.\n  Tasks launched on FARGATElong only support adding the ``SYS_PTRACE`` kernel capability.\n  Valid values: ``\"ALL\" | \"AUDIT_CONTROL\" | \"AUDIT_WRITE\" | \"BLOCK_SUSPEND\" | \"CHOWN\" | \"DAC_OVERRIDE\" | \"DAC_READ_SEARCH\" | \"FOWNER\" | \"FSETID\" | \"IPC_LOCK\" | \"IPC_OWNER\" | \"KILL\" | \"LEASE\" | \"LINUX_IMMUTABLE\" | \"MAC_ADMIN\" | \"MAC_OVERRIDE\" | \"MKNOD\" | \"NET_ADMIN\" | \"NET_BIND_SERVICE\" | \"NET_BROADCAST\" | \"NET_RAW\" | \"SETFCAP\" | \"SETGID\" | \"SETPCAP\" | \"SETUID\" | \"SYS_ADMIN\" | \"SYS_BOOT\" | \"SYS_CHROOT\" | \"SYS_MODULE\" | \"SYS_NICE\" | \"SYS_PACCT\" | \"SYS_PTRACE\" | \"SYS_RAWIO\" | \"SYS_RESOURCE\" | \"SYS_TIME\" | \"SYS_TTY_CONFIG\" | \"SYSLOG\" | \"WAKE_ALARM\"``"
       },
       "Drop": {
         "type": {
-          "$ref": "#/113"
+          "$ref": "#/148"
         },
         "flags": 0,
         "description": "The Linux capabilities for the container that have been removed from the default configuration provided by Docker. This parameter maps to ``CapDrop`` in the docker container create command and the ``--cap-drop`` option to docker run.\n Valid values: ``\"ALL\" | \"AUDIT_CONTROL\" | \"AUDIT_WRITE\" | \"BLOCK_SUSPEND\" | \"CHOWN\" | \"DAC_OVERRIDE\" | \"DAC_READ_SEARCH\" | \"FOWNER\" | \"FSETID\" | \"IPC_LOCK\" | \"IPC_OWNER\" | \"KILL\" | \"LEASE\" | \"LINUX_IMMUTABLE\" | \"MAC_ADMIN\" | \"MAC_OVERRIDE\" | \"MKNOD\" | \"NET_ADMIN\" | \"NET_BIND_SERVICE\" | \"NET_BROADCAST\" | \"NET_RAW\" | \"SETFCAP\" | \"SETGID\" | \"SETPCAP\" | \"SETUID\" | \"SYS_ADMIN\" | \"SYS_BOOT\" | \"SYS_CHROOT\" | \"SYS_MODULE\" | \"SYS_NICE\" | \"SYS_PACCT\" | \"SYS_PTRACE\" | \"SYS_RAWIO\" | \"SYS_RESOURCE\" | \"SYS_TIME\" | \"SYS_TTY_CONFIG\" | \"SYSLOG\" | \"WAKE_ALARM\"``"
@@ -1822,14 +2617,14 @@
     "properties": {
       "Capabilities": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/121"
         },
         "flags": 0,
         "description": "The Linux capabilities for the container that are added to or dropped from the default configuration provided by Docker.\n  For tasks that use the Fargate launch type, ``capabilities`` is supported for all platform versions but the ``add`` parameter is only supported if using platform version 1.4.0 or later."
       },
       "Devices": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/149"
         },
         "flags": 0,
         "description": "Any host devices to expose to the container. This parameter maps to ``Devices`` in the docker container create command and the ``--device`` option to docker run.\n  If you're using tasks that use the Fargate launch type, the ``devices`` parameter isn't supported."
@@ -1843,7 +2638,7 @@
       },
       "Tmpfs": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/150"
         },
         "flags": 0,
         "description": "The container path, mount options, and size (in MiB) of the tmpfs mount. This parameter maps to the ``--tmpfs`` option to docker run."
@@ -1863,17 +2658,29 @@
       },
       "Options": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/151"
         },
         "flags": 0,
         "description": "The configuration options to send to the log driver.\n The options you can specify depend on the log driver. Some of the options you can specify when you use the ``awslogs`` log driver to route logs to Amazon CloudWatch include the following:\n  + awslogs-create-group Required: No Specify whether you want the log group to be created automatically. If this option isn't specified, it defaults to false. Your IAM policy must include the logs:CreateLogGroup permission before you attempt to use awslogs-create-group. + awslogs-region Required: Yes Specify the Region that the awslogs log driver is to send your Docker logs to. You can choose to send all of your logs from clusters in different Regions to a single region in CloudWatch Logs. This is so that they're all visible in one location. Otherwise, you can separate them by Region for more granularity. Make sure that the specified log group exists in the Region that you specify with this option. + awslogs-group Required: Yes Make sure to specify a log group that the awslogs log driver sends its log streams to. + awslogs-stream-prefix Required: Yes, when using Fargate.Optional when using EC2. Use the awslogs-stream-prefix option to associate a log stream with the specified prefix, the container name, and the ID of the Amazon ECS task that the container belongs to. If you specify a prefix with this option, then the log stream takes the format prefix-name/container-name/ecs-task-id. If you don't specify a prefix with this option, then the log stream is named after the container ID that's assigned by the Docker daemon on the container instance. Because it's difficult to trace logs back to the container that sent them with just the Docker container ID (which is only available on the container instance), we recommend that you specify a prefix with this option. For Amazon ECS services, you can use the service name as the prefix. Doing so, you can trace log streams to the service that the container belongs to, the name of the container that sent them, and the ID of the task that the container belongs to. You must specify a stream-prefix for your logs to have your logs appear in the Log pane when using the Amazon ECS console. + awslogs-datetime-format Required: No This option defines a multiline start pattern in Python strftime format. A log message consists of a line that matches the pattern and any following lines that don’t match the pattern. The matched line is the delimiter between log messages. One example of a use case for using this format is for parsing output such as a stack dump, which might otherwise be logged in multiple entries. The correct pattern allows it to be captured in a single entry. For more information, see awslogs-datetime-format. You cannot configure both the awslogs-datetime-format and awslogs-multiline-pattern options. Multiline logging performs regular expression parsing and matching of all log messages. This might have a negative impact on logging performance. + awslogs-multiline-pattern Required: No This option defines a multiline start pattern that uses a regular expression. A log message consists of a line that matches the pattern and any following lines that don’t match the pattern. The matched line is the delimiter between log messages. For more information, see awslogs-multiline-pattern. This option is ignored if awslogs-datetime-format is also configured. You cannot configure both the awslogs-datetime-format and awslogs-multiline-pattern options. Multiline logging performs regular expression parsing and matching of all log messages. This might have a negative impact on logging performance. \n The following options apply to all supported log drivers.\n  + mode Required: No Valid values: non-blocking | blocking This option defines the delivery mode of log messages from the container to the log driver specified using logDriver. The delivery mode you choose affects application availability when the flow of logs from container is interrupted. If you use the blocking mode and the flow of logs is interrupted, calls from container code to write to the stdout and stderr streams will block. The logging thread of the application will block as a result. This may cause the application to become unresponsive and lead to container healthcheck failure. If you use the non-blocking mode, the container's logs are instead stored in an in-memory intermediate buffer configured with the max-buffer-size option. This prevents the application from becoming unresponsive when logs cannot be sent. We recommend using this mode if you want to ensure service availability and are okay with some log loss. For more information, see Preventing log loss with non-blocking mode in the awslogs container log driver. You can set a default mode for all containers in a specific Region by using the defaultLogDriverMode account setting. If you don't specify the mode option or configure the account setting, Amazon ECS will default to the non-blocking mode. For more information about the account setting, see Default log driver mode in the Amazon Elastic Container Service Developer Guide. On June 25, 2025, Amazon ECS changed the default log driver mode from blocking to non-blocking to prioritize task availability over logging. To continue using the blocking mode after this change, do one of the following: Set the mode option in your container definition's logConfiguration as blocking. Set the defaultLogDriverMode account setting to blocking. + max-buffer-size Required: No Default value: 10m When non-blocking mode is used, the max-buffer-size log option controls the size of the buffer that's used for intermediate message storage. Make sure to specify an adequate buffer size based on your application. When the buffer fills up, further logs cannot be stored. Logs that cannot be stored are lost. \n To route logs using the ``splunk`` log router, you need to specify a ``splunk-token`` and a ``splunk-url``.\n When you use the ``awsfirelens`` log router to route logs to an AWS Service or AWS Partner Network destination for log storage and analytics, you can set the ``log-driver-buffer-limit`` option to limit the number of events that are buffered in memory, before being sent to the log router container. It can help to resolve potential log loss issue because high throughput might result in memory running out for the buffer inside of Docker.\n Other options you can specify when using ``awsfirelens`` to route logs depend on the destination. When you export logs to Amazon Data Firehose, you can specify the AWS Region with ``region`` and a name for the log stream with ``delivery_stream``.\n When you export logs to Amazon Kinesis Data Streams, you can specify an AWS Region with ``region`` and a data stream name with ``stream``.\n  When you export logs to Amazon OpenSearch Service, you can specify options like ``Name``, ``Host`` (OpenSearch Service endpoint without protocol), ``Port``, ``Index``, ``Type``, ``Aws_auth``, ``Aws_region``, ``Suppress_Type_Name``, and ``tls``. For more information, see [Under the hood: FireLens for Amazon ECS Tasks](https://docs.aws.amazon.com/containers/under-the-hood-firelens-for-amazon-ecs-tasks/).\n When you export logs to Amazon S3, you can specify the bucket using the ``bucket`` option. You can also specify ``region``, ``total_file_size``, ``upload_timeout``, and ``use_put_object`` as options.\n This parameter requires version 1.19 of the Docker Remote API or greater on your container instance. To check the Docker Remote API version on your container instance, log in to your container instance and run the following command: ``sudo docker version --format '{{.Server.APIVersion}}'``"
       },
       "SecretOptions": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/152"
         },
         "flags": 0,
         "description": "The secrets to pass to the log configuration. For more information, see [Specifying sensitive data](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data.html) in the *Amazon Elastic Container Service Developer Guide*."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LogDriverVolumeConfiguration",
+    "properties": {
+      "Driver": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1
       }
     }
   },
@@ -1930,7 +2737,7 @@
       },
       "IgnoredExitCodes": {
         "type": {
-          "$ref": "#/118"
+          "$ref": "#/153"
         },
         "flags": 0,
         "description": ""
@@ -2017,7 +2824,7 @@
       },
       "MountOptions": {
         "type": {
-          "$ref": "#/119"
+          "$ref": "#/154"
         },
         "flags": 0,
         "description": "The list of tmpfs volume mount options.\n Valid values: ``\"defaults\" | \"ro\" | \"rw\" | \"suid\" | \"nosuid\" | \"dev\" | \"nodev\" | \"exec\" | \"noexec\" | \"sync\" | \"async\" | \"dirsync\" | \"remount\" | \"mand\" | \"nomand\" | \"atime\" | \"noatime\" | \"diratime\" | \"nodiratime\" | \"bind\" | \"rbind\" | \"unbindable\" | \"runbindable\" | \"private\" | \"rprivate\" | \"shared\" | \"rshared\" | \"slave\" | \"rslave\" | \"relatime\" | \"norelatime\" | \"strictatime\" | \"nostrictatime\" | \"mode\" | \"uid\" | \"gid\" | \"nr_inodes\" | \"nr_blocks\" | \"mpol\"``"
@@ -2064,10 +2871,17 @@
     "properties": {
       "Host": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/120"
         },
         "flags": 0,
         "description": "This parameter is specified when you use bind mount host volumes. The contents of the ``host`` parameter determine whether your bind mount host volume persists on the host container instance and where it's stored. If the ``host`` parameter is empty, then the Docker daemon assigns a host path for your data volume. However, the data isn't guaranteed to persist after the containers that are associated with it stop running.\n Windows containers can mount whole directories on the same drive as ``$env:ProgramData``. Windows containers can't mount directories on a different drive, and mount point can't be across drives. For example, you can mount ``C:\\my\\path:C:\\my\\path`` and ``D:\\:D:\\``, but not ``D:\\my\\path:C:\\my\\path`` or ``D:\\:C:\\my\\path``."
+      },
+      "LogDriverVolumeConfiguration": {
+        "type": {
+          "$ref": "#/125"
+        },
+        "flags": 0,
+        "description": ""
       },
       "Name": {
         "type": {
@@ -2087,7 +2901,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/80"
+      "$ref": "#/114"
     }
   },
   {
@@ -2099,37 +2913,37 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/88"
+      "$ref": "#/122"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/83"
+      "$ref": "#/117"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/91"
+      "$ref": "#/126"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/94"
+      "$ref": "#/129"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/95"
+      "$ref": "#/130"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/98"
+      "$ref": "#/133"
     }
   },
   {
@@ -2164,13 +2978,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/82"
+      "$ref": "#/116"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/97"
+      "$ref": "#/132"
     }
   },
   {
@@ -2181,7 +2995,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/94"
+      "$ref": "#/129"
     }
   },
   {
@@ -2203,19 +3017,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/81"
+      "$ref": "#/115"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/96"
+      "$ref": "#/131"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/99"
+      "$ref": "#/134"
     }
   },
   {
@@ -2224,7 +3038,7 @@
     "properties": {
       "ContainerDefinitions": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/156"
         },
         "flags": 0,
         "description": "A list of container definitions in JSON format that describe the containers that make up the daemon task."
@@ -2280,7 +3094,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/157"
         },
         "flags": 0,
         "description": ""
@@ -2294,7 +3108,7 @@
       },
       "Volumes": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/158"
         },
         "flags": 0,
         "description": "The list of data volume definitions for the daemon task."
@@ -2321,7 +3135,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/124"
+          "$ref": "#/159"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -2332,7 +3146,7 @@
     "$type": "ResourceType",
     "name": "AWS.ECS/DaemonTaskDefinition@default",
     "body": {
-      "$ref": "#/125"
+      "$ref": "#/160"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2348,7 +3162,7 @@
     "properties": {
       "ApplicationAutoScalingPolicies": {
         "type": {
-          "$ref": "#/144"
+          "$ref": "#/179"
         },
         "flags": 2
       },
@@ -2366,31 +3180,31 @@
     "properties": {
       "AutoScaling": {
         "type": {
-          "$ref": "#/128"
+          "$ref": "#/163"
         },
         "flags": 2
       },
       "IngressPath": {
         "type": {
-          "$ref": "#/139"
+          "$ref": "#/174"
         },
         "flags": 2
       },
       "LogGroups": {
         "type": {
-          "$ref": "#/145"
+          "$ref": "#/180"
         },
         "flags": 2
       },
       "MetricAlarms": {
         "type": {
-          "$ref": "#/146"
+          "$ref": "#/181"
         },
         "flags": 2
       },
       "ServiceSecurityGroups": {
         "type": {
-          "$ref": "#/147"
+          "$ref": "#/182"
         },
         "flags": 2
       }
@@ -2402,13 +3216,13 @@
     "properties": {
       "AwsLogsConfiguration": {
         "type": {
-          "$ref": "#/133"
+          "$ref": "#/168"
         },
         "flags": 0
       },
       "Command": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/183"
         },
         "flags": 0
       },
@@ -2420,7 +3234,7 @@
       },
       "Environment": {
         "type": {
-          "$ref": "#/149"
+          "$ref": "#/184"
         },
         "flags": 0
       },
@@ -2432,13 +3246,13 @@
       },
       "RepositoryCredentials": {
         "type": {
-          "$ref": "#/131"
+          "$ref": "#/166"
         },
         "flags": 0
       },
       "Secrets": {
         "type": {
-          "$ref": "#/150"
+          "$ref": "#/185"
         },
         "flags": 0
       }
@@ -2534,7 +3348,7 @@
       },
       "IngressPaths": {
         "type": {
-          "$ref": "#/151"
+          "$ref": "#/186"
         },
         "flags": 0
       },
@@ -2546,19 +3360,19 @@
       },
       "NetworkConfiguration": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/170"
         },
         "flags": 0
       },
       "PrimaryContainer": {
         "type": {
-          "$ref": "#/130"
+          "$ref": "#/165"
         },
         "flags": 0
       },
       "ScalingTarget": {
         "type": {
-          "$ref": "#/132"
+          "$ref": "#/167"
         },
         "flags": 0
       },
@@ -2588,13 +3402,13 @@
     "properties": {
       "SecurityGroups": {
         "type": {
-          "$ref": "#/152"
+          "$ref": "#/187"
         },
         "flags": 0
       },
       "Subnets": {
         "type": {
-          "$ref": "#/153"
+          "$ref": "#/188"
         },
         "flags": 0
       }
@@ -2652,13 +3466,13 @@
       },
       "LoadBalancerSecurityGroups": {
         "type": {
-          "$ref": "#/154"
+          "$ref": "#/189"
         },
         "flags": 2
       },
       "TargetGroupArns": {
         "type": {
-          "$ref": "#/155"
+          "$ref": "#/190"
         },
         "flags": 2
       }
@@ -2769,19 +3583,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/141"
+      "$ref": "#/176"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/142"
+      "$ref": "#/177"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/140"
+      "$ref": "#/175"
     }
   },
   {
@@ -2815,13 +3629,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/134"
+      "$ref": "#/169"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/143"
+      "$ref": "#/178"
     }
   },
   {
@@ -2830,7 +3644,7 @@
     "properties": {
       "ActiveConfigurations": {
         "type": {
-          "$ref": "#/157"
+          "$ref": "#/192"
         },
         "flags": 2
       },
@@ -2854,7 +3668,7 @@
       },
       "ECSManagedResourceArns": {
         "type": {
-          "$ref": "#/129"
+          "$ref": "#/164"
         },
         "flags": 2
       },
@@ -2890,19 +3704,19 @@
       },
       "NetworkConfiguration": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/170"
         },
         "flags": 4
       },
       "PrimaryContainer": {
         "type": {
-          "$ref": "#/130"
+          "$ref": "#/165"
         },
         "flags": 4
       },
       "ScalingTarget": {
         "type": {
-          "$ref": "#/132"
+          "$ref": "#/167"
         },
         "flags": 4
       },
@@ -2920,13 +3734,13 @@
       },
       "Status": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/172"
         },
         "flags": 2
       },
       "Tags": {
         "type": {
-          "$ref": "#/158"
+          "$ref": "#/193"
         },
         "flags": 0
       },
@@ -2970,7 +3784,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/159"
+          "$ref": "#/194"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2981,7 +3795,7 @@
     "$type": "ResourceType",
     "name": "AWS.ECS/ExpressGatewayService@default",
     "body": {
-      "$ref": "#/160"
+      "$ref": "#/195"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3007,7 +3821,7 @@
     "properties": {
       "Header": {
         "type": {
-          "$ref": "#/174"
+          "$ref": "#/209"
         },
         "flags": 0
       }
@@ -3019,7 +3833,7 @@
     "properties": {
       "HostSharedAlb": {
         "type": {
-          "$ref": "#/175"
+          "$ref": "#/210"
         },
         "flags": 1
       }
@@ -3031,7 +3845,7 @@
     "properties": {
       "Destination": {
         "type": {
-          "$ref": "#/168"
+          "$ref": "#/203"
         },
         "flags": 0
       }
@@ -3043,7 +3857,7 @@
     "properties": {
       "S3": {
         "type": {
-          "$ref": "#/169"
+          "$ref": "#/204"
         },
         "flags": 1
       }
@@ -3093,7 +3907,7 @@
       },
       "Subnets": {
         "type": {
-          "$ref": "#/178"
+          "$ref": "#/213"
         },
         "flags": 0,
         "description": "The subnets for the ALB."
@@ -3123,7 +3937,7 @@
       },
       "Values": {
         "type": {
-          "$ref": "#/179"
+          "$ref": "#/214"
         },
         "flags": 1,
         "description": "The values for the header."
@@ -3136,7 +3950,7 @@
     "properties": {
       "AccessLogs": {
         "type": {
-          "$ref": "#/167"
+          "$ref": "#/202"
         },
         "flags": 0
       },
@@ -3162,7 +3976,7 @@
       },
       "NetworkConfiguration": {
         "type": {
-          "$ref": "#/171"
+          "$ref": "#/206"
         },
         "flags": 0
       },
@@ -3187,7 +4001,7 @@
       },
       "TestTrafficRules": {
         "type": {
-          "$ref": "#/165"
+          "$ref": "#/200"
         },
         "flags": 0
       },
@@ -3242,7 +4056,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/177"
+      "$ref": "#/212"
     }
   },
   {
@@ -3265,7 +4079,7 @@
       },
       "Configuration": {
         "type": {
-          "$ref": "#/166"
+          "$ref": "#/201"
         },
         "flags": 1,
         "description": "The configuration for the gateway."
@@ -3314,7 +4128,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/181"
+          "$ref": "#/216"
         },
         "flags": 0,
         "description": "The metadata that you apply to the gateway to help you categorize and organize them."
@@ -3348,7 +4162,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/182"
+          "$ref": "#/217"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3359,7 +4173,93 @@
     "$type": "ResourceType",
     "name": "AWS.ECS/Gateway@default",
     "body": {
-      "$ref": "#/183"
+      "$ref": "#/218"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GatewayClusterAssociationStatus",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ECS/GatewayClusterAssociationsProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ECS/GatewayClusterAssociationsProperties",
+    "properties": {
+      "Cluster": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 17,
+        "description": "The name or full Amazon Resource Name (ARN) of the cluster to associate the gateway with."
+      },
+      "ClusterArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The full Amazon Resource Name (ARN) of the associated cluster."
+      },
+      "Gateway": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 17,
+        "description": "The name or full Amazon Resource Name (ARN) of the gateway to associate with the cluster."
+      },
+      "GatewayArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The full Amazon Resource Name (ARN) of the associated gateway."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The status of the association."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ECS/GatewayClusterAssociations",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/222"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ECS/GatewayClusterAssociations@default",
+    "body": {
+      "$ref": "#/223"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3415,7 +4315,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/186"
+          "$ref": "#/226"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3426,7 +4326,7 @@
     "$type": "ResourceType",
     "name": "AWS.ECS/PrimaryTaskSet@default",
     "body": {
-      "$ref": "#/187"
+      "$ref": "#/227"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3478,14 +4378,14 @@
       },
       "SecurityGroups": {
         "type": {
-          "$ref": "#/233"
+          "$ref": "#/273"
         },
         "flags": 0,
         "description": "The IDs of the security groups associated with the task or service. If you don't specify a security group, the default security group for the VPC is used. There's a limit of 5 security groups that can be specified.\n  All specified security groups must be from the same VPC."
       },
       "Subnets": {
         "type": {
-          "$ref": "#/234"
+          "$ref": "#/274"
         },
         "flags": 0,
         "description": "The IDs of the subnets associated with the task or service. There's a limit of 16 subnets that can be specified.\n  All specified subnets must be from the same VPC."
@@ -3545,7 +4445,7 @@
     "properties": {
       "AlarmNames": {
         "type": {
-          "$ref": "#/235"
+          "$ref": "#/275"
         },
         "flags": 1,
         "description": "One or more CloudWatch alarm names. Use a \",\" to separate the alarms."
@@ -3593,7 +4493,7 @@
       },
       "ThresholdConfiguration": {
         "type": {
-          "$ref": "#/229"
+          "$ref": "#/269"
         },
         "flags": 0,
         "description": "The threshold configuration that controls when the deployment circuit breaker triggers. The ``type`` and ``value`` together determine how many task failures are tolerated before the circuit breaker activates."
@@ -3606,7 +4506,7 @@
     "properties": {
       "Alarms": {
         "type": {
-          "$ref": "#/193"
+          "$ref": "#/233"
         },
         "flags": 0,
         "description": "Information about the CloudWatch alarms."
@@ -3620,35 +4520,35 @@
       },
       "CanaryConfiguration": {
         "type": {
-          "$ref": "#/191"
+          "$ref": "#/231"
         },
         "flags": 0,
         "description": "Configuration for canary deployment strategy. Only valid when the deployment strategy is ``CANARY``. This configuration enables shifting a fixed percentage of traffic for testing, followed by shifting the remaining traffic after a bake period."
       },
       "DeploymentCircuitBreaker": {
         "type": {
-          "$ref": "#/194"
+          "$ref": "#/234"
         },
         "flags": 0,
         "description": "The deployment circuit breaker can only be used for services using the rolling update (``ECS``) deployment type.\n  The *deployment circuit breaker* determines whether a service deployment will fail if the service can't reach a steady state. If you use the deployment circuit breaker, a service deployment will transition to a failed state and stop launching new tasks. If you use the rollback option, when a service deployment fails, the service is rolled back to the last deployment that completed successfully. For more information, see [Rolling update](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-ecs.html) in the *Amazon Elastic Container Service Developer Guide*"
       },
       "EarlySuccessCriteria": {
         "type": {
-          "$ref": "#/197"
+          "$ref": "#/237"
         },
         "flags": 0,
         "description": "The early success criteria configuration for a rolling deployment. With early success criteria, you can configure an Amazon ECS deployment to complete faster. Amazon ECS declares a deployment successful once a target percentage of tasks are healthy, instead of waiting for the service to fully stabilize."
       },
       "LifecycleHooks": {
         "type": {
-          "$ref": "#/236"
+          "$ref": "#/276"
         },
         "flags": 0,
         "description": "An array of deployment lifecycle hook objects to run custom logic or pause the deployment at specific stages of the deployment lifecycle."
       },
       "LinearConfiguration": {
         "type": {
-          "$ref": "#/206"
+          "$ref": "#/246"
         },
         "flags": 0,
         "description": "Configuration for linear deployment strategy. Only valid when the deployment strategy is ``LINEAR``. This configuration enables progressive traffic shifting in equal percentage increments with configurable bake times between each step."
@@ -3722,7 +4622,7 @@
     "properties": {
       "HookDetails": {
         "type": {
-          "$ref": "#/238"
+          "$ref": "#/278"
         },
         "flags": 0,
         "description": "Use this field to specify custom parameters that ECS passes to your hook target invocations (such as a Lambda function).\n This field must be a JSON object as a string."
@@ -3736,7 +4636,7 @@
       },
       "LifecycleStages": {
         "type": {
-          "$ref": "#/239"
+          "$ref": "#/279"
         },
         "flags": 1,
         "description": "The lifecycle stages at which to run the hook. Choose from these valid values:\n  +  RECONCILE_SERVICE\n The reconciliation stage that only happens when you start a new service deployment with more than 1 service revision in an ACTIVE state.\n You can use a lifecycle hook for this stage.\n  +  PRE_SCALE_UP\n The green service revision has not started. The blue service revision is handling 100% of the production traffic. There is no test traffic.\n You can use a lifecycle hook for this stage.\n  +  POST_SCALE_UP\n The green service revision has started. The blue service revision is handling 100% of the production traffic. There is no test traffic.\n You can use a lifecycle hook for this stage.\n  +  TEST_TRAFFIC_SHIFT\n The blue and green service revisions are running. The blue service revision handles 100% of the production traffic. The green service revision is migrating from 0% to 100% of test traffic.\n You can use a lifecycle hook for this stage.\n  +  POST_TEST_TRAFFIC_SHIFT\n The test traffic shift is complete. The green service revision handles 100% of the test traffic.\n You can use a lifecycle hook for this stage.\n  +  PRE_PRODUCTION_TRAFFIC_SHIFT\n Occurs before production traffic shift. For linear and canary deployments, this stage is invoked before every traffic shift step.\n You can use a lifecycle hook for this stage.\n  +  PRODUCTION_TRAFFIC_SHIFT\n Production traffic is shifting to the green service revision. The green service revision is migrating from 0% to 100% of production traffic. For linear and canary deployments, this stage is invoked at every traffic shift step.\n You can use a lifecycle hook for this stage.\n  +  POST_PRODUCTION_TRAFFIC_SHIFT\n The production traffic shift is complete.\n You can use a lifecycle hook for this stage.\n  \n  ``PAUSE`` hooks cannot be configured at ``TEST_TRAFFIC_SHIFT`` or ``PRODUCTION_TRAFFIC_SHIFT`` stages. These stages are only valid for ``AWS_LAMBDA`` hooks.\n  You must provide this parameter when configuring a deployment lifecycle hook."
@@ -3757,7 +4657,7 @@
       },
       "TimeoutConfiguration": {
         "type": {
-          "$ref": "#/205"
+          "$ref": "#/245"
         },
         "flags": 0,
         "description": "The timeout configuration for the lifecycle hook. This specifies how long Amazon ECS waits before taking the timeout action if the hook is not resolved."
@@ -3784,7 +4684,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/240"
+          "$ref": "#/280"
         },
         "flags": 0,
         "description": "The tags applied to this Amazon EBS volume. ``AmazonECSCreated`` and ``AmazonECSManaged`` are reserved tags that can't be used."
@@ -3817,13 +4717,13 @@
     "properties": {
       "Filters": {
         "type": {
-          "$ref": "#/202"
+          "$ref": "#/242"
         },
         "flags": 0
       },
       "HealthCheck": {
         "type": {
-          "$ref": "#/203"
+          "$ref": "#/243"
         },
         "flags": 0
       },
@@ -3841,7 +4741,7 @@
     "properties": {
       "AccessTypes": {
         "type": {
-          "$ref": "#/241"
+          "$ref": "#/281"
         },
         "flags": 0
       }
@@ -3889,7 +4789,7 @@
       },
       "Matcher": {
         "type": {
-          "$ref": "#/204"
+          "$ref": "#/244"
         },
         "flags": 0
       },
@@ -3965,7 +4865,7 @@
     "properties": {
       "AdvancedConfiguration": {
         "type": {
-          "$ref": "#/189"
+          "$ref": "#/229"
         },
         "flags": 0,
         "description": "The advanced settings for the load balancer used in blue/green deployments. Specify the alternate target group, listener rules, and IAM role required for traffic shifting during blue/green deployments."
@@ -4013,14 +4913,14 @@
       },
       "Options": {
         "type": {
-          "$ref": "#/242"
+          "$ref": "#/282"
         },
         "flags": 0,
         "description": "The configuration options to send to the log driver.\n The options you can specify depend on the log driver. Some of the options you can specify when you use the ``awslogs`` log driver to route logs to Amazon CloudWatch include the following:\n  + awslogs-create-group Required: No Specify whether you want the log group to be created automatically. If this option isn't specified, it defaults to false. Your IAM policy must include the logs:CreateLogGroup permission before you attempt to use awslogs-create-group. + awslogs-region Required: Yes Specify the Region that the awslogs log driver is to send your Docker logs to. You can choose to send all of your logs from clusters in different Regions to a single region in CloudWatch Logs. This is so that they're all visible in one location. Otherwise, you can separate them by Region for more granularity. Make sure that the specified log group exists in the Region that you specify with this option. + awslogs-group Required: Yes Make sure to specify a log group that the awslogs log driver sends its log streams to. + awslogs-stream-prefix Required: Yes, when using Fargate.Optional when using EC2. Use the awslogs-stream-prefix option to associate a log stream with the specified prefix, the container name, and the ID of the Amazon ECS task that the container belongs to. If you specify a prefix with this option, then the log stream takes the format prefix-name/container-name/ecs-task-id. If you don't specify a prefix with this option, then the log stream is named after the container ID that's assigned by the Docker daemon on the container instance. Because it's difficult to trace logs back to the container that sent them with just the Docker container ID (which is only available on the container instance), we recommend that you specify a prefix with this option. For Amazon ECS services, you can use the service name as the prefix. Doing so, you can trace log streams to the service that the container belongs to, the name of the container that sent them, and the ID of the task that the container belongs to. You must specify a stream-prefix for your logs to have your logs appear in the Log pane when using the Amazon ECS console. + awslogs-datetime-format Required: No This option defines a multiline start pattern in Python strftime format. A log message consists of a line that matches the pattern and any following lines that don’t match the pattern. The matched line is the delimiter between log messages. One example of a use case for using this format is for parsing output such as a stack dump, which might otherwise be logged in multiple entries. The correct pattern allows it to be captured in a single entry. For more information, see awslogs-datetime-format. You cannot configure both the awslogs-datetime-format and awslogs-multiline-pattern options. Multiline logging performs regular expression parsing and matching of all log messages. This might have a negative impact on logging performance. + awslogs-multiline-pattern Required: No This option defines a multiline start pattern that uses a regular expression. A log message consists of a line that matches the pattern and any following lines that don’t match the pattern. The matched line is the delimiter between log messages. For more information, see awslogs-multiline-pattern. This option is ignored if awslogs-datetime-format is also configured. You cannot configure both the awslogs-datetime-format and awslogs-multiline-pattern options. Multiline logging performs regular expression parsing and matching of all log messages. This might have a negative impact on logging performance. \n The following options apply to all supported log drivers.\n  + mode Required: No Valid values: non-blocking | blocking This option defines the delivery mode of log messages from the container to the log driver specified using logDriver. The delivery mode you choose affects application availability when the flow of logs from container is interrupted. If you use the blocking mode and the flow of logs is interrupted, calls from container code to write to the stdout and stderr streams will block. The logging thread of the application will block as a result. This may cause the application to become unresponsive and lead to container healthcheck failure. If you use the non-blocking mode, the container's logs are instead stored in an in-memory intermediate buffer configured with the max-buffer-size option. This prevents the application from becoming unresponsive when logs cannot be sent. We recommend using this mode if you want to ensure service availability and are okay with some log loss. For more information, see Preventing log loss with non-blocking mode in the awslogs container log driver. You can set a default mode for all containers in a specific Region by using the defaultLogDriverMode account setting. If you don't specify the mode option or configure the account setting, Amazon ECS will default to the non-blocking mode. For more information about the account setting, see Default log driver mode in the Amazon Elastic Container Service Developer Guide. On June 25, 2025, Amazon ECS changed the default log driver mode from blocking to non-blocking to prioritize task availability over logging. To continue using the blocking mode after this change, do one of the following: Set the mode option in your container definition's logConfiguration as blocking. Set the defaultLogDriverMode account setting to blocking. + max-buffer-size Required: No Default value: 10m When non-blocking mode is used, the max-buffer-size log option controls the size of the buffer that's used for intermediate message storage. Make sure to specify an adequate buffer size based on your application. When the buffer fills up, further logs cannot be stored. Logs that cannot be stored are lost. \n To route logs using the ``splunk`` log router, you need to specify a ``splunk-token`` and a ``splunk-url``.\n When you use the ``awsfirelens`` log router to route logs to an AWS Service or AWS Partner Network destination for log storage and analytics, you can set the ``log-driver-buffer-limit`` option to limit the number of events that are buffered in memory, before being sent to the log router container. It can help to resolve potential log loss issue because high throughput might result in memory running out for the buffer inside of Docker.\n Other options you can specify when using ``awsfirelens`` to route logs depend on the destination. When you export logs to Amazon Data Firehose, you can specify the AWS Region with ``region`` and a name for the log stream with ``delivery_stream``.\n When you export logs to Amazon Kinesis Data Streams, you can specify an AWS Region with ``region`` and a data stream name with ``stream``.\n  When you export logs to Amazon OpenSearch Service, you can specify options like ``Name``, ``Host`` (OpenSearch Service endpoint without protocol), ``Port``, ``Index``, ``Type``, ``Aws_auth``, ``Aws_region``, ``Suppress_Type_Name``, and ``tls``. For more information, see [Under the hood: FireLens for Amazon ECS Tasks](https://docs.aws.amazon.com/containers/under-the-hood-firelens-for-amazon-ecs-tasks/).\n When you export logs to Amazon S3, you can specify the bucket using the ``bucket`` option. You can also specify ``region``, ``total_file_size``, ``upload_timeout``, and ``use_put_object`` as options.\n This parameter requires version 1.19 of the Docker Remote API or greater on your container instance. To check the Docker Remote API version on your container instance, log in to your container instance and run the following command: ``sudo docker version --format '{{.Server.APIVersion}}'``"
       },
       "SecretOptions": {
         "type": {
-          "$ref": "#/243"
+          "$ref": "#/283"
         },
         "flags": 0,
         "description": "The secrets to pass to the log configuration. For more information, see [Specifying sensitive data](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data.html) in the *Amazon Elastic Container Service Developer Guide*."
@@ -4033,7 +4933,7 @@
     "properties": {
       "MetricNames": {
         "type": {
-          "$ref": "#/244"
+          "$ref": "#/284"
         },
         "flags": 1,
         "description": "The list of metric names to configure. The supported metric names are ``CPUUtilization`` and ``MemoryUtilization``."
@@ -4053,7 +4953,7 @@
     "properties": {
       "MetricConfigurations": {
         "type": {
-          "$ref": "#/245"
+          "$ref": "#/285"
         },
         "flags": 1,
         "description": "The list of metric configurations for the service monitoring."
@@ -4066,7 +4966,7 @@
     "properties": {
       "AwsvpcConfiguration": {
         "type": {
-          "$ref": "#/190"
+          "$ref": "#/230"
         },
         "flags": 0,
         "description": "The VPC subnets and security groups that are associated with a task.\n  All specified subnets and security groups must be from the same VPC."
@@ -4173,7 +5073,7 @@
       },
       "TestTrafficRules": {
         "type": {
-          "$ref": "#/220"
+          "$ref": "#/260"
         },
         "flags": 0,
         "description": "The configuration for test traffic routing rules used during blue/green deployments with Amazon ECS Service Connect. This allows you to route a portion of traffic to the new service revision of your service for testing before shifting all production traffic."
@@ -4186,14 +5086,14 @@
     "properties": {
       "AccessLogConfiguration": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/255"
         },
         "flags": 0,
         "description": "The configuration for Service Connect access logging. Access logs capture detailed information about requests made to your service, including request patterns, response codes, and timing data. They can be useful for debugging connectivity issues, monitoring service performance, and auditing service-to-service communication for security and compliance purposes.\n  To enable access logs, you must also specify a ``logConfiguration`` in the ``serviceConnectConfiguration``."
       },
       "ContainerConfigurations": {
         "type": {
-          "$ref": "#/246"
+          "$ref": "#/286"
         },
         "flags": 0,
         "description": ""
@@ -4207,7 +5107,7 @@
       },
       "LogConfiguration": {
         "type": {
-          "$ref": "#/208"
+          "$ref": "#/248"
         },
         "flags": 0,
         "description": "The log configuration for the container. This parameter maps to ``LogConfig`` in the docker container create command and the ``--log-driver`` option to docker run.\n By default, containers use the same logging driver that the Docker daemon uses. However, the container might use a different logging driver than the Docker daemon by specifying a log driver configuration in the container definition.\n Understand the following when specifying a log configuration for your containers.\n  +  Amazon ECS currently supports a subset of the logging drivers available to the Docker daemon. Additional log drivers may be available in future releases of the Amazon ECS container agent.\n For tasks on FARGATElong, the supported log drivers are ``awslogs``, ``splunk``, and ``awsfirelens``.\n For tasks hosted on Amazon EC2 instances, the supported log drivers are ``awslogs``, ``fluentd``, ``gelf``, ``json-file``, ``journald``,``syslog``, ``splunk``, and ``awsfirelens``.\n  +  This parameter requires version 1.18 of the Docker Remote API or greater on your container instance.\n  +  For tasks that are hosted on Amazon EC2 instances, the Amazon ECS container agent must register the available logging drivers with the ``ECS_AVAILABLE_LOGGING_DRIVERS`` environment variable before containers placed on that instance can use these log configuration options. For more information, see [Amazon ECS container agent configuration](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-config.html) in the *Amazon Elastic Container Service Developer Guide*.\n  +  For tasks that are on FARGATElong, because you don't have access to the underlying infrastructure your tasks are hosted on, any additional software needed must be installed outside of the task. For example, the Fluentd output aggregators or a remote host running Logstash to send Gelf logs to."
@@ -4221,7 +5121,7 @@
       },
       "Services": {
         "type": {
-          "$ref": "#/247"
+          "$ref": "#/287"
         },
         "flags": 0,
         "description": "The list of Service Connect service objects. These are names and aliases (also known as endpoints) that are used by other Amazon ECS services to connect to this service. \n This field is not required for a \"client\" Amazon ECS service that's a member of a namespace only to connect to other services within the namespace. An example of this would be a frontend application that accepts incoming requests from either a load balancer that's attached to the service or by other means.\n An object selects a port from the task definition, assigns a name for the CMAPlong service, and a list of aliases (endpoints) and ports for client applications to refer to this service."
@@ -4246,7 +5146,7 @@
     "properties": {
       "ClientAliases": {
         "type": {
-          "$ref": "#/248"
+          "$ref": "#/288"
         },
         "flags": 0,
         "description": "The list of client aliases for this Service Connect service. You use these to assign names that can be used by client applications. The maximum number of client aliases that you can have in this list is 1.\n Each alias (\"endpoint\") is a fully-qualified name and port number that other Amazon ECS tasks (\"clients\") can use to connect to this service.\n Each name and port mapping must be unique within the namespace.\n For each ``ServiceConnectService``, you must provide at least one ``clientAlias`` with one ``port``."
@@ -4274,14 +5174,14 @@
       },
       "Timeout": {
         "type": {
-          "$ref": "#/230"
+          "$ref": "#/270"
         },
         "flags": 0,
         "description": "A reference to an object that represents the configured timeouts for Service Connect."
       },
       "Tls": {
         "type": {
-          "$ref": "#/224"
+          "$ref": "#/264"
         },
         "flags": 0,
         "description": "A reference to an object that represents a Transport Layer Security (TLS) configuration."
@@ -4294,7 +5194,7 @@
     "properties": {
       "Header": {
         "type": {
-          "$ref": "#/221"
+          "$ref": "#/261"
         },
         "flags": 1,
         "description": "The HTTP header-based routing rules that determine which requests should be routed to the new service version during blue/green deployment testing. These rules provide fine-grained control over test traffic routing based on request headers."
@@ -4314,7 +5214,7 @@
       },
       "Value": {
         "type": {
-          "$ref": "#/222"
+          "$ref": "#/262"
         },
         "flags": 0,
         "description": ""
@@ -4353,7 +5253,7 @@
     "properties": {
       "IssuerCertificateAuthority": {
         "type": {
-          "$ref": "#/223"
+          "$ref": "#/263"
         },
         "flags": 1,
         "description": "The signer certificate authority."
@@ -4429,7 +5329,7 @@
       },
       "TagSpecifications": {
         "type": {
-          "$ref": "#/249"
+          "$ref": "#/289"
         },
         "flags": 0,
         "description": "The tags to apply to the volume. Amazon ECS applies service-managed tags by default. This parameter maps 1:1 with the ``TagSpecifications.N`` parameter of the [CreateVolume API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html) in the *Amazon EC2 API Reference*."
@@ -4497,7 +5397,7 @@
     "properties": {
       "ManagedEBSVolume": {
         "type": {
-          "$ref": "#/225"
+          "$ref": "#/265"
         },
         "flags": 0,
         "description": "The configuration for the Amazon EBS volume that Amazon ECS creates and manages on your behalf. These settings are used to create each Amazon EBS volume, with one volume created for each task in the service. The Amazon EBS volumes are visible in your account in the Amazon EC2 console once they are created."
@@ -4604,7 +5504,7 @@
     "properties": {
       "AdvancedConfiguration": {
         "type": {
-          "$ref": "#/231"
+          "$ref": "#/271"
         },
         "flags": 0,
         "description": ""
@@ -4653,7 +5553,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/198"
+      "$ref": "#/238"
     }
   },
   {
@@ -4668,7 +5568,7 @@
         "$ref": "#/22"
       },
       {
-        "$ref": "#/237"
+        "$ref": "#/277"
       }
     ]
   },
@@ -4681,7 +5581,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/228"
+      "$ref": "#/268"
     }
   },
   {
@@ -4698,7 +5598,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/214"
+      "$ref": "#/254"
     }
   },
   {
@@ -4710,31 +5610,31 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/209"
+      "$ref": "#/249"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/218"
+      "$ref": "#/258"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/219"
+      "$ref": "#/259"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/216"
+      "$ref": "#/256"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/199"
+      "$ref": "#/239"
     }
   },
   {
@@ -4744,55 +5644,55 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/192"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/201"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/207"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/212"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/213"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/226"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/228"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/227"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
       "$ref": "#/232"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/241"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/247"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/252"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/253"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/266"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/268"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/267"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/272"
     }
   },
   {
@@ -4808,7 +5708,7 @@
       },
       "CapacityProviderStrategy": {
         "type": {
-          "$ref": "#/251"
+          "$ref": "#/291"
         },
         "flags": 0,
         "description": "The capacity provider strategy to use for the service.\n If a ``capacityProviderStrategy`` is specified, the ``launchType`` parameter must be omitted. If no ``capacityProviderStrategy`` or ``launchType`` is specified, the ``defaultCapacityProviderStrategy`` for the cluster is used.\n A capacity provider strategy can contain a maximum of 20 capacity providers.\n  To remove this property from your service resource, specify an empty ``CapacityProviderStrategyItem`` array."
@@ -4822,14 +5722,14 @@
       },
       "DeploymentConfiguration": {
         "type": {
-          "$ref": "#/195"
+          "$ref": "#/235"
         },
         "flags": 0,
         "description": "Optional deployment parameters that control how many tasks run during the deployment and the ordering of stopping and starting tasks."
       },
       "DeploymentController": {
         "type": {
-          "$ref": "#/196"
+          "$ref": "#/236"
         },
         "flags": 0,
         "description": "The deployment controller to use for the service."
@@ -4857,14 +5757,14 @@
       },
       "ForceNewDeployment": {
         "type": {
-          "$ref": "#/200"
+          "$ref": "#/240"
         },
         "flags": 4,
         "description": "Determines whether to force a new deployment of the service. By default, deployments aren't forced. You can use this option to start a new deployment with no service definition changes. For example, you can update a service's tasks to use a newer Docker image with the same image/tag combination (``my_image:latest``) or to roll Fargate tasks onto a newer platform version."
       },
       "GatewayConnectors": {
         "type": {
-          "$ref": "#/252"
+          "$ref": "#/292"
         },
         "flags": 4,
         "description": ""
@@ -4885,14 +5785,14 @@
       },
       "LoadBalancers": {
         "type": {
-          "$ref": "#/253"
+          "$ref": "#/293"
         },
         "flags": 0,
         "description": "A list of load balancer objects to associate with the service. If you specify the ``Role`` property, ``LoadBalancers`` must be specified as well. For information about the number of load balancers that you can specify per service, see [Service Load Balancing](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-load-balancing.html) in the *Amazon Elastic Container Service Developer Guide*.\n  To remove this property from your service resource, specify an empty ``LoadBalancer`` array."
       },
       "Monitoring": {
         "type": {
-          "$ref": "#/210"
+          "$ref": "#/250"
         },
         "flags": 4,
         "description": "The optional monitoring configuration for the service, which defines the resolution for the service-level ``CPUUtilization`` and ``MemoryUtilization`` Amazon CloudWatch metrics. When not specified, Amazon ECS uses the default resolution of ``60`` seconds."
@@ -4906,21 +5806,21 @@
       },
       "NetworkConfiguration": {
         "type": {
-          "$ref": "#/211"
+          "$ref": "#/251"
         },
         "flags": 0,
         "description": "The network configuration for the service. This parameter is required for task definitions that use the ``awsvpc`` network mode to receive their own elastic network interface, and it is not supported for other network modes. For more information, see [Task Networking](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-networking.html) in the *Amazon Elastic Container Service Developer Guide*."
       },
       "PlacementConstraints": {
         "type": {
-          "$ref": "#/254"
+          "$ref": "#/294"
         },
         "flags": 0,
         "description": "An array of placement constraint objects to use for tasks in your service. You can specify a maximum of 10 constraints for each task. This limit includes constraints in the task definition and those specified at runtime.\n  To remove this property from your service resource, specify an empty ``PlacementConstraint`` array."
       },
       "PlacementStrategies": {
         "type": {
-          "$ref": "#/255"
+          "$ref": "#/295"
         },
         "flags": 0,
         "description": "The placement strategy objects to use for tasks in your service. You can specify a maximum of 5 strategy rules for each service.\n  To remove this property from your service resource, specify an empty ``PlacementStrategy`` array."
@@ -4962,7 +5862,7 @@
       },
       "ServiceConnectConfiguration": {
         "type": {
-          "$ref": "#/217"
+          "$ref": "#/257"
         },
         "flags": 4,
         "description": "The configuration for this service to discover and connect to services, and be discovered by, and connected from, other services within a namespace.\n Tasks that run in a namespace can use short names to connect to services in the namespace. Tasks can connect to services across all of the clusters in the namespace. Tasks connect through a managed proxy container that collects logs and metrics for increased visibility. Only the tasks that Amazon ECS services create are supported with Service Connect. For more information, see [Service Connect](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html) in the *Amazon Elastic Container Service Developer Guide*."
@@ -4976,14 +5876,14 @@
       },
       "ServiceRegistries": {
         "type": {
-          "$ref": "#/256"
+          "$ref": "#/296"
         },
         "flags": 0,
         "description": "The details of the service discovery registry to associate with this service. For more information, see [Service discovery](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html).\n  Each service may be associated with one service registry. Multiple service registries for each service isn't supported.\n   To remove this property from your service resource, specify an empty ``ServiceRegistry`` array."
       },
       "Tags": {
         "type": {
-          "$ref": "#/257"
+          "$ref": "#/297"
         },
         "flags": 0,
         "description": "The metadata that you apply to the service to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. When a service is deleted, the tags are deleted as well.\n The following basic restrictions apply to tags:\n  +  Maximum number of tags per resource - 50\n  +  For each resource, each tag key must be unique, and each tag key can have only one value.\n  +  Maximum key length - 128 Unicode characters in UTF-8\n  +  Maximum value length - 256 Unicode characters in UTF-8\n  +  If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.\n  +  Tag keys and values are case-sensitive.\n  +  Do not use ``aws:``, ``AWS:``, or any upper or lowercase combination of such as a prefix for either keys or values as it is reserved for AWS use. You cannot edit or delete tag keys or values with this prefix. Tags with this prefix do not count against your tags per resource limit."
@@ -4997,14 +5897,14 @@
       },
       "VolumeConfigurations": {
         "type": {
-          "$ref": "#/258"
+          "$ref": "#/298"
         },
         "flags": 4,
         "description": "The configuration for a volume specified in the task definition as a volume that is configured at launch time. Currently, the only supported volume type is an Amazon EBS volume.\n  To remove this property from your service resource, specify an empty ``ServiceVolumeConfiguration`` array."
       },
       "VpcLatticeConfigurations": {
         "type": {
-          "$ref": "#/259"
+          "$ref": "#/299"
         },
         "flags": 0,
         "description": "The VPC Lattice configuration for the service being created."
@@ -5031,7 +5931,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/260"
+          "$ref": "#/300"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -5042,9 +5942,1962 @@
     "$type": "ResourceType",
     "name": "AWS.ECS/Service@default",
     "body": {
-      "$ref": "#/261"
+      "$ref": "#/301"
     },
     "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceRevisionSummary",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The ARN of the service revision."
+      },
+      "PendingTaskCount": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The number of pending tasks for the service revision."
+      },
+      "RequestedTaskCount": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The number of requested tasks for the service revision."
+      },
+      "RunningTaskCount": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The number of running tasks for the service revision."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ECS/ServiceDeploymentProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ECS/ServiceDeploymentProperties",
+    "properties": {
+      "Cluster": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The short name of the cluster that hosts the service (the cluster segment of the service deployment ARN)."
+      },
+      "ClusterArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the cluster that hosts the service."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The time the service deployment was created."
+      },
+      "Service": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The short name of the service (the service segment of the service deployment ARN)."
+      },
+      "ServiceArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the service for this service deployment."
+      },
+      "ServiceDeploymentArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the service deployment."
+      },
+      "ServiceDeploymentId": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The service deployment identifier (the trailing segment of the service deployment ARN)."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The status of the service deployment. Valid values include PENDING, SUCCESSFUL, STOPPED, STOP_REQUESTED, IN_PROGRESS, ROLLBACK_REQUESTED, ROLLBACK_IN_PROGRESS, ROLLBACK_SUCCESSFUL, and ROLLBACK_FAILED."
+      },
+      "TargetServiceRevision": {
+        "type": {
+          "$ref": "#/303"
+        },
+        "flags": 2
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The time the service deployment was last updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ECS/ServiceDeployment",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/305"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ECS/ServiceDeployment@default",
+    "body": {
+      "$ref": "#/306"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AdvancedConfiguration",
+    "properties": {
+      "AlternateTargetGroupArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the alternate target group for Amazon ECS blue/green deployments."
+      },
+      "ProductionListenerRule": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) that identifies the production listener rule for routing production traffic."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the IAM role that grants Amazon ECS permission to call the Elastic Load Balancing APIs for you."
+      },
+      "TestListenerRule": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) that identifies the test listener rule for routing test traffic."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AwsVpcConfiguration",
+    "properties": {
+      "AssignPublicIp": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Whether the task's elastic network interface receives a public IP address."
+      },
+      "SecurityGroups": {
+        "type": {
+          "$ref": "#/351"
+        },
+        "flags": 0,
+        "description": "The IDs of the security groups associated with the task or service."
+      },
+      "Subnets": {
+        "type": {
+          "$ref": "#/352"
+        },
+        "flags": 1,
+        "description": "The IDs of the subnets associated with the task or service."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CapacityProviderStrategyItem",
+    "properties": {
+      "Base": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The base value designates how many tasks, at a minimum, to run on the specified capacity provider."
+      },
+      "CapacityProvider": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The short name of the capacity provider."
+      },
+      "Weight": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The weight value designates the relative percentage of the total number of tasks launched that should use the specified capacity provider."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ContainerImage",
+    "properties": {
+      "ContainerName": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The name of the container."
+      },
+      "Image": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The container image."
+      },
+      "ImageDigest": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The container image digest."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DeploymentEphemeralStorage",
+    "properties": {
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Specify an Amazon Web Services Key Management Service key ID to encrypt the ephemeral storage for deployment."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EBSTagSpecification",
+    "properties": {
+      "PropagateTags": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Determines whether to propagate the tags from the task definition to the Amazon EBS volume."
+      },
+      "ResourceType": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The type of volume resource."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/353"
+        },
+        "flags": 0,
+        "description": "The tags applied to this Amazon EBS volume."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EcsManagedResources",
+    "properties": {
+      "AutoScaling": {
+        "type": {
+          "$ref": "#/318"
+        },
+        "flags": 0
+      },
+      "IngressPaths": {
+        "type": {
+          "$ref": "#/354"
+        },
+        "flags": 0,
+        "description": "The ingress paths and endpoints for the Express service."
+      },
+      "LogGroups": {
+        "type": {
+          "$ref": "#/355"
+        },
+        "flags": 0,
+        "description": "The log groups managed by the Express service."
+      },
+      "MetricAlarms": {
+        "type": {
+          "$ref": "#/356"
+        },
+        "flags": 0,
+        "description": "The CloudWatch metric alarms associated with the Express service."
+      },
+      "ServiceSecurityGroups": {
+        "type": {
+          "$ref": "#/357"
+        },
+        "flags": 0,
+        "description": "The security groups managed by the Express service."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LoadBalancer",
+    "properties": {
+      "AdvancedConfiguration": {
+        "type": {
+          "$ref": "#/308"
+        },
+        "flags": 0
+      },
+      "ContainerName": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The name of the container to associate with the load balancer."
+      },
+      "ContainerPort": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The port on the container to associate with the load balancer."
+      },
+      "LoadBalancerName": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The name of the load balancer to associate with the Amazon ECS service or task set."
+      },
+      "TargetGroupArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The full Amazon Resource Name (ARN) of the Elastic Load Balancing target group or groups associated with a service or task set."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LogConfiguration",
+    "properties": {
+      "LogDriver": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The log driver to use for the container."
+      },
+      "Options": {
+        "type": {
+          "$ref": "#/358"
+        },
+        "flags": 0,
+        "description": "The configuration options to send to the log driver."
+      },
+      "SecretOptions": {
+        "type": {
+          "$ref": "#/359"
+        },
+        "flags": 0,
+        "description": "The secrets to pass to the log configuration."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedApplicationAutoScalingPolicy",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the Application Auto Scaling policy associated with the Express service."
+      },
+      "Metric": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The metric used for auto scaling decisions."
+      },
+      "PolicyType": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The type of Application Auto Scaling policy associated with the Express service."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1
+      },
+      "StatusReason": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Information about why the Application Auto Scaling policy is in the current status."
+      },
+      "TargetValue": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1,
+        "description": "The target value for the auto scaling metric."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The time when the Application Auto Scaling policy was last updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedAutoScaling",
+    "properties": {
+      "ApplicationAutoScalingPolicies": {
+        "type": {
+          "$ref": "#/360"
+        },
+        "flags": 0,
+        "description": "The policies used for auto scaling."
+      },
+      "ScalableTarget": {
+        "type": {
+          "$ref": "#/327"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedCertificate",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the ACM certificate."
+      },
+      "DomainName": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The fully qualified domain name (FQDN) that is secured with this ACM certificate."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1
+      },
+      "StatusReason": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Information about why the ACM certificate is in the current status."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The time when the ACM certificate was last updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedIngressPath",
+    "properties": {
+      "AccessType": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The type of access to the endpoint for the Express service."
+      },
+      "Certificate": {
+        "type": {
+          "$ref": "#/319"
+        },
+        "flags": 0
+      },
+      "Endpoint": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The endpoint for access to the Express service."
+      },
+      "Listener": {
+        "type": {
+          "$ref": "#/321"
+        },
+        "flags": 0
+      },
+      "LoadBalancer": {
+        "type": {
+          "$ref": "#/323"
+        },
+        "flags": 0
+      },
+      "LoadBalancerSecurityGroups": {
+        "type": {
+          "$ref": "#/361"
+        },
+        "flags": 0,
+        "description": "The security groups associated with the Application Load Balancer."
+      },
+      "Rule": {
+        "type": {
+          "$ref": "#/322"
+        },
+        "flags": 0
+      },
+      "TargetGroups": {
+        "type": {
+          "$ref": "#/362"
+        },
+        "flags": 0,
+        "description": "The target groups associated with the Application Load Balancer."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedListener",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the load balancer listener."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1
+      },
+      "StatusReason": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Information about why the load balancer listener is in the current status."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The time when this listener was most recently updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedListenerRule",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the load balancer listener rule."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1
+      },
+      "StatusReason": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Information about why the load balancer listener rule is in the current status."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The time when this listener rule was most recently updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedLoadBalancer",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the load balancer."
+      },
+      "Scheme": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The scheme of the load balancer. By default, the scheme of the load balancer is internet-facing."
+      },
+      "SecurityGroupIds": {
+        "type": {
+          "$ref": "#/363"
+        },
+        "flags": 0,
+        "description": "The IDs of the security groups associated with the load balancer."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1
+      },
+      "StatusReason": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Information about why the load balancer is in the current status."
+      },
+      "SubnetIds": {
+        "type": {
+          "$ref": "#/364"
+        },
+        "flags": 0,
+        "description": "The IDs of the subnets associated with the load balancer."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The time when this load balancer was most recently updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedLogGroup",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the CloudWatch log group associated with the Express service."
+      },
+      "LogGroupName": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The name of the CloudWatch log group associated with the Express service."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1
+      },
+      "StatusReason": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Information about why the CloudWatch log group is in the current status."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The time when the CloudWatch log group was last updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedMetricAlarm",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the CloudWatch metric alarm."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1
+      },
+      "StatusReason": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Information about why the CloudWatch metric alarm is in the current status."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The time when the CloudWatch metric alarm was last updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedResourceStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedScalableTarget",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the scalable target."
+      },
+      "MaxCapacity": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1,
+        "description": "The maximum value to scale to in response to a scale-out activity."
+      },
+      "MinCapacity": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1,
+        "description": "The minimum value to scale to in response to a scale-in activity."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1
+      },
+      "StatusReason": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Information about why the scalable target is in the current status."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The time when the target was most recently updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedSecurityGroup",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the security group."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1
+      },
+      "StatusReason": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Information about why the security group is in the current status."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The time when the security group was last updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedTargetGroup",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the target group."
+      },
+      "HealthCheckPath": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The destination for health checks on the targets."
+      },
+      "HealthCheckPort": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1,
+        "description": "The port the load balancer uses when performing health checks on targets."
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1,
+        "description": "The port on which the targets receive traffic."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1
+      },
+      "StatusReason": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Information about why the target group is in the current status."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The time when the target group was last updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MetricConfiguration",
+    "properties": {
+      "MetricNames": {
+        "type": {
+          "$ref": "#/365"
+        },
+        "flags": 1,
+        "description": "The names of the metrics the resolution applies to."
+      },
+      "ResolutionSeconds": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1,
+        "description": "The resolution, in seconds, for the metrics."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MonitoringConfiguration",
+    "properties": {
+      "MetricConfigurations": {
+        "type": {
+          "$ref": "#/366"
+        },
+        "flags": 0,
+        "description": "The list of metric configurations for the service."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NetworkConfiguration",
+    "properties": {
+      "AwsvpcConfiguration": {
+        "type": {
+          "$ref": "#/309"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResolvedConfiguration",
+    "properties": {
+      "LoadBalancers": {
+        "type": {
+          "$ref": "#/367"
+        },
+        "flags": 0,
+        "description": "The resolved load balancer configuration for the service revision."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Secret",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The name of the secret."
+      },
+      "ValueFrom": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The secret to expose to the container. The supported values are either the full ARN of the Secrets Manager secret or the full ARN of the parameter in the SSM Parameter Store."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceConnectAccessLogConfiguration",
+    "properties": {
+      "Format": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The format for Service Connect access log output."
+      },
+      "IncludeQueryParameters": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Specifies whether to include query parameters in Service Connect access logs."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceConnectClientAlias",
+    "properties": {
+      "DnsName": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The dnsName is the name that you use in the applications of client tasks to connect to this service."
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1,
+        "description": "The listening port number for the Service Connect proxy."
+      },
+      "TestTrafficRules": {
+        "type": {
+          "$ref": "#/341"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceConnectConfiguration",
+    "properties": {
+      "AccessLogConfiguration": {
+        "type": {
+          "$ref": "#/335"
+        },
+        "flags": 0
+      },
+      "Enabled": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 1,
+        "description": "Specifies whether to use Service Connect with this service."
+      },
+      "LogConfiguration": {
+        "type": {
+          "$ref": "#/316"
+        },
+        "flags": 0
+      },
+      "Namespace": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The namespace name or full Amazon Resource Name (ARN) of the Cloud Map namespace for use with Service Connect."
+      },
+      "Services": {
+        "type": {
+          "$ref": "#/368"
+        },
+        "flags": 0,
+        "description": "The list of Service Connect service objects."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceConnectService",
+    "properties": {
+      "ClientAliases": {
+        "type": {
+          "$ref": "#/369"
+        },
+        "flags": 0,
+        "description": "The list of client aliases for this Service Connect service."
+      },
+      "DiscoveryName": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The discoveryName is the name of the new Cloud Map service that Amazon ECS creates for this Amazon ECS service."
+      },
+      "IngressPortOverride": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The port number for the Service Connect proxy to listen on."
+      },
+      "PortName": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The portName must match the name of one of the portMappings from all the containers in the task definition of this Amazon ECS service."
+      },
+      "Timeout": {
+        "type": {
+          "$ref": "#/349"
+        },
+        "flags": 0
+      },
+      "Tls": {
+        "type": {
+          "$ref": "#/343"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceConnectTestTrafficHeaderMatchRules",
+    "properties": {
+      "Exact": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The exact value that the HTTP header must match for the test traffic routing rule to apply."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceConnectTestTrafficHeaderRules",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The name of the HTTP header to match."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/339"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceConnectTestTrafficRules",
+    "properties": {
+      "Header": {
+        "type": {
+          "$ref": "#/340"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceConnectTlsCertificateAuthority",
+    "properties": {
+      "AwsPcaAuthorityArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The ARN of the Amazon Web Services Private Certificate Authority certificate."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceConnectTlsConfiguration",
+    "properties": {
+      "IssuerCertificateAuthority": {
+        "type": {
+          "$ref": "#/342"
+        },
+        "flags": 1
+      },
+      "KmsKey": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The KMS key used to encrypt the private key in Secrets Manager."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the IAM role that's associated with the Service Connect TLS."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceManagedEBSVolumeConfiguration",
+    "properties": {
+      "Encrypted": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "Indicates whether the volume should be encrypted."
+      },
+      "FilesystemType": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The filesystem type for the volume."
+      },
+      "Iops": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The number of I/O operations per second (IOPS)."
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) identifier of the Amazon Web Services Key Management Service key to use for Amazon EBS encryption."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The ARN of the IAM role to associate with this volume."
+      },
+      "SizeInGiB": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The size of the volume in GiB."
+      },
+      "SnapshotId": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The snapshot that Amazon ECS uses to create the volume."
+      },
+      "TagSpecifications": {
+        "type": {
+          "$ref": "#/370"
+        },
+        "flags": 0,
+        "description": "The tags to apply to the volume."
+      },
+      "Throughput": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The throughput to provision for a volume, in MiB/s, with a maximum of 1,000 MiB/s."
+      },
+      "VolumeInitializationRate": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The rate, in MiB/s, at which data is fetched from a snapshot of an existing Amazon EBS volume to create a new volume for attachment."
+      },
+      "VolumeType": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The volume type."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceRegistry",
+    "properties": {
+      "ContainerName": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The container name value to be used for your service discovery service."
+      },
+      "ContainerPort": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The port value to be used for your service discovery service."
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The port value used if your service discovery service specified an SRV record."
+      },
+      "RegistryArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the service registry. The currently supported service registry is Cloud Map."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceRevisionLoadBalancer",
+    "properties": {
+      "ProductionListenerRule": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the production listener rule or listener that directs traffic to the target group associated with the service revision."
+      },
+      "TargetGroupArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the target group associated with the service revision."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceVolumeConfiguration",
+    "properties": {
+      "ManagedEBSVolume": {
+        "type": {
+          "$ref": "#/344"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The name of the volume. This value must match the volume name from the Volume object in the task definition."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "One part of a key-value pair that make up a tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The optional part of a key-value pair that make up a tag."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TimeoutConfiguration",
+    "properties": {
+      "IdleTimeoutSeconds": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The amount of time in seconds a connection will stay active while idle."
+      },
+      "PerRequestTimeoutSeconds": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The amount of time in seconds for the upstream to respond with a complete response per request."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VpcLatticeConfiguration",
+    "properties": {
+      "PortName": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The name of the port mapping to register in the VPC Lattice target group."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The ARN of the IAM role to associate with this VPC Lattice configuration."
+      },
+      "TargetGroupArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1,
+        "description": "The full Amazon Resource Name (ARN) of the target group or groups associated with the VPC Lattice configuration."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/22"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/22"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/348"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/320"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/324"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/325"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/328"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ServiceRevision_Options",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/334"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/317"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/328"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/329"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/22"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/22"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/22"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/330"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/346"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/338"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/336"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/313"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ECS/ServiceRevisionProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/310"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/311"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/315"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/345"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/347"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/350"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ECS/ServiceRevisionProperties",
+    "properties": {
+      "CapacityProviderStrategy": {
+        "type": {
+          "$ref": "#/372"
+        },
+        "flags": 2,
+        "description": "The capacity provider strategy the service revision uses."
+      },
+      "Cluster": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The short name of the cluster that hosts the service (the cluster segment of the service revision ARN)."
+      },
+      "ClusterArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the cluster that hosts the service."
+      },
+      "ContainerImages": {
+        "type": {
+          "$ref": "#/373"
+        },
+        "flags": 2,
+        "description": "The container images the service revision uses."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The time that the service revision was created."
+      },
+      "EcsManagedResources": {
+        "type": {
+          "$ref": "#/314"
+        },
+        "flags": 2
+      },
+      "FargateEphemeralStorage": {
+        "type": {
+          "$ref": "#/312"
+        },
+        "flags": 2
+      },
+      "GuardDutyEnabled": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 2,
+        "description": "Indicates whether Runtime Monitoring is turned on."
+      },
+      "LaunchType": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The launch type the service revision uses."
+      },
+      "LoadBalancers": {
+        "type": {
+          "$ref": "#/374"
+        },
+        "flags": 2,
+        "description": "The load balancers the service revision uses."
+      },
+      "Monitoring": {
+        "type": {
+          "$ref": "#/331"
+        },
+        "flags": 2
+      },
+      "NetworkConfiguration": {
+        "type": {
+          "$ref": "#/332"
+        },
+        "flags": 2
+      },
+      "PlatformFamily": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The platform family the service revision uses."
+      },
+      "PlatformVersion": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "For the Fargate launch type, the platform version the service revision uses."
+      },
+      "ResolvedConfiguration": {
+        "type": {
+          "$ref": "#/333"
+        },
+        "flags": 2
+      },
+      "Service": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The short name of the service (the service segment of the service revision ARN)."
+      },
+      "ServiceArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the service for the service revision."
+      },
+      "ServiceConnectConfiguration": {
+        "type": {
+          "$ref": "#/337"
+        },
+        "flags": 2
+      },
+      "ServiceRegistries": {
+        "type": {
+          "$ref": "#/375"
+        },
+        "flags": 2,
+        "description": "The service registries (for Service Discovery) the service revision uses."
+      },
+      "ServiceRevisionArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the service revision."
+      },
+      "ServiceRevisionId": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The service revision identifier (the trailing segment of the service revision ARN)."
+      },
+      "TaskDefinition": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The task definition the service revision uses."
+      },
+      "VolumeConfigurations": {
+        "type": {
+          "$ref": "#/376"
+        },
+        "flags": 2,
+        "description": "The volumes that are configured at deployment that the service revision uses."
+      },
+      "VpcLatticeConfigurations": {
+        "type": {
+          "$ref": "#/377"
+        },
+        "flags": 2,
+        "description": "The VPC Lattice configuration for the service revision."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ECS/ServiceRevision",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/378"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ECS/ServiceRevision@default",
+    "body": {
+      "$ref": "#/379"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ECS/TaskProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Task_Tags",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/382"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ECS/TaskProperties",
+    "properties": {
+      "Cluster": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The short name or ARN of the cluster that hosts the task."
+      },
+      "Cpu": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The number of CPU units used by the task as expressed in the task definition."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The ISO 8601 timestamp for the time when the task was created (entered the PENDING state)."
+      },
+      "DesiredStatus": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The desired status of the task."
+      },
+      "Group": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The name of the task group associated with the task."
+      },
+      "LastStatus": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The last known status of the task."
+      },
+      "LaunchType": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The infrastructure on which the task runs."
+      },
+      "Memory": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The amount of memory (in MiB) used by the task as expressed in the task definition."
+      },
+      "StartedBy": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The tag specified when the task was started."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/383"
+        },
+        "flags": 2,
+        "description": "The metadata applied to the task."
+      },
+      "TaskArn": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the task."
+      },
+      "TaskDefinition": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The ARN of the task definition that the task is based on."
+      },
+      "TaskId": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the task (the final segment of the task ARN)."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ECS/Task",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/384"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ECS/Task@default",
+    "body": {
+      "$ref": "#/385"
+    },
+    "readableScopes": 31,
     "writableScopes": 0
   },
   {
@@ -5073,7 +7926,7 @@
     "properties": {
       "Command": {
         "type": {
-          "$ref": "#/300"
+          "$ref": "#/424"
         },
         "flags": 0,
         "description": "The command that's passed to the container. This parameter maps to ``Cmd`` in the docker container create command and the ``COMMAND`` parameter to docker run. If there are multiple arguments, each argument is a separated string in the array."
@@ -5087,14 +7940,14 @@
       },
       "CredentialSpecs": {
         "type": {
-          "$ref": "#/301"
+          "$ref": "#/425"
         },
         "flags": 0,
         "description": "A list of ARNs in SSM or Amazon S3 to a credential spec (``CredSpec``) file that configures the container for Active Directory authentication. We recommend that you use this parameter instead of the ``dockerSecurityOptions``. The maximum number of ARNs is 1.\n There are two formats for each ARN.\n  + credentialspecdomainless:MyARN You use credentialspecdomainless:MyARN to provide a CredSpec with an additional section for a secret in . You provide the login credentials to the domain in the secret. Each task that runs on any container instance can join different domains. You can use this format without joining the container instance to a domain. + credentialspec:MyARN You use credentialspec:MyARN to provide a CredSpec for a single domain. You must join the container instance to the domain before you start any tasks that use this task definition. \n In both formats, replace ``MyARN`` with the ARN in SSM or Amazon S3.\n If you provide a ``credentialspecdomainless:MyARN``, the ``credspec`` must provide a ARN in ASMlong for a secret containing the username, password, and the domain to connect to. For better security, the instance isn't joined to the domain for domainless authentication. Other applications on the instance can't use the domainless credentials. You can use this parameter to run tasks on the same instance, even it the tasks need to join different domains. For more information, see [Using gMSAs for Windows Containers](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/windows-gmsa.html) and [Using gMSAs for Linux Containers](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/linux-gmsa.html)."
       },
       "DependsOn": {
         "type": {
-          "$ref": "#/302"
+          "$ref": "#/426"
         },
         "flags": 0,
         "description": "The dependencies defined for container startup and shutdown. A container can contain multiple dependencies. When a dependency is defined for container startup, for container shutdown it is reversed.\n For tasks using the EC2 launch type, the container instances require at least version 1.26.0 of the container agent to turn on container dependencies. However, we recommend using the latest container agent version. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-update.html) in the *Amazon Elastic Container Service Developer Guide*. If you're using an Amazon ECS-optimized Linux AMI, your instance needs at least version 1.26.0-1 of the ``ecs-init`` package. If your container instances are launched from version ``20190301`` or later, then they contain the required versions of the container agent and ``ecs-init``. For more information, see [Amazon ECS-optimized Linux AMI](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html) in the *Amazon Elastic Container Service Developer Guide*.\n For tasks using the Fargate launch type, the task or service requires the following platforms:\n  +  Linux platform version ``1.3.0`` or later.\n  +  Windows platform version ``1.0.0`` or later.\n  \n If the task definition is used in a blue/green deployment that uses [AWS::CodeDeploy::DeploymentGroup BlueGreenDeploymentConfiguration](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-bluegreendeploymentconfiguration.html), the ``dependsOn`` parameter is not supported."
@@ -5108,49 +7961,49 @@
       },
       "DnsSearchDomains": {
         "type": {
-          "$ref": "#/303"
+          "$ref": "#/427"
         },
         "flags": 0,
         "description": "A list of DNS search domains that are presented to the container. This parameter maps to ``DnsSearch`` in the docker container create command and the ``--dns-search`` option to docker run.\n  This parameter is not supported for Windows containers."
       },
       "DnsServers": {
         "type": {
-          "$ref": "#/304"
+          "$ref": "#/428"
         },
         "flags": 0,
         "description": "A list of DNS servers that are presented to the container. This parameter maps to ``Dns`` in the docker container create command and the ``--dns`` option to docker run.\n  This parameter is not supported for Windows containers."
       },
       "DockerLabels": {
         "type": {
-          "$ref": "#/305"
+          "$ref": "#/429"
         },
         "flags": 0,
         "description": "A key/value map of labels to add to the container. This parameter maps to ``Labels`` in the docker container create command and the ``--label`` option to docker run. This parameter requires version 1.18 of the Docker Remote API or greater on your container instance. To check the Docker Remote API version on your container instance, log in to your container instance and run the following command: ``sudo docker version --format '{{.Server.APIVersion}}'``"
       },
       "DockerSecurityOptions": {
         "type": {
-          "$ref": "#/306"
+          "$ref": "#/430"
         },
         "flags": 0,
         "description": "A list of strings to provide custom configuration for multiple security systems. This field isn't valid for containers in tasks using the Fargate launch type.\n For Linux tasks on EC2, this parameter can be used to reference custom labels for SELinux and AppArmor multi-level security systems.\n For any tasks on EC2, this parameter can be used to reference a credential spec file that configures a container for Active Directory authentication. For more information, see [Using gMSAs for Windows Containers](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/windows-gmsa.html) and [Using gMSAs for Linux Containers](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/linux-gmsa.html) in the *Amazon Elastic Container Service Developer Guide*.\n This parameter maps to ``SecurityOpt`` in the docker container create command and the ``--security-opt`` option to docker run.\n  The Amazon ECS container agent running on a container instance must register with the ``ECS_SELINUX_CAPABLE=true`` or ``ECS_APPARMOR_CAPABLE=true`` environment variables before containers placed on that instance can use these security options. For more information, see [Amazon ECS Container Agent Configuration](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-config.html) in the *Amazon Elastic Container Service Developer Guide*.\n  Valid values: \"no-new-privileges\" | \"apparmor:PROFILE\" | \"label:value\" | \"credentialspec:CredentialSpecFilePath\""
       },
       "EntryPoint": {
         "type": {
-          "$ref": "#/307"
+          "$ref": "#/431"
         },
         "flags": 0,
         "description": "Early versions of the Amazon ECS container agent don't properly handle ``entryPoint`` parameters. If you have problems using ``entryPoint``, update your container agent or enter your commands and arguments as ``command`` array items instead.\n  The entry point that's passed to the container. This parameter maps to ``Entrypoint`` in the docker container create command and the ``--entrypoint`` option to docker run."
       },
       "Environment": {
         "type": {
-          "$ref": "#/308"
+          "$ref": "#/432"
         },
         "flags": 0,
         "description": "The environment variables to pass to a container. This parameter maps to ``Env`` in the docker container create command and the ``--env`` option to docker run.\n  We don't recommend that you use plaintext environment variables for sensitive information, such as credential data."
       },
       "EnvironmentFiles": {
         "type": {
-          "$ref": "#/309"
+          "$ref": "#/433"
         },
         "flags": 0,
         "description": "A list of files containing the environment variables to pass to a container. This parameter maps to the ``--env-file`` option to docker run.\n You can specify up to ten environment files. The file must have a ``.env`` file extension. Each line in an environment file contains an environment variable in ``VARIABLE=VALUE`` format. Lines beginning with ``#`` are treated as comments and are ignored.\n If there are environment variables specified using the ``environment`` parameter in a container definition, they take precedence over the variables contained within an environment file. If multiple environment files are specified that contain the same variable, they're processed from the top down. We recommend that you use unique variable names. For more information, see [Specifying Environment Variables](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/taskdef-envfiles.html) in the *Amazon Elastic Container Service Developer Guide*."
@@ -5164,21 +8017,21 @@
       },
       "ExtraHosts": {
         "type": {
-          "$ref": "#/310"
+          "$ref": "#/434"
         },
         "flags": 0,
         "description": "A list of hostnames and IP address mappings to append to the ``/etc/hosts`` file on the container. This parameter maps to ``ExtraHosts`` in the docker container create command and the ``--add-host`` option to docker run.\n  This parameter isn't supported for Windows containers or tasks that use the ``awsvpc`` network mode."
       },
       "FirelensConfiguration": {
         "type": {
-          "$ref": "#/273"
+          "$ref": "#/397"
         },
         "flags": 0,
         "description": "The FireLens configuration for the container. This is used to specify and configure a log router for container logs. For more information, see [Custom Log Routing](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_firelens.html) in the *Amazon Elastic Container Service Developer Guide*."
       },
       "HealthCheck": {
         "type": {
-          "$ref": "#/274"
+          "$ref": "#/398"
         },
         "flags": 0,
         "description": "The container health check command and associated configuration parameters for the container. This parameter maps to ``HealthCheck`` in the docker container create command and the ``HEALTHCHECK`` parameter of docker run."
@@ -5206,21 +8059,21 @@
       },
       "Links": {
         "type": {
-          "$ref": "#/311"
+          "$ref": "#/435"
         },
         "flags": 0,
         "description": "The ``links`` parameter allows containers to communicate with each other without the need for port mappings. This parameter is only supported if the network mode of a task definition is ``bridge``. The ``name:internalName`` construct is analogous to ``name:alias`` in Docker links. Up to 255 letters (uppercase and lowercase), numbers, underscores, and hyphens are allowed.. This parameter maps to ``Links`` in the docker container create command and the ``--link`` option to docker run.\n  This parameter is not supported for Windows containers.\n   Containers that are collocated on a single container instance may be able to communicate with each other without requiring links or host port mappings. Network isolation is achieved on the container instance using security groups and VPC settings."
       },
       "LinuxParameters": {
         "type": {
-          "$ref": "#/280"
+          "$ref": "#/404"
         },
         "flags": 0,
         "description": "Linux-specific modifications that are applied to the container, such as Linux kernel capabilities. For more information see [KernelCapabilities](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_KernelCapabilities.html).\n  This parameter is not supported for Windows containers."
       },
       "LogConfiguration": {
         "type": {
-          "$ref": "#/281"
+          "$ref": "#/405"
         },
         "flags": 0,
         "description": "The log configuration specification for the container.\n This parameter maps to ``LogConfig`` in the docker Create a container command and the ``--log-driver`` option to docker run. By default, containers use the same logging driver that the Docker daemon uses. However, the container may use a different logging driver than the Docker daemon by specifying a log driver with this parameter in the container definition. To use a different logging driver for a container, the log system must be configured properly on the container instance (or on a different log server for remote logging options). For more information on the options for different supported log drivers, see [Configure logging drivers](https://docs.aws.amazon.com/https://docs.docker.com/engine/admin/logging/overview/) in the Docker documentation.\n  Amazon ECS currently supports a subset of the logging drivers available to the Docker daemon (shown in the [LogConfiguration](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_LogConfiguration.html) data type). Additional log drivers may be available in future releases of the Amazon ECS container agent.\n  This parameter requires version 1.18 of the Docker Remote API or greater on your container instance. To check the Docker Remote API version on your container instance, log in to your container instance and run the following command: ``sudo docker version --format '{{.Server.APIVersion}}'``\n  The Amazon ECS container agent running on a container instance must register the logging drivers available on that instance with the ``ECS_AVAILABLE_LOGGING_DRIVERS`` environment variable before containers placed on that instance can use these log configuration options. For more information, see [Container Agent Configuration](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-config.html) in the *Developer Guide*."
@@ -5241,7 +8094,7 @@
       },
       "MountPoints": {
         "type": {
-          "$ref": "#/312"
+          "$ref": "#/436"
         },
         "flags": 0,
         "description": "The mount points for data volumes in your container.\n This parameter maps to ``Volumes`` in the docker container create command and the ``--volume`` option to docker run.\n Windows containers can mount whole directories on the same drive as ``$env:ProgramData``. Windows containers can't mount directories on a different drive, and mount point can't be across drives."
@@ -5255,7 +8108,7 @@
       },
       "PortMappings": {
         "type": {
-          "$ref": "#/313"
+          "$ref": "#/437"
         },
         "flags": 0,
         "description": "The list of port mappings for the container. Port mappings allow containers to access ports on the host container instance to send or receive traffic.\n For task definitions that use the ``awsvpc`` network mode, you should only specify the ``containerPort``. The ``hostPort`` can be left blank or it must be the same value as the ``containerPort``.\n Port mappings on Windows use the ``NetNAT`` gateway address rather than ``localhost``. There is no loopback for port mappings on Windows, so you cannot access a container's mapped port from the host itself. \n This parameter maps to ``PortBindings`` in the [Create a container](https://docs.aws.amazon.com/https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.aws.amazon.com/https://docs.docker.com/engine/api/v1.35/) and the ``--publish`` option to [docker run](https://docs.aws.amazon.com/https://docs.docker.com/engine/reference/run/). If the network mode of a task definition is set to ``none``, then you can't specify port mappings. If the network mode of a task definition is set to ``host``, then host ports must either be undefined or they must match the container port in the port mapping.\n  After a task reaches the ``RUNNING`` status, manual and automatic host and container port assignments are visible in the *Network Bindings* section of a container description for a selected task in the Amazon ECS console. The assignments are also visible in the ``networkBindings`` section [DescribeTasks](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeTasks.html) responses."
@@ -5283,28 +8136,28 @@
       },
       "RepositoryCredentials": {
         "type": {
-          "$ref": "#/286"
+          "$ref": "#/410"
         },
         "flags": 0,
         "description": "The private repository authentication credentials to use."
       },
       "ResourceRequirements": {
         "type": {
-          "$ref": "#/314"
+          "$ref": "#/438"
         },
         "flags": 0,
         "description": "The type and amount of a resource to assign to a container. The supported resources are GPUs and Neuron devices."
       },
       "RestartPolicy": {
         "type": {
-          "$ref": "#/288"
+          "$ref": "#/412"
         },
         "flags": 0,
         "description": "The restart policy for a container. When you set up a restart policy, Amazon ECS can restart the container without needing to replace the task. For more information, see [Restart individual containers in Amazon ECS tasks with container restart policies](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/container-restart-policy.html) in the *Amazon Elastic Container Service Developer Guide*."
       },
       "Secrets": {
         "type": {
-          "$ref": "#/315"
+          "$ref": "#/439"
         },
         "flags": 0,
         "description": "The secrets to pass to the container. For more information, see [Specifying Sensitive Data](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data.html) in the *Amazon Elastic Container Service Developer Guide*."
@@ -5325,14 +8178,14 @@
       },
       "SystemControls": {
         "type": {
-          "$ref": "#/316"
+          "$ref": "#/440"
         },
         "flags": 0,
         "description": "A list of namespaced kernel parameters to set in the container. This parameter maps to ``Sysctls`` in the docker container create command and the ``--sysctl`` option to docker run. For example, you can configure ``net.ipv4.tcp_keepalive_time`` setting to maintain longer lived connections."
       },
       "Ulimits": {
         "type": {
-          "$ref": "#/317"
+          "$ref": "#/441"
         },
         "flags": 0,
         "description": "A list of ``ulimits`` to set in the container. This parameter maps to ``Ulimits`` in the [Create a container](https://docs.aws.amazon.com/https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.aws.amazon.com/https://docs.docker.com/engine/api/v1.35/) and the ``--ulimit`` option to [docker run](https://docs.aws.amazon.com/https://docs.docker.com/engine/reference/run/). Valid naming values are displayed in the [Ulimit](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_Ulimit.html) data type. This parameter requires version 1.18 of the Docker Remote API or greater on your container instance. To check the Docker Remote API version on your container instance, log in to your container instance and run the following command: ``sudo docker version --format '{{.Server.APIVersion}}'``\n  This parameter is not supported for Windows containers."
@@ -5353,7 +8206,7 @@
       },
       "VolumesFrom": {
         "type": {
-          "$ref": "#/318"
+          "$ref": "#/442"
         },
         "flags": 0,
         "description": "Data volumes to mount from another container. This parameter maps to ``VolumesFrom`` in the docker container create command and the ``--volumes-from`` option to docker run."
@@ -5407,7 +8260,7 @@
       },
       "Permissions": {
         "type": {
-          "$ref": "#/319"
+          "$ref": "#/443"
         },
         "flags": 0,
         "description": "The explicit permissions to provide to the container for the device. By default, the container has permissions for ``read``, ``write``, and ``mknod`` for the device."
@@ -5434,14 +8287,14 @@
       },
       "DriverOpts": {
         "type": {
-          "$ref": "#/320"
+          "$ref": "#/444"
         },
         "flags": 0,
         "description": "A map of Docker driver-specific options passed through. This parameter maps to ``DriverOpts`` in the docker create-volume command and the ``xxopt`` option to docker volume create."
       },
       "Labels": {
         "type": {
-          "$ref": "#/321"
+          "$ref": "#/445"
         },
         "flags": 0,
         "description": "Custom metadata to add to your Docker volume. This parameter maps to ``Labels`` in the docker container create command and the ``xxlabel`` option to docker volume create."
@@ -5461,7 +8314,7 @@
     "properties": {
       "AuthorizationConfig": {
         "type": {
-          "$ref": "#/263"
+          "$ref": "#/387"
         },
         "flags": 0,
         "description": "The authorization configuration details for the Amazon EFS file system."
@@ -5555,7 +8408,7 @@
     "properties": {
       "AuthorizationConfig": {
         "type": {
-          "$ref": "#/271"
+          "$ref": "#/395"
         },
         "flags": 0,
         "description": "The authorization configuration details for the Amazon FSx for Windows File Server file system."
@@ -5582,7 +8435,7 @@
     "properties": {
       "Options": {
         "type": {
-          "$ref": "#/322"
+          "$ref": "#/446"
         },
         "flags": 0,
         "description": "The options to use when configuring the log router. This field is optional and can be used to add additional metadata, such as the task, task definition, cluster, and container instance details to the log event.\n  If specified, valid option keys are:\n  +  ``enable-ecs-log-metadata``, which can be ``true`` or ``false``\n  +  ``config-file-type``, which can be ``s3`` or ``file``\n  +  ``config-file-value``, which is either an S3 ARN or a file path"
@@ -5602,7 +8455,7 @@
     "properties": {
       "Command": {
         "type": {
-          "$ref": "#/323"
+          "$ref": "#/447"
         },
         "flags": 0,
         "description": "A string array representing the command that the container runs to determine if it is healthy. The string array must start with ``CMD`` to run the command arguments directly, or ``CMD-SHELL`` to run the command with the container's default shell. \n  When you use the AWS Management Console JSON panel, the CLIlong, or the APIs, enclose the list of commands in double quotes and brackets.\n  ``[ \"CMD-SHELL\", \"curl -f http://localhost/ || exit 1\" ]`` \n You don't include the double quotes and brackets when you use the AWS Management Console.\n  ``CMD-SHELL, curl -f http://localhost/ || exit 1`` \n An exit code of 0 indicates success, and non-zero exit code indicates failure. For more information, see ``HealthCheck`` in the docker container create command."
@@ -5694,14 +8547,14 @@
     "properties": {
       "Add": {
         "type": {
-          "$ref": "#/324"
+          "$ref": "#/448"
         },
         "flags": 0,
         "description": "The Linux capabilities for the container that have been added to the default configuration provided by Docker. This parameter maps to ``CapAdd`` in the docker container create command and the ``--cap-add`` option to docker run.\n  Tasks launched on FARGATElong only support adding the ``SYS_PTRACE`` kernel capability.\n  Valid values: ``\"ALL\" | \"AUDIT_CONTROL\" | \"AUDIT_WRITE\" | \"BLOCK_SUSPEND\" | \"CHOWN\" | \"DAC_OVERRIDE\" | \"DAC_READ_SEARCH\" | \"FOWNER\" | \"FSETID\" | \"IPC_LOCK\" | \"IPC_OWNER\" | \"KILL\" | \"LEASE\" | \"LINUX_IMMUTABLE\" | \"MAC_ADMIN\" | \"MAC_OVERRIDE\" | \"MKNOD\" | \"NET_ADMIN\" | \"NET_BIND_SERVICE\" | \"NET_BROADCAST\" | \"NET_RAW\" | \"SETFCAP\" | \"SETGID\" | \"SETPCAP\" | \"SETUID\" | \"SYS_ADMIN\" | \"SYS_BOOT\" | \"SYS_CHROOT\" | \"SYS_MODULE\" | \"SYS_NICE\" | \"SYS_PACCT\" | \"SYS_PTRACE\" | \"SYS_RAWIO\" | \"SYS_RESOURCE\" | \"SYS_TIME\" | \"SYS_TTY_CONFIG\" | \"SYSLOG\" | \"WAKE_ALARM\"``"
       },
       "Drop": {
         "type": {
-          "$ref": "#/325"
+          "$ref": "#/449"
         },
         "flags": 0,
         "description": "The Linux capabilities for the container that have been removed from the default configuration provided by Docker. This parameter maps to ``CapDrop`` in the docker container create command and the ``--cap-drop`` option to docker run.\n Valid values: ``\"ALL\" | \"AUDIT_CONTROL\" | \"AUDIT_WRITE\" | \"BLOCK_SUSPEND\" | \"CHOWN\" | \"DAC_OVERRIDE\" | \"DAC_READ_SEARCH\" | \"FOWNER\" | \"FSETID\" | \"IPC_LOCK\" | \"IPC_OWNER\" | \"KILL\" | \"LEASE\" | \"LINUX_IMMUTABLE\" | \"MAC_ADMIN\" | \"MAC_OVERRIDE\" | \"MKNOD\" | \"NET_ADMIN\" | \"NET_BIND_SERVICE\" | \"NET_BROADCAST\" | \"NET_RAW\" | \"SETFCAP\" | \"SETGID\" | \"SETPCAP\" | \"SETUID\" | \"SYS_ADMIN\" | \"SYS_BOOT\" | \"SYS_CHROOT\" | \"SYS_MODULE\" | \"SYS_NICE\" | \"SYS_PACCT\" | \"SYS_PTRACE\" | \"SYS_RAWIO\" | \"SYS_RESOURCE\" | \"SYS_TIME\" | \"SYS_TTY_CONFIG\" | \"SYSLOG\" | \"WAKE_ALARM\"``"
@@ -5734,14 +8587,14 @@
     "properties": {
       "Capabilities": {
         "type": {
-          "$ref": "#/278"
+          "$ref": "#/402"
         },
         "flags": 0,
         "description": "The Linux capabilities for the container that are added to or dropped from the default configuration provided by Docker.\n  For tasks that use the Fargate launch type, ``capabilities`` is supported for all platform versions but the ``add`` parameter is only supported if using platform version 1.4.0 or later."
       },
       "Devices": {
         "type": {
-          "$ref": "#/326"
+          "$ref": "#/450"
         },
         "flags": 0,
         "description": "Any host devices to expose to the container. This parameter maps to ``Devices`` in the docker container create command and the ``--device`` option to docker run.\n  If you're using tasks that use the Fargate launch type, the ``devices`` parameter isn't supported."
@@ -5776,7 +8629,7 @@
       },
       "Tmpfs": {
         "type": {
-          "$ref": "#/327"
+          "$ref": "#/451"
         },
         "flags": 0,
         "description": "The container path, mount options, and size (in MiB) of the tmpfs mount. This parameter maps to the ``--tmpfs`` option to docker run."
@@ -5796,14 +8649,14 @@
       },
       "Options": {
         "type": {
-          "$ref": "#/328"
+          "$ref": "#/452"
         },
         "flags": 0,
         "description": "The configuration options to send to the log driver.\n The options you can specify depend on the log driver. Some of the options you can specify when you use the ``awslogs`` log driver to route logs to Amazon CloudWatch include the following:\n  + awslogs-create-group Required: No Specify whether you want the log group to be created automatically. If this option isn't specified, it defaults to false. Your IAM policy must include the logs:CreateLogGroup permission before you attempt to use awslogs-create-group. + awslogs-region Required: Yes Specify the Region that the awslogs log driver is to send your Docker logs to. You can choose to send all of your logs from clusters in different Regions to a single region in CloudWatch Logs. This is so that they're all visible in one location. Otherwise, you can separate them by Region for more granularity. Make sure that the specified log group exists in the Region that you specify with this option. + awslogs-group Required: Yes Make sure to specify a log group that the awslogs log driver sends its log streams to. + awslogs-stream-prefix Required: Yes, when using Fargate.Optional when using EC2. Use the awslogs-stream-prefix option to associate a log stream with the specified prefix, the container name, and the ID of the Amazon ECS task that the container belongs to. If you specify a prefix with this option, then the log stream takes the format prefix-name/container-name/ecs-task-id. If you don't specify a prefix with this option, then the log stream is named after the container ID that's assigned by the Docker daemon on the container instance. Because it's difficult to trace logs back to the container that sent them with just the Docker container ID (which is only available on the container instance), we recommend that you specify a prefix with this option. For Amazon ECS services, you can use the service name as the prefix. Doing so, you can trace log streams to the service that the container belongs to, the name of the container that sent them, and the ID of the task that the container belongs to. You must specify a stream-prefix for your logs to have your logs appear in the Log pane when using the Amazon ECS console. + awslogs-datetime-format Required: No This option defines a multiline start pattern in Python strftime format. A log message consists of a line that matches the pattern and any following lines that don’t match the pattern. The matched line is the delimiter between log messages. One example of a use case for using this format is for parsing output such as a stack dump, which might otherwise be logged in multiple entries. The correct pattern allows it to be captured in a single entry. For more information, see awslogs-datetime-format. You cannot configure both the awslogs-datetime-format and awslogs-multiline-pattern options. Multiline logging performs regular expression parsing and matching of all log messages. This might have a negative impact on logging performance. + awslogs-multiline-pattern Required: No This option defines a multiline start pattern that uses a regular expression. A log message consists of a line that matches the pattern and any following lines that don’t match the pattern. The matched line is the delimiter between log messages. For more information, see awslogs-multiline-pattern. This option is ignored if awslogs-datetime-format is also configured. You cannot configure both the awslogs-datetime-format and awslogs-multiline-pattern options. Multiline logging performs regular expression parsing and matching of all log messages. This might have a negative impact on logging performance. \n The following options apply to all supported log drivers.\n  + mode Required: No Valid values: non-blocking | blocking This option defines the delivery mode of log messages from the container to the log driver specified using logDriver. The delivery mode you choose affects application availability when the flow of logs from container is interrupted. If you use the blocking mode and the flow of logs is interrupted, calls from container code to write to the stdout and stderr streams will block. The logging thread of the application will block as a result. This may cause the application to become unresponsive and lead to container healthcheck failure. If you use the non-blocking mode, the container's logs are instead stored in an in-memory intermediate buffer configured with the max-buffer-size option. This prevents the application from becoming unresponsive when logs cannot be sent. We recommend using this mode if you want to ensure service availability and are okay with some log loss. For more information, see Preventing log loss with non-blocking mode in the awslogs container log driver. You can set a default mode for all containers in a specific Region by using the defaultLogDriverMode account setting. If you don't specify the mode option or configure the account setting, Amazon ECS will default to the non-blocking mode. For more information about the account setting, see Default log driver mode in the Amazon Elastic Container Service Developer Guide. On June 25, 2025, Amazon ECS changed the default log driver mode from blocking to non-blocking to prioritize task availability over logging. To continue using the blocking mode after this change, do one of the following: Set the mode option in your container definition's logConfiguration as blocking. Set the defaultLogDriverMode account setting to blocking. + max-buffer-size Required: No Default value: 10m When non-blocking mode is used, the max-buffer-size log option controls the size of the buffer that's used for intermediate message storage. Make sure to specify an adequate buffer size based on your application. When the buffer fills up, further logs cannot be stored. Logs that cannot be stored are lost. \n To route logs using the ``splunk`` log router, you need to specify a ``splunk-token`` and a ``splunk-url``.\n When you use the ``awsfirelens`` log router to route logs to an AWS Service or AWS Partner Network destination for log storage and analytics, you can set the ``log-driver-buffer-limit`` option to limit the number of events that are buffered in memory, before being sent to the log router container. It can help to resolve potential log loss issue because high throughput might result in memory running out for the buffer inside of Docker.\n Other options you can specify when using ``awsfirelens`` to route logs depend on the destination. When you export logs to Amazon Data Firehose, you can specify the AWS Region with ``region`` and a name for the log stream with ``delivery_stream``.\n When you export logs to Amazon Kinesis Data Streams, you can specify an AWS Region with ``region`` and a data stream name with ``stream``.\n  When you export logs to Amazon OpenSearch Service, you can specify options like ``Name``, ``Host`` (OpenSearch Service endpoint without protocol), ``Port``, ``Index``, ``Type``, ``Aws_auth``, ``Aws_region``, ``Suppress_Type_Name``, and ``tls``. For more information, see [Under the hood: FireLens for Amazon ECS Tasks](https://docs.aws.amazon.com/containers/under-the-hood-firelens-for-amazon-ecs-tasks/).\n When you export logs to Amazon S3, you can specify the bucket using the ``bucket`` option. You can also specify ``region``, ``total_file_size``, ``upload_timeout``, and ``use_put_object`` as options.\n This parameter requires version 1.19 of the Docker Remote API or greater on your container instance. To check the Docker Remote API version on your container instance, log in to your container instance and run the following command: ``sudo docker version --format '{{.Server.APIVersion}}'``"
       },
       "SecretOptions": {
         "type": {
-          "$ref": "#/329"
+          "$ref": "#/453"
         },
         "flags": 0,
         "description": "The secrets to pass to the log configuration. For more information, see [Specifying sensitive data](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data.html) in the *Amazon Elastic Container Service Developer Guide*."
@@ -5918,7 +8771,7 @@
       },
       "ProxyConfigurationProperties": {
         "type": {
-          "$ref": "#/330"
+          "$ref": "#/454"
         },
         "flags": 0,
         "description": "The set of network configuration parameters to provide the Container Network Interface (CNI) plugin, specified as key-value pairs.\n  +  ``IgnoredUID`` - (Required) The user ID (UID) of the proxy container as defined by the ``user`` parameter in a container definition. This is used to ensure the proxy ignores its own traffic. If ``IgnoredGID`` is specified, this field can be empty.\n  +  ``IgnoredGID`` - (Required) The group ID (GID) of the proxy container as defined by the ``user`` parameter in a container definition. This is used to ensure the proxy ignores its own traffic. If ``IgnoredUID`` is specified, this field can be empty.\n  +  ``AppPorts`` - (Required) The list of ports that the application uses. Network traffic to these ports is forwarded to the ``ProxyIngressPort`` and ``ProxyEgressPort``.\n  +  ``ProxyIngressPort`` - (Required) Specifies the port that incoming traffic to the ``AppPorts`` is directed to.\n  +  ``ProxyEgressPort`` - (Required) Specifies the port that outgoing traffic from the ``AppPorts`` is directed to.\n  +  ``EgressIgnoredPorts`` - (Required) The egress traffic going to the specified ports is ignored and not redirected to the ``ProxyEgressPort``. It can be an empty list.\n  +  ``EgressIgnoredIPs`` - (Required) The egress traffic going to the specified IP addresses is ignored and not redirected to the ``ProxyEgressPort``. It can be an empty list."
@@ -5951,7 +8804,7 @@
     "properties": {
       "SharingStrategy": {
         "type": {
-          "$ref": "#/292"
+          "$ref": "#/416"
         },
         "flags": 0,
         "description": ""
@@ -5985,7 +8838,7 @@
       },
       "IgnoredExitCodes": {
         "type": {
-          "$ref": "#/331"
+          "$ref": "#/455"
         },
         "flags": 0,
         "description": "A list of exit codes that Amazon ECS will ignore and not attempt a restart on. You can specify a maximum of 50 container exit codes. By default, Amazon ECS does not ignore any exit codes."
@@ -6079,7 +8932,7 @@
     "properties": {
       "NvidiaMps": {
         "type": {
-          "$ref": "#/283"
+          "$ref": "#/407"
         },
         "flags": 1
       }
@@ -6158,7 +9011,7 @@
       },
       "MountOptions": {
         "type": {
-          "$ref": "#/332"
+          "$ref": "#/456"
         },
         "flags": 0,
         "description": "The list of tmpfs volume mount options.\n Valid values: ``\"defaults\" | \"ro\" | \"rw\" | \"suid\" | \"nosuid\" | \"dev\" | \"nodev\" | \"exec\" | \"noexec\" | \"sync\" | \"async\" | \"dirsync\" | \"remount\" | \"mand\" | \"nomand\" | \"atime\" | \"noatime\" | \"diratime\" | \"nodiratime\" | \"bind\" | \"rbind\" | \"unbindable\" | \"runbindable\" | \"private\" | \"rprivate\" | \"shared\" | \"rshared\" | \"slave\" | \"rslave\" | \"relatime\" | \"norelatime\" | \"strictatime\" | \"nostrictatime\" | \"mode\" | \"uid\" | \"gid\" | \"nr_inodes\" | \"nr_blocks\" | \"mpol\"``"
@@ -6212,28 +9065,28 @@
       },
       "DockerVolumeConfiguration": {
         "type": {
-          "$ref": "#/267"
+          "$ref": "#/391"
         },
         "flags": 0,
         "description": "This parameter is specified when you use Docker volumes.\n Windows containers only support the use of the ``local`` driver. To use bind mounts, specify the ``host`` parameter instead.\n  Docker volumes aren't supported by tasks run on FARGATElong."
       },
       "EFSVolumeConfiguration": {
         "type": {
-          "$ref": "#/268"
+          "$ref": "#/392"
         },
         "flags": 0,
         "description": "This parameter is specified when you use an Amazon Elastic File System file system for task storage."
       },
       "FSxWindowsFileServerVolumeConfiguration": {
         "type": {
-          "$ref": "#/272"
+          "$ref": "#/396"
         },
         "flags": 0,
         "description": "This parameter is specified when you use Amazon FSx for Windows File Server file system for task storage."
       },
       "Host": {
         "type": {
-          "$ref": "#/276"
+          "$ref": "#/400"
         },
         "flags": 0,
         "description": "This parameter is specified when you use bind mount host volumes. The contents of the ``host`` parameter determine whether your bind mount host volume persists on the host container instance and where it's stored. If the ``host`` parameter is empty, then the Docker daemon assigns a host path for your data volume. However, the data isn't guaranteed to persist after the containers that are associated with it stop running.\n Windows containers can mount whole directories on the same drive as ``$env:ProgramData``. Windows containers can't mount directories on a different drive, and mount point can't be across drives. For example, you can mount ``C:\\my\\path:C:\\my\\path`` and ``D:\\:D:\\``, but not ``D:\\my\\path:C:\\my\\path`` or ``D:\\:C:\\my\\path``."
@@ -6247,7 +9100,7 @@
       },
       "S3FilesVolumeConfiguration": {
         "type": {
-          "$ref": "#/290"
+          "$ref": "#/414"
         },
         "flags": 0,
         "description": "This parameter is specified when you use an Amazon S3 Files file system for task storage."
@@ -6289,7 +9142,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/265"
+      "$ref": "#/389"
     }
   },
   {
@@ -6324,19 +9177,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/279"
+      "$ref": "#/403"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/269"
+      "$ref": "#/393"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/275"
+      "$ref": "#/399"
     }
   },
   {
@@ -6348,43 +9201,43 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/282"
+      "$ref": "#/406"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/284"
+      "$ref": "#/408"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/287"
+      "$ref": "#/411"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/291"
+      "$ref": "#/415"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/293"
+      "$ref": "#/417"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/297"
+      "$ref": "#/421"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/299"
+      "$ref": "#/423"
     }
   },
   {
@@ -6429,13 +9282,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/266"
+      "$ref": "#/390"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/296"
+      "$ref": "#/420"
     }
   },
   {
@@ -6446,13 +9299,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/291"
+      "$ref": "#/415"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/279"
+      "$ref": "#/403"
     }
   },
   {
@@ -6474,19 +9327,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/264"
+      "$ref": "#/388"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/277"
+      "$ref": "#/401"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/295"
+      "$ref": "#/419"
     }
   },
   {
@@ -6498,13 +9351,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/294"
+      "$ref": "#/418"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/298"
+      "$ref": "#/422"
     }
   },
   {
@@ -6513,7 +9366,7 @@
     "properties": {
       "ContainerDefinitions": {
         "type": {
-          "$ref": "#/334"
+          "$ref": "#/458"
         },
         "flags": 0,
         "description": "A list of container definitions in JSON format that describe the different containers that make up your task. For more information about container definition parameters and defaults, see [Amazon ECS Task Definitions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_defintions.html) in the *Amazon Elastic Container Service Developer Guide*."
@@ -6534,7 +9387,7 @@
       },
       "EphemeralStorage": {
         "type": {
-          "$ref": "#/270"
+          "$ref": "#/394"
         },
         "flags": 0,
         "description": "The ephemeral storage settings to use for tasks run with the task definition."
@@ -6555,7 +9408,7 @@
       },
       "InferenceAccelerators": {
         "type": {
-          "$ref": "#/335"
+          "$ref": "#/459"
         },
         "flags": 0,
         "description": ""
@@ -6590,35 +9443,35 @@
       },
       "PlacementConstraints": {
         "type": {
-          "$ref": "#/336"
+          "$ref": "#/460"
         },
         "flags": 0,
         "description": "An array of placement constraint objects to use for tasks.\n  This parameter isn't supported for tasks run on FARGATElong."
       },
       "ProxyConfiguration": {
         "type": {
-          "$ref": "#/285"
+          "$ref": "#/409"
         },
         "flags": 0,
         "description": "The configuration details for the App Mesh proxy.\n Your Amazon ECS container instances require at least version 1.26.0 of the container agent and at least version 1.26.0-1 of the ``ecs-init`` package to use a proxy configuration. If your container instances are launched from the Amazon ECS optimized AMI version ``20190301`` or later, they contain the required versions of the container agent and ``ecs-init``. For more information, see [Amazon ECS-optimized Linux AMI](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html) in the *Amazon Elastic Container Service Developer Guide*."
       },
       "RequiresCompatibilities": {
         "type": {
-          "$ref": "#/337"
+          "$ref": "#/461"
         },
         "flags": 0,
         "description": "The task launch types the task definition was validated against. The valid values are ``MANAGED_INSTANCES``, ``EC2``, ``FARGATE``, and ``EXTERNAL``. For more information, see [Amazon ECS launch types](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html) in the *Amazon Elastic Container Service Developer Guide*."
       },
       "RuntimePlatform": {
         "type": {
-          "$ref": "#/289"
+          "$ref": "#/413"
         },
         "flags": 0,
         "description": "The operating system that your tasks definitions run on."
       },
       "Tags": {
         "type": {
-          "$ref": "#/338"
+          "$ref": "#/462"
         },
         "flags": 0,
         "description": "The metadata that you apply to the task definition to help you categorize and organize them. Each tag consists of a key and an optional value. You define both of them.\n The following basic restrictions apply to tags:\n  +  Maximum number of tags per resource - 50\n  +  For each resource, each tag key must be unique, and each tag key can have only one value.\n  +  Maximum key length - 128 Unicode characters in UTF-8\n  +  Maximum value length - 256 Unicode characters in UTF-8\n  +  If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.\n  +  Tag keys and values are case-sensitive.\n  +  Do not use ``aws:``, ``AWS:``, or any upper or lowercase combination of such as a prefix for either keys or values as it is reserved for AWS use. You cannot edit or delete tag keys or values with this prefix. Tags with this prefix do not count against your tags per resource limit."
@@ -6639,7 +9492,7 @@
       },
       "Volumes": {
         "type": {
-          "$ref": "#/339"
+          "$ref": "#/463"
         },
         "flags": 0,
         "description": "The list of data volume definitions for the task. For more information, see [Using data volumes in tasks](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_data_volumes.html) in the *Amazon Elastic Container Service Developer Guide*.\n  The ``host`` and ``sourcePath`` parameters aren't supported for tasks run on FARGATElong."
@@ -6666,7 +9519,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/340"
+          "$ref": "#/464"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -6677,7 +9530,7 @@
     "$type": "ResourceType",
     "name": "AWS.ECS/TaskDefinition@default",
     "body": {
-      "$ref": "#/341"
+      "$ref": "#/465"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -6695,14 +9548,14 @@
       },
       "SecurityGroups": {
         "type": {
-          "$ref": "#/350"
+          "$ref": "#/474"
         },
         "flags": 0,
         "description": "The security groups associated with the task or service. If you do not specify a security group, the default security group for the VPC is used. There is a limit of 5 security groups that can be specified per AwsVpcConfiguration."
       },
       "Subnets": {
         "type": {
-          "$ref": "#/351"
+          "$ref": "#/475"
         },
         "flags": 1,
         "description": "The subnets associated with the task or service. There is a limit of 16 subnets that can be specified per AwsVpcConfiguration."
@@ -6766,7 +9619,7 @@
     "properties": {
       "AwsVpcConfiguration": {
         "type": {
-          "$ref": "#/343"
+          "$ref": "#/467"
         },
         "flags": 0
       }
@@ -6863,25 +9716,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/344"
+      "$ref": "#/468"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/345"
+      "$ref": "#/469"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/348"
+      "$ref": "#/472"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/349"
+      "$ref": "#/473"
     }
   },
   {
@@ -6890,7 +9743,7 @@
     "properties": {
       "CapacityProviderStrategy": {
         "type": {
-          "$ref": "#/353"
+          "$ref": "#/477"
         },
         "flags": 0
       },
@@ -6924,13 +9777,13 @@
       },
       "LoadBalancers": {
         "type": {
-          "$ref": "#/354"
+          "$ref": "#/478"
         },
         "flags": 0
       },
       "NetworkConfiguration": {
         "type": {
-          "$ref": "#/346"
+          "$ref": "#/470"
         },
         "flags": 0
       },
@@ -6943,7 +9796,7 @@
       },
       "Scale": {
         "type": {
-          "$ref": "#/347"
+          "$ref": "#/471"
         },
         "flags": 0,
         "description": "A floating-point percentage of the desired number of tasks to place and keep running in the task set."
@@ -6957,14 +9810,14 @@
       },
       "ServiceRegistries": {
         "type": {
-          "$ref": "#/355"
+          "$ref": "#/479"
         },
         "flags": 0,
         "description": "The details of the service discovery registries to assign to this task set. For more information, see https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html."
       },
       "Tags": {
         "type": {
-          "$ref": "#/356"
+          "$ref": "#/480"
         },
         "flags": 0
       },
@@ -6997,7 +9850,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/357"
+          "$ref": "#/481"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -7008,7 +9861,7 @@
     "$type": "ResourceType",
     "name": "AWS.ECS/TaskSet@default",
     "body": {
-      "$ref": "#/358"
+      "$ref": "#/482"
     },
     "readableScopes": 0,
     "writableScopes": 0

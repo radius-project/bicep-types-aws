@@ -1,59 +1,651 @@
 [
   {
     "$type": "ObjectType",
-    "name": "ActionParameters",
+    "name": "ApiConfiguration",
     "properties": {
-      "Anchor": {
+      "DataStoreConfig": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/11"
         },
         "flags": 0
       },
-      "Fields": {
+      "GraphQLConfig": {
         "type": {
           "$ref": "#/12"
         },
         "flags": 0
       },
-      "Global": {
+      "NoApiConfig": {
         "type": {
           "$ref": "#/13"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CodegenDependency",
+    "properties": {
+      "IsSemVer": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Determines if the dependency package is using Semantic versioning."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Name of the dependency package."
+      },
+      "Reason": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Indicates the reason to include the dependency package in your project code."
+      },
+      "SupportedVersion": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Indicates the version of the supported dependency package."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CodegenFeatureFlags",
+    "properties": {
+      "IsNonModelSupported": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Specifies whether a code generation job supports non models."
+      },
+      "IsRelationshipSupported": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Specifies whether a code generation job supports data relationships."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CodegenGenericDataEnum",
+    "properties": {
+      "Values": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 1,
+        "description": "The list of enum values in the generic data schema."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CodegenGenericDataField",
+    "properties": {
+      "DataType": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The data type for the generic data field."
+      },
+      "DataTypeValue": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The value of the data type for the generic data field."
+      },
+      "IsArray": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "Specifies whether the generic data field is an array."
+      },
+      "ReadOnly": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "Specifies whether the generic data field is read-only."
+      },
+      "Relationship": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "Required": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "Specifies whether the generic data field is required."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CodegenGenericDataModel",
+    "properties": {
+      "Fields": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1,
+        "description": "The fields in the generic data model."
+      },
+      "IsJoinTable": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Specifies whether the generic data model is a join table."
+      },
+      "PrimaryKeys": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 1,
+        "description": "The primary keys of the generic data model."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CodegenGenericDataNonModel",
+    "properties": {
+      "Fields": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1,
+        "description": "The fields in a generic data schema non model."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CodegenGenericDataRelationshipType",
+    "properties": {
+      "AssociatedFields": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The associated fields of the data relationship."
+      },
+      "BelongsToFieldOnRelatedModel": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The value of the belongsTo field on the related data model."
+      },
+      "CanUnlinkAssociatedModel": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Specifies whether the relationship can unlink the associated model."
+      },
+      "IsHasManyIndex": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Specifies whether the @index directive is supported for a hasMany data relationship."
+      },
+      "RelatedJoinFieldName": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The name of the related join field in the data relationship."
+      },
+      "RelatedJoinTableName": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The name of the related join table in the data relationship."
+      },
+      "RelatedModelFields": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "The related model fields in the data relationship."
+      },
+      "RelatedModelName": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The name of the related model in the data relationship."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The data relationship type."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CodegenJobAsset",
+    "properties": {
+      "DownloadUrl": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The URL to use to access the asset."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CodegenJobGenericDataSchema",
+    "properties": {
+      "DataSourceType": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The type of the data source for the schema."
+      },
+      "Enums": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1,
+        "description": "The name of a CodegenGenericDataEnum."
+      },
+      "Models": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 1,
+        "description": "The name of a CodegenGenericDataModel."
+      },
+      "NonModels": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 1,
+        "description": "The name of a CodegenGenericDataNonModel."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CodegenJobRenderConfig",
+    "properties": {
+      "React": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataStoreRenderConfig",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GraphQLRenderConfig",
+    "properties": {
+      "FragmentsFilePath": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The path to the GraphQL fragments file, relative to the component output directory."
+      },
+      "MutationsFilePath": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The path to the GraphQL mutations file, relative to the component output directory."
+      },
+      "QueriesFilePath": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The path to the GraphQL queries file, relative to the component output directory."
+      },
+      "SubscriptionsFilePath": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The path to the GraphQL subscriptions file, relative to the component output directory."
+      },
+      "TypesFilePath": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The path to the GraphQL types file, relative to the component output directory."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NoApiRenderConfig",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReactStartCodegenJobData",
+    "properties": {
+      "ApiConfiguration": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0
+      },
+      "InlineSourceMap": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Specifies whether the code generation job should render inline source maps."
+      },
+      "Module": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The JavaScript module type."
+      },
+      "RenderTypeDeclarations": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Specifies whether the code generation job should render type declaration files."
+      },
+      "Script": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The file type to use for a JavaScript project."
+      },
+      "Target": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The ECMAScript specification to use."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The key of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The value of the tag."
+      }
+    }
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CodegenJob_Fields",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CodegenJob_Fields",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CodegenJob_Enums",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CodegenJob_Models",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CodegenJob_NonModels",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.AmplifyUIBuilder/CodegenJobProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/15"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AmplifyUIBuilder/CodegenJobProperties",
+    "properties": {
+      "AppId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The unique ID for the Amplify app."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the code generation job."
+      },
+      "AutoGenerateForms": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Specifies whether to autogenerate forms in the code generation job."
+      },
+      "EnvironmentName": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The name of the backend environment that is a part of the Amplify app."
+      },
+      "Features": {
+        "type": {
+          "$ref": "#/2"
         },
         "flags": 0
       },
       "Id": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "The unique ID for the code generation job."
+      },
+      "RenderConfig": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "The status of the code generation job."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 2,
+        "description": "One or more key-value pairs that are assigned to the code generation job."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AmplifyUIBuilder/CodegenJob",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.AmplifyUIBuilder/CodegenJob@default",
+    "body": {
+      "$ref": "#/30"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ActionParameters",
+    "properties": {
+      "Anchor": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0
+      },
+      "Fields": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
+      },
+      "Global": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/45"
         },
         "flags": 16
       },
       "Model": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "State": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/51"
         },
         "flags": 0
       },
       "Target": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/45"
         },
         "flags": 0
       },
       "Type": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/45"
         },
         "flags": 0
       },
       "Url": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/45"
         },
         "flags": 0
       }
@@ -70,19 +662,19 @@
     "properties": {
       "BindingProperties": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/35"
         },
         "flags": 0
       },
       "DefaultValue": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Type": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -94,49 +686,49 @@
     "properties": {
       "Bucket": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "DefaultValue": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Field": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Key": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Model": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Predicates": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/56"
         },
         "flags": 0
       },
       "SlotName": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "UserAttribute": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -148,37 +740,37 @@
     "properties": {
       "Children": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/57"
         },
         "flags": 0
       },
       "ComponentType": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Events": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/41"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Properties": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/44"
         },
         "flags": 1
       },
       "SourceId": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -195,43 +787,43 @@
     "properties": {
       "Else": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/45"
         },
         "flags": 0
       },
       "Field": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Operand": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "OperandType": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Operator": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Property": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Then": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/45"
         },
         "flags": 0
       }
@@ -243,25 +835,25 @@
     "properties": {
       "Identifiers": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/58"
         },
         "flags": 0
       },
       "Model": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Predicate": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/52"
         },
         "flags": 0
       },
       "Sort": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/59"
         },
         "flags": 0
       }
@@ -273,19 +865,19 @@
     "properties": {
       "Action": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "BindingEvent": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Parameters": {
         "type": {
-          "$ref": "#/0"
+          "$ref": "#/32"
         },
         "flags": 0
       }
@@ -317,91 +909,91 @@
     "properties": {
       "BindingProperties": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/46"
         },
         "flags": 0
       },
       "Bindings": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/50"
         },
         "flags": 0
       },
       "CollectionBindingProperties": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/46"
         },
         "flags": 0
       },
       "ComponentName": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Concat": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/60"
         },
         "flags": 0
       },
       "Condition": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/38"
         },
         "flags": 0
       },
       "Configured": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "DefaultValue": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Event": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "ImportedValue": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Model": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Property": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Type": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "UserAttribute": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Value": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -413,13 +1005,13 @@
     "properties": {
       "Field": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Property": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -431,13 +1023,13 @@
     "properties": {
       "Overrides": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/42"
         },
         "flags": 0
       },
       "VariantValues": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/48"
         },
         "flags": 0
       }
@@ -454,13 +1046,13 @@
     "properties": {
       "Element": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Property": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -477,19 +1069,19 @@
     "properties": {
       "ComponentName": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Property": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Set": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/45"
         },
         "flags": 1
       }
@@ -501,37 +1093,37 @@
     "properties": {
       "And": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/61"
         },
         "flags": 0
       },
       "Field": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Operand": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "OperandType": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Operator": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Or": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/62"
         },
         "flags": 0
       }
@@ -548,13 +1140,13 @@
     "properties": {
       "Direction": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Field": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -566,51 +1158,45 @@
     "properties": {}
   },
   {
-    "$type": "StringType"
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/20"
+      "$ref": "#/52"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/36"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/24"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/54"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
-    }
-  },
-  {
-    "$type": "BooleanType"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/20"
+      "$ref": "#/45"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/20"
+      "$ref": "#/52"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/52"
     }
   },
   {
@@ -620,13 +1206,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/36"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/15"
+      "$ref": "#/47"
     }
   },
   {
@@ -635,103 +1221,103 @@
     "properties": {
       "AppId": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 16
       },
       "BindingProperties": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/33"
         },
         "flags": 0
       },
       "Children": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/64"
         },
         "flags": 0
       },
       "CollectionProperties": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/37"
         },
         "flags": 0
       },
       "ComponentType": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 2
       },
       "EnvironmentName": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 16
       },
       "Events": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/41"
         },
         "flags": 0
       },
       "Id": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 18
       },
       "ModifiedAt": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 2
       },
       "Name": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Overrides": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/42"
         },
         "flags": 0
       },
       "Properties": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/44"
         },
         "flags": 0
       },
       "SchemaVersion": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "SourceId": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/55"
         },
         "flags": 0
       },
       "Variants": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/65"
         },
         "flags": 0
       }
@@ -743,21 +1329,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/66"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -768,7 +1354,7 @@
     "$type": "ResourceType",
     "name": "AWS.AmplifyUIBuilder/Component@default",
     "body": {
-      "$ref": "#/37"
+      "$ref": "#/67"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -779,31 +1365,31 @@
     "properties": {
       "Excluded": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "InputType": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/70"
         },
         "flags": 0
       },
       "Label": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Position": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/96"
         },
         "flags": 0
       },
       "Validations": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/97"
         },
         "flags": 0
       }
@@ -815,97 +1401,97 @@
     "properties": {
       "DefaultChecked": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "DefaultCountryCode": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "DefaultValue": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "DescriptiveText": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "FileUploaderConfig": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/74"
         },
         "flags": 0
       },
       "IsArray": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "MaxValue": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/98"
         },
         "flags": 0
       },
       "MinValue": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/98"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Placeholder": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "ReadOnly": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "Required": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "Step": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/98"
         },
         "flags": 0
       },
       "Type": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "ValueMappings": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/95"
         },
         "flags": 0
       }
@@ -922,25 +1508,25 @@
     "properties": {
       "NumValues": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/99"
         },
         "flags": 0
       },
       "StrValues": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/100"
         },
         "flags": 0
       },
       "Type": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "ValidationMessage": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -957,37 +1543,37 @@
     "properties": {
       "AcceptedFileTypes": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/101"
         },
         "flags": 1
       },
       "AccessLevel": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "IsResumable": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "MaxFileCount": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/98"
         },
         "flags": 0
       },
       "MaxSize": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/98"
         },
         "flags": 0
       },
       "ShowThumbnails": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/16"
         },
         "flags": 0
       }
@@ -1009,19 +1595,19 @@
     "properties": {
       "Children": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Excluded": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "Position": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/71"
         },
         "flags": 0
       }
@@ -1038,25 +1624,25 @@
     "properties": {
       "Cancel": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/77"
         },
         "flags": 0
       },
       "Clear": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/77"
         },
         "flags": 0
       },
       "Position": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Submit": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/77"
         },
         "flags": 0
       }
@@ -1073,13 +1659,13 @@
     "properties": {
       "DataSourceType": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 1
       },
       "DataTypeName": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -1096,13 +1682,13 @@
     "properties": {
       "BindingProperties": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/84"
         },
         "flags": 0
       },
       "Type": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -1114,7 +1700,7 @@
     "properties": {
       "Model": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -1126,19 +1712,19 @@
     "properties": {
       "BindingProperties": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/86"
         },
         "flags": 0
       },
       "Concat": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/102"
         },
         "flags": 0
       },
       "Value": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -1150,13 +1736,13 @@
     "properties": {
       "Field": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Property": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -1168,19 +1754,19 @@
     "properties": {
       "HorizontalGap": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/103"
         },
         "flags": 0
       },
       "OuterPadding": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/104"
         },
         "flags": 0
       },
       "VerticalGap": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/105"
         },
         "flags": 0
       }
@@ -1202,37 +1788,37 @@
     "properties": {
       "Excluded": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "Level": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/98"
         },
         "flags": 0
       },
       "Orientation": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Position": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/71"
         },
         "flags": 0
       },
       "Text": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Type": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -1259,13 +1845,13 @@
     "properties": {
       "DisplayValue": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/85"
         },
         "flags": 0
       },
       "Value": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/85"
         },
         "flags": 1
       }
@@ -1277,13 +1863,13 @@
     "properties": {
       "BindingProperties": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/82"
         },
         "flags": 0
       },
       "Values": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/106"
         },
         "flags": 1
       }
@@ -1297,7 +1883,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/42"
+      "$ref": "#/72"
     }
   },
   {
@@ -1306,25 +1892,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/68"
+      "$ref": "#/98"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/24"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/24"
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/55"
+      "$ref": "#/85"
     }
   },
   {
@@ -1345,7 +1931,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/64"
+      "$ref": "#/94"
     }
   },
   {
@@ -1358,79 +1944,79 @@
     "properties": {
       "AppId": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 16
       },
       "Cta": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/79"
         },
         "flags": 0
       },
       "DataType": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/81"
         },
         "flags": 0
       },
       "EnvironmentName": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 16
       },
       "Fields": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/73"
         },
         "flags": 0
       },
       "FormActionType": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Id": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 18
       },
       "LabelDecorator": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "SchemaVersion": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "SectionalElements": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/91"
         },
         "flags": 0
       },
       "Style": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/87"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/93"
         },
         "flags": 0
       }
@@ -1442,21 +2028,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/108"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1467,7 +2053,7 @@
     "$type": "ResourceType",
     "name": "AWS.AmplifyUIBuilder/Form@default",
     "body": {
-      "$ref": "#/79"
+      "$ref": "#/109"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1483,13 +2069,13 @@
     "properties": {
       "Children": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/114"
         },
         "flags": 0
       },
       "Value": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -1501,13 +2087,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Value": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/112"
         },
         "flags": 0
       }
@@ -1516,7 +2102,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/83"
+      "$ref": "#/113"
     }
   },
   {
@@ -1526,13 +2112,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/83"
+      "$ref": "#/113"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/83"
+      "$ref": "#/113"
     }
   },
   {
@@ -1541,55 +2127,55 @@
     "properties": {
       "AppId": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 16
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 2
       },
       "EnvironmentName": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 16
       },
       "Id": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 18
       },
       "ModifiedAt": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 2
       },
       "Name": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "Overrides": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/116"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/111"
         },
         "flags": 0
       },
       "Values": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/117"
         },
         "flags": 0
       }
@@ -1601,21 +2187,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/118"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1626,7 +2212,7 @@
     "$type": "ResourceType",
     "name": "AWS.AmplifyUIBuilder/Theme@default",
     "body": {
-      "$ref": "#/89"
+      "$ref": "#/119"
     },
     "readableScopes": 0,
     "writableScopes": 0

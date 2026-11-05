@@ -8,6 +8,42 @@
 * **name**: string: the resource name
 * **properties**: [AWS.OSIS/PipelineProperties](#awsosispipelineproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.OSIS/PipelineBlueprint@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.OSIS/PipelineBlueprintProperties](#awsosispipelineblueprintproperties) (Identifier): properties of the resource
+
+## Resource AWS.OSIS/PipelineEndpoint@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.OSIS/PipelineEndpointProperties](#awsosispipelineendpointproperties) (Required, Identifier): properties of the resource
+
+## AWS.OSIS/PipelineBlueprintProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the pipeline blueprint.
+* **BlueprintName**: string: The name of the blueprint.
+* **DisplayDescription**: string (ReadOnly): A description of the blueprint.
+* **DisplayName**: string (ReadOnly): The display name of the blueprint.
+* **PipelineConfigurationBody**: string (ReadOnly): The YAML configuration of the blueprint.
+* **Service**: string (ReadOnly): The name of the service that the blueprint is associated with.
+* **UseCase**: string (ReadOnly): The use case that the blueprint relates to.
+
+## AWS.OSIS/PipelineEndpointProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the pipeline endpoint.
+* **EndpointId**: string (ReadOnly): The unique identifier of the pipeline endpoint.
+* **IngestEndpointUrl**: string (ReadOnly): The URL used to ingest data to the pipeline through the VPC endpoint.
+* **PipelineArn**: string (Required): The Amazon Resource Name (ARN) of the pipeline to create the endpoint for.
+* **Status**: string (ReadOnly): The current status of the pipeline endpoint.
+* **VpcId**: string (ReadOnly): The ID of the VPC where the pipeline endpoint was created.
+* **VpcOptions**: [VpcOptions](#vpcoptions) (Required)
+
 ## AWS.OSIS/PipelineProperties
 ### Properties
 * **BufferOptions**: [BufferOptions](#bufferoptions)
@@ -72,4 +108,9 @@
 * **SubnetIds**: string[] (Required): A list of subnet IDs associated with the VPC endpoint.
 * **VpcAttachmentOptions**: [Pipeline_VpcAttachmentOptions](#pipelinevpcattachmentoptions): Options for attaching a VPC to the pipeline.
 * **VpcEndpointManagement**: string: Defines whether you or Amazon OpenSearch Ingestion service create and manage the VPC endpoint configured for the pipeline.
+
+## VpcOptions
+### Properties
+* **SecurityGroupIds**: string[]: A list of security group IDs that control network access to the pipeline endpoint.
+* **SubnetIds**: string[]: A list of subnet IDs where the pipeline endpoint network interfaces are created.
 

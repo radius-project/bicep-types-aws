@@ -8,6 +8,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.BedrockAgentCore/ApiKeyCredentialProviderProperties](#awsbedrockagentcoreapikeycredentialproviderproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.BedrockAgentCore/Browser@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.BedrockAgentCore/BrowserProperties](#awsbedrockagentcorebrowserproperties) (Identifier): properties of the resource
+
 ## Resource AWS.BedrockAgentCore/BrowserCustom@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -32,6 +40,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.BedrockAgentCore/CapacityProviderProperties](#awsbedrockagentcorecapacityproviderproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.BedrockAgentCore/CodeInterpreter@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.BedrockAgentCore/CodeInterpreterProperties](#awsbedrockagentcorecodeinterpreterproperties) (Identifier): properties of the resource
+
 ## Resource AWS.BedrockAgentCore/CodeInterpreterCustom@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -47,6 +63,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.BedrockAgentCore/ConfigurationBundleProperties](#awsbedrockagentcoreconfigurationbundleproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.BedrockAgentCore/ConfigurationBundleVersion@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.BedrockAgentCore/ConfigurationBundleVersionProperties](#awsbedrockagentcoreconfigurationbundleversionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.BedrockAgentCore/ConsentPortal@default
 * **Readable Scope(s)**: None
@@ -120,6 +144,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.BedrockAgentCore/HarnessEndpointProperties](#awsbedrockagentcoreharnessendpointproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.BedrockAgentCore/HarnessVersion@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.BedrockAgentCore/HarnessVersionProperties](#awsbedrockagentcoreharnessversionproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.BedrockAgentCore/Memory@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -184,6 +216,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.BedrockAgentCore/PolicyEngineProperties](#awsbedrockagentcorepolicyengineproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.BedrockAgentCore/PolicyGeneration@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.BedrockAgentCore/PolicyGenerationProperties](#awsbedrockagentcorepolicygenerationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.BedrockAgentCore/ResourcePolicy@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -207,6 +247,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.BedrockAgentCore/RuntimeEndpointProperties](#awsbedrockagentcoreruntimeendpointproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.BedrockAgentCore/TokenVault@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.BedrockAgentCore/TokenVaultProperties](#awsbedrockagentcoretokenvaultproperties) (Identifier): properties of the resource
 
 ## Resource AWS.BedrockAgentCore/WorkloadIdentity@default
 * **Readable Scope(s)**: None
@@ -315,6 +363,13 @@
 * **Status**: string (ReadOnly)
 * **Tags**: [TagsMap](#tagsmap): A map of tag keys and values.
 
+## AWS.BedrockAgentCore/BrowserProperties
+### Properties
+* **BrowserArn**: string (Identifier): The Amazon Resource Name (ARN) of the browser.
+* **BrowserId**: string (ReadOnly): The unique identifier of the browser.
+* **Name**: string (ReadOnly): The name of the browser.
+* **Status**: string (ReadOnly): The current status of the browser.
+
 ## AWS.BedrockAgentCore/CapacityProviderProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): The ARN of the capacity provider.
@@ -343,6 +398,12 @@
 * **Status**: string (ReadOnly): Status of code interpreter.
 * **Tags**: [TagsMap](#tagsmap)
 
+## AWS.BedrockAgentCore/CodeInterpreterProperties
+### Properties
+* **CodeInterpreterArn**: string (Identifier): The Amazon Resource Name (ARN) of the code interpreter.
+* **CodeInterpreterId**: string (ReadOnly): The unique identifier of the code interpreter.
+* **Status**: string (ReadOnly): The current status of the code interpreter.
+
 ## AWS.BedrockAgentCore/ConfigurationBundleProperties
 ### Properties
 * **BranchName**: string (WriteOnly): The branch name for version tracking.
@@ -359,6 +420,19 @@
 * **Tags**: [Tag](#tag)[]: Tags to assign to the configuration bundle.
 * **UpdatedAt**: string (ReadOnly): The timestamp when the configuration bundle was last updated.
 * **VersionId**: string (ReadOnly): The version identifier of the configuration bundle.
+
+## AWS.BedrockAgentCore/ConfigurationBundleVersionProperties
+### Properties
+* **BranchName**: string: The branch name for this version.
+* **BundleArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the configuration bundle.
+* **BundleId**: string (Identifier): The unique identifier of the configuration bundle.
+* **CommitMessage**: string: A commit message describing the changes in this version.
+* **Components**: [ConfigurationBundleVersion_Components](#configurationbundleversioncomponents) (Required): A map of component identifiers to their configurations.
+* **CreatedBy**: [VersionCreatedBySource](#versioncreatedbysource)
+* **ParentVersionIds**: string[] (ReadOnly): A list of parent version identifiers for lineage tracking.
+* **Tags**: [Tag](#tag)[] (ReadOnly): Tags associated with the configuration bundle version.
+* **VersionCreatedAt**: string (ReadOnly): The timestamp when this version was created.
+* **VersionId**: string (Identifier): The version identifier of the configuration bundle version.
 
 ## AWS.BedrockAgentCore/ConsentPortalProperties
 ### Properties
@@ -520,6 +594,17 @@ Always present in responses.
 * **UpdatedAt**: string (ReadOnly): The timestamp when the harness was last updated.
 * **Version**: string (ReadOnly): The version of the harness. Incremented on every successful update.
 
+## AWS.BedrockAgentCore/HarnessVersionProperties
+### Properties
+* **CreatedAt**: string (ReadOnly): The timestamp when this harness version was created.
+* **HarnessArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the parent harness.
+* **HarnessId**: string (Required, Identifier): The ID of the harness that this version belongs to.
+* **HarnessName**: string (ReadOnly): The name of the harness that this version belongs to.
+* **HarnessVersion**: string (Identifier): The version number of the harness.
+* **Status**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[] (ReadOnly): Tags associated with the parent harness.
+* **UpdatedAt**: string (ReadOnly): The timestamp when this harness version was last updated.
+
 ## AWS.BedrockAgentCore/MemoryProperties
 ### Properties
 * **CreatedAt**: string (ReadOnly)
@@ -628,6 +713,18 @@ Always present in responses.
 * **Tags**: [Tag](#tag)[]: A list of tags to assign to the policy engine.
 * **UpdatedAt**: string (ReadOnly): The timestamp when the policy engine was last updated
 
+## AWS.BedrockAgentCore/PolicyGenerationProperties
+### Properties
+* **CreatedAt**: string (ReadOnly): The timestamp when the policy generation request was created.
+* **Name**: string (Required): A customer-assigned name for the policy generation request.
+* **PolicyEngineId**: string (Required): The identifier of the policy engine associated with this policy generation.
+* **PolicyGenerationArn**: string (Identifier): The Amazon Resource Name (ARN) of the policy generation.
+* **PolicyGenerationId**: string (ReadOnly): The unique identifier of the policy generation.
+* **Resource**: [PolicyGeneration_Resource](#policygenerationresource) (Required): The resource information that provides context for policy generation.
+* **Status**: string (ReadOnly): The current status of the policy generation.
+* **StatusReasons**: string[] (ReadOnly): Additional information about the generation status.
+* **UpdatedAt**: string (ReadOnly): The timestamp when the policy generation was last updated.
+
 ## AWS.BedrockAgentCore/PolicyProperties
 ### Properties
 * **CreatedAt**: string (ReadOnly): The timestamp when the policy was created.
@@ -689,6 +786,13 @@ Always present in responses.
 * **Status**: string (ReadOnly): Current status of the agent
 * **Tags**: [TagsMap](#tagsmap)
 * **WorkloadIdentityDetails**: [WorkloadIdentityDetails](#workloadidentitydetails) (ReadOnly): Workload identity details for the agent
+
+## AWS.BedrockAgentCore/TokenVaultProperties
+### Properties
+* **Arn**: string (Identifier): The ARN of the token vault.
+* **KmsConfiguration**: [KmsConfiguration](#kmsconfiguration) (ReadOnly): The KMS configuration for the token vault.
+* **LastModifiedDate**: string (ReadOnly): The timestamp when the token vault was last modified.
+* **TokenVaultId**: string (ReadOnly): The unique identifier of the token vault.
 
 ## AWS.BedrockAgentCore/WorkloadIdentityProperties
 ### Properties
@@ -846,6 +950,9 @@ Always present in responses.
 ### Properties
 
 ## ConfigurationBundle_Components
+### Properties
+
+## ConfigurationBundleVersion_Components
 ### Properties
 
 ## ConsentPortalSource
@@ -1495,6 +1602,11 @@ Always present in responses.
 * **ContentConfigurations**: [ContentConfiguration](#contentconfiguration)[] (Required)
 * **DataStreamArn**: string (Required)
 
+## KmsConfiguration
+### Properties
+* **KeyType**: string (Required): The type of KMS key (CustomerManagedKey or ServiceManagedKey).
+* **KmsKeyArn**: string: The Amazon Resource Name (ARN) of the KMS key.
+
 ## KmsKeySourceType
 ### Properties
 * **KmsKeyArn**: string (Required): The Amazon Resource Name (ARN) of the KMS key used to sign the JWT client assertion
@@ -1733,6 +1845,10 @@ Always present in responses.
 ### Properties
 * **Cedar**: [CedarPolicy](#cedarpolicy)
 * **Policy**: [PolicyStatement](#policystatement)
+
+## PolicyGeneration_Resource
+### Properties
+* **Arn**: string (Required): The Amazon Resource Name (ARN) of the resource.
 
 ## PolicyStatement
 ### Properties
@@ -2064,6 +2180,16 @@ Always present in responses.
 
 ## Tag
 ### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
 * **Key**: string (Required): The key name of the tag.
 * **Value**: string (Required): The value for the tag.
 
@@ -2158,6 +2284,11 @@ Always present in responses.
 * **NumberValidation**: [NumberValidation](#numbervalidation)
 * **StringListValidation**: [StringListValidation](#stringlistvalidation)
 * **StringValidation**: [StringValidation](#stringvalidation)
+
+## VersionCreatedBySource
+### Properties
+* **Arn**: string: The Amazon Resource Name (ARN) of the source, if applicable.
+* **Name**: string (Required): The name of the source (for example, user, optimization-job, or system).
 
 ## VersionCreatedBySource
 ### Properties

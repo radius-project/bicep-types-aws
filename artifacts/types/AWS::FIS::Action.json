@@ -1,0 +1,98 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-FIS-Action",
+  "type": "AWS::FIS::Action",
+  "time": "2026-11-05T20:53:44.953Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key in a tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value in a tag.",
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Describes an AWS FIS action. Actions are predefined fault injection activities provided by AWS Fault Injection Service.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "fis:ListActions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "fis:GetAction"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the action.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description for the action.",
+        "maxLength": 512,
+        "type": "string"
+      },
+      "Id": {
+        "description": "The ID of the action.",
+        "maxLength": 128,
+        "pattern": "^[\\S]+$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags for the action.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Id",
+      "/properties/Arn",
+      "/properties/Description",
+      "/properties/Tags"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "fis:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::FIS::Action"
+  }
+}

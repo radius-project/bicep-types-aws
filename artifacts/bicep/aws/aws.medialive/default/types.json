@@ -1927,6 +1927,465 @@
   },
   {
     "$type": "ObjectType",
+    "name": "InputDeviceHdSettings",
+    "properties": {
+      "ActiveInput": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The input in use, HDMI or SDI."
+      },
+      "ConfiguredInput": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The source that is configured for the input, or AUTO to let the device choose."
+      },
+      "DeviceState": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Whether the device is currently streaming or idle."
+      },
+      "Framerate": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The frame rate of the video source."
+      },
+      "Height": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The height of the video source, in pixels."
+      },
+      "LatencyMs": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The latency of the device, in milliseconds."
+      },
+      "MaxBitrate": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The maximum bitrate in bits per second."
+      },
+      "ScanType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The scan type of the video source."
+      },
+      "Width": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The width of the video source, in pixels."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputDeviceMediaConnectSettings",
+    "properties": {
+      "FlowArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The ARN of the MediaConnect flow."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The ARN of the role MediaLive assumes to send to the flow."
+      },
+      "SecretArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The ARN of the Secrets Manager secret holding the encryption key."
+      },
+      "SourceName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The name of the MediaConnect flow source."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputDeviceNetworkSettings",
+    "properties": {
+      "DnsAddresses": {
+        "type": {
+          "$ref": "#/115"
+        },
+        "flags": 0,
+        "description": "The DNS addresses of the input device."
+      },
+      "Gateway": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The network gateway the input device uses."
+      },
+      "IpAddress": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The IP address of the input device."
+      },
+      "IpScheme": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Whether the device is configured for a static IP address or DHCP."
+      },
+      "SubnetMask": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The subnet mask of the input device."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputDeviceUhdAudioChannelPairConfig",
+    "properties": {
+      "Id": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The ID of the audio channel pair."
+      },
+      "Profile": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The audio profile of the channel pair."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputDeviceUhdSettings",
+    "properties": {
+      "ActiveInput": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The input in use, HDMI or SDI."
+      },
+      "AudioChannelPairs": {
+        "type": {
+          "$ref": "#/116"
+        },
+        "flags": 0,
+        "description": "The audio channel pair configurations of the device."
+      },
+      "Codec": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The codec the device uses to encode."
+      },
+      "ConfiguredInput": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The source that is configured for the input, or AUTO to let the device choose."
+      },
+      "DeviceState": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Whether the device is currently streaming or idle."
+      },
+      "Framerate": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The frame rate of the video source."
+      },
+      "Height": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The height of the video source, in pixels."
+      },
+      "InputResolution": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The resolution of the video source."
+      },
+      "LatencyMs": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The latency of the device, in milliseconds."
+      },
+      "MaxBitrate": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The maximum bitrate in bits per second."
+      },
+      "MediaconnectSettings": {
+        "type": {
+          "$ref": "#/110"
+        },
+        "flags": 0
+      },
+      "ScanType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The scan type of the video source."
+      },
+      "Width": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The width of the video source, in pixels."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/112"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaLive/InputDeviceProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/114"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/InputDeviceProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 16,
+        "description": "The unique ARN of the input device, e.g. 'arn:aws:medialive:us-west-2:123456789012:inputDevice:hd-0000aaaa1111bbbb2222cccc'."
+      },
+      "AvailabilityZone": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The Availability Zone associated with this input device."
+      },
+      "ConnectionState": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The state of the connection between the input device and AWS."
+      },
+      "DeviceSettingsSyncState": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "Whether the device has applied the configuration MediaLive sent to it. SYNCED means it has; SYNCING means it has not yet."
+      },
+      "DeviceUpdateStatus": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The status of software on the input device."
+      },
+      "HdDeviceSettings": {
+        "type": {
+          "$ref": "#/109"
+        },
+        "flags": 2
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The unique ID of the input device, e.g. 'hd-0000aaaa1111bbbb2222cccc'."
+      },
+      "MacAddress": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The network MAC address of the input device."
+      },
+      "MedialiveInputArns": {
+        "type": {
+          "$ref": "#/118"
+        },
+        "flags": 2,
+        "description": "The ARNs of the MediaLive inputs attached to the device. Returned only when OutputType is MEDIALIVE_INPUT."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The name specified for the input device."
+      },
+      "NetworkSettings": {
+        "type": {
+          "$ref": "#/111"
+        },
+        "flags": 2
+      },
+      "OutputType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The output attachment type of the input device. MEDIACONNECT_FLOW when the device is the source for a MediaConnect flow, MEDIALIVE_INPUT when it is the source for a MediaLive input, NONE when it is unattached."
+      },
+      "SerialNumber": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The unique serial number of the input device."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/119"
+        },
+        "flags": 2,
+        "description": "A collection of key-value pairs associated with the input device."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The type of the input device."
+      },
+      "UhdDeviceSettings": {
+        "type": {
+          "$ref": "#/113"
+        },
+        "flags": 2
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/InputDevice",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/120"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MediaLive/InputDevice@default",
+    "body": {
+      "$ref": "#/121"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "InputWhitelistRule",
     "properties": {
       "Cidr": {
@@ -1956,7 +2415,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/109"
+      "$ref": "#/123"
     }
   },
   {
@@ -1979,21 +2438,21 @@
       },
       "Inputs": {
         "type": {
-          "$ref": "#/111"
+          "$ref": "#/125"
         },
         "flags": 2,
         "description": "The list of inputs currently using this Input Security Group."
       },
       "Tags": {
         "type": {
-          "$ref": "#/112"
+          "$ref": "#/126"
         },
         "flags": 0,
         "description": "A collection of key-value pairs."
       },
       "WhitelistRules": {
         "type": {
-          "$ref": "#/113"
+          "$ref": "#/127"
         },
         "flags": 0,
         "description": "Whitelist rules and their sync status"
@@ -2020,7 +2479,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/128"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -2031,7 +2490,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaLive/InputSecurityGroup@default",
     "body": {
-      "$ref": "#/115"
+      "$ref": "#/129"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2042,7 +2501,7 @@
     "properties": {
       "MultiplexMediaConnectOutputDestinationSettings": {
         "type": {
-          "$ref": "#/120"
+          "$ref": "#/134"
         },
         "flags": 0,
         "description": "Multiplex MediaConnect output destination settings."
@@ -2127,13 +2586,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/117"
+      "$ref": "#/131"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/119"
+      "$ref": "#/133"
     }
   },
   {
@@ -2149,14 +2608,14 @@
       },
       "AvailabilityZones": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/136"
         },
         "flags": 1,
         "description": "A list of availability zones for the multiplex."
       },
       "Destinations": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/137"
         },
         "flags": 0,
         "description": "A list of the multiplex output destinations."
@@ -2170,7 +2629,7 @@
       },
       "MultiplexSettings": {
         "type": {
-          "$ref": "#/118"
+          "$ref": "#/132"
         },
         "flags": 1,
         "description": "Configuration for a multiplex event."
@@ -2204,7 +2663,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/124"
+          "$ref": "#/138"
         },
         "flags": 0,
         "description": "A collection of key-value pairs."
@@ -2231,7 +2690,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/125"
+          "$ref": "#/139"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2242,7 +2701,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaLive/Multiplex@default",
     "body": {
-      "$ref": "#/126"
+      "$ref": "#/140"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2253,13 +2712,13 @@
     "properties": {
       "AudioPids": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/149"
         },
         "flags": 0
       },
       "DvbSubPids": {
         "type": {
-          "$ref": "#/136"
+          "$ref": "#/150"
         },
         "flags": 0
       },
@@ -2283,7 +2742,7 @@
       },
       "KlvDataPids": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/151"
         },
         "flags": 0
       },
@@ -2307,7 +2766,7 @@
       },
       "Scte27Pids": {
         "type": {
-          "$ref": "#/138"
+          "$ref": "#/152"
         },
         "flags": 0
       },
@@ -2390,14 +2849,14 @@
       },
       "ServiceDescriptor": {
         "type": {
-          "$ref": "#/130"
+          "$ref": "#/144"
         },
         "flags": 0,
         "description": "Transport stream service descriptor configuration for the Multiplex program."
       },
       "VideoSettings": {
         "type": {
-          "$ref": "#/133"
+          "$ref": "#/147"
         },
         "flags": 0,
         "description": "Program video settings configuration."
@@ -2472,7 +2931,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/129"
+      "$ref": "#/143"
     }
   },
   {
@@ -2495,21 +2954,21 @@
       },
       "MultiplexProgramSettings": {
         "type": {
-          "$ref": "#/131"
+          "$ref": "#/145"
         },
         "flags": 0,
         "description": "The settings for this multiplex program."
       },
       "PacketIdentifiersMap": {
         "type": {
-          "$ref": "#/128"
+          "$ref": "#/142"
         },
         "flags": 0,
         "description": "The packet identifier map for this multiplex program."
       },
       "PipelineDetails": {
         "type": {
-          "$ref": "#/140"
+          "$ref": "#/154"
         },
         "flags": 0,
         "description": "Contains information about the current sources for the specified program in the specified multiplex. Keep in mind that each multiplex pipeline connects to both pipelines in a given source channel (the channel identified by the program). But only one of those channel pipelines is ever active at one time."
@@ -2550,7 +3009,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/141"
+          "$ref": "#/155"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -2561,7 +3020,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaLive/Multiplexprogram@default",
     "body": {
-      "$ref": "#/142"
+      "$ref": "#/156"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2635,19 +3094,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/144"
+      "$ref": "#/158"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/146"
+      "$ref": "#/160"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/147"
+      "$ref": "#/161"
     }
   },
   {
@@ -2663,7 +3122,7 @@
       },
       "AssociatedClusterIds": {
         "type": {
-          "$ref": "#/149"
+          "$ref": "#/163"
         },
         "flags": 2
       },
@@ -2676,7 +3135,7 @@
       },
       "IpPools": {
         "type": {
-          "$ref": "#/150"
+          "$ref": "#/164"
         },
         "flags": 1,
         "description": "The list of IP address cidr pools for the network"
@@ -2690,7 +3149,7 @@
       },
       "Routes": {
         "type": {
-          "$ref": "#/151"
+          "$ref": "#/165"
         },
         "flags": 0,
         "description": "The routes for the network"
@@ -2704,7 +3163,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/152"
+          "$ref": "#/166"
         },
         "flags": 0,
         "description": "A collection of key-value pairs."
@@ -2731,7 +3190,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/153"
+          "$ref": "#/167"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2742,7 +3201,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaLive/Network@default",
     "body": {
-      "$ref": "#/154"
+      "$ref": "#/168"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2876,19 +3335,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/157"
+      "$ref": "#/171"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/161"
+      "$ref": "#/175"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/162"
+      "$ref": "#/176"
     }
   },
   {
@@ -2904,7 +3363,7 @@
       },
       "ChannelPlacementGroups": {
         "type": {
-          "$ref": "#/164"
+          "$ref": "#/178"
         },
         "flags": 2,
         "description": "An array of IDs. Each ID is one ChannelPlacementGroup that is associated with this Node."
@@ -2945,7 +3404,7 @@
       },
       "NodeInterfaceMappings": {
         "type": {
-          "$ref": "#/165"
+          "$ref": "#/179"
         },
         "flags": 0,
         "description": "An array of interface mappings for the Node."
@@ -2958,7 +3417,7 @@
       },
       "SdiSourceMappings": {
         "type": {
-          "$ref": "#/166"
+          "$ref": "#/180"
         },
         "flags": 0,
         "description": "An array of SDI source mappings."
@@ -2971,7 +3430,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/167"
+          "$ref": "#/181"
         },
         "flags": 0,
         "description": "A collection of key-value pairs."
@@ -2998,7 +3457,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/168"
+          "$ref": "#/182"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3009,9 +3468,478 @@
     "$type": "ResourceType",
     "name": "AWS.MediaLive/Node@default",
     "body": {
-      "$ref": "#/169"
+      "$ref": "#/183"
     },
     "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReservationResourceSpecification",
+    "properties": {
+      "ChannelClass": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Channel class, e.g. 'STANDARD'"
+      },
+      "Codec": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Codec, e.g. 'AVC'"
+      },
+      "MaximumBitrate": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Maximum bitrate, e.g. 'MAX_20_MBPS'"
+      },
+      "MaximumFramerate": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Maximum framerate, e.g. 'MAX_30_FPS' (Outputs only)"
+      },
+      "Resolution": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Resolution, e.g. 'HD'"
+      },
+      "ResourceType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Resource type, 'INPUT', 'OUTPUT', 'MULTIPLEX', or 'CHANNEL'"
+      },
+      "SpecialFeature": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Special feature, e.g. 'AUDIO_NORMALIZATION' (Channels only)"
+      },
+      "VideoQuality": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Video quality, e.g. 'STANDARD' (Outputs only)"
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaLive/OfferingProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/OfferingProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 16,
+        "description": "Unique offering ARN, e.g. 'arn:aws:medialive:us-west-2:123456789012:offering:87654321'"
+      },
+      "CurrencyCode": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "Currency code for usagePrice and fixedPrice in ISO-4217 format, e.g. 'USD'"
+      },
+      "Duration": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "Lease duration, e.g. '12'"
+      },
+      "DurationUnits": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "Units for duration, e.g. 'MONTHS'"
+      },
+      "FixedPrice": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "One-time charge for each reserved resource, e.g. '0.0' for a NO_UPFRONT offering"
+      },
+      "OfferingDescription": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "Offering description, e.g. 'HD AVC output at 10-20 Mbps, 30 fps, and standard VQ in US West (Oregon)'"
+      },
+      "OfferingId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "Unique offering ID, e.g. '87654321'"
+      },
+      "OfferingType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "Offering type, e.g. 'NO_UPFRONT'"
+      },
+      "Region": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "AWS region, e.g. 'us-west-2'"
+      },
+      "ResourceSpecification": {
+        "type": {
+          "$ref": "#/185"
+        },
+        "flags": 2
+      },
+      "UsagePrice": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "Recurring usage charge for each reserved resource, e.g. '157.0'"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/Offering",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/187"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MediaLive/Offering@default",
+    "body": {
+      "$ref": "#/188"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RenewalSettings",
+    "properties": {
+      "AutomaticRenewal": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Automatic renewal status for the reservation."
+      },
+      "RenewalCount": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Count for the reservation renewal."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReservationResourceSpecification",
+    "properties": {
+      "ChannelClass": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Channel class, e.g. 'STANDARD'."
+      },
+      "Codec": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Codec, e.g. 'AVC'."
+      },
+      "MaximumBitrate": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Maximum bitrate, e.g. 'MAX_20_MBPS'."
+      },
+      "MaximumFramerate": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Maximum framerate, e.g. 'MAX_30_FPS' (Outputs only)."
+      },
+      "Resolution": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Resolution, e.g. 'HD'."
+      },
+      "ResourceType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Resource type, 'INPUT', 'OUTPUT', 'MULTIPLEX', or 'CHANNEL'."
+      },
+      "SpecialFeature": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Special feature, e.g. 'AUDIO_NORMALIZATION' (Channels only)."
+      },
+      "VideoQuality": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Video quality, e.g. 'STANDARD' (Outputs only)."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaLive/ReservationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/192"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/ReservationProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 16,
+        "description": "Unique reservation ARN, e.g. 'arn:aws:medialive:us-west-2:123456789012:reservation:1234567'."
+      },
+      "Count": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "Number of reserved resources."
+      },
+      "CurrencyCode": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "Currency code for usagePrice and fixedPrice in ISO-4217 format, e.g. 'USD'."
+      },
+      "Duration": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "Lease duration, e.g. '12'."
+      },
+      "DurationUnits": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "Units for duration, e.g. 'MONTHS'."
+      },
+      "End": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "Reservation UTC end date and time in ISO-8601 format, e.g. '2019-03-01T00:00:00'."
+      },
+      "FixedPrice": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "One-time charge for each reserved resource, e.g. '0.0' for a NO_UPFRONT offering."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "User specified reservation name."
+      },
+      "OfferingDescription": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "Offering description, e.g. 'HD AVC output at 10-20 Mbps, 30 fps, and standard VQ in US West (Oregon)'."
+      },
+      "OfferingId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "Unique offering ID, e.g. '87654321'."
+      },
+      "OfferingType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "Offering type, e.g. 'NO_UPFRONT'."
+      },
+      "Region": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "AWS region, e.g. 'us-west-2'."
+      },
+      "RenewalSettings": {
+        "type": {
+          "$ref": "#/190"
+        },
+        "flags": 2
+      },
+      "ReservationId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "Unique reservation ID, e.g. '1234567'."
+      },
+      "ResourceSpecification": {
+        "type": {
+          "$ref": "#/191"
+        },
+        "flags": 2
+      },
+      "Start": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "Reservation UTC start date and time in ISO-8601 format, e.g. '2018-03-01T00:00:00'."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "Current state of reservation, e.g. 'ACTIVE'."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/194"
+        },
+        "flags": 2,
+        "description": "A collection of key-value pairs associated with the reservation."
+      },
+      "UsagePrice": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "Recurring usage charge for each reserved resource, e.g. '157.0'."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaLive/Reservation",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/195"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MediaLive/Reservation@default",
+    "body": {
+      "$ref": "#/196"
+    },
+    "readableScopes": 31,
     "writableScopes": 0
   },
   {
@@ -3060,7 +3988,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/174"
+      "$ref": "#/201"
     }
   },
   {
@@ -3083,7 +4011,7 @@
       },
       "Inputs": {
         "type": {
-          "$ref": "#/176"
+          "$ref": "#/203"
         },
         "flags": 2,
         "description": "The list of inputs currently using this SDI source."
@@ -3109,7 +4037,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/177"
+          "$ref": "#/204"
         },
         "flags": 0,
         "description": "A collection of key-value pairs."
@@ -3142,7 +4070,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/178"
+          "$ref": "#/205"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3153,7 +4081,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaLive/SdiSource@default",
     "body": {
-      "$ref": "#/179"
+      "$ref": "#/206"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3169,7 +4097,7 @@
     "properties": {
       "Destinations": {
         "type": {
-          "$ref": "#/191"
+          "$ref": "#/218"
         },
         "flags": 0
       },
@@ -3182,7 +4110,7 @@
       },
       "Sources": {
         "type": {
-          "$ref": "#/192"
+          "$ref": "#/219"
         },
         "flags": 0
       }
@@ -3281,13 +4209,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/184"
+      "$ref": "#/211"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/184"
+      "$ref": "#/211"
     }
   },
   {
@@ -3334,13 +4262,13 @@
       },
       "CloudWatchAlarmTemplateGroupIdentifiers": {
         "type": {
-          "$ref": "#/194"
+          "$ref": "#/221"
         },
         "flags": 4
       },
       "CloudWatchAlarmTemplateGroupIds": {
         "type": {
-          "$ref": "#/195"
+          "$ref": "#/222"
         },
         "flags": 2
       },
@@ -3373,25 +4301,25 @@
       },
       "EventBridgeRuleTemplateGroupIdentifiers": {
         "type": {
-          "$ref": "#/196"
+          "$ref": "#/223"
         },
         "flags": 4
       },
       "EventBridgeRuleTemplateGroupIds": {
         "type": {
-          "$ref": "#/197"
+          "$ref": "#/224"
         },
         "flags": 2
       },
       "FailedMediaResourceMap": {
         "type": {
-          "$ref": "#/181"
+          "$ref": "#/208"
         },
         "flags": 2
       },
       "ForceRediscovery": {
         "type": {
-          "$ref": "#/198"
+          "$ref": "#/225"
         },
         "flags": 4,
         "description": "If true, will force a rediscovery of a signal map if an unchanged discoveryEntryPointArn is provided."
@@ -3417,13 +4345,13 @@
       },
       "LastSuccessfulMonitorDeployment": {
         "type": {
-          "$ref": "#/188"
+          "$ref": "#/215"
         },
         "flags": 2
       },
       "MediaResourceMap": {
         "type": {
-          "$ref": "#/183"
+          "$ref": "#/210"
         },
         "flags": 2
       },
@@ -3435,14 +4363,14 @@
       },
       "MonitorChangesPendingDeployment": {
         "type": {
-          "$ref": "#/198"
+          "$ref": "#/225"
         },
         "flags": 2,
         "description": "If true, there are pending monitor changes for this signal map that can be deployed."
       },
       "MonitorDeployment": {
         "type": {
-          "$ref": "#/185"
+          "$ref": "#/212"
         },
         "flags": 2
       },
@@ -3461,7 +4389,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/189"
+          "$ref": "#/216"
         },
         "flags": 0
       }
@@ -3487,7 +4415,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/199"
+          "$ref": "#/226"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3498,7 +4426,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaLive/SignalMap@default",
     "body": {
-      "$ref": "#/200"
+      "$ref": "#/227"
     },
     "readableScopes": 0,
     "writableScopes": 0

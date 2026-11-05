@@ -286,6 +286,184 @@
   },
   {
     "$type": "ObjectType",
+    "name": "DynamicExtensionParameters",
+    "properties": {
+      "ExtensionReference": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "ParameterName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "ParameterValue": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The key-value string map. The valid character set is [a-zA-Z1-9+-=._:/]. The tag key can be up to 128 characters and must not start with aws:."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The tag value can be up to 256 characters."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.AppConfig/DeploymentProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/15"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/16"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AppConfig/DeploymentProperties",
+    "properties": {
+      "ApplicationId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The application ID."
+      },
+      "ConfigurationProfileId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The configuration profile ID."
+      },
+      "ConfigurationVersion": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The configuration version to deploy. If deploying an AWS AppConfig hosted configuration version, you can specify either the version number or version label. For all other configurations, you must specify the version number."
+      },
+      "DeploymentNumber": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The sequence number of the deployment."
+      },
+      "DeploymentStrategyId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The deployment strategy ID."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A description of the deployment."
+      },
+      "DynamicExtensionParameters": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 4
+      },
+      "EnvironmentId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The environment ID."
+      },
+      "KmsKeyIdentifier": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The AWS Key Management Service key identifier (key ID, key alias, or key ARN) provided when the resource was created or updated."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The state of the deployment."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AppConfig/Deployment",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.AppConfig/Deployment@default",
+    "body": {
+      "$ref": "#/21"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "Tag",
     "properties": {
       "Key": {
@@ -314,7 +492,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/15"
+      "$ref": "#/23"
     }
   },
   {
@@ -323,7 +501,7 @@
     "properties": {
       "DeploymentDurationInMinutes": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/25"
         },
         "flags": 1,
         "description": "Total amount of time for a deployment to last."
@@ -337,14 +515,14 @@
       },
       "FinalBakeTimeInMinutes": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "Specifies the amount of time AWS AppConfig monitors for Amazon CloudWatch alarms after the configuration has been deployed to 100% of its targets, before considering the deployment to be complete. If an alarm is triggered during this time, AWS AppConfig rolls back the deployment. You must configure permissions for AWS AppConfig to roll back based on CloudWatch alarms. For more information, see Configuring permissions for rollback based on Amazon CloudWatch alarms in the AWS AppConfig User Guide."
       },
       "GrowthFactor": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/25"
         },
         "flags": 1,
         "description": "The percentage of targets to receive a deployed configuration during each interval."
@@ -379,7 +557,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/26"
         },
         "flags": 0,
         "description": "Assigns metadata to an AWS AppConfig resource. Tags help organize and categorize your AWS AppConfig resources. Each tag consists of a key and an optional value, both of which you define. You can specify a maximum of 50 tags for a resource."
@@ -406,7 +584,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/27"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -417,7 +595,7 @@
     "$type": "ResourceType",
     "name": "AWS.AppConfig/DeploymentStrategy@default",
     "body": {
-      "$ref": "#/20"
+      "$ref": "#/28"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -469,13 +647,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/30"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/31"
     }
   },
   {
@@ -512,7 +690,7 @@
       },
       "Monitors": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "Amazon CloudWatch alarms to monitor during the deployment process."
@@ -526,7 +704,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "Metadata to assign to the environment. Tags help organize and categorize your AWS AppConfig resources. Each tag consists of a key and an optional value, both of which you define."
@@ -553,7 +731,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/35"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -564,7 +742,7 @@
     "$type": "ResourceType",
     "name": "AWS.AppConfig/Environment@default",
     "body": {
-      "$ref": "#/28"
+      "$ref": "#/36"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -575,28 +753,28 @@
     "properties": {
       "BooleanValue": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "A boolean value."
       },
       "NumberArray": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "An array of numeric values."
       },
       "NumberValue": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "A numeric value."
       },
       "StringArray": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "An array of string values."
@@ -636,7 +814,7 @@
     "properties": {
       "AttributeValues": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/44"
         },
         "flags": 0,
         "description": "Map of attribute name to attribute value."
@@ -649,7 +827,7 @@
       },
       "Enabled": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/41"
         },
         "flags": 1,
         "description": "Whether the flag is enabled for this variant."
@@ -663,7 +841,7 @@
       },
       "Weight": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/25"
         },
         "flags": 1,
         "description": "Traffic weight percentage."
@@ -676,7 +854,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/17"
+      "$ref": "#/25"
     }
   },
   {
@@ -697,13 +875,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/31"
+      "$ref": "#/39"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/32"
+      "$ref": "#/40"
     }
   },
   {
@@ -747,7 +925,7 @@
       },
       "Control": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/40"
         },
         "flags": 1,
         "description": "The control (baseline) variant."
@@ -810,14 +988,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "Tags to associate with the experiment definition."
       },
       "Treatments": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/47"
         },
         "flags": 3,
         "description": "Treatment variants (1-5)."
@@ -851,7 +1029,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/48"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -862,7 +1040,7 @@
     "$type": "ResourceType",
     "name": "AWS.AppConfig/ExperimentDefinition@default",
     "body": {
-      "$ref": "#/41"
+      "$ref": "#/49"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -893,7 +1071,7 @@
     "properties": {
       "Inline": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "Map of entity ID to treatment key (t1, t2, ..., or c for control)."
@@ -912,7 +1090,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/43"
+      "$ref": "#/51"
     }
   },
   {
@@ -956,7 +1134,7 @@
       },
       "ExposurePercentage": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/25"
         },
         "flags": 1,
         "description": "Percentage of traffic exposed to the experiment (0-100)."
@@ -984,14 +1162,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/55"
         },
         "flags": 0,
         "description": "Tags to associate with the experiment run."
       },
       "TreatmentOverrides": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/52"
         },
         "flags": 0
       },
@@ -1024,7 +1202,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/56"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1035,7 +1213,7 @@
     "$type": "ResourceType",
     "name": "AWS.AppConfig/ExperimentRun@default",
     "body": {
-      "$ref": "#/49"
+      "$ref": "#/57"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1092,13 +1270,13 @@
       },
       "Dynamic": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/41"
         },
         "flags": 0
       },
       "Required": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/41"
         },
         "flags": 1
       }
@@ -1127,7 +1305,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/51"
+      "$ref": "#/59"
     }
   },
   {
@@ -1147,7 +1325,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/54"
+      "$ref": "#/62"
     }
   },
   {
@@ -1156,7 +1334,7 @@
     "properties": {
       "Actions": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/65"
         },
         "flags": 1
       },
@@ -1181,7 +1359,7 @@
       },
       "LatestVersionNumber": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/25"
         },
         "flags": 4
       },
@@ -1194,20 +1372,20 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/66"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/67"
         },
         "flags": 0,
         "description": "An array of key-value tags to apply to this resource."
       },
       "VersionNumber": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/25"
         },
         "flags": 2
       }
@@ -1233,7 +1411,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/68"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1244,7 +1422,7 @@
     "$type": "ResourceType",
     "name": "AWS.AppConfig/Extension@default",
     "body": {
-      "$ref": "#/61"
+      "$ref": "#/69"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1281,7 +1459,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/63"
+      "$ref": "#/71"
     }
   },
   {
@@ -1308,7 +1486,7 @@
       },
       "ExtensionVersionNumber": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/25"
         },
         "flags": 0
       },
@@ -1320,7 +1498,7 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/73"
         },
         "flags": 0
       },
@@ -1338,7 +1516,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/74"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1365,7 +1543,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/75"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1376,7 +1554,109 @@
     "$type": "ResourceType",
     "name": "AWS.AppConfig/ExtensionAssociation@default",
     "body": {
-      "$ref": "#/68"
+      "$ref": "#/76"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.AppConfig/HostedConfigurationVersionProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AppConfig/HostedConfigurationVersionProperties",
+    "properties": {
+      "ApplicationId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The application ID."
+      },
+      "ConfigurationProfileId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The configuration profile ID."
+      },
+      "Content": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The content of the configuration or the configuration data."
+      },
+      "ContentType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "A standard MIME type describing the format of the configuration content."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A description of the hosted configuration version."
+      },
+      "LatestVersionNumber": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 4,
+        "description": "An optional locking token used to prevent race conditions from overwriting configuration updates when creating a new version. To ensure your data is not overwritten when creating multiple hosted configuration versions in rapid succession, specify the version number of the latest hosted configuration version."
+      },
+      "VersionLabel": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A user-defined label for an AWS AppConfig hosted configuration version."
+      },
+      "VersionNumber": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "Current version number of hosted configuration version."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AppConfig/HostedConfigurationVersion",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/79"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.AppConfig/HostedConfigurationVersion@default",
+    "body": {
+      "$ref": "#/80"
     },
     "readableScopes": 0,
     "writableScopes": 0

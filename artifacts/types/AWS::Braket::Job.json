@@ -1,0 +1,357 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Braket-Job",
+  "type": "AWS::Braket::Job",
+  "time": "2026-11-05T20:49:36.05Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/AlgorithmSpecification",
+      "/properties/CheckpointConfig",
+      "/properties/DeviceConfig",
+      "/properties/HyperParameters",
+      "/properties/InputDataConfig",
+      "/properties/InstanceConfig",
+      "/properties/JobName",
+      "/properties/OutputDataConfig",
+      "/properties/RoleArn",
+      "/properties/StoppingCondition",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "AlgorithmSpecification": {
+        "additionalProperties": false,
+        "description": "Defines the Amazon Braket hybrid job to be created.",
+        "properties": {
+          "ScriptModeConfig": {
+            "$ref": "#/definitions/ScriptModeConfig"
+          }
+        },
+        "required": [
+          "ScriptModeConfig"
+        ],
+        "type": "object"
+      },
+      "DataSource": {
+        "additionalProperties": false,
+        "description": "Information about the source of the input data used by the Amazon Braket hybrid job.",
+        "properties": {
+          "S3DataSource": {
+            "$ref": "#/definitions/S3DataSource"
+          }
+        },
+        "required": [
+          "S3DataSource"
+        ],
+        "type": "object"
+      },
+      "DeviceConfig": {
+        "additionalProperties": false,
+        "description": "Configures the primary device used to create and run an Amazon Braket hybrid job.",
+        "properties": {
+          "Device": {
+            "description": "The primary device ARN used to create and run an Amazon Braket hybrid job.",
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Device"
+        ],
+        "type": "object"
+      },
+      "InputFileConfig": {
+        "additionalProperties": false,
+        "description": "A list of parameters that specify the name and type of input data and where it is located.",
+        "properties": {
+          "ChannelName": {
+            "description": "A named input source that an Amazon Braket hybrid job can consume.",
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9\\.\\-_]+$",
+            "type": "string"
+          },
+          "ContentType": {
+            "description": "The MIME type of the data.",
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "DataSource": {
+            "$ref": "#/definitions/DataSource"
+          }
+        },
+        "required": [
+          "ChannelName",
+          "DataSource"
+        ],
+        "type": "object"
+      },
+      "InstanceConfig": {
+        "additionalProperties": false,
+        "description": "Configures the resource instances to use while running the hybrid job on Amazon Braket.",
+        "properties": {
+          "InstanceCount": {
+            "description": "Configures the number of resource instances to use.",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "InstanceType": {
+            "description": "Configures the type of resource instances to use.",
+            "type": "string"
+          },
+          "VolumeSizeInGb": {
+            "description": "The size of the storage volume, in GB, to provision.",
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "InstanceType",
+          "VolumeSizeInGb"
+        ],
+        "type": "object"
+      },
+      "JobCheckpointConfig": {
+        "additionalProperties": false,
+        "description": "Information about the output locations for hybrid job checkpoint data.",
+        "properties": {
+          "LocalPath": {
+            "description": "The local directory where checkpoint data is stored.",
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string"
+          },
+          "S3Uri": {
+            "description": "Identifies the S3 path where you want Amazon Braket to store checkpoint data.",
+            "maxLength": 1024,
+            "pattern": "^(https|s3)://([^/]+)/?(.*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "S3Uri"
+        ],
+        "type": "object"
+      },
+      "JobOutputDataConfig": {
+        "additionalProperties": false,
+        "description": "Specifies the path to the S3 location where you want to store hybrid job artifacts.",
+        "properties": {
+          "S3Path": {
+            "description": "Identifies the S3 path where you want Amazon Braket to store the hybrid job training artifacts.",
+            "maxLength": 1024,
+            "pattern": "^(https|s3)://([^/]+)/?(.*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "S3Path"
+        ],
+        "type": "object"
+      },
+      "JobStoppingCondition": {
+        "additionalProperties": false,
+        "description": "Specifies limits for how long an Amazon Braket hybrid job can run.",
+        "properties": {
+          "MaxRuntimeInSeconds": {
+            "description": "The maximum length of time, in seconds, that an Amazon Braket hybrid job can run.",
+            "maximum": 432000,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "S3DataSource": {
+        "additionalProperties": false,
+        "description": "Information about the Amazon S3 storage used by the Amazon Braket hybrid job.",
+        "properties": {
+          "S3Uri": {
+            "description": "Identifies either a key name prefix or a manifest that locates the S3 data source.",
+            "maxLength": 1024,
+            "pattern": "^(https|s3)://([^/]+)/?(.*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "S3Uri"
+        ],
+        "type": "object"
+      },
+      "ScriptModeConfig": {
+        "additionalProperties": false,
+        "description": "Contains information about algorithm scripts used for the Amazon Braket hybrid job.",
+        "properties": {
+          "CompressionType": {
+            "description": "The type of compression used to store the algorithm scripts.",
+            "enum": [
+              "NONE",
+              "GZIP"
+            ],
+            "type": "string"
+          },
+          "EntryPoint": {
+            "description": "The entry point in the algorithm scripts.",
+            "type": "string"
+          },
+          "S3Uri": {
+            "description": "The URI that specifies the S3 path to the algorithm scripts.",
+            "maxLength": 1024,
+            "pattern": "^(https|s3)://([^/]+)/?(.*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "EntryPoint",
+          "S3Uri"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource schema for AWS::Braket::Job - a read-only resource representing an Amazon Braket hybrid job.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "braket:SearchJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "braket:GetJob",
+          "braket:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/JobArn"
+    ],
+    "properties": {
+      "AlgorithmSpecification": {
+        "$ref": "#/definitions/AlgorithmSpecification"
+      },
+      "CheckpointConfig": {
+        "$ref": "#/definitions/JobCheckpointConfig"
+      },
+      "CreatedAt": {
+        "description": "The time at which the Amazon Braket hybrid job was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DeviceConfig": {
+        "$ref": "#/definitions/DeviceConfig"
+      },
+      "HyperParameters": {
+        "additionalProperties": false,
+        "description": "Algorithm-specific parameters used by an Amazon Braket hybrid job.",
+        "maxProperties": 100,
+        "patternProperties": {
+          "^.{1,256}$": {
+            "maxLength": 2500,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "InputDataConfig": {
+        "description": "A list of parameters that specify the name and type of input data and where it is located.",
+        "items": {
+          "$ref": "#/definitions/InputFileConfig"
+        },
+        "maxItems": 20,
+        "minItems": 0,
+        "type": "array"
+      },
+      "InstanceConfig": {
+        "$ref": "#/definitions/InstanceConfig"
+      },
+      "JobArn": {
+        "description": "The ARN of the Amazon Braket hybrid job.",
+        "pattern": "^arn:aws[a-z\\-]*:braket:[a-z0-9\\-]+:[0-9]{12}:job/.*$",
+        "type": "string"
+      },
+      "JobName": {
+        "description": "The name of the Amazon Braket hybrid job.",
+        "maxLength": 50,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,50}$",
+        "type": "string"
+      },
+      "OutputDataConfig": {
+        "$ref": "#/definitions/JobOutputDataConfig"
+      },
+      "RoleArn": {
+        "description": "The Amazon Resource Name (ARN) of an IAM role that Amazon Braket can assume to perform tasks on behalf of a user.",
+        "pattern": "^arn:aws[a-z\\-]*:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the Amazon Braket hybrid job.",
+        "enum": [
+          "QUEUED",
+          "RUNNING",
+          "COMPLETED",
+          "FAILED",
+          "CANCELLING",
+          "CANCELLED"
+        ],
+        "type": "string"
+      },
+      "StoppingCondition": {
+        "$ref": "#/definitions/JobStoppingCondition"
+      },
+      "Tags": {
+        "description": "Tags associated with the hybrid job.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/JobArn",
+      "/properties/Status",
+      "/properties/CreatedAt"
+    ],
+    "required": [
+      "JobName",
+      "AlgorithmSpecification",
+      "DeviceConfig",
+      "InstanceConfig",
+      "OutputDataConfig",
+      "RoleArn"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "braket:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Braket::Job"
+  }
+}

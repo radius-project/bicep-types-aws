@@ -1,0 +1,1436 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-HyperParameterTuningJob",
+  "type": "AWS::SageMaker::HyperParameterTuningJob",
+  "time": "2026-11-05T20:29:34.512Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/HyperParameterTuningJobName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/HyperParameterTuningJobName",
+      "/properties/HyperParameterTuningJobConfig",
+      "/properties/TrainingJobDefinition",
+      "/properties/TrainingJobDefinitions",
+      "/properties/WarmStartConfig",
+      "/properties/Autotune",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "Autotune": {
+        "additionalProperties": false,
+        "properties": {
+          "Mode": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "BestTrainingJob": {
+        "additionalProperties": false,
+        "properties": {
+          "CreationTime": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "FailureReason": {
+            "description": "The reason that the training job failed",
+            "maxLength": 1024,
+            "minLength": 0,
+            "type": "string"
+          },
+          "FinalHyperParameterTuningJobObjectiveMetric": {
+            "$ref": "#/definitions/FinalHyperParameterTuningJobObjectiveMetric"
+          },
+          "ObjectiveStatus": {
+            "description": "The status of the objective metric",
+            "enum": [
+              "Succeeded",
+              "Pending",
+              "Failed"
+            ],
+            "type": "string"
+          },
+          "TrainingEndTime": {
+            "description": "The time when the training job ended",
+            "format": "date-time",
+            "type": "string"
+          },
+          "TrainingJobArn": {
+            "description": "The Amazon Resource Name (ARN) of the training job",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:training-job/[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$",
+            "type": "string"
+          },
+          "TrainingJobDefinitionName": {
+            "description": "The training job definition name",
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,63}$",
+            "type": "string"
+          },
+          "TrainingJobName": {
+            "description": "The name of the training job",
+            "maxLength": 63,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$",
+            "type": "string"
+          },
+          "TrainingJobStatus": {
+            "description": "The status of the training job",
+            "enum": [
+              "InProgress",
+              "Completed",
+              "Failed",
+              "Stopping",
+              "Stopped"
+            ],
+            "type": "string"
+          },
+          "TrainingStartTime": {
+            "description": "The date and time that the training job started",
+            "format": "date-time",
+            "type": "string"
+          },
+          "TunedHyperParameters": {
+            "additionalProperties": false,
+            "description": "The hyperparameters for which you specified ranges to search",
+            "maxProperties": 100,
+            "minProperties": 0,
+            "patternProperties": {
+              ".*": {
+                "maxLength": 2500,
+                "minLength": 0,
+                "pattern": ".*",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "TuningJobName": {
+            "description": "The HyperParameter tuning job that launched the training job",
+            "maxLength": 32,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,31}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "CreationTime",
+          "TrainingJobArn",
+          "TrainingJobName",
+          "TrainingJobStatus",
+          "TunedHyperParameters"
+        ],
+        "type": "object"
+      },
+      "FinalHyperParameterTuningJobObjectiveMetric": {
+        "additionalProperties": false,
+        "description": "The final objective metric details",
+        "properties": {
+          "MetricName": {
+            "description": "The name of the objective metric",
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": ".+",
+            "type": "string"
+          },
+          "Type": {
+            "description": "Whether to minimize or maximize the objective metric",
+            "enum": [
+              "Maximize",
+              "Minimize"
+            ],
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the objective metric",
+            "type": "number"
+          }
+        },
+        "required": [
+          "MetricName",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "HyperParameterTuningInstanceConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "InstanceCount": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "InstanceType": {
+            "$ref": "#/definitions/InstanceType"
+          },
+          "VolumeSizeInGB": {
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "InstanceCount",
+          "InstanceType",
+          "VolumeSizeInGB"
+        ],
+        "type": "object"
+      },
+      "HyperParameterTuningJobConfig": {
+        "additionalProperties": false,
+        "description": "Configuration for the hyperparameter tuning job",
+        "properties": {
+          "HyperParameterTuningJobObjective": {
+            "additionalProperties": false,
+            "description": "Specifies the metric used to evaluate training jobs",
+            "properties": {
+              "MetricName": {
+                "description": "Name of the metric to optimize",
+                "maxLength": 255,
+                "minLength": 1,
+                "pattern": ".+",
+                "type": "string"
+              },
+              "Type": {
+                "description": "Whether to minimize or maximize the objective metric",
+                "enum": [
+                  "Maximize",
+                  "Minimize"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "MetricName",
+              "Type"
+            ],
+            "type": "object"
+          },
+          "ParameterRanges": {
+            "$ref": "#/definitions/ParameterRanges"
+          },
+          "RandomSeed": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "ResourceLimits": {
+            "$ref": "#/definitions/ResourceLimits"
+          },
+          "Strategy": {
+            "description": "Strategy to use for hyperparameter tuning",
+            "enum": [
+              "Bayesian",
+              "Random",
+              "Hyperband",
+              "Grid"
+            ],
+            "type": "string"
+          },
+          "StrategyConfig": {
+            "additionalProperties": false,
+            "properties": {
+              "HyperbandStrategyConfig": {
+                "additionalProperties": false,
+                "properties": {
+                  "MaxResource": {
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  "MinResource": {
+                    "minimum": 1,
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "TrainingJobEarlyStoppingType": {
+            "enum": [
+              "Off",
+              "Auto"
+            ],
+            "type": "string"
+          },
+          "TuningJobCompletionCriteria": {
+            "additionalProperties": false,
+            "properties": {
+              "BestObjectiveNotImproving": {
+                "additionalProperties": false,
+                "properties": {
+                  "MaxNumberOfTrainingJobsNotImproving": {
+                    "minimum": 3,
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              },
+              "ConvergenceDetected": {
+                "additionalProperties": false,
+                "properties": {
+                  "CompleteOnConvergence": {
+                    "enum": [
+                      "Disabled",
+                      "Enabled"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "TargetObjectiveMetricValue": {
+                "type": "number"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "Strategy",
+          "ResourceLimits"
+        ],
+        "type": "object"
+      },
+      "HyperParameterTuningJobConsumedResources": {
+        "additionalProperties": false,
+        "properties": {
+          "RuntimeInSeconds": {
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "HyperParameterTuningJobSummary": {
+        "additionalProperties": false,
+        "description": "Summary information about the hyperparameter tuning job",
+        "properties": {
+          "CreationTime": {
+            "description": "The date and time that the tuning job was created",
+            "format": "date-time",
+            "type": "string"
+          },
+          "HyperParameterTuningEndTime": {
+            "description": "The date and time that the tuning job ended",
+            "format": "date-time",
+            "type": "string"
+          },
+          "HyperParameterTuningJobArn": {
+            "description": "The Amazon Resource Name (ARN) of the tuning job",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:hyper-parameter-tuning-job/.*$",
+            "type": "string"
+          },
+          "HyperParameterTuningJobName": {
+            "description": "The name of the tuning job",
+            "maxLength": 32,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,31}$",
+            "type": "string"
+          },
+          "HyperParameterTuningJobStatus": {
+            "description": "The status of the tuning job",
+            "enum": [
+              "Completed",
+              "InProgress",
+              "Failed",
+              "Stopped",
+              "Stopping",
+              "Deleting",
+              "DeleteFailed"
+            ],
+            "type": "string"
+          },
+          "LastModifiedTime": {
+            "description": "The date and time that the tuning job was modified",
+            "format": "date-time",
+            "type": "string"
+          },
+          "ObjectiveStatusCounters": {
+            "$ref": "#/definitions/ObjectiveStatusCounters"
+          },
+          "ResourceLimits": {
+            "$ref": "#/definitions/ResourceLimits"
+          },
+          "Strategy": {
+            "description": "The search strategy for hyperparameter tuning",
+            "enum": [
+              "Bayesian",
+              "Random",
+              "Hyperband",
+              "Grid"
+            ],
+            "type": "string"
+          },
+          "TrainingJobStatusCounters": {
+            "$ref": "#/definitions/TrainingJobStatusCounters"
+          }
+        },
+        "required": [
+          "CreationTime",
+          "HyperParameterTuningJobArn",
+          "HyperParameterTuningJobName",
+          "HyperParameterTuningJobStatus",
+          "ObjectiveStatusCounters",
+          "Strategy",
+          "TrainingJobStatusCounters"
+        ],
+        "type": "object"
+      },
+      "HyperParameterTuningJobWarmStartConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "ParentHyperParameterTuningJobs": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "HyperParameterTuningJobName": {
+                  "description": "The name of the parent hyperparameter tuning job",
+                  "maxLength": 32,
+                  "minLength": 1,
+                  "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,31}$",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "maxItems": 5,
+            "minItems": 1,
+            "type": "array"
+          },
+          "WarmStartType": {
+            "enum": [
+              "IdenticalDataAndAlgorithm",
+              "TransferLearning"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "ParentHyperParameterTuningJobs",
+          "WarmStartType"
+        ],
+        "type": "object"
+      },
+      "HyperParameterTuningResourceConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "AllocationStrategy": {
+            "enum": [
+              "Prioritized"
+            ],
+            "type": "string"
+          },
+          "InstanceConfigs": {
+            "items": {
+              "$ref": "#/definitions/HyperParameterTuningInstanceConfig"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "InstanceCount": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "InstanceType": {
+            "$ref": "#/definitions/InstanceType"
+          },
+          "VolumeKmsKeyId": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "pattern": "[a-zA-Z0-9:/_-]+",
+            "type": "string"
+          },
+          "VolumeSizeInGB": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "InstanceType": {
+        "enum": [
+          "ml.m4.xlarge",
+          "ml.m4.2xlarge",
+          "ml.m4.4xlarge",
+          "ml.m4.10xlarge",
+          "ml.m4.16xlarge",
+          "ml.g4dn.xlarge",
+          "ml.g4dn.2xlarge",
+          "ml.g4dn.4xlarge",
+          "ml.g4dn.8xlarge",
+          "ml.g4dn.12xlarge",
+          "ml.g4dn.16xlarge",
+          "ml.m5.large",
+          "ml.m5.xlarge",
+          "ml.m5.2xlarge",
+          "ml.m5.4xlarge",
+          "ml.m5.12xlarge",
+          "ml.m5.24xlarge",
+          "ml.c4.xlarge",
+          "ml.c4.2xlarge",
+          "ml.c4.4xlarge",
+          "ml.c4.8xlarge",
+          "ml.p2.xlarge",
+          "ml.p2.8xlarge",
+          "ml.p2.16xlarge",
+          "ml.p3.2xlarge",
+          "ml.p3.8xlarge",
+          "ml.p3.16xlarge",
+          "ml.p3dn.24xlarge",
+          "ml.p4d.24xlarge",
+          "ml.p4de.24xlarge",
+          "ml.p5.48xlarge",
+          "ml.p5e.48xlarge",
+          "ml.p5en.48xlarge",
+          "ml.c5.xlarge",
+          "ml.c5.2xlarge",
+          "ml.c5.4xlarge",
+          "ml.c5.9xlarge",
+          "ml.c5.18xlarge",
+          "ml.c5n.xlarge",
+          "ml.c5n.2xlarge",
+          "ml.c5n.4xlarge",
+          "ml.c5n.9xlarge",
+          "ml.c5n.18xlarge",
+          "ml.g5.xlarge",
+          "ml.g5.2xlarge",
+          "ml.g5.4xlarge",
+          "ml.g5.8xlarge",
+          "ml.g5.16xlarge",
+          "ml.g5.12xlarge",
+          "ml.g5.24xlarge",
+          "ml.g5.48xlarge",
+          "ml.g6.xlarge",
+          "ml.g6.2xlarge",
+          "ml.g6.4xlarge",
+          "ml.g6.8xlarge",
+          "ml.g6.16xlarge",
+          "ml.g6.12xlarge",
+          "ml.g6.24xlarge",
+          "ml.g6.48xlarge",
+          "ml.g6e.xlarge",
+          "ml.g6e.2xlarge",
+          "ml.g6e.4xlarge",
+          "ml.g6e.8xlarge",
+          "ml.g6e.16xlarge",
+          "ml.g6e.12xlarge",
+          "ml.g6e.24xlarge",
+          "ml.g6e.48xlarge",
+          "ml.trn1.2xlarge",
+          "ml.trn1.32xlarge",
+          "ml.trn1n.32xlarge",
+          "ml.trn2.48xlarge",
+          "ml.m6i.large",
+          "ml.m6i.xlarge",
+          "ml.m6i.2xlarge",
+          "ml.m6i.4xlarge",
+          "ml.m6i.8xlarge",
+          "ml.m6i.12xlarge",
+          "ml.m6i.16xlarge",
+          "ml.m6i.24xlarge",
+          "ml.m6i.32xlarge",
+          "ml.c6i.xlarge",
+          "ml.c6i.2xlarge",
+          "ml.c6i.8xlarge",
+          "ml.c6i.4xlarge",
+          "ml.c6i.12xlarge",
+          "ml.c6i.16xlarge",
+          "ml.c6i.24xlarge",
+          "ml.c6i.32xlarge",
+          "ml.r5d.large",
+          "ml.r5d.xlarge",
+          "ml.r5d.2xlarge",
+          "ml.r5d.4xlarge",
+          "ml.r5d.8xlarge",
+          "ml.r5d.12xlarge",
+          "ml.r5d.16xlarge",
+          "ml.r5d.24xlarge",
+          "ml.t3.medium",
+          "ml.t3.large",
+          "ml.t3.xlarge",
+          "ml.t3.2xlarge",
+          "ml.r5.large",
+          "ml.r5.xlarge",
+          "ml.r5.2xlarge",
+          "ml.r5.4xlarge",
+          "ml.r5.8xlarge",
+          "ml.r5.12xlarge",
+          "ml.r5.16xlarge",
+          "ml.r5.24xlarge",
+          "ml.p6-b200.48xlarge",
+          "ml.m7i.large",
+          "ml.m7i.xlarge",
+          "ml.m7i.2xlarge",
+          "ml.m7i.4xlarge",
+          "ml.m7i.8xlarge",
+          "ml.m7i.12xlarge",
+          "ml.m7i.16xlarge",
+          "ml.m7i.24xlarge",
+          "ml.m7i.48xlarge",
+          "ml.c7i.large",
+          "ml.c7i.xlarge",
+          "ml.c7i.2xlarge",
+          "ml.c7i.4xlarge",
+          "ml.c7i.8xlarge",
+          "ml.c7i.12xlarge",
+          "ml.c7i.16xlarge",
+          "ml.c7i.24xlarge",
+          "ml.c7i.48xlarge",
+          "ml.r7i.large",
+          "ml.r7i.xlarge",
+          "ml.r7i.2xlarge",
+          "ml.r7i.4xlarge",
+          "ml.r7i.8xlarge",
+          "ml.r7i.12xlarge",
+          "ml.r7i.16xlarge",
+          "ml.r7i.24xlarge",
+          "ml.r7i.48xlarge",
+          "ml.p6e-gb200.36xlarge",
+          "ml.p5.4xlarge"
+        ],
+        "type": "string"
+      },
+      "ObjectiveStatusCounters": {
+        "additionalProperties": false,
+        "properties": {
+          "Failed": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "Pending": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "Succeeded": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "OverallBestTrainingJob": {
+        "additionalProperties": false,
+        "properties": {
+          "CreationTime": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "FailureReason": {
+            "description": "The reason that the training job failed",
+            "maxLength": 1024,
+            "minLength": 0,
+            "type": "string"
+          },
+          "FinalHyperParameterTuningJobObjectiveMetric": {
+            "$ref": "#/definitions/FinalHyperParameterTuningJobObjectiveMetric"
+          },
+          "ObjectiveStatus": {
+            "description": "The status of the objective metric",
+            "enum": [
+              "Succeeded",
+              "Pending",
+              "Failed"
+            ],
+            "type": "string"
+          },
+          "TrainingEndTime": {
+            "description": "The time when the training job ended",
+            "format": "date-time",
+            "type": "string"
+          },
+          "TrainingJobArn": {
+            "description": "The Amazon Resource Name (ARN) of the training job",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:training-job/[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$",
+            "type": "string"
+          },
+          "TrainingJobDefinitionName": {
+            "description": "The training job definition name",
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,63}$",
+            "type": "string"
+          },
+          "TrainingJobName": {
+            "description": "The name of the training job",
+            "maxLength": 63,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$",
+            "type": "string"
+          },
+          "TrainingJobStatus": {
+            "description": "The status of the training job",
+            "enum": [
+              "InProgress",
+              "Completed",
+              "Failed",
+              "Stopping",
+              "Stopped"
+            ],
+            "type": "string"
+          },
+          "TrainingStartTime": {
+            "description": "The date and time that the training job started",
+            "format": "date-time",
+            "type": "string"
+          },
+          "TunedHyperParameters": {
+            "additionalProperties": false,
+            "description": "The hyperparameters for which you specified ranges to search",
+            "maxProperties": 100,
+            "minProperties": 0,
+            "patternProperties": {
+              ".*": {
+                "maxLength": 2500,
+                "minLength": 0,
+                "pattern": ".*",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "TuningJobName": {
+            "description": "The HyperParameter tuning job that launched the training job",
+            "maxLength": 32,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,31}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "CreationTime",
+          "TrainingJobArn",
+          "TrainingJobName",
+          "TrainingJobStatus",
+          "TunedHyperParameters"
+        ],
+        "type": "object"
+      },
+      "ParameterRanges": {
+        "additionalProperties": false,
+        "description": "Ranges of hyperparameters that a hyperparameter tuning job can search",
+        "properties": {
+          "AutoParameters": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "Name": {
+                  "maxLength": 256,
+                  "minLength": 0,
+                  "type": "string"
+                },
+                "ValueHint": {
+                  "maxLength": 256,
+                  "minLength": 0,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "Name",
+                "ValueHint"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "CategoricalParameterRanges": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "Name": {
+                  "maxLength": 256,
+                  "minLength": 0,
+                  "type": "string"
+                },
+                "Values": {
+                  "items": {
+                    "maxLength": 256,
+                    "minLength": 0,
+                    "type": "string"
+                  },
+                  "maxItems": 30,
+                  "minItems": 1,
+                  "type": "array"
+                }
+              },
+              "required": [
+                "Name",
+                "Values"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "ContinuousParameterRanges": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "MaxValue": {
+                  "maxLength": 256,
+                  "minLength": 0,
+                  "type": "string"
+                },
+                "MinValue": {
+                  "maxLength": 256,
+                  "minLength": 0,
+                  "type": "string"
+                },
+                "Name": {
+                  "maxLength": 256,
+                  "minLength": 0,
+                  "type": "string"
+                },
+                "ScalingType": {
+                  "enum": [
+                    "Auto",
+                    "Linear",
+                    "Logarithmic",
+                    "ReverseLogarithmic"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "Name",
+                "MinValue",
+                "MaxValue"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "IntegerParameterRanges": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "MaxValue": {
+                  "maxLength": 256,
+                  "minLength": 0,
+                  "type": "string"
+                },
+                "MinValue": {
+                  "maxLength": 256,
+                  "minLength": 0,
+                  "type": "string"
+                },
+                "Name": {
+                  "maxLength": 256,
+                  "minLength": 0,
+                  "type": "string"
+                },
+                "ScalingType": {
+                  "enum": [
+                    "Auto",
+                    "Linear",
+                    "Logarithmic",
+                    "ReverseLogarithmic"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "Name",
+                "MinValue",
+                "MaxValue"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "ResourceLimits": {
+        "additionalProperties": false,
+        "description": "Resources limits for the tuning job",
+        "properties": {
+          "MaxNumberOfTrainingJobs": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "MaxParallelTrainingJobs": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "MaxRuntimeInSeconds": {
+            "maximum": 15768000,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "MaxParallelTrainingJobs"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[\\w\\s_.:/=+\\-@]*$",
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^[\\w\\s_.:/=+\\-@]*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "TrainingJobDefinition": {
+        "additionalProperties": false,
+        "properties": {
+          "AlgorithmSpecification": {
+            "additionalProperties": false,
+            "properties": {
+              "AlgorithmName": {
+                "maxLength": 170,
+                "minLength": 1,
+                "pattern": "^(arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:algorithm\\/[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9])$",
+                "type": "string"
+              },
+              "MetricDefinitions": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "Name": {
+                      "maxLength": 255,
+                      "minLength": 1,
+                      "pattern": ".+",
+                      "type": "string"
+                    },
+                    "Regex": {
+                      "maxLength": 500,
+                      "minLength": 1,
+                      "pattern": ".+",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "Name",
+                    "Regex"
+                  ],
+                  "type": "object"
+                },
+                "maxItems": 40,
+                "minItems": 0,
+                "type": "array"
+              },
+              "TrainingImage": {
+                "maxLength": 255,
+                "minLength": 1,
+                "type": "string"
+              },
+              "TrainingInputMode": {
+                "enum": [
+                  "Pipe",
+                  "File",
+                  "FastFile"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "TrainingInputMode"
+            ],
+            "type": "object"
+          },
+          "CheckpointConfig": {
+            "additionalProperties": false,
+            "properties": {
+              "LocalPath": {
+                "maxLength": 1024,
+                "minLength": 1,
+                "pattern": "^[a-zA-Z0-9/\\-_\\.]+$",
+                "type": "string"
+              },
+              "S3Uri": {
+                "maxLength": 1024,
+                "minLength": 1,
+                "pattern": "^(https|s3)://([^/]+)/?(.*)$",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "DefinitionName": {
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "[a-zA-Z0-9](-*[a-zA-Z0-9]){0,63}",
+            "type": "string"
+          },
+          "EnableInterContainerTrafficEncryption": {
+            "type": "boolean"
+          },
+          "EnableManagedSpotTraining": {
+            "type": "boolean"
+          },
+          "EnableNetworkIsolation": {
+            "type": "boolean"
+          },
+          "Environment": {
+            "additionalProperties": false,
+            "maxProperties": 48,
+            "minProperties": 0,
+            "patternProperties": {
+              "^[a-zA-Z_][a-zA-Z0-9_]*$": {
+                "maxLength": 512,
+                "minLength": 0,
+                "pattern": "[\\S\\s]*",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "HyperParameterRanges": {
+            "$ref": "#/definitions/ParameterRanges"
+          },
+          "InputDataConfig": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "ChannelName": {
+                  "type": "string"
+                },
+                "DataSource": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "S3DataSource": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "S3DataDistributionType": {
+                          "type": "string"
+                        },
+                        "S3DataType": {
+                          "type": "string"
+                        },
+                        "S3Uri": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "S3DataType",
+                        "S3Uri"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "S3DataSource"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "ChannelName",
+                "DataSource"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "OutputDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+              "CompressionType": {
+                "description": "Compression type for output data",
+                "enum": [
+                  "None",
+                  "Gzip"
+                ],
+                "type": "string"
+              },
+              "KmsKeyId": {
+                "description": "The AWS KMS key used to encrypt the output data",
+                "maxLength": 2048,
+                "minLength": 1,
+                "pattern": ".*",
+                "type": "string"
+              },
+              "S3OutputPath": {
+                "description": "The S3 path where you want Amazon SageMaker to store the output data",
+                "maxLength": 1024,
+                "minLength": 1,
+                "pattern": "^(https|s3)://([^/]+)/?(.*)$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "S3OutputPath"
+            ],
+            "type": "object"
+          },
+          "ResourceConfig": {
+            "additionalProperties": false,
+            "properties": {
+              "InstanceCount": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "InstanceGroups": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "InstanceCount": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "InstanceGroupName": {
+                      "maxLength": 64,
+                      "minLength": 1,
+                      "pattern": ".+",
+                      "type": "string"
+                    },
+                    "InstanceType": {
+                      "$ref": "#/definitions/InstanceType"
+                    }
+                  },
+                  "required": [
+                    "InstanceCount",
+                    "InstanceGroupName",
+                    "InstanceType"
+                  ],
+                  "type": "object"
+                },
+                "maxItems": 5,
+                "minItems": 0,
+                "type": "array"
+              },
+              "InstancePlacementConfig": {
+                "additionalProperties": false,
+                "properties": {
+                  "EnableMultipleJobs": {
+                    "type": "boolean"
+                  },
+                  "PlacementSpecifications": {
+                    "items": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "InstanceCount": {
+                          "minimum": 0,
+                          "type": "integer"
+                        },
+                        "UltraServerId": {
+                          "maxLength": 256,
+                          "minLength": 0,
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "InstanceCount"
+                      ],
+                      "type": "object"
+                    },
+                    "maxItems": 10,
+                    "minItems": 0,
+                    "type": "array"
+                  }
+                },
+                "type": "object"
+              },
+              "InstanceType": {
+                "$ref": "#/definitions/InstanceType"
+              },
+              "KeepAlivePeriodInSeconds": {
+                "maximum": 3600,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "TrainingPlanArn": {
+                "maxLength": 2048,
+                "minLength": 50,
+                "pattern": "^arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:training-plan/.*$",
+                "type": "string"
+              },
+              "VolumeKmsKeyId": {
+                "maxLength": 2048,
+                "minLength": 0,
+                "pattern": "^[a-zA-Z0-9:/_-]*$",
+                "type": "string"
+              },
+              "VolumeSizeInGB": {
+                "minimum": 1,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "VolumeSizeInGB"
+            ],
+            "type": "object"
+          },
+          "RetryStrategy": {
+            "additionalProperties": false,
+            "properties": {
+              "MaximumRetryAttempts": {
+                "maximum": 30,
+                "minimum": 1,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "MaximumRetryAttempts"
+            ],
+            "type": "object"
+          },
+          "RoleArn": {
+            "maxLength": 2048,
+            "minLength": 20,
+            "pattern": "^arn:aws[a-z\\-]*:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$",
+            "type": "string"
+          },
+          "StaticHyperParameters": {
+            "additionalProperties": false,
+            "maxProperties": 100,
+            "minProperties": 0,
+            "patternProperties": {
+              ".*": {
+                "maxLength": 2500,
+                "minLength": 0,
+                "pattern": ".*",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "StoppingCondition": {
+            "additionalProperties": false,
+            "properties": {
+              "MaxPendingTimeInSeconds": {
+                "maximum": 2419200,
+                "minimum": 7200,
+                "type": "integer"
+              },
+              "MaxRuntimeInSeconds": {
+                "minimum": 1,
+                "type": "integer"
+              },
+              "MaxWaitTimeInSeconds": {
+                "minimum": 1,
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "TuningObjective": {
+            "additionalProperties": false,
+            "properties": {
+              "MetricName": {
+                "maxLength": 255,
+                "minLength": 1,
+                "pattern": ".+",
+                "type": "string"
+              },
+              "Type": {
+                "enum": [
+                  "Maximize",
+                  "Minimize"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "MetricName",
+              "Type"
+            ],
+            "type": "object"
+          },
+          "VpcConfig": {
+            "additionalProperties": false,
+            "properties": {
+              "SecurityGroupIds": {
+                "items": {
+                  "maxLength": 32,
+                  "minLength": 0,
+                  "pattern": "^[-0-9a-zA-Z]+$",
+                  "type": "string"
+                },
+                "maxItems": 5,
+                "minItems": 1,
+                "type": "array"
+              },
+              "Subnets": {
+                "items": {
+                  "maxLength": 32,
+                  "minLength": 0,
+                  "pattern": "^[-0-9a-zA-Z]+$",
+                  "type": "string"
+                },
+                "maxItems": 16,
+                "minItems": 1,
+                "type": "array"
+              }
+            },
+            "required": [
+              "SecurityGroupIds",
+              "Subnets"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "AlgorithmSpecification",
+          "OutputDataConfig",
+          "RoleArn",
+          "StoppingCondition"
+        ],
+        "type": "object"
+      },
+      "TrainingJobStatusCounters": {
+        "additionalProperties": false,
+        "properties": {
+          "Completed": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "InProgress": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "NonRetryableError": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "RetryableError": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "Stopped": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "TuningJobCompletionDetails": {
+        "additionalProperties": false,
+        "properties": {
+          "ConvergenceDetectedTime": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "NumberOfTrainingJobsObjectiveNotImproving": {
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource schema for AWS::SageMaker::HyperParameterTuningJob",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "sagemaker:ListHyperParameterTuningJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "sagemaker:DescribeHyperParameterTuningJob",
+          "sagemaker:ListTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/HyperParameterTuningJobArn"
+    ],
+    "properties": {
+      "Autotune": {
+        "$ref": "#/definitions/Autotune"
+      },
+      "CreationTime": {
+        "format": "date-time",
+        "type": "string"
+      },
+      "HyperParameterTuningJobArn": {
+        "maxLength": 256,
+        "minLength": 0,
+        "pattern": "^arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:hyper-parameter-tuning-job/.*$",
+        "type": "string"
+      },
+      "HyperParameterTuningJobConfig": {
+        "$ref": "#/definitions/HyperParameterTuningJobConfig"
+      },
+      "HyperParameterTuningJobName": {
+        "maxLength": 32,
+        "minLength": 1,
+        "pattern": "[a-zA-Z0-9](-*[a-zA-Z0-9]){0,31}",
+        "type": "string"
+      },
+      "HyperParameterTuningJobStatus": {
+        "enum": [
+          "Completed",
+          "InProgress",
+          "Failed",
+          "Stopped",
+          "Stopping",
+          "Deleting",
+          "DeleteFailed"
+        ],
+        "type": "string"
+      },
+      "ObjectiveStatusCounters": {
+        "$ref": "#/definitions/ObjectiveStatusCounters"
+      },
+      "Tags": {
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array"
+      },
+      "TrainingJobDefinition": {
+        "$ref": "#/definitions/TrainingJobDefinition"
+      },
+      "TrainingJobDefinitions": {
+        "items": {
+          "$ref": "#/definitions/TrainingJobDefinition"
+        },
+        "maxItems": 10,
+        "minItems": 1,
+        "type": "array"
+      },
+      "TrainingJobStatusCounters": {
+        "$ref": "#/definitions/TrainingJobStatusCounters"
+      },
+      "WarmStartConfig": {
+        "$ref": "#/definitions/HyperParameterTuningJobWarmStartConfig"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/HyperParameterTuningJobArn",
+      "/properties/HyperParameterTuningJobStatus",
+      "/properties/CreationTime",
+      "/properties/TrainingJobStatusCounters",
+      "/properties/ObjectiveStatusCounters"
+    ],
+    "required": [
+      "HyperParameterTuningJobConfig",
+      "HyperParameterTuningJobName"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-sagemaker",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "sagemaker:ListTags"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::SageMaker::HyperParameterTuningJob"
+  }
+}

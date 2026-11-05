@@ -352,6 +352,125 @@
   },
   {
     "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.RedshiftServerless/RecoveryPointProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/19"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.RedshiftServerless/RecoveryPointProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the recovery point."
+      },
+      "NamespaceArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the namespace the recovery point is associated with."
+      },
+      "NamespaceName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The name of the namespace the recovery point is associated with."
+      },
+      "RecoveryPointCreateTime": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The time the recovery point was created, in ISO 8601 format."
+      },
+      "RecoveryPointId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the recovery point."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 2,
+        "description": "The list of tags associated with the recovery point."
+      },
+      "TotalSizeInMegaBytes": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2,
+        "description": "The total size of the data in the recovery point in megabytes."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.RedshiftServerless/RecoveryPoint",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.RedshiftServerless/RecoveryPoint@default",
+    "body": {
+      "$ref": "#/23"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "Snapshot",
     "properties": {
       "AdminUsername": {
@@ -446,7 +565,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/21"
+      "$ref": "#/27"
     }
   },
   {
@@ -476,7 +595,7 @@
       },
       "Snapshot": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/25"
         },
         "flags": 2,
         "description": "Definition for snapshot resource"
@@ -490,7 +609,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/29"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -517,7 +636,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/30"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -528,7 +647,7 @@
     "$type": "ResourceType",
     "name": "AWS.RedshiftServerless/Snapshot@default",
     "body": {
-      "$ref": "#/25"
+      "$ref": "#/31"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -569,7 +688,7 @@
       },
       "VpcEndpoints": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/42"
         },
         "flags": 2
       }
@@ -652,7 +771,7 @@
     "properties": {
       "NetworkInterfaces": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/43"
         },
         "flags": 0
       },
@@ -682,7 +801,7 @@
       },
       "ConfigParameters": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/44"
         },
         "flags": 2
       },
@@ -694,7 +813,7 @@
       },
       "Endpoint": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/34"
         },
         "flags": 0
       },
@@ -718,7 +837,7 @@
       },
       "PricePerformanceTarget": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/36"
         },
         "flags": 0
       },
@@ -730,7 +849,7 @@
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/45"
         },
         "flags": 2
       },
@@ -742,7 +861,7 @@
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/46"
         },
         "flags": 2
       },
@@ -780,19 +899,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
+      "$ref": "#/39"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/35"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
       "$ref": "#/33"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/29"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/27"
     }
   },
   {
@@ -814,7 +933,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/27"
+      "$ref": "#/33"
     }
   },
   {
@@ -850,7 +969,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/32"
+      "$ref": "#/38"
     }
   },
   {
@@ -866,7 +985,7 @@
       },
       "ConfigParameters": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/48"
         },
         "flags": 4,
         "description": "A list of parameters to set for finer control over a database. Available options are datestyle, enable_user_activity_logging, query_group, search_path, max_query_execution_time, and require_ssl."
@@ -901,7 +1020,7 @@
       },
       "PricePerformanceTarget": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": "A property that represents the price performance target settings for the workgroup."
@@ -922,7 +1041,7 @@
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/50"
         },
         "flags": 4,
         "description": "A list of security group IDs to associate with the workgroup."
@@ -950,14 +1069,14 @@
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/51"
         },
         "flags": 4,
         "description": "A list of subnet IDs the workgroup is associated with."
       },
       "Tags": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "The map of the key-value pairs used to tag the workgroup."
@@ -970,7 +1089,7 @@
       },
       "Workgroup": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "Definition for workgroup resource"
@@ -1004,7 +1123,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/53"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1015,7 +1134,7 @@
     "$type": "ResourceType",
     "name": "AWS.RedshiftServerless/Workgroup@default",
     "body": {
-      "$ref": "#/48"
+      "$ref": "#/54"
     },
     "readableScopes": 0,
     "writableScopes": 0

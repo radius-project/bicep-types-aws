@@ -24,6 +24,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.ECS/ClusterCapacityProviderAssociationsProperties](#awsecsclustercapacityproviderassociationsproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.ECS/ContainerInstance@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ECS/ContainerInstanceProperties](#awsecscontainerinstanceproperties) (Identifier): properties of the resource
+
 ## Resource AWS.ECS/Daemon@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -31,6 +39,22 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ECS/DaemonProperties](#awsecsdaemonproperties) (Identifier): properties of the resource
+
+## Resource AWS.ECS/DaemonDeployment@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ECS/DaemonDeploymentProperties](#awsecsdaemondeploymentproperties) (Identifier): properties of the resource
+
+## Resource AWS.ECS/DaemonRevision@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ECS/DaemonRevisionProperties](#awsecsdaemonrevisionproperties) (Identifier): properties of the resource
 
 ## Resource AWS.ECS/DaemonTaskDefinition@default
 * **Readable Scope(s)**: None
@@ -56,6 +80,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.ECS/GatewayProperties](#awsecsgatewayproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.ECS/GatewayClusterAssociations@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ECS/GatewayClusterAssociationsProperties](#awsecsgatewayclusterassociationsproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.ECS/PrimaryTaskSet@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -71,6 +103,30 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ECS/ServiceProperties](#awsecsserviceproperties) (Identifier): properties of the resource
+
+## Resource AWS.ECS/ServiceDeployment@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ECS/ServiceDeploymentProperties](#awsecsservicedeploymentproperties) (Identifier): properties of the resource
+
+## Resource AWS.ECS/ServiceRevision@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ECS/ServiceRevisionProperties](#awsecsservicerevisionproperties) (Identifier): properties of the resource
+
+## Resource AWS.ECS/Task@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ECS/TaskProperties](#awsecstaskproperties) (Identifier): properties of the resource
 
 ## Resource AWS.ECS/TaskDefinition@default
 * **Readable Scope(s)**: None
@@ -104,6 +160,18 @@
 * **ProductionListenerRule**: string: The Amazon Resource Name (ARN) that that identifies the production listener rule (in the case of an Application Load Balancer) or listener (in the case for an Network Load Balancer) for routing production traffic.
 * **RoleArn**: string: The Amazon Resource Name (ARN) of the IAM role that grants Amazon ECS permission to call the Elastic Load Balancing APIs for you.
 * **TestListenerRule**: string: The Amazon Resource Name (ARN) that identifies ) that identifies the test listener rule (in the case of an Application Load Balancer) or listener (in the case for an Network Load Balancer) for routing test traffic.
+
+## AdvancedConfiguration
+### Properties
+* **AlternateTargetGroupArn**: string: The Amazon Resource Name (ARN) of the alternate target group for Amazon ECS blue/green deployments.
+* **ProductionListenerRule**: string: The Amazon Resource Name (ARN) that identifies the production listener rule for routing production traffic.
+* **RoleArn**: string: The Amazon Resource Name (ARN) of the IAM role that grants Amazon ECS permission to call the Elastic Load Balancing APIs for you.
+* **TestListenerRule**: string: The Amazon Resource Name (ARN) that identifies the test listener rule for routing test traffic.
+
+## Attribute
+### Properties
+* **Name**: string (Required): The name of the attribute. The name must contain between 1 and 128 characters.
+* **Value**: string: The value of the attribute. The value must contain between 1 and 128 characters.
 
 ## AuthorizationConfig
 ### Properties
@@ -165,6 +233,41 @@
   +  Tag keys and values are case-sensitive.
   +  Do not use ``aws:``, ``AWS:``, or any upper or lowercase combination of such as a prefix for either keys or values as it is reserved for AWS use. You cannot edit or delete tag keys or values with this prefix. Tags with this prefix do not count against your tags per resource limit.
 
+## AWS.ECS/ContainerInstanceProperties
+### Properties
+* **AgentConnected**: bool (ReadOnly): This parameter returns true if the agent is connected to Amazon ECS.
+* **Attributes**: [Attribute](#attribute)[] (ReadOnly): The attributes set for the container instance, either by the Amazon ECS container agent at instance registration or manually with the PutAttributes operation.
+* **Cluster**: string (ReadOnly): The short name or full Amazon Resource Name (ARN) of the cluster that hosts the container instance.
+* **ContainerInstanceArn**: string (Identifier): The Amazon Resource Name (ARN) of the container instance.
+* **ContainerInstanceId**: string (ReadOnly): The Amazon ECS container instance identifier (the trailing segment of the container instance ARN).
+* **Ec2InstanceId**: string (ReadOnly): The ID of the container instance. For Amazon EC2 instances, this value is the Amazon EC2 instance ID. For external instances, this value is the AWS Systems Manager managed instance ID.
+* **PendingTasksCount**: int (ReadOnly): The number of tasks on the container instance that are in the PENDING status.
+* **RegisteredAt**: string (ReadOnly): The Unix timestamp for the time when the container instance was registered.
+* **RegisteredResources**: [Resource](#resource)[] (ReadOnly): For CPU and memory resource types, this parameter describes the amount of each resource that was available on the container instance when the container agent registered it with Amazon ECS.
+* **RemainingResources**: [Resource](#resource)[] (ReadOnly): For CPU and memory resource types, this parameter describes the remaining CPU and memory that wasn't already allocated to tasks and is therefore available for new tasks.
+* **RunningTasksCount**: int (ReadOnly): The number of tasks on the container instance that have a desired status (desiredStatus) of RUNNING.
+* **Status**: string (ReadOnly): The status of the container instance. The valid values are REGISTERING, REGISTRATION_FAILED, ACTIVE, INACTIVE, DEREGISTERING, or DRAINING.
+* **Tags**: [Tag](#tag)[] (ReadOnly): The metadata applied to the container instance to help you categorize and organize them.
+* **Version**: int (ReadOnly): The version counter for the container instance. Every time a container instance experiences a change that triggers a CloudWatch event, the version counter is incremented.
+* **VersionInfo**: [VersionInfo](#versioninfo) (ReadOnly)
+
+## AWS.ECS/DaemonDeploymentProperties
+### Properties
+* **Alarms**: [DaemonDeploymentAlarms](#daemondeploymentalarms) (ReadOnly)
+* **CircuitBreaker**: [DaemonCircuitBreaker](#daemoncircuitbreaker) (ReadOnly)
+* **ClusterArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the cluster that hosts the daemon.
+* **ClusterName**: string (ReadOnly): The name of the cluster that hosts the daemon (the cluster segment of the daemon deployment ARN).
+* **CreatedAt**: string (ReadOnly): The time the daemon deployment was created.
+* **DaemonDeploymentArn**: string (Identifier): The Amazon Resource Name (ARN) of the daemon deployment.
+* **DaemonDeploymentId**: string (ReadOnly): The daemon deployment identifier (the trailing segment of the daemon deployment ARN).
+* **DaemonName**: string (ReadOnly): The name of the daemon (the daemon segment of the daemon deployment ARN).
+* **DeploymentConfiguration**: [DaemonDeploymentConfiguration](#daemondeploymentconfiguration) (ReadOnly)
+* **FinishedAt**: string (ReadOnly): The time the daemon deployment finished.
+* **SourceDaemonRevisions**: [DaemonDeploymentRevisionDetail](#daemondeploymentrevisiondetail)[] (ReadOnly): The currently deployed daemon revisions that are being replaced.
+* **StartedAt**: string (ReadOnly): The time the daemon deployment started.
+* **Status**: string (ReadOnly): The status of the daemon deployment.
+* **TargetDaemonRevision**: [DaemonDeploymentRevisionDetail](#daemondeploymentrevisiondetail) (ReadOnly)
+
 ## AWS.ECS/DaemonProperties
 ### Properties
 * **CapacityProviderArns**: string[] (WriteOnly): The Amazon Resource Names (ARNs) of the capacity providers associated with the daemon.
@@ -182,6 +285,21 @@
 * **PropagateTags**: string (WriteOnly): Specifies whether tags are propagated from the daemon to the daemon tasks.
 * **Tags**: [Tag](#tag)[]
 * **UpdatedAt**: string (ReadOnly)
+
+## AWS.ECS/DaemonRevisionProperties
+### Properties
+* **Cluster**: string (ReadOnly): The short name of the cluster that hosts the daemon (the cluster segment of the daemon revision ARN).
+* **ClusterArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the cluster that hosts the daemon.
+* **ContainerImages**: [ContainerImage](#containerimage)[] (ReadOnly): The container images used by the daemon revision.
+* **CreatedAt**: string (ReadOnly): The time that the daemon revision was created.
+* **DaemonArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the daemon for this revision.
+* **DaemonName**: string (ReadOnly): The name of the daemon (the daemon segment of the daemon revision ARN).
+* **DaemonRevisionArn**: string (Identifier): The Amazon Resource Name (ARN) of the daemon revision.
+* **DaemonRevisionId**: string (ReadOnly): The ID of the daemon revision (the revision segment of the daemon revision ARN).
+* **DaemonTaskDefinitionArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the daemon task definition used by this revision.
+* **EnableECSManagedTags**: bool: Specifies whether Amazon ECS managed tags are turned on for the daemon tasks.
+* **EnableExecuteCommand**: bool: Specifies whether the execute command functionality is turned on for the daemon tasks.
+* **PropagateTags**: string: Specifies whether tags are propagated from the daemon to the daemon tasks.
 
 ## AWS.ECS/DaemonTaskDefinitionProperties
 ### Properties
@@ -222,6 +340,14 @@
 * **TaskRoleArn**: string (WriteOnly)
 * **UpdatedAt**: string (ReadOnly)
 
+## AWS.ECS/GatewayClusterAssociationsProperties
+### Properties
+* **Cluster**: string (Required, Identifier): The name or full Amazon Resource Name (ARN) of the cluster to associate the gateway with.
+* **ClusterArn**: string (ReadOnly): The full Amazon Resource Name (ARN) of the associated cluster.
+* **Gateway**: string (Required, Identifier): The name or full Amazon Resource Name (ARN) of the gateway to associate with the cluster.
+* **GatewayArn**: string (ReadOnly): The full Amazon Resource Name (ARN) of the associated gateway.
+* **Status**: string (ReadOnly): The status of the association.
+
 ## AWS.ECS/GatewayProperties
 ### Properties
 * **AccessType**: string (ReadOnly): The access type of the gateway.
@@ -241,6 +367,19 @@
 * **Cluster**: string (Required, Identifier): The short name or full Amazon Resource Name (ARN) of the cluster that hosts the service to create the task set in.
 * **Service**: string (Required, Identifier): The short name or full Amazon Resource Name (ARN) of the service to create the task set in.
 * **TaskSetId**: string (Required): The ID or full Amazon Resource Name (ARN) of the task set.
+
+## AWS.ECS/ServiceDeploymentProperties
+### Properties
+* **Cluster**: string (ReadOnly): The short name of the cluster that hosts the service (the cluster segment of the service deployment ARN).
+* **ClusterArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the cluster that hosts the service.
+* **CreatedAt**: string (ReadOnly): The time the service deployment was created.
+* **Service**: string (ReadOnly): The short name of the service (the service segment of the service deployment ARN).
+* **ServiceArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the service for this service deployment.
+* **ServiceDeploymentArn**: string (Identifier): The Amazon Resource Name (ARN) of the service deployment.
+* **ServiceDeploymentId**: string (ReadOnly): The service deployment identifier (the trailing segment of the service deployment ARN).
+* **Status**: string (ReadOnly): The status of the service deployment. Valid values include PENDING, SUCCESSFUL, STOPPED, STOP_REQUESTED, IN_PROGRESS, ROLLBACK_REQUESTED, ROLLBACK_IN_PROGRESS, ROLLBACK_SUCCESSFUL, and ROLLBACK_FAILED.
+* **TargetServiceRevision**: [ServiceRevisionSummary](#servicerevisionsummary) (ReadOnly)
+* **UpdatedAt**: string (ReadOnly): The time the service deployment was last updated.
 
 ## AWS.ECS/ServiceProperties
 ### Properties
@@ -313,6 +452,33 @@
   To remove this property from your service resource, specify an empty ``ServiceVolumeConfiguration`` array.
 * **VpcLatticeConfigurations**: [VpcLatticeConfiguration](#vpclatticeconfiguration)[]: The VPC Lattice configuration for the service being created.
 
+## AWS.ECS/ServiceRevisionProperties
+### Properties
+* **CapacityProviderStrategy**: [CapacityProviderStrategyItem](#capacityproviderstrategyitem)[] (ReadOnly): The capacity provider strategy the service revision uses.
+* **Cluster**: string (ReadOnly): The short name of the cluster that hosts the service (the cluster segment of the service revision ARN).
+* **ClusterArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the cluster that hosts the service.
+* **ContainerImages**: [ContainerImage](#containerimage)[] (ReadOnly): The container images the service revision uses.
+* **CreatedAt**: string (ReadOnly): The time that the service revision was created.
+* **EcsManagedResources**: [EcsManagedResources](#ecsmanagedresources) (ReadOnly)
+* **FargateEphemeralStorage**: [DeploymentEphemeralStorage](#deploymentephemeralstorage) (ReadOnly)
+* **GuardDutyEnabled**: bool (ReadOnly): Indicates whether Runtime Monitoring is turned on.
+* **LaunchType**: string (ReadOnly): The launch type the service revision uses.
+* **LoadBalancers**: [LoadBalancer](#loadbalancer)[] (ReadOnly): The load balancers the service revision uses.
+* **Monitoring**: [MonitoringConfiguration](#monitoringconfiguration) (ReadOnly)
+* **NetworkConfiguration**: [NetworkConfiguration](#networkconfiguration) (ReadOnly)
+* **PlatformFamily**: string (ReadOnly): The platform family the service revision uses.
+* **PlatformVersion**: string (ReadOnly): For the Fargate launch type, the platform version the service revision uses.
+* **ResolvedConfiguration**: [ResolvedConfiguration](#resolvedconfiguration) (ReadOnly)
+* **Service**: string (ReadOnly): The short name of the service (the service segment of the service revision ARN).
+* **ServiceArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the service for the service revision.
+* **ServiceConnectConfiguration**: [ServiceConnectConfiguration](#serviceconnectconfiguration) (ReadOnly)
+* **ServiceRegistries**: [ServiceRegistry](#serviceregistry)[] (ReadOnly): The service registries (for Service Discovery) the service revision uses.
+* **ServiceRevisionArn**: string (Identifier): The Amazon Resource Name (ARN) of the service revision.
+* **ServiceRevisionId**: string (ReadOnly): The service revision identifier (the trailing segment of the service revision ARN).
+* **TaskDefinition**: string (ReadOnly): The task definition the service revision uses.
+* **VolumeConfigurations**: [ServiceVolumeConfiguration](#servicevolumeconfiguration)[] (ReadOnly): The volumes that are configured at deployment that the service revision uses.
+* **VpcLatticeConfigurations**: [VpcLatticeConfiguration](#vpclatticeconfiguration)[] (ReadOnly): The VPC Lattice configuration for the service revision.
+
 ## AWS.ECS/TaskDefinitionProperties
 ### Properties
 * **ContainerDefinitions**: [ContainerDefinition](#containerdefinition)[]: A list of container definitions in JSON format that describe the different containers that make up your task. For more information about container definition parameters and defaults, see [Amazon ECS Task Definitions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_defintions.html) in the *Amazon Elastic Container Service Developer Guide*.
@@ -380,6 +546,22 @@
 * **Volumes**: [Volume](#volume)[]: The list of data volume definitions for the task. For more information, see [Using data volumes in tasks](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_data_volumes.html) in the *Amazon Elastic Container Service Developer Guide*.
   The ``host`` and ``sourcePath`` parameters aren't supported for tasks run on FARGATElong.
 
+## AWS.ECS/TaskProperties
+### Properties
+* **Cluster**: string (ReadOnly): The short name or ARN of the cluster that hosts the task.
+* **Cpu**: string (ReadOnly): The number of CPU units used by the task as expressed in the task definition.
+* **CreatedAt**: string (ReadOnly): The ISO 8601 timestamp for the time when the task was created (entered the PENDING state).
+* **DesiredStatus**: string (ReadOnly): The desired status of the task.
+* **Group**: string (ReadOnly): The name of the task group associated with the task.
+* **LastStatus**: string (ReadOnly): The last known status of the task.
+* **LaunchType**: string (ReadOnly): The infrastructure on which the task runs.
+* **Memory**: string (ReadOnly): The amount of memory (in MiB) used by the task as expressed in the task definition.
+* **StartedBy**: string (ReadOnly): The tag specified when the task was started.
+* **Tags**: [Task_Tags](#tasktags)[] (ReadOnly): The metadata applied to the task.
+* **TaskArn**: string (Identifier): The Amazon Resource Name (ARN) of the task.
+* **TaskDefinition**: string (ReadOnly): The ARN of the task definition that the task is based on.
+* **TaskId**: string (ReadOnly): The unique identifier of the task (the final segment of the task ARN).
+
 ## AWS.ECS/TaskSetProperties
 ### Properties
 * **CapacityProviderStrategy**: [CapacityProviderStrategyItem](#capacityproviderstrategyitem)[]
@@ -406,6 +588,12 @@
   All specified security groups must be from the same VPC.
 * **Subnets**: string[]: The IDs of the subnets associated with the task or service. There's a limit of 16 subnets that can be specified.
   All specified subnets must be from the same VPC.
+
+## AwsVpcConfiguration
+### Properties
+* **AssignPublicIp**: string: Whether the task's elastic network interface receives a public IP address.
+* **SecurityGroups**: string[]: The IDs of the security groups associated with the task or service.
+* **Subnets**: string[] (Required): The IDs of the subnets associated with the task or service.
 
 ## AwsVpcConfiguration
 ### Properties
@@ -484,6 +672,12 @@
  Examples:
  Equal Distribution: Two capacity providers both with weight ``1`` will split tasks evenly after base requirements are met.
  Weighted Distribution: If capacityProviderA has weight ``1`` and capacityProviderB has weight ``4``, then for every 1 task on A, 4 tasks will run on B.
+
+## CapacityProviderStrategyItem
+### Properties
+* **Base**: int: The base value designates how many tasks, at a minimum, to run on the specified capacity provider.
+* **CapacityProvider**: string (Required): The short name of the capacity provider.
+* **Weight**: int: The weight value designates the relative percentage of the total number of tasks launched that should use the specified capacity provider.
 
 ## CapacityProviderStrategyItem
 ### Properties
@@ -659,10 +853,33 @@
   +  ``HEALTHY`` - This condition validates that the dependent container passes its Docker health check before permitting other containers to start. This requires that the dependent container has health checks configured. This condition is confirmed only at task startup.
 * **ContainerName**: string: The name of a container.
 
+## ContainerImage
+### Properties
+* **ContainerName**: string: The name of the container.
+* **Image**: string: The container image.
+* **ImageDigest**: string: The container image digest.
+
+## ContainerImage
+### Properties
+* **ContainerName**: string: The name of the container.
+* **Image**: string: The container image.
+* **ImageDigest**: string: The container image digest.
+
 ## DaemonAlarmConfiguration
 ### Properties
 * **AlarmNames**: string[]: The CloudWatch alarm names to monitor during a daemon deployment.
 * **Enable**: bool: Determines whether to use the CloudWatch alarm option in the daemon deployment process. The default value is ``false``.
+
+## DaemonAlarmConfiguration
+### Properties
+* **AlarmNames**: string[]: The CloudWatch alarm names to monitor during a daemon deployment.
+* **Enable**: bool: Determines whether to use the CloudWatch alarm option in the daemon deployment process.
+
+## DaemonCircuitBreaker
+### Properties
+* **FailureCount**: int: The number of times the circuit breaker detected a daemon deployment failure.
+* **Status**: string: The circuit breaker status. Amazon ECS is not using the circuit breaker for daemon deployment failures when the status is DISABLED.
+* **Threshold**: int: The threshold which determines that the daemon deployment failed.
 
 ## DaemonContainerDefinition
 ### Properties
@@ -696,11 +913,36 @@
 * **User**: string: The user to use inside the container.
 * **WorkingDirectory**: string: The working directory to run commands inside the container in.
 
+## DaemonDeploymentAlarms
+### Properties
+* **AlarmNames**: string[]: The name of the CloudWatch alarms that determine when a daemon deployment failed.
+* **Status**: string: The status of the alarms check. Amazon ECS is not using alarms for daemon deployment failures when the status is DISABLED.
+* **TriggeredAlarmNames**: string[]: One or more CloudWatch alarm names that have been triggered during the daemon deployment.
+
+## DaemonDeploymentCapacityProvider
+### Properties
+* **Arn**: string: The Amazon Resource Name (ARN) of the capacity provider.
+* **DrainingInstanceCount**: int: The number of instances being drained on this capacity provider during the deployment.
+* **RunningInstanceCount**: int: The number of instances running daemon tasks on this capacity provider.
+
 ## DaemonDeploymentConfiguration
 ### Properties
 * **Alarms**: [DaemonAlarmConfiguration](#daemonalarmconfiguration): The CloudWatch alarm configuration for the daemon deployment. When alarms are triggered during a deployment, the deployment can be automatically rolled back.
 * **BakeTimeInMinutes**: int: The amount of time (in minutes) to wait after a successful deployment step before proceeding. This allows time to monitor for issues before continuing. The default value is 0.
 * **DrainPercent**: int: The percentage of container instances to drain simultaneously during a daemon deployment. Valid values are between 0.0 and 100.0.
+
+## DaemonDeploymentConfiguration
+### Properties
+* **Alarms**: [DaemonAlarmConfiguration](#daemonalarmconfiguration)
+* **BakeTimeInMinutes**: int: The amount of time (in minutes) to wait after a successful deployment step before proceeding.
+* **DrainPercent**: int: The percentage of container instances to drain simultaneously during a daemon deployment.
+
+## DaemonDeploymentRevisionDetail
+### Properties
+* **Arn**: string: The Amazon Resource Name (ARN) of the daemon revision.
+* **CapacityProviders**: [DaemonDeploymentCapacityProvider](#daemondeploymentcapacityprovider)[]: The capacity providers associated with this daemon revision during the deployment.
+* **TotalDrainingInstanceCount**: int: The total number of instances being drained for this revision during the deployment.
+* **TotalRunningInstanceCount**: int: The total number of instances running daemon tasks for this revision.
 
 ## DaemonTaskDefinition_Options
 ### Properties
@@ -811,6 +1053,10 @@
   +  ``BLOCKING``—Amazon ECS removes the previous tasks before it marks the deployment as successful.
   +  ``DEFERRED``—Amazon ECS marks the deployment successful, and then removes the previous tasks in the background.
 
+## DeploymentEphemeralStorage
+### Properties
+* **KmsKeyId**: string: Specify an Amazon Web Services Key Management Service key ID to encrypt the ephemeral storage for deployment.
+
 ## DeploymentLifecycleHook
 ### Properties
 * **HookDetails**: [Service_HookDetails](#servicehookdetails) | string: Use this field to specify custom parameters that ECS passes to your hook target invocations (such as a Lambda function).
@@ -881,6 +1127,12 @@
 * **ResourceType**: string (Required): The type of volume resource.
 * **Tags**: [Tag](#tag)[]: The tags applied to this Amazon EBS volume. ``AmazonECSCreated`` and ``AmazonECSManaged`` are reserved tags that can't be used.
 
+## EBSTagSpecification
+### Properties
+* **PropagateTags**: string: Determines whether to propagate the tags from the task definition to the Amazon EBS volume.
+* **ResourceType**: string (Required): The type of volume resource.
+* **Tags**: [Tag](#tag)[]: The tags applied to this Amazon EBS volume.
+
 ## ECSManagedResourceArns
 ### Properties
 * **AutoScaling**: [AutoScalingArns](#autoscalingarns) (ReadOnly)
@@ -888,6 +1140,14 @@
 * **LogGroups**: string[] (ReadOnly)
 * **MetricAlarms**: string[] (ReadOnly)
 * **ServiceSecurityGroups**: string[] (ReadOnly)
+
+## EcsManagedResources
+### Properties
+* **AutoScaling**: [ManagedAutoScaling](#managedautoscaling)
+* **IngressPaths**: [ManagedIngressPath](#managedingresspath)[]: The ingress paths and endpoints for the Express service.
+* **LogGroups**: [ManagedLogGroup](#managedloggroup)[]: The log groups managed by the Express service.
+* **MetricAlarms**: [ManagedMetricAlarm](#managedmetricalarm)[]: The CloudWatch metric alarms associated with the Express service.
+* **ServiceSecurityGroups**: [ManagedSecurityGroup](#managedsecuritygroup)[]: The security groups managed by the Express service.
 
 ## EFSVolumeConfiguration
 ### Properties
@@ -1161,6 +1421,7 @@
 * **LocalStorageConfiguration**: [ManagedInstancesLocalStorageConfiguration](#managedinstanceslocalstorageconfiguration)
 * **Monitoring**: string
 * **NetworkConfiguration**: [ManagedInstancesNetworkConfiguration](#managedinstancesnetworkconfiguration) (Required)
+* **NitroEnclavesEnabled**: bool
 * **StorageConfiguration**: [ManagedInstancesStorageConfiguration](#managedinstancesstorageconfiguration)
 
 ## InstanceRequirementsRequest
@@ -1269,6 +1530,14 @@
 
 ## LoadBalancer
 ### Properties
+* **AdvancedConfiguration**: [AdvancedConfiguration](#advancedconfiguration)
+* **ContainerName**: string: The name of the container to associate with the load balancer.
+* **ContainerPort**: int: The port on the container to associate with the load balancer.
+* **LoadBalancerName**: string: The name of the load balancer to associate with the Amazon ECS service or task set.
+* **TargetGroupArn**: string: The full Amazon Resource Name (ARN) of the Elastic Load Balancing target group or groups associated with a service or task set.
+
+## LoadBalancer
+### Properties
 * **ContainerName**: string: The name of the container (as it appears in a container definition) to associate with the load balancer.
 * **ContainerPort**: int: The port on the container to associate with the load balancer. This port must correspond to a containerPort in the task definition the tasks in the service are using. For tasks that use the EC2 launch type, the container instance they are launched on must allow ingress traffic on the hostPort of the port mapping.
 * **TargetGroupArn**: string: The full Amazon Resource Name (ARN) of the Elastic Load Balancing target group or groups associated with a service or task set. A target group ARN is only specified when using an Application Load Balancer or Network Load Balancer. If you are using a Classic Load Balancer this should be omitted. For services using the ECS deployment controller, you can specify one or multiple target groups. For more information, see https://docs.aws.amazon.com/AmazonECS/latest/developerguide/register-multiple-targetgroups.html in the Amazon Elastic Container Service Developer Guide. For services using the CODE_DEPLOY deployment controller, you are required to define two target groups for the load balancer. For more information, see https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-bluegreen.html in the Amazon Elastic Container Service Developer Guide. If your service's task definition uses the awsvpc network mode (which is required for the Fargate launch type), you must choose ip as the target type, not instance, when creating your target groups because tasks that use the awsvpc network mode are associated with an elastic network interface, not an Amazon EC2 instance.
@@ -1320,6 +1589,12 @@
 ## LogConfiguration
 ### Properties
 * **LogDriver**: string (Required): The log driver to use for the container.
+* **Options**: [ServiceRevision_Options](#servicerevisionoptions): The configuration options to send to the log driver.
+* **SecretOptions**: [Secret](#secret)[]: The secrets to pass to the log configuration.
+
+## LogConfiguration
+### Properties
+* **LogDriver**: string (Required): The log driver to use for the container.
  For tasks on FARGATElong, the supported log drivers are ``awslogs``, ``splunk``, and ``awsfirelens``.
  For tasks hosted on Amazon EC2 instances, the supported log drivers are ``awslogs``, ``fluentd``, ``gelf``, ``json-file``, ``journald``, ``syslog``, ``splunk``, and ``awsfirelens``.
  For more information about using the ``awslogs`` log driver, see [Send Amazon ECS logs to CloudWatch](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_awslogs.html) in the *Amazon Elastic Container Service Developer Guide*.
@@ -1338,6 +1613,44 @@
  When you export logs to Amazon S3, you can specify the bucket using the ``bucket`` option. You can also specify ``region``, ``total_file_size``, ``upload_timeout``, and ``use_put_object`` as options.
  This parameter requires version 1.19 of the Docker Remote API or greater on your container instance. To check the Docker Remote API version on your container instance, log in to your container instance and run the following command: ``sudo docker version --format '{{.Server.APIVersion}}'``
 * **SecretOptions**: [Secret](#secret)[]: The secrets to pass to the log configuration. For more information, see [Specifying sensitive data](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data.html) in the *Amazon Elastic Container Service Developer Guide*.
+
+## LogDriverVolumeConfiguration
+### Properties
+* **Driver**: string (Required)
+
+## ManagedApplicationAutoScalingPolicy
+### Properties
+* **Arn**: string: The Amazon Resource Name (ARN) of the Application Auto Scaling policy associated with the Express service.
+* **Metric**: string (Required): The metric used for auto scaling decisions.
+* **PolicyType**: string (Required): The type of Application Auto Scaling policy associated with the Express service.
+* **Status**: string (Required)
+* **StatusReason**: string: Information about why the Application Auto Scaling policy is in the current status.
+* **TargetValue**: int (Required): The target value for the auto scaling metric.
+* **UpdatedAt**: string (Required): The time when the Application Auto Scaling policy was last updated.
+
+## ManagedAutoScaling
+### Properties
+* **ApplicationAutoScalingPolicies**: [ManagedApplicationAutoScalingPolicy](#managedapplicationautoscalingpolicy)[]: The policies used for auto scaling.
+* **ScalableTarget**: [ManagedScalableTarget](#managedscalabletarget)
+
+## ManagedCertificate
+### Properties
+* **Arn**: string: The Amazon Resource Name (ARN) of the ACM certificate.
+* **DomainName**: string (Required): The fully qualified domain name (FQDN) that is secured with this ACM certificate.
+* **Status**: string (Required)
+* **StatusReason**: string: Information about why the ACM certificate is in the current status.
+* **UpdatedAt**: string (Required): The time when the ACM certificate was last updated.
+
+## ManagedIngressPath
+### Properties
+* **AccessType**: string (Required): The type of access to the endpoint for the Express service.
+* **Certificate**: [ManagedCertificate](#managedcertificate)
+* **Endpoint**: string (Required): The endpoint for access to the Express service.
+* **Listener**: [ManagedListener](#managedlistener)
+* **LoadBalancer**: [ManagedLoadBalancer](#managedloadbalancer)
+* **LoadBalancerSecurityGroups**: [ManagedSecurityGroup](#managedsecuritygroup)[]: The security groups associated with the Application Load Balancer.
+* **Rule**: [ManagedListenerRule](#managedlistenerrule)
+* **TargetGroups**: [ManagedTargetGroup](#managedtargetgroup)[]: The target groups associated with the Application Load Balancer.
 
 ## ManagedInstancesLocalStorageConfiguration
 ### Properties
@@ -1360,6 +1673,54 @@
 ### Properties
 * **StorageSizeGiB**: int (Required)
 
+## ManagedListener
+### Properties
+* **Arn**: string: The Amazon Resource Name (ARN) of the load balancer listener.
+* **Status**: string (Required)
+* **StatusReason**: string: Information about why the load balancer listener is in the current status.
+* **UpdatedAt**: string (Required): The time when this listener was most recently updated.
+
+## ManagedListenerRule
+### Properties
+* **Arn**: string: The Amazon Resource Name (ARN) of the load balancer listener rule.
+* **Status**: string (Required)
+* **StatusReason**: string: Information about why the load balancer listener rule is in the current status.
+* **UpdatedAt**: string (Required): The time when this listener rule was most recently updated.
+
+## ManagedLoadBalancer
+### Properties
+* **Arn**: string: The Amazon Resource Name (ARN) of the load balancer.
+* **Scheme**: string (Required): The scheme of the load balancer. By default, the scheme of the load balancer is internet-facing.
+* **SecurityGroupIds**: string[]: The IDs of the security groups associated with the load balancer.
+* **Status**: string (Required)
+* **StatusReason**: string: Information about why the load balancer is in the current status.
+* **SubnetIds**: string[]: The IDs of the subnets associated with the load balancer.
+* **UpdatedAt**: string (Required): The time when this load balancer was most recently updated.
+
+## ManagedLogGroup
+### Properties
+* **Arn**: string: The Amazon Resource Name (ARN) of the CloudWatch log group associated with the Express service.
+* **LogGroupName**: string (Required): The name of the CloudWatch log group associated with the Express service.
+* **Status**: string (Required)
+* **StatusReason**: string: Information about why the CloudWatch log group is in the current status.
+* **UpdatedAt**: string (Required): The time when the CloudWatch log group was last updated.
+
+## ManagedMetricAlarm
+### Properties
+* **Arn**: string: The Amazon Resource Name (ARN) of the CloudWatch metric alarm.
+* **Status**: string (Required)
+* **StatusReason**: string: Information about why the CloudWatch metric alarm is in the current status.
+* **UpdatedAt**: string (Required): The time when the CloudWatch metric alarm was last updated.
+
+## ManagedScalableTarget
+### Properties
+* **Arn**: string: The Amazon Resource Name (ARN) of the scalable target.
+* **MaxCapacity**: int (Required): The maximum value to scale to in response to a scale-out activity.
+* **MinCapacity**: int (Required): The minimum value to scale to in response to a scale-in activity.
+* **Status**: string (Required)
+* **StatusReason**: string: Information about why the scalable target is in the current status.
+* **UpdatedAt**: string (Required): The time when the target was most recently updated.
+
 ## ManagedScaling
 ### Properties
 * **InstanceWarmupPeriod**: int
@@ -1367,6 +1728,13 @@
 * **MinimumScalingStepSize**: int
 * **Status**: string
 * **TargetCapacity**: int
+
+## ManagedSecurityGroup
+### Properties
+* **Arn**: string: The Amazon Resource Name (ARN) of the security group.
+* **Status**: string (Required)
+* **StatusReason**: string: Information about why the security group is in the current status.
+* **UpdatedAt**: string (Required): The time when the security group was last updated.
 
 ## ManagedStorageConfiguration
 ### Properties
@@ -1376,6 +1744,16 @@
 * **KmsKeyId**: string: Specify a KMSlong key ID to encrypt Amazon ECS managed storage.
   When you specify a ``kmsKeyId``, Amazon ECS uses the key to encrypt data volumes managed by Amazon ECS that are attached to tasks in the cluster. The following data volumes are managed by Amazon ECS: Amazon EBS. For more information about encryption of Amazon EBS volumes attached to Amazon ECS tasks, see [Encrypt data stored in Amazon EBS volumes for Amazon ECS](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ebs-kms-encryption.html) in the *Amazon Elastic Container Service Developer Guide*.
  The key must be a single Region key.
+
+## ManagedTargetGroup
+### Properties
+* **Arn**: string: The Amazon Resource Name (ARN) of the target group.
+* **HealthCheckPath**: string (Required): The destination for health checks on the targets.
+* **HealthCheckPort**: int (Required): The port the load balancer uses when performing health checks on targets.
+* **Port**: int (Required): The port on which the targets receive traffic.
+* **Status**: string (Required)
+* **StatusReason**: string: Information about why the target group is in the current status.
+* **UpdatedAt**: string (Required): The time when the target group was last updated.
 
 ## MemoryGiBPerVCpuRequest
 ### Properties
@@ -1392,9 +1770,18 @@
 * **MetricNames**: string[] (Required): The list of metric names to configure. The supported metric names are ``CPUUtilization`` and ``MemoryUtilization``.
 * **ResolutionSeconds**: int (Required): The resolution, in seconds, at which to collect the metrics. The valid values are ``20`` and ``60``.
 
+## MetricConfiguration
+### Properties
+* **MetricNames**: string[] (Required): The names of the metrics the resolution applies to.
+* **ResolutionSeconds**: int (Required): The resolution, in seconds, for the metrics.
+
 ## MonitoringConfiguration
 ### Properties
 * **MetricConfigurations**: [MetricConfiguration](#metricconfiguration)[] (Required): The list of metric configurations for the service monitoring.
+
+## MonitoringConfiguration
+### Properties
+* **MetricConfigurations**: [MetricConfiguration](#metricconfiguration)[]: The list of metric configurations for the service.
 
 ## MountPoint
 ### Properties
@@ -1417,6 +1804,10 @@
 ### Properties
 * **AwsvpcConfiguration**: [AwsVpcConfiguration](#awsvpcconfiguration): The VPC subnets and security groups that are associated with a task.
   All specified subnets and security groups must be from the same VPC.
+
+## NetworkConfiguration
+### Properties
+* **AwsvpcConfiguration**: [AwsVpcConfiguration](#awsvpcconfiguration)
 
 ## NetworkConfiguration
 ### Properties
@@ -1506,6 +1897,19 @@
 * **CredentialsParameter**: string: The Amazon Resource Name (ARN) of the secret containing the private repository credentials.
   When you use the Amazon ECS API, CLI, or AWS SDK, if the secret exists in the same Region as the task that you're launching then you can use either the full ARN or the name of the secret. When you use the AWS Management Console, you must specify the full ARN of the secret.
 
+## ResolvedConfiguration
+### Properties
+* **LoadBalancers**: [ServiceRevisionLoadBalancer](#servicerevisionloadbalancer)[]: The resolved load balancer configuration for the service revision.
+
+## Resource
+### Properties
+* **DoubleValue**: int: When the doubleValue type is set, the value of the resource must be a double precision floating-point type.
+* **IntegerValue**: int: When the integerValue type is set, the value of the resource must be an integer.
+* **LongValue**: int: When the longValue type is set, the value of the resource must be an extended precision floating-point type.
+* **Name**: string: The name of the resource, such as CPU, MEMORY, PORTS, PORTS_UDP, or a user-defined resource.
+* **StringSetValue**: string[]: When the stringSetValue type is set, the value of the resource must be a string type.
+* **Type**: string: The type of the resource, such as INTEGER, DOUBLE, LONG, or STRINGSET.
+
 ## ResourceRequirement
 ### Properties
 * **SharingStrategy**: [SharingStrategy](#sharingstrategy)
@@ -1568,6 +1972,11 @@
 ## Secret
 ### Properties
 * **Name**: string (Required): The name of the secret.
+* **ValueFrom**: string (Required): The secret to expose to the container. The supported values are either the full ARN of the Secrets Manager secret or the full ARN of the parameter in the SSM Parameter Store.
+
+## Secret
+### Properties
+* **Name**: string (Required): The name of the secret.
 * **ValueFrom**: string (Required): The secret to expose to the container. The supported values are either the full ARN of the ASMlong secret or the full ARN of the parameter in the SSM Parameter Store.
  For information about the require IAMlong permissions, see [Required IAM permissions for Amazon ECS secrets](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data-secrets.html#secrets-iam) (for Secrets Manager) or [Required IAM permissions for Amazon ECS secrets](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data-parameters.html) (for Systems Manager Parameter store) in the *Amazon Elastic Container Service Developer Guide*.
   If the SSM Parameter Store parameter exists in the same Region as the task you're launching, then you can use either the full ARN or name of the parameter. If the parameter exists in a different Region, then the full ARN must be specified.
@@ -1581,6 +1990,11 @@
 * **IncludeQueryParameters**: string: Specifies whether to include query parameters in Service Connect access logs.
  When enabled, query parameters from HTTP requests are included in the access logs. Consider security and privacy implications when enabling this feature, as query parameters may contain sensitive information such as request IDs and tokens. By default, this parameter is ``DISABLED``.
 
+## ServiceConnectAccessLogConfiguration
+### Properties
+* **Format**: string (Required): The format for Service Connect access log output.
+* **IncludeQueryParameters**: string: Specifies whether to include query parameters in Service Connect access logs.
+
 ## ServiceConnectClientAlias
 ### Properties
 * **DnsName**: string: The ``dnsName`` is the name that you use in the applications of client tasks to connect to this service. The name must be a valid DNS name but doesn't need to be fully-qualified. The name can include up to 127 characters. The name can include lowercase letters, numbers, underscores (_), hyphens (-), and periods (.). The name can't start with a hyphen.
@@ -1589,6 +2003,12 @@
 * **Port**: int (Required): The listening port number for the Service Connect proxy. This port is available inside of all of the tasks within the same namespace.
  To avoid changing your applications in client Amazon ECS services, set this to the same port that the client application uses by default. For more information, see [Service Connect](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html) in the *Amazon Elastic Container Service Developer Guide*.
 * **TestTrafficRules**: [ServiceConnectTestTrafficRules](#serviceconnecttesttrafficrules): The configuration for test traffic routing rules used during blue/green deployments with Amazon ECS Service Connect. This allows you to route a portion of traffic to the new service revision of your service for testing before shifting all production traffic.
+
+## ServiceConnectClientAlias
+### Properties
+* **DnsName**: string: The dnsName is the name that you use in the applications of client tasks to connect to this service.
+* **Port**: int (Required): The listening port number for the Service Connect proxy.
+* **TestTrafficRules**: [ServiceConnectTestTrafficRules](#serviceconnecttesttrafficrules)
 
 ## ServiceConnectConfiguration
 ### Properties
@@ -1609,6 +2029,14 @@
 * **Services**: [ServiceConnectService](#serviceconnectservice)[]: The list of Service Connect service objects. These are names and aliases (also known as endpoints) that are used by other Amazon ECS services to connect to this service. 
  This field is not required for a "client" Amazon ECS service that's a member of a namespace only to connect to other services within the namespace. An example of this would be a frontend application that accepts incoming requests from either a load balancer that's attached to the service or by other means.
  An object selects a port from the task definition, assigns a name for the CMAPlong service, and a list of aliases (endpoints) and ports for client applications to refer to this service.
+
+## ServiceConnectConfiguration
+### Properties
+* **AccessLogConfiguration**: [ServiceConnectAccessLogConfiguration](#serviceconnectaccesslogconfiguration)
+* **Enabled**: bool (Required): Specifies whether to use Service Connect with this service.
+* **LogConfiguration**: [LogConfiguration](#logconfiguration)
+* **Namespace**: string: The namespace name or full Amazon Resource Name (ARN) of the Cloud Map namespace for use with Service Connect.
+* **Services**: [ServiceConnectService](#serviceconnectservice)[]: The list of Service Connect service objects.
 
 ## ServiceConnectContainerConfiguration
 ### Properties
@@ -1637,9 +2065,31 @@
 * **Timeout**: [TimeoutConfiguration](#timeoutconfiguration): A reference to an object that represents the configured timeouts for Service Connect.
 * **Tls**: [ServiceConnectTlsConfiguration](#serviceconnecttlsconfiguration): A reference to an object that represents a Transport Layer Security (TLS) configuration.
 
+## ServiceConnectService
+### Properties
+* **ClientAliases**: [ServiceConnectClientAlias](#serviceconnectclientalias)[]: The list of client aliases for this Service Connect service.
+* **DiscoveryName**: string: The discoveryName is the name of the new Cloud Map service that Amazon ECS creates for this Amazon ECS service.
+* **IngressPortOverride**: int: The port number for the Service Connect proxy to listen on.
+* **PortName**: string (Required): The portName must match the name of one of the portMappings from all the containers in the task definition of this Amazon ECS service.
+* **Timeout**: [TimeoutConfiguration](#timeoutconfiguration)
+* **Tls**: [ServiceConnectTlsConfiguration](#serviceconnecttlsconfiguration)
+
+## ServiceConnectTestTrafficHeaderMatchRules
+### Properties
+* **Exact**: string (Required): The exact value that the HTTP header must match for the test traffic routing rule to apply.
+
+## ServiceConnectTestTrafficHeaderRules
+### Properties
+* **Name**: string (Required): The name of the HTTP header to match.
+* **Value**: [ServiceConnectTestTrafficHeaderMatchRules](#serviceconnecttesttrafficheadermatchrules)
+
 ## ServiceConnectTestTrafficRules
 ### Properties
 * **Header**: [ServiceConnectTestTrafficRulesHeader](#serviceconnecttesttrafficrulesheader) (Required): The HTTP header-based routing rules that determine which requests should be routed to the new service version during blue/green deployment testing. These rules provide fine-grained control over test traffic routing based on request headers.
+
+## ServiceConnectTestTrafficRules
+### Properties
+* **Header**: [ServiceConnectTestTrafficHeaderRules](#serviceconnecttesttrafficheaderrules) (Required)
 
 ## ServiceConnectTestTrafficRulesHeader
 ### Properties
@@ -1654,10 +2104,20 @@
 ### Properties
 * **AwsPcaAuthorityArn**: string: The ARN of the AWS Private Certificate Authority certificate.
 
+## ServiceConnectTlsCertificateAuthority
+### Properties
+* **AwsPcaAuthorityArn**: string: The ARN of the Amazon Web Services Private Certificate Authority certificate.
+
 ## ServiceConnectTlsConfiguration
 ### Properties
 * **IssuerCertificateAuthority**: [ServiceConnectTlsCertificateAuthority](#serviceconnecttlscertificateauthority) (Required): The signer certificate authority.
 * **KmsKey**: string: The AWS Key Management Service key.
+* **RoleArn**: string: The Amazon Resource Name (ARN) of the IAM role that's associated with the Service Connect TLS.
+
+## ServiceConnectTlsConfiguration
+### Properties
+* **IssuerCertificateAuthority**: [ServiceConnectTlsCertificateAuthority](#serviceconnecttlscertificateauthority) (Required)
+* **KmsKey**: string: The KMS key used to encrypt the private key in Secrets Manager.
 * **RoleArn**: string: The Amazon Resource Name (ARN) of the IAM role that's associated with the Service Connect TLS.
 
 ## ServiceManagedEBSVolumeConfiguration
@@ -1697,6 +2157,20 @@
   +  Magnetic: ``standard``
   The magnetic volume type is not supported on Fargate.
 
+## ServiceManagedEBSVolumeConfiguration
+### Properties
+* **Encrypted**: bool: Indicates whether the volume should be encrypted.
+* **FilesystemType**: string: The filesystem type for the volume.
+* **Iops**: int: The number of I/O operations per second (IOPS).
+* **KmsKeyId**: string: The Amazon Resource Name (ARN) identifier of the Amazon Web Services Key Management Service key to use for Amazon EBS encryption.
+* **RoleArn**: string (Required): The ARN of the IAM role to associate with this volume.
+* **SizeInGiB**: int: The size of the volume in GiB.
+* **SnapshotId**: string: The snapshot that Amazon ECS uses to create the volume.
+* **TagSpecifications**: [EBSTagSpecification](#ebstagspecification)[]: The tags to apply to the volume.
+* **Throughput**: int: The throughput to provision for a volume, in MiB/s, with a maximum of 1,000 MiB/s.
+* **VolumeInitializationRate**: int: The rate, in MiB/s, at which data is fetched from a snapshot of an existing Amazon EBS volume to create a new volume for attachment.
+* **VolumeType**: string: The volume type.
+
 ## ServiceRegistry
 ### Properties
 * **ContainerName**: string: The container name value to be used for your service discovery service. It's already specified in the task definition. If the task definition that your service task specifies uses the ``bridge`` or ``host`` network mode, you must specify a ``containerName`` and ``containerPort`` combination from the task definition. If the task definition that your service task specifies uses the ``awsvpc`` network mode and a type SRV DNS record is used, you must specify either a ``containerName`` and ``containerPort`` combination or a ``port`` value. However, you can't specify both.
@@ -1706,15 +2180,42 @@
 
 ## ServiceRegistry
 ### Properties
+* **ContainerName**: string: The container name value to be used for your service discovery service.
+* **ContainerPort**: int: The port value to be used for your service discovery service.
+* **Port**: int: The port value used if your service discovery service specified an SRV record.
+* **RegistryArn**: string: The Amazon Resource Name (ARN) of the service registry. The currently supported service registry is Cloud Map.
+
+## ServiceRegistry
+### Properties
 * **ContainerName**: string: The container name value, already specified in the task definition, to be used for your service discovery service. If the task definition that your service task specifies uses the bridge or host network mode, you must specify a containerName and containerPort combination from the task definition. If the task definition that your service task specifies uses the awsvpc network mode and a type SRV DNS record is used, you must specify either a containerName and containerPort combination or a port value, but not both.
 * **ContainerPort**: int: The port value, already specified in the task definition, to be used for your service discovery service. If the task definition your service task specifies uses the bridge or host network mode, you must specify a containerName and containerPort combination from the task definition. If the task definition your service task specifies uses the awsvpc network mode and a type SRV DNS record is used, you must specify either a containerName and containerPort combination or a port value, but not both.
 * **Port**: int: The port value used if your service discovery service specified an SRV record. This field may be used if both the awsvpc network mode and SRV records are used.
 * **RegistryArn**: string: The Amazon Resource Name (ARN) of the service registry. The currently supported service registry is AWS Cloud Map. For more information, see https://docs.aws.amazon.com/cloud-map/latest/api/API_CreateService.html
 
+## ServiceRevision_Options
+### Properties
+
+## ServiceRevisionLoadBalancer
+### Properties
+* **ProductionListenerRule**: string: The Amazon Resource Name (ARN) of the production listener rule or listener that directs traffic to the target group associated with the service revision.
+* **TargetGroupArn**: string: The Amazon Resource Name (ARN) of the target group associated with the service revision.
+
+## ServiceRevisionSummary
+### Properties
+* **Arn**: string: The ARN of the service revision.
+* **PendingTaskCount**: int: The number of pending tasks for the service revision.
+* **RequestedTaskCount**: int: The number of requested tasks for the service revision.
+* **RunningTaskCount**: int: The number of running tasks for the service revision.
+
 ## ServiceVolumeConfiguration
 ### Properties
 * **ManagedEBSVolume**: [ServiceManagedEBSVolumeConfiguration](#servicemanagedebsvolumeconfiguration): The configuration for the Amazon EBS volume that Amazon ECS creates and manages on your behalf. These settings are used to create each Amazon EBS volume, with one volume created for each task in the service. The Amazon EBS volumes are visible in your account in the Amazon EC2 console once they are created.
 * **Name**: string (Required): The name of the volume. This value must match the volume name from the ``Volume`` object in the task definition.
+
+## ServiceVolumeConfiguration
+### Properties
+* **ManagedEBSVolume**: [ServiceManagedEBSVolumeConfiguration](#servicemanagedebsvolumeconfiguration)
+* **Name**: string (Required): The name of the volume. This value must match the volume name from the Volume object in the task definition.
 
 ## SharingStrategy
 ### Properties
@@ -1748,6 +2249,11 @@
 
 ## Tag
 ### Properties
+* **Key**: string (Required): One part of a key-value pair that makes up a tag.
+* **Value**: string (Required): The optional part of a key-value pair that makes up a tag.
+
+## Tag
+### Properties
 * **Key**: string (Required): One part of a key-value pair that make up a tag. A ``key`` is a general label that acts like a category for more specific tag values.
 * **Value**: string: The optional part of a key-value pair that make up a tag. A ``value`` acts as a descriptor within a tag category (key).
 
@@ -1773,6 +2279,11 @@
 
 ## Tag
 ### Properties
+* **Key**: string: One part of a key-value pair that make up a tag.
+* **Value**: string: The optional part of a key-value pair that make up a tag.
+
+## Tag
+### Properties
 * **Key**: string: One part of a key-value pair that make up a tag. A ``key`` is a general label that acts like a category for more specific tag values.
 * **Value**: string: The optional part of a key-value pair that make up a tag. A ``value`` acts as a descriptor within a tag category (key).
 
@@ -1780,6 +2291,11 @@
 ### Properties
 * **Key**: string
 * **Value**: string
+
+## Task_Tags
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## TaskDefinition_DockerLabels
 ### Properties
@@ -1812,6 +2328,11 @@
  The ``idleTimeout`` default for ``HTTP``/``HTTP2``/``GRPC`` is 5 minutes.
  The ``idleTimeout`` default for ``TCP`` is 1 hour.
 * **PerRequestTimeoutSeconds**: int: The amount of time waiting for the upstream to respond with a complete response per request. A value of ``0`` can be set to disable ``perRequestTimeout``. ``perRequestTimeout`` can only be set if Service Connect ``appProtocol`` isn't ``TCP``. Only ``idleTimeout`` is allowed for ``TCP````appProtocol``.
+
+## TimeoutConfiguration
+### Properties
+* **IdleTimeoutSeconds**: int: The amount of time in seconds a connection will stay active while idle.
+* **PerRequestTimeoutSeconds**: int: The amount of time in seconds for the upstream to respond with a complete response per request.
 
 ## Tmpfs
 ### Properties
@@ -1849,10 +2370,17 @@
 * **Max**: int
 * **Min**: int (Required)
 
+## VersionInfo
+### Properties
+* **AgentHash**: string: The Git commit hash for the Amazon ECS container agent build.
+* **AgentVersion**: string: The version number of the Amazon ECS container agent.
+* **DockerVersion**: string: The Docker version that's running on the container instance.
+
 ## Volume
 ### Properties
 * **Host**: [HostVolumeProperties](#hostvolumeproperties): This parameter is specified when you use bind mount host volumes. The contents of the ``host`` parameter determine whether your bind mount host volume persists on the host container instance and where it's stored. If the ``host`` parameter is empty, then the Docker daemon assigns a host path for your data volume. However, the data isn't guaranteed to persist after the containers that are associated with it stop running.
  Windows containers can mount whole directories on the same drive as ``$env:ProgramData``. Windows containers can't mount directories on a different drive, and mount point can't be across drives. For example, you can mount ``C:\my\path:C:\my\path`` and ``D:\:D:\``, but not ``D:\my\path:C:\my\path`` or ``D:\:C:\my\path``.
+* **LogDriverVolumeConfiguration**: [LogDriverVolumeConfiguration](#logdrivervolumeconfiguration)
 * **Name**: string: The name of the volume. Up to 255 letters (uppercase and lowercase), numbers, underscores, and hyphens are allowed.
  When using a volume configured at launch, the ``name`` is required and must also be specified as the volume name in the ``ServiceVolumeConfiguration`` or ``TaskVolumeConfiguration`` parameter when creating your service or standalone task.
  For all other types of volumes, this name is referenced in the ``sourceVolume`` parameter of the ``mountPoints`` object in the container definition.
@@ -1894,4 +2422,10 @@
 * **PortName**: string (Required): The name of the port mapping to register in the VPC Lattice target group. This is the name of the ``portMapping`` you defined in your task definition.
 * **RoleArn**: string (Required): The ARN of the IAM role to associate with this VPC Lattice configuration. This is the Amazon ECS infrastructure IAM role that is used to manage your VPC Lattice infrastructure.
 * **TargetGroupArn**: string (Required): The full Amazon Resource Name (ARN) of the target group or groups associated with the VPC Lattice configuration that the Amazon ECS tasks will be registered to.
+
+## VpcLatticeConfiguration
+### Properties
+* **PortName**: string (Required): The name of the port mapping to register in the VPC Lattice target group.
+* **RoleArn**: string (Required): The ARN of the IAM role to associate with this VPC Lattice configuration.
+* **TargetGroupArn**: string (Required): The full Amazon Resource Name (ARN) of the target group or groups associated with the VPC Lattice configuration.
 

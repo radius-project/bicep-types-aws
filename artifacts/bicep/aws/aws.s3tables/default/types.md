@@ -1,5 +1,13 @@
 # AWS.S3Tables @ default
 
+## Resource AWS.S3Tables/Namespace@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.S3Tables/NamespaceProperties](#awss3tablesnamespaceproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.S3Tables/Table@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -31,6 +39,11 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.S3Tables/TablePolicyProperties](#awss3tablestablepolicyproperties) (Required, Identifier): properties of the resource
+
+## AWS.S3Tables/NamespaceProperties
+### Properties
+* **Namespace**: string (Required, Identifier)
+* **TableBucketARN**: string (Required, Identifier)
 
 ## AWS.S3Tables/TableBucketPolicyProperties
 ### Properties

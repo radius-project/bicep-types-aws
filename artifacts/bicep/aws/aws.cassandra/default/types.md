@@ -8,6 +8,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Cassandra/KeyspaceProperties](#awscassandrakeyspaceproperties) (Identifier): properties of the resource
 
+## Resource AWS.Cassandra/Stream@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Cassandra/StreamProperties](#awscassandrastreamproperties) (Identifier): properties of the resource
+
 ## Resource AWS.Cassandra/Table@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -15,6 +23,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Cassandra/TableProperties](#awscassandratableproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Cassandra/Type@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Cassandra/TypeProperties](#awscassandratypeproperties) (Required, Identifier): properties of the resource
 
 ## AutoScalingSetting
 ### Properties
@@ -35,6 +51,16 @@
 * **ReplicationSpecification**: [ReplicationSpecification](#replicationspecification)
 * **Tags**: [Tag](#tag)[]
 
+## AWS.Cassandra/StreamProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) that uniquely identifies the stream.
+* **CreationRequestDateTime**: string (ReadOnly): The date and time when the request to create this stream was issued, in ISO 8601 format.
+* **KeyspaceName**: string: The name of the keyspace containing the table associated with this stream.
+* **StreamLabel**: string (ReadOnly): A timestamp that serves as a unique identifier for this stream.
+* **StreamStatus**: string (ReadOnly): The current status of the stream.
+* **StreamViewType**: string: The format of the data records in this stream.
+* **TableName**: string: The name of the table associated with this stream.
+
 ## AWS.Cassandra/TableProperties
 ### Properties
 * **AutoScalingSpecifications**: [AutoScalingSpecification](#autoscalingspecification) (WriteOnly)
@@ -52,6 +78,17 @@
 * **TableName**: string (Identifier): Name for Cassandra table
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource
 * **WarmThroughput**: [WarmThroughput](#warmthroughput)
+
+## AWS.Cassandra/TypeProperties
+### Properties
+* **DirectParentTypes**: string[] (ReadOnly): List of parent User-Defined Types that directly reference the User-Defined Type in their fields.
+* **DirectReferringTables**: string[] (ReadOnly): List of Tables that directly reference the User-Defined Type in their columns.
+* **Fields**: [Field](#field)[] (Required): Field definitions of the User-Defined Type
+* **KeyspaceArn**: string (ReadOnly): ARN of the Keyspace which contains the User-Defined Type.
+* **KeyspaceName**: string (Required, Identifier): Name of the Keyspace which contains the User-Defined Type.
+* **LastModifiedTimestamp**: int (ReadOnly): Timestamp of the last time the User-Defined Type's meta data was modified.
+* **MaxNestingDepth**: int (ReadOnly): Maximum nesting depth of the User-Defined Type across the field types.
+* **TypeName**: string (Required, Identifier): Name of the User-Defined Type.
 
 ## BillingMode
 ### Properties
@@ -78,6 +115,11 @@
 ### Properties
 * **EncryptionType**: string (Required)
 * **KmsKeyIdentifier**: string
+
+## Field
+### Properties
+* **FieldName**: string (Required)
+* **FieldType**: string (Required)
 
 ## ProvisionedThroughput
 ### Properties

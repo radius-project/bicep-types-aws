@@ -1,0 +1,89 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DataExchange-Job",
+  "type": "AWS::DataExchange::Job",
+  "time": "2026-11-05T21:21:03.896Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "description": "Represents an AWS Data Exchange job, which is an asynchronous import or export operation used to create or copy assets.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "dataexchange:ListJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "dataexchange:GetJob"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the job.",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The date and time that the job was created, in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Id": {
+        "description": "The unique identifier for the job.",
+        "pattern": "^[a-zA-Z0-9]{30,40}$",
+        "type": "string"
+      },
+      "State": {
+        "description": "The state of the job.",
+        "enum": [
+          "WAITING",
+          "IN_PROGRESS",
+          "ERROR",
+          "COMPLETED",
+          "CANCELLED",
+          "TIMED_OUT"
+        ],
+        "type": "string"
+      },
+      "Type": {
+        "description": "The type of job.",
+        "enum": [
+          "IMPORT_ASSETS_FROM_S3",
+          "IMPORT_ASSET_FROM_SIGNED_URL",
+          "EXPORT_ASSETS_TO_S3",
+          "EXPORT_ASSET_TO_SIGNED_URL",
+          "EXPORT_REVISIONS_TO_S3",
+          "IMPORT_ASSETS_FROM_REDSHIFT_DATA_SHARES",
+          "IMPORT_ASSET_FROM_API_GATEWAY_API",
+          "CREATE_S3_DATA_ACCESS_FROM_S3_BUCKET",
+          "IMPORT_ASSETS_FROM_LAKE_FORMATION_TAG_POLICY"
+        ],
+        "type": "string"
+      },
+      "UpdatedAt": {
+        "description": "The date and time that the job was last updated, in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Id",
+      "/properties/Type",
+      "/properties/State",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::DataExchange::Job"
+  }
+}

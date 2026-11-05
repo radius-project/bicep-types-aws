@@ -1,0 +1,173 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoTDeviceAdvisor-SuiteRun",
+  "type": "AWS::IoTDeviceAdvisor::SuiteRun",
+  "time": "2026-11-05T21:06:29.667Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/SuiteDefinitionId",
+        "/properties/SuiteRunId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/SuiteDefinitionId",
+      "/properties/SuiteDefinitionVersion",
+      "/properties/SuiteRunConfiguration",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "DeviceUnderTest": {
+        "additionalProperties": false,
+        "description": "Information of a test device.",
+        "properties": {
+          "CertificateArn": {
+            "description": "Lists device's certificate ARN.",
+            "maxLength": 2048,
+            "minLength": 20,
+            "type": "string"
+          },
+          "ThingArn": {
+            "description": "Lists device's thing ARN.",
+            "maxLength": 2048,
+            "minLength": 20,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "SuiteRunConfiguration": {
+        "additionalProperties": false,
+        "description": "Suite run configuration.",
+        "properties": {
+          "ParallelRun": {
+            "description": "TRUE if multiple test suites run in parallel.",
+            "type": "boolean"
+          },
+          "PrimaryDevice": {
+            "$ref": "#/definitions/DeviceUnderTest"
+          }
+        },
+        "required": [
+          "PrimaryDevice"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Represents a suite run in AWS IoT Core Device Advisor.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "iotdeviceadvisor:ListSuiteRuns"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "iotdeviceadvisor:GetSuiteRun",
+          "iotdeviceadvisor:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/SuiteRunArn"
+    ],
+    "properties": {
+      "StartTime": {
+        "description": "Date (in ISO 8601 format) when the test suite run started.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Status": {
+        "description": "Status of the suite run.",
+        "enum": [
+          "PASS",
+          "FAIL",
+          "CANCELED",
+          "PENDING",
+          "RUNNING",
+          "STOPPING",
+          "STOPPED",
+          "PASS_WITH_WARNINGS",
+          "ERROR"
+        ],
+        "type": "string"
+      },
+      "SuiteDefinitionId": {
+        "description": "Suite definition ID of the test suite.",
+        "maxLength": 36,
+        "minLength": 12,
+        "type": "string"
+      },
+      "SuiteDefinitionVersion": {
+        "description": "Suite definition version of the test suite.",
+        "maxLength": 255,
+        "minLength": 2,
+        "type": "string"
+      },
+      "SuiteRunArn": {
+        "description": "The ARN of the suite run.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "type": "string"
+      },
+      "SuiteRunConfiguration": {
+        "$ref": "#/definitions/SuiteRunConfiguration"
+      },
+      "SuiteRunId": {
+        "description": "Suite run ID of the test suite run.",
+        "maxLength": 36,
+        "minLength": 12,
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags associated with the suite run.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/SuiteRunArn",
+      "/properties/SuiteRunId",
+      "/properties/Status",
+      "/properties/StartTime"
+    ],
+    "required": [
+      "SuiteDefinitionId",
+      "SuiteRunConfiguration"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "iotdeviceadvisor:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::IoTDeviceAdvisor::SuiteRun"
+  }
+}

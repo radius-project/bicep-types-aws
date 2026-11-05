@@ -16,6 +16,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.IVS/ChannelProperties](#awsivschannelproperties) (Identifier): properties of the resource
 
+## Resource AWS.IVS/Composition@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IVS/CompositionProperties](#awsivscompositionproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.IVS/EncoderConfiguration@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -120,6 +128,16 @@
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the asset model.
 * **Type**: string: Channel type, which determines the allowable resolution and bitrate. If you exceed the allowable resolution or bitrate, the stream probably will disconnect immediately.
 
+## AWS.IVS/CompositionProperties
+### Properties
+* **Arn**: string (Identifier): The ARN of the Composition resource.
+* **Destinations**: [DestinationConfiguration](#destinationconfiguration)[] (Required): Array of destination configuration.
+* **Layout**: [LayoutConfiguration](#layoutconfiguration)
+* **StageArn**: string (Required): ARN of the stage used as input.
+* **StartTime**: string (ReadOnly): UTC time of the Composition start. ISO 8601 timestamp.
+* **State**: string (ReadOnly): State of the Composition.
+* **Tags**: [Tag](#tag)[]: Tags attached to the resource.
+
 ## AWS.IVS/EncoderConfigurationProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): Encoder configuration identifier.
@@ -198,6 +216,26 @@
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the asset model.
 * **Value**: string (ReadOnly): Stream-key value.
 
+## ChannelDestinationConfiguration
+### Properties
+* **ChannelArn**: string (Required): ARN of the channel to use for broadcasting.
+* **EncoderConfigurationArn**: string: ARN of the EncoderConfiguration resource.
+
+## CompositionRecordingHlsConfiguration
+### Properties
+* **TargetSegmentDurationSeconds**: int: Target duration for recorded segments. Default: 2.
+
+## CompositionThumbnailConfiguration
+### Properties
+* **Storage**: string[]: Format in which thumbnails are recorded.
+* **TargetIntervalSeconds**: int: Targeted thumbnail-generation interval in seconds. Default: 60.
+
+## DestinationConfiguration
+### Properties
+* **Channel**: [ChannelDestinationConfiguration](#channeldestinationconfiguration)
+* **Name**: string: Name that can be specified to help identify the destination.
+* **S3**: [S3DestinationConfiguration](#s3destinationconfiguration)
+
 ## DestinationConfiguration
 ### Properties
 * **S3**: [S3DestinationConfiguration](#s3destinationconfiguration)
@@ -209,9 +247,23 @@
 * **Height**: int: Video-resolution height. This must be an even number. Note that the maximum value is determined by width times height, such that the maximum total pixels is 2073600 (1920x1080 or 1080x1920). Default: 720.
 * **Width**: int: Video-resolution width. This must be an even number. Note that the maximum value is determined by width times height, such that the maximum total pixels is 2073600 (1920x1080 or 1080x1920). Default: 1280.
 
+## GridConfiguration
+### Properties
+* **FeaturedParticipantAttribute**: string: Attribute name identifying the featured slot.
+* **GridGap**: int: Specifies the spacing between participant tiles in pixels.
+* **OmitStoppedVideo**: bool: Determines whether to omit participants with stopped video.
+* **ParticipantOrderAttribute**: string: Attribute name identifying the participant ordering key.
+* **VideoAspectRatio**: string: Sets the non-featured participant display mode.
+* **VideoFillMode**: string: Defines how video content fits within the participant tile.
+
 ## HlsConfiguration
 ### Properties
 * **ParticipantRecordingHlsConfiguration**: [ParticipantRecordingHlsConfiguration](#participantrecordinghlsconfiguration)
+
+## LayoutConfiguration
+### Properties
+* **Grid**: [GridConfiguration](#gridconfiguration)
+* **Pip**: [PipConfiguration](#pipconfiguration)
 
 ## MediaTailorPlaybackConfiguration
 ### Properties
@@ -227,15 +279,41 @@
 ### Properties
 * **TargetSegmentDurationSeconds**: int: Defines the target duration for recorded segments generated when recording a stage participant. Segments may have durations longer than the specified value when needed to ensure each segment begins with a keyframe. Default: 6.
 
+## PipConfiguration
+### Properties
+* **FeaturedParticipantAttribute**: string: Attribute name identifying the featured slot.
+* **GridGap**: int: Specifies the spacing between participant tiles in pixels.
+* **OmitStoppedVideo**: bool: Determines whether to omit participants with stopped video.
+* **ParticipantOrderAttribute**: string: Attribute name identifying the participant ordering key.
+* **PipBehavior**: string: Defines PiP behavior when all participants have left.
+* **PipHeight**: int: Specifies the height of the PiP window in pixels.
+* **PipOffset**: int: Sets the PiP window's offset position in pixels.
+* **PipParticipantAttribute**: string: Specifies the participant for the PiP window.
+* **PipPosition**: string: Determines the corner position of the PiP window.
+* **PipWidth**: int: Specifies the width of the PiP window in pixels.
+* **VideoFillMode**: string: Defines how video content fits within the participant tile.
+
 ## PostRollConfiguration
 ### Properties
 * **DurationSeconds**: int (Required): Duration of the post-roll ad break, in seconds.
 * **Enabled**: bool (Required): Whether the post-roll ad configuration is enabled.
 
+## RecordingConfiguration
+### Properties
+* **Format**: string: The recording format for storing a recording in Amazon S3.
+* **HlsConfiguration**: [CompositionRecordingHlsConfiguration](#compositionrecordinghlsconfiguration)
+
 ## RenditionConfiguration
 ### Properties
 * **Renditions**: string[]: Renditions indicates which renditions are recorded for a stream.
 * **RenditionSelection**: string: Resolution Selection indicates which set of renditions are recorded for a stream.
+
+## S3DestinationConfiguration
+### Properties
+* **EncoderConfigurationArns**: string[] (Required): ARNs of the EncoderConfiguration resource.
+* **RecordingConfiguration**: [RecordingConfiguration](#recordingconfiguration)
+* **StorageConfigurationArn**: string (Required): ARN of the StorageConfiguration where recorded videos will be stored.
+* **ThumbnailConfigurations**: [CompositionThumbnailConfiguration](#compositionthumbnailconfiguration)[]: Configuration for thumbnail generation.
 
 ## S3DestinationConfiguration
 ### Properties
@@ -260,6 +338,11 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

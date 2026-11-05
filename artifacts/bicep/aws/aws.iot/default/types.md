@@ -96,6 +96,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/FleetMetricProperties](#awsiotfleetmetricproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.IoT/Index@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IoT/IndexProperties](#awsiotindexproperties) (Identifier): properties of the resource
+
 ## Resource AWS.IoT/Job@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -103,6 +111,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/JobProperties](#awsiotjobproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.IoT/JobTemplate@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IoT/JobTemplateProperties](#awsiotjobtemplateproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/Logging@default
 * **Readable Scope(s)**: None
@@ -135,6 +151,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/PolicyProperties](#awsiotpolicyproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.IoT/PolicyPrincipalAttachment@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IoT/PolicyPrincipalAttachmentProperties](#awsiotpolicyprincipalattachmentproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoT/ProvisioningTemplate@default
 * **Readable Scope(s)**: None
@@ -216,6 +240,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.IoT/ThingGroupProperties](#awsiotthinggroupproperties) (Identifier): properties of the resource
 
+## Resource AWS.IoT/ThingPrincipalAttachment@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IoT/ThingPrincipalAttachmentProperties](#awsiotthingprincipalattachmentproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.IoT/ThingType@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -243,6 +275,13 @@
 ## AbortConfig
 ### Properties
 * **CriteriaList**: [AbortCriteria](#abortcriteria)[] (Required): The list of criteria that determine when and how to abort the job.
+
+## AbortCriteria
+### Properties
+* **Action**: string (Required): The type of job action to take to initiate the job abort.
+* **FailureType**: string (Required): The type of job execution failures that can initiate a job abort.
+* **MinNumberOfExecutedThings**: int (Required): The minimum number of things which must receive job execution notifications before the job can be aborted.
+* **ThresholdPercentage**: int (Required): The minimum percentage of job execution failures that must occur to initiate the job abort.
 
 ## AbortCriteria
 ### Properties
@@ -501,6 +540,13 @@
 * **Unit**: string: The unit of data points emitted by a fleet metric
 * **Version**: int (ReadOnly): The version of a fleet metric
 
+## AWS.IoT/IndexProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the index.
+* **IndexName**: string: The index name.
+* **IndexStatus**: string (ReadOnly): The index status.
+* **Schema**: string (ReadOnly): Contains a value that specifies the type of indexing performed.
+
 ## AWS.IoT/JobProperties
 ### Properties
 * **AbortConfig**: [AbortConfig](#abortconfig)
@@ -521,6 +567,23 @@
 * **Targets**: string[] (Required): A list of things and thing groups to which the job should be sent.
 * **TargetSelection**: string: Specifies whether the job will continue to run (CONTINUOUS), or will be complete after all those things specified as targets have completed the job (SNAPSHOT).
 * **TimeoutConfig**: [TimeoutConfig](#timeoutconfig)
+
+## AWS.IoT/JobTemplateProperties
+### Properties
+* **AbortConfig**: [JobTemplate_AbortConfig](#jobtemplateabortconfig) (WriteOnly): The criteria that determine when and how a job abort takes place.
+* **Arn**: string (ReadOnly)
+* **Description**: string (Required): A description of the Job Template.
+* **DestinationPackageVersions**: string[] (WriteOnly)
+* **Document**: string (WriteOnly): The job document. Required if you don't specify a value for documentSource.
+* **DocumentSource**: string (WriteOnly): An S3 link to the job document to use in the template. Required if you don't specify a value for document.
+* **JobArn**: string (WriteOnly): Optional for copying a JobTemplate from a pre-existing Job configuration.
+* **JobExecutionsRetryConfig**: [JobTemplate_JobExecutionsRetryConfig](#jobtemplatejobexecutionsretryconfig) (WriteOnly)
+* **JobExecutionsRolloutConfig**: [JobTemplate_JobExecutionsRolloutConfig](#jobtemplatejobexecutionsrolloutconfig) (WriteOnly): Allows you to create a staged rollout of a job.
+* **JobTemplateId**: string (Required, Identifier)
+* **MaintenanceWindows**: [MaintenanceWindow](#maintenancewindow)[] (WriteOnly)
+* **PresignedUrlConfig**: [JobTemplate_PresignedUrlConfig](#jobtemplatepresignedurlconfig) (WriteOnly): Configuration for pre-signed S3 URLs.
+* **Tags**: [Tag](#tag)[]: Metadata that can be used to manage the JobTemplate.
+* **TimeoutConfig**: [JobTemplate_TimeoutConfig](#jobtemplatetimeoutconfig) (WriteOnly): Specifies the amount of time each device has to finish its execution of the job.
 
 ## AWS.IoT/LoggingProperties
 ### Properties
@@ -557,6 +620,11 @@
 * **Tags**: [Tag](#tag)[]: Metadata which can be used to manage updates.
 * **Targets**: string[] (Required): The devices targeted to receive OTA updates.
 * **TargetSelection**: string: Specifies whether the update will continue to run (CONTINUOUS), or will be complete after all things specified as targets have completed the update (SNAPSHOT).
+
+## AWS.IoT/PolicyPrincipalAttachmentProperties
+### Properties
+* **PolicyName**: string (Required, Identifier): The name of the AWS IoT policy
+* **Principal**: string (Required, Identifier): The principal, which can be a certificate ARN (as returned from the CreateCertificate operation) or an Amazon Cognito ID
 
 ## AWS.IoT/PolicyProperties
 ### Properties
@@ -658,6 +726,12 @@
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **ThingGroupName**: string (Identifier)
 * **ThingGroupProperties**: [ThingGroup_ThingGroupProperties](#thinggroupthinggroupproperties)
+
+## AWS.IoT/ThingPrincipalAttachmentProperties
+### Properties
+* **Principal**: string (Required, Identifier): The principal, which can be a certificate ARN (as returned from the CreateCertificate operation) or an Amazon Cognito ID.
+* **ThingName**: string (Required, Identifier): The name of the AWS IoT thing.
+* **ThingPrincipalType**: string: The type of the relation you want to specify when you attach a principal to a thing.
 
 ## AWS.IoT/ThingProperties
 ### Properties
@@ -924,6 +998,12 @@
 * **IncrementFactor**: int (Required): The exponential factor to increase the rate of rollout for a job.
 * **RateIncreaseCriteria**: [RateIncreaseCriteria](#rateincreasecriteria) (Required)
 
+## ExponentialRolloutRate
+### Properties
+* **BaseRatePerMinute**: int (Required): The minimum number of things that will be notified of a pending job, per minute at the start of job rollout. This parameter allows you to define the initial rate of rollout.
+* **IncrementFactor**: int (Required): The exponential factor to increase the rate of rollout for a job.
+* **RateIncreaseCriteria**: [JobTemplate_RateIncreaseCriteria](#jobtemplaterateincreasecriteria) (Required): The criteria to initiate the increase in rate of rollout for a job.
+
 ## FileLocation
 ### Properties
 * **S3Location**: [S3Location](#s3location)
@@ -1014,6 +1094,33 @@
 * **ExponentialRate**: [ExponentialRolloutRate](#exponentialrolloutrate)
 * **MaximumPerMinute**: int: The maximum number of things that will be notified of a pending job, per minute. This parameter allows you to create a staged rollout.
 
+## JobTemplate_AbortConfig
+### Properties
+* **CriteriaList**: [AbortCriteria](#abortcriteria)[] (Required)
+
+## JobTemplate_JobExecutionsRetryConfig
+### Properties
+* **RetryCriteriaList**: [RetryCriteria](#retrycriteria)[]
+
+## JobTemplate_JobExecutionsRolloutConfig
+### Properties
+* **ExponentialRolloutRate**: [ExponentialRolloutRate](#exponentialrolloutrate): The rate of increase for a job rollout. This parameter allows you to define an exponential rate for a job rollout.
+* **MaximumPerMinute**: int: The maximum number of things that will be notified of a pending job, per minute. This parameter allows you to create a staged rollout.
+
+## JobTemplate_PresignedUrlConfig
+### Properties
+* **ExpiresInSec**: int
+* **RoleArn**: string (Required)
+
+## JobTemplate_RateIncreaseCriteria
+### Properties
+* **NumberOfNotifiedThings**: int
+* **NumberOfSucceededThings**: int
+
+## JobTemplate_TimeoutConfig
+### Properties
+* **InProgressTimeoutInMinutes**: int (Required)
+
 ## KafkaAction
 ### Properties
 * **ClientProperties**: [TopicRule_ClientProperties](#topicruleclientproperties) (Required)
@@ -1055,6 +1162,11 @@
 ### Properties
 * **DurationInMinutes**: int (Required): Displays the duration of the next maintenance window.
 * **StartTime**: string (Required): Displays the start time of the next maintenance window.
+
+## MaintenanceWindow
+### Properties
+* **DurationInMinutes**: int
+* **StartTime**: string
 
 ## MetricDimension
 ### Properties
@@ -1173,6 +1285,11 @@
 ### Properties
 * **FailureType**: string (Required): The type of job execution failures that can initiate a job retry.
 * **NumberOfRetries**: int (Required): The number of retries allowed for a failure type for the job.
+
+## RetryCriteria
+### Properties
+* **FailureType**: string
+* **NumberOfRetries**: int
 
 ## S3Action
 ### Properties
@@ -1329,6 +1446,11 @@
 ### Properties
 * **Key**: string (Required): The tag's key
 * **Value**: string (Required): The tag's value
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag's key.
+* **Value**: string (Required): The tag's value.
 
 ## Tag
 ### Properties

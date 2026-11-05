@@ -1,0 +1,153 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Comprehend-FlywheelDataset",
+  "type": "AWS::Comprehend::FlywheelDataset",
+  "time": "2026-11-05T20:33:32.864Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DatasetName",
+      "/properties/DatasetType",
+      "/properties/Description",
+      "/properties/FlywheelArn",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "A dataset associated with a Comprehend Flywheel, used to upload training or test data for a model.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "FlywheelArn": {
+              "maxLength": 256,
+              "pattern": "^arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:flywheel/[a-zA-Z0-9](-*[a-zA-Z0-9])*$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "FlywheelArn"
+          ]
+        },
+        "permissions": [
+          "comprehend:ListDatasets"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "comprehend:DescribeDataset",
+          "comprehend:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/DatasetArn"
+    ],
+    "properties": {
+      "CreationTime": {
+        "description": "Creation time of the dataset.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DatasetArn": {
+        "description": "The ARN of the dataset.",
+        "maxLength": 256,
+        "pattern": "^arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:flywheel/[a-zA-Z0-9](-*[a-zA-Z0-9])*/dataset/[a-zA-Z0-9](-*[a-zA-Z0-9])*$",
+        "type": "string"
+      },
+      "DatasetName": {
+        "description": "Name of the dataset.",
+        "maxLength": 63,
+        "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9])*$",
+        "type": "string"
+      },
+      "DatasetS3Uri": {
+        "description": "The S3 URI where the dataset is stored.",
+        "maxLength": 1024,
+        "pattern": "^s3://[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9](/.*)?$",
+        "type": "string"
+      },
+      "DatasetType": {
+        "description": "The dataset type (training data or test data).",
+        "enum": [
+          "TRAIN",
+          "TEST"
+        ],
+        "type": "string"
+      },
+      "Description": {
+        "description": "Description of the dataset.",
+        "maxLength": 2048,
+        "type": "string"
+      },
+      "FlywheelArn": {
+        "description": "The Amazon Resource Number (ARN) of the flywheel.",
+        "maxLength": 256,
+        "pattern": "^arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:flywheel/[a-zA-Z0-9](-*[a-zA-Z0-9])*$",
+        "type": "string"
+      },
+      "NumberOfDocuments": {
+        "description": "The number of documents in the dataset.",
+        "type": "integer"
+      },
+      "Status": {
+        "description": "The dataset status.",
+        "enum": [
+          "CREATING",
+          "COMPLETED",
+          "FAILED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags for the dataset.",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/DatasetArn",
+      "/properties/DatasetS3Uri",
+      "/properties/Status",
+      "/properties/NumberOfDocuments",
+      "/properties/CreationTime"
+    ],
+    "required": [
+      "FlywheelArn",
+      "DatasetName"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "comprehend:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Comprehend::FlywheelDataset"
+  }
+}

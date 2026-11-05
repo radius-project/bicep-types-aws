@@ -1,6 +1,429 @@
 [
   {
     "$type": "ObjectType",
+    "name": "CPU",
+    "properties": {
+      "Architecture": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The CPU's architecture (for example, x86 or ARM)."
+      },
+      "Clock": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The clock speed of the device's CPU."
+      },
+      "Frequency": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The CPU's frequency."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Resolution",
+    "properties": {
+      "Height": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The screen resolution's height, expressed in pixels."
+      },
+      "Width": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The screen resolution's width, expressed in pixels."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DeviceFarm/DeviceProperties"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Device_Tags",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DeviceFarm/DeviceProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 16,
+        "description": "The device's ARN."
+      },
+      "Cpu": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 2
+      },
+      "FleetName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The name of the fleet to which this device belongs."
+      },
+      "FleetType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The type of fleet to which this device belongs. Possible values are PRIVATE and PUBLIC."
+      },
+      "FormFactor": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The device's form factor."
+      },
+      "HeapSize": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The device's heap size, expressed in bytes."
+      },
+      "Image": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The device's image name."
+      },
+      "Manufacturer": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The device's manufacturer name."
+      },
+      "Memory": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The device's total memory size, expressed in bytes."
+      },
+      "Model": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The device's model name."
+      },
+      "ModelId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The device's model ID."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The device's display name."
+      },
+      "Os": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The device's operating system type."
+      },
+      "Platform": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The device's platform."
+      },
+      "RemoteAccessEnabled": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "Specifies whether remote access has been enabled for the specified device."
+      },
+      "Resolution": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The tags attached to the device."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DeviceFarm/Device",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DeviceFarm/Device@default",
+    "body": {
+      "$ref": "#/9"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InstanceProfile",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the instance profile."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The description of the instance profile."
+      },
+      "ExcludeAppPackagesFromCleanup": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "An array of app package names to exclude from cleanup."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The name of the instance profile."
+      },
+      "PackageCleanup": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "When set to true, Device Farm removes app packages after a test run."
+      },
+      "RebootAfterUse": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "When set to true, Device Farm reboots the instance after a test run."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DeviceFarm/DeviceInstanceProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/12"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DeviceFarm/DeviceInstanceProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the device instance."
+      },
+      "DeviceArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The ARN of the device on which the device instance is running."
+      },
+      "InstanceProfile": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 2
+      },
+      "Labels": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "An array of strings that describe the device instance."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The status of the device instance."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The tags assigned to the device instance."
+      },
+      "Udid": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The unique device identifier (UDID) of the device instance."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DeviceFarm/DeviceInstance",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DeviceFarm/DeviceInstance@default",
+    "body": {
+      "$ref": "#/18"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "Rule",
     "properties": {
       "Attribute": {
@@ -45,25 +468,19 @@
     }
   },
   {
-    "$type": "StringType"
-  },
-  {
     "$type": "StringLiteralType",
     "value": "AWS.DeviceFarm/DevicePoolProperties"
   },
   {
-    "$type": "IntegerType"
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/0"
+      "$ref": "#/20"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/21"
     }
   },
   {
@@ -84,7 +501,7 @@
       },
       "MaxDevices": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/3"
         },
         "flags": 0
       },
@@ -102,13 +519,13 @@
       },
       "Rules": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/23"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/24"
         },
         "flags": 0
       }
@@ -134,7 +551,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/25"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -145,7 +562,7 @@
     "$type": "ResourceType",
     "name": "AWS.DeviceFarm/DevicePool@default",
     "body": {
-      "$ref": "#/8"
+      "$ref": "#/26"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -179,12 +596,9 @@
     }
   },
   {
-    "$type": "BooleanType"
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/10"
+      "$ref": "#/28"
     }
   },
   {
@@ -205,7 +619,7 @@
       },
       "ExcludeAppPackagesFromCleanup": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/30"
         },
         "flags": 0
       },
@@ -217,19 +631,19 @@
       },
       "PackageCleanup": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "RebootAfterUse": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/5"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/31"
         },
         "flags": 0
       }
@@ -255,7 +669,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/32"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -266,7 +680,7 @@
     "$type": "ResourceType",
     "name": "AWS.DeviceFarm/InstanceProfile@default",
     "body": {
-      "$ref": "#/16"
+      "$ref": "#/33"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -296,7 +710,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/18"
+      "$ref": "#/35"
     }
   },
   {
@@ -317,25 +731,25 @@
       },
       "DownlinkBandwidthBits": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "DownlinkDelayMs": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "DownlinkJitterMs": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "DownlinkLossPercent": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/3"
         },
         "flags": 0
       },
@@ -353,31 +767,31 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/37"
         },
         "flags": 0
       },
       "UplinkBandwidthBits": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "UplinkDelayMs": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "UplinkJitterMs": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "UplinkLossPercent": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/3"
         },
         "flags": 0
       }
@@ -403,7 +817,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/38"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -414,7 +828,7 @@
     "$type": "ResourceType",
     "name": "AWS.DeviceFarm/NetworkProfile@default",
     "body": {
-      "$ref": "#/22"
+      "$ref": "#/39"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -461,14 +875,14 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/44"
         },
         "flags": 1,
         "description": "An array of security group Ids in your Amazon VPC"
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/45"
         },
         "flags": 1,
         "description": "A array of subnet IDs in your Amazon VPC."
@@ -501,13 +915,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/24"
+      "$ref": "#/41"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/42"
     }
   },
   {
@@ -522,13 +936,13 @@
       },
       "DefaultJobTimeoutMinutes": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "EnvironmentVariables": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/47"
         },
         "flags": 0
       },
@@ -546,13 +960,13 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/48"
         },
         "flags": 0
       },
       "VpcConfig": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/43"
         },
         "flags": 0
       }
@@ -578,7 +992,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/49"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -589,9 +1003,1181 @@
     "$type": "ResourceType",
     "name": "AWS.DeviceFarm/Project@default",
     "body": {
-      "$ref": "#/33"
+      "$ref": "#/50"
     },
     "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DeviceMinutes",
+    "properties": {
+      "Metered": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The sum of metered device minutes used by the remote access session."
+      },
+      "Total": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The total number of device minutes used by the remote access session."
+      },
+      "Unmetered": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The sum of unmetered device minutes used by the remote access session."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DeviceProxy",
+    "properties": {
+      "Host": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The host name or IP address of the http/https proxy."
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The port number on which the http/https proxy is listening."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VpcConfig",
+    "properties": {
+      "SecurityGroupIds": {
+        "type": {
+          "$ref": "#/56"
+        },
+        "flags": 1,
+        "description": "The security group IDs attached to the session."
+      },
+      "SubnetIds": {
+        "type": {
+          "$ref": "#/57"
+        },
+        "flags": 1,
+        "description": "The subnet IDs attached to the session."
+      },
+      "VpcId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The ID of the VPC attached to the session."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DeviceFarm/RemoteAccessSessionProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/54"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DeviceFarm/RemoteAccessSessionProperties",
+    "properties": {
+      "AppUpload": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The ARN of the app uploaded to Device Farm and installed on the device for the remote access session."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the remote access session."
+      },
+      "BillingMethod": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The billing method of the remote access session."
+      },
+      "Created": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The date and time the remote access session was created."
+      },
+      "DeviceArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The ARN of the device being remotely accessed by the session."
+      },
+      "DeviceMinutes": {
+        "type": {
+          "$ref": "#/52"
+        },
+        "flags": 2
+      },
+      "DeviceProxy": {
+        "type": {
+          "$ref": "#/53"
+        },
+        "flags": 0
+      },
+      "InstanceArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The ARN of the private device instance the remote access session runs on. Applies only to private device instances."
+      },
+      "Message": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "A message about the remote access session."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The name of the remote access session."
+      },
+      "ProjectArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The ARN of the project that contains the remote access session."
+      },
+      "Result": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The result of the remote access session."
+      },
+      "SkipAppResign": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "When set to true, for private devices, Device Farm does not sign your app again."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The status of the remote access session."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/59"
+        },
+        "flags": 0,
+        "description": "The tags assigned to the remote access session."
+      },
+      "VpcConfig": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 2
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DeviceFarm/RemoteAccessSession",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/60"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DeviceFarm/RemoteAccessSession@default",
+    "body": {
+      "$ref": "#/61"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Counters",
+    "properties": {
+      "Errored": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The number of errored entities."
+      },
+      "Failed": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The number of failed entities."
+      },
+      "Passed": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The number of passed entities."
+      },
+      "Skipped": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The number of skipped entities."
+      },
+      "Stopped": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The number of stopped entities."
+      },
+      "Total": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The total number of entities."
+      },
+      "Warned": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The number of warned entities."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomerArtifactPaths",
+    "properties": {
+      "AndroidPaths": {
+        "type": {
+          "$ref": "#/75"
+        },
+        "flags": 0,
+        "description": "Comma-separated list of paths on the Android device where the artifacts generated by the customer's tests are pulled from."
+      },
+      "DeviceHostPaths": {
+        "type": {
+          "$ref": "#/76"
+        },
+        "flags": 0,
+        "description": "Comma-separated list of paths in the test execution environment where the artifacts generated by the customer's tests are pulled from."
+      },
+      "IosPaths": {
+        "type": {
+          "$ref": "#/77"
+        },
+        "flags": 0,
+        "description": "Comma-separated list of paths on the iOS device where the artifacts generated by the customer's tests are pulled from."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DeviceFilter",
+    "properties": {
+      "Attribute": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The aspect of a device such as platform or model used as the selection criteria in a device filter."
+      },
+      "Operator": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "Specifies how Device Farm compares the filter's attribute to the value."
+      },
+      "Values": {
+        "type": {
+          "$ref": "#/78"
+        },
+        "flags": 1,
+        "description": "An array of one or more filter values used in a device filter."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DeviceMinutes",
+    "properties": {
+      "Metered": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The sum of metered minutes used by the resource to run tests."
+      },
+      "Total": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The total minutes used by the resource to run tests."
+      },
+      "Unmetered": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The sum of unmetered minutes used by the resource to run tests."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DeviceProxy",
+    "properties": {
+      "Host": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "Hostname or IPv4 address of the proxy."
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The port number on which the http/s proxy is listening."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DeviceSelectionResult",
+    "properties": {
+      "Filters": {
+        "type": {
+          "$ref": "#/79"
+        },
+        "flags": 0,
+        "description": "The filters in a device selection result."
+      },
+      "MatchedDevicesCount": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The number of devices that matched the device filter selection criteria."
+      },
+      "MaxDevices": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The maximum number of devices to be selected by a device filter and included in a test run."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EnvironmentVariable",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The name of the environment variable."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The value of the environment variable."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Location",
+    "properties": {
+      "Latitude": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The latitude."
+      },
+      "Longitude": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The longitude."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NetworkProfile",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the network profile."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The description of the network profile."
+      },
+      "DownlinkBandwidthBits": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The data throughput rate in bits per second, as an integer from 0 to 104857600."
+      },
+      "DownlinkDelayMs": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Delay time for all packets to destination in milliseconds as an integer from 0 to 2000."
+      },
+      "DownlinkJitterMs": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Time variation in the delay of received packets in milliseconds as an integer from 0 to 2000."
+      },
+      "DownlinkLossPercent": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Proportion of received packets that fail to arrive from 0 to 100 percent."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The name of the network profile."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The type of network profile. Valid values are listed here."
+      },
+      "UplinkBandwidthBits": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The data throughput rate in bits per second, as an integer from 0 to 104857600."
+      },
+      "UplinkDelayMs": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Delay time for all packets to destination in milliseconds as an integer from 0 to 2000."
+      },
+      "UplinkJitterMs": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Time variation in the delay of received packets in milliseconds as an integer from 0 to 2000."
+      },
+      "UplinkLossPercent": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Proportion of transmitted packets that fail to arrive from 0 to 100 percent."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Radios",
+    "properties": {
+      "Bluetooth": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "True if Bluetooth is enabled at the beginning of the test. Otherwise, false."
+      },
+      "Gps": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "True if GPS is enabled at the beginning of the test. Otherwise, false."
+      },
+      "Nfc": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "True if NFC is enabled at the beginning of the test. Otherwise, false."
+      },
+      "Wifi": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "True if Wi-Fi is enabled at the beginning of the test. Otherwise, false."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VpcConfig",
+    "properties": {
+      "SecurityGroupIds": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 1,
+        "description": "A list of VPC security group IDs."
+      },
+      "SubnetIds": {
+        "type": {
+          "$ref": "#/81"
+        },
+        "flags": 1,
+        "description": "A subnet ID from the VPC."
+      },
+      "VpcId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The ID of the Amazon VPC."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/65"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DeviceFarm/RunProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/69"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/73"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DeviceFarm/RunProperties",
+    "properties": {
+      "AppUpload": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "An app to upload or that has been uploaded."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 16,
+        "description": "The run's ARN."
+      },
+      "BillingMethod": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Specifies the billing method for the test run."
+      },
+      "CompletedJobs": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The total number of completed jobs."
+      },
+      "Counters": {
+        "type": {
+          "$ref": "#/63"
+        },
+        "flags": 2
+      },
+      "Created": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "When the run was created."
+      },
+      "CustomerArtifactPaths": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 0
+      },
+      "DeviceMinutes": {
+        "type": {
+          "$ref": "#/66"
+        },
+        "flags": 2
+      },
+      "DevicePoolArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The ARN of the device pool for the run."
+      },
+      "DeviceProxy": {
+        "type": {
+          "$ref": "#/67"
+        },
+        "flags": 0
+      },
+      "DeviceSelectionResult": {
+        "type": {
+          "$ref": "#/68"
+        },
+        "flags": 2
+      },
+      "EnvironmentVariables": {
+        "type": {
+          "$ref": "#/83"
+        },
+        "flags": 0,
+        "description": "Environment variables associated with the run."
+      },
+      "EventCount": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "For fuzz tests, this is the number of events, between 1 and 10000, that the UI fuzz test should perform."
+      },
+      "ExecutionRoleArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "An IAM role that the test host assumes for the run."
+      },
+      "JobTimeoutMinutes": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The number of minutes the job executes before it times out."
+      },
+      "Locale": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Information about the locale that is used for the run."
+      },
+      "Location": {
+        "type": {
+          "$ref": "#/70"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The run's name."
+      },
+      "NetworkProfile": {
+        "type": {
+          "$ref": "#/71"
+        },
+        "flags": 2
+      },
+      "Platform": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The run's platform."
+      },
+      "ProjectArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The ARN of the project that contains this run."
+      },
+      "Radios": {
+        "type": {
+          "$ref": "#/72"
+        },
+        "flags": 0
+      },
+      "Result": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The run's result."
+      },
+      "Seed": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "For fuzz tests, this is a seed to use for randomizing the UI fuzz test. Using the same seed value between tests ensures identical event sequences."
+      },
+      "SkipAppResign": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "When set to true, for private devices, Device Farm does not sign your app again."
+      },
+      "Started": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The run's start time."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The run's status."
+      },
+      "Stopped": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The run's stop time."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/84"
+        },
+        "flags": 0,
+        "description": "The tags assigned to the run."
+      },
+      "TestSpecArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The ARN of the YAML-formatted test specification for the run."
+      },
+      "TotalJobs": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The total number of jobs for the run."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The run's type."
+      },
+      "VpcConfig": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 2
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DeviceFarm/Run",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/85"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DeviceFarm/Run@default",
+    "body": {
+      "$ref": "#/86"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Counters",
+    "properties": {
+      "Errored": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The number of errored entities."
+      },
+      "Failed": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The number of failed entities."
+      },
+      "Passed": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The number of passed entities."
+      },
+      "Skipped": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The number of skipped entities."
+      },
+      "Stopped": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The number of stopped entities."
+      },
+      "Total": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The total number of entities."
+      },
+      "Warned": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The number of warned entities."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DeviceMinutes",
+    "properties": {
+      "Metered": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The sum of metered minutes used by the resource to run tests."
+      },
+      "Total": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The total minutes used by the resource to run tests."
+      },
+      "Unmetered": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The sum of unmetered minutes used by the resource to run tests."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DeviceFarm/SuiteProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DeviceFarm/SuiteProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 16,
+        "description": "The suite's ARN."
+      },
+      "Counters": {
+        "type": {
+          "$ref": "#/88"
+        },
+        "flags": 2
+      },
+      "Created": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "When the suite was created."
+      },
+      "DeviceMinutes": {
+        "type": {
+          "$ref": "#/89"
+        },
+        "flags": 2
+      },
+      "JobArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The ARN of the job that contains this suite."
+      },
+      "Message": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "A message about the suite's result."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The suite's name."
+      },
+      "Result": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The suite's result."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The suite's status."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DeviceFarm/Suite",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/91"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DeviceFarm/Suite@default",
+    "body": {
+      "$ref": "#/92"
+    },
+    "readableScopes": 31,
     "writableScopes": 0
   },
   {
@@ -618,14 +2204,14 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/96"
         },
         "flags": 1,
         "description": "A list of VPC security group IDs in your Amazon VPC."
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/97"
         },
         "flags": 1,
         "description": "A list of VPC subnet IDs in your Amazon VPC."
@@ -657,7 +2243,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/35"
+      "$ref": "#/94"
     }
   },
   {
@@ -684,13 +2270,13 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/99"
         },
         "flags": 0
       },
       "VpcConfig": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/95"
         },
         "flags": 4
       }
@@ -716,7 +2302,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/100"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -727,7 +2313,109 @@
     "$type": "ResourceType",
     "name": "AWS.DeviceFarm/TestGridProject@default",
     "body": {
-      "$ref": "#/42"
+      "$ref": "#/101"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DeviceFarm/UploadProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DeviceFarm/UploadProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the upload."
+      },
+      "Category": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The upload's category."
+      },
+      "ContentType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The upload's content type (for example, application/octet-stream)."
+      },
+      "Created": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "When the upload was created."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The upload's file name."
+      },
+      "ProjectArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The ARN of the project for the upload."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The upload's status."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The upload's type."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DeviceFarm/Upload",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/104"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DeviceFarm/Upload@default",
+    "body": {
+      "$ref": "#/105"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -757,7 +2445,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/44"
+      "$ref": "#/107"
     }
   },
   {
@@ -778,7 +2466,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/109"
         },
         "flags": 0
       },
@@ -822,7 +2510,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/110"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -833,7 +2521,7 @@
     "$type": "ResourceType",
     "name": "AWS.DeviceFarm/VPCEConfiguration@default",
     "body": {
-      "$ref": "#/48"
+      "$ref": "#/111"
     },
     "readableScopes": 0,
     "writableScopes": 0

@@ -1,0 +1,123 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-StorageGateway-Device",
+  "type": "AWS::StorageGateway::Device",
+  "time": "2026-11-05T21:23:55.417Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/GatewayId",
+        "/properties/VTLDeviceName"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "DeviceiSCSIAttributes": {
+        "additionalProperties": false,
+        "description": "Lists iSCSI information about a VTL device.",
+        "properties": {
+          "ChapEnabled": {
+            "description": "Indicates whether mutual CHAP is enabled for the iSCSI target.",
+            "type": "boolean"
+          },
+          "NetworkInterfaceId": {
+            "description": "The network interface identifier of the VTL device.",
+            "type": "string"
+          },
+          "NetworkInterfacePort": {
+            "description": "The port used to communicate with iSCSI VTL device targets.",
+            "type": "integer"
+          },
+          "TargetARN": {
+            "description": "Specifies the unique Amazon Resource Name (ARN) that encodes the iSCSI qualified name (IQN) of a tape drive or media changer target.",
+            "maxLength": 800,
+            "minLength": 50,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource type definition for AWS::StorageGateway::Device. Represents a virtual tape library (VTL) device -- a tape drive or medium changer -- associated with a Storage Gateway tape gateway. VTL devices are created by the service when a tape gateway is activated and cannot be created or deleted independently, so this resource type is read-only.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "GatewayId": {
+              "maxLength": 30,
+              "minLength": 12,
+              "type": "string"
+            }
+          },
+          "required": [
+            "GatewayId"
+          ]
+        },
+        "permissions": [
+          "storagegateway:DescribeVTLDevices"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "storagegateway:DescribeVTLDevices"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/VTLDeviceARN"
+    ],
+    "properties": {
+      "DeviceiSCSIAttributes": {
+        "$ref": "#/definitions/DeviceiSCSIAttributes"
+      },
+      "GatewayARN": {
+        "description": "The Amazon Resource Name (ARN) of the tape gateway that the device is associated with.",
+        "maxLength": 500,
+        "minLength": 50,
+        "type": "string"
+      },
+      "GatewayId": {
+        "description": "The identifier of the tape gateway that the device is associated with.",
+        "maxLength": 30,
+        "minLength": 12,
+        "type": "string"
+      },
+      "VTLDeviceARN": {
+        "description": "The unique Amazon Resource Name (ARN) of the device (tape drive or media changer).",
+        "maxLength": 500,
+        "minLength": 50,
+        "type": "string"
+      },
+      "VTLDeviceName": {
+        "description": "The name of the device, as it appears in the device's Amazon Resource Name (ARN).",
+        "type": "string"
+      },
+      "VTLDeviceProductIdentifier": {
+        "description": "The model number of the device that the VTL device emulates.",
+        "type": "string"
+      },
+      "VTLDeviceType": {
+        "description": "The type of device that the VTL device emulates.",
+        "type": "string"
+      },
+      "VTLDeviceVendor": {
+        "description": "The vendor of the device that the VTL device object emulates.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/VTLDeviceARN",
+      "/properties/GatewayARN",
+      "/properties/GatewayId",
+      "/properties/VTLDeviceName",
+      "/properties/VTLDeviceType",
+      "/properties/VTLDeviceVendor",
+      "/properties/VTLDeviceProductIdentifier",
+      "/properties/DeviceiSCSIAttributes"
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/storagegateway/latest/tgw/StorageGatewayAPI.html",
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::StorageGateway::Device"
+  }
+}

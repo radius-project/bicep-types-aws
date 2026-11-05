@@ -1,0 +1,69 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-FIS-SafetyLever",
+  "type": "AWS::FIS::SafetyLever",
+  "time": "2026-11-05T20:43:01.693Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Id"
+    ],
+    "description": "Represents the AWS FIS account-level safety lever. This is a singleton resource (one per account per region) that controls whether FIS experiments are allowed to run.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "fis:GetSafetyLever"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "fis:GetSafetyLever"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the safety lever.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^[\\S]+$",
+        "type": "string"
+      },
+      "Id": {
+        "description": "The ID of the safety lever.",
+        "maxLength": 64,
+        "pattern": "^[\\S]+$",
+        "type": "string"
+      },
+      "Reason": {
+        "description": "The reason for the current state of the safety lever.",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the safety lever.",
+        "enum": [
+          "disengaged",
+          "engaged",
+          "engaging"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Status",
+      "/properties/Reason"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::FIS::SafetyLever"
+  }
+}

@@ -16,6 +16,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.IoTTwinMaker/EntityProperties](#awsiottwinmakerentityproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.IoTTwinMaker/MetadataTransferJob@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IoTTwinMaker/MetadataTransferJobProperties](#awsiottwinmakermetadatatransferjobproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.IoTTwinMaker/Scene@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -23,6 +31,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.IoTTwinMaker/SceneProperties](#awsiottwinmakersceneproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.IoTTwinMaker/SyncJob@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IoTTwinMaker/SyncJobProperties](#awsiottwinmakersyncjobproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.IoTTwinMaker/Workspace@default
 * **Readable Scope(s)**: None
@@ -67,6 +83,17 @@
 * **UpdateDateTime**: string (ReadOnly): The last date and time when the entity was updated.
 * **WorkspaceId**: string (Required, Identifier): The ID of the workspace.
 
+## AWS.IoTTwinMaker/MetadataTransferJobProperties
+### Properties
+* **Arn**: string (Identifier): The ARN of the metadata transfer job.
+* **CreationDateTime**: string (ReadOnly): The creation date and time.
+* **Description**: string: The metadata transfer job description.
+* **Destination**: [DestinationConfiguration](#destinationconfiguration) (Required): The metadata transfer job destination.
+* **MetadataTransferJobId**: string: The metadata transfer job Id.
+* **Sources**: [SourceConfiguration](#sourceconfiguration)[] (Required): The metadata transfer job sources.
+* **Status**: [MetadataTransferJobStatus](#metadatatransferjobstatus) (ReadOnly): The metadata transfer job status.
+* **UpdateDateTime**: string (ReadOnly): The update date and time.
+
 ## AWS.IoTTwinMaker/SceneProperties
 ### Properties
 * **Arn**: string (ReadOnly): The ARN of the scene.
@@ -80,6 +107,17 @@
 * **Tags**: [Scene_Tags](#scenetags): A key-value pair to associate with a resource.
 * **UpdateDateTime**: string (ReadOnly): The date and time of the current update.
 * **WorkspaceId**: string (Required, Identifier): The ID of the scene.
+
+## AWS.IoTTwinMaker/SyncJobProperties
+### Properties
+* **Arn**: string (ReadOnly): The ARN of the SyncJob.
+* **CreationDateTime**: string (ReadOnly): The date and time when the sync job was created.
+* **State**: string (ReadOnly): The state of SyncJob.
+* **SyncRole**: string (Required): The IAM Role that execute SyncJob.
+* **SyncSource**: string (Required, Identifier): The source of the SyncJob.
+* **Tags**: [SyncJob_Tags](#syncjobtags): A key-value pair to associate with a resource.
+* **UpdateDateTime**: string (ReadOnly): The date and time when the sync job was updated.
+* **WorkspaceId**: string (Required, Identifier): The ID of the workspace.
 
 ## AWS.IoTTwinMaker/WorkspaceProperties
 ### Properties
@@ -110,6 +148,11 @@
 ## ComponentType_Tags
 ### Properties
 
+## DestinationConfiguration
+### Properties
+* **S3Configuration**: [S3DestinationConfiguration](#s3destinationconfiguration)
+* **Type**: string (Required)
+
 ## Entity_Components
 ### Properties
 
@@ -122,6 +165,14 @@
 ## Entity_Tags
 ### Properties
 
+## MetadataTransferJobStatus
+### Properties
+* **State**: string
+
+## S3DestinationConfiguration
+### Properties
+* **Location**: string (Required)
+
 ## Scene_GeneratedSceneMetadata
 ### Properties
 
@@ -130,6 +181,10 @@
 
 ## Scene_Tags
 ### Properties
+
+## SourceConfiguration
+### Properties
+* **Type**: string (Required)
 
 ## Status
 ### Properties
@@ -140,6 +195,9 @@
 ### Properties
 * **Error**: [Entity_Error](#entityerror)
 * **State**: string
+
+## SyncJob_Tags
+### Properties
 
 ## Workspace_Tags
 ### Properties

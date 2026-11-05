@@ -1,0 +1,398 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaLive-InputDevice",
+  "type": "AWS::MediaLive::InputDevice",
+  "time": "2026-11-05T21:06:07.014Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "InputDeviceHdSettings": {
+        "additionalProperties": false,
+        "description": "Settings that describe an input device of type HD.",
+        "properties": {
+          "ActiveInput": {
+            "description": "The input in use, HDMI or SDI.",
+            "enum": [
+              "HDMI",
+              "SDI"
+            ],
+            "type": "string"
+          },
+          "ConfiguredInput": {
+            "description": "The source that is configured for the input, or AUTO to let the device choose.",
+            "enum": [
+              "AUTO",
+              "HDMI",
+              "SDI"
+            ],
+            "type": "string"
+          },
+          "DeviceState": {
+            "description": "Whether the device is currently streaming or idle.",
+            "enum": [
+              "IDLE",
+              "STREAMING"
+            ],
+            "type": "string"
+          },
+          "Framerate": {
+            "description": "The frame rate of the video source.",
+            "type": "number"
+          },
+          "Height": {
+            "description": "The height of the video source, in pixels.",
+            "type": "integer"
+          },
+          "LatencyMs": {
+            "description": "The latency of the device, in milliseconds.",
+            "type": "integer"
+          },
+          "MaxBitrate": {
+            "description": "The maximum bitrate in bits per second.",
+            "type": "integer"
+          },
+          "ScanType": {
+            "description": "The scan type of the video source.",
+            "enum": [
+              "INTERLACED",
+              "PROGRESSIVE"
+            ],
+            "type": "string"
+          },
+          "Width": {
+            "description": "The width of the video source, in pixels.",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "InputDeviceMediaConnectSettings": {
+        "additionalProperties": false,
+        "description": "The MediaConnect flow the device sends its output to.",
+        "properties": {
+          "FlowArn": {
+            "description": "The ARN of the MediaConnect flow.",
+            "type": "string"
+          },
+          "RoleArn": {
+            "description": "The ARN of the role MediaLive assumes to send to the flow.",
+            "type": "string"
+          },
+          "SecretArn": {
+            "description": "The ARN of the Secrets Manager secret holding the encryption key.",
+            "type": "string"
+          },
+          "SourceName": {
+            "description": "The name of the MediaConnect flow source.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "InputDeviceNetworkSettings": {
+        "additionalProperties": false,
+        "description": "The network settings of the input device.",
+        "properties": {
+          "DnsAddresses": {
+            "description": "The DNS addresses of the input device.",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "Gateway": {
+            "description": "The network gateway the input device uses.",
+            "type": "string"
+          },
+          "IpAddress": {
+            "description": "The IP address of the input device.",
+            "type": "string"
+          },
+          "IpScheme": {
+            "description": "Whether the device is configured for a static IP address or DHCP.",
+            "enum": [
+              "STATIC",
+              "DHCP"
+            ],
+            "type": "string"
+          },
+          "SubnetMask": {
+            "description": "The subnet mask of the input device.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "InputDeviceUhdAudioChannelPairConfig": {
+        "additionalProperties": false,
+        "description": "The configuration of one audio channel pair on a UHD device.",
+        "properties": {
+          "Id": {
+            "description": "The ID of the audio channel pair.",
+            "type": "integer"
+          },
+          "Profile": {
+            "description": "The audio profile of the channel pair.",
+            "enum": [
+              "CBR-AAC_HQ-192000",
+              "CBR-AAC_HQ-256000",
+              "CBR-AAC_HQ-384000",
+              "CBR-AAC_HQ-512000",
+              "DISABLED",
+              "VBR-AAC_HE-64000",
+              "VBR-AAC_HHE-16000",
+              "VBR-AAC_LC-128000"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "InputDeviceUhdSettings": {
+        "additionalProperties": false,
+        "description": "Settings that describe an input device of type UHD.",
+        "properties": {
+          "ActiveInput": {
+            "description": "The input in use, HDMI or SDI.",
+            "enum": [
+              "HDMI",
+              "SDI"
+            ],
+            "type": "string"
+          },
+          "AudioChannelPairs": {
+            "description": "The audio channel pair configurations of the device.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/InputDeviceUhdAudioChannelPairConfig"
+            },
+            "type": "array"
+          },
+          "Codec": {
+            "description": "The codec the device uses to encode.",
+            "enum": [
+              "HEVC",
+              "AVC"
+            ],
+            "type": "string"
+          },
+          "ConfiguredInput": {
+            "description": "The source that is configured for the input, or AUTO to let the device choose.",
+            "enum": [
+              "AUTO",
+              "HDMI",
+              "SDI"
+            ],
+            "type": "string"
+          },
+          "DeviceState": {
+            "description": "Whether the device is currently streaming or idle.",
+            "enum": [
+              "IDLE",
+              "STREAMING"
+            ],
+            "type": "string"
+          },
+          "Framerate": {
+            "description": "The frame rate of the video source.",
+            "type": "number"
+          },
+          "Height": {
+            "description": "The height of the video source, in pixels.",
+            "type": "integer"
+          },
+          "InputResolution": {
+            "description": "The resolution of the video source.",
+            "type": "string"
+          },
+          "LatencyMs": {
+            "description": "The latency of the device, in milliseconds.",
+            "type": "integer"
+          },
+          "MaxBitrate": {
+            "description": "The maximum bitrate in bits per second.",
+            "type": "integer"
+          },
+          "MediaconnectSettings": {
+            "$ref": "#/definitions/InputDeviceMediaConnectSettings"
+          },
+          "ScanType": {
+            "description": "The scan type of the video source.",
+            "enum": [
+              "INTERLACED",
+              "PROGRESSIVE"
+            ],
+            "type": "string"
+          },
+          "Width": {
+            "description": "The width of the video source, in pixels.",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with the input device.",
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource schema for AWS::MediaLive::InputDevice. An input device is an AWS Elemental Link HD or UHD appliance registered to the account. This resource is read-only: devices are physical hardware that is claimed rather than created, and no MediaLive API deletes or deregisters one, so CloudFormation cannot own their lifecycle.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "medialive:ListInputDevices"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "medialive:DescribeInputDevice"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The unique ARN of the input device, e.g. 'arn:aws:medialive:us-west-2:123456789012:inputDevice:hd-0000aaaa1111bbbb2222cccc'.",
+        "type": "string"
+      },
+      "AvailabilityZone": {
+        "description": "The Availability Zone associated with this input device.",
+        "type": "string"
+      },
+      "ConnectionState": {
+        "description": "The state of the connection between the input device and AWS.",
+        "enum": [
+          "DISCONNECTED",
+          "CONNECTED"
+        ],
+        "type": "string"
+      },
+      "DeviceSettingsSyncState": {
+        "description": "Whether the device has applied the configuration MediaLive sent to it. SYNCED means it has; SYNCING means it has not yet.",
+        "enum": [
+          "SYNCED",
+          "SYNCING"
+        ],
+        "type": "string"
+      },
+      "DeviceUpdateStatus": {
+        "description": "The status of software on the input device.",
+        "enum": [
+          "UP_TO_DATE",
+          "NOT_UP_TO_DATE",
+          "UPDATING"
+        ],
+        "type": "string"
+      },
+      "HdDeviceSettings": {
+        "$ref": "#/definitions/InputDeviceHdSettings"
+      },
+      "Id": {
+        "description": "The unique ID of the input device, e.g. 'hd-0000aaaa1111bbbb2222cccc'.",
+        "type": "string"
+      },
+      "MacAddress": {
+        "description": "The network MAC address of the input device.",
+        "type": "string"
+      },
+      "MedialiveInputArns": {
+        "description": "The ARNs of the MediaLive inputs attached to the device. Returned only when OutputType is MEDIALIVE_INPUT.",
+        "insertionOrder": false,
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "Name": {
+        "description": "The name specified for the input device.",
+        "type": "string"
+      },
+      "NetworkSettings": {
+        "$ref": "#/definitions/InputDeviceNetworkSettings"
+      },
+      "OutputType": {
+        "description": "The output attachment type of the input device. MEDIACONNECT_FLOW when the device is the source for a MediaConnect flow, MEDIALIVE_INPUT when it is the source for a MediaLive input, NONE when it is unattached.",
+        "enum": [
+          "NONE",
+          "MEDIALIVE_INPUT",
+          "MEDIACONNECT_FLOW"
+        ],
+        "type": "string"
+      },
+      "SerialNumber": {
+        "description": "The unique serial number of the input device.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A collection of key-value pairs associated with the input device.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "Type": {
+        "description": "The type of the input device.",
+        "enum": [
+          "HD",
+          "UHD"
+        ],
+        "type": "string"
+      },
+      "UhdDeviceSettings": {
+        "$ref": "#/definitions/InputDeviceUhdSettings"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Id",
+      "/properties/Name",
+      "/properties/Type",
+      "/properties/SerialNumber",
+      "/properties/MacAddress",
+      "/properties/AvailabilityZone",
+      "/properties/ConnectionState",
+      "/properties/DeviceSettingsSyncState",
+      "/properties/DeviceUpdateStatus",
+      "/properties/OutputType",
+      "/properties/MedialiveInputArns",
+      "/properties/NetworkSettings",
+      "/properties/HdDeviceSettings",
+      "/properties/UhdDeviceSettings",
+      "/properties/Tags"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "medialive:DescribeInputDevice"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::MediaLive::InputDevice"
+  }
+}

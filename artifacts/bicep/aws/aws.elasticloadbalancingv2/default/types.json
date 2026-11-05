@@ -2399,5 +2399,156 @@
     },
     "readableScopes": 0,
     "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RevocationContent",
+    "properties": {
+      "RevocationType": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
+      "S3Bucket": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
+      "S3Key": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
+      "S3ObjectVersion": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RevocationId",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TrustStoreRevocation",
+    "properties": {
+      "NumberOfRevokedEntries": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0
+      },
+      "RevocationId": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 16
+      },
+      "RevocationType": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
+      },
+      "TrustStoreArn": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 16
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ElasticLoadBalancingV2/TrustStoreRevocationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/114"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/116"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ElasticLoadBalancingV2/TrustStoreRevocationProperties",
+    "properties": {
+      "RevocationContents": {
+        "type": {
+          "$ref": "#/118"
+        },
+        "flags": 4,
+        "description": "The attributes required to create a trust store revocation."
+      },
+      "RevocationId": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 18,
+        "description": "The ID associated with the revocation."
+      },
+      "TrustStoreArn": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the trust store."
+      },
+      "TrustStoreRevocations": {
+        "type": {
+          "$ref": "#/119"
+        },
+        "flags": 2,
+        "description": "The data associated with a trust store revocation"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ElasticLoadBalancingV2/TrustStoreRevocation",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/120"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ElasticLoadBalancingV2/TrustStoreRevocation@default",
+    "body": {
+      "$ref": "#/121"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

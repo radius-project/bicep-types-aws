@@ -1,0 +1,244 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ECS-ContainerInstance",
+  "type": "AWS::ECS::ContainerInstance",
+  "time": "2026-11-05T21:23:20.921Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Cluster",
+        "/properties/ContainerInstanceId"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "Attribute": {
+        "additionalProperties": false,
+        "description": "An attribute is a name-value pair that's associated with an Amazon ECS object.",
+        "properties": {
+          "Name": {
+            "description": "The name of the attribute. The name must contain between 1 and 128 characters.",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the attribute. The value must contain between 1 and 128 characters.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name"
+        ],
+        "type": "object"
+      },
+      "Resource": {
+        "additionalProperties": false,
+        "description": "Describes the resources available for a container instance.",
+        "properties": {
+          "DoubleValue": {
+            "description": "When the doubleValue type is set, the value of the resource must be a double precision floating-point type.",
+            "type": "number"
+          },
+          "IntegerValue": {
+            "description": "When the integerValue type is set, the value of the resource must be an integer.",
+            "type": "integer"
+          },
+          "LongValue": {
+            "description": "When the longValue type is set, the value of the resource must be an extended precision floating-point type.",
+            "type": "number"
+          },
+          "Name": {
+            "description": "The name of the resource, such as CPU, MEMORY, PORTS, PORTS_UDP, or a user-defined resource.",
+            "type": "string"
+          },
+          "StringSetValue": {
+            "description": "When the stringSetValue type is set, the value of the resource must be a string type.",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "Type": {
+            "description": "The type of the resource, such as INTEGER, DOUBLE, LONG, or STRINGSET.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "The metadata that you apply to the container instance to help you categorize and organize them. Each tag consists of a key and an optional value.",
+        "properties": {
+          "Key": {
+            "description": "One part of a key-value pair that makes up a tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The optional part of a key-value pair that makes up a tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "VersionInfo": {
+        "additionalProperties": false,
+        "description": "The version information for the Amazon ECS container agent and Docker daemon running on the container instance.",
+        "properties": {
+          "AgentHash": {
+            "description": "The Git commit hash for the Amazon ECS container agent build.",
+            "type": "string"
+          },
+          "AgentVersion": {
+            "description": "The version number of the Amazon ECS container agent.",
+            "type": "string"
+          },
+          "DockerVersion": {
+            "description": "The Docker version that's running on the container instance.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource schema for an Amazon ECS container instance. A container instance is an Amazon EC2 or external instance that is running the Amazon ECS agent and has been registered with a cluster. This is a read-only resource that provides visibility into container instances registered with a cluster.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "Cluster": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Cluster"
+          ]
+        },
+        "permissions": [
+          "ecs:ListContainerInstances"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ecs:DescribeContainerInstances",
+          "ecs:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ContainerInstanceArn"
+    ],
+    "properties": {
+      "AgentConnected": {
+        "description": "This parameter returns true if the agent is connected to Amazon ECS.",
+        "type": "boolean"
+      },
+      "Attributes": {
+        "description": "The attributes set for the container instance, either by the Amazon ECS container agent at instance registration or manually with the PutAttributes operation.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Attribute"
+        },
+        "type": "array"
+      },
+      "Cluster": {
+        "description": "The short name or full Amazon Resource Name (ARN) of the cluster that hosts the container instance.",
+        "type": "string"
+      },
+      "ContainerInstanceArn": {
+        "description": "The Amazon Resource Name (ARN) of the container instance.",
+        "type": "string"
+      },
+      "ContainerInstanceId": {
+        "description": "The Amazon ECS container instance identifier (the trailing segment of the container instance ARN).",
+        "type": "string"
+      },
+      "Ec2InstanceId": {
+        "description": "The ID of the container instance. For Amazon EC2 instances, this value is the Amazon EC2 instance ID. For external instances, this value is the AWS Systems Manager managed instance ID.",
+        "type": "string"
+      },
+      "PendingTasksCount": {
+        "description": "The number of tasks on the container instance that are in the PENDING status.",
+        "type": "integer"
+      },
+      "RegisteredAt": {
+        "description": "The Unix timestamp for the time when the container instance was registered.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "RegisteredResources": {
+        "description": "For CPU and memory resource types, this parameter describes the amount of each resource that was available on the container instance when the container agent registered it with Amazon ECS.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Resource"
+        },
+        "type": "array"
+      },
+      "RemainingResources": {
+        "description": "For CPU and memory resource types, this parameter describes the remaining CPU and memory that wasn't already allocated to tasks and is therefore available for new tasks.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Resource"
+        },
+        "type": "array"
+      },
+      "RunningTasksCount": {
+        "description": "The number of tasks on the container instance that have a desired status (desiredStatus) of RUNNING.",
+        "type": "integer"
+      },
+      "Status": {
+        "description": "The status of the container instance. The valid values are REGISTERING, REGISTRATION_FAILED, ACTIVE, INACTIVE, DEREGISTERING, or DRAINING.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The metadata applied to the container instance to help you categorize and organize them.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "Version": {
+        "description": "The version counter for the container instance. Every time a container instance experiences a change that triggers a CloudWatch event, the version counter is incremented.",
+        "type": "integer"
+      },
+      "VersionInfo": {
+        "$ref": "#/definitions/VersionInfo"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ContainerInstanceArn",
+      "/properties/Cluster",
+      "/properties/ContainerInstanceId",
+      "/properties/Ec2InstanceId",
+      "/properties/Version",
+      "/properties/VersionInfo",
+      "/properties/Status",
+      "/properties/AgentConnected",
+      "/properties/RunningTasksCount",
+      "/properties/PendingTasksCount",
+      "/properties/RegisteredResources",
+      "/properties/RemainingResources",
+      "/properties/RegisteredAt",
+      "/properties/Attributes",
+      "/properties/Tags"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "ecs:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::ECS::ContainerInstance"
+  }
+}

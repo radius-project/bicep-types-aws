@@ -1,0 +1,229 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-UserNotifications-NotificationEvent",
+  "type": "AWS::UserNotifications::NotificationEvent",
+  "time": "2026-10-22T00:13:45.9Z",
+  "schema": {
+    "additionalProperties": false,
+    "definitions": {
+      "Dimension": {
+        "additionalProperties": false,
+        "description": "A key-value pair of properties for an event.",
+        "properties": {
+          "Name": {
+            "description": "The name of the dimension.",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the dimension.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "MessageComponents": {
+        "additionalProperties": false,
+        "description": "Describes the components of a notification message.",
+        "properties": {
+          "Dimensions": {
+            "description": "A list of properties in key-value pairs.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/Dimension"
+            },
+            "maxItems": 10,
+            "type": "array"
+          },
+          "Headline": {
+            "description": "A sentence long summary.",
+            "type": "string"
+          },
+          "ParagraphSummary": {
+            "description": "A paragraph long or multiple sentence summary.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Resource": {
+        "additionalProperties": false,
+        "description": "A resource affected by or closely linked to an event.",
+        "properties": {
+          "Arn": {
+            "description": "The Amazon Resource Name (ARN) of the resource.",
+            "pattern": "^arn:[^:]*:[^:]*:[^:]*:.*$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "SourceEventMetadata": {
+        "additionalProperties": false,
+        "description": "Describes the metadata for a source event.",
+        "properties": {
+          "EventOccurrenceTime": {
+            "description": "The date and time the source event occurred.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "EventOriginRegion": {
+            "description": "The Region the event originated from.",
+            "maxLength": 32,
+            "type": "string"
+          },
+          "EventType": {
+            "description": "The type of event.",
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "EventTypeVersion": {
+            "description": "The version of the type of event.",
+            "maxLength": 3,
+            "minLength": 1,
+            "pattern": "^[0-9.]+$",
+            "type": "string"
+          },
+          "RelatedAccount": {
+            "description": "The primary AWS account of SourceEvent.",
+            "pattern": "^[0-9]{12}$",
+            "type": "string"
+          },
+          "RelatedResources": {
+            "description": "A list of resources related to this NotificationEvent.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/Resource"
+            },
+            "type": "array"
+          },
+          "Source": {
+            "description": "The AWS service the event originates from.",
+            "maxLength": 36,
+            "minLength": 1,
+            "pattern": "^aws.([a-z0-9\\-])+$",
+            "type": "string"
+          },
+          "SourceEventId": {
+            "description": "The source event id.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "EventTypeVersion",
+          "SourceEventId",
+          "RelatedAccount",
+          "Source",
+          "EventOccurrenceTime",
+          "EventType",
+          "RelatedResources"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Returns a NotificationEvent. This is a read-only resource type.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "notifications:ListNotificationEvents"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "notifications:GetNotificationEvent"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "AggregationEventType": {
+        "description": "The notifications aggregation type.",
+        "enum": [
+          "AGGREGATE",
+          "CHILD",
+          "NONE"
+        ],
+        "type": "string"
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the NotificationEvent.",
+        "pattern": "^arn:[-.a-z0-9]{1,63}:notifications:[-.a-z0-9]{1,63}:[0-9]{12}:configuration/[a-z0-9]{27}/event/[a-z0-9]{27}$",
+        "type": "string"
+      },
+      "CreationTime": {
+        "description": "The creation time of the NotificationEvent.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "EventStatus": {
+        "description": "The assessed nature of the event.",
+        "enum": [
+          "HEALTHY",
+          "UNHEALTHY"
+        ],
+        "type": "string"
+      },
+      "Id": {
+        "description": "The unique identifier for the NotificationEvent.",
+        "pattern": "^[a-z0-9]{27}$",
+        "type": "string"
+      },
+      "MessageComponents": {
+        "$ref": "#/definitions/MessageComponents"
+      },
+      "NotificationConfigurationArn": {
+        "description": "The ARN of the NotificationConfiguration.",
+        "pattern": "^arn:[-.a-z0-9]{1,63}:notifications::[0-9]{12}:configuration/[a-z0-9]{27}$",
+        "type": "string"
+      },
+      "NotificationType": {
+        "description": "The type of event causing the notification.",
+        "enum": [
+          "ALERT",
+          "WARNING",
+          "ANNOUNCEMENT",
+          "INFORMATIONAL"
+        ],
+        "type": "string"
+      },
+      "SchemaVersion": {
+        "description": "Version of the NotificationEvent schema.",
+        "enum": [
+          "v1.0"
+        ],
+        "type": "string"
+      },
+      "SourceEventDetailUrl": {
+        "description": "The source event URL.",
+        "maxLength": 2000,
+        "pattern": "^(https?)://.*$",
+        "type": "string"
+      },
+      "SourceEventMetadata": {
+        "$ref": "#/definitions/SourceEventMetadata"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/NotificationConfigurationArn",
+      "/properties/CreationTime",
+      "/properties/SchemaVersion",
+      "/properties/Id",
+      "/properties/SourceEventMetadata",
+      "/properties/MessageComponents",
+      "/properties/SourceEventDetailUrl",
+      "/properties/NotificationType",
+      "/properties/EventStatus",
+      "/properties/AggregationEventType"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::UserNotifications::NotificationEvent"
+  }
+}

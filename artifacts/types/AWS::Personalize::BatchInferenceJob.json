@@ -1,0 +1,193 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Personalize-BatchInferenceJob",
+  "type": "AWS::Personalize::BatchInferenceJob",
+  "time": "2026-11-05T17:33:38.999Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/JobName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/BatchInferenceJobMode",
+      "/properties/JobInput",
+      "/properties/JobName",
+      "/properties/JobOutput",
+      "/properties/NumResults",
+      "/properties/RoleArn",
+      "/properties/SolutionVersionArn",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "BatchInferenceJobInput": {
+        "additionalProperties": false,
+        "description": "The input configuration of a batch inference job.",
+        "properties": {
+          "S3DataSource": {
+            "$ref": "#/definitions/S3DataConfig"
+          }
+        },
+        "required": [
+          "S3DataSource"
+        ],
+        "type": "object"
+      },
+      "BatchInferenceJobOutput": {
+        "additionalProperties": false,
+        "description": "The output configuration parameters of a batch inference job.",
+        "properties": {
+          "S3DataDestination": {
+            "$ref": "#/definitions/S3DataConfig"
+          }
+        },
+        "required": [
+          "S3DataDestination"
+        ],
+        "type": "object"
+      },
+      "S3DataConfig": {
+        "additionalProperties": false,
+        "description": "The configuration details of an Amazon S3 input or output bucket.",
+        "properties": {
+          "Path": {
+            "description": "The file path of the Amazon S3 bucket.",
+            "maxLength": 256,
+            "pattern": "^(s3|http|https)://.+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Path"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Personalize::BatchInferenceJob",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "personalize:ListBatchInferenceJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "personalize:DescribeBatchInferenceJob",
+          "personalize:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/BatchInferenceJobArn"
+    ],
+    "properties": {
+      "BatchInferenceJobArn": {
+        "description": "The Amazon Resource Name (ARN) of the batch inference job.",
+        "maxLength": 256,
+        "pattern": "^arn:([a-z\\d-]+):personalize:.*:.*:.+$",
+        "type": "string"
+      },
+      "BatchInferenceJobMode": {
+        "description": "The mode of the batch inference job.",
+        "enum": [
+          "BATCH_INFERENCE",
+          "THEME_GENERATION"
+        ],
+        "type": "string"
+      },
+      "CreationDateTime": {
+        "description": "The time at which the batch inference job was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "JobInput": {
+        "$ref": "#/definitions/BatchInferenceJobInput"
+      },
+      "JobName": {
+        "description": "The name of the batch inference job.",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9\\-_]*$",
+        "type": "string"
+      },
+      "JobOutput": {
+        "$ref": "#/definitions/BatchInferenceJobOutput"
+      },
+      "LastUpdatedDateTime": {
+        "description": "The time at which the batch inference job was last updated.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "NumResults": {
+        "description": "The number of recommendations to retrieve.",
+        "type": "integer"
+      },
+      "RoleArn": {
+        "description": "The ARN of the IAM role that has permissions to read and write to your input and output Amazon S3 buckets.",
+        "maxLength": 256,
+        "pattern": "^arn:([a-z\\d-]+):iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$",
+        "type": "string"
+      },
+      "SolutionVersionArn": {
+        "description": "The ARN of the solution version used to generate the batch inference recommendations.",
+        "maxLength": 256,
+        "pattern": "^arn:([a-z\\d-]+):personalize:.*:.*:.+$",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the batch inference job.",
+        "maxLength": 256,
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags associated with the batch inference job.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/BatchInferenceJobArn",
+      "/properties/Status",
+      "/properties/CreationDateTime",
+      "/properties/LastUpdatedDateTime"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "personalize:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Personalize::BatchInferenceJob"
+  }
+}

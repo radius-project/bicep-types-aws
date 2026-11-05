@@ -95,6 +95,210 @@
   },
   {
     "$type": "ObjectType",
+    "name": "MinimumHealthyHosts",
+    "properties": {
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MinimumHealthyHostsPerZone",
+    "properties": {
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TimeBasedCanary",
+    "properties": {
+      "CanaryInterval": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      },
+      "CanaryPercentage": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TimeBasedLinear",
+    "properties": {
+      "LinearInterval": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      },
+      "LinearPercentage": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TrafficRoutingConfig",
+    "properties": {
+      "TimeBasedCanary": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      },
+      "TimeBasedLinear": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ZonalConfig",
+    "properties": {
+      "FirstZoneMonitorDurationInSeconds": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "MinimumHealthyHostsPerZone": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "MonitorDurationInSeconds": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CodeDeploy/DeploymentConfigProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CodeDeploy/DeploymentConfigProperties",
+    "properties": {
+      "ComputePlatform": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The destination platform type for the deployment (Lambda, Server, or ECS)."
+      },
+      "DeploymentConfigName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "A name for the deployment configuration. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the deployment configuration name. For more information, see Name Type."
+      },
+      "MinimumHealthyHosts": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The minimum number of healthy instances that should be available at any time during the deployment. There are two parameters expected in the input: type and value."
+      },
+      "TrafficRoutingConfig": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "The configuration that specifies how the deployment traffic is routed."
+      },
+      "ZonalConfig": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "The zonal deployment config that specifies how the zonal deployment behaves"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CodeDeploy/DeploymentConfig",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CodeDeploy/DeploymentConfig@default",
+    "body": {
+      "$ref": "#/16"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "Alarm",
     "properties": {
       "Name": {
@@ -112,21 +316,21 @@
     "properties": {
       "Alarms": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "A list of alarms configured for the deployment or deployment group. A maximum of 10 alarms can be added."
       },
       "Enabled": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "Indicates whether the alarm configuration is enabled."
       },
       "IgnorePollAlarmFailure": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "Indicates whether a deployment should continue if information about the current state of alarms cannot be retrieved from Amazon CloudWatch. The default value is false."
@@ -139,14 +343,14 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "Indicates whether a defined automatic rollback configuration is currently enabled."
       },
       "Events": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/47"
         },
         "flags": 0,
         "description": "The event type or types that trigger a rollback."
@@ -159,21 +363,21 @@
     "properties": {
       "DeploymentReadyOption": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Information about the action to take when newly provisioned instances are ready to receive traffic in a blue/green deployment."
       },
       "GreenFleetProvisioningOption": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "Information about how instances are provisioned for a replacement environment in a blue/green deployment."
       },
       "TerminateBlueInstancesOnDeploymentSuccess": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/22"
         },
         "flags": 0,
         "description": "Information about whether to terminate instances in the original fleet during a blue/green deployment."
@@ -193,7 +397,7 @@
       },
       "TerminationWaitTimeInMinutes": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "For an Amazon EC2 deployment, the number of minutes to wait after a successful blue/green deployment before terminating instances from the original environment. For an Amazon ECS deployment, the number of minutes before deleting the original (blue) task set. During an Amazon ECS deployment, CodeDeploy shifts traffic from the original (blue) task set to a replacement (green) task set. The maximum setting is 2880 minutes (2 days)."
@@ -213,14 +417,14 @@
       },
       "IgnoreApplicationStopFailures": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "If true, then if an ApplicationStop, BeforeBlockTraffic, or AfterBlockTraffic deployment lifecycle event to an instance fails, then the deployment continues to the next deployment lifecycle event. If false or not specified, then if a lifecycle event fails during a deployment to an instance, that deployment fails. If deployment to that instance is part of an overall deployment and the number of healthy hosts is not less than the minimum number of healthy hosts, then a deployment to the next instance is attempted."
       },
       "Revision": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/37"
         },
         "flags": 1,
         "description": "Information about the location of stored application artifacts and the service from which to retrieve them."
@@ -240,7 +444,7 @@
       },
       "WaitTimeInMinutes": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "The number of minutes to wait before the status of a blue/green deployment is changed to Stopped if rerouting is not started manually. Applies only to the STOP_DEPLOYMENT option for actionOnTimeout."
@@ -300,7 +504,7 @@
     "properties": {
       "Ec2TagSetList": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/48"
         },
         "flags": 0,
         "description": "The Amazon EC2 tags that are already applied to Amazon EC2 instances that you want to include in the deployment group. CodeDeploy includes all Amazon EC2 instances identified by any of the tags you specify in this deployment group."
@@ -313,7 +517,7 @@
     "properties": {
       "Ec2TagGroup": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": "A list that contains other lists of Amazon EC2 instance tag groups. For an instance to be included in the deployment group, it must be identified by all of the tag groups in the list."
@@ -359,7 +563,7 @@
     "properties": {
       "AutoScalingGroupProcessesToSuspend": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "The Amazon EC2 Auto Scaling processes to suspend during an in-place deployment. CodeDeploy suspends these processes before it deploys to instances in an Auto Scaling group, and resumes them when the deployment succeeds, fails, or is stopped. Valid values are Terminate, AZRebalance, InstanceRefresh, and ScheduledActions. Process names are case sensitive. To stop suspending processes, remove the property."
@@ -405,21 +609,21 @@
     "properties": {
       "ElbInfoList": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "An array that contains information about the load balancers to use for load balancing in a deployment. If you're using Classic Load Balancers, specify those load balancers in this array."
       },
       "TargetGroupInfoList": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "An array that contains information about the target groups to use for load balancing in a deployment. If you're using Application Load Balancers and Network Load Balancers, specify their associated target groups in this array."
       },
       "TargetGroupPairInfoList": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "The target group pair information. This is an array of TargeGroupPairInfo objects with a maximum size of one."
@@ -432,7 +636,7 @@
     "properties": {
       "OnPremisesTagSetList": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/54"
         },
         "flags": 0,
         "description": "A list that contains other lists of on-premises instance tag groups. For an instance to be included in the deployment group, it must be identified by all of the tag groups in the list."
@@ -445,7 +649,7 @@
     "properties": {
       "OnPremisesTagGroup": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/55"
         },
         "flags": 0,
         "description": "Information about groups of on-premises instance tags."
@@ -458,7 +662,7 @@
     "properties": {
       "GitHubLocation": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/32"
         },
         "flags": 0
       },
@@ -471,7 +675,7 @@
       },
       "S3Location": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/38"
         },
         "flags": 0
       }
@@ -584,21 +788,21 @@
     "properties": {
       "ProdTrafficRoute": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "The path used by a load balancer to route production traffic when an Amazon ECS deployment is complete."
       },
       "TargetGroups": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/56"
         },
         "flags": 0,
         "description": "One pair of target groups. One is associated with the original task set. The second is associated with the task set that serves traffic after the deployment is complete."
       },
       "TestTrafficRoute": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "An optional path used by a load balancer to route test traffic after an Amazon ECS deployment. Validation can occur while test traffic is served during a deployment."
@@ -611,7 +815,7 @@
     "properties": {
       "ListenerArns": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/57"
         },
         "flags": 0,
         "description": "The Amazon Resource Name (ARN) of one listener. The listener identifies the route between a target group and a load balancer. This is an array of strings with a maximum size of one."
@@ -624,7 +828,7 @@
     "properties": {
       "TriggerEvents": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/58"
         },
         "flags": 0,
         "description": "The event type or types that trigger notifications."
@@ -648,7 +852,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/7"
+      "$ref": "#/18"
     }
   },
   {
@@ -661,18 +865,15 @@
     }
   },
   {
-    "$type": "IntegerType"
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/17"
+      "$ref": "#/28"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/15"
+      "$ref": "#/26"
     }
   },
   {
@@ -684,37 +885,37 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/19"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
       "$ref": "#/30"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/31"
+      "$ref": "#/41"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/42"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/29"
+      "$ref": "#/36"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/30"
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/41"
     }
   },
   {
@@ -742,31 +943,31 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/18"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/15"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
       "$ref": "#/29"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/28"
+      "$ref": "#/26"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/33"
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/39"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/44"
     }
   },
   {
@@ -775,7 +976,7 @@
     "properties": {
       "AlarmConfiguration": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/19"
         },
         "flags": 0,
         "description": "Information about the Amazon CloudWatch alarms that are associated with the deployment group."
@@ -789,28 +990,28 @@
       },
       "AutoRollbackConfiguration": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "Information about the automatic rollback configuration that is associated with the deployment group. If you specify this property, don't specify the Deployment property."
       },
       "AutoScalingGroups": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/60"
         },
         "flags": 0,
         "description": "A list of associated Auto Scaling groups that CodeDeploy automatically deploys revisions to when new instances are created. Duplicates are not allowed."
       },
       "BlueGreenDeploymentConfiguration": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/21"
         },
         "flags": 0,
         "description": "Information about blue/green deployment options for a deployment group."
       },
       "Deployment": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "The application revision to deploy to this deployment group. If you specify this property, your target application revision is deployed as soon as the provisioning process is complete. If you specify this property, don't specify the AutoRollbackConfiguration property."
@@ -831,56 +1032,56 @@
       },
       "DeploymentStyle": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "Attributes that determine the type of deployment to run and whether to route deployment traffic behind a load balancer. If you specify this property with a blue/green deployment type, don't specify the AutoScalingGroups, LoadBalancerInfo, or Deployment properties."
       },
       "ECSServices": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/61"
         },
         "flags": 0,
         "description": "The target Amazon ECS services in the deployment group. This applies only to deployment groups that use the Amazon ECS compute platform. A target Amazon ECS service is specified as an Amazon ECS cluster and service name pair using the format <clustername>:<servicename>."
       },
       "Ec2DeploymentOptions": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "Options that control how CodeDeploy manages Amazon EC2 Auto Scaling groups during deployments to the deployment group. Applies only to in-place deployment groups on the EC2/On-premises compute platform that include at least one Auto Scaling group."
       },
       "Ec2TagFilters": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/62"
         },
         "flags": 0,
         "description": "The Amazon EC2 tags that are already applied to Amazon EC2 instances that you want to include in the deployment group. CodeDeploy includes all Amazon EC2 instances identified by any of the tags you specify in this deployment group. Duplicates are not allowed. You can specify EC2TagFilters or Ec2TagSet, but not both."
       },
       "Ec2TagSet": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Information about groups of tags applied to Amazon EC2 instances. Use when the deployment group includes only Amazon EC2 instances identified by all the tag groups. Cannot be used in the same call as ec2TagFilter."
       },
       "LoadBalancerInfo": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "Information about the load balancer to use in a deployment."
       },
       "OnPremisesInstanceTagFilters": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/63"
         },
         "flags": 0,
         "description": "The on-premises instance tags already applied to on-premises instances that you want to include in the deployment group. CodeDeploy includes all on-premises instances identified by any of the tags you specify in this deployment group. Duplicates are not allowed. You can specify OnPremisesInstanceTagFilters or OnPremisesInstanceTagSet, but not both."
       },
       "OnPremisesTagSet": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/35"
         },
         "flags": 0,
         "description": "Information about groups of tags applied to on-premises instances. The deployment group includes only on-premises instances identified by all the tag groups. You can specify OnPremisesInstanceTagFilters or OnPremisesInstanceTagSet, but not both."
@@ -901,21 +1102,21 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/64"
         },
         "flags": 0,
         "description": "The metadata that you apply to CodeDeploy deployment groups to help you organize and categorize them. Each tag consists of a key and an optional value, both of which you define."
       },
       "TerminationHookEnabled": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "Indicates whether the deployment group was configured to have CodeDeploy install a termination hook into an Auto Scaling group."
       },
       "TriggerConfigurations": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/65"
         },
         "flags": 0,
         "description": "Information about triggers associated with the deployment group. Duplicates are not allowed."
@@ -942,7 +1143,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/66"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -953,7 +1154,7 @@
     "$type": "ResourceType",
     "name": "AWS.CodeDeploy/DeploymentGroup@default",
     "body": {
-      "$ref": "#/57"
+      "$ref": "#/67"
     },
     "readableScopes": 0,
     "writableScopes": 0

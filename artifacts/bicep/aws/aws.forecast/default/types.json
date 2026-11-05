@@ -1,6 +1,238 @@
 [
   {
     "$type": "ObjectType",
+    "name": "Attributes",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Key",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KmsKeyArn",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RoleArn",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Value",
+    "properties": {}
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Dataset",
+    "properties": {
+      "AttributeName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Name of the dataset field"
+      },
+      "AttributeType": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Data type of the field"
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Forecast/DatasetProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Dataset_EncryptionConfig",
+    "properties": {
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Dataset_Attributes",
+    "properties": {
+      "AttributeName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Name of the dataset field"
+      },
+      "AttributeType": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Data type of the field"
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Dataset_Schema",
+    "properties": {
+      "Attributes": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Dataset_Tags",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Forecast/DatasetProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18
+      },
+      "DataFrequency": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Frequency of data collection. This parameter is required for RELATED_TIME_SERIES"
+      },
+      "DatasetName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "A name for the dataset"
+      },
+      "DatasetType": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The dataset type"
+      },
+      "Domain": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The domain associated with the dataset"
+      },
+      "EncryptionConfig": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      },
+      "Schema": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 1
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Forecast/Dataset",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Forecast/Dataset@default",
+    "body": {
+      "$ref": "#/16"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "Arn",
     "properties": {}
   },
@@ -20,22 +252,19 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       }
     }
-  },
-  {
-    "$type": "StringType"
   },
   {
     "$type": "IntegerType"
@@ -47,13 +276,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/21"
     }
   },
   {
@@ -62,35 +291,35 @@
     "properties": {
       "DatasetArns": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "An array of Amazon Resource Names (ARNs) of the datasets that you want to include in the dataset group."
       },
       "DatasetGroupArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the dataset group to delete."
       },
       "DatasetGroupName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "A name for the dataset group."
       },
       "Domain": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The domain associated with the dataset group. When you add a dataset to a dataset group, this value and the value specified for the Domain parameter of the CreateDataset operation must match."
       },
       "Tags": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "The tags of Application Insights application."
@@ -103,21 +332,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/26"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -128,7 +357,7 @@
     "$type": "ResourceType",
     "name": "AWS.Forecast/DatasetGroup@default",
     "body": {
-      "$ref": "#/10"
+      "$ref": "#/27"
     },
     "readableScopes": 0,
     "writableScopes": 0

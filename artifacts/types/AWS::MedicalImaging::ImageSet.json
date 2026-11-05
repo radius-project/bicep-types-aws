@@ -1,0 +1,191 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MedicalImaging-ImageSet",
+  "type": "AWS::MedicalImaging::ImageSet",
+  "time": "2026-11-05T20:44:01.407Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/DatastoreId",
+        "/properties/ImageSetId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DatastoreId"
+    ],
+    "definitions": {
+      "ImageSetState": {
+        "description": "The state of the image set.",
+        "enum": [
+          "ACTIVE",
+          "LOCKED",
+          "DELETED"
+        ],
+        "type": "string"
+      },
+      "ImageSetWorkflowStatus": {
+        "description": "The workflow status of the image set.",
+        "enum": [
+          "CREATED",
+          "COPIED",
+          "COPYING",
+          "COPYING_WITH_READ_ONLY_ACCESS",
+          "COPY_FAILED",
+          "UPDATING",
+          "UPDATING_FOR_STUDY_CONSISTENCY",
+          "UPDATED",
+          "UPDATE_FAILED",
+          "DELETING",
+          "DELETED",
+          "IMPORTING",
+          "IMPORTED",
+          "IMPORT_FAILED"
+        ],
+        "type": "string"
+      },
+      "StorageTier": {
+        "description": "The storage tier of the image set.",
+        "enum": [
+          "FREQUENT_ACCESS",
+          "ARCHIVE_INSTANT_ACCESS"
+        ],
+        "type": "string"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with the resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Definition of AWS::MedicalImaging::ImageSet Resource Type",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "DatastoreId": {
+              "description": "The identifier of the data store to search.",
+              "pattern": "^[0-9a-z]{32}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "DatastoreId"
+          ]
+        },
+        "permissions": [
+          "medical-imaging:SearchImageSets"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "medical-imaging:GetImageSet",
+          "medical-imaging:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ImageSetArn"
+    ],
+    "properties": {
+      "CreatedAt": {
+        "description": "The timestamp when the image set was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DatastoreId": {
+        "description": "The identifier of the data store in which the image set exists.",
+        "pattern": "^[0-9a-z]{32}$",
+        "type": "string"
+      },
+      "ImageSetArn": {
+        "description": "The Amazon Resource Name (ARN) of the image set.",
+        "pattern": "^arn:aws((-us-gov)|(-iso)|(-iso-b)|(-cn))?:medical-imaging:[a-z0-9-]+:[0-9]{12}:datastore/[0-9a-z]{32}(/imageset/[0-9a-z]{32})?$",
+        "type": "string"
+      },
+      "ImageSetId": {
+        "description": "The unique identifier of the image set.",
+        "pattern": "^[0-9a-z]{32}$",
+        "type": "string"
+      },
+      "ImageSetState": {
+        "$ref": "#/definitions/ImageSetState"
+      },
+      "ImageSetWorkflowStatus": {
+        "$ref": "#/definitions/ImageSetWorkflowStatus"
+      },
+      "IsPrimary": {
+        "description": "Whether this is the primary image set.",
+        "type": "boolean"
+      },
+      "LastAccessedAt": {
+        "description": "The timestamp when the image set was last accessed.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "StorageTier": {
+        "$ref": "#/definitions/StorageTier"
+      },
+      "Tags": {
+        "description": "Tags associated with the image set.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "UpdatedAt": {
+        "description": "The timestamp when the image set was last updated.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "VersionId": {
+        "description": "The version identifier of the image set.",
+        "pattern": "^\\d+$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ImageSetArn",
+      "/properties/ImageSetId",
+      "/properties/VersionId",
+      "/properties/ImageSetState",
+      "/properties/ImageSetWorkflowStatus",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt",
+      "/properties/LastAccessedAt",
+      "/properties/IsPrimary",
+      "/properties/StorageTier",
+      "/properties/Tags"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "medical-imaging:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::MedicalImaging::ImageSet"
+  }
+}

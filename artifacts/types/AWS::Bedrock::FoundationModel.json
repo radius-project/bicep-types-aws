@@ -1,0 +1,159 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Bedrock-FoundationModel",
+  "type": "AWS::Bedrock::FoundationModel",
+  "time": "2026-11-05T20:51:06.563Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ModelId"
+      ]
+    ],
+    "additionalProperties": false,
+    "description": "Definition of AWS::Bedrock::FoundationModel Resource Type",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "bedrock:ListFoundationModels"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "bedrock:GetFoundationModel"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ModelArn"
+    ],
+    "properties": {
+      "CustomizationsSupported": {
+        "description": "The customization that the model supports.",
+        "insertionOrder": false,
+        "items": {
+          "enum": [
+            "FINE_TUNING",
+            "CONTINUED_PRE_TRAINING",
+            "DISTILLATION"
+          ],
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "InferenceTypesSupported": {
+        "description": "The inference types that the model supports.",
+        "insertionOrder": false,
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "InputModalities": {
+        "description": "The input modalities that the model supports.",
+        "insertionOrder": false,
+        "items": {
+          "enum": [
+            "TEXT",
+            "IMAGE",
+            "EMBEDDING"
+          ],
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "ModelArn": {
+        "description": "The Amazon Resource Name (ARN) of the foundation model.",
+        "pattern": "^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}::foundation-model/[a-z0-9-]{1,63}[.]{1}([a-z0-9-]{1,63}[.]){0,2}[a-z0-9-]{1,63}([:][a-z0-9-]{1,63}){0,2}$",
+        "type": "string"
+      },
+      "ModelId": {
+        "description": "The model identifier.",
+        "maxLength": 140,
+        "pattern": "^[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([a-z0-9-]{1,63}[.]){0,2}[a-z0-9-]{1,63}([:][a-z0-9-]{1,63}){0,2}(/[a-z0-9]{12}|)$",
+        "type": "string"
+      },
+      "ModelLifecycle": {
+        "additionalProperties": false,
+        "description": "Details about whether a model version is available or deprecated.",
+        "properties": {
+          "EndOfLifeTime": {
+            "description": "Time when the model is no longer available for use.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "LegacyTime": {
+            "description": "Time when the model enters legacy state. Models in legacy state can still be used, but users should plan to transition to an Active model before the end of life time.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "PublicExtendedAccessTime": {
+            "description": "Public extended access portion of the legacy period, when users should expect higher pricing.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "StartOfLifeTime": {
+            "description": "Launch time when the model first becomes available.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "Status": {
+            "description": "Specifies whether a model version is available (ACTIVE) or deprecated (LEGACY).",
+            "enum": [
+              "ACTIVE",
+              "LEGACY"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Status"
+        ],
+        "type": "object"
+      },
+      "ModelName": {
+        "description": "The model name.",
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
+      "OutputModalities": {
+        "description": "The output modalities that the model supports.",
+        "insertionOrder": false,
+        "items": {
+          "enum": [
+            "TEXT",
+            "IMAGE",
+            "EMBEDDING"
+          ],
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "ProviderName": {
+        "description": "The model's provider name.",
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
+      "ResponseStreamingSupported": {
+        "description": "Indicates whether the model supports streaming.",
+        "type": "boolean"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ModelArn",
+      "/properties/ModelId",
+      "/properties/ModelName",
+      "/properties/ProviderName",
+      "/properties/InputModalities",
+      "/properties/OutputModalities",
+      "/properties/ResponseStreamingSupported",
+      "/properties/CustomizationsSupported",
+      "/properties/InferenceTypesSupported",
+      "/properties/ModelLifecycle"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::Bedrock::FoundationModel"
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-PipelineExecution",
+  "type": "AWS::SageMaker::PipelineExecution",
+  "time": "2026-11-05T21:11:06.262Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/PipelineName",
+        "/properties/PipelineExecutionId"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "IamIdentity": {
+        "additionalProperties": false,
+        "properties": {
+          "Arn": {
+            "description": "The Amazon Resource Name (ARN) of the IAM identity.",
+            "type": "string"
+          },
+          "PrincipalId": {
+            "description": "The ID of the principal that assumes the IAM identity.",
+            "type": "string"
+          },
+          "SourceIdentity": {
+            "description": "The person or application which assumes the IAM identity.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ParallelismConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration that controls the parallelism of the pipeline.",
+        "properties": {
+          "MaxParallelExecutionSteps": {
+            "description": "The max number of steps that can be executed in parallel.",
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "MaxParallelExecutionSteps"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "UserContext": {
+        "additionalProperties": false,
+        "properties": {
+          "IamIdentity": {
+            "$ref": "#/definitions/IamIdentity"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::SageMaker::PipelineExecution",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "PipelineName": {
+              "maxLength": 2048,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "PipelineName"
+          ]
+        },
+        "permissions": [
+          "sagemaker:ListPipelineExecutions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "sagemaker:DescribePipelineExecution",
+          "sagemaker:ListTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/PipelineExecutionArn"
+    ],
+    "properties": {
+      "CreatedBy": {
+        "$ref": "#/definitions/UserContext",
+        "description": "Information about the user who created the pipeline execution."
+      },
+      "CreationTime": {
+        "description": "The time when the pipeline execution was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "LastModifiedBy": {
+        "$ref": "#/definitions/UserContext",
+        "description": "Information about the user who last modified the pipeline execution."
+      },
+      "LastModifiedTime": {
+        "description": "The time when the pipeline execution was modified last.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ParallelismConfiguration": {
+        "$ref": "#/definitions/ParallelismConfiguration"
+      },
+      "PipelineArn": {
+        "description": "The ARN of the pipeline.",
+        "maxLength": 2048,
+        "minLength": 0,
+        "pattern": "^arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:pipeline\\/.*$",
+        "type": "string"
+      },
+      "PipelineExecutionArn": {
+        "description": "The Amazon Resource Name (ARN) of the pipeline execution.",
+        "maxLength": 2048,
+        "minLength": 0,
+        "pattern": "^arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:pipeline\\/.*\\/execution\\/.*$",
+        "type": "string"
+      },
+      "PipelineExecutionDescription": {
+        "description": "The description of the pipeline execution.",
+        "maxLength": 3072,
+        "minLength": 0,
+        "type": "string"
+      },
+      "PipelineExecutionDisplayName": {
+        "description": "The display name of the pipeline execution.",
+        "maxLength": 82,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,81}$",
+        "type": "string"
+      },
+      "PipelineExecutionId": {
+        "description": "The unique identifier of the pipeline execution.",
+        "type": "string"
+      },
+      "PipelineExecutionStatus": {
+        "description": "The status of the pipeline execution.",
+        "enum": [
+          "Executing",
+          "Stopping",
+          "Stopped",
+          "Failed",
+          "Succeeded"
+        ],
+        "type": "string"
+      },
+      "PipelineName": {
+        "description": "The name or ARN of the pipeline.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "type": "string"
+      },
+      "PipelineVersionId": {
+        "description": "The ID of the pipeline version to start execution from.",
+        "minimum": 1,
+        "type": "integer"
+      },
+      "Tags": {
+        "description": "Tags associated with the pipeline execution.",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/PipelineExecutionArn",
+      "/properties/PipelineExecutionId",
+      "/properties/PipelineName",
+      "/properties/PipelineExecutionDisplayName",
+      "/properties/PipelineExecutionDescription",
+      "/properties/ParallelismConfiguration",
+      "/properties/PipelineVersionId",
+      "/properties/PipelineExecutionStatus",
+      "/properties/PipelineArn",
+      "/properties/CreationTime",
+      "/properties/LastModifiedTime",
+      "/properties/CreatedBy",
+      "/properties/LastModifiedBy",
+      "/properties/Tags"
+    ],
+    "required": [],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "sagemaker:ListTags"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::SageMaker::PipelineExecution"
+  }
+}

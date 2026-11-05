@@ -1,0 +1,187 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DAX-Cluster",
+  "type": "AWS::DAX::Cluster",
+  "time": "2026-11-02T22:03:35.392Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/IAMRoleARN",
+      "/properties/SSESpecification",
+      "/properties/ClusterEndpointEncryptionType",
+      "/properties/NetworkType",
+      "/properties/ClusterName",
+      "/properties/NodeType",
+      "/properties/SubnetGroupName"
+    ],
+    "definitions": {
+      "SSESpecification": {
+        "additionalProperties": false,
+        "properties": {
+          "SSEEnabled": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::DAX::Cluster",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "dax:CreateCluster",
+          "dax:DescribeClusters",
+          "dax:TagResource",
+          "dax:ListTags",
+          "dax:CreateParameterGroup",
+          "dax:CreateSubnetGroup",
+          "ec2:CreateNetworkInterface",
+          "ec2:DeleteNetworkInterface",
+          "ec2:DescribeNetworkInterfaces",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeVpcs",
+          "iam:GetRole",
+          "iam:PassRole"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "dax:DeleteCluster",
+          "dax:DescribeClusters"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "dax:DescribeClusters"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "dax:DescribeClusters",
+          "dax:ListTags"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "dax:UpdateCluster",
+          "dax:DescribeClusters",
+          "dax:TagResource",
+          "dax:UntagResource",
+          "dax:ListTags",
+          "dax:IncreaseReplicationFactor",
+          "dax:DecreaseReplicationFactor"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ClusterName"
+    ],
+    "properties": {
+      "Arn": {
+        "type": "string"
+      },
+      "AvailabilityZones": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "ClusterDiscoveryEndpoint": {
+        "type": "string"
+      },
+      "ClusterDiscoveryEndpointURL": {
+        "type": "string"
+      },
+      "ClusterEndpointEncryptionType": {
+        "maxLength": 255,
+        "minLength": 1,
+        "type": "string"
+      },
+      "ClusterName": {
+        "maxLength": 20,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Description": {
+        "maxLength": 255,
+        "minLength": 1,
+        "type": "string"
+      },
+      "IAMRoleARN": {
+        "maxLength": 255,
+        "minLength": 1,
+        "type": "string"
+      },
+      "NetworkType": {
+        "maxLength": 10,
+        "minLength": 4,
+        "type": "string"
+      },
+      "NodeType": {
+        "maxLength": 50,
+        "minLength": 1,
+        "type": "string"
+      },
+      "NotificationTopicARN": {
+        "maxLength": 255,
+        "minLength": 1,
+        "type": "string"
+      },
+      "ParameterGroupName": {
+        "maxLength": 255,
+        "minLength": 1,
+        "type": "string"
+      },
+      "PreferredMaintenanceWindow": {
+        "maxLength": 255,
+        "minLength": 1,
+        "type": "string"
+      },
+      "ReplicationFactor": {
+        "type": "integer"
+      },
+      "SSESpecification": {
+        "$ref": "#/definitions/SSESpecification"
+      },
+      "SecurityGroupIds": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "SubnetGroupName": {
+        "maxLength": 255,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Tags": {
+        "type": "object"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ClusterDiscoveryEndpoint",
+      "/properties/Arn",
+      "/properties/ClusterDiscoveryEndpointURL"
+    ],
+    "required": [
+      "ReplicationFactor",
+      "IAMRoleARN",
+      "NodeType"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "dax:TagResource",
+        "dax:UntagResource",
+        "dax:ListTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::DAX::Cluster"
+  }
+}

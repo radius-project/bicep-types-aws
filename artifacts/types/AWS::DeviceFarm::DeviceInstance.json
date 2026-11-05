@@ -1,0 +1,160 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DeviceFarm-DeviceInstance",
+  "type": "AWS::DeviceFarm::DeviceInstance",
+  "time": "2026-11-05T21:23:38.95Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "InstanceProfile": {
+        "additionalProperties": false,
+        "description": "Represents the instance profile associated with the device instance.",
+        "properties": {
+          "Arn": {
+            "description": "The Amazon Resource Name (ARN) of the instance profile.",
+            "maxLength": 1011,
+            "minLength": 32,
+            "pattern": "^arn:aws:devicefarm:.+$",
+            "type": "string"
+          },
+          "Description": {
+            "description": "The description of the instance profile.",
+            "maxLength": 16384,
+            "type": "string"
+          },
+          "ExcludeAppPackagesFromCleanup": {
+            "description": "An array of app package names to exclude from cleanup.",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "Name": {
+            "description": "The name of the instance profile.",
+            "maxLength": 256,
+            "type": "string"
+          },
+          "PackageCleanup": {
+            "description": "When set to true, Device Farm removes app packages after a test run.",
+            "type": "boolean"
+          },
+          "RebootAfterUse": {
+            "description": "When set to true, Device Farm reboots the instance after a test run.",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::DeviceFarm::DeviceInstance. Represents a device instance associated with a private device fleet in AWS Device Farm. This is a read-only resource that provides information about a private device instance.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "devicefarm:ListDeviceInstances"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "devicefarm:GetDeviceInstance",
+          "devicefarm:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the device instance.",
+        "maxLength": 1011,
+        "minLength": 32,
+        "pattern": "^arn:aws:devicefarm:.+$",
+        "type": "string"
+      },
+      "DeviceArn": {
+        "description": "The ARN of the device on which the device instance is running.",
+        "maxLength": 1011,
+        "minLength": 32,
+        "pattern": "^arn:aws:devicefarm:.+$",
+        "type": "string"
+      },
+      "InstanceProfile": {
+        "$ref": "#/definitions/InstanceProfile"
+      },
+      "Labels": {
+        "description": "An array of strings that describe the device instance.",
+        "insertionOrder": false,
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "Status": {
+        "description": "The status of the device instance.",
+        "enum": [
+          "IN_USE",
+          "PREPARING",
+          "AVAILABLE",
+          "NOT_AVAILABLE"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags assigned to the device instance.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "Udid": {
+        "description": "The unique device identifier (UDID) of the device instance.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/DeviceArn",
+      "/properties/Labels",
+      "/properties/Status",
+      "/properties/Udid",
+      "/properties/InstanceProfile"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "devicefarm:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::DeviceFarm::DeviceInstance"
+  }
+}

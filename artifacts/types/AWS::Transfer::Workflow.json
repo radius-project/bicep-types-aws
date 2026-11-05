@@ -1,13 +1,14 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Transfer-Workflow",
   "type": "AWS::Transfer::Workflow",
-  "time": "2026-10-12T14:02:54.863Z",
+  "time": "2026-11-05T14:59:07.904Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/Steps",
       "/properties/OnExceptionSteps",
-      "/properties/Description"
+      "/properties/Description",
+      "/properties/StructuredLogDestinations"
     ],
     "definitions": {
       "EfsInputFileLocation": {
@@ -304,12 +305,23 @@
     "handlers": {
       "create": {
         "permissions": [
+          "logs:CreateLogDelivery",
+          "logs:DeleteLogDelivery",
+          "logs:DescribeLogGroups",
+          "logs:DescribeResourcePolicies",
+          "logs:GetLogDelivery",
+          "logs:ListLogDeliveries",
+          "logs:PutResourcePolicy",
+          "logs:UpdateLogDelivery",
           "transfer:CreateWorkflow",
           "transfer:TagResource"
         ]
       },
       "delete": {
         "permissions": [
+          "logs:DeleteLogDelivery",
+          "logs:GetLogDelivery",
+          "logs:ListLogDeliveries",
           "transfer:DeleteWorkflow"
         ]
       },
@@ -367,6 +379,19 @@
         "maxItems": 8,
         "type": "array",
         "uniqueItems": true
+      },
+      "StructuredLogDestinations": {
+        "description": "Specifies the log destinations for the workflow.",
+        "insertionOrder": false,
+        "items": {
+          "maxLength": 1600,
+          "minLength": 20,
+          "pattern": "^arn:\\S+$",
+          "type": "string"
+        },
+        "maxItems": 1,
+        "minItems": 0,
+        "type": "array"
       },
       "Tags": {
         "description": "Key-value pairs that can be used to group and search for workflows. Tags are metadata attached to workflows for any purpose.",

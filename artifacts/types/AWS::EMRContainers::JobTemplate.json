@@ -1,0 +1,407 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EMRContainers-JobTemplate",
+  "type": "AWS::EMRContainers::JobTemplate",
+  "time": "2026-11-05T17:35:09.929Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name",
+      "/properties/JobTemplateData",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "Configuration": {
+        "additionalProperties": false,
+        "description": "A configuration specification to be used when provisioning virtual clusters, which can include configurations for applications and software bundled with Amazon EMR on EKS.",
+        "properties": {
+          "Classification": {
+            "description": "The classification within a configuration.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "Configurations": {
+            "items": {
+              "$ref": "#/definitions/Configuration"
+            },
+            "maxItems": 100,
+            "type": "array"
+          },
+          "Properties": {
+            "additionalProperties": false,
+            "description": "A set of properties specified within a configuration classification.",
+            "maxProperties": 100,
+            "patternProperties": {
+              "^.+$": {
+                "maxLength": 1024,
+                "minLength": 1,
+                "pattern": "\\S",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "Classification"
+        ],
+        "type": "object"
+      },
+      "JobDriver": {
+        "additionalProperties": false,
+        "description": "Specify the driver that the job runs on. Exactly one of the two available job drivers is required, either SparkSqlJobDriver or SparkSubmitJobDriver.",
+        "oneOf": [
+          {
+            "required": [
+              "SparkSubmitJobDriver"
+            ]
+          },
+          {
+            "required": [
+              "SparkSqlJobDriver"
+            ]
+          }
+        ],
+        "properties": {
+          "SparkSqlJobDriver": {
+            "$ref": "#/definitions/SparkSqlJobDriver"
+          },
+          "SparkSubmitJobDriver": {
+            "$ref": "#/definitions/SparkSubmitJobDriver"
+          }
+        },
+        "type": "object"
+      },
+      "JobTemplateData": {
+        "additionalProperties": false,
+        "description": "The values of a StartJobRun API request used in job runs started using the job template.",
+        "properties": {
+          "ConfigurationOverrides": {
+            "$ref": "#/definitions/ParametricConfigurationOverrides"
+          },
+          "ExecutionRoleArn": {
+            "description": "The execution role ARN of the job run, or a template parameter reference.",
+            "maxLength": 2048,
+            "minLength": 4,
+            "pattern": "^(^arn:(aws[a-zA-Z0-9-]*):iam::(\\d{12})?:(role((\\u002F)|(\\u002F[\\u0021-\\u007F]+\\u002F))[\\w+=,.@-]+)$)|([\\.\\-_\\#A-Za-z0-9\\$\\{\\}]+)$",
+            "type": "string"
+          },
+          "JobDriver": {
+            "$ref": "#/definitions/JobDriver"
+          },
+          "JobTags": {
+            "additionalProperties": false,
+            "description": "The tags assigned to jobs started using the job template.",
+            "maxProperties": 50,
+            "patternProperties": {
+              "^.+$": {
+                "maxLength": 256,
+                "minLength": 0,
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "ParameterConfiguration": {
+            "additionalProperties": false,
+            "description": "The configuration of parameters existing in the job template.",
+            "maxProperties": 100,
+            "patternProperties": {
+              "^[\\.\\-_#A-Za-z0-9]+$": {
+                "$ref": "#/definitions/TemplateParameterConfiguration"
+              }
+            },
+            "type": "object"
+          },
+          "ReleaseLabel": {
+            "description": "The release version of Amazon EMR, or a template parameter reference.",
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^([\\.\\-_/A-Za-z0-9]+|\\$\\{[a-zA-Z]\\w*\\})$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ExecutionRoleArn",
+          "ReleaseLabel",
+          "JobDriver"
+        ],
+        "type": "object"
+      },
+      "ParametricCloudWatchMonitoringConfiguration": {
+        "additionalProperties": false,
+        "description": "A configuration for CloudWatch monitoring. This data type allows job template parameters to be specified within.",
+        "properties": {
+          "LogGroupName": {
+            "description": "The name of the log group for log publishing, or a template parameter reference.",
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "^[\\.\\-_/#A-Za-z0-9\\$\\{\\}]+$",
+            "type": "string"
+          },
+          "LogStreamNamePrefix": {
+            "description": "The specified name prefix for log streams.",
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ParametricConfigurationOverrides": {
+        "additionalProperties": false,
+        "description": "A configuration specification to be used to override existing configurations. This data type allows job template parameters to be specified within.",
+        "properties": {
+          "ApplicationConfiguration": {
+            "items": {
+              "$ref": "#/definitions/Configuration"
+            },
+            "maxItems": 100,
+            "type": "array"
+          },
+          "MonitoringConfiguration": {
+            "$ref": "#/definitions/ParametricMonitoringConfiguration"
+          }
+        },
+        "type": "object"
+      },
+      "ParametricMonitoringConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration setting for monitoring. This data type allows job template parameters to be specified within.",
+        "properties": {
+          "CloudWatchMonitoringConfiguration": {
+            "$ref": "#/definitions/ParametricCloudWatchMonitoringConfiguration"
+          },
+          "PersistentAppUI": {
+            "description": "Monitoring configurations for the persistent application UI, or a template parameter reference.",
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "^[\\.\\-_/#A-Za-z0-9\\$\\{\\}]+$",
+            "type": "string"
+          },
+          "S3MonitoringConfiguration": {
+            "$ref": "#/definitions/ParametricS3MonitoringConfiguration"
+          }
+        },
+        "type": "object"
+      },
+      "ParametricS3MonitoringConfiguration": {
+        "additionalProperties": false,
+        "description": "Amazon S3 configuration for monitoring log publishing. This data type allows job template parameters to be specified within.",
+        "properties": {
+          "LogUri": {
+            "description": "Amazon S3 destination URI for log publishing.",
+            "maxLength": 10280,
+            "minLength": 1,
+            "pattern": "^[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\r\\n\\t]*$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "SparkSqlJobDriver": {
+        "additionalProperties": false,
+        "description": "The job driver for job type.",
+        "properties": {
+          "EntryPoint": {
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "SparkSqlParameters": {
+            "maxLength": 102400,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "SparkSubmitJobDriver": {
+        "additionalProperties": false,
+        "description": "The information about job driver for Spark submit.",
+        "properties": {
+          "EntryPoint": {
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "EntryPointArguments": {
+            "items": {
+              "maxLength": 10280,
+              "minLength": 1,
+              "pattern": "\\S",
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "SparkSubmitParameters": {
+            "maxLength": 102400,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          }
+        },
+        "required": [
+          "EntryPoint"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with the job template.",
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "TemplateParameterConfiguration": {
+        "additionalProperties": false,
+        "description": "The configuration of a job template parameter.",
+        "properties": {
+          "DefaultValue": {
+            "description": "The default value for the job template parameter.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "Type": {
+            "description": "The type of the job template parameter.",
+            "enum": [
+              "NUMBER",
+              "STRING"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Represents an Amazon EMR on EKS job template. A job template stores the values of a StartJobRun API request in a reusable template, so they can be used to start a job run or to enforce certain values in a StartJobRun API request.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "emr-containers:CreateJobTemplate",
+          "emr-containers:TagResource",
+          "emr-containers:DescribeJobTemplate",
+          "emr-containers:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "emr-containers:DeleteJobTemplate",
+          "emr-containers:DescribeJobTemplate",
+          "emr-containers:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "emr-containers:ListJobTemplates"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "emr-containers:DescribeJobTemplate",
+          "emr-containers:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of the job template.",
+        "maxLength": 1024,
+        "minLength": 60,
+        "pattern": "^arn:(aws[a-zA-Z0-9-]*):emr-containers:.+:(\\d{12}):\\/jobtemplates\\/[0-9a-zA-Z]+$",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The date and time when the job template was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "description": "The user who created the job template.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:(aws[a-zA-Z0-9-]*):(iam|sts)::(\\d{12})?:[\\w/+=,.@-]+$",
+        "type": "string"
+      },
+      "Id": {
+        "description": "The ID of the job template.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[0-9a-z]+$",
+        "type": "string"
+      },
+      "JobTemplateData": {
+        "$ref": "#/definitions/JobTemplateData"
+      },
+      "Name": {
+        "description": "The specified name of the job template.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[\\.\\-_/#A-Za-z0-9]+$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags that are associated with the job template.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Id",
+      "/properties/Arn",
+      "/properties/CreatedAt",
+      "/properties/CreatedBy"
+    ],
+    "required": [
+      "Name",
+      "JobTemplateData"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "emr-containers:TagResource",
+        "emr-containers:UntagResource",
+        "emr-containers:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::EMRContainers::JobTemplate"
+  }
+}

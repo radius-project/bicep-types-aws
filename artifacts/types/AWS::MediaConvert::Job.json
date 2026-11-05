@@ -1,0 +1,371 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaConvert-Job",
+  "type": "AWS::MediaConvert::Job",
+  "time": "2026-10-30T03:01:38.291Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Role",
+      "/properties/SettingsJson",
+      "/properties/Queue",
+      "/properties/JobTemplate",
+      "/properties/Priority",
+      "/properties/StatusUpdateInterval",
+      "/properties/AccelerationSettings",
+      "/properties/BillingTagsSource",
+      "/properties/HopDestinations",
+      "/properties/SimulateReservedQueue",
+      "/properties/UserMetadata",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "AccelerationSettings": {
+        "additionalProperties": false,
+        "description": "Accelerated transcoding can significantly speed up jobs with long, visually complex content.",
+        "properties": {
+          "Mode": {
+            "description": "Specify the conditions when the service will run your job with accelerated transcoding.",
+            "enum": [
+              "DISABLED",
+              "ENABLED",
+              "PREFERRED"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Mode"
+        ],
+        "type": "object"
+      },
+      "HopDestination": {
+        "additionalProperties": false,
+        "description": "Optional. Configuration for a destination queue to which the job can hop once a customer-defined minimum wait time has passed.",
+        "properties": {
+          "Priority": {
+            "description": "Optional. When you set up a job to use queue hopping, you can specify a different relative priority for the job in the destination queue.",
+            "maximum": 50,
+            "minimum": -50,
+            "type": "integer"
+          },
+          "Queue": {
+            "description": "Optional unless the job is submitted on the default queue. When you set up a job to use queue hopping, you can specify a destination queue.",
+            "type": "string"
+          },
+          "WaitMinutes": {
+            "description": "Required for setting up a job to use queue hopping. Minimum wait time in minutes until the job can hop to the destination queue.",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "JobMessages": {
+        "additionalProperties": false,
+        "description": "Provides messages from the service about jobs that you have already successfully submitted.",
+        "properties": {
+          "Info": {
+            "description": "List of messages that are informational only and don't indicate a problem with your job.",
+            "insertionOrder": true,
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "Warning": {
+            "description": "List of messages that warn about conditions that might cause your job not to run or to fail.",
+            "insertionOrder": true,
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "OutputDetail": {
+        "additionalProperties": false,
+        "description": "Details regarding output.",
+        "properties": {
+          "DurationInMs": {
+            "description": "Duration in milliseconds.",
+            "type": "integer"
+          },
+          "VideoDetails": {
+            "$ref": "#/definitions/VideoDetail"
+          }
+        },
+        "type": "object"
+      },
+      "OutputGroupDetail": {
+        "additionalProperties": false,
+        "description": "Contains details about the output groups specified in the job settings.",
+        "properties": {
+          "OutputDetails": {
+            "description": "Details about the output.",
+            "insertionOrder": true,
+            "items": {
+              "$ref": "#/definitions/OutputDetail"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with the job.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "Timing": {
+        "additionalProperties": false,
+        "description": "Information about when jobs are submitted, started, and finished is specified in Unix epoch format in seconds.",
+        "properties": {
+          "FinishTime": {
+            "description": "The time, in Unix epoch format, that the transcoding job finished.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "StartTime": {
+            "description": "The time, in Unix epoch format, that transcoding for the job began.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "SubmitTime": {
+            "description": "The time, in Unix epoch format, that you submitted the job.",
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "VideoDetail": {
+        "additionalProperties": false,
+        "description": "Contains details about the output's video stream.",
+        "properties": {
+          "HeightInPx": {
+            "description": "Height in pixels for the output.",
+            "type": "integer"
+          },
+          "WidthInPx": {
+            "description": "Width in pixels for the output.",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::MediaConvert::Job. A MediaConvert job converts an input file into an output file or files.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "mediaconvert:ListJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "mediaconvert:GetJob",
+          "mediaconvert:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "AccelerationSettings": {
+        "$ref": "#/definitions/AccelerationSettings"
+      },
+      "AccelerationStatus": {
+        "description": "Describes whether the current job is running with accelerated transcoding.",
+        "enum": [
+          "NOT_APPLICABLE",
+          "IN_PROGRESS",
+          "ACCELERATED",
+          "NOT_ACCELERATED"
+        ],
+        "type": "string"
+      },
+      "Arn": {
+        "description": "An identifier for this resource that is unique within all of AWS.",
+        "type": "string"
+      },
+      "BillingTagsSource": {
+        "description": "Optional. Choose a tag type that AWS Billing and Cost Management will use to sort your AWS Elemental MediaConvert costs on any billing report that you set up.",
+        "enum": [
+          "QUEUE",
+          "PRESET",
+          "JOB_TEMPLATE",
+          "JOB"
+        ],
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The time, in Unix epoch format in seconds, that the job was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "HopDestinations": {
+        "description": "Optional. Use queue hopping to avoid overly long waits in the backlog of the queue that you submit your job to.",
+        "insertionOrder": true,
+        "items": {
+          "$ref": "#/definitions/HopDestination"
+        },
+        "type": "array"
+      },
+      "Id": {
+        "description": "A portion of the job's ARN, unique within your AWS Elemental MediaConvert resources.",
+        "type": "string"
+      },
+      "JobTemplate": {
+        "description": "Optional. When you create a job, you can either specify a job template or specify the transcoding settings individually.",
+        "type": "string"
+      },
+      "Messages": {
+        "$ref": "#/definitions/JobMessages"
+      },
+      "OutputGroupDetails": {
+        "description": "List of output group details.",
+        "insertionOrder": true,
+        "items": {
+          "$ref": "#/definitions/OutputGroupDetail"
+        },
+        "type": "array"
+      },
+      "Priority": {
+        "description": "Optional. Specify the relative priority for this job. In any given queue, the service begins processing the job with the highest value first.",
+        "maximum": 50,
+        "minimum": -50,
+        "type": "integer"
+      },
+      "Queue": {
+        "description": "Optional. When you create a job, you can specify a queue to send it to. If you don't specify, the job will go to the default queue.",
+        "type": "string"
+      },
+      "Role": {
+        "description": "The IAM role you use for creating this job. For details about permissions, see the User Guide topic at the User Guide at https://docs.aws.amazon.com/mediaconvert/latest/ug/iam-role.html.",
+        "type": "string"
+      },
+      "SettingsJson": {
+        "description": "JobSettings contains all the transcode settings for a job. Specified as an opaque JSON object, matching the representation used by AWS::MediaConvert::JobTemplate and AWS::MediaConvert::Preset.",
+        "type": "object"
+      },
+      "ShareStatus": {
+        "description": "Indicates whether the job is sharable with AWS Support.",
+        "enum": [
+          "NOT_SHARED",
+          "INITIATED",
+          "SHARED"
+        ],
+        "type": "string"
+      },
+      "SimulateReservedQueue": {
+        "description": "Optional. Enable this setting when you run a test job to estimate how many reserved transcoding slots (RTS) you need.",
+        "enum": [
+          "DISABLED",
+          "ENABLED"
+        ],
+        "type": "string"
+      },
+      "Status": {
+        "description": "A job's status can be SUBMITTED, PROGRESSING, COMPLETE, CANCELED, or ERROR.",
+        "enum": [
+          "SUBMITTED",
+          "PROGRESSING",
+          "COMPLETE",
+          "CANCELED",
+          "ERROR"
+        ],
+        "type": "string"
+      },
+      "StatusUpdateInterval": {
+        "description": "Optional. Specify how often MediaConvert sends STATUS_UPDATE events to Amazon CloudWatch Events.",
+        "enum": [
+          "SECONDS_10",
+          "SECONDS_12",
+          "SECONDS_15",
+          "SECONDS_20",
+          "SECONDS_30",
+          "SECONDS_60",
+          "SECONDS_120",
+          "SECONDS_180",
+          "SECONDS_240",
+          "SECONDS_300",
+          "SECONDS_360",
+          "SECONDS_420",
+          "SECONDS_480",
+          "SECONDS_540",
+          "SECONDS_600"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Optional. The tags that you want to add to the resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "Timing": {
+        "$ref": "#/definitions/Timing"
+      },
+      "UserMetadata": {
+        "additionalProperties": false,
+        "description": "Optional. User-defined metadata that you want to associate with an MediaConvert job.",
+        "patternProperties": {
+          ".+": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Id",
+      "/properties/Status",
+      "/properties/AccelerationStatus",
+      "/properties/ShareStatus",
+      "/properties/CreatedAt",
+      "/properties/Timing",
+      "/properties/Messages",
+      "/properties/OutputGroupDetails"
+    ],
+    "required": [
+      "Role",
+      "SettingsJson"
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/mediaconvert/latest/apireference/jobs.html",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "mediaconvert:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::MediaConvert::Job"
+  }
+}

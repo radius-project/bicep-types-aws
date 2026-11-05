@@ -72,6 +72,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Wisdom/ContentProperties](#awswisdomcontentproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Wisdom/ContentAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Wisdom/ContentAssociationProperties](#awswisdomcontentassociationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Wisdom/KnowledgeBase@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -103,6 +111,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Wisdom/QuickResponseProperties](#awswisdomquickresponseproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Wisdom/Session@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Wisdom/SessionProperties](#awswisdomsessionproperties) (Required, Identifier): properties of the resource
 
 ## AgentAttributes
 ### Properties
@@ -136,6 +152,10 @@
 
 ## AIPromptTemplateConfiguration
 ### Properties
+
+## AmazonConnectGuideAssociationData
+### Properties
+* **FlowId**: string
 
 ## AssociationData
 ### Properties
@@ -237,6 +257,18 @@
 * **Tags**: [Tag](#tag)[]
 * **Type**: string (Required)
 
+## AWS.Wisdom/ContentAssociationProperties
+### Properties
+* **Association**: [ContentAssociationContents](#contentassociationcontents) (Required): The identifier of the associated resource.
+* **AssociationType**: string (Required): The type of association.
+* **ContentArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the content.
+* **ContentAssociationArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the content association.
+* **ContentAssociationId**: string (ReadOnly): The identifier of the content association.
+* **ContentId**: string (Required): The identifier of the content.
+* **KnowledgeBaseArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the knowledge base.
+* **KnowledgeBaseId**: string (Required): The identifier of the knowledge base.
+* **Tags**: [Tag](#tag)[]: The tags used to organize, track, or control access for this resource.
+
 ## AWS.Wisdom/ContentProperties
 ### Properties
 * **ContentArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the content.
@@ -310,6 +342,15 @@
 * **Status**: string (ReadOnly)
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
+## AWS.Wisdom/SessionProperties
+### Properties
+* **AssistantId**: string (Required): The identifier of the Wisdom assistant.
+* **Description**: string: The description of the session.
+* **Name**: string (Required): The name of the session.
+* **SessionArn**: string (Identifier): The Amazon Resource Name (ARN) of the session.
+* **SessionId**: string (ReadOnly): The identifier of the session.
+* **Tags**: [Session_Tags](#sessiontags)[]: The tags used to organize, track, or control access for this resource.
+
 ## BedrockFoundationModelConfiguration
 ### Properties
 * **ModelArn**: string (Required)
@@ -322,6 +363,10 @@
 
 ## Content_Metadata
 ### Properties
+
+## ContentAssociationContents
+### Properties
+* **AmazonConnectGuideAssociation**: [AmazonConnectGuideAssociationData](#amazonconnectguideassociationdata) (Required)
 
 ## CustomAttributes
 ### Properties
@@ -525,6 +570,11 @@
 ### Properties
 * **KmsKeyId**: string
 
+## Session_Tags
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
 ## SmsMessageTemplateContent
 ### Properties
 * **Body**: [SmsMessageTemplateContentBody](#smsmessagetemplatecontentbody) (Required)
@@ -545,6 +595,11 @@
 ## SystemEndpointAttributes
 ### Properties
 * **Address**: string: The customer's phone number if used with customerEndpoint, or the number the customer dialed to call your contact center if used with systemEndpoint.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

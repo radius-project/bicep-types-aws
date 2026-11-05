@@ -1,18 +1,89 @@
 [
   {
     "$type": "ObjectType",
+    "name": "Namespace",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TableBucketARN",
+    "properties": {}
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.S3Tables/NamespaceProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.S3Tables/NamespaceProperties",
+    "properties": {
+      "Namespace": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17
+      },
+      "TableBucketARN": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.S3Tables/Namespace",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.S3Tables/Namespace@default",
+    "body": {
+      "$ref": "#/5"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "Compaction",
     "properties": {
       "Status": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "Indicates whether the Compaction maintenance action is enabled."
       },
       "TargetFileSizeMB": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "The target file size for the table in MB."
@@ -25,33 +96,33 @@
     "properties": {
       "IcebergPartitionSpec": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/11"
         },
         "flags": 0
       },
       "IcebergSchema": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "Schema definition for flat tables with primitive types only. Mutually exclusive with IcebergSchemaV2."
       },
       "IcebergSchemaV2": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "Schema definition that supports Apache Iceberg nested types (struct, list, map) and primitive types. Mutually exclusive with IcebergSchema."
       },
       "IcebergSortOrder": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "TableProperties": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/28"
         },
         "flags": 0
       }
@@ -63,28 +134,28 @@
     "properties": {
       "FieldId": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "The partition field ID (auto-assigned starting from 1000 if not specified)"
       },
       "Name": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The name of the partition field"
       },
       "SourceId": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/33"
         },
         "flags": 1,
         "description": "The source column ID to partition on"
       },
       "Transform": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The partition transform function (identity, bucket[N], truncate[N], year, month, day, hour)"
@@ -102,14 +173,14 @@
     "properties": {
       "Fields": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/35"
         },
         "flags": 1,
         "description": "List of partition fields"
       },
       "SpecId": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "The partition spec ID (defaults to 0 if not specified)"
@@ -122,7 +193,7 @@
     "properties": {
       "SchemaFieldList": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/36"
         },
         "flags": 1
       }
@@ -134,28 +205,28 @@
     "properties": {
       "IdentifierFieldIds": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "A list of field IDs that are used as the identifier fields for the table. Identifier fields uniquely identify a row in the table."
       },
       "SchemaId": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "An optional unique identifier for the schema"
       },
       "SchemaV2FieldList": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/38"
         },
         "flags": 1,
         "description": "The schema fields for the table"
       },
       "SchemaV2FieldType": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The type of the top-level schema, which is always 'struct'"
@@ -168,28 +239,28 @@
     "properties": {
       "Direction": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "Sort direction (asc or desc)"
       },
       "NullOrder": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "Null value ordering (nulls-first or nulls-last)"
       },
       "SourceId": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/33"
         },
         "flags": 1,
         "description": "The source column ID to sort on"
       },
       "Transform": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The sort transform function"
@@ -207,14 +278,14 @@
     "properties": {
       "Fields": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/40"
         },
         "flags": 1,
         "description": "List of sort fields"
       },
       "OrderId": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "The sort order ID (defaults to 1 if not specified, 0 is reserved for unsorted)"
@@ -237,28 +308,28 @@
     "properties": {
       "Id": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "The unique identifier for the field"
       },
       "Name": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The name of the field"
       },
       "Required": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "A Boolean value that specifies whether values are required for each row in this field"
       },
       "Type": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The field type"
@@ -276,35 +347,35 @@
     "properties": {
       "Doc": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "Optional documentation for the field"
       },
       "Id": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/33"
         },
         "flags": 1,
         "description": "The unique identifier for the field"
       },
       "Name": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The name of the field"
       },
       "Required": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/41"
         },
         "flags": 1,
         "description": "A Boolean value that specifies whether values are required for each row in this field"
       },
       "Type": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "The field type. For primitive types, use a string (e.g., 'int', 'string', 'long'). For nested types, use an object (e.g., {'type': 'struct', 'fields': [...]} for struct, {'type': 'list', 'element-id': N, 'element': 'type'} for list, {'type': 'map', 'key-id': N, 'key': 'type', 'value-id': N, 'value': 'type'} for map)."
@@ -322,21 +393,21 @@
     "properties": {
       "MaxSnapshotAgeHours": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "The maximum age of a snapshot before it can be expired."
       },
       "MinSnapshotsToKeep": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "The minimum number of snapshots to keep."
       },
       "Status": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "Indicates whether the SnapshotManagement maintenance action is enabled."
@@ -349,7 +420,7 @@
     "properties": {
       "StorageClass": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The storage class for the table"
@@ -382,14 +453,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "Tag key must be between 1 to 128 characters in length. Tag key cannot start with 'aws:' and can only contain alphanumeric characters, spaces, _, ., /, =, +, -, and @."
       },
       "Value": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "Tag value must be between 0 to 256 characters in length. Tag value can only contain alphanumeric characters, spaces, _, ., /, =, +, -, and @."
@@ -412,33 +483,36 @@
     "properties": {}
   },
   {
-    "$type": "StringType"
-  },
-  {
     "$type": "IntegerType"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/9"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/9"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/12"
+      "$ref": "#/19"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/27"
+      "$ref": "#/33"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/21"
     }
   },
   {
@@ -450,13 +524,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/7"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/7"
+      "$ref": "#/14"
     }
   },
   {
@@ -465,7 +533,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/12"
+      "$ref": "#/19"
     }
   },
   {
@@ -476,7 +544,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/14"
+      "$ref": "#/21"
     }
   },
   {
@@ -486,7 +554,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/29"
     }
   },
   {
@@ -495,80 +563,80 @@
     "properties": {
       "Compaction": {
         "type": {
-          "$ref": "#/0"
+          "$ref": "#/7"
         },
         "flags": 0
       },
       "IcebergMetadata": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/8"
         },
         "flags": 4
       },
       "Namespace": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 1
       },
       "OpenTableFormat": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 1
       },
       "SnapshotManagement": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/23"
         },
         "flags": 0
       },
       "StorageClassConfiguration": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/24"
         },
         "flags": 0
       },
       "TableARN": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 18
       },
       "TableBucketARN": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 1
       },
       "TableName": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "User tags (key-value pairs) to associate with the table."
       },
       "VersionToken": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 2
       },
       "WarehouseLocation": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 2
       },
       "WithoutMetadata": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 4
       }
@@ -580,21 +648,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/47"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -605,7 +673,7 @@
     "$type": "ResourceType",
     "name": "AWS.S3Tables/Table@default",
     "body": {
-      "$ref": "#/42"
+      "$ref": "#/48"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -616,14 +684,14 @@
     "properties": {
       "KMSKeyArn": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "ARN of the KMS key to use for encryption"
       },
       "SSEAlgorithm": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "Server-side encryption algorithm"
@@ -636,7 +704,7 @@
     "properties": {
       "Status": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "Indicates whether Metrics are enabled."
@@ -649,14 +717,14 @@
     "properties": {
       "Role": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The ARN of the IAM role to use for replication"
       },
       "Rules": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/60"
         },
         "flags": 1,
         "description": "List of replication rules"
@@ -669,7 +737,7 @@
     "properties": {
       "DestinationTableBucketARN": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The ARN of the destination table bucket"
@@ -682,7 +750,7 @@
     "properties": {
       "Destinations": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/61"
         },
         "flags": 1,
         "description": "List of replication destinations"
@@ -695,7 +763,7 @@
     "properties": {
       "StorageClass": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The storage class for the table bucket"
@@ -718,14 +786,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "Tag key must be between 1 to 128 characters in length. Tag key cannot start with 'aws:' and can only contain alphanumeric characters, spaces, _, ., /, =, +, -, and @."
       },
       "Value": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "Tag value must be between 0 to 256 characters in length. Tag value can only contain alphanumeric characters, spaces, _, ., /, =, +, -, and @."
@@ -738,21 +806,21 @@
     "properties": {
       "NoncurrentDays": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "S3 permanently deletes noncurrent objects after the number of days specified by the NoncurrentDays property."
       },
       "Status": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "Indicates whether the Unreferenced File Removal maintenance action is enabled."
       },
       "UnreferencedDays": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "For any object not referenced by your table and older than the UnreferencedDays property, S3 creates a delete marker and marks the object version as noncurrent."
@@ -762,13 +830,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/48"
+      "$ref": "#/54"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/47"
+      "$ref": "#/53"
     }
   },
   {
@@ -778,7 +846,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/52"
+      "$ref": "#/58"
     }
   },
   {
@@ -787,50 +855,50 @@
     "properties": {
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/50"
         },
         "flags": 0
       },
       "MetricsConfiguration": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/51"
         },
         "flags": 0
       },
       "ReplicationConfiguration": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/52"
         },
         "flags": 0
       },
       "StorageClassConfiguration": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/55"
         },
         "flags": 0
       },
       "TableBucketARN": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 18
       },
       "TableBucketName": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/63"
         },
         "flags": 0,
         "description": "User tags (key-value pairs) to associate with the table bucket."
       },
       "UnreferencedFileRemoval": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/59"
         },
         "flags": 0
       }
@@ -842,21 +910,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/64"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -867,7 +935,7 @@
     "$type": "ResourceType",
     "name": "AWS.S3Tables/TableBucket@default",
     "body": {
-      "$ref": "#/59"
+      "$ref": "#/65"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -886,10 +954,10 @@
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/61"
+        "$ref": "#/67"
       },
       {
-        "$ref": "#/26"
+        "$ref": "#/2"
       }
     ]
   },
@@ -906,10 +974,10 @@
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/65"
+        "$ref": "#/71"
       },
       {
-        "$ref": "#/26"
+        "$ref": "#/2"
       }
     ]
   },
@@ -919,13 +987,13 @@
     "properties": {
       "ResourcePolicy": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/72"
         },
         "flags": 1
       },
       "TableBucketARN": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 17
       }
@@ -937,21 +1005,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/73"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -962,7 +1030,7 @@
     "$type": "ResourceType",
     "name": "AWS.S3Tables/TableBucketPolicy@default",
     "body": {
-      "$ref": "#/68"
+      "$ref": "#/74"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -996,10 +1064,10 @@
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/71"
+        "$ref": "#/77"
       },
       {
-        "$ref": "#/26"
+        "$ref": "#/2"
       }
     ]
   },
@@ -1016,10 +1084,10 @@
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/77"
+        "$ref": "#/83"
       },
       {
-        "$ref": "#/26"
+        "$ref": "#/2"
       }
     ]
   },
@@ -1029,31 +1097,31 @@
     "properties": {
       "Namespace": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 2
       },
       "ResourcePolicy": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/84"
         },
         "flags": 1
       },
       "TableARN": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 17
       },
       "TableBucketARN": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 2
       },
       "TableName": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 2
       }
@@ -1065,21 +1133,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/2"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/85"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1090,7 +1158,7 @@
     "$type": "ResourceType",
     "name": "AWS.S3Tables/TablePolicy@default",
     "body": {
-      "$ref": "#/80"
+      "$ref": "#/86"
     },
     "readableScopes": 0,
     "writableScopes": 0

@@ -1,127 +1,174 @@
 [
   {
+    "$type": "ObjectType",
+    "name": "SSESpecification",
+    "properties": {
+      "SSEEnabled": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
     "$type": "StringLiteralType",
-    "value": "AWS.DAX/ParameterGroupProperties"
+    "value": "AWS.DAX/ClusterProperties"
   },
   {
     "$type": "StringType"
   },
   {
-    "$type": "ObjectType",
-    "name": "ParameterGroup_ParameterNameValues",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.DAX/ParameterGroupProperties",
-    "properties": {
-      "Description": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "A description of the parameter group."
-      },
-      "ParameterGroupName": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 16,
-        "description": "The name of the parameter group."
-      },
-      "ParameterNameValues": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "An array of name-value pairs for the parameters in the group. Each element in the array represents a single parameter."
-      }
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "AWS.DAX/ParameterGroup",
-    "properties": {
-      "name": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "the resource name"
-      },
-      "alias": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 17,
-        "description": "the resource alias"
-      },
-      "properties": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 16,
-        "description": "properties of the resource"
-      }
-    }
-  },
-  {
-    "$type": "ResourceType",
-    "name": "AWS.DAX/ParameterGroup@default",
-    "body": {
-      "$ref": "#/4"
-    },
-    "readableScopes": 0,
-    "writableScopes": 0
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.DAX/SubnetGroupProperties"
+    "$type": "IntegerType"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/3"
     }
   },
   {
     "$type": "ObjectType",
-    "name": "AWS.DAX/SubnetGroupProperties",
+    "name": "Cluster_Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DAX/ClusterProperties",
     "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2
+      },
+      "AvailabilityZones": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "ClusterDiscoveryEndpoint": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2
+      },
+      "ClusterDiscoveryEndpointURL": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2
+      },
+      "ClusterEndpointEncryptionType": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "ClusterName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 16
+      },
       "Description": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "IAMRoleARN": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1
+      },
+      "NetworkType": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "NodeType": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1
+      },
+      "NotificationTopicARN": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "ParameterGroupName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "PreferredMaintenanceWindow": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "ReplicationFactor": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "SSESpecification": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0
+      },
+      "SecurityGroupIds": {
+        "type": {
+          "$ref": "#/6"
         },
         "flags": 0
       },
       "SubnetGroupName": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
-        "flags": 16
+        "flags": 0
       },
-      "SubnetIds": {
+      "Tags": {
         "type": {
           "$ref": "#/7"
         },
-        "flags": 1
+        "flags": 0
       }
     }
   },
   {
     "$type": "ObjectType",
-    "name": "AWS.DAX/SubnetGroup",
+    "name": "AWS.DAX/Cluster",
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/3"
         },
         "flags": 17,
         "description": "the resource alias"
@@ -137,9 +184,151 @@
   },
   {
     "$type": "ResourceType",
-    "name": "AWS.DAX/SubnetGroup@default",
+    "name": "AWS.DAX/Cluster@default",
     "body": {
       "$ref": "#/9"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DAX/ParameterGroupProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ParameterGroup_ParameterNameValues",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DAX/ParameterGroupProperties",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "A description of the parameter group."
+      },
+      "ParameterGroupName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 16,
+        "description": "The name of the parameter group."
+      },
+      "ParameterNameValues": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "An array of name-value pairs for the parameters in the group. Each element in the array represents a single parameter."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DAX/ParameterGroup",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DAX/ParameterGroup@default",
+    "body": {
+      "$ref": "#/14"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DAX/SubnetGroupProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DAX/SubnetGroupProperties",
+    "properties": {
+      "Description": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "SubnetGroupName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 16
+      },
+      "SubnetIds": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DAX/SubnetGroup",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DAX/SubnetGroup@default",
+    "body": {
+      "$ref": "#/19"
     },
     "readableScopes": 0,
     "writableScopes": 0

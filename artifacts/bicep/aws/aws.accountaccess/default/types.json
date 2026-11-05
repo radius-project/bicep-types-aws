@@ -154,5 +154,149 @@
     },
     "readableScopes": 0,
     "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Entitlement",
+    "properties": {
+      "PrincipalRole": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IdentityCenterPrincipal",
+    "properties": {
+      "GroupId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The ID of the group"
+      },
+      "UserId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The ID of the user"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Principal",
+    "properties": {
+      "IdentityCenter": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PrincipalRoleEntitlement",
+    "properties": {
+      "Account": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The AWS account ID"
+      },
+      "Principal": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 1
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The ARN of the IAM role"
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.AccountAccess/EntitlementProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AccountAccess/EntitlementProperties",
+    "properties": {
+      "ApplicationArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "The ARN of the application"
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The timestamp when the entitlement was created"
+      },
+      "Entitlement": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "The entitlement details"
+      },
+      "EntitlementId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 18,
+        "description": "The ID of the entitlement"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AccountAccess/Entitlement",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.AccountAccess/Entitlement@default",
+    "body": {
+      "$ref": "#/15"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

@@ -24,6 +24,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Deadline/FleetProperties](#awsdeadlinefleetproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Deadline/Job@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Deadline/JobProperties](#awsdeadlinejobproperties) (Identifier): properties of the resource
+
 ## Resource AWS.Deadline/LicenseEndpoint@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -39,6 +47,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Deadline/LimitProperties](#awsdeadlinelimitproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Deadline/MeteredProduct@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Deadline/MeteredProductProperties](#awsdeadlinemeteredproductproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Deadline/Monitor@default
 * **Readable Scope(s)**: None
@@ -64,6 +80,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Deadline/QueueEnvironmentProperties](#awsdeadlinequeueenvironmentproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Deadline/QueueFleetAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Deadline/QueueFleetAssociationProperties](#awsdeadlinequeuefleetassociationproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Deadline/QueueLimitAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Deadline/QueueLimitAssociationProperties](#awsdeadlinequeuelimitassociationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Deadline/StorageProfile@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -71,6 +103,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Deadline/StorageProfileProperties](#awsdeadlinestorageprofileproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Deadline/Volume@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Deadline/VolumeProperties](#awsdeadlinevolumeproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Deadline/Worker@default
 * **Readable Scope(s)**: None
@@ -122,6 +162,24 @@
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **WorkerCount**: int (ReadOnly)
 
+## AWS.Deadline/JobProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the job.
+* **CreatedAt**: string (ReadOnly): The date and time the resource was created.
+* **CreatedBy**: string (ReadOnly): The user or system that created this resource.
+* **FarmId**: string: The farm ID.
+* **JobId**: string (ReadOnly): The job ID.
+* **LifecycleStatus**: string (ReadOnly): The life cycle status for the job.
+* **LifecycleStatusMessage**: string (ReadOnly): A message that communicates the status of the life cycle for the job.
+* **MaxFailedTasksCount**: int: The number of task failures before the job stops running and is marked as FAILED.
+* **MaxRetriesPerTask**: int: The maximum number of retries for each task.
+* **MaxWorkerCount**: int: The maximum number of worker hosts that can concurrently process a job.
+* **Name**: string (ReadOnly): The name of the job.
+* **Priority**: int: The priority of the job.
+* **QueueId**: string: The queue ID.
+* **Tags**: [Tag](#tag)[]: The tags associated with the job.
+* **TaskRunStatus**: string (ReadOnly): The task run status for the job.
+
 ## AWS.Deadline/LicenseEndpointProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier)
@@ -143,6 +201,15 @@
 * **FarmId**: string (Required, Identifier)
 * **LimitId**: string (ReadOnly, Identifier)
 * **MaxCount**: int (Required)
+
+## AWS.Deadline/MeteredProductProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier)
+* **Family**: string (ReadOnly)
+* **LicenseEndpointId**: string
+* **Port**: int (ReadOnly)
+* **ProductId**: string
+* **Vendor**: string (ReadOnly)
 
 ## AWS.Deadline/MonitorProperties
 ### Properties
@@ -167,6 +234,18 @@
 * **Template**: string (Required)
 * **TemplateType**: string (Required)
 
+## AWS.Deadline/QueueFleetAssociationProperties
+### Properties
+* **FarmId**: string (Required, Identifier)
+* **FleetId**: string (Required, Identifier)
+* **QueueId**: string (Required, Identifier)
+
+## AWS.Deadline/QueueLimitAssociationProperties
+### Properties
+* **FarmId**: string (Required, Identifier)
+* **LimitId**: string (Required, Identifier)
+* **QueueId**: string (Required, Identifier)
+
 ## AWS.Deadline/QueueProperties
 ### Properties
 * **AllowedStorageProfileIds**: string[]
@@ -190,6 +269,25 @@
 * **FileSystemLocations**: [FileSystemLocation](#filesystemlocation)[]
 * **OsFamily**: string (Required)
 * **StorageProfileId**: string (ReadOnly, Identifier)
+
+## AWS.Deadline/VolumeProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the volume.
+* **AttachedWorkerId**: string (ReadOnly): The worker ID of the worker the volume is attached to.
+* **AvailabilityZoneId**: string (ReadOnly): The Availability Zone ID of the volume.
+* **CreatedAt**: string (ReadOnly): The date and time the resource was created.
+* **ExpiresAt**: string (ReadOnly): The date and time the volume expires and will be deleted.
+* **FarmId**: string: The farm ID of the farm that contains the fleet.
+* **FleetId**: string: The fleet ID of the fleet that contains the volume.
+* **Iops**: int (ReadOnly): The IOPS of the volume.
+* **LastAssignedAt**: string (ReadOnly): The date and time the volume was last assigned to a worker.
+* **LastReleasedAt**: string (ReadOnly): The date and time the volume was last released from a worker.
+* **SizeGiB**: int (ReadOnly): The volume size in GiB.
+* **State**: string (ReadOnly): The state of the volume.
+* **Tags**: [Volume_Tags](#volumetags)[]: An array of key-value pairs to apply to this resource.
+* **ThroughputMiB**: int (ReadOnly): The throughput of the volume in MiB.
+* **VolumeId**: string (ReadOnly): The volume ID.
+* **VolumeType**: string (ReadOnly): The EBS volume type.
 
 ## AWS.Deadline/WorkerProperties
 ### Properties
@@ -294,6 +392,11 @@
 
 ## Tag
 ### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 * **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 
@@ -310,6 +413,11 @@
 ## UsageTrackingResource
 ### Properties
 * **QueueId**: string (Required): The queue ID.
+
+## Volume_Tags
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## WindowsUser
 ### Properties

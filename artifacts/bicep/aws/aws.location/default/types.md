@@ -16,6 +16,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Location/GeofenceCollectionProperties](#awslocationgeofencecollectionproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Location/Job@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Location/JobProperties](#awslocationjobproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Location/Map@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -47,6 +55,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Location/TrackerProperties](#awslocationtrackerproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Location/TrackerConsumer@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Location/TrackerConsumerProperties](#awslocationtrackerconsumerproperties) (Required, Identifier): properties of the resource
 
 ## AndroidApp
 ### Properties
@@ -93,6 +109,21 @@
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **UpdateTime**: string (ReadOnly)
 
+## AWS.Location/JobProperties
+### Properties
+* **Action**: string (Required): The action to perform on the input data.
+* **ActionOptions**: [JobActionOptions](#jobactionoptions): Additional parameters for configuring job action.
+* **CreatedAt**: string (ReadOnly): Job creation time in ISO 8601 format.
+* **ExecutionRoleArn**: string (Required): The ARN of the IAM role that Amazon Location Service assumes during job processing.
+* **InputOptions**: [JobInputOptions](#jobinputoptions) (Required): Configuration for input data location and format.
+* **JobArn**: string (Identifier): The Amazon Resource Name (ARN) of the job.
+* **JobId**: string (ReadOnly): The unique identifier of the job.
+* **Name**: string: An optional name for the job resource.
+* **OutputOptions**: [JobOutputOptions](#joboutputoptions) (Required): Configuration for output data location and format.
+* **Status**: string (ReadOnly): Current job status.
+* **Tags**: [Tag](#tag)[]: Tags associated with the job.
+* **UpdatedAt**: string (ReadOnly): Last update time in ISO 8601 format.
+
 ## AWS.Location/MapProperties
 ### Properties
 * **Arn**: string (ReadOnly)
@@ -130,6 +161,11 @@
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **UpdateTime**: string (ReadOnly)
 
+## AWS.Location/TrackerConsumerProperties
+### Properties
+* **ConsumerArn**: string (Required, Identifier)
+* **TrackerName**: string (Required, Identifier)
+
 ## AWS.Location/TrackerProperties
 ### Properties
 * **Arn**: string (ReadOnly)
@@ -150,6 +186,20 @@
 ### Properties
 * **IntendedUse**: string
 
+## JobActionOptions
+### Properties
+* **ValidateAddress**: [ValidateAddressActionOptions](#validateaddressactionoptions)
+
+## JobInputOptions
+### Properties
+* **Format**: string (Required)
+* **Location**: string (Required)
+
+## JobOutputOptions
+### Properties
+* **Format**: string (Required)
+* **Location**: string (Required)
+
 ## MapConfiguration
 ### Properties
 * **CustomLayers**: string[]
@@ -168,8 +218,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
-* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties
@@ -185,4 +235,13 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## ValidateAddressActionOptions
+### Properties
+* **AdditionalFeatures**: string[]
 

@@ -1,0 +1,155 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CodeArtifact-Package",
+  "type": "AWS::CodeArtifact::Package",
+  "time": "2026-11-05T21:22:51.413Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/DomainName",
+        "/properties/Repository",
+        "/properties/Format",
+        "/properties/Namespace",
+        "/properties/Name"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DomainName",
+      "/properties/Format",
+      "/properties/Name",
+      "/properties/Namespace",
+      "/properties/Repository"
+    ],
+    "description": "Resource Type definition for AWS::CodeArtifact::Package",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "DomainName": {
+              "maxLength": 50,
+              "minLength": 2,
+              "pattern": "^[a-z][a-z0-9\\-]{0,48}[a-z0-9]$",
+              "type": "string"
+            },
+            "Repository": {
+              "maxLength": 100,
+              "minLength": 2,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._\\-]{1,99}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "DomainName",
+            "Repository"
+          ]
+        },
+        "permissions": [
+          "codeartifact:ListPackages"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "codeartifact:DescribePackage"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of the package.",
+        "maxLength": 1011,
+        "minLength": 1,
+        "pattern": "^\\S+$",
+        "type": "string"
+      },
+      "DomainName": {
+        "description": "The name of the domain that contains the repository that contains the package.",
+        "maxLength": 50,
+        "minLength": 2,
+        "pattern": "^[a-z][a-z0-9\\-]{0,48}[a-z0-9]$",
+        "type": "string"
+      },
+      "Format": {
+        "description": "The format of the package.",
+        "enum": [
+          "npm",
+          "pypi",
+          "maven",
+          "nuget",
+          "generic",
+          "ruby",
+          "swift",
+          "cargo"
+        ],
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the package.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[^#/\\s]+$",
+        "type": "string"
+      },
+      "Namespace": {
+        "description": "The namespace of the package.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[^#/\\s]+$",
+        "type": "string"
+      },
+      "OriginConfiguration": {
+        "additionalProperties": false,
+        "description": "The package origin configuration for the package.",
+        "properties": {
+          "Restrictions": {
+            "additionalProperties": false,
+            "description": "The origin restrictions for the package.",
+            "properties": {
+              "Publish": {
+                "description": "The package origin configuration that determines if new versions of the package can be published directly to the repository.",
+                "enum": [
+                  "ALLOW",
+                  "BLOCK"
+                ],
+                "type": "string"
+              },
+              "Upstream": {
+                "description": "The package origin configuration that determines if new versions of the package can be added to the repository from an external connection or upstream source.",
+                "enum": [
+                  "ALLOW",
+                  "BLOCK"
+                ],
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "Repository": {
+        "description": "The name of the repository that contains the package.",
+        "maxLength": 100,
+        "minLength": 2,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._\\-]{1,99}$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/OriginConfiguration"
+    ],
+    "required": [
+      "DomainName",
+      "Repository",
+      "Format",
+      "Name"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::CodeArtifact::Package"
+  }
+}

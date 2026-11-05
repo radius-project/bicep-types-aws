@@ -16,6 +16,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Backup/BackupPlanProperties](#awsbackupbackupplanproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Backup/BackupSelection@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Backup/BackupSelectionProperties](#awsbackupbackupselectionproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Backup/BackupVault@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -47,6 +55,22 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Backup/LogicallyAirGappedBackupVaultProperties](#awsbackuplogicallyairgappedbackupvaultproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Backup/ManagedRecoveryPoint@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Backup/ManagedRecoveryPointProperties](#awsbackupmanagedrecoverypointproperties) (Identifier): properties of the resource
+
+## Resource AWS.Backup/RecoveryPoint@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Backup/RecoveryPointProperties](#awsbackuprecoverypointproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Backup/ReportPlan@default
 * **Readable Scope(s)**: None
@@ -115,6 +139,13 @@
 * **BackupPlanTags**: [BackupPlan_BackupPlanTags](#backupplanbackupplantags)
 * **VersionId**: string (ReadOnly)
 
+## AWS.Backup/BackupSelectionProperties
+### Properties
+* **BackupPlanId**: string (Required)
+* **BackupSelection**: [BackupSelectionResourceType](#backupselectionresourcetype) (Required)
+* **Id**: string (ReadOnly, Identifier)
+* **SelectionId**: string (ReadOnly)
+
 ## AWS.Backup/BackupVaultProperties
 ### Properties
 * **AccessPolicy**: [BackupVault_AccessPolicy](#backupvaultaccesspolicy) | string
@@ -168,6 +199,60 @@
 * **Notifications**: [NotificationObjectType](#notificationobjecttype)
 * **VaultState**: string (ReadOnly)
 * **VaultType**: string (ReadOnly)
+
+## AWS.Backup/ManagedRecoveryPointProperties
+### Properties
+* **BackupSizeInBytes**: int (ReadOnly): The size of the backup in bytes.
+* **BackupVaultArn**: string (ReadOnly): The ARN of the backup vault that contains the recovery point.
+* **BackupVaultName**: string (Identifier): The name of the backup vault that contains the recovery point.
+* **CalculatedLifecycle**: [CalculatedLifecycle](#calculatedlifecycle) (ReadOnly)
+* **CompletionDate**: string (ReadOnly): The date and time that the recovery point was completed.
+* **CompositeMemberIdentifier**: string (ReadOnly): The composite member identifier for the recovery point.
+* **CreationDate**: string (ReadOnly): The date and time that a recovery point is created.
+* **EncryptionKeyArn**: string (ReadOnly): The encryption key used to protect the recovery point.
+* **EncryptionKeyType**: string (ReadOnly): The type of encryption key used for the recovery point.
+* **IamRoleArn**: string (ReadOnly): The IAM role ARN used to create the target recovery point.
+* **InitiationDate**: string (ReadOnly): The date and time that a backup job or copy job was initiated.
+* **IsEncrypted**: bool (ReadOnly): Whether the recovery point is encrypted.
+* **IsParent**: bool (ReadOnly): Whether the recovery point is a parent recovery point.
+* **LastRestoreTime**: string (ReadOnly): The date and time that a recovery point was last restored.
+* **Lifecycle**: [Lifecycle](#lifecycle) (ReadOnly)
+* **ParentRecoveryPointArn**: string (ReadOnly): The ARN of the parent recovery point.
+* **RecoveryPointArn**: string (Identifier): The ARN of the recovery point.
+* **ResourceArn**: string (ReadOnly): The ARN of the resource that was backed up.
+* **ResourceName**: string (ReadOnly): The name of the resource that was backed up.
+* **ResourceType**: string (ReadOnly): The type of AWS resource that was backed up.
+* **SourceBackupVaultArn**: string (ReadOnly): The ARN of the source backup vault for copied recovery points.
+* **Status**: string (ReadOnly): The status of the recovery point.
+* **StorageClass**: string (ReadOnly): The storage class of the recovery point.
+* **Tags**: [Tag](#tag)[] (ReadOnly): An array of key-value pairs applied to the recovery point.
+* **VaultType**: string (ReadOnly): The type of vault in which the recovery point resides.
+
+## AWS.Backup/RecoveryPointProperties
+### Properties
+* **BackupSizeInBytes**: int (ReadOnly): The size of the backup in bytes.
+* **BackupVaultArn**: string (ReadOnly): The ARN of the backup vault that contains the recovery point.
+* **BackupVaultName**: string (Identifier): The name of the backup vault that contains the recovery point.
+* **CalculatedLifecycle**: [RecoveryPoint_CalculatedLifecycle](#recoverypointcalculatedlifecycle) (ReadOnly): The calculated lifecycle properties of the recovery point.
+* **CompletionDate**: string (ReadOnly): The date and time that the recovery point was completed.
+* **CompositeMemberIdentifier**: string (ReadOnly): The composite member identifier for the recovery point.
+* **CreationDate**: string (ReadOnly): The date and time that a recovery point is created.
+* **EncryptionKeyArn**: string (ReadOnly): The encryption key used to protect the recovery point.
+* **IamRoleArn**: string (ReadOnly): The IAM role ARN used to create the recovery point.
+* **InitiationDate**: string (ReadOnly): The date and time that a backup job or copy job was initiated.
+* **IsEncrypted**: bool (ReadOnly): Whether the recovery point is encrypted.
+* **IsParent**: bool (ReadOnly): Whether the recovery point is a parent recovery point.
+* **LastRestoreTime**: string (ReadOnly): The date and time that a recovery point was last restored.
+* **Lifecycle**: [RecoveryPoint_Lifecycle](#recoverypointlifecycle) (ReadOnly): The lifecycle defines when a protected resource is transitioned to cold storage and when it expires.
+* **ParentRecoveryPointArn**: string (ReadOnly): The ARN of the parent recovery point.
+* **RecoveryPointArn**: string (Identifier): The ARN of the recovery point.
+* **ResourceArn**: string (ReadOnly): The ARN of the resource that was backed up.
+* **ResourceName**: string (ReadOnly): The name of the resource that was backed up.
+* **ResourceType**: string (ReadOnly): The type of AWS resource that was backed up.
+* **SourceBackupVaultArn**: string (ReadOnly): The ARN of the source backup vault for copied recovery points.
+* **Status**: string (ReadOnly): The status of the recovery point.
+* **StorageClass**: string (ReadOnly): The storage class of the recovery point.
+* **VaultType**: string (ReadOnly): The type of vault in which the recovery point resides.
 
 ## AWS.Backup/ReportPlanProperties
 ### Properties
@@ -244,8 +329,40 @@
 * **TargetBackupVault**: string (Required)
 * **TargetLogicallyAirGappedBackupVaultArn**: string
 
+## BackupSelection_Conditions
+### Properties
+* **StringEquals**: [ConditionParameter](#conditionparameter)[]
+* **StringLike**: [ConditionParameter](#conditionparameter)[]
+* **StringNotEquals**: [ConditionParameter](#conditionparameter)[]
+* **StringNotLike**: [ConditionParameter](#conditionparameter)[]
+
+## BackupSelectionResourceType
+### Properties
+* **Conditions**: [BackupSelection_Conditions](#backupselectionconditions)
+* **IamRoleArn**: string (Required)
+* **ListOfTags**: [ConditionResourceType](#conditionresourcetype)[]
+* **NotResources**: string[]
+* **Resources**: string[]
+* **SelectionName**: string (Required)
+
 ## BackupVault_BackupVaultTags
 ### Properties
+
+## CalculatedLifecycle
+### Properties
+* **DeleteAt**: string: The date and time when the recovery point will be deleted.
+* **MoveToColdStorageAt**: string: The date and time when the recovery point will be moved to cold storage.
+
+## ConditionParameter
+### Properties
+* **ConditionKey**: string
+* **ConditionValue**: string
+
+## ConditionResourceType
+### Properties
+* **ConditionKey**: string (Required)
+* **ConditionType**: string (Required)
+* **ConditionValue**: string (Required)
 
 ## ControlInputParameter
 ### Properties
@@ -294,6 +411,13 @@
 * **Key**: string (Required): The key name of the tag.
 * **Value**: string (Required): The value for the tag.
 
+## Lifecycle
+### Properties
+* **DeleteAfterDays**: int: The number of days after creation that a recovery point is deleted.
+* **DeleteAfterEvent**: string: The event that triggers the deletion of the recovery point.
+* **MoveToColdStorageAfterDays**: int: The number of days after creation that a recovery point is moved to cold storage.
+* **OptInToArchiveForSupportedResources**: bool: Whether to opt in to archive for supported resources.
+
 ## LifecycleResourceType
 ### Properties
 * **DeleteAfterDays**: int
@@ -323,6 +447,18 @@
 ### Properties
 * **StringEquals**: [KeyValue](#keyvalue)[]
 * **StringNotEquals**: [KeyValue](#keyvalue)[]
+
+## RecoveryPoint_CalculatedLifecycle
+### Properties
+* **DeleteAt**: string: The date and time when the recovery point will be deleted.
+* **MoveToColdStorageAt**: string: The date and time when the recovery point will be moved to cold storage.
+
+## RecoveryPoint_Lifecycle
+### Properties
+* **DeleteAfterDays**: int: The number of days after creation that a recovery point is deleted.
+* **DeleteAfterEvent**: string: The event that triggers the deletion of the recovery point.
+* **MoveToColdStorageAfterDays**: int: The number of days after creation that a recovery point is moved to cold storage.
+* **OptInToArchiveForSupportedResources**: bool: Whether to opt in to archive for supported resources.
 
 ## ReportPlan_ReportDeliveryChannel
 ### Properties
@@ -375,6 +511,11 @@
 ### Properties
 * **Key**: string: The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string: The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
 
 ## Tag
 ### Properties

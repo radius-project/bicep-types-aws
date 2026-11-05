@@ -1,0 +1,147 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ECS-DaemonRevision",
+  "type": "AWS::ECS::DaemonRevision",
+  "time": "2026-10-29T16:03:33.021Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Cluster",
+        "/properties/DaemonName",
+        "/properties/DaemonRevisionId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/PropagateTags",
+      "/properties/EnableECSManagedTags",
+      "/properties/EnableExecuteCommand"
+    ],
+    "definitions": {
+      "ContainerImage": {
+        "additionalProperties": false,
+        "description": "The details about the container image a daemon revision uses.",
+        "properties": {
+          "ContainerName": {
+            "description": "The name of the container.",
+            "type": "string"
+          },
+          "Image": {
+            "description": "The container image.",
+            "type": "string"
+          },
+          "ImageDigest": {
+            "description": "The container image digest.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource schema for an Amazon ECS daemon revision. A daemon revision is an immutable snapshot of a daemon's configuration at the time a daemon deployment was initiated. It captures the daemon task definition, container images, tag propagation, ECS managed tags, and execute command settings. Amazon ECS automatically creates a daemon revision whenever you create or update a daemon. This is a read-only resource that provides visibility into the daemon revisions of an Amazon ECS daemon.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "Cluster": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "DaemonName": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "Cluster",
+            "DaemonName"
+          ]
+        },
+        "permissions": [
+          "ecs:ListDaemonDeployments"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ecs:DescribeDaemonRevisions"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/DaemonRevisionArn"
+    ],
+    "properties": {
+      "Cluster": {
+        "description": "The short name of the cluster that hosts the daemon (the cluster segment of the daemon revision ARN).",
+        "type": "string"
+      },
+      "ClusterArn": {
+        "description": "The Amazon Resource Name (ARN) of the cluster that hosts the daemon.",
+        "type": "string"
+      },
+      "ContainerImages": {
+        "description": "The container images used by the daemon revision.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/ContainerImage"
+        },
+        "type": "array"
+      },
+      "CreatedAt": {
+        "description": "The time that the daemon revision was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DaemonArn": {
+        "description": "The Amazon Resource Name (ARN) of the daemon for this revision.",
+        "type": "string"
+      },
+      "DaemonName": {
+        "description": "The name of the daemon (the daemon segment of the daemon revision ARN).",
+        "type": "string"
+      },
+      "DaemonRevisionArn": {
+        "description": "The Amazon Resource Name (ARN) of the daemon revision.",
+        "type": "string"
+      },
+      "DaemonRevisionId": {
+        "description": "The ID of the daemon revision (the revision segment of the daemon revision ARN).",
+        "type": "string"
+      },
+      "DaemonTaskDefinitionArn": {
+        "description": "The Amazon Resource Name (ARN) of the daemon task definition used by this revision.",
+        "type": "string"
+      },
+      "EnableECSManagedTags": {
+        "description": "Specifies whether Amazon ECS managed tags are turned on for the daemon tasks.",
+        "type": "boolean"
+      },
+      "EnableExecuteCommand": {
+        "description": "Specifies whether the execute command functionality is turned on for the daemon tasks.",
+        "type": "boolean"
+      },
+      "PropagateTags": {
+        "description": "Specifies whether tags are propagated from the daemon to the daemon tasks.",
+        "enum": [
+          "DAEMON",
+          "NONE"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/DaemonRevisionArn",
+      "/properties/Cluster",
+      "/properties/DaemonName",
+      "/properties/DaemonRevisionId",
+      "/properties/ClusterArn",
+      "/properties/DaemonArn",
+      "/properties/DaemonTaskDefinitionArn",
+      "/properties/ContainerImages",
+      "/properties/CreatedAt"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::ECS::DaemonRevision"
+  }
+}

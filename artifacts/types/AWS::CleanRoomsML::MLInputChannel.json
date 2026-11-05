@@ -1,0 +1,547 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CleanRoomsML-MLInputChannel",
+  "type": "AWS::CleanRoomsML::MLInputChannel",
+  "time": "2026-11-05T20:48:11.227Z",
+  "schema": {
+    "additionalProperties": false,
+    "definitions": {
+      "AccessBudget": {
+        "additionalProperties": false,
+        "description": "An access budget that applies to a resource associated with this ML input channel.",
+        "properties": {
+          "AggregateRemainingBudget": {
+            "description": "The total remaining budget across all active budget periods for this resource.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "Details": {
+            "description": "A list of budget details for this resource. Contains active budget periods that apply to the resource.",
+            "items": {
+              "$ref": "#/definitions/AccessBudgetDetails"
+            },
+            "maxItems": 2,
+            "minItems": 1,
+            "type": "array"
+          },
+          "ResourceArn": {
+            "description": "The ARN of the resource that this access budget applies to.",
+            "maxLength": 200,
+            "pattern": "^arn:aws[-a-z]*:[\\w]+:[\\w]{2}-[\\w]{4,9}-[\\d]:[\\d]{12}:membership/[\\d\\w-]+/configuredtableassociation/[\\d\\w-]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ResourceArn",
+          "Details",
+          "AggregateRemainingBudget"
+        ],
+        "type": "object"
+      },
+      "AccessBudgetDetails": {
+        "additionalProperties": false,
+        "description": "Budget details for an active budget period that applies to a resource.",
+        "properties": {
+          "AutoRefresh": {
+            "description": "Specifies whether this budget automatically refreshes when the current period ends.",
+            "enum": [
+              "ENABLED",
+              "DISABLED"
+            ],
+            "type": "string"
+          },
+          "Budget": {
+            "description": "The total budget amount allocated for this period.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "BudgetType": {
+            "description": "The type of budget period. Calendar-based types reset automatically at regular intervals, while LIFETIME budgets never reset.",
+            "enum": [
+              "CALENDAR_DAY",
+              "CALENDAR_MONTH",
+              "CALENDAR_WEEK",
+              "LIFETIME"
+            ],
+            "type": "string"
+          },
+          "RemainingBudget": {
+            "description": "The amount of budget remaining in this period.",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "RemainingBudget",
+          "Budget",
+          "BudgetType"
+        ],
+        "type": "object"
+      },
+      "ColumnClassificationDetails": {
+        "additionalProperties": false,
+        "description": "Classification details for data columns that specify how each column should be treated during synthetic data generation.",
+        "properties": {
+          "ColumnMapping": {
+            "description": "A mapping that defines the classification of data columns for synthetic data generation.",
+            "items": {
+              "$ref": "#/definitions/SyntheticDataColumnProperties"
+            },
+            "maxItems": 1000,
+            "minItems": 5,
+            "type": "array"
+          }
+        },
+        "required": [
+          "ColumnMapping"
+        ],
+        "type": "object"
+      },
+      "ComputeConfiguration": {
+        "additionalProperties": false,
+        "description": "Provides configuration information for the instances that will perform the compute work.",
+        "properties": {
+          "Worker": {
+            "$ref": "#/definitions/WorkerComputeConfiguration"
+          }
+        },
+        "required": [
+          "Worker"
+        ],
+        "type": "object"
+      },
+      "InputChannel": {
+        "additionalProperties": false,
+        "description": "Provides information about the data source that is used to create an ML input channel.",
+        "properties": {
+          "DataSource": {
+            "$ref": "#/definitions/InputChannelDataSource"
+          },
+          "RoleArn": {
+            "description": "The ARN of the role used to run the query specified in the dataSource field.",
+            "maxLength": 2048,
+            "minLength": 20,
+            "pattern": "^arn:aws[-a-z]*:iam::[0-9]{12}:role/.+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "DataSource",
+          "RoleArn"
+        ],
+        "type": "object"
+      },
+      "InputChannelDataSource": {
+        "additionalProperties": false,
+        "description": "Provides the data source that is used to define an input channel.",
+        "properties": {
+          "ProtectedQueryInputParameters": {
+            "$ref": "#/definitions/ProtectedQueryInputParameters"
+          }
+        },
+        "required": [
+          "ProtectedQueryInputParameters"
+        ],
+        "type": "object"
+      },
+      "MLSyntheticDataParameters": {
+        "additionalProperties": false,
+        "description": "The parameters that control how synthetic data is generated, including privacy settings and column classifications.",
+        "properties": {
+          "ColumnClassification": {
+            "$ref": "#/definitions/ColumnClassificationDetails"
+          },
+          "Epsilon": {
+            "description": "The epsilon value for differential privacy, which controls the privacy-utility tradeoff in synthetic data generation.",
+            "maximum": 10,
+            "minimum": 0.0001,
+            "type": "number"
+          },
+          "MaxMembershipInferenceAttackScore": {
+            "description": "The maximum acceptable score for membership inference attack vulnerability.",
+            "maximum": 1,
+            "minimum": 0.5,
+            "type": "number"
+          }
+        },
+        "required": [
+          "Epsilon",
+          "MaxMembershipInferenceAttackScore"
+        ],
+        "type": "object"
+      },
+      "PrivacyBudgets": {
+        "additionalProperties": false,
+        "description": "Returns the privacy budgets that control access to this Clean Rooms ML input channel.",
+        "properties": {
+          "AccessBudgets": {
+            "description": "A list of access budgets that apply to resources associated with this Clean Rooms ML input channel.",
+            "items": {
+              "$ref": "#/definitions/AccessBudget"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "AccessBudgets"
+        ],
+        "type": "object"
+      },
+      "ProtectedQueryInputParameters": {
+        "additionalProperties": false,
+        "description": "Provides information necessary to perform the protected query.",
+        "properties": {
+          "ComputeConfiguration": {
+            "$ref": "#/definitions/ComputeConfiguration"
+          },
+          "ResultFormat": {
+            "description": "The format in which the query results should be returned.",
+            "enum": [
+              "CSV",
+              "PARQUET"
+            ],
+            "type": "string"
+          },
+          "SqlParameters": {
+            "$ref": "#/definitions/ProtectedQuerySQLParameters"
+          }
+        },
+        "required": [
+          "SqlParameters"
+        ],
+        "type": "object"
+      },
+      "ProtectedQuerySQLParameters": {
+        "additionalProperties": false,
+        "description": "The parameters for the SQL type Protected Query.",
+        "properties": {
+          "AnalysisTemplateArn": {
+            "description": "The ARN associated with the analysis template within a collaboration.",
+            "maxLength": 200,
+            "pattern": "^arn:aws[-a-z]*:cleanrooms:[\\w]{2}-[\\w]{4,9}-[\\d]:[\\d]{12}:membership/[\\d\\w-]+/analysistemplate/[\\d\\w-]+$",
+            "type": "string"
+          },
+          "Parameters": {
+            "additionalProperties": false,
+            "description": "The protected query SQL parameters.",
+            "patternProperties": {
+              "^[0-9a-zA-Z_]{1,100}$": {
+                "maxLength": 1000,
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "QueryString": {
+            "description": "The query string to be submitted.",
+            "maxLength": 500000,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "SyntheticDataColumnProperties": {
+        "additionalProperties": false,
+        "description": "Properties that define how a specific data column should be handled during synthetic data generation.",
+        "properties": {
+          "ColumnName": {
+            "description": "The name of the data column as it appears in the dataset.",
+            "maxLength": 128,
+            "pattern": "^[a-z0-9_](([a-z0-9_]+-)*([a-z0-9_]+))?$",
+            "type": "string"
+          },
+          "ColumnType": {
+            "description": "The data type of the column, which determines how the synthetic data generation algorithm processes and synthesizes values for this column.",
+            "enum": [
+              "CATEGORICAL",
+              "NUMERICAL"
+            ],
+            "type": "string"
+          },
+          "IsPredictiveValue": {
+            "description": "Indicates if this column contains predictive values that should be treated as target variables in machine learning models.",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "ColumnName",
+          "ColumnType",
+          "IsPredictiveValue"
+        ],
+        "type": "object"
+      },
+      "SyntheticDataConfiguration": {
+        "additionalProperties": false,
+        "description": "The synthetic data configuration for this ML input channel, including parameters for generating privacy-preserving synthetic data.",
+        "properties": {
+          "SyntheticDataParameters": {
+            "$ref": "#/definitions/MLSyntheticDataParameters"
+          }
+        },
+        "required": [
+          "SyntheticDataParameters"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "WorkerComputeConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration information about the compute workers that perform the transform job.",
+        "properties": {
+          "Number": {
+            "description": "The number of compute workers that are used.",
+            "maximum": 1024,
+            "minimum": 2,
+            "type": "integer"
+          },
+          "Properties": {
+            "additionalProperties": false,
+            "description": "The configuration properties for the worker compute environment.",
+            "properties": {
+              "Spark": {
+                "additionalProperties": false,
+                "description": "The Spark configuration properties for SQL workloads.",
+                "maxProperties": 50,
+                "patternProperties": {
+                  "^.{1,200}$": {
+                    "maxLength": 500,
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "required": [
+              "Spark"
+            ],
+            "type": "object"
+          },
+          "Type": {
+            "description": "The instance type of the compute workers that are used.",
+            "enum": [
+              "CR.1X",
+              "CR.4X"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::CleanRoomsML::MLInputChannel",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "MembershipIdentifier": {
+              "maxLength": 36,
+              "minLength": 36,
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "MembershipIdentifier"
+          ]
+        },
+        "permissions": [
+          "cleanrooms-ml:ListMLInputChannels",
+          "cleanrooms:GetMembership",
+          "cleanrooms:PassMembership"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "cleanrooms-ml:GetMLInputChannel",
+          "cleanrooms-ml:ListTagsForResource",
+          "cleanrooms:GetMembership",
+          "cleanrooms:PassMembership"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/MlInputChannelArn"
+    ],
+    "properties": {
+      "CollaborationIdentifier": {
+        "description": "The collaboration ID of the collaboration that contains the ML input channel.",
+        "maxLength": 36,
+        "minLength": 36,
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        "type": "string"
+      },
+      "ConfiguredModelAlgorithmAssociations": {
+        "description": "The configured model algorithm associations that were used to create the ML input channel.",
+        "items": {
+          "maxLength": 2048,
+          "minLength": 20,
+          "pattern": "^arn:aws[-a-z]*:cleanrooms-ml:[-a-z0-9]+:[0-9]{12}:membership/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/configured-model-algorithm-association/[-a-zA-Z0-9_/.]+$",
+          "type": "string"
+        },
+        "maxItems": 1,
+        "minItems": 1,
+        "type": "array"
+      },
+      "CreateTime": {
+        "description": "The time at which the ML input channel was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description of the ML input channel.",
+        "maxLength": 255,
+        "pattern": "^[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t\\r\\n]*$",
+        "type": "string"
+      },
+      "InputChannel": {
+        "$ref": "#/definitions/InputChannel"
+      },
+      "KmsKeyArn": {
+        "description": "The ARN of the KMS key that was used to create the ML input channel.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws[-a-z]*:kms:[-a-z0-9]+:[0-9]{12}:key/.+$",
+        "type": "string"
+      },
+      "MembershipIdentifier": {
+        "description": "The membership ID of the membership that contains the ML input channel.",
+        "maxLength": 36,
+        "minLength": 36,
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        "type": "string"
+      },
+      "MlInputChannelArn": {
+        "description": "The Amazon Resource Name (ARN) of the ML input channel.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws[-a-z]*:cleanrooms-ml:[-a-z0-9]+:[0-9]{12}:membership/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/ml-input-channel/[-a-zA-Z0-9_/.]+$",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the ML input channel.",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^(?!\\s*$)[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t]*$",
+        "type": "string"
+      },
+      "NumberOfFiles": {
+        "description": "The number of files in the ML input channel.",
+        "maximum": 1000000,
+        "minimum": 0,
+        "type": "number"
+      },
+      "NumberOfRecords": {
+        "description": "The number of records in the ML input channel.",
+        "maximum": 100000000000,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "PrivacyBudgets": {
+        "$ref": "#/definitions/PrivacyBudgets"
+      },
+      "ProtectedQueryIdentifier": {
+        "description": "The ID of the protected query that was used to create the ML input channel.",
+        "maxLength": 36,
+        "minLength": 36,
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        "type": "string"
+      },
+      "RetentionInDays": {
+        "description": "The number of days to keep the data in the ML input channel.",
+        "maximum": 30,
+        "minimum": 1,
+        "type": "integer"
+      },
+      "SizeInGb": {
+        "description": "The size, in GB, of the ML input channel.",
+        "maximum": 1000000,
+        "minimum": 0,
+        "type": "number"
+      },
+      "Status": {
+        "description": "The status of the ML input channel.",
+        "enum": [
+          "CREATE_PENDING",
+          "CREATE_IN_PROGRESS",
+          "CREATE_FAILED",
+          "ACTIVE",
+          "DELETE_PENDING",
+          "DELETE_IN_PROGRESS",
+          "DELETE_FAILED",
+          "INACTIVE"
+        ],
+        "type": "string"
+      },
+      "SyntheticDataConfiguration": {
+        "$ref": "#/definitions/SyntheticDataConfiguration"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array"
+      },
+      "UpdateTime": {
+        "description": "The most recent time at which the ML input channel was updated.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/MlInputChannelArn",
+      "/properties/MembershipIdentifier",
+      "/properties/CollaborationIdentifier",
+      "/properties/Name",
+      "/properties/ConfiguredModelAlgorithmAssociations",
+      "/properties/Status",
+      "/properties/RetentionInDays",
+      "/properties/Description",
+      "/properties/CreateTime",
+      "/properties/UpdateTime",
+      "/properties/InputChannel",
+      "/properties/KmsKeyArn",
+      "/properties/ProtectedQueryIdentifier",
+      "/properties/Tags",
+      "/properties/NumberOfRecords",
+      "/properties/NumberOfFiles",
+      "/properties/SizeInGb",
+      "/properties/PrivacyBudgets",
+      "/properties/SyntheticDataConfiguration"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "cleanrooms-ml:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::CleanRoomsML::MLInputChannel"
+  }
+}

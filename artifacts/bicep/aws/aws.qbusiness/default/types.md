@@ -32,6 +32,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.QBusiness/IndexProperties](#awsqbusinessindexproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.QBusiness/Permission@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.QBusiness/PermissionProperties](#awsqbusinesspermissionproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.QBusiness/Plugin@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -167,6 +175,14 @@
 * **Type**: string
 * **UpdatedAt**: string (ReadOnly)
 
+## AWS.QBusiness/PermissionProperties
+### Properties
+* **Actions**: string[] (Required)
+* **ApplicationId**: string (Required, Identifier)
+* **Conditions**: [Condition](#condition)[]
+* **Principal**: string (Required)
+* **StatementId**: string (Required, Identifier)
+
 ## AWS.QBusiness/PluginProperties
 ### Properties
 * **ApplicationId**: string (Identifier)
@@ -220,6 +236,12 @@
 ## BrowserExtensionConfiguration
 ### Properties
 * **EnabledBrowserExtensions**: string[] (Required)
+
+## Condition
+### Properties
+* **ConditionKey**: string (Required)
+* **ConditionOperator**: string (Required)
+* **ConditionValues**: string[] (Required)
 
 ## CustomizationConfiguration
 ### Properties

@@ -1,0 +1,83 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Events-EventSource",
+  "type": "AWS::Events::EventSource",
+  "time": "2026-11-05T20:50:57.543Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Name"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name"
+    ],
+    "description": "Resource type definition for AWS::Events::EventSource. Represents the consumer-side view of a partner event source in Amazon EventBridge. Partner event sources are created out-of-band by a registered SaaS partner; this resource is read-only.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "events:ListEventSources"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "events:DescribeEventSource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of the partner event source.",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "description": "The name of the SaaS partner that created the event source.",
+        "type": "string"
+      },
+      "CreationTime": {
+        "description": "The date and time that the event source was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ExpirationTime": {
+        "description": "The date and time that the event source will expire if you do not create a matching event bus.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the partner event source.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^aws\\.partner(/[\\.\\-_A-Za-z0-9]+){2,}$",
+        "type": "string"
+      },
+      "State": {
+        "description": "The state of the event source.",
+        "enum": [
+          "PENDING",
+          "ACTIVE",
+          "DELETED"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/CreatedBy",
+      "/properties/CreationTime",
+      "/properties/ExpirationTime",
+      "/properties/State"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": false,
+      "tagUpdatable": false,
+      "taggable": false
+    },
+    "typeName": "AWS::Events::EventSource"
+  }
+}

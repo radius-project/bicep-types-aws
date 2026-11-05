@@ -1,0 +1,84 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Redshift-DataShare",
+  "type": "AWS::Redshift::DataShare",
+  "time": "2026-11-05T18:09:51.734Z",
+  "schema": {
+    "additionalProperties": false,
+    "definitions": {
+      "DataShareAssociation": {
+        "additionalProperties": false,
+        "properties": {
+          "ConsumerIdentifier": {
+            "description": "The name of the consumer accounts that have an association with a producer datashare.",
+            "type": "string"
+          },
+          "CreatedDate": {
+            "description": "The creation date of the datashare association.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "Status": {
+            "description": "The status of the datashare association.",
+            "type": "string"
+          },
+          "StatusChangeDate": {
+            "description": "The status change date of the datashare association.",
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource for managing Redshift DataShares. This is a read-only resource type.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "redshift:DescribeDataShares"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "redshift:DescribeDataShares",
+          "redshift-serverless:GetNamespace"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/DataShareArn"
+    ],
+    "properties": {
+      "AllowPubliclyAccessibleConsumers": {
+        "description": "Whether the datashare can be shared to a publicly accessible cluster.",
+        "type": "boolean"
+      },
+      "DataShareArn": {
+        "description": "The Amazon Resource Name (ARN) of the datashare.",
+        "type": "string"
+      },
+      "DataShareAssociations": {
+        "description": "Associations between producer and data consumers.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/DataShareAssociation"
+        },
+        "type": "array"
+      },
+      "ProducerArn": {
+        "description": "The Amazon Resource Name (ARN) of the producer namespace.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/DataShareArn",
+      "/properties/ProducerArn",
+      "/properties/AllowPubliclyAccessibleConsumers",
+      "/properties/DataShareAssociations"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-redshift",
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::Redshift::DataShare"
+  }
+}

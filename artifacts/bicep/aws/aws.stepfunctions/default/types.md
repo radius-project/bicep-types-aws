@@ -8,6 +8,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.StepFunctions/ActivityProperties](#awsstepfunctionsactivityproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.StepFunctions/MapRun@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.StepFunctions/MapRunProperties](#awsstepfunctionsmaprunproperties) (Identifier): properties of the resource
+
 ## Resource AWS.StepFunctions/StateMachine@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -24,12 +32,33 @@
 * **name**: string: the resource name
 * **properties**: [AWS.StepFunctions/StateMachineAliasProperties](#awsstepfunctionsstatemachinealiasproperties) (Identifier): properties of the resource
 
+## Resource AWS.StepFunctions/StateMachineVersion@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.StepFunctions/StateMachineVersionProperties](#awsstepfunctionsstatemachineversionproperties) (Required, Identifier): properties of the resource
+
 ## AWS.StepFunctions/ActivityProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier)
 * **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
 * **Name**: string (Required)
 * **Tags**: [TagsEntry](#tagsentry)[]
+
+## AWS.StepFunctions/MapRunProperties
+### Properties
+* **ExecutionArn**: string: The Amazon Resource Name (ARN) that identifies the execution in which the Map Run was started.
+* **ExecutionCounts**: [MapRunExecutionCounts](#maprunexecutioncounts) (ReadOnly)
+* **ItemCounts**: [MapRunItemCounts](#maprunitemcounts) (ReadOnly)
+* **MapRunArn**: string (Identifier): The Amazon Resource Name (ARN) that identifies the Map Run.
+* **MaxConcurrency**: int (ReadOnly): The maximum number of child workflow executions configured to run in parallel for the Map Run at the same time.
+* **StartDate**: string (ReadOnly): The date when the Map Run was started.
+* **Status**: string (ReadOnly): The current status of the Map Run.
+* **StopDate**: string (ReadOnly): The date when the Map Run was stopped.
+* **ToleratedFailureCount**: int (ReadOnly): The maximum number of failed child workflow executions before the Map Run fails.
+* **ToleratedFailurePercentage**: int (ReadOnly): The maximum percentage of failed child workflow executions before the Map Run fails.
 
 ## AWS.StepFunctions/StateMachineAliasProperties
 ### Properties
@@ -56,6 +85,13 @@
 * **StateMachineType**: string
 * **Tags**: [TagsEntry](#tagsentry)[]
 * **TracingConfiguration**: [TracingConfiguration](#tracingconfiguration)
+
+## AWS.StepFunctions/StateMachineVersionProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier)
+* **Description**: string
+* **StateMachineArn**: string (Required)
+* **StateMachineRevisionId**: string
 
 ## CloudWatchLogsLogGroup
 ### Properties
@@ -96,6 +132,32 @@
 * **Destinations**: [LogDestination](#logdestination)[]
 * **IncludeExecutionData**: bool
 * **Level**: string
+
+## MapRunExecutionCounts
+### Properties
+* **Aborted**: int: The total number of child workflow executions that were stopped.
+* **Failed**: int: The total number of child workflow executions that have failed.
+* **FailuresNotRedrivable**: int: The number of child workflow executions that cannot be redriven.
+* **Pending**: int: The total number of child workflow executions that haven't started executing yet.
+* **PendingRedrive**: int: The number of unsuccessful child workflow executions waiting to be redriven.
+* **ResultsWritten**: int: The count of child workflow executions whose results were written by ResultWriter.
+* **Running**: int: The total number of child workflow executions that are currently in-progress.
+* **Succeeded**: int: The total number of child workflow executions that have completed successfully.
+* **TimedOut**: int: The total number of child workflow executions that have timed out.
+* **Total**: int: The total number of child workflow executions started by a Map Run.
+
+## MapRunItemCounts
+### Properties
+* **Aborted**: int: The total number of items processed in child workflow executions that were stopped.
+* **Failed**: int: The total number of items processed in child workflow executions that have failed.
+* **FailuresNotRedrivable**: int: The number of items in child workflow executions that cannot be redriven.
+* **Pending**: int: The total number of items to process in child workflow executions that haven't started running yet.
+* **PendingRedrive**: int: The number of unsuccessful items currently waiting to be redriven.
+* **ResultsWritten**: int: The count of items whose results were written by ResultWriter.
+* **Running**: int: The total number of items being processed in child workflow executions that are currently in-progress.
+* **Succeeded**: int: The total number of items processed in child workflow executions that have completed successfully.
+* **TimedOut**: int: The total number of items processed in child workflow executions that have timed out.
+* **Total**: int: The total number of items processed in all the child workflow executions started by a Map Run.
 
 ## RoutingConfigurationVersion
 ### Properties

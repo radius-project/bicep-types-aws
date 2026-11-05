@@ -40,6 +40,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.GuardDuty/MalwareProtectionPlanProperties](#awsguarddutymalwareprotectionplanproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.GuardDuty/Master@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.GuardDuty/MasterProperties](#awsguarddutymasterproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.GuardDuty/Member@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -132,6 +140,12 @@
 * **Status**: string (ReadOnly): Status of the Malware Protection plan resource.
 * **StatusReasons**: [CFNStatusReasons](#cfnstatusreasons)[] (ReadOnly): Status details associated with the Malware Protection plan resource status.
 * **Tags**: [TagItem](#tagitem)[]: The tags to be added to the created Malware Protection plan resource. Each tag consists of a key and an optional value, both of which you need to specify.
+
+## AWS.GuardDuty/MasterProperties
+### Properties
+* **DetectorId**: string (Required, Identifier): Unique ID of the detector of the GuardDuty member account.
+* **InvitationId**: string: Value used to validate the administrator account to the member account.
+* **MasterId**: string (Required, Identifier): ID of the account used as the administrator account.
 
 ## AWS.GuardDuty/MemberProperties
 ### Properties

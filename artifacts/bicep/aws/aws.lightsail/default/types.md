@@ -24,6 +24,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Lightsail/CertificateProperties](#awslightsailcertificateproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Lightsail/ContactMethod@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Lightsail/ContactMethodProperties](#awslightsailcontactmethodproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Lightsail/Container@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -63,6 +71,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Lightsail/DiskSnapshotProperties](#awslightsaildisksnapshotproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Lightsail/ExportSnapshotRecord@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Lightsail/ExportSnapshotRecordProperties](#awslightsailexportsnapshotrecordproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Lightsail/Instance@default
 * **Readable Scope(s)**: None
@@ -175,6 +191,17 @@
 * **SubjectAlternativeNames**: string[]: An array of strings that specify the alternate domains (e.g., example2.com) and subdomains (e.g., blog.example.com) for the certificate.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
+## AWS.Lightsail/ContactMethodProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the contact method.
+* **ContactEndpoint**: string (Required): The destination of the contact method, such as an email address or a mobile phone number.
+* **CreatedAt**: string (ReadOnly): The timestamp when the contact method was created.
+* **Name**: string (ReadOnly): The name of the contact method.
+* **Protocol**: string (Required): The protocol of the contact method, such as Email or SMS (text messaging).
+* **ResourceType**: string (ReadOnly): The Lightsail resource type of the contact method.
+* **Status**: string (ReadOnly): The current status of the contact method.
+* **SupportCode**: string (ReadOnly): The support code for the contact method.
+
 ## AWS.Lightsail/ContainerProperties
 ### Properties
 * **ContainerArn**: string (ReadOnly)
@@ -261,6 +288,18 @@
 * **State**: string (ReadOnly): The status of the disk snapshot operation.
 * **SupportCode**: string (ReadOnly): The support code. Include this code in your email to support when you have questions about an instance or another resource in Lightsail.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## AWS.Lightsail/ExportSnapshotRecordProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the export snapshot record.
+* **CreatedAt**: string (ReadOnly): The date when the export snapshot record was created.
+* **DestinationInfo**: [DestinationInfo](#destinationinfo) (ReadOnly)
+* **Location**: [ResourceLocation](#resourcelocation) (ReadOnly)
+* **Name**: string (ReadOnly): The export snapshot record name.
+* **RecordId**: string (ReadOnly): The unique identifier extracted from the ARN of the export snapshot record.
+* **ResourceType**: string (ReadOnly): The Lightsail resource type (ExportSnapshotRecord).
+* **SourceInfo**: [ExportSnapshotRecordSourceInfo](#exportsnapshotrecordsourceinfo) (ReadOnly)
+* **State**: string (ReadOnly): The current state of the export snapshot record.
 
 ## AWS.Lightsail/InstanceProperties
 ### Properties
@@ -367,6 +406,11 @@
 * **AvailabilityZone**: string: The Availability Zone where the database snapshot was created.
 * **RegionName**: string: The AWS Region where the database snapshot was created.
 
+## DestinationInfo
+### Properties
+* **Id**: string: The ID of the resource created at the destination.
+* **Service**: string: The destination service of the record.
+
 ## Disk
 ### Properties
 * **AttachedTo**: string: Instance attached to the disk.
@@ -377,6 +421,12 @@
 * **Path**: string (Required): Path of the disk attached to the instance.
 * **SizeInGb**: string: Size of the disk attached to the Instance.
 
+## DiskInfo
+### Properties
+* **IsSystemDisk**: bool: A Boolean value indicating whether this disk is a system disk.
+* **Path**: string: The disk path.
+* **SizeInGb**: int: The size of the disk in GB.
+
 ## DiskSnapshot_Location
 ### Properties
 * **AvailabilityZone**: string: The Availability Zone where the disk snapshot was created.
@@ -386,6 +436,16 @@
 ### Properties
 * **Value**: string
 * **Variable**: string
+
+## ExportSnapshotRecordSourceInfo
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the source instance or disk snapshot.
+* **CreatedAt**: string: The date when the source instance or disk snapshot was created.
+* **FromResourceArn**: string: The Amazon Resource Name (ARN) of the snapshot's source instance or disk.
+* **FromResourceName**: string: The name of the snapshot's source instance or disk.
+* **InstanceSnapshotInfo**: [InstanceSnapshotInfo](#instancesnapshotinfo)
+* **Name**: string: The name of the source instance or disk snapshot.
+* **ResourceType**: string: The Lightsail resource type (InstanceSnapshot or DiskSnapshot).
 
 ## Hardware
 ### Properties
@@ -401,6 +461,12 @@
 * **SuccessCodes**: string: The HTTP codes to use when checking for a successful response from a container. You can specify values between 200 and 499. You can specify multiple values (for example, 200,202) or a range of values (for example, 200-299).
 * **TimeoutSeconds**: int: The amount of time, in seconds, during which no response means a failed health check. You can specify between 2 and 60 seconds. The default value is 2.
 * **UnhealthyThreshold**: int: The number of consecutive health check failures required before moving the container to the Unhealthy state. The default value is 2.
+
+## InstanceSnapshotInfo
+### Properties
+* **FromBlueprintId**: string: The blueprint ID from which the source instance was created.
+* **FromBundleId**: string: The bundle ID from which the source instance was created.
+* **FromDiskInfo**: [DiskInfo](#diskinfo)[]: A list of objects describing the disks that were attached to the source instance.
 
 ## Location
 ### Properties
@@ -469,6 +535,11 @@
 * **IsModifiable**: bool: A Boolean value indicating whether the parameter can be modified.
 * **ParameterName**: string: Specifies the name of the parameter.
 * **ParameterValue**: string: Specifies the value of the parameter.
+
+## ResourceLocation
+### Properties
+* **AvailabilityZone**: string: The Availability Zone.
+* **RegionName**: string: The AWS Region name.
 
 ## ResourceLocation
 ### Properties

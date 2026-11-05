@@ -1,0 +1,231 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NeptuneGraph-ExportTask",
+  "type": "AWS::NeptuneGraph::ExportTask",
+  "time": "2026-10-30T02:00:04.646Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/TaskId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Destination",
+      "/properties/ExportFilter",
+      "/properties/Format",
+      "/properties/GraphIdentifier",
+      "/properties/KmsKeyIdentifier",
+      "/properties/ParquetType",
+      "/properties/RoleArn",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "ExportFilter": {
+        "additionalProperties": false,
+        "description": "Specifies vertex or edge filters for the export.",
+        "properties": {
+          "EdgeFilter": {
+            "additionalProperties": false,
+            "description": "Used to specify filters on a per-label basis for edges.",
+            "patternProperties": {
+              "^.{1,128}$": {
+                "$ref": "#/definitions/ExportFilterElement"
+              }
+            },
+            "type": "object"
+          },
+          "VertexFilter": {
+            "additionalProperties": false,
+            "description": "Used to specify filters on a per-label basis for vertices.",
+            "patternProperties": {
+              "^.{1,128}$": {
+                "$ref": "#/definitions/ExportFilterElement"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "ExportFilterElement": {
+        "additionalProperties": false,
+        "description": "Specifies which properties of that label should be included in the export.",
+        "properties": {
+          "Properties": {
+            "additionalProperties": false,
+            "description": "Property definitions for the filter element.",
+            "patternProperties": {
+              "^[a-zA-Z0-9_]{1,128}$": {
+                "$ref": "#/definitions/ExportFilterPropertyAttributes"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "ExportFilterPropertyAttributes": {
+        "additionalProperties": false,
+        "description": "Attributes of a property in the export filter.",
+        "properties": {
+          "MultiValueHandling": {
+            "description": "Specifies how to handle properties that have multiple values.",
+            "enum": [
+              "TO_LIST",
+              "PICK_FIRST"
+            ],
+            "type": "string"
+          },
+          "OutputType": {
+            "description": "Specifies the data type to use for the property in the exported data.",
+            "type": "string"
+          },
+          "SourcePropertyName": {
+            "description": "The name of the property as it exists in the original graph data.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Represents an export task that exports data from a Neptune Analytics graph to Amazon S3.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "neptune-graph:ListExportTasks"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "neptune-graph:GetExportTask",
+          "neptune-graph:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of the export task.",
+        "type": "string"
+      },
+      "Destination": {
+        "description": "The Amazon S3 URI where data will be exported to.",
+        "maxLength": 1024,
+        "minLength": 1,
+        "type": "string"
+      },
+      "ExportFilter": {
+        "$ref": "#/definitions/ExportFilter",
+        "description": "The export filter of the export task."
+      },
+      "Format": {
+        "description": "The format of the export task.",
+        "enum": [
+          "PARQUET",
+          "CSV"
+        ],
+        "type": "string"
+      },
+      "GraphIdentifier": {
+        "description": "The source graph identifier of the export task.",
+        "pattern": "^g-[a-z0-9]{10}$",
+        "type": "string"
+      },
+      "KmsKeyIdentifier": {
+        "description": "The KMS key identifier of the export task.",
+        "maxLength": 1024,
+        "minLength": 1,
+        "type": "string"
+      },
+      "ParquetType": {
+        "description": "The parquet type of the export task.",
+        "enum": [
+          "COLUMNAR"
+        ],
+        "type": "string"
+      },
+      "RoleArn": {
+        "description": "The ARN of the IAM role that will allow data to be exported to the destination.",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The current status of the export task.",
+        "enum": [
+          "INITIALIZING",
+          "EXPORTING",
+          "SUCCEEDED",
+          "FAILED",
+          "CANCELLING",
+          "CANCELLED",
+          "DELETED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags to be applied to the export task.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "TaskId": {
+        "description": "The unique identifier of the export task.",
+        "pattern": "^t-[a-z0-9]{10}$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/TaskId",
+      "/properties/Status"
+    ],
+    "required": [
+      "GraphIdentifier",
+      "RoleArn",
+      "Format",
+      "Destination",
+      "KmsKeyIdentifier"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "neptune-graph:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::NeptuneGraph::ExportTask"
+  }
+}

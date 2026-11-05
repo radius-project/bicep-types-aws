@@ -1,0 +1,182 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CleanRooms-ConfiguredAudienceModelAssociation",
+  "type": "AWS::CleanRooms::ConfiguredAudienceModelAssociation",
+  "time": "2026-11-05T21:20:21.168Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/MembershipIdentifier",
+        "/properties/ConfiguredAudienceModelAssociationIdentifier"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Represents a configured audience model association within an AWS Clean Rooms membership.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "MembershipIdentifier": {
+              "maxLength": 36,
+              "minLength": 36,
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "MembershipIdentifier"
+          ]
+        },
+        "permissions": [
+          "cleanrooms:ListConfiguredAudienceModelAssociations"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "cleanrooms:GetConfiguredAudienceModelAssociation",
+          "cleanrooms:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the configured audience model association.",
+        "maxLength": 256,
+        "minLength": 0,
+        "pattern": "^arn:aws:cleanrooms:[\\w]{2}-[\\w]{4,9}-[\\d]:[\\d]{12}:membership/[\\d\\w-]+/configuredaudiencemodelassociation/[\\d\\w-]+$",
+        "type": "string"
+      },
+      "CollaborationArn": {
+        "description": "The Amazon Resource Name (ARN) of the collaboration that contains this configured audience model association.",
+        "maxLength": 100,
+        "minLength": 0,
+        "pattern": "^arn:aws:[\\w]+:[\\w]{2}-[\\w]{4,9}-[\\d]:[\\d]{12}:collaboration/[\\d\\w-]+$",
+        "type": "string"
+      },
+      "CollaborationIdentifier": {
+        "description": "A unique identifier of the collaboration that contains this configured audience model association.",
+        "maxLength": 36,
+        "minLength": 36,
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        "type": "string"
+      },
+      "ConfiguredAudienceModelArn": {
+        "description": "The Amazon Resource Name (ARN) of the configured audience model that was used for this configured audience model association.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws[-a-z]*:cleanrooms-ml:[-a-z0-9]+:[0-9]{12}:configured-audience-model/[-a-zA-Z0-9_/.]+$",
+        "type": "string"
+      },
+      "ConfiguredAudienceModelAssociationIdentifier": {
+        "description": "A unique identifier of the configured audience model association.",
+        "maxLength": 36,
+        "minLength": 36,
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        "type": "string"
+      },
+      "CreateTime": {
+        "description": "The time at which the configured audience model association was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description of the configured audience model association.",
+        "maxLength": 255,
+        "minLength": 0,
+        "pattern": "^[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t\\r\\n]*$",
+        "type": "string"
+      },
+      "ManageResourcePolicies": {
+        "description": "When TRUE, indicates that the resource policy for the configured audience model resource being associated is configured for Clean Rooms to manage permissions related to the given collaboration.",
+        "type": "boolean"
+      },
+      "MembershipArn": {
+        "description": "The Amazon Resource Name (ARN) of the membership that contains this configured audience model association.",
+        "maxLength": 100,
+        "minLength": 0,
+        "pattern": "^arn:aws:[\\w]+:[\\w]{2}-[\\w]{4,9}-[\\d]:[\\d]{12}:membership/[\\d\\w-]+$",
+        "type": "string"
+      },
+      "MembershipIdentifier": {
+        "description": "A unique identifier for the membership that contains this configured audience model association.",
+        "maxLength": 36,
+        "minLength": 36,
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the configured audience model association.",
+        "maxLength": 100,
+        "minLength": 1,
+        "pattern": "^(?!\\s*$)[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t]*$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags associated with the configured audience model association.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "UpdateTime": {
+        "description": "The most recent time at which the configured audience model association was updated.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/ConfiguredAudienceModelAssociationIdentifier",
+      "/properties/MembershipIdentifier",
+      "/properties/ConfiguredAudienceModelArn",
+      "/properties/MembershipArn",
+      "/properties/CollaborationArn",
+      "/properties/CollaborationIdentifier",
+      "/properties/Name",
+      "/properties/Description",
+      "/properties/ManageResourcePolicies",
+      "/properties/CreateTime",
+      "/properties/UpdateTime",
+      "/properties/Tags"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "cleanrooms:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::CleanRooms::ConfiguredAudienceModelAssociation"
+  }
+}

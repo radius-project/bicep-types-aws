@@ -48,6 +48,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Events/EventBusPolicyProperties](#awseventseventbuspolicyproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Events/EventSource@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Events/EventSourceProperties](#awseventseventsourceproperties) (Identifier): properties of the resource
+
+## Resource AWS.Events/Replay@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Events/ReplayProperties](#awseventsreplayproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Events/Rule@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -143,6 +159,26 @@
 * **Name**: string (Required, Identifier): The name of the event bus.
 * **Policy**: [EventBus_Policy](#eventbuspolicy) | string: A JSON string that describes the permission policy statement for the event bus.
 * **Tags**: [Tag](#tag)[]: Any tags assigned to the event bus.
+
+## AWS.Events/EventSourceProperties
+### Properties
+* **Arn**: string (Identifier): The ARN of the partner event source.
+* **CreatedBy**: string (ReadOnly): The name of the SaaS partner that created the event source.
+* **CreationTime**: string (ReadOnly): The date and time that the event source was created.
+* **ExpirationTime**: string (ReadOnly): The date and time that the event source will expire if you do not create a matching event bus.
+* **Name**: string: The name of the partner event source.
+* **State**: string (ReadOnly): The state of the event source.
+
+## AWS.Events/ReplayProperties
+### Properties
+* **Destination**: [Replay_Destination](#replaydestination) (Required): A ReplayDestination object that includes details about the destination for the replay.
+* **EventEndTime**: string (Required): A time stamp for the time to stop replaying events.
+* **EventSourceArn**: string (Required): The ARN of the archive to replay events from.
+* **EventStartTime**: string (Required): A time stamp for the time to start replaying events.
+* **ReplayArn**: string (Identifier): The ARN of the replay.
+* **ReplayName**: string (Required): The name of the replay.
+* **ReplayStartTime**: string (ReadOnly): A time stamp for the time that the replay started.
+* **State**: string (ReadOnly): The current state of the replay.
 
 ## AWS.Events/RuleProperties
 ### Properties
@@ -313,6 +349,10 @@ Targets are the resources that are invoked when a rule is triggered.
 * **Sqls**: string[]
 * **StatementName**: string
 * **WithEvent**: bool
+
+## Replay_Destination
+### Properties
+* **Arn**: string (Required): The ARN of the event bus to replay events to.
 
 ## ReplicationConfig
 ### Properties

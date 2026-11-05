@@ -48,6 +48,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.DirectConnect/PublicVirtualInterfaceProperties](#awsdirectconnectpublicvirtualinterfaceproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.DirectConnect/ResiliencyGroup@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.DirectConnect/ResiliencyGroupProperties](#awsdirectconnectresiliencygroupproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.DirectConnect/TransitVirtualInterface@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -127,6 +135,15 @@
 * **VirtualInterfaceName**: string (Required): The name of the virtual interface assigned by the customer network. The name has a maximum of 100 characters. The following are valid characters: a-z, 0-9 and a hyphen (-).
 * **Vlan**: int (Required): The ID of the VLAN.
 
+## AWS.DirectConnect/ResiliencyGroupProperties
+### Properties
+* **ConnectionArns**: string[]: The ARNs of the connections that are members of the resiliency group. When specified, this is the complete, authoritative membership list: on update, connections not present are disassociated, and an explicit empty list removes all members. Omit the property to leave the existing membership unmanaged (unchanged on update). On create, an omitted or empty list means no connections are associated.
+* **IntendedResiliencyModel**: string (WriteOnly): The resiliency model that the resiliency group is intended to meet. Required when creating a resiliency group.
+* **ResiliencyGroupArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the resiliency group.
+* **ResiliencyGroupId**: string (ReadOnly): The ID of the resiliency group.
+* **ResiliencyGroupName**: string (Required): The name of the resiliency group.
+* **Tags**: [Tag](#tag)[]: The tags associated with the resiliency group.
+
 ## AWS.DirectConnect/TransitVirtualInterfaceProperties
 ### Properties
 * **AllocateTransitVirtualInterfaceRoleArn**: string (WriteOnly): The Amazon Resource Name (ARN) of the role to allocate the TransitVifAllocation. Needs directconnect:AllocateTransitVirtualInterface permissions and tag permissions if applicable.
@@ -168,6 +185,11 @@
 * **AuthKey**: string: The authentication key for BGP configuration. This string has a minimum length of 6 characters and and a maximum length of 80 characters.
 * **BgpPeerId**: string
 * **CustomerAddress**: string: The IP address assigned to the customer interface.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## Tag
 ### Properties

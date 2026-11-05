@@ -1,0 +1,310 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CleanRoomsML-TrainedModel",
+  "type": "AWS::CleanRoomsML::TrainedModel",
+  "time": "2026-11-05T21:11:10.99Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/MembershipIdentifier",
+        "/properties/TrainedModelId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/MembershipIdentifier"
+    ],
+    "definitions": {
+      "ModelTrainingDataChannel": {
+        "additionalProperties": false,
+        "properties": {
+          "ChannelName": {
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9_.-]+$",
+            "type": "string"
+          },
+          "MlInputChannelArn": {
+            "maxLength": 2048,
+            "minLength": 20,
+            "pattern": "^arn:aws[-a-z]*:cleanrooms-ml:[-a-z0-9]+:[0-9]{12}:membership/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/ml-input-channel/[-a-zA-Z0-9_/.]+$",
+            "type": "string"
+          },
+          "S3DataDistributionType": {
+            "enum": [
+              "FullyReplicated",
+              "ShardedByS3Key"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "ChannelName",
+          "MlInputChannelArn"
+        ],
+        "type": "object"
+      },
+      "ResourceConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "InstanceCount": {
+            "maximum": 5,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "InstanceType": {
+            "type": "string"
+          },
+          "VolumeSizeInGB": {
+            "maximum": 8192,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "InstanceType",
+          "VolumeSizeInGB"
+        ],
+        "type": "object"
+      },
+      "StoppingCondition": {
+        "additionalProperties": false,
+        "properties": {
+          "MaxRuntimeInSeconds": {
+            "maximum": 2419200,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Represents a trained model in AWS Clean Rooms ML. A trained model is created by running a training job on a configured model algorithm association within a membership.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "MembershipIdentifier": {
+              "maxLength": 36,
+              "minLength": 36,
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "MembershipIdentifier"
+          ]
+        },
+        "permissions": [
+          "cleanrooms-ml:ListTrainedModels",
+          "cleanrooms:GetMembership",
+          "cleanrooms:PassMembership"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "cleanrooms-ml:GetTrainedModel",
+          "cleanrooms-ml:ListTagsForResource",
+          "cleanrooms:GetMembership",
+          "cleanrooms:PassMembership"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/TrainedModelArn"
+    ],
+    "properties": {
+      "CollaborationIdentifier": {
+        "description": "The collaboration ID of the trained model.",
+        "maxLength": 36,
+        "minLength": 36,
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        "type": "string"
+      },
+      "ConfiguredModelAlgorithmAssociationArn": {
+        "description": "The ARN of the configured model algorithm association.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws[-a-z]*:cleanrooms-ml:[-a-z0-9]+:[0-9]{12}:membership/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/configured-model-algorithm-association/[-a-zA-Z0-9_/.]+$",
+        "type": "string"
+      },
+      "CreateTime": {
+        "description": "The time at which the trained model was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DataChannels": {
+        "description": "The data channels for the trained model.",
+        "items": {
+          "$ref": "#/definitions/ModelTrainingDataChannel"
+        },
+        "maxItems": 20,
+        "minItems": 1,
+        "type": "array"
+      },
+      "Description": {
+        "description": "The description of the trained model.",
+        "maxLength": 255,
+        "minLength": 0,
+        "pattern": "^[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t\\r\\n]*$",
+        "type": "string"
+      },
+      "Environment": {
+        "additionalProperties": false,
+        "description": "The environment variables for the trained model.",
+        "maxProperties": 100,
+        "patternProperties": {
+          "^.+$": {
+            "maxLength": 512,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Hyperparameters": {
+        "additionalProperties": false,
+        "description": "The hyperparameters for the trained model.",
+        "maxProperties": 100,
+        "patternProperties": {
+          "^.+$": {
+            "maxLength": 2500,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "KmsKeyArn": {
+        "description": "The KMS key ARN used for encryption.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws[-a-z]*:kms:[-a-z0-9]+:[0-9]{12}:key/.+$",
+        "type": "string"
+      },
+      "MembershipIdentifier": {
+        "description": "The membership ID of the trained model.",
+        "maxLength": 36,
+        "minLength": 36,
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the trained model.",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^(?!\\s*$)[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t]*$",
+        "type": "string"
+      },
+      "ResourceConfig": {
+        "$ref": "#/definitions/ResourceConfig"
+      },
+      "Status": {
+        "description": "The status of the trained model.",
+        "enum": [
+          "CREATE_PENDING",
+          "CREATE_IN_PROGRESS",
+          "CREATE_FAILED",
+          "ACTIVE",
+          "DELETE_PENDING",
+          "DELETE_IN_PROGRESS",
+          "DELETE_FAILED",
+          "INACTIVE",
+          "CANCEL_PENDING",
+          "CANCEL_IN_PROGRESS",
+          "CANCEL_FAILED"
+        ],
+        "type": "string"
+      },
+      "StoppingCondition": {
+        "$ref": "#/definitions/StoppingCondition"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array"
+      },
+      "TrainedModelArn": {
+        "description": "The ARN of the trained model.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws[-a-z]*:cleanrooms-ml:[-a-z0-9]+:[0-9]{12}:membership/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/trained-model/[-a-zA-Z0-9_/.]+$",
+        "type": "string"
+      },
+      "TrainedModelId": {
+        "description": "The unique identifier of the trained model.",
+        "type": "string"
+      },
+      "TrainingContainerImageDigest": {
+        "description": "The digest of the training container image.",
+        "type": "string"
+      },
+      "TrainingInputMode": {
+        "description": "The training input mode.",
+        "enum": [
+          "File",
+          "FastFile",
+          "Pipe"
+        ],
+        "type": "string"
+      },
+      "UpdateTime": {
+        "description": "The time at which the trained model was last updated.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/TrainedModelArn",
+      "/properties/TrainedModelId",
+      "/properties/CollaborationIdentifier",
+      "/properties/Name",
+      "/properties/Description",
+      "/properties/Status",
+      "/properties/ConfiguredModelAlgorithmAssociationArn",
+      "/properties/ResourceConfig",
+      "/properties/DataChannels",
+      "/properties/Environment",
+      "/properties/Hyperparameters",
+      "/properties/StoppingCondition",
+      "/properties/TrainingInputMode",
+      "/properties/KmsKeyArn",
+      "/properties/TrainingContainerImageDigest",
+      "/properties/CreateTime",
+      "/properties/UpdateTime",
+      "/properties/Tags"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "cleanrooms-ml:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::CleanRoomsML::TrainedModel"
+  }
+}

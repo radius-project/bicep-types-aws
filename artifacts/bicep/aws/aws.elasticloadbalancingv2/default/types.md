@@ -40,6 +40,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.ElasticLoadBalancingV2/TrustStoreProperties](#awselasticloadbalancingv2truststoreproperties) (Identifier): properties of the resource
 
+## Resource AWS.ElasticLoadBalancingV2/TrustStoreRevocation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ElasticLoadBalancingV2/TrustStoreRevocationProperties](#awselasticloadbalancingv2truststorerevocationproperties) (Identifier): properties of the resource
+
 ## Action
 ### Properties
 * **AuthenticateCognitoConfig**: [AuthenticateCognitoConfig](#authenticatecognitoconfig): [HTTPS listeners] Information for using Amazon Cognito to authenticate users. Specify only when ``Type`` is ``authenticate-cognito``.
@@ -242,6 +250,13 @@
 * **Status**: string (ReadOnly): The status of the trust store, could be either of ACTIVE or CREATING.
 * **Tags**: [Tag](#tag)[]: The tags to assign to the trust store.
 * **TrustStoreArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the trust store.
+
+## AWS.ElasticLoadBalancingV2/TrustStoreRevocationProperties
+### Properties
+* **RevocationContents**: [RevocationContent](#revocationcontent)[] (WriteOnly): The attributes required to create a trust store revocation.
+* **RevocationId**: int (ReadOnly, Identifier): The ID associated with the revocation.
+* **TrustStoreArn**: string (Identifier): The Amazon Resource Name (ARN) of the trust store.
+* **TrustStoreRevocations**: [TrustStoreRevocation](#truststorerevocation)[] (ReadOnly): The data associated with a trust store revocation
 
 ## Certificate
 ### Properties
@@ -448,6 +463,13 @@
 * **Query**: string: The query parameters, URL-encoded when necessary, but not percent-encoded. Do not include the leading "?", as it is automatically added. You can specify any of the reserved keywords.
 * **StatusCode**: string (Required): The HTTP redirect code. The redirect is either permanent (HTTP 301) or temporary (HTTP 302).
 
+## RevocationContent
+### Properties
+* **RevocationType**: string
+* **S3Bucket**: string
+* **S3Key**: string
+* **S3ObjectVersion**: string
+
 ## RewriteConfig
 ### Properties
 * **Regex**: string (Required): The regular expression to match in the input string. The maximum length of the string is 1,024 characters.
@@ -563,4 +585,11 @@
 * **HostHeaderRewriteConfig**: [RewriteConfigObject](#rewriteconfigobject)
 * **Type**: string (Required)
 * **UrlRewriteConfig**: [RewriteConfigObject](#rewriteconfigobject)
+
+## TrustStoreRevocation
+### Properties
+* **NumberOfRevokedEntries**: int
+* **RevocationId**: string (Identifier)
+* **RevocationType**: string
+* **TrustStoreArn**: string (Identifier)
 

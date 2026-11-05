@@ -8,6 +8,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.KafkaConnect/ConnectorProperties](#awskafkaconnectconnectorproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.KafkaConnect/ConnectorOperation@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.KafkaConnect/ConnectorOperationProperties](#awskafkaconnectconnectoroperationproperties) (Identifier): properties of the resource
+
 ## Resource AWS.KafkaConnect/CustomPlugin@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -37,6 +45,18 @@
 * **MinWorkerCount**: int (Required): The minimum number of workers for a connector.
 * **ScaleInPolicy**: [ScaleInPolicy](#scaleinpolicy) (Required)
 * **ScaleOutPolicy**: [ScaleOutPolicy](#scaleoutpolicy) (Required)
+
+## AWS.KafkaConnect/ConnectorOperationProperties
+### Properties
+* **ConnectorArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the connector.
+* **ConnectorOperationArn**: string (Identifier): The Amazon Resource Name (ARN) of the connector operation.
+* **ConnectorOperationState**: string (ReadOnly): The state of the connector operation.
+* **ConnectorOperationType**: string (ReadOnly): The type of connector operation performed.
+* **CreationTime**: string (ReadOnly): The time when the operation was created.
+* **EndTime**: string (ReadOnly): The time when the operation ended.
+* **OperationSteps**: [ConnectorOperationStep](#connectoroperationstep)[] (ReadOnly): The array of operation steps taken.
+* **OriginWorkerSetting**: [WorkerSetting](#workersetting) (ReadOnly)
+* **TargetWorkerSetting**: [WorkerSetting](#workersetting) (ReadOnly)
 
 ## AWS.KafkaConnect/ConnectorProperties
 ### Properties
@@ -81,6 +101,10 @@
 * **AutoScaling**: [AutoScaling](#autoscaling)
 * **ProvisionedCapacity**: [ProvisionedCapacity](#provisionedcapacity)
 
+## CapacityDescription
+### Properties
+* **ProvisionedCapacity**: [ProvisionedCapacityDescription](#provisionedcapacitydescription)
+
 ## CloudWatchLogsLogDelivery
 ### Properties
 * **Enabled**: bool (Required): Specifies whether the logs get sent to the specified CloudWatch Logs destination.
@@ -88,6 +112,11 @@
 
 ## Connector_ConnectorConfiguration
 ### Properties
+
+## ConnectorOperationStep
+### Properties
+* **StepState**: string: The step state of the operation.
+* **StepType**: string: The step type of the operation.
 
 ## CustomPlugin
 ### Properties
@@ -132,6 +161,11 @@
 ### Properties
 * **McuCount**: int (Required): Specifies how many MSK Connect Units (MCU) are allocated to the connector.
 * **WorkerCount**: int (Required): Number of workers for a connector.
+
+## ProvisionedCapacityDescription
+### Properties
+* **McuCount**: int: The number of microcontroller units (MCUs) allocated to each connector worker.
+* **WorkerCount**: int: The number of workers that are allocated to the connector.
 
 ## S3Location
 ### Properties
@@ -183,4 +217,8 @@
 * **CloudWatchLogs**: [CloudWatchLogsLogDelivery](#cloudwatchlogslogdelivery)
 * **Firehose**: [FirehoseLogDelivery](#firehoselogdelivery)
 * **S3**: [S3LogDelivery](#s3logdelivery)
+
+## WorkerSetting
+### Properties
+* **Capacity**: [CapacityDescription](#capacitydescription)
 

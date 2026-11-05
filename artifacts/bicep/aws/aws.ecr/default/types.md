@@ -8,6 +8,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.ECR/PullThroughCacheRuleProperties](#awsecrpullthroughcacheruleproperties) (Identifier): properties of the resource
 
+## Resource AWS.ECR/PullTimeUpdateExclusion@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ECR/PullTimeUpdateExclusionProperties](#awsecrpulltimeupdateexclusionproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.ECR/RegistryPolicy@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -64,6 +72,10 @@
 * **UpstreamRegistry**: string (WriteOnly): The name of the upstream source registry associated with the pull through cache rule.
 * **UpstreamRegistryUrl**: string: The upstream registry URL associated with the pull through cache rule.
 * **UpstreamRepositoryPrefix**: string: The upstream repository prefix associated with the pull through cache rule.
+
+## AWS.ECR/PullTimeUpdateExclusionProperties
+### Properties
+* **PrincipalArn**: string (Required, Identifier): The ARN of the IAM principal to remove from the pull time update exclusion list.
 
 ## AWS.ECR/RegistryPolicyProperties
 ### Properties

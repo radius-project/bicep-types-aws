@@ -1,0 +1,172 @@
+[
+  {
+    "$type": "ObjectType",
+    "name": "DeviceUnderTest",
+    "properties": {
+      "CertificateArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Lists device's certificate ARN."
+      },
+      "ThingArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Lists device's thing ARN."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SuiteRunConfiguration",
+    "properties": {
+      "ParallelRun": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "TRUE if multiple test suites run in parallel."
+      },
+      "PrimaryDevice": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.IoTDeviceAdvisor/SuiteRunProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IoTDeviceAdvisor/SuiteRunProperties",
+    "properties": {
+      "StartTime": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "Date (in ISO 8601 format) when the test suite run started."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "Status of the suite run."
+      },
+      "SuiteDefinitionId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "Suite definition ID of the test suite."
+      },
+      "SuiteDefinitionVersion": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Suite definition version of the test suite."
+      },
+      "SuiteRunArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 16,
+        "description": "The ARN of the suite run."
+      },
+      "SuiteRunConfiguration": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "SuiteRunId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "Suite run ID of the test suite run."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Tags associated with the suite run."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IoTDeviceAdvisor/SuiteRun",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.IoTDeviceAdvisor/SuiteRun@default",
+    "body": {
+      "$ref": "#/8"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  }
+]

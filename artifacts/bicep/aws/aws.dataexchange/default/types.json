@@ -1,5 +1,141 @@
 [
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.DataExchange/AssetsProperties"
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Assets_Tags",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DataExchange/AssetsProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The ARN for the asset."
+      },
+      "AssetId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The unique identifier for the asset."
+      },
+      "AssetType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The type of asset that is added to a data set."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The date and time that the asset was created, in ISO 8601 format."
+      },
+      "DataSetId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The unique identifier for the data set associated with this asset."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the asset."
+      },
+      "RevisionId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The unique identifier for the revision associated with this asset."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The tags for the asset."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The date and time that the asset was last updated, in ISO 8601 format."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DataExchange/Assets",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DataExchange/Assets@default",
+    "body": {
+      "$ref": "#/5"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
     "$type": "ObjectType",
     "name": "Tag",
     "properties": {
@@ -18,16 +154,13 @@
     }
   },
   {
-    "$type": "StringType"
-  },
-  {
     "$type": "StringLiteralType",
     "value": "AWS.DataExchange/DataSetProperties"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/0"
+      "$ref": "#/7"
     }
   },
   {
@@ -85,7 +218,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "Tags for the data set."
@@ -119,7 +252,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -130,9 +263,118 @@
     "$type": "ResourceType",
     "name": "AWS.DataExchange/DataSet@default",
     "body": {
-      "$ref": "#/5"
+      "$ref": "#/11"
     },
     "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DataExchange/EntitledDataSetsProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DataExchange/EntitledDataSetsProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The ARN for the data set."
+      },
+      "AssetType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The type of asset that is added to a data set."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The date and time that the data set was created, in ISO 8601 format."
+      },
+      "DataSetId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The unique identifier for the data set."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A description for the data set."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the data set."
+      },
+      "Origin": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "A property that defines the data set as OWNED by the account (for providers) or ENTITLED to the account (for subscribers)."
+      },
+      "SourceId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The data set ID of the owned data set corresponding to the entitled data set being viewed."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The date and time that the data set was last updated, in ISO 8601 format."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DataExchange/EntitledDataSets",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DataExchange/EntitledDataSets@default",
+    "body": {
+      "$ref": "#/15"
+    },
+    "readableScopes": 31,
     "writableScopes": 0
   },
   {
@@ -141,7 +383,7 @@
     "properties": {
       "ExportRevisionToS3": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/19"
         },
         "flags": 0
       }
@@ -173,13 +415,13 @@
     "properties": {
       "Encryption": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/21"
         },
         "flags": 0
       },
       "RevisionDestination": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/18"
         },
         "flags": 1
       }
@@ -191,7 +433,7 @@
     "properties": {
       "RevisionPublished": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/22"
         },
         "flags": 0
       }
@@ -257,7 +499,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/23"
     }
   },
   {
@@ -266,7 +508,7 @@
     "properties": {
       "Action": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/17"
         },
         "flags": 1,
         "description": "What occurs after a certain event."
@@ -287,7 +529,7 @@
       },
       "Event": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/20"
         },
         "flags": 1,
         "description": "What occurs to start an action."
@@ -301,7 +543,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "The tags for the event action."
@@ -335,7 +577,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/26"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -346,9 +588,97 @@
     "$type": "ResourceType",
     "name": "AWS.DataExchange/EventAction@default",
     "body": {
-      "$ref": "#/17"
+      "$ref": "#/27"
     },
     "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DataExchange/JobProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DataExchange/JobProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the job."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The date and time that the job was created, in ISO 8601 format."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The unique identifier for the job."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The state of the job."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The type of job."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The date and time that the job was last updated, in ISO 8601 format."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DataExchange/Job",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DataExchange/Job@default",
+    "body": {
+      "$ref": "#/31"
+    },
+    "readableScopes": 31,
     "writableScopes": 0
   }
 ]

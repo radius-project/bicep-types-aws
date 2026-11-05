@@ -40,6 +40,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Organizations/ResourcePolicyProperties](#awsorganizationsresourcepolicyproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Organizations/ResponsibilityTransfer@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Organizations/ResponsibilityTransferProperties](#awsorganizationsresponsibilitytransferproperties) (Identifier): properties of the resource
+
+## Resource AWS.Organizations/Root@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Organizations/RootProperties](#awsorganizationsrootproperties) (Identifier): properties of the resource
+
 ## AWS.Organizations/AccountProperties
 ### Properties
 * **AccountId**: string (ReadOnly, Identifier): If the account was created successfully, the unique identifier (ID) of the new account.
@@ -93,10 +109,33 @@
 * **Id**: string (ReadOnly, Identifier): The unique identifier (ID) associated with this resource policy.
 * **Tags**: [Tag](#tag)[]: A list of tags that you want to attach to the resource policy
 
-## Tag
+## AWS.Organizations/ResponsibilityTransferProperties
 ### Properties
-* **Key**: string (Required): The key identifier, or name, of the tag.
-* **Value**: string (Required): The string value that's associated with the key of the tag. You can set the value of a tag to an empty string, but you can't set the value of a tag to null.
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the transfer as seen by the calling account, whose own account, organization and transfer direction the ARN carries. This resource type models the inbound view, in which the calling account is the transfer's Target, so the direction segment is always inbound; an outbound ARN identifies a resource of a different type.
+* **EndTimestamp**: string (ReadOnly): The date and time at which the transfer ended. Present once the transfer has been terminated; the service writes it on that transition and retains the record.
+* **Id**: string (ReadOnly): The unique identifier (ID) of the transfer.
+* **Name**: string: The name assigned to the transfer.
+* **OrganizationId**: string (ReadOnly): The unique identifier (ID) of the calling account's organization, as it appears in the transfer ARN.
+* **Source**: [TransferParticipant](#transferparticipant) (ReadOnly)
+* **StartTimestamp**: string: The time at which the transfer starts.
+* **Status**: string (ReadOnly): The status of the transfer.
+* **Tags**: [Tag](#tag)[]: A list of tags attached to the transfer.
+* **Target**: [TransferParticipant](#transferparticipant) (ReadOnly)
+* **Type**: string: The type of responsibility the transfer designates.
+
+## AWS.Organizations/RootProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the root.
+* **Id**: string (ReadOnly): The unique identifier (ID) for the root.
+* **Name**: string (ReadOnly): The friendly name of the root.
+* **OrganizationId**: string (ReadOnly): The unique identifier (ID) of the organization that contains this root.
+* **PolicyTypes**: [PolicyTypeSummary](#policytypesummary)[] (ReadOnly): The types of policies currently enabled for the root.
+* **Tags**: [Tag](#tag)[] (ReadOnly): A list of tags attached to the root.
+
+## PolicyTypeSummary
+### Properties
+* **Status**: string: The status of the policy type as it relates to the associated root.
+* **Type**: string: The name of the policy type.
 
 ## Tag
 ### Properties
@@ -112,4 +151,24 @@
 ### Properties
 * **Key**: string (Required): The key identifier, or name, of the tag.
 * **Value**: string (Required): The string value that's associated with the key of the tag. You can set the value of a tag to an empty string, but you can't set the value of a tag to null.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key identifier, or name, of the tag.
+* **Value**: string (Required): The string value that's associated with the key of the tag. You can set the value of a tag to an empty string, but you can't set the value of a tag to null.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key identifier of the tag.
+* **Value**: string (Required): The string value associated with the key of the tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key identifier of the tag.
+* **Value**: string (Required): The string value associated with the key of the tag.
+
+## TransferParticipant
+### Properties
+* **ManagementAccountEmail**: string: The email address of the participant's management account.
+* **ManagementAccountId**: string: The ID of the participant's management account.
 

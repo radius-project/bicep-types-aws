@@ -1,32 +1,413 @@
 [
   {
     "$type": "ObjectType",
+    "name": "BatchInferenceJobInput",
+    "properties": {
+      "S3DataSource": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BatchInferenceJobOutput",
+    "properties": {
+      "S3DataDestination": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3DataConfig",
+    "properties": {
+      "Path": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The file path of the Amazon S3 bucket."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Personalize/BatchInferenceJobProperties"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Personalize/BatchInferenceJobProperties",
+    "properties": {
+      "BatchInferenceJobArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the batch inference job."
+      },
+      "BatchInferenceJobMode": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The mode of the batch inference job."
+      },
+      "CreationDateTime": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The time at which the batch inference job was created."
+      },
+      "JobInput": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0
+      },
+      "JobName": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The name of the batch inference job."
+      },
+      "JobOutput": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "LastUpdatedDateTime": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The time at which the batch inference job was last updated."
+      },
+      "NumResults": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The number of recommendations to retrieve."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The ARN of the IAM role that has permissions to read and write to your input and output Amazon S3 buckets."
+      },
+      "SolutionVersionArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The ARN of the solution version used to generate the batch inference recommendations."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The status of the batch inference job."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "Tags associated with the batch inference job."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Personalize/BatchInferenceJob",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Personalize/BatchInferenceJob@default",
+    "body": {
+      "$ref": "#/9"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BatchSegmentJobInput",
+    "properties": {
+      "S3DataSource": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BatchSegmentJobOutput",
+    "properties": {
+      "S3DataDestination": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3DataConfig",
+    "properties": {
+      "Path": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The file path of the Amazon S3 bucket."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Personalize/BatchSegmentJobProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Personalize/BatchSegmentJobProperties",
+    "properties": {
+      "BatchSegmentJobArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the batch segment job."
+      },
+      "CreationDateTime": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The time at which the batch segment job was created."
+      },
+      "JobInput": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0
+      },
+      "JobName": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The name of the batch segment job."
+      },
+      "JobOutput": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      },
+      "LastUpdatedDateTime": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The time at which the batch segment job was last updated."
+      },
+      "NumResults": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The number of predicted users generated by the batch segment job for each line of input data."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The ARN of the IAM role that has permissions to read and write to your input and output Amazon S3 buckets."
+      },
+      "SolutionVersionArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The ARN of the solution version used to generate the batch segments."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The status of the batch segment job."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Tags associated with the batch segment job."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Personalize/BatchSegmentJob",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Personalize/BatchSegmentJob@default",
+    "body": {
+      "$ref": "#/18"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "CampaignConfig",
     "properties": {
       "EnableMetadataWithRecommendations": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/22"
         },
         "flags": 0,
         "description": "Whether metadata with recommendations is enabled for the campaign."
       },
       "ItemExplorationConfig": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "Specifies the exploration configuration hyperparameters."
       },
       "RankingInfluence": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "A map of ranking influence values for POPULARITY and FRESHNESS."
       },
       "SyncWithLatestSolutionVersion": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/22"
         },
         "flags": 0,
         "description": "Whether the campaign automatically updates to use the latest solution version."
@@ -39,14 +420,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The key name of the tag."
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The value for the tag."
@@ -67,19 +448,13 @@
     "properties": {}
   },
   {
-    "$type": "StringType"
-  },
-  {
     "$type": "StringLiteralType",
     "value": "AWS.Personalize/CampaignProperties"
   },
   {
-    "$type": "IntegerType"
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/21"
     }
   },
   {
@@ -88,62 +463,62 @@
     "properties": {
       "CampaignArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 18,
         "description": "The ARN of the campaign."
       },
       "CampaignConfig": {
         "type": {
-          "$ref": "#/0"
+          "$ref": "#/20"
         },
         "flags": 0
       },
       "CreationDateTime": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 2,
         "description": "The time at which the campaign was created."
       },
       "LastUpdatedDateTime": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 2,
         "description": "The time at which the campaign was last updated."
       },
       "MinProvisionedTPS": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "Specifies the requested minimum provisioned transactions per second."
       },
       "Name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The name of the campaign."
       },
       "SolutionVersionArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The ARN of the solution version to deploy."
       },
       "Status": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 2,
         "description": "The status of the campaign."
       },
       "Tags": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/26"
         },
         "flags": 0,
         "description": "Tags to associate with the campaign."
@@ -156,21 +531,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/27"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -181,9 +556,123 @@
     "$type": "ResourceType",
     "name": "AWS.Personalize/Campaign@default",
     "body": {
-      "$ref": "#/10"
+      "$ref": "#/28"
     },
     "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataSource",
+    "properties": {
+      "DataLocation": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The path to the Amazon S3 bucket where the data is stored."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Personalize/DataDeletionJobProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Personalize/DataDeletionJobProperties",
+    "properties": {
+      "CreationDateTime": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The creation date and time of the data deletion job."
+      },
+      "DataDeletionJobArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the data deletion job."
+      },
+      "DataSource": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 0
+      },
+      "DatasetGroupArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the dataset group that has the datasets you want to delete records from."
+      },
+      "JobName": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The name for the data deletion job."
+      },
+      "LastUpdatedDateTime": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The date and time the data deletion job was last updated."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the IAM role that has permissions to read from the Amazon S3 data source."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The status of the data deletion job."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Personalize/DataDeletionJob",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Personalize/DataDeletionJob@default",
+    "body": {
+      "$ref": "#/33"
+    },
+    "readableScopes": 31,
     "writableScopes": 0
   },
   {
@@ -192,35 +681,35 @@
     "properties": {
       "DataSource": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "The Amazon S3 bucket that contains the training data to import."
       },
       "DatasetArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 16,
         "description": "The ARN of the dataset that receives the imported data"
       },
       "DatasetImportJobArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "The ARN of the dataset import job"
       },
       "JobName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "The name for the dataset import job."
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "The ARN of the IAM role that has permissions to read from the Amazon S3 data source."
@@ -233,13 +722,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1
       }
@@ -251,7 +740,7 @@
     "properties": {
       "DataLocation": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "The path to the Amazon S3 bucket where the data that you want to upload to your dataset is stored."
@@ -265,7 +754,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/36"
     }
   },
   {
@@ -274,48 +763,48 @@
     "properties": {
       "DatasetArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 18,
         "description": "The ARN of the dataset"
       },
       "DatasetGroupArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) of the dataset group to add the dataset to"
       },
       "DatasetImportJob": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/35"
         },
         "flags": 0
       },
       "DatasetType": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The type of dataset"
       },
       "Name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The name for the dataset"
       },
       "SchemaArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The ARN of the schema to associate with the dataset. The schema defines the dataset fields."
       },
       "Tags": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "The tags used to organize, track, or control access for this resource."
@@ -328,21 +817,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/40"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -353,9 +842,182 @@
     "$type": "ResourceType",
     "name": "AWS.Personalize/Dataset@default",
     "body": {
-      "$ref": "#/18"
+      "$ref": "#/41"
     },
     "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DatasetExportJobOutput",
+    "properties": {
+      "S3DataDestination": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3DataConfig",
+    "properties": {
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The ARN of the KMS key used to encrypt or decrypt the input and output files."
+      },
+      "Path": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The file path of the Amazon S3 bucket."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Personalize/DatasetExportJobProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/45"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Personalize/DatasetExportJobProperties",
+    "properties": {
+      "CreationDateTime": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The creation date and time (in Unix time) of the dataset export job."
+      },
+      "DatasetArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the dataset that contains the data to export."
+      },
+      "DatasetExportJobArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the dataset export job."
+      },
+      "IngestionMode": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The data to export, based on how you imported the data."
+      },
+      "JobName": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The name for the dataset export job."
+      },
+      "JobOutput": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 1
+      },
+      "LastUpdatedDateTime": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The date and time (in Unix time) the status of the dataset export job was last updated."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the IAM service role that has permissions to add data to your output Amazon S3 bucket."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The status of the dataset export job."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 0,
+        "description": "A list of tags to apply to the dataset export job."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Personalize/DatasetExportJob",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Personalize/DatasetExportJob@default",
+    "body": {
+      "$ref": "#/49"
+    },
+    "readableScopes": 31,
     "writableScopes": 0
   },
   {
@@ -364,14 +1026,287 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Personalize/DatasetGroupProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/51"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Personalize/DatasetGroupProperties",
+    "properties": {
+      "DatasetGroupArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the dataset group."
+      },
+      "Domain": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The domain of a Domain dataset group."
+      },
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name(ARN) of a AWS Key Management Service (KMS) key used to encrypt the datasets."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The name for the new dataset group."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The ARN of the AWS Identity and Access Management (IAM) role that has permissions to access the AWS Key Management Service (KMS) key. Supplying an IAM role is only valid when also specifying a KMS key."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/53"
+        },
+        "flags": 0,
+        "description": "The tags used to organize, track, or control access for this resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Personalize/DatasetGroup",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Personalize/DatasetGroup@default",
+    "body": {
+      "$ref": "#/55"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataSource",
+    "properties": {
+      "DataLocation": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The path to the Amazon S3 bucket where the data that you want to upload to your dataset is stored."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "One part of a key-value pair that makes up a tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The optional part of a key-value pair that makes up a tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Personalize/DatasetImportJobProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/58"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Personalize/DatasetImportJobProperties",
+    "properties": {
+      "CreationDateTime": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The creation date and time of the dataset import job."
+      },
+      "DataSource": {
+        "type": {
+          "$ref": "#/57"
+        },
+        "flags": 1
+      },
+      "DatasetArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the dataset that receives the imported data."
+      },
+      "DatasetImportJobArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the dataset import job."
+      },
+      "ImportMode": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Specify how to add the new records to an existing dataset."
+      },
+      "JobName": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The name for the dataset import job."
+      },
+      "LastUpdatedDateTime": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The date and time the status of the dataset import job was last updated."
+      },
+      "PublishAttributionMetricsToS3": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "If you created a metric attribution, specifies whether to publish metrics for this import job to Amazon S3."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The ARN of the IAM role that has permissions to read from the Amazon S3 data source."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The status of the dataset import job."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/60"
+        },
+        "flags": 0,
+        "description": "A list of tags to apply to the dataset import job."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Personalize/DatasetImportJob",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/61"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Personalize/DatasetImportJob@default",
+    "body": {
+      "$ref": "#/62"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The key name of the tag."
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The value for the tag."
@@ -385,7 +1320,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/20"
+      "$ref": "#/64"
     }
   },
   {
@@ -394,35 +1329,35 @@
     "properties": {
       "DatasetGroupArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) of the dataset group that receives the event data."
       },
       "EventTrackerArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the event tracker."
       },
       "Name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The name for the event tracker."
       },
       "Tags": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/66"
         },
         "flags": 0,
         "description": "A list of tags to apply to the event tracker."
       },
       "TrackingId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 2,
         "description": "The ID of the event tracker. Include this ID in requests to the PutEvents API."
@@ -435,21 +1370,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/67"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -460,7 +1395,7 @@
     "$type": "ResourceType",
     "name": "AWS.Personalize/EventTracker@default",
     "body": {
-      "$ref": "#/24"
+      "$ref": "#/68"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -471,14 +1406,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The key name of the tag."
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The value for the tag."
@@ -492,7 +1427,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/26"
+      "$ref": "#/70"
     }
   },
   {
@@ -501,56 +1436,56 @@
     "properties": {
       "CreationDateTime": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 2,
         "description": "The time at which the filter was created."
       },
       "DatasetGroupArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The ARN of the dataset group that the filter belongs to."
       },
       "FilterArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 18,
         "description": "The ARN of the filter."
       },
       "FilterExpression": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The filter expression that defines which items are included or excluded from recommendations."
       },
       "LastUpdatedDateTime": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 2,
         "description": "The time at which the filter was last updated."
       },
       "Name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The name of the filter."
       },
       "Status": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 2,
         "description": "The status of the filter."
       },
       "Tags": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/72"
         },
         "flags": 0,
         "description": "Tags to associate with the filter."
@@ -563,21 +1498,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/73"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -588,7 +1523,7 @@
     "$type": "ResourceType",
     "name": "AWS.Personalize/Filter@default",
     "body": {
-      "$ref": "#/30"
+      "$ref": "#/74"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -599,21 +1534,21 @@
     "properties": {
       "EventType": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The metric's event type."
       },
       "Expression": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The attribute's expression."
       },
       "MetricName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The metric's name."
@@ -626,14 +1561,14 @@
     "properties": {
       "RoleArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The ARN of the IAM role for the metric attribution."
       },
       "S3DataDestination": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/78"
         },
         "flags": 0
       }
@@ -645,14 +1580,14 @@
     "properties": {
       "KmsKeyArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "The ARN of the KMS key."
       },
       "Path": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The file path of the Amazon S3 bucket."
@@ -666,7 +1601,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/32"
+      "$ref": "#/76"
     }
   },
   {
@@ -675,41 +1610,41 @@
     "properties": {
       "DatasetGroupArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The ARN of the destination dataset group."
       },
       "MetricAttributionArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 18,
         "description": "The ARN of the metric attribution."
       },
       "Metrics": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/80"
         },
         "flags": 1,
         "description": "A list of metric attributes for the metric attribution."
       },
       "MetricsOutputConfig": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/77"
         },
         "flags": 1
       },
       "Name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The name of the metric attribution."
       },
       "Status": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 2,
         "description": "The status of the metric attribution."
@@ -722,21 +1657,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/81"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -747,9 +1682,118 @@
     "$type": "ResourceType",
     "name": "AWS.Personalize/MetricAttribution@default",
     "body": {
-      "$ref": "#/38"
+      "$ref": "#/82"
     },
     "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Personalize/RecipeProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Personalize/RecipeProperties",
+    "properties": {
+      "AlgorithmArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the algorithm that Amazon Personalize uses to train the model."
+      },
+      "CreationDateTime": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The date and time (in Unix format) that the recipe was created."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The description of the recipe."
+      },
+      "FeatureTransformationArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The ARN of the FeatureTransformation object."
+      },
+      "LastUpdatedDateTime": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The date and time (in Unix format) that the recipe was last updated."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The name of the recipe."
+      },
+      "RecipeArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the recipe."
+      },
+      "RecipeType": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "One of the following values: PERSONALIZED_RANKING, RELATED_ITEMS, USER_PERSONALIZATION."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The status of the recipe."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Personalize/Recipe",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/85"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Personalize/Recipe@default",
+    "body": {
+      "$ref": "#/86"
+    },
+    "readableScopes": 31,
     "writableScopes": 0
   },
   {
@@ -758,28 +1802,28 @@
     "properties": {
       "EnableMetadataWithRecommendations": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/22"
         },
         "flags": 0,
         "description": "Whether metadata with recommendations is enabled for the recommender."
       },
       "ItemExplorationConfig": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/91"
         },
         "flags": 0,
         "description": "Specifies the exploration configuration hyperparameters."
       },
       "MinRecommendationRequestsPerSecond": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "Specifies the requested minimum provisioned recommendation requests per second."
       },
       "TrainingDataConfig": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/90"
         },
         "flags": 0
       }
@@ -791,14 +1835,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The key name of the tag."
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The value for the tag."
@@ -811,7 +1855,7 @@
     "properties": {
       "ExcludedDatasetColumns": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/92"
         },
         "flags": 0,
         "description": "Specifies the columns to exclude from training. Each key is a dataset type, and each value is a list of columns."
@@ -835,7 +1879,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/41"
+      "$ref": "#/89"
     }
   },
   {
@@ -844,62 +1888,62 @@
     "properties": {
       "CreationDateTime": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 2,
         "description": "The time at which the recommender was created."
       },
       "DatasetGroupArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The ARN of the Domain dataset group that the recommender is created for."
       },
       "LastUpdatedDateTime": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 2,
         "description": "The time at which the recommender was last updated."
       },
       "Name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The name of the recommender."
       },
       "RecipeArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "The ARN of the recipe (Domain dataset group use case) that the recommender uses."
       },
       "RecommenderArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 18,
         "description": "The ARN of the recommender."
       },
       "RecommenderConfig": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/88"
         },
         "flags": 0
       },
       "Status": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 2,
         "description": "The status of the recommender."
       },
       "Tags": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "Tags to associate with the recommender."
@@ -912,21 +1956,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/95"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -937,7 +1981,524 @@
     "$type": "ResourceType",
     "name": "AWS.Personalize/Recommender@default",
     "body": {
-      "$ref": "#/48"
+      "$ref": "#/96"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Personalize/SchemaProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/98"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Personalize/SchemaProperties",
+    "properties": {
+      "Domain": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The domain of a Domain dataset group."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "Name for the schema."
+      },
+      "Schema": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "A schema in Avro JSON format."
+      },
+      "SchemaArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 18,
+        "description": "Arn for the schema."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/100"
+        },
+        "flags": 0,
+        "description": "The tags used to organize, track, or control access for this resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Personalize/Schema",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/101"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Personalize/Schema@default",
+    "body": {
+      "$ref": "#/102"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CategoricalHyperParameterRange",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The name of the hyperparameter."
+      },
+      "Values": {
+        "type": {
+          "$ref": "#/110"
+        },
+        "flags": 0,
+        "description": "A list of the categories for the hyperparameter."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ContinuousHyperParameterRange",
+    "properties": {
+      "MaxValue": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The maximum allowable value for the hyperparameter."
+      },
+      "MinValue": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The minimum allowable value for the hyperparameter."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The name of the hyperparameter."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IntegerHyperParameterRange",
+    "properties": {
+      "MaxValue": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The maximum allowable value for the hyperparameter."
+      },
+      "MinValue": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The minimum allowable value for the hyperparameter."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The name of the hyperparameter."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SolutionArn",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SolutionConfig",
+    "properties": {
+      "AlgorithmHyperParameters": {
+        "type": {
+          "$ref": "#/111"
+        },
+        "flags": 0,
+        "description": "Lists the hyperparameter names and ranges."
+      },
+      "AutoMLConfig": {
+        "type": {
+          "$ref": "#/113"
+        },
+        "flags": 0,
+        "description": "The AutoMLConfig object containing a list of recipes to search when AutoML is performed."
+      },
+      "EventValueThreshold": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "Only events with a value greater than or equal to this threshold are used for training a model."
+      },
+      "FeatureTransformationParameters": {
+        "type": {
+          "$ref": "#/114"
+        },
+        "flags": 0,
+        "description": "Lists the feature transformation parameters."
+      },
+      "HpoConfig": {
+        "type": {
+          "$ref": "#/121"
+        },
+        "flags": 0,
+        "description": "Describes the properties for hyperparameter optimization (HPO)"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Solution_AlgorithmHyperParameters",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Solution_AutoMLConfig",
+    "properties": {
+      "MetricName": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The metric to optimize."
+      },
+      "RecipeList": {
+        "type": {
+          "$ref": "#/112"
+        },
+        "flags": 0,
+        "description": "The list of candidate recipes."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Solution_FeatureTransformationParameters",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/104"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/105"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/106"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Solution_HpoConfig_AlgorithmHyperParameterRanges",
+    "properties": {
+      "CategoricalHyperParameterRanges": {
+        "type": {
+          "$ref": "#/115"
+        },
+        "flags": 0,
+        "description": "The categorical hyperparameters and their ranges."
+      },
+      "ContinuousHyperParameterRanges": {
+        "type": {
+          "$ref": "#/116"
+        },
+        "flags": 0,
+        "description": "The continuous hyperparameters and their ranges."
+      },
+      "IntegerHyperParameterRanges": {
+        "type": {
+          "$ref": "#/117"
+        },
+        "flags": 0,
+        "description": "The integer hyperparameters and their ranges."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Solution_HpoConfig_HpoObjective",
+    "properties": {
+      "MetricName": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The name of the metric"
+      },
+      "MetricRegex": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "A regular expression for finding the metric in the training job logs."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The type of the metric. Valid values are Maximize and Minimize."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Solution_HpoConfig_HpoResourceConfig",
+    "properties": {
+      "MaxNumberOfTrainingJobs": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The maximum number of training jobs when you create a solution version. The maximum value for maxNumberOfTrainingJobs is 40."
+      },
+      "MaxParallelTrainingJobs": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The maximum number of parallel training jobs when you create a solution version. The maximum value for maxParallelTrainingJobs is 10."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Solution_HpoConfig",
+    "properties": {
+      "AlgorithmHyperParameterRanges": {
+        "type": {
+          "$ref": "#/118"
+        },
+        "flags": 0,
+        "description": "The hyperparameters and their allowable ranges"
+      },
+      "HpoObjective": {
+        "type": {
+          "$ref": "#/119"
+        },
+        "flags": 0,
+        "description": "The metric to optimize during HPO."
+      },
+      "HpoResourceConfig": {
+        "type": {
+          "$ref": "#/120"
+        },
+        "flags": 0,
+        "description": "Describes the resource configuration for hyperparameter optimization (HPO)."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Personalize/SolutionProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/109"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Personalize/SolutionProperties",
+    "properties": {
+      "DatasetGroupArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The ARN of the dataset group that provides the training data."
+      },
+      "EventType": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "When your have multiple event types (using an EVENT_TYPE schema field), this parameter specifies which event type (for example, 'click' or 'like') is used for training the model. If you do not provide an eventType, Amazon Personalize will use all interactions for training with equal weight regardless of type."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The name for the solution"
+      },
+      "PerformAutoML": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Whether to perform automated machine learning (AutoML). The default is false. For this case, you must specify recipeArn."
+      },
+      "PerformHPO": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Whether to perform hyperparameter optimization (HPO) on the specified or selected recipe. The default is false. When performing AutoML, this parameter is always true and you should not set it to false."
+      },
+      "RecipeArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The ARN of the recipe to use for model training. Only specified when performAutoML is false."
+      },
+      "SolutionArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 18
+      },
+      "SolutionConfig": {
+        "type": {
+          "$ref": "#/108"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/123"
+        },
+        "flags": 0,
+        "description": "The tags used to organize, track, or control access for this resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Personalize/Solution",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/124"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Personalize/Solution@default",
+    "body": {
+      "$ref": "#/125"
     },
     "readableScopes": 0,
     "writableScopes": 0

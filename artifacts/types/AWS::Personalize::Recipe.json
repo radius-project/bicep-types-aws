@@ -1,0 +1,97 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Personalize-Recipe",
+  "type": "AWS::Personalize::Recipe",
+  "time": "2026-11-05T18:23:06.572Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Name"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name"
+    ],
+    "description": "Resource Type definition for AWS::Personalize::Recipe",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "personalize:ListRecipes"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "personalize:DescribeRecipe"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/RecipeArn"
+    ],
+    "properties": {
+      "AlgorithmArn": {
+        "description": "The Amazon Resource Name (ARN) of the algorithm that Amazon Personalize uses to train the model.",
+        "maxLength": 256,
+        "pattern": "^arn:([a-z\\d-]+):personalize:.*:.*:.+$",
+        "type": "string"
+      },
+      "CreationDateTime": {
+        "description": "The date and time (in Unix format) that the recipe was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description of the recipe.",
+        "type": "string"
+      },
+      "FeatureTransformationArn": {
+        "description": "The ARN of the FeatureTransformation object.",
+        "maxLength": 256,
+        "pattern": "^arn:([a-z\\d-]+):personalize:.*:.*:.+$",
+        "type": "string"
+      },
+      "LastUpdatedDateTime": {
+        "description": "The date and time (in Unix format) that the recipe was last updated.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the recipe.",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9\\-_]*$",
+        "type": "string"
+      },
+      "RecipeArn": {
+        "description": "The Amazon Resource Name (ARN) of the recipe.",
+        "maxLength": 256,
+        "pattern": "^arn:([a-z\\d-]+):personalize:.*:.*:.+$",
+        "type": "string"
+      },
+      "RecipeType": {
+        "description": "One of the following values: PERSONALIZED_RANKING, RELATED_ITEMS, USER_PERSONALIZATION.",
+        "maxLength": 256,
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the recipe.",
+        "maxLength": 256,
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/RecipeArn",
+      "/properties/AlgorithmArn",
+      "/properties/FeatureTransformationArn",
+      "/properties/Status",
+      "/properties/Description",
+      "/properties/RecipeType",
+      "/properties/CreationDateTime",
+      "/properties/LastUpdatedDateTime"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::Personalize::Recipe"
+  }
+}

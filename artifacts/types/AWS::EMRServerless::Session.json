@@ -1,0 +1,294 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EMRServerless-Session",
+  "type": "AWS::EMRServerless::Session",
+  "time": "2026-11-05T21:07:37.327Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ApplicationId",
+        "/properties/SessionId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ApplicationId",
+      "/properties/Name",
+      "/properties/ExecutionRoleArn",
+      "/properties/ConfigurationOverrides",
+      "/properties/IdleTimeoutMinutes",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "Configuration": {
+        "additionalProperties": false,
+        "description": "A configuration specification, consisting of a classification, properties, and optional nested configurations. A classification refers to an application-specific configuration file; properties are the settings to change in that file.",
+        "properties": {
+          "Classification": {
+            "description": "The classification within a configuration.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "pattern": ".*\\S.*",
+            "type": "string"
+          },
+          "Configurations": {
+            "description": "A list of additional configurations to apply within a configuration object.",
+            "items": {
+              "$ref": "#/definitions/Configuration"
+            },
+            "maxItems": 100,
+            "type": "array"
+          },
+          "Properties": {
+            "additionalProperties": false,
+            "description": "A set of properties specified within a configuration classification.",
+            "maxProperties": 100,
+            "patternProperties": {
+              "^.*\\S.*$": {
+                "maxLength": 1024,
+                "minLength": 0,
+                "pattern": "^.*\\S.*$",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "Classification"
+        ],
+        "type": "object"
+      },
+      "ConfigurationOverrides": {
+        "additionalProperties": false,
+        "description": "The configuration overrides for the session. Only runtime configuration overrides are supported.",
+        "properties": {
+          "RuntimeConfiguration": {
+            "description": "The runtime configuration for the session. Contains Spark configuration properties specified at session creation time.",
+            "items": {
+              "$ref": "#/definitions/Configuration"
+            },
+            "maxItems": 100,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "NetworkConfiguration": {
+        "additionalProperties": false,
+        "description": "The network configuration for customer VPC connectivity for the session.",
+        "properties": {
+          "SecurityGroupIds": {
+            "description": "The array of security group Ids for customer VPC connectivity.",
+            "items": {
+              "maxLength": 32,
+              "minLength": 1,
+              "pattern": "^[-0-9a-zA-Z]+",
+              "type": "string"
+            },
+            "maxItems": 5,
+            "type": "array"
+          },
+          "SubnetIds": {
+            "description": "The array of subnet Ids for customer VPC connectivity.",
+            "items": {
+              "maxLength": 32,
+              "minLength": 1,
+              "pattern": "^[-0-9a-zA-Z]+",
+              "type": "string"
+            },
+            "maxItems": 16,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9 /_.:=+@-]+$",
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^[A-Za-z0-9 /_.:=+@-]*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Represents an Amazon EMR Serverless interactive session. A session is an interactive workload started on an EMR Serverless application that has interactive sessions enabled, and is available for Amazon EMR release 7.13.0 and later.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ApplicationId": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[0-9a-z]+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "ApplicationId"
+          ]
+        },
+        "permissions": [
+          "emr-serverless:ListSessions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "emr-serverless:GetSession"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "ApplicationId": {
+        "description": "The ID of the application on which the session is started.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[0-9a-z]+$",
+        "type": "string"
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the session.",
+        "maxLength": 1024,
+        "minLength": 60,
+        "pattern": "^arn:(aws[a-zA-Z0-9-]*):emr-serverless:.+:(\\d{12}):\\/applications\\/[0-9a-zA-Z]+\\/sessions\\/[0-9a-zA-Z]+$",
+        "type": "string"
+      },
+      "ConfigurationOverrides": {
+        "$ref": "#/definitions/ConfigurationOverrides"
+      },
+      "CreatedAt": {
+        "description": "The date and time that the session was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "description": "The IAM principal that created the session.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:(aws[a-zA-Z0-9-]*):(iam|sts)::(\\d{12})?:[\\w/+=,.@-]+$",
+        "type": "string"
+      },
+      "ExecutionRoleArn": {
+        "description": "The execution role ARN for the session. Amazon EMR Serverless uses this role to access Amazon Web Services resources on your behalf during session execution.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:(aws[a-zA-Z0-9-]*):iam::([0-9]{12}):(role((\\u002F)|(\\u002F[\\u0021-\\u007F]+\\u002F))[\\w+=,.@-]+)$",
+        "type": "string"
+      },
+      "IdleSince": {
+        "description": "The date and time that the session became idle.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "IdleTimeoutMinutes": {
+        "description": "The idle timeout in minutes for the session. After the session remains idle for this duration, Amazon EMR Serverless automatically terminates it.",
+        "maximum": 1000000,
+        "minimum": 0,
+        "type": "number"
+      },
+      "Name": {
+        "description": "The optional name for the session.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": ".*\\S.*",
+        "type": "string"
+      },
+      "NetworkConfiguration": {
+        "$ref": "#/definitions/NetworkConfiguration"
+      },
+      "ReleaseLabel": {
+        "description": "The Amazon EMR release label associated with the session.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9._/-]+$",
+        "type": "string"
+      },
+      "SessionId": {
+        "description": "The ID of the session.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[0-9a-z]+$",
+        "type": "string"
+      },
+      "StartedAt": {
+        "description": "The date and time that the session moved to a running state.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "State": {
+        "description": "The state of the session.",
+        "enum": [
+          "SUBMITTED",
+          "STARTING",
+          "STARTED",
+          "IDLE",
+          "BUSY",
+          "FAILED",
+          "TERMINATING",
+          "TERMINATED"
+        ],
+        "type": "string"
+      },
+      "StateDetails": {
+        "description": "Additional details about the current state of the session.",
+        "maxLength": 1024,
+        "minLength": 1,
+        "pattern": ".*\\S.*",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags assigned to the session.",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array"
+      },
+      "UpdatedAt": {
+        "description": "The date and time that the session was last updated.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/SessionId",
+      "/properties/Arn",
+      "/properties/ReleaseLabel",
+      "/properties/State",
+      "/properties/StateDetails",
+      "/properties/CreatedBy",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt",
+      "/properties/StartedAt",
+      "/properties/IdleSince",
+      "/properties/NetworkConfiguration"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "emr-serverless:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::EMRServerless::Session"
+  }
+}

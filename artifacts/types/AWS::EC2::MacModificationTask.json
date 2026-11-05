@@ -1,0 +1,168 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-MacModificationTask",
+  "type": "AWS::EC2::MacModificationTask",
+  "time": "2026-11-05T21:21:49.342Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/MacModificationTaskId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/InstanceId",
+      "/properties/MacSystemIntegrityProtectionConfig",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "MacSystemIntegrityProtectionConfiguration": {
+        "additionalProperties": false,
+        "description": "The System Integrity Protection (SIP) configuration for a SIP modification task.",
+        "properties": {
+          "AppleInternal": {
+            "description": "Indicates whether Apple Internal was enabled or disabled by the task. The service returns an empty string for a setting the task did not explicitly override, so this property is not enum-constrained even though the Smithy shape is.",
+            "type": "string"
+          },
+          "BaseSystem": {
+            "description": "Indicates whether Base System was enabled or disabled by the task. The service returns an empty string for a setting the task did not explicitly override, so this property is not enum-constrained even though the Smithy shape is.",
+            "type": "string"
+          },
+          "DTraceRestrictions": {
+            "description": "Indicates whether DTrace Restrictions was enabled or disabled by the task. The service returns an empty string for a setting the task did not explicitly override, so this property is not enum-constrained even though the Smithy shape is.",
+            "type": "string"
+          },
+          "DebuggingRestrictions": {
+            "description": "Indicates whether Debugging Restrictions was enabled or disabled by the task. The service returns an empty string for a setting the task did not explicitly override, so this property is not enum-constrained even though the Smithy shape is.",
+            "type": "string"
+          },
+          "FilesystemProtections": {
+            "description": "Indicates whether Filesystem Protections was enabled or disabled by the task. The service returns an empty string for a setting the task did not explicitly override, so this property is not enum-constrained even though the Smithy shape is.",
+            "type": "string"
+          },
+          "KextSigning": {
+            "description": "Indicates whether Kext Signing was enabled or disabled by the task. The service returns an empty string for a setting the task did not explicitly override, so this property is not enum-constrained even though the Smithy shape is.",
+            "type": "string"
+          },
+          "NvramProtections": {
+            "description": "Indicates whether NVRAM Protections was enabled or disabled by the task. The service returns an empty string for a setting the task did not explicitly override, so this property is not enum-constrained even though the Smithy shape is.",
+            "type": "string"
+          },
+          "Status": {
+            "description": "Indicates whether SIP was enabled or disabled by the task.",
+            "enum": [
+              "enabled",
+              "disabled"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource schema for an EC2 Mac modification task. A Mac modification task records a System Integrity Protection (SIP) configuration change or an Amazon EBS root volume ownership delegation applied to an Amazon EC2 Mac instance. This is a read-only resource: the service provides no API to update, cancel or delete a task.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "ec2:DescribeMacModificationTasks"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ec2:DescribeMacModificationTasks"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the Mac modification task.",
+        "type": "string"
+      },
+      "InstanceId": {
+        "description": "The ID of the Amazon EC2 Mac instance that the task was created for.",
+        "type": "string"
+      },
+      "MacModificationTaskId": {
+        "description": "The ID of the Mac modification task.",
+        "type": "string"
+      },
+      "MacSystemIntegrityProtectionConfig": {
+        "$ref": "#/definitions/MacSystemIntegrityProtectionConfiguration"
+      },
+      "StartTime": {
+        "description": "The date and time the task was created, in the UTC time zone.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags assigned to the task.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "TaskState": {
+        "description": "The state of the task.",
+        "enum": [
+          "successful",
+          "failed",
+          "in-progress",
+          "pending"
+        ],
+        "type": "string"
+      },
+      "TaskType": {
+        "description": "The type of task.",
+        "enum": [
+          "sip-modification",
+          "volume-ownership-delegation"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/MacModificationTaskId",
+      "/properties/TaskState",
+      "/properties/TaskType",
+      "/properties/StartTime"
+    ],
+    "required": [
+      "InstanceId"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "ec2:DescribeMacModificationTasks"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::EC2::MacModificationTask"
+  }
+}

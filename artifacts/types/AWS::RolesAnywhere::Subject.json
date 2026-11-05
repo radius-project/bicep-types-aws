@@ -1,0 +1,150 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RolesAnywhere-Subject",
+  "type": "AWS::RolesAnywhere::Subject",
+  "time": "2026-11-05T17:53:50.825Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/SubjectId"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "CredentialSummary": {
+        "additionalProperties": false,
+        "description": "A record of a presented X509 credential from a temporary credential request.",
+        "properties": {
+          "Failed": {
+            "description": "Indicates whether the temporary credential request was successful.",
+            "type": "boolean"
+          },
+          "Issuer": {
+            "description": "The fully qualified domain name of the issuing certificate for the presented end-entity certificate.",
+            "type": "string"
+          },
+          "SeenAt": {
+            "description": "The ISO-8601 time stamp of when the certificate was last used in a temporary credential request.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "SerialNumber": {
+            "description": "The serial number of the certificate.",
+            "type": "string"
+          },
+          "X509CertificateData": {
+            "description": "The PEM-encoded data of the certificate.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "InstanceProperty": {
+        "additionalProperties": false,
+        "description": "A key-value pair you set that identifies a property of the authenticating instance.",
+        "properties": {
+          "Failed": {
+            "description": "Indicates whether the temporary credential request was successful.",
+            "type": "boolean"
+          },
+          "Properties": {
+            "additionalProperties": false,
+            "description": "A list of instanceProperty objects.",
+            "maxProperties": 50,
+            "patternProperties": {
+              "^.{1,200}$": {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "SeenAt": {
+            "description": "The ISO-8601 time stamp of when the certificate was last used in a temporary credential request.",
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Definition of AWS::RolesAnywhere::Subject Resource Type. A subject associates a certificate identity with authentication attempts, storing auditing information such as the certificate data used in the attempt and the last time the associated identity attempted authentication. Subjects are created implicitly by IAM Roles Anywhere at authentication time and cannot be created, updated or deleted through the API.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "rolesanywhere:ListSubjects"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "rolesanywhere:GetSubject"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/SubjectArn"
+    ],
+    "properties": {
+      "CreatedAt": {
+        "description": "The ISO-8601 timestamp when the subject was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Credentials": {
+        "description": "The temporary session credentials vended at the last authenticating call with this subject.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/CredentialSummary"
+        },
+        "type": "array"
+      },
+      "InstanceProperties": {
+        "description": "The specified instance properties associated with the request.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/InstanceProperty"
+        },
+        "type": "array"
+      },
+      "LastSeenAt": {
+        "description": "The ISO-8601 timestamp of the last time this subject requested temporary session credentials.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "SubjectArn": {
+        "description": "The Amazon Resource Name (ARN) of the subject.",
+        "type": "string"
+      },
+      "SubjectId": {
+        "description": "The unique identifier of the subject.",
+        "maxLength": 36,
+        "minLength": 36,
+        "pattern": "[a-f0-9]{8}-([a-z0-9]{4}-){3}[a-z0-9]{12}",
+        "type": "string"
+      },
+      "UpdatedAt": {
+        "description": "The ISO-8601 timestamp when the subject was last updated.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "X509Subject": {
+        "description": "The x509 principal identifier of the authenticating certificate.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/SubjectArn",
+      "/properties/SubjectId",
+      "/properties/X509Subject",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt",
+      "/properties/LastSeenAt",
+      "/properties/Credentials",
+      "/properties/InstanceProperties"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::RolesAnywhere::Subject"
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CognitoSync-Dataset",
+  "type": "AWS::CognitoSync::Dataset",
+  "time": "2026-07-30T19:56:44.628Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/IdentityPoolId",
+        "/properties/IdentityId",
+        "/properties/DatasetName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DatasetName",
+      "/properties/IdentityId",
+      "/properties/IdentityPoolId"
+    ],
+    "description": "Resource type definition for a Cognito Sync Dataset. A dataset is a collection of key-value pairs per identity that can store up to 1 MB of data and sync across devices.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "IdentityId": {
+              "maxLength": 55,
+              "minLength": 1,
+              "pattern": "^[\\w-]+:[0-9a-f-]+$",
+              "type": "string"
+            },
+            "IdentityPoolId": {
+              "maxLength": 55,
+              "minLength": 1,
+              "pattern": "^[\\w-]+:[0-9a-f-]+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "IdentityPoolId",
+            "IdentityId"
+          ]
+        },
+        "permissions": [
+          "cognito-sync:ListDatasets"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "cognito-sync:DescribeDataset"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the dataset.",
+        "type": "string"
+      },
+      "CreationDate": {
+        "description": "Date on which the dataset was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DataStorage": {
+        "description": "Total size in bytes of the records in this dataset.",
+        "type": "integer"
+      },
+      "DatasetName": {
+        "description": "A string of up to 128 characters. Allowed characters are a-z, A-Z, 0-9, underscore, dash, and dot.",
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9_.:-]+$",
+        "type": "string"
+      },
+      "IdentityId": {
+        "description": "A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE) created by Amazon Cognito.",
+        "maxLength": 55,
+        "minLength": 1,
+        "pattern": "^[\\w-]+:[0-9a-f-]+$",
+        "type": "string"
+      },
+      "IdentityPoolId": {
+        "description": "A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE) created by Amazon Cognito.",
+        "maxLength": 55,
+        "minLength": 1,
+        "pattern": "^[\\w-]+:[0-9a-f-]+$",
+        "type": "string"
+      },
+      "LastModifiedBy": {
+        "description": "The device that made the last change to this dataset.",
+        "type": "string"
+      },
+      "LastModifiedDate": {
+        "description": "Date when the dataset was last modified.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "NumRecords": {
+        "description": "Number of records in this dataset.",
+        "type": "integer"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/CreationDate",
+      "/properties/LastModifiedDate",
+      "/properties/LastModifiedBy",
+      "/properties/DataStorage",
+      "/properties/NumRecords"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::CognitoSync::Dataset"
+  }
+}

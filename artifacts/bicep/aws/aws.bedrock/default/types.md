@@ -24,6 +24,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Bedrock/ApplicationInferenceProfileProperties](#awsbedrockapplicationinferenceprofileproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Bedrock/AsyncInvoke@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Bedrock/AsyncInvokeProperties](#awsbedrockasyncinvokeproperties) (Identifier): properties of the resource
+
 ## Resource AWS.Bedrock/AutomatedReasoningPolicy@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -31,6 +39,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Bedrock/AutomatedReasoningPolicyProperties](#awsbedrockautomatedreasoningpolicyproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Bedrock/AutomatedReasoningPolicyVersion@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Bedrock/AutomatedReasoningPolicyVersionProperties](#awsbedrockautomatedreasoningpolicyversionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Bedrock/Blueprint@default
 * **Readable Scope(s)**: None
@@ -48,6 +64,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Bedrock/DataAutomationLibraryProperties](#awsbedrockdataautomationlibraryproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Bedrock/DataAutomationLibraryIngestionJob@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Bedrock/DataAutomationLibraryIngestionJobProperties](#awsbedrockdataautomationlibraryingestionjobproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Bedrock/DataAutomationProject@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -64,6 +88,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Bedrock/DataSourceProperties](#awsbedrockdatasourceproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Bedrock/DefaultPromptRouter@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Bedrock/DefaultPromptRouterProperties](#awsbedrockdefaultpromptrouterproperties) (Identifier): properties of the resource
+
 ## Resource AWS.Bedrock/EnforcedGuardrailConfiguration@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -71,6 +103,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Bedrock/EnforcedGuardrailConfigurationProperties](#awsbedrockenforcedguardrailconfigurationproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Bedrock/EvaluationJob@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Bedrock/EvaluationJobProperties](#awsbedrockevaluationjobproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Bedrock/Flow@default
 * **Readable Scope(s)**: None
@@ -88,6 +128,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Bedrock/FlowAliasProperties](#awsbedrockflowaliasproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Bedrock/FlowExecution@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Bedrock/FlowExecutionProperties](#awsbedrockflowexecutionproperties) (Identifier): properties of the resource
+
 ## Resource AWS.Bedrock/FlowVersion@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -96,6 +144,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Bedrock/FlowVersionProperties](#awsbedrockflowversionproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Bedrock/FoundationModel@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Bedrock/FoundationModelProperties](#awsbedrockfoundationmodelproperties) (Identifier): properties of the resource
+
 ## Resource AWS.Bedrock/Guardrail@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -103,6 +159,22 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Bedrock/GuardrailProperties](#awsbedrockguardrailproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Bedrock/GuardrailVersion@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Bedrock/GuardrailVersionProperties](#awsbedrockguardrailversionproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Bedrock/ImportedModel@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Bedrock/ImportedModelProperties](#awsbedrockimportedmodelproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Bedrock/IntelligentPromptRouter@default
 * **Readable Scope(s)**: None
@@ -128,6 +200,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Bedrock/KnowledgeBasePolicyProperties](#awsbedrockknowledgebasepolicyproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Bedrock/ModelImportJob@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Bedrock/ModelImportJobProperties](#awsbedrockmodelimportjobproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Bedrock/ModelInvocationJob@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Bedrock/ModelInvocationJobProperties](#awsbedrockmodelinvocationjobproperties) (Identifier): properties of the resource
+
 ## Resource AWS.Bedrock/Prompt@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -135,6 +223,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Bedrock/PromptProperties](#awsbedrockpromptproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Bedrock/PromptVersion@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Bedrock/PromptVersionProperties](#awsbedrockpromptversionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Bedrock/ResourcePolicy@default
 * **Readable Scope(s)**: None
@@ -161,6 +257,9 @@
 * **properties**: [AWS.Bedrock/SessionProperties](#awsbedrocksessionproperties) (Identifier): properties of the resource
 
 ## ActionGroupExecutor
+### Properties
+
+## AdditionalModelRequestFields
 ### Properties
 
 ## AdditionalModelRequestFields
@@ -210,6 +309,14 @@
 ## APISchema
 ### Properties
 
+## AsyncInvokeOutputDataConfig
+### Properties
+* **S3OutputDataConfig**: [AsyncInvokeS3OutputDataConfig](#asyncinvokes3outputdataconfig) (Required)
+
+## AsyncInvokeS3OutputDataConfig
+### Properties
+* **S3Uri**: string (Required): An S3 object URI starting with s3://.
+
 ## AudioConfiguration
 ### Properties
 * **SegmentationConfiguration**: [AudioSegmentationConfiguration](#audiosegmentationconfiguration) (Required)
@@ -257,6 +364,11 @@
 ### Properties
 * **Extraction**: [AudioStandardExtraction](#audiostandardextraction)
 * **GenerativeField**: [AudioStandardGenerativeField](#audiostandardgenerativefield)
+
+## AutomatedEvaluationConfig
+### Properties
+* **DatasetMetricConfigs**: [EvaluationDatasetMetricConfig](#evaluationdatasetmetricconfig)[] (Required): The prompt datasets, metrics, and task types for the evaluation job.
+* **EvaluatorModelConfig**: [EvaluatorModelConfig](#evaluatormodelconfig)
 
 ## AutomatedReasoningPolicyConfig
 ### Properties
@@ -324,6 +436,18 @@
 * **Type**: string (ReadOnly)
 * **UpdatedAt**: string (ReadOnly): Time Stamp
 
+## AWS.Bedrock/AsyncInvokeProperties
+### Properties
+* **EndTime**: string (ReadOnly): When the invocation ended.
+* **InvocationArn**: string (Identifier): The ARN of the async invocation.
+* **InvocationId**: string (ReadOnly): The unique identifier of the async invocation.
+* **LastModifiedTime**: string (ReadOnly): When the invocation was last modified.
+* **ModelArn**: string (ReadOnly): The ARN of the model used for the invocation.
+* **OutputDataConfig**: [AsyncInvokeOutputDataConfig](#asyncinvokeoutputdataconfig) (ReadOnly): Where to store the output.
+* **Status**: string (ReadOnly): The status of the async invocation.
+* **SubmitTime**: string (ReadOnly): When the invocation was submitted.
+* **Tags**: [Tag](#tag)[]: Tags to apply to the invocation.
+
 ## AWS.Bedrock/AutomatedReasoningPolicyProperties
 ### Properties
 * **CreatedAt**: string (ReadOnly)
@@ -340,6 +464,19 @@
 * **UpdatedAt**: string (ReadOnly)
 * **Version**: string (ReadOnly)
 
+## AWS.Bedrock/AutomatedReasoningPolicyVersionProperties
+### Properties
+* **CreatedAt**: string (ReadOnly)
+* **DefinitionHash**: string (ReadOnly)
+* **Description**: string (ReadOnly)
+* **LastUpdatedDefinitionHash**: string (WriteOnly)
+* **Name**: string (ReadOnly)
+* **PolicyArn**: string (Required, Identifier)
+* **PolicyId**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]
+* **UpdatedAt**: string (ReadOnly)
+* **Version**: string (ReadOnly, Identifier)
+
 ## AWS.Bedrock/BlueprintProperties
 ### Properties
 * **BlueprintArn**: string (ReadOnly, Identifier): ARN of a Blueprint
@@ -352,6 +489,17 @@
 * **Schema**: [Blueprint_Schema](#blueprintschema) (Required): Schema of the blueprint
 * **Tags**: [Tag](#tag)[]: List of Tags
 * **Type**: string (Required): Modality Type
+
+## AWS.Bedrock/DataAutomationLibraryIngestionJobProperties
+### Properties
+* **CreationTime**: string (ReadOnly): Timestamp when the ingestion job was created
+* **EntityType**: string (Required): The entity type associated with the ingestion job
+* **JobArn**: string (Identifier): ARN of the DataAutomationLibraryIngestionJob
+* **JobStatus**: string (ReadOnly): The status of the ingestion job
+* **LibraryArn**: string (Required, Identifier): ARN of the DataAutomationLibrary
+* **OperationType**: string (Required): The operation performed by the ingestion job
+* **OutputConfiguration**: [OutputConfiguration](#outputconfiguration) (Required)
+* **Tags**: [Tag](#tag)[]: List of tags
 
 ## AWS.Bedrock/DataAutomationLibraryProperties
 ### Properties
@@ -396,6 +544,20 @@
 * **UpdatedAt**: string (ReadOnly): The time at which the knowledge base was last updated.
 * **VectorIngestionConfiguration**: [VectorIngestionConfiguration](#vectoringestionconfiguration)
 
+## AWS.Bedrock/DefaultPromptRouterProperties
+### Properties
+* **CreatedAt**: string (ReadOnly): The timestamp when the default prompt router was created.
+* **Description**: string (ReadOnly): The description of the default prompt router.
+* **FallbackModel**: [PromptRouterTargetModel](#promptroutertargetmodel) (ReadOnly)
+* **Models**: [PromptRouterTargetModel](#promptroutertargetmodel)[] (ReadOnly): A list of foundation models that the default prompt router can route requests to.
+* **PromptRouterArn**: string (Identifier): The Amazon Resource Name (ARN) of the default prompt router.
+* **PromptRouterId**: string (ReadOnly): The unique identifier of the default prompt router, extracted from the ARN.
+* **PromptRouterName**: string (ReadOnly): The name of the default prompt router.
+* **RoutingCriteria**: [RoutingCriteria](#routingcriteria) (ReadOnly)
+* **Status**: string (ReadOnly): The status of the default prompt router.
+* **Type**: string (ReadOnly): The type of the prompt router.
+* **UpdatedAt**: string (ReadOnly): The timestamp when the default prompt router was last updated.
+
 ## AWS.Bedrock/EnforcedGuardrailConfigurationProperties
 ### Properties
 * **ConfigId**: string (ReadOnly, Identifier): Unique ID for the account enforced configuration
@@ -411,6 +573,23 @@
 * **UpdatedAt**: string (ReadOnly): Timestamp when the configuration was last updated
 * **UpdatedBy**: string (ReadOnly): The ARN of the role used to update the configuration
 
+## AWS.Bedrock/EvaluationJobProperties
+### Properties
+* **ApplicationType**: string (ReadOnly): Specifies whether the evaluation job is for evaluating a model or evaluating a knowledge base.
+* **CreationTime**: string (ReadOnly): The time the evaluation job was created.
+* **CustomerEncryptionKeyId**: string (ReadOnly): The customer managed encryption key ARN used to encrypt the evaluation job.
+* **EvaluationConfig**: [EvaluationConfig](#evaluationconfig) (ReadOnly)
+* **InferenceConfig**: [EvaluationInferenceConfig](#evaluationinferenceconfig) (ReadOnly)
+* **JobArn**: string (Identifier): The Amazon Resource Name (ARN) of the evaluation job.
+* **JobDescription**: string (ReadOnly): A description of the evaluation job.
+* **JobName**: string (ReadOnly): A name for the evaluation job.
+* **JobType**: string (ReadOnly): Specifies whether the evaluation job is automated or human-based.
+* **LastModifiedTime**: string (ReadOnly): The time the evaluation job was last modified.
+* **OutputDataConfig**: [EvaluationOutputDataConfig](#evaluationoutputdataconfig) (ReadOnly)
+* **RoleArn**: string (ReadOnly): The Amazon Resource Name (ARN) of an IAM service role that Amazon Bedrock can assume to perform tasks on your behalf.
+* **Status**: string (ReadOnly): The current status of the evaluation job.
+* **Tags**: [Tag](#tag)[] (ReadOnly): Tags to associate with the evaluation job.
+
 ## AWS.Bedrock/FlowAliasProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): Arn of the Flow Alias
@@ -424,6 +603,17 @@
 * **RoutingConfiguration**: [FlowAliasRoutingConfigurationListItem](#flowaliasroutingconfigurationlistitem)[] (Required): Routing configuration for a Flow alias.
 * **Tags**: [TagsMap](#tagsmap)
 * **UpdatedAt**: string (ReadOnly): Time Stamp.
+
+## AWS.Bedrock/FlowExecutionProperties
+### Properties
+* **EndedAt**: string (ReadOnly): The timestamp when the flow execution ended.
+* **ExecutionArn**: string (Identifier): The Amazon Resource Name (ARN) that uniquely identifies the flow execution.
+* **FlowAliasIdentifier**: string: The unique identifier of the flow alias used for the execution.
+* **FlowExecutionName**: string: The unique name for the flow execution.
+* **FlowIdentifier**: string: The unique identifier of the flow.
+* **FlowVersion**: string (ReadOnly): The version of the flow used for the execution.
+* **StartedAt**: string (ReadOnly): The timestamp when the flow execution started.
+* **Status**: string (ReadOnly): The current status of the flow execution.
 
 ## AWS.Bedrock/FlowProperties
 ### Properties
@@ -458,6 +648,19 @@
 * **Status**: string (ReadOnly)
 * **Version**: string (ReadOnly, Identifier): Numerical Version.
 
+## AWS.Bedrock/FoundationModelProperties
+### Properties
+* **CustomizationsSupported**: string[] (ReadOnly): The customization that the model supports.
+* **InferenceTypesSupported**: string[] (ReadOnly): The inference types that the model supports.
+* **InputModalities**: string[] (ReadOnly): The input modalities that the model supports.
+* **ModelArn**: string (Identifier): The Amazon Resource Name (ARN) of the foundation model.
+* **ModelId**: string (ReadOnly): The model identifier.
+* **ModelLifecycle**: [FoundationModel_ModelLifecycle](#foundationmodelmodellifecycle) (ReadOnly): Details about whether a model version is available or deprecated.
+* **ModelName**: string (ReadOnly): The model name.
+* **OutputModalities**: string[] (ReadOnly): The output modalities that the model supports.
+* **ProviderName**: string (ReadOnly): The model's provider name.
+* **ResponseStreamingSupported**: bool (ReadOnly): Indicates whether the model supports streaming.
+
 ## AWS.Bedrock/GuardrailProperties
 ### Properties
 * **AutomatedReasoningPolicyConfig**: [AutomatedReasoningPolicyConfig](#automatedreasoningpolicyconfig)
@@ -481,6 +684,28 @@
 * **UpdatedAt**: string (ReadOnly): Time Stamp
 * **Version**: string (ReadOnly): Guardrail version
 * **WordPolicyConfig**: [WordPolicyConfig](#wordpolicyconfig)
+
+## AWS.Bedrock/GuardrailVersionProperties
+### Properties
+* **Description**: string: Description of the Guardrail version
+* **GuardrailArn**: string (ReadOnly): Arn representation for the guardrail
+* **GuardrailId**: string (ReadOnly, Identifier): Unique id for the guardrail
+* **GuardrailIdentifier**: string (Required, WriteOnly): Identifier (GuardrailId or GuardrailArn) for the guardrail
+* **Version**: string (ReadOnly, Identifier): Guardrail version
+
+## AWS.Bedrock/ImportedModelProperties
+### Properties
+* **CreationTime**: string (ReadOnly): Creation time of the imported model.
+* **CustomModelUnits**: [CustomModelUnits](#custommodelunits) (ReadOnly)
+* **InstructSupported**: bool (ReadOnly): Specifies if the imported model supports converse.
+* **JobArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the model import job.
+* **JobName**: string: The name of the import job.
+* **ModelArchitecture**: string (ReadOnly): The architecture of the imported model.
+* **ModelArn**: string (Identifier): The Amazon Resource Name (ARN) of the imported model.
+* **ModelDataSource**: [ModelDataSource](#modeldatasource)
+* **ModelKmsKeyArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the customer managed KMS key used to encrypt the imported model.
+* **ModelName**: string: The name of the imported model.
+* **Tags**: [Tag](#tag)[] (ReadOnly): Tags to attach to the imported model.
 
 ## AWS.Bedrock/IntelligentPromptRouterProperties
 ### Properties
@@ -517,6 +742,37 @@
 * **Tags**: [TagsMap](#tagsmap)
 * **UpdatedAt**: string (ReadOnly): The time at which the knowledge base was last updated.
 
+## AWS.Bedrock/ModelImportJobProperties
+### Properties
+* **CreationTime**: string (ReadOnly): The time the model import job was created.
+* **EndTime**: string (ReadOnly): The time the model import job ended.
+* **ImportedModelKmsKeyArn**: string: The Amazon Resource Name (ARN) of the KMS key used to encrypt the imported model.
+* **ImportedModelName**: string (ReadOnly): The name of the imported model.
+* **JobArn**: string (Identifier): The Amazon Resource Name (ARN) of the model import job.
+* **JobName**: string (ReadOnly): The name of the model import job.
+* **LastModifiedTime**: string (ReadOnly): The time the model import job was last modified.
+* **ModelDataSource**: [ModelDataSource](#modeldatasource) (Required): The data source for the model import job.
+* **RoleArn**: string (Required): The Amazon Resource Name (ARN) of the IAM role for the model import job.
+* **Status**: string (ReadOnly): The status of the model import job.
+* **Tags**: [Tag](#tag)[]: Tags associated with the model import job.
+* **VpcConfig**: [VpcConfig](#vpcconfig): VPC configuration for the model import job.
+
+## AWS.Bedrock/ModelInvocationJobProperties
+### Properties
+* **InputDataConfig**: [ModelInvocationJobInputDataConfig](#modelinvocationjobinputdataconfig) (ReadOnly): Details about the location of the input to the batch inference job.
+* **JobArn**: string (Identifier): The Amazon Resource Name (ARN) of the batch inference job.
+* **JobExpirationTime**: string (ReadOnly): The time at which the batch inference job times or timed out.
+* **JobName**: string (ReadOnly): A name to give the batch inference job.
+* **LastModifiedTime**: string (ReadOnly): The time at which the batch inference job was last modified.
+* **ModelId**: string (ReadOnly): The unique identifier of the foundation model to use for the batch inference job.
+* **OutputDataConfig**: [ModelInvocationJobOutputDataConfig](#modelinvocationjoboutputdataconfig) (ReadOnly): Details about the location of the output of the batch inference job.
+* **RoleArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the service role with permissions to carry out and manage batch inference.
+* **Status**: string (ReadOnly)
+* **SubmitTime**: string (ReadOnly): The time at which the batch inference job was submitted.
+* **Tags**: [Tag](#tag)[] (ReadOnly): Any tags associated with the batch inference job.
+* **TimeoutDurationInHours**: int (ReadOnly): The number of hours after which to force the batch inference job to time out.
+* **VpcConfig**: [VpcConfig](#vpcconfig) (ReadOnly): The configuration of the Virtual Private Cloud (VPC) for the data in the batch inference job.
+
 ## AWS.Bedrock/PromptProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): ARN of a prompt resource possibly with a version
@@ -530,6 +786,21 @@
 * **UpdatedAt**: string (ReadOnly): Time Stamp.
 * **Variants**: [PromptVariant](#promptvariant)[] (WriteOnly): List of prompt variants
 * **Version**: string (ReadOnly): Draft Version.
+
+## AWS.Bedrock/PromptVersionProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): ARN of a prompt version resource
+* **CreatedAt**: string (ReadOnly): Time Stamp.
+* **CustomerEncryptionKeyArn**: string (ReadOnly): A KMS key ARN
+* **DefaultVariant**: string (ReadOnly): Name for a variant.
+* **Description**: string: Description for a prompt version resource.
+* **Name**: string (ReadOnly): Name for a prompt resource.
+* **PromptArn**: string (Required): ARN of a prompt resource possibly with a version
+* **PromptId**: string (ReadOnly): Identifier for a Prompt
+* **Tags**: [TagsMap](#tagsmap)
+* **UpdatedAt**: string (ReadOnly): Time Stamp.
+* **Variants**: [PromptVariant](#promptvariant)[] (ReadOnly): List of prompt variants
+* **Version**: string (ReadOnly): Version.
 
 ## AWS.Bedrock/ResourcePolicyProperties
 ### Properties
@@ -572,6 +843,10 @@
 * **EmbeddingDataType**: string: The data type for the vectors when using a model to convert text into vector embeddings.
 * **ModelConfiguration**: [KnowledgeBase_ModelConfiguration](#knowledgebasemodelconfiguration): Model-specific configuration for the embedding model.
 * **Video**: [VideoConfiguration](#videoconfiguration)[]
+
+## BedrockEvaluatorModel
+### Properties
+* **ModelIdentifier**: string (Required): The ARN of the evaluator model.
 
 ## BedrockFoundationModelConfiguration
 ### Properties
@@ -665,6 +940,11 @@
 ### Properties
 * **NaturalLanguage**: string (Required)
 * **Sql**: string (Required)
+
+## CustomModelUnits
+### Properties
+* **CustomModelUnitsPerModelCopy**: int: The number of custom model units used to host a model copy.
+* **CustomModelUnitsVersion**: string: The version of the custom model unit. Use to determine the billing rate for the custom model unit.
 
 ## CustomOrchestration
 ### Properties
@@ -774,6 +1054,48 @@
 * **EntityMetadata**: string: JSON string representing relevant metadata for the entity type
 * **EntityType**: string (Required)
 
+## EvaluationBedrockModel
+### Properties
+* **InferenceParams**: string: Inference parameters for the model.
+* **ModelIdentifier**: string (Required): The ARN of the Amazon Bedrock model or inference profile.
+
+## EvaluationConfig
+### Properties
+* **Automated**: [AutomatedEvaluationConfig](#automatedevaluationconfig)
+* **Human**: [HumanEvaluationConfig](#humanevaluationconfig)
+
+## EvaluationDataset
+### Properties
+* **DatasetLocation**: [EvaluationDatasetLocation](#evaluationdatasetlocation)
+* **Name**: string (Required): The name of the prompt dataset.
+
+## EvaluationDatasetLocation
+### Properties
+* **S3Uri**: string (Required): The S3 URI of the prompt dataset.
+
+## EvaluationDatasetMetricConfig
+### Properties
+* **Dataset**: [EvaluationDataset](#evaluationdataset) (Required)
+* **MetricNames**: string[] (Required): The names of the metrics for the evaluation job.
+* **TaskType**: string (Required): The task type for the evaluation job.
+
+## EvaluationInferenceConfig
+### Properties
+* **Models**: [EvaluationModelConfig](#evaluationmodelconfig)[]: The inference models.
+* **RagConfigs**: [RAGConfig](#ragconfig)[]: The RAG configurations for knowledge base evaluation.
+
+## EvaluationModelConfig
+### Properties
+* **BedrockModel**: [EvaluationBedrockModel](#evaluationbedrockmodel)
+
+## EvaluationOutputDataConfig
+### Properties
+* **S3Uri**: string (Required): The S3 URI where the results are stored.
+
+## EvaluatorModelConfig
+### Properties
+* **BedrockEvaluatorModels**: [BedrockEvaluatorModel](#bedrockevaluatormodel)[] (Required): The evaluator models.
+
 ## FixedSizeChunkingConfiguration
 ### Properties
 * **MaxTokens**: int (Required): The maximum number of tokens to include in a chunk.
@@ -869,6 +1191,14 @@
 ## FlowVersion_FlowNodeConfiguration
 ### Properties
 
+## FoundationModel_ModelLifecycle
+### Properties
+* **EndOfLifeTime**: string: Time when the model is no longer available for use.
+* **LegacyTime**: string: Time when the model enters legacy state. Models in legacy state can still be used, but users should plan to transition to an Active model before the end of life time.
+* **PublicExtendedAccessTime**: string: Public extended access portion of the legacy period, when users should expect higher pricing.
+* **StartOfLifeTime**: string: Launch time when the model first becomes available.
+* **Status**: string (Required): Specifies whether a model version is available (ACTIVE) or deprecated (LEGACY).
+
 ## Function
 ### Properties
 * **Description**: string: Description of function
@@ -905,6 +1235,23 @@
 ## HierarchicalChunkingLevelConfiguration
 ### Properties
 * **MaxTokens**: int (Required): The maximum number of tokens that a chunk can contain in this layer.
+
+## HumanEvaluationConfig
+### Properties
+* **CustomMetrics**: [HumanEvaluationCustomMetric](#humanevaluationcustommetric)[]: Custom metrics for human evaluation.
+* **DatasetMetricConfigs**: [EvaluationDatasetMetricConfig](#evaluationdatasetmetricconfig)[] (Required): The prompt datasets, metrics, and task types for the evaluation job.
+* **HumanWorkflowConfig**: [HumanWorkflowConfig](#humanworkflowconfig)
+
+## HumanEvaluationCustomMetric
+### Properties
+* **Description**: string: An optional description of the metric.
+* **Name**: string (Required): The name of the metric.
+* **RatingMethod**: string (Required): The rating method for the metric.
+
+## HumanWorkflowConfig
+### Properties
+* **FlowDefinitionArn**: string (Required): The ARN for the flow definition.
+* **Instructions**: string: Instructions for the flow definition.
 
 ## ImageBoundingBox
 ### Properties
@@ -975,6 +1322,11 @@
 ## KnowledgeBase_ModelConfiguration
 ### Properties
 
+## KnowledgeBaseConfig
+### Properties
+* **RetrieveAndGenerateConfig**: [RetrieveAndGenerateConfig](#retrieveandgenerateconfig)
+* **RetrieveConfig**: [RetrieveConfig](#retrieveconfig)
+
 ## KnowledgeBaseConfiguration
 ### Properties
 * **KendraKnowledgeBaseConfiguration**: [KendraKnowledgeBaseConfiguration](#kendraknowledgebaseconfiguration)
@@ -985,6 +1337,20 @@
 
 ## KnowledgeBasePolicy_PolicyDocument
 ### Properties
+
+## KnowledgeBaseRetrievalConfiguration
+### Properties
+* **VectorSearchConfiguration**: [KnowledgeBaseVectorSearchConfiguration](#knowledgebasevectorsearchconfiguration) (Required)
+
+## KnowledgeBaseRetrieveAndGenerateConfiguration
+### Properties
+* **KnowledgeBaseId**: string (Required): The unique identifier of the knowledge base.
+* **ModelArn**: string (Required): The ARN of the model used to generate responses.
+* **RetrievalConfiguration**: [KnowledgeBaseRetrievalConfiguration](#knowledgebaseretrievalconfiguration)
+
+## KnowledgeBaseVectorSearchConfiguration
+### Properties
+* **NumberOfResults**: int: The number of results to return.
 
 ## ManagedKnowledgeBaseConfiguration
 ### Properties
@@ -1036,10 +1402,37 @@
 * **mp4**: string
 * **png**: string
 
+## ModelDataSource
+### Properties
+* **S3DataSource**: [S3DataSource](#s3datasource) (Required)
+
+## ModelDataSource
+### Properties
+* **S3DataSource**: [S3DataSource](#s3datasource) (Required): The S3 data source for the model import job.
+
 ## ModelEnforcement
 ### Properties
 * **ExcludedModels**: string[] (Required): Models to exclude from enforcement. If a model is in both lists, it is excluded
 * **IncludedModels**: string[] (Required): Models to enforce the guardrail on
+
+## ModelInvocationJobInputDataConfig
+### Properties
+* **S3InputDataConfig**: [ModelInvocationJobS3InputDataConfig](#modelinvocationjobs3inputdataconfig) (Required)
+
+## ModelInvocationJobOutputDataConfig
+### Properties
+* **S3OutputDataConfig**: [ModelInvocationJobS3OutputDataConfig](#modelinvocationjobs3outputdataconfig) (Required)
+
+## ModelInvocationJobS3InputDataConfig
+### Properties
+* **S3BucketOwner**: string: The ID of the AWS account that owns the S3 bucket containing the input data.
+* **S3Uri**: string (Required): The S3 location of the input data.
+
+## ModelInvocationJobS3OutputDataConfig
+### Properties
+* **S3BucketOwner**: string: The ID of the AWS account that owns the S3 bucket containing the output data.
+* **S3EncryptionKeyId**: string: The unique identifier of the key that encrypts the S3 location of the output data.
+* **S3Uri**: string (Required): The S3 location of the output data.
 
 ## MongoDbAtlasConfiguration
 ### Properties
@@ -1100,6 +1493,10 @@
 ## OrchestrationExecutor
 ### Properties
 * **Lambda**: string (Required): ARN of a Lambda.
+
+## OutputConfiguration
+### Properties
+* **S3Uri**: string (Required): S3 Uri for output
 
 ## OverrideConfiguration
 ### Properties
@@ -1202,8 +1599,19 @@
 ## PromptGenAiResource
 ### Properties
 
+## PromptGenAiResource
+### Properties
+
 ## PromptInferenceConfiguration
 ### Properties
+
+## PromptInferenceConfiguration
+### Properties
+
+## PromptMetadataEntry
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## PromptMetadataEntry
 ### Properties
@@ -1217,10 +1625,28 @@
 
 ## PromptRouterTargetModel
 ### Properties
+* **ModelArn**: string (Required): The target model's ARN.
+
+## PromptRouterTargetModel
+### Properties
 * **ModelArn**: string (Required): Arn of underlying model which are added in the Prompt Router.
 
 ## PromptTemplateConfiguration
 ### Properties
+
+## PromptTemplateConfiguration
+### Properties
+
+## PromptVariant
+### Properties
+* **AdditionalModelRequestFields**: [AdditionalModelRequestFields](#additionalmodelrequestfields)
+* **GenAiResource**: [PromptGenAiResource](#promptgenairesource)
+* **InferenceConfiguration**: [PromptInferenceConfiguration](#promptinferenceconfiguration)
+* **Metadata**: [PromptMetadataEntry](#promptmetadataentry)[]
+* **ModelId**: string: ARN or Id of a Bedrock Foundational Model or Inference Profile, or the ARN of a imported model, or a provisioned throughput ARN for custom models.
+* **Name**: string (Required): Name for a variant.
+* **TemplateConfiguration**: [PromptTemplateConfiguration](#prompttemplateconfiguration) (Required)
+* **TemplateType**: string (Required)
 
 ## PromptVariant
 ### Properties
@@ -1255,6 +1681,10 @@
 * **Description**: string
 * **Inclusion**: string
 * **Name**: string (Required)
+
+## RAGConfig
+### Properties
+* **KnowledgeBaseConfig**: [KnowledgeBaseConfig](#knowledgebaseconfig)
 
 ## RdsConfiguration
 ### Properties
@@ -1333,9 +1763,31 @@
 ## ResourcePolicy_PolicyDocument
 ### Properties
 
+## RetrieveAndGenerateConfig
+### Properties
+* **KnowledgeBaseConfiguration**: [KnowledgeBaseRetrieveAndGenerateConfiguration](#knowledgebaseretrieveandgenerateconfiguration) (Required)
+* **Type**: string (Required): The type of resource that is queried by the retrieve and generate configuration.
+
+## RetrieveConfig
+### Properties
+* **KnowledgeBaseId**: string (Required): The unique identifier of the knowledge base.
+* **KnowledgeBaseRetrievalConfiguration**: [KnowledgeBaseRetrievalConfiguration](#knowledgebaseretrievalconfiguration) (Required)
+
+## RoutingCriteria
+### Properties
+* **ResponseQualityDifference**: int (Required): The response quality difference threshold for routing.
+
 ## RoutingCriteria
 ### Properties
 * **ResponseQualityDifference**: int (Required)
+
+## S3DataSource
+### Properties
+* **S3Uri**: string (Required): The URI of the Amazon S3 data source.
+
+## S3DataSource
+### Properties
+* **S3Uri**: string (Required): The URI of the S3 bucket that contains the model data.
 
 ## S3DataSourceConfiguration
 ### Properties
@@ -1486,6 +1938,16 @@
 
 ## Tag
 ### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
+
+## Tag
+### Properties
+* **Key**: string (Required): Tag Key
+* **Value**: string (Required): Tag Value
+
+## Tag
+### Properties
 * **Key**: string (Required): Tag Key
 * **Value**: string (Required): Tag Value
 
@@ -1501,18 +1963,43 @@
 
 ## Tag
 ### Properties
+* **Key**: string (Required): Tag key
+* **Value**: string (Required): Tag value
+
+## Tag
+### Properties
 * **Key**: string (Required): Key for the tag
 * **Value**: string (Required): Value for the tag
 
 ## Tag
 ### Properties
-* **Key**: string (Required): Tag Key
-* **Value**: string (Required): Tag Value
+* **Key**: string (Required): The key of the tag.
+* **Value**: string (Required): The value of the tag.
 
 ## Tag
 ### Properties
 * **Key**: string (Required): Tag Key
 * **Value**: string (Required): Tag Value
+
+## Tag
+### Properties
+* **Key**: string (Required): Key for the tag.
+* **Value**: string (Required): Value for the tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): Tag Key
+* **Value**: string (Required): Tag Value
+
+## Tag
+### Properties
+* **Key**: string (Required): The key of the tag.
+* **Value**: string (Required): The value of the tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
 
 ## Tag
 ### Properties
@@ -1523,6 +2010,9 @@
 ### Properties
 * **Key**: string (Required): The key of the tag.
 * **Value**: string (Required): The value of the tag.
+
+## TagsMap
+### Properties
 
 ## TagsMap
 ### Properties
@@ -1633,6 +2123,16 @@
 ### Properties
 * **Extraction**: [VideoStandardExtraction](#videostandardextraction)
 * **GenerativeField**: [VideoStandardGenerativeField](#videostandardgenerativefield)
+
+## VpcConfig
+### Properties
+* **SecurityGroupIds**: string[] (Required): The security group IDs for the VPC.
+* **SubnetIds**: string[] (Required): The subnet IDs for the VPC.
+
+## VpcConfig
+### Properties
+* **SecurityGroupIds**: string[] (Required): An array of IDs for each security group in the VPC to use.
+* **SubnetIds**: string[] (Required): An array of IDs for each subnet in the VPC to use.
 
 ## WebCrawlerConfiguration
 ### Properties

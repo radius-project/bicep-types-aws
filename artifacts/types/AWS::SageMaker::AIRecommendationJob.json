@@ -1,0 +1,369 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-AIRecommendationJob",
+  "type": "AWS::SageMaker::AIRecommendationJob",
+  "time": "2026-11-05T21:03:12.965Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/AIRecommendationJobName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/AIRecommendationJobName",
+      "/properties/AIWorkloadConfigIdentifier",
+      "/properties/ComputeSpec",
+      "/properties/InferenceSpecification",
+      "/properties/ModelSource",
+      "/properties/OptimizeModel",
+      "/properties/OutputConfig",
+      "/properties/PerformanceTarget",
+      "/properties/RoleArn",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "AICapacityReservationConfig": {
+        "additionalProperties": false,
+        "description": "The capacity reservation configuration for an AI recommendation job.",
+        "properties": {
+          "CapacityReservationPreference": {
+            "description": "The capacity reservation preference.",
+            "enum": [
+              "capacity-reservations-only"
+            ],
+            "type": "string"
+          },
+          "MlReservationArns": {
+            "description": "The list of ML reservation ARNs to use. The service accepts SageMaker training-plan ARNs only.",
+            "items": {
+              "maxLength": 256,
+              "minLength": 0,
+              "pattern": "^arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:[a-z0-9\\-]{1,14}/",
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "AIModelSource": {
+        "additionalProperties": false,
+        "description": "The source of the model to analyse. This is a union type with a single member, so that member is required.",
+        "properties": {
+          "S3": {
+            "$ref": "#/definitions/AIModelSourceS3"
+          }
+        },
+        "required": [
+          "S3"
+        ],
+        "type": "object"
+      },
+      "AIModelSourceS3": {
+        "additionalProperties": false,
+        "description": "The Amazon S3 model source configuration.",
+        "properties": {
+          "S3Uri": {
+            "description": "The Amazon S3 URI of the model artifacts.",
+            "maxLength": 1024,
+            "minLength": 0,
+            "pattern": "^(https|s3)://([^/]+)/?(.*)$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "AIRecommendationComputeSpec": {
+        "additionalProperties": false,
+        "description": "The compute resource specification for an AI recommendation job.",
+        "properties": {
+          "CapacityReservationConfig": {
+            "$ref": "#/definitions/AICapacityReservationConfig"
+          },
+          "InstanceTypes": {
+            "description": "The list of instance types to consider for recommendations. You can specify up to 3 instance types.",
+            "items": {
+              "$ref": "#/definitions/AIRecommendationInstanceType"
+            },
+            "maxItems": 3,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "AIRecommendationConstraint": {
+        "additionalProperties": false,
+        "description": "A performance constraint for an AI recommendation job.",
+        "properties": {
+          "Metric": {
+            "description": "The performance metric to optimize for.",
+            "enum": [
+              "ttft-ms",
+              "throughput",
+              "cost"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Metric"
+        ],
+        "type": "object"
+      },
+      "AIRecommendationInferenceSpecification": {
+        "additionalProperties": false,
+        "description": "The inference framework for an AI recommendation job.",
+        "properties": {
+          "Framework": {
+            "description": "The inference framework.",
+            "enum": [
+              "LMI",
+              "VLLM"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "AIRecommendationInstanceType": {
+        "description": "An accelerated compute instance type available to an AI recommendation job.",
+        "enum": [
+          "ml.g5.xlarge",
+          "ml.g5.2xlarge",
+          "ml.g5.4xlarge",
+          "ml.g5.8xlarge",
+          "ml.g5.12xlarge",
+          "ml.g5.16xlarge",
+          "ml.g5.24xlarge",
+          "ml.g5.48xlarge",
+          "ml.g6.xlarge",
+          "ml.g6.2xlarge",
+          "ml.g6.4xlarge",
+          "ml.g6.8xlarge",
+          "ml.g6.12xlarge",
+          "ml.g6.16xlarge",
+          "ml.g6.24xlarge",
+          "ml.g6.48xlarge",
+          "ml.g6e.xlarge",
+          "ml.g6e.2xlarge",
+          "ml.g6e.4xlarge",
+          "ml.g6e.8xlarge",
+          "ml.g6e.12xlarge",
+          "ml.g6e.16xlarge",
+          "ml.g6e.24xlarge",
+          "ml.g6e.48xlarge",
+          "ml.g7e.2xlarge",
+          "ml.g7e.4xlarge",
+          "ml.g7e.8xlarge",
+          "ml.g7e.12xlarge",
+          "ml.g7e.24xlarge",
+          "ml.g7e.48xlarge",
+          "ml.p3.2xlarge",
+          "ml.p3.8xlarge",
+          "ml.p3.16xlarge",
+          "ml.p4d.24xlarge",
+          "ml.p4de.24xlarge",
+          "ml.p5.4xlarge",
+          "ml.p5.48xlarge",
+          "ml.p5e.48xlarge",
+          "ml.p5en.48xlarge"
+        ],
+        "type": "string"
+      },
+      "AIRecommendationOutputConfig": {
+        "additionalProperties": false,
+        "description": "The output configuration for an AI recommendation job, including the Amazon S3 location for results and the model package group for deployment.",
+        "properties": {
+          "ModelPackageGroupIdentifier": {
+            "description": "The name or Amazon Resource Name (ARN) of the model package group where the optimized model is registered as a new model package version.",
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "^(arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:[a-z\\-]*/)?([a-zA-Z0-9]([a-zA-Z0-9\\-]){0,62})(?\u003c!-)$",
+            "type": "string"
+          },
+          "S3OutputLocation": {
+            "description": "The Amazon S3 URI where the recommendation job writes its output results.",
+            "maxLength": 1024,
+            "minLength": 0,
+            "pattern": "^(https|s3)://([^/]+)/?(.*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "S3OutputLocation"
+        ],
+        "type": "object"
+      },
+      "AIRecommendationPerformanceTarget": {
+        "additionalProperties": false,
+        "description": "The performance targets for an AI recommendation job.",
+        "properties": {
+          "Constraints": {
+            "description": "The performance constraint that defines the optimization objective. The service accepts exactly one constraint.",
+            "items": {
+              "$ref": "#/definitions/AIRecommendationConstraint"
+            },
+            "maxItems": 1,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "Constraints"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A tag object that consists of a key and an optional value.",
+        "properties": {
+          "Key": {
+            "description": "The tag key. Tag keys must be unique per resource.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::SageMaker::AIRecommendationJob. An AI recommendation job analyses a model against an AI workload configuration and returns optimization and deployment recommendations.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "sagemaker:ListAIRecommendationJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "sagemaker:DescribeAIRecommendationJob"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/AIRecommendationJobArn"
+    ],
+    "properties": {
+      "AIRecommendationJobArn": {
+        "description": "The Amazon Resource Name (ARN) of the AI recommendation job.",
+        "maxLength": 256,
+        "minLength": 0,
+        "pattern": "^arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:ai-recommendation-job/[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$",
+        "type": "string"
+      },
+      "AIRecommendationJobName": {
+        "description": "The name of the AI recommendation job. The name must be unique within your AWS account in the current AWS Region.",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$",
+        "type": "string"
+      },
+      "AIRecommendationJobStatus": {
+        "description": "The status of the AI recommendation job.",
+        "enum": [
+          "InProgress",
+          "Completed",
+          "Failed",
+          "Stopping",
+          "Stopped"
+        ],
+        "type": "string"
+      },
+      "AIWorkloadConfigIdentifier": {
+        "description": "The name or Amazon Resource Name (ARN) of the AI workload configuration to use for this recommendation job.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^(arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:[a-z\\-]*/)?([a-zA-Z0-9]([a-zA-Z0-9\\-]){0,62})(?\u003c!-)$",
+        "type": "string"
+      },
+      "ComputeSpec": {
+        "$ref": "#/definitions/AIRecommendationComputeSpec"
+      },
+      "CreationTime": {
+        "description": "A timestamp that indicates when the recommendation job was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "EndTime": {
+        "description": "A timestamp that indicates when the recommendation job completed.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "InferenceSpecification": {
+        "$ref": "#/definitions/AIRecommendationInferenceSpecification"
+      },
+      "ModelSource": {
+        "$ref": "#/definitions/AIModelSource"
+      },
+      "OptimizeModel": {
+        "description": "Whether to allow model optimization techniques such as quantization, speculative decoding, and kernel tuning.",
+        "type": "boolean"
+      },
+      "OutputConfig": {
+        "$ref": "#/definitions/AIRecommendationOutputConfig"
+      },
+      "PerformanceTarget": {
+        "$ref": "#/definitions/AIRecommendationPerformanceTarget"
+      },
+      "RoleArn": {
+        "description": "The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker AI to perform tasks on your behalf.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws[a-z\\-]*:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$",
+        "type": "string"
+      },
+      "StartTime": {
+        "description": "A timestamp that indicates when the recommendation job started running.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "minItems": 0,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/AIRecommendationJobArn",
+      "/properties/AIRecommendationJobStatus",
+      "/properties/CreationTime",
+      "/properties/StartTime",
+      "/properties/EndTime"
+    ],
+    "required": [
+      "AIRecommendationJobName",
+      "ModelSource",
+      "OutputConfig",
+      "AIWorkloadConfigIdentifier",
+      "PerformanceTarget",
+      "RoleArn"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "sagemaker:DescribeAIRecommendationJob"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::SageMaker::AIRecommendationJob"
+  }
+}

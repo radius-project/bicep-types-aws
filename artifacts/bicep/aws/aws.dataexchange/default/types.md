@@ -1,5 +1,13 @@
 # AWS.DataExchange @ default
 
+## Resource AWS.DataExchange/Assets@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.DataExchange/AssetsProperties](#awsdataexchangeassetsproperties) (Identifier): properties of the resource
+
 ## Resource AWS.DataExchange/DataSet@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -7,6 +15,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DataExchange/DataSetProperties](#awsdataexchangedatasetproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.DataExchange/EntitledDataSets@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.DataExchange/EntitledDataSetsProperties](#awsdataexchangeentitleddatasetsproperties) (Identifier): properties of the resource
 
 ## Resource AWS.DataExchange/EventAction@default
 * **Readable Scope(s)**: None
@@ -16,9 +32,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.DataExchange/EventActionProperties](#awsdataexchangeeventactionproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.DataExchange/Job@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.DataExchange/JobProperties](#awsdataexchangejobproperties) (Identifier): properties of the resource
+
 ## Action
 ### Properties
 * **ExportRevisionToS3**: [AutoExportRevisionToS3RequestDetails](#autoexportrevisiontos3requestdetails)
+
+## Assets_Tags
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AutoExportRevisionDestinationEntry
 ### Properties
@@ -29,6 +58,18 @@
 ### Properties
 * **Encryption**: [ExportServerSideEncryption](#exportserversideencryption)
 * **RevisionDestination**: [AutoExportRevisionDestinationEntry](#autoexportrevisiondestinationentry) (Required)
+
+## AWS.DataExchange/AssetsProperties
+### Properties
+* **Arn**: string (Identifier): The ARN for the asset.
+* **AssetId**: string (ReadOnly): The unique identifier for the asset.
+* **AssetType**: string (ReadOnly): The type of asset that is added to a data set.
+* **CreatedAt**: string (ReadOnly): The date and time that the asset was created, in ISO 8601 format.
+* **DataSetId**: string: The unique identifier for the data set associated with this asset.
+* **Name**: string: The name of the asset.
+* **RevisionId**: string: The unique identifier for the revision associated with this asset.
+* **Tags**: [Assets_Tags](#assetstags)[] (ReadOnly): The tags for the asset.
+* **UpdatedAt**: string (ReadOnly): The date and time that the asset was last updated, in ISO 8601 format.
 
 ## AWS.DataExchange/DataSetProperties
 ### Properties
@@ -42,6 +83,18 @@
 * **Tags**: [Tag](#tag)[]: Tags for the data set.
 * **UpdatedAt**: string (ReadOnly): The date and time that the data set was last updated, in ISO 8601 format.
 
+## AWS.DataExchange/EntitledDataSetsProperties
+### Properties
+* **Arn**: string (Identifier): The ARN for the data set.
+* **AssetType**: string: The type of asset that is added to a data set.
+* **CreatedAt**: string (ReadOnly): The date and time that the data set was created, in ISO 8601 format.
+* **DataSetId**: string (ReadOnly): The unique identifier for the data set.
+* **Description**: string: A description for the data set.
+* **Name**: string: The name of the data set.
+* **Origin**: string (ReadOnly): A property that defines the data set as OWNED by the account (for providers) or ENTITLED to the account (for subscribers).
+* **SourceId**: string (ReadOnly): The data set ID of the owned data set corresponding to the entitled data set being viewed.
+* **UpdatedAt**: string (ReadOnly): The date and time that the data set was last updated, in ISO 8601 format.
+
 ## AWS.DataExchange/EventActionProperties
 ### Properties
 * **Action**: [Action](#action) (Required): What occurs after a certain event.
@@ -51,6 +104,15 @@
 * **EventActionId**: string (ReadOnly): The unique identifier for the event action.
 * **Tags**: [Tag](#tag)[]: The tags for the event action.
 * **UpdatedAt**: string (ReadOnly): The date and time that the event action was last updated, in ISO 8601 format.
+
+## AWS.DataExchange/JobProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the job.
+* **CreatedAt**: string (ReadOnly): The date and time that the job was created, in ISO 8601 format.
+* **Id**: string (ReadOnly): The unique identifier for the job.
+* **State**: string (ReadOnly): The state of the job.
+* **Type**: string (ReadOnly): The type of job.
+* **UpdatedAt**: string (ReadOnly): The date and time that the job was last updated, in ISO 8601 format.
 
 ## Event
 ### Properties

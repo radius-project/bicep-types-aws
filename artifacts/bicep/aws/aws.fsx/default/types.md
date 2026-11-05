@@ -24,6 +24,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.FSx/FileCacheProperties](#awsfsxfilecacheproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.FSx/S3AccessPointAttachment@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.FSx/S3AccessPointAttachmentProperties](#awsfsxs3accesspointattachmentproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.FSx/Snapshot@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -39,6 +47,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.FSx/StorageVirtualMachineProperties](#awsfsxstoragevirtualmachineproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.FSx/Task@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.FSx/TaskProperties](#awsfsxtaskproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.FSx/Volume@default
 * **Readable Scope(s)**: None
@@ -115,6 +131,15 @@
 * **Tags**: [Tag](#tag)[]: Tags to associate with the file cache
 * **VpcId**: string (ReadOnly): The VPC ID of the cache
 
+## AWS.FSx/S3AccessPointAttachmentProperties
+### Properties
+* **Lifecycle**: string (ReadOnly): The lifecycle status of the S3 access point attachment.
+* **Name**: string (Required, Identifier): The name of the S3 access point attachment; also used for the name of the S3 access point.
+* **OntapConfiguration**: [S3AccessPointOntapConfiguration](#s3accesspointontapconfiguration): The OntapConfiguration of the S3 access point attachment.
+* **OpenZFSConfiguration**: [S3AccessPointOpenZFSConfiguration](#s3accesspointopenzfsconfiguration): The OpenZFSConfiguration of the S3 access point attachment.
+* **S3AccessPoint**: [S3AccessPoint](#s3accesspoint): The S3 access point configuration of the S3 access point attachment.
+* **Type**: string (Required): The type of Amazon FSx volume that the S3 access point is attached to.
+
 ## AWS.FSx/SnapshotProperties
 ### Properties
 * **Id**: string (ReadOnly, Identifier): The ID of the snapshot.
@@ -135,6 +160,20 @@
 * **Tags**: [Tag](#tag)[]: A list of Tag values, with a maximum of 50 elements.
 * **UUID**: string (ReadOnly): The SVM's UUID (universally unique identifier).
 
+## AWS.FSx/TaskProperties
+### Properties
+* **CreationTime**: string (ReadOnly): The time the data repository task was created.
+* **FileCacheId**: string (ReadOnly): The system-generated, unique ID of the Amazon File Cache that a data repository task is associated with. Present instead of FileSystemId for AUTO_RELEASE_DATA cache tasks.
+* **FileSystemId**: string: The globally unique ID of the file system.
+* **Lifecycle**: string (ReadOnly): The lifecycle status of the data repository task.
+* **Paths**: string[]: A list of paths for the data repository task to use when the task is processed.
+* **ReleaseConfiguration**: [ReleaseConfiguration](#releaseconfiguration)
+* **Report**: [CompletionReport](#completionreport)
+* **ResourceARN**: string (Identifier): The Amazon Resource Name (ARN) of the data repository task.
+* **Tags**: [Tag](#tag)[]: Tags associated with the data repository task.
+* **TaskId**: string (ReadOnly): The system-generated, unique 17-digit ID of the data repository task.
+* **Type**: string (Required): The type of data repository task.
+
 ## AWS.FSx/VolumeProperties
 ### Properties
 * **BackupId**: string (WriteOnly): Specifies the ID of the volume backup to use to create a new volume.
@@ -152,10 +191,26 @@
 * **Clients**: string (Required): A value that specifies who can mount the file system. You can provide a wildcard character (*), an IP address (0.0.0.0), or a CIDR address (192.0.2.0/24). By default, Amazon FSx uses the wildcard character when specifying the client.
 * **Options**: string[] (Required): The configuration object for mounting a Network File System (NFS) file system.
 
+## CompletionReport
+### Properties
+* **Enabled**: bool (Required): Set to True to generate a CompletionReport when the task completes.
+* **Format**: string: Specifies the format of the CompletionReport.
+* **Path**: string: Specifies the location of the report on the linked S3 data repository.
+* **Scope**: string: Specifies the scope of the CompletionReport.
+
 ## DataRepositoryAssociation
 ### Properties
 * **DataRepositoryPath**: string (Required)
 * **FileCachePath**: string (Required)
+
+## DurationSinceLastAccess
+### Properties
+* **Unit**: string: The unit of time used by the Value parameter.
+* **Value**: int: An integer that represents the minimum amount of time (in days) since a file was last accessed.
+
+## FileSystemGID
+### Properties
+* **Gid**: int (Required): The GID of the file system user.
 
 ## LogConfiguration
 ### Properties
@@ -195,6 +250,20 @@
 * **TieringPolicy**: [TieringPolicy](#tieringpolicy): Describes the data tiering policy for an ONTAP volume.
 * **VolumeStyle**: string: Use to specify the style of an ONTAP volume.
 
+## OntapFileSystemIdentity
+### Properties
+* **Type**: string (Required): Specifies the FSx for ONTAP user identity type, accepts either UNIX or WINDOWS.
+* **UnixUser**: [OntapUnixFileSystemUser](#ontapunixfilesystemuser): Specifies the properties of the file system UNIX user.
+* **WindowsUser**: [OntapWindowsFileSystemUser](#ontapwindowsfilesystemuser): Specifies the properties of the file system Windows user.
+
+## OntapUnixFileSystemUser
+### Properties
+* **Name**: string (Required, Identifier): The name of the UNIX user.
+
+## OntapWindowsFileSystemUser
+### Properties
+* **Name**: string (Required, Identifier): The name of the Windows user.
+
 ## OpenZFSConfiguration
 ### Properties
 * **CopyTagsToSnapshots**: bool: A Boolean value indicating whether tags for the volume should be copied to snapshots. This value defaults to false. If this value is set to true, and you do not specify any tags, all tags for the original volume are copied over to snapshots. If this value is set to true, and you do specify one or more tags, only the specified tags for the original volume are copied over to snapshots. If you specify one or more tags when creating a new snapshot, no tags are copied over from the original volume, regardless of this value.
@@ -209,10 +278,25 @@
 * **StorageCapacityReservationGiB**: int: Specifies the amount of storage in gibibytes (GiB) to reserve from the parent volume. Setting StorageCapacityReservationGiB guarantees that the specified amount of storage space on the parent volume will always be available for the volume. You can't reserve more storage than the parent volume has. To not specify a storage capacity reservation, set this to 0 or -1. For more information, see Volume properties in the Amazon FSx for OpenZFS User Guide.
 * **UserAndGroupQuotas**: [UserAndGroupQuotas](#userandgroupquotas)[]: Configures how much storage users and groups can use on the volume.
 
+## OpenZFSFileSystemIdentity
+### Properties
+* **PosixUser**: [OpenZFSPosixFileSystemUser](#openzfsposixfilesystemuser) (Required): Specifies the UID and GIDs of the file system POSIX user.
+* **Type**: string (Required): Specifies the FSx for OpenZFS user identity type, accepts only POSIX.
+
+## OpenZFSPosixFileSystemUser
+### Properties
+* **Gid**: int (Required): The GID of the file system user.
+* **SecondaryGids**: [FileSystemGID](#filesystemgid)[]: The list of secondary GIDs for the file system user.
+* **Uid**: int (Required): The UID of the file system user.
+
 ## OriginSnapshot
 ### Properties
 * **CopyStrategy**: string (Required): The configuration object for mounting a Network File System (NFS) file system.
 * **SnapshotARN**: string (Required): Specifies the snapshot to use when creating an OpenZFS volume from a snapshot.
+
+## ReleaseConfiguration
+### Properties
+* **DurationSinceLastAccess**: [DurationSinceLastAccess](#durationsincelastaccess)
 
 ## RetentionPeriod
 ### Properties
@@ -223,6 +307,27 @@
 ### Properties
 * **AutoExportPolicy**: [AutoExportPolicy](#autoexportpolicy)
 * **AutoImportPolicy**: [AutoImportPolicy](#autoimportpolicy)
+
+## S3AccessPoint
+### Properties
+* **Alias**: string (ReadOnly): The S3 access point's alias.
+* **Policy**: [S3AccessPointAttachment_Policy](#s3accesspointattachmentpolicy) | string (WriteOnly): The S3 access point's policy.
+* **ResourceARN**: string (ReadOnly): The S3 access point's ARN.
+* **VpcConfiguration**: [S3AccessPointVpcConfiguration](#s3accesspointvpcconfiguration): The S3 access point's virtual private cloud (VPC) configuration.
+
+## S3AccessPointOntapConfiguration
+### Properties
+* **FileSystemIdentity**: [OntapFileSystemIdentity](#ontapfilesystemidentity) (Required): The file system identity used to authorize file access requests made using the S3 access point.
+* **VolumeId**: string (Required): The ID of the FSx for ONTAP volume that the S3 access point is attached to.
+
+## S3AccessPointOpenZFSConfiguration
+### Properties
+* **FileSystemIdentity**: [OpenZFSFileSystemIdentity](#openzfsfilesystemidentity) (Required): The file system identity used to authorize file access requests made using the S3 access point.
+* **VolumeId**: string (Required): The ID of the FSx for OpenZFS volume that the S3 access point is attached to.
+
+## S3AccessPointVpcConfiguration
+### Properties
+* **VpcId**: string (Required): Specifies the virtual private cloud (VPC) for the S3 access point VPC configuration, if one exists.
 
 ## SelfManagedActiveDirectoryConfiguration
 ### Properties
@@ -273,6 +378,11 @@
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
 
 ## Tag
 ### Properties

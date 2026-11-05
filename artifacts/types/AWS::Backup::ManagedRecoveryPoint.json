@@ -1,0 +1,277 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Backup-ManagedRecoveryPoint",
+  "type": "AWS::Backup::ManagedRecoveryPoint",
+  "time": "2026-11-05T21:06:42.267Z",
+  "schema": {
+    "additionalProperties": false,
+    "definitions": {
+      "CalculatedLifecycle": {
+        "additionalProperties": false,
+        "description": "The calculated lifecycle properties of the recovery point.",
+        "properties": {
+          "DeleteAt": {
+            "description": "The date and time when the recovery point will be deleted.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "MoveToColdStorageAt": {
+            "description": "The date and time when the recovery point will be moved to cold storage.",
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Lifecycle": {
+        "additionalProperties": false,
+        "description": "The lifecycle defines when a protected resource is transitioned to cold storage and when it expires.",
+        "properties": {
+          "DeleteAfterDays": {
+            "description": "The number of days after creation that a recovery point is deleted.",
+            "type": "number"
+          },
+          "DeleteAfterEvent": {
+            "description": "The event that triggers the deletion of the recovery point.",
+            "enum": [
+              "DELETE_AFTER_COPY"
+            ],
+            "type": "string"
+          },
+          "MoveToColdStorageAfterDays": {
+            "description": "The number of days after creation that a recovery point is moved to cold storage.",
+            "type": "number"
+          },
+          "OptInToArchiveForSupportedResources": {
+            "description": "Whether to opt in to archive for supported resources.",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Represents an AWS Backup managed recovery point for fully-managed backup resource types (for example EFS, S3, DynamoDB Advanced, Timestream, VMware/VMs, SAP HANA on EC2, EKS, Aurora DSQL). Managed recovery points always use Backup-native ARNs.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "BackupVaultName": {
+              "pattern": "^[a-zA-Z0-9\\-\\_]{2,50}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "BackupVaultName"
+          ]
+        },
+        "permissions": [
+          "backup:ListRecoveryPointsByBackupVault"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "backup:DescribeRecoveryPoint",
+          "backup:ListTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/BackupVaultName",
+      "/properties/RecoveryPointArn"
+    ],
+    "properties": {
+      "BackupSizeInBytes": {
+        "description": "The size of the backup in bytes.",
+        "type": "number"
+      },
+      "BackupVaultArn": {
+        "description": "The ARN of the backup vault that contains the recovery point.",
+        "type": "string"
+      },
+      "BackupVaultName": {
+        "description": "The name of the backup vault that contains the recovery point.",
+        "pattern": "^[a-zA-Z0-9\\-\\_]{2,50}$",
+        "type": "string"
+      },
+      "CalculatedLifecycle": {
+        "$ref": "#/definitions/CalculatedLifecycle"
+      },
+      "CompletionDate": {
+        "description": "The date and time that the recovery point was completed.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "CompositeMemberIdentifier": {
+        "description": "The composite member identifier for the recovery point.",
+        "type": "string"
+      },
+      "CreationDate": {
+        "description": "The date and time that a recovery point is created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "EncryptionKeyArn": {
+        "description": "The encryption key used to protect the recovery point.",
+        "type": "string"
+      },
+      "EncryptionKeyType": {
+        "description": "The type of encryption key used for the recovery point.",
+        "enum": [
+          "AWS_OWNED_KMS_KEY",
+          "CUSTOMER_MANAGED_KMS_KEY"
+        ],
+        "type": "string"
+      },
+      "IamRoleArn": {
+        "description": "The IAM role ARN used to create the target recovery point.",
+        "type": "string"
+      },
+      "InitiationDate": {
+        "description": "The date and time that a backup job or copy job was initiated.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "IsEncrypted": {
+        "description": "Whether the recovery point is encrypted.",
+        "type": "boolean"
+      },
+      "IsParent": {
+        "description": "Whether the recovery point is a parent recovery point.",
+        "type": "boolean"
+      },
+      "LastRestoreTime": {
+        "description": "The date and time that a recovery point was last restored.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Lifecycle": {
+        "$ref": "#/definitions/Lifecycle"
+      },
+      "ParentRecoveryPointArn": {
+        "description": "The ARN of the parent recovery point.",
+        "type": "string"
+      },
+      "RecoveryPointArn": {
+        "description": "The ARN of the recovery point.",
+        "type": "string"
+      },
+      "ResourceArn": {
+        "description": "The ARN of the resource that was backed up.",
+        "type": "string"
+      },
+      "ResourceName": {
+        "description": "The name of the resource that was backed up.",
+        "type": "string"
+      },
+      "ResourceType": {
+        "description": "The type of AWS resource that was backed up.",
+        "pattern": "^[a-zA-Z0-9\\-\\_\\.]{1,50}$",
+        "type": "string"
+      },
+      "SourceBackupVaultArn": {
+        "description": "The ARN of the source backup vault for copied recovery points.",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the recovery point.",
+        "enum": [
+          "COMPLETED",
+          "PARTIAL",
+          "DELETING",
+          "EXPIRED",
+          "AVAILABLE",
+          "STOPPED",
+          "CREATING"
+        ],
+        "type": "string"
+      },
+      "StorageClass": {
+        "description": "The storage class of the recovery point.",
+        "enum": [
+          "WARM",
+          "COLD",
+          "DELETED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs applied to the recovery point.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "VaultType": {
+        "description": "The type of vault in which the recovery point resides.",
+        "enum": [
+          "BACKUP_VAULT",
+          "LOGICALLY_AIR_GAPPED_BACKUP_VAULT",
+          "RESTORE_ACCESS_BACKUP_VAULT"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/RecoveryPointArn",
+      "/properties/BackupVaultArn",
+      "/properties/ResourceArn",
+      "/properties/ResourceType",
+      "/properties/CreationDate",
+      "/properties/CompletionDate",
+      "/properties/Status",
+      "/properties/EncryptionKeyArn",
+      "/properties/EncryptionKeyType",
+      "/properties/IamRoleArn",
+      "/properties/StorageClass",
+      "/properties/BackupSizeInBytes",
+      "/properties/Lifecycle",
+      "/properties/CalculatedLifecycle",
+      "/properties/IsEncrypted",
+      "/properties/LastRestoreTime",
+      "/properties/SourceBackupVaultArn",
+      "/properties/IsParent",
+      "/properties/ParentRecoveryPointArn",
+      "/properties/CompositeMemberIdentifier",
+      "/properties/VaultType",
+      "/properties/ResourceName",
+      "/properties/InitiationDate",
+      "/properties/Tags",
+      "/properties/BackupVaultName"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "backup:ListTags"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Backup::ManagedRecoveryPoint"
+  }
+}

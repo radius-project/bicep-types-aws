@@ -214,6 +214,7 @@
 * **Description**: string: A textual description for the workflow.
 * **OnExceptionSteps**: [WorkflowStep](#workflowstep)[]: Specifies the steps (actions) to take if any errors are encountered during execution of the workflow.
 * **Steps**: [WorkflowStep](#workflowstep)[] (Required): Specifies the details for the steps that are in the specified workflow.
+* **StructuredLogDestinations**: string[]: Specifies the log destinations for the workflow.
 * **Tags**: [Tag](#tag)[]: Key-value pairs that can be used to group and search for workflows. Tags are metadata attached to workflows for any purpose.
 * **WorkflowId**: string (ReadOnly, Identifier): A unique identifier for the workflow.
 
@@ -306,6 +307,7 @@
 * **PassiveIp**: string
 * **ProxyConfig**: [ProxyConfig](#proxyconfig)
 * **SetStatOption**: string
+* **SftpPorts**: [SftpPortWithOptions](#sftpportwithoptions)[]
 * **TlsSessionResumptionMode**: string
 
 ## ProxyConfig
@@ -329,6 +331,11 @@
 ### Properties
 * **Key**: string (Required): The name assigned to the tag that you create.
 * **Value**: string (Required): The value that corresponds to the key.
+
+## SftpPortWithOptions
+### Properties
+* **CommunicationMode**: string
+* **SftpPort**: int (Required)
 
 ## Tag
 ### Properties

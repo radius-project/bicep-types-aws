@@ -1,11 +1,67 @@
 [
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaConvert/CertificateAssociationProperties"
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaConvert/CertificateAssociationProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The ARN of the ACM certificate to associate with MediaConvert."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaConvert/CertificateAssociation",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MediaConvert/CertificateAssociation@default",
+    "body": {
+      "$ref": "#/3"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
     "$type": "ObjectType",
     "name": "AccelerationSettings",
     "properties": {
       "Mode": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 1,
         "description": "Specify the conditions when the service will run your job with accelerated transcoding."
@@ -18,32 +74,424 @@
     "properties": {
       "Priority": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Optional. When you set up a job to use queue hopping, you can specify a different relative priority for the job in the destination queue."
+      },
+      "Queue": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Optional unless the job is submitted on the default queue. When you set up a job to use queue hopping, you can specify a destination queue."
+      },
+      "WaitMinutes": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Required for setting up a job to use queue hopping. Minimum wait time in minutes until the job can hop to the destination queue."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JobMessages",
+    "properties": {
+      "Info": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "List of messages that are informational only and don't indicate a problem with your job."
+      },
+      "Warning": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "List of messages that warn about conditions that might cause your job not to run or to fail."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OutputDetail",
+    "properties": {
+      "DurationInMs": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Duration in milliseconds."
+      },
+      "VideoDetails": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OutputGroupDetail",
+    "properties": {
+      "OutputDetails": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "Details about the output."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Timing",
+    "properties": {
+      "FinishTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The time, in Unix epoch format, that the transcoding job finished."
+      },
+      "StartTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The time, in Unix epoch format, that transcoding for the job began."
+      },
+      "SubmitTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The time, in Unix epoch format, that you submitted the job."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VideoDetail",
+    "properties": {
+      "HeightInPx": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Height in pixels for the output."
+      },
+      "WidthInPx": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Width in pixels for the output."
+      }
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaConvert/JobProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/9"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Job_SettingsJson",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Job_UserMetadata",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaConvert/JobProperties",
+    "properties": {
+      "AccelerationSettings": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "AccelerationStatus": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Describes whether the current job is running with accelerated transcoding."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "An identifier for this resource that is unique within all of AWS."
+      },
+      "BillingTagsSource": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Optional. Choose a tag type that AWS Billing and Cost Management will use to sort your AWS Elemental MediaConvert costs on any billing report that you set up."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time, in Unix epoch format in seconds, that the job was created."
+      },
+      "HopDestinations": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "Optional. Use queue hopping to avoid overly long waits in the backlog of the queue that you submit your job to."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "A portion of the job's ARN, unique within your AWS Elemental MediaConvert resources."
+      },
+      "JobTemplate": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Optional. When you create a job, you can either specify a job template or specify the transcoding settings individually."
+      },
+      "Messages": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2
+      },
+      "OutputGroupDetails": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 2,
+        "description": "List of output group details."
+      },
+      "Priority": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Optional. Specify the relative priority for this job. In any given queue, the service begins processing the job with the highest value first."
+      },
+      "Queue": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Optional. When you create a job, you can specify a queue to send it to. If you don't specify, the job will go to the default queue."
+      },
+      "Role": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The IAM role you use for creating this job. For details about permissions, see the User Guide topic at the User Guide at https://docs.aws.amazon.com/mediaconvert/latest/ug/iam-role.html."
+      },
+      "SettingsJson": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 1,
+        "description": "JobSettings contains all the transcode settings for a job. Specified as an opaque JSON object, matching the representation used by AWS::MediaConvert::JobTemplate and AWS::MediaConvert::Preset."
+      },
+      "ShareStatus": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Indicates whether the job is sharable with AWS Support."
+      },
+      "SimulateReservedQueue": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Optional. Enable this setting when you run a test job to estimate how many reserved transcoding slots (RTS) you need."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "A job's status can be SUBMITTED, PROGRESSING, COMPLETE, CANCELED, or ERROR."
+      },
+      "StatusUpdateInterval": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Optional. Specify how often MediaConvert sends STATUS_UPDATE events to Amazon CloudWatch Events."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "Optional. The tags that you want to add to the resource."
+      },
+      "Timing": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 2
+      },
+      "UserMetadata": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Optional. User-defined metadata that you want to associate with an MediaConvert job."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaConvert/Job",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MediaConvert/Job@default",
+    "body": {
+      "$ref": "#/24"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AccelerationSettings",
+    "properties": {
+      "Mode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Specify the conditions when the service will run your job with accelerated transcoding."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "HopDestination",
+    "properties": {
+      "Priority": {
+        "type": {
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "Optional. A different relative priority for the job in the destination queue."
       },
       "Queue": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Optional. The destination queue for queue hopping."
       },
       "WaitMinutes": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "Required for queue hopping. Minimum wait time in minutes until the job can hop to the destination queue."
       }
     }
-  },
-  {
-    "$type": "StringType"
-  },
-  {
-    "$type": "IntegerType"
   },
   {
     "$type": "StringLiteralType",
@@ -52,7 +500,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/27"
     }
   },
   {
@@ -71,77 +519,77 @@
     "properties": {
       "AccelerationSettings": {
         "type": {
-          "$ref": "#/0"
+          "$ref": "#/26"
         },
         "flags": 0,
         "description": "Accelerated transcoding can significantly speed up jobs with long, visually complex content. Outputs that use this feature incur pro-tier pricing."
       },
       "Arn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The Amazon Resource Name (ARN) of the job template, such as arn:aws:mediaconvert:us-west-2:123456789012:jobTemplates/my-job-template."
       },
       "Category": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Optional. A category for the job template you are creating."
       },
       "Description": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Optional. A description of the job template you are creating."
       },
       "HopDestinations": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/29"
         },
         "flags": 0,
         "description": "Optional. Configuration for a destination queue to which the job can hop once a customer-defined minimum wait time has passed."
       },
       "Name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 16,
         "description": "The name of the job template you are creating."
       },
       "Priority": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "Specify the relative priority for this job. In any given queue, the service begins processing the job with the highest value first. When more than one job has the same priority, the service begins processing the job that you submitted first."
       },
       "Queue": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Optional. The queue that jobs created from this template are assigned to. Specify the Amazon Resource Name (ARN) of the queue."
       },
       "SettingsJson": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/30"
         },
         "flags": 1,
         "description": "Specify, in JSON format, the transcoding job settings for this job template. This specification must conform to the AWS Elemental MediaConvert job validation."
       },
       "StatusUpdateInterval": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Specify how often MediaConvert sends STATUS_UPDATE events to Amazon CloudWatch Events. Set the interval, in seconds, between status updates."
       },
       "Tags": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -154,21 +602,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/32"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -179,7 +627,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaConvert/JobTemplate@default",
     "body": {
-      "$ref": "#/9"
+      "$ref": "#/33"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -204,42 +652,42 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The Amazon Resource Name (ARN) of the output preset, such as arn:aws:mediaconvert:us-west-2:123456789012"
       },
       "Category": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The new category for the preset, if you are changing it."
       },
       "Description": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The new description for the preset, if you are changing it."
       },
       "Name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 16,
         "description": "The name of the preset that you are modifying."
       },
       "SettingsJson": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/36"
         },
         "flags": 1,
         "description": "Specify, in JSON format, the transcoding job settings for this output preset. This specification must conform to the AWS Elemental MediaConvert job validation. For information about forming this specification, see the Remarks section later in this topic."
       },
       "Tags": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/37"
         },
         "flags": 0
       }
@@ -251,21 +699,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/38"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -276,7 +724,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaConvert/Preset@default",
     "body": {
-      "$ref": "#/15"
+      "$ref": "#/39"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -296,56 +744,56 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 2,
         "description": "The Amazon Resource Name (ARN) of the queue, such as arn:aws:mediaconvert:us-west-2:123456789012."
       },
       "ConcurrentJobs": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "Specify the maximum number of jobs your queue can process concurrently. For on-demand queues, the value you enter is constrained by your service quotas for Maximum concurrent jobs, per on-demand queue and Maximum concurrent jobs, per account. For reserved queues, specify the number of jobs you can process concurrently in your reservation plan instead."
       },
       "Description": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "A description of the queue that you are creating."
       },
       "MaximumConcurrentFeeds": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "Specify the maximum number of Elemental Inference feeds MediaConvert can process concurrently."
       },
       "Name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 16,
         "description": "The name of the queue that you are creating."
       },
       "PricingPlan": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "When you use CloudFormation, you can create only on-demand queues. Therefore, always set PricingPlan to the value ON_DEMAND when declaring an AWS::MediaConvert::Queue in your CloudFormation template. To create a reserved queue, use the AWS Elemental MediaConvert console at https://console.aws.amazon.com/mediaconvert to set up a contract. For more information, see Working with AWS Elemental MediaConvert Queues in the AWS Elemental MediaConvert User Guide."
       },
       "Status": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "Initial state of the queue. Queues can be either ACTIVE or PAUSED. If you create a paused queue, then jobs that you send to that queue won't begin."
       },
       "Tags": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -358,21 +806,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/43"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -383,7 +831,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaConvert/Queue@default",
     "body": {
-      "$ref": "#/20"
+      "$ref": "#/44"
     },
     "readableScopes": 0,
     "writableScopes": 0

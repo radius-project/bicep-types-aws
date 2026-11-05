@@ -1,0 +1,282 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Comprehend-PiiEntitiesDetectionJob",
+  "type": "AWS::Comprehend::PiiEntitiesDetectionJob",
+  "time": "2026-11-05T21:18:26.627Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/JobId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DataAccessRoleArn",
+      "/properties/InputDataConfig",
+      "/properties/JobName",
+      "/properties/LanguageCode",
+      "/properties/Mode",
+      "/properties/RedactionConfig",
+      "/properties/Tags"
+    ],
+    "description": "An Amazon Comprehend PII entities detection job that identifies personally identifiable information in documents stored in Amazon S3.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "JobName": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "JobName"
+          ]
+        },
+        "permissions": [
+          "comprehend:ListPiiEntitiesDetectionJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "comprehend:DescribePiiEntitiesDetectionJob",
+          "comprehend:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/JobArn"
+    ],
+    "properties": {
+      "DataAccessRoleArn": {
+        "description": "The Amazon Resource Name (ARN) of the IAM role that grants Amazon Comprehend read access to your input data.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+$",
+        "type": "string"
+      },
+      "InputDataConfig": {
+        "additionalProperties": false,
+        "description": "The input properties for a PII entities detection job.",
+        "properties": {
+          "InputFormat": {
+            "description": "Specifies how the text in an input file should be processed.",
+            "enum": [
+              "ONE_DOC_PER_FILE",
+              "ONE_DOC_PER_LINE"
+            ],
+            "type": "string"
+          },
+          "S3Uri": {
+            "description": "The Amazon S3 URI for the input data.",
+            "maxLength": 1024,
+            "pattern": "^s3://[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9](/.*)?$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "S3Uri"
+        ],
+        "type": "object"
+      },
+      "JobArn": {
+        "description": "The Amazon Resource Name (ARN) of the PII entities detection job.",
+        "maxLength": 256,
+        "pattern": "^arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-Z0-9-]{1,64}/[a-zA-Z0-9](-*[a-zA-Z0-9])*$",
+        "type": "string"
+      },
+      "JobId": {
+        "description": "The identifier assigned to the PII entities detection job.",
+        "maxLength": 32,
+        "minLength": 1,
+        "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-%@]*)$",
+        "type": "string"
+      },
+      "JobName": {
+        "description": "The identifier of the job.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-%@]*)$",
+        "type": "string"
+      },
+      "JobStatus": {
+        "description": "The current status of the PII entities detection job.",
+        "enum": [
+          "SUBMITTED",
+          "IN_PROGRESS",
+          "COMPLETED",
+          "FAILED",
+          "STOP_REQUESTED",
+          "STOPPED"
+        ],
+        "type": "string"
+      },
+      "LanguageCode": {
+        "description": "The language of the input documents.",
+        "enum": [
+          "en",
+          "es",
+          "fr",
+          "de",
+          "it",
+          "pt",
+          "ar",
+          "hi",
+          "ja",
+          "ko",
+          "zh",
+          "zh-TW"
+        ],
+        "type": "string"
+      },
+      "Mode": {
+        "description": "Specifies whether the output provides the locations (offsets) of PII entities or a file in which PII entities are redacted.",
+        "enum": [
+          "ONLY_REDACTION",
+          "ONLY_OFFSETS"
+        ],
+        "type": "string"
+      },
+      "OutputDataConfig": {
+        "additionalProperties": false,
+        "description": "Provides configuration parameters for the output of PII entity detection jobs.",
+        "properties": {
+          "S3Uri": {
+            "description": "The Amazon S3 URI where the output is written.",
+            "maxLength": 1024,
+            "pattern": "^s3://[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9](/.*)?$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "S3Uri"
+        ],
+        "type": "object"
+      },
+      "RedactionConfig": {
+        "additionalProperties": false,
+        "description": "Provides configuration parameters for PII entity redaction.",
+        "properties": {
+          "MaskCharacter": {
+            "description": "A character that replaces each character in the redacted PII entity.",
+            "maxLength": 1,
+            "minLength": 1,
+            "pattern": "^[!@#$%\u0026*]$",
+            "type": "string"
+          },
+          "MaskMode": {
+            "description": "Specifies whether the PII entity is redacted with the mask character or the entity type.",
+            "enum": [
+              "MASK",
+              "REPLACE_WITH_PII_ENTITY_TYPE"
+            ],
+            "type": "string"
+          },
+          "PiiEntityTypes": {
+            "description": "An array of the types of PII entities that Amazon Comprehend detects.",
+            "items": {
+              "enum": [
+                "BANK_ACCOUNT_NUMBER",
+                "BANK_ROUTING",
+                "CREDIT_DEBIT_NUMBER",
+                "CREDIT_DEBIT_CVV",
+                "CREDIT_DEBIT_EXPIRY",
+                "PIN",
+                "EMAIL",
+                "ADDRESS",
+                "NAME",
+                "PHONE",
+                "SSN",
+                "DATE_TIME",
+                "PASSPORT_NUMBER",
+                "DRIVER_ID",
+                "URL",
+                "AGE",
+                "USERNAME",
+                "PASSWORD",
+                "AWS_ACCESS_KEY",
+                "AWS_SECRET_KEY",
+                "IP_ADDRESS",
+                "MAC_ADDRESS",
+                "ALL",
+                "LICENSE_PLATE",
+                "VEHICLE_IDENTIFICATION_NUMBER",
+                "UK_NATIONAL_INSURANCE_NUMBER",
+                "CA_SOCIAL_INSURANCE_NUMBER",
+                "US_INDIVIDUAL_TAX_IDENTIFICATION_NUMBER",
+                "UK_UNIQUE_TAXPAYER_REFERENCE_NUMBER",
+                "IN_PERMANENT_ACCOUNT_NUMBER",
+                "IN_NREGA",
+                "INTERNATIONAL_BANK_ACCOUNT_NUMBER",
+                "SWIFT_CODE",
+                "UK_NATIONAL_HEALTH_SERVICE_NUMBER",
+                "CA_HEALTH_NUMBER",
+                "IN_AADHAAR",
+                "IN_VOTER_NUMBER"
+              ],
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "SubmitTime": {
+        "description": "The time that the PII entities detection job was submitted for processing.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags associated with the PII entities detection job.",
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "description": "The key of the tag.",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "Value": {
+              "description": "The value of the tag.",
+              "maxLength": 256,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "maxItems": 50,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/JobArn",
+      "/properties/JobId",
+      "/properties/JobStatus",
+      "/properties/OutputDataConfig",
+      "/properties/SubmitTime"
+    ],
+    "required": [
+      "DataAccessRoleArn",
+      "InputDataConfig",
+      "LanguageCode",
+      "Mode"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "comprehend:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Comprehend::PiiEntitiesDetectionJob"
+  }
+}

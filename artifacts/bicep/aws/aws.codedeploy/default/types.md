@@ -8,6 +8,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.CodeDeploy/ApplicationProperties](#awscodedeployapplicationproperties) (Identifier): properties of the resource
 
+## Resource AWS.CodeDeploy/DeploymentConfig@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CodeDeploy/DeploymentConfigProperties](#awscodedeploydeploymentconfigproperties) (Identifier): properties of the resource
+
 ## Resource AWS.CodeDeploy/DeploymentGroup@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -36,6 +44,14 @@
 * **ApplicationName**: string (Identifier): A name for the application. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the application name.
 * **ComputePlatform**: string: The compute platform that CodeDeploy deploys the application to.
 * **Tags**: [Tag](#tag)[]: The metadata that you apply to CodeDeploy applications to help you organize and categorize them. Each tag consists of a key and an optional value, both of which you define. 
+
+## AWS.CodeDeploy/DeploymentConfigProperties
+### Properties
+* **ComputePlatform**: string: The destination platform type for the deployment (Lambda, Server, or ECS).
+* **DeploymentConfigName**: string (Identifier): A name for the deployment configuration. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the deployment configuration name. For more information, see Name Type.
+* **MinimumHealthyHosts**: [MinimumHealthyHosts](#minimumhealthyhosts): The minimum number of healthy instances that should be available at any time during the deployment. There are two parameters expected in the input: type and value.
+* **TrafficRoutingConfig**: [TrafficRoutingConfig](#trafficroutingconfig): The configuration that specifies how the deployment traffic is routed.
+* **ZonalConfig**: [ZonalConfig](#zonalconfig): The zonal deployment config that specifies how the zonal deployment behaves
 
 ## AWS.CodeDeploy/DeploymentGroupProperties
 ### Properties
@@ -130,6 +146,16 @@
 * **TargetGroupInfoList**: [TargetGroupInfo](#targetgroupinfo)[]: An array that contains information about the target groups to use for load balancing in a deployment. If you're using Application Load Balancers and Network Load Balancers, specify their associated target groups in this array.
 * **TargetGroupPairInfoList**: [TargetGroupPairInfo](#targetgrouppairinfo)[]: The target group pair information. This is an array of TargeGroupPairInfo objects with a maximum size of one.
 
+## MinimumHealthyHosts
+### Properties
+* **Type**: string (Required)
+* **Value**: int (Required)
+
+## MinimumHealthyHostsPerZone
+### Properties
+* **Type**: string (Required)
+* **Value**: int (Required)
+
 ## OnPremisesTagSet
 ### Properties
 * **OnPremisesTagSetList**: [OnPremisesTagSetListObject](#onpremisestagsetlistobject)[]: A list that contains other lists of on-premises instance tag groups. For an instance to be included in the deployment group, it must be identified by all of the tag groups in the list.
@@ -178,13 +204,35 @@
 * **TargetGroups**: [TargetGroupInfo](#targetgroupinfo)[]: One pair of target groups. One is associated with the original task set. The second is associated with the task set that serves traffic after the deployment is complete.
 * **TestTrafficRoute**: [TrafficRoute](#trafficroute): An optional path used by a load balancer to route test traffic after an Amazon ECS deployment. Validation can occur while test traffic is served during a deployment.
 
+## TimeBasedCanary
+### Properties
+* **CanaryInterval**: int (Required)
+* **CanaryPercentage**: int (Required)
+
+## TimeBasedLinear
+### Properties
+* **LinearInterval**: int (Required)
+* **LinearPercentage**: int (Required)
+
 ## TrafficRoute
 ### Properties
 * **ListenerArns**: string[]: The Amazon Resource Name (ARN) of one listener. The listener identifies the route between a target group and a load balancer. This is an array of strings with a maximum size of one.
+
+## TrafficRoutingConfig
+### Properties
+* **TimeBasedCanary**: [TimeBasedCanary](#timebasedcanary)
+* **TimeBasedLinear**: [TimeBasedLinear](#timebasedlinear)
+* **Type**: string (Required)
 
 ## TriggerConfig
 ### Properties
 * **TriggerEvents**: string[]: The event type or types that trigger notifications.
 * **TriggerName**: string: The name of the notification trigger.
 * **TriggerTargetArn**: string: The Amazon Resource Name (ARN) of the Amazon Simple Notification Service topic through which notifications about deployment or instance events are sent.
+
+## ZonalConfig
+### Properties
+* **FirstZoneMonitorDurationInSeconds**: int
+* **MinimumHealthyHostsPerZone**: [MinimumHealthyHostsPerZone](#minimumhealthyhostsperzone)
+* **MonitorDurationInSeconds**: int
 

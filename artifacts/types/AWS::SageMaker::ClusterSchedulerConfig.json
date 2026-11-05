@@ -1,0 +1,249 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-ClusterSchedulerConfig",
+  "type": "AWS::SageMaker::ClusterSchedulerConfig",
+  "time": "2026-11-05T21:21:00.995Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ClusterSchedulerConfigId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name",
+      "/properties/ClusterArn"
+    ],
+    "definitions": {
+      "PriorityClass": {
+        "additionalProperties": false,
+        "description": "Priority class configuration.",
+        "properties": {
+          "Name": {
+            "description": "Name of the priority class.",
+            "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9]){0,39}?$",
+            "type": "string"
+          },
+          "Weight": {
+            "description": "Weight of the priority class. Range 0-100, default 0.",
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "Name",
+          "Weight"
+        ],
+        "type": "object"
+      },
+      "SchedulerConfig": {
+        "additionalProperties": false,
+        "description": "Cluster policy configuration.",
+        "properties": {
+          "FairShare": {
+            "description": "When enabled, entities borrow idle compute based on assigned FairShareWeight.",
+            "enum": [
+              "Enabled",
+              "Disabled"
+            ],
+            "type": "string"
+          },
+          "IdleResourceSharing": {
+            "description": "Configuration for sharing idle compute resources across entities.",
+            "enum": [
+              "Enabled",
+              "Disabled"
+            ],
+            "type": "string"
+          },
+          "PriorityClasses": {
+            "description": "List of priority class configurations.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/PriorityClass"
+            },
+            "maxItems": 10,
+            "minItems": 0,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::SageMaker::ClusterSchedulerConfig. Cluster policy configuration used for task prioritization and fair-share allocation of idle compute.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "sagemaker:CreateClusterSchedulerConfig",
+          "sagemaker:DescribeClusterSchedulerConfig",
+          "sagemaker:DescribeCluster",
+          "eks:DescribeCluster",
+          "eks:AssociateAccessPolicy",
+          "eks:DescribeAccessEntry",
+          "eks:ListAssociatedAccessPolicies",
+          "sagemaker:AddTags",
+          "sagemaker:ListTags"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "sagemaker:DeleteClusterSchedulerConfig",
+          "sagemaker:DescribeClusterSchedulerConfig",
+          "sagemaker:ListTags",
+          "sagemaker:DescribeCluster",
+          "eks:DescribeCluster",
+          "eks:DisassociateAccessPolicy",
+          "eks:DescribeAccessEntry",
+          "eks:ListAssociatedAccessPolicies"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "sagemaker:ListClusterSchedulerConfigs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "sagemaker:DescribeClusterSchedulerConfig",
+          "sagemaker:ListTags"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "sagemaker:UpdateClusterSchedulerConfig",
+          "sagemaker:DescribeClusterSchedulerConfig",
+          "sagemaker:DescribeCluster",
+          "eks:DescribeCluster",
+          "eks:AssociateAccessPolicy",
+          "eks:DisassociateAccessPolicy",
+          "eks:DescribeAccessEntry",
+          "eks:ListAssociatedAccessPolicies",
+          "sagemaker:AddTags",
+          "sagemaker:DeleteTags",
+          "sagemaker:ListTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ClusterSchedulerConfigArn"
+    ],
+    "properties": {
+      "ClusterArn": {
+        "description": "ARN of the cluster.",
+        "maxLength": 256,
+        "pattern": "^arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:cluster/[a-z0-9]{12}$",
+        "type": "string"
+      },
+      "ClusterSchedulerConfigArn": {
+        "description": "ARN of the cluster policy.",
+        "maxLength": 256,
+        "pattern": "^arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]{9,16}:[0-9]{12}:cluster-scheduler-config/[a-z0-9]{12}$",
+        "type": "string"
+      },
+      "ClusterSchedulerConfigId": {
+        "description": "ID of the cluster policy.",
+        "maxLength": 12,
+        "pattern": "^[a-z0-9]{12}$",
+        "type": "string"
+      },
+      "ClusterSchedulerConfigVersion": {
+        "description": "Version of the cluster policy.",
+        "type": "integer"
+      },
+      "CreationTime": {
+        "description": "Creation time of the cluster policy.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "Description of the cluster policy.",
+        "maxLength": 1024,
+        "pattern": "^[\\p{L}\\p{M}\\p{Z}\\p{S}\\p{N}\\p{P}]*$",
+        "type": "string"
+      },
+      "Name": {
+        "description": "Name for the cluster policy.",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$",
+        "type": "string"
+      },
+      "SchedulerConfig": {
+        "$ref": "#/definitions/SchedulerConfig"
+      },
+      "Status": {
+        "description": "Status of the cluster policy.",
+        "enum": [
+          "Creating",
+          "CreateFailed",
+          "CreateRollbackFailed",
+          "Created",
+          "Updating",
+          "UpdateFailed",
+          "UpdateRollbackFailed",
+          "Updated",
+          "Deleting",
+          "DeleteFailed",
+          "DeleteRollbackFailed",
+          "Deleted"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags of the cluster policy.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "minItems": 0,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ClusterSchedulerConfigArn",
+      "/properties/ClusterSchedulerConfigId",
+      "/properties/ClusterSchedulerConfigVersion",
+      "/properties/Status",
+      "/properties/CreationTime"
+    ],
+    "required": [
+      "Name",
+      "ClusterArn",
+      "SchedulerConfig"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "sagemaker:AddTags",
+        "sagemaker:DeleteTags",
+        "sagemaker:ListTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::SageMaker::ClusterSchedulerConfig"
+  }
+}

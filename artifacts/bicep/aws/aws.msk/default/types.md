@@ -48,6 +48,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.MSK/ReplicatorProperties](#awsmskreplicatorproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.MSK/ServerlessCluster@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MSK/ServerlessClusterProperties](#awsmskserverlessclusterproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.MSK/Topic@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -152,6 +160,16 @@
 * **ServiceExecutionRoleArn**: string (Required): The Amazon Resource Name (ARN) of the IAM role used by the replicator to access external resources.
 * **Tags**: [Tag](#tag)[]: A collection of tags associated with a resource
 
+## AWS.MSK/ServerlessClusterProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier)
+* **BootstrapBrokerStringSaslIam**: string (ReadOnly): The SASL/IAM broker addresses.
+* **BootstrapBrokerStringSaslIamIpv6**: string (ReadOnly): The SASL/IAM broker addresses for IPv6 connectivity.
+* **ClientAuthentication**: [ClientAuthentication](#clientauthentication) (Required)
+* **ClusterName**: string (Required)
+* **Tags**: [ServerlessCluster_Tags](#serverlessclustertags): A key-value pair to associate with a resource.
+* **VpcConfigs**: [VpcConfig](#vpcconfig)[] (Required)
+
 ## AWS.MSK/TopicProperties
 ### Properties
 * **ClusterArn**: string (Required): The Amazon Resource Name (ARN) of the MSK cluster
@@ -207,6 +225,10 @@
 * **Sasl**: [Sasl](#sasl)
 * **Tls**: [Tls](#tls)
 * **Unauthenticated**: [Unauthenticated](#unauthenticated)
+
+## ClientAuthentication
+### Properties
+* **Sasl**: [Sasl](#sasl) (Required)
 
 ## CloudWatchLogs
 ### Properties
@@ -297,6 +319,10 @@
 ### Properties
 * **DeliveryStream**: string: The Firehose delivery stream for log delivery
 * **Enabled**: bool (Required): Whether Firehose logging is enabled
+
+## Iam
+### Properties
+* **Enabled**: bool (Required)
 
 ## Iam
 ### Properties
@@ -497,6 +523,10 @@
 * **Iam**: [Iam](#iam)
 * **Scram**: [Scram](#scram)
 
+## Sasl
+### Properties
+* **Iam**: [Iam](#iam) (Required)
+
 ## SchemaEvolution
 ### Properties
 * **EnableSchemaEvolution**: bool (Required): Whether schema evolution is enabled
@@ -504,6 +534,9 @@
 ## Scram
 ### Properties
 * **Enabled**: bool (Required)
+
+## ServerlessCluster_Tags
+### Properties
 
 ## StorageInfo
 ### Properties
@@ -548,6 +581,11 @@
 ## Unauthenticated
 ### Properties
 * **Enabled**: bool (Required)
+
+## VpcConfig
+### Properties
+* **SecurityGroups**: string[]
+* **SubnetIds**: string[] (Required)
 
 ## VpcConnectivity
 ### Properties

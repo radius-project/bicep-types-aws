@@ -24,6 +24,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Redshift/ClusterSubnetGroupProperties](#awsredshiftclustersubnetgroupproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Redshift/DataShare@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Redshift/DataShareProperties](#awsredshiftdatashareproperties) (Identifier): properties of the resource
+
 ## Resource AWS.Redshift/EndpointAccess@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -184,6 +192,13 @@ The value must be either -1 or an integer between 1 and 3,653.
 * **SubnetIds**: string[] (Required): The list of VPC subnet IDs
 * **Tags**: [Tag](#tag)[]: The list of tags for the cluster parameter group.
 
+## AWS.Redshift/DataShareProperties
+### Properties
+* **AllowPubliclyAccessibleConsumers**: bool (ReadOnly): Whether the datashare can be shared to a publicly accessible cluster.
+* **DataShareArn**: string (Identifier): The Amazon Resource Name (ARN) of the datashare.
+* **DataShareAssociations**: [DataShareAssociation](#datashareassociation)[] (ReadOnly): Associations between producer and data consumers.
+* **ProducerArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the producer namespace.
+
 ## AWS.Redshift/EndpointAccessProperties
 ### Properties
 * **Address**: string (ReadOnly): The DNS address of the endpoint.
@@ -311,6 +326,13 @@ The value must be either -1 or an integer between 1 and 3,653.
 
 ## Cluster_NamespaceResourcePolicy
 ### Properties
+
+## DataShareAssociation
+### Properties
+* **ConsumerIdentifier**: string: The name of the consumer accounts that have an association with a producer datashare.
+* **CreatedDate**: string: The creation date of the datashare association.
+* **Status**: string: The status of the datashare association.
+* **StatusChangeDate**: string: The status change date of the datashare association.
 
 ## EncryptionContextMap
 ### Properties

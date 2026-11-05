@@ -1,0 +1,223 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-StepFunctions-MapRun",
+  "type": "AWS::StepFunctions::MapRun",
+  "time": "2026-11-05T16:54:02.912Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ExecutionArn"
+    ],
+    "definitions": {
+      "MapRunExecutionCounts": {
+        "additionalProperties": false,
+        "description": "Contains details about all child workflow executions started by a Map Run.",
+        "properties": {
+          "Aborted": {
+            "description": "The total number of child workflow executions that were stopped.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "Failed": {
+            "description": "The total number of child workflow executions that have failed.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "FailuresNotRedrivable": {
+            "description": "The number of child workflow executions that cannot be redriven.",
+            "type": "integer"
+          },
+          "Pending": {
+            "description": "The total number of child workflow executions that haven't started executing yet.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "PendingRedrive": {
+            "description": "The number of unsuccessful child workflow executions waiting to be redriven.",
+            "type": "integer"
+          },
+          "ResultsWritten": {
+            "description": "The count of child workflow executions whose results were written by ResultWriter.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "Running": {
+            "description": "The total number of child workflow executions that are currently in-progress.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "Succeeded": {
+            "description": "The total number of child workflow executions that have completed successfully.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "TimedOut": {
+            "description": "The total number of child workflow executions that have timed out.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "Total": {
+            "description": "The total number of child workflow executions started by a Map Run.",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "MapRunItemCounts": {
+        "additionalProperties": false,
+        "description": "Contains details about items processed in all child workflow executions started by a Map Run.",
+        "properties": {
+          "Aborted": {
+            "description": "The total number of items processed in child workflow executions that were stopped.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "Failed": {
+            "description": "The total number of items processed in child workflow executions that have failed.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "FailuresNotRedrivable": {
+            "description": "The number of items in child workflow executions that cannot be redriven.",
+            "type": "integer"
+          },
+          "Pending": {
+            "description": "The total number of items to process in child workflow executions that haven't started running yet.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "PendingRedrive": {
+            "description": "The number of unsuccessful items currently waiting to be redriven.",
+            "type": "integer"
+          },
+          "ResultsWritten": {
+            "description": "The count of items whose results were written by ResultWriter.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "Running": {
+            "description": "The total number of items being processed in child workflow executions that are currently in-progress.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "Succeeded": {
+            "description": "The total number of items processed in child workflow executions that have completed successfully.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "TimedOut": {
+            "description": "The total number of items processed in child workflow executions that have timed out.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "Total": {
+            "description": "The total number of items processed in all the child workflow executions started by a Map Run.",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource schema for AWS::StepFunctions::MapRun. A Map Run is a set of child workflow executions started by a Distributed Map state in Step Functions.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ExecutionArn": {
+              "description": "The ARN of the execution for which Map Runs must be listed.",
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "ExecutionArn"
+          ]
+        },
+        "permissions": [
+          "states:ListMapRuns"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "states:DescribeMapRun"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/MapRunArn"
+    ],
+    "properties": {
+      "ExecutionArn": {
+        "description": "The Amazon Resource Name (ARN) that identifies the execution in which the Map Run was started.",
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
+      "ExecutionCounts": {
+        "$ref": "#/definitions/MapRunExecutionCounts"
+      },
+      "ItemCounts": {
+        "$ref": "#/definitions/MapRunItemCounts"
+      },
+      "MapRunArn": {
+        "description": "The Amazon Resource Name (ARN) that identifies the Map Run.",
+        "maxLength": 2000,
+        "minLength": 1,
+        "type": "string"
+      },
+      "MaxConcurrency": {
+        "description": "The maximum number of child workflow executions configured to run in parallel for the Map Run at the same time.",
+        "minimum": 0,
+        "type": "integer"
+      },
+      "StartDate": {
+        "description": "The date when the Map Run was started.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The current status of the Map Run.",
+        "enum": [
+          "RUNNING",
+          "SUCCEEDED",
+          "FAILED",
+          "ABORTED"
+        ],
+        "type": "string"
+      },
+      "StopDate": {
+        "description": "The date when the Map Run was stopped.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ToleratedFailureCount": {
+        "description": "The maximum number of failed child workflow executions before the Map Run fails.",
+        "minimum": 0,
+        "type": "integer"
+      },
+      "ToleratedFailurePercentage": {
+        "description": "The maximum percentage of failed child workflow executions before the Map Run fails.",
+        "maximum": 100,
+        "minimum": 0,
+        "type": "number"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/MapRunArn",
+      "/properties/Status",
+      "/properties/StartDate",
+      "/properties/StopDate",
+      "/properties/MaxConcurrency",
+      "/properties/ToleratedFailurePercentage",
+      "/properties/ToleratedFailureCount",
+      "/properties/ItemCounts",
+      "/properties/ExecutionCounts"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::StepFunctions::MapRun"
+  }
+}

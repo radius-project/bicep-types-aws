@@ -1,0 +1,139 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-GroundStation-Satellite",
+  "type": "AWS::GroundStation::Satellite",
+  "time": "2026-11-05T21:20:47.096Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/SatelliteId"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "EphemerisMetaData": {
+        "additionalProperties": false,
+        "description": "Metadata describing a particular ephemeris.",
+        "properties": {
+          "Epoch": {
+            "description": "The epoch of a default ephemeris from Space Track in UTC.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "Source": {
+            "description": "The EphemerisSource that generated a given ephemeris.",
+            "enum": [
+              "CUSTOMER_PROVIDED",
+              "SPACE_TRACK"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Source"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair assigned to the satellite.",
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::GroundStation::Satellite. A Satellite is onboarded to AWS Ground Station through a manual, out-of-band process and cannot be created programmatically. This is a read-only resource that provides visibility into satellites onboarded to your account via Cloud Control API.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "groundstation:ListSatellites"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "groundstation:GetSatellite",
+          "groundstation:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Region-qualified Amazon Resource Name (ARN) of the satellite. AWS Ground Station returns a global satellite ARN, but its tagging APIs require a Region-qualified ARN. This resource therefore uses the Region-qualified ARN (the current Region inserted into the satellite ARN) as the primary identifier.",
+        "maxLength": 132,
+        "minLength": 83,
+        "pattern": "^arn:aws:groundstation:[-a-z0-9]{1,50}:[0-9]{12}:satellite/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$",
+        "type": "string"
+      },
+      "CurrentEphemeris": {
+        "$ref": "#/definitions/EphemerisMetaData"
+      },
+      "GroundStations": {
+        "description": "A list of ground stations to which the satellite is on-boarded.",
+        "insertionOrder": false,
+        "items": {
+          "maxLength": 97,
+          "minLength": 4,
+          "pattern": "^[ a-zA-Z0-9-._:=]{4,97}$",
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "NoradSatelliteID": {
+        "description": "The NORAD satellite ID number.",
+        "maximum": 339999,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "SatelliteId": {
+        "description": "The UUID of the satellite.",
+        "maxLength": 36,
+        "minLength": 36,
+        "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags assigned to the satellite.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/SatelliteId",
+      "/properties/NoradSatelliteID",
+      "/properties/GroundStations",
+      "/properties/CurrentEphemeris",
+      "/properties/Tags"
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/ground-station/latest/APIReference/API_GetSatellite.html",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "groundstation:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::GroundStation::Satellite"
+  }
+}

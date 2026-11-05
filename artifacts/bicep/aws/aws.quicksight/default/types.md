@@ -32,6 +32,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.QuickSight/ApprovalPolicyProperties](#awsquicksightapprovalpolicyproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.QuickSight/AssetBundleExportJob@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.QuickSight/AssetBundleExportJobProperties](#awsquicksightassetbundleexportjobproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.QuickSight/AssetBundleImportJob@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.QuickSight/AssetBundleImportJobProperties](#awsquicksightassetbundleimportjobproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.QuickSight/CustomPermissions@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -87,6 +103,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.QuickSight/FolderProperties](#awsquicksightfolderproperties) (Identifier): properties of the resource
+
+## Resource AWS.QuickSight/Ingestion@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.QuickSight/IngestionProperties](#awsquicksightingestionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.QuickSight/KnowledgeBase@default
 * **Readable Scope(s)**: None
@@ -362,6 +386,14 @@
 ### Properties
 * **ArcThickness**: string
 
+## AssetBundleImportJobOverrideValidationStrategy
+### Properties
+* **StrictModeForAllResources**: bool: A Boolean value that indicates whether to import all analyses and dashboards under strict or lenient mode.
+
+## AssetBundleImportSourceDescription
+### Properties
+* **S3Uri**: string: The Amazon S3 URI for the asset bundle import file.
+
 ## AssetOptions
 ### Properties
 * **Timezone**: string
@@ -496,6 +528,32 @@ At least one asset type is required.
 * **PolicyArn**: string (ReadOnly)
 * **PolicyId**: string (Required, Identifier)
 * **UpdatedAt**: string (ReadOnly)
+
+## AWS.QuickSight/AssetBundleExportJobProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) for the export job.
+* **AssetBundleExportJobId**: string (Required): The ID of the export job.
+* **AwsAccountId**: string: The ID of the Amazon Web Services account to export assets from.
+* **CreatedTime**: string (ReadOnly): The time that the export job was created.
+* **ExportFormat**: string (Required): The export data format.
+* **IncludeAllDependencies**: bool: A Boolean that determines whether all dependencies of each resource ARN are recursively exported with the job.
+* **IncludeFolderMembers**: string: A setting that indicates whether you want to include folder assets.
+* **IncludeFolderMemberships**: bool: A Boolean that determines if the exported asset carries over information about the folders that the asset is a member of.
+* **IncludePermissions**: bool: A Boolean that determines whether all permissions for each resource ARN are exported with the job.
+* **IncludeTags**: bool: A Boolean that determines whether all tags for each resource ARN are exported with the job.
+* **JobStatus**: string (ReadOnly): Indicates the status of a job through its queuing and execution.
+* **ResourceArns**: string[] (Required): An array of resource ARNs to export.
+
+## AWS.QuickSight/AssetBundleImportJobProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) for the import job.
+* **AssetBundleImportJobId**: string (Required): The ID of the import job.
+* **AssetBundleImportSource**: [AssetBundleImportSourceDescription](#assetbundleimportsourcedescription): The source of the asset bundle zip file.
+* **AwsAccountId**: string: The ID of the Amazon Web Services account to import assets into.
+* **CreatedTime**: string (ReadOnly): The time that the import job was created.
+* **FailureAction**: string: The failure action for the import job.
+* **JobStatus**: string (ReadOnly): Indicates the status of the import job.
+* **OverrideValidationStrategy**: [AssetBundleImportJobOverrideValidationStrategy](#assetbundleimportjoboverridevalidationstrategy): An optional validation strategy override for all analyses and dashboards.
 
 ## AWS.QuickSight/CustomPermissionsProperties
 ### Properties
@@ -632,6 +690,21 @@ At least one asset type is required.
 * **Permissions**: [ResourcePermission](#resourcepermission)[]
 * **SharingModel**: string
 * **Tags**: [Tag](#tag)[]
+
+## AWS.QuickSight/IngestionProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) for the data ingestion.
+* **CreatedTime**: string (ReadOnly): The time that this ingestion started.
+* **DataSetId**: string (Required): The ID of the dataset used in the ingestion.
+* **IngestionId**: string (Required): An ID for the ingestion.
+* **IngestionSizeInBytes**: int (ReadOnly): The size of the data ingested, in bytes.
+* **IngestionStatus**: string (ReadOnly): Ingestion status.
+* **IngestionTimeInSeconds**: int (ReadOnly): The time that this ingestion took, measured in seconds.
+* **RequestSource**: string (ReadOnly): Event source for this ingestion.
+* **RequestType**: string (ReadOnly): Type of this ingestion.
+* **RowsDropped**: int (ReadOnly): The number of rows that were not ingested.
+* **RowsIngested**: int (ReadOnly): The number of rows that were ingested.
+* **TotalRowsInDataset**: int (ReadOnly): The total number of rows in the dataset.
 
 ## AWS.QuickSight/KnowledgeBaseProperties
 ### Properties

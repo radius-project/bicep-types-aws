@@ -1,0 +1,197 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ImageBuilder-AllWorkflowBuildVersions",
+  "type": "AWS::ImageBuilder::AllWorkflowBuildVersions",
+  "time": "2026-11-05T21:21:38.435Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Name",
+        "/properties/WorkflowType",
+        "/properties/Version",
+        "/properties/BuildNumber"
+      ]
+    ],
+    "additionalProperties": false,
+    "description": "Returns the list of workflow build versions for a specified workflow version ARN.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "WorkflowVersionArn": {
+              "pattern": "^arn:aws[^:]*:imagebuilder:[^:]+:(?:[0-9]{12}|aws(?:-[a-z-]+)?):workflow/(build|test|distribution)/[a-z0-9-_]+/[0-9]+\\.[0-9]+\\.[0-9]+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "WorkflowVersionArn"
+          ]
+        },
+        "permissions": [
+          "imagebuilder:ListWorkflowBuildVersions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "imagebuilder:GetWorkflow",
+          "imagebuilder:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the workflow build version.",
+        "pattern": "^arn:aws[^:]*:imagebuilder:[^:]+:(?:[0-9]{12}|aws(?:-[a-z-]+)?):workflow/(build|test|distribution)/[a-z0-9-_]+/[0-9]+\\.[0-9]+\\.[0-9]+/[0-9]+$",
+        "type": "string"
+      },
+      "BuildNumber": {
+        "description": "The build number of the workflow build version.",
+        "pattern": "^[0-9]+$",
+        "type": "string"
+      },
+      "ChangeDescription": {
+        "description": "Describes what change has been made in this version of the workflow.",
+        "maxLength": 1024,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Data": {
+        "description": "Contains the YAML document content for the workflow.",
+        "type": "string"
+      },
+      "DateCreated": {
+        "description": "The timestamp when Image Builder created the workflow resource.",
+        "type": "string"
+      },
+      "Description": {
+        "description": "Describes the workflow.",
+        "maxLength": 1024,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the workflow.",
+        "pattern": "^[-_A-Za-z-0-9][-_A-Za-z0-9 ]{1,126}[-_A-Za-z-0-9]$",
+        "type": "string"
+      },
+      "Owner": {
+        "description": "The owner of the workflow resource.",
+        "maxLength": 1024,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Parameters": {
+        "description": "An array of input parameters that the workflow uses to control actions or configure settings.",
+        "insertionOrder": false,
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "DefaultValue": {
+              "description": "The default value of this parameter if no input is provided.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "Description": {
+              "description": "Describes this parameter.",
+              "maxLength": 1024,
+              "minLength": 0,
+              "type": "string"
+            },
+            "Name": {
+              "description": "The name of this input parameter.",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "Type": {
+              "description": "The type of input this parameter provides.",
+              "maxLength": 20,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "Name",
+            "Type"
+          ],
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "Tags": {
+        "description": "The tags associated with the workflow build version.",
+        "insertionOrder": false,
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "Value": {
+              "maxLength": 256,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "Version": {
+        "description": "The semantic version of the workflow (major.minor.patch).",
+        "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+        "type": "string"
+      },
+      "WorkflowType": {
+        "description": "The image creation stage that this workflow applies to.",
+        "enum": [
+          "build",
+          "test",
+          "distribution"
+        ],
+        "type": "string"
+      },
+      "WorkflowVersionArn": {
+        "description": "The workflow version ARN whose build versions you want to list.",
+        "pattern": "^arn:aws[^:]*:imagebuilder:[^:]+:(?:[0-9]{12}|aws(?:-[a-z-]+)?):workflow/(build|test|distribution)/[a-z0-9-_]+/[0-9]+\\.[0-9]+\\.[0-9]+$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Name",
+      "/properties/Version",
+      "/properties/BuildNumber",
+      "/properties/WorkflowType",
+      "/properties/Description",
+      "/properties/ChangeDescription",
+      "/properties/Owner",
+      "/properties/Data",
+      "/properties/DateCreated",
+      "/properties/Parameters",
+      "/properties/Tags",
+      "/properties/WorkflowVersionArn"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "imagebuilder:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::ImageBuilder::AllWorkflowBuildVersions"
+  }
+}

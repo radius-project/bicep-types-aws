@@ -1,0 +1,207 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-ReservedInstances",
+  "type": "AWS::EC2::ReservedInstances",
+  "time": "2026-11-05T21:24:12.101Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ReservedInstancesId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/InstanceCount"
+    ],
+    "definitions": {
+      "RecurringCharge": {
+        "additionalProperties": false,
+        "properties": {
+          "Amount": {
+            "type": "number"
+          },
+          "Frequency": {
+            "enum": [
+              "Hourly"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource type definition for AWS::EC2::ReservedInstances.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "ec2:DescribeReservedInstances"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ec2:DescribeReservedInstances"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "type": "string"
+      },
+      "AvailabilityZone": {
+        "type": "string"
+      },
+      "AvailabilityZoneId": {
+        "type": "string"
+      },
+      "CurrencyCode": {
+        "enum": [
+          "USD"
+        ],
+        "type": "string"
+      },
+      "Duration": {
+        "type": "number"
+      },
+      "End": {
+        "format": "date-time",
+        "type": "string"
+      },
+      "FixedPrice": {
+        "type": "number"
+      },
+      "InstanceCount": {
+        "type": "integer"
+      },
+      "InstanceTenancy": {
+        "enum": [
+          "default",
+          "dedicated",
+          "host"
+        ],
+        "type": "string"
+      },
+      "InstanceType": {
+        "type": "string"
+      },
+      "OfferingClass": {
+        "enum": [
+          "standard",
+          "convertible"
+        ],
+        "type": "string"
+      },
+      "OfferingType": {
+        "enum": [
+          "Heavy Utilization",
+          "Medium Utilization",
+          "Light Utilization",
+          "No Upfront",
+          "Partial Upfront",
+          "All Upfront"
+        ],
+        "type": "string"
+      },
+      "ProductDescription": {
+        "description": "The tenancy-and-platform description of the reservation. Deliberately not enumerated: the RIProductDescription shape carries four values while the operation's own Filters documentation names eleven, adding Red Hat Enterprise Linux, SUSE and five SQL Server variants, so a transcribed enum makes Read fail for any customer holding one of those reservations. The State enum is transcribed because its shape is the wider set; the direction of the disagreement decides per field.",
+        "type": "string"
+      },
+      "RecurringCharges": {
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/RecurringCharge"
+        },
+        "type": "array"
+      },
+      "ReservedInstancesId": {
+        "type": "string"
+      },
+      "Scope": {
+        "enum": [
+          "Availability Zone",
+          "Region"
+        ],
+        "type": "string"
+      },
+      "Start": {
+        "format": "date-time",
+        "type": "string"
+      },
+      "State": {
+        "enum": [
+          "payment-pending",
+          "active",
+          "payment-failed",
+          "retired",
+          "queued",
+          "queued-deleted"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "UsagePrice": {
+        "type": "number"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/AvailabilityZone",
+      "/properties/AvailabilityZoneId",
+      "/properties/CurrencyCode",
+      "/properties/Duration",
+      "/properties/End",
+      "/properties/FixedPrice",
+      "/properties/InstanceTenancy",
+      "/properties/InstanceType",
+      "/properties/OfferingClass",
+      "/properties/OfferingType",
+      "/properties/ProductDescription",
+      "/properties/RecurringCharges",
+      "/properties/ReservedInstancesId",
+      "/properties/Scope",
+      "/properties/Start",
+      "/properties/State",
+      "/properties/Tags",
+      "/properties/UsagePrice"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-ec2",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "ec2:DescribeReservedInstances"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::EC2::ReservedInstances"
+  }
+}

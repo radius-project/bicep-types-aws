@@ -1,0 +1,150 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ECS-Task",
+  "type": "AWS::ECS::Task",
+  "time": "2026-11-05T21:16:03.614Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Cluster",
+        "/properties/TaskId"
+      ]
+    ],
+    "additionalProperties": false,
+    "description": "Resource schema for an Amazon ECS Task. This is a read-only resource representing a running or stopped task launched on an ECS cluster (e.g. via RunTask or StartTask).",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "Cluster": {
+              "description": "The short name or ARN of the cluster to list tasks from.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "Cluster"
+          ]
+        },
+        "permissions": [
+          "ecs:ListTasks"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ecs:DescribeTasks"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/TaskArn"
+    ],
+    "properties": {
+      "Cluster": {
+        "description": "The short name or ARN of the cluster that hosts the task.",
+        "type": "string"
+      },
+      "Cpu": {
+        "description": "The number of CPU units used by the task as expressed in the task definition.",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The ISO 8601 timestamp for the time when the task was created (entered the PENDING state).",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DesiredStatus": {
+        "description": "The desired status of the task.",
+        "type": "string"
+      },
+      "Group": {
+        "description": "The name of the task group associated with the task.",
+        "type": "string"
+      },
+      "LastStatus": {
+        "description": "The last known status of the task.",
+        "type": "string"
+      },
+      "LaunchType": {
+        "description": "The infrastructure on which the task runs.",
+        "enum": [
+          "EC2",
+          "FARGATE",
+          "EXTERNAL",
+          "MANAGED_INSTANCES"
+        ],
+        "type": "string"
+      },
+      "Memory": {
+        "description": "The amount of memory (in MiB) used by the task as expressed in the task definition.",
+        "type": "string"
+      },
+      "StartedBy": {
+        "description": "The tag specified when the task was started.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The metadata applied to the task.",
+        "insertionOrder": false,
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "Value": {
+              "maxLength": 256,
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": false
+      },
+      "TaskArn": {
+        "description": "The Amazon Resource Name (ARN) of the task.",
+        "type": "string"
+      },
+      "TaskDefinition": {
+        "description": "The ARN of the task definition that the task is based on.",
+        "type": "string"
+      },
+      "TaskId": {
+        "description": "The unique identifier of the task (the final segment of the task ARN).",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/TaskArn",
+      "/properties/TaskId",
+      "/properties/Cluster",
+      "/properties/TaskDefinition",
+      "/properties/LaunchType",
+      "/properties/StartedBy",
+      "/properties/LastStatus",
+      "/properties/DesiredStatus",
+      "/properties/Group",
+      "/properties/Cpu",
+      "/properties/Memory",
+      "/properties/CreatedAt",
+      "/properties/Tags"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "ecs:DescribeTasks"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::ECS::Task"
+  }
+}

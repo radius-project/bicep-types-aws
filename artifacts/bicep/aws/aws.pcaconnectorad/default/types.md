@@ -16,6 +16,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.PCAConnectorAD/DirectoryRegistrationProperties](#awspcaconnectoraddirectoryregistrationproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.PCAConnectorAD/ServicePrincipalName@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.PCAConnectorAD/ServicePrincipalNameProperties](#awspcaconnectoradserviceprincipalnameproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.PCAConnectorAD/Template@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -50,6 +58,11 @@
 * **DirectoryId**: string (Required)
 * **DirectoryRegistrationArn**: string (ReadOnly, Identifier)
 * **Tags**: [Tags](#tags)
+
+## AWS.PCAConnectorAD/ServicePrincipalNameProperties
+### Properties
+* **ConnectorArn**: string (Required, Identifier)
+* **DirectoryRegistrationArn**: string (Required, Identifier)
 
 ## AWS.PCAConnectorAD/TemplateGroupAccessControlEntryProperties
 ### Properties

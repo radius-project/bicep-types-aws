@@ -1,0 +1,109 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-WorkSpaces-WorkSpaceApplication",
+  "type": "AWS::WorkSpaces::WorkSpaceApplication",
+  "time": "2026-11-05T02:09:08.459Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ApplicationId"
+      ]
+    ],
+    "additionalProperties": false,
+    "description": "Describes a WorkSpace application in the Amazon WorkSpaces application catalog.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "workspaces:DescribeApplications"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "workspaces:DescribeApplications"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "ApplicationId": {
+        "description": "The identifier of the application.",
+        "pattern": "^wsa-[0-9a-z]{8,63}$",
+        "type": "string"
+      },
+      "Arn": {
+        "description": "The ARN of the WorkSpace application.",
+        "type": "string"
+      },
+      "Created": {
+        "description": "The time the application was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description of the WorkSpace application.",
+        "maxLength": 2048,
+        "minLength": 0,
+        "type": "string"
+      },
+      "LicenseType": {
+        "description": "The license availability for the application.",
+        "enum": [
+          "LICENSED",
+          "UNLICENSED"
+        ],
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the WorkSpace application.",
+        "minLength": 1,
+        "type": "string"
+      },
+      "Owner": {
+        "description": "The owner of the WorkSpace application.",
+        "pattern": "^\\d{12}|AMAZON$",
+        "type": "string"
+      },
+      "State": {
+        "description": "The status of the WorkSpace application.",
+        "enum": [
+          "PENDING",
+          "ERROR",
+          "AVAILABLE",
+          "UNINSTALL_ONLY"
+        ],
+        "type": "string"
+      },
+      "SupportedComputeTypeNames": {
+        "description": "The supported compute types of the WorkSpace application.",
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "SupportedOperatingSystemNames": {
+        "description": "The supported operating systems of the WorkSpace application.",
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/ApplicationId",
+      "/properties/Created",
+      "/properties/Description",
+      "/properties/LicenseType",
+      "/properties/Name",
+      "/properties/Owner",
+      "/properties/State",
+      "/properties/SupportedComputeTypeNames",
+      "/properties/SupportedOperatingSystemNames"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::WorkSpaces::WorkSpaceApplication"
+  }
+}

@@ -24,6 +24,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.EKS/CapabilityProperties](#awsekscapabilityproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.EKS/CertificateAuthority@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EKS/CertificateAuthorityProperties](#awsekscertificateauthorityproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.EKS/Cluster@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -147,6 +155,21 @@
 * **Type**: string (Required): The type of capability to create. Valid values are: ACK (AWS Controllers for Kubernetes, which lets you manage AWS resources directly from Kubernetes), ARGOCD (Argo CD for GitOps-based continuous delivery), or KRO (Kube Resource Orchestrator for composing and managing custom Kubernetes resources).
 * **Version**: string (ReadOnly): The version of the capability software that is currently running.
 
+## AWS.EKS/CertificateAuthorityProperties
+### Properties
+* **ActivatedAt**: string (ReadOnly): The timestamp when the certificate authority was activated.
+* **ActivatedBy**: string (ReadOnly): The entity that activated the certificate authority.
+* **ClusterName**: string (Required, Identifier): The name of the EKS cluster that the certificate authority belongs to.
+* **CreatedAt**: string (ReadOnly): The timestamp when the certificate authority was created.
+* **CreatedBy**: string (ReadOnly): The entity that created the certificate authority.
+* **Data**: string (ReadOnly): The Base64 encoded certificate authority data.
+* **DistributionStatus**: string (ReadOnly): The distribution status of the certificate authority.
+* **Id**: string (ReadOnly, Identifier): The unique identifier of the certificate authority.
+* **RollbackAvailable**: bool (ReadOnly): Whether activation of this certificate authority can still be rolled back.
+* **ScheduledEvents**: [ScheduledEvents](#scheduledevents) (ReadOnly): The scheduled auto-activation events for the certificate authority.
+* **SigningStatus**: string (ReadOnly): The signing status of the certificate authority.
+* **Validity**: [Validity](#validity) (ReadOnly): The validity period of the certificate authority.
+
 ## AWS.EKS/ClusterProperties
 ### Properties
 * **AccessConfig**: [AccessConfig](#accessconfig)
@@ -248,7 +271,7 @@
 
 ## BlockStorage
 ### Properties
-* **Enabled**: bool: Todo: add description
+* **Enabled**: bool: Indicates if the block storage capability is enabled on your EKS Auto Mode cluster. If the block storage capability is enabled, EKS Auto Mode will create and delete EBS volumes in your AWS account.
 
 ## CapabilityConfiguration
 ### Properties
@@ -266,9 +289,9 @@
 
 ## ComputeConfig
 ### Properties
-* **Enabled**: bool: Todo: add description
-* **NodePools**: string[]: Todo: add description
-* **NodeRoleArn**: string: Todo: add description
+* **Enabled**: bool: Request to enable or disable the compute capability on your EKS Auto Mode cluster. If the compute capability is enabled, EKS Auto Mode will create and delete EC2 Managed Instances in your AWS account.
+* **NodePools**: string[]: Configuration for node pools that defines the compute resources for your EKS Auto Mode cluster. Valid values are general-purpose and system.
+* **NodeRoleArn**: string: The ARN of the IAM Role EKS will assign to EC2 Managed Instances in your EKS Auto Mode cluster. This value cannot be changed after the compute capability of EKS Auto Mode is enabled.
 
 ## ControlPlanePlacement
 ### Properties
@@ -281,7 +304,7 @@
 
 ## ElasticLoadBalancing
 ### Properties
-* **Enabled**: bool: Todo: add description
+* **Enabled**: bool: Indicates if the load balancing capability is enabled on your EKS Auto Mode cluster. If the load balancing capability is enabled, EKS Auto Mode will create and delete load balancers in your AWS account.
 * **GatewayApi**: [GatewayApi](#gatewayapi): The Gateway API configuration for the cluster.
 
 ## EncryptionConfig
@@ -317,7 +340,7 @@
 
 ## KubernetesNetworkConfig
 ### Properties
-* **ElasticLoadBalancing**: [ElasticLoadBalancing](#elasticloadbalancing): Todo: add description
+* **ElasticLoadBalancing**: [ElasticLoadBalancing](#elasticloadbalancing): Request to enable or disable the load balancing capability on your EKS Auto Mode cluster.
 * **IpFamily**: string: Ipv4 or Ipv6. You can only specify ipv6 for 1.21 and later clusters that use version 1.10.1 or later of the Amazon VPC CNI add-on
 * **ServiceIpv4Cidr**: string: The CIDR block to assign Kubernetes service IP addresses from. If you don't specify a block, Kubernetes assigns addresses from either the 10.100.0.0/16 or 172.20.0.0/16 CIDR blocks. We recommend that you specify a block that does not overlap with resources in other networks that are peered or connected to your VPC. 
 * **ServiceIpv6Cidr**: string (ReadOnly): The CIDR block to assign Kubernetes service IP addresses from.
@@ -453,6 +476,11 @@
 * **MaxSize**: int
 * **MinSize**: int
 
+## ScheduledEvents
+### Properties
+* **FinalAutoActivation**: string (ReadOnly): The deadline by which EKS will auto-activate this certificate authority (notAfter minus 45 days).
+* **FirstAutoActivation**: string (ReadOnly): The earliest date EKS may auto-activate this certificate authority (notAfter minus 6 months).
+
 ## ScoringStrategy
 ### Properties
 * **Resources**: [ResourceWeight](#resourceweight)[]: The resource weights used for scoring nodes.
@@ -475,7 +503,7 @@
 
 ## StorageConfig
 ### Properties
-* **BlockStorage**: [BlockStorage](#blockstorage): Todo: add description
+* **BlockStorage**: [BlockStorage](#blockstorage): Request to configure EBS Block Storage settings for your EKS Auto Mode cluster.
 
 ## Tag
 ### Properties
@@ -527,6 +555,11 @@
 ## UpgradePolicy
 ### Properties
 * **SupportType**: string: Specify the support type for your cluster.
+
+## Validity
+### Properties
+* **NotAfter**: string (ReadOnly): The end of the validity period for the certificate authority.
+* **NotBefore**: string (ReadOnly): The start of the validity period for the certificate authority.
 
 ## WarmPoolConfig
 ### Properties

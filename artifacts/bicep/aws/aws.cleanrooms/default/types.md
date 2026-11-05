@@ -16,6 +16,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.CleanRooms/CollaborationProperties](#awscleanroomscollaborationproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.CleanRooms/ConfiguredAudienceModelAssociation@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CleanRooms/ConfiguredAudienceModelAssociationProperties](#awscleanroomsconfiguredaudiencemodelassociationproperties) (Identifier): properties of the resource
+
 ## Resource AWS.CleanRooms/ConfiguredTable@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -131,6 +139,22 @@
 * **Name**: string (Required)
 * **QueryLogStatus**: string (Required)
 * **Tags**: [Tag](#tag)[]: An arbitrary set of tags (key-value pairs) for this cleanrooms collaboration.
+
+## AWS.CleanRooms/ConfiguredAudienceModelAssociationProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the configured audience model association.
+* **CollaborationArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the collaboration that contains this configured audience model association.
+* **CollaborationIdentifier**: string (ReadOnly): A unique identifier of the collaboration that contains this configured audience model association.
+* **ConfiguredAudienceModelArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the configured audience model that was used for this configured audience model association.
+* **ConfiguredAudienceModelAssociationIdentifier**: string (ReadOnly): A unique identifier of the configured audience model association.
+* **CreateTime**: string (ReadOnly): The time at which the configured audience model association was created.
+* **Description**: string (ReadOnly): The description of the configured audience model association.
+* **ManageResourcePolicies**: bool (ReadOnly): When TRUE, indicates that the resource policy for the configured audience model resource being associated is configured for Clean Rooms to manage permissions related to the given collaboration.
+* **MembershipArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the membership that contains this configured audience model association.
+* **MembershipIdentifier**: string (ReadOnly): A unique identifier for the membership that contains this configured audience model association.
+* **Name**: string (ReadOnly): The name of the configured audience model association.
+* **Tags**: [Tag](#tag)[] (ReadOnly): Tags associated with the configured audience model association.
+* **UpdateTime**: string (ReadOnly): The most recent time at which the configured audience model association was updated.
 
 ## AWS.CleanRooms/ConfiguredTableAssociationProperties
 ### Properties
@@ -447,6 +471,11 @@
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
 
 ## Tag
 ### Properties

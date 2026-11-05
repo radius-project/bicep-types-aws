@@ -317,6 +317,193 @@
   },
   {
     "$type": "ObjectType",
+    "name": "CredentialSummary",
+    "properties": {
+      "Failed": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Indicates whether the temporary credential request was successful."
+      },
+      "Issuer": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The fully qualified domain name of the issuing certificate for the presented end-entity certificate."
+      },
+      "SeenAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ISO-8601 time stamp of when the certificate was last used in a temporary credential request."
+      },
+      "SerialNumber": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The serial number of the certificate."
+      },
+      "X509CertificateData": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The PEM-encoded data of the certificate."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InstanceProperty",
+    "properties": {
+      "Failed": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Indicates whether the temporary credential request was successful."
+      },
+      "Properties": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "A list of instanceProperty objects."
+      },
+      "SeenAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ISO-8601 time stamp of when the certificate was last used in a temporary credential request."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Subject_Properties",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.RolesAnywhere/SubjectProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/22"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/23"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.RolesAnywhere/SubjectProperties",
+    "properties": {
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ISO-8601 timestamp when the subject was created."
+      },
+      "Credentials": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 2,
+        "description": "The temporary session credentials vended at the last authenticating call with this subject."
+      },
+      "InstanceProperties": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 2,
+        "description": "The specified instance properties associated with the request."
+      },
+      "LastSeenAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ISO-8601 timestamp of the last time this subject requested temporary session credentials."
+      },
+      "SubjectArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the subject."
+      },
+      "SubjectId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the subject."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ISO-8601 timestamp when the subject was last updated."
+      },
+      "X509Subject": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The x509 principal identifier of the authenticating certificate."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.RolesAnywhere/Subject",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.RolesAnywhere/Subject@default",
+    "body": {
+      "$ref": "#/29"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "NotificationChannel",
     "properties": {}
   },
@@ -361,7 +548,7 @@
     "properties": {
       "SourceData": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/38"
         },
         "flags": 1
       },
@@ -413,13 +600,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/24"
+      "$ref": "#/33"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/27"
+      "$ref": "#/36"
     }
   },
   {
@@ -440,19 +627,19 @@
       },
       "NotificationSettings": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/40"
         },
         "flags": 0
       },
       "Source": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/34"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/41"
         },
         "flags": 0
       },
@@ -490,7 +677,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/42"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -501,7 +688,7 @@
     "$type": "ResourceType",
     "name": "AWS.RolesAnywhere/TrustAnchor@default",
     "body": {
-      "$ref": "#/34"
+      "$ref": "#/43"
     },
     "readableScopes": 0,
     "writableScopes": 0

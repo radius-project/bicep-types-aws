@@ -1,0 +1,174 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-KafkaConnect-ConnectorOperation",
+  "type": "AWS::KafkaConnect::ConnectorOperation",
+  "time": "2026-11-05T20:43:14.954Z",
+  "schema": {
+    "additionalProperties": false,
+    "definitions": {
+      "CapacityDescription": {
+        "additionalProperties": false,
+        "description": "A description of the connector's capacity.",
+        "properties": {
+          "ProvisionedCapacity": {
+            "$ref": "#/definitions/ProvisionedCapacityDescription"
+          }
+        },
+        "type": "object"
+      },
+      "ConnectorOperationStep": {
+        "additionalProperties": false,
+        "description": "Details of a step involved in a connector's operation.",
+        "properties": {
+          "StepState": {
+            "description": "The step state of the operation.",
+            "enum": [
+              "PENDING",
+              "IN_PROGRESS",
+              "COMPLETED",
+              "FAILED",
+              "CANCELLED"
+            ],
+            "type": "string"
+          },
+          "StepType": {
+            "description": "The step type of the operation.",
+            "enum": [
+              "INITIALIZE_UPDATE",
+              "FINALIZE_UPDATE",
+              "UPDATE_WORKER_SETTING",
+              "UPDATE_CONNECTOR_CONFIGURATION",
+              "VALIDATE_UPDATE"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ProvisionedCapacityDescription": {
+        "additionalProperties": false,
+        "description": "The description of a connector's provisioned capacity.",
+        "properties": {
+          "McuCount": {
+            "description": "The number of microcontroller units (MCUs) allocated to each connector worker.",
+            "type": "integer"
+          },
+          "WorkerCount": {
+            "description": "The number of workers that are allocated to the connector.",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "WorkerSetting": {
+        "additionalProperties": false,
+        "description": "Details about worker setting of a connector.",
+        "properties": {
+          "Capacity": {
+            "$ref": "#/definitions/CapacityDescription"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource representing a connector operation in Amazon Managed Streaming for Apache Kafka Connect.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ConnectorArn": {
+              "description": "The Amazon Resource Name (ARN) of the connector.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "ConnectorArn"
+          ]
+        },
+        "permissions": [
+          "kafkaconnect:ListConnectorOperations"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "kafkaconnect:DescribeConnectorOperation",
+          "kafkaconnect:DescribeConnector"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ConnectorOperationArn"
+    ],
+    "properties": {
+      "ConnectorArn": {
+        "description": "The Amazon Resource Name (ARN) of the connector.",
+        "type": "string"
+      },
+      "ConnectorOperationArn": {
+        "description": "The Amazon Resource Name (ARN) of the connector operation.",
+        "type": "string"
+      },
+      "ConnectorOperationState": {
+        "description": "The state of the connector operation.",
+        "enum": [
+          "PENDING",
+          "UPDATE_IN_PROGRESS",
+          "UPDATE_COMPLETE",
+          "UPDATE_FAILED",
+          "ROLLBACK_IN_PROGRESS",
+          "ROLLBACK_FAILED",
+          "ROLLBACK_COMPLETE"
+        ],
+        "type": "string"
+      },
+      "ConnectorOperationType": {
+        "description": "The type of connector operation performed.",
+        "enum": [
+          "UPDATE_WORKER_SETTING",
+          "UPDATE_CONNECTOR_CONFIGURATION",
+          "ISOLATE_CONNECTOR",
+          "RESTORE_CONNECTOR"
+        ],
+        "type": "string"
+      },
+      "CreationTime": {
+        "description": "The time when the operation was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "EndTime": {
+        "description": "The time when the operation ended.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "OperationSteps": {
+        "description": "The array of operation steps taken.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/ConnectorOperationStep"
+        },
+        "type": "array"
+      },
+      "OriginWorkerSetting": {
+        "$ref": "#/definitions/WorkerSetting"
+      },
+      "TargetWorkerSetting": {
+        "$ref": "#/definitions/WorkerSetting"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ConnectorOperationArn",
+      "/properties/ConnectorArn",
+      "/properties/ConnectorOperationState",
+      "/properties/ConnectorOperationType",
+      "/properties/OperationSteps",
+      "/properties/OriginWorkerSetting",
+      "/properties/TargetWorkerSetting",
+      "/properties/CreationTime",
+      "/properties/EndTime"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::KafkaConnect::ConnectorOperation"
+  }
+}

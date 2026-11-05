@@ -1,0 +1,219 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EMR-NotebookExecution",
+  "type": "AWS::EMR::NotebookExecution",
+  "time": "2026-11-05T20:56:03.649Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/NotebookExecutionId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/EnvironmentVariables",
+      "/properties/ExecutionEngine",
+      "/properties/NotebookExecutionName",
+      "/properties/NotebookParams",
+      "/properties/NotebookS3Location",
+      "/properties/OutputNotebookFormat",
+      "/properties/OutputNotebookS3Location",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "ExecutionEngineConfig": {
+        "additionalProperties": false,
+        "description": "Specifies the execution engine (cluster) to run the notebook and perform the notebook execution.",
+        "properties": {
+          "Id": {
+            "description": "The unique identifier of the execution engine. For an Amazon EMR cluster, this is the cluster ID.",
+            "maxLength": 256,
+            "type": "string"
+          },
+          "Type": {
+            "description": "The type of execution engine.",
+            "enum": [
+              "EMR"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Id"
+        ],
+        "type": "object"
+      },
+      "NotebookS3Location": {
+        "additionalProperties": false,
+        "description": "The Amazon S3 location that stores the notebook execution input.",
+        "properties": {
+          "Bucket": {
+            "description": "The Amazon S3 bucket that stores the notebook execution input.",
+            "maxLength": 256,
+            "type": "string"
+          },
+          "Key": {
+            "description": "The key to the Amazon S3 location that stores the notebook execution input.",
+            "maxLength": 10280,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "OutputNotebookS3Location": {
+        "additionalProperties": false,
+        "description": "The Amazon S3 location for the notebook execution output.",
+        "properties": {
+          "Bucket": {
+            "description": "The Amazon S3 bucket that stores the notebook execution output.",
+            "maxLength": 256,
+            "type": "string"
+          },
+          "Key": {
+            "description": "The key to the Amazon S3 location that stores the notebook execution output.",
+            "maxLength": 10280,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "An Amazon EMR Notebook execution. A notebook execution is a specific instance that an Amazon EMR Notebook is run using the StartNotebookExecution action.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "elasticmapreduce:ListNotebookExecutions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "elasticmapreduce:DescribeNotebookExecution"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the notebook execution.",
+        "maxLength": 256,
+        "type": "string"
+      },
+      "EnvironmentVariables": {
+        "additionalProperties": false,
+        "description": "The environment variables associated with the notebook execution. Keys must be prefixed with KERNEL_ (except LOG_CONTEXT).",
+        "patternProperties": {
+          "^[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]{0,256}$": {
+            "maxLength": 10280,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ExecutionEngine": {
+        "$ref": "#/definitions/ExecutionEngineConfig"
+      },
+      "NotebookExecutionId": {
+        "description": "The unique identifier of the notebook execution.",
+        "maxLength": 256,
+        "type": "string"
+      },
+      "NotebookExecutionName": {
+        "description": "An optional name for the notebook execution.",
+        "maxLength": 256,
+        "type": "string"
+      },
+      "NotebookParams": {
+        "description": "Input parameters in JSON format passed to the Amazon EMR Notebook at runtime for execution.",
+        "maxLength": 10280,
+        "type": "string"
+      },
+      "NotebookS3Location": {
+        "$ref": "#/definitions/NotebookS3Location"
+      },
+      "OutputNotebookFormat": {
+        "description": "The output format for the notebook execution.",
+        "enum": [
+          "HTML"
+        ],
+        "type": "string"
+      },
+      "OutputNotebookS3Location": {
+        "$ref": "#/definitions/OutputNotebookS3Location"
+      },
+      "StartTime": {
+        "description": "The timestamp when notebook execution started.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the notebook execution.",
+        "enum": [
+          "START_PENDING",
+          "STARTING",
+          "RUNNING",
+          "FINISHING",
+          "FINISHED",
+          "FAILING",
+          "FAILED",
+          "STOP_PENDING",
+          "STOPPING",
+          "STOPPED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A list of tags associated with a notebook execution.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/NotebookExecutionId",
+      "/properties/Arn",
+      "/properties/Status",
+      "/properties/StartTime"
+    ],
+    "required": [],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "elasticmapreduce:AddTags",
+        "elasticmapreduce:RemoveTags"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::EMR::NotebookExecution"
+  }
+}

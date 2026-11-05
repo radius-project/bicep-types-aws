@@ -1,11 +1,402 @@
 [
   {
     "$type": "ObjectType",
+    "name": "LaunchAction",
+    "properties": {
+      "ActionCode": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "Launch action code."
+      },
+      "ActionId": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "Launch action Id."
+      },
+      "ActionVersion": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "Launch action version."
+      },
+      "Active": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "Whether the launch action is active."
+      },
+      "Category": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "Launch action category."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "Launch action description."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "Launch action name."
+      },
+      "Optional": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "Whether the launch action is optional."
+      },
+      "Order": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "Launch action order."
+      },
+      "Parameters": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "Launch action parameters."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "Launch action type."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LaunchActionParameter",
+    "properties": {
+      "Type": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "Type of the parameter."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "Value of the parameter."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LaunchActionRun",
+    "properties": {
+      "Action": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0
+      },
+      "RunId": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "Launch action run id."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "Run status of the launch action."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LaunchActionsStatus",
+    "properties": {
+      "Runs": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "List of post launch action status."
+      },
+      "SsmAgentDiscoveryDatetime": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "Time where the AWS Systems Manager was detected as running on the launched instance. The service returns UTC offsets (e.g. 2026-08-24T22:27:26.134456+00:00), which the Smithy model's own ISO8601DatetimeString pattern (trailing 'Z' required) rejects, so that pattern is deliberately not enforced here."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LaunchStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ParticipatingResource",
+    "properties": {
+      "LaunchStatus": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      },
+      "ParticipatingResourceID": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ParticipatingResourceID",
+    "properties": {
+      "SourceNetworkID": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "Source Network ID."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ParticipatingServer",
+    "properties": {
+      "LaunchActionsStatus": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "LaunchStatus": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      },
+      "RecoveryInstanceID": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The Recovery Instance ID of a participating server."
+      },
+      "SourceServerID": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The Source Server ID of a participating server."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "The key of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "The value of the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Job_Parameters",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DRS/JobProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DRS/JobProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 16,
+        "description": "The ARN of a Job."
+      },
+      "CreationDateTime": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "The date and time of when the Job was created. The service returns UTC offsets (e.g. 2026-08-24T22:27:26.134456+00:00), which the Smithy model's own ISO8601DatetimeString pattern (trailing 'Z' required) rejects, so that pattern is deliberately not enforced here."
+      },
+      "EndDateTime": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "The date and time of when the Job ended. The service returns UTC offsets (e.g. 2026-08-24T22:27:26.134456+00:00), which the Smithy model's own ISO8601DatetimeString pattern (trailing 'Z' required) rejects, so that pattern is deliberately not enforced here."
+      },
+      "InitiatedBy": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "A string representing who initiated the Job."
+      },
+      "JobID": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "The ID of the Job."
+      },
+      "ParticipatingResources": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "A list of resources that the Job is acting upon."
+      },
+      "ParticipatingServers": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "A list of servers that the Job is acting upon."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "The status of the Job."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "A list of tags associated with the Job."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "The type of the Job."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DRS/Job",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DRS/Job@default",
+    "body": {
+      "$ref": "#/19"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "Licensing",
     "properties": {
       "OsByol": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "Whether to enable Bring your own license or not."
@@ -18,25 +409,19 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 1,
         "description": "The key name of the tag."
       },
       "Value": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 1,
         "description": "The value for the tag."
       }
     }
-  },
-  {
-    "$type": "BooleanType"
-  },
-  {
-    "$type": "StringType"
   },
   {
     "$type": "StringLiteralType",
@@ -45,7 +430,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/22"
     }
   },
   {
@@ -54,76 +439,76 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 18,
         "description": "ARN of the Launch Configuration Template."
       },
       "CopyPrivateIp": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "Copy private IP."
       },
       "CopyTags": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "Copy tags."
       },
       "ExportBucketArn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "S3 bucket ARN to export Source Network templates."
       },
       "LaunchConfigurationTemplateID": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 2,
         "description": "ID of the Launch Configuration Template."
       },
       "LaunchDisposition": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "Launch disposition."
       },
       "LaunchIntoSourceInstance": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "DRS will set the 'launch into instance ID' of any source server when performing a drill, recovery or failback to the previous region or availability zone, using the instance ID of the source instance."
       },
       "Licensing": {
         "type": {
-          "$ref": "#/0"
+          "$ref": "#/21"
         },
         "flags": 0
       },
       "PostLaunchEnabled": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "Whether we want to activate post-launch actions."
       },
       "Tags": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "A set of tags associated with the Launch Configuration Template."
       },
       "TargetInstanceTypeRightSizingMethod": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "Target instance type right-sizing method."
@@ -136,21 +521,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/25"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -161,7 +546,7 @@
     "$type": "ResourceType",
     "name": "AWS.DRS/LaunchConfigurationTemplate@default",
     "body": {
-      "$ref": "#/7"
+      "$ref": "#/26"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -172,13 +557,155 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "The key of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "The value of the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DRS/RecoveryInstanceProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/28"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DRS/RecoveryInstanceProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 16,
+        "description": "The ARN of the Recovery Instance."
+      },
+      "EC2InstanceID": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "The EC2 instance ID of the Recovery Instance."
+      },
+      "EC2InstanceState": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "The state of the EC2 instance for this Recovery Instance."
+      },
+      "IsDrill": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 2,
+        "description": "Whether this Recovery Instance was created for a drill or for an actual Recovery event."
+      },
+      "JobID": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "The ID of the Job that created the Recovery Instance."
+      },
+      "OriginAvailabilityZone": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "AWS availability zone associated with the recovery instance."
+      },
+      "OriginEnvironment": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "Environment (On Premises / AWS) of the instance that the recovery instance originated from."
+      },
+      "RecoveryInstanceID": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "The ID of the Recovery Instance."
+      },
+      "SourceServerID": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "The Source Server ID that this Recovery Instance is associated with."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 2,
+        "description": "An array of tags that are associated with the Recovery Instance."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DRS/RecoveryInstance",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DRS/RecoveryInstance@default",
+    "body": {
+      "$ref": "#/32"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/9"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 1
       }
@@ -191,7 +718,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/9"
+      "$ref": "#/34"
     }
   },
   {
@@ -200,56 +727,56 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 18,
         "description": "The ARN of the Recovery Plan."
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 2,
         "description": "The timestamp when the Recovery Plan was created."
       },
       "Description": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "The description of the Recovery Plan."
       },
       "Name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 1,
         "description": "The name of the Recovery Plan."
       },
       "RecoveryPlanID": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 2,
         "description": "The ID of the Recovery Plan."
       },
       "Status": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 2,
         "description": "The status of the Recovery Plan. ACTIVE means executable. INVALID means the plan has no SERVER type steps and cannot be executed."
       },
       "Tags": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "The tags associated with the Recovery Plan."
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 2,
         "description": "The timestamp when the Recovery Plan was last updated."
@@ -262,21 +789,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/37"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -287,9 +814,130 @@
     "$type": "ResourceType",
     "name": "AWS.DRS/RecoveryPlan@default",
     "body": {
-      "$ref": "#/13"
+      "$ref": "#/38"
     },
     "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DRS/RecoveryPlanExecutionProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DRS/RecoveryPlanExecutionProperties",
+    "properties": {
+      "CompletedAt": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "The time at which the Recovery Plan execution reached a terminal status, as an ISO 8601 timestamp. Absent while the execution is still running. The service returns an explicit UTC offset (2026-09-06T09:36:19.037172+00:00, exactly 32 characters) which the model's own ISO8601DatetimeString pattern rejects, so only the PATTERN is widened here; the length bound stays at the model's 32."
+      },
+      "Mode": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "Whether the Recovery Plan ran as a drill or as an actual recovery."
+      },
+      "RecoveryPlanArn": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "The ARN of the Recovery Plan that this execution ran."
+      },
+      "RecoveryPlanExecutionArn": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 16,
+        "description": "The ARN of the Recovery Plan execution."
+      },
+      "StartedAt": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "The time at which the Recovery Plan execution started, as an ISO 8601 timestamp. The service returns an explicit UTC offset (2026-09-06T09:36:19.037172+00:00, exactly 32 characters) which the model's own ISO8601DatetimeString pattern rejects, so only the PATTERN is widened here; the length bound stays at the model's 32."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "The status of the Recovery Plan execution. Not constrained to a fixed set of values: the service documents an execution status (TIMED_OUT) that the published service model omits, so an enum here would reject a valid response."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0,
+        "description": "The tags associated with the Recovery Plan execution."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DRS/RecoveryPlanExecution",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DRS/RecoveryPlanExecution@default",
+    "body": {
+      "$ref": "#/44"
+    },
+    "readableScopes": 31,
     "writableScopes": 0
   },
   {
@@ -298,35 +946,35 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "Whether this rule is enabled or not."
       },
       "Interval": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/11"
         },
         "flags": 1,
         "description": "How often, in the chosen units, a snapshot should be taken."
       },
       "RetentionDuration": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/11"
         },
         "flags": 1,
         "description": "The duration to retain a snapshot for, in the chosen units."
       },
       "RuleID": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "The ID of the rule."
       },
       "Units": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 1,
         "description": "The units used to measure the interval and retentionDuration."
@@ -339,22 +987,19 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 1,
         "description": "The key of the tag."
       },
       "Value": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 1,
         "description": "The value of the tag."
       }
     }
-  },
-  {
-    "$type": "IntegerType"
   },
   {
     "$type": "StringLiteralType",
@@ -363,13 +1008,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/15"
+      "$ref": "#/46"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/9"
     }
   },
   {
@@ -380,7 +1025,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/16"
+      "$ref": "#/47"
     }
   },
   {
@@ -389,126 +1034,126 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 18,
         "description": "The Replication Configuration Template ARN."
       },
       "AssociateDefaultSecurityGroup": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "Whether to associate the default Elastic Disaster Recovery Security group with the Replication Configuration Template."
       },
       "AutoReplicateNewDisks": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "Whether to allow the AWS replication agent to automatically replicate newly added disks."
       },
       "BandwidthThrottling": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/11"
         },
         "flags": 1,
         "description": "Configure bandwidth throttling for the outbound data transfer rate of the Source Server in Mbps."
       },
       "CreatePublicIP": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "Whether to create a Public IP for the Recovery Instance by default."
       },
       "DataPlaneRouting": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "The data plane routing mechanism that will be used for replication."
       },
       "DefaultLargeStagingDiskType": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "The Staging Disk EBS volume type to be used during replication."
       },
       "EbsEncryption": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 1,
         "description": "The type of EBS encryption to be used during replication."
       },
       "EbsEncryptionKeyArn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "The ARN of the EBS encryption key to be used during replication."
       },
       "InternetProtocol": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "Which version of the Internet Protocol to use for replication of data."
       },
       "PitPolicy": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/49"
         },
         "flags": 1,
         "description": "The Point in time (PIT) policy to manage snapshots taken during replication."
       },
       "ReplicationConfigurationTemplateID": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 2,
         "description": "The Replication Configuration Template ID."
       },
       "ReplicationServerInstanceType": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "The instance type to be used for the replication server."
       },
       "ReplicationServersSecurityGroupsIDs": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/50"
         },
         "flags": 1,
         "description": "The security group IDs that will be used by the replication server."
       },
       "StagingAreaSubnetId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 1,
         "description": "The subnet to be used by the replication staging area."
       },
       "StagingAreaTags": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/51"
         },
         "flags": 1,
         "description": "A set of tags to be associated with all resources created in the replication staging area: EC2 replication server, EBS volumes, EBS snapshots, etc."
       },
       "Tags": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "A set of tags to be associated with the Replication Configuration Template resource."
       },
       "UseDedicatedReplicationServer": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "Whether to use a dedicated Replication Server in the replication staging area."
@@ -521,21 +1166,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/53"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -546,7 +1191,7 @@
     "$type": "ResourceType",
     "name": "AWS.DRS/ReplicationConfigurationTemplate@default",
     "body": {
-      "$ref": "#/24"
+      "$ref": "#/54"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -557,13 +1202,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 1
       }
@@ -576,7 +1221,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/26"
+      "$ref": "#/56"
     }
   },
   {
@@ -585,42 +1230,42 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 18,
         "description": "The ARN of the Source Network."
       },
       "OriginAccountID": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 1,
         "description": "The account ID containing the VPC to protect."
       },
       "OriginRegion": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 1,
         "description": "The region containing the VPC to protect."
       },
       "SourceNetworkID": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 2,
         "description": "The ID of the Source Network."
       },
       "Tags": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/58"
         },
         "flags": 0,
         "description": "A set of tags associated with the Source Network."
       },
       "VpcID": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 1,
         "description": "The VPC ID to protect."
@@ -633,21 +1278,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/9"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/59"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -658,9 +1303,346 @@
     "$type": "ResourceType",
     "name": "AWS.DRS/SourceNetwork@default",
     "body": {
-      "$ref": "#/30"
+      "$ref": "#/60"
     },
     "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CPU",
+    "properties": {
+      "Cores": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "The number of CPU cores."
+      },
+      "ModelName": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The model name of the CPU."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataReplicationInfo",
+    "properties": {
+      "DataReplicationState": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The state of the data replication."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Disk",
+    "properties": {
+      "Bytes": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "The amount of storage on the disk in bytes."
+      },
+      "DeviceName": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The disk or device name."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IdentificationHints",
+    "properties": {
+      "AwsInstanceID": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The AWS Instance ID identification hint."
+      },
+      "Fqdn": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The Fully Qualified Domain Name identification hint."
+      },
+      "Hostname": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The hostname identification hint."
+      },
+      "VmWareUuid": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The VMware vCenter UUID identification hint. Only populated for VMware-origin Source Servers."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NetworkInterface",
+    "properties": {
+      "Ips": {
+        "type": {
+          "$ref": "#/70"
+        },
+        "flags": 0,
+        "description": "The IP addresses of the network interface."
+      },
+      "IsPrimary": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "Whether this is the primary network interface."
+      },
+      "MacAddress": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The MAC address of the network interface."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OS",
+    "properties": {
+      "FullString": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The long name of the Operating System."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceProperties",
+    "properties": {
+      "Cpus": {
+        "type": {
+          "$ref": "#/71"
+        },
+        "flags": 0,
+        "description": "The CPUs of the Source Server."
+      },
+      "Disks": {
+        "type": {
+          "$ref": "#/72"
+        },
+        "flags": 0,
+        "description": "The disks of the Source Server."
+      },
+      "IdentificationHints": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 0
+      },
+      "LastUpdatedDateTime": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The date and time the Source Server properties were last updated."
+      },
+      "NetworkInterfaces": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0,
+        "description": "The network interfaces of the Source Server."
+      },
+      "Os": {
+        "type": {
+          "$ref": "#/67"
+        },
+        "flags": 0
+      },
+      "RamBytes": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "The amount of RAM in bytes."
+      },
+      "RecommendedInstanceType": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The recommended EC2 instance type that will be used when launching a recovery instance."
+      },
+      "SupportsNitroInstances": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "Whether the Source Server supports Nitro instances."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "The key of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1,
+        "description": "The value of the tag."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/9"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/62"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/64"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/66"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DRS/SourceServerProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/69"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DRS/SourceServerProperties",
+    "properties": {
+      "AgentVersion": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "The version of the AWS Replication Agent installed on the Source Server."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 16,
+        "description": "The ARN of the Source Server."
+      },
+      "DataReplicationInfo": {
+        "type": {
+          "$ref": "#/63"
+        },
+        "flags": 2
+      },
+      "ReplicationDirection": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "The replication direction of the Source Server."
+      },
+      "SourceProperties": {
+        "type": {
+          "$ref": "#/68"
+        },
+        "flags": 2
+      },
+      "SourceServerID": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "The ID of the Source Server."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/75"
+        },
+        "flags": 2,
+        "description": "An array of tags that are associated with the Source Server."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DRS/SourceServer",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/76"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DRS/SourceServer@default",
+    "body": {
+      "$ref": "#/77"
+    },
+    "readableScopes": 31,
     "writableScopes": 0
   }
 ]

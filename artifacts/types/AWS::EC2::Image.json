@@ -1,0 +1,376 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-Image",
+  "type": "AWS::EC2::Image",
+  "time": "2026-11-05T21:03:55.498Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ImageId"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "BlockDeviceMapping": {
+        "additionalProperties": false,
+        "properties": {
+          "DeviceName": {
+            "type": "string"
+          },
+          "Ebs": {
+            "$ref": "#/definitions/EbsBlockDevice"
+          },
+          "NoDevice": {
+            "type": "string"
+          },
+          "VirtualName": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "EbsBlockDevice": {
+        "additionalProperties": false,
+        "properties": {
+          "AvailabilityZone": {
+            "type": "string"
+          },
+          "AvailabilityZoneId": {
+            "type": "string"
+          },
+          "DeleteOnTermination": {
+            "type": "boolean"
+          },
+          "EbsCardIndex": {
+            "type": "integer"
+          },
+          "Encrypted": {
+            "type": "boolean"
+          },
+          "Iops": {
+            "type": "integer"
+          },
+          "KmsKeyId": {
+            "type": "string"
+          },
+          "OutpostArn": {
+            "type": "string"
+          },
+          "SnapshotId": {
+            "type": "string"
+          },
+          "Throughput": {
+            "type": "integer"
+          },
+          "VolumeInitializationRate": {
+            "type": "integer"
+          },
+          "VolumeSize": {
+            "type": "integer"
+          },
+          "VolumeType": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ImageWatermark": {
+        "additionalProperties": false,
+        "properties": {
+          "SourceImageCreationTime": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "SourceImageId": {
+            "type": "string"
+          },
+          "SourceImageRegion": {
+            "type": "string"
+          },
+          "WatermarkCreationTime": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "WatermarkKey": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ProductCode": {
+        "additionalProperties": false,
+        "properties": {
+          "ProductCodeId": {
+            "type": "string"
+          },
+          "ProductCodeType": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource type definition for AWS::EC2::Image (read-only). Represents an existing Amazon Machine Image (AMI) and supports Read and List for referencing AMIs in templates and for inventory/compliance coverage. AMI provisioning is intentionally out of scope: AMIs are long-lived, built through a multi-step process, and their create APIs can run for days, which does not fit a CloudFormation stack lifecycle. Every field returned by DescribeImages is modelled so a Read of any AMI (encrypted, Windows, paravirtual, Outpost, etc.) conforms to the schema.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "ec2:DescribeImages"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ec2:DescribeImages"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Architecture": {
+        "description": "The architecture of the AMI.",
+        "type": "string"
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the AMI.",
+        "type": "string"
+      },
+      "BlockDeviceMappings": {
+        "description": "The block device mappings of the AMI.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/BlockDeviceMapping"
+        },
+        "type": "array"
+      },
+      "BootMode": {
+        "description": "The boot mode of the AMI.",
+        "type": "string"
+      },
+      "CreationDate": {
+        "description": "The date and time the AMI was created.",
+        "type": "string"
+      },
+      "DeprecationTime": {
+        "description": "The date and time the AMI is set to be deprecated, as returned by DescribeImages.",
+        "type": "string"
+      },
+      "DeregistrationProtection": {
+        "description": "The deregistration protection state of the AMI.",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description of the AMI.",
+        "type": "string"
+      },
+      "EnaSupport": {
+        "description": "Whether enhanced networking with ENA is enabled.",
+        "type": "boolean"
+      },
+      "FreeTierEligible": {
+        "description": "Whether the AMI is eligible for the AWS Free Tier.",
+        "type": "boolean"
+      },
+      "Hypervisor": {
+        "description": "The hypervisor type of the AMI.",
+        "type": "string"
+      },
+      "ImageAllowed": {
+        "description": "Whether the AMI is allowed under Allowed AMIs settings.",
+        "type": "boolean"
+      },
+      "ImageId": {
+        "description": "The ID of the AMI.",
+        "type": "string"
+      },
+      "ImageLocation": {
+        "description": "The location of the AMI.",
+        "type": "string"
+      },
+      "ImageOwnerAlias": {
+        "description": "The owner alias (amazon, aws-backup-vault, or aws-marketplace).",
+        "type": "string"
+      },
+      "ImageType": {
+        "description": "The type of image.",
+        "type": "string"
+      },
+      "ImageWatermarks": {
+        "description": "The image watermarks associated with the AMI.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/ImageWatermark"
+        },
+        "type": "array"
+      },
+      "ImdsSupport": {
+        "description": "Whether IMDSv2 is required (v2.0).",
+        "type": "string"
+      },
+      "KernelId": {
+        "description": "The ID of the kernel (paravirtual images).",
+        "type": "string"
+      },
+      "LastLaunchedTime": {
+        "description": "The most recent date and time the AMI was used to launch an instance.",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the AMI.",
+        "type": "string"
+      },
+      "OwnerId": {
+        "description": "The ID of the AWS account that owns the AMI.",
+        "type": "string"
+      },
+      "Platform": {
+        "description": "The operating system platform (e.g. Windows), when applicable.",
+        "type": "string"
+      },
+      "PlatformDetails": {
+        "description": "The platform details associated with the billing code of the AMI.",
+        "type": "string"
+      },
+      "ProductCodes": {
+        "description": "Any product codes associated with the AMI.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/ProductCode"
+        },
+        "type": "array"
+      },
+      "Public": {
+        "description": "Whether the AMI has public launch permissions.",
+        "type": "boolean"
+      },
+      "PublicSsmParameterName": {
+        "description": "The name of a public SSM parameter that points to this AMI, if applicable.",
+        "type": "string"
+      },
+      "RamdiskId": {
+        "description": "The ID of the RAM disk (paravirtual images).",
+        "type": "string"
+      },
+      "RootDeviceName": {
+        "description": "The device name of the root device volume.",
+        "type": "string"
+      },
+      "RootDeviceType": {
+        "description": "The type of root device used by the AMI.",
+        "type": "string"
+      },
+      "SourceImageId": {
+        "description": "The ID of the source AMI, if applicable.",
+        "type": "string"
+      },
+      "SourceImageRegion": {
+        "description": "The Region of the source AMI, if applicable.",
+        "type": "string"
+      },
+      "SourceInstanceId": {
+        "description": "For an AMI created from an instance, the ID of the source instance.",
+        "type": "string"
+      },
+      "SriovNetSupport": {
+        "description": "Whether enhanced networking with the Intel 82599 VF interface is enabled.",
+        "type": "string"
+      },
+      "State": {
+        "description": "The current state of the AMI.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Any tags assigned to the AMI.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "TpmSupport": {
+        "description": "The TPM support value.",
+        "type": "string"
+      },
+      "UsageOperation": {
+        "description": "The operation of the AMI for usage billing.",
+        "type": "string"
+      },
+      "VirtualizationType": {
+        "description": "The type of virtualization of the AMI.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ImageId",
+      "/properties/Arn",
+      "/properties/Name",
+      "/properties/Description",
+      "/properties/Architecture",
+      "/properties/RootDeviceName",
+      "/properties/RootDeviceType",
+      "/properties/VirtualizationType",
+      "/properties/Hypervisor",
+      "/properties/ImageType",
+      "/properties/OwnerId",
+      "/properties/ImageOwnerAlias",
+      "/properties/Public",
+      "/properties/EnaSupport",
+      "/properties/SriovNetSupport",
+      "/properties/BootMode",
+      "/properties/ImdsSupport",
+      "/properties/TpmSupport",
+      "/properties/KernelId",
+      "/properties/RamdiskId",
+      "/properties/PlatformDetails",
+      "/properties/UsageOperation",
+      "/properties/Platform",
+      "/properties/ImageLocation",
+      "/properties/State",
+      "/properties/CreationDate",
+      "/properties/DeprecationTime",
+      "/properties/LastLaunchedTime",
+      "/properties/DeregistrationProtection",
+      "/properties/SourceImageId",
+      "/properties/SourceImageRegion",
+      "/properties/SourceInstanceId",
+      "/properties/PublicSsmParameterName",
+      "/properties/ImageAllowed",
+      "/properties/FreeTierEligible",
+      "/properties/BlockDeviceMappings",
+      "/properties/ProductCodes",
+      "/properties/ImageWatermarks",
+      "/properties/Tags"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "ec2:DescribeImages"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::EC2::Image"
+  }
+}

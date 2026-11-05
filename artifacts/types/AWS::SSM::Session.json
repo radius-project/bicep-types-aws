@@ -1,0 +1,101 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SSM-Session",
+  "type": "AWS::SSM::Session",
+  "time": "2026-11-05T21:20:22.916Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/SessionId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Reason",
+      "/properties/Target"
+    ],
+    "description": "Returns information about a Session Manager session.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "ssm:DescribeSessions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ssm:DescribeSessions"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "AccessType": {
+        "description": "The access type for the session.",
+        "enum": [
+          "Standard",
+          "JustInTime"
+        ],
+        "type": "string"
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the session.",
+        "type": "string"
+      },
+      "Owner": {
+        "description": "The ID of the Amazon Web Services user that started the session.",
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Reason": {
+        "description": "The reason for connecting to the instance.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^.{1,256}$",
+        "type": "string"
+      },
+      "SessionId": {
+        "description": "The ID of the session.",
+        "maxLength": 96,
+        "minLength": 1,
+        "type": "string"
+      },
+      "StartDate": {
+        "description": "The date and time, in ISO-8601 Extended format, when the session began.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the session.",
+        "enum": [
+          "Connected",
+          "Connecting",
+          "Disconnected",
+          "Terminated",
+          "Terminating",
+          "Failed"
+        ],
+        "type": "string"
+      },
+      "Target": {
+        "description": "The managed node to connect to for the session.",
+        "maxLength": 400,
+        "minLength": 1,
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/SessionId",
+      "/properties/Status",
+      "/properties/StartDate",
+      "/properties/Owner",
+      "/properties/AccessType"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::SSM::Session"
+  }
+}

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Interconnect-Connection",
   "type": "AWS::Interconnect::Connection",
-  "time": "2026-07-02T16:45:36.479Z",
+  "time": "2026-11-05T19:08:27.29Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -88,6 +88,7 @@
       "delete": {
         "permissions": [
           "interconnect:GetConnection",
+          "interconnect:ListTagsForResource",
           "interconnect:DeleteConnection"
         ]
       },
@@ -122,7 +123,7 @@
       },
       "Arn": {
         "description": "The Amazon Resource Name (ARN) of the connection.",
-        "pattern": "^arn:aws[a-z-]*:interconnect:[^:]+:[0-9]{12}:connection/mcc-[a-z0-9]{8}$",
+        "pattern": "^arn:aws[a-z-]*:interconnect:[^:]+:[0-9]{12}:connection/(mcc|lmcc)-[a-z0-9]{8}$",
         "type": "string"
       },
       "AttachPoint": {
@@ -142,7 +143,7 @@
       },
       "ConnectionId": {
         "description": "The unique identifier for the connection.",
-        "pattern": "^mcc-[a-z0-9]{8}$",
+        "pattern": "^(mcc|lmcc)-[a-z0-9]{8}$",
         "type": "string"
       },
       "Description": {
@@ -239,7 +240,8 @@
       "cloudFormationSystemTags": true,
       "permissions": [
         "interconnect:TagResource",
-        "interconnect:UntagResource"
+        "interconnect:UntagResource",
+        "interconnect:ListTagsForResource"
       ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",

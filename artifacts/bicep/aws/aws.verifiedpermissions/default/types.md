@@ -24,6 +24,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.VerifiedPermissions/PolicyStoreProperties](#awsverifiedpermissionspolicystoreproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.VerifiedPermissions/PolicyStoreAlias@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.VerifiedPermissions/PolicyStoreAliasProperties](#awsverifiedpermissionspolicystorealiasproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.VerifiedPermissions/PolicyTemplate@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -47,6 +55,11 @@
 * **PolicyId**: string (ReadOnly, Identifier)
 * **PolicyStoreId**: string (Required, Identifier)
 * **PolicyType**: string (ReadOnly)
+
+## AWS.VerifiedPermissions/PolicyStoreAliasProperties
+### Properties
+* **AliasName**: string (Required, Identifier)
+* **PolicyStoreId**: string (Required)
 
 ## AWS.VerifiedPermissions/PolicyStoreProperties
 ### Properties

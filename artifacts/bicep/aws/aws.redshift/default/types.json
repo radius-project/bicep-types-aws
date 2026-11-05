@@ -780,6 +780,120 @@
   },
   {
     "$type": "ObjectType",
+    "name": "DataShareAssociation",
+    "properties": {
+      "ConsumerIdentifier": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The name of the consumer accounts that have an association with a producer datashare."
+      },
+      "CreatedDate": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The creation date of the datashare association."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The status of the datashare association."
+      },
+      "StatusChangeDate": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The status change date of the datashare association."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Redshift/DataShareProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/31"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Redshift/DataShareProperties",
+    "properties": {
+      "AllowPubliclyAccessibleConsumers": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "Whether the datashare can be shared to a publicly accessible cluster."
+      },
+      "DataShareArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the datashare."
+      },
+      "DataShareAssociations": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 2,
+        "description": "Associations between producer and data consumers."
+      },
+      "ProducerArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the producer namespace."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Redshift/DataShare",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Redshift/DataShare@default",
+    "body": {
+      "$ref": "#/35"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "NetworkInterface",
     "properties": {
       "AvailabilityZone": {
@@ -839,7 +953,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/31"
+      "$ref": "#/37"
     }
   },
   {
@@ -848,7 +962,7 @@
     "properties": {
       "NetworkInterfaces": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/40"
         },
         "flags": 2,
         "description": "One or more network interfaces of the endpoint. Also known as an interface endpoint."
@@ -878,7 +992,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/32"
+      "$ref": "#/38"
     }
   },
   {
@@ -943,21 +1057,21 @@
       },
       "VpcEndpoint": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/41"
         },
         "flags": 2,
         "description": "The connection endpoint for connecting to an Amazon Redshift cluster through the proxy."
       },
       "VpcSecurityGroupIds": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/42"
         },
         "flags": 1,
         "description": "A list of vpc security group ids to apply to the created endpoint access."
       },
       "VpcSecurityGroups": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/43"
         },
         "flags": 2,
         "description": "A list of Virtual Private Cloud (VPC) security groups to be associated with the endpoint."
@@ -984,7 +1098,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/44"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -995,7 +1109,7 @@
     "$type": "ResourceType",
     "name": "AWS.Redshift/EndpointAccess@default",
     "body": {
-      "$ref": "#/39"
+      "$ref": "#/45"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1046,7 +1160,7 @@
       },
       "AllowedVPCs": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/50"
         },
         "flags": 2,
         "description": "The VPCs allowed access to the cluster."
@@ -1109,7 +1223,7 @@
       },
       "VpcIds": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "The virtual private cloud (VPC) identifiers to grant or revoke access to."
@@ -1136,7 +1250,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/52"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1147,7 +1261,7 @@
     "$type": "ResourceType",
     "name": "AWS.Redshift/EndpointAuthorization@default",
     "body": {
-      "$ref": "#/47"
+      "$ref": "#/53"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1203,7 +1317,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/49"
+      "$ref": "#/55"
     }
   },
   {
@@ -1233,14 +1347,14 @@
       },
       "EventCategories": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/57"
         },
         "flags": 0,
         "description": "Specifies the Amazon Redshift event categories to be published by the event notification subscription."
       },
       "EventCategoriesList": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/58"
         },
         "flags": 2,
         "description": "The list of Amazon Redshift event categories specified in the event notification subscription."
@@ -1261,14 +1375,14 @@
       },
       "SourceIds": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/59"
         },
         "flags": 0,
         "description": "A list of one or more identifiers of Amazon Redshift source objects."
       },
       "SourceIdsList": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/60"
         },
         "flags": 2,
         "description": "A list of the sources that publish events to the Amazon Redshift event notification subscription."
@@ -1303,7 +1417,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/61"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1330,7 +1444,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/62"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1341,7 +1455,7 @@
     "$type": "ResourceType",
     "name": "AWS.Redshift/EventSubscription@default",
     "body": {
-      "$ref": "#/57"
+      "$ref": "#/63"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1379,7 +1493,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/60"
+      "$ref": "#/66"
     }
   },
   {
@@ -1389,7 +1503,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/60"
+      "$ref": "#/66"
     }
   },
   {
@@ -1398,7 +1512,7 @@
     "properties": {
       "AdditionalEncryptionContext": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/65"
         },
         "flags": 0
       },
@@ -1439,7 +1553,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/70"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1473,7 +1587,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/71"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1484,7 +1598,7 @@
     "$type": "ResourceType",
     "name": "AWS.Redshift/Integration@default",
     "body": {
-      "$ref": "#/66"
+      "$ref": "#/72"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1555,19 +1669,19 @@
     "properties": {
       "ResizeCluster": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/75"
         },
         "flags": 0
       },
       "PauseCluster": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/74"
         },
         "flags": 0
       },
       "ResumeCluster": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/76"
         },
         "flags": 0
       }
@@ -1615,7 +1729,7 @@
       },
       "NextInvocations": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/80"
         },
         "flags": 2,
         "description": "List of times when the scheduled action will run."
@@ -1657,7 +1771,7 @@
       },
       "TargetAction": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/77"
         },
         "flags": 0,
         "description": "A JSON format string of the Amazon Redshift API operation with input parameters."
@@ -1684,7 +1798,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/81"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1695,7 +1809,7 @@
     "$type": "ResourceType",
     "name": "AWS.Redshift/ScheduledAction@default",
     "body": {
-      "$ref": "#/76"
+      "$ref": "#/82"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1727,7 +1841,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/78"
+      "$ref": "#/84"
     }
   },
   {
@@ -1890,7 +2004,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/86"
         },
         "flags": 0,
         "description": "A list of tag instances."
@@ -1924,7 +2038,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/87"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1935,7 +2049,7 @@
     "$type": "ResourceType",
     "name": "AWS.Redshift/Snapshot@default",
     "body": {
-      "$ref": "#/82"
+      "$ref": "#/88"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1967,7 +2081,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/84"
+      "$ref": "#/90"
     }
   },
   {
@@ -1997,7 +2111,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/92"
         },
         "flags": 0,
         "description": "A list of tag instances."
@@ -2024,7 +2138,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/93"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2035,7 +2149,7 @@
     "$type": "ResourceType",
     "name": "AWS.Redshift/SnapshotCopyGrant@default",
     "body": {
-      "$ref": "#/88"
+      "$ref": "#/94"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2073,7 +2187,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/90"
+      "$ref": "#/96"
     }
   },
   {
@@ -2096,7 +2210,7 @@
       },
       "ScheduleDefinitions": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/98"
         },
         "flags": 1,
         "description": "The definition of the snapshot schedule. The definition is made up of schedule expressions, for example \"cron(30 12 *)\" or \"rate(12 hours)\"."
@@ -2117,7 +2231,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/99"
         },
         "flags": 0,
         "description": "An optional set of tags for the snapshot schedule."
@@ -2144,7 +2258,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/100"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2155,7 +2269,7 @@
     "$type": "ResourceType",
     "name": "AWS.Redshift/SnapshotSchedule@default",
     "body": {
-      "$ref": "#/95"
+      "$ref": "#/101"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2187,7 +2301,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/97"
+      "$ref": "#/103"
     }
   },
   {
@@ -2245,7 +2359,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/105"
         },
         "flags": 0,
         "description": "A list of tag instances."
@@ -2279,7 +2393,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/106"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2290,7 +2404,7 @@
     "$type": "ResourceType",
     "name": "AWS.Redshift/UsageLimit@default",
     "body": {
-      "$ref": "#/101"
+      "$ref": "#/107"
     },
     "readableScopes": 0,
     "writableScopes": 0
