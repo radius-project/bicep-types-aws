@@ -242,40 +242,31 @@ export function applyRadius(records: SchemaRecord[], radius: RadiusInputs): Radi
 
 export interface PreviousInputs {
     // The AWS types the checked-in types were generated from.
-    aws?: SchemaRecord[]
+    aws: SchemaRecord[]
     // The Radius inputs the checked-in types were generated from.
-    radius?: RadiusInputs
+    radius: RadiusInputs
 }
 
-// newClashes returns the clashes where either side is new: AWS's type or property is
-// not in the previous AWS types, or Radius's hand-written schema or extra property is
-// not in the previous Radius inputs. A clash both sides already had is left out, so a
-// clash a person reviewed is not reported again. A side with no previous inputs is not
-// compared, and with neither, every clash is new.
+// newClashes returns the clashes where either side is new, compared with the inputs
+// the checked-in types were generated from. A clash both sides already had is left
+// out, so a clash a person reviewed is not reported again.
+//   - A type clash is new if AWS's previous types or Radius's previous hand-written
+//     schemas don't have the type.
+//   - A property clash is new if the type's previous schema, before extra properties
+//     were added, or Radius's previous extra properties don't have the property. The
+//     previous schema is AWS's or Radius's, whichever the extension used.
 export function newClashes(clashes: Clash[], previous: PreviousInputs): Clash[] {
-    if (!previous.aws && !previous.radius) {
-        return clashes
-    }
+    const previousAws = new Set(previous.aws.map(r => r.type))
+    const previousSchemas = new Map(
+        applyRadius(previous.aws, { ...previous.radius, extraProperties: {} }).records.map(r => [r.type, r.schema]))
 
-    const previousAws = new Map((previous.aws ?? []).map(r => [r.type, r]))
-    return clashes.filter(clash =>
-        (previous.aws !== undefined && !awsHad(previousAws, clash)) ||
-        (previous.radius !== undefined && !radiusHad(previous.radius, clash)))
-}
-
-function awsHad(previous: Map<string, SchemaRecord>, clash: Clash): boolean {
-    const record = previous.get(clash.type)
-    if (!record) {
-        return false
-    }
-    return clash.property === undefined || hasOwn(record.schema.properties ?? {}, clash.property)
-}
-
-function radiusHad(previous: RadiusInputs, clash: Clash): boolean {
-    if (clash.property === undefined) {
-        return previous.handwritten.has(clash.type)
-    }
-    return hasOwn(previous.extraProperties[clash.type] ?? {}, clash.property)
+    return clashes.filter(clash => {
+        if (clash.property === undefined) {
+            return !previousAws.has(clash.type) || !previous.radius.handwritten.has(clash.type)
+        }
+        return !hasOwn(previousSchemas.get(clash.type)?.properties ?? {}, clash.property) ||
+            !hasOwn(previous.radius.extraProperties[clash.type] ?? {}, clash.property)
+    })
 }
 
 function hasOwn(value: object, key: string): boolean {

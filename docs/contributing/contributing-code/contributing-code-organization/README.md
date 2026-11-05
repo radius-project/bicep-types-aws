@@ -28,7 +28,7 @@ Radius serves some AWS types with its own handlers, and some types return extra 
 | `pkg/aws/schemas/handwritten/`                   | `--radius-handwritten-schemas` | Adds each type. If AWS also publishes the type, keeps the Radius schema and reports a clash                                                                |
 | `pkg/aws/extraproperties/extra_properties.json`  | `--radius-extra-properties`    | Adds each type's extra properties as read-only. If the type already has a property with the same name, keeps that property, skips the extra one, and reports a clash |
 
-The generator reads every `.json` file under the schema directories, skips `*.metadata.json` files, and keys each schema on its `typeName`, not its file name. A schema directory that doesn't exist has no schemas. Paths are relative to `--radius`, which defaults to `../../radius`. `--clash-report <file>` writes the clashes as Markdown. With `--previous-input <dir>` (earlier AWS types) and `--previous-radius <dir>` (an earlier Radius checkout), it writes only clashes where either side is new.
+The generator reads every `.json` file under the schema directories, skips `*.metadata.json` files, and keys each schema on its `typeName`, not its file name. A schema directory that doesn't exist has no schemas. Paths are relative to `--radius`, which defaults to `../../radius`. `--clash-report <file>` writes the clashes as Markdown. With both `--previous-input <dir>` (earlier AWS types) and `--previous-radius <dir>` (an earlier Radius checkout), it writes only clashes where either side is new.
 
 The extension now depends on a Radius version, so the submodule pins a Radius commit:
 

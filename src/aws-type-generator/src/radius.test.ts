@@ -293,10 +293,6 @@ describe('newClashes', () => {
         extraProperties: { 'AWS::MSK::Cluster': { BootstrapBrokerString: { type: 'string' } as any } },
     })
 
-    test('with no previous inputs, every clash is new', () => {
-        expect(newClashes(clashes, {})).toEqual(clashes)
-    })
-
     test('leaves out a clash both sides already had', () => {
         expect(newClashes(clashes, { aws: awsHadBoth(), radius: radiusHadBoth() })).toEqual([])
     })
@@ -324,11 +320,32 @@ describe('newClashes', () => {
         expect(newClashes(clashes, { aws: awsHadBoth(), radius: { ...radiusHadBoth(), extraProperties: { 'AWS::MSK::Cluster': {} } } })).toEqual([propertyClash])
     })
 
-    test('with only one side given, compares only that side', () => {
-        expect(newClashes(clashes, { aws: awsHadBoth() })).toEqual([])
-        expect(newClashes(clashes, { aws: [] })).toEqual(clashes)
-        expect(newClashes(clashes, { radius: radiusHadBoth() })).toEqual([])
-        expect(newClashes(clashes, { radius: emptyInputs() })).toEqual(clashes)
+    test('reports a property a native schema newly adds when AWS and the extra properties already had it', () => {
+        const extraProperties = { 'AWS::CodeBuild::Project': { Arn: { type: 'string' } as any } }
+        const records = [awsRecord('AWS::CodeBuild::Project', { Id: { type: 'string' } as any, Arn: { type: 'string' } as any })]
+        const native = (properties: string[]) => new Map([['AWS::CodeBuild::Project', {
+            file: 'pkg/aws/schemas/native/aws-codebuild-project.json',
+            schema: { ...awsRecord('AWS::CodeBuild::Project').schema, properties: Object.fromEntries(['Id', ...properties].map(p => [p, { type: 'string' } as any])) },
+        }]])
+        const before = { ...emptyInputs(), native: native([]), extraProperties }
+        const after = { ...emptyInputs(), native: native(['Arn']), extraProperties }
+
+        const clashes = applyRadius(records, after).clashes
+
+        expect(applyRadius(records, before).clashes).toEqual([])
+        expect(clashes).toEqual([{ type: 'AWS::CodeBuild::Project', property: 'Arn' }])
+        expect(newClashes(clashes, { aws: records, radius: before })).toEqual(clashes)
+        expect(newClashes(clashes, { aws: records, radius: after })).toEqual([])
+    })
+
+    test('leaves out an unchanged property clash on a type only Radius provides', () => {
+        const radius = { ...emptyInputs(), handwritten: loadRadius(fixturePaths).handwritten, extraProperties: { 'AWS::S3::Object': { Key: { type: 'string' } as any } } }
+
+        const clashes = applyRadius([], radius).clashes
+
+        expect(clashes).toEqual([{ type: 'AWS::S3::Object', property: 'Key' }])
+        expect(newClashes(clashes, { aws: [], radius })).toEqual([])
+        expect(newClashes(clashes, { aws: [], radius: { ...radius, handwritten: new Map() } })).toEqual(clashes)
     })
 
     test('treats a previous AWS type with no properties as having none', () => {

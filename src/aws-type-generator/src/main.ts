@@ -19,8 +19,8 @@ const parser = yargs(process.argv.slice(2)).options({
     radiusHandwrittenSchemas: { type: 'string', default: defaultRadiusPaths.handwrittenSchemas, description: 'schemas of types with no CloudFormation type, relative to --radius' },
     radiusExtraProperties: { type: 'string', default: defaultRadiusPaths.extraProperties, description: 'extra read-only properties of each type, relative to --radius' },
     clashReport: { type: 'string', description: 'file to write a Markdown report to when AWS and Radius use the same type or property name' },
-    previousInput: { type: 'string', description: 'previous AWS types. With --previous-radius, the clash report leaves out clashes both already have' },
-    previousRadius: { type: 'string', description: 'previous Radius checkout. With --previous-input, the clash report leaves out clashes both already have' }
+    previousInput: { type: 'string', description: 'previous AWS types. With --previous-radius, the clash report leaves out clashes both sides already had' },
+    previousRadius: { type: 'string', description: 'previous Radius checkout. With --previous-input, the clash report leaves out clashes both sides already had' }
 }).argv;
 
 interface Args {
@@ -40,6 +40,9 @@ async function main() {
     const argv: Args = await parser
 
     try {
+        if ((argv.previousInput === undefined) !== (argv.previousRadius === undefined)) {
+            throw new Error('use --previous-input and --previous-radius together')
+        }
         argv.input = path.resolve(argv.input)
         argv.output = path.resolve(argv.output)
 
@@ -63,10 +66,10 @@ async function main() {
             console.warn(`AWS and Radius use the same name for some types or properties:\n${renderClashReport(applied.clashes)}`)
         }
         if (argv.clashReport) {
-            const clashes = newClashes(applied.clashes, {
-                aws: argv.previousInput ? readRecords(path.resolve(argv.previousInput)) : undefined,
-                radius: argv.previousRadius ? loadPreviousRadius(radiusPaths(argv.previousRadius)) : undefined,
-            })
+            const clashes = argv.previousInput && argv.previousRadius ? newClashes(applied.clashes, {
+                aws: readRecords(path.resolve(argv.previousInput)),
+                radius: loadPreviousRadius(radiusPaths(argv.previousRadius)),
+            }) : applied.clashes
             const report = renderClashReport(clashes)
             const reportPath = path.resolve(argv.clashReport)
             if (report) {
