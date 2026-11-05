@@ -80,6 +80,34 @@ func TestCompare_TypeBecameReadOnly(t *testing.T) {
 	)
 }
 
+func TestCompare_ReadOnlyTypeIdentifierIsSettable(t *testing.T) {
+	// The generator keeps a read-only type's primary identifier settable, so
+	// the comparison does not treat it as read-only.
+	schema := func(readOnly, required string) string {
+		return `{
+			"properties": {"Arn": {"type": "string"}, "Name": {"type": "string"}},
+			"primaryIdentifier": ["/properties/Arn"],
+			"readOnlyProperties": ` + readOnly + `,
+			"required": ` + required + `,
+			"handlers": {"read": {}, "list": {}}
+		}`
+	}
+	both := `["/properties/Arn", "/properties/Name"]`
+
+	t.Run("identifier became required", func(t *testing.T) {
+		assertChanges(t, compareOne(t, schema(both, `[]`), schema(both, `["Arn"]`)),
+			Change{Kind: PropertyRequired, Property: "Arn"})
+	})
+
+	t.Run("identifier lost its read-only mark", func(t *testing.T) {
+		assertChanges(t, compareOne(t, schema(both, `["Arn"]`), schema(`["/properties/Name"]`, `["Arn"]`)))
+	})
+
+	t.Run("other read-only property became required", func(t *testing.T) {
+		assertChanges(t, compareOne(t, schema(both, `[]`), schema(both, `["Name"]`)))
+	})
+}
+
 func TestCompare_PropertyAddedIsNotBreaking(t *testing.T) {
 	changes := compareOne(t,
 		`{"properties": {"Name": {"type": "string"}}}`,

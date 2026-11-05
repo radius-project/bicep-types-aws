@@ -48,6 +48,7 @@ type Schema struct {
 	OneOf                []*Schema            `json:"oneOf"`
 	Definitions          map[string]*Schema   `json:"definitions"`
 	ReadOnlyProperties   []string             `json:"readOnlyProperties"`
+	PrimaryIdentifier    []string             `json:"primaryIdentifier"`
 	// Handlers holds the handlers of a resource schema, keyed by name, such as
 	// create or read.
 	Handlers map[string]json.RawMessage `json:"handlers"`
@@ -164,8 +165,8 @@ func Compare(oldSchemas, newSchemas map[string]*Schema) []Change {
 			resourceType: typeName,
 			oldRoot:      normalize(oldSchema),
 			newRoot:      normalize(newSchema),
-			oldReadOnly:  toSet(oldSchema.ReadOnlyProperties),
-			newReadOnly:  toSet(newSchema.ReadOnlyProperties),
+			oldReadOnly:  readOnlyProperties(oldSchema),
+			newReadOnly:  readOnlyProperties(newSchema),
 			seen:         map[schemaPair]bool{},
 		}
 		c.compareObject(c.oldRoot, c.newRoot, "", "/properties")
@@ -268,6 +269,19 @@ type comparer struct {
 func (c *comparer) add(change Change) {
 	change.ResourceType = c.resourceType
 	c.changes = append(c.changes, change)
+}
+
+// readOnlyProperties returns the properties templates can't set. The type
+// generator keeps the primary identifier of a read-only type settable, so
+// `existing` can set it, even when AWS lists it as read-only.
+func readOnlyProperties(schema *Schema) map[string]bool {
+	readOnly := toSet(schema.ReadOnlyProperties)
+	if schema.ReadOnly() {
+		for _, p := range schema.PrimaryIdentifier {
+			delete(readOnly, p)
+		}
+	}
+	return readOnly
 }
 
 // isReadOnly reports whether the property at pointer, or any property that
