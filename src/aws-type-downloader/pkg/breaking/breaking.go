@@ -16,11 +16,12 @@ import (
 type Kind string
 
 const (
-	TypeRemoved      Kind = "type removed"
-	TypeReadOnly     Kind = "type became read-only"
-	PropertyRemoved  Kind = "property removed"
-	PropertyRequired Kind = "property now required"
-	PropertyType     Kind = "property type changed"
+	TypeRemoved             Kind = "type removed"
+	TypeReadOnly            Kind = "type became read-only"
+	TypeCreateAndDeleteOnly Kind = "type can no longer be updated"
+	PropertyRemoved         Kind = "property removed"
+	PropertyRequired        Kind = "property now required"
+	PropertyType            Kind = "property type changed"
 )
 
 // Change is one change that can break existing templates.
@@ -28,8 +29,8 @@ type Change struct {
 	// ResourceType is the AWS resource type, for example AWS::S3::Bucket.
 	ResourceType string
 	Kind         Kind
-	// Property is the dotted path of the property. It is empty for TypeRemoved
-	// and TypeReadOnly.
+	// Property is the dotted path of the property. It is empty for TypeRemoved,
+	// TypeReadOnly, and TypeCreateAndDeleteOnly.
 	// Array items are written as Name[] and map values as Name.*.
 	Property string
 	OldType  string
@@ -159,6 +160,10 @@ func Compare(oldSchemas, newSchemas map[string]*Schema) []Change {
 		}
 		if !oldSchema.ReadOnly() && newSchema.ReadOnly() {
 			changes = append(changes, Change{ResourceType: typeName, Kind: TypeReadOnly})
+		}
+		// A deployment that changes an existing resource of the type now fails.
+		if oldSchema.hasHandler("update") && newSchema.CreateAndDeleteOnly() {
+			changes = append(changes, Change{ResourceType: typeName, Kind: TypeCreateAndDeleteOnly})
 		}
 
 		c := comparer{

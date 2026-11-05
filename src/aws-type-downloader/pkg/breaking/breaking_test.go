@@ -80,6 +80,20 @@ func TestCompare_TypeBecameReadOnly(t *testing.T) {
 	)
 }
 
+func TestCompare_TypeBecameCreateAndDeleteOnly(t *testing.T) {
+	mutable := `{"properties": {}, "handlers": {"create": {}, "read": {}, "update": {}, "delete": {}}}`
+	createAndDelete := `{"properties": {}, "handlers": {"create": {}, "read": {}, "delete": {}}}`
+	readOnly := `{"properties": {}, "handlers": {"read": {}}}`
+
+	assertChanges(t, compareOne(t, mutable, createAndDelete), Change{Kind: TypeCreateAndDeleteOnly})
+	assertChanges(t, compareOne(t, createAndDelete, createAndDelete))
+	assertChanges(t, compareOne(t, createAndDelete, mutable))
+	// A read-only type was never updatable from a template.
+	assertChanges(t, compareOne(t, readOnly, createAndDelete))
+	// Losing create too is reported as becoming read-only.
+	assertChanges(t, compareOne(t, mutable, readOnly), Change{Kind: TypeReadOnly})
+}
+
 func TestCompare_ReadOnlyTypeIdentifierIsSettable(t *testing.T) {
 	// The generator keeps a read-only type's primary identifier settable, so
 	// the comparison does not treat it as read-only.

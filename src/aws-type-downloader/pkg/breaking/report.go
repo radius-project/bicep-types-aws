@@ -83,6 +83,8 @@ func describe(change Change) string {
 		return "The resource type was removed."
 	case TypeReadOnly:
 		return "The resource type became read-only. Templates can only reference it with `existing`."
+	case TypeCreateAndDeleteOnly:
+		return "The resource type can no longer be updated. A deployment that changes an existing resource fails."
 	case PropertyRemoved:
 		return fmt.Sprintf("`%s` was removed.", change.Property)
 	case PropertyRequired:

@@ -18,17 +18,20 @@ func TestReport_GroupsByResourceType(t *testing.T) {
 	changes := []Change{
 		{ResourceType: "AWS::A::Thing", Kind: TypeRemoved},
 		{ResourceType: "AWS::A::Image", Kind: TypeReadOnly},
+		{ResourceType: "AWS::A::Group", Kind: TypeCreateAndDeleteOnly},
 		{ResourceType: "AWS::B::Thing", Kind: PropertyRequired, Property: "Name"},
 		{ResourceType: "AWS::B::Thing", Kind: PropertyRemoved, Property: "Config.Size"},
 		{ResourceType: "AWS::B::Thing", Kind: PropertyType, Property: "Port", OldType: "string", NewType: "integer"},
 	}
 
 	got := Report(changes, 0)
-	want := "Found 5 change(s) that can break existing templates.\n" +
+	want := "Found 6 change(s) that can break existing templates.\n" +
 		"\n### `AWS::A::Thing`\n\n" +
 		"- The resource type was removed.\n" +
 		"\n### `AWS::A::Image`\n\n" +
 		"- The resource type became read-only. Templates can only reference it with `existing`.\n" +
+		"\n### `AWS::A::Group`\n\n" +
+		"- The resource type can no longer be updated. A deployment that changes an existing resource fails.\n" +
 		"\n### `AWS::B::Thing`\n\n" +
 		"- `Name` is now required.\n" +
 		"- `Config.Size` was removed.\n" +
