@@ -1,5 +1,6 @@
 // Package breaking compares two sets of downloaded AWS resource schemas and
-// lists the changes that can break existing Bicep templates.
+// lists the changes that can break existing Bicep templates. It also lists the
+// new types that templates can't fully manage, for a reviewer to check.
 package breaking
 
 import (
@@ -16,6 +17,7 @@ type Kind string
 
 const (
 	TypeRemoved      Kind = "type removed"
+	TypeReadOnly     Kind = "type became read-only"
 	PropertyRemoved  Kind = "property removed"
 	PropertyRequired Kind = "property now required"
 	PropertyType     Kind = "property type changed"
@@ -26,7 +28,8 @@ type Change struct {
 	// ResourceType is the AWS resource type, for example AWS::S3::Bucket.
 	ResourceType string
 	Kind         Kind
-	// Property is the dotted path of the property. It is empty for TypeRemoved.
+	// Property is the dotted path of the property. It is empty for TypeRemoved
+	// and TypeReadOnly.
 	// Array items are written as Name[] and map values as Name.*.
 	Property string
 	OldType  string
@@ -45,6 +48,9 @@ type Schema struct {
 	OneOf                []*Schema            `json:"oneOf"`
 	Definitions          map[string]*Schema   `json:"definitions"`
 	ReadOnlyProperties   []string             `json:"readOnlyProperties"`
+	// Handlers holds the handlers of a resource schema, keyed by name, such as
+	// create or read.
+	Handlers map[string]json.RawMessage `json:"handlers"`
 
 	// requiredBranches holds the required lists of the oneOf branches that the
 	// type generator uses to decide which properties are required.
@@ -73,6 +79,25 @@ func (a *AdditionalProperties) UnmarshalJSON(b []byte) error {
 	}
 	*a = AdditionalProperties{Schema: schema, set: true}
 	return nil
+}
+
+// ReadOnly reports whether a resource schema describes a type that AWS
+// creates on its own: it has a read handler but no create handler. Templates
+// can only reference these types with `existing`. Radius uses the same rule.
+func (s *Schema) ReadOnly() bool {
+	return s.hasHandler("read") && !s.hasHandler("create")
+}
+
+// CreateAndDeleteOnly reports whether a resource schema describes a type that
+// AWS can create and delete but not update: it has a create handler but no
+// update handler.
+func (s *Schema) CreateAndDeleteOnly() bool {
+	return s.hasHandler("create") && !s.hasHandler("update")
+}
+
+func (s *Schema) hasHandler(name string) bool {
+	_, ok := s.Handlers[name]
+	return ok
 }
 
 func (a AdditionalProperties) allowed() bool {
@@ -130,6 +155,9 @@ func Compare(oldSchemas, newSchemas map[string]*Schema) []Change {
 		if !ok {
 			changes = append(changes, Change{ResourceType: typeName, Kind: TypeRemoved})
 			continue
+		}
+		if !oldSchema.ReadOnly() && newSchema.ReadOnly() {
+			changes = append(changes, Change{ResourceType: typeName, Kind: TypeReadOnly})
 		}
 
 		c := comparer{

@@ -10,11 +10,14 @@ This workflow is used to build and test the AWS downloader and AWS generator to 
 
 This workflow downloads the latest AWS resource type schemas, regenerates the Bicep types and the reference documentation, and opens a pull request with the changes. It runs every Monday and can also be started manually from `main`; runs started from other branches are skipped. Every run uses the `generate-aws-types` branch, so if the pull request is still open, it is updated instead of a new one being opened. If nothing changed, no pull request is opened. AWS moves the last updated time of a type when it redeploys the type, even if the schema did not change, so the downloader only rewrites a type's file when its schema changed.
 
-The pull request body lists the changes that can break existing templates: removed resource types, removed properties, properties that became required, and properties whose type changed. The list is cut short to fit in the pull request body, and the job summary of the workflow run has the full list. To run the check locally, copy `artifacts/types` to another directory, run the downloader, and then run:
+The downloader keeps the types that AWS Cloud Control can create, including create-and-delete-only types that it can't update, and the read-only types that AWS creates on its own. A read-only type's schema has a read handler but no create handler, and a create-and-delete-only type's schema has a create handler but no update handler. Other types that Cloud Control can't create, such as legacy and deprecated types, are left out.
+
+The pull request body lists the changes that can break existing templates: removed resource types, types that became read-only, removed properties, properties that became required, and properties whose type changed. It also lists the new read-only and create-and-delete-only types, so a reviewer can check that each one belongs in the extension. The lists are cut short to fit in the pull request body, and the job summary of the workflow run has the full lists. To run the checks locally, copy `artifacts/types` to another directory, run the downloader, and then run:
 
 ```bash
 cd src/aws-type-downloader
 go run . breaking-changes --old <copy of the previous types> --new ../../artifacts/types
+go run . added-types --old <copy of the previous types> --new ../../artifacts/types
 ```
 
 Merging the pull request publishes the updated types through `publish-bicep.yaml`.

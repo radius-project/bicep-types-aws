@@ -12,7 +12,7 @@ export interface Schema extends SchemaDefinition {
     typeName: string
     primaryIdentifier: string[]
     definitions?: { [name: string]: SchemaDefinition }
-    handlers?: any
+    handlers?: { [name: string]: any }
     required?: string[]
     additionalIdentifiers?: string[]
     conditionalCreateOnlyProperties?: string[]

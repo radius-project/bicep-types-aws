@@ -13,12 +13,9 @@ func Report(changes []Change, maxLength int) string {
 		return "No changes that can break existing templates were found.\n"
 	}
 
-	header := fmt.Sprintf("Found %d change(s) that can break existing templates.\n", len(changes))
-
 	// Each chunk is one change, prefixed with its resource type heading when it
 	// is the first change for that type, so a heading is never left on its own.
 	chunks := make([]string, 0, len(changes))
-	total := len(header)
 	current := ""
 	for _, change := range changes {
 		chunk := ""
@@ -28,6 +25,20 @@ func Report(changes []Change, maxLength int) string {
 		}
 		chunk += fmt.Sprintf("- %s\n", describe(change))
 		chunks = append(chunks, chunk)
+	}
+
+	summary := fmt.Sprintf("Found %d change(s) that can break existing templates", len(changes))
+	return fit(summary, chunks, "change(s)", maxLength)
+}
+
+// fit writes summary as a header line, then chunks. When maxLength is greater
+// than zero and that is longer than maxLength bytes, it writes only the chunks
+// that fit and ends with a line that says how many items, named by noun, were
+// left out.
+func fit(summary string, chunks []string, noun string, maxLength int) string {
+	header := summary + ".\n"
+	total := len(header)
+	for _, chunk := range chunks {
 		total += len(chunk)
 	}
 
@@ -40,10 +51,10 @@ func Report(changes []Change, maxLength int) string {
 		return b.String()
 	}
 
-	// Write a chunk only if the footer for the changes after it still fits.
+	// Write a chunk only if the footer for the chunks after it still fits.
 	for i, chunk := range chunks {
-		if b.Len()+len(chunk)+len(omittedFooter(len(chunks)-i-1)) > maxLength {
-			b.WriteString(omittedFooter(len(chunks) - i))
+		if b.Len()+len(chunk)+len(omittedFooter(len(chunks)-i-1, noun)) > maxLength {
+			b.WriteString(omittedFooter(len(chunks)-i, noun))
 			break
 		}
 		b.WriteString(chunk)
@@ -53,23 +64,25 @@ func Report(changes []Change, maxLength int) string {
 		return b.String()
 	}
 
-	// Not even one change fits next to the header and footer. The summary
-	// is ASCII, so cutting it at a byte offset keeps it valid UTF-8.
-	summary := fmt.Sprintf("Found %d change(s) that can break existing templates. See the full report in the workflow run.\n", len(changes))
-	if len(summary) > maxLength {
-		summary = summary[:maxLength]
+	// Not even one chunk fits next to the header and footer. The summary is
+	// ASCII, so cutting it at a byte offset keeps it valid UTF-8.
+	short := summary + ". See the full report in the workflow run.\n"
+	if len(short) > maxLength {
+		short = short[:maxLength]
 	}
-	return summary
+	return short
 }
 
-func omittedFooter(omitted int) string {
-	return fmt.Sprintf("\n%d more change(s) not shown. See the full report in the workflow run.\n", omitted)
+func omittedFooter(omitted int, noun string) string {
+	return fmt.Sprintf("\n%d more %s not shown. See the full report in the workflow run.\n", omitted, noun)
 }
 
 func describe(change Change) string {
 	switch change.Kind {
 	case TypeRemoved:
 		return "The resource type was removed."
+	case TypeReadOnly:
+		return "The resource type became read-only. Templates can only reference it with `existing`."
 	case PropertyRemoved:
 		return fmt.Sprintf("`%s` was removed.", change.Property)
 	case PropertyRequired:

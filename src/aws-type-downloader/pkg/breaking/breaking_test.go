@@ -64,6 +64,22 @@ func TestCompare_TypeRemovedAndAdded(t *testing.T) {
 	assertChanges(t, changes, Change{ResourceType: "AWS::Test::Old", Kind: TypeRemoved})
 }
 
+func TestCompare_TypeBecameReadOnly(t *testing.T) {
+	mutable := `{"properties": {"Name": {"type": "string"}}, "handlers": {"create": {}, "read": {}, "update": {}, "delete": {}}}`
+	readOnly := `{"properties": {"Name": {"type": "string"}}, "handlers": {"read": {}, "list": {}}}`
+
+	assertChanges(t, compareOne(t, mutable, readOnly), Change{Kind: TypeReadOnly})
+	assertChanges(t, compareOne(t, readOnly, readOnly))
+	assertChanges(t, compareOne(t, readOnly, mutable))
+
+	// Property changes of a type that became read-only still break templates
+	// that reference it with existing.
+	assertChanges(t, compareOne(t, mutable, `{"properties": {}, "handlers": {"read": {}}}`),
+		Change{Kind: PropertyRemoved, Property: "Name"},
+		Change{Kind: TypeReadOnly},
+	)
+}
+
 func TestCompare_PropertyAddedIsNotBreaking(t *testing.T) {
 	changes := compareOne(t,
 		`{"properties": {"Name": {"type": "string"}}}`,
