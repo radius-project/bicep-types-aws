@@ -13,7 +13,7 @@ work="$(mktemp -d)"
 trap 'rm -rf "${work}"' EXIT
 
 bicep --version
-node "${generator}/dist/src/main.js" --input "${generator}/testdata" --output "${work}/types" > /dev/null
+node "${generator}/dist/src/main.js" --input "${generator}/testdata" --radius "${generator}/testdata/radius" --output "${work}/types" > /dev/null
 if ! output="$(bicep publish-extension "${work}/types/index.json" --target "${work}/aws.tgz" 2>&1)"; then
     echo "${output}"
     exit 1
