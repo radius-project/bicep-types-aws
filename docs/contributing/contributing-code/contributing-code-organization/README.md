@@ -28,11 +28,13 @@ Radius serves some AWS types with its own handlers, and some types return extra 
 | `pkg/aws/schemas/handwritten/`                   | `--radius-handwritten-schemas` | Adds each type. If AWS also publishes the type, keeps the Radius schema and reports a clash                                                                |
 | `pkg/aws/extraproperties/extra_properties.json`  | `--radius-extra-properties`    | Adds each type's extra properties as read-only. If the type already has a property with the same name, keeps that property, skips the extra one, and reports a clash |
 
-The generator reads every `.json` file under the schema directories, skips `*.metadata.json` files, and keys each schema on its `typeName`, not its file name. A schema directory that doesn't exist has no schemas. Paths are relative to `--radius`, which defaults to `../../radius`. `--clash-report <file>` writes the clashes as Markdown, and `--previous-input <dir>` leaves out clashes those AWS types already have.
+The generator reads every `.json` file under the schema directories, skips `*.metadata.json` files, and keys each schema on its `typeName`, not its file name. A schema directory that doesn't exist has no schemas. Paths are relative to `--radius`, which defaults to `../../radius`. `--clash-report <file>` writes the clashes as Markdown. With `--previous-input <dir>` (earlier AWS types) and `--previous-radius <dir>` (an earlier Radius checkout), it writes only clashes where either side is new.
 
 The extension now depends on a Radius version, so the submodule pins a Radius commit:
 
 - On `main`, the submodule pins a Radius `main` commit. Dependabot moves it forward.
 - On a release branch, the submodule must pin the Radius commit the release ships, `source.productCommit` in Radius's `.github/release-plans/vX.Y.Z.yaml`. Set it with `git -C radius fetch --depth 1 origin <commit> && git -C radius checkout <commit>`, then commit the `radius` change.
+
+`artifacts/radius-commit` is not the pin. It records the Radius commit the checked-in types were generated from, so the weekly refresh can tell which Radius schemas are new.
 
 To read the pinned commit at a ref: `gh api repos/radius-project/bicep-types-aws/contents/radius?ref=<ref> --jq .sha`.

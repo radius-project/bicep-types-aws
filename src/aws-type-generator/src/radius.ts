@@ -87,6 +87,18 @@ export function loadRadius(paths: RadiusPaths): RadiusInputs {
     return { native, handwritten, extraProperties: readExtraProperties(extraPropertiesPath) }
 }
 
+// loadPreviousRadius reads the Radius inputs from an earlier Radius commit. Unlike
+// loadRadius, a missing extra properties file means there are none, because an older
+// commit may not have one.
+export function loadPreviousRadius(paths: RadiusPaths): RadiusInputs {
+    const extraPropertiesPath = path.resolve(paths.root, paths.extraProperties)
+    return {
+        native: readSchemas(paths.root, paths.nativeSchemas),
+        handwritten: readSchemas(paths.root, paths.handwrittenSchemas),
+        extraProperties: fs.existsSync(extraPropertiesPath) ? readExtraProperties(extraPropertiesPath) : {},
+    }
+}
+
 // readSchemas reads every schema file under the directory, keyed by each schema's
 // typeName. A directory that does not exist has no schemas.
 export function readSchemas(root: string, directory: string): Map<string, RadiusSchema> {
@@ -215,7 +227,7 @@ export function applyRadius(records: SchemaRecord[], radius: RadiusInputs): Radi
         record.schema.properties = record.schema.properties ?? {}
         record.schema.readOnlyProperties = record.schema.readOnlyProperties ?? []
         for (const [name, definition] of Object.entries(properties)) {
-            if (Object.prototype.hasOwnProperty.call(record.schema.properties, name)) {
+            if (hasOwn(record.schema.properties, name)) {
                 clashes.push({ type, property: name })
                 continue
             }
@@ -228,18 +240,46 @@ export function applyRadius(records: SchemaRecord[], radius: RadiusInputs): Radi
     return { records: result, clashes, missingTypes }
 }
 
-// newClashes returns the clashes with a type or property that is not in the previous
-// AWS types, so a clash a person already reviewed is not reported again once the
-// AWS types that caused it are checked in.
-export function newClashes(clashes: Clash[], previous: SchemaRecord[]): Clash[] {
-    const previousTypes = new Map(previous.map(r => [r.type, r]))
-    return clashes.filter(clash => {
-        const record = previousTypes.get(clash.type)
-        if (!record) {
-            return true
-        }
-        return clash.property !== undefined && !Object.prototype.hasOwnProperty.call(record.schema.properties ?? {}, clash.property)
-    })
+export interface PreviousInputs {
+    // The AWS types the checked-in types were generated from.
+    aws?: SchemaRecord[]
+    // The Radius inputs the checked-in types were generated from.
+    radius?: RadiusInputs
+}
+
+// newClashes returns the clashes where either side is new: AWS's type or property is
+// not in the previous AWS types, or Radius's hand-written schema or extra property is
+// not in the previous Radius inputs. A clash both sides already had is left out, so a
+// clash a person reviewed is not reported again. A side with no previous inputs is not
+// compared, and with neither, every clash is new.
+export function newClashes(clashes: Clash[], previous: PreviousInputs): Clash[] {
+    if (!previous.aws && !previous.radius) {
+        return clashes
+    }
+
+    const previousAws = new Map((previous.aws ?? []).map(r => [r.type, r]))
+    return clashes.filter(clash =>
+        (previous.aws !== undefined && !awsHad(previousAws, clash)) ||
+        (previous.radius !== undefined && !radiusHad(previous.radius, clash)))
+}
+
+function awsHad(previous: Map<string, SchemaRecord>, clash: Clash): boolean {
+    const record = previous.get(clash.type)
+    if (!record) {
+        return false
+    }
+    return clash.property === undefined || hasOwn(record.schema.properties ?? {}, clash.property)
+}
+
+function radiusHad(previous: RadiusInputs, clash: Clash): boolean {
+    if (clash.property === undefined) {
+        return previous.handwritten.has(clash.type)
+    }
+    return hasOwn(previous.extraProperties[clash.type] ?? {}, clash.property)
+}
+
+function hasOwn(value: object, key: string): boolean {
+    return Object.prototype.hasOwnProperty.call(value, key)
 }
 
 function radiusRecord(schema: Schema): SchemaRecord {
@@ -260,7 +300,7 @@ export function renderClashReport(clashes: Clash[]): string {
         lines.push(
             "## Types",
             "",
-            "AWS now publishes these types, which Radius provides with a hand-written schema. The extension keeps the Radius schema. Compare the two schemas, and remove the Radius schema and handler only if Cloud Control can create the type in every region Radius supports and it behaves the same.",
+            "AWS publishes these types, and Radius also provides them with a hand-written schema. The extension keeps the Radius schema. Compare the two schemas, and remove the Radius schema and handler only if Cloud Control can create the type in every region Radius supports and it behaves the same.",
             "",
             "| Type | Radius schema |",
             "| ---- | ------------- |",
@@ -271,7 +311,7 @@ export function renderClashReport(clashes: Clash[]): string {
         lines.push(
             "## Extra properties",
             "",
-            "These types now have a property with the same name as one of Radius's extra read-only properties. The extension keeps the type's own property and skips the extra one. Compare the two, then rename or remove the extra property in Radius.",
+            "These types have a property with the same name as one of Radius's extra read-only properties. The extension keeps the type's own property and skips the extra one. Compare the two, then rename or remove the extra property in Radius.",
             "",
             "| Type | Property |",
             "| ---- | -------- |",

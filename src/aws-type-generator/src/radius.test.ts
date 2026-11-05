@@ -4,7 +4,7 @@ import path from "path";
 import { afterAll, describe, expect, test } from '@jest/globals';
 import { BicepType, ObjectType, ObjectTypePropertyFlags, TypeBaseKind } from "bicep-types";
 import { convertSchemaRecordToTypes } from "./convert";
-import { applyRadius, defaultRadiusPaths, loadRadius, newClashes, RadiusInputs, readExtraProperties, readSchemas, renderClashReport } from "./radius";
+import { applyRadius, defaultRadiusPaths, loadPreviousRadius, loadRadius, newClashes, RadiusInputs, readExtraProperties, readSchemas, renderClashReport } from "./radius";
 import { Schema, SchemaRecord } from "./schemarecord";
 
 const fixtureRoot = path.resolve('./testdata/radius')
@@ -258,32 +258,96 @@ describe('applyRadius', () => {
     })
 })
 
+describe('loadPreviousRadius', () => {
+    test('reads the same inputs as loadRadius', () => {
+        expect(loadPreviousRadius(fixturePaths)).toEqual(loadRadius(fixturePaths))
+    })
+
+    test('a commit with no extra properties file has none', () => {
+        const root = tempDir()
+        writeJson(path.join(root, defaultRadiusPaths.handwrittenSchemas, 'aws-s3-object.json'), { typeName: 'AWS::S3::Object' })
+
+        const radius = loadPreviousRadius({ ...fixturePaths, root })
+
+        expect([...radius.handwritten.keys()]).toEqual(['AWS::S3::Object'])
+        expect(radius.native.size).toBe(0)
+        expect(radius.extraProperties).toEqual({})
+    })
+})
+
 describe('newClashes', () => {
-    const clashes = [
-        { type: 'AWS::S3::Object', file: 'pkg/aws/schemas/handwritten/aws-s3-object.json' },
-        { type: 'AWS::MSK::Cluster', property: 'BootstrapBrokerString' },
+    const typeClash = { type: 'AWS::S3::Object', file: 'pkg/aws/schemas/handwritten/aws-s3-object.json' }
+    const propertyClash = { type: 'AWS::MSK::Cluster', property: 'BootstrapBrokerString' }
+    const clashes = [typeClash, propertyClash]
+
+    // AWS types that already had both clashing names.
+    const awsHadBoth = () => [
+        awsRecord('AWS::S3::Object'),
+        awsRecord('AWS::MSK::Cluster', { Id: { type: 'string' } as any, BootstrapBrokerString: { type: 'string' } as any }),
     ]
 
-    test('keeps clashes with types and properties the previous AWS types do not have', () => {
-        expect(newClashes(clashes, [])).toEqual(clashes)
-        expect(newClashes(clashes, [awsRecord('AWS::MSK::Cluster')])).toEqual(clashes)
+    // Radius inputs that already had both clashing names.
+    const radiusHadBoth = (): RadiusInputs => ({
+        native: new Map(),
+        handwritten: loadRadius(fixturePaths).handwritten,
+        extraProperties: { 'AWS::MSK::Cluster': { BootstrapBrokerString: { type: 'string' } as any } },
     })
 
-    test('leaves out clashes the previous AWS types already have', () => {
-        const previous = [
-            awsRecord('AWS::S3::Object'),
-            awsRecord('AWS::MSK::Cluster', { Id: { type: 'string' } as any, BootstrapBrokerString: { type: 'string' } as any }),
-        ]
-
-        expect(newClashes(clashes, previous)).toEqual([])
-        expect(newClashes(clashes, previous.slice(0, 1))).toEqual([clashes[1]])
+    test('with no previous inputs, every clash is new', () => {
+        expect(newClashes(clashes, {})).toEqual(clashes)
     })
 
-    test('treats a previous type with no properties as having none', () => {
+    test('leaves out a clash both sides already had', () => {
+        expect(newClashes(clashes, { aws: awsHadBoth(), radius: radiusHadBoth() })).toEqual([])
+    })
+
+    test('reports a type or property AWS newly publishes', () => {
+        expect(newClashes(clashes, { aws: [], radius: radiusHadBoth() })).toEqual(clashes)
+        expect(newClashes(clashes, { aws: [awsRecord('AWS::MSK::Cluster')], radius: radiusHadBoth() })).toEqual(clashes)
+        expect(newClashes(clashes, { aws: awsHadBoth().slice(0, 1), radius: radiusHadBoth() })).toEqual([propertyClash])
+    })
+
+    test('reports a hand-written schema Radius newly adds for a type AWS already publishes', () => {
+        const radius = { ...radiusHadBoth(), handwritten: new Map() }
+
+        expect(newClashes(clashes, { aws: awsHadBoth(), radius })).toEqual([typeClash])
+    })
+
+    test('reports a type that moved from the native to the hand-written schemas', () => {
+        const radius = { ...radiusHadBoth(), native: radiusHadBoth().handwritten, handwritten: new Map() }
+
+        expect(newClashes(clashes, { aws: awsHadBoth(), radius })).toEqual([typeClash])
+    })
+
+    test('reports an extra property Radius newly adds with a name AWS already uses', () => {
+        expect(newClashes(clashes, { aws: awsHadBoth(), radius: { ...radiusHadBoth(), extraProperties: {} } })).toEqual([propertyClash])
+        expect(newClashes(clashes, { aws: awsHadBoth(), radius: { ...radiusHadBoth(), extraProperties: { 'AWS::MSK::Cluster': {} } } })).toEqual([propertyClash])
+    })
+
+    test('with only one side given, compares only that side', () => {
+        expect(newClashes(clashes, { aws: awsHadBoth() })).toEqual([])
+        expect(newClashes(clashes, { aws: [] })).toEqual(clashes)
+        expect(newClashes(clashes, { radius: radiusHadBoth() })).toEqual([])
+        expect(newClashes(clashes, { radius: emptyInputs() })).toEqual(clashes)
+    })
+
+    test('treats a previous AWS type with no properties as having none', () => {
         const previous = awsRecord('AWS::MSK::Cluster')
         delete previous.schema.properties
 
-        expect(newClashes([clashes[1]], [previous])).toEqual([clashes[1]])
+        expect(newClashes([propertyClash], { aws: [previous], radius: radiusHadBoth() })).toEqual([propertyClash])
+    })
+
+    test('reports a Radius schema newly added in the fixture checkout', () => {
+        const before = tempDir()
+        writeJson(path.join(before, defaultRadiusPaths.extraProperties), {})
+        const records = [awsRecord('AWS::S3::Object')]
+
+        const clashes = applyRadius(records, loadRadius(fixturePaths)).clashes
+
+        expect(clashes).toEqual([{ type: 'AWS::S3::Object', file: path.join('pkg/aws/schemas/handwritten/s3/aws-s3-object.json') }])
+        expect(newClashes(clashes, { aws: records, radius: loadPreviousRadius({ ...fixturePaths, root: before }) })).toEqual(clashes)
+        expect(newClashes(clashes, { aws: records, radius: loadPreviousRadius(fixturePaths) })).toEqual([])
     })
 })
 
@@ -299,7 +363,7 @@ describe('renderClashReport', () => {
         ])).toBe([
             '## Types',
             '',
-            'AWS now publishes these types, which Radius provides with a hand-written schema. The extension keeps the Radius schema. Compare the two schemas, and remove the Radius schema and handler only if Cloud Control can create the type in every region Radius supports and it behaves the same.',
+            'AWS publishes these types, and Radius also provides them with a hand-written schema. The extension keeps the Radius schema. Compare the two schemas, and remove the Radius schema and handler only if Cloud Control can create the type in every region Radius supports and it behaves the same.',
             '',
             '| Type | Radius schema |',
             '| ---- | ------------- |',
@@ -307,7 +371,7 @@ describe('renderClashReport', () => {
             '',
             '## Extra properties',
             '',
-            "These types now have a property with the same name as one of Radius's extra read-only properties. The extension keeps the type's own property and skips the extra one. Compare the two, then rename or remove the extra property in Radius.",
+            "These types have a property with the same name as one of Radius's extra read-only properties. The extension keeps the type's own property and skips the extra one. Compare the two, then rename or remove the extra property in Radius.",
             '',
             '| Type | Property |',
             '| ---- | -------- |',

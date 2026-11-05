@@ -5,7 +5,7 @@ import { writeTypesJson } from "bicep-types";
 import { writeMarkdown } from "bicep-types";
 import { SchemaRecord } from "./schemarecord";
 import { convertSchemaRecordToTypes } from "./convert";
-import { applyRadius, defaultRadiusPaths, loadRadius, newClashes, renderClashReport } from "./radius";
+import { applyRadius, defaultRadiusPaths, loadPreviousRadius, loadRadius, newClashes, RadiusPaths, renderClashReport } from "./radius";
 import { logOut, ILogger, defaultLogger, findRecursive } from './utils';
 import { writeFile, readFile } from 'fs/promises';
 import { TypeFile, buildIndex, readTypesJson, writeIndexJson, writeIndexMarkdown, TypeSettings } from 'bicep-types'; 
@@ -19,7 +19,8 @@ const parser = yargs(process.argv.slice(2)).options({
     radiusHandwrittenSchemas: { type: 'string', default: defaultRadiusPaths.handwrittenSchemas, description: 'schemas of types with no CloudFormation type, relative to --radius' },
     radiusExtraProperties: { type: 'string', default: defaultRadiusPaths.extraProperties, description: 'extra read-only properties of each type, relative to --radius' },
     clashReport: { type: 'string', description: 'file to write a Markdown report to when AWS and Radius use the same type or property name' },
-    previousInput: { type: 'string', description: 'previous AWS types. When set, the clash report leaves out clashes these types already have' }
+    previousInput: { type: 'string', description: 'previous AWS types. With --previous-radius, the clash report leaves out clashes both already have' },
+    previousRadius: { type: 'string', description: 'previous Radius checkout. With --previous-input, the clash report leaves out clashes both already have' }
 }).argv;
 
 interface Args {
@@ -32,6 +33,7 @@ interface Args {
     radiusExtraProperties: string
     clashReport?: string
     previousInput?: string
+    previousRadius?: string
 }
 
 async function main() {
@@ -46,14 +48,14 @@ async function main() {
 
         const downloaded = readRecords(argv.input)
 
-        const radiusRoot = path.resolve(argv.radius)
-        console.info(`reading Radius schemas from ${radiusRoot}`)
-        const applied = applyRadius(downloaded, loadRadius({
-            root: radiusRoot,
+        const radiusPaths = (root: string): RadiusPaths => ({
+            root: path.resolve(root),
             nativeSchemas: argv.radiusNativeSchemas,
             handwrittenSchemas: argv.radiusHandwrittenSchemas,
             extraProperties: argv.radiusExtraProperties,
-        }))
+        })
+        console.info(`reading Radius schemas from ${path.resolve(argv.radius)}`)
+        const applied = applyRadius(downloaded, loadRadius(radiusPaths(argv.radius)))
 
         applied.missingTypes.forEach(type => console.warn(`skipping the extra properties of ${type}, which is not in the extension`))
 
@@ -61,7 +63,10 @@ async function main() {
             console.warn(`AWS and Radius use the same name for some types or properties:\n${renderClashReport(applied.clashes)}`)
         }
         if (argv.clashReport) {
-            const clashes = argv.previousInput ? newClashes(applied.clashes, readRecords(path.resolve(argv.previousInput))) : applied.clashes
+            const clashes = newClashes(applied.clashes, {
+                aws: argv.previousInput ? readRecords(path.resolve(argv.previousInput)) : undefined,
+                radius: argv.previousRadius ? loadPreviousRadius(radiusPaths(argv.previousRadius)) : undefined,
+            })
             const report = renderClashReport(clashes)
             const reportPath = path.resolve(argv.clashReport)
             if (report) {

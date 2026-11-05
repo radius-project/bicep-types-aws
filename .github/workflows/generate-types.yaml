@@ -101,6 +101,24 @@ jobs:
         run: |
           cp -R ./artifacts/types "${RUNNER_TEMP}/previous-types"
 
+      # The clash report compares against the Radius commit the checked-in types were
+      # generated from, recorded in artifacts/radius-commit. Dependabot moves the radius
+      # submodule without regenerating the types, so the submodule commit on main can't
+      # tell which Radius schemas are new.
+      - name: Save the previous Radius inputs
+        run: |
+          mkdir -p "${RUNNER_TEMP}/previous-radius"
+          previous="$(cat artifacts/radius-commit 2>/dev/null || true)"
+          if [[ ! "${previous}" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "::warning::artifacts/radius-commit has no commit, so every clash with a Radius schema is reported."
+            exit 0
+          fi
+          if ! git -C radius fetch -q --depth 1 origin "${previous}"; then
+            echo "::warning::Could not fetch the previous Radius commit ${previous}, so every clash with a Radius schema is reported."
+            exit 0
+          fi
+          git -C radius archive "${previous}" | tar -x -C "${RUNNER_TEMP}/previous-radius"
+
       - name: Download AWS types
         run: |
           pushd ./src/aws-type-downloader
@@ -111,13 +129,15 @@ jobs:
         run: |
           pushd ./src/aws-type-generator
           npm ci
-          npm run start -- --input ../../artifacts/types --output ../../artifacts/bicep --clash-report "${RUNNER_TEMP}/radius-clashes.md" --previous-input "${RUNNER_TEMP}/previous-types"
+          npm run start -- --input ../../artifacts/types --output ../../artifacts/bicep --clash-report "${RUNNER_TEMP}/radius-clashes.md" \
+            --previous-input "${RUNNER_TEMP}/previous-types" --previous-radius "${RUNNER_TEMP}/previous-radius"
           popd
+          git -C radius rev-parse HEAD > artifacts/radius-commit
 
       # AWS published a type or property with the same name as one Radius provides.
       # The generator kept Radius's type and AWS's property, so this reports the
-      # clash for a person to review instead of failing. The report leaves out clashes
-      # already in the AWS types on main, so a reviewed clash is not reported again.
+      # clash for a person to review instead of failing. The report has only clashes
+      # where either side is new, so a reviewed clash is not reported again.
       # While the issue is open, a run with a different report adds it as a comment.
       - name: Open or update the issue for clashes with Radius types
         env:
