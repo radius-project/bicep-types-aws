@@ -1,0 +1,199 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Lightsail-ExportSnapshotRecord",
+  "type": "AWS::Lightsail::ExportSnapshotRecord",
+  "time": "2026-11-05T21:09:32.174Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/RecordId"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "DestinationInfo": {
+        "additionalProperties": false,
+        "description": "Describes the destination of a record.",
+        "properties": {
+          "Id": {
+            "description": "The ID of the resource created at the destination.",
+            "type": "string"
+          },
+          "Service": {
+            "description": "The destination service of the record.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "DiskInfo": {
+        "additionalProperties": false,
+        "description": "Describes a disk.",
+        "properties": {
+          "IsSystemDisk": {
+            "description": "A Boolean value indicating whether this disk is a system disk.",
+            "type": "boolean"
+          },
+          "Path": {
+            "description": "The disk path.",
+            "type": "string"
+          },
+          "SizeInGb": {
+            "description": "The size of the disk in GB.",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "ExportSnapshotRecordSourceInfo": {
+        "additionalProperties": false,
+        "description": "Describes the source of an export snapshot record.",
+        "properties": {
+          "Arn": {
+            "description": "The Amazon Resource Name (ARN) of the source instance or disk snapshot.",
+            "type": "string"
+          },
+          "CreatedAt": {
+            "description": "The date when the source instance or disk snapshot was created.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "FromResourceArn": {
+            "description": "The Amazon Resource Name (ARN) of the snapshot's source instance or disk.",
+            "type": "string"
+          },
+          "FromResourceName": {
+            "description": "The name of the snapshot's source instance or disk.",
+            "type": "string"
+          },
+          "InstanceSnapshotInfo": {
+            "$ref": "#/definitions/InstanceSnapshotInfo"
+          },
+          "Name": {
+            "description": "The name of the source instance or disk snapshot.",
+            "type": "string"
+          },
+          "ResourceType": {
+            "description": "The Lightsail resource type (InstanceSnapshot or DiskSnapshot).",
+            "enum": [
+              "InstanceSnapshot",
+              "DiskSnapshot"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "InstanceSnapshotInfo": {
+        "additionalProperties": false,
+        "description": "Describes an instance snapshot.",
+        "properties": {
+          "FromBlueprintId": {
+            "description": "The blueprint ID from which the source instance was created.",
+            "type": "string"
+          },
+          "FromBundleId": {
+            "description": "The bundle ID from which the source instance was created.",
+            "type": "string"
+          },
+          "FromDiskInfo": {
+            "description": "A list of objects describing the disks that were attached to the source instance.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/DiskInfo"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "ResourceLocation": {
+        "additionalProperties": false,
+        "description": "Describes the resource location.",
+        "properties": {
+          "AvailabilityZone": {
+            "description": "The Availability Zone.",
+            "type": "string"
+          },
+          "RegionName": {
+            "description": "The AWS Region name.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "A read-only resource representing an export snapshot record created as a result of the ExportSnapshot operation in Amazon Lightsail.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "lightsail:GetExportSnapshotRecords"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "lightsail:GetExportSnapshotRecords"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the export snapshot record.",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The date when the export snapshot record was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DestinationInfo": {
+        "$ref": "#/definitions/DestinationInfo"
+      },
+      "Location": {
+        "$ref": "#/definitions/ResourceLocation"
+      },
+      "Name": {
+        "description": "The export snapshot record name.",
+        "pattern": "^\\w[\\w\\-]*\\w$",
+        "type": "string"
+      },
+      "RecordId": {
+        "description": "The unique identifier extracted from the ARN of the export snapshot record.",
+        "type": "string"
+      },
+      "ResourceType": {
+        "description": "The Lightsail resource type (ExportSnapshotRecord).",
+        "type": "string"
+      },
+      "SourceInfo": {
+        "$ref": "#/definitions/ExportSnapshotRecordSourceInfo"
+      },
+      "State": {
+        "description": "The current state of the export snapshot record.",
+        "enum": [
+          "Started",
+          "Succeeded",
+          "Failed"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/RecordId",
+      "/properties/Name",
+      "/properties/CreatedAt",
+      "/properties/Location",
+      "/properties/ResourceType",
+      "/properties/State",
+      "/properties/SourceInfo",
+      "/properties/DestinationInfo"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::Lightsail::ExportSnapshotRecord"
+  }
+}

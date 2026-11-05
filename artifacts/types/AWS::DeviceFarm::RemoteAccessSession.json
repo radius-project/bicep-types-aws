@@ -1,0 +1,291 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DeviceFarm-RemoteAccessSession",
+  "type": "AWS::DeviceFarm::RemoteAccessSession",
+  "time": "2026-11-05T20:51:32.74Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ProjectArn",
+      "/properties/DeviceArn",
+      "/properties/AppUpload",
+      "/properties/Name",
+      "/properties/BillingMethod",
+      "/properties/SkipAppResign",
+      "/properties/DeviceProxy",
+      "/properties/InstanceArn",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "DeviceMinutes": {
+        "additionalProperties": false,
+        "description": "Represents the total device minutes used by the remote access session.",
+        "properties": {
+          "Metered": {
+            "description": "The sum of metered device minutes used by the remote access session.",
+            "type": "number"
+          },
+          "Total": {
+            "description": "The total number of device minutes used by the remote access session.",
+            "type": "number"
+          },
+          "Unmetered": {
+            "description": "The sum of unmetered device minutes used by the remote access session.",
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "DeviceProxy": {
+        "additionalProperties": false,
+        "description": "Represents the http/https proxy configuration applied to the device during the remote access session.",
+        "properties": {
+          "Host": {
+            "description": "The host name or IP address of the http/https proxy.",
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": "^([a-zA-Z0-9])([a-zA-Z0-9-.]+)([a-zA-Z0-9])$",
+            "type": "string"
+          },
+          "Port": {
+            "description": "The port number on which the http/https proxy is listening.",
+            "maximum": 65535,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "Host",
+          "Port"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "VpcConfig": {
+        "additionalProperties": false,
+        "description": "The VPC security groups, subnets and VPC that are attached to the remote access session, inherited from the project. Applies only to private device instances.",
+        "properties": {
+          "SecurityGroupIds": {
+            "description": "The security group IDs attached to the session.",
+            "insertionOrder": false,
+            "items": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "pattern": "^sg-[0-9a-fA-F]{8,}$",
+              "type": "string"
+            },
+            "maxItems": 5,
+            "minItems": 1,
+            "type": "array"
+          },
+          "SubnetIds": {
+            "description": "The subnet IDs attached to the session.",
+            "insertionOrder": false,
+            "items": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "pattern": "^subnet-[0-9a-fA-F]{8,}$",
+              "type": "string"
+            },
+            "maxItems": 8,
+            "minItems": 1,
+            "type": "array"
+          },
+          "VpcId": {
+            "description": "The ID of the VPC attached to the session.",
+            "maxLength": 4096,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          }
+        },
+        "required": [
+          "SecurityGroupIds",
+          "SubnetIds",
+          "VpcId"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::DeviceFarm::RemoteAccessSession. Represents an interactive remote access session with a physical device in AWS Device Farm. A remote access session is an ephemeral, job-like resource, so this is a read-only resource type that provides information about a session created through the Device Farm API or console.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ProjectArn": {
+              "description": "The ARN of the project whose remote access sessions are listed.",
+              "maxLength": 1011,
+              "minLength": 32,
+              "pattern": "^arn:aws:devicefarm:.+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "ProjectArn"
+          ]
+        },
+        "permissions": [
+          "devicefarm:ListRemoteAccessSessions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "devicefarm:GetRemoteAccessSession",
+          "devicefarm:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "AppUpload": {
+        "description": "The ARN of the app uploaded to Device Farm and installed on the device for the remote access session.",
+        "maxLength": 1011,
+        "minLength": 32,
+        "pattern": "^arn:aws:devicefarm:.+$",
+        "type": "string"
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the remote access session.",
+        "maxLength": 1011,
+        "minLength": 32,
+        "pattern": "^arn:aws:devicefarm:.+$",
+        "type": "string"
+      },
+      "BillingMethod": {
+        "description": "The billing method of the remote access session.",
+        "enum": [
+          "METERED",
+          "UNMETERED"
+        ],
+        "type": "string"
+      },
+      "Created": {
+        "description": "The date and time the remote access session was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DeviceArn": {
+        "description": "The ARN of the device being remotely accessed by the session.",
+        "maxLength": 1011,
+        "minLength": 32,
+        "pattern": "^arn:aws:devicefarm:.+$",
+        "type": "string"
+      },
+      "DeviceMinutes": {
+        "$ref": "#/definitions/DeviceMinutes"
+      },
+      "DeviceProxy": {
+        "$ref": "#/definitions/DeviceProxy"
+      },
+      "InstanceArn": {
+        "description": "The ARN of the private device instance the remote access session runs on. Applies only to private device instances.",
+        "maxLength": 1011,
+        "minLength": 32,
+        "pattern": "^arn:aws:devicefarm:.+$",
+        "type": "string"
+      },
+      "Message": {
+        "description": "A message about the remote access session.",
+        "maxLength": 16384,
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the remote access session.",
+        "maxLength": 256,
+        "type": "string"
+      },
+      "ProjectArn": {
+        "description": "The ARN of the project that contains the remote access session.",
+        "maxLength": 1011,
+        "minLength": 32,
+        "pattern": "^arn:aws:devicefarm:.+$",
+        "type": "string"
+      },
+      "Result": {
+        "description": "The result of the remote access session.",
+        "enum": [
+          "PENDING",
+          "PASSED",
+          "WARNED",
+          "FAILED",
+          "SKIPPED",
+          "ERRORED",
+          "STOPPED"
+        ],
+        "type": "string"
+      },
+      "SkipAppResign": {
+        "description": "When set to true, for private devices, Device Farm does not sign your app again.",
+        "type": "boolean"
+      },
+      "Status": {
+        "description": "The status of the remote access session.",
+        "enum": [
+          "PENDING",
+          "PENDING_CONCURRENCY",
+          "PENDING_DEVICE",
+          "PROCESSING",
+          "SCHEDULING",
+          "PREPARING",
+          "RUNNING",
+          "COMPLETED",
+          "STOPPING"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags assigned to the remote access session.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "VpcConfig": {
+        "$ref": "#/definitions/VpcConfig"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Status",
+      "/properties/Result",
+      "/properties/Message",
+      "/properties/Created",
+      "/properties/DeviceMinutes",
+      "/properties/VpcConfig"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "devicefarm:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::DeviceFarm::RemoteAccessSession"
+  }
+}

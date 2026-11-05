@@ -1,0 +1,195 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DeviceFarm-Device",
+  "type": "AWS::DeviceFarm::Device",
+  "time": "2026-11-05T21:03:00.601Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "CPU": {
+        "additionalProperties": false,
+        "description": "Represents the amount of CPU that an app is using on a physical device.",
+        "properties": {
+          "Architecture": {
+            "description": "The CPU's architecture (for example, x86 or ARM).",
+            "type": "string"
+          },
+          "Clock": {
+            "description": "The clock speed of the device's CPU.",
+            "type": "number"
+          },
+          "Frequency": {
+            "description": "The CPU's frequency.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Resolution": {
+        "additionalProperties": false,
+        "description": "Represents the screen resolution of a device in height and width, expressed in pixels.",
+        "properties": {
+          "Height": {
+            "description": "The screen resolution's height, expressed in pixels.",
+            "type": "integer"
+          },
+          "Width": {
+            "description": "The screen resolution's width, expressed in pixels.",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::DeviceFarm::Device. Represents a device type that an app is tested against in AWS Device Farm.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "devicefarm:ListDevices"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "devicefarm:GetDevice",
+          "devicefarm:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The device's ARN.",
+        "maxLength": 1011,
+        "minLength": 32,
+        "pattern": "^arn:aws:devicefarm:.+$",
+        "type": "string"
+      },
+      "Cpu": {
+        "$ref": "#/definitions/CPU"
+      },
+      "FleetName": {
+        "description": "The name of the fleet to which this device belongs.",
+        "type": "string"
+      },
+      "FleetType": {
+        "description": "The type of fleet to which this device belongs. Possible values are PRIVATE and PUBLIC.",
+        "type": "string"
+      },
+      "FormFactor": {
+        "description": "The device's form factor.",
+        "enum": [
+          "PHONE",
+          "TABLET"
+        ],
+        "type": "string"
+      },
+      "HeapSize": {
+        "description": "The device's heap size, expressed in bytes.",
+        "type": "integer"
+      },
+      "Image": {
+        "description": "The device's image name.",
+        "type": "string"
+      },
+      "Manufacturer": {
+        "description": "The device's manufacturer name.",
+        "type": "string"
+      },
+      "Memory": {
+        "description": "The device's total memory size, expressed in bytes.",
+        "type": "integer"
+      },
+      "Model": {
+        "description": "The device's model name.",
+        "type": "string"
+      },
+      "ModelId": {
+        "description": "The device's model ID.",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The device's display name.",
+        "maxLength": 256,
+        "type": "string"
+      },
+      "Os": {
+        "description": "The device's operating system type.",
+        "type": "string"
+      },
+      "Platform": {
+        "description": "The device's platform.",
+        "enum": [
+          "ANDROID",
+          "IOS"
+        ],
+        "type": "string"
+      },
+      "RemoteAccessEnabled": {
+        "description": "Specifies whether remote access has been enabled for the specified device.",
+        "type": "boolean"
+      },
+      "Resolution": {
+        "$ref": "#/definitions/Resolution"
+      },
+      "Tags": {
+        "description": "The tags attached to the device.",
+        "insertionOrder": false,
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "Value": {
+              "maxLength": 256,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "maxItems": 150,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Name",
+      "/properties/Manufacturer",
+      "/properties/Model",
+      "/properties/ModelId",
+      "/properties/FormFactor",
+      "/properties/Platform",
+      "/properties/Os",
+      "/properties/Cpu",
+      "/properties/Resolution",
+      "/properties/HeapSize",
+      "/properties/Memory",
+      "/properties/Image",
+      "/properties/RemoteAccessEnabled",
+      "/properties/FleetType",
+      "/properties/FleetName"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "devicefarm:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::DeviceFarm::Device"
+  }
+}

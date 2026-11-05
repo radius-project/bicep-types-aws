@@ -1,0 +1,138 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-OSIS-PipelineEndpoint",
+  "type": "AWS::OSIS::PipelineEndpoint",
+  "time": "2026-11-05T17:46:21.592Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/EndpointId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/PipelineArn",
+      "/properties/VpcOptions"
+    ],
+    "definitions": {
+      "VpcOptions": {
+        "additionalProperties": false,
+        "description": "Configuration settings for the VPC endpoint.",
+        "properties": {
+          "SecurityGroupIds": {
+            "description": "A list of security group IDs that control network access to the pipeline endpoint.",
+            "items": {
+              "maxLength": 20,
+              "minLength": 11,
+              "pattern": "^sg-\\w{8}(\\w{9})?$",
+              "type": "string"
+            },
+            "maxItems": 12,
+            "minItems": 1,
+            "type": "array"
+          },
+          "SubnetIds": {
+            "description": "A list of subnet IDs where the pipeline endpoint network interfaces are created.",
+            "items": {
+              "maxLength": 24,
+              "minLength": 15,
+              "pattern": "^subnet-\\w{8}(\\w{9})?$",
+              "type": "string"
+            },
+            "maxItems": 12,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Creates a VPC endpoint for an OpenSearch Ingestion pipeline, enabling private connectivity between your VPC and the pipeline.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "osis:CreatePipelineEndpoint",
+          "osis:ListPipelineEndpoints",
+          "iam:CreateServiceLinkedRole"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "osis:DeletePipelineEndpoint",
+          "osis:ListPipelineEndpoints"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "osis:ListPipelineEndpoints"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "osis:ListPipelineEndpoints"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the pipeline endpoint.",
+        "pattern": "^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):osis:.+:endpoint/.+$",
+        "type": "string"
+      },
+      "EndpointId": {
+        "description": "The unique identifier of the pipeline endpoint.",
+        "maxLength": 512,
+        "minLength": 3,
+        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9-_]+$",
+        "type": "string"
+      },
+      "IngestEndpointUrl": {
+        "description": "The URL used to ingest data to the pipeline through the VPC endpoint.",
+        "type": "string"
+      },
+      "PipelineArn": {
+        "description": "The Amazon Resource Name (ARN) of the pipeline to create the endpoint for.",
+        "maxLength": 76,
+        "minLength": 46,
+        "pattern": "^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):osis:.+:pipeline/.+$",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The current status of the pipeline endpoint.",
+        "enum": [
+          "CREATING",
+          "ACTIVE",
+          "CREATE_FAILED",
+          "DELETING",
+          "REVOKING",
+          "REVOKED"
+        ],
+        "type": "string"
+      },
+      "VpcId": {
+        "description": "The ID of the VPC where the pipeline endpoint was created.",
+        "type": "string"
+      },
+      "VpcOptions": {
+        "$ref": "#/definitions/VpcOptions"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/EndpointId",
+      "/properties/Status",
+      "/properties/VpcId",
+      "/properties/IngestEndpointUrl"
+    ],
+    "required": [
+      "PipelineArn",
+      "VpcOptions"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::OSIS::PipelineEndpoint"
+  }
+}

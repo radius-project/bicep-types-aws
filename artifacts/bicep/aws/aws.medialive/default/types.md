@@ -56,6 +56,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.MediaLive/InputProperties](#awsmedialiveinputproperties) (Identifier): properties of the resource
 
+## Resource AWS.MediaLive/InputDevice@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MediaLive/InputDeviceProperties](#awsmedialiveinputdeviceproperties) (Identifier): properties of the resource
+
 ## Resource AWS.MediaLive/InputSecurityGroup@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -95,6 +103,22 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.MediaLive/NodeProperties](#awsmedialivenodeproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.MediaLive/Offering@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MediaLive/OfferingProperties](#awsmedialiveofferingproperties) (Identifier): properties of the resource
+
+## Resource AWS.MediaLive/Reservation@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MediaLive/ReservationProperties](#awsmedialivereservationproperties) (Identifier): properties of the resource
 
 ## Resource AWS.MediaLive/SdiSource@default
 * **Readable Scope(s)**: None
@@ -194,6 +218,25 @@
 * **Name**: string (Required): A resource's name. Names must be unique within the scope of a resource type in a specific region.
 * **Tags**: [TagMap](#tagmap)
 
+## AWS.MediaLive/InputDeviceProperties
+### Properties
+* **Arn**: string (Identifier): The unique ARN of the input device, e.g. 'arn:aws:medialive:us-west-2:123456789012:inputDevice:hd-0000aaaa1111bbbb2222cccc'.
+* **AvailabilityZone**: string (ReadOnly): The Availability Zone associated with this input device.
+* **ConnectionState**: string (ReadOnly): The state of the connection between the input device and AWS.
+* **DeviceSettingsSyncState**: string (ReadOnly): Whether the device has applied the configuration MediaLive sent to it. SYNCED means it has; SYNCING means it has not yet.
+* **DeviceUpdateStatus**: string (ReadOnly): The status of software on the input device.
+* **HdDeviceSettings**: [InputDeviceHdSettings](#inputdevicehdsettings) (ReadOnly)
+* **Id**: string (ReadOnly): The unique ID of the input device, e.g. 'hd-0000aaaa1111bbbb2222cccc'.
+* **MacAddress**: string (ReadOnly): The network MAC address of the input device.
+* **MedialiveInputArns**: string[] (ReadOnly): The ARNs of the MediaLive inputs attached to the device. Returned only when OutputType is MEDIALIVE_INPUT.
+* **Name**: string (ReadOnly): The name specified for the input device.
+* **NetworkSettings**: [InputDeviceNetworkSettings](#inputdevicenetworksettings) (ReadOnly)
+* **OutputType**: string (ReadOnly): The output attachment type of the input device. MEDIACONNECT_FLOW when the device is the source for a MediaConnect flow, MEDIALIVE_INPUT when it is the source for a MediaLive input, NONE when it is unattached.
+* **SerialNumber**: string (ReadOnly): The unique serial number of the input device.
+* **Tags**: [Tag](#tag)[] (ReadOnly): A collection of key-value pairs associated with the input device.
+* **Type**: string (ReadOnly): The type of the input device.
+* **UhdDeviceSettings**: [InputDeviceUhdSettings](#inputdeviceuhdsettings) (ReadOnly)
+
 ## AWS.MediaLive/InputProperties
 ### Properties
 * **Arn**: string (ReadOnly): The Unique ARN of the input (generated, immutable).
@@ -286,6 +329,42 @@ Not compatible with the inputSecurityGroups property.
 * **State**: string (ReadOnly)
 * **Tags**: [Tag](#tag)[]: A collection of key-value pairs.
 
+## AWS.MediaLive/OfferingProperties
+### Properties
+* **Arn**: string (Identifier): Unique offering ARN, e.g. 'arn:aws:medialive:us-west-2:123456789012:offering:87654321'
+* **CurrencyCode**: string (ReadOnly): Currency code for usagePrice and fixedPrice in ISO-4217 format, e.g. 'USD'
+* **Duration**: int (ReadOnly): Lease duration, e.g. '12'
+* **DurationUnits**: string (ReadOnly): Units for duration, e.g. 'MONTHS'
+* **FixedPrice**: int (ReadOnly): One-time charge for each reserved resource, e.g. '0.0' for a NO_UPFRONT offering
+* **OfferingDescription**: string (ReadOnly): Offering description, e.g. 'HD AVC output at 10-20 Mbps, 30 fps, and standard VQ in US West (Oregon)'
+* **OfferingId**: string (ReadOnly): Unique offering ID, e.g. '87654321'
+* **OfferingType**: string (ReadOnly): Offering type, e.g. 'NO_UPFRONT'
+* **Region**: string (ReadOnly): AWS region, e.g. 'us-west-2'
+* **ResourceSpecification**: [ReservationResourceSpecification](#reservationresourcespecification) (ReadOnly)
+* **UsagePrice**: int (ReadOnly): Recurring usage charge for each reserved resource, e.g. '157.0'
+
+## AWS.MediaLive/ReservationProperties
+### Properties
+* **Arn**: string (Identifier): Unique reservation ARN, e.g. 'arn:aws:medialive:us-west-2:123456789012:reservation:1234567'.
+* **Count**: int (ReadOnly): Number of reserved resources.
+* **CurrencyCode**: string (ReadOnly): Currency code for usagePrice and fixedPrice in ISO-4217 format, e.g. 'USD'.
+* **Duration**: int (ReadOnly): Lease duration, e.g. '12'.
+* **DurationUnits**: string (ReadOnly): Units for duration, e.g. 'MONTHS'.
+* **End**: string (ReadOnly): Reservation UTC end date and time in ISO-8601 format, e.g. '2019-03-01T00:00:00'.
+* **FixedPrice**: int (ReadOnly): One-time charge for each reserved resource, e.g. '0.0' for a NO_UPFRONT offering.
+* **Name**: string (ReadOnly): User specified reservation name.
+* **OfferingDescription**: string (ReadOnly): Offering description, e.g. 'HD AVC output at 10-20 Mbps, 30 fps, and standard VQ in US West (Oregon)'.
+* **OfferingId**: string (ReadOnly): Unique offering ID, e.g. '87654321'.
+* **OfferingType**: string (ReadOnly): Offering type, e.g. 'NO_UPFRONT'.
+* **Region**: string (ReadOnly): AWS region, e.g. 'us-west-2'.
+* **RenewalSettings**: [RenewalSettings](#renewalsettings) (ReadOnly)
+* **ReservationId**: string (ReadOnly): Unique reservation ID, e.g. '1234567'.
+* **ResourceSpecification**: [ReservationResourceSpecification](#reservationresourcespecification) (ReadOnly)
+* **Start**: string (ReadOnly): Reservation UTC start date and time in ISO-8601 format, e.g. '2018-03-01T00:00:00'.
+* **State**: string (ReadOnly): Current state of reservation, e.g. 'ACTIVE'.
+* **Tags**: [Tag](#tag)[] (ReadOnly): A collection of key-value pairs associated with the reservation.
+* **UsagePrice**: int (ReadOnly): Recurring usage charge for each reserved resource, e.g. '157.0'.
+
 ## AWS.MediaLive/SdiSourceProperties
 ### Properties
 * **Arn**: string (ReadOnly): The unique arn of the SdiSource.
@@ -361,9 +440,57 @@ pushed to.
 * **AvailabilityZone**: string: The availability zone of the Input destination.
 * **NetworkInterfaceId**: string: The network interface ID of the Input destination in the VPC.
 
+## InputDeviceHdSettings
+### Properties
+* **ActiveInput**: string: The input in use, HDMI or SDI.
+* **ConfiguredInput**: string: The source that is configured for the input, or AUTO to let the device choose.
+* **DeviceState**: string: Whether the device is currently streaming or idle.
+* **Framerate**: int: The frame rate of the video source.
+* **Height**: int: The height of the video source, in pixels.
+* **LatencyMs**: int: The latency of the device, in milliseconds.
+* **MaxBitrate**: int: The maximum bitrate in bits per second.
+* **ScanType**: string: The scan type of the video source.
+* **Width**: int: The width of the video source, in pixels.
+
+## InputDeviceMediaConnectSettings
+### Properties
+* **FlowArn**: string: The ARN of the MediaConnect flow.
+* **RoleArn**: string: The ARN of the role MediaLive assumes to send to the flow.
+* **SecretArn**: string: The ARN of the Secrets Manager secret holding the encryption key.
+* **SourceName**: string: The name of the MediaConnect flow source.
+
+## InputDeviceNetworkSettings
+### Properties
+* **DnsAddresses**: string[]: The DNS addresses of the input device.
+* **Gateway**: string: The network gateway the input device uses.
+* **IpAddress**: string: The IP address of the input device.
+* **IpScheme**: string: Whether the device is configured for a static IP address or DHCP.
+* **SubnetMask**: string: The subnet mask of the input device.
+
 ## InputDeviceSettings
 ### Properties
 * **Id**: string (Identifier): The unique ID for the device.
+
+## InputDeviceUhdAudioChannelPairConfig
+### Properties
+* **Id**: int: The ID of the audio channel pair.
+* **Profile**: string: The audio profile of the channel pair.
+
+## InputDeviceUhdSettings
+### Properties
+* **ActiveInput**: string: The input in use, HDMI or SDI.
+* **AudioChannelPairs**: [InputDeviceUhdAudioChannelPairConfig](#inputdeviceuhdaudiochannelpairconfig)[]: The audio channel pair configurations of the device.
+* **Codec**: string: The codec the device uses to encode.
+* **ConfiguredInput**: string: The source that is configured for the input, or AUTO to let the device choose.
+* **DeviceState**: string: Whether the device is currently streaming or idle.
+* **Framerate**: int: The frame rate of the video source.
+* **Height**: int: The height of the video source, in pixels.
+* **InputResolution**: string: The resolution of the video source.
+* **LatencyMs**: int: The latency of the device, in milliseconds.
+* **MaxBitrate**: int: The maximum bitrate in bits per second.
+* **MediaconnectSettings**: [InputDeviceMediaConnectSettings](#inputdevicemediaconnectsettings)
+* **ScanType**: string: The scan type of the video source.
+* **Width**: int: The width of the video source, in pixels.
 
 ## InputSdpLocation
 ### Properties
@@ -479,6 +606,33 @@ Subnet IDs must be mapped to two unique availability zones (AZ).
 * **NetworkInterfaceMode**: string: The network interface mode.
 * **PhysicalInterfaceName**: string: The physical interface name.
 
+## RenewalSettings
+### Properties
+* **AutomaticRenewal**: string: Automatic renewal status for the reservation.
+* **RenewalCount**: int: Count for the reservation renewal.
+
+## ReservationResourceSpecification
+### Properties
+* **ChannelClass**: string: Channel class, e.g. 'STANDARD'
+* **Codec**: string: Codec, e.g. 'AVC'
+* **MaximumBitrate**: string: Maximum bitrate, e.g. 'MAX_20_MBPS'
+* **MaximumFramerate**: string: Maximum framerate, e.g. 'MAX_30_FPS' (Outputs only)
+* **Resolution**: string: Resolution, e.g. 'HD'
+* **ResourceType**: string: Resource type, 'INPUT', 'OUTPUT', 'MULTIPLEX', or 'CHANNEL'
+* **SpecialFeature**: string: Special feature, e.g. 'AUDIO_NORMALIZATION' (Channels only)
+* **VideoQuality**: string: Video quality, e.g. 'STANDARD' (Outputs only)
+
+## ReservationResourceSpecification
+### Properties
+* **ChannelClass**: string: Channel class, e.g. 'STANDARD'.
+* **Codec**: string: Codec, e.g. 'AVC'.
+* **MaximumBitrate**: string: Maximum bitrate, e.g. 'MAX_20_MBPS'.
+* **MaximumFramerate**: string: Maximum framerate, e.g. 'MAX_30_FPS' (Outputs only).
+* **Resolution**: string: Resolution, e.g. 'HD'.
+* **ResourceType**: string: Resource type, 'INPUT', 'OUTPUT', 'MULTIPLEX', or 'CHANNEL'.
+* **SpecialFeature**: string: Special feature, e.g. 'AUDIO_NORMALIZATION' (Channels only).
+* **VideoQuality**: string: Video quality, e.g. 'STANDARD' (Outputs only).
+
 ## Route
 ### Properties
 * **Cidr**: string: Ip address cidr
@@ -552,8 +706,18 @@ Each stream encapsulates one captions stream (out of any number you can include)
 
 ## Tag
 ### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
+
+## Tag
+### Properties
 * **Key**: string (Required): The key name of the tag.
 * **Value**: string (Required): The value for the tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
 
 ## TagMap
 ### Properties

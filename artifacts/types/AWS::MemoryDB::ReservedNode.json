@@ -1,0 +1,153 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MemoryDB-ReservedNode",
+  "type": "AWS::MemoryDB::ReservedNode",
+  "time": "2026-11-05T21:21:54.562Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ReservationId"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "RecurringCharge": {
+        "additionalProperties": false,
+        "properties": {
+          "RecurringChargeAmount": {
+            "description": "The amount of the recurring charge.",
+            "type": "number"
+          },
+          "RecurringChargeFrequency": {
+            "description": "The frequency of the recurring charge.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Represents a MemoryDB reserved node purchased via PurchaseReservedNodesOffering. Reserved nodes are not eligible for cancellation and are non-refundable.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "memorydb:DescribeReservedNodes"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "memorydb:DescribeReservedNodes",
+          "memorydb:ListTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the reserved node.",
+        "type": "string"
+      },
+      "Duration": {
+        "description": "The duration of the reservation in seconds.",
+        "type": "integer"
+      },
+      "FixedPrice": {
+        "description": "The fixed price charged for this reserved node.",
+        "type": "number"
+      },
+      "NodeCount": {
+        "description": "The number of nodes that have been reserved.",
+        "type": "integer"
+      },
+      "NodeType": {
+        "description": "The node type for the reserved nodes.",
+        "type": "string"
+      },
+      "OfferingType": {
+        "description": "The offering type of this reserved node.",
+        "type": "string"
+      },
+      "RecurringCharges": {
+        "description": "The recurring price charged to run this reserved node.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/RecurringCharge"
+        },
+        "type": "array"
+      },
+      "ReservationId": {
+        "description": "A customer-specified identifier to track this reservation.",
+        "type": "string"
+      },
+      "ReservedNodesOfferingId": {
+        "description": "The ID of the reserved node offering to purchase.",
+        "type": "string"
+      },
+      "StartTime": {
+        "description": "The time the reservation started.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "State": {
+        "description": "The state of the reserved node.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A list of tags to be added to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/ReservationId",
+      "/properties/ReservedNodesOfferingId",
+      "/properties/NodeType",
+      "/properties/Duration",
+      "/properties/FixedPrice",
+      "/properties/NodeCount",
+      "/properties/OfferingType",
+      "/properties/State",
+      "/properties/StartTime",
+      "/properties/RecurringCharges",
+      "/properties/Tags"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "memorydb:ListTags"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::MemoryDB::ReservedNode"
+  }
+}

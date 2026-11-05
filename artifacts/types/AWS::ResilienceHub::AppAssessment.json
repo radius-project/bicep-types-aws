@@ -1,0 +1,398 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ResilienceHub-AppAssessment",
+  "type": "AWS::ResilienceHub::AppAssessment",
+  "time": "2026-11-05T20:57:45.37Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/AssessmentName",
+      "/properties/AppArn",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "Cost": {
+        "additionalProperties": false,
+        "description": "Defines a cost object.",
+        "properties": {
+          "Amount": {
+            "description": "The cost amount.",
+            "type": "number"
+          },
+          "Currency": {
+            "description": "The cost currency, for example USD.",
+            "maxLength": 3,
+            "minLength": 0,
+            "type": "string"
+          },
+          "Frequency": {
+            "description": "The cost frequency.",
+            "enum": [
+              "Hourly",
+              "Daily",
+              "Monthly",
+              "Yearly"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Amount",
+          "Currency",
+          "Frequency"
+        ],
+        "type": "object"
+      },
+      "DisruptionCompliance": {
+        "additionalProperties": false,
+        "description": "Defines the compliance against the resiliency policy for a disruption.",
+        "properties": {
+          "AchievableRpoInSecs": {
+            "description": "The Recovery Point Objective (RPO) that is achievable, in seconds.",
+            "type": "number"
+          },
+          "AchievableRtoInSecs": {
+            "description": "The Recovery Time Objective (RTO) that is achievable, in seconds.",
+            "type": "number"
+          },
+          "ComplianceStatus": {
+            "description": "The current status of compliance for the resiliency policy.",
+            "enum": [
+              "PolicyBreached",
+              "PolicyMet",
+              "NotApplicable",
+              "MissingPolicy"
+            ],
+            "type": "string"
+          },
+          "CurrentRpoInSecs": {
+            "description": "The current RPO, in seconds.",
+            "type": "number"
+          },
+          "CurrentRtoInSecs": {
+            "description": "The current RTO, in seconds.",
+            "type": "number"
+          },
+          "Message": {
+            "description": "The disruption compliance message.",
+            "maxLength": 500,
+            "minLength": 0,
+            "type": "string"
+          },
+          "RpoDescription": {
+            "description": "The RPO description.",
+            "maxLength": 500,
+            "minLength": 0,
+            "type": "string"
+          },
+          "RpoReferenceId": {
+            "description": "Reference identifier of the RPO.",
+            "maxLength": 500,
+            "minLength": 0,
+            "type": "string"
+          },
+          "RtoDescription": {
+            "description": "The RTO description.",
+            "maxLength": 500,
+            "minLength": 0,
+            "type": "string"
+          },
+          "RtoReferenceId": {
+            "description": "Reference identifier of the RTO.",
+            "maxLength": 500,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "ComplianceStatus"
+        ],
+        "type": "object"
+      },
+      "FailurePolicy": {
+        "additionalProperties": false,
+        "description": "Defines a failure policy.",
+        "properties": {
+          "RpoInSecs": {
+            "description": "Recovery Point Objective (RPO) in seconds.",
+            "type": "number"
+          },
+          "RtoInSecs": {
+            "description": "Recovery Time Objective (RTO) in seconds.",
+            "type": "number"
+          }
+        },
+        "required": [
+          "RtoInSecs",
+          "RpoInSecs"
+        ],
+        "type": "object"
+      },
+      "ResiliencyPolicy": {
+        "additionalProperties": false,
+        "description": "Defines a resiliency policy. Note: DescribeAppAssessment returns a reduced projection of the policy ? it omits the standalone policy's Tier, EstimatedCostTier, PolicyDescription, and CreationTime, which are only available via DescribeResiliencyPolicy. Those fields are therefore not modeled here.",
+        "properties": {
+          "DataLocationConstraint": {
+            "description": "Specifies a high-level geographical location constraint for where your resilience policy data can be stored.",
+            "enum": [
+              "AnyLocation",
+              "SameContinent",
+              "SameCountry"
+            ],
+            "type": "string"
+          },
+          "Policy": {
+            "additionalProperties": false,
+            "description": "The resiliency policy, keyed by disruption type.",
+            "patternProperties": {
+              "^(Software|Hardware|AZ|Region)$": {
+                "$ref": "#/definitions/FailurePolicy"
+              }
+            },
+            "type": "object"
+          },
+          "PolicyArn": {
+            "description": "Amazon Resource Name (ARN) of the resiliency policy.",
+            "pattern": "^arn:(aws|aws-cn|aws-iso|aws-iso-[a-z]{1}|aws-us-gov):[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:([a-z]{2}-((iso[a-z]{0,1}-)|(gov-)){0,1}[a-z]+-[0-9]):[0-9]{12}:[A-Za-z0-9/][A-Za-z0-9:_/+.-]{0,1023}$",
+            "type": "string"
+          },
+          "PolicyName": {
+            "description": "The name of the policy.",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_\\-]{1,59}$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ResiliencyScore": {
+        "additionalProperties": false,
+        "description": "The overall resiliency score, returned as an object that includes the disruption score and outage score.",
+        "properties": {
+          "ComponentScore": {
+            "additionalProperties": false,
+            "description": "The score generated by Resilience Hub for the scoring component after running an assessment.",
+            "patternProperties": {
+              "^(Compliance|Test|Alarm|Sop)$": {
+                "$ref": "#/definitions/ScoringComponentResiliencyScore"
+              }
+            },
+            "type": "object"
+          },
+          "DisruptionScore": {
+            "additionalProperties": false,
+            "description": "The disruption score for a valid key.",
+            "patternProperties": {
+              "^(Software|Hardware|AZ|Region)$": {
+                "type": "number"
+              }
+            },
+            "type": "object"
+          },
+          "Score": {
+            "description": "The outage score for a valid key.",
+            "type": "number"
+          }
+        },
+        "required": [
+          "Score",
+          "DisruptionScore"
+        ],
+        "type": "object"
+      },
+      "ScoringComponentResiliencyScore": {
+        "additionalProperties": false,
+        "description": "Resiliency score of each scoring component.",
+        "properties": {
+          "ExcludedCount": {
+            "description": "Number of recommendations that were excluded from the assessment.",
+            "type": "number"
+          },
+          "OutstandingCount": {
+            "description": "Number of recommendations that must be implemented to obtain the maximum possible score for the scoring component.",
+            "type": "number"
+          },
+          "PossibleScore": {
+            "description": "Maximum possible score that can be obtained for the scoring component.",
+            "type": "number"
+          },
+          "Score": {
+            "description": "Resiliency score points given for the scoring component.",
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Represents an assessment for an AWS Resilience Hub application.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "resiliencehub:ListAppAssessments"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "resiliencehub:DescribeAppAssessment",
+          "resiliencehub:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/AssessmentArn"
+    ],
+    "properties": {
+      "AppArn": {
+        "description": "Amazon Resource Name (ARN) of the Resilience Hub application.",
+        "pattern": "^arn:(aws|aws-cn|aws-iso|aws-iso-[a-z]{1}|aws-us-gov):[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:([a-z]{2}-((iso[a-z]{0,1}-)|(gov-)){0,1}[a-z]+-[0-9]):[0-9]{12}:[A-Za-z0-9/][A-Za-z0-9:_/+.-]{0,1023}$",
+        "type": "string"
+      },
+      "AppVersion": {
+        "description": "The version of the application.",
+        "pattern": "^\\S{1,50}$",
+        "type": "string"
+      },
+      "AssessmentArn": {
+        "description": "Amazon Resource Name (ARN) of the assessment.",
+        "pattern": "^arn:(aws|aws-cn|aws-iso|aws-iso-[a-z]{1}|aws-us-gov):[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:([a-z]{2}-((iso[a-z]{0,1}-)|(gov-)){0,1}[a-z]+-[0-9]):[0-9]{12}:[A-Za-z0-9/][A-Za-z0-9:_/+.-]{0,1023}$",
+        "type": "string"
+      },
+      "AssessmentName": {
+        "description": "The name for the assessment.",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_\\-]{1,59}$",
+        "type": "string"
+      },
+      "AssessmentStatus": {
+        "description": "Current status of the assessment for the resiliency policy.",
+        "enum": [
+          "Pending",
+          "InProgress",
+          "Failed",
+          "Success"
+        ],
+        "type": "string"
+      },
+      "Compliance": {
+        "additionalProperties": false,
+        "description": "Application compliance against the resiliency policy, keyed by disruption type.",
+        "patternProperties": {
+          "^(Software|Hardware|AZ|Region)$": {
+            "$ref": "#/definitions/DisruptionCompliance"
+          }
+        },
+        "type": "object"
+      },
+      "ComplianceStatus": {
+        "description": "Current status of compliance for the resiliency policy.",
+        "enum": [
+          "PolicyBreached",
+          "PolicyMet",
+          "NotApplicable",
+          "MissingPolicy"
+        ],
+        "type": "string"
+      },
+      "Cost": {
+        "$ref": "#/definitions/Cost"
+      },
+      "DriftStatus": {
+        "description": "Indicates if compliance drifts were detected while running an assessment.",
+        "enum": [
+          "NotChecked",
+          "NotDetected",
+          "Detected"
+        ],
+        "type": "string"
+      },
+      "EndTime": {
+        "description": "End time for the action.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Invoker": {
+        "description": "The entity that invoked the assessment.",
+        "enum": [
+          "User",
+          "System"
+        ],
+        "type": "string"
+      },
+      "Policy": {
+        "$ref": "#/definitions/ResiliencyPolicy"
+      },
+      "ResiliencyScore": {
+        "$ref": "#/definitions/ResiliencyScore"
+      },
+      "StartTime": {
+        "description": "Starting time for the action.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags assigned to the resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "VersionName": {
+        "description": "Version name of the published application.",
+        "pattern": "^\\S{1,50}$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/AssessmentArn",
+      "/properties/AppVersion",
+      "/properties/AssessmentStatus",
+      "/properties/ComplianceStatus",
+      "/properties/Invoker",
+      "/properties/StartTime",
+      "/properties/EndTime",
+      "/properties/DriftStatus",
+      "/properties/VersionName",
+      "/properties/Cost",
+      "/properties/ResiliencyScore",
+      "/properties/Compliance",
+      "/properties/Policy"
+    ],
+    "required": [
+      "AssessmentName",
+      "AppArn"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "resiliencehub:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::ResilienceHub::AppAssessment"
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DeviceFarm-Suite",
+  "type": "AWS::DeviceFarm::Suite",
+  "time": "2026-11-05T21:15:41.494Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/JobArn"
+    ],
+    "definitions": {
+      "Counters": {
+        "additionalProperties": false,
+        "description": "Represents entity counters.",
+        "properties": {
+          "Errored": {
+            "description": "The number of errored entities.",
+            "type": "integer"
+          },
+          "Failed": {
+            "description": "The number of failed entities.",
+            "type": "integer"
+          },
+          "Passed": {
+            "description": "The number of passed entities.",
+            "type": "integer"
+          },
+          "Skipped": {
+            "description": "The number of skipped entities.",
+            "type": "integer"
+          },
+          "Stopped": {
+            "description": "The number of stopped entities.",
+            "type": "integer"
+          },
+          "Total": {
+            "description": "The total number of entities.",
+            "type": "integer"
+          },
+          "Warned": {
+            "description": "The number of warned entities.",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "DeviceMinutes": {
+        "additionalProperties": false,
+        "description": "Represents the total minutes used by the resource to run tests.",
+        "properties": {
+          "Metered": {
+            "description": "The sum of metered minutes used by the resource to run tests.",
+            "type": "number"
+          },
+          "Total": {
+            "description": "The total minutes used by the resource to run tests.",
+            "type": "number"
+          },
+          "Unmetered": {
+            "description": "The sum of unmetered minutes used by the resource to run tests.",
+            "type": "number"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Represents a collection of one or more tests in AWS Device Farm.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "JobArn": {
+              "description": "The ARN of the job that contains the suites.",
+              "maxLength": 1011,
+              "minLength": 32,
+              "pattern": "^arn:aws:devicefarm:.+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "JobArn"
+          ]
+        },
+        "permissions": [
+          "devicefarm:ListSuites"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "devicefarm:GetSuite"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The suite's ARN.",
+        "maxLength": 1011,
+        "minLength": 32,
+        "pattern": "^arn:aws:devicefarm:.+$",
+        "type": "string"
+      },
+      "Counters": {
+        "$ref": "#/definitions/Counters"
+      },
+      "Created": {
+        "description": "When the suite was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DeviceMinutes": {
+        "$ref": "#/definitions/DeviceMinutes"
+      },
+      "JobArn": {
+        "description": "The ARN of the job that contains this suite.",
+        "maxLength": 1011,
+        "minLength": 32,
+        "pattern": "^arn:aws:devicefarm:.+$",
+        "type": "string"
+      },
+      "Message": {
+        "description": "A message about the suite's result.",
+        "maxLength": 16384,
+        "type": "string"
+      },
+      "Name": {
+        "description": "The suite's name.",
+        "maxLength": 256,
+        "type": "string"
+      },
+      "Result": {
+        "description": "The suite's result.",
+        "enum": [
+          "PENDING",
+          "PASSED",
+          "WARNED",
+          "FAILED",
+          "SKIPPED",
+          "ERRORED",
+          "STOPPED"
+        ],
+        "type": "string"
+      },
+      "Status": {
+        "description": "The suite's status.",
+        "enum": [
+          "PENDING",
+          "PENDING_CONCURRENCY",
+          "PENDING_DEVICE",
+          "PROCESSING",
+          "SCHEDULING",
+          "PREPARING",
+          "RUNNING",
+          "COMPLETED",
+          "STOPPING"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Name",
+      "/properties/Status",
+      "/properties/Result",
+      "/properties/Created",
+      "/properties/Counters",
+      "/properties/Message",
+      "/properties/DeviceMinutes"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::DeviceFarm::Suite"
+  }
+}

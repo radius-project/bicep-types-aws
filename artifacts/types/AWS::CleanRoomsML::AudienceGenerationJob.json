@@ -1,0 +1,220 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CleanRoomsML-AudienceGenerationJob",
+  "type": "AWS::CleanRoomsML::AudienceGenerationJob",
+  "time": "2026-11-05T21:08:02.324Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/IncludeSeedInOutput",
+      "/properties/Description",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "AudienceQualityMetrics": {
+        "additionalProperties": false,
+        "description": "Metrics that describe the quality of the generated audience.",
+        "properties": {
+          "RecallMetric": {
+            "description": "The recall score of the generated audience.",
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "RelevanceMetrics": {
+            "description": "The relevance scores of the generated audience.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/RelevanceMetric"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "RelevanceMetrics"
+        ],
+        "type": "object"
+      },
+      "AudienceSize": {
+        "additionalProperties": false,
+        "description": "The size of the generated audience.",
+        "properties": {
+          "Type": {
+            "description": "Whether the audience size is defined in absolute terms or as a percentage.",
+            "enum": [
+              "ABSOLUTE",
+              "PERCENTAGE"
+            ],
+            "type": "string"
+          },
+          "Value": {
+            "description": "Specify an audience size value.",
+            "maximum": 20000000,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "Type",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "RelevanceMetric": {
+        "additionalProperties": false,
+        "description": "The relevance score of a generated audience.",
+        "properties": {
+          "AudienceSize": {
+            "$ref": "#/definitions/AudienceSize"
+          },
+          "Score": {
+            "description": "The relevance score of the generated audience.",
+            "maximum": 10,
+            "minimum": 0,
+            "type": "number"
+          }
+        },
+        "required": [
+          "AudienceSize"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Returns information about an audience generation job.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "cleanrooms-ml:ListAudienceGenerationJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "cleanrooms-ml:GetAudienceGenerationJob"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/AudienceGenerationJobArn"
+    ],
+    "properties": {
+      "AudienceGenerationJobArn": {
+        "description": "The Amazon Resource Name (ARN) of the audience generation job.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws[-a-z]*:cleanrooms-ml:[-a-z0-9]+:[0-9]{12}:audience-generation-job/[-a-zA-Z0-9_/.]+$",
+        "type": "string"
+      },
+      "ConfiguredAudienceModelArn": {
+        "description": "The Amazon Resource Name (ARN) of the configured audience model used for this audience generation job.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws[-a-z]*:cleanrooms-ml:[-a-z0-9]+:[0-9]{12}:configured-audience-model/[-a-zA-Z0-9_/.]+$",
+        "type": "string"
+      },
+      "CreateTime": {
+        "description": "The time at which the audience generation job was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description of the audience generation job.",
+        "maxLength": 255,
+        "minLength": 0,
+        "pattern": "^[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t\\r\\n]*$",
+        "type": "string"
+      },
+      "IncludeSeedInOutput": {
+        "description": "Configure whether the seed users are included in the output audience.",
+        "type": "boolean"
+      },
+      "Metrics": {
+        "$ref": "#/definitions/AudienceQualityMetrics"
+      },
+      "Name": {
+        "description": "The name of the audience generation job.",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^(?!\\s*$)[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t]*$",
+        "type": "string"
+      },
+      "StartedBy": {
+        "description": "The AWS account that started this audience generation job.",
+        "maxLength": 12,
+        "minLength": 12,
+        "pattern": "^[0-9]{12}$",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the audience generation job.",
+        "enum": [
+          "CREATE_PENDING",
+          "CREATE_IN_PROGRESS",
+          "CREATE_FAILED",
+          "ACTIVE",
+          "DELETE_PENDING",
+          "DELETE_IN_PROGRESS",
+          "DELETE_FAILED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags that are associated to this audience generation job.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "UpdateTime": {
+        "description": "The most recent time at which the audience generation job was updated.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/AudienceGenerationJobArn",
+      "/properties/Name",
+      "/properties/ConfiguredAudienceModelArn",
+      "/properties/Status",
+      "/properties/Metrics",
+      "/properties/StartedBy",
+      "/properties/CreateTime",
+      "/properties/UpdateTime"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "cleanrooms-ml:GetAudienceGenerationJob"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::CleanRoomsML::AudienceGenerationJob"
+  }
+}

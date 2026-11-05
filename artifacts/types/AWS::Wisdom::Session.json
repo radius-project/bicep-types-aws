@@ -1,0 +1,130 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Wisdom-Session",
+  "type": "AWS::Wisdom::Session",
+  "time": "2026-11-04T22:19:15.033Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/AssistantId",
+        "/properties/SessionId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/AssistantId",
+      "/properties/Description",
+      "/properties/Name",
+      "/properties/Tags"
+    ],
+    "description": "Definition of AWS::Wisdom::Session Resource Type",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "AssistantId": {
+              "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$",
+              "type": "string"
+            },
+            "Name": {
+              "maxLength": 255,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "AssistantId",
+            "Name"
+          ]
+        },
+        "permissions": [
+          "wisdom:SearchSessions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "wisdom:GetSession",
+          "wisdom:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/SessionArn"
+    ],
+    "properties": {
+      "AssistantId": {
+        "description": "The identifier of the Wisdom assistant.",
+        "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description of the session.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9\\s_.,-]+",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the session.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9\\s_.,-]+",
+        "type": "string"
+      },
+      "SessionArn": {
+        "description": "The Amazon Resource Name (ARN) of the session.",
+        "pattern": "^arn:[a-z-]*?:wisdom:[a-z0-9-]*?:[0-9]{12}:[a-z-]*?/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}(?:/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})?$",
+        "type": "string"
+      },
+      "SessionId": {
+        "description": "The identifier of the session.",
+        "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags used to organize, track, or control access for this resource.",
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "maxLength": 128,
+              "minLength": 1,
+              "pattern": "^(?!aws:)[a-zA-Z+-=._:/]+$",
+              "type": "string"
+            },
+            "Value": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "maxItems": 200,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/SessionArn",
+      "/properties/SessionId"
+    ],
+    "required": [
+      "AssistantId",
+      "Name"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "wisdom:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Wisdom::Session"
+  }
+}

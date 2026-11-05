@@ -1,0 +1,251 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ServiceQuotas-Quota",
+  "type": "AWS::ServiceQuotas::Quota",
+  "time": "2026-11-05T21:20:24.287Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ServiceCode",
+      "/properties/QuotaCode"
+    ],
+    "definitions": {
+      "MetricInfo": {
+        "additionalProperties": false,
+        "description": "Information about the CloudWatch metric that reflects quota usage.",
+        "properties": {
+          "MetricDimensions": {
+            "additionalProperties": false,
+            "description": "The metric dimensions, as name/value pairs that are part of the identity of a metric.",
+            "maxProperties": 10,
+            "patternProperties": {
+              "^.+$": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "MetricName": {
+            "description": "The name of the metric.",
+            "type": "string"
+          },
+          "MetricNamespace": {
+            "description": "The namespace of the metric.",
+            "type": "string"
+          },
+          "MetricStatisticRecommendation": {
+            "description": "The metric statistic that AWS recommends you use when determining quota usage.",
+            "pattern": "^(Sum|Maximum)$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "QuotaContextInfo": {
+        "additionalProperties": false,
+        "description": "The context for a resource-level quota. Present only for quotas that can be applied at the resource level (for example, Instances per domain for Amazon OpenSearch Service); absent for account-level quotas.",
+        "properties": {
+          "ContextId": {
+            "description": "The resource, or resources, to which the quota applies. Either an Amazon Resource Name (ARN) for a specific resource, or '*' for the default value that applies to all resources without a specific applied value.",
+            "type": "string"
+          },
+          "ContextScope": {
+            "description": "The scope to which the quota value is applied. If RESOURCE, the quota value is applied to each resource in the account. If ACCOUNT, the quota value is applied to the account.",
+            "enum": [
+              "ACCOUNT",
+              "RESOURCE"
+            ],
+            "type": "string"
+          },
+          "ContextScopeType": {
+            "description": "The resource type to which the quota can be applied.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "QuotaPeriod": {
+        "additionalProperties": false,
+        "description": "Information about the quota period, for rate-based quotas.",
+        "properties": {
+          "PeriodUnit": {
+            "description": "The time unit.",
+            "enum": [
+              "MICROSECOND",
+              "MILLISECOND",
+              "SECOND",
+              "MINUTE",
+              "HOUR",
+              "DAY",
+              "WEEK"
+            ],
+            "type": "string"
+          },
+          "PeriodValue": {
+            "description": "The value associated with the reported PeriodUnit.",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A complex data type that contains a tag key and tag value.",
+        "properties": {
+          "Key": {
+            "description": "A string that contains a tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "A string that contains an optional tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Read-only resource that exposes an applied Service Quotas quota value for an AWS service in an account and Region. A quota (also referred to as a limit) is the maximum value for a resource, action, or item in your AWS account. Quotas are defined and managed by AWS; this resource provides read and list visibility only.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ServiceCode": {
+              "maxLength": 63,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z][a-zA-Z0-9-]{1,63}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "ServiceCode"
+          ]
+        },
+        "permissions": [
+          "servicequotas:ListServiceQuotas"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "servicequotas:GetServiceQuota",
+          "servicequotas:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/QuotaArn"
+    ],
+    "properties": {
+      "Adjustable": {
+        "description": "Indicates whether the quota value can be increased.",
+        "type": "boolean"
+      },
+      "Description": {
+        "description": "The quota description.",
+        "maxLength": 350,
+        "type": "string"
+      },
+      "GlobalQuota": {
+        "description": "Indicates whether the quota is global.",
+        "type": "boolean"
+      },
+      "Period": {
+        "$ref": "#/definitions/QuotaPeriod"
+      },
+      "QuotaAppliedAtLevel": {
+        "description": "The level at which the applied quota value is applied.",
+        "enum": [
+          "ACCOUNT",
+          "RESOURCE",
+          "ALL"
+        ],
+        "type": "string"
+      },
+      "QuotaArn": {
+        "description": "The Amazon Resource Name (ARN) of the quota.",
+        "type": "string"
+      },
+      "QuotaCode": {
+        "description": "The quota identifier. To find the quota code for a specific quota, use the ListServiceQuotas operation.",
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9-]{1,128}$",
+        "type": "string"
+      },
+      "QuotaContext": {
+        "$ref": "#/definitions/QuotaContextInfo"
+      },
+      "QuotaName": {
+        "description": "The quota name.",
+        "type": "string"
+      },
+      "ServiceCode": {
+        "description": "The service identifier. To find the service code value for an AWS service, use the ListServices operation.",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9-]{1,63}$",
+        "type": "string"
+      },
+      "ServiceName": {
+        "description": "The service name.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags attached to the applied quota.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array"
+      },
+      "Unit": {
+        "description": "The unit of measurement for the quota value.",
+        "type": "string"
+      },
+      "UsageMetric": {
+        "$ref": "#/definitions/MetricInfo"
+      },
+      "Value": {
+        "description": "The applied quota value.",
+        "maximum": 10000000000,
+        "minimum": 0,
+        "type": "number"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/QuotaArn",
+      "/properties/ServiceName",
+      "/properties/QuotaName",
+      "/properties/Value",
+      "/properties/Unit",
+      "/properties/Adjustable",
+      "/properties/GlobalQuota",
+      "/properties/QuotaAppliedAtLevel",
+      "/properties/Description",
+      "/properties/Period",
+      "/properties/UsageMetric",
+      "/properties/QuotaContext",
+      "/properties/Tags"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "servicequotas:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::ServiceQuotas::Quota"
+  }
+}

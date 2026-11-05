@@ -1,0 +1,138 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-ExportImageTask",
+  "type": "AWS::EC2::ExportImageTask",
+  "time": "2026-11-05T20:53:38.64Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ExportImageTaskId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Description",
+      "/properties/ImageId",
+      "/properties/S3ExportLocation",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "S3ExportLocation": {
+        "additionalProperties": false,
+        "description": "Describes the destination for an export image task.",
+        "properties": {
+          "S3Bucket": {
+            "description": "The destination Amazon S3 bucket.",
+            "type": "string"
+          },
+          "S3Prefix": {
+            "description": "The prefix (logical hierarchy) in the bucket.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "S3Bucket"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource schema for an EC2 Export Image Task. This is a read-only resource representing an image export job.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "ec2:DescribeExportImageTasks"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ec2:DescribeExportImageTasks",
+          "ec2:DescribeTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of the export image task.",
+        "type": "string"
+      },
+      "Description": {
+        "description": "A description of the image being exported.",
+        "maxLength": 255,
+        "type": "string"
+      },
+      "ExportImageTaskId": {
+        "description": "The ID of the export image task.",
+        "type": "string"
+      },
+      "ImageId": {
+        "description": "The ID of the image.",
+        "type": "string"
+      },
+      "Progress": {
+        "description": "The percent complete of the export image task.",
+        "type": "string"
+      },
+      "S3ExportLocation": {
+        "$ref": "#/definitions/S3ExportLocation"
+      },
+      "Status": {
+        "description": "The status of the export image task.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags for the export image task.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/ExportImageTaskId",
+      "/properties/Status",
+      "/properties/Progress"
+    ],
+    "required": [
+      "ImageId",
+      "S3ExportLocation"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "ec2:DescribeTags"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::EC2::ExportImageTask"
+  }
+}

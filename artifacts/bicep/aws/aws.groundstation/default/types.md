@@ -32,6 +32,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.GroundStation/MissionProfileProperties](#awsgroundstationmissionprofileproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.GroundStation/Satellite@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.GroundStation/SatelliteProperties](#awsgroundstationsatelliteproperties) (Identifier): properties of the resource
+
 ## AntennaDownlinkConfig
 ### Properties
 * **SpectrumConfig**: [SpectrumConfig](#spectrumconfig)
@@ -91,6 +99,15 @@
 * **Tags**: [Tag](#tag)[]
 * **TelemetrySinkConfigArn**: string: ARN of a Config resource of type TelemetrySinkConfig used for telemetry data sink configuration.
 * **TrackingConfigArn**: string (Required)
+
+## AWS.GroundStation/SatelliteProperties
+### Properties
+* **Arn**: string (Identifier): The Region-qualified Amazon Resource Name (ARN) of the satellite. AWS Ground Station returns a global satellite ARN, but its tagging APIs require a Region-qualified ARN. This resource therefore uses the Region-qualified ARN (the current Region inserted into the satellite ARN) as the primary identifier.
+* **CurrentEphemeris**: [EphemerisMetaData](#ephemerismetadata) (ReadOnly)
+* **GroundStations**: string[] (ReadOnly): A list of ground stations to which the satellite is on-boarded.
+* **NoradSatelliteID**: int (ReadOnly): The NORAD satellite ID number.
+* **SatelliteId**: string (ReadOnly): The UUID of the satellite.
+* **Tags**: [Tag](#tag)[] (ReadOnly): The tags assigned to the satellite.
 
 ## AwsGroundStationAgentEndpoint
 ### Properties
@@ -186,6 +203,11 @@
 ### Properties
 * **DownlinkAwsGroundStationAgentEndpoint**: [DownlinkAwsGroundStationAgentEndpointDetails](#downlinkawsgroundstationagentendpointdetails)
 * **UplinkAwsGroundStationAgentEndpoint**: [UplinkAwsGroundStationAgentEndpointDetails](#uplinkawsgroundstationagentendpointdetails)
+
+## EphemerisMetaData
+### Properties
+* **Epoch**: string: The epoch of a default ephemeris from Space Track in UTC.
+* **Source**: string (Required): The EphemerisSource that generated a given ephemeris.
 
 ## Frequency
 ### Properties
@@ -285,6 +307,11 @@
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
 
 ## TelemetrySinkConfig
 ### Properties

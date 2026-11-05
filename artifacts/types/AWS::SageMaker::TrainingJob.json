@@ -1,0 +1,1001 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-TrainingJob",
+  "type": "AWS::SageMaker::TrainingJob",
+  "time": "2026-11-05T19:43:47.245Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/TrainingJobName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/AlgorithmSpecification",
+      "/properties/CheckpointConfig",
+      "/properties/DebugHookConfig",
+      "/properties/DebugRuleConfigurations",
+      "/properties/EnableInterContainerTrafficEncryption",
+      "/properties/EnableManagedSpotTraining",
+      "/properties/EnableNetworkIsolation",
+      "/properties/Environment",
+      "/properties/ExperimentConfig",
+      "/properties/HyperParameters",
+      "/properties/InfraCheckConfig",
+      "/properties/InputDataConfig",
+      "/properties/OutputDataConfig",
+      "/properties/ProfilerConfig",
+      "/properties/ProfilerRuleConfigurations",
+      "/properties/RemoteDebugConfig",
+      "/properties/ResourceConfig",
+      "/properties/RetryStrategy",
+      "/properties/RoleArn",
+      "/properties/StoppingCondition",
+      "/properties/Tags",
+      "/properties/TensorBoardOutputConfig",
+      "/properties/TrainingJobName",
+      "/properties/VpcConfig"
+    ],
+    "definitions": {
+      "AlgorithmSpecification": {
+        "additionalProperties": false,
+        "description": "The algorithm specification for the training job.",
+        "properties": {
+          "AlgorithmName": {
+            "description": "The name of the algorithm resource to use for the training job.",
+            "maxLength": 170,
+            "minLength": 1,
+            "pattern": "(arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:[a-z\\-]*\\/)?([a-zA-Z0-9]([a-zA-Z0-9-]){0,62})(?\u003c!-)$",
+            "type": "string"
+          },
+          "ContainerArguments": {
+            "description": "The arguments for the training container.",
+            "items": {
+              "maxLength": 256,
+              "type": "string"
+            },
+            "maxItems": 100,
+            "type": "array"
+          },
+          "ContainerEntrypoint": {
+            "description": "The entrypoint for the training container.",
+            "items": {
+              "maxLength": 256,
+              "type": "string"
+            },
+            "maxItems": 100,
+            "type": "array"
+          },
+          "EnableSageMakerMetricsTimeSeries": {
+            "description": "Whether to enable SageMaker metrics time series.",
+            "type": "boolean"
+          },
+          "MetricDefinitions": {
+            "description": "A list of metric definition objects.",
+            "items": {
+              "$ref": "#/definitions/MetricDefinition"
+            },
+            "maxItems": 40,
+            "type": "array"
+          },
+          "TrainingImage": {
+            "description": "The registry path of the Docker image that contains the training algorithm.",
+            "maxLength": 255,
+            "pattern": ".*",
+            "type": "string"
+          },
+          "TrainingImageConfig": {
+            "$ref": "#/definitions/TrainingImageConfig"
+          },
+          "TrainingInputMode": {
+            "description": "The training input mode.",
+            "enum": [
+              "Pipe",
+              "File",
+              "FastFile"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "TrainingInputMode"
+        ],
+        "type": "object"
+      },
+      "Channel": {
+        "additionalProperties": false,
+        "description": "A channel is a named input source that training algorithms can consume.",
+        "properties": {
+          "ChannelName": {
+            "description": "The name of the channel.",
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "[A-Za-z0-9\\.\\-_]+",
+            "type": "string"
+          },
+          "CompressionType": {
+            "enum": [
+              "None",
+              "Gzip"
+            ],
+            "type": "string"
+          },
+          "ContentType": {
+            "maxLength": 256,
+            "pattern": ".*",
+            "type": "string"
+          },
+          "DataSource": {
+            "$ref": "#/definitions/DataSource"
+          },
+          "InputMode": {
+            "enum": [
+              "Pipe",
+              "File",
+              "FastFile"
+            ],
+            "type": "string"
+          },
+          "RecordWrapperType": {
+            "enum": [
+              "None",
+              "RecordIO"
+            ],
+            "type": "string"
+          },
+          "ShuffleConfig": {
+            "$ref": "#/definitions/ShuffleConfig"
+          }
+        },
+        "required": [
+          "ChannelName",
+          "DataSource"
+        ],
+        "type": "object"
+      },
+      "CheckpointConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "LocalPath": {
+            "maxLength": 4096,
+            "pattern": ".*",
+            "type": "string"
+          },
+          "S3Uri": {
+            "maxLength": 1024,
+            "pattern": "^(https|s3)://([^/]+)/?(.*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "S3Uri"
+        ],
+        "type": "object"
+      },
+      "CollectionConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "CollectionName": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "CollectionParameters": {
+            "additionalProperties": false,
+            "patternProperties": {
+              ".*": {
+                "maxLength": 256,
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "DataSource": {
+        "additionalProperties": false,
+        "properties": {
+          "FileSystemDataSource": {
+            "$ref": "#/definitions/FileSystemDataSource"
+          },
+          "S3DataSource": {
+            "$ref": "#/definitions/S3DataSource"
+          }
+        },
+        "type": "object"
+      },
+      "DebugHookConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "CollectionConfigurations": {
+            "items": {
+              "$ref": "#/definitions/CollectionConfiguration"
+            },
+            "maxItems": 20,
+            "type": "array"
+          },
+          "HookParameters": {
+            "additionalProperties": false,
+            "patternProperties": {
+              ".*": {
+                "maxLength": 256,
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "LocalPath": {
+            "maxLength": 4096,
+            "type": "string"
+          },
+          "S3OutputPath": {
+            "maxLength": 1024,
+            "pattern": "^(https|s3)://([^/]+)/?(.*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "S3OutputPath"
+        ],
+        "type": "object"
+      },
+      "DebugRuleConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "InstanceType": {
+            "type": "string"
+          },
+          "LocalPath": {
+            "maxLength": 4096,
+            "type": "string"
+          },
+          "RuleConfigurationName": {
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": ".*",
+            "type": "string"
+          },
+          "RuleEvaluatorImage": {
+            "maxLength": 255,
+            "type": "string"
+          },
+          "RuleParameters": {
+            "additionalProperties": false,
+            "patternProperties": {
+              ".*": {
+                "maxLength": 256,
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "S3OutputPath": {
+            "maxLength": 1024,
+            "pattern": "^(https|s3)://([^/]+)/?(.*)$",
+            "type": "string"
+          },
+          "VolumeSizeInGB": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "RuleConfigurationName",
+          "RuleEvaluatorImage"
+        ],
+        "type": "object"
+      },
+      "ExperimentConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "ExperimentName": {
+            "maxLength": 120,
+            "minLength": 1,
+            "type": "string"
+          },
+          "RunName": {
+            "maxLength": 120,
+            "minLength": 1,
+            "type": "string"
+          },
+          "TrialComponentDisplayName": {
+            "maxLength": 120,
+            "minLength": 1,
+            "type": "string"
+          },
+          "TrialName": {
+            "maxLength": 120,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "FileSystemDataSource": {
+        "additionalProperties": false,
+        "properties": {
+          "DirectoryPath": {
+            "maxLength": 4096,
+            "pattern": ".*",
+            "type": "string"
+          },
+          "FileSystemAccessMode": {
+            "enum": [
+              "rw",
+              "ro"
+            ],
+            "type": "string"
+          },
+          "FileSystemId": {
+            "minLength": 11,
+            "pattern": ".*",
+            "type": "string"
+          },
+          "FileSystemType": {
+            "enum": [
+              "EFS",
+              "FSxLustre"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "FileSystemId",
+          "FileSystemAccessMode",
+          "FileSystemType",
+          "DirectoryPath"
+        ],
+        "type": "object"
+      },
+      "InfraCheckConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "EnableInfraCheck": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "InstanceGroup": {
+        "additionalProperties": false,
+        "properties": {
+          "InstanceCount": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "InstanceGroupName": {
+            "maxLength": 64,
+            "minLength": 1,
+            "type": "string"
+          },
+          "InstanceType": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "InstanceType",
+          "InstanceCount",
+          "InstanceGroupName"
+        ],
+        "type": "object"
+      },
+      "MetricDefinition": {
+        "additionalProperties": false,
+        "properties": {
+          "Name": {
+            "description": "The name of the metric.",
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": ".+",
+            "type": "string"
+          },
+          "Regex": {
+            "description": "A regular expression that searches the output of a training job and gets the value of the metric.",
+            "maxLength": 500,
+            "minLength": 1,
+            "pattern": ".+",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name",
+          "Regex"
+        ],
+        "type": "object"
+      },
+      "OutputDataConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "CompressionType": {
+            "enum": [
+              "GZIP",
+              "NONE"
+            ],
+            "type": "string"
+          },
+          "KmsKeyId": {
+            "maxLength": 2048,
+            "pattern": ".*",
+            "type": "string"
+          },
+          "S3OutputPath": {
+            "maxLength": 1024,
+            "pattern": "^(https|s3)://([^/]+)/?(.*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "S3OutputPath"
+        ],
+        "type": "object"
+      },
+      "ProfilerConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "DisableProfiler": {
+            "type": "boolean"
+          },
+          "ProfilingIntervalInMilliseconds": {
+            "type": "integer"
+          },
+          "ProfilingParameters": {
+            "additionalProperties": false,
+            "patternProperties": {
+              ".*": {
+                "maxLength": 256,
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "S3OutputPath": {
+            "maxLength": 1024,
+            "pattern": "^(https|s3)://([^/]+)/?(.*)$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ProfilerRuleConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "InstanceType": {
+            "type": "string"
+          },
+          "LocalPath": {
+            "maxLength": 4096,
+            "type": "string"
+          },
+          "RuleConfigurationName": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "RuleEvaluatorImage": {
+            "maxLength": 255,
+            "type": "string"
+          },
+          "RuleParameters": {
+            "additionalProperties": false,
+            "patternProperties": {
+              ".*": {
+                "maxLength": 256,
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "S3OutputPath": {
+            "maxLength": 1024,
+            "pattern": "^(https|s3)://([^/]+)/?(.*)$",
+            "type": "string"
+          },
+          "VolumeSizeInGB": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "RuleConfigurationName",
+          "RuleEvaluatorImage"
+        ],
+        "type": "object"
+      },
+      "RemoteDebugConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "EnableRemoteDebug": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "ResourceConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "InstanceCount": {
+            "description": "The number of ML compute instances to use.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "InstanceGroups": {
+            "items": {
+              "$ref": "#/definitions/InstanceGroup"
+            },
+            "maxItems": 5,
+            "type": "array"
+          },
+          "InstanceType": {
+            "description": "The ML compute instance type.",
+            "type": "string"
+          },
+          "KeepAlivePeriodInSeconds": {
+            "description": "The duration of time in seconds to retain configured resources in a warm pool for subsequent training jobs.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "VolumeKmsKeyId": {
+            "maxLength": 2048,
+            "pattern": ".*",
+            "type": "string"
+          },
+          "VolumeSizeInGB": {
+            "description": "The size of the ML storage volume in gigabytes.",
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "RetryStrategy": {
+        "additionalProperties": false,
+        "properties": {
+          "MaximumRetryAttempts": {
+            "description": "The number of times to retry the job.",
+            "maximum": 30,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "MaximumRetryAttempts"
+        ],
+        "type": "object"
+      },
+      "S3DataSource": {
+        "additionalProperties": false,
+        "properties": {
+          "AttributeNames": {
+            "items": {
+              "maxLength": 256,
+              "type": "string"
+            },
+            "maxItems": 16,
+            "type": "array"
+          },
+          "InstanceGroupNames": {
+            "items": {
+              "maxLength": 64,
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "S3DataDistributionType": {
+            "enum": [
+              "FullyReplicated",
+              "ShardedByS3Key"
+            ],
+            "type": "string"
+          },
+          "S3DataType": {
+            "enum": [
+              "ManifestFile",
+              "S3Prefix",
+              "AugmentedManifestFile",
+              "Converse"
+            ],
+            "type": "string"
+          },
+          "S3Uri": {
+            "maxLength": 1024,
+            "pattern": "^(https|s3)://([^/]+)/?(.*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "S3DataType",
+          "S3Uri"
+        ],
+        "type": "object"
+      },
+      "SecondaryStatusTransition": {
+        "additionalProperties": false,
+        "description": "A history of a training job's secondary statuses.",
+        "properties": {
+          "EndTime": {
+            "description": "A timestamp that shows when the training job transitioned out of this secondary status state into another secondary status state or when the training job has ended.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "StartTime": {
+            "description": "A timestamp that shows when the training job transitioned to the current secondary status state.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "Status": {
+            "description": "Contains a secondary status information from a training job.",
+            "type": "string"
+          },
+          "StatusMessage": {
+            "description": "A detailed description of the progress within a secondary status.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Status",
+          "StartTime"
+        ],
+        "type": "object"
+      },
+      "ShuffleConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "Seed": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "Seed"
+        ],
+        "type": "object"
+      },
+      "StoppingCondition": {
+        "additionalProperties": false,
+        "properties": {
+          "MaxPendingTimeInSeconds": {
+            "description": "The maximum length of time, in seconds, that a training job can be pending before it is stopped.",
+            "maximum": 2419200,
+            "minimum": 7200,
+            "type": "integer"
+          },
+          "MaxRuntimeInSeconds": {
+            "description": "The maximum length of time, in seconds, that a training job can run.",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "MaxWaitTimeInSeconds": {
+            "description": "The maximum length of time, in seconds, that a managed Spot training job has to complete.",
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "TensorBoardOutputConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "LocalPath": {
+            "maxLength": 4096,
+            "type": "string"
+          },
+          "S3OutputPath": {
+            "maxLength": 1024,
+            "pattern": "^(https|s3)://([^/]+)/?(.*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "S3OutputPath"
+        ],
+        "type": "object"
+      },
+      "TrainingImageConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "TrainingRepositoryAccessMode": {
+            "enum": [
+              "Platform",
+              "Vpc"
+            ],
+            "type": "string"
+          },
+          "TrainingRepositoryAuthConfig": {
+            "$ref": "#/definitions/TrainingRepositoryAuthConfig"
+          }
+        },
+        "required": [
+          "TrainingRepositoryAccessMode"
+        ],
+        "type": "object"
+      },
+      "TrainingRepositoryAuthConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "TrainingRepositoryCredentialsProviderArn": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "pattern": ".*",
+            "type": "string"
+          }
+        },
+        "required": [
+          "TrainingRepositoryCredentialsProviderArn"
+        ],
+        "type": "object"
+      },
+      "VpcConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "SecurityGroupIds": {
+            "items": {
+              "maxLength": 32,
+              "pattern": "[-0-9a-zA-Z]+",
+              "type": "string"
+            },
+            "maxItems": 5,
+            "minItems": 1,
+            "type": "array"
+          },
+          "Subnets": {
+            "items": {
+              "maxLength": 32,
+              "pattern": "[-0-9a-zA-Z]+",
+              "type": "string"
+            },
+            "maxItems": 16,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "SecurityGroupIds",
+          "Subnets"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource type definition for AWS::SageMaker::TrainingJob. A training job trains a machine learning model using the specified algorithm and input data.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "sagemaker:ListTrainingJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "sagemaker:DescribeTrainingJob",
+          "sagemaker:ListTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/TrainingJobArn"
+    ],
+    "properties": {
+      "AlgorithmSpecification": {
+        "$ref": "#/definitions/AlgorithmSpecification"
+      },
+      "BillableTimeInSeconds": {
+        "description": "The billable time in seconds.",
+        "minimum": 1,
+        "type": "integer"
+      },
+      "CheckpointConfig": {
+        "$ref": "#/definitions/CheckpointConfig"
+      },
+      "CreationTime": {
+        "description": "A timestamp that indicates when the training job was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DebugHookConfig": {
+        "$ref": "#/definitions/DebugHookConfig"
+      },
+      "DebugRuleConfigurations": {
+        "items": {
+          "$ref": "#/definitions/DebugRuleConfiguration"
+        },
+        "maxItems": 20,
+        "type": "array"
+      },
+      "EnableInterContainerTrafficEncryption": {
+        "description": "Encrypts inter-container traffic for the training job.",
+        "type": "boolean"
+      },
+      "EnableManagedSpotTraining": {
+        "description": "Enables managed spot training.",
+        "type": "boolean"
+      },
+      "EnableNetworkIsolation": {
+        "description": "Isolates the training container.",
+        "type": "boolean"
+      },
+      "Environment": {
+        "additionalProperties": false,
+        "description": "The environment variables to set in the Docker container.",
+        "patternProperties": {
+          ".*": {
+            "maxLength": 512,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ExperimentConfig": {
+        "$ref": "#/definitions/ExperimentConfig"
+      },
+      "HyperParameters": {
+        "additionalProperties": false,
+        "description": "Algorithm-specific parameters that influence the quality of the model.",
+        "patternProperties": {
+          ".*": {
+            "maxLength": 2500,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "InfraCheckConfig": {
+        "$ref": "#/definitions/InfraCheckConfig"
+      },
+      "InputDataConfig": {
+        "description": "An array of Channel objects that describes each data input channel.",
+        "items": {
+          "$ref": "#/definitions/Channel"
+        },
+        "maxItems": 20,
+        "type": "array"
+      },
+      "LastModifiedTime": {
+        "description": "A timestamp that indicates when the status of the training job was last modified.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "OutputDataConfig": {
+        "$ref": "#/definitions/OutputDataConfig"
+      },
+      "ProfilerConfig": {
+        "$ref": "#/definitions/ProfilerConfig"
+      },
+      "ProfilerRuleConfigurations": {
+        "items": {
+          "$ref": "#/definitions/ProfilerRuleConfiguration"
+        },
+        "maxItems": 20,
+        "type": "array"
+      },
+      "ProfilingStatus": {
+        "description": "Profiling status of a training job.",
+        "type": "string"
+      },
+      "RemoteDebugConfig": {
+        "$ref": "#/definitions/RemoteDebugConfig"
+      },
+      "ResourceConfig": {
+        "$ref": "#/definitions/ResourceConfig"
+      },
+      "RetryStrategy": {
+        "$ref": "#/definitions/RetryStrategy"
+      },
+      "RoleArn": {
+        "description": "The Amazon Resource Name (ARN) of an IAM role that SageMaker can assume to perform tasks on your behalf.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws[a-z\\-]*:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$",
+        "type": "string"
+      },
+      "SecondaryStatus": {
+        "description": "The secondary status of the training job.",
+        "type": "string"
+      },
+      "SecondaryStatusTransitions": {
+        "description": "A history of all of the secondary statuses that the training job has transitioned through.",
+        "items": {
+          "$ref": "#/definitions/SecondaryStatusTransition"
+        },
+        "type": "array"
+      },
+      "StoppingCondition": {
+        "$ref": "#/definitions/StoppingCondition"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array"
+      },
+      "TensorBoardOutputConfig": {
+        "$ref": "#/definitions/TensorBoardOutputConfig"
+      },
+      "TrainingJobArn": {
+        "description": "The Amazon Resource Name (ARN) of the training job.",
+        "maxLength": 256,
+        "pattern": "^arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:training-job/[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$",
+        "type": "string"
+      },
+      "TrainingJobName": {
+        "description": "The name of the training job.",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$",
+        "type": "string"
+      },
+      "TrainingJobStatus": {
+        "description": "The status of the training job.",
+        "enum": [
+          "InProgress",
+          "Completed",
+          "Failed",
+          "Stopping",
+          "Stopped"
+        ],
+        "type": "string"
+      },
+      "TrainingTimeInSeconds": {
+        "description": "The training time in seconds.",
+        "minimum": 1,
+        "type": "integer"
+      },
+      "VpcConfig": {
+        "$ref": "#/definitions/VpcConfig"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/TrainingJobArn",
+      "/properties/TrainingJobStatus",
+      "/properties/SecondaryStatus",
+      "/properties/CreationTime",
+      "/properties/LastModifiedTime",
+      "/properties/SecondaryStatusTransitions",
+      "/properties/ProfilingStatus",
+      "/properties/TrainingTimeInSeconds",
+      "/properties/BillableTimeInSeconds"
+    ],
+    "required": [
+      "TrainingJobName",
+      "AlgorithmSpecification",
+      "RoleArn",
+      "OutputDataConfig",
+      "ResourceConfig",
+      "StoppingCondition"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "sagemaker:ListTags"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::SageMaker::TrainingJob"
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-DBClusterAutomatedBackup",
+  "type": "AWS::RDS::DBClusterAutomatedBackup",
+  "time": "2026-11-05T21:13:45.717Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DBClusterIdentifier",
+      "/properties/Engine",
+      "/properties/EngineVersion",
+      "/properties/EngineMode",
+      "/properties/MasterUsername",
+      "/properties/Port",
+      "/properties/BackupRetentionPeriod",
+      "/properties/StorageEncrypted",
+      "/properties/IAMDatabaseAuthenticationEnabled"
+    ],
+    "definitions": {
+      "RestoreWindow": {
+        "additionalProperties": false,
+        "description": "Earliest and latest time a DB cluster can be restored to.",
+        "properties": {
+          "EarliestTime": {
+            "description": "The earliest time you can restore a DB cluster to.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "LatestTime": {
+            "description": "The latest time you can restore a DB cluster to.",
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "Metadata assigned to an Amazon RDS resource consisting of a key-value pair.",
+        "properties": {
+          "Key": {
+            "description": "A key is the required name of the tag.",
+            "type": "string"
+          },
+          "Value": {
+            "description": "A value is the optional value of the tag.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource type definition for AWS::RDS::DBClusterAutomatedBackup. An automated backup of an Aurora DB cluster, consisting of the cluster volume backup, transaction logs, and the DB cluster properties that existed at the time the source cluster was deleted.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "rds:DescribeDBClusterAutomatedBackups"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "rds:DescribeDBClusterAutomatedBackups",
+          "rds:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/DBClusterAutomatedBackupsArn"
+    ],
+    "properties": {
+      "AllocatedStorage": {
+        "description": "For all database engines except Amazon Aurora, specifies the allocated storage size in gibibytes (GiB). For Aurora, this value is always 1.",
+        "type": "integer"
+      },
+      "AvailabilityZones": {
+        "description": "The Availability Zones where instances in the DB cluster can be created.",
+        "insertionOrder": false,
+        "items": {
+          "type": "string"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "BackupRetentionPeriod": {
+        "description": "The retention period for the automated backups.",
+        "type": "integer"
+      },
+      "ClusterCreateTime": {
+        "description": "The time when the DB cluster was created, in Universal Coordinated Time (UTC).",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DBClusterArn": {
+        "description": "The Amazon Resource Name (ARN) of the source DB cluster.",
+        "type": "string"
+      },
+      "DBClusterAutomatedBackupsArn": {
+        "description": "The Amazon Resource Name (ARN) of the automated backups of the DB cluster.",
+        "type": "string"
+      },
+      "DBClusterIdentifier": {
+        "description": "The identifier of the source DB cluster.",
+        "type": "string"
+      },
+      "DbClusterResourceId": {
+        "description": "The resource ID of the source DB cluster, which can't be changed and which is unique to an AWS Region.",
+        "type": "string"
+      },
+      "Engine": {
+        "description": "The name of the database engine for this automated backup.",
+        "type": "string"
+      },
+      "EngineMode": {
+        "description": "The engine mode of the database engine for the automated backup.",
+        "type": "string"
+      },
+      "EngineVersion": {
+        "description": "The version of the database engine for the automated backup.",
+        "type": "string"
+      },
+      "IAMDatabaseAuthenticationEnabled": {
+        "description": "Indicates whether mapping of AWS Identity and Access Management (IAM) accounts to database accounts is enabled.",
+        "type": "boolean"
+      },
+      "KmsKeyId": {
+        "description": "The AWS KMS key ID for an automated backup.",
+        "type": "string"
+      },
+      "MasterUsername": {
+        "description": "The master user name of the automated backup.",
+        "type": "string"
+      },
+      "Port": {
+        "description": "The port number that the automated backup used for connections.",
+        "type": "integer"
+      },
+      "Region": {
+        "description": "The AWS Region associated with the automated backup.",
+        "type": "string"
+      },
+      "RestoreWindow": {
+        "$ref": "#/definitions/RestoreWindow"
+      },
+      "Status": {
+        "description": "The status of the automated backup: retained for a deleted DB cluster, or active while the source cluster still exists.",
+        "type": "string"
+      },
+      "StorageEncrypted": {
+        "description": "Indicates whether the source DB cluster is encrypted.",
+        "type": "boolean"
+      },
+      "Tags": {
+        "description": "A list of tags assigned to the automated backup.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/DBClusterAutomatedBackupsArn",
+      "/properties/DBClusterArn",
+      "/properties/DbClusterResourceId",
+      "/properties/Region",
+      "/properties/Status",
+      "/properties/RestoreWindow",
+      "/properties/ClusterCreateTime",
+      "/properties/AllocatedStorage",
+      "/properties/AvailabilityZones",
+      "/properties/KmsKeyId",
+      "/properties/Tags"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-rds",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "rds:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::RDS::DBClusterAutomatedBackup"
+  }
+}

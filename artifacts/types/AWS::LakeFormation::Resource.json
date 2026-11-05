@@ -1,0 +1,108 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-LakeFormation-Resource",
+  "type": "AWS::LakeFormation::Resource",
+  "time": "2026-11-02T21:44:12.15Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ResourceArn"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ResourceArn"
+    ],
+    "description": "Resource Type definition for AWS::LakeFormation::Resource",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "lakeformation:RegisterResource",
+          "lakeformation:DescribeResource",
+          "lakeformation:ListResources",
+          "iam:PassRole",
+          "iam:GetRole",
+          "iam:GetRolePolicy",
+          "iam:PutRolePolicy",
+          "iam:CreateServiceLinkedRole"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "lakeformation:DeregisterResource",
+          "iam:GetRole",
+          "iam:GetRolePolicy",
+          "iam:PutRolePolicy"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "lakeformation:ListResources"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "lakeformation:DescribeResource",
+          "lakeformation:ListResources"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "lakeformation:UpdateResource",
+          "lakeformation:DeregisterResource",
+          "lakeformation:RegisterResource",
+          "iam:PassRole",
+          "iam:GetRole",
+          "iam:GetRolePolicy",
+          "iam:PutRolePolicy",
+          "iam:CreateServiceLinkedRole"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Id"
+    ],
+    "properties": {
+      "HybridAccessEnabled": {
+        "description": "Indicates whether the data access of tables pointing to the location can be managed by both Lake Formation permissions as well as Amazon S3 bucket policies.",
+        "type": "boolean"
+      },
+      "Id": {
+        "description": "The CloudFormation primary identifier for the LakeFormation::Resource. Mirrors ResourceArn once the resource exists; populated by the handler. Customers should reference the LakeFormation::Resource by ResourceArn.",
+        "type": "string"
+      },
+      "ResourceArn": {
+        "description": "The Amazon Resource Name (ARN) of the Data Source.",
+        "pattern": "^arn:[a-z-]+:[a-z0-9-]+:(([a-z]+-)+[0-9])?:([0-9]{12})?:.+$",
+        "type": "string"
+      },
+      "RoleArn": {
+        "description": "The IAM role that registered a resource.",
+        "pattern": "^arn:[a-z-]+:iam::([0-9]{12})?:.+$",
+        "type": "string"
+      },
+      "UseServiceLinkedRole": {
+        "description": "Designates a trusted caller, an IAM principal, by registering this caller with the Data Catalog.",
+        "type": "boolean"
+      },
+      "WithFederation": {
+        "description": "Allows Lake Formation to assume a role to access tables in a federated database.",
+        "type": "boolean"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Id"
+    ],
+    "required": [
+      "ResourceArn",
+      "UseServiceLinkedRole"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::LakeFormation::Resource",
+    "writeOnlyProperties": [
+      "/properties/UseServiceLinkedRole"
+    ]
+  }
+}

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Timestream-InfluxDBInstance",
   "type": "AWS::Timestream::InfluxDBInstance",
-  "time": "2026-08-08T01:16:15.434Z",
+  "time": "2026-11-03T22:34:46.29Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -13,7 +13,8 @@
       "/properties/VpcSubnetIds",
       "/properties/VpcSecurityGroupIds",
       "/properties/PubliclyAccessible",
-      "/properties/NetworkType"
+      "/properties/NetworkType",
+      "/properties/KmsKeyId"
     ],
     "definitions": {
       "MaintenanceSchedule": {
@@ -80,7 +81,9 @@
           "ec2:DescribeNetworkInterfaces",
           "ec2:DescribeSecurityGroups",
           "ec2:CreateNetworkInterface",
-          "iam:CreateServiceLinkedRole"
+          "iam:CreateServiceLinkedRole",
+          "kms:DescribeKey",
+          "kms:CreateGrant"
         ],
         "timeoutInMinutes": 2160
       },
@@ -149,6 +152,13 @@
         "pattern": "^[^_][^\"]*$",
         "type": "string"
       },
+      "DbClusterId": {
+        "description": "The service generated unique identifier of the InfluxDB cluster containing this instance.",
+        "maxLength": 64,
+        "minLength": 3,
+        "pattern": "^[a-zA-Z0-9]+$",
+        "type": "string"
+      },
       "DbInstanceType": {
         "description": "The compute instance of the InfluxDB instance.",
         "enum": [
@@ -201,7 +211,14 @@
       },
       "InfluxAuthParametersSecretArn": {
         "description": "The Auth parameters secret Amazon Resource name (ARN) that is associated with the InfluxDB instance.",
-        "pattern": "^arn:[a-z]*:secretsmanager:[a-z\\-0-9]*:[0-9]*:secret:[a-zA-Z0-9\\-]*",
+        "pattern": "^arn:aws[a-z\\-]*:secretsmanager:[a-z\\-0-9]*:[0-9]*:secret:[a-zA-Z0-9\\-]*",
+        "type": "string"
+      },
+      "KmsKeyId": {
+        "description": "The customer managed key used to encrypt data in the InfluxDB instance.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9:/_\\-]+$",
         "type": "string"
       },
       "LogDeliveryConfiguration": {
@@ -348,6 +365,7 @@
       "/properties/Status",
       "/properties/Arn",
       "/properties/Id",
+      "/properties/DbClusterId",
       "/properties/AvailabilityZone",
       "/properties/Endpoint",
       "/properties/SecondaryAvailabilityZone",

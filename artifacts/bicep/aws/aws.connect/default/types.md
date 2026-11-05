@@ -16,6 +16,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Connect/ApprovedOriginProperties](#awsconnectapprovedoriginproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Connect/AWSManagedView@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Connect/AWSManagedViewProperties](#awsconnectawsmanagedviewproperties) (Identifier): properties of the resource
+
 ## Resource AWS.Connect/ContactFlow@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -55,6 +63,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Connect/ContactFlowVersionProperties](#awsconnectcontactflowversionproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Connect/DataLakeAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Connect/DataLakeAssociationProperties](#awsconnectdatalakeassociationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Connect/DataTable@default
 * **Readable Scope(s)**: None
@@ -401,6 +417,17 @@
 * **InstanceId**: string (Required, Identifier)
 * **Origin**: string (Required, Identifier)
 
+## AWS.Connect/AWSManagedViewProperties
+### Properties
+* **Arn**: string (Identifier): A synthetic ARN combining the instance and view identifiers for CloudFormation.
+* **Description**: string (ReadOnly): The description of the view.
+* **InstanceId**: string: The identifier of the Amazon Connect instance.
+* **Name**: string (ReadOnly): The name of the view.
+* **Status**: string (ReadOnly): The status of the view.
+* **Type**: string (ReadOnly): The type of the view.
+* **Version**: int (ReadOnly): The current version of the view.
+* **ViewId**: string: The short identifier of the AWS-managed view.
+
 ## AWS.Connect/ContactFlowModuleAliasProperties
 ### Properties
 * **AliasId**: string (ReadOnly): The unique identifier of the alias.
@@ -449,6 +476,14 @@
 * **Description**: string: The description of the version.
 * **FlowContentSha256**: string (ReadOnly): Indicates the checksum value of the latest published flow content
 * **Version**: int (ReadOnly): The version number of this revision
+
+## AWS.Connect/DataLakeAssociationProperties
+### Properties
+* **DataSetId**: string (Required, Identifier): The identifier of the analytics data set.
+* **InstanceId**: string (Required, Identifier): The identifier of the Amazon Connect instance
+* **ResourceShareArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the AWS Resource Access Manager share
+* **ResourceShareId**: string (ReadOnly): The AWS Resource Access Manager share ID
+* **TargetAccountId**: string (Identifier): The identifier of the target account
 
 ## AWS.Connect/DataTableAttributeProperties
 ### Properties

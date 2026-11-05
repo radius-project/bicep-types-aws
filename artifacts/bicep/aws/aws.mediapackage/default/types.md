@@ -1,5 +1,13 @@
 # AWS.MediaPackage @ default
 
+## Resource AWS.MediaPackage/Asset@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MediaPackage/AssetProperties](#awsmediapackageassetproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.MediaPackage/Channel@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -8,6 +16,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.MediaPackage/ChannelProperties](#awsmediapackagechannelproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.MediaPackage/HarvestJob@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MediaPackage/HarvestJobProperties](#awsmediapackageharvestjobproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.MediaPackage/OriginEndpoint@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -15,6 +31,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.MediaPackage/OriginEndpointProperties](#awsmediapackageoriginendpointproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.MediaPackage/PackagingConfiguration@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MediaPackage/PackagingConfigurationProperties](#awsmediapackagepackagingconfigurationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.MediaPackage/PackagingGroup@default
 * **Readable Scope(s)**: None
@@ -34,6 +58,18 @@
 * **CdnIdentifierSecret**: string (Required): The Amazon Resource Name (ARN) for the secret in AWS Secrets Manager that is used for CDN authorization.
 * **SecretsRoleArn**: string (Required): The Amazon Resource Name (ARN) for the IAM role that allows MediaPackage to communicate with AWS Secrets Manager.
 
+## AWS.MediaPackage/AssetProperties
+### Properties
+* **Arn**: string (ReadOnly): The ARN of the Asset.
+* **CreatedAt**: string (ReadOnly): The time the Asset was initially submitted for Ingest.
+* **EgressEndpoints**: [EgressEndpoint](#egressendpoint)[] (ReadOnly): The list of egress endpoints available for the Asset.
+* **Id**: string (Required, Identifier): The unique identifier for the Asset.
+* **PackagingGroupId**: string (Required): The ID of the PackagingGroup for the Asset.
+* **ResourceId**: string: The resource ID to include in SPEKE key requests.
+* **SourceArn**: string (Required): ARN of the source object in S3.
+* **SourceRoleArn**: string (Required): The IAM role_arn used to access the source S3 bucket.
+* **Tags**: [Tag](#tag)[]: A collection of tags associated with a resource
+
 ## AWS.MediaPackage/ChannelProperties
 ### Properties
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) assigned to the Channel.
@@ -43,6 +79,18 @@
 * **Id**: string (Required, Identifier): The ID of the Channel.
 * **IngressAccessLogs**: [LogConfiguration](#logconfiguration): The configuration parameters for egress access logging.
 * **Tags**: [Tag](#tag)[]: A collection of tags associated with a resource
+
+## AWS.MediaPackage/HarvestJobProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) assigned to the HarvestJob.
+* **ChannelId**: string (ReadOnly): The ID of the Channel that the HarvestJob will harvest from.
+* **CreatedAt**: string (ReadOnly): The date and time the HarvestJob was submitted.
+* **EndTime**: string (Required): The end of the time-window which will be harvested.
+* **Id**: string (Required): The ID of the HarvestJob. The ID must be unique within the region and it cannot be changed after the HarvestJob is submitted.
+* **OriginEndpointId**: string (Required): The ID of the OriginEndpoint that the HarvestJob will harvest from.
+* **S3Destination**: [S3Destination](#s3destination) (Required)
+* **StartTime**: string (Required): The start of the time-window which will be harvested.
+* **Status**: string (ReadOnly): The current status of the HarvestJob.
 
 ## AWS.MediaPackage/OriginEndpointProperties
 ### Properties
@@ -63,6 +111,17 @@
 * **Url**: string (ReadOnly): The URL of the packaged OriginEndpoint for consumption.
 * **Whitelist**: string[]: A list of source IP CIDR blocks that will be allowed to access the OriginEndpoint.
 
+## AWS.MediaPackage/PackagingConfigurationProperties
+### Properties
+* **Arn**: string (ReadOnly): The ARN of the PackagingConfiguration.
+* **CmafPackage**: [CmafPackage](#cmafpackage): A CMAF packaging configuration.
+* **DashPackage**: [DashPackage](#dashpackage): A Dynamic Adaptive Streaming over HTTP (DASH) packaging configuration.
+* **HlsPackage**: [HlsPackage](#hlspackage): An HTTP Live Streaming (HLS) packaging configuration.
+* **Id**: string (Required, Identifier): The ID of the PackagingConfiguration.
+* **MssPackage**: [MssPackage](#msspackage): A Microsoft Smooth Streaming (MSS) PackagingConfiguration.
+* **PackagingGroupId**: string (Required): The ID of a PackagingGroup.
+* **Tags**: [Tag](#tag)[]: A collection of tags associated with a resource
+
 ## AWS.MediaPackage/PackagingGroupProperties
 ### Properties
 * **Arn**: string (ReadOnly): The ARN of the PackagingGroup.
@@ -79,6 +138,10 @@
 * **KeyRotationIntervalSeconds**: int: Time (in seconds) between each encryption key rotation.
 * **SpekeKeyProvider**: [SpekeKeyProvider](#spekekeyprovider) (Required)
 
+## CmafEncryption
+### Properties
+* **SpekeKeyProvider**: [SpekeKeyProvider](#spekekeyprovider) (Required)
+
 ## CmafPackage
 ### Properties
 * **Encryption**: [CmafEncryption](#cmafencryption)
@@ -87,10 +150,30 @@
 * **SegmentPrefix**: string: An optional custom string that is prepended to the name of each segment. If not specified, it defaults to the ChannelId.
 * **StreamSelection**: [StreamSelection](#streamselection)
 
+## CmafPackage
+### Properties
+* **Encryption**: [CmafEncryption](#cmafencryption)
+* **HlsManifests**: [HlsManifest](#hlsmanifest)[] (Required): A list of HLS manifest configurations.
+* **IncludeEncoderConfigurationInSegments**: bool: When includeEncoderConfigurationInSegments is set to true, MediaPackage places your encoder's Sequence Parameter Set (SPS), Picture Parameter Set (PPS), and Video Parameter Set (VPS) metadata in every video segment instead of in the init fragment. This lets you use different SPS/PPS/VPS settings for your assets during content playback.
+* **SegmentDurationSeconds**: int
+
 ## DashEncryption
 ### Properties
 * **KeyRotationIntervalSeconds**: int: Time (in seconds) between each encryption key rotation.
 * **SpekeKeyProvider**: [SpekeKeyProvider](#spekekeyprovider) (Required)
+
+## DashEncryption
+### Properties
+* **SpekeKeyProvider**: [SpekeKeyProvider](#spekekeyprovider) (Required)
+
+## DashManifest
+### Properties
+* **ManifestLayout**: string: Determines the position of some tags in the Media Presentation Description (MPD). When set to FULL, elements like SegmentTemplate and ContentProtection are included in each Representation. When set to COMPACT, duplicate elements are combined and presented at the AdaptationSet level.
+* **ManifestName**: string
+* **MinBufferTimeSeconds**: int: Minimum duration (in seconds) that a player will buffer media before starting the presentation.
+* **Profile**: string: The Dynamic Adaptive Streaming over HTTP (DASH) profile type. When set to "HBBTV_1_5", HbbTV 1.5 compliant output is enabled.
+* **ScteMarkersSource**: string: The source of scte markers used. When set to SEGMENTS, the scte markers are sourced from the segments of the ingested content. When set to MANIFEST, the scte markers are sourced from the manifest of the ingested content.
+* **StreamSelection**: [StreamSelection](#streamselection)
 
 ## DashPackage
 ### Properties
@@ -111,6 +194,26 @@
 * **UtcTiming**: string: Determines the type of UTCTiming included in the Media Presentation Description (MPD)
 * **UtcTimingUri**: string: Specifies the value attribute of the UTCTiming field when utcTiming is set to HTTP-ISO, HTTP-HEAD or HTTP-XSDATE
 
+## DashPackage
+### Properties
+* **DashManifests**: [DashManifest](#dashmanifest)[] (Required): A list of DASH manifest configurations.
+* **Encryption**: [DashEncryption](#dashencryption)
+* **IncludeEncoderConfigurationInSegments**: bool: When includeEncoderConfigurationInSegments is set to true, MediaPackage places your encoder's Sequence Parameter Set (SPS), Picture Parameter Set (PPS), and Video Parameter Set (VPS) metadata in every video segment instead of in the init fragment. This lets you use different SPS/PPS/VPS settings for your assets during content playback.
+* **IncludeIframeOnlyStream**: bool: When enabled, an I-Frame only stream will be included in the output.
+* **PeriodTriggers**: string[]: A list of triggers that controls when the outgoing Dynamic Adaptive Streaming over HTTP (DASH) Media Presentation Description (MPD) will be partitioned into multiple periods. If empty, the content will not be partitioned into more than one period. If the list contains "ADS", new periods will be created where the Asset contains SCTE-35 ad markers.
+* **SegmentDurationSeconds**: int
+* **SegmentTemplateFormat**: string: Determines the type of SegmentTemplate included in the Media Presentation Description (MPD). When set to NUMBER_WITH_TIMELINE, a full timeline is presented in each SegmentTemplate, with $Number$ media URLs. When set to TIME_WITH_TIMELINE, a full timeline is presented in each SegmentTemplate, with $Time$ media URLs. When set to NUMBER_WITH_DURATION, only a duration is included in each SegmentTemplate, with $Number$ media URLs.
+
+## EgressEndpoint
+### Properties
+* **PackagingConfigurationId**: string (Required): The ID of the PackagingConfiguration being applied to the Asset.
+* **Url**: string (Required): The URL of the parent manifest for the repackaged Asset.
+
+## EncryptionContractConfiguration
+### Properties
+* **PresetSpeke20Audio**: string (Required): A collection of audio encryption presets.
+* **PresetSpeke20Video**: string (Required): A collection of video encryption presets.
+
 ## EncryptionContractConfiguration
 ### Properties
 * **PresetSpeke20Audio**: string (Required): A collection of audio encryption presets.
@@ -122,6 +225,12 @@
 * **EncryptionMethod**: string: The encryption method to use.
 * **KeyRotationIntervalSeconds**: int: Interval (in seconds) between each encryption key rotation.
 * **RepeatExtXKey**: bool: When enabled, the EXT-X-KEY tag will be repeated in output manifests.
+* **SpekeKeyProvider**: [SpekeKeyProvider](#spekekeyprovider) (Required)
+
+## HlsEncryption
+### Properties
+* **ConstantInitializationVector**: string: An HTTP Live Streaming (HLS) encryption configuration.
+* **EncryptionMethod**: string: The encryption method to use.
 * **SpekeKeyProvider**: [SpekeKeyProvider](#spekekeyprovider) (Required)
 
 ## HlsIngest
@@ -141,6 +250,15 @@
 * **ProgramDateTimeIntervalSeconds**: int: The interval (in seconds) between each EXT-X-PROGRAM-DATE-TIME tag inserted into manifests. Additionally, when an interval is specified ID3Timed Metadata messages will be generated every 5 seconds using the ingest time of the content. If the interval is not specified, or set to 0, then no EXT-X-PROGRAM-DATE-TIME tags will be inserted into manifests and no ID3Timed Metadata messages will be generated. Note that irrespective of this parameter, if any ID3 Timed Metadata is found in HTTP Live Streaming (HLS) input, it will be passed through to HLS output.
 * **Url**: string: The URL of the packaged OriginEndpoint for consumption.
 
+## HlsManifest
+### Properties
+* **AdMarkers**: string: This setting controls how ad markers are included in the packaged OriginEndpoint. "NONE" will omit all SCTE-35 ad markers from the output. "PASSTHROUGH" causes the manifest to contain a copy of the SCTE-35 ad markers (comments) taken directly from the input HTTP Live Streaming (HLS) manifest. "SCTE35_ENHANCED" generates ad markers and blackout tags based on SCTE-35 messages in the input source.
+* **IncludeIframeOnlyStream**: bool: When enabled, an I-Frame only stream will be included in the output.
+* **ManifestName**: string
+* **ProgramDateTimeIntervalSeconds**: int: The interval (in seconds) between each EXT-X-PROGRAM-DATE-TIME tag inserted into manifests. Additionally, when an interval is specified ID3Timed Metadata messages will be generated every 5 seconds using the ingest time of the content. If the interval is not specified, or set to 0, then no EXT-X-PROGRAM-DATE-TIME tags will be inserted into manifests and no ID3Timed Metadata messages will be generated. Note that irrespective of this parameter, if any ID3 Timed Metadata is found in HTTP Live Streaming (HLS) input, it will be passed through to HLS output.
+* **RepeatExtXKey**: bool: When enabled, the EXT-X-KEY tag will be repeated in output manifests.
+* **StreamSelection**: [StreamSelection](#streamselection)
+
 ## HlsPackage
 ### Properties
 * **AdMarkers**: string: This setting controls how ad markers are included in the packaged OriginEndpoint. "NONE" will omit all SCTE-35 ad markers from the output. "PASSTHROUGH" causes the manifest to contain a copy of the SCTE-35 ad markers (comments) taken directly from the input HTTP Live Streaming (HLS) manifest. "SCTE35_ENHANCED" generates ad markers and blackout tags based on SCTE-35 messages in the input source. "DATERANGE" inserts EXT-X-DATERANGE tags to signal ad and program transition events in HLS and CMAF manifests. For this option, you must set a programDateTimeIntervalSeconds value that is greater than 0.
@@ -154,6 +272,14 @@
 * **ProgramDateTimeIntervalSeconds**: int: The interval (in seconds) between each EXT-X-PROGRAM-DATE-TIME tag inserted into manifests. Additionally, when an interval is specified ID3Timed Metadata messages will be generated every 5 seconds using the ingest time of the content. If the interval is not specified, or set to 0, then no EXT-X-PROGRAM-DATE-TIME tags will be inserted into manifests and no ID3Timed Metadata messages will be generated. Note that irrespective of this parameter, if any ID3 Timed Metadata is found in HTTP Live Streaming (HLS) input, it will be passed through to HLS output.
 * **SegmentDurationSeconds**: int: Duration (in seconds) of each fragment. Actual fragments will be rounded to the nearest multiple of the source fragment duration.
 * **StreamSelection**: [StreamSelection](#streamselection)
+* **UseAudioRenditionGroup**: bool: When enabled, audio streams will be placed in rendition groups in the output.
+
+## HlsPackage
+### Properties
+* **Encryption**: [HlsEncryption](#hlsencryption)
+* **HlsManifests**: [HlsManifest](#hlsmanifest)[] (Required): A list of HLS manifest configurations.
+* **IncludeDvbSubtitles**: bool: When enabled, MediaPackage passes through digital video broadcasting (DVB) subtitles into the output.
+* **SegmentDurationSeconds**: int
 * **UseAudioRenditionGroup**: bool: When enabled, audio streams will be placed in rendition groups in the output.
 
 ## IngestEndpoint
@@ -175,12 +301,33 @@
 ### Properties
 * **SpekeKeyProvider**: [SpekeKeyProvider](#spekekeyprovider) (Required)
 
+## MssEncryption
+### Properties
+* **SpekeKeyProvider**: [SpekeKeyProvider](#spekekeyprovider) (Required)
+
+## MssManifest
+### Properties
+* **ManifestName**: string
+* **StreamSelection**: [StreamSelection](#streamselection)
+
 ## MssPackage
 ### Properties
 * **Encryption**: [MssEncryption](#mssencryption)
 * **ManifestWindowSeconds**: int: The time window (in seconds) contained in each manifest.
 * **SegmentDurationSeconds**: int: The duration (in seconds) of each segment.
 * **StreamSelection**: [StreamSelection](#streamselection)
+
+## MssPackage
+### Properties
+* **Encryption**: [MssEncryption](#mssencryption)
+* **MssManifests**: [MssManifest](#mssmanifest)[] (Required): A list of MSS manifest configurations.
+* **SegmentDurationSeconds**: int
+
+## S3Destination
+### Properties
+* **BucketName**: string (Required): The name of an S3 bucket within which harvested content will be exported.
+* **ManifestKey**: string (Required): The key in the specified S3 bucket where the harvested top-level manifest will be placed.
+* **RoleArn**: string (Required): The IAM role used to write to the specified S3 bucket.
 
 ## SpekeKeyProvider
 ### Properties
@@ -191,11 +338,34 @@
 * **SystemIds**: string[] (Required): The system IDs to include in key requests.
 * **Url**: string (Required): The URL of the external key provider service.
 
+## SpekeKeyProvider
+### Properties
+* **EncryptionContractConfiguration**: [EncryptionContractConfiguration](#encryptioncontractconfiguration)
+* **RoleArn**: string (Required)
+* **SystemIds**: string[] (Required): The system IDs to include in key requests.
+* **Url**: string (Required): The URL of the external key provider service.
+
 ## StreamSelection
 ### Properties
 * **MaxVideoBitsPerSecond**: int: The maximum video bitrate (bps) to include in output.
 * **MinVideoBitsPerSecond**: int: The minimum video bitrate (bps) to include in output.
 * **StreamOrder**: string: A directive that determines the order of streams in the output.
+
+## StreamSelection
+### Properties
+* **MaxVideoBitsPerSecond**: int: The maximum video bitrate (bps) to include in output.
+* **MinVideoBitsPerSecond**: int: The minimum video bitrate (bps) to include in output.
+* **StreamOrder**: string: A directive that determines the order of streams in the output.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

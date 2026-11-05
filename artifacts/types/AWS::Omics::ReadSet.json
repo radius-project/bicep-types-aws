@@ -1,0 +1,333 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Omics-ReadSet",
+  "type": "AWS::Omics::ReadSet",
+  "time": "2026-11-05T21:16:15.736Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/SequenceStoreId",
+        "/properties/ReadSetId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/SequenceStoreId",
+      "/properties/SubjectId",
+      "/properties/SampleId",
+      "/properties/Name",
+      "/properties/Description",
+      "/properties/ReferenceArn",
+      "/properties/FileType"
+    ],
+    "definitions": {
+      "CreationType": {
+        "enum": [
+          "IMPORT",
+          "UPLOAD"
+        ],
+        "type": "string"
+      },
+      "ETag": {
+        "additionalProperties": false,
+        "description": "The entity tag (ETag) is a hash of the object representing its semantic content.",
+        "properties": {
+          "Algorithm": {
+            "$ref": "#/definitions/ETagAlgorithm"
+          },
+          "Source1": {
+            "description": "The ETag hash calculated on Source1 of the read set.",
+            "type": "string"
+          },
+          "Source2": {
+            "description": "The ETag hash calculated on Source2 of the read set.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ETagAlgorithm": {
+        "enum": [
+          "FASTQ_MD5up",
+          "BAM_MD5up",
+          "CRAM_MD5up",
+          "FASTQ_SHA256up",
+          "BAM_SHA256up",
+          "CRAM_SHA256up",
+          "FASTQ_SHA512up",
+          "BAM_SHA512up",
+          "CRAM_SHA512up"
+        ],
+        "type": "string"
+      },
+      "FileInformation": {
+        "additionalProperties": false,
+        "description": "Details about a file.",
+        "properties": {
+          "ContentLength": {
+            "description": "The file's content length.",
+            "maximum": 5497558138880,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "PartSize": {
+            "description": "The file's part size.",
+            "maximum": 5368709120,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "S3Access": {
+            "$ref": "#/definitions/ReadSetS3Access"
+          },
+          "TotalParts": {
+            "description": "The file's total parts.",
+            "maximum": 10000,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "ReadSetFiles": {
+        "additionalProperties": false,
+        "description": "Files in a read set.",
+        "properties": {
+          "Index": {
+            "$ref": "#/definitions/FileInformation"
+          },
+          "Source1": {
+            "$ref": "#/definitions/FileInformation"
+          },
+          "Source2": {
+            "$ref": "#/definitions/FileInformation"
+          }
+        },
+        "type": "object"
+      },
+      "ReadSetS3Access": {
+        "additionalProperties": false,
+        "description": "The S3 URI for each read set file.",
+        "properties": {
+          "S3Uri": {
+            "description": "The S3 URI for each read set file.",
+            "pattern": "^s3://([a-z0-9][a-z0-9-.]{1,61}[a-z0-9])/(.{1,1024})$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "SequenceInformation": {
+        "additionalProperties": false,
+        "description": "Details about a sequence.",
+        "properties": {
+          "Alignment": {
+            "description": "The sequence's alignment setting.",
+            "type": "string"
+          },
+          "GeneratedFrom": {
+            "description": "Where the sequence originated.",
+            "maxLength": 127,
+            "minLength": 1,
+            "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+            "type": "string"
+          },
+          "TotalBaseCount": {
+            "description": "The sequence's total base count.",
+            "type": "integer"
+          },
+          "TotalReadCount": {
+            "description": "The sequence's total read count.",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Omics::ReadSet. Represents a resource that stores a single genomic sequence file.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "SequenceStoreId": {
+              "maxLength": 36,
+              "minLength": 10,
+              "pattern": "^[0-9]+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "SequenceStoreId"
+          ]
+        },
+        "permissions": [
+          "omics:ListReadSets"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "omics:GetReadSetMetadata",
+          "omics:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The read set's ARN.",
+        "maxLength": 127,
+        "minLength": 1,
+        "pattern": "^arn:.+$",
+        "type": "string"
+      },
+      "CreationJobId": {
+        "description": "The read set's creation job ID.",
+        "maxLength": 127,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9]+$",
+        "type": "string"
+      },
+      "CreationTime": {
+        "description": "When the read set was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "CreationType": {
+        "$ref": "#/definitions/CreationType"
+      },
+      "Description": {
+        "description": "The read set's description.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+        "type": "string"
+      },
+      "Etag": {
+        "$ref": "#/definitions/ETag"
+      },
+      "FileType": {
+        "description": "The read set's file type.",
+        "enum": [
+          "FASTQ",
+          "BAM",
+          "CRAM",
+          "UBAM"
+        ],
+        "type": "string"
+      },
+      "Files": {
+        "$ref": "#/definitions/ReadSetFiles"
+      },
+      "Name": {
+        "description": "The read set's name.",
+        "maxLength": 127,
+        "minLength": 1,
+        "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+        "type": "string"
+      },
+      "ReadSetId": {
+        "description": "The read set's ID.",
+        "maxLength": 36,
+        "minLength": 10,
+        "pattern": "^[0-9]+$",
+        "type": "string"
+      },
+      "ReferenceArn": {
+        "description": "The read set's genome reference ARN.",
+        "maxLength": 127,
+        "minLength": 1,
+        "pattern": "^arn:.+$",
+        "type": "string"
+      },
+      "SampleId": {
+        "description": "The read set's sample ID.",
+        "maxLength": 127,
+        "minLength": 1,
+        "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+        "type": "string"
+      },
+      "SequenceInformation": {
+        "$ref": "#/definitions/SequenceInformation"
+      },
+      "SequenceStoreId": {
+        "description": "The read set's sequence store ID.",
+        "maxLength": 36,
+        "minLength": 10,
+        "pattern": "^[0-9]+$",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The read set's status.",
+        "enum": [
+          "ARCHIVED",
+          "ACTIVATING",
+          "ACTIVE",
+          "DELETING",
+          "DELETED",
+          "PROCESSING_UPLOAD",
+          "UPLOAD_FAILED"
+        ],
+        "type": "string"
+      },
+      "SubjectId": {
+        "description": "The read set's subject ID.",
+        "maxLength": 127,
+        "minLength": 1,
+        "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags for the read set.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/ReadSetId",
+      "/properties/Status",
+      "/properties/CreationTime",
+      "/properties/CreationType",
+      "/properties/CreationJobId",
+      "/properties/Etag",
+      "/properties/SequenceInformation",
+      "/properties/Files",
+      "/properties/Tags"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "omics:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Omics::ReadSet"
+  }
+}

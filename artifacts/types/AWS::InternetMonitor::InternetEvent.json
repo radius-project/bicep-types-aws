@@ -1,0 +1,131 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-InternetMonitor-InternetEvent",
+  "type": "AWS::InternetMonitor::InternetEvent",
+  "time": "2026-11-05T21:21:37.661Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/EventId"
+      ]
+    ],
+    "additionalProperties": false,
+    "description": "An internet event in Amazon CloudWatch Internet Monitor that causes performance degradation or availability problems for impacted AWS client locations.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "internetmonitor:ListInternetEvents"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "internetmonitor:GetInternetEvent"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/EventArn"
+    ],
+    "properties": {
+      "ClientLocation": {
+        "additionalProperties": false,
+        "description": "The impacted location, such as a city, where clients access AWS application resources.",
+        "properties": {
+          "ASName": {
+            "description": "The name of the internet service provider (ISP) or network (ASN).",
+            "type": "string"
+          },
+          "ASNumber": {
+            "description": "The Autonomous System Number (ASN) of the network at an impacted location.",
+            "type": "integer"
+          },
+          "City": {
+            "description": "The name of the city where the internet event is located.",
+            "type": "string"
+          },
+          "Country": {
+            "description": "The name of the country where the internet event is located.",
+            "type": "string"
+          },
+          "Latitude": {
+            "description": "The latitude where the internet event is located.",
+            "type": "number"
+          },
+          "Longitude": {
+            "description": "The longitude where the internet event is located.",
+            "type": "number"
+          },
+          "Metro": {
+            "description": "The metro area where the health event is located.",
+            "type": "string"
+          },
+          "Subdivision": {
+            "description": "The subdivision location where the health event is located.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ASName",
+          "ASNumber",
+          "Country",
+          "City",
+          "Latitude",
+          "Longitude"
+        ],
+        "type": "object"
+      },
+      "EndedAt": {
+        "description": "The time when the internet event ended. If the event hasn't ended yet, this value is empty.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "EventArn": {
+        "description": "The Amazon Resource Name (ARN) of the internet event.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:.*",
+        "type": "string"
+      },
+      "EventId": {
+        "description": "The internally-generated identifier of an internet event.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9-]+$",
+        "type": "string"
+      },
+      "EventStatus": {
+        "description": "The status of the internet event.",
+        "enum": [
+          "ACTIVE",
+          "RESOLVED"
+        ],
+        "type": "string"
+      },
+      "EventType": {
+        "description": "The type of network impairment.",
+        "enum": [
+          "AVAILABILITY",
+          "PERFORMANCE"
+        ],
+        "type": "string"
+      },
+      "StartedAt": {
+        "description": "The time when the internet event started.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/EventId",
+      "/properties/EventArn",
+      "/properties/StartedAt",
+      "/properties/EndedAt",
+      "/properties/ClientLocation",
+      "/properties/EventType",
+      "/properties/EventStatus"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::InternetMonitor::InternetEvent"
+  }
+}

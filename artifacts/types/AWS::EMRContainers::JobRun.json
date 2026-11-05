@@ -1,0 +1,464 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EMRContainers-JobRun",
+  "type": "AWS::EMRContainers::JobRun",
+  "time": "2026-11-05T17:33:06.911Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/VirtualClusterId",
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ConfigurationOverrides",
+      "/properties/ExecutionRoleArn",
+      "/properties/JobDriver",
+      "/properties/Name",
+      "/properties/ReleaseLabel",
+      "/properties/RetryPolicyConfiguration",
+      "/properties/Tags",
+      "/properties/VirtualClusterId"
+    ],
+    "definitions": {
+      "CloudWatchMonitoringConfiguration": {
+        "additionalProperties": false,
+        "description": "A configuration for CloudWatch monitoring.",
+        "properties": {
+          "LogGroupName": {
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "^[\\.\\-_/#A-Za-z0-9]+$",
+            "type": "string"
+          },
+          "LogStreamNamePrefix": {
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          }
+        },
+        "required": [
+          "LogGroupName"
+        ],
+        "type": "object"
+      },
+      "Configuration": {
+        "additionalProperties": false,
+        "description": "A configuration specification to be used when provisioning virtual clusters.",
+        "properties": {
+          "Classification": {
+            "description": "The classification within a configuration.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "Configurations": {
+            "items": {
+              "$ref": "#/definitions/Configuration"
+            },
+            "maxItems": 100,
+            "type": "array"
+          },
+          "Properties": {
+            "additionalProperties": false,
+            "maxProperties": 100,
+            "patternProperties": {
+              "^.+$": {
+                "maxLength": 1024,
+                "minLength": 1,
+                "pattern": "\\S",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "Classification"
+        ],
+        "type": "object"
+      },
+      "ConfigurationOverrides": {
+        "additionalProperties": false,
+        "description": "Configuration settings used to override default configuration.",
+        "properties": {
+          "ApplicationConfiguration": {
+            "items": {
+              "$ref": "#/definitions/Configuration"
+            },
+            "maxItems": 100,
+            "type": "array"
+          },
+          "MonitoringConfiguration": {
+            "$ref": "#/definitions/MonitoringConfiguration"
+          }
+        },
+        "type": "object"
+      },
+      "ContainerLogRotationConfiguration": {
+        "additionalProperties": false,
+        "description": "The settings for container log rotation.",
+        "properties": {
+          "MaxFilesToKeep": {
+            "maximum": 50,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "RotationSize": {
+            "maxLength": 12,
+            "minLength": 3,
+            "pattern": "^\\d+(\\.\\d+)?[KMG][Bb]?$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "RotationSize",
+          "MaxFilesToKeep"
+        ],
+        "type": "object"
+      },
+      "JobDriver": {
+        "additionalProperties": false,
+        "description": "Specify the driver that the job runs on.",
+        "oneOf": [
+          {
+            "required": [
+              "SparkSubmitJobDriver"
+            ]
+          },
+          {
+            "required": [
+              "SparkSqlJobDriver"
+            ]
+          }
+        ],
+        "properties": {
+          "SparkSqlJobDriver": {
+            "$ref": "#/definitions/SparkSqlJobDriver"
+          },
+          "SparkSubmitJobDriver": {
+            "$ref": "#/definitions/SparkSubmitJobDriver"
+          }
+        },
+        "type": "object"
+      },
+      "ManagedLogs": {
+        "additionalProperties": false,
+        "description": "Configuration control over managed logs.",
+        "properties": {
+          "AllowAWSToRetainLogs": {
+            "enum": [
+              "ENABLED",
+              "DISABLED"
+            ],
+            "type": "string"
+          },
+          "EncryptionKeyArn": {
+            "maxLength": 2048,
+            "minLength": 3,
+            "pattern": "^(arn:(aws[a-zA-Z0-9-]*):kms:.+:(\\d{12})?:key\\/[(0-9a-zA-Z)-?]+|\\$\\{[a-zA-Z]\\w*\\})$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "MonitoringConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration setting for monitoring.",
+        "properties": {
+          "CloudWatchMonitoringConfiguration": {
+            "$ref": "#/definitions/CloudWatchMonitoringConfiguration"
+          },
+          "ContainerLogRotationConfiguration": {
+            "$ref": "#/definitions/ContainerLogRotationConfiguration"
+          },
+          "ManagedLogs": {
+            "$ref": "#/definitions/ManagedLogs"
+          },
+          "PersistentAppUI": {
+            "enum": [
+              "ENABLED",
+              "DISABLED"
+            ],
+            "type": "string"
+          },
+          "S3MonitoringConfiguration": {
+            "$ref": "#/definitions/S3MonitoringConfiguration"
+          }
+        },
+        "type": "object"
+      },
+      "RetryPolicyConfiguration": {
+        "additionalProperties": false,
+        "description": "The configuration of the retry policy that the job runs on.",
+        "properties": {
+          "MaxAttempts": {
+            "description": "The maximum number of attempts on the job's driver.",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "MaxAttempts"
+        ],
+        "type": "object"
+      },
+      "RetryPolicyExecution": {
+        "additionalProperties": false,
+        "description": "The current status of the retry policy executed on the job.",
+        "properties": {
+          "CurrentAttemptCount": {
+            "description": "The current number of attempts made on the driver of the job.",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "CurrentAttemptCount"
+        ],
+        "type": "object"
+      },
+      "S3MonitoringConfiguration": {
+        "additionalProperties": false,
+        "description": "Amazon S3 configuration for monitoring log publishing.",
+        "properties": {
+          "LogUri": {
+            "maxLength": 10280,
+            "minLength": 1,
+            "pattern": "^[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\r\\n\\t]*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "LogUri"
+        ],
+        "type": "object"
+      },
+      "SparkSqlJobDriver": {
+        "additionalProperties": false,
+        "description": "The job driver for job type.",
+        "properties": {
+          "EntryPoint": {
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "SparkSqlParameters": {
+            "maxLength": 102400,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "SparkSubmitJobDriver": {
+        "additionalProperties": false,
+        "description": "The information about job driver for Spark submit.",
+        "properties": {
+          "EntryPoint": {
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "EntryPointArguments": {
+            "items": {
+              "maxLength": 10280,
+              "minLength": 1,
+              "pattern": "\\S",
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "SparkSubmitParameters": {
+            "maxLength": 102400,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          }
+        },
+        "required": [
+          "EntryPoint"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Represents an Amazon EMR on EKS job run. A job run is a unit of work, such as a Spark jar, PySpark script, or SparkSQL query, that you submit to Amazon EMR on EKS.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "VirtualClusterId": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[0-9a-z]+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "VirtualClusterId"
+          ]
+        },
+        "permissions": [
+          "emr-containers:ListJobRuns"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "emr-containers:DescribeJobRun",
+          "emr-containers:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of the job run.",
+        "maxLength": 1024,
+        "minLength": 60,
+        "pattern": "^arn:(aws[a-zA-Z0-9-]*):emr-containers:.+:(\\d{12}):\\/virtualclusters\\/[0-9a-zA-Z]+\\/jobruns\\/[0-9a-zA-Z]+$",
+        "type": "string"
+      },
+      "ConfigurationOverrides": {
+        "$ref": "#/definitions/ConfigurationOverrides"
+      },
+      "CreatedAt": {
+        "description": "The date and time when the job run was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "description": "The user who created the job run.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:(aws[a-zA-Z0-9-]*):(iam|sts)::(\\d{12})?:[\\w/+=,.@-]+$",
+        "type": "string"
+      },
+      "ExecutionRoleArn": {
+        "description": "The execution role ARN of the job run.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:(aws[a-zA-Z0-9-]*):iam::(\\d{12})?:(role((\\u002F)|(\\u002F[\\u0021-\\u007F]+\\u002F))[\\w+=,.@-]+)$",
+        "type": "string"
+      },
+      "FailureReason": {
+        "description": "The reasons why the job run has failed.",
+        "enum": [
+          "INTERNAL_ERROR",
+          "USER_ERROR",
+          "VALIDATION_ERROR",
+          "CLUSTER_UNAVAILABLE"
+        ],
+        "type": "string"
+      },
+      "FinishedAt": {
+        "description": "The date and time when the job run has finished.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Id": {
+        "description": "The ID of the job run.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[0-9a-z]+$",
+        "type": "string"
+      },
+      "JobDriver": {
+        "$ref": "#/definitions/JobDriver"
+      },
+      "Name": {
+        "description": "The name of the job run.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[\\.\\-_/#A-Za-z0-9]+$",
+        "type": "string"
+      },
+      "ReleaseLabel": {
+        "description": "The release version of Amazon EMR.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[\\.\\-_/A-Za-z0-9]+$",
+        "type": "string"
+      },
+      "RetryPolicyConfiguration": {
+        "$ref": "#/definitions/RetryPolicyConfiguration"
+      },
+      "RetryPolicyExecution": {
+        "$ref": "#/definitions/RetryPolicyExecution"
+      },
+      "State": {
+        "description": "The state of the job run.",
+        "enum": [
+          "PENDING",
+          "SUBMITTED",
+          "RUNNING",
+          "FAILED",
+          "CANCELLED",
+          "CANCEL_PENDING",
+          "COMPLETED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The assigned tags of the job run.",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array"
+      },
+      "VirtualClusterId": {
+        "description": "The ID of the job run's virtual cluster.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[0-9a-z]+$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Id",
+      "/properties/Arn",
+      "/properties/State",
+      "/properties/CreatedAt",
+      "/properties/CreatedBy",
+      "/properties/FinishedAt",
+      "/properties/FailureReason",
+      "/properties/RetryPolicyExecution"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "emr-containers:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::EMRContainers::JobRun"
+  }
+}

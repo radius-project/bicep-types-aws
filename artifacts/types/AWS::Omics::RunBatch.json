@@ -1,0 +1,406 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Omics-RunBatch",
+  "type": "AWS::Omics::RunBatch",
+  "time": "2026-11-05T20:47:37.09Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DefaultRunSetting",
+      "/properties/Name",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "DefaultRunSetting": {
+        "additionalProperties": false,
+        "description": "The shared configuration applied to every workflow run in the batch. A per-run setting can override or extend selected members for an individual run.",
+        "properties": {
+          "CacheBehavior": {
+            "description": "The cache behavior for the runs. Requires CacheId; without it the service silently ignores this value. When CacheId is set and this is omitted, the run cache's own behavior applies.",
+            "enum": [
+              "CACHE_ON_FAILURE",
+              "CACHE_ALWAYS"
+            ],
+            "type": "string"
+          },
+          "CacheId": {
+            "description": "The identifier of the run cache to associate with the runs.",
+            "maxLength": 18,
+            "minLength": 1,
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          },
+          "ConfigurationName": {
+            "description": "The name of the run configuration to use for the workflow runs. Read echoes the resolved configuration identifier rather than the submitted name.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9\\-\\._]*$",
+            "type": "string"
+          },
+          "EngineSettings": {
+            "description": "Engine-specific settings shared across all runs, as free-form JSON. Use it for configuration options specific to the workflow engine, such as Nextflow profiles. A per-run setting can replace this value for that run.",
+            "type": "object"
+          },
+          "LogLevel": {
+            "description": "The verbosity level for CloudWatch Logs emitted during each run. OFF also suppresses log-group creation and its permission pre-check. When omitted, the service applies ALL.",
+            "enum": [
+              "OFF",
+              "FATAL",
+              "ERROR",
+              "ALL"
+            ],
+            "type": "string"
+          },
+          "Name": {
+            "description": "An optional user-friendly name applied to each workflow run. A per-run setting can replace this value for that run.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+            "type": "string"
+          },
+          "NetworkingMode": {
+            "description": "The networking behavior for the runs. VPC additionally requires ConfigurationName, and that configuration must carry a VPC config, otherwise the service rejects the request. When omitted, the service applies RESTRICTED.",
+            "enum": [
+              "RESTRICTED",
+              "VPC"
+            ],
+            "type": "string"
+          },
+          "OutputBucketOwnerId": {
+            "description": "The expected AWS account ID of the owner of the output S3 bucket. Supplying it makes the service's bucket-ownership verification strict. A per-run setting can replace this value for that run.",
+            "maxLength": 12,
+            "minLength": 12,
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          },
+          "OutputUri": {
+            "description": "The destination S3 URI for workflow outputs. Must begin with s3:// and RoleArn must grant write permission to the bucket; the service rejects other values at submit time. A per-run setting can replace this value for that run.",
+            "maxLength": 750,
+            "minLength": 1,
+            "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+            "type": "string"
+          },
+          "Parameters": {
+            "description": "Workflow parameter names and values shared across all runs, as free-form JSON. A per-run setting is merged with this map, and the run-specific value wins when keys overlap.",
+            "type": "object"
+          },
+          "Priority": {
+            "description": "An integer priority for the workflow runs. Higher values correspond to higher priority; 0 is the lowest. When omitted, the service applies 0. A per-run setting can replace this value for that run.",
+            "maximum": 100000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "RetentionMode": {
+            "description": "The retention behavior for runs after completion. When omitted, the service applies RETAIN.",
+            "enum": [
+              "RETAIN",
+              "REMOVE"
+            ],
+            "type": "string"
+          },
+          "RoleArn": {
+            "description": "The IAM role ARN that grants HealthOmics permissions to access required AWS resources such as Amazon S3 and CloudWatch. The role must have the same permissions required for individual StartRun calls.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^arn:.+$",
+            "type": "string"
+          },
+          "RunGroupId": {
+            "description": "The identifier of the run group to contain all workflow runs in the batch.",
+            "maxLength": 18,
+            "minLength": 1,
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          },
+          "RunTags": {
+            "$ref": "#/definitions/RunTags"
+          },
+          "ScratchStorageMode": {
+            "description": "The scratch ephemeral storage mode for storage mounted at /tmp. When omitted, the service applies SHARED. Applies only to CPU tasks; for tasks that use GPUs the service always applies LOCAL.",
+            "enum": [
+              "LOCAL",
+              "SHARED"
+            ],
+            "type": "string"
+          },
+          "StorageCapacity": {
+            "description": "The filesystem size in gibibytes (GiB) provisioned for each workflow run and shared by all tasks in that run. When omitted, the value is inherited from the workflow. Forced to no value when StorageType is DYNAMIC.",
+            "maximum": 100000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "StorageType": {
+            "description": "The storage type for the workflow runs. When omitted, the service applies STATIC, unless StorageCapacity is set, which infers STATIC.",
+            "enum": [
+              "STATIC",
+              "DYNAMIC"
+            ],
+            "type": "string"
+          },
+          "WorkflowId": {
+            "description": "The identifier of the workflow to run. The workflow must be ACTIVE.",
+            "maxLength": 18,
+            "minLength": 1,
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          },
+          "WorkflowOwnerId": {
+            "description": "The AWS account ID of the workflow owner, used for cross-account workflow sharing. Read returns the resolved owner account, which is the caller's account when the workflow is owned locally.",
+            "pattern": "^[0-9]{12}$",
+            "type": "string"
+          },
+          "WorkflowType": {
+            "description": "The type of the originating workflow. Batch runs are not supported with READY2RUN workflows, so the service rejects a batch that targets one. When omitted, the service applies PRIVATE and returns it on read.",
+            "enum": [
+              "PRIVATE",
+              "READY2RUN"
+            ],
+            "type": "string"
+          },
+          "WorkflowVersionName": {
+            "description": "The version name of the specified workflow. Read derives this from the resolved workflow version ARN.",
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9\\-\\._]*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "WorkflowId",
+          "RoleArn"
+        ],
+        "type": "object"
+      },
+      "RunSummary": {
+        "additionalProperties": false,
+        "description": "A summary of run execution states. Counts are eventually consistent and may lag actual run states; they are accurate once the batch reaches PROCESSED.",
+        "properties": {
+          "CancelledRunCount": {
+            "description": "The number of cancelled runs.",
+            "type": "integer"
+          },
+          "CompletedRunCount": {
+            "description": "The number of completed runs.",
+            "type": "integer"
+          },
+          "DeletedRunCount": {
+            "description": "The number of deleted runs.",
+            "type": "integer"
+          },
+          "FailedRunCount": {
+            "description": "The number of failed runs.",
+            "type": "integer"
+          },
+          "PendingRunCount": {
+            "description": "The number of pending runs.",
+            "type": "integer"
+          },
+          "RunningRunCount": {
+            "description": "The number of running runs.",
+            "type": "integer"
+          },
+          "StartingRunCount": {
+            "description": "The number of starting runs.",
+            "type": "integer"
+          },
+          "StoppingRunCount": {
+            "description": "The number of stopping runs.",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "RunTags": {
+        "additionalProperties": false,
+        "description": "Tags applied to each workflow run in the batch, not to the batch itself. A per-run setting can add to this map, and the run-specific value wins when keys overlap.",
+        "patternProperties": {
+          "^.{1,128}$": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "SubmissionSummary": {
+        "additionalProperties": false,
+        "description": "A summary of run submission outcomes.",
+        "properties": {
+          "FailedCancelSubmissionCount": {
+            "description": "The number of failed cancel submissions.",
+            "type": "integer"
+          },
+          "FailedDeleteSubmissionCount": {
+            "description": "The number of failed delete submissions.",
+            "type": "integer"
+          },
+          "FailedStartSubmissionCount": {
+            "description": "The number of failed start submissions.",
+            "type": "integer"
+          },
+          "PendingStartSubmissionCount": {
+            "description": "The number of pending start submissions.",
+            "type": "integer"
+          },
+          "SuccessfulCancelSubmissionCount": {
+            "description": "The number of successful cancel submissions.",
+            "type": "integer"
+          },
+          "SuccessfulDeleteSubmissionCount": {
+            "description": "The number of successful delete submissions.",
+            "type": "integer"
+          },
+          "SuccessfulStartSubmissionCount": {
+            "description": "The number of successful start submissions.",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Omics::RunBatch. Represents a batch of AWS HealthOmics workflow runs submitted and tracked as a single unit.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "omics:ListBatch"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "omics:GetBatch",
+          "omics:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The batch's ARN.",
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^arn:.+$",
+        "type": "string"
+      },
+      "CreationTime": {
+        "description": "When the batch was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DefaultRunSetting": {
+        "$ref": "#/definitions/DefaultRunSetting"
+      },
+      "Id": {
+        "description": "The batch's ID, which is the identifier portion of its ARN.",
+        "maxLength": 18,
+        "minLength": 1,
+        "pattern": "^[0-9]+$",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The batch's name. Names are not unique and may be reused.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+        "type": "string"
+      },
+      "RunSummary": {
+        "$ref": "#/definitions/RunSummary"
+      },
+      "Status": {
+        "description": "The batch's status.",
+        "enum": [
+          "CREATING",
+          "PENDING",
+          "SUBMITTING",
+          "INPROGRESS",
+          "STOPPING",
+          "CANCELLED",
+          "FAILED",
+          "PROCESSED",
+          "RUNS_DELETING",
+          "RUNS_DELETED",
+          "RUNS_DELETE_FAILED"
+        ],
+        "type": "string"
+      },
+      "SubmissionSummary": {
+        "$ref": "#/definitions/SubmissionSummary"
+      },
+      "SubmittedTime": {
+        "description": "When all run submissions for the batch completed.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags for the batch. These are not inherited by the individual runs; use DefaultRunSetting RunTags to tag runs.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "TotalRuns": {
+        "description": "The total number of runs in the batch.",
+        "type": "integer"
+      },
+      "Uuid": {
+        "description": "The universally unique identifier for the batch.",
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/CreationTime",
+      "/properties/Id",
+      "/properties/RunSummary",
+      "/properties/Status",
+      "/properties/SubmissionSummary",
+      "/properties/SubmittedTime",
+      "/properties/TotalRuns",
+      "/properties/Uuid"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "omics:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Omics::RunBatch"
+  }
+}

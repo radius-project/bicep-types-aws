@@ -16,6 +16,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.AppConfig/ConfigurationProfileProperties](#awsappconfigconfigurationprofileproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.AppConfig/Deployment@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.AppConfig/DeploymentProperties](#awsappconfigdeploymentproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.AppConfig/DeploymentStrategy@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -64,6 +72,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.AppConfig/ExtensionAssociationProperties](#awsappconfigextensionassociationproperties) (Identifier): properties of the resource
 
+## Resource AWS.AppConfig/HostedConfigurationVersion@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.AppConfig/HostedConfigurationVersionProperties](#awsappconfighostedconfigurationversionproperties) (Required, Identifier): properties of the resource
+
 ## AWS.AppConfig/ApplicationProperties
 ### Properties
 * **ApplicationId**: string (ReadOnly, Identifier): The application Id
@@ -85,6 +101,20 @@
 * **Tags**: [Tags](#tags)[]: Metadata to assign to the configuration profile. Tags help organize and categorize your AWS AppConfig resources. Each tag consists of a key and an optional value, both of which you define.
 * **Type**: string: The type of configurations contained in the profile. When calling this API, enter one of the following values for Type: AWS.AppConfig.FeatureFlags, AWS.Freeform
 * **Validators**: [Validators](#validators)[]: A list of methods for validating the configuration.
+
+## AWS.AppConfig/DeploymentProperties
+### Properties
+* **ApplicationId**: string (Required, Identifier): The application ID.
+* **ConfigurationProfileId**: string (Required): The configuration profile ID.
+* **ConfigurationVersion**: string (Required): The configuration version to deploy. If deploying an AWS AppConfig hosted configuration version, you can specify either the version number or version label. For all other configurations, you must specify the version number.
+* **DeploymentNumber**: string (ReadOnly, Identifier): The sequence number of the deployment.
+* **DeploymentStrategyId**: string (Required): The deployment strategy ID.
+* **Description**: string: A description of the deployment.
+* **DynamicExtensionParameters**: [DynamicExtensionParameters](#dynamicextensionparameters)[] (WriteOnly)
+* **EnvironmentId**: string (Required, Identifier): The environment ID.
+* **KmsKeyIdentifier**: string: The AWS Key Management Service key identifier (key ID, key alias, or key ARN) provided when the resource was created or updated.
+* **State**: string (ReadOnly): The state of the deployment.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
 ## AWS.AppConfig/DeploymentStrategyProperties
 ### Properties
@@ -179,6 +209,23 @@ Expressed numerically, the deployment rolls out as follows: 2% of the targets, 4
 * **Tags**: [Tag](#tag)[]: An array of key-value tags to apply to this resource.
 * **VersionNumber**: int (ReadOnly)
 
+## AWS.AppConfig/HostedConfigurationVersionProperties
+### Properties
+* **ApplicationId**: string (Required, Identifier): The application ID.
+* **ConfigurationProfileId**: string (Required, Identifier): The configuration profile ID.
+* **Content**: string (Required): The content of the configuration or the configuration data.
+* **ContentType**: string (Required): A standard MIME type describing the format of the configuration content.
+* **Description**: string: A description of the hosted configuration version.
+* **LatestVersionNumber**: int (WriteOnly): An optional locking token used to prevent race conditions from overwriting configuration updates when creating a new version. To ensure your data is not overwritten when creating multiple hosted configuration versions in rapid succession, specify the version number of the latest hosted configuration version.
+* **VersionLabel**: string: A user-defined label for an AWS AppConfig hosted configuration version.
+* **VersionNumber**: string (ReadOnly, Identifier): Current version number of hosted configuration version.
+
+## DynamicExtensionParameters
+### Properties
+* **ExtensionReference**: string
+* **ParameterName**: string
+* **ParameterValue**: string
+
 ## ExperimentDefinition_AttributeValues
 ### Properties
 
@@ -198,6 +245,11 @@ Expressed numerically, the deployment rolls out as follows: 2% of the targets, 4
 ### Properties
 * **AlarmArn**: string (Required): Amazon Resource Name (ARN) of the Amazon CloudWatch alarm.
 * **AlarmRoleArn**: string: ARN of an AWS Identity and Access Management (IAM) role for AWS AppConfig to monitor AlarmArn.
+
+## Tag
+### Properties
+* **Key**: string: The key-value string map. The valid character set is [a-zA-Z1-9+-=._:/]. The tag key can be up to 128 characters and must not start with aws:.
+* **Value**: string: The tag value can be up to 256 characters.
 
 ## Tag
 ### Properties

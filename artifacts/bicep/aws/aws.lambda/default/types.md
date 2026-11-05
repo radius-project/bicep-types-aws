@@ -24,6 +24,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Lambda/CodeSigningConfigProperties](#awslambdacodesigningconfigproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Lambda/DurableExecution@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Lambda/DurableExecutionProperties](#awslambdadurableexecutionproperties) (Identifier): properties of the resource
+
 ## Resource AWS.Lambda/EventInvokeConfig@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -48,6 +56,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Lambda/FunctionProperties](#awslambdafunctionproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Lambda/LayerVersion@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Lambda/LayerVersionProperties](#awslambdalayerversionproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Lambda/LayerVersionPermission@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Lambda/LayerVersionPermissionProperties](#awslambdalayerversionpermissionproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Lambda/MicrovmImage@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -63,6 +87,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Lambda/NetworkConnectorProperties](#awslambdanetworkconnectorproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Lambda/Permission@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Lambda/PermissionProperties](#awslambdapermissionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Lambda/ResourcePolicy@default
 * **Readable Scope(s)**: None
@@ -103,6 +135,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Lambda/WebFunctionEndpointProperties](#awslambdawebfunctionendpointproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Lambda/WebFunctionRevision@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Lambda/WebFunctionRevisionProperties](#awslambdawebfunctionrevisionproperties) (Required, Identifier): properties of the resource
 
 ## AliasRoutingConfiguration
 ### Properties
@@ -149,6 +189,17 @@
 * **CodeSigningPolicies**: [CodeSigningPolicies](#codesigningpolicies): Policies to control how to act if a signature is invalid
 * **Description**: string: A description of the CodeSigningConfig
 * **Tags**: [Tag](#tag)[]: A list of tags to apply to CodeSigningConfig resource
+
+## AWS.Lambda/DurableExecutionProperties
+### Properties
+* **DurableExecutionArn**: string (Identifier): The Amazon Resource Name (ARN) of the durable execution.
+* **DurableExecutionName**: string (ReadOnly): The name of the durable execution.
+* **EndTimestamp**: string (ReadOnly): The date and time when the durable execution ended, in ISO 8601 format.
+* **FunctionArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the Lambda function that was invoked to start this durable execution.
+* **FunctionName**: string: The name or ARN of the Lambda function. Used as a filter for the List operation.
+* **StartTimestamp**: string (ReadOnly): The date and time when the durable execution started, in ISO 8601 format.
+* **Status**: string (ReadOnly): The current status of the durable execution.
+* **Version**: string (ReadOnly): The version of the Lambda function that was invoked for this durable execution.
 
 ## AWS.Lambda/EventInvokeConfigProperties
 ### Properties
@@ -274,6 +325,24 @@
 * **TracingConfig**: [TracingConfig](#tracingconfig): Set ``Mode`` to ``Active`` to sample and trace a subset of incoming requests with [X-Ray](https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html).
 * **VpcConfig**: [VpcConfig](#vpcconfig): For network connectivity to AWS resources in a VPC, specify a list of security groups and subnets in the VPC. When you connect a function to a VPC, it can access resources and the internet only through that VPC. For more information, see [Configuring a Lambda function to access resources in a VPC](https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html).
 
+## AWS.Lambda/LayerVersionPermissionProperties
+### Properties
+* **Action**: string (Required): The API action that grants access to the layer.
+* **Id**: string (ReadOnly, Identifier): ID generated by service
+* **LayerVersionArn**: string (Required): The name or Amazon Resource Name (ARN) of the layer.
+* **OrganizationId**: string: With the principal set to *, grant permission to all accounts in the specified organization.
+* **Principal**: string (Required): An account ID, or * to grant layer usage permission to all accounts in an organization, or all AWS accounts (if organizationId is not specified).
+
+## AWS.Lambda/LayerVersionProperties
+### Properties
+* **CompatibleArchitectures**: string[]: A list of compatible instruction set architectures.
+* **CompatibleRuntimes**: string[]: A list of compatible function runtimes. Used for filtering with ListLayers and ListLayerVersions.
+* **Content**: [Content](#content) (Required, WriteOnly): The function layer archive.
+* **Description**: string: The description of the version.
+* **LayerName**: string: The name or Amazon Resource Name (ARN) of the layer.
+* **LayerVersionArn**: string (ReadOnly, Identifier)
+* **LicenseInfo**: string: The layer's software license.
+
 ## AWS.Lambda/MicrovmImageProperties
 ### Properties
 * **AdditionalOsCapabilities**: string[] (Required, WriteOnly)
@@ -307,6 +376,26 @@
 * **OperatorRole**: string
 * **State**: string (ReadOnly)
 * **Tags**: [Tag](#tag)[]: A list of tags to apply to the network connector. Use tags to categorize network connectors for cost allocation, access control, or operational management.
+
+## AWS.Lambda/PermissionProperties
+### Properties
+* **Action**: string (Required): The action that the principal can use on the function. For example, ``lambda:InvokeFunction`` or ``lambda:GetFunction``.
+* **EventSourceToken**: string: For Alexa Smart Home functions, a token that the invoker must supply.
+* **FunctionName**: string (Required, Identifier): The name or ARN of the Lambda function, version, or alias.
+  **Name formats**
+ +  *Function name* ? ``my-function`` (name-only), ``my-function:v1`` (with alias).
+  +  *Function ARN* ? ``arn:aws:lambda:us-west-2:123456789012:function:my-function``.
+  +  *Partial ARN* ? ``123456789012:function:my-function``.
+  
+ You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
+* **FunctionUrlAuthType**: string: The type of authentication that your function URL uses. Set to ``AWS_IAM`` if you want to restrict access to authenticated users only. Set to ``NONE`` if you want to bypass IAM authentication to create a public endpoint. For more information, see [Control access to Lambda function URLs](https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html).
+* **Id**: string (ReadOnly, Identifier)
+* **InvokedViaFunctionUrl**: bool: Indicates whether the permission applies when the function is invoked through a function URL.
+* **Principal**: string (Required): The AWS-service, AWS-account, IAM user, or IAM role that invokes the function. If you specify a service, use ``SourceArn`` or ``SourceAccount`` to limit who can invoke the function through that service.
+* **PrincipalOrgID**: string: The identifier for your organization in AOlong. Use this to grant permissions to all the AWS-accounts under this organization.
+* **SourceAccount**: string: For AWS-service, the ID of the AWS-account that owns the resource. Use this together with ``SourceArn`` to ensure that the specified account owns the resource. It is possible for an Amazon S3 bucket to be deleted by its owner and recreated by another account.
+* **SourceArn**: string: For AWS-services, the ARN of the AWS resource that invokes the function. For example, an Amazon S3 bucket or Amazon SNS topic.
+ Note that Lambda configures the comparison using the ``StringLike`` operator.
 
 ## AWS.Lambda/ResourcePolicyProperties
 ### Properties
@@ -367,6 +456,20 @@
 * **Tags**: [Tag](#tag)[]: A list of tags to apply to the function.
 * **UpdatedAt**: string (ReadOnly): The timestamp when the function was last updated.
 
+## AWS.Lambda/WebFunctionRevisionProperties
+### Properties
+* **BuildConfig**: [WebFunctionRevision_BuildConfig](#webfunctionrevisionbuildconfig) (Required): The build configuration for the revision.
+* **CreatedAt**: string (ReadOnly): The timestamp when the revision was created.
+* **Description**: string: A description of the revision.
+* **FunctionArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the function.
+* **FunctionName**: string (Required): The name of the web function this revision belongs to. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
+* **KmsKeyArn**: string: The ARN of the KMS key used to encrypt the revision.
+* **RevisionArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the revision.
+* **RevisionId**: string (ReadOnly): The unique identifier of the revision.
+* **ServiceConfig**: [WebFunctionRevision_ServiceConfig](#webfunctionrevisionserviceconfig) (Required): The service configuration for the revision.
+* **State**: string (ReadOnly): The current state of the revision.
+* **StateReason**: string (ReadOnly): The reason for the revision's current state.
+
 ## CapacityProviderConfig
 ### Properties
 * **LambdaManagedInstancesCapacityProviderConfig**: [LambdaManagedInstancesCapacityProviderConfig](#lambdamanagedinstancescapacityproviderconfig) (Required): Configuration for Lambda-managed instances used by the capacity provider.
@@ -425,6 +528,13 @@
 ## Config
 ### Properties
 * **VpcEgressConfiguration**: [VpcEgressConfiguration](#vpcegressconfiguration) (Required)
+
+## Content
+### Properties
+* **S3Bucket**: string (Required): The Amazon S3 bucket of the layer archive.
+* **S3Key**: string (Required): The Amazon S3 key of the layer archive.
+* **S3ObjectStorageMode**: string: Specifies whether Lambda should copy the deployment package to its internal storage (COPY) or reference it directly from your S3 bucket (REFERENCE).
+* **S3ObjectVersion**: string: For versioned objects, the version of the layer archive object to use.
 
 ## Cors
 ### Properties
@@ -549,6 +659,12 @@
 * **LogGroup**: string: The name of the Amazon CloudWatch log group the function sends logs to. By default, Lambda functions send logs to a default log group named ``/aws/lambda/<function name>``. To use a different log group, enter an existing log group or enter a new log group name.
 * **SystemLogLevel**: string: Set this property to filter the system logs for your function that Lambda sends to CloudWatch. Lambda only sends system logs at the selected level of detail and lower, where ``DEBUG`` is the highest level and ``WARN`` is the lowest.
 
+## LoggingConfig
+### Properties
+* **ApplicationLogLevel**: string: The application log level.
+* **LogGroup**: string: The CloudWatch log group name.
+* **SystemLogLevel**: string: The system log level.
+
 ## MetricsConfig
 ### Properties
 * **Metrics**: string[]: The metrics you want your event source mapping to produce, including ``EventCount``, ``ErrorCount``, ``KafkaMetrics``. 
@@ -646,6 +762,12 @@
   +  ``DISABLED`` – Routes all reads through the file system, regardless of memory configuration.
   
  To use direct reads, you must grant the execution role the ``s3:GetObject`` and ``s3:GetObjectVersion`` permissions. If a direct read fails, Lambda automatically falls back to reading through the file system.
+
+## S3Object
+### Properties
+* **Bucket**: string (Required): The S3 bucket name.
+* **Key**: string (Required): The S3 object key.
+* **VersionId**: string: The S3 object version ID.
 
 ## ScalingConfig
 ### Properties
@@ -780,4 +902,33 @@
 
 ## WebFunctionEndpoint_RegionalEndpoints
 ### Properties
+
+## WebFunctionRevision_BuildConfig
+### Properties
+* **CodeConfig**: [WebFunctionRevision_BuildConfig_CodeConfig](#webfunctionrevisionbuildconfigcodeconfig) (Required): The code configuration for the revision.
+* **RuntimeConfig**: [WebFunctionRevision_BuildConfig_RuntimeConfig](#webfunctionrevisionbuildconfigruntimeconfig) (Required): The runtime configuration for the revision.
+
+## WebFunctionRevision_BuildConfig_CodeConfig
+### Properties
+* **S3Object**: [S3Object](#s3object) (Required): The Amazon S3 location of the deployment artifact.
+
+## WebFunctionRevision_BuildConfig_RuntimeConfig
+### Properties
+* **Runtime**: string (Required): The runtime identifier.
+
+## WebFunctionRevision_ServiceConfig
+### Properties
+* **EgressNetworkConnectorArn**: string: The versioned ARN of the network connector used for outbound network access from the revision.
+* **EnvironmentVariables**: [WebFunctionRevision_ServiceConfig_EnvironmentVariables](#webfunctionrevisionserviceconfigenvironmentvariables): Environment variables for the function.
+* **ExecutionRoleArn**: string (Required): The ARN of the execution role.
+* **MaxConcurrencyPerEnvironment**: int: The maximum concurrency per environment.
+* **TelemetryConfig**: [WebFunctionRevision_ServiceConfig_TelemetryConfig](#webfunctionrevisionserviceconfigtelemetryconfig): The telemetry configuration.
+* **TimeoutSeconds**: int: The function timeout in seconds.
+
+## WebFunctionRevision_ServiceConfig_EnvironmentVariables
+### Properties
+
+## WebFunctionRevision_ServiceConfig_TelemetryConfig
+### Properties
+* **LoggingConfig**: [LoggingConfig](#loggingconfig): The logging configuration for the web function.
 

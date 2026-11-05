@@ -1,0 +1,108 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DMS-ReplicationTaskAssessmentRun",
+  "type": "AWS::DMS::ReplicationTaskAssessmentRun",
+  "time": "2026-11-05T20:37:44.661Z",
+  "schema": {
+    "additionalProperties": false,
+    "definitions": {
+      "AssessmentProgress": {
+        "additionalProperties": false,
+        "description": "The progress values reported by the AssessmentProgress response element.",
+        "properties": {
+          "IndividualAssessmentCompletedCount": {
+            "description": "The number of individual assessments that have completed, successfully or not.",
+            "type": "integer"
+          },
+          "IndividualAssessmentCount": {
+            "description": "The number of individual assessments that are specified to run.",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::DMS::ReplicationTaskAssessmentRun. Provides read-only visibility into an AWS DMS premigration assessment run, an ephemeral job started for a replication task via the StartReplicationTaskAssessmentRun operation.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "dms:DescribeReplicationTaskAssessmentRuns"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "dms:DescribeReplicationTaskAssessmentRuns"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ReplicationTaskAssessmentRunArn"
+    ],
+    "properties": {
+      "AssessmentProgress": {
+        "$ref": "#/definitions/AssessmentProgress"
+      },
+      "AssessmentRunName": {
+        "description": "Unique name to identify the assessment run.",
+        "type": "string"
+      },
+      "IsLatestTaskAssessmentRun": {
+        "description": "Indicates that the following premigration assessment run is the latest for the migration task.",
+        "type": "boolean"
+      },
+      "ReplicationTaskArn": {
+        "description": "Amazon Resource Name (ARN) of the migration task associated with this premigration assessment run.",
+        "pattern": "^arn:.+:dms:.+:[0-9]+:task:.+$",
+        "type": "string"
+      },
+      "ReplicationTaskAssessmentRunArn": {
+        "description": "Amazon Resource Name (ARN) of this assessment run.",
+        "pattern": "^arn:.+:dms:.+:[0-9]+:assessment-run:.+$",
+        "type": "string"
+      },
+      "ReplicationTaskAssessmentRunCreationDate": {
+        "description": "Date on which the assessment run was created using the StartReplicationTaskAssessmentRun operation.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ResultEncryptionMode": {
+        "description": "Encryption mode used to encrypt the assessment run results.",
+        "type": "string"
+      },
+      "ResultLocationBucket": {
+        "description": "Amazon S3 bucket where AWS DMS stores the results of this assessment run.",
+        "type": "string"
+      },
+      "ResultLocationFolder": {
+        "description": "Folder in an Amazon S3 bucket where AWS DMS stores the results of this assessment run.",
+        "type": "string"
+      },
+      "ServiceAccessRoleArn": {
+        "description": "ARN of the service role used to start the assessment run. The role must allow the iam:PassRole action.",
+        "pattern": "^arn:.+:iam::[0-9]+:role/.+$",
+        "type": "string"
+      },
+      "Status": {
+        "description": "Assessment run status. This status can have one of the following values: cancelling, deleting, failed, error-provisioning, error-executing, invalid state, passed, provisioning, running, starting, or warning.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ReplicationTaskAssessmentRunArn",
+      "/properties/ReplicationTaskArn",
+      "/properties/ServiceAccessRoleArn",
+      "/properties/ResultLocationBucket",
+      "/properties/ResultLocationFolder",
+      "/properties/ResultEncryptionMode",
+      "/properties/AssessmentRunName",
+      "/properties/Status",
+      "/properties/ReplicationTaskAssessmentRunCreationDate",
+      "/properties/AssessmentProgress",
+      "/properties/IsLatestTaskAssessmentRun"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-dms.git",
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::DMS::ReplicationTaskAssessmentRun"
+  }
+}

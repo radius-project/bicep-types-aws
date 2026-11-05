@@ -1,0 +1,92 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-ClientVpnAuthorizationRule",
+  "type": "AWS::EC2::ClientVpnAuthorizationRule",
+  "time": "2026-11-05T17:09:56.701Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ClientVpnEndpointId",
+      "/properties/AuthorizeAllGroups",
+      "/properties/Description",
+      "/properties/AccessGroupId",
+      "/properties/TargetNetworkCidr"
+    ],
+    "description": "Resource Type definition for AWS::EC2::ClientVpnAuthorizationRule",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "ec2:AuthorizeClientVpnIngress",
+          "ec2:DescribeClientVpnAuthorizationRules"
+        ],
+        "timeoutInMinutes": 130
+      },
+      "delete": {
+        "permissions": [
+          "ec2:RevokeClientVpnIngress",
+          "ec2:DescribeClientVpnAuthorizationRules"
+        ],
+        "timeoutInMinutes": 130
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ClientVpnEndpointId": {
+              "$ref": "resource-schema.json#/properties/ClientVpnEndpointId"
+            }
+          },
+          "required": [
+            "ClientVpnEndpointId"
+          ]
+        },
+        "permissions": [
+          "ec2:DescribeClientVpnAuthorizationRules"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ec2:DescribeClientVpnAuthorizationRules"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Id"
+    ],
+    "properties": {
+      "AccessGroupId": {
+        "description": "The ID of the group to grant access to, for example, the Active Directory group or identity provider (IdP) group. Required if `AuthorizeAllGroups` is `false` or not specified.",
+        "type": "string"
+      },
+      "AuthorizeAllGroups": {
+        "description": "Indicates whether to grant access to all clients. Specify `true` to grant all clients who successfully establish a VPN connection access to the network. Must be set to `true` if `AccessGroupId` is not specified.",
+        "type": "boolean"
+      },
+      "ClientVpnEndpointId": {
+        "description": "The ID of the Client VPN endpoint.",
+        "type": "string"
+      },
+      "Description": {
+        "description": "A brief description of the authorization rule.",
+        "type": "string"
+      },
+      "Id": {
+        "description": "The ID of the Client VPN Authorization Rule.",
+        "type": "string"
+      },
+      "TargetNetworkCidr": {
+        "description": "The IPv4 address range, in CIDR notation, of the network for which access is being authorized.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Id"
+    ],
+    "required": [
+      "ClientVpnEndpointId",
+      "TargetNetworkCidr"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::EC2::ClientVpnAuthorizationRule"
+  }
+}

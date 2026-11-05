@@ -1,0 +1,268 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Omics-Run",
+  "type": "AWS::Omics::Run",
+  "time": "2026-11-05T20:55:07.136Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/CacheBehavior",
+      "/properties/CacheId",
+      "/properties/LogLevel",
+      "/properties/Name",
+      "/properties/NetworkingMode",
+      "/properties/OutputUri",
+      "/properties/Priority",
+      "/properties/RetentionMode",
+      "/properties/RoleArn",
+      "/properties/RunGroupId",
+      "/properties/StorageCapacity",
+      "/properties/StorageType",
+      "/properties/Tags",
+      "/properties/WorkflowId",
+      "/properties/WorkflowOwnerId",
+      "/properties/WorkflowType"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Definition of AWS::Omics::Run Resource Type",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "omics:ListRuns"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "omics:GetRun",
+          "omics:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The run's ARN.",
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^arn:.+$",
+        "type": "string"
+      },
+      "CacheBehavior": {
+        "description": "The cache behavior for the run.",
+        "enum": [
+          "CACHE_ON_FAILURE",
+          "CACHE_ALWAYS"
+        ],
+        "type": "string"
+      },
+      "CacheId": {
+        "description": "Identifier of the cache associated with this run.",
+        "maxLength": 18,
+        "minLength": 1,
+        "pattern": "^[0-9]+$",
+        "type": "string"
+      },
+      "CreationTime": {
+        "description": "When the run was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Id": {
+        "description": "The run's ID.",
+        "maxLength": 18,
+        "minLength": 1,
+        "pattern": "^[0-9]+$",
+        "type": "string"
+      },
+      "LogLevel": {
+        "description": "The run's log level.",
+        "enum": [
+          "OFF",
+          "FATAL",
+          "ERROR",
+          "ALL"
+        ],
+        "type": "string"
+      },
+      "Name": {
+        "description": "The run's name.",
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
+      "NetworkingMode": {
+        "description": "The networking mode for the run.",
+        "enum": [
+          "RESTRICTED",
+          "VPC"
+        ],
+        "type": "string"
+      },
+      "OutputUri": {
+        "description": "An output URI for the run.",
+        "maxLength": 750,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Priority": {
+        "description": "The run's priority.",
+        "maximum": 100000,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "RetentionMode": {
+        "description": "The run's retention mode.",
+        "enum": [
+          "RETAIN",
+          "REMOVE"
+        ],
+        "type": "string"
+      },
+      "RoleArn": {
+        "description": "A service role ARN for the run.",
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^arn:.+$",
+        "type": "string"
+      },
+      "RunGroupId": {
+        "description": "The run's group ID.",
+        "maxLength": 18,
+        "minLength": 1,
+        "pattern": "^[0-9]+$",
+        "type": "string"
+      },
+      "RunOutputUri": {
+        "description": "The destination for workflow outputs.",
+        "maxLength": 750,
+        "minLength": 1,
+        "type": "string"
+      },
+      "StartTime": {
+        "description": "When the run started.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "StartedBy": {
+        "description": "Who started the run.",
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Status": {
+        "description": "The run's status.",
+        "enum": [
+          "PENDING",
+          "STARTING",
+          "RUNNING",
+          "STOPPING",
+          "COMPLETED",
+          "DELETED",
+          "CANCELLED",
+          "FAILED"
+        ],
+        "type": "string"
+      },
+      "StorageCapacity": {
+        "description": "The run's storage capacity in gibibytes.",
+        "maximum": 100000,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "StorageType": {
+        "description": "The run's storage type.",
+        "enum": [
+          "STATIC",
+          "DYNAMIC"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags for the run.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "Uuid": {
+        "description": "The universally unique identifier for the run.",
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
+      "WorkflowId": {
+        "description": "The run's workflow ID.",
+        "maxLength": 18,
+        "minLength": 1,
+        "pattern": "^[0-9]+$",
+        "type": "string"
+      },
+      "WorkflowOwnerId": {
+        "description": "The ID of the workflow owner.",
+        "pattern": "^[0-9]{12}$",
+        "type": "string"
+      },
+      "WorkflowType": {
+        "description": "The run's workflow type.",
+        "enum": [
+          "PRIVATE",
+          "READY2RUN"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Id",
+      "/properties/Status",
+      "/properties/CreationTime",
+      "/properties/StartTime",
+      "/properties/Uuid",
+      "/properties/RunOutputUri",
+      "/properties/StartedBy"
+    ],
+    "required": [
+      "RoleArn",
+      "OutputUri"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "omics:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Omics::Run"
+  }
+}

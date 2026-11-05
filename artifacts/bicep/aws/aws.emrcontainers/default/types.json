@@ -360,17 +360,828 @@
   },
   {
     "$type": "ObjectType",
+    "name": "CloudWatchMonitoringConfiguration",
+    "properties": {
+      "LogGroupName": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "LogStreamNamePrefix": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Configuration",
+    "properties": {
+      "Classification": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The classification within a configuration."
+      },
+      "Configurations": {
+        "type": {
+          "$ref": "#/31"
+        },
+        "flags": 0
+      },
+      "Properties": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConfigurationOverrides",
+    "properties": {
+      "ApplicationConfiguration": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 0
+      },
+      "MonitoringConfiguration": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ContainerLogRotationConfiguration",
+    "properties": {
+      "MaxFilesToKeep": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1
+      },
+      "RotationSize": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JobDriver",
+    "properties": {
+      "SparkSqlJobDriver": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 0
+      },
+      "SparkSubmitJobDriver": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedLogs",
+    "properties": {
+      "AllowAWSToRetainLogs": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "EncryptionKeyArn": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MonitoringConfiguration",
+    "properties": {
+      "CloudWatchMonitoringConfiguration": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0
+      },
+      "ContainerLogRotationConfiguration": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0
+      },
+      "ManagedLogs": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0
+      },
+      "PersistentAppUI": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "S3MonitoringConfiguration": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RetryPolicyConfiguration",
+    "properties": {
+      "MaxAttempts": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The maximum number of attempts on the job's driver."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RetryPolicyExecution",
+    "properties": {
+      "CurrentAttemptCount": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "The current number of attempts made on the driver of the job."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3MonitoringConfiguration",
+    "properties": {
+      "LogUri": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SparkSqlJobDriver",
+    "properties": {
+      "EntryPoint": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "SparkSqlParameters": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SparkSubmitJobDriver",
+    "properties": {
+      "EntryPoint": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "EntryPointArguments": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0
+      },
+      "SparkSubmitParameters": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/19"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JobRun_Properties",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/19"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.EMRContainers/JobRunProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/30"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EMRContainers/JobRunProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 16,
+        "description": "The ARN of the job run."
+      },
+      "ConfigurationOverrides": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2,
+        "description": "The date and time when the job run was created."
+      },
+      "CreatedBy": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2,
+        "description": "The user who created the job run."
+      },
+      "ExecutionRoleArn": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The execution role ARN of the job run."
+      },
+      "FailureReason": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2,
+        "description": "The reasons why the job run has failed."
+      },
+      "FinishedAt": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2,
+        "description": "The date and time when the job run has finished."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2,
+        "description": "The ID of the job run."
+      },
+      "JobDriver": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The name of the job run."
+      },
+      "ReleaseLabel": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The release version of Amazon EMR."
+      },
+      "RetryPolicyConfiguration": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0
+      },
+      "RetryPolicyExecution": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 2
+      },
+      "State": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2,
+        "description": "The state of the job run."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0,
+        "description": "The assigned tags of the job run."
+      },
+      "VirtualClusterId": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The ID of the job run's virtual cluster."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EMRContainers/JobRun",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.EMRContainers/JobRun@default",
+    "body": {
+      "$ref": "#/38"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Configuration",
+    "properties": {
+      "Classification": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The classification within a configuration."
+      },
+      "Configurations": {
+        "type": {
+          "$ref": "#/51"
+        },
+        "flags": 0
+      },
+      "Properties": {
+        "type": {
+          "$ref": "#/52"
+        },
+        "flags": 0,
+        "description": "A set of properties specified within a configuration classification."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JobDriver",
+    "properties": {
+      "SparkSqlJobDriver": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 0
+      },
+      "SparkSubmitJobDriver": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JobTemplateData",
+    "properties": {
+      "ConfigurationOverrides": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
+      },
+      "ExecutionRoleArn": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The execution role ARN of the job run, or a template parameter reference."
+      },
+      "JobDriver": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 1
+      },
+      "JobTags": {
+        "type": {
+          "$ref": "#/53"
+        },
+        "flags": 0,
+        "description": "The tags assigned to jobs started using the job template."
+      },
+      "ParameterConfiguration": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 0,
+        "description": "The configuration of parameters existing in the job template."
+      },
+      "ReleaseLabel": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The release version of Amazon EMR, or a template parameter reference."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ParametricCloudWatchMonitoringConfiguration",
+    "properties": {
+      "LogGroupName": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The name of the log group for log publishing, or a template parameter reference."
+      },
+      "LogStreamNamePrefix": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The specified name prefix for log streams."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ParametricConfigurationOverrides",
+    "properties": {
+      "ApplicationConfiguration": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 0
+      },
+      "MonitoringConfiguration": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ParametricMonitoringConfiguration",
+    "properties": {
+      "CloudWatchMonitoringConfiguration": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0
+      },
+      "PersistentAppUI": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "Monitoring configurations for the persistent application UI, or a template parameter reference."
+      },
+      "S3MonitoringConfiguration": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ParametricS3MonitoringConfiguration",
+    "properties": {
+      "LogUri": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "Amazon S3 destination URI for log publishing."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SparkSqlJobDriver",
+    "properties": {
+      "EntryPoint": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "SparkSqlParameters": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SparkSubmitJobDriver",
+    "properties": {
+      "EntryPoint": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "EntryPointArguments": {
+        "type": {
+          "$ref": "#/56"
+        },
+        "flags": 0
+      },
+      "SparkSubmitParameters": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TemplateParameterConfiguration",
+    "properties": {
+      "DefaultValue": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The default value for the job template parameter."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The type of the job template parameter."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JobTemplate_Properties",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JobTemplate_JobTags",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JobTemplate_ParameterConfiguration",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/40"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.EMRContainers/JobTemplateProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/49"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EMRContainers/JobTemplateProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 18,
+        "description": "The ARN of the job template."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2,
+        "description": "The date and time when the job template was created."
+      },
+      "CreatedBy": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2,
+        "description": "The user who created the job template."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2,
+        "description": "The ID of the job template."
+      },
+      "JobTemplateData": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 1
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The specified name of the job template."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/58"
+        },
+        "flags": 0,
+        "description": "The tags that are associated with the job template."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EMRContainers/JobTemplate",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/59"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.EMRContainers/JobTemplate@default",
+    "body": {
+      "$ref": "#/60"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "AtRestEncryptionConfiguration",
     "properties": {
       "LocalDiskEncryptionConfiguration": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/73"
         },
         "flags": 0
       },
       "S3EncryptionConfiguration": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/74"
         },
         "flags": 0
       }
@@ -382,13 +1193,13 @@
     "properties": {
       "IAMConfiguration": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/69"
         },
         "flags": 0
       },
       "IdentityCenterConfiguration": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/70"
         },
         "flags": 0
       }
@@ -400,7 +1211,7 @@
     "properties": {
       "LakeFormationConfiguration": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/72"
         },
         "flags": 0
       }
@@ -412,7 +1223,7 @@
     "properties": {
       "EksInfo": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/67"
         },
         "flags": 0
       }
@@ -431,7 +1242,7 @@
       },
       "Info": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/65"
         },
         "flags": 0
       },
@@ -463,13 +1274,13 @@
     "properties": {
       "AtRestEncryptionConfiguration": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/62"
         },
         "flags": 4
       },
       "InTransitEncryptionConfiguration": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/71"
         },
         "flags": 0
       }
@@ -494,14 +1305,14 @@
     "properties": {
       "EnableIdentityCenter": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/79"
         },
         "flags": 0,
         "description": "Whether to enable Identity Center integration."
       },
       "IdentityCenterApplicationAssignmentRequired": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/79"
         },
         "flags": 4,
         "description": "Whether Identity Center application assignment is required."
@@ -521,7 +1332,7 @@
     "properties": {
       "TLSCertificateConfiguration": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/77"
         },
         "flags": 0
       }
@@ -540,7 +1351,7 @@
       },
       "QueryAccessControlEnabled": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/79"
         },
         "flags": 4,
         "description": "Whether query access control is enabled."
@@ -554,7 +1365,7 @@
       },
       "SecureNamespaceInfo": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/75"
         },
         "flags": 0
       }
@@ -626,19 +1437,19 @@
     "properties": {
       "AuthenticationConfiguration": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/63"
         },
         "flags": 0
       },
       "AuthorizationConfiguration": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/64"
         },
         "flags": 0
       },
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/68"
         },
         "flags": 0
       }
@@ -701,7 +1512,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/34"
+      "$ref": "#/78"
     }
   },
   {
@@ -717,7 +1528,7 @@
       },
       "ContainerProvider": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/66"
         },
         "flags": 0,
         "description": "Container provider for the security configuration."
@@ -738,14 +1549,14 @@
       },
       "SecurityConfigurationData": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/76"
         },
         "flags": 1,
         "description": "Security configuration input for the security configuration."
       },
       "Tags": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/81"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this security configuration."
@@ -772,7 +1583,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/82"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -783,7 +1594,7 @@
     "$type": "ResourceType",
     "name": "AWS.EMRContainers/SecurityConfiguration@default",
     "body": {
-      "$ref": "#/39"
+      "$ref": "#/83"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -794,7 +1605,7 @@
     "properties": {
       "EksInfo": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/87"
         },
         "flags": 1
       }
@@ -813,7 +1624,7 @@
       },
       "Info": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/85"
         },
         "flags": 1
       },
@@ -865,7 +1676,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/44"
+      "$ref": "#/88"
     }
   },
   {
@@ -880,7 +1691,7 @@
       },
       "ContainerProvider": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/86"
         },
         "flags": 1,
         "description": "Container provider of the virtual cluster."
@@ -908,14 +1719,14 @@
       },
       "SessionEnabled": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/79"
         },
         "flags": 0,
         "description": "Whether the virtual cluster is session-enabled for Spark Connect."
       },
       "Tags": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/90"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this virtual cluster."
@@ -942,7 +1753,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/91"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -953,7 +1764,7 @@
     "$type": "ResourceType",
     "name": "AWS.EMRContainers/VirtualCluster@default",
     "body": {
-      "$ref": "#/48"
+      "$ref": "#/92"
     },
     "readableScopes": 0,
     "writableScopes": 0

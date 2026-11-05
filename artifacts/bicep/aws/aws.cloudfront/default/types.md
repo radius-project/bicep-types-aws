@@ -88,6 +88,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFront/KeyValueStoreProperties](#awscloudfrontkeyvaluestoreproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.CloudFront/MonitoringSubscription@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudFront/MonitoringSubscriptionProperties](#awscloudfrontmonitoringsubscriptionproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.CloudFront/OriginAccessControl@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -295,6 +303,11 @@
 * **Name**: string (Required, Identifier): The name of the key value store.
 * **Status**: string (ReadOnly)
 * **Tags**: [Tag](#tag)[]: A complex type that contains zero or more ``Tag`` elements.
+
+## AWS.CloudFront/MonitoringSubscriptionProperties
+### Properties
+* **DistributionId**: string (Required, Identifier): The ID of the distribution that you are enabling metrics for.
+* **MonitoringSubscription**: [MonitoringSubscription](#monitoringsubscription) (Required): A subscription configuration for additional CloudWatch metrics.
 
 ## AWS.CloudFront/OriginAccessControlProperties
 ### Properties
@@ -890,6 +903,10 @@
   +  For ``cloudfront``, CloudFront will automatically serve the validation token. Choose this mode if you can point the domain's DNS to CloudFront immediately.
   +  For ``self-hosted``, you serve the validation token from your existing infrastructure. Choose this mode when you need to maintain current traffic flow while your certificate is being issued. You can place the validation token at the well-known path on your existing web server, wait for ACM to validate and issue the certificate, and then update your DNS to point to CloudFront.
 
+## MonitoringSubscription
+### Properties
+* **RealtimeMetricsSubscriptionConfig**: [RealtimeMetricsSubscriptionConfig](#realtimemetricssubscriptionconfig): A subscription configuration for additional CloudWatch metrics.
+
 ## Origin
 ### Properties
 * **ConnectionAttempts**: int: The number of times that CloudFront attempts to connect to the origin. The minimum number is 1, the maximum is 3, and the default (if you don't specify otherwise) is 3.
@@ -1036,6 +1053,10 @@
   +  ``all`` ? All query strings in viewer requests are included in requests that CloudFront sends to the origin.
   +  ``allExcept`` ? All query strings in viewer requests are included in requests that CloudFront sends to the origin, *except* for those listed in the ``QueryStringNames`` type, which are not included.
 * **QueryStrings**: string[]: Contains a list of query string names.
+
+## RealtimeMetricsSubscriptionConfig
+### Properties
+* **RealtimeMetricsSubscriptionStatus**: string (Required): A flag that indicates whether additional CloudWatch metrics are enabled for a given CloudFront distribution.
 
 ## ReferrerPolicy
 ### Properties

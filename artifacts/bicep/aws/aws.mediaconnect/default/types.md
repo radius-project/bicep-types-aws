@@ -80,6 +80,30 @@
 * **name**: string: the resource name
 * **properties**: [AWS.MediaConnect/FlowVpcInterfaceProperties](#awsmediaconnectflowvpcinterfaceproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.MediaConnect/Gateway@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MediaConnect/GatewayProperties](#awsmediaconnectgatewayproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.MediaConnect/Offering@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MediaConnect/OfferingProperties](#awsmediaconnectofferingproperties) (Identifier): properties of the resource
+
+## Resource AWS.MediaConnect/Reservation@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MediaConnect/ReservationProperties](#awsmediaconnectreservationproperties) (Identifier): properties of the resource
+
 ## Resource AWS.MediaConnect/RouterInput@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -266,6 +290,41 @@
 * **SecurityGroupIds**: string[] (Required): Security Group IDs to be used on ENI.
 * **SubnetId**: string (Required): Subnet must be in the AZ of the Flow
 * **Tags**: [Tag](#tag)[]: Key-value pairs that can be used to tag and organize this VPC network interface.
+
+## AWS.MediaConnect/GatewayProperties
+### Properties
+* **EgressCidrBlocks**: string[] (Required): The range of IP addresses that contribute content or initiate output requests for flows communicating with this gateway. These IP addresses should be in the form of a Classless Inter-Domain Routing (CIDR) block; for example, 10.0.0.0/16.
+* **GatewayArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the gateway.
+* **GatewayState**: string (ReadOnly): The current status of the gateway.
+* **Name**: string (Required): The name of the gateway. This name can not be modified after the gateway is created.
+* **Networks**: [GatewayNetwork](#gatewaynetwork)[] (Required): The list of networks in the gateway.
+
+## AWS.MediaConnect/OfferingProperties
+### Properties
+* **CurrencyCode**: string (ReadOnly): The type of currency that is used for billing. The currencyCode used for all reservations is US dollars.
+* **Duration**: int (ReadOnly): The length of time that your reservation would be active.
+* **DurationUnits**: string (ReadOnly): The unit of measurement for the duration of the offering.
+* **OfferingArn**: string (Identifier): The Amazon Resource Name (ARN) that MediaConnect assigns to the offering.
+* **OfferingDescription**: string (ReadOnly): A description of the offering.
+* **PricePerUnit**: string (ReadOnly): The cost of a single unit. This value, in combination with priceUnits, makes up the rate.
+* **PriceUnits**: string (ReadOnly): The unit of measurement that is used for billing. This value, in combination with pricePerUnit, makes up the rate.
+* **ResourceSpecification**: [Offering_ResourceSpecification](#offeringresourcespecification) (ReadOnly): A definition of the amount of outbound bandwidth that you would be reserving if you purchase the offering.
+
+## AWS.MediaConnect/ReservationProperties
+### Properties
+* **CurrencyCode**: string (ReadOnly): The type of currency that is used for billing.
+* **Duration**: int (ReadOnly): The length of time that this reservation is active.
+* **DurationUnits**: string (ReadOnly): The unit of measurement for the duration of the reservation.
+* **End**: string (ReadOnly): The day and time that this reservation expires.
+* **OfferingArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the offering.
+* **OfferingDescription**: string (ReadOnly): A description of the offering.
+* **PricePerUnit**: string (ReadOnly): The cost of a single unit.
+* **PriceUnits**: string (ReadOnly): The unit of measurement that is used for billing.
+* **ReservationArn**: string (Identifier): The Amazon Resource Name (ARN) that MediaConnect assigns to the reservation when you purchase an offering.
+* **ReservationName**: string (ReadOnly): The name that you assigned to the reservation when you purchased the offering.
+* **ReservationState**: string (ReadOnly): The status of the reservation.
+* **ResourceSpecification**: [ResourceSpecification](#resourcespecification) (ReadOnly)
+* **Start**: string (ReadOnly): The day and time that the reservation becomes active.
 
 ## AWS.MediaConnect/RouterInputProperties
 ### Properties
@@ -554,6 +613,11 @@
 * **BridgeArn**: string (Required): The ARN of the bridge feeding this flow.
 * **VpcInterfaceAttachment**: [VpcInterfaceAttachment](#vpcinterfaceattachment): The name of the VPC interface attachment to use for this bridge source.
 
+## GatewayNetwork
+### Properties
+* **CidrBlock**: string (Required): A unique IP address range to use for this network. These IP addresses should be in the form of a Classless Inter-Domain Routing (CIDR) block; for example, 10.0.0.0/16.
+* **Name**: string (Required): The name of the network. This name is used to reference the network and must be unique among networks in this gateway.
+
 ## InputConfiguration
 ### Properties
 * **InputPort**: int (Required): The port that the flow listens on for an incoming media stream.
@@ -637,6 +701,16 @@
 ### Properties
 * **AudioReferenceLevel**: int: The audio reference level of the NDI sender, in dBFS.
 * **SourceName**: string
+
+## Offering_ResourceSpecification
+### Properties
+* **ReservedBitrate**: int: The amount of outbound bandwidth that is discounted in the offering.
+* **ResourceType**: string (Required): The type of resource and the unit that is being billed for.
+
+## ResourceSpecification
+### Properties
+* **ReservedBitrate**: int: The amount of outbound bandwidth that is discounted in the offering.
+* **ResourceType**: string (Required): The type of resource and the unit that is being billed for.
 
 ## RouterContentQualityAnalysisConfiguration
 ### Properties

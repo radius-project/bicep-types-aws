@@ -1,5 +1,21 @@
 # AWS.WorkspacesInstances @ default
 
+## Resource AWS.WorkspacesInstances/Volume@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.WorkspacesInstances/VolumeProperties](#awsworkspacesinstancesvolumeproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.WorkspacesInstances/VolumeAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.WorkspacesInstances/VolumeAssociationProperties](#awsworkspacesinstancesvolumeassociationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.WorkspacesInstances/WorkspaceInstance@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -7,6 +23,26 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.WorkspacesInstances/WorkspaceInstanceProperties](#awsworkspacesinstancesworkspaceinstanceproperties) (Identifier): properties of the resource
+
+## AWS.WorkspacesInstances/VolumeAssociationProperties
+### Properties
+* **Device**: string (Required, Identifier): The device name for the volume attachment
+* **DisassociateMode**: string (WriteOnly): Mode to use when disassociating the volume
+* **VolumeId**: string (Required, Identifier): ID of the volume to attach to the workspace instance
+* **WorkspaceInstanceId**: string (Required, Identifier): ID of the workspace instance to associate with the volume
+
+## AWS.WorkspacesInstances/VolumeProperties
+### Properties
+* **AvailabilityZone**: string (Required): The Availability Zone in which to create the volume
+* **Encrypted**: bool: Indicates whether the volume should be encrypted
+* **Iops**: int: The number of I/O operations per second (IOPS)
+* **KmsKeyId**: string: The identifier of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use for Amazon EBS encryption
+* **SizeInGB**: int: The size of the volume, in GiBs
+* **SnapshotId**: string: The snapshot from which to create the volume
+* **TagSpecifications**: [TagSpecification](#tagspecification)[]: The tags passed to EBS volume
+* **Throughput**: int: The throughput to provision for a volume, with a maximum of 1,000 MiB/s
+* **VolumeId**: string (ReadOnly, Identifier): Unique identifier for the volume
+* **VolumeType**: string: The volume type
 
 ## AWS.WorkspacesInstances/WorkspaceInstanceProperties
 ### Properties
@@ -115,8 +151,18 @@
 
 ## Tag
 ### Properties
+* **Key**: string (Required): The key name of the tag
+* **Value**: string (Required): The value for the tag
+
+## Tag
+### Properties
 * **Key**: string (Required)
 * **Value**: string
+
+## TagSpecification
+### Properties
+* **ResourceType**: string
+* **Tags**: [Tag](#tag)[]: The tags to apply to the resource
 
 ## TagSpecification
 ### Properties

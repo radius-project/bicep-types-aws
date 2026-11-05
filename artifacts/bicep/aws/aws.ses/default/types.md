@@ -128,6 +128,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SES/MultiRegionEndpointProperties](#awssesmultiregionendpointproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.SES/ReceiptFilter@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SES/ReceiptFilterProperties](#awssesreceiptfilterproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.SES/ReceiptRule@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -135,6 +143,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SES/ReceiptRuleProperties](#awssesreceiptruleproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.SES/ReceiptRuleSet@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SES/ReceiptRuleSetProperties](#awssesreceiptrulesetproperties) (Identifier): properties of the resource
 
 ## Resource AWS.SES/Template@default
 * **Readable Scope(s)**: None
@@ -328,12 +344,21 @@
 * **EndpointName**: string (Required, Identifier): The name of the multi-region endpoint (global-endpoint).
 * **Tags**: [Tag](#tag)[]
 
+## AWS.SES/ReceiptFilterProperties
+### Properties
+* **Filter**: [Filter](#filter) (Required)
+* **Id**: string (ReadOnly, Identifier)
+
 ## AWS.SES/ReceiptRuleProperties
 ### Properties
 * **After**: string (WriteOnly): The name of an existing rule after which the new rule is placed. If this parameter is null, the new rule is inserted at the beginning of the rule list.
 * **Rule**: [Rule](#rule) (Required): A data structure that contains the specified rule's name, actions, recipients, domains, enabled status, scan status, and TLS policy.
 * **RuleName**: string (ReadOnly, Identifier): The name of the rule
 * **RuleSetName**: string (Required, Identifier): The name of the rule set where the receipt rule is added.
+
+## AWS.SES/ReceiptRuleSetProperties
+### Properties
+* **RuleSetName**: string (Identifier): The name of the rule set.
 
 ## AWS.SES/TemplateProperties
 ### Properties
@@ -442,6 +467,11 @@
 ### Properties
 * **EmailForwardingEnabled**: bool: If the value is true, you receive email notifications when bounce or complaint events occur
 
+## Filter
+### Properties
+* **IpFilter**: [IpFilter](#ipfilter) (Required)
+* **Name**: string: The name of the IP address filter.
+
 ## GuardianAttributes
 ### Properties
 * **OptimizedSharedDelivery**: string: Whether emails sent from this account have optimized delivery algorithm enabled.
@@ -452,6 +482,11 @@
 
 ## IngressPointConfiguration
 ### Properties
+
+## IpFilter
+### Properties
+* **Cidr**: string (Required): A single IP address or a range of IP addresses to block or allow, specified in CIDR notation.
+* **Policy**: string (Required): Indicates whether to block or allow incoming mail from the specified IP addresses.
 
 ## KinesisFirehoseDestination
 ### Properties

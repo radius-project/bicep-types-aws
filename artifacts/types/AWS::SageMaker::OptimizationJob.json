@@ -1,0 +1,364 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-OptimizationJob",
+  "type": "AWS::SageMaker::OptimizationJob",
+  "time": "2026-11-05T21:22:45.401Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/OptimizationJobName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/OptimizationJobName",
+      "/properties/RoleArn",
+      "/properties/ModelSource",
+      "/properties/DeploymentInstanceType",
+      "/properties/OptimizationConfigs",
+      "/properties/OutputConfig",
+      "/properties/StoppingCondition",
+      "/properties/OptimizationEnvironment",
+      "/properties/VpcConfig",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "ModelCompilationConfig": {
+        "additionalProperties": false,
+        "description": "Settings for the model compilation technique that's applied by a model optimization job.",
+        "properties": {
+          "Image": {
+            "description": "The URI of an LMI DLC in Amazon ECR.",
+            "maxLength": 255,
+            "pattern": "[\\S]+",
+            "type": "string"
+          },
+          "OverrideEnvironment": {
+            "additionalProperties": false,
+            "description": "Environment variables that override the default ones in the model container.",
+            "patternProperties": {
+              ".+": {
+                "maxLength": 1024,
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "ModelQuantizationConfig": {
+        "additionalProperties": false,
+        "description": "Settings for the model quantization technique that's applied by a model optimization job.",
+        "properties": {
+          "Image": {
+            "description": "The URI of an LMI DLC in Amazon ECR.",
+            "maxLength": 255,
+            "pattern": "[\\S]+",
+            "type": "string"
+          },
+          "OverrideEnvironment": {
+            "additionalProperties": false,
+            "description": "Environment variables that override the default ones in the model container.",
+            "patternProperties": {
+              ".+": {
+                "maxLength": 1024,
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "ModelShardingConfig": {
+        "additionalProperties": false,
+        "description": "Settings for the model sharding technique that's applied by a model optimization job.",
+        "properties": {
+          "Image": {
+            "description": "The URI of an LMI DLC in Amazon ECR.",
+            "maxLength": 255,
+            "pattern": "[\\S]+",
+            "type": "string"
+          },
+          "OverrideEnvironment": {
+            "additionalProperties": false,
+            "description": "Environment variables that override the default ones in the model container.",
+            "patternProperties": {
+              ".+": {
+                "maxLength": 1024,
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "OptimizationConfig": {
+        "additionalProperties": false,
+        "description": "Settings for an optimization technique that you apply with a model optimization job.",
+        "properties": {
+          "ModelCompilationConfig": {
+            "$ref": "#/definitions/ModelCompilationConfig"
+          },
+          "ModelQuantizationConfig": {
+            "$ref": "#/definitions/ModelQuantizationConfig"
+          },
+          "ModelShardingConfig": {
+            "$ref": "#/definitions/ModelShardingConfig"
+          }
+        },
+        "type": "object"
+      },
+      "OptimizationJobModelSource": {
+        "additionalProperties": false,
+        "description": "The location of the source model to optimize with an optimization job.",
+        "properties": {
+          "S3": {
+            "$ref": "#/definitions/OptimizationJobModelSourceS3"
+          }
+        },
+        "type": "object"
+      },
+      "OptimizationJobModelSourceS3": {
+        "additionalProperties": false,
+        "description": "The Amazon S3 location of a source model to optimize with an optimization job.",
+        "properties": {
+          "S3Uri": {
+            "description": "An Amazon S3 URI that locates a source model to optimize with an optimization job.",
+            "maxLength": 1024,
+            "pattern": "^(https|s3)://([^/]+)/?(.*)$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "OptimizationJobOutputConfig": {
+        "additionalProperties": false,
+        "description": "Details for where to store the optimized model that you create with the optimization job.",
+        "properties": {
+          "KmsKeyId": {
+            "description": "The Amazon Resource Name (ARN) of a key in AWS Key Management Service (AWS KMS) used to encrypt your output artifacts.",
+            "maxLength": 2048,
+            "pattern": ".*",
+            "type": "string"
+          },
+          "S3OutputLocation": {
+            "description": "The Amazon S3 URI for where to store the optimized model that you create with an optimization job.",
+            "maxLength": 1024,
+            "pattern": "^(https|s3)://([^/]+)/?(.*)$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "OptimizationVpcConfig": {
+        "additionalProperties": false,
+        "description": "A VPC in Amazon VPC that the optimization job has access to.",
+        "properties": {
+          "SecurityGroupIds": {
+            "description": "The VPC security group IDs.",
+            "insertionOrder": false,
+            "items": {
+              "maxLength": 32,
+              "pattern": "[-0-9a-zA-Z]+",
+              "type": "string"
+            },
+            "maxItems": 5,
+            "minItems": 1,
+            "type": "array"
+          },
+          "Subnets": {
+            "description": "The ID of the subnets in the VPC to which you want to connect your optimization job.",
+            "insertionOrder": false,
+            "items": {
+              "maxLength": 32,
+              "pattern": "[-0-9a-zA-Z]+",
+              "type": "string"
+            },
+            "maxItems": 16,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "SecurityGroupIds",
+          "Subnets"
+        ],
+        "type": "object"
+      },
+      "StoppingCondition": {
+        "additionalProperties": false,
+        "description": "Specifies a limit to how long a job can run.",
+        "properties": {
+          "MaxRuntimeInSeconds": {
+            "description": "The maximum length of time, in seconds, that an optimization job can run.",
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::SageMaker::OptimizationJob. An optimization job optimizes a model for inference by applying techniques like quantization, compilation, or sharding.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "sagemaker:ListOptimizationJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "sagemaker:DescribeOptimizationJob",
+          "sagemaker:ListTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/OptimizationJobArn"
+    ],
+    "properties": {
+      "CreationTime": {
+        "description": "The time when the optimization job was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DeploymentInstanceType": {
+        "description": "The type of instance that hosts the optimized model that you create with the optimization job.",
+        "type": "string"
+      },
+      "LastModifiedTime": {
+        "description": "The time when the optimization job was last modified.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ModelSource": {
+        "$ref": "#/definitions/OptimizationJobModelSource"
+      },
+      "OptimizationConfigs": {
+        "description": "A list of optimization configurations associated with the optimization job.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/OptimizationConfig"
+        },
+        "maxItems": 10,
+        "type": "array"
+      },
+      "OptimizationEnvironment": {
+        "additionalProperties": false,
+        "description": "The environment variables to set in the model container.",
+        "patternProperties": {
+          ".+": {
+            "maxLength": 1024,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "OptimizationJobArn": {
+        "description": "The Amazon Resource Name (ARN) of the optimization job.",
+        "maxLength": 256,
+        "pattern": "^arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:optimization-job/[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$",
+        "type": "string"
+      },
+      "OptimizationJobName": {
+        "description": "The name of the optimization job.",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$",
+        "type": "string"
+      },
+      "OptimizationJobStatus": {
+        "description": "The status of the optimization job.",
+        "enum": [
+          "STARTING",
+          "INPROGRESS",
+          "COMPLETED",
+          "FAILED",
+          "STOPPING",
+          "STOPPED"
+        ],
+        "type": "string"
+      },
+      "OutputConfig": {
+        "$ref": "#/definitions/OptimizationJobOutputConfig"
+      },
+      "RoleArn": {
+        "description": "The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker to perform tasks on your behalf.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws[a-z\\-]*:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$",
+        "type": "string"
+      },
+      "StoppingCondition": {
+        "$ref": "#/definitions/StoppingCondition"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array"
+      },
+      "VpcConfig": {
+        "$ref": "#/definitions/OptimizationVpcConfig"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/OptimizationJobArn",
+      "/properties/OptimizationJobStatus",
+      "/properties/CreationTime",
+      "/properties/LastModifiedTime",
+      "/properties/OptimizationConfigs/*/ModelQuantizationConfig/Image",
+      "/properties/OptimizationConfigs/*/ModelCompilationConfig/Image",
+      "/properties/OptimizationConfigs/*/ModelShardingConfig/Image"
+    ],
+    "required": [
+      "OptimizationJobName",
+      "RoleArn",
+      "ModelSource",
+      "DeploymentInstanceType",
+      "OptimizationConfigs",
+      "OutputConfig",
+      "StoppingCondition"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "sagemaker:ListTags"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::SageMaker::OptimizationJob"
+  }
+}

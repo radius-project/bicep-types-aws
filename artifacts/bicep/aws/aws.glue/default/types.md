@@ -144,6 +144,30 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Glue/SchemaProperties](#awsglueschemaproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Glue/SchemaVersion@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Glue/SchemaVersionProperties](#awsglueschemaversionproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Glue/SchemaVersionMetadata@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Glue/SchemaVersionMetadataProperties](#awsglueschemaversionmetadataproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Glue/SecurityConfiguration@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Glue/SecurityConfigurationProperties](#awsgluesecurityconfigurationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Glue/Session@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -167,6 +191,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Glue/TableOptimizerProperties](#awsgluetableoptimizerproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Glue/TableVersion@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Glue/TableVersionProperties](#awsgluetableversionproperties) (Identifier): properties of the resource
 
 ## Resource AWS.Glue/Trigger@default
 * **Readable Scope(s)**: None
@@ -425,6 +457,23 @@
 * **SchemaDefinition**: string (WriteOnly): Definition for the initial schema version in plain-text.
 * **Tags**: [Tag](#tag)[]: List of tags to tag the schema
 
+## AWS.Glue/SchemaVersionMetadataProperties
+### Properties
+* **Key**: string (Required, Identifier): Metadata key
+* **SchemaVersionId**: string (Required, Identifier): Represents the version ID associated with the schema version.
+* **Value**: string (Required, Identifier): Metadata value
+
+## AWS.Glue/SchemaVersionProperties
+### Properties
+* **Schema**: [Schema](#schema) (Required)
+* **SchemaDefinition**: string (Required): Complete definition of the schema in plain-text.
+* **VersionId**: string (ReadOnly, Identifier): Represents the version ID associated with the schema version.
+
+## AWS.Glue/SecurityConfigurationProperties
+### Properties
+* **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration) (Required)
+* **Name**: string (Required, Identifier): The name for the security configuration.
+
 ## AWS.Glue/SessionProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the session.
@@ -462,6 +511,13 @@
 * **Name**: string (Identifier): The table name. For Hive compatibility, this is folded to lowercase when it is stored.
 * **OpenTableFormatInput**: [OpenTableFormatInput](#opentableformatinput) (WriteOnly): Specifies an OpenTableFormatInput structure when creating an open format table.
 * **TableInput**: [TableInput](#tableinput): A structure used to define a table.
+
+## AWS.Glue/TableVersionProperties
+### Properties
+* **Arn**: string (Identifier): The ARN of the table version.
+* **DatabaseName**: string: The name of the database in the catalog in which the table resides.
+* **TableName**: string: The name of the table.
+* **VersionId**: string (ReadOnly): The ID value that identifies this table version.
 
 ## AWS.Glue/TriggerProperties
 ### Properties
@@ -547,6 +603,11 @@
 * **Scope**: [ConnectorProperty](#connectorproperty)
 * **TokenUrl**: [ConnectorProperty](#connectorproperty)
 * **TokenUrlParameters**: [ConnectorProperty](#connectorproperty)[]
+
+## CloudWatchEncryption
+### Properties
+* **CloudWatchEncryptionMode**: string
+* **KmsKeyArn**: string
 
 ## Column
 ### Properties
@@ -774,6 +835,12 @@ The valid values are null or a value between 0.1 to 1.5. A null value is used wh
 * **CatalogEncryptionServiceRole**: string: The role that AWS Glue assumes to encrypt and decrypt the Data Catalog objects on the caller's behalf.
 * **SseAwsKmsKeyId**: string: The ID of the AWS KMS key to use for encryption at rest.
 
+## EncryptionConfiguration
+### Properties
+* **CloudWatchEncryption**: [CloudWatchEncryption](#cloudwatchencryption)
+* **JobBookmarksEncryption**: [JobBookmarksEncryption](#jobbookmarksencryption)
+* **S3Encryptions**: [S3Encryption](#s3encryption)[]: The encryption configuration for Amazon Simple Storage Service (Amazon S3) data.
+
 ## EventBatchingCondition
 ### Properties
 * **BatchSize**: int (Required): Number of events that must be received from Amazon EventBridge before EventBridge event trigger fires.
@@ -962,6 +1029,11 @@ If you do not need additional metadata, keep the field empty.
 ## Job_Tags
 ### Properties
 
+## JobBookmarksEncryption
+### Properties
+* **JobBookmarksEncryptionMode**: string
+* **KmsKeyArn**: string
+
 ## JobCommand
 ### Properties
 * **Name**: string (Identifier): The name of the job command
@@ -1135,6 +1207,11 @@ If you do not need additional metadata, keep the field empty.
 ### Properties
 * **IcebergConfiguration**: [IcebergRetentionConfiguration](#icebergretentionconfiguration): The configuration for an Iceberg snapshot retention optimizer.
 
+## S3Encryption
+### Properties
+* **KmsKeyArn**: string
+* **S3EncryptionMode**: string
+
 ## S3Target
 ### Properties
 * **ConnectionName**: string: The name of a connection which allows a job or crawler to access data in Amazon S3 within an Amazon Virtual Private Cloud environment (Amazon VPC).
@@ -1147,6 +1224,12 @@ If you do not need additional metadata, keep the field empty.
 ## Schedule
 ### Properties
 * **ScheduleExpression**: string: A cron expression used to specify the schedule. For more information, see Time-Based Schedules for Jobs and Crawlers. For example, to run something every day at 12:15 UTC, specify cron(15 12 * * ? *).
+
+## Schema
+### Properties
+* **RegistryName**: string: Name of the registry to identify where the Schema is located.
+* **SchemaArn**: string: Amazon Resource Name for the Schema. This attribute can be used to uniquely represent the Schema.
+* **SchemaName**: string: Name of the schema. This parameter requires RegistryName to be provided.
 
 ## SchemaChangePolicy
 ### Properties

@@ -1,0 +1,250 @@
+[
+  {
+    "$type": "ObjectType",
+    "name": "JobScheduleFrequency",
+    "properties": {
+      "WeeklySchedule": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3BucketDefinitionForJob",
+    "properties": {
+      "AccountId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The account ID for the account that owns the buckets."
+      },
+      "Buckets": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "An array of bucket names."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3JobDefinition",
+    "properties": {
+      "BucketDefinitions": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "Scoping": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2,
+        "description": "Property- and tag-based conditions for object scoping."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WeeklySchedule",
+    "properties": {
+      "DayOfWeek": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ClassificationJob_Scoping",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Macie2/ClassificationJobProperties"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Macie2/ClassificationJobProperties",
+    "properties": {
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The date and time when the job was created."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "A custom description of the job."
+      },
+      "InitialRun": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "Whether the job analyzes all existing eligible objects immediately after being created."
+      },
+      "JobArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the job."
+      },
+      "JobId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The unique identifier for the job."
+      },
+      "JobStatus": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The current status of the job."
+      },
+      "JobType": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The schedule for running the job."
+      },
+      "ManagedDataIdentifierSelector": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The selection type for managed data identifiers."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "A custom name for the job."
+      },
+      "S3JobDefinition": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1
+      },
+      "SamplingPercentage": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "description": "The sampling depth as a percentage."
+      },
+      "ScheduleFrequency": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "The tags associated with the job."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Macie2/ClassificationJob",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Macie2/ClassificationJob@default",
+    "body": {
+      "$ref": "#/14"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  }
+]

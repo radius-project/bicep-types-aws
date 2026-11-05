@@ -1178,6 +1178,168 @@
   },
   {
     "$type": "ObjectType",
+    "name": "DestinationConfiguration",
+    "properties": {
+      "S3Configuration": {
+        "type": {
+          "$ref": "#/66"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MetadataTransferJobStatus",
+    "properties": {
+      "State": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3DestinationConfiguration",
+    "properties": {
+      "Location": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceConfiguration",
+    "properties": {
+      "Type": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.IoTTwinMaker/MetadataTransferJobProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/67"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IoTTwinMaker/MetadataTransferJobProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 16,
+        "description": "The ARN of the metadata transfer job."
+      },
+      "CreationDateTime": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 2,
+        "description": "The creation date and time."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "The metadata transfer job description."
+      },
+      "Destination": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 1,
+        "description": "The metadata transfer job destination."
+      },
+      "MetadataTransferJobId": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "The metadata transfer job Id."
+      },
+      "Sources": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 1,
+        "description": "The metadata transfer job sources."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 2,
+        "description": "The metadata transfer job status."
+      },
+      "UpdateDateTime": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 2,
+        "description": "The update date and time."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IoTTwinMaker/MetadataTransferJob",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/70"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.IoTTwinMaker/MetadataTransferJob@default",
+    "body": {
+      "$ref": "#/71"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "DateTimeFormat",
     "properties": {}
   },
@@ -1219,7 +1381,7 @@
       },
       "Capabilities": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/75"
         },
         "flags": 0,
         "description": "A list of capabilities that the scene uses to render."
@@ -1247,7 +1409,7 @@
       },
       "GeneratedSceneMetadata": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/76"
         },
         "flags": 2,
         "description": "A key-value pair of generated scene metadata for the scene."
@@ -1261,14 +1423,14 @@
       },
       "SceneMetadata": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/77"
         },
         "flags": 0,
         "description": "A key-value pair of scene metadata for the scene."
       },
       "Tags": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/78"
         },
         "flags": 0,
         "description": "A key-value pair to associate with a resource."
@@ -1309,7 +1471,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/79"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1320,7 +1482,119 @@
     "$type": "ResourceType",
     "name": "AWS.IoTTwinMaker/Scene@default",
     "body": {
-      "$ref": "#/71"
+      "$ref": "#/80"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DateTimeFormat",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.IoTTwinMaker/SyncJobProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SyncJob_Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IoTTwinMaker/SyncJobProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 2,
+        "description": "The ARN of the SyncJob."
+      },
+      "CreationDateTime": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 2,
+        "description": "The date and time when the sync job was created."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 2,
+        "description": "The state of SyncJob."
+      },
+      "SyncRole": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1,
+        "description": "The IAM Role that execute SyncJob."
+      },
+      "SyncSource": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 17,
+        "description": "The source of the SyncJob."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/84"
+        },
+        "flags": 0,
+        "description": "A key-value pair to associate with a resource."
+      },
+      "UpdateDateTime": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 2,
+        "description": "The date and time when the sync job was updated."
+      },
+      "WorkspaceId": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 17,
+        "description": "The ID of the workspace."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.IoTTwinMaker/SyncJob",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/85"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.IoTTwinMaker/SyncJob@default",
+    "body": {
+      "$ref": "#/86"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1380,7 +1654,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/90"
         },
         "flags": 0,
         "description": "A map of key-value pairs to associate with a resource."
@@ -1421,7 +1695,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/91"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1432,7 +1706,7 @@
     "$type": "ResourceType",
     "name": "AWS.IoTTwinMaker/Workspace@default",
     "body": {
-      "$ref": "#/77"
+      "$ref": "#/92"
     },
     "readableScopes": 0,
     "writableScopes": 0

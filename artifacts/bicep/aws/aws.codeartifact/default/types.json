@@ -129,12 +129,140 @@
     "writableScopes": 0
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.CodeArtifact/PackageProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Package_OriginConfiguration_Restrictions",
+    "properties": {
+      "Publish": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The package origin configuration that determines if new versions of the package can be published directly to the repository."
+      },
+      "Upstream": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The package origin configuration that determines if new versions of the package can be added to the repository from an external connection or upstream source."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Package_OriginConfiguration",
+    "properties": {
+      "Restrictions": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The origin restrictions for the package."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CodeArtifact/PackageProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The ARN of the package."
+      },
+      "DomainName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the domain that contains the repository that contains the package."
+      },
+      "Format": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The format of the package."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the package."
+      },
+      "Namespace": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The namespace of the package."
+      },
+      "OriginConfiguration": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 2,
+        "description": "The package origin configuration for the package."
+      },
+      "Repository": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the repository that contains the package."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CodeArtifact/Package",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CodeArtifact/Package@default",
+    "body": {
+      "$ref": "#/12"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
     "$type": "ObjectType",
     "name": "OriginConfiguration",
     "properties": {
       "Restrictions": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "The origin configuration that is applied to the package group."
@@ -147,7 +275,7 @@
     "properties": {
       "Repositories": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/25"
         },
         "flags": 0
       },
@@ -165,21 +293,21 @@
     "properties": {
       "ExternalUpstream": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "The external upstream restriction determines if new package versions can be ingested or retained from external connections."
       },
       "InternalUpstream": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/29"
         },
         "flags": 0,
         "description": "The internal upstream restriction determines if new package versions can be ingested or retained from upstream repositories."
       },
       "Publish": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "The publish restriction determines if new package versions can be published."
@@ -218,7 +346,7 @@
     "properties": {
       "Repositories": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/18"
         },
         "flags": 0
       },
@@ -228,87 +356,6 @@
         },
         "flags": 1
       }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PackageGroup_RestrictionType",
-    "properties": {
-      "Repositories": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0
-      },
-      "RestrictionMode": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PackageGroup_RestrictionType",
-    "properties": {
-      "Repositories": {
-        "type": {
-          "$ref": "#/16"
-        },
-        "flags": 0
-      },
-      "RestrictionMode": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PackageGroup_Restrictions",
-    "properties": {
-      "ExternalUpstream": {
-        "type": {
-          "$ref": "#/13"
-        },
-        "flags": 0,
-        "description": "The external upstream restriction determines if new package versions can be ingested or retained from external connections."
-      },
-      "InternalUpstream": {
-        "type": {
-          "$ref": "#/15"
-        },
-        "flags": 0,
-        "description": "The internal upstream restriction determines if new package versions can be ingested or retained from upstream repositories."
-      },
-      "Publish": {
-        "type": {
-          "$ref": "#/17"
-        },
-        "flags": 0,
-        "description": "The publish restriction determines if new package versions can be published."
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
     }
   },
   {
@@ -360,6 +407,39 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "PackageGroup_Restrictions",
+    "properties": {
+      "ExternalUpstream": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0,
+        "description": "The external upstream restriction determines if new package versions can be ingested or retained from external connections."
+      },
+      "InternalUpstream": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The internal upstream restriction determines if new package versions can be ingested or retained from upstream repositories."
+      },
+      "Publish": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "The publish restriction determines if new package versions can be published."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/1"
@@ -371,7 +451,55 @@
     "properties": {
       "Repositories": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/26"
+        },
+        "flags": 0
+      },
+      "RestrictionMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PackageGroup_RestrictionType",
+    "properties": {
+      "Repositories": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 0
+      },
+      "RestrictionMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PackageGroup_RestrictionType",
+    "properties": {
+      "Repositories": {
+        "type": {
+          "$ref": "#/30"
         },
         "flags": 0
       },
@@ -399,7 +527,7 @@
     "properties": {
       "Repositories": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/33"
         },
         "flags": 0
       },
@@ -423,7 +551,7 @@
     "properties": {
       "Repositories": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/35"
         },
         "flags": 0
       },
@@ -447,7 +575,7 @@
     "properties": {
       "Repositories": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/37"
         },
         "flags": 0
       },
@@ -465,21 +593,21 @@
     "properties": {
       "ExternalUpstream": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "The external upstream restriction determines if new package versions can be ingested or retained from external connections."
       },
       "InternalUpstream": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "The internal upstream restriction determines if new package versions can be ingested or retained from upstream repositories."
       },
       "Publish": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/38"
         },
         "flags": 0,
         "description": "The publish restriction determines if new package versions can be published."
@@ -492,7 +620,7 @@
     "properties": {
       "Restrictions": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/39"
         },
         "flags": 1,
         "description": "The origin configuration that is applied to the package group."
@@ -502,7 +630,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/17"
     }
   },
   {
@@ -546,7 +674,7 @@
       },
       "OriginConfiguration": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "The package origin configuration of the package group."
@@ -560,7 +688,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to the package group."
@@ -587,7 +715,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/42"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -598,7 +726,7 @@
     "$type": "ResourceType",
     "name": "AWS.CodeArtifact/PackageGroup@default",
     "body": {
-      "$ref": "#/37"
+      "$ref": "#/43"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -641,7 +769,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/39"
+      "$ref": "#/45"
     }
   },
   {
@@ -684,7 +812,7 @@
       },
       "ExternalConnections": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/47"
         },
         "flags": 0,
         "description": "A list of external connections associated with the repository."
@@ -698,7 +826,7 @@
       },
       "PermissionsPolicyDocument": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/48"
         },
         "flags": 0,
         "description": "The access control resource policy on the provided repository."
@@ -712,14 +840,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "Upstreams": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "A list of upstream repositories associated with the repository."
@@ -746,7 +874,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/51"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -757,7 +885,7 @@
     "$type": "ResourceType",
     "name": "AWS.CodeArtifact/Repository@default",
     "body": {
-      "$ref": "#/46"
+      "$ref": "#/52"
     },
     "readableScopes": 0,
     "writableScopes": 0

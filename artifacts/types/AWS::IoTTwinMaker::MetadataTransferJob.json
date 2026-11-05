@@ -1,0 +1,224 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoTTwinMaker-MetadataTransferJob",
+  "type": "AWS::IoTTwinMaker::MetadataTransferJob",
+  "time": "2026-11-05T21:22:22.134Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/MetadataTransferJobId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Description",
+      "/properties/Destination",
+      "/properties/MetadataTransferJobId",
+      "/properties/Sources"
+    ],
+    "definitions": {
+      "DestinationConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "S3Configuration": {
+            "$ref": "#/definitions/S3DestinationConfiguration"
+          },
+          "Type": {
+            "enum": [
+              "s3",
+              "iotsitewise",
+              "iottwinmaker",
+              "S3",
+              "IOTSITEWISE",
+              "IOTTWINMAKER"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Type"
+        ],
+        "type": "object"
+      },
+      "MetadataTransferJobStatus": {
+        "additionalProperties": false,
+        "properties": {
+          "State": {
+            "enum": [
+              "VALIDATING",
+              "PENDING",
+              "RUNNING",
+              "CANCELLING",
+              "ERROR",
+              "COMPLETED",
+              "CANCELLED"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "S3DestinationConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "Location": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Location"
+        ],
+        "type": "object"
+      },
+      "SourceConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "Type": {
+            "enum": [
+              "s3",
+              "iotsitewise",
+              "iottwinmaker",
+              "S3",
+              "IOTSITEWISE",
+              "IOTTWINMAKER"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Type"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::IoTTwinMaker::MetadataTransferJob",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "Destination": {
+              "properties": {
+                "Type": {
+                  "enum": [
+                    "s3",
+                    "iotsitewise",
+                    "iottwinmaker",
+                    "S3",
+                    "IOTSITEWISE",
+                    "IOTTWINMAKER"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "Type"
+              ],
+              "type": "object"
+            },
+            "Sources": {
+              "items": {
+                "properties": {
+                  "Type": {
+                    "enum": [
+                      "s3",
+                      "iotsitewise",
+                      "iottwinmaker",
+                      "S3",
+                      "IOTSITEWISE",
+                      "IOTTWINMAKER"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "Type"
+                ],
+                "type": "object"
+              },
+              "maxItems": 1,
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "Sources",
+            "Destination"
+          ]
+        },
+        "permissions": [
+          "iottwinmaker:ListMetadataTransferJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "iottwinmaker:GetMetadataTransferJob"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of the metadata transfer job.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws(-[a-z]+)*:iottwinmaker:[a-z0-9-]+:[0-9]{12}:metadata-transfer-job/[a-zA-Z_0-9][a-zA-Z_\\-0-9]*[a-zA-Z0-9]+$",
+        "type": "string"
+      },
+      "CreationDateTime": {
+        "description": "The creation date and time.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The metadata transfer job description.",
+        "maxLength": 2048,
+        "minLength": 0,
+        "type": "string"
+      },
+      "Destination": {
+        "$ref": "#/definitions/DestinationConfiguration",
+        "description": "The metadata transfer job destination."
+      },
+      "MetadataTransferJobId": {
+        "description": "The metadata transfer job Id.",
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z_0-9][a-zA-Z_\\-0-9]*[a-zA-Z0-9]+$",
+        "type": "string"
+      },
+      "Sources": {
+        "description": "The metadata transfer job sources.",
+        "items": {
+          "$ref": "#/definitions/SourceConfiguration"
+        },
+        "maxItems": 1,
+        "minItems": 1,
+        "type": "array"
+      },
+      "Status": {
+        "$ref": "#/definitions/MetadataTransferJobStatus",
+        "description": "The metadata transfer job status."
+      },
+      "UpdateDateTime": {
+        "description": "The update date and time.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/CreationDateTime",
+      "/properties/UpdateDateTime",
+      "/properties/Status"
+    ],
+    "required": [
+      "Sources",
+      "Destination"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::IoTTwinMaker::MetadataTransferJob"
+  }
+}

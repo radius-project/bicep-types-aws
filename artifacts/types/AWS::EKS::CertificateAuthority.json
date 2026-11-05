@@ -1,0 +1,167 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EKS-CertificateAuthority",
+  "type": "AWS::EKS::CertificateAuthority",
+  "time": "2026-11-04T18:44:47.887Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ClusterName"
+    ],
+    "definitions": {
+      "ScheduledEvents": {
+        "additionalProperties": false,
+        "description": "The scheduled auto-activation events for the certificate authority, computed from its validity window.",
+        "properties": {
+          "FinalAutoActivation": {
+            "description": "The deadline by which EKS will auto-activate this certificate authority (notAfter minus 45 days).",
+            "type": "string"
+          },
+          "FirstAutoActivation": {
+            "description": "The earliest date EKS may auto-activate this certificate authority (notAfter minus 6 months).",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Validity": {
+        "additionalProperties": false,
+        "description": "The validity period of the certificate authority.",
+        "properties": {
+          "NotAfter": {
+            "description": "The end of the validity period for the certificate authority.",
+            "type": "string"
+          },
+          "NotBefore": {
+            "description": "The start of the validity period for the certificate authority.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for EKS CertificateAuthority.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "eks:CreateCertificateAuthority",
+          "eks:DescribeCertificateAuthority",
+          "eks:ListCertificateAuthorities",
+          "eks:DescribeUpdate"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "eks:DeleteCertificateAuthority",
+          "eks:DescribeCertificateAuthority",
+          "eks:ListCertificateAuthorities",
+          "eks:DescribeUpdate"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ClusterName": {
+              "$ref": "resource-schema.json#/properties/ClusterName"
+            }
+          },
+          "required": [
+            "ClusterName"
+          ]
+        },
+        "permissions": [
+          "eks:ListCertificateAuthorities"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "eks:DescribeCertificateAuthority"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ClusterName",
+      "/properties/Id"
+    ],
+    "properties": {
+      "ActivatedAt": {
+        "description": "The timestamp when the certificate authority was activated.",
+        "type": "string"
+      },
+      "ActivatedBy": {
+        "description": "The entity that activated the certificate authority.",
+        "type": "string"
+      },
+      "ClusterName": {
+        "description": "The name of the EKS cluster that the certificate authority belongs to.",
+        "maxLength": 100,
+        "minLength": 1,
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The timestamp when the certificate authority was created.",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "description": "The entity that created the certificate authority.",
+        "type": "string"
+      },
+      "Data": {
+        "description": "The Base64 encoded certificate authority data.",
+        "type": "string"
+      },
+      "DistributionStatus": {
+        "description": "The distribution status of the certificate authority.",
+        "type": "string"
+      },
+      "Id": {
+        "description": "The unique identifier of the certificate authority.",
+        "type": "string"
+      },
+      "RollbackAvailable": {
+        "description": "Whether activation of this certificate authority can still be rolled back.",
+        "type": "boolean"
+      },
+      "ScheduledEvents": {
+        "$ref": "#/definitions/ScheduledEvents",
+        "description": "The scheduled auto-activation events for the certificate authority."
+      },
+      "SigningStatus": {
+        "description": "The signing status of the certificate authority.",
+        "type": "string"
+      },
+      "Validity": {
+        "$ref": "#/definitions/Validity",
+        "description": "The validity period of the certificate authority."
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Id",
+      "/properties/CreatedAt",
+      "/properties/CreatedBy",
+      "/properties/ActivatedAt",
+      "/properties/ActivatedBy",
+      "/properties/SigningStatus",
+      "/properties/DistributionStatus",
+      "/properties/Validity",
+      "/properties/Validity/NotBefore",
+      "/properties/Validity/NotAfter",
+      "/properties/ScheduledEvents",
+      "/properties/ScheduledEvents/FirstAutoActivation",
+      "/properties/ScheduledEvents/FinalAutoActivation",
+      "/properties/RollbackAvailable",
+      "/properties/Data"
+    ],
+    "replacementStrategy": "delete_then_create",
+    "required": [
+      "ClusterName"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-eks.git",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": false,
+      "tagUpdatable": false,
+      "taggable": false
+    },
+    "typeName": "AWS::EKS::CertificateAuthority"
+  }
+}

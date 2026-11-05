@@ -1,0 +1,117 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SSO-ApplicationProvider",
+  "type": "AWS::SSO::ApplicationProvider",
+  "time": "2026-11-05T18:09:39.365Z",
+  "schema": {
+    "additionalProperties": false,
+    "definitions": {
+      "DisplayData": {
+        "additionalProperties": false,
+        "description": "A structure that describes how IAM Identity Center represents the application provider in the portal.",
+        "properties": {
+          "Description": {
+            "description": "The description of the application provider that appears in the portal.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "DisplayName": {
+            "description": "The name of the application provider that appears in the portal.",
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string"
+          },
+          "IconUrl": {
+            "description": "A URL that points to an icon that represents the application provider.",
+            "maxLength": 768,
+            "minLength": 1,
+            "pattern": "^(http|https):\\/\\/.*$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ResourceServerConfig": {
+        "additionalProperties": false,
+        "description": "A structure that describes the configuration of a resource server.",
+        "properties": {
+          "Scopes": {
+            "additionalProperties": false,
+            "description": "A map of IAM Identity Center access scopes associated with this resource server.",
+            "patternProperties": {
+              "^[^:=\\-\\.\\s][0-9a-zA-Z_:\\-\\.]+$": {
+                "$ref": "#/definitions/ResourceServerScopeDetails"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "ResourceServerScopeDetails": {
+        "additionalProperties": false,
+        "description": "Details for an IAM Identity Center access scope associated with a resource server.",
+        "properties": {
+          "DetailedTitle": {
+            "description": "The title of an access scope for a resource server.",
+            "type": "string"
+          },
+          "LongDescription": {
+            "description": "The description of an access scope for a resource server.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "An application provider that can be used to connect an AWS managed application or customer managed application to IAM Identity Center.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "sso:ListApplicationProviders"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "sso:DescribeApplicationProvider"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ApplicationProviderArn"
+    ],
+    "properties": {
+      "ApplicationProviderArn": {
+        "description": "The ARN of the application provider.",
+        "maxLength": 1224,
+        "minLength": 10,
+        "pattern": "^arn:aws(-[a-z]{1,5}){0,3}:sso::aws:applicationProvider/[a-zA-Z0-9-/]+$",
+        "type": "string"
+      },
+      "DisplayData": {
+        "$ref": "#/definitions/DisplayData"
+      },
+      "FederationProtocol": {
+        "description": "The protocol used to federate to the application provider.",
+        "enum": [
+          "SAML",
+          "OAUTH"
+        ],
+        "type": "string"
+      },
+      "ResourceServerConfig": {
+        "$ref": "#/definitions/ResourceServerConfig"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ApplicationProviderArn",
+      "/properties/FederationProtocol",
+      "/properties/DisplayData",
+      "/properties/ResourceServerConfig"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::SSO::ApplicationProvider"
+  }
+}

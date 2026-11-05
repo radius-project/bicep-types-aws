@@ -40,6 +40,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Route53Resolver/OutpostResolverProperties](#awsroute53resolveroutpostresolverproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Route53Resolver/ResolverConfig@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Route53Resolver/ResolverConfigProperties](#awsroute53resolverresolverconfigproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Route53Resolver/ResolverDNSSECConfig@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Route53Resolver/ResolverDNSSECConfigProperties](#awsroute53resolverresolverdnssecconfigproperties) (Identifier): properties of the resource
+
 ## Resource AWS.Route53Resolver/ResolverEndpoint@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -48,6 +64,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Route53Resolver/ResolverEndpointProperties](#awsroute53resolverresolverendpointproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Route53Resolver/ResolverQueryLoggingConfig@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Route53Resolver/ResolverQueryLoggingConfigProperties](#awsroute53resolverresolverqueryloggingconfigproperties) (Identifier): properties of the resource
+
+## Resource AWS.Route53Resolver/ResolverQueryLoggingConfigAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Route53Resolver/ResolverQueryLoggingConfigAssociationProperties](#awsroute53resolverresolverqueryloggingconfigassociationproperties) (Identifier): properties of the resource
+
 ## Resource AWS.Route53Resolver/ResolverRule@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -55,6 +87,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Route53Resolver/ResolverRuleProperties](#awsroute53resolverresolverruleproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Route53Resolver/ResolverRuleAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Route53Resolver/ResolverRuleAssociationProperties](#awsroute53resolverresolverruleassociationproperties) (Required, Identifier): properties of the resource
 
 ## AWS.Route53Resolver/FirewallConfigProperties
 ### Properties
@@ -128,6 +168,21 @@
 * **StatusMessage**: string (ReadOnly): The OutpostResolver status message.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
+## AWS.Route53Resolver/ResolverConfigProperties
+### Properties
+* **AutodefinedReverse**: string (ReadOnly): ResolverAutodefinedReverseStatus, possible values are ENABLING, ENABLED, DISABLING AND DISABLED.
+* **AutodefinedReverseFlag**: string (Required): Represents the desired status of AutodefinedReverse. The only supported value on creation is DISABLE. Deletion of this resource will return AutodefinedReverse to its default value (ENABLED).
+* **Id**: string (ReadOnly): Id
+* **OwnerId**: string (ReadOnly): AccountId
+* **ResourceId**: string (Required, Identifier): ResourceId
+
+## AWS.Route53Resolver/ResolverDNSSECConfigProperties
+### Properties
+* **Id**: string (ReadOnly, Identifier): Id
+* **OwnerId**: string (ReadOnly): AccountId
+* **ResourceId**: string: ResourceId
+* **ValidationStatus**: string (ReadOnly): ResolverDNSSECValidationStatus, possible values are ENABLING, ENABLED, DISABLING AND DISABLED.
+
 ## AWS.Route53Resolver/ResolverEndpointProperties
 ### Properties
 * **Arn**: string (ReadOnly): The Amazon Resource Name (ARN) of the resolver endpoint, such as arn:aws:route53resolver:us-east-1:123456789012:resolver-endpoint/resolver-endpoint-a1bzhi.
@@ -150,6 +205,38 @@
 * **SecurityGroupIds**: string[] (Required): The ID of one or more security groups that control access to this VPC. The security group must include one or more inbound rules (for inbound endpoints) or outbound rules (for outbound endpoints). Inbound and outbound rules must allow TCP and UDP access. For inbound access, open port 53. For outbound access, open the port that you're using for DNS queries on your network.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **TargetNameServerMetricsEnabled**: bool: Specifies whether target name server metrics are enabled for the Outbound Resolver Endpoint. When set to true, one-minute granular metrics are published in CloudWatch for each target name server associated with this endpoint. When set to false, metrics are not published. Default is false.
+
+## AWS.Route53Resolver/ResolverQueryLoggingConfigAssociationProperties
+### Properties
+* **CreationTime**: string (ReadOnly): Rfc3339TimeString
+* **Error**: string (ReadOnly): ResolverQueryLogConfigAssociationError
+* **ErrorMessage**: string (ReadOnly): ResolverQueryLogConfigAssociationErrorMessage
+* **Id**: string (ReadOnly, Identifier): Id
+* **ResolverQueryLogConfigId**: string: ResolverQueryLogConfigId
+* **ResourceId**: string: ResourceId
+* **Status**: string (ReadOnly): ResolverQueryLogConfigAssociationStatus
+
+## AWS.Route53Resolver/ResolverQueryLoggingConfigProperties
+### Properties
+* **Arn**: string (ReadOnly): Arn
+* **AssociationCount**: int (ReadOnly): Count
+* **CreationTime**: string (ReadOnly): Rfc3339TimeString
+* **CreatorRequestId**: string (ReadOnly): The id of the creator request.
+* **DestinationArn**: string: destination arn
+* **Id**: string (ReadOnly, Identifier): ResourceId
+* **Name**: string: ResolverQueryLogConfigName
+* **OwnerId**: string (ReadOnly): AccountId
+* **ShareStatus**: string (ReadOnly): ShareStatus, possible values are NOT_SHARED, SHARED_WITH_ME, SHARED_BY_ME.
+* **Status**: string (ReadOnly): ResolverQueryLogConfigStatus, possible values are CREATING, CREATED, DELETED AND FAILED.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## AWS.Route53Resolver/ResolverRuleAssociationProperties
+### Properties
+* **Name**: string: The name of an association between a Resolver rule and a VPC.
+ The name can be up to 64 characters long and can contain letters (a-z, A-Z), numbers (0-9), hyphens (-), underscores (_), and spaces. The name cannot consist of only numbers.
+* **ResolverRuleAssociationId**: string (ReadOnly, Identifier)
+* **ResolverRuleId**: string (Required): The ID of the Resolver rule that you associated with the VPC that is specified by ``VPCId``.
+* **VPCId**: string (Required): The ID of the VPC that you associated the Resolver rule with.
 
 ## AWS.Route53Resolver/ResolverRuleProperties
 ### Properties
@@ -228,6 +315,11 @@
 ### Properties
 * **Key**: string (Required): The name for the tag. For example, if you want to associate Resolver resources with the account IDs of your customers for billing purposes, the value of Key might be account-id.
 * **Value**: string (Required): The value for the tag. For example, if Key is account-id, then Value might be the ID of the customer account that you're creating the resource for.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## Tag
 ### Properties

@@ -1,0 +1,98 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DataExchange-EntitledDataSets",
+  "type": "AWS::DataExchange::EntitledDataSets",
+  "time": "2026-11-05T21:18:06.118Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/DataSetId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/AssetType",
+      "/properties/Description",
+      "/properties/Name"
+    ],
+    "description": "Definition of AWS::DataExchange::EntitledDataSets Resource Type",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "dataexchange:ListDataSets"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "dataexchange:GetDataSet"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN for the data set.",
+        "type": "string"
+      },
+      "AssetType": {
+        "description": "The type of asset that is added to a data set.",
+        "enum": [
+          "S3_SNAPSHOT",
+          "REDSHIFT_DATA_SHARE",
+          "API_GATEWAY_API",
+          "S3_DATA_ACCESS",
+          "LAKE_FORMATION_DATA_PERMISSION"
+        ],
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The date and time that the data set was created, in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DataSetId": {
+        "description": "The unique identifier for the data set.",
+        "pattern": "^[a-zA-Z0-9]{30,40}$",
+        "type": "string"
+      },
+      "Description": {
+        "description": "A description for the data set.",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the data set.",
+        "type": "string"
+      },
+      "Origin": {
+        "description": "A property that defines the data set as OWNED by the account (for providers) or ENTITLED to the account (for subscribers).",
+        "enum": [
+          "OWNED",
+          "ENTITLED"
+        ],
+        "type": "string"
+      },
+      "SourceId": {
+        "description": "The data set ID of the owned data set corresponding to the entitled data set being viewed.",
+        "type": "string"
+      },
+      "UpdatedAt": {
+        "description": "The date and time that the data set was last updated, in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/DataSetId",
+      "/properties/Origin",
+      "/properties/SourceId",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::DataExchange::EntitledDataSets"
+  }
+}

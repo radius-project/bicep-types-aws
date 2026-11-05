@@ -1,0 +1,133 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Omics-Task",
+  "type": "AWS::Omics::Task",
+  "time": "2026-11-05T20:48:23.098Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/RunId",
+        "/properties/TaskId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/RunId"
+    ],
+    "description": "Represents a task within an AWS HealthOmics workflow run.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "RunId": {
+              "description": "The workflow run ID.",
+              "maxLength": 18,
+              "minLength": 1,
+              "pattern": "^[0-9]+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "RunId"
+          ]
+        },
+        "permissions": [
+          "omics:ListRunTasks"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "omics:GetRunTask"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of the task resource.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^arn:.+$",
+        "type": "string"
+      },
+      "Cpus": {
+        "description": "The task's CPU usage.",
+        "minimum": 1,
+        "type": "integer"
+      },
+      "CreationTime": {
+        "description": "When the task was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Gpus": {
+        "description": "The number of Graphics Processing Units (GPU) specified in the task.",
+        "minimum": 0,
+        "type": "integer"
+      },
+      "InstanceType": {
+        "description": "The instance type for the task.",
+        "type": "string"
+      },
+      "LogStream": {
+        "description": "The task's log stream.",
+        "type": "string"
+      },
+      "Memory": {
+        "description": "The task's memory use in gigabytes.",
+        "minimum": 1,
+        "type": "integer"
+      },
+      "Name": {
+        "description": "The task's name.",
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
+      "RunId": {
+        "description": "The workflow run ID.",
+        "maxLength": 18,
+        "minLength": 1,
+        "pattern": "^[0-9]+$",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The task's status.",
+        "enum": [
+          "PENDING",
+          "STARTING",
+          "RUNNING",
+          "STOPPING",
+          "COMPLETED",
+          "CANCELLED",
+          "FAILED"
+        ],
+        "type": "string"
+      },
+      "TaskId": {
+        "description": "The task's ID.",
+        "maxLength": 18,
+        "minLength": 1,
+        "pattern": "^[0-9]+$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/TaskId",
+      "/properties/Name",
+      "/properties/Status",
+      "/properties/Cpus",
+      "/properties/Memory",
+      "/properties/Gpus",
+      "/properties/InstanceType",
+      "/properties/CreationTime",
+      "/properties/LogStream"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::Omics::Task"
+  }
+}

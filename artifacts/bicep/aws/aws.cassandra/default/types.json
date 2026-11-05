@@ -137,6 +137,101 @@
     "writableScopes": 0
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.Cassandra/StreamProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Cassandra/StreamProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) that uniquely identifies the stream."
+      },
+      "CreationRequestDateTime": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The date and time when the request to create this stream was issued, in ISO 8601 format."
+      },
+      "KeyspaceName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The name of the keyspace containing the table associated with this stream."
+      },
+      "StreamLabel": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "A timestamp that serves as a unique identifier for this stream."
+      },
+      "StreamStatus": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The current status of the stream."
+      },
+      "StreamViewType": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The format of the data records in this stream."
+      },
+      "TableName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The name of the table associated with this stream."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Cassandra/Stream",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Cassandra/Stream@default",
+    "body": {
+      "$ref": "#/14"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
     "$type": "ObjectType",
     "name": "AutoScalingSetting",
     "properties": {
@@ -148,19 +243,19 @@
       },
       "MaximumUnits": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/34"
         },
         "flags": 0
       },
       "MinimumUnits": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/34"
         },
         "flags": 0
       },
       "ScalingPolicy": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/30"
         },
         "flags": 0
       }
@@ -172,13 +267,13 @@
     "properties": {
       "ReadCapacityAutoScaling": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "WriteCapacityAutoScaling": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/16"
         },
         "flags": 0
       }
@@ -196,7 +291,7 @@
       },
       "ProvisionedThroughput": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/28"
         },
         "flags": 0
       }
@@ -214,7 +309,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/35"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to the CDC stream resource"
@@ -243,7 +338,7 @@
     "properties": {
       "Column": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/23"
         },
         "flags": 1
       },
@@ -312,13 +407,13 @@
     "properties": {
       "ReadCapacityUnits": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/34"
         },
         "flags": 1
       },
       "WriteCapacityUnits": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/34"
         },
         "flags": 1
       }
@@ -330,13 +425,13 @@
     "properties": {
       "ReadCapacityAutoScaling": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "ReadCapacityUnits": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/34"
         },
         "flags": 0
       },
@@ -354,7 +449,7 @@
     "properties": {
       "TargetTrackingScalingPolicyConfiguration": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/32"
         },
         "flags": 0
       }
@@ -390,19 +485,19 @@
       },
       "ScaleInCooldown": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/34"
         },
         "flags": 0
       },
       "ScaleOutCooldown": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/34"
         },
         "flags": 0
       },
       "TargetValue": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/34"
         },
         "flags": 1
       }
@@ -414,13 +509,13 @@
     "properties": {
       "ReadUnitsPerSecond": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/34"
         },
         "flags": 0
       },
       "WriteUnitsPerSecond": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/34"
         },
         "flags": 0
       }
@@ -432,7 +527,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/27"
+      "$ref": "#/31"
     }
   },
   {
@@ -442,31 +537,31 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/18"
+      "$ref": "#/22"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/19"
+      "$ref": "#/23"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/19"
+      "$ref": "#/23"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/29"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/27"
+      "$ref": "#/31"
     }
   },
   {
@@ -475,19 +570,19 @@
     "properties": {
       "AutoScalingSpecifications": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/17"
         },
         "flags": 4
       },
       "BillingMode": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "CdcSpecification": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/19"
         },
         "flags": 0
       },
@@ -500,21 +595,21 @@
       },
       "ClusteringKeyColumns": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "Clustering key columns of the table"
       },
       "DefaultTimeToLive": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "Default TTL (Time To Live) in seconds, where zero is disabled. If the value is greater than zero, TTL is enabled for the entire table and an expiration timestamp is added to each column."
       },
       "EncryptionSpecification": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/24"
         },
         "flags": 0
       },
@@ -527,7 +622,7 @@
       },
       "PartitionKeyColumns": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/38"
         },
         "flags": 1,
         "description": "Partition key columns of the table"
@@ -541,14 +636,14 @@
       },
       "RegularColumns": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "Non-key columns of the table"
       },
       "ReplicaSpecifications": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/40"
         },
         "flags": 4
       },
@@ -561,14 +656,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource"
       },
       "WarmThroughput": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/33"
         },
         "flags": 0
       }
@@ -594,7 +689,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/42"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -605,7 +700,145 @@
     "$type": "ResourceType",
     "name": "AWS.Cassandra/Table@default",
     "body": {
-      "$ref": "#/39"
+      "$ref": "#/43"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Field",
+    "properties": {
+      "FieldName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1
+      },
+      "FieldType": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Cassandra/TypeProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/45"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Cassandra/TypeProperties",
+    "properties": {
+      "DirectParentTypes": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 2,
+        "description": "List of parent User-Defined Types that directly reference the User-Defined Type in their fields."
+      },
+      "DirectReferringTables": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 2,
+        "description": "List of Tables that directly reference the User-Defined Type in their columns."
+      },
+      "Fields": {
+        "type": {
+          "$ref": "#/49"
+        },
+        "flags": 1,
+        "description": "Field definitions of the User-Defined Type"
+      },
+      "KeyspaceArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "ARN of the Keyspace which contains the User-Defined Type."
+      },
+      "KeyspaceName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "Name of the Keyspace which contains the User-Defined Type."
+      },
+      "LastModifiedTimestamp": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 2,
+        "description": "Timestamp of the last time the User-Defined Type's meta data was modified."
+      },
+      "MaxNestingDepth": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 2,
+        "description": "Maximum nesting depth of the User-Defined Type across the field types."
+      },
+      "TypeName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "Name of the User-Defined Type."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Cassandra/Type",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/50"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Cassandra/Type@default",
+    "body": {
+      "$ref": "#/51"
     },
     "readableScopes": 0,
     "writableScopes": 0

@@ -16,6 +16,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SecurityAgent/ApplicationProperties](#awssecurityagentapplicationproperties) (Identifier): properties of the resource
 
+## Resource AWS.SecurityAgent/Artifact@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SecurityAgent/ArtifactProperties](#awssecurityagentartifactproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.SecurityAgent/Integration@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -31,6 +39,22 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SecurityAgent/PentestProperties](#awssecurityagentpentestproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.SecurityAgent/PentestJob@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SecurityAgent/PentestJobProperties](#awssecurityagentpentestjobproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.SecurityAgent/PentestTask@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SecurityAgent/PentestTaskProperties](#awssecurityagentpentesttaskproperties) (Identifier): properties of the resource
 
 ## Resource AWS.SecurityAgent/PrivateConnection@default
 * **Readable Scope(s)**: None
@@ -65,9 +89,17 @@
 * **MfaForwardingAddress**: string: Server-generated email forwarding address for receiving MFA codes
 * **Uris**: string[]: List of URIs this actor is authorized to access
 
+## Actor
+### Properties
+* **Authentication**: [Authentication](#authentication)
+* **Description**: string: A description of the actor.
+* **Identifier**: string: The unique identifier for the actor.
+* **Uris**: string[]: The list of URIs that the actor targets during testing.
+
 ## Assets
 ### Properties
 * **Actors**: [Actor](#actor)[] (ReadOnly, WriteOnly): List of actors used during testing
+* **ClientCertificates**: [ClientCertificate](#clientcertificate)[]: Client certificates that AWS Security Agent presents to target hosts that require mutual TLS (mTLS)
 * **Documents**: [DocumentInfo](#documentinfo)[]: List of documents providing additional context for the pentest
 * **Endpoints**: [Endpoint](#endpoint)[]: List of endpoints to test
 * **IntegratedRepositories**: [IntegratedRepository](#integratedrepository)[]: List of repositories connected via provider integrations
@@ -78,6 +110,11 @@
 ### Properties
 * **ProviderType**: string: Type of authentication provider
 * **Value**: string: Reference value for the authentication provider, such as a secret ARN or Lambda ARN
+
+## Authentication
+### Properties
+* **ProviderType**: string: The type of authentication provider.
+* **Value**: string: The authentication value, such as a secret ARN, Lambda function ARN, or IAM role ARN, depending on the provider type.
 
 ## AWS.SecurityAgent/AgentSpaceProperties
 ### Properties
@@ -103,6 +140,16 @@
 * **RoleArn**: string
 * **Tags**: [Tag](#tag)[]: Tags for the application
 
+## AWS.SecurityAgent/ArtifactProperties
+### Properties
+* **AgentSpaceId**: string (Required): The unique identifier of the agent space to add the artifact to.
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the artifact.
+* **ArtifactContent**: string (WriteOnly): The binary content of the artifact to upload, encoded as a Base64 string.
+* **ArtifactId**: string (ReadOnly): The unique identifier assigned to the uploaded artifact.
+* **ArtifactType**: string (Required): The file type of the artifact.
+* **FileName**: string (Required): The file name of the artifact.
+* **UpdatedAt**: string (ReadOnly): The date and time the artifact was last updated, in ISO 8601 format.
+
 ## AWS.SecurityAgent/IntegrationProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the integration.
@@ -117,6 +164,32 @@
 * **Tags**: [Tag](#tag)[]: The tags to associate with the integration.
 * **TargetUrl**: string (ReadOnly): The HTTPS URL of the customer self-hosted instance, such as a GitHub Enterprise Server or self-managed GitLab instance. This value is absent for SaaS integrations.
 
+## AWS.SecurityAgent/PentestJobProperties
+### Properties
+* **Actors**: [Actor](#actor)[] (ReadOnly): The list of actors used during the pentest job.
+* **AgentSpaceId**: string (Required): The unique identifier of the agent space that contains the pentest job.
+* **AllowedDomains**: [Endpoint](#endpoint)[] (ReadOnly): The list of domains allowed during the pentest job.
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the pentest job.
+* **CleanUpStrategy**: string (ReadOnly): The strategy for cleaning up resources created during the pentest job.
+* **CodeRemediationStrategy**: string (ReadOnly): The code remediation strategy for the pentest job.
+* **CreatedAt**: string (ReadOnly): The date and time the pentest job was created, in UTC format.
+* **DisableManagedSkills**: string[] (ReadOnly): The list of managed skills disabled for this pentest job.
+* **Documents**: [DocumentInfo](#documentinfo)[] (ReadOnly): The list of documents providing context for the pentest job.
+* **Endpoints**: [Endpoint](#endpoint)[] (ReadOnly): The list of endpoints being tested in the pentest job.
+* **ExcludePaths**: [Endpoint](#endpoint)[] (ReadOnly): The list of paths excluded from the pentest job.
+* **ExcludeRiskTypes**: string[] (ReadOnly): The list of risk types excluded from the pentest job.
+* **IntegratedRepositories**: [IntegratedRepository](#integratedrepository)[] (ReadOnly): The list of integrated repositories associated with the pentest job.
+* **LogConfig**: [CloudWatchLog](#cloudwatchlog) (ReadOnly)
+* **NetworkTrafficConfig**: [NetworkTrafficConfig](#networktrafficconfig) (ReadOnly)
+* **PentestId**: string (Required): The unique identifier of the pentest associated with the job.
+* **PentestJobId**: string (ReadOnly): The unique identifier of the pentest job.
+* **ServiceRole**: string (ReadOnly): The ARN of the IAM service role used for the pentest job.
+* **SourceCode**: [SourceCodeRepository](#sourcecoderepository)[] (ReadOnly): The list of source code repositories analyzed during the pentest job.
+* **Status**: string (ReadOnly): The current status of the pentest job.
+* **Title**: string (ReadOnly): The title of the pentest job.
+* **UpdatedAt**: string (ReadOnly): The date and time the pentest job was last updated, in UTC format.
+* **VpcConfig**: [VpcConfig](#vpcconfig) (ReadOnly)
+
 ## AWS.SecurityAgent/PentestProperties
 ### Properties
 * **AgentSpaceId**: string (Required, Identifier): Identifier of agent space where the pentest should be created
@@ -128,6 +201,7 @@
 * **DisableManagedSkills**: string[]: A list of managed skills to disable for this pentest
 * **ExcludeRiskTypes**: string[]: A list of risk types excluded from the pentest execution
 * **LogConfig**: [CloudWatchLog](#cloudwatchlog): CloudWatch logs config
+* **MaxTaskHours**: int: The maximum number of billable task hours allowed for jobs started from this pentest. If not set, jobs run to completion with no budget cap.
 * **NetworkTrafficConfig**: [NetworkTrafficConfig](#networktrafficconfig): Configuration for network traffic filtering
 * **PentestId**: string (ReadOnly, Identifier): Unique identifier of the pentest
 * **ReportDestination**: [ReportDestination](#reportdestination) (WriteOnly): Destination for publishing the scan report to Confluence
@@ -137,6 +211,22 @@
 * **Title**: string: Title of the penetration test
 * **UpdatedAt**: string (ReadOnly): Timestamp when the pentest was last updated
 * **VpcConfig**: [VpcConfig](#vpcconfig): VPC configuration that the security testing environment accesses
+
+## AWS.SecurityAgent/PentestTaskProperties
+### Properties
+* **AgentSpaceId**: string: The unique identifier of the agent space.
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the pentest task.
+* **Categories**: [Category](#category)[] (ReadOnly): The list of categories assigned to the task.
+* **CreatedAt**: string (ReadOnly): The date and time the task was created, in UTC format.
+* **Description**: string (ReadOnly): A description of the task.
+* **ExecutionStatus**: string (ReadOnly): The current execution status of the task.
+* **PentestId**: string (ReadOnly): The unique identifier of the pentest associated with the task.
+* **PentestJobId**: string (ReadOnly): The unique identifier of the pentest job that contains the task.
+* **TargetEndpoint**: [Endpoint](#endpoint) (ReadOnly)
+* **TaskHours**: int (ReadOnly): The number of active work hours consumed by the task during execution.
+* **TaskId**: string (ReadOnly): The unique identifier of the task.
+* **Title**: string (ReadOnly): The title of the task.
+* **UpdatedAt**: string (ReadOnly): The date and time the task was last updated, in UTC format.
 
 ## AWS.SecurityAgent/PrivateConnectionProperties
 ### Properties
@@ -219,14 +309,30 @@
 * **InlinePem**: string: PEM-encoded X.509 certificate supplied inline
 * **S3Location**: string: Amazon S3 location URI of a customer-staged certificate
 
+## Category
+### Properties
+* **IsPrimary**: bool: Indicates whether this is the primary category for the task.
+* **Name**: string: The name of the category.
+
 ## CiCdConfiguration
 ### Properties
 * **Enabled**: bool (Required): Whether CI/CD pentesting is enabled. When enabled, the pentest must have at least one entry in Assets.IntegratedRepositories
+
+## ClientCertificate
+### Properties
+* **Name**: string (Required): Name of the client certificate, unique within the pentest
+* **Origins**: string[] (Required): Target hosts the certificate applies to, as https://host[:port] origins
+* **SecretArn**: string (Required): ARN of the Secrets Manager secret that holds the certificate and private key
 
 ## CloudWatchLog
 ### Properties
 * **LogGroup**: string: CloudWatch log group
 * **LogStream**: string: CloudWatch log stream
+
+## CloudWatchLog
+### Properties
+* **LogGroup**: string: The name of the CloudWatch log group.
+* **LogStream**: string: The name of the CloudWatch log stream.
 
 ## CodeReviewSettings
 ### Properties
@@ -259,6 +365,11 @@
 * **Name**: string: Name of the header
 * **Value**: string: Value of the header
 
+## CustomHeader
+### Properties
+* **Name**: string: The name of the custom header.
+* **Value**: string: The value of the custom header.
+
 ## DnsVerification
 ### Properties
 * **DnsRecordName**: string: Record name to be added in DNS for target domain
@@ -270,9 +381,23 @@
 * **ArtifactId**: string: Artifact identifier
 * **S3Location**: string: S3 document location
 
+## DocumentInfo
+### Properties
+* **ArtifactId**: string: The unique identifier of the artifact associated with the document.
+* **IntegratedDocument**: [IntegratedDocument](#integrateddocument)
+* **S3Location**: string: The Amazon S3 location of the document.
+
 ## Endpoint
 ### Properties
 * **Uri**: string: URI of the endpoint to test
+
+## Endpoint
+### Properties
+* **Uri**: string: The URI of the endpoint.
+
+## Endpoint
+### Properties
+* **Uri**: string: The URI of the endpoint.
 
 ## GitHubCapabilitiesResource
 ### Properties
@@ -319,11 +444,22 @@
 * **IdCApplicationArn**: string (ReadOnly)
 * **IdCInstanceArn**: string
 
+## IntegratedDocument
+### Properties
+* **IntegrationId**: string (Required): The identifier of the integration that provides access to the document.
+* **ResourceId**: string (Required): The provider-specific resource identifier for the document.
+
 ## IntegratedRepository
 ### Properties
 * **Branch**: string: An optional override for the repository branch
 * **IntegrationId**: string (Required): Unique identifier of the provider integration
 * **ProviderResourceId**: string (Required): Identifier of the resource within the provider integration
+
+## IntegratedRepository
+### Properties
+* **Branch**: string: An optional override for the repository branch.
+* **IntegrationId**: string (Required): The unique identifier of the integration that provides access to the repository.
+* **ProviderResourceId**: string (Required): The provider-specific resource identifier for the repository.
 
 ## IntegratedResource
 ### Properties
@@ -340,11 +476,22 @@
 * **CustomHeaders**: [CustomHeader](#customheader)[]: Custom headers to include in outbound requests
 * **Rules**: [NetworkTrafficRule](#networktrafficrule)[]: Ordered list of network traffic rules
 
+## NetworkTrafficConfig
+### Properties
+* **CustomHeaders**: [CustomHeader](#customheader)[]: The list of custom HTTP headers to include in network traffic during testing.
+* **Rules**: [NetworkTrafficRule](#networktrafficrule)[]: The list of network traffic rules that control which URLs are allowed or denied during testing.
+
 ## NetworkTrafficRule
 ### Properties
 * **Effect**: string: Whether to allow or deny traffic matching this rule
 * **NetworkTrafficRuleType**: string: Type of pattern matching for this rule
 * **Pattern**: string: URL pattern this rule applies to
+
+## NetworkTrafficRule
+### Properties
+* **Effect**: string: The effect of the rule.
+* **NetworkTrafficRuleType**: string: The type of the network traffic rule. Currently, only URL is supported.
+* **Pattern**: string: The URL pattern to match for the rule.
 
 ## ProviderInput
 ### Properties
@@ -411,6 +558,10 @@
 ### Properties
 * **S3Location**: string: S3 source code location
 
+## SourceCodeRepository
+### Properties
+* **S3Location**: string: The Amazon S3 location of the source code repository archive.
+
 ## Tag
 ### Properties
 * **Key**: string (Required): The key name of the tag
@@ -466,4 +617,10 @@
 * **SecurityGroupArns**: string[]: List of security groups in the VPC
 * **SubnetArns**: string[]: List of subnets in the VPC
 * **VpcArn**: string
+
+## VpcConfig
+### Properties
+* **SecurityGroupArns**: string[]: The ARNs or IDs of the security groups for the VPC configuration.
+* **SubnetArns**: string[]: The ARNs or IDs of the subnets for the VPC configuration.
+* **VpcArn**: string: The ARN or ID of the VPC.
 

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ECS-DaemonTaskDefinition",
   "type": "AWS::ECS::DaemonTaskDefinition",
-  "time": "2026-10-19T16:42:18.738Z",
+  "time": "2026-11-05T20:25:27.007Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -396,6 +396,19 @@
         ],
         "type": "object"
       },
+      "LogDriverVolumeConfiguration": {
+        "additionalProperties": false,
+        "description": "",
+        "properties": {
+          "Driver": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Driver"
+        ],
+        "type": "object"
+      },
       "MountPoint": {
         "additionalProperties": false,
         "description": "The details for a volume mount point that's used in a container definition.",
@@ -555,6 +568,10 @@
           "Host": {
             "$ref": "#/definitions/HostVolumeProperties",
             "description": "This parameter is specified when you use bind mount host volumes. The contents of the ``host`` parameter determine whether your bind mount host volume persists on the host container instance and where it's stored. If the ``host`` parameter is empty, then the Docker daemon assigns a host path for your data volume. However, the data isn't guaranteed to persist after the containers that are associated with it stop running.\n Windows containers can mount whole directories on the same drive as ``$env:ProgramData``. Windows containers can't mount directories on a different drive, and mount point can't be across drives. For example, you can mount ``C:\\my\\path:C:\\my\\path`` and ``D:\\:D:\\``, but not ``D:\\my\\path:C:\\my\\path`` or ``D:\\:C:\\my\\path``."
+          },
+          "LogDriverVolumeConfiguration": {
+            "$ref": "#/definitions/LogDriverVolumeConfiguration",
+            "description": ""
           },
           "Name": {
             "description": "The name of the volume. Up to 255 letters (uppercase and lowercase), numbers, underscores, and hyphens are allowed.\n When using a volume configured at launch, the ``name`` is required and must also be specified as the volume name in the ``ServiceVolumeConfiguration`` or ``TaskVolumeConfiguration`` parameter when creating your service or standalone task.\n For all other types of volumes, this name is referenced in the ``sourceVolume`` parameter of the ``mountPoints`` object in the container definition.\n When a volume is using the ``efsVolumeConfiguration``, the name is required.\n When a volume is using the ``s3filesVolumeConfiguration``, the name is required.",

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Connect-RoutingProfile",
   "type": "AWS::Connect::RoutingProfile",
-  "time": "2026-09-29T21:11:59.918Z",
+  "time": "2026-11-04T22:31:09.953Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -159,6 +159,7 @@
       "create": {
         "permissions": [
           "connect:CreateRoutingProfile",
+          "connect:AssociateRoutingProfileQueues",
           "connect:TagResource"
         ]
       },
@@ -242,7 +243,7 @@
         "items": {
           "$ref": "#/definitions/RoutingProfileManualAssignmentQueueConfig"
         },
-        "maxItems": 10,
+        "maxItems": 50,
         "minItems": 1,
         "type": "array"
       },
@@ -297,7 +298,7 @@
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-connect",
     "tagging": {
-      "cloudFormationSystemTags": false,
+      "cloudFormationSystemTags": true,
       "permissions": [
         "connect:TagResource",
         "connect:UntagResource"

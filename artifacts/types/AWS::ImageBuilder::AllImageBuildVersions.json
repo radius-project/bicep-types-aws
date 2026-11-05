@@ -1,0 +1,207 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ImageBuilder-AllImageBuildVersions",
+  "type": "AWS::ImageBuilder::AllImageBuildVersions",
+  "time": "2026-11-05T21:18:41.955Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Name",
+        "/properties/Version",
+        "/properties/BuildNumber"
+      ]
+    ],
+    "additionalProperties": false,
+    "description": "Resource Type definition for AWS::ImageBuilder::AllImageBuildVersions. Returns the list of image build versions for a specified image version ARN.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ImageVersionArn": {
+              "pattern": "^arn:aws[^:]*:imagebuilder:[^:]+:(?:[0-9]{12}|aws(?:-[a-z-]+)?):image/[a-z0-9-_]+/[0-9]+\\.[0-9]+\\.[0-9]+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "ImageVersionArn"
+          ]
+        },
+        "permissions": [
+          "imagebuilder:ListImageBuildVersions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "imagebuilder:GetImage",
+          "imagebuilder:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the image build version.",
+        "pattern": "^arn:aws[^:]*:imagebuilder:[^:]+:(?:[0-9]{12}|aws(?:-[a-z-]+)?):image/[a-z0-9-_]+/[0-9]+\\.[0-9]+\\.[0-9]+/[0-9]+$",
+        "type": "string"
+      },
+      "BuildNumber": {
+        "description": "The build number of the image build version.",
+        "pattern": "^[0-9]+$",
+        "type": "string"
+      },
+      "BuildType": {
+        "description": "Indicates the type of build that created this image.",
+        "enum": [
+          "USER_INITIATED",
+          "SCHEDULED",
+          "IMPORT",
+          "IMPORT_ISO"
+        ],
+        "type": "string"
+      },
+      "DateCreated": {
+        "description": "The date on which Image Builder created this image.",
+        "type": "string"
+      },
+      "EnhancedImageMetadataEnabled": {
+        "description": "Indicates whether enhanced image metadata collection is enabled.",
+        "type": "boolean"
+      },
+      "ExecutionRole": {
+        "description": "The execution role for the image.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^(?:arn:aws(?:-[a-z]+)*:iam::[0-9]{12}:role/)?[a-zA-Z_0-9+=,.@\\-_/]+$",
+        "type": "string"
+      },
+      "ImageTestsConfiguration": {
+        "additionalProperties": false,
+        "description": "The image tests configuration.",
+        "properties": {
+          "ImageTestsEnabled": {
+            "description": "Determines if tests should run after building the image.",
+            "type": "boolean"
+          },
+          "TimeoutMinutes": {
+            "description": "The maximum time in minutes that tests are permitted to run.",
+            "maximum": 1440,
+            "minimum": 60,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "ImageVersionArn": {
+        "description": "The image version ARN whose build versions you want to list.",
+        "pattern": "^arn:aws[^:]*:imagebuilder:[^:]+:(?:[0-9]{12}|aws(?:-[a-z-]+)?):image/[a-z0-9-_]+/[0-9]+\\.[0-9]+\\.[0-9]+$",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the image.",
+        "pattern": "^[-_A-Za-z-0-9][-_A-Za-z0-9 ]{1,126}[-_A-Za-z-0-9]$",
+        "type": "string"
+      },
+      "OsVersion": {
+        "description": "The operating system version of the instances that launch from this image.",
+        "minLength": 1,
+        "type": "string"
+      },
+      "Platform": {
+        "description": "The operating system platform of the image.",
+        "enum": [
+          "Windows",
+          "Linux",
+          "macOS"
+        ],
+        "type": "string"
+      },
+      "State": {
+        "additionalProperties": false,
+        "description": "Image status and the reason for that status.",
+        "properties": {
+          "Status": {
+            "description": "The status of the image.",
+            "enum": [
+              "PENDING",
+              "CREATING",
+              "BUILDING",
+              "TESTING",
+              "DISTRIBUTING",
+              "INTEGRATING",
+              "AVAILABLE",
+              "CANCELLED",
+              "FAILED",
+              "DEPRECATED",
+              "DELETED",
+              "DISABLED"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tags": {
+        "description": "The tags associated with the image.",
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "type": "string"
+            },
+            "Value": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "Type": {
+        "description": "Specifies whether this image produces an AMI or a container image.",
+        "enum": [
+          "AMI",
+          "DOCKER"
+        ],
+        "type": "string"
+      },
+      "Version": {
+        "description": "The semantic version of the image (major.minor.patch).",
+        "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Name",
+      "/properties/Version",
+      "/properties/BuildNumber",
+      "/properties/Type",
+      "/properties/Platform",
+      "/properties/OsVersion",
+      "/properties/State",
+      "/properties/DateCreated",
+      "/properties/BuildType",
+      "/properties/EnhancedImageMetadataEnabled",
+      "/properties/ImageTestsConfiguration",
+      "/properties/ExecutionRole",
+      "/properties/ImageVersionArn",
+      "/properties/Tags"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "imagebuilder:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::ImageBuilder::AllImageBuildVersions"
+  }
+}

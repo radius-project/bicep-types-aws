@@ -1,0 +1,99 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-HealthAgent-Subscription",
+  "type": "AWS::HealthAgent::Subscription",
+  "time": "2026-11-05T21:13:18.653Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/DomainId",
+        "/properties/SubscriptionId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DomainId"
+    ],
+    "description": "Resource Type definition for AWS::HealthAgent::Subscription. A Subscription is a child resource of a Connect Health Domain.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "DomainId": {
+              "maxLength": 25,
+              "minLength": 20,
+              "pattern": "^(hai-|dom-)[a-z0-9]+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "DomainId"
+          ]
+        },
+        "permissions": [
+          "health-agent:ListSubscriptions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "health-agent:GetSubscription"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the Subscription.",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The time at which the Subscription was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DomainId": {
+        "description": "The unique identifier of the parent Domain.",
+        "maxLength": 25,
+        "minLength": 20,
+        "pattern": "^(hai-|dom-)[a-z0-9]+$",
+        "type": "string"
+      },
+      "LastUpdatedAt": {
+        "description": "The time at which the Subscription was last updated.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The current status of the Subscription.",
+        "enum": [
+          "ACTIVE",
+          "INACTIVE",
+          "DELETED"
+        ],
+        "type": "string"
+      },
+      "SubscriptionId": {
+        "description": "The unique identifier of the Subscription.",
+        "maxLength": 25,
+        "minLength": 25,
+        "pattern": "^sub-[a-zA-Z0-9]{21}$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/SubscriptionId",
+      "/properties/Arn",
+      "/properties/Status",
+      "/properties/CreatedAt",
+      "/properties/LastUpdatedAt"
+    ],
+    "required": [
+      "DomainId"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::HealthAgent::Subscription"
+  }
+}

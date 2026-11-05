@@ -1,0 +1,95 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CodeBuild-Sandbox",
+  "type": "AWS::CodeBuild::Sandbox",
+  "time": "2026-11-05T21:23:54.735Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ProjectName"
+    ],
+    "description": "Represents a CodeBuild sandbox, an ephemeral compute environment started from a CodeBuild project.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "codebuild:ListSandboxes"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "codebuild:BatchGetSandboxes"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of the sandbox.",
+        "type": "string"
+      },
+      "EncryptionKey": {
+        "description": "The KMS key used for encrypting the sandbox output artifacts.",
+        "minLength": 1,
+        "type": "string"
+      },
+      "Id": {
+        "description": "The ID of the sandbox.",
+        "minLength": 1,
+        "type": "string"
+      },
+      "ProjectName": {
+        "description": "The CodeBuild project name.",
+        "minLength": 1,
+        "type": "string"
+      },
+      "QueuedTimeoutInMinutes": {
+        "description": "The number of minutes a sandbox is allowed to be queued before it times out.",
+        "type": "integer"
+      },
+      "RequestTime": {
+        "description": "When the sandbox process was initially requested, expressed in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ServiceRole": {
+        "description": "The name of a service role used for this sandbox.",
+        "minLength": 1,
+        "type": "string"
+      },
+      "StartTime": {
+        "description": "When the sandbox process started, expressed in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the sandbox.",
+        "type": "string"
+      },
+      "TimeoutInMinutes": {
+        "description": "How long, in minutes, for CodeBuild to wait before timing out this sandbox.",
+        "type": "integer"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Id",
+      "/properties/Status",
+      "/properties/RequestTime",
+      "/properties/StartTime",
+      "/properties/EncryptionKey",
+      "/properties/ServiceRole",
+      "/properties/TimeoutInMinutes",
+      "/properties/QueuedTimeoutInMinutes"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::CodeBuild::Sandbox"
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DynamoDB-Export",
+  "type": "AWS::DynamoDB::Export",
+  "time": "2026-11-05T21:24:11.584Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/TableName",
+        "/properties/ExportId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ExportFormat",
+      "/properties/ExportType",
+      "/properties/S3Bucket",
+      "/properties/S3BucketOwner",
+      "/properties/S3Prefix",
+      "/properties/S3SseAlgorithm",
+      "/properties/TableArn"
+    ],
+    "description": "Represents a completed or in-progress DynamoDB table export to S3.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "dynamodb:ListExports"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "dynamodb:DescribeExport"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ExportArn"
+    ],
+    "properties": {
+      "BilledSizeBytes": {
+        "description": "The billable size of the table export.",
+        "minimum": 0,
+        "type": "integer"
+      },
+      "EndTime": {
+        "description": "The time at which the export task completed, in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ExportArn": {
+        "description": "The Amazon Resource Name (ARN) of the export.",
+        "maxLength": 1024,
+        "minLength": 37,
+        "type": "string"
+      },
+      "ExportFormat": {
+        "description": "The format of the exported data.",
+        "enum": [
+          "DYNAMODB_JSON",
+          "ION"
+        ],
+        "type": "string"
+      },
+      "ExportId": {
+        "description": "The unique identifier of the export.",
+        "type": "string"
+      },
+      "ExportManifest": {
+        "description": "The name of the manifest file for the export task.",
+        "type": "string"
+      },
+      "ExportStatus": {
+        "description": "Export can be in one of the following states: IN_PROGRESS, COMPLETED, or FAILED.",
+        "enum": [
+          "IN_PROGRESS",
+          "COMPLETED",
+          "FAILED"
+        ],
+        "type": "string"
+      },
+      "ExportTime": {
+        "description": "Point in time from which table data was exported, in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ExportType": {
+        "description": "The type of export that was performed.",
+        "enum": [
+          "FULL_EXPORT",
+          "INCREMENTAL_EXPORT"
+        ],
+        "type": "string"
+      },
+      "ItemCount": {
+        "description": "The number of items exported.",
+        "minimum": 0,
+        "type": "integer"
+      },
+      "S3Bucket": {
+        "description": "The name of the Amazon S3 bucket containing the export.",
+        "maxLength": 255,
+        "pattern": "^[a-z0-9A-Z]+[\\.\\-\\w]*[a-z0-9A-Z]+$",
+        "type": "string"
+      },
+      "S3BucketOwner": {
+        "description": "The ID of the Amazon Web Services account that owns the bucket containing the export.",
+        "pattern": "^[0-9]{12}$",
+        "type": "string"
+      },
+      "S3Prefix": {
+        "description": "The Amazon S3 bucket prefix used as the file name and path of the exported snapshot.",
+        "maxLength": 1024,
+        "type": "string"
+      },
+      "S3SseAlgorithm": {
+        "description": "Type of encryption used on the bucket where export data is stored.",
+        "enum": [
+          "AES256",
+          "KMS"
+        ],
+        "type": "string"
+      },
+      "StartTime": {
+        "description": "The time at which the export task began, in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "TableArn": {
+        "description": "The Amazon Resource Name (ARN) of the table that was exported.",
+        "maxLength": 1024,
+        "minLength": 1,
+        "type": "string"
+      },
+      "TableId": {
+        "description": "Unique ID of the table that was exported.",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        "type": "string"
+      },
+      "TableName": {
+        "description": "The name of the table that was exported.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ExportArn",
+      "/properties/TableName",
+      "/properties/ExportId",
+      "/properties/ExportStatus",
+      "/properties/TableId",
+      "/properties/ExportTime",
+      "/properties/StartTime",
+      "/properties/EndTime",
+      "/properties/ExportManifest",
+      "/properties/BilledSizeBytes",
+      "/properties/ItemCount"
+    ],
+    "required": [
+      "TableArn",
+      "S3Bucket"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::DynamoDB::Export"
+  }
+}

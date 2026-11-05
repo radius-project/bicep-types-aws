@@ -16,6 +16,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Athena/DataCatalogProperties](#awsathenadatacatalogproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Athena/NamedQuery@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Athena/NamedQueryProperties](#awsathenanamedqueryproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Athena/PreparedStatement@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -23,6 +31,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Athena/PreparedStatementProperties](#awsathenapreparedstatementproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Athena/Session@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Athena/SessionProperties](#awsathenasessionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Athena/WorkGroup@default
 * **Readable Scope(s)**: None
@@ -59,12 +75,30 @@
 * **Tags**: [Tag](#tag)[]: A list of comma separated tags to add to the data catalog that is created. 
 * **Type**: string (Required): The type of data catalog to create: LAMBDA for a federated catalog, GLUE for AWS Glue Catalog, or HIVE for an external hive metastore. FEDERATED is a federated catalog for which Athena creates the connection and the Lambda function for you based on the parameters that you pass.
 
+## AWS.Athena/NamedQueryProperties
+### Properties
+* **Database**: string (Required): The database to which the query belongs.
+* **Description**: string: The query description.
+* **Name**: string: The query name.
+* **NamedQueryId**: string (ReadOnly, Identifier): The unique ID of the query.
+* **QueryString**: string (Required): The contents of the query with all query statements.
+* **WorkGroup**: string: The name of the workgroup that contains the named query.
+
 ## AWS.Athena/PreparedStatementProperties
 ### Properties
 * **Description**: string: The description of the prepared statement.
 * **QueryStatement**: string (Required): The query string for the prepared statement.
 * **StatementName**: string (Required, Identifier): The name of the prepared statement.
 * **WorkGroup**: string (Required, Identifier): The name of the workgroup to which the prepared statement belongs.
+
+## AWS.Athena/SessionProperties
+### Properties
+* **Arn**: string (Identifier): The ARN of the session.
+* **EngineConfiguration**: [EngineConfiguration](#engineconfiguration) (Required): Contains engine data processing unit (DPU) configuration settings.
+* **EngineVersion**: string (ReadOnly): The engine version used by the session.
+* **ExecutionRole**: string: The ARN of the execution role used to access user resources for Spark sessions and Identity Center enabled workgroups.
+* **SessionId**: string (ReadOnly): The session ID.
+* **WorkGroup**: string (Required): The workgroup to which the session belongs.
 
 ## AWS.Athena/WorkGroupProperties
 ### Properties
@@ -108,6 +142,14 @@
 ### Properties
 * **EncryptionOption**: string (Required)
 * **KmsKey**: string
+
+## EngineConfiguration
+### Properties
+* **AdditionalConfigs**: [Session_AdditionalConfigs](#sessionadditionalconfigs) (ReadOnly): Contains additional notebook engine parameter mappings.
+* **CoordinatorDpuSize**: int: The number of DPUs to use for the coordinator.
+* **DefaultExecutorDpuSize**: int: The default number of DPUs to use for executors.
+* **MaxConcurrentDpus**: int (Required): The maximum number of DPUs that can run concurrently.
+* **SparkProperties**: [Session_SparkProperties](#sessionsparkproperties) (ReadOnly): Specifies custom jar files and Spark properties.
 
 ## EngineConfiguration
 ### Properties
@@ -166,6 +208,12 @@
 * **Enabled**: bool: Enables S3 log delivery.
 * **KmsKey**: string: The KMS key ARN to encrypt the logs published to the given Amazon S3 destination.
 * **LogLocation**: string: The Amazon S3 destination URI for log publishing.
+
+## Session_AdditionalConfigs
+### Properties
+
+## Session_SparkProperties
+### Properties
 
 ## Tag
 ### Properties

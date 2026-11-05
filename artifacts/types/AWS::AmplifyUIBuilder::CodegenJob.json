@@ -1,0 +1,553 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AmplifyUIBuilder-CodegenJob",
+  "type": "AWS::AmplifyUIBuilder::CodegenJob",
+  "time": "2026-11-05T20:56:49.937Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/AppId",
+        "/properties/EnvironmentName",
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/AppId",
+      "/properties/AutoGenerateForms",
+      "/properties/EnvironmentName",
+      "/properties/Features",
+      "/properties/RenderConfig"
+    ],
+    "definitions": {
+      "ApiConfiguration": {
+        "additionalProperties": false,
+        "description": "Describes the API configuration for a code generation job.",
+        "properties": {
+          "DataStoreConfig": {
+            "$ref": "#/definitions/DataStoreRenderConfig"
+          },
+          "GraphQLConfig": {
+            "$ref": "#/definitions/GraphQLRenderConfig"
+          },
+          "NoApiConfig": {
+            "$ref": "#/definitions/NoApiRenderConfig"
+          }
+        },
+        "type": "object"
+      },
+      "CodegenDependency": {
+        "additionalProperties": false,
+        "description": "Dependency package that may be required for the project code to run.",
+        "properties": {
+          "IsSemVer": {
+            "description": "Determines if the dependency package is using Semantic versioning.",
+            "type": "boolean"
+          },
+          "Name": {
+            "description": "Name of the dependency package.",
+            "type": "string"
+          },
+          "Reason": {
+            "description": "Indicates the reason to include the dependency package in your project code.",
+            "type": "string"
+          },
+          "SupportedVersion": {
+            "description": "Indicates the version of the supported dependency package.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "CodegenFeatureFlags": {
+        "additionalProperties": false,
+        "description": "Describes the feature flags for a code generation job.",
+        "properties": {
+          "IsNonModelSupported": {
+            "description": "Specifies whether a code generation job supports non models.",
+            "type": "boolean"
+          },
+          "IsRelationshipSupported": {
+            "description": "Specifies whether a code generation job supports data relationships.",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "CodegenGenericDataEnum": {
+        "additionalProperties": false,
+        "description": "Describes the enums in a generic data schema.",
+        "properties": {
+          "Values": {
+            "description": "The list of enum values in the generic data schema.",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "Values"
+        ],
+        "type": "object"
+      },
+      "CodegenGenericDataField": {
+        "additionalProperties": false,
+        "description": "Describes a field in a generic data schema.",
+        "properties": {
+          "DataType": {
+            "description": "The data type for the generic data field.",
+            "enum": [
+              "ID",
+              "String",
+              "Int",
+              "Float",
+              "AWSDate",
+              "AWSTime",
+              "AWSDateTime",
+              "AWSTimestamp",
+              "AWSEmail",
+              "AWSURL",
+              "AWSIPAddress",
+              "Boolean",
+              "AWSJSON",
+              "AWSPhone",
+              "Enum",
+              "Model",
+              "NonModel"
+            ],
+            "type": "string"
+          },
+          "DataTypeValue": {
+            "description": "The value of the data type for the generic data field.",
+            "type": "string"
+          },
+          "IsArray": {
+            "description": "Specifies whether the generic data field is an array.",
+            "type": "boolean"
+          },
+          "ReadOnly": {
+            "description": "Specifies whether the generic data field is read-only.",
+            "type": "boolean"
+          },
+          "Relationship": {
+            "$ref": "#/definitions/CodegenGenericDataRelationshipType"
+          },
+          "Required": {
+            "description": "Specifies whether the generic data field is required.",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "DataType",
+          "DataTypeValue",
+          "Required",
+          "ReadOnly",
+          "IsArray"
+        ],
+        "type": "object"
+      },
+      "CodegenGenericDataModel": {
+        "additionalProperties": false,
+        "description": "Describes a model in a generic data schema.",
+        "properties": {
+          "Fields": {
+            "additionalProperties": false,
+            "description": "The fields in the generic data model.",
+            "patternProperties": {
+              "^[a-zA-Z0-9_]+$": {
+                "$ref": "#/definitions/CodegenGenericDataField"
+              }
+            },
+            "type": "object"
+          },
+          "IsJoinTable": {
+            "description": "Specifies whether the generic data model is a join table.",
+            "type": "boolean"
+          },
+          "PrimaryKeys": {
+            "description": "The primary keys of the generic data model.",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "Fields",
+          "PrimaryKeys"
+        ],
+        "type": "object"
+      },
+      "CodegenGenericDataNonModel": {
+        "additionalProperties": false,
+        "description": "Describes a non-model in a generic data schema.",
+        "properties": {
+          "Fields": {
+            "additionalProperties": false,
+            "description": "The fields in a generic data schema non model.",
+            "patternProperties": {
+              "^[a-zA-Z0-9_]+$": {
+                "$ref": "#/definitions/CodegenGenericDataField"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "Fields"
+        ],
+        "type": "object"
+      },
+      "CodegenGenericDataRelationshipType": {
+        "additionalProperties": false,
+        "description": "Describes the relationship between generic data models.",
+        "properties": {
+          "AssociatedFields": {
+            "description": "The associated fields of the data relationship.",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "BelongsToFieldOnRelatedModel": {
+            "description": "The value of the belongsTo field on the related data model.",
+            "type": "string"
+          },
+          "CanUnlinkAssociatedModel": {
+            "description": "Specifies whether the relationship can unlink the associated model.",
+            "type": "boolean"
+          },
+          "IsHasManyIndex": {
+            "description": "Specifies whether the @index directive is supported for a hasMany data relationship.",
+            "type": "boolean"
+          },
+          "RelatedJoinFieldName": {
+            "description": "The name of the related join field in the data relationship.",
+            "type": "string"
+          },
+          "RelatedJoinTableName": {
+            "description": "The name of the related join table in the data relationship.",
+            "type": "string"
+          },
+          "RelatedModelFields": {
+            "description": "The related model fields in the data relationship.",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "RelatedModelName": {
+            "description": "The name of the related model in the data relationship.",
+            "type": "string"
+          },
+          "Type": {
+            "description": "The data relationship type.",
+            "enum": [
+              "HAS_MANY",
+              "HAS_ONE",
+              "BELONGS_TO"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Type",
+          "RelatedModelName"
+        ],
+        "type": "object"
+      },
+      "CodegenJobAsset": {
+        "additionalProperties": false,
+        "description": "Describes an asset for a code generation job.",
+        "properties": {
+          "DownloadUrl": {
+            "description": "The URL to use to access the asset.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "CodegenJobGenericDataSchema": {
+        "additionalProperties": false,
+        "description": "Describes the data schema for a code generation job.",
+        "properties": {
+          "DataSourceType": {
+            "description": "The type of the data source for the schema.",
+            "enum": [
+              "DataStore"
+            ],
+            "type": "string"
+          },
+          "Enums": {
+            "additionalProperties": false,
+            "description": "The name of a CodegenGenericDataEnum.",
+            "patternProperties": {
+              "^[a-zA-Z0-9_]+$": {
+                "$ref": "#/definitions/CodegenGenericDataEnum"
+              }
+            },
+            "type": "object"
+          },
+          "Models": {
+            "additionalProperties": false,
+            "description": "The name of a CodegenGenericDataModel.",
+            "patternProperties": {
+              "^[a-zA-Z0-9_]+$": {
+                "$ref": "#/definitions/CodegenGenericDataModel"
+              }
+            },
+            "type": "object"
+          },
+          "NonModels": {
+            "additionalProperties": false,
+            "description": "The name of a CodegenGenericDataNonModel.",
+            "patternProperties": {
+              "^[a-zA-Z0-9_]+$": {
+                "$ref": "#/definitions/CodegenGenericDataNonModel"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "DataSourceType",
+          "Models",
+          "Enums",
+          "NonModels"
+        ],
+        "type": "object"
+      },
+      "CodegenJobRenderConfig": {
+        "additionalProperties": false,
+        "description": "Describes the configuration information for rendering the UI component associated with the code generation job. This is a union type with a single member.",
+        "properties": {
+          "React": {
+            "$ref": "#/definitions/ReactStartCodegenJobData"
+          }
+        },
+        "required": [
+          "React"
+        ],
+        "type": "object"
+      },
+      "DataStoreRenderConfig": {
+        "additionalProperties": false,
+        "description": "Describes the DataStore configuration for an API for a code generation job.",
+        "type": "object"
+      },
+      "GraphQLRenderConfig": {
+        "additionalProperties": false,
+        "description": "Describes the GraphQL configuration for an API for a code generation job.",
+        "properties": {
+          "FragmentsFilePath": {
+            "description": "The path to the GraphQL fragments file, relative to the component output directory.",
+            "type": "string"
+          },
+          "MutationsFilePath": {
+            "description": "The path to the GraphQL mutations file, relative to the component output directory.",
+            "type": "string"
+          },
+          "QueriesFilePath": {
+            "description": "The path to the GraphQL queries file, relative to the component output directory.",
+            "type": "string"
+          },
+          "SubscriptionsFilePath": {
+            "description": "The path to the GraphQL subscriptions file, relative to the component output directory.",
+            "type": "string"
+          },
+          "TypesFilePath": {
+            "description": "The path to the GraphQL types file, relative to the component output directory.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "TypesFilePath",
+          "QueriesFilePath",
+          "MutationsFilePath",
+          "SubscriptionsFilePath",
+          "FragmentsFilePath"
+        ],
+        "type": "object"
+      },
+      "NoApiRenderConfig": {
+        "additionalProperties": false,
+        "description": "Describes the configuration for an application with no API being used.",
+        "type": "object"
+      },
+      "ReactStartCodegenJobData": {
+        "additionalProperties": false,
+        "description": "Describes the code generation job configuration for a React project.",
+        "properties": {
+          "ApiConfiguration": {
+            "$ref": "#/definitions/ApiConfiguration"
+          },
+          "InlineSourceMap": {
+            "description": "Specifies whether the code generation job should render inline source maps.",
+            "type": "boolean"
+          },
+          "Module": {
+            "description": "The JavaScript module type.",
+            "enum": [
+              "es2020",
+              "esnext"
+            ],
+            "type": "string"
+          },
+          "RenderTypeDeclarations": {
+            "description": "Specifies whether the code generation job should render type declaration files.",
+            "type": "boolean"
+          },
+          "Script": {
+            "description": "The file type to use for a JavaScript project.",
+            "enum": [
+              "jsx",
+              "tsx",
+              "js"
+            ],
+            "type": "string"
+          },
+          "Target": {
+            "description": "The ECMAScript specification to use.",
+            "enum": [
+              "es2015",
+              "es2020"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair that is used to tag the code generation job.",
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^(?!aws:)[a-zA-Z+-=._:/]+$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Represents an Amplify UI Builder code generation job resource. This is a read-only resource that provides visibility into code generation jobs started via the Amplify UI Builder API.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "AppId": {
+              "maxLength": 20,
+              "minLength": 1,
+              "pattern": "^d[a-z0-9]+$",
+              "type": "string"
+            },
+            "EnvironmentName": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "AppId",
+            "EnvironmentName"
+          ]
+        },
+        "permissions": [
+          "amplifyuibuilder:ListCodegenJobs",
+          "amplify:GetApp"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "amplifyuibuilder:GetCodegenJob",
+          "amplify:GetApp"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "AppId": {
+        "description": "The unique ID for the Amplify app.",
+        "maxLength": 20,
+        "minLength": 1,
+        "pattern": "^d[a-z0-9]+$",
+        "type": "string"
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the code generation job.",
+        "type": "string"
+      },
+      "AutoGenerateForms": {
+        "description": "Specifies whether to autogenerate forms in the code generation job.",
+        "type": "boolean"
+      },
+      "EnvironmentName": {
+        "description": "The name of the backend environment that is a part of the Amplify app.",
+        "type": "string"
+      },
+      "Features": {
+        "$ref": "#/definitions/CodegenFeatureFlags"
+      },
+      "Id": {
+        "description": "The unique ID for the code generation job.",
+        "type": "string"
+      },
+      "RenderConfig": {
+        "$ref": "#/definitions/CodegenJobRenderConfig"
+      },
+      "Status": {
+        "description": "The status of the code generation job.",
+        "enum": [
+          "in_progress",
+          "failed",
+          "succeeded"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "One or more key-value pairs that are assigned to the code generation job.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Id",
+      "/properties/Status",
+      "/properties/Tags"
+    ],
+    "required": [
+      "RenderConfig"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "amplifyuibuilder:GetCodegenJob"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::AmplifyUIBuilder::CodegenJob"
+  }
+}

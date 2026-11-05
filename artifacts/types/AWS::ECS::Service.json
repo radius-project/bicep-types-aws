@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ECS-Service",
   "type": "AWS::ECS::Service",
-  "time": "2026-10-20T10:46:30.064Z",
+  "time": "2026-11-05T14:40:30.129Z",
   "schema": {
     "additionalProperties": false,
     "conditionalCreateOnlyProperties": [
@@ -1242,6 +1242,7 @@
       },
       "PlacementStrategies": {
         "description": "The placement strategy objects to use for tasks in your service. You can specify a maximum of 5 strategy rules for each service.\n  To remove this property from your service resource, specify an empty ``PlacementStrategy`` array.",
+        "insertionOrder": true,
         "items": {
           "$ref": "#/definitions/PlacementStrategy"
         },
@@ -1318,6 +1319,7 @@
       }
     },
     "propertyTransform": {
+      "/properties/PlacementStrategies/*/Field": "Field $OR (Field = \"host\" ? \"instanceId\" : ($lowercase(Field) in [\"cpu\", \"memory\", \"gpu\"] ? $uppercase(Field) : Field))",
       "/properties/Role": "Role $OR $join([\"arn:(aws)[-]{0,1}[a-z]{0,3}[-]{0,1}[a-z]{0,3}:iam::[0-9]{12}[:]role/{1}\", Role])",
       "/properties/TaskDefinition": "TaskDefinition $OR $join([\"arn:(aws)[-]{0,1}[a-z]{0,3}[-]{0,1}[a-z]{0,3}:ecs:[a-z0-9-]+:[0-9]{12}:task-definition/\", $contains(TaskDefinition,\":\")?TaskDefinition:$join([TaskDefinition, \":[0-9]+\"])])"
     },

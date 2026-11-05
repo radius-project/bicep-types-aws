@@ -1,0 +1,79 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Route53-DelegationSet",
+  "type": "AWS::Route53::DelegationSet",
+  "time": "2026-11-05T21:07:00.101Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "description": "Resource Type definition for AWS::Route53::DelegationSet. Creates a reusable delegation set (a group of four name servers) that can be associated with multiple hosted zones.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "route53:CreateReusableDelegationSet",
+          "route53:GetReusableDelegationSet"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "route53:DeleteReusableDelegationSet",
+          "route53:GetReusableDelegationSet"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "route53:ListReusableDelegationSets"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "route53:GetReusableDelegationSet"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the delegation set.",
+        "pattern": "^arn:aws[a-zA-Z0-9-]*:route53:::delegationset/[^/\\s]{1,32}$",
+        "type": "string"
+      },
+      "CallerReference": {
+        "description": "A unique string that identifies the request and allows retrying failed CreateReusableDelegationSet requests without risk of executing the operation twice.",
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Id": {
+        "description": "The ID that Amazon Route 53 assigns to a reusable delegation set.",
+        "maxLength": 32,
+        "type": "string"
+      },
+      "NameServers": {
+        "description": "A list of the authoritative name servers for the delegation set.",
+        "insertionOrder": false,
+        "items": {
+          "maxLength": 1024,
+          "type": "string"
+        },
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Id",
+      "/properties/CallerReference",
+      "/properties/NameServers"
+    ],
+    "required": [],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::Route53::DelegationSet"
+  }
+}

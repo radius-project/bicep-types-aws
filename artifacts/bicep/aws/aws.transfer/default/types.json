@@ -1066,6 +1066,11 @@
   },
   {
     "$type": "ObjectType",
+    "name": "CommunicationMode",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "DirectoryListingOptimization",
     "properties": {}
   },
@@ -1080,19 +1085,19 @@
     "properties": {
       "AddressAllocationIds": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/71"
         },
         "flags": 0
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/72"
         },
         "flags": 0
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/73"
         },
         "flags": 0
       },
@@ -1172,7 +1177,7 @@
     "properties": {
       "As2Transports": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/74"
         },
         "flags": 0
       },
@@ -1184,13 +1189,19 @@
       },
       "ProxyConfig": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/60"
         },
         "flags": 0
       },
       "SetStatOption": {
         "type": {
           "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "SftpPorts": {
+        "type": {
+          "$ref": "#/75"
         },
         "flags": 0
       },
@@ -1240,6 +1251,24 @@
     "$type": "ObjectType",
     "name": "SftpAuthenticationMethods",
     "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SftpPortWithOptions",
+    "properties": {
+      "CommunicationMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "SftpPort": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -1293,13 +1322,13 @@
     "properties": {
       "OnPartialUpload": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/76"
         },
         "flags": 0
       },
       "OnUpload": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/77"
         },
         "flags": 0
       }
@@ -1332,13 +1361,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/67"
+      "$ref": "#/65"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/67"
+      "$ref": "#/69"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/69"
     }
   },
   {
@@ -1369,7 +1404,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/65"
+      "$ref": "#/67"
     }
   },
   {
@@ -1384,7 +1419,7 @@
       },
       "As2ServiceManagedEgressIpAddresses": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/79"
         },
         "flags": 2,
         "description": "The list of egress IP addresses of this server. These IP addresses are only relevant for servers that use the AS2 protocol. They are used for sending asynchronous MDNs. These IP addresses are assigned automatically when you create an AS2 server. Additionally, if you update an existing server and add the AS2 protocol, static IP addresses are assigned as well."
@@ -1397,7 +1432,7 @@
       },
       "CreateWithHostKey": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/80"
         },
         "flags": 4,
         "description": "When this property is `true`, AWS Transfer Family will generate an initial host key for your server, making it immediately available to SFTP clients. When set to `false`, clients will not be able to establish an SFTP session until you import one or more host keys (see AWS::Transfer::HostKey). This property cannot be changed after resource creation. Default: `true`."
@@ -1410,7 +1445,7 @@
       },
       "EndpointDetails": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/53"
         },
         "flags": 0
       },
@@ -1422,7 +1457,7 @@
       },
       "IdentityProviderDetails": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/55"
         },
         "flags": 0
       },
@@ -1458,19 +1493,19 @@
       },
       "ProtocolDetails": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/59"
         },
         "flags": 0
       },
       "Protocols": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/81"
         },
         "flags": 0
       },
       "S3StorageOptions": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/62"
         },
         "flags": 0
       },
@@ -1494,19 +1529,19 @@
       },
       "StructuredLogDestinations": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/82"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/83"
         },
         "flags": 0
       },
       "WorkflowDetails": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/70"
         },
         "flags": 0
       }
@@ -1532,7 +1567,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/84"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1543,7 +1578,7 @@
     "$type": "ResourceType",
     "name": "AWS.Transfer/Server@default",
     "body": {
-      "$ref": "#/82"
+      "$ref": "#/85"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1594,7 +1629,7 @@
       },
       "SecondaryGids": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/92"
         },
         "flags": 0
       },
@@ -1637,7 +1672,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/84"
+      "$ref": "#/87"
     }
   },
   {
@@ -1649,7 +1684,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/88"
+      "$ref": "#/91"
     }
   },
   {
@@ -1670,7 +1705,7 @@
       },
       "HomeDirectoryMappings": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/94"
         },
         "flags": 0
       },
@@ -1688,7 +1723,7 @@
       },
       "PosixProfile": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/90"
         },
         "flags": 0
       },
@@ -1706,14 +1741,14 @@
       },
       "SshPublicKeys": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/95"
         },
         "flags": 0,
         "description": "This represents the SSH User Public Keys for CloudFormation resource"
       },
       "Tags": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/96"
         },
         "flags": 0
       },
@@ -1745,7 +1780,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/97"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1756,7 +1791,7 @@
     "$type": "ResourceType",
     "name": "AWS.Transfer/User@default",
     "body": {
-      "$ref": "#/95"
+      "$ref": "#/98"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1767,7 +1802,7 @@
     "properties": {
       "Vpc": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/103"
         },
         "flags": 0
       }
@@ -1830,13 +1865,13 @@
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/107"
         },
         "flags": 4
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/105"
+          "$ref": "#/108"
         },
         "flags": 0
       },
@@ -1904,7 +1939,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/99"
+      "$ref": "#/102"
     }
   },
   {
@@ -1927,19 +1962,19 @@
       },
       "EndpointDetails": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/100"
         },
         "flags": 0
       },
       "IdentityProviderDetails": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/101"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/110"
         },
         "flags": 0,
         "description": "Key-value pairs that can be used to group and search for web apps."
@@ -1952,7 +1987,7 @@
       },
       "WebAppCustomization": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/104"
         },
         "flags": 0
       },
@@ -1971,7 +2006,7 @@
       },
       "WebAppUnits": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/106"
         },
         "flags": 0
       }
@@ -1997,7 +2032,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/111"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2008,7 +2043,7 @@
     "$type": "ResourceType",
     "name": "AWS.Transfer/WebApp@default",
     "body": {
-      "$ref": "#/109"
+      "$ref": "#/112"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2039,13 +2074,13 @@
     "properties": {
       "EfsFileLocation": {
         "type": {
-          "$ref": "#/111"
+          "$ref": "#/114"
         },
         "flags": 0
       },
       "S3FileLocation": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/117"
         },
         "flags": 0
       }
@@ -2057,7 +2092,7 @@
     "properties": {
       "S3FileLocation": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/117"
         },
         "flags": 0
       }
@@ -2129,35 +2164,35 @@
     "properties": {
       "CopyStepDetails": {
         "type": {
-          "$ref": "#/118"
+          "$ref": "#/121"
         },
         "flags": 0,
         "description": "Details for a step that performs a file copy."
       },
       "CustomStepDetails": {
         "type": {
-          "$ref": "#/119"
+          "$ref": "#/122"
         },
         "flags": 0,
         "description": "Details for a step that invokes a lambda function."
       },
       "DecryptStepDetails": {
         "type": {
-          "$ref": "#/120"
+          "$ref": "#/123"
         },
         "flags": 0,
         "description": "Details for a step that performs a file decryption."
       },
       "DeleteStepDetails": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/124"
         },
         "flags": 0,
         "description": "Details for a step that deletes the file."
       },
       "TagStepDetails": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/126"
         },
         "flags": 0,
         "description": "Details for a step that creates one or more tags."
@@ -2176,7 +2211,7 @@
     "properties": {
       "DestinationFileLocation": {
         "type": {
-          "$ref": "#/113"
+          "$ref": "#/116"
         },
         "flags": 0
       },
@@ -2243,7 +2278,7 @@
     "properties": {
       "DestinationFileLocation": {
         "type": {
-          "$ref": "#/112"
+          "$ref": "#/115"
         },
         "flags": 1
       },
@@ -2300,7 +2335,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/115"
+      "$ref": "#/118"
     }
   },
   {
@@ -2323,7 +2358,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/125"
         },
         "flags": 0,
         "description": "Array that contains from 1 to 10 key/value pairs."
@@ -2337,19 +2372,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/117"
+      "$ref": "#/120"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/117"
+      "$ref": "#/120"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/116"
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/119"
     }
   },
   {
@@ -2372,21 +2413,28 @@
       },
       "OnExceptionSteps": {
         "type": {
-          "$ref": "#/125"
+          "$ref": "#/128"
         },
         "flags": 0,
         "description": "Specifies the steps (actions) to take if any errors are encountered during execution of the workflow."
       },
       "Steps": {
         "type": {
-          "$ref": "#/126"
+          "$ref": "#/129"
         },
         "flags": 1,
         "description": "Specifies the details for the steps that are in the specified workflow."
       },
+      "StructuredLogDestinations": {
+        "type": {
+          "$ref": "#/130"
+        },
+        "flags": 0,
+        "description": "Specifies the log destinations for the workflow."
+      },
       "Tags": {
         "type": {
-          "$ref": "#/127"
+          "$ref": "#/131"
         },
         "flags": 0,
         "description": "Key-value pairs that can be used to group and search for workflows. Tags are metadata attached to workflows for any purpose."
@@ -2420,7 +2468,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/128"
+          "$ref": "#/132"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2431,7 +2479,7 @@
     "$type": "ResourceType",
     "name": "AWS.Transfer/Workflow@default",
     "body": {
-      "$ref": "#/129"
+      "$ref": "#/133"
     },
     "readableScopes": 0,
     "writableScopes": 0

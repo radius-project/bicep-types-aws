@@ -1,0 +1,108 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Lightsail-ContactMethod",
+  "type": "AWS::Lightsail::ContactMethod",
+  "time": "2026-11-05T21:07:35.477Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Protocol"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Protocol",
+      "/properties/ContactEndpoint"
+    ],
+    "description": "Resource Type definition for AWS::Lightsail::ContactMethod",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "lightsail:CreateContactMethod",
+          "lightsail:GetContactMethods"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "lightsail:DeleteContactMethod",
+          "lightsail:GetContactMethods"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "lightsail:GetContactMethods"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "lightsail:GetContactMethods"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the contact method.",
+        "pattern": "^arn:aws(-[a-z]+)*:lightsail:[a-z0-9-]+:[0-9]+:ContactMethod/(Email|SMS)$",
+        "type": "string"
+      },
+      "ContactEndpoint": {
+        "description": "The destination of the contact method, such as an email address or a mobile phone number.",
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The timestamp when the contact method was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the contact method.",
+        "type": "string"
+      },
+      "Protocol": {
+        "description": "The protocol of the contact method, such as Email or SMS (text messaging).",
+        "enum": [
+          "Email",
+          "SMS"
+        ],
+        "type": "string"
+      },
+      "ResourceType": {
+        "description": "The Lightsail resource type of the contact method.",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The current status of the contact method.",
+        "enum": [
+          "PendingVerification",
+          "Valid",
+          "Invalid"
+        ],
+        "type": "string"
+      },
+      "SupportCode": {
+        "description": "The support code for the contact method.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Status",
+      "/properties/Name",
+      "/properties/CreatedAt",
+      "/properties/SupportCode",
+      "/properties/ResourceType"
+    ],
+    "required": [
+      "Protocol",
+      "ContactEndpoint"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::Lightsail::ContactMethod"
+  }
+}

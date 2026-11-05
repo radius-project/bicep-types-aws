@@ -1,5 +1,13 @@
 # AWS.CloudFormation @ default
 
+## Resource AWS.CloudFormation/ChangeSet@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudFormation/ChangeSetProperties](#awscloudformationchangesetproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.CloudFormation/GeneratedTemplate@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -32,6 +40,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFormation/HookTypeConfigProperties](#awscloudformationhooktypeconfigproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.CloudFormation/HookVersion@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudFormation/HookVersionProperties](#awscloudformationhookversionproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.CloudFormation/LambdaHook@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -40,6 +56,38 @@
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFormation/LambdaHookProperties](#awscloudformationlambdahookproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.CloudFormation/ModuleDefaultVersion@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudFormation/ModuleDefaultVersionProperties](#awscloudformationmoduledefaultversionproperties) (Identifier): properties of the resource
+
+## Resource AWS.CloudFormation/ModuleVersion@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudFormation/ModuleVersionProperties](#awscloudformationmoduleversionproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.CloudFormation/PublicTypeVersion@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudFormation/PublicTypeVersionProperties](#awscloudformationpublictypeversionproperties) (Identifier): properties of the resource
+
+## Resource AWS.CloudFormation/Publisher@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudFormation/PublisherProperties](#awscloudformationpublisherproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.CloudFormation/ResourceDefaultVersion@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -47,6 +95,22 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFormation/ResourceDefaultVersionProperties](#awscloudformationresourcedefaultversionproperties) (Identifier): properties of the resource
+
+## Resource AWS.CloudFormation/ResourceScan@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudFormation/ResourceScanProperties](#awscloudformationresourcescanproperties) (Identifier): properties of the resource
+
+## Resource AWS.CloudFormation/ResourceVersion@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudFormation/ResourceVersionProperties](#awscloudformationresourceversionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudFormation/Stack@default
 * **Readable Scope(s)**: None
@@ -77,6 +141,27 @@
 * **DependsOn**: string[]: A list of StackSet ARNs that this StackSet depends on for auto-deployment operations. When auto-deployment is triggered, operations will be sequenced to ensure all dependencies complete successfully before this StackSet's operation begins.
 * **Enabled**: bool: If set to true, StackSets automatically deploys additional stack instances to AWS Organizations accounts that are added to a target organization or organizational unit (OU) in the specified Regions. If an account is removed from a target organization or OU, StackSets deletes stack instances from the account in the specified Regions.
 * **RetainStacksOnAccountRemoval**: bool: If set to true, stack resources are retained when an account is removed from a target organization or OU. If set to false, stack resources are deleted. Specify only if Enabled is set to True.
+
+## AWS.CloudFormation/ChangeSetProperties
+### Properties
+* **Capabilities**: string[]: The capabilities that are allowed in the stack.
+* **ChangeSetId**: string (ReadOnly, Identifier): The ARN of the change set.
+* **ChangeSetName**: string (Required): The name of the change set. Must be unique among all change sets associated with the specified stack.
+* **ChangeSetType**: string (WriteOnly): The type of change set operation.
+* **CreationTime**: string (ReadOnly): The time the change set was created.
+* **DeploymentMode**: string: Determines how CloudFormation handles configuration drift during deployment.
+* **Description**: string: A description to help you identify this change set.
+* **ImportExistingResources**: bool: Indicates if the change set imports resources that already exist.
+* **IncludeNestedStacks**: bool: Creates a change set for all nested stacks specified in the template.
+* **NotificationARNs**: string[]: The ARNs of Amazon SNS topics that CloudFormation associates with the stack.
+* **OnStackFailure**: string: Determines what action will be taken if stack creation fails.
+* **RoleARN**: string (WriteOnly): The ARN of an IAM role that CloudFormation assumes when executing the change set.
+* **StackId**: string (ReadOnly): The unique ID of the stack.
+* **StackName**: string (Required): The name or unique ID of the stack for which you are creating a change set.
+* **Tags**: [ChangeSet_Tags](#changesettags)[]: Key-value pairs to associate with the change set.
+* **TemplateBody**: string (WriteOnly): A structure that contains the body of the revised template.
+* **TemplateURL**: string (WriteOnly): The URL of the file that contains the revised template.
+* **UsePreviousTemplate**: bool (WriteOnly): Whether to reuse the template associated with the stack to create the change set.
 
 ## AWS.CloudFormation/GeneratedTemplateProperties
 ### Properties
@@ -122,6 +207,28 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 
 We recommend that type names adhere to the following pattern: company_or_organization::service::type.
 
+## AWS.CloudFormation/HookVersionProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the type, here the HookVersion. This is used to uniquely identify a HookVersion resource
+* **ExecutionRoleArn**: string: The Amazon Resource Name (ARN) of the IAM execution role to use to register the type. If your resource type calls AWS APIs in any of its handlers, you must create an IAM execution role that includes the necessary permissions to call those AWS APIs, and provision that execution role in your account. CloudFormation then assumes that execution role to provide your resource type with the appropriate credentials.
+* **IsDefaultVersion**: bool (ReadOnly): Indicates if this type version is the current default version
+* **LoggingConfig**: [LoggingConfig](#loggingconfig): Specifies logging configuration information for a type.
+* **SchemaHandlerPackage**: string (Required, WriteOnly): A url to the S3 bucket containing the schema handler package that contains the schema, event handlers, and associated files for the type you want to register.
+
+For information on generating a schema handler package for the type you want to register, see submit in the CloudFormation CLI User Guide.
+* **TypeArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the type without the versionID.
+* **TypeName**: string (Required): The name of the type being registered.
+
+We recommend that type names adhere to the following pattern: company_or_organization::service::type.
+* **VersionId**: string (ReadOnly): The ID of the version of the type represented by this hook instance.
+* **Visibility**: string (ReadOnly): The scope at which the type is visible and usable in CloudFormation operations.
+
+Valid values include:
+
+PRIVATE: The type is only visible and usable within the account in which it is registered. Currently, AWS CloudFormation marks any types you register as PRIVATE.
+
+PUBLIC: The type is publically visible and usable within any Amazon account.
+
 ## AWS.CloudFormation/LambdaHookProperties
 ### Properties
 * **Alias**: string (Required): The typename alias for the hook.
@@ -136,6 +243,53 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 * **TargetFilters**: [LambdaHook_TargetFilters](#lambdahooktargetfilters): Attribute to specify which targets should invoke the hook
 * **TargetOperations**: string[] (Required): Which operations should this Hook run against? Resource changes, stacks or change sets.
 
+## AWS.CloudFormation/ModuleDefaultVersionProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the module version to set as the default version.
+* **ModuleName**: string (WriteOnly): The name of a module existing in the registry.
+* **VersionId**: string (WriteOnly): The ID of an existing version of the named module to set as the default.
+
+## AWS.CloudFormation/ModuleVersionProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the module.
+* **Description**: string (ReadOnly): The description of the registered module.
+* **DocumentationUrl**: string (ReadOnly): The URL of a page providing detailed documentation for this module.
+* **IsDefaultVersion**: bool (ReadOnly): Indicator of whether this module version is the current default version
+* **ModuleName**: string (Required): The name of the module being registered.
+
+Recommended module naming pattern: company_or_organization::service::type::MODULE.
+* **ModulePackage**: string (Required, WriteOnly): The url to the S3 bucket containing the schema and template fragment for the module you want to register.
+* **Schema**: string (ReadOnly): The schema defining input parameters to and resources generated by the module.
+* **TimeCreated**: string (ReadOnly): The time that the specified module version was registered.
+* **VersionId**: string (ReadOnly): The version ID of the module represented by this module instance.
+* **Visibility**: string (ReadOnly): The scope at which the type is visible and usable in CloudFormation operations.
+
+The only allowed value at present is:
+
+PRIVATE: The type is only visible and usable within the account in which it is registered. Currently, AWS CloudFormation marks any types you register as PRIVATE.
+
+## AWS.CloudFormation/PublicTypeVersionProperties
+### Properties
+* **Arn**: string (WriteOnly): The Amazon Resource Number (ARN) of the extension.
+* **LogDeliveryBucket**: string: A url to the S3 bucket where logs for the testType run will be available
+* **PublicTypeArn**: string (ReadOnly, Identifier): The Amazon Resource Number (ARN) assigned to the public extension upon publication
+* **PublicVersionNumber**: string: The version number of a public third-party extension
+* **PublisherId**: string (ReadOnly): The reserved publisher id for this type, or the publisher id assigned by CloudFormation for publishing in this region.
+* **Type**: string: The kind of extension
+* **TypeName**: string: The name of the type being registered.
+
+We recommend that type names adhere to the following pattern: company_or_organization::service::type.
+* **TypeVersionArn**: string (ReadOnly): The Amazon Resource Number (ARN) of the extension with the versionId.
+
+## AWS.CloudFormation/PublisherProperties
+### Properties
+* **AcceptTermsAndConditions**: bool (Required): Whether you accept the terms and conditions for publishing extensions in the CloudFormation registry. You must accept the terms and conditions in order to publish public extensions to the CloudFormation registry. The terms and conditions can be found at https://cloudformation-registry-documents.s3.amazonaws.com/Terms_and_Conditions_for_AWS_CloudFormation_Registry_Publishers.pdf
+* **ConnectionArn**: string: If you are using a Bitbucket or GitHub account for identity verification, the Amazon Resource Name (ARN) for your connection to that account.
+* **IdentityProvider**: string (ReadOnly): The type of account used as the identity provider when registering this publisher with CloudFormation.
+* **PublisherId**: string (ReadOnly, Identifier): The reserved publisher id for this type, or the publisher id assigned by CloudFormation for publishing in this region.
+* **PublisherProfile**: string (ReadOnly): The URL to the publisher's profile with the identity provider.
+* **PublisherStatus**: string (ReadOnly): Whether the publisher is verified.
+
 ## AWS.CloudFormation/ResourceDefaultVersionProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the type. This is used to uniquely identify a ResourceDefaultVersion
@@ -144,6 +298,38 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 We recommend that type names adhere to the following pattern: company_or_organization::service::type.
 * **TypeVersionArn**: string: The Amazon Resource Name (ARN) of the type version.
 * **VersionId**: string: The ID of an existing version of the resource to set as the default.
+
+## AWS.CloudFormation/ResourceScanProperties
+### Properties
+* **PercentageCompleted**: int (ReadOnly): The percentage of the resource scan that has been completed.
+* **ResourceScanId**: string (Identifier): The Amazon Resource Name (ARN) of the resource scan.
+* **ScanFilters**: [ScanFilter](#scanfilter)[]: The scan filters to use.
+* **ScanId**: string (ReadOnly): The unique identifier portion of the resource scan ARN.
+* **StartTime**: string (ReadOnly): The time that the resource scan was started.
+* **Status**: string (ReadOnly): Status of the resource scan.
+
+## AWS.CloudFormation/ResourceVersionProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the type, here the ResourceVersion. This is used to uniquely identify a ResourceVersion resource
+* **ExecutionRoleArn**: string: The Amazon Resource Name (ARN) of the IAM execution role to use to register the type. If your resource type calls AWS APIs in any of its handlers, you must create an IAM execution role that includes the necessary permissions to call those AWS APIs, and provision that execution role in your account. CloudFormation then assumes that execution role to provide your resource type with the appropriate credentials.
+* **IsDefaultVersion**: bool (ReadOnly): Indicates if this type version is the current default version
+* **LoggingConfig**: [LoggingConfig](#loggingconfig): Specifies logging configuration information for a type.
+* **ProvisioningType**: string (ReadOnly): The provisioning behavior of the type. AWS CloudFormation determines the provisioning type during registration, based on the types of handlers in the schema handler package submitted.
+* **SchemaHandlerPackage**: string (Required, WriteOnly): A url to the S3 bucket containing the schema handler package that contains the schema, event handlers, and associated files for the type you want to register.
+
+For information on generating a schema handler package for the type you want to register, see submit in the CloudFormation CLI User Guide.
+* **TypeArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the type without the versionID.
+* **TypeName**: string (Required): The name of the type being registered.
+
+We recommend that type names adhere to the following pattern: company_or_organization::service::type.
+* **VersionId**: string (ReadOnly): The ID of the version of the type represented by this resource instance.
+* **Visibility**: string (ReadOnly): The scope at which the type is visible and usable in CloudFormation operations.
+
+Valid values include:
+
+PRIVATE: The type is only visible and usable within the account in which it is registered. Currently, AWS CloudFormation marks any types you register as PRIVATE.
+
+PUBLIC: The type is publically visible and usable within any Amazon account.
 
 ## AWS.CloudFormation/StackProperties
 ### Properties
@@ -206,6 +392,11 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 * **TypeNameAlias**: string: An alias to assign to the public extension in this account and region. If you specify an alias for the extension, you must then use the alias to refer to the extension in your templates.
 * **VersionBump**: string (WriteOnly): Manually updates a previously-enabled type to a new major or minor version, if available. You can also use this parameter to update the value of AutoUpdateEnabled
 
+## ChangeSet_Tags
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
 ## DeploymentTargets
 ### Properties
 * **AccountFilterType**: string: The filter type you want to apply on organizational units and accounts.
@@ -260,8 +451,18 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 
 ## LoggingConfig
 ### Properties
+* **LogGroupName**: string: The Amazon CloudWatch log group to which CloudFormation sends error logging information when invoking the type's handlers.
+* **LogRoleArn**: string: The ARN of the role that CloudFormation should assume when sending log entries to CloudWatch logs.
+
+## LoggingConfig
+### Properties
 * **LogGroupName**: string (Required): The Amazon CloudWatch Logs group to which CloudFormation sends error logging information when invoking the extension's handlers.
 * **LogRoleArn**: string (Required): The ARN of the role that CloudFormation should assume when sending log entries to CloudWatch Logs.
+
+## LoggingConfig
+### Properties
+* **LogGroupName**: string: The Amazon CloudWatch log group to which CloudFormation sends error logging information when invoking the type's handlers.
+* **LogRoleArn**: string: The ARN of the role that CloudFormation should assume when sending log entries to CloudWatch logs.
 
 ## LoggingConfig
 ### Properties
@@ -294,6 +495,10 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 ### Properties
 * **Uri**: string (Required): S3 uri of Guard files.
 * **VersionId**: string: S3 object version
+
+## ScanFilter
+### Properties
+* **Types**: string[]: An array of strings where each string represents an AWS resource type to scan.
 
 ## Stack_Parameters
 ### Properties

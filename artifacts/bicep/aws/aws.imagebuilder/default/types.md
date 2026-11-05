@@ -1,5 +1,21 @@
 # AWS.ImageBuilder @ default
 
+## Resource AWS.ImageBuilder/AllImageBuildVersions@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ImageBuilder/AllImageBuildVersionsProperties](#awsimagebuilderallimagebuildversionsproperties) (Identifier): properties of the resource
+
+## Resource AWS.ImageBuilder/AllWorkflowBuildVersions@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ImageBuilder/AllWorkflowBuildVersionsProperties](#awsimagebuilderallworkflowbuildversionsproperties) (Identifier): properties of the resource
+
 ## Resource AWS.ImageBuilder/Component@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -56,6 +72,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.ImageBuilder/InfrastructureConfigurationProperties](#awsimagebuilderinfrastructureconfigurationproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.ImageBuilder/LifecycleExecution@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ImageBuilder/LifecycleExecutionProperties](#awsimagebuilderlifecycleexecutionproperties) (Identifier): properties of the resource
+
 ## Resource AWS.ImageBuilder/LifecyclePolicy@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -72,6 +96,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.ImageBuilder/WorkflowProperties](#awsimagebuilderworkflowproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.ImageBuilder/WorkflowExecution@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ImageBuilder/WorkflowExecutionProperties](#awsimagebuilderworkflowexecutionproperties) (Identifier): properties of the resource
+
+## Resource AWS.ImageBuilder/WorkflowStepExecution@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ImageBuilder/WorkflowStepExecutionProperties](#awsimagebuilderworkflowstepexecutionproperties) (Identifier): properties of the resource
+
 ## Action
 ### Properties
 * **IncludeResources**: [IncludeResources](#includeresources)
@@ -81,6 +121,32 @@
 ### Properties
 * **SystemsManagerAgent**: [SystemsManagerAgent](#systemsmanageragent): Contains settings for the SSM agent on your build instance.
 * **UserDataOverride**: string: Use this property to provide commands or a command script to run when you launch your build instance.
+
+## AllImageBuildVersions_ImageTestsConfiguration
+### Properties
+* **ImageTestsEnabled**: bool: Determines if tests should run after building the image.
+* **TimeoutMinutes**: int: The maximum time in minutes that tests are permitted to run.
+
+## AllImageBuildVersions_State
+### Properties
+* **Status**: string: The status of the image.
+
+## AllImageBuildVersions_Tags
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## AllWorkflowBuildVersions_Parameters
+### Properties
+* **DefaultValue**: string[]: The default value of this parameter if no input is provided.
+* **Description**: string: Describes this parameter.
+* **Name**: string (Required): The name of this input parameter.
+* **Type**: string (Required): The type of input this parameter provides.
+
+## AllWorkflowBuildVersions_Tags
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## AmiDistributionConfiguration
 ### Properties
@@ -107,6 +173,40 @@
 ### Properties
 * **CapacityWaitTimeoutSeconds**: int: The number of seconds that Image Builder waits for an instance to become available in the group before the build fails. If you set this value to 0 or omit it, the build fails as soon as the group has no instance available.
 * **Name**: string (Required): The name of the Auto Scaling group, in the same account and AWS Region as the infrastructure configuration.
+
+## AWS.ImageBuilder/AllImageBuildVersionsProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the image build version.
+* **BuildNumber**: string (ReadOnly): The build number of the image build version.
+* **BuildType**: string (ReadOnly): Indicates the type of build that created this image.
+* **DateCreated**: string (ReadOnly): The date on which Image Builder created this image.
+* **EnhancedImageMetadataEnabled**: bool (ReadOnly): Indicates whether enhanced image metadata collection is enabled.
+* **ExecutionRole**: string (ReadOnly): The execution role for the image.
+* **ImageTestsConfiguration**: [AllImageBuildVersions_ImageTestsConfiguration](#allimagebuildversionsimagetestsconfiguration) (ReadOnly): The image tests configuration.
+* **ImageVersionArn**: string (ReadOnly): The image version ARN whose build versions you want to list.
+* **Name**: string (ReadOnly): The name of the image.
+* **OsVersion**: string (ReadOnly): The operating system version of the instances that launch from this image.
+* **Platform**: string (ReadOnly): The operating system platform of the image.
+* **State**: [AllImageBuildVersions_State](#allimagebuildversionsstate) (ReadOnly): Image status and the reason for that status.
+* **Tags**: [AllImageBuildVersions_Tags](#allimagebuildversionstags)[] (ReadOnly): The tags associated with the image.
+* **Type**: string (ReadOnly): Specifies whether this image produces an AMI or a container image.
+* **Version**: string (ReadOnly): The semantic version of the image (major.minor.patch).
+
+## AWS.ImageBuilder/AllWorkflowBuildVersionsProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the workflow build version.
+* **BuildNumber**: string (ReadOnly): The build number of the workflow build version.
+* **ChangeDescription**: string (ReadOnly): Describes what change has been made in this version of the workflow.
+* **Data**: string (ReadOnly): Contains the YAML document content for the workflow.
+* **DateCreated**: string (ReadOnly): The timestamp when Image Builder created the workflow resource.
+* **Description**: string (ReadOnly): Describes the workflow.
+* **Name**: string (ReadOnly): The name of the workflow.
+* **Owner**: string (ReadOnly): The owner of the workflow resource.
+* **Parameters**: [AllWorkflowBuildVersions_Parameters](#allworkflowbuildversionsparameters)[] (ReadOnly): An array of input parameters that the workflow uses to control actions or configure settings.
+* **Tags**: [AllWorkflowBuildVersions_Tags](#allworkflowbuildversionstags)[] (ReadOnly): The tags associated with the workflow build version.
+* **Version**: string (ReadOnly): The semantic version of the workflow (major.minor.patch).
+* **WorkflowType**: string (ReadOnly): The image creation stage that this workflow applies to.
+* **WorkflowVersionArn**: string (ReadOnly): The workflow version ARN whose build versions you want to list.
 
 ## AWS.ImageBuilder/ComponentProperties
 ### Properties
@@ -231,6 +331,16 @@
 * **TerminateInstanceOnCompletion**: bool: Specifies whether Image Builder terminates build and test instances that are still running when image creation ends without a failure. A TerminateInstance step in a workflow runs even when this is false.
 * **TerminateInstanceOnFailure**: bool: The terminate instance on failure configuration of the infrastructure configuration.
 
+## AWS.ImageBuilder/LifecycleExecutionProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the lifecycle execution.
+* **EndTime**: string (ReadOnly): The timestamp when the lifecycle runtime instance completed.
+* **LifecycleExecutionId**: string (ReadOnly): The unique identifier for the lifecycle execution.
+* **ResourceArn**: string: The ARN of the Image Builder resource for which to list lifecycle executions.
+* **ResourcesImpactedSummary**: [LifecycleExecutionResourcesImpactedSummary](#lifecycleexecutionresourcesimpactedsummary) (ReadOnly)
+* **StartTime**: string (ReadOnly): The timestamp when the lifecycle runtime instance started.
+* **State**: [LifecycleExecutionState](#lifecycleexecutionstate) (ReadOnly)
+
 ## AWS.ImageBuilder/LifecyclePolicyProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the lifecycle policy.
@@ -242,6 +352,21 @@
 * **ResourceType**: string (Required): The resource type of the lifecycle policy.
 * **Status**: string: The status of the lifecycle policy.
 * **Tags**: [LifecyclePolicy_Tags](#lifecyclepolicytags): The tags associated with the lifecycle policy.
+
+## AWS.ImageBuilder/WorkflowExecutionProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the workflow execution.
+* **EndTime**: string (ReadOnly): The timestamp when the specified runtime instance of the workflow finished.
+* **ImageBuildVersionArn**: string: The Amazon Resource Name (ARN) of the image resource build version that the specified runtime instance of the workflow created.
+* **StartTime**: string (ReadOnly): The timestamp when the specified runtime instance of the workflow started.
+* **Status**: string (ReadOnly): The current runtime status for the specified runtime instance of the workflow.
+* **TotalStepCount**: int (ReadOnly): The total number of steps in the specified runtime instance of the workflow that ran.
+* **TotalStepsFailed**: int (ReadOnly): A runtime count for the number of steps that failed in the specified runtime instance of the workflow.
+* **TotalStepsSkipped**: int (ReadOnly): A runtime count for the number of steps that were skipped in the specified runtime instance of the workflow.
+* **TotalStepsSucceeded**: int (ReadOnly): A runtime count for the number of steps that ran successfully in the specified runtime instance of the workflow.
+* **Type**: string (ReadOnly): The type of workflow that Image Builder ran for the specified runtime instance of the workflow.
+* **WorkflowBuildVersionArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the build version for the Image Builder workflow resource that defines the specified runtime instance of the workflow.
+* **WorkflowExecutionId**: string (ReadOnly): The unique identifier that Image Builder assigned to keep track of runtime details when it ran the workflow.
 
 ## AWS.ImageBuilder/WorkflowProperties
 ### Properties
@@ -256,6 +381,22 @@
 * **Type**: string (Required): The type of the workflow denotes whether the workflow is used to build, test, or distribute.
 * **Uri**: string (WriteOnly): The uri of the workflow.
 * **Version**: string (Required): The version of the workflow.
+
+## AWS.ImageBuilder/WorkflowStepExecutionProperties
+### Properties
+* **Action**: string (ReadOnly): The name of the action that the specified step performs.
+* **EndTime**: string (ReadOnly): The timestamp when the specified runtime instance of the workflow step finished.
+* **ImageBuildVersionArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the image resource build version that the specified runtime instance of the workflow step creates.
+* **Inputs**: string (ReadOnly): Input parameters that Image Builder provided for the specified runtime instance of the workflow step.
+* **Name**: string (ReadOnly): The name of the specified runtime instance of the workflow step.
+* **OnFailure**: string (ReadOnly): The action to perform if the workflow step fails.
+* **Outputs**: string (ReadOnly): The file names that the specified runtime version of the workflow step created as output.
+* **StartTime**: string (ReadOnly): The timestamp when the specified runtime version of the workflow step started.
+* **Status**: string (ReadOnly): The current status for the specified runtime version of the workflow step.
+* **StepExecutionId**: string (Identifier): The unique identifier for the workflow step execution.
+* **TimeoutSeconds**: int (ReadOnly): The maximum duration in seconds for this step to complete its action.
+* **WorkflowBuildVersionArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the build version for the Image Builder workflow resource that defines this workflow step.
+* **WorkflowExecutionId**: string (ReadOnly): The unique identifier that Image Builder assigned to keep track of runtime details when it ran the workflow.
 
 ## Component_Tags
 ### Properties
@@ -399,11 +540,15 @@
 ### Properties
 * **EcrConfiguration**: [EcrConfiguration](#ecrconfiguration): Contains ECR settings for vulnerability scans.
 * **ImageScanningEnabled**: bool: This sets whether Image Builder keeps a snapshot of the vulnerability scans that Amazon Inspector runs against the test instance when you create a new image.
+* **ImageScanningTypes**: string[]: The type of vulnerability scan that Image Builder runs for AMI output when ImageScanningEnabled is true. Specify a single value. If you omit ImageScanningTypes, Image Builder uses TEST_INSTANCE_CVE. With TEST_INSTANCE_CVE, Amazon Inspector scans the test instance during image tests, and you must activate Amazon Inspector for Amazon EC2 scanning in your account. With ON_DEMAND_AMI_CVE, Amazon Inspector starts an on-demand scan of the output AMI during image tests. You must build from an image recipe, but you do not need to activate Amazon Inspector in your account.
+* **ScanResultCondition**: [ScanResultCondition](#scanresultcondition): The condition that the output AMI's scan results must meet for the image to pass. You can set ScanResultCondition only when ImageScanningTypes is ON_DEMAND_AMI_CVE. If you omit it, Image Builder starts the scan but does not wait for it or use its results to pass or fail the image.
 
 ## ImageScanningConfiguration
 ### Properties
 * **EcrConfiguration**: [EcrConfiguration](#ecrconfiguration): Contains ECR settings for vulnerability scans.
 * **ImageScanningEnabled**: bool: This sets whether Image Builder keeps a snapshot of the vulnerability scans that Amazon Inspector runs against the test instance when you create a new image.
+* **ImageScanningTypes**: string[]: The type of vulnerability scan that Image Builder runs for AMI output when ImageScanningEnabled is true. Specify a single value. If you omit ImageScanningTypes, Image Builder uses TEST_INSTANCE_CVE. With TEST_INSTANCE_CVE, Amazon Inspector scans the test instance during image tests, and you must activate Amazon Inspector for Amazon EC2 scanning in your account. With ON_DEMAND_AMI_CVE, Amazon Inspector starts an on-demand scan of the output AMI during image tests. You must build from an image recipe, but you do not need to activate Amazon Inspector in your account.
+* **ScanResultCondition**: [ScanResultCondition](#scanresultcondition): The condition that the output AMI's scan results must meet for the image to pass. You can set ScanResultCondition only when ImageScanningTypes is ON_DEMAND_AMI_CVE. If you omit it, Image Builder starts the scan but does not wait for it or use its results to pass or fail the image.
 
 ## ImageTestsConfiguration
 ### Properties
@@ -504,6 +649,14 @@
 * **LaunchTemplateId**: string: Identifies the EC2 launch template to use.
 * **SetDefaultVersion**: bool: Set the specified EC2 launch template as the default launch template for the specified account.
 
+## LifecycleExecutionResourcesImpactedSummary
+### Properties
+* **HasImpactedResources**: bool: Indicates whether an image resource that was identified for a lifecycle action has associated resources that are also impacted.
+
+## LifecycleExecutionState
+### Properties
+* **Status**: string: The runtime status of the lifecycle execution.
+
 ## LifecyclePolicy_TagMap
 ### Properties
 
@@ -556,6 +709,16 @@
 ### Properties
 * **S3BucketName**: string: S3BucketName
 * **S3KeyPrefix**: string: S3KeyPrefix
+
+## ScanResultCondition
+### Properties
+* **FixAvailable**: bool: Specifies whether only findings that have a fix available count toward MaximumSeverityLabel. When false, Image Builder counts every finding. The default is true.
+* **MaximumSeverityLabel**: string (Required): The maximum severity allowed for findings on the output AMI. A finding above this severity fails the image, unless FixAvailable excludes it.
+
+## ScanResultCondition
+### Properties
+* **FixAvailable**: bool: Specifies whether only findings that have a fix available count toward MaximumSeverityLabel. When false, Image Builder counts every finding. The default is true.
+* **MaximumSeverityLabel**: string (Required): The maximum severity allowed for findings on the output AMI. A finding above this severity fails the image, unless FixAvailable excludes it.
 
 ## Schedule
 ### Properties

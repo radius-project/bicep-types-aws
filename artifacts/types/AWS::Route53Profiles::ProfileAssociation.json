@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Route53Profiles-ProfileAssociation",
   "type": "AWS::Route53Profiles::ProfileAssociation",
-  "time": "2026-10-11T14:38:44.37Z",
+  "time": "2026-11-05T04:14:15.833Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -67,6 +67,7 @@
       },
       "update": {
         "permissions": [
+          "route53profiles:UpdateProfileAssociation",
           "route53profiles:GetProfileAssociation",
           "route53profiles:TagResource",
           "route53profiles:UntagResource",
@@ -89,6 +90,10 @@
       "Name": {
         "description": "The name of an association between a  Profile and a VPC.",
         "type": "string"
+      },
+      "Priority": {
+        "description": "The priority of the profile association, used to order the profiles applied to a VPC when multiple profiles are associated with it. Lower values have higher precedence. Omit for the first profile associated with a VPC. This orders whole profiles on a VPC and is distinct from the DNS Firewall rule group priority carried in a ProfileResourceAssociation's ResourceProperties.",
+        "type": "integer"
       },
       "ProfileId": {
         "description": "The ID of the  profile that you associated with the resource that is specified by ResourceId.",

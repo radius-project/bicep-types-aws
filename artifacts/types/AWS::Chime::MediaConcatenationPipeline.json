@@ -1,0 +1,402 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Chime-MediaConcatenationPipeline",
+  "type": "AWS::Chime::MediaConcatenationPipeline",
+  "time": "2026-11-05T21:03:54.166Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/MediaPipelineId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Sources",
+      "/properties/Sinks",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "ArtifactsConcatenationConfiguration": {
+        "additionalProperties": false,
+        "description": "The configuration for the artifacts concatenation.",
+        "properties": {
+          "Audio": {
+            "$ref": "#/definitions/AudioConcatenationConfiguration"
+          },
+          "CompositedVideo": {
+            "$ref": "#/definitions/CompositedVideoConcatenationConfiguration"
+          },
+          "Content": {
+            "$ref": "#/definitions/ContentConcatenationConfiguration"
+          },
+          "DataChannel": {
+            "$ref": "#/definitions/DataChannelConcatenationConfiguration"
+          },
+          "MeetingEvents": {
+            "$ref": "#/definitions/MeetingEventsConcatenationConfiguration"
+          },
+          "TranscriptionMessages": {
+            "$ref": "#/definitions/TranscriptionMessagesConcatenationConfiguration"
+          },
+          "Video": {
+            "$ref": "#/definitions/VideoConcatenationConfiguration"
+          }
+        },
+        "required": [
+          "Audio",
+          "Video",
+          "Content",
+          "DataChannel",
+          "TranscriptionMessages",
+          "MeetingEvents",
+          "CompositedVideo"
+        ],
+        "type": "object"
+      },
+      "AudioConcatenationConfiguration": {
+        "additionalProperties": false,
+        "description": "The audio artifact concatenation configuration object.",
+        "properties": {
+          "State": {
+            "description": "Enables the audio artifact concatenation configuration object.",
+            "enum": [
+              "Enabled"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "State"
+        ],
+        "type": "object"
+      },
+      "ChimeSdkMeetingConcatenationConfiguration": {
+        "additionalProperties": false,
+        "description": "The configuration object of the Amazon Chime SDK meeting concatenation for a specified media pipeline.",
+        "properties": {
+          "ArtifactsConfiguration": {
+            "$ref": "#/definitions/ArtifactsConcatenationConfiguration"
+          }
+        },
+        "required": [
+          "ArtifactsConfiguration"
+        ],
+        "type": "object"
+      },
+      "CompositedVideoConcatenationConfiguration": {
+        "additionalProperties": false,
+        "description": "The composited video configuration object for a specified media pipeline.",
+        "properties": {
+          "State": {
+            "description": "Enables or disables the configuration object.",
+            "enum": [
+              "Enabled",
+              "Disabled"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "State"
+        ],
+        "type": "object"
+      },
+      "ConcatenationSink": {
+        "additionalProperties": false,
+        "description": "The data sink of the configuration object.",
+        "properties": {
+          "S3BucketSinkConfiguration": {
+            "$ref": "#/definitions/S3BucketSinkConfiguration"
+          },
+          "Type": {
+            "description": "The type of data sink in the configuration object.",
+            "enum": [
+              "S3Bucket"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Type",
+          "S3BucketSinkConfiguration"
+        ],
+        "type": "object"
+      },
+      "ConcatenationSource": {
+        "additionalProperties": false,
+        "description": "The source type and media pipeline configuration settings in a configuration object.",
+        "properties": {
+          "MediaCapturePipelineSourceConfiguration": {
+            "$ref": "#/definitions/MediaCapturePipelineSourceConfiguration"
+          },
+          "Type": {
+            "description": "The type of concatenation source in a configuration object.",
+            "enum": [
+              "MediaCapturePipeline"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Type",
+          "MediaCapturePipelineSourceConfiguration"
+        ],
+        "type": "object"
+      },
+      "ContentConcatenationConfiguration": {
+        "additionalProperties": false,
+        "description": "The composited content configuration object for a specified media pipeline.",
+        "properties": {
+          "State": {
+            "description": "Enables or disables the configuration object.",
+            "enum": [
+              "Enabled",
+              "Disabled"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "State"
+        ],
+        "type": "object"
+      },
+      "DataChannelConcatenationConfiguration": {
+        "additionalProperties": false,
+        "description": "The content configuration object's data channel.",
+        "properties": {
+          "State": {
+            "description": "Enables or disables the configuration object.",
+            "enum": [
+              "Enabled",
+              "Disabled"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "State"
+        ],
+        "type": "object"
+      },
+      "MediaCapturePipelineSourceConfiguration": {
+        "additionalProperties": false,
+        "description": "The source configuration object of a media capture pipeline.",
+        "properties": {
+          "ChimeSdkMeetingConfiguration": {
+            "$ref": "#/definitions/ChimeSdkMeetingConcatenationConfiguration"
+          },
+          "MediaPipelineArn": {
+            "description": "The media pipeline ARN in the configuration object of a media capture pipeline.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "pattern": "^arn[\\/\\:\\-\\_\\.a-zA-Z0-9]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "MediaPipelineArn",
+          "ChimeSdkMeetingConfiguration"
+        ],
+        "type": "object"
+      },
+      "MeetingEventsConcatenationConfiguration": {
+        "additionalProperties": false,
+        "description": "The configuration object for an event concatenation pipeline.",
+        "properties": {
+          "State": {
+            "description": "Enables or disables the configuration object.",
+            "enum": [
+              "Enabled",
+              "Disabled"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "State"
+        ],
+        "type": "object"
+      },
+      "S3BucketSinkConfiguration": {
+        "additionalProperties": false,
+        "description": "The configuration settings for the S3 bucket.",
+        "properties": {
+          "Destination": {
+            "description": "The destination URL of the S3 bucket.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "pattern": "^arn[\\/\\:\\-\\_\\.a-zA-Z0-9]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Destination"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "TranscriptionMessagesConcatenationConfiguration": {
+        "additionalProperties": false,
+        "description": "The configuration object for concatenating transcription messages.",
+        "properties": {
+          "State": {
+            "description": "Enables or disables the configuration object.",
+            "enum": [
+              "Enabled",
+              "Disabled"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "State"
+        ],
+        "type": "object"
+      },
+      "VideoConcatenationConfiguration": {
+        "additionalProperties": false,
+        "description": "The configuration object of a video concatenation pipeline.",
+        "properties": {
+          "State": {
+            "description": "Enables or disables the configuration object.",
+            "enum": [
+              "Enabled",
+              "Disabled"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "State"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "A media concatenation pipeline in the Amazon Chime SDK that concatenates media artifacts from a media capture pipeline.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "chime:ListMediaPipelines"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "chime:GetMediaPipeline",
+          "chime:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/MediaPipelineArn"
+    ],
+    "properties": {
+      "CreatedTimestamp": {
+        "description": "The time at which the concatenation pipeline was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "MediaPipelineArn": {
+        "description": "The ARN of the media concatenation pipeline.",
+        "maxLength": 1011,
+        "minLength": 1,
+        "pattern": "^arn[\\/\\:\\-\\_\\.a-zA-Z0-9]+$",
+        "type": "string"
+      },
+      "MediaPipelineId": {
+        "description": "The ID of the media concatenation pipeline.",
+        "maxLength": 36,
+        "minLength": 36,
+        "pattern": "^[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}$",
+        "type": "string"
+      },
+      "Sinks": {
+        "description": "An object that specifies the data sinks for the media concatenation pipeline.",
+        "items": {
+          "$ref": "#/definitions/ConcatenationSink"
+        },
+        "maxItems": 1,
+        "minItems": 1,
+        "type": "array"
+      },
+      "Sources": {
+        "description": "An object that specifies the sources for the media concatenation pipeline.",
+        "items": {
+          "$ref": "#/definitions/ConcatenationSource"
+        },
+        "maxItems": 1,
+        "minItems": 1,
+        "type": "array"
+      },
+      "Status": {
+        "description": "The status of the media concatenation pipeline.",
+        "enum": [
+          "Initializing",
+          "InProgress",
+          "Failed",
+          "Stopping",
+          "Stopped",
+          "Paused",
+          "NotStarted"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags associated with the media concatenation pipeline.",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array"
+      },
+      "UpdatedTimestamp": {
+        "description": "The time at which the concatenation pipeline was last updated.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/MediaPipelineArn",
+      "/properties/MediaPipelineId",
+      "/properties/Status",
+      "/properties/CreatedTimestamp",
+      "/properties/UpdatedTimestamp"
+    ],
+    "required": [
+      "Sources",
+      "Sinks"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "chime:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Chime::MediaConcatenationPipeline"
+  }
+}

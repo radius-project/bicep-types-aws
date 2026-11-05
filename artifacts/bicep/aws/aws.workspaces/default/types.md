@@ -1,5 +1,13 @@
 # AWS.WorkSpaces @ default
 
+## Resource AWS.WorkSpaces/ConnectionAlias@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.WorkSpaces/ConnectionAliasProperties](#awsworkspacesconnectionaliasproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.WorkSpaces/Directory@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -15,6 +23,30 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.WorkSpaces/WorkspaceProperties](#awsworkspacesworkspaceproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.WorkSpaces/WorkSpaceApplication@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.WorkSpaces/WorkSpaceApplicationProperties](#awsworkspacesworkspaceapplicationproperties) (Identifier): properties of the resource
+
+## Resource AWS.WorkSpaces/WorkspaceBundle@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.WorkSpaces/WorkspaceBundleProperties](#awsworkspacesworkspacebundleproperties) (Identifier): properties of the resource
+
+## Resource AWS.WorkSpaces/WorkspaceImage@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.WorkSpaces/WorkspaceImageProperties](#awsworkspacesworkspaceimageproperties) (Identifier): properties of the resource
 
 ## Resource AWS.WorkSpaces/WorkspaceIpGroup@default
 * **Readable Scope(s)**: None
@@ -52,6 +84,14 @@
 * **SettingsGroup**: string
 * **Status**: string (Required)
 
+## AWS.WorkSpaces/ConnectionAliasProperties
+### Properties
+* **AliasId**: string (ReadOnly, Identifier)
+* **Associations**: [ConnectionAliasAssociation](#connectionaliasassociation)[] (ReadOnly)
+* **ConnectionAliasState**: string (ReadOnly)
+* **ConnectionString**: string (Required)
+* **Tags**: [Tag](#tag)[]
+
 ## AWS.WorkSpaces/DirectoryProperties
 ### Properties
 * **ActiveDirectoryConfig**: [ActiveDirectoryConfig](#activedirectoryconfig)
@@ -86,6 +126,50 @@
 * **WorkspaceDirectoryName**: string: The name of the directory to register.
 * **WorkspaceSecurityGroupId**: string (ReadOnly): The identifier of the security group that is assigned to new WorkSpaces.
 * **WorkspaceType**: string: Indicates whether the directory's WorkSpace type is personal or pools.
+
+## AWS.WorkSpaces/WorkSpaceApplicationProperties
+### Properties
+* **ApplicationId**: string (ReadOnly): The identifier of the application.
+* **Arn**: string (Identifier): The ARN of the WorkSpace application.
+* **Created**: string (ReadOnly): The time the application was created.
+* **Description**: string (ReadOnly): The description of the WorkSpace application.
+* **LicenseType**: string (ReadOnly): The license availability for the application.
+* **Name**: string (ReadOnly): The name of the WorkSpace application.
+* **Owner**: string (ReadOnly): The owner of the WorkSpace application.
+* **State**: string (ReadOnly): The status of the WorkSpace application.
+* **SupportedComputeTypeNames**: string[] (ReadOnly): The supported compute types of the WorkSpace application.
+* **SupportedOperatingSystemNames**: string[] (ReadOnly): The supported operating systems of the WorkSpace application.
+
+## AWS.WorkSpaces/WorkspaceBundleProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the bundle.
+* **BundleId**: string (ReadOnly): The identifier of the bundle. Assigned by the service when the bundle is created.
+* **BundleType**: string (ReadOnly): The type of WorkSpace bundle.
+* **ComputeType**: [ComputeType](#computetype)
+* **CreationTime**: string (ReadOnly): The time when the bundle was created.
+* **Description**: string: The description of the bundle.
+* **ImageId**: string: The identifier of the image that is used to create the bundle.
+* **LastUpdatedTime**: string (ReadOnly): The last time that the bundle was updated.
+* **Name**: string: The name of the bundle.
+* **Owner**: string (ReadOnly): The owner of the bundle. This is the account identifier of the owner, or AMAZON if the bundle is provided by AWS.
+* **RootStorage**: [RootStorage](#rootstorage)
+* **State**: string (ReadOnly): The state of the WorkSpace bundle.
+* **Tags**: [Tag](#tag)[]: The tags associated with the bundle.
+* **UserStorage**: [UserStorage](#userstorage)
+
+## AWS.WorkSpaces/WorkspaceImageProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the image.
+* **Created**: string (ReadOnly): The date when the image was created.
+* **Description**: string: The description of the image.
+* **ImageId**: string (ReadOnly): The identifier of the image. Assigned by the service when the image is created.
+* **Name**: string: The name of the image.
+* **OperatingSystem**: [OperatingSystem](#operatingsystem) (ReadOnly)
+* **OwnerAccountId**: string (ReadOnly): The identifier of the Amazon Web Services account that owns the image.
+* **RequiredTenancy**: string (ReadOnly): Specifies whether the image is running on dedicated hardware. When Bring Your Own License (BYOL) is enabled, this value is set to DEDICATED.
+* **State**: string (ReadOnly): The status of the image.
+* **Tags**: [Tag](#tag)[]: The tags associated with the image.
+* **Updates**: [UpdateResult](#updateresult) (ReadOnly)
 
 ## AWS.WorkSpaces/WorkspaceIpGroupProperties
 ### Properties
@@ -133,6 +217,17 @@
 * **CertificateAuthorityArn**: string: The Amazon Resource Name (ARN) of the Amazon Web Services Certificate Manager Private CA resource.
 * **Status**: string: The status of the certificate-based authentication properties.
 
+## ComputeType
+### Properties
+* **Name**: string: The compute type of the bundle.
+
+## ConnectionAliasAssociation
+### Properties
+* **AssociatedAccountId**: string
+* **AssociationStatus**: string
+* **ConnectionIdentifier**: string
+* **ResourceId**: string
+
 ## DefaultWorkspaceCreationProperties
 ### Properties
 * **CustomSecurityGroupId**: string: The identifier of the default security group to apply to WorkSpaces when they are created.
@@ -162,6 +257,14 @@
 * **ApplicationConfigSecretArn**: string: The Amazon Resource Name (ARN) of the application config.
 * **TenantId**: string: The identifier of the tenant.
 
+## OperatingSystem
+### Properties
+* **Type**: string: The operating system.
+
+## RootStorage
+### Properties
+* **Capacity**: string (Required): The size of the root volume.
+
 ## SamlProperties
 ### Properties
 * **RelayStateParameterName**: string: The relay state parameter name supported by the SAML 2.0 identity provider (IdP).
@@ -190,6 +293,11 @@
 
 ## Tag
 ### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
 * **Key**: string (Required): The key of the tag.
 * **Value**: string (Required): The value of the tag.
 
@@ -197,6 +305,16 @@
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
 
 ## Tag
 ### Properties
@@ -214,11 +332,20 @@
 * **IdleDisconnectTimeoutInSeconds**: int
 * **MaxUserDurationInSeconds**: int
 
+## UpdateResult
+### Properties
+* **Description**: string: A description of whether updates for the image are pending or available.
+* **UpdateAvailable**: bool: Indicates whether updated drivers or other components are available for the image.
+
 ## UserSetting
 ### Properties
 * **Action**: string (Required): Indicates the type of action.
 * **MaximumLength**: int: Indicates the maximum character length for the specified user setting.
 * **Permission**: string (Required): Indicates if the setting is enabled or disabled.
+
+## UserStorage
+### Properties
+* **Capacity**: string (Required): The size of the user volume.
 
 ## WorkspaceAccessProperties
 ### Properties

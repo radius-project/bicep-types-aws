@@ -1,0 +1,194 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Comprehend-DominantLanguageDetectionJob",
+  "type": "AWS::Comprehend::DominantLanguageDetectionJob",
+  "time": "2026-11-05T21:12:57.995Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/JobId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DataAccessRoleArn",
+      "/properties/InputDataConfig",
+      "/properties/JobName",
+      "/properties/Tags",
+      "/properties/VolumeKmsKeyId"
+    ],
+    "definitions": {
+      "InputDataConfig": {
+        "additionalProperties": false,
+        "description": "The input data configuration for the job.",
+        "properties": {
+          "InputFormat": {
+            "description": "Specifies how the text in an input file should be processed.",
+            "enum": [
+              "ONE_DOC_PER_FILE",
+              "ONE_DOC_PER_LINE"
+            ],
+            "type": "string"
+          },
+          "S3Uri": {
+            "description": "The Amazon S3 URI for the input data.",
+            "maxLength": 1024,
+            "pattern": "^s3://[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9](/.*)?$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "S3Uri"
+        ],
+        "type": "object"
+      },
+      "OutputDataConfig": {
+        "additionalProperties": false,
+        "description": "The output data configuration for the job.",
+        "properties": {
+          "KmsKeyId": {
+            "description": "ID for the AWS KMS key that Amazon Comprehend uses to encrypt the output results.",
+            "maxLength": 2048,
+            "type": "string"
+          },
+          "S3Uri": {
+            "description": "The Amazon S3 URI for the output data.",
+            "maxLength": 1024,
+            "pattern": "^s3://[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9](/.*)?$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "S3Uri"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair that adds metadata to a resource.",
+        "properties": {
+          "Key": {
+            "description": "The initial part of a key-value pair.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The second part of a key-value pair.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Comprehend::DominantLanguageDetectionJob, a read-only resource representing an Amazon Comprehend dominant language detection job.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "JobName": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "JobName"
+          ]
+        },
+        "permissions": [
+          "comprehend:ListDominantLanguageDetectionJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "comprehend:DescribeDominantLanguageDetectionJob",
+          "comprehend:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/JobArn"
+    ],
+    "properties": {
+      "DataAccessRoleArn": {
+        "description": "The Amazon Resource Name (ARN) of the IAM role that grants Amazon Comprehend read access to your input data.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+$",
+        "type": "string"
+      },
+      "InputDataConfig": {
+        "$ref": "#/definitions/InputDataConfig"
+      },
+      "JobArn": {
+        "description": "The Amazon Resource Name (ARN) of the dominant language detection job.",
+        "maxLength": 256,
+        "pattern": "^arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-Z0-9-]{1,64}/[a-zA-Z0-9](-*[a-zA-Z0-9])*$",
+        "type": "string"
+      },
+      "JobId": {
+        "description": "The identifier assigned to the dominant language detection job.",
+        "maxLength": 32,
+        "minLength": 1,
+        "type": "string"
+      },
+      "JobName": {
+        "description": "The name that you assigned to the dominant language detection job.",
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
+      "JobStatus": {
+        "description": "The current status of the dominant language detection job.",
+        "enum": [
+          "SUBMITTED",
+          "IN_PROGRESS",
+          "COMPLETED",
+          "FAILED",
+          "STOP_REQUESTED",
+          "STOPPED"
+        ],
+        "type": "string"
+      },
+      "OutputDataConfig": {
+        "$ref": "#/definitions/OutputDataConfig"
+      },
+      "Tags": {
+        "description": "Tags associated with the dominant language detection job.",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array"
+      },
+      "VolumeKmsKeyId": {
+        "description": "ID for the AWS KMS key that Amazon Comprehend uses to encrypt data on the storage volume attached to the ML compute instance(s) that process the job.",
+        "maxLength": 2048,
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/JobArn",
+      "/properties/JobId",
+      "/properties/JobStatus",
+      "/properties/OutputDataConfig"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "comprehend:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Comprehend::DominantLanguageDetectionJob"
+  }
+}

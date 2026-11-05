@@ -1,0 +1,124 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-States-Execution",
+  "type": "AWS::States::Execution",
+  "time": "2026-11-05T21:18:08.345Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/StateMachineName",
+        "/properties/Name"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Input",
+      "/properties/Name",
+      "/properties/StateMachineArn"
+    ],
+    "description": "Represents an AWS Step Functions state machine execution.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "StateMachineArn": {
+              "description": "The ARN of the state machine whose executions to list.",
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "StateMachineArn"
+          ]
+        },
+        "permissions": [
+          "states:ListExecutions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "states:DescribeExecution"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ExecutionArn"
+    ],
+    "properties": {
+      "ExecutionArn": {
+        "description": "The Amazon Resource Name (ARN) that identifies the execution.",
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Input": {
+        "description": "The string that contains the JSON input data for the execution.",
+        "maxLength": 262144,
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the execution.",
+        "maxLength": 80,
+        "minLength": 1,
+        "type": "string"
+      },
+      "RedriveCount": {
+        "description": "The number of times the execution has been redriven.",
+        "type": "integer"
+      },
+      "RedriveStatus": {
+        "description": "Indicates whether or not an execution can be redriven.",
+        "enum": [
+          "REDRIVABLE",
+          "NOT_REDRIVABLE",
+          "REDRIVABLE_BY_MAP_RUN"
+        ],
+        "type": "string"
+      },
+      "StartDate": {
+        "description": "The date the execution started.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "StateMachineArn": {
+        "description": "The Amazon Resource Name (ARN) of the state machine that was executed.",
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
+      "StateMachineName": {
+        "description": "The name of the state machine, extracted from the execution ARN.",
+        "maxLength": 80,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Status": {
+        "description": "The current status of the execution.",
+        "enum": [
+          "RUNNING",
+          "SUCCEEDED",
+          "FAILED",
+          "TIMED_OUT",
+          "ABORTED",
+          "PENDING_REDRIVE"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ExecutionArn",
+      "/properties/StateMachineName",
+      "/properties/Status",
+      "/properties/StartDate",
+      "/properties/RedriveCount",
+      "/properties/RedriveStatus"
+    ],
+    "required": [
+      "StateMachineArn"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::States::Execution"
+  }
+}

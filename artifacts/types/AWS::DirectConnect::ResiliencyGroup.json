@@ -1,0 +1,165 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DirectConnect-ResiliencyGroup",
+  "type": "AWS::DirectConnect::ResiliencyGroup",
+  "time": "2026-11-05T13:04:56.634Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ResiliencyGroupId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/IntendedResiliencyModel"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::DirectConnect::ResiliencyGroup",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "directconnect:CreateResiliencyGroup",
+          "directconnect:GetResiliencyGroup",
+          "directconnect:AssociateConnectionsToResiliencyGroup",
+          "directconnect:ListResiliencyGroupAssociations",
+          "directconnect:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "directconnect:GetResiliencyGroup",
+          "directconnect:DisassociateConnectionsFromResiliencyGroup",
+          "directconnect:ListResiliencyGroupAssociations",
+          "directconnect:DeleteResiliencyGroup"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "directconnect:ListResiliencyGroups"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "directconnect:GetResiliencyGroup",
+          "directconnect:ListResiliencyGroupAssociations"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "directconnect:GetResiliencyGroup",
+          "directconnect:UpdateResiliencyGroup",
+          "directconnect:AssociateConnectionsToResiliencyGroup",
+          "directconnect:DisassociateConnectionsFromResiliencyGroup",
+          "directconnect:ListResiliencyGroupAssociations",
+          "directconnect:TagResource",
+          "directconnect:UntagResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ResiliencyGroupArn"
+    ],
+    "properties": {
+      "ConnectionArns": {
+        "description": "The ARNs of the connections that are members of the resiliency group. When specified, this is the complete, authoritative membership list: on update, connections not present are disassociated, and an explicit empty list removes all members. Omit the property to leave the existing membership unmanaged (unchanged on update). On create, an omitted or empty list means no connections are associated.",
+        "insertionOrder": false,
+        "items": {
+          "pattern": "^arn:aws[a-z-]*:directconnect:[a-z0-9-]+:[0-9]{12}:dxcon/dxcon-[a-z0-9]{8,21}$",
+          "relationshipRef": {
+            "propertyPath": "/properties/ConnectionArn",
+            "typeName": "AWS::DirectConnect::Connection"
+          },
+          "type": "string"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "IntendedResiliencyModel": {
+        "description": "The resiliency model that the resiliency group is intended to meet. Required when creating a resiliency group.",
+        "enum": [
+          "maximum-resiliency",
+          "high-resiliency",
+          "basic-resiliency"
+        ],
+        "type": "string"
+      },
+      "ResiliencyGroupArn": {
+        "description": "The Amazon Resource Name (ARN) of the resiliency group.",
+        "maxLength": 1024,
+        "minLength": 1,
+        "pattern": "^arn:aws[a-z-]*:directconnect::[0-9]{12}:dx-resiliency-group/dxrg-[0-9a-z]{17}$",
+        "type": "string"
+      },
+      "ResiliencyGroupId": {
+        "description": "The ID of the resiliency group.",
+        "maxLength": 22,
+        "minLength": 22,
+        "pattern": "^(dxrg|DXRG)-[0-9a-zA-Z]{17}$",
+        "type": "string"
+      },
+      "ResiliencyGroupName": {
+        "description": "The name of the resiliency group.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9_\\-]+$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags associated with the resiliency group.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ResiliencyGroupArn",
+      "/properties/ResiliencyGroupId"
+    ],
+    "required": [
+      "ResiliencyGroupName"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "directconnect:TagResource",
+        "directconnect:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::DirectConnect::ResiliencyGroup",
+    "writeOnlyProperties": [
+      "/properties/IntendedResiliencyModel"
+    ]
+  }
+}

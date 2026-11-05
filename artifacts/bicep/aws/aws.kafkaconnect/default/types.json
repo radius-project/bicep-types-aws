@@ -552,6 +552,183 @@
   },
   {
     "$type": "ObjectType",
+    "name": "CapacityDescription",
+    "properties": {
+      "ProvisionedCapacity": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConnectorOperationStep",
+    "properties": {
+      "StepState": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The step state of the operation."
+      },
+      "StepType": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "The step type of the operation."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ProvisionedCapacityDescription",
+    "properties": {
+      "McuCount": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The number of microcontroller units (MCUs) allocated to each connector worker."
+      },
+      "WorkerCount": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The number of workers that are allocated to the connector."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WorkerSetting",
+    "properties": {
+      "Capacity": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.KafkaConnect/ConnectorOperationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/34"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.KafkaConnect/ConnectorOperationProperties",
+    "properties": {
+      "ConnectorArn": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the connector."
+      },
+      "ConnectorOperationArn": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the connector operation."
+      },
+      "ConnectorOperationState": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 2,
+        "description": "The state of the connector operation."
+      },
+      "ConnectorOperationType": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 2,
+        "description": "The type of connector operation performed."
+      },
+      "CreationTime": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 2,
+        "description": "The time when the operation was created."
+      },
+      "EndTime": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 2,
+        "description": "The time when the operation ended."
+      },
+      "OperationSteps": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 2,
+        "description": "The array of operation steps taken."
+      },
+      "OriginWorkerSetting": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 2
+      },
+      "TargetWorkerSetting": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 2
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.KafkaConnect/ConnectorOperation",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.KafkaConnect/ConnectorOperation@default",
+    "body": {
+      "$ref": "#/40"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "CustomPluginFileDescription",
     "properties": {
       "FileMd5": {
@@ -576,7 +753,7 @@
     "properties": {
       "S3Location": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/44"
         },
         "flags": 1
       }
@@ -636,7 +813,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/36"
+      "$ref": "#/45"
     }
   },
   {
@@ -666,13 +843,13 @@
       },
       "FileDescription": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/42"
         },
         "flags": 2
       },
       "Location": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/43"
         },
         "flags": 1
       },
@@ -692,7 +869,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/47"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -719,7 +896,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/48"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -730,7 +907,7 @@
     "$type": "ResourceType",
     "name": "AWS.KafkaConnect/CustomPlugin@default",
     "body": {
-      "$ref": "#/40"
+      "$ref": "#/49"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -760,7 +937,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/42"
+      "$ref": "#/51"
     }
   },
   {
@@ -797,7 +974,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "A collection of tags associated with a resource"
@@ -831,7 +1008,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/54"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -842,7 +1019,7 @@
     "$type": "ResourceType",
     "name": "AWS.KafkaConnect/WorkerConfiguration@default",
     "body": {
-      "$ref": "#/46"
+      "$ref": "#/55"
     },
     "readableScopes": 0,
     "writableScopes": 0

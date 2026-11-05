@@ -175,6 +175,64 @@
   },
   {
     "$type": "ObjectType",
+    "name": "PrincipalArn",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ECR/PullTimeUpdateExclusionProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ECR/PullTimeUpdateExclusionProperties",
+    "properties": {
+      "PrincipalArn": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17,
+        "description": "The ARN of the IAM principal to remove from the pull time update exclusion list."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ECR/PullTimeUpdateExclusion",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ECR/PullTimeUpdateExclusion@default",
+    "body": {
+      "$ref": "#/16"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "RegistryId",
     "properties": {}
   },
@@ -193,7 +251,7 @@
     "properties": {
       "PolicyText": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/20"
         },
         "flags": 1,
         "description": "The JSON policy text for your registry."
@@ -227,7 +285,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/21"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -238,7 +296,7 @@
     "$type": "ResourceType",
     "name": "AWS.ECR/RegistryPolicy@default",
     "body": {
-      "$ref": "#/17"
+      "$ref": "#/22"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -294,7 +352,7 @@
     "properties": {
       "RepositoryFilters": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/32"
         },
         "flags": 1,
         "description": "The details of a scanning repository filter. For more information on how to use filters, see [Using filters](https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html#image-scanning-filters) in the *Amazon Elastic Container Registry User Guide*."
@@ -316,13 +374,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/27"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/30"
     }
   },
   {
@@ -332,7 +390,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/30"
     }
   },
   {
@@ -348,7 +406,7 @@
       },
       "Rules": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/35"
         },
         "flags": 1,
         "description": "The scanning rules associated with the registry."
@@ -382,7 +440,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/36"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -393,7 +451,7 @@
     "$type": "ResourceType",
     "name": "AWS.ECR/RegistryScanningConfiguration@default",
     "body": {
-      "$ref": "#/32"
+      "$ref": "#/37"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -424,7 +482,7 @@
     "properties": {
       "Rules": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/47"
         },
         "flags": 1,
         "description": "An array of objects representing the replication destinations and repository filters for a replication configuration."
@@ -457,14 +515,14 @@
     "properties": {
       "Destinations": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/48"
         },
         "flags": 1,
         "description": "An array of objects representing the destination for a replication rule."
       },
       "RepositoryFilters": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": "An array of objects representing the filters for a replication rule. Specifying a repository filter for a replication rule provides a method for controlling which repositories in a private registry are replicated."
@@ -494,19 +552,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/40"
+      "$ref": "#/45"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/39"
+      "$ref": "#/44"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/41"
+      "$ref": "#/46"
     }
   },
   {
@@ -526,7 +584,7 @@
       },
       "ReplicationConfiguration": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/43"
         },
         "flags": 1,
         "description": "The replication configuration for a registry."
@@ -553,7 +611,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/51"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -564,7 +622,7 @@
     "$type": "ResourceType",
     "name": "AWS.ECR/ReplicationConfiguration@default",
     "body": {
-      "$ref": "#/47"
+      "$ref": "#/52"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -605,7 +663,7 @@
     "properties": {
       "ScanOnPush": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/67"
         },
         "flags": 0,
         "description": "The setting that determines whether images are scanned after being pushed to a repository. If set to ``true``, images will be scanned after being pushed. If this parameter is not specified, it will default to ``false`` and images will not be scanned unless a scan is manually started."
@@ -712,7 +770,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/53"
+      "$ref": "#/58"
     }
   },
   {
@@ -724,7 +782,7 @@
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/65"
+        "$ref": "#/70"
       },
       {
         "$ref": "#/8"
@@ -734,7 +792,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/61"
+      "$ref": "#/66"
     }
   },
   {
@@ -750,21 +808,21 @@
       },
       "EmptyOnDelete": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/67"
         },
         "flags": 4,
         "description": "If true, deleting the repository force deletes the contents of the repository. If false, the repository must be empty before attempting to delete it."
       },
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/55"
         },
         "flags": 0,
         "description": "The encryption configuration for the repository. This determines how the contents of your repository are encrypted at rest."
       },
       "ImageScanningConfiguration": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/57"
         },
         "flags": 0,
         "description": "The ``imageScanningConfiguration`` parameter is being deprecated, in favor of specifying the image scanning configuration at the registry level. For more information, see ``PutRegistryScanningConfiguration``.\n  The image scanning configuration for the repository. This determines whether images are scanned for known vulnerabilities after being pushed to the repository."
@@ -778,14 +836,14 @@
       },
       "ImageTagMutabilityExclusionFilters": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": "A list of filters that specify which image tags are excluded from the repository's image tag mutability setting."
       },
       "LifecyclePolicy": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/62"
         },
         "flags": 0,
         "description": "Creates or updates a lifecycle policy. For information about lifecycle policy syntax, see [Lifecycle policy template](https://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.html)."
@@ -799,7 +857,7 @@
       },
       "RepositoryPolicyText": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/71"
         },
         "flags": 0,
         "description": "The JSON repository policy text to apply to the repository. For more information, see [Amazon ECR repository policies](https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policy-examples.html) in the *Amazon Elastic Container Registry User Guide*."
@@ -813,7 +871,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/72"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -840,7 +898,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/73"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -851,7 +909,7 @@
     "$type": "ResourceType",
     "name": "AWS.ECR/Repository@default",
     "body": {
-      "$ref": "#/69"
+      "$ref": "#/74"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -944,13 +1002,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/74"
+      "$ref": "#/79"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/76"
+      "$ref": "#/81"
     }
   },
   {
@@ -959,7 +1017,7 @@
     "properties": {
       "AppliedFor": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/83"
         },
         "flags": 1,
         "description": "A list of enumerable Strings representing the repository creation scenarios that this template will apply towards. The supported scenarios are PULL_THROUGH_CACHE, REPLICATION, and CREATE_ON_PUSH"
@@ -987,7 +1045,7 @@
       },
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/77"
         },
         "flags": 0,
         "description": "The encryption configuration associated with the repository creation template."
@@ -1001,7 +1059,7 @@
       },
       "ImageTagMutabilityExclusionFilters": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/84"
         },
         "flags": 0,
         "description": "A list of filters that specify which image tags are excluded from the repository creation template's image tag mutability setting."
@@ -1029,7 +1087,7 @@
       },
       "ResourceTags": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/85"
         },
         "flags": 0,
         "description": "The metadata to apply to the repository to help you categorize and organize. Each tag consists of a key and an optional value, both of which you define. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters."
@@ -1063,7 +1121,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/86"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1074,7 +1132,7 @@
     "$type": "ResourceType",
     "name": "AWS.ECR/RepositoryCreationTemplate@default",
     "body": {
-      "$ref": "#/82"
+      "$ref": "#/87"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1113,7 +1171,7 @@
     "properties": {
       "RepositoryFilters": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/93"
         },
         "flags": 0,
         "description": "Optional array of repository filters. If omitted, the rule matches all repositories. If provided, must contain at least one filter. Empty arrays are not allowed."
@@ -1130,7 +1188,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/86"
+      "$ref": "#/91"
     }
   },
   {
@@ -1140,7 +1198,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/87"
+      "$ref": "#/92"
     }
   },
   {
@@ -1156,7 +1214,7 @@
       },
       "Rules": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/95"
         },
         "flags": 1,
         "description": "Array of signing rules that define which repositories should be signed and with which signing profiles."
@@ -1183,7 +1241,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/96"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1194,7 +1252,7 @@
     "$type": "ResourceType",
     "name": "AWS.ECR/SigningConfiguration@default",
     "body": {
-      "$ref": "#/92"
+      "$ref": "#/97"
     },
     "readableScopes": 0,
     "writableScopes": 0

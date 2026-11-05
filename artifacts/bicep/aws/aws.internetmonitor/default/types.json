@@ -1,29 +1,192 @@
 [
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.InternetMonitor/InternetEventProperties"
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InternetEvent_ClientLocation",
+    "properties": {
+      "ASName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the internet service provider (ISP) or network (ASN)."
+      },
+      "ASNumber": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The Autonomous System Number (ASN) of the network at an impacted location."
+      },
+      "City": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the city where the internet event is located."
+      },
+      "Country": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the country where the internet event is located."
+      },
+      "Latitude": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The latitude where the internet event is located."
+      },
+      "Longitude": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The longitude where the internet event is located."
+      },
+      "Metro": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The metro area where the health event is located."
+      },
+      "Subdivision": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The subdivision location where the health event is located."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.InternetMonitor/InternetEventProperties",
+    "properties": {
+      "ClientLocation": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The impacted location, such as a city, where clients access AWS application resources."
+      },
+      "EndedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time when the internet event ended. If the event hasn't ended yet, this value is empty."
+      },
+      "EventArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the internet event."
+      },
+      "EventId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The internally-generated identifier of an internet event."
+      },
+      "EventStatus": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The status of the internet event."
+      },
+      "EventType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The type of network impairment."
+      },
+      "StartedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time when the internet event started."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.InternetMonitor/InternetEvent",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.InternetMonitor/InternetEvent@default",
+    "body": {
+      "$ref": "#/5"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
     "$type": "ObjectType",
     "name": "HealthEventsConfig",
     "properties": {
       "AvailabilityLocalHealthEventsConfig": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/9"
         },
         "flags": 0
       },
       "AvailabilityScoreThreshold": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0
       },
       "PerformanceLocalHealthEventsConfig": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/9"
         },
         "flags": 0
       },
       "PerformanceScoreThreshold": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0
       }
@@ -35,7 +198,7 @@
     "properties": {
       "S3Config": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/12"
         },
         "flags": 0
       }
@@ -47,19 +210,19 @@
     "properties": {
       "HealthScoreThreshold": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0
       },
       "MinTrafficImpact": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0
       },
       "Status": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/1"
         },
         "flags": 0
       }
@@ -81,19 +244,19 @@
     "properties": {
       "BucketName": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "BucketPrefix": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "LogDeliveryStatus": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/1"
         },
         "flags": 0
       }
@@ -105,13 +268,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "Value": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/1"
         },
         "flags": 0
       }
@@ -123,12 +286,6 @@
     "properties": {}
   },
   {
-    "$type": "IntegerType"
-  },
-  {
-    "$type": "StringType"
-  },
-  {
     "$type": "StringLiteralType",
     "value": "AWS.InternetMonitor/MonitorProperties"
   },
@@ -138,25 +295,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/9"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/9"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/9"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/13"
     }
   },
   {
@@ -165,103 +322,103 @@
     "properties": {
       "CreatedAt": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/1"
         },
         "flags": 2
       },
       "HealthEventsConfig": {
         "type": {
-          "$ref": "#/0"
+          "$ref": "#/7"
         },
         "flags": 0
       },
       "IncludeLinkedAccounts": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/16"
         },
         "flags": 4
       },
       "InternetMeasurementsLogDelivery": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/8"
         },
         "flags": 0
       },
       "LinkedAccountId": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/1"
         },
         "flags": 4
       },
       "MaxCityNetworksToMonitor": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0
       },
       "ModifiedAt": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/1"
         },
         "flags": 2
       },
       "MonitorArn": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/1"
         },
         "flags": 2
       },
       "MonitorName": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/1"
         },
         "flags": 17
       },
       "ProcessingStatus": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/1"
         },
         "flags": 2
       },
       "ProcessingStatusInfo": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/1"
         },
         "flags": 2
       },
       "Resources": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "ResourcesToAdd": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/18"
         },
         "flags": 4
       },
       "ResourcesToRemove": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/19"
         },
         "flags": 4
       },
       "Status": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/20"
         },
         "flags": 0
       },
       "TrafficPercentageToMonitor": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/2"
         },
         "flags": 0
       }
@@ -273,21 +430,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/21"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -298,7 +455,7 @@
     "$type": "ResourceType",
     "name": "AWS.InternetMonitor/Monitor@default",
     "body": {
-      "$ref": "#/17"
+      "$ref": "#/22"
     },
     "readableScopes": 0,
     "writableScopes": 0

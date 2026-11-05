@@ -29,6 +29,7 @@
 * **Arn**: string (WriteOnly): The Amazon Resource Name (ARN) of the profile association.
 * **Id**: string (ReadOnly, Identifier): Primary Identifier for  Profile Association
 * **Name**: string (Required): The name of an association between a  Profile and a VPC.
+* **Priority**: int: The priority of the profile association, used to order the profiles applied to a VPC when multiple profiles are associated with it. Lower values have higher precedence. Omit for the first profile associated with a VPC. This orders whole profiles on a VPC and is distinct from the DNS Firewall rule group priority carried in a ProfileResourceAssociation's ResourceProperties.
 * **ProfileId**: string (Required): The ID of the  profile that you associated with the resource that is specified by ResourceId.
 * **ResourceId**: string (Required): The resource that you associated the  profile with.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.

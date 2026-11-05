@@ -1,0 +1,192 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Deadline-Volume",
+  "type": "AWS::Deadline::Volume",
+  "time": "2026-11-05T21:19:05.436Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/FarmId",
+        "/properties/FleetId",
+        "/properties/VolumeId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/FarmId",
+      "/properties/FleetId",
+      "/properties/Tags"
+    ],
+    "description": "Definition of AWS::Deadline::Volume Resource Type",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "FarmId": {
+              "pattern": "^farm-[0-9a-f]{32}$",
+              "type": "string"
+            },
+            "FleetId": {
+              "pattern": "^fleet-[0-9a-f]{32}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "FarmId",
+            "FleetId"
+          ]
+        },
+        "permissions": [
+          "deadline:ListVolumes"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "deadline:GetVolume",
+          "deadline:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the volume.",
+        "pattern": "^arn:aws[a-z-]*:deadline:[a-z0-9-]+:[0-9]{12}:farm/farm-[0-9a-f]{32}/fleet/fleet-[0-9a-f]{32}/volume/volume-[0-9a-f]{32}$",
+        "type": "string"
+      },
+      "AttachedWorkerId": {
+        "description": "The worker ID of the worker the volume is attached to.",
+        "pattern": "^worker-[0-9a-f]{32}$",
+        "type": "string"
+      },
+      "AvailabilityZoneId": {
+        "description": "The Availability Zone ID of the volume.",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The date and time the resource was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ExpiresAt": {
+        "description": "The date and time the volume expires and will be deleted.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "FarmId": {
+        "description": "The farm ID of the farm that contains the fleet.",
+        "pattern": "^farm-[0-9a-f]{32}$",
+        "type": "string"
+      },
+      "FleetId": {
+        "description": "The fleet ID of the fleet that contains the volume.",
+        "pattern": "^fleet-[0-9a-f]{32}$",
+        "type": "string"
+      },
+      "Iops": {
+        "description": "The IOPS of the volume.",
+        "maximum": 80000,
+        "minimum": 100,
+        "type": "integer"
+      },
+      "LastAssignedAt": {
+        "description": "The date and time the volume was last assigned to a worker.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "LastReleasedAt": {
+        "description": "The date and time the volume was last released from a worker.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "SizeGiB": {
+        "description": "The volume size in GiB.",
+        "maximum": 65536,
+        "minimum": 1,
+        "type": "integer"
+      },
+      "State": {
+        "description": "The state of the volume.",
+        "enum": [
+          "PENDING_CREATION",
+          "PENDING_ATTACHMENT",
+          "IN_USE",
+          "AVAILABLE",
+          "PENDING_DELETION"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "Value": {
+              "maxLength": 256,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "maxItems": 50,
+        "type": "array"
+      },
+      "ThroughputMiB": {
+        "description": "The throughput of the volume in MiB.",
+        "maximum": 2000,
+        "minimum": 125,
+        "type": "integer"
+      },
+      "VolumeId": {
+        "description": "The volume ID.",
+        "pattern": "^volume-[0-9a-f]{32}$",
+        "type": "string"
+      },
+      "VolumeType": {
+        "description": "The EBS volume type.",
+        "enum": [
+          "gp3"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/VolumeId",
+      "/properties/State",
+      "/properties/SizeGiB",
+      "/properties/AvailabilityZoneId",
+      "/properties/AttachedWorkerId",
+      "/properties/VolumeType",
+      "/properties/Iops",
+      "/properties/ThroughputMiB",
+      "/properties/CreatedAt",
+      "/properties/LastAssignedAt",
+      "/properties/LastReleasedAt",
+      "/properties/ExpiresAt"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "deadline:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Deadline::Volume"
+  }
+}

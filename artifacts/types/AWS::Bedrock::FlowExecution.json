@@ -1,0 +1,113 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Bedrock-FlowExecution",
+  "type": "AWS::Bedrock::FlowExecution",
+  "time": "2026-10-30T02:56:11.83Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/FlowIdentifier",
+        "/properties/FlowAliasIdentifier",
+        "/properties/FlowExecutionName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/FlowAliasIdentifier",
+      "/properties/FlowExecutionName",
+      "/properties/FlowIdentifier"
+    ],
+    "description": "Represents an asynchronous execution of an Amazon Bedrock flow.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "FlowIdentifier": {
+              "maxLength": 2048,
+              "pattern": "^(arn:aws(-[a-z]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:flow/[0-9a-zA-Z]{10})|([0-9a-zA-Z]{10})$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "FlowIdentifier"
+          ]
+        },
+        "permissions": [
+          "bedrock:ListFlowExecutions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "bedrock:GetFlowExecution"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ExecutionArn"
+    ],
+    "properties": {
+      "EndedAt": {
+        "description": "The timestamp when the flow execution ended.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ExecutionArn": {
+        "description": "The Amazon Resource Name (ARN) that uniquely identifies the flow execution.",
+        "maxLength": 2048,
+        "pattern": "^[a-zA-Z0-9-]{1,36}$|^(arn:aws(-[a-z]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:flow/[0-9a-zA-Z]{10}/alias/[0-9a-zA-Z]{10}/execution/[a-zA-Z0-9-]{1,36})$",
+        "type": "string"
+      },
+      "FlowAliasIdentifier": {
+        "description": "The unique identifier of the flow alias used for the execution.",
+        "maxLength": 2048,
+        "pattern": "^(arn:aws(-[a-z]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:flow/[0-9a-zA-Z]{10}/alias/[0-9a-zA-Z]{10})|(\\bTSTALIASID\\b|[0-9a-zA-Z]+)$",
+        "type": "string"
+      },
+      "FlowExecutionName": {
+        "description": "The unique name for the flow execution.",
+        "maxLength": 36,
+        "pattern": "^[a-zA-Z0-9-]{1,36}$",
+        "type": "string"
+      },
+      "FlowIdentifier": {
+        "description": "The unique identifier of the flow.",
+        "maxLength": 2048,
+        "pattern": "^(arn:aws(-[a-z]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:flow/[0-9a-zA-Z]{10})|([0-9a-zA-Z]{10})$",
+        "type": "string"
+      },
+      "FlowVersion": {
+        "description": "The version of the flow used for the execution.",
+        "maxLength": 5,
+        "minLength": 1,
+        "pattern": "^(DRAFT|[0-9]{0,4}[1-9][0-9]{0,4})$",
+        "type": "string"
+      },
+      "StartedAt": {
+        "description": "The timestamp when the flow execution started.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The current status of the flow execution.",
+        "enum": [
+          "Running",
+          "Succeeded",
+          "Failed",
+          "TimedOut",
+          "Aborted"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ExecutionArn",
+      "/properties/Status",
+      "/properties/StartedAt",
+      "/properties/EndedAt",
+      "/properties/FlowVersion"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::Bedrock::FlowExecution"
+  }
+}

@@ -24,6 +24,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.MemoryDB/MultiRegionClusterProperties](#awsmemorydbmultiregionclusterproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.MemoryDB/MultiRegionParameterGroup@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MemoryDB/MultiRegionParameterGroupProperties](#awsmemorydbmultiregionparametergroupproperties) (Identifier): properties of the resource
+
 ## Resource AWS.MemoryDB/ParameterGroup@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -31,6 +39,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.MemoryDB/ParameterGroupProperties](#awsmemorydbparametergroupproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.MemoryDB/ReservedNode@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MemoryDB/ReservedNodeProperties](#awsmemorydbreservednodeproperties) (Identifier): properties of the resource
 
 ## Resource AWS.MemoryDB/Snapshot@default
 * **Readable Scope(s)**: None
@@ -121,6 +137,13 @@ You cannot modify the value of TransitEncryptionEnabled after the cluster is cre
 You cannot modify the value of TransitEncryptionEnabled after the cluster is created. To enable in-transit encryption on a cluster you must set TransitEncryptionEnabled to true when you create a cluster.
 * **UpdateStrategy**: string (WriteOnly): An enum string value that determines the update strategy for scaling. Possible values are 'COORDINATED' and 'UNCOORDINATED'. Default is 'COORDINATED'.
 
+## AWS.MemoryDB/MultiRegionParameterGroupProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the multi-region parameter group.
+* **Description**: string (ReadOnly): A description of the multi-region parameter group.
+* **Family**: string (ReadOnly): The name of the parameter group family that this multi-region parameter group is compatible with.
+* **MultiRegionParameterGroupName**: string (ReadOnly): The name of the multi-region parameter group.
+
 ## AWS.MemoryDB/ParameterGroupProperties
 ### Properties
 * **ARN**: string (ReadOnly): The Amazon Resource Name (ARN) of the parameter group.
@@ -129,6 +152,21 @@ You cannot modify the value of TransitEncryptionEnabled after the cluster is cre
 * **ParameterGroupName**: string (Required, Identifier): The name of the parameter group.
 * **Parameters**: [ParameterGroup_Parameters](#parametergroupparameters) (WriteOnly): An map of parameter names and values for the parameter update. You must supply at least one parameter name and value; subsequent arguments are optional.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this parameter group.
+
+## AWS.MemoryDB/ReservedNodeProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the reserved node.
+* **Duration**: int (ReadOnly): The duration of the reservation in seconds.
+* **FixedPrice**: int (ReadOnly): The fixed price charged for this reserved node.
+* **NodeCount**: int (ReadOnly): The number of nodes that have been reserved.
+* **NodeType**: string (ReadOnly): The node type for the reserved nodes.
+* **OfferingType**: string (ReadOnly): The offering type of this reserved node.
+* **RecurringCharges**: [RecurringCharge](#recurringcharge)[] (ReadOnly): The recurring price charged to run this reserved node.
+* **ReservationId**: string (ReadOnly): A customer-specified identifier to track this reservation.
+* **ReservedNodesOfferingId**: string (ReadOnly): The ID of the reserved node offering to purchase.
+* **StartTime**: string (ReadOnly): The time the reservation started.
+* **State**: string (ReadOnly): The state of the reserved node.
+* **Tags**: [Tag](#tag)[] (ReadOnly): A list of tags to be added to this resource.
 
 ## AWS.MemoryDB/SnapshotProperties
 ### Properties
@@ -194,6 +232,11 @@ You cannot modify the value of TransitEncryptionEnabled after the cluster is cre
 ## ParameterGroup_Parameters
 ### Properties
 
+## RecurringCharge
+### Properties
+* **RecurringChargeAmount**: int: The amount of the recurring charge.
+* **RecurringChargeFrequency**: string: The frequency of the recurring charge.
+
 ## Tag
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with 'aws:'. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
@@ -213,6 +256,11 @@ You cannot modify the value of TransitEncryptionEnabled after the cluster is cre
 ### Properties
 * **Key**: string (Required): The key for the tag. May not be null.
 * **Value**: string (Required): The tag's value. May be null.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key of the tag.
+* **Value**: string (Required): The value of the tag.
 
 ## Tag
 ### Properties

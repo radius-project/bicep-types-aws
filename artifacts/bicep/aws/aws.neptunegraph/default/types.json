@@ -1,117 +1,61 @@
 [
   {
     "$type": "ObjectType",
-    "name": "ImportOptions",
+    "name": "ExportFilter",
     "properties": {
-      "Neptune": {
+      "EdgeFilter": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/4"
         },
         "flags": 0,
-        "description": "Options for importing data from a Neptune database."
+        "description": "Used to specify filters on a per-label basis for edges."
+      },
+      "VertexFilter": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Used to specify filters on a per-label basis for vertices."
       }
     }
   },
   {
     "$type": "ObjectType",
-    "name": "ImportTask",
+    "name": "ExportFilterElement",
     "properties": {
-      "BlankNodeHandling": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0,
-        "description": "The method to handle blank nodes in the dataset. Currently, only convertToIri is supported, meaning blank nodes are converted to unique IRIs at load time. Must be provided when format is NTRIPLES"
-      },
-      "FailOnError": {
+      "Properties": {
         "type": {
           "$ref": "#/6"
         },
         "flags": 0,
-        "description": "If set to true, the task halts when an import error is encountered. If set to false, the task skips the data that caused the error and continues if possible."
-      },
-      "Format": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0,
-        "description": "Specifies the format of S3 data to be imported. Valid values are CSV, which identifies the Gremlin CSV format, OPEN_CYPHER, which identifies the openCypher load format, or NTRIPLES, which identifies the RDF n-triples format."
-      },
-      "ImportOptions": {
-        "type": {
-          "$ref": "#/0"
-        },
-        "flags": 0,
-        "description": "Contains options for controlling the import process. For example, if the failOnError key is set to false, the import skips the data that caused the error and continues if possible (whereas if set to true, the default, or if omitted, the import operation halts immediately when an error is encountered)."
-      },
-      "MaxProvisionedMemory": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "The maximum provisioned memory-optimized Neptune Capacity Units (m-NCUs) to use for the graph. Default: 1024, or the approved upper limit for your account. If both the minimum and maximum values are specified, the final provisioned-memory will be chosen per the actual size of your imported data. If neither value is specified, 128 m-NCUs are used."
-      },
-      "MinProvisionedMemory": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "The minimum provisioned memory-optimized Neptune Capacity Units (m-NCUs) to use for the graph. Default: 16"
-      },
-      "ParquetType": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0,
-        "description": "The parquet type of the import task. Required when Format is PARQUET."
-      },
-      "RoleArn": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1,
-        "description": "The ARN of the IAM role that will allow access to the data that is to be imported."
-      },
-      "Source": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1,
-        "description": "A URL identifying to the location of the data to be imported. This can be an Amazon S3 path, or can point to a Neptune database endpoint or snapshot."
+        "description": "Property definitions for the filter element."
       }
     }
   },
   {
     "$type": "ObjectType",
-    "name": "NeptuneImportOptions",
+    "name": "ExportFilterPropertyAttributes",
     "properties": {
-      "PreserveDefaultVertexLabels": {
+      "MultiValueHandling": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/7"
         },
         "flags": 0,
-        "description": "Neptune Analytics supports label-less vertices and no labels are assigned unless one is explicitly provided. Neptune assigns default labels when none is explicitly provided. When importing the data into Neptune Analytics, the default vertex labels can be omitted by setting preserveDefaultVertexLabels to false. Note that if the vertex only has default labels, and has no other properties or edges, then the vertex will effectively not get imported into Neptune Analytics when preserveDefaultVertexLabels is set to false."
+        "description": "Specifies how to handle properties that have multiple values."
       },
-      "PreserveEdgeIds": {
+      "OutputType": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/7"
         },
         "flags": 0,
-        "description": "Neptune Analytics currently does not support user defined edge ids. The edge ids are not imported by default. They are imported if preserveEdgeIds is set to true, and ids are stored as properties on the relationships with the property name neptuneEdgeId."
+        "description": "Specifies the data type to use for the property in the exported data."
       },
-      "S3ExportKmsKeyId": {
+      "SourcePropertyName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/7"
         },
-        "flags": 1,
-        "description": "The KMS key to use to encrypt data in the S3 bucket where the graph data is exported."
-      },
-      "S3ExportPath": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1,
-        "description": "The path to an S3 bucket from which to import data."
+        "flags": 0,
+        "description": "The name of the property as it exists in the original graph data."
       }
     }
   },
@@ -121,45 +65,41 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/7"
         },
         "flags": 1,
-        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+        "description": "The key name of the tag."
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/7"
         },
-        "flags": 0,
-        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
+        "flags": 1,
+        "description": "The value for the tag."
       }
     }
   },
   {
     "$type": "ObjectType",
-    "name": "VectorSearchConfiguration",
-    "properties": {
-      "VectorSearchDimension": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 1,
-        "description": "The vector search dimension"
-      }
-    }
+    "name": "ExportTask_EdgeFilter",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ExportTask_VertexFilter",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ExportTask_Properties",
+    "properties": {}
   },
   {
     "$type": "StringType"
   },
   {
-    "$type": "BooleanType"
-  },
-  {
-    "$type": "IntegerType"
-  },
-  {
     "$type": "StringLiteralType",
-    "value": "AWS.NeptuneGraph/GraphProperties"
+    "value": "AWS.NeptuneGraph/ExportTaskProperties"
   },
   {
     "$type": "ArrayType",
@@ -169,122 +109,101 @@
   },
   {
     "$type": "ObjectType",
-    "name": "AWS.NeptuneGraph/GraphProperties",
+    "name": "AWS.NeptuneGraph/ExportTaskProperties",
     "properties": {
-      "CreateTime": {
+      "Arn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/7"
         },
-        "flags": 2,
-        "description": "The time at which the graph was created."
+        "flags": 16,
+        "description": "The ARN of the export task."
       },
-      "DeletionProtection": {
-        "type": {
-          "$ref": "#/6"
-        },
-        "flags": 0,
-        "description": "Value that indicates whether the Graph has deletion protection enabled. The graph can't be deleted when deletion protection is enabled.\n\n_Default_: If not specified, the default value is true."
-      },
-      "Endpoint": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 2,
-        "description": "The connection endpoint for the graph. For example: `g-12a3bcdef4.us-east-1.neptune-graph.amazonaws.com`"
-      },
-      "GraphArn": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 2,
-        "description": "Graph resource ARN"
-      },
-      "GraphId": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 18,
-        "description": "The auto-generated id assigned by the service."
-      },
-      "GraphName": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0,
-        "description": "Contains a user-supplied name for the Graph. \n\nIf you don't specify a name, we generate a unique Graph Name using a combination of Stack Name and a UUID comprising of 4 characters.\n\n_Important_: If you specify a name, you cannot perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you must replace the resource, specify a new name."
-      },
-      "ImportTask": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 4,
-        "description": "The details of the import task to use to create the graph. When specified, the graph is created using CreateGraphUsingImportTask and data is imported from the supplied source."
-      },
-      "KmsKeyIdentifier": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0,
-        "description": "The ARN of the KMS key used to encrypt data in the Neptune Analytics graph. If not specified, the graph is encrypted with an AWS managed key."
-      },
-      "ProvisionedMemory": {
+      "Destination": {
         "type": {
           "$ref": "#/7"
         },
         "flags": 1,
-        "description": "Memory for the Graph."
+        "description": "The Amazon S3 URI where data will be exported to."
       },
-      "PublicConnectivity": {
+      "ExportFilter": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/0"
         },
         "flags": 0,
-        "description": "Specifies whether the Graph can be reached over the internet. Access to all graphs requires IAM authentication.\n\nWhen the Graph is publicly reachable, its Domain Name System (DNS) endpoint resolves to the public IP address from the internet.\n\nWhen the Graph isn't publicly reachable, you need to create a PrivateGraphEndpoint in a given VPC to ensure the DNS name resolves to a private IP address that is reachable from the VPC.\n\n_Default_: If not specified, the default value is false."
+        "description": "The export filter of the export task."
       },
-      "ReplicaCount": {
+      "Format": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The format of the export task."
+      },
+      "GraphIdentifier": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The source graph identifier of the export task."
+      },
+      "KmsKeyIdentifier": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The KMS key identifier of the export task."
+      },
+      "ParquetType": {
         "type": {
           "$ref": "#/7"
         },
         "flags": 0,
-        "description": "Specifies the number of replicas you want when finished. All replicas will be provisioned in different availability zones.\n\nReplica Count should always be less than or equal to 2.\n\n_Default_: If not specified, the default value is 1."
+        "description": "The parquet type of the export task."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The ARN of the IAM role that will allow data to be exported to the destination."
       },
       "Status": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/7"
         },
         "flags": 2,
-        "description": "The current status of the graph."
+        "description": "The current status of the export task."
       },
       "Tags": {
         "type": {
           "$ref": "#/9"
         },
         "flags": 0,
-        "description": "The tags associated with this graph."
+        "description": "Tags to be applied to the export task."
       },
-      "VectorSearchConfiguration": {
+      "TaskId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/7"
         },
-        "flags": 0,
-        "description": "Vector Search Configuration"
+        "flags": 2,
+        "description": "The unique identifier of the export task."
       }
     }
   },
   {
     "$type": "ObjectType",
-    "name": "AWS.NeptuneGraph/Graph",
+    "name": "AWS.NeptuneGraph/ExportTask",
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/7"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/7"
         },
         "flags": 17,
         "description": "the resource alias"
@@ -300,12 +219,128 @@
   },
   {
     "$type": "ResourceType",
-    "name": "AWS.NeptuneGraph/Graph@default",
+    "name": "AWS.NeptuneGraph/ExportTask@default",
     "body": {
       "$ref": "#/11"
     },
-    "readableScopes": 0,
+    "readableScopes": 31,
     "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ImportOptions",
+    "properties": {
+      "Neptune": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "Options for importing data from a Neptune database."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ImportTask",
+    "properties": {
+      "BlankNodeHandling": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The method to handle blank nodes in the dataset. Currently, only convertToIri is supported, meaning blank nodes are converted to unique IRIs at load time. Must be provided when format is NTRIPLES"
+      },
+      "FailOnError": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "If set to true, the task halts when an import error is encountered. If set to false, the task skips the data that caused the error and continues if possible."
+      },
+      "Format": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "Specifies the format of S3 data to be imported. Valid values are CSV, which identifies the Gremlin CSV format, OPEN_CYPHER, which identifies the openCypher load format, or NTRIPLES, which identifies the RDF n-triples format."
+      },
+      "ImportOptions": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Contains options for controlling the import process. For example, if the failOnError key is set to false, the import skips the data that caused the error and continues if possible (whereas if set to true, the default, or if omitted, the import operation halts immediately when an error is encountered)."
+      },
+      "MaxProvisionedMemory": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0,
+        "description": "The maximum provisioned memory-optimized Neptune Capacity Units (m-NCUs) to use for the graph. Default: 1024, or the approved upper limit for your account. If both the minimum and maximum values are specified, the final provisioned-memory will be chosen per the actual size of your imported data. If neither value is specified, 128 m-NCUs are used."
+      },
+      "MinProvisionedMemory": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0,
+        "description": "The minimum provisioned memory-optimized Neptune Capacity Units (m-NCUs) to use for the graph. Default: 16"
+      },
+      "ParquetType": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The parquet type of the import task. Required when Format is PARQUET."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The ARN of the IAM role that will allow access to the data that is to be imported."
+      },
+      "Source": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "A URL identifying to the location of the data to be imported. This can be an Amazon S3 path, or can point to a Neptune database endpoint or snapshot."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NeptuneImportOptions",
+    "properties": {
+      "PreserveDefaultVertexLabels": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "Neptune Analytics supports label-less vertices and no labels are assigned unless one is explicitly provided. Neptune assigns default labels when none is explicitly provided. When importing the data into Neptune Analytics, the default vertex labels can be omitted by setting preserveDefaultVertexLabels to false. Note that if the vertex only has default labels, and has no other properties or edges, then the vertex will effectively not get imported into Neptune Analytics when preserveDefaultVertexLabels is set to false."
+      },
+      "PreserveEdgeIds": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "Neptune Analytics currently does not support user defined edge ids. The edge ids are not imported by default. They are imported if preserveEdgeIds is set to true, and ids are stored as properties on the relationships with the property name neptuneEdgeId."
+      },
+      "S3ExportKmsKeyId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The KMS key to use to encrypt data in the S3 bucket where the graph data is exported."
+      },
+      "S3ExportPath": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The path to an S3 bucket from which to import data."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -313,206 +348,167 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/7"
         },
         "flags": 1,
-        "description": "The key name of the tag."
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/7"
         },
-        "flags": 1,
-        "description": "The value for the tag."
+        "flags": 0,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. "
       }
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "VectorSearchConfiguration",
+    "properties": {
+      "VectorSearchDimension": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1,
+        "description": "The vector search dimension"
+      }
+    }
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
     "$type": "StringLiteralType",
-    "value": "AWS.NeptuneGraph/GraphSnapshotProperties"
+    "value": "AWS.NeptuneGraph/GraphProperties"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/16"
     }
   },
   {
     "$type": "ObjectType",
-    "name": "AWS.NeptuneGraph/GraphSnapshotProperties",
+    "name": "AWS.NeptuneGraph/GraphProperties",
     "properties": {
-      "Arn": {
+      "CreateTime": {
         "type": {
-          "$ref": "#/5"
-        },
-        "flags": 18,
-        "description": "The ARN of the graph snapshot."
-      },
-      "GraphIdentifier": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1,
-        "description": "The unique identifier of the Neptune Analytics graph to create the snapshot from."
-      },
-      "Id": {
-        "type": {
-          "$ref": "#/5"
+          "$ref": "#/7"
         },
         "flags": 2,
-        "description": "The unique identifier of the graph snapshot."
+        "description": "The time at which the graph was created."
+      },
+      "DeletionProtection": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "Value that indicates whether the Graph has deletion protection enabled. The graph can't be deleted when deletion protection is enabled.\n\n_Default_: If not specified, the default value is true."
+      },
+      "Endpoint": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The connection endpoint for the graph. For example: `g-12a3bcdef4.us-east-1.neptune-graph.amazonaws.com`"
+      },
+      "GraphArn": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "Graph resource ARN"
+      },
+      "GraphId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 18,
+        "description": "The auto-generated id assigned by the service."
+      },
+      "GraphName": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "Contains a user-supplied name for the Graph. \n\nIf you don't specify a name, we generate a unique Graph Name using a combination of Stack Name and a UUID comprising of 4 characters.\n\n_Important_: If you specify a name, you cannot perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you must replace the resource, specify a new name."
+      },
+      "ImportTask": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 4,
+        "description": "The details of the import task to use to create the graph. When specified, the graph is created using CreateGraphUsingImportTask and data is imported from the supplied source."
       },
       "KmsKeyIdentifier": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/7"
         },
-        "flags": 2,
-        "description": "The ID of the KMS key used to encrypt and decrypt the snapshot."
+        "flags": 0,
+        "description": "The ARN of the KMS key used to encrypt data in the Neptune Analytics graph. If not specified, the graph is encrypted with an AWS managed key."
       },
-      "SnapshotCreateTime": {
+      "ProvisionedMemory": {
         "type": {
-          "$ref": "#/5"
-        },
-        "flags": 2,
-        "description": "The time when the snapshot was created."
-      },
-      "SnapshotName": {
-        "type": {
-          "$ref": "#/5"
+          "$ref": "#/19"
         },
         "flags": 1,
-        "description": "The snapshot name."
+        "description": "Memory for the Graph."
+      },
+      "PublicConnectivity": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "Specifies whether the Graph can be reached over the internet. Access to all graphs requires IAM authentication.\n\nWhen the Graph is publicly reachable, its Domain Name System (DNS) endpoint resolves to the public IP address from the internet.\n\nWhen the Graph isn't publicly reachable, you need to create a PrivateGraphEndpoint in a given VPC to ensure the DNS name resolves to a private IP address that is reachable from the VPC.\n\n_Default_: If not specified, the default value is false."
+      },
+      "ReplicaCount": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0,
+        "description": "Specifies the number of replicas you want when finished. All replicas will be provisioned in different availability zones.\n\nReplica Count should always be less than or equal to 2.\n\n_Default_: If not specified, the default value is 1."
       },
       "Status": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/7"
         },
         "flags": 2,
-        "description": "The current status of the graph snapshot."
+        "description": "The current status of the graph."
       },
       "Tags": {
-        "type": {
-          "$ref": "#/15"
-        },
-        "flags": 0,
-        "description": "An array of key-value pairs to apply to this resource."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.NeptuneGraph/GraphSnapshot",
-    "properties": {
-      "name": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0,
-        "description": "the resource name"
-      },
-      "alias": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 17,
-        "description": "the resource alias"
-      },
-      "properties": {
-        "type": {
-          "$ref": "#/16"
-        },
-        "flags": 17,
-        "description": "properties of the resource"
-      }
-    }
-  },
-  {
-    "$type": "ResourceType",
-    "name": "AWS.NeptuneGraph/GraphSnapshot@default",
-    "body": {
-      "$ref": "#/17"
-    },
-    "readableScopes": 0,
-    "writableScopes": 0
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.NeptuneGraph/PrivateGraphEndpointProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/5"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/5"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.NeptuneGraph/PrivateGraphEndpointProperties",
-    "properties": {
-      "GraphIdentifier": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1,
-        "description": "The auto-generated Graph Id assigned by the service."
-      },
-      "PrivateGraphEndpointIdentifier": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 18,
-        "description": "PrivateGraphEndpoint resource identifier generated by concatenating the associated GraphIdentifier and VpcId with an underscore separator.\n\n For example, if GraphIdentifier is `g-12a3bcdef4` and VpcId is `vpc-0a12bc34567de8f90`, the generated PrivateGraphEndpointIdentifier will be `g-12a3bcdef4_vpc-0a12bc34567de8f90`"
-      },
-      "SecurityGroupIds": {
-        "type": {
-          "$ref": "#/20"
-        },
-        "flags": 4,
-        "description": "The security group Ids associated with the VPC where you want the private graph endpoint to be created, ie, the graph will be reachable from within the VPC."
-      },
-      "SubnetIds": {
         "type": {
           "$ref": "#/21"
         },
         "flags": 0,
-        "description": "The subnet Ids associated with the VPC where you want the private graph endpoint to be created, ie, the graph will be reachable from within the VPC."
+        "description": "The tags associated with this graph."
       },
-      "VpcEndpointId": {
+      "VectorSearchConfiguration": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/17"
         },
-        "flags": 2,
-        "description": "VPC endpoint that provides a private connection between the Graph and specified VPC."
-      },
-      "VpcId": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1,
-        "description": "The VPC where you want the private graph endpoint to be created, ie, the graph will be reachable from within the VPC."
+        "flags": 0,
+        "description": "Vector Search Configuration"
       }
     }
   },
   {
     "$type": "ObjectType",
-    "name": "AWS.NeptuneGraph/PrivateGraphEndpoint",
+    "name": "AWS.NeptuneGraph/Graph",
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/7"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/7"
         },
         "flags": 17,
         "description": "the resource alias"
@@ -528,9 +524,339 @@
   },
   {
     "$type": "ResourceType",
-    "name": "AWS.NeptuneGraph/PrivateGraphEndpoint@default",
+    "name": "AWS.NeptuneGraph/Graph@default",
     "body": {
       "$ref": "#/23"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.NeptuneGraph/GraphSnapshotProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/25"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.NeptuneGraph/GraphSnapshotProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 18,
+        "description": "The ARN of the graph snapshot."
+      },
+      "GraphIdentifier": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The unique identifier of the Neptune Analytics graph to create the snapshot from."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the graph snapshot."
+      },
+      "KmsKeyIdentifier": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The ID of the KMS key used to encrypt and decrypt the snapshot."
+      },
+      "SnapshotCreateTime": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The time when the snapshot was created."
+      },
+      "SnapshotName": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The snapshot name."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The current status of the graph snapshot."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.NeptuneGraph/GraphSnapshot",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.NeptuneGraph/GraphSnapshot@default",
+    "body": {
+      "$ref": "#/29"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.NeptuneGraph/ImportTaskProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.NeptuneGraph/ImportTaskProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 16,
+        "description": "The ARN of the import task."
+      },
+      "Format": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "Specifies the format of the Amazon S3 data to be imported."
+      },
+      "GraphIdentifier": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The unique identifier of the Neptune Analytics graph that the data is imported into."
+      },
+      "ParquetType": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The parquet type of the import task."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The ARN of the IAM role that will allow access to the data that is to be imported."
+      },
+      "Source": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "A URL identifying the location of the data to be imported. This can be an Amazon S3 path, or can point to a Neptune database endpoint or snapshot."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The status of the import task."
+      },
+      "TaskId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the import task."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.NeptuneGraph/ImportTask",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.NeptuneGraph/ImportTask@default",
+    "body": {
+      "$ref": "#/33"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.NeptuneGraph/PrivateGraphEndpointProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.NeptuneGraph/PrivateGraphEndpointProperties",
+    "properties": {
+      "GraphIdentifier": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The auto-generated Graph Id assigned by the service."
+      },
+      "PrivateGraphEndpointIdentifier": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 18,
+        "description": "PrivateGraphEndpoint resource identifier generated by concatenating the associated GraphIdentifier and VpcId with an underscore separator.\n\n For example, if GraphIdentifier is `g-12a3bcdef4` and VpcId is `vpc-0a12bc34567de8f90`, the generated PrivateGraphEndpointIdentifier will be `g-12a3bcdef4_vpc-0a12bc34567de8f90`"
+      },
+      "SecurityGroupIds": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 4,
+        "description": "The security group Ids associated with the VPC where you want the private graph endpoint to be created, ie, the graph will be reachable from within the VPC."
+      },
+      "SubnetIds": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 0,
+        "description": "The subnet Ids associated with the VPC where you want the private graph endpoint to be created, ie, the graph will be reachable from within the VPC."
+      },
+      "VpcEndpointId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "VPC endpoint that provides a private connection between the Graph and specified VPC."
+      },
+      "VpcId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The VPC where you want the private graph endpoint to be created, ie, the graph will be reachable from within the VPC."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.NeptuneGraph/PrivateGraphEndpoint",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.NeptuneGraph/PrivateGraphEndpoint@default",
+    "body": {
+      "$ref": "#/39"
     },
     "readableScopes": 0,
     "writableScopes": 0

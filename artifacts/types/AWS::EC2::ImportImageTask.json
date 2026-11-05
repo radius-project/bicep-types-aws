@@ -1,0 +1,201 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-ImportImageTask",
+  "type": "AWS::EC2::ImportImageTask",
+  "time": "2026-11-05T21:11:29.499Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ImportTaskId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/BootMode",
+      "/properties/Description",
+      "/properties/Encrypted",
+      "/properties/KmsKeyId",
+      "/properties/LicenseSpecifications",
+      "/properties/LicenseType",
+      "/properties/Tags",
+      "/properties/UsageOperation"
+    ],
+    "definitions": {
+      "ImportImageLicenseConfiguration": {
+        "additionalProperties": false,
+        "description": "The response information for license configurations.",
+        "properties": {
+          "LicenseConfigurationArn": {
+            "description": "The ARN of a license configuration.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "SnapshotDetail": {
+        "additionalProperties": false,
+        "description": "Describes the snapshot created from the imported disk.",
+        "properties": {
+          "DiskImageSize": {
+            "description": "The size of the disk in the snapshot, in GiB.",
+            "type": "number"
+          },
+          "Format": {
+            "description": "The format of the disk image from which the snapshot is created.",
+            "type": "string"
+          },
+          "SnapshotId": {
+            "description": "The snapshot ID of the disk being imported. Populated once the import task completes.",
+            "type": "string"
+          },
+          "Status": {
+            "description": "A brief status of the snapshot creation.",
+            "type": "string"
+          },
+          "UserBucket": {
+            "$ref": "#/definitions/UserBucket"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "UserBucket": {
+        "additionalProperties": false,
+        "description": "Describes the Amazon S3 bucket for the disk image.",
+        "properties": {
+          "S3Bucket": {
+            "description": "The name of the Amazon S3 bucket where the disk image is located.",
+            "type": "string"
+          },
+          "S3Key": {
+            "description": "The file name of the disk image.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource schema for an EC2 Import Image Task. This is a read-only resource representing a VM image import job.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "ec2:DescribeImportImageTasks"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ec2:DescribeImportImageTasks"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of the import image task.",
+        "type": "string"
+      },
+      "BootMode": {
+        "description": "The boot mode of the virtual machine. The enum mirrors EC2's shared BootModeValues shape; ImportImage itself does not accept uefi-preferred.",
+        "enum": [
+          "legacy-bios",
+          "uefi",
+          "uefi-preferred"
+        ],
+        "type": "string"
+      },
+      "Description": {
+        "description": "A description string for the import image task.",
+        "type": "string"
+      },
+      "Encrypted": {
+        "description": "Specifies whether the destination AMI of the imported image should be encrypted.",
+        "type": "boolean"
+      },
+      "ImageId": {
+        "description": "The ID of the AMI of the imported virtual machine. Populated only once the import task completes; an in-progress task returns an empty string.",
+        "type": "string"
+      },
+      "ImportTaskId": {
+        "description": "The ID of the import image task.",
+        "type": "string"
+      },
+      "KmsKeyId": {
+        "description": "An identifier for the symmetric AWS KMS key used to create the encrypted AMI.",
+        "type": "string"
+      },
+      "LicenseSpecifications": {
+        "description": "The ARNs of the license configurations.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/ImportImageLicenseConfiguration"
+        },
+        "type": "array"
+      },
+      "LicenseType": {
+        "description": "The license type to be used for the Amazon Machine Image (AMI) after importing.",
+        "type": "string"
+      },
+      "SnapshotDetails": {
+        "description": "Information about the snapshots created from the imported disks.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/SnapshotDetail"
+        },
+        "type": "array"
+      },
+      "Status": {
+        "description": "A brief status for the import image task.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags for the import image task.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "UsageOperation": {
+        "description": "The usage operation value for the AMI.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/ImportTaskId",
+      "/properties/ImageId",
+      "/properties/SnapshotDetails",
+      "/properties/Status"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "ec2:DescribeImportImageTasks"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::EC2::ImportImageTask"
+  }
+}

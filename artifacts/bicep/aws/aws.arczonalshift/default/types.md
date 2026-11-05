@@ -1,5 +1,13 @@
 # AWS.ARCZonalShift @ default
 
+## Resource AWS.ARCZonalShift/AutoshiftObserverNotificationStatus@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ARCZonalShift/AutoshiftObserverNotificationStatusProperties](#awsarczonalshiftautoshiftobservernotificationstatusproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.ARCZonalShift/ZonalAutoshiftConfiguration@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -7,6 +15,12 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ARCZonalShift/ZonalAutoshiftConfigurationProperties](#awsarczonalshiftzonalautoshiftconfigurationproperties) (Identifier): properties of the resource
+
+## AWS.ARCZonalShift/AutoshiftObserverNotificationStatusProperties
+### Properties
+* **AccountId**: string (ReadOnly, Identifier)
+* **Region**: string (ReadOnly, Identifier)
+* **Status**: string (Required)
 
 ## AWS.ARCZonalShift/ZonalAutoshiftConfigurationProperties
 ### Properties

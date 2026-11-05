@@ -1,5 +1,13 @@
 # AWS.DMS @ default
 
+## Resource AWS.DMS/Certificate@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.DMS/CertificateProperties](#awsdmscertificateproperties) (Identifier): properties of the resource
+
 ## Resource AWS.DMS/DataMigration@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -71,6 +79,26 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DMS/ReplicationTaskProperties](#awsdmsreplicationtaskproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.DMS/ReplicationTaskAssessmentRun@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.DMS/ReplicationTaskAssessmentRunProperties](#awsdmsreplicationtaskassessmentrunproperties) (Identifier): properties of the resource
+
+## AssessmentProgress
+### Properties
+* **IndividualAssessmentCompletedCount**: int: The number of individual assessments that have completed, successfully or not.
+* **IndividualAssessmentCount**: int: The number of individual assessments that are specified to run.
+
+## AWS.DMS/CertificateProperties
+### Properties
+* **CertificateArn**: string (ReadOnly, Identifier): The certificate Arn
+* **CertificateIdentifier**: string: The certificate Identifier
+* **CertificatePem**: string (WriteOnly): The certificate Pem
+* **CertificateWallet**: string (WriteOnly): The certificate Wallet
 
 ## AWS.DMS/DataMigrationProperties
 ### Properties
@@ -201,6 +229,20 @@ If you specify multiple values, they must be of the same type. For example, if y
 * **ReplicationSubnetGroupIdentifier**: string (Identifier): The name for the replication subnet group. This value is stored as a lowercase string.
 * **SubnetIds**: string[] (Required): One or more subnet IDs to be assigned to the replication subnet group.
 * **Tags**: [Tag](#tag)[]: One or more tags to be assigned to the replication subnet group
+
+## AWS.DMS/ReplicationTaskAssessmentRunProperties
+### Properties
+* **AssessmentProgress**: [AssessmentProgress](#assessmentprogress) (ReadOnly)
+* **AssessmentRunName**: string (ReadOnly): Unique name to identify the assessment run.
+* **IsLatestTaskAssessmentRun**: bool (ReadOnly): Indicates that the following premigration assessment run is the latest for the migration task.
+* **ReplicationTaskArn**: string (ReadOnly): Amazon Resource Name (ARN) of the migration task associated with this premigration assessment run.
+* **ReplicationTaskAssessmentRunArn**: string (Identifier): Amazon Resource Name (ARN) of this assessment run.
+* **ReplicationTaskAssessmentRunCreationDate**: string (ReadOnly): Date on which the assessment run was created using the StartReplicationTaskAssessmentRun operation.
+* **ResultEncryptionMode**: string (ReadOnly): Encryption mode used to encrypt the assessment run results.
+* **ResultLocationBucket**: string (ReadOnly): Amazon S3 bucket where AWS DMS stores the results of this assessment run.
+* **ResultLocationFolder**: string (ReadOnly): Folder in an Amazon S3 bucket where AWS DMS stores the results of this assessment run.
+* **ServiceAccessRoleArn**: string (ReadOnly): ARN of the service role used to start the assessment run. The role must allow the iam:PassRole action.
+* **Status**: string (ReadOnly): Assessment run status. This status can have one of the following values: cancelling, deleting, failed, error-provisioning, error-executing, invalid state, passed, provisioning, running, starting, or warning.
 
 ## AWS.DMS/ReplicationTaskProperties
 ### Properties

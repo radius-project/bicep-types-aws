@@ -32,6 +32,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Evidently/ProjectProperties](#awsevidentlyprojectproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Evidently/Segment@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Evidently/SegmentProperties](#awsevidentlysegmentproperties) (Required, Identifier): properties of the resource
+
 ## AppConfigResourceObject
 ### Properties
 * **ApplicationId**: string (Required)
@@ -85,6 +93,14 @@
 * **DataDelivery**: [DataDeliveryObject](#datadeliveryobject)
 * **Description**: string
 * **Name**: string (Required)
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## AWS.Evidently/SegmentProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier)
+* **Description**: string
+* **Name**: string (Required)
+* **Pattern**: string
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
 ## DataDeliveryObject
@@ -160,6 +176,11 @@
 * **GroupWeights**: [GroupToWeight](#grouptoweight)[] (Required)
 * **SegmentOverrides**: [SegmentOverride](#segmentoverride)[]
 * **StartTime**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## Tag
 ### Properties

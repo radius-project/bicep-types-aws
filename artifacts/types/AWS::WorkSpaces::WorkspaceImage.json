@@ -1,0 +1,182 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-WorkSpaces-WorkspaceImage",
+  "type": "AWS::WorkSpaces::WorkspaceImage",
+  "time": "2026-11-05T21:22:54.21Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ImageId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name",
+      "/properties/Description",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "OperatingSystem": {
+        "additionalProperties": false,
+        "description": "The operating system that the image is running.",
+        "properties": {
+          "Type": {
+            "description": "The operating system.",
+            "enum": [
+              "WINDOWS",
+              "LINUX"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair associated with the image.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 127,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "UpdateResult": {
+        "additionalProperties": false,
+        "description": "Describes whether the image needs to be updated with the latest drivers and other components required by Amazon WorkSpaces.",
+        "properties": {
+          "Description": {
+            "description": "A description of whether updates for the image are pending or available.",
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9_./() -]+$",
+            "type": "string"
+          },
+          "UpdateAvailable": {
+            "description": "Indicates whether updated drivers or other components are available for the image.",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::WorkSpaces::WorkspaceImage. Provides read-only access to a custom Amazon WorkSpaces image created from a WorkSpace.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "workspaces:DescribeWorkspaceImages"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "workspaces:DescribeWorkspaceImages",
+          "workspaces:DescribeTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the image.",
+        "pattern": "^arn:aws[a-z-]{0,7}:workspaces:[a-z0-9-]{1,63}:[0-9]{12}:workspaceimage/wsi-[0-9a-z]{9,63}$",
+        "type": "string"
+      },
+      "Created": {
+        "description": "The date when the image was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description of the image.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9_./() -]+$",
+        "type": "string"
+      },
+      "ImageId": {
+        "description": "The identifier of the image. Assigned by the service when the image is created.",
+        "pattern": "^wsi-[0-9a-z]{9,63}$",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the image.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9_./()\\\\-]+$",
+        "type": "string"
+      },
+      "OperatingSystem": {
+        "$ref": "#/definitions/OperatingSystem"
+      },
+      "OwnerAccountId": {
+        "description": "The identifier of the Amazon Web Services account that owns the image.",
+        "pattern": "^\\d{12}$",
+        "type": "string"
+      },
+      "RequiredTenancy": {
+        "description": "Specifies whether the image is running on dedicated hardware. When Bring Your Own License (BYOL) is enabled, this value is set to DEDICATED.",
+        "enum": [
+          "DEFAULT",
+          "DEDICATED"
+        ],
+        "type": "string"
+      },
+      "State": {
+        "description": "The status of the image.",
+        "enum": [
+          "AVAILABLE",
+          "PENDING",
+          "ERROR"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags associated with the image.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "Updates": {
+        "$ref": "#/definitions/UpdateResult"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/ImageId",
+      "/properties/OperatingSystem",
+      "/properties/State",
+      "/properties/RequiredTenancy",
+      "/properties/Created",
+      "/properties/OwnerAccountId",
+      "/properties/Updates"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "workspaces:DescribeTags"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::WorkSpaces::WorkspaceImage"
+  }
+}

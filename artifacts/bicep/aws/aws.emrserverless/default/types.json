@@ -816,5 +816,646 @@
     },
     "readableScopes": 0,
     "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Configuration",
+    "properties": {
+      "Classification": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 1,
+        "description": "The classification within a configuration."
+      },
+      "Configurations": {
+        "type": {
+          "$ref": "#/71"
+        },
+        "flags": 0,
+        "description": "A list of additional configurations to apply within a configuration object."
+      },
+      "Properties": {
+        "type": {
+          "$ref": "#/72"
+        },
+        "flags": 0,
+        "description": "A set of properties specified within a configuration classification."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConfigurationOverrides",
+    "properties": {
+      "ApplicationConfiguration": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0,
+        "description": "The override configurations for the application."
+      },
+      "MonitoringConfiguration": {
+        "type": {
+          "$ref": "#/67"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Hive",
+    "properties": {
+      "InitQueryFile": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "The query file for the Hive job run."
+      },
+      "Parameters": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "The parameters for the Hive job run."
+      },
+      "Query": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 1,
+        "description": "The query for the Hive job run."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JobDriver",
+    "properties": {
+      "Hive": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 0
+      },
+      "SparkSubmit": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ManagedPersistenceMonitoringConfiguration",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0,
+        "description": "Enables managed logging and defaults to true. If set to false, managed logging is turned off."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MonitoringConfiguration",
+    "properties": {
+      "ManagedPersistenceMonitoringConfiguration": {
+        "type": {
+          "$ref": "#/66"
+        },
+        "flags": 0
+      },
+      "S3MonitoringConfiguration": {
+        "type": {
+          "$ref": "#/68"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3MonitoringConfiguration",
+    "properties": {
+      "LogUri": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "The Amazon S3 destination URI for log publishing."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SparkSubmit",
+    "properties": {
+      "EntryPoint": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 1,
+        "description": "The entry point for the Spark submit job run."
+      },
+      "EntryPointArguments": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 0,
+        "description": "The arguments for the Spark submit job run."
+      },
+      "SparkSubmitParameters": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "The parameters for the Spark submit job run."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/62"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JobRun_Properties",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/62"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/41"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.EMRServerless/JobRunProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/70"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EMRServerless/JobRunProperties",
+    "properties": {
+      "ApplicationId": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "The ID of the application on which the job run is submitted."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the job run."
+      },
+      "ConfigurationOverrides": {
+        "type": {
+          "$ref": "#/63"
+        },
+        "flags": 0
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 2,
+        "description": "The date and time when the job run was created."
+      },
+      "CreatedBy": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 2,
+        "description": "The user who created the job run."
+      },
+      "ExecutionRoleArn": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "The execution role ARN of the job run."
+      },
+      "ExecutionTimeoutMinutes": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0,
+        "description": "The maximum duration, in minutes, for the job run. If the job run exceeds this duration, it is cancelled automatically."
+      },
+      "JobDriver": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 0
+      },
+      "JobRunId": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 2,
+        "description": "The ID of the job run."
+      },
+      "Mode": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "The mode of the job run."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "The optional job run name."
+      },
+      "ReleaseLabel": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 2,
+        "description": "The Amazon EMR release associated with the application on which the job is running."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 2,
+        "description": "The state of the job run."
+      },
+      "StateDetails": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 2,
+        "description": "The state details of the job run."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/76"
+        },
+        "flags": 0,
+        "description": "The tags assigned to the job run."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 2,
+        "description": "The date and time when the job run was last updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EMRServerless/JobRun",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/77"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.EMRServerless/JobRun@default",
+    "body": {
+      "$ref": "#/78"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Configuration",
+    "properties": {
+      "Classification": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 1,
+        "description": "The classification within a configuration."
+      },
+      "Configurations": {
+        "type": {
+          "$ref": "#/84"
+        },
+        "flags": 0,
+        "description": "A list of additional configurations to apply within a configuration object."
+      },
+      "Properties": {
+        "type": {
+          "$ref": "#/85"
+        },
+        "flags": 0,
+        "description": "A set of properties specified within a configuration classification."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConfigurationOverrides",
+    "properties": {
+      "RuntimeConfiguration": {
+        "type": {
+          "$ref": "#/86"
+        },
+        "flags": 0,
+        "description": "The runtime configuration for the session. Contains Spark configuration properties specified at session creation time."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NetworkConfiguration",
+    "properties": {
+      "SecurityGroupIds": {
+        "type": {
+          "$ref": "#/87"
+        },
+        "flags": 0,
+        "description": "The array of security group Ids for customer VPC connectivity."
+      },
+      "SubnetIds": {
+        "type": {
+          "$ref": "#/88"
+        },
+        "flags": 0,
+        "description": "The array of subnet Ids for customer VPC connectivity."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/80"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Session_Properties",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/80"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/41"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/41"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.EMRServerless/SessionProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/83"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EMRServerless/SessionProperties",
+    "properties": {
+      "ApplicationId": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "The ID of the application on which the session is started."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the session."
+      },
+      "ConfigurationOverrides": {
+        "type": {
+          "$ref": "#/81"
+        },
+        "flags": 0
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 2,
+        "description": "The date and time that the session was created."
+      },
+      "CreatedBy": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 2,
+        "description": "The IAM principal that created the session."
+      },
+      "ExecutionRoleArn": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "The execution role ARN for the session. Amazon EMR Serverless uses this role to access Amazon Web Services resources on your behalf during session execution."
+      },
+      "IdleSince": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 2,
+        "description": "The date and time that the session became idle."
+      },
+      "IdleTimeoutMinutes": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0,
+        "description": "The idle timeout in minutes for the session. After the session remains idle for this duration, Amazon EMR Serverless automatically terminates it."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "The optional name for the session."
+      },
+      "NetworkConfiguration": {
+        "type": {
+          "$ref": "#/82"
+        },
+        "flags": 2
+      },
+      "ReleaseLabel": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 2,
+        "description": "The Amazon EMR release label associated with the session."
+      },
+      "SessionId": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 2,
+        "description": "The ID of the session."
+      },
+      "StartedAt": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 2,
+        "description": "The date and time that the session moved to a running state."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 2,
+        "description": "The state of the session."
+      },
+      "StateDetails": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 2,
+        "description": "Additional details about the current state of the session."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/90"
+        },
+        "flags": 0,
+        "description": "The tags assigned to the session."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 2,
+        "description": "The date and time that the session was last updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EMRServerless/Session",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/91"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.EMRServerless/Session@default",
+    "body": {
+      "$ref": "#/92"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
   }
 ]

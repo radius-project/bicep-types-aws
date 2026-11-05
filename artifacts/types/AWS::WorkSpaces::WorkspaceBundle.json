@@ -1,0 +1,223 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-WorkSpaces-WorkspaceBundle",
+  "type": "AWS::WorkSpaces::WorkspaceBundle",
+  "time": "2026-11-05T21:08:40.1Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/BundleId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name",
+      "/properties/Description",
+      "/properties/ImageId",
+      "/properties/ComputeType",
+      "/properties/UserStorage",
+      "/properties/RootStorage",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "ComputeType": {
+        "additionalProperties": false,
+        "description": "The compute type of the bundle.",
+        "properties": {
+          "Name": {
+            "description": "The compute type of the bundle.",
+            "enum": [
+              "VALUE",
+              "STANDARD",
+              "PERFORMANCE",
+              "POWER",
+              "GRAPHICS",
+              "POWERPRO",
+              "GENERALPURPOSE_4XLARGE",
+              "GENERALPURPOSE_8XLARGE",
+              "GRAPHICSPRO",
+              "GRAPHICS_G4DN",
+              "GRAPHICSPRO_G4DN",
+              "GRAPHICS_G6_XLARGE",
+              "GRAPHICS_G6_2XLARGE",
+              "GRAPHICS_G6_4XLARGE",
+              "GRAPHICS_G6_8XLARGE",
+              "GRAPHICS_G6_16XLARGE",
+              "GRAPHICS_GR6_4XLARGE",
+              "GRAPHICS_GR6_8XLARGE",
+              "GRAPHICS_G6F_LARGE",
+              "GRAPHICS_G6F_XLARGE",
+              "GRAPHICS_G6F_2XLARGE",
+              "GRAPHICS_G6F_4XLARGE",
+              "GRAPHICS_GR6F_4XLARGE"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "RootStorage": {
+        "additionalProperties": false,
+        "description": "The size of the root volume.",
+        "properties": {
+          "Capacity": {
+            "description": "The size of the root volume.",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Capacity"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair associated with the bundle.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 127,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "UserStorage": {
+        "additionalProperties": false,
+        "description": "The size of the user volume.",
+        "properties": {
+          "Capacity": {
+            "description": "The size of the user volume.",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Capacity"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::WorkSpaces::WorkspaceBundle. Provides read-only access to a custom Amazon WorkSpaces bundle created from a WorkSpace image.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "workspaces:DescribeWorkspaceBundles"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "workspaces:DescribeWorkspaceBundles",
+          "workspaces:DescribeTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the bundle.",
+        "type": "string"
+      },
+      "BundleId": {
+        "description": "The identifier of the bundle. Assigned by the service when the bundle is created.",
+        "pattern": "^wsb-[0-9a-z]{8,63}$",
+        "type": "string"
+      },
+      "BundleType": {
+        "description": "The type of WorkSpace bundle.",
+        "enum": [
+          "REGULAR",
+          "STANDBY"
+        ],
+        "type": "string"
+      },
+      "ComputeType": {
+        "$ref": "#/definitions/ComputeType"
+      },
+      "CreationTime": {
+        "description": "The time when the bundle was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description of the bundle.",
+        "type": "string"
+      },
+      "ImageId": {
+        "description": "The identifier of the image that is used to create the bundle.",
+        "pattern": "^wsi-[0-9a-z]{9,63}$",
+        "type": "string"
+      },
+      "LastUpdatedTime": {
+        "description": "The last time that the bundle was updated.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the bundle.",
+        "minLength": 1,
+        "type": "string"
+      },
+      "Owner": {
+        "description": "The owner of the bundle. This is the account identifier of the owner, or AMAZON if the bundle is provided by AWS.",
+        "type": "string"
+      },
+      "RootStorage": {
+        "$ref": "#/definitions/RootStorage"
+      },
+      "State": {
+        "description": "The state of the WorkSpace bundle.",
+        "enum": [
+          "AVAILABLE",
+          "PENDING",
+          "ERROR"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags associated with the bundle.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "UserStorage": {
+        "$ref": "#/definitions/UserStorage"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/BundleId",
+      "/properties/Owner",
+      "/properties/State",
+      "/properties/BundleType",
+      "/properties/CreationTime",
+      "/properties/LastUpdatedTime"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "workspaces:DescribeTags"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::WorkSpaces::WorkspaceBundle"
+  }
+}

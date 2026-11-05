@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Timestream-InfluxDBCluster",
   "type": "AWS::Timestream::InfluxDBCluster",
-  "time": "2026-08-08T03:46:02.919Z",
+  "time": "2026-11-04T01:11:05.628Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -16,7 +16,8 @@
       "/properties/DbStorageType",
       "/properties/AllocatedStorage",
       "/properties/DeploymentType",
-      "/properties/NetworkType"
+      "/properties/NetworkType",
+      "/properties/KmsKeyId"
     ],
     "definitions": {
       "MaintenanceSchedule": {
@@ -41,6 +42,35 @@
         "required": [
           "Timezone",
           "PreferredMaintenanceWindow"
+        ],
+        "type": "object"
+      },
+      "MemberModeCount": {
+        "additionalProperties": false,
+        "description": "The number of DB cluster members reporting one instance mode.",
+        "properties": {
+          "Count": {
+            "description": "The number of DB cluster members reporting this instance mode.",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "Mode": {
+            "description": "The instance mode reported by DB cluster members.",
+            "enum": [
+              "PRIMARY",
+              "STANDBY",
+              "REPLICA",
+              "INGEST",
+              "QUERY",
+              "COMPACT",
+              "PROCESS"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Mode",
+          "Count"
         ],
         "type": "object"
       },
@@ -78,6 +108,7 @@
           "timestream-influxdb:GetDbCluster",
           "timestream-influxdb:GetDbParameterGroup",
           "timestream-influxdb:ListDbClusters",
+          "timestream-influxdb:ListDbInstancesForCluster",
           "timestream-influxdb:CreateDbCluster",
           "timestream-influxdb:TagResource",
           "timestream-influxdb:ListTagsForResource",
@@ -88,7 +119,9 @@
           "ec2:CreateNetworkInterface",
           "ec2:DescribeRouteTables",
           "ec2:DescribeVpcEndpoints",
-          "iam:CreateServiceLinkedRole"
+          "iam:CreateServiceLinkedRole",
+          "kms:DescribeKey",
+          "kms:CreateGrant"
         ],
         "timeoutInMinutes": 2160
       },
@@ -110,6 +143,7 @@
       "read": {
         "permissions": [
           "timestream-influxdb:GetDbCluster",
+          "timestream-influxdb:ListDbInstancesForCluster",
           "timestream-influxdb:ListTagsForResource"
         ],
         "timeoutInMinutes": 2160
@@ -121,6 +155,7 @@
           "timestream-influxdb:UpdateDbInstance",
           "timestream-influxdb:GetDbCluster",
           "timestream-influxdb:ListDbClusters",
+          "timestream-influxdb:ListDbInstancesForCluster",
           "timestream-influxdb:UpdateDbCluster",
           "timestream-influxdb:TagResource",
           "timestream-influxdb:UntagResource",
@@ -194,6 +229,13 @@
         ],
         "type": "string"
       },
+      "EffectiveDbParameterGroupIdentifier": {
+        "description": "The parameter group actually applied to the InfluxDB cluster. When the service applies optimized defaults it creates a system-managed parameter group and this field reflects that effective parameter group, while DbParameterGroupIdentifier continues to reflect the customer-provided parameter group. When no service-managed parameter group is applied, this equals DbParameterGroupIdentifier.",
+        "maxLength": 64,
+        "minLength": 3,
+        "pattern": "^[a-zA-Z0-9]+$",
+        "type": "string"
+      },
       "Endpoint": {
         "description": "The connection endpoint for the InfluxDB cluster.",
         "type": "string"
@@ -224,7 +266,14 @@
       },
       "InfluxAuthParametersSecretArn": {
         "description": "The Auth parameters secret Amazon Resource name (ARN) that is associated with the InfluxDB cluster.",
-        "pattern": "^arn:[a-z]*:secretsmanager:[a-z\\-0-9]*:[0-9]*:secret:[a-zA-Z0-9\\-]*",
+        "pattern": "^arn:aws[a-z\\-]*:secretsmanager:[a-z\\-0-9]*:[0-9]*:secret:[a-zA-Z0-9\\-]*",
+        "type": "string"
+      },
+      "KmsKeyId": {
+        "description": "The customer managed key used to encrypt data in the InfluxDB cluster.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9:/_\\-]+$",
         "type": "string"
       },
       "LogDeliveryConfiguration": {
@@ -262,6 +311,20 @@
       "MaintenanceSchedule": {
         "$ref": "#/definitions/MaintenanceSchedule",
         "description": "The maintenance schedule for the InfluxDB cluster."
+      },
+      "MemberCount": {
+        "description": "The number of DB instances that belong to the InfluxDB cluster.",
+        "minimum": 0,
+        "type": "integer"
+      },
+      "MemberModeCounts": {
+        "description": "DB cluster member counts grouped by instance mode.",
+        "insertionOrder": true,
+        "items": {
+          "$ref": "#/definitions/MemberModeCount"
+        },
+        "maxItems": 7,
+        "type": "array"
       },
       "Name": {
         "description": "The unique name that is associated with the InfluxDB cluster.",
@@ -374,7 +437,10 @@
       "/properties/ReaderEndpoint",
       "/properties/InfluxAuthParametersSecretArn",
       "/properties/EngineType",
-      "/properties/NextMaintenanceTime"
+      "/properties/NextMaintenanceTime",
+      "/properties/EffectiveDbParameterGroupIdentifier",
+      "/properties/MemberCount",
+      "/properties/MemberModeCounts"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-timestream.git",
     "tagging": {

@@ -32,6 +32,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.ElastiCache/ReplicationGroupProperties](#awselasticachereplicationgroupproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.ElastiCache/ReservedCacheNode@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ElastiCache/ReservedCacheNodeProperties](#awselasticachereservedcachenodeproperties) (Identifier): properties of the resource
+
 ## Resource AWS.ElastiCache/ServerlessCache@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -184,6 +192,23 @@
 * **TransitEncryptionEnabled**: bool: A flag that enables in-transit encryption when set to true.
 * **TransitEncryptionMode**: string: A setting that allows you to migrate your clients to use in-transit encryption, with no downtime. When setting TransitEncryptionEnabled to true, you can set your TransitEncryptionMode to preferred in the same request, to allow both encrypted and unencrypted connections at the same time. Once you migrate all your Redis OSS clients to use encrypted connections you can modify the value to required to allow encrypted connections only. Setting TransitEncryptionMode to required is a two-step process that requires you to first set the TransitEncryptionMode to preferred, after that you can set TransitEncryptionMode to required. This process will not trigger the replacement of the replication group.
 * **UserGroupIds**: string[]: The ID of user group to associate with the replication group.
+
+## AWS.ElastiCache/ReservedCacheNodeProperties
+### Properties
+* **CacheNodeCount**: int (ReadOnly): The number of cache nodes that have been reserved.
+* **CacheNodeType**: string (ReadOnly): The cache node type for the reserved cache nodes.
+* **Duration**: int (ReadOnly): The duration of the reservation in seconds.
+* **FixedPrice**: int (ReadOnly): The fixed price charged for this reserved cache node.
+* **OfferingType**: string (ReadOnly): The offering type of this reserved cache node.
+* **ProductDescription**: string (ReadOnly): The description of the reserved cache node.
+* **RecurringCharges**: [RecurringCharge](#recurringcharge)[] (ReadOnly): The recurring price charged to run this reserved cache node.
+* **ReservationARN**: string (Identifier): The Amazon Resource Name (ARN) of the reserved cache node.
+* **ReservedCacheNodeId**: string (ReadOnly): The unique identifier for the reservation.
+* **ReservedCacheNodesOfferingId**: string (ReadOnly): The offering identifier.
+* **StartTime**: string (ReadOnly): The time the reservation started.
+* **State**: string (ReadOnly): The state of the reserved cache node.
+* **Tags**: [Tag](#tag)[] (ReadOnly): A list of tags.
+* **UsagePrice**: int (ReadOnly): The hourly price charged for this reserved cache node.
 
 ## AWS.ElastiCache/ServerlessCacheProperties
 ### Properties
@@ -380,6 +405,11 @@
 ## ParameterGroup_Properties
 ### Properties
 
+## RecurringCharge
+### Properties
+* **RecurringChargeAmount**: int: The monetary amount of the recurring charge.
+* **RecurringChargeFrequency**: string: The frequency of the recurring charge.
+
 ## RegionalConfiguration
 ### Properties
 * **ReplicationGroupId**: string: The replication group id of the Global Datastore member.
@@ -423,6 +453,11 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key of the tag.
+* **Value**: string (Required): The value of the tag.
 
 ## Tag
 ### Properties

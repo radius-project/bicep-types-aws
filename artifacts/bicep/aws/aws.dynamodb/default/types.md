@@ -1,5 +1,13 @@
 # AWS.DynamoDB @ default
 
+## Resource AWS.DynamoDB/Export@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.DynamoDB/ExportProperties](#awsdynamodbexportproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.DynamoDB/GlobalTable@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -7,6 +15,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DynamoDB/GlobalTableProperties](#awsdynamodbglobaltableproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.DynamoDB/Stream@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.DynamoDB/StreamProperties](#awsdynamodbstreamproperties) (Identifier): properties of the resource
 
 ## Resource AWS.DynamoDB/Table@default
 * **Readable Scope(s)**: None
@@ -28,6 +44,27 @@
   +  ``S`` - the attribute is of type String
   +  ``N`` - the attribute is of type Number
   +  ``B`` - the attribute is of type Binary
+
+## AWS.DynamoDB/ExportProperties
+### Properties
+* **BilledSizeBytes**: int (ReadOnly): The billable size of the table export.
+* **EndTime**: string (ReadOnly): The time at which the export task completed, in ISO 8601 format.
+* **ExportArn**: string (Identifier): The Amazon Resource Name (ARN) of the export.
+* **ExportFormat**: string: The format of the exported data.
+* **ExportId**: string (ReadOnly): The unique identifier of the export.
+* **ExportManifest**: string (ReadOnly): The name of the manifest file for the export task.
+* **ExportStatus**: string (ReadOnly): Export can be in one of the following states: IN_PROGRESS, COMPLETED, or FAILED.
+* **ExportTime**: string (ReadOnly): Point in time from which table data was exported, in ISO 8601 format.
+* **ExportType**: string: The type of export that was performed.
+* **ItemCount**: int (ReadOnly): The number of items exported.
+* **S3Bucket**: string (Required): The name of the Amazon S3 bucket containing the export.
+* **S3BucketOwner**: string: The ID of the Amazon Web Services account that owns the bucket containing the export.
+* **S3Prefix**: string: The Amazon S3 bucket prefix used as the file name and path of the exported snapshot.
+* **S3SseAlgorithm**: string: Type of encryption used on the bucket where export data is stored.
+* **StartTime**: string (ReadOnly): The time at which the export task began, in ISO 8601 format.
+* **TableArn**: string (Required): The Amazon Resource Name (ARN) of the table that was exported.
+* **TableId**: string (ReadOnly): Unique ID of the table that was exported.
+* **TableName**: string (ReadOnly): The name of the table that was exported.
 
 ## AWS.DynamoDB/GlobalTableProperties
 ### Properties
@@ -54,6 +91,16 @@
 * **WarmThroughput**: [WarmThroughput](#warmthroughput)
 * **WriteOnDemandThroughputSettings**: [WriteOnDemandThroughputSettings](#writeondemandthroughputsettings)
 * **WriteProvisionedThroughputSettings**: [WriteProvisionedThroughputSettings](#writeprovisionedthroughputsettings)
+
+## AWS.DynamoDB/StreamProperties
+### Properties
+* **CreationRequestDateTime**: string (ReadOnly): The date and time when the request to create this stream was issued.
+* **KeySchema**: [Stream_KeySchema](#streamkeyschema)[] (ReadOnly): The key attribute(s) of the stream's DynamoDB table.
+* **StreamArn**: string (Identifier): The Amazon Resource Name (ARN) for the stream.
+* **StreamLabel**: string (ReadOnly): A timestamp, in ISO 8601 format, for this stream.
+* **StreamStatus**: string (ReadOnly): Indicates the current status of the stream.
+* **StreamViewType**: string: Indicates the format of the records within this stream.
+* **TableName**: string: The DynamoDB table with which the stream is associated.
 
 ## AWS.DynamoDB/TableProperties
 ### Properties
@@ -334,6 +381,11 @@
 * **SSEEnabled**: bool (Required): Indicates whether server-side encryption is done using an AWS managed key or an AWS owned key. If enabled (true), server-side encryption type is set to ``KMS`` and an AWS managed key is used (KMS charges apply). If disabled (false) or not specified, server-side encryption is set to AWS owned key.
 * **SSEType**: string: Server-side encryption type. The only supported value is:
   +  ``KMS`` - Server-side encryption that uses KMSlong. The key is stored in your account and is managed by KMS (KMS charges apply).
+
+## Stream_KeySchema
+### Properties
+* **AttributeName**: string (Required): The name of a key attribute.
+* **KeyType**: string (Required): The role that this key attribute will assume.
 
 ## StreamSpecification
 ### Properties

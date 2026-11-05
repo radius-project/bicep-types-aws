@@ -1,0 +1,136 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-QuickSight-Ingestion",
+  "type": "AWS::QuickSight::Ingestion",
+  "time": "2026-11-05T20:56:20.392Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/DataSetId",
+        "/properties/IngestionId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/IngestionId",
+      "/properties/DataSetId"
+    ],
+    "description": "Represents a QuickSight SPICE ingestion for a dataset.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "DataSetId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "DataSetId"
+          ]
+        },
+        "permissions": [
+          "quicksight:ListIngestions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "quicksight:DescribeIngestion"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) for the data ingestion.",
+        "type": "string"
+      },
+      "CreatedTime": {
+        "description": "The time that this ingestion started.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DataSetId": {
+        "description": "The ID of the dataset used in the ingestion.",
+        "type": "string"
+      },
+      "IngestionId": {
+        "description": "An ID for the ingestion.",
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9-_]+$",
+        "type": "string"
+      },
+      "IngestionSizeInBytes": {
+        "description": "The size of the data ingested, in bytes.",
+        "type": "number"
+      },
+      "IngestionStatus": {
+        "description": "Ingestion status.",
+        "enum": [
+          "INITIALIZED",
+          "QUEUED",
+          "RUNNING",
+          "FAILED",
+          "COMPLETED",
+          "CANCELLED"
+        ],
+        "type": "string"
+      },
+      "IngestionTimeInSeconds": {
+        "description": "The time that this ingestion took, measured in seconds.",
+        "type": "number"
+      },
+      "RequestSource": {
+        "description": "Event source for this ingestion.",
+        "enum": [
+          "MANUAL",
+          "SCHEDULED"
+        ],
+        "type": "string"
+      },
+      "RequestType": {
+        "description": "Type of this ingestion.",
+        "enum": [
+          "INITIAL_INGESTION",
+          "EDIT",
+          "INCREMENTAL_REFRESH",
+          "FULL_REFRESH"
+        ],
+        "type": "string"
+      },
+      "RowsDropped": {
+        "description": "The number of rows that were not ingested.",
+        "type": "number"
+      },
+      "RowsIngested": {
+        "description": "The number of rows that were ingested.",
+        "type": "number"
+      },
+      "TotalRowsInDataset": {
+        "description": "The total number of rows in the dataset.",
+        "type": "number"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/IngestionStatus",
+      "/properties/CreatedTime",
+      "/properties/IngestionTimeInSeconds",
+      "/properties/IngestionSizeInBytes",
+      "/properties/RequestSource",
+      "/properties/RequestType",
+      "/properties/RowsIngested",
+      "/properties/RowsDropped",
+      "/properties/TotalRowsInDataset"
+    ],
+    "required": [
+      "IngestionId",
+      "DataSetId"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::QuickSight::Ingestion"
+  }
+}

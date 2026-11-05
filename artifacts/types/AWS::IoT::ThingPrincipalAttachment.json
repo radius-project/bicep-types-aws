@@ -1,0 +1,75 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoT-ThingPrincipalAttachment",
+  "type": "AWS::IoT::ThingPrincipalAttachment",
+  "time": "2026-10-28T00:43:45.248Z",
+  "schema": {
+    "$schema": "https://schema.cloudformation.us-east-1.amazonaws.com/provider.definition.schema.v1.json",
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Principal",
+      "/properties/ThingName",
+      "/properties/ThingPrincipalType"
+    ],
+    "description": "Resource Type definition for AWS::IoT::ThingPrincipalAttachment",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "iot:AttachThingPrincipal",
+          "iot:ListThingPrincipalsV2"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "iot:DetachThingPrincipal",
+          "iot:ListThingPrincipalsV2"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ThingName": {
+              "$ref": "#/properties/ThingName"
+            }
+          },
+          "required": [
+            "ThingName"
+          ]
+        },
+        "permissions": [
+          "iot:ListThingPrincipalsV2"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "iot:ListThingPrincipalsV2"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ThingName",
+      "/properties/Principal"
+    ],
+    "properties": {
+      "Principal": {
+        "description": "The principal, which can be a certificate ARN (as returned from the CreateCertificate operation) or an Amazon Cognito ID.",
+        "type": "string"
+      },
+      "ThingName": {
+        "description": "The name of the AWS IoT thing.",
+        "type": "string"
+      },
+      "ThingPrincipalType": {
+        "description": "The type of the relation you want to specify when you attach a principal to a thing.",
+        "type": "string"
+      }
+    },
+    "required": [
+      "ThingName",
+      "Principal"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::IoT::ThingPrincipalAttachment"
+  }
+}

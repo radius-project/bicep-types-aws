@@ -1,0 +1,85 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-GreengrassV2-Component",
+  "type": "AWS::GreengrassV2::Component",
+  "time": "2026-11-05T20:50:21.215Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ComponentName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ComponentName",
+      "/properties/Tags"
+    ],
+    "description": "Represents an AWS IoT Greengrass V2 component, which is a software module deployed to Greengrass core devices.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "greengrass:ListComponents"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "greengrass:ListComponentVersions",
+          "greengrass:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of the component.",
+        "pattern": "^arn:[^:]*:greengrass:[^:]*:(aws|[0-9]+):components:[^:]+$",
+        "type": "string"
+      },
+      "ComponentName": {
+        "description": "The name of the component.",
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags associated with the component.",
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "Value": {
+              "maxLength": 256,
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "maxItems": 200,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "greengrass:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::GreengrassV2::Component"
+  }
+}

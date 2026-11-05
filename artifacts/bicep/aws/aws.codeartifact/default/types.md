@@ -8,6 +8,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.CodeArtifact/DomainProperties](#awscodeartifactdomainproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.CodeArtifact/Package@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CodeArtifact/PackageProperties](#awscodeartifactpackageproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.CodeArtifact/PackageGroup@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -45,6 +53,16 @@
 * **Pattern**: string (Required): The package group pattern that is used to gather packages.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to the package group.
 
+## AWS.CodeArtifact/PackageProperties
+### Properties
+* **Arn**: string (Identifier): The ARN of the package.
+* **DomainName**: string (Required): The name of the domain that contains the repository that contains the package.
+* **Format**: string (Required): The format of the package.
+* **Name**: string (Required): The name of the package.
+* **Namespace**: string: The namespace of the package.
+* **OriginConfiguration**: [Package_OriginConfiguration](#packageoriginconfiguration) (ReadOnly): The package origin configuration for the package.
+* **Repository**: string (Required): The name of the repository that contains the package.
+
 ## AWS.CodeArtifact/RepositoryProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): The ARN of the repository.
@@ -60,6 +78,15 @@
 
 ## Domain_PermissionsPolicyDocument
 ### Properties
+
+## Package_OriginConfiguration
+### Properties
+* **Restrictions**: [Package_OriginConfiguration_Restrictions](#packageoriginconfigurationrestrictions): The origin restrictions for the package.
+
+## Package_OriginConfiguration_Restrictions
+### Properties
+* **Publish**: string: The package origin configuration that determines if new versions of the package can be published directly to the repository.
+* **Upstream**: string: The package origin configuration that determines if new versions of the package can be added to the repository from an external connection or upstream source.
 
 ## PackageGroup_OriginConfiguration
 ### Properties

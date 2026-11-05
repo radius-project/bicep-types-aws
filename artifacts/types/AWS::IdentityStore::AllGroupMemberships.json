@@ -1,0 +1,129 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IdentityStore-AllGroupMemberships",
+  "type": "AWS::IdentityStore::AllGroupMemberships",
+  "time": "2026-09-23T10:37:11.168Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/IdentityStoreId",
+        "/properties/MembershipId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/GroupId",
+      "/properties/IdentityStoreId",
+      "/properties/MemberId"
+    ],
+    "description": "Retrieves membership metadata and attributes for a group membership in an identity store.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "GroupId": {
+              "maxLength": 47,
+              "minLength": 1,
+              "pattern": "^([0-9a-f]{10}-|)[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$",
+              "type": "string"
+            },
+            "IdentityStoreId": {
+              "maxLength": 36,
+              "minLength": 1,
+              "pattern": "^d-[0-9a-f]{10}$|^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "IdentityStoreId",
+            "GroupId"
+          ]
+        },
+        "permissions": [
+          "identitystore:ListGroupMemberships"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "identitystore:DescribeGroupMembership"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the group membership.",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The date and time the group membership was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "description": "The identifier of the user or system that created the group membership.",
+        "type": "string"
+      },
+      "GroupId": {
+        "description": "The identifier for a group in the identity store.",
+        "maxLength": 47,
+        "minLength": 1,
+        "pattern": "^([0-9a-f]{10}-|)[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$",
+        "type": "string"
+      },
+      "IdentityStoreId": {
+        "description": "The globally unique identifier for the identity store.",
+        "maxLength": 36,
+        "minLength": 1,
+        "pattern": "^d-[0-9a-f]{10}$|^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        "type": "string"
+      },
+      "MemberId": {
+        "additionalProperties": false,
+        "description": "An object containing the identifier of a group member.",
+        "properties": {
+          "UserId": {
+            "description": "The identifier for a user in the identity store.",
+            "maxLength": 47,
+            "minLength": 1,
+            "pattern": "^([0-9a-f]{10}-|)[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "UserId"
+        ],
+        "type": "object"
+      },
+      "MembershipId": {
+        "description": "The identifier for a GroupMembership in an identity store.",
+        "maxLength": 47,
+        "minLength": 1,
+        "pattern": "^([0-9a-f]{10}-|)[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$",
+        "type": "string"
+      },
+      "UpdatedAt": {
+        "description": "The date and time the group membership was last updated.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "UpdatedBy": {
+        "description": "The identifier of the user or system that last updated the group membership.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/MembershipId",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt",
+      "/properties/CreatedBy",
+      "/properties/UpdatedBy"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::IdentityStore::AllGroupMemberships"
+  }
+}

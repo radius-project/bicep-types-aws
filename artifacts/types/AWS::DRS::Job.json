@@ -1,0 +1,388 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DRS-Job",
+  "type": "AWS::DRS::Job",
+  "time": "2026-11-05T17:09:54.313Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/JobID"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "LaunchAction": {
+        "additionalProperties": false,
+        "description": "Launch action.",
+        "properties": {
+          "ActionCode": {
+            "description": "Launch action code.",
+            "maxLength": 1011,
+            "minLength": 1,
+            "pattern": "^([A-Za-z0-9-/:])+$",
+            "type": "string"
+          },
+          "ActionId": {
+            "description": "Launch action Id.",
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+            "type": "string"
+          },
+          "ActionVersion": {
+            "description": "Launch action version.",
+            "maxLength": 10,
+            "minLength": 1,
+            "pattern": "^(\\$DEFAULT|\\$LATEST|[0-9]+)$",
+            "type": "string"
+          },
+          "Active": {
+            "description": "Whether the launch action is active.",
+            "type": "boolean"
+          },
+          "Category": {
+            "description": "Launch action category.",
+            "enum": [
+              "MONITORING",
+              "VALIDATION",
+              "CONFIGURATION",
+              "SECURITY",
+              "OTHER"
+            ],
+            "type": "string"
+          },
+          "Description": {
+            "description": "Launch action description.",
+            "maxLength": 1024,
+            "minLength": 0,
+            "pattern": "^[0-9a-zA-Z ():/.,'-_#*;\n]*$",
+            "type": "string"
+          },
+          "Name": {
+            "description": "Launch action name.",
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9 /_-]*$",
+            "type": "string"
+          },
+          "Optional": {
+            "description": "Whether the launch action is optional.",
+            "type": "boolean"
+          },
+          "Order": {
+            "description": "Launch action order.",
+            "maximum": 10000,
+            "minimum": 2,
+            "type": "integer"
+          },
+          "Parameters": {
+            "additionalProperties": false,
+            "description": "Launch action parameters.",
+            "maxProperties": 20,
+            "patternProperties": {
+              "^([A-Za-z0-9])+$": {
+                "$ref": "#/definitions/LaunchActionParameter"
+              }
+            },
+            "type": "object"
+          },
+          "Type": {
+            "description": "Launch action type.",
+            "enum": [
+              "SSM_AUTOMATION",
+              "SSM_COMMAND"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "LaunchActionParameter": {
+        "additionalProperties": false,
+        "description": "Launch action parameter.",
+        "properties": {
+          "Type": {
+            "description": "Type of the parameter.",
+            "enum": [
+              "SSM_STORE",
+              "DYNAMIC"
+            ],
+            "type": "string"
+          },
+          "Value": {
+            "description": "Value of the parameter.",
+            "maxLength": 1011,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9.-]+$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "LaunchActionRun": {
+        "additionalProperties": false,
+        "description": "Launch action run.",
+        "properties": {
+          "Action": {
+            "$ref": "#/definitions/LaunchAction"
+          },
+          "RunId": {
+            "description": "Launch action run id.",
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+            "type": "string"
+          },
+          "Status": {
+            "description": "Run status of the launch action.",
+            "enum": [
+              "IN_PROGRESS",
+              "SUCCEEDED",
+              "FAILED"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "LaunchActionsStatus": {
+        "additionalProperties": false,
+        "description": "Status of the post-launch actions of a participating server.",
+        "properties": {
+          "Runs": {
+            "description": "List of post launch action status.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/LaunchActionRun"
+            },
+            "type": "array"
+          },
+          "SsmAgentDiscoveryDatetime": {
+            "description": "Time where the AWS Systems Manager was detected as running on the launched instance. The service returns UTC offsets (e.g. 2026-08-24T22:27:26.134456+00:00), which the Smithy model's own ISO8601DatetimeString pattern (trailing 'Z' required) rejects, so that pattern is deliberately not enforced here.",
+            "maxLength": 32,
+            "minLength": 19,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "LaunchStatus": {
+        "description": "The status of a launch performed by the Job.",
+        "enum": [
+          "PENDING",
+          "IN_PROGRESS",
+          "LAUNCHED",
+          "FAILED",
+          "TERMINATED"
+        ],
+        "type": "string"
+      },
+      "ParticipatingResource": {
+        "additionalProperties": false,
+        "description": "Represents a resource participating in an asynchronous Job.",
+        "properties": {
+          "LaunchStatus": {
+            "$ref": "#/definitions/LaunchStatus"
+          },
+          "ParticipatingResourceID": {
+            "$ref": "#/definitions/ParticipatingResourceID"
+          }
+        },
+        "type": "object"
+      },
+      "ParticipatingResourceID": {
+        "additionalProperties": false,
+        "description": "ID of a resource participating in an asynchronous Job.",
+        "properties": {
+          "SourceNetworkID": {
+            "description": "Source Network ID.",
+            "maxLength": 20,
+            "minLength": 20,
+            "pattern": "^sn-[0-9a-zA-Z]{17}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "SourceNetworkID"
+        ],
+        "type": "object"
+      },
+      "ParticipatingServer": {
+        "additionalProperties": false,
+        "description": "Represents a server participating in an asynchronous Job.",
+        "properties": {
+          "LaunchActionsStatus": {
+            "$ref": "#/definitions/LaunchActionsStatus"
+          },
+          "LaunchStatus": {
+            "$ref": "#/definitions/LaunchStatus"
+          },
+          "RecoveryInstanceID": {
+            "description": "The Recovery Instance ID of a participating server.",
+            "maxLength": 19,
+            "minLength": 10,
+            "pattern": "^i-[0-9a-fA-F]{8,}$",
+            "type": "string"
+          },
+          "SourceServerID": {
+            "description": "The Source Server ID of a participating server.",
+            "maxLength": 19,
+            "minLength": 19,
+            "pattern": "^s-[0-9a-zA-Z]{17}$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::DRS::Job. An AWS Elastic Disaster Recovery Job is an asynchronous workflow, created by recovery, failback, termination and source-network recovery operations.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "drs:DescribeJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "drs:DescribeJobs",
+          "drs:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of a Job.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:.{16,2044}$",
+        "type": "string"
+      },
+      "CreationDateTime": {
+        "description": "The date and time of when the Job was created. The service returns UTC offsets (e.g. 2026-08-24T22:27:26.134456+00:00), which the Smithy model's own ISO8601DatetimeString pattern (trailing 'Z' required) rejects, so that pattern is deliberately not enforced here.",
+        "maxLength": 32,
+        "minLength": 19,
+        "type": "string"
+      },
+      "EndDateTime": {
+        "description": "The date and time of when the Job ended. The service returns UTC offsets (e.g. 2026-08-24T22:27:26.134456+00:00), which the Smithy model's own ISO8601DatetimeString pattern (trailing 'Z' required) rejects, so that pattern is deliberately not enforced here.",
+        "maxLength": 32,
+        "minLength": 19,
+        "type": "string"
+      },
+      "InitiatedBy": {
+        "description": "A string representing who initiated the Job.",
+        "enum": [
+          "START_RECOVERY",
+          "START_DRILL",
+          "FAILBACK",
+          "DIAGNOSTIC",
+          "TERMINATE_RECOVERY_INSTANCES",
+          "TARGET_ACCOUNT",
+          "CREATE_NETWORK_RECOVERY",
+          "UPDATE_NETWORK_RECOVERY",
+          "ASSOCIATE_NETWORK_RECOVERY"
+        ],
+        "type": "string"
+      },
+      "JobID": {
+        "description": "The ID of the Job.",
+        "maxLength": 24,
+        "minLength": 24,
+        "pattern": "^drsjob-[0-9a-zA-Z]{17}$",
+        "type": "string"
+      },
+      "ParticipatingResources": {
+        "description": "A list of resources that the Job is acting upon.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/ParticipatingResource"
+        },
+        "type": "array"
+      },
+      "ParticipatingServers": {
+        "description": "A list of servers that the Job is acting upon.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/ParticipatingServer"
+        },
+        "type": "array"
+      },
+      "Status": {
+        "description": "The status of the Job.",
+        "enum": [
+          "PENDING",
+          "STARTED",
+          "COMPLETED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A list of tags associated with the Job.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "Type": {
+        "description": "The type of the Job.",
+        "enum": [
+          "LAUNCH",
+          "TERMINATE",
+          "CREATE_CONVERTED_SNAPSHOT"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/JobID",
+      "/properties/Type",
+      "/properties/InitiatedBy",
+      "/properties/Status",
+      "/properties/CreationDateTime",
+      "/properties/EndDateTime",
+      "/properties/ParticipatingServers",
+      "/properties/ParticipatingResources",
+      "/properties/Tags"
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/drs/latest/APIReference/API_Job.html",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "drs:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::DRS::Job"
+  }
+}

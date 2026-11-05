@@ -1,0 +1,122 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RedshiftServerless-RecoveryPoint",
+  "type": "AWS::RedshiftServerless::RecoveryPoint",
+  "time": "2026-11-05T20:54:06.817Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/RecoveryPointId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/NamespaceName"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Represents an automatically created recovery point for an Amazon Redshift Serverless namespace. Recovery points are created every 30 minutes and kept for 24 hours.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "NamespaceName": {
+              "maxLength": 64,
+              "minLength": 3,
+              "pattern": "^[a-z0-9-]+$",
+              "type": "string"
+            }
+          }
+        },
+        "permissions": [
+          "redshift-serverless:ListRecoveryPoints"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "redshift-serverless:GetRecoveryPoint",
+          "redshift-serverless:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the recovery point.",
+        "type": "string"
+      },
+      "NamespaceArn": {
+        "description": "The Amazon Resource Name (ARN) of the namespace the recovery point is associated with.",
+        "type": "string"
+      },
+      "NamespaceName": {
+        "description": "The name of the namespace the recovery point is associated with.",
+        "maxLength": 64,
+        "minLength": 3,
+        "pattern": "^[a-z0-9-]+$",
+        "type": "string"
+      },
+      "RecoveryPointCreateTime": {
+        "description": "The time the recovery point was created, in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "RecoveryPointId": {
+        "description": "The unique identifier of the recovery point.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The list of tags associated with the recovery point.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "TotalSizeInMegaBytes": {
+        "description": "The total size of the data in the recovery point in megabytes.",
+        "type": "number"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/RecoveryPointId",
+      "/properties/RecoveryPointCreateTime",
+      "/properties/TotalSizeInMegaBytes",
+      "/properties/NamespaceArn",
+      "/properties/Tags"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "redshift-serverless:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::RedshiftServerless::RecoveryPoint"
+  }
+}

@@ -779,6 +779,101 @@
     "writableScopes": 0
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.SecurityAgent/ArtifactProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityAgent/ArtifactProperties",
+    "properties": {
+      "AgentSpaceId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The unique identifier of the agent space to add the artifact to."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the artifact."
+      },
+      "ArtifactContent": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 4,
+        "description": "The binary content of the artifact to upload, encoded as a Base64 string."
+      },
+      "ArtifactId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "The unique identifier assigned to the uploaded artifact."
+      },
+      "ArtifactType": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The file type of the artifact."
+      },
+      "FileName": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The file name of the artifact."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "The date and time the artifact was last updated, in ISO 8601 format."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityAgent/Artifact",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SecurityAgent/Artifact@default",
+    "body": {
+      "$ref": "#/45"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
     "$type": "ObjectType",
     "name": "BitbucketInput",
     "properties": {
@@ -927,25 +1022,25 @@
     "properties": {
       "Bitbucket": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/47"
         },
         "flags": 0
       },
       "Confluence": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/48"
         },
         "flags": 0
       },
       "Github": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/49"
         },
         "flags": 0
       },
       "Gitlab": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/50"
         },
         "flags": 0
       }
@@ -978,7 +1073,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/48"
+      "$ref": "#/52"
     }
   },
   {
@@ -1036,7 +1131,7 @@
       },
       "ProviderInput": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/51"
         },
         "flags": 4
       },
@@ -1049,7 +1144,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/54"
         },
         "flags": 0,
         "description": "The tags to associate with the integration."
@@ -1083,7 +1178,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/55"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1094,7 +1189,7 @@
     "$type": "ResourceType",
     "name": "AWS.SecurityAgent/Integration@default",
     "body": {
-      "$ref": "#/52"
+      "$ref": "#/56"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1105,7 +1200,7 @@
     "properties": {
       "Authentication": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/60"
         },
         "flags": 0,
         "description": "Authentication credentials for this actor"
@@ -1140,7 +1235,7 @@
       },
       "Uris": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/82"
         },
         "flags": 0,
         "description": "List of URIs this actor is authorized to access"
@@ -1153,42 +1248,49 @@
     "properties": {
       "Actors": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/83"
         },
         "flags": 6,
         "description": "List of actors used during testing"
       },
+      "ClientCertificates": {
+        "type": {
+          "$ref": "#/84"
+        },
+        "flags": 0,
+        "description": "Client certificates that AWS Security Agent presents to target hosts that require mutual TLS (mTLS)"
+      },
       "Documents": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/85"
         },
         "flags": 0,
         "description": "List of documents providing additional context for the pentest"
       },
       "Endpoints": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/86"
         },
         "flags": 0,
         "description": "List of endpoints to test"
       },
       "IntegratedRepositories": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/87"
         },
         "flags": 0,
         "description": "List of repositories connected via provider integrations"
       },
       "SourceCode": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/88"
         },
         "flags": 0,
         "description": "List of source code repositories to analyze"
       },
       "TrustedCaCertificates": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/89"
         },
         "flags": 0,
         "description": "Trust anchors for validating target endpoint TLS certificates, for endpoints served by a private or internal CA, an intermediate CA, or a self-signed certificate"
@@ -1259,6 +1361,33 @@
     "$type": "ObjectType",
     "name": "CleanUpStrategy",
     "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ClientCertificate",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "Name of the client certificate, unique within the pentest"
+      },
+      "Origins": {
+        "type": {
+          "$ref": "#/90"
+        },
+        "flags": 1,
+        "description": "Target hosts the certificate applies to, as https://host[:port] origins"
+      },
+      "SecretArn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "ARN of the Secrets Manager secret that holds the certificate and private key"
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -1371,14 +1500,14 @@
     "properties": {
       "CustomHeaders": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/91"
         },
         "flags": 0,
         "description": "Custom headers to include in outbound requests"
       },
       "Rules": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/92"
         },
         "flags": 0,
         "description": "Ordered list of network traffic rules"
@@ -1466,42 +1595,42 @@
       },
       "ConfidenceLevels": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/93"
         },
         "flags": 0,
         "description": "Confidence levels to include in the report"
       },
       "FindingTypes": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "Finding types to include in the report"
       },
       "RiskLevels": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/95"
         },
         "flags": 0,
         "description": "Severity levels to include in the report"
       },
       "RiskTypes": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/96"
         },
         "flags": 0,
         "description": "Risk types to include in the report"
       },
       "Statuses": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/97"
         },
         "flags": 0,
         "description": "Finding statuses to include in the report"
       },
       "TaskStatuses": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/98"
         },
         "flags": 0,
         "description": "Task execution statuses to include in the report's task table"
@@ -1555,7 +1684,7 @@
     "properties": {
       "Source": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/61"
         },
         "flags": 1,
         "description": "Where to read the certificate from"
@@ -1568,14 +1697,14 @@
     "properties": {
       "SecurityGroupArns": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/99"
         },
         "flags": 0,
         "description": "List of security groups in the VPC"
       },
       "SubnetArns": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/100"
         },
         "flags": 0,
         "description": "List of subnets in the VPC"
@@ -1597,13 +1726,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/54"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/63"
+      "$ref": "#/58"
     }
   },
   {
@@ -1615,31 +1738,49 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/65"
+      "$ref": "#/68"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/72"
+      "$ref": "#/69"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/75"
+      "$ref": "#/70"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/62"
+      "$ref": "#/77"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/80"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/67"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/72"
     }
   },
   {
@@ -1707,6 +1848,9 @@
     }
   },
   {
+    "$type": "IntegerType"
+  },
+  {
     "$type": "ObjectType",
     "name": "AWS.SecurityAgent/PentestProperties",
     "properties": {
@@ -1719,14 +1863,14 @@
       },
       "Assets": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/59"
         },
         "flags": 1,
         "description": "Collection of assets to be tested or used during the penetration test"
       },
       "CiCdConfiguration": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/62"
         },
         "flags": 4,
         "description": "Configuration for running pentests automatically from a CI/CD pipeline"
@@ -1754,28 +1898,35 @@
       },
       "DisableManagedSkills": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/102"
         },
         "flags": 0,
         "description": "A list of managed skills to disable for this pentest"
       },
       "ExcludeRiskTypes": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/103"
         },
         "flags": 0,
         "description": "A list of risk types excluded from the pentest execution"
       },
       "LogConfig": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/65"
         },
         "flags": 0,
         "description": "CloudWatch logs config"
       },
+      "MaxTaskHours": {
+        "type": {
+          "$ref": "#/104"
+        },
+        "flags": 0,
+        "description": "The maximum number of billable task hours allowed for jobs started from this pentest. If not set, jobs run to completion with no budget cap."
+      },
       "NetworkTrafficConfig": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/71"
         },
         "flags": 0,
         "description": "Configuration for network traffic filtering"
@@ -1789,14 +1940,14 @@
       },
       "ReportDestination": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/73"
         },
         "flags": 4,
         "description": "Destination for publishing the scan report to Confluence"
       },
       "ReportFilters": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/74"
         },
         "flags": 4,
         "description": "Filters applied when the scan report is published to Confluence"
@@ -1810,7 +1961,7 @@
       },
       "TestScope": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/78"
         },
         "flags": 0,
         "description": "Scope of the target under test, determining which classes of risk are assessed"
@@ -1831,7 +1982,7 @@
       },
       "VpcConfig": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/81"
         },
         "flags": 0,
         "description": "VPC configuration that the security testing environment accesses"
@@ -1858,7 +2009,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/105"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1869,9 +2020,738 @@
     "$type": "ResourceType",
     "name": "AWS.SecurityAgent/Pentest@default",
     "body": {
-      "$ref": "#/98"
+      "$ref": "#/106"
     },
     "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Actor",
+    "properties": {
+      "Authentication": {
+        "type": {
+          "$ref": "#/109"
+        },
+        "flags": 0
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "A description of the actor."
+      },
+      "Identifier": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The unique identifier for the actor."
+      },
+      "Uris": {
+        "type": {
+          "$ref": "#/120"
+        },
+        "flags": 0,
+        "description": "The list of URIs that the actor targets during testing."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Authentication",
+    "properties": {
+      "ProviderType": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The type of authentication provider."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The authentication value, such as a secret ARN, Lambda function ARN, or IAM role ARN, depending on the provider type."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CloudWatchLog",
+    "properties": {
+      "LogGroup": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The name of the CloudWatch log group."
+      },
+      "LogStream": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The name of the CloudWatch log stream."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CustomHeader",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The name of the custom header."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The value of the custom header."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DocumentInfo",
+    "properties": {
+      "ArtifactId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The unique identifier of the artifact associated with the document."
+      },
+      "IntegratedDocument": {
+        "type": {
+          "$ref": "#/114"
+        },
+        "flags": 0
+      },
+      "S3Location": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The Amazon S3 location of the document."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Endpoint",
+    "properties": {
+      "Uri": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The URI of the endpoint."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IntegratedDocument",
+    "properties": {
+      "IntegrationId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The identifier of the integration that provides access to the document."
+      },
+      "ResourceId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The provider-specific resource identifier for the document."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IntegratedRepository",
+    "properties": {
+      "Branch": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "An optional override for the repository branch."
+      },
+      "IntegrationId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The unique identifier of the integration that provides access to the repository."
+      },
+      "ProviderResourceId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The provider-specific resource identifier for the repository."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NetworkTrafficConfig",
+    "properties": {
+      "CustomHeaders": {
+        "type": {
+          "$ref": "#/121"
+        },
+        "flags": 0,
+        "description": "The list of custom HTTP headers to include in network traffic during testing."
+      },
+      "Rules": {
+        "type": {
+          "$ref": "#/122"
+        },
+        "flags": 0,
+        "description": "The list of network traffic rules that control which URLs are allowed or denied during testing."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NetworkTrafficRule",
+    "properties": {
+      "Effect": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The effect of the rule."
+      },
+      "NetworkTrafficRuleType": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The type of the network traffic rule. Currently, only URL is supported."
+      },
+      "Pattern": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The URL pattern to match for the rule."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceCodeRepository",
+    "properties": {
+      "S3Location": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The Amazon S3 location of the source code repository archive."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VpcConfig",
+    "properties": {
+      "SecurityGroupArns": {
+        "type": {
+          "$ref": "#/123"
+        },
+        "flags": 0,
+        "description": "The ARNs or IDs of the security groups for the VPC configuration."
+      },
+      "SubnetArns": {
+        "type": {
+          "$ref": "#/124"
+        },
+        "flags": 0,
+        "description": "The ARNs or IDs of the subnets for the VPC configuration."
+      },
+      "VpcArn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The ARN or ID of the VPC."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/111"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/117"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SecurityAgent/PentestJobProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/108"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/113"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/112"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/113"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/113"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/115"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/118"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityAgent/PentestJobProperties",
+    "properties": {
+      "Actors": {
+        "type": {
+          "$ref": "#/126"
+        },
+        "flags": 2,
+        "description": "The list of actors used during the pentest job."
+      },
+      "AgentSpaceId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The unique identifier of the agent space that contains the pentest job."
+      },
+      "AllowedDomains": {
+        "type": {
+          "$ref": "#/127"
+        },
+        "flags": 2,
+        "description": "The list of domains allowed during the pentest job."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the pentest job."
+      },
+      "CleanUpStrategy": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "The strategy for cleaning up resources created during the pentest job."
+      },
+      "CodeRemediationStrategy": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "The code remediation strategy for the pentest job."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "The date and time the pentest job was created, in UTC format."
+      },
+      "DisableManagedSkills": {
+        "type": {
+          "$ref": "#/128"
+        },
+        "flags": 2,
+        "description": "The list of managed skills disabled for this pentest job."
+      },
+      "Documents": {
+        "type": {
+          "$ref": "#/129"
+        },
+        "flags": 2,
+        "description": "The list of documents providing context for the pentest job."
+      },
+      "Endpoints": {
+        "type": {
+          "$ref": "#/130"
+        },
+        "flags": 2,
+        "description": "The list of endpoints being tested in the pentest job."
+      },
+      "ExcludePaths": {
+        "type": {
+          "$ref": "#/131"
+        },
+        "flags": 2,
+        "description": "The list of paths excluded from the pentest job."
+      },
+      "ExcludeRiskTypes": {
+        "type": {
+          "$ref": "#/132"
+        },
+        "flags": 2,
+        "description": "The list of risk types excluded from the pentest job."
+      },
+      "IntegratedRepositories": {
+        "type": {
+          "$ref": "#/133"
+        },
+        "flags": 2,
+        "description": "The list of integrated repositories associated with the pentest job."
+      },
+      "LogConfig": {
+        "type": {
+          "$ref": "#/110"
+        },
+        "flags": 2
+      },
+      "NetworkTrafficConfig": {
+        "type": {
+          "$ref": "#/116"
+        },
+        "flags": 2
+      },
+      "PentestId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "The unique identifier of the pentest associated with the job."
+      },
+      "PentestJobId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the pentest job."
+      },
+      "ServiceRole": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "The ARN of the IAM service role used for the pentest job."
+      },
+      "SourceCode": {
+        "type": {
+          "$ref": "#/134"
+        },
+        "flags": 2,
+        "description": "The list of source code repositories analyzed during the pentest job."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "The current status of the pentest job."
+      },
+      "Title": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "The title of the pentest job."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "The date and time the pentest job was last updated, in UTC format."
+      },
+      "VpcConfig": {
+        "type": {
+          "$ref": "#/119"
+        },
+        "flags": 2
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityAgent/PentestJob",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/135"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SecurityAgent/PentestJob@default",
+    "body": {
+      "$ref": "#/136"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Category",
+    "properties": {
+      "IsPrimary": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "Indicates whether this is the primary category for the task."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The name of the category."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Endpoint",
+    "properties": {
+      "Uri": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The URI of the endpoint."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SecurityAgent/PentestTaskProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/138"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityAgent/PentestTaskProperties",
+    "properties": {
+      "AgentSpaceId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The unique identifier of the agent space."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the pentest task."
+      },
+      "Categories": {
+        "type": {
+          "$ref": "#/141"
+        },
+        "flags": 2,
+        "description": "The list of categories assigned to the task."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "The date and time the task was created, in UTC format."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "A description of the task."
+      },
+      "ExecutionStatus": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "The current execution status of the task."
+      },
+      "PentestId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the pentest associated with the task."
+      },
+      "PentestJobId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the pentest job that contains the task."
+      },
+      "TargetEndpoint": {
+        "type": {
+          "$ref": "#/139"
+        },
+        "flags": 2
+      },
+      "TaskHours": {
+        "type": {
+          "$ref": "#/104"
+        },
+        "flags": 2,
+        "description": "The number of active work hours consumed by the task during execution."
+      },
+      "TaskId": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the task."
+      },
+      "Title": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "The title of the task."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "The date and time the task was last updated, in UTC format."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SecurityAgent/PentestTask",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/142"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SecurityAgent/PentestTask@default",
+    "body": {
+      "$ref": "#/143"
+    },
+    "readableScopes": 31,
     "writableScopes": 0
   },
   {
@@ -1880,13 +2760,13 @@
     "properties": {
       "SelfManaged": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/146"
         },
         "flags": 0
       },
       "ServiceManaged": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/147"
         },
         "flags": 0
       }
@@ -1939,21 +2819,21 @@
       },
       "PortRanges": {
         "type": {
-          "$ref": "#/105"
+          "$ref": "#/149"
         },
         "flags": 0,
         "description": "The TCP port ranges that a consumer can use to access the resource."
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/150"
         },
         "flags": 0,
         "description": "The security groups to attach to the service-managed resource gateway."
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/151"
         },
         "flags": 1,
         "description": "The subnets that the service-managed resource gateway spans."
@@ -1988,9 +2868,6 @@
     }
   },
   {
-    "$type": "IntegerType"
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/17"
@@ -2015,7 +2892,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/103"
+      "$ref": "#/148"
     }
   },
   {
@@ -2059,7 +2936,7 @@
       },
       "Mode": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/145"
         },
         "flags": 4
       },
@@ -2093,7 +2970,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/153"
         },
         "flags": 0,
         "description": "The tags attached to the private connection."
@@ -2134,7 +3011,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/154"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2145,7 +3022,7 @@
     "$type": "ResourceType",
     "name": "AWS.SecurityAgent/PrivateConnection@default",
     "body": {
-      "$ref": "#/111"
+      "$ref": "#/155"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2218,13 +3095,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/157"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/114"
+      "$ref": "#/158"
     }
   },
   {
@@ -2261,7 +3138,7 @@
       },
       "SecurityRequirements": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/160"
         },
         "flags": 0,
         "description": "Security requirements within this pack"
@@ -2275,7 +3152,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/161"
         },
         "flags": 0,
         "description": "Tags for the security requirement pack"
@@ -2302,7 +3179,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/118"
+          "$ref": "#/162"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2313,7 +3190,7 @@
     "$type": "ResourceType",
     "name": "AWS.SecurityAgent/SecurityRequirementPack@default",
     "body": {
-      "$ref": "#/119"
+      "$ref": "#/163"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2391,13 +3268,13 @@
     "properties": {
       "DnsTxt": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/165"
         },
         "flags": 0
       },
       "HttpRoute": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/166"
         },
         "flags": 0
       },
@@ -2417,7 +3294,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/123"
+      "$ref": "#/167"
     }
   },
   {
@@ -2433,7 +3310,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/126"
+          "$ref": "#/170"
         },
         "flags": 0,
         "description": "Tags for the target domain"
@@ -2454,7 +3331,7 @@
       },
       "VerificationDetails": {
         "type": {
-          "$ref": "#/124"
+          "$ref": "#/168"
         },
         "flags": 2
       },
@@ -2508,7 +3385,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/127"
+          "$ref": "#/171"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2519,7 +3396,7 @@
     "$type": "ResourceType",
     "name": "AWS.SecurityAgent/TargetDomain@default",
     "body": {
-      "$ref": "#/128"
+      "$ref": "#/172"
     },
     "readableScopes": 0,
     "writableScopes": 0

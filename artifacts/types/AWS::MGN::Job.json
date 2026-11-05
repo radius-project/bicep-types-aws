@@ -1,0 +1,185 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MGN-Job",
+  "type": "AWS::MGN::Job",
+  "time": "2026-11-05T21:23:47.869Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/JobId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "ParticipatingServer": {
+        "additionalProperties": false,
+        "description": "A server participating in a job.",
+        "properties": {
+          "LaunchStatus": {
+            "description": "The launch status of a participating server.",
+            "enum": [
+              "PENDING",
+              "IN_PROGRESS",
+              "LAUNCHED",
+              "FAILED",
+              "TERMINATED"
+            ],
+            "type": "string"
+          },
+          "LaunchedEc2InstanceID": {
+            "description": "The EC2 instance ID of a launched participating server.",
+            "maxLength": 255,
+            "minLength": 0,
+            "pattern": "^i-[0-9a-fA-F]{8,}$",
+            "type": "string"
+          },
+          "SourceServerID": {
+            "description": "The source server ID of a participating server.",
+            "maxLength": 19,
+            "minLength": 19,
+            "pattern": "^s-[0-9a-zA-Z]{17}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "SourceServerID"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Represents an AWS Application Migration Service (MGN) job, which tracks the progress of migration activities such as test launches and cutover operations.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "mgn:DescribeJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "mgn:DescribeJobs",
+          "mgn:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of the job.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "type": "string"
+      },
+      "CreationDateTime": {
+        "description": "The date and time the job was created.",
+        "maxLength": 32,
+        "minLength": 19,
+        "type": "string"
+      },
+      "EndDateTime": {
+        "description": "The date and time the job ended.",
+        "maxLength": 32,
+        "minLength": 19,
+        "type": "string"
+      },
+      "InitiatedBy": {
+        "description": "The operation that initiated the job.",
+        "enum": [
+          "START_TEST",
+          "START_CUTOVER",
+          "DIAGNOSTIC",
+          "TERMINATE"
+        ],
+        "type": "string"
+      },
+      "JobId": {
+        "description": "The unique identifier of the job.",
+        "maxLength": 24,
+        "minLength": 24,
+        "pattern": "^mgnjob-[0-9a-zA-Z]{17}$",
+        "type": "string"
+      },
+      "ParticipatingServers": {
+        "description": "The list of servers participating in the job.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/ParticipatingServer"
+        },
+        "type": "array"
+      },
+      "Status": {
+        "description": "The status of the job.",
+        "enum": [
+          "PENDING",
+          "STARTED",
+          "COMPLETED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags associated with the job.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "Type": {
+        "description": "The type of the job.",
+        "enum": [
+          "LAUNCH",
+          "TERMINATE"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/JobId",
+      "/properties/Type",
+      "/properties/InitiatedBy",
+      "/properties/CreationDateTime",
+      "/properties/EndDateTime",
+      "/properties/Status",
+      "/properties/ParticipatingServers"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "mgn:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::MGN::Job"
+  }
+}

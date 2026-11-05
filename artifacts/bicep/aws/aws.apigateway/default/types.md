@@ -80,6 +80,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGateway/DomainNameProperties](#awsapigatewaydomainnameproperties) (Identifier): properties of the resource
 
+## Resource AWS.ApiGateway/DomainNameAccessAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ApiGateway/DomainNameAccessAssociationProperties](#awsapigatewaydomainnameaccessassociationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.ApiGateway/DomainNameV2@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -151,6 +159,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ApiGateway/UsagePlanProperties](#awsapigatewayusageplanproperties) (Identifier): properties of the resource
+
+## Resource AWS.ApiGateway/UsagePlanKey@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ApiGateway/UsagePlanKeyProperties](#awsapigatewayusageplankeyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.ApiGateway/VpcLink@default
 * **Readable Scope(s)**: None
@@ -250,6 +266,14 @@
 * **Description**: string
 * **DocumentationVersion**: string (Required, Identifier)
 * **RestApiId**: string (Required, Identifier)
+
+## AWS.ApiGateway/DomainNameAccessAssociationProperties
+### Properties
+* **AccessAssociationSource**: string (Required): The source of the domain name access association resource.
+* **AccessAssociationSourceType**: string (Required): The source type of the domain name access association resource.
+* **DomainNameAccessAssociationArn**: string (ReadOnly, Identifier): The amazon resource name (ARN) of the domain name access association resource.
+* **DomainNameArn**: string (Required): The amazon resource name (ARN) of the domain name resource.
+* **Tags**: [Tag](#tag)[]: An array of arbitrary tags (key-value pairs) to associate with the domainname access association.
 
 ## AWS.ApiGateway/DomainNameProperties
 ### Properties
@@ -376,6 +400,13 @@
 * **Tags**: [Tag](#tag)[]
 * **TracingEnabled**: bool
 * **Variables**: [Stage_Variables](#stagevariables): A map (string-to-string map) that defines the stage variables, where the variable name is the key and the variable value is the value. Variable names are limited to alphanumeric characters. Values must match the following regular expression: ``[A-Za-z0-9-._~:/?#&=,]+``.
+
+## AWS.ApiGateway/UsagePlanKeyProperties
+### Properties
+* **Id**: string (ReadOnly, Identifier)
+* **KeyId**: string (Required): The Id of the UsagePlanKey resource.
+* **KeyType**: string (Required)
+* **UsagePlanId**: string (Required): The Id of the UsagePlan resource representing the usage plan containing the UsagePlanKey resource representing a plan customer.
 
 ## AWS.ApiGateway/UsagePlanProperties
 ### Properties
@@ -607,6 +638,11 @@
 ### Properties
 * **Key**: string: A string you can use to assign a value. The combination of tag keys and values can help you organize and categorize your resources.
 * **Value**: string: The value for the specified tag key.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties
