@@ -8,6 +8,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Route53/CidrCollectionProperties](#awsroute53cidrcollectionproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Route53/DelegationSet@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Route53/DelegationSetProperties](#awsroute53delegationsetproperties) (Identifier): properties of the resource
+
+## Resource AWS.Route53/DNSSEC@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Route53/DNSSECProperties](#awsroute53dnssecproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Route53/HealthCheck@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -65,6 +81,17 @@
 * **Id**: string (ReadOnly, Identifier): UUID of the CIDR collection.
 * **Locations**: [Location](#location)[]: A complex type that contains information about the list of CIDR locations.
 * **Name**: string (Required): A unique name for the CIDR collection.
+
+## AWS.Route53/DelegationSetProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the delegation set.
+* **CallerReference**: string (ReadOnly): A unique string that identifies the request and allows retrying failed CreateReusableDelegationSet requests without risk of executing the operation twice.
+* **Id**: string (ReadOnly): The ID that Amazon Route 53 assigns to a reusable delegation set.
+* **NameServers**: string[] (ReadOnly): A list of the authoritative name servers for the delegation set.
+
+## AWS.Route53/DNSSECProperties
+### Properties
+* **HostedZoneId**: string (Required, Identifier): The unique string (ID) used to identify a hosted zone.
 
 ## AWS.Route53/HealthCheckProperties
 ### Properties

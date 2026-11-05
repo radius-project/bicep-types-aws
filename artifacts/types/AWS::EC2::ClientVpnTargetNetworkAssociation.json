@@ -1,0 +1,91 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-ClientVpnTargetNetworkAssociation",
+  "type": "AWS::EC2::ClientVpnTargetNetworkAssociation",
+  "time": "2026-11-03T16:44:47.538Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ClientVpnEndpointId",
+      "/properties/SubnetId",
+      "/properties/AvailabilityZone",
+      "/properties/AvailabilityZoneId"
+    ],
+    "description": "Resource Type definition for AWS::EC2::ClientVpnTargetNetworkAssociation",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "ec2:AssociateClientVpnTargetNetwork",
+          "ec2:DescribeClientVpnTargetNetworks"
+        ],
+        "timeoutInMinutes": 130
+      },
+      "delete": {
+        "permissions": [
+          "ec2:DisassociateClientVpnTargetNetwork",
+          "ec2:DescribeClientVpnTargetNetworks"
+        ],
+        "timeoutInMinutes": 130
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ClientVpnEndpointId": {
+              "$ref": "resource-schema.json#/properties/ClientVpnEndpointId"
+            }
+          },
+          "required": [
+            "ClientVpnEndpointId"
+          ]
+        },
+        "permissions": [
+          "ec2:DescribeClientVpnTargetNetworks"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ec2:DescribeClientVpnTargetNetworks"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ClientVpnEndpointId",
+      "/properties/AssociationId"
+    ],
+    "properties": {
+      "AssociationId": {
+        "description": "The ID of the association between the Client VPN endpoint and the target network.",
+        "type": "string"
+      },
+      "AvailabilityZone": {
+        "description": "The Availability Zone to associate with the Client VPN endpoint. Used for Transit Gateway-based endpoints in place of SubnetId.",
+        "type": "string"
+      },
+      "AvailabilityZoneId": {
+        "description": "The ID of the Availability Zone to associate with the Client VPN endpoint. Used for Transit Gateway-based endpoints in place of SubnetId.",
+        "type": "string"
+      },
+      "ClientVpnEndpointId": {
+        "description": "The ID of the Client VPN endpoint.",
+        "type": "string"
+      },
+      "SubnetId": {
+        "description": "The ID of the subnet to associate with the Client VPN endpoint. Required for VPC-based endpoints. For Transit Gateway-based endpoints, use AvailabilityZone or AvailabilityZoneId instead.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/AssociationId"
+    ],
+    "required": [
+      "ClientVpnEndpointId"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::EC2::ClientVpnTargetNetworkAssociation",
+    "writeOnlyProperties": [
+      "/properties/AvailabilityZone",
+      "/properties/AvailabilityZoneId"
+    ]
+  }
+}

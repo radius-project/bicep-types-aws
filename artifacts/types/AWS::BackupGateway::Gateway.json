@@ -1,0 +1,184 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-BackupGateway-Gateway",
+  "type": "AWS::BackupGateway::Gateway",
+  "time": "2026-11-05T17:36:33.77Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/GatewayId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/GatewayDisplayName",
+      "/properties/GatewayType",
+      "/properties/Tags"
+    ],
+    "description": "Resource schema for an AWS Backup Gateway gateway, providing read-only visibility into an activated gateway's metadata.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "backup-gateway:ListGateways"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "backup-gateway:GetGateway",
+          "backup-gateway:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/GatewayArn"
+    ],
+    "properties": {
+      "DeprecationDate": {
+        "description": "The date on which the gateway's current software version stops being supported.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "GatewayArn": {
+        "description": "The Amazon Resource Name (ARN) of the gateway.",
+        "maxLength": 180,
+        "minLength": 50,
+        "pattern": "^arn:(aws|aws-cn|aws-us-gov):backup-gateway(:[a-zA-Z-0-9]+){3}\\/[a-zA-Z-0-9]+$",
+        "type": "string"
+      },
+      "GatewayDisplayName": {
+        "description": "The display name given to the gateway when it was activated.",
+        "maxLength": 100,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9-]*$",
+        "type": "string"
+      },
+      "GatewayId": {
+        "description": "The service-assigned identifier of the gateway, which is the resource path segment of its ARN.",
+        "maxLength": 126,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z-0-9]+$",
+        "type": "string"
+      },
+      "GatewayType": {
+        "description": "The type of the gateway.",
+        "enum": [
+          "BACKUP_VM"
+        ],
+        "type": "string"
+      },
+      "HypervisorId": {
+        "description": "The identifier of the hypervisor the gateway is associated with, when the gateway has been associated with one.",
+        "maxLength": 100,
+        "minLength": 1,
+        "type": "string"
+      },
+      "LastSeenTime": {
+        "description": "The time when the gateway last contacted the AWS Backup Gateway service.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "MaintenanceStartTime": {
+        "additionalProperties": false,
+        "description": "The recurring maintenance window during which the gateway applies software updates.",
+        "properties": {
+          "DayOfMonth": {
+            "description": "The day of the month when the maintenance window starts, in the gateway's time zone.",
+            "maximum": 31,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "DayOfWeek": {
+            "description": "The day of the week when the maintenance window starts, in the gateway's time zone, where 0 is Sunday and 6 is Saturday.",
+            "maximum": 6,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "HourOfDay": {
+            "description": "The hour of the day when the maintenance window starts, in the gateway's time zone.",
+            "maximum": 23,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "MinuteOfHour": {
+            "description": "The minute of the hour when the maintenance window starts, in the gateway's time zone.",
+            "maximum": 59,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "HourOfDay",
+          "MinuteOfHour"
+        ],
+        "type": "object"
+      },
+      "NextUpdateAvailabilityTime": {
+        "description": "The time at which the next software update will become available for the gateway.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "SoftwareVersion": {
+        "description": "The version of the software running on the gateway appliance.",
+        "maxLength": 100,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags assigned to the gateway.",
+        "insertionOrder": false,
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "description": "The tag key.",
+              "maxLength": 128,
+              "minLength": 1,
+              "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+              "type": "string"
+            },
+            "Value": {
+              "description": "The tag value.",
+              "maxLength": 256,
+              "minLength": 0,
+              "pattern": "^[^\\x00]*$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "VpcEndpoint": {
+        "description": "The DNS name of the VPC endpoint the gateway was activated through.",
+        "maxLength": 255,
+        "minLength": 1,
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/DeprecationDate",
+      "/properties/GatewayArn",
+      "/properties/GatewayId",
+      "/properties/HypervisorId",
+      "/properties/LastSeenTime",
+      "/properties/MaintenanceStartTime",
+      "/properties/NextUpdateAvailabilityTime",
+      "/properties/SoftwareVersion",
+      "/properties/VpcEndpoint"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "backup-gateway:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::BackupGateway::Gateway"
+  }
+}

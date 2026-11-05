@@ -1,0 +1,191 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Bedrock-ImportedModel",
+  "type": "AWS::Bedrock::ImportedModel",
+  "time": "2026-11-05T20:36:55.138Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ModelName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/JobName",
+      "/properties/ModelDataSource",
+      "/properties/ModelName"
+    ],
+    "definitions": {
+      "CustomModelUnits": {
+        "additionalProperties": false,
+        "description": "Information about the hardware utilization for a single copy of the model.",
+        "properties": {
+          "CustomModelUnitsPerModelCopy": {
+            "description": "The number of custom model units used to host a model copy.",
+            "type": "integer"
+          },
+          "CustomModelUnitsVersion": {
+            "description": "The version of the custom model unit. Use to determine the billing rate for the custom model unit.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ModelDataSource": {
+        "additionalProperties": false,
+        "description": "The data source of the model to import.",
+        "properties": {
+          "S3DataSource": {
+            "$ref": "#/definitions/S3DataSource"
+          }
+        },
+        "required": [
+          "S3DataSource"
+        ],
+        "type": "object"
+      },
+      "S3DataSource": {
+        "additionalProperties": false,
+        "description": "The Amazon S3 data source of the model to import.",
+        "properties": {
+          "S3Uri": {
+            "description": "The URI of the Amazon S3 data source.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "pattern": "^s3://[a-z0-9][-.a-z0-9]{1,61}[a-z0-9](?:/[-!_*'().a-z0-9A-Z]+(?:/[-!_*'().a-z0-9A-Z]+)*)?/?$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "S3Uri"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "Key for the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9\\s._:/=+@-]*$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "Value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9\\s._:/=+@-]*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Bedrock::ImportedModel",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "bedrock:ListImportedModels"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "bedrock:GetImportedModel",
+          "bedrock:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ModelArn"
+    ],
+    "properties": {
+      "CreationTime": {
+        "description": "Creation time of the imported model.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "CustomModelUnits": {
+        "$ref": "#/definitions/CustomModelUnits"
+      },
+      "InstructSupported": {
+        "description": "Specifies if the imported model supports converse.",
+        "type": "boolean"
+      },
+      "JobArn": {
+        "description": "The Amazon Resource Name (ARN) of the model import job.",
+        "maxLength": 1011,
+        "pattern": "^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:model-import-job/[a-z0-9]{12}$",
+        "type": "string"
+      },
+      "JobName": {
+        "description": "The name of the import job.",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9\\+\\-\\.])*$",
+        "type": "string"
+      },
+      "ModelArchitecture": {
+        "description": "The architecture of the imported model.",
+        "type": "string"
+      },
+      "ModelArn": {
+        "description": "The Amazon Resource Name (ARN) of the imported model.",
+        "maxLength": 1011,
+        "pattern": "^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:imported-model/[a-z0-9]{12}$",
+        "type": "string"
+      },
+      "ModelDataSource": {
+        "$ref": "#/definitions/ModelDataSource"
+      },
+      "ModelKmsKeyArn": {
+        "description": "The Amazon Resource Name (ARN) of the customer managed KMS key used to encrypt the imported model.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:aws(-[^:]+)?:kms:[a-zA-Z0-9-]*:[0-9]{12}:key/[a-zA-Z0-9-]{36}$",
+        "type": "string"
+      },
+      "ModelName": {
+        "description": "The name of the imported model.",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^([0-9a-zA-Z][_-]?)+$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags to attach to the imported model.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "minItems": 0,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ModelArn",
+      "/properties/JobArn",
+      "/properties/ModelArchitecture",
+      "/properties/InstructSupported",
+      "/properties/CreationTime",
+      "/properties/ModelKmsKeyArn",
+      "/properties/CustomModelUnits",
+      "/properties/Tags"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "bedrock:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Bedrock::ImportedModel"
+  }
+}

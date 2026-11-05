@@ -247,6 +247,1444 @@
   },
   {
     "$type": "ObjectType",
+    "name": "RunConfigurations",
+    "properties": {
+      "VpcConfig": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TagMap",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VpcConfig",
+    "properties": {
+      "SecurityGroupIds": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0
+      },
+      "SubnetIds": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
+      "VpcOwnerAccountId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The Amazon Web Services account ID of the cross-account VPC owner for RAM-shared VPC configurations."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Omics/ConfigurationProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Omics/ConfigurationProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "Unique resource identifier for the configuration."
+      },
+      "CreationTime": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "Configuration creation timestamp."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Optional description for the configuration."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17,
+        "description": "User-friendly name for the configuration."
+      },
+      "RunConfigurations": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 1,
+        "description": "Required run-specific configurations."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "Current configuration status."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "Tags for the configuration."
+      },
+      "Uuid": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "Unique identifier for the configuration."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Omics/Configuration",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Omics/Configuration@default",
+    "body": {
+      "$ref": "#/27"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CreationType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ETag",
+    "properties": {
+      "Algorithm": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0
+      },
+      "Source1": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The ETag hash calculated on Source1 of the read set."
+      },
+      "Source2": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The ETag hash calculated on Source2 of the read set."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ETagAlgorithm",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FileInformation",
+    "properties": {
+      "ContentLength": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The file's content length."
+      },
+      "PartSize": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The file's part size."
+      },
+      "S3Access": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0
+      },
+      "TotalParts": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The file's total parts."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReadSetFiles",
+    "properties": {
+      "Index": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 0
+      },
+      "Source1": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 0
+      },
+      "Source2": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReadSetS3Access",
+    "properties": {
+      "S3Uri": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The S3 URI for each read set file."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SequenceInformation",
+    "properties": {
+      "Alignment": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The sequence's alignment setting."
+      },
+      "GeneratedFrom": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Where the sequence originated."
+      },
+      "TotalBaseCount": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The sequence's total base count."
+      },
+      "TotalReadCount": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The sequence's total read count."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Omics/ReadSetProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/36"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Omics/ReadSetProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 16,
+        "description": "The read set's ARN."
+      },
+      "CreationJobId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The read set's creation job ID."
+      },
+      "CreationTime": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "When the read set was created."
+      },
+      "CreationType": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The read set's description."
+      },
+      "Etag": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 2
+      },
+      "FileType": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The read set's file type."
+      },
+      "Files": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 2
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The read set's name."
+      },
+      "ReadSetId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The read set's ID."
+      },
+      "ReferenceArn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The read set's genome reference ARN."
+      },
+      "SampleId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The read set's sample ID."
+      },
+      "SequenceInformation": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 2
+      },
+      "SequenceStoreId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The read set's sequence store ID."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The read set's status."
+      },
+      "SubjectId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The read set's subject ID."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/38"
+        },
+        "flags": 2,
+        "description": "Tags for the read set."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Omics/ReadSet",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Omics/ReadSet@default",
+    "body": {
+      "$ref": "#/40"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Omics/ReferenceProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Reference_Tags",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/43"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Omics/ReferenceProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 16,
+        "description": "The reference's ARN."
+      },
+      "CreationJobId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The reference's creation job ID."
+      },
+      "CreationTime": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "When the reference was created."
+      },
+      "CreationType": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The reference's creation type."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The reference's description."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The reference's ID."
+      },
+      "Md5": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The reference's MD5 checksum."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The reference's name."
+      },
+      "ReferenceStoreId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The reference's reference store ID."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The reference's status."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0,
+        "description": "Tags for the reference."
+      },
+      "UpdateTime": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "When the reference was updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Omics/Reference",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Omics/Reference@default",
+    "body": {
+      "$ref": "#/46"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EncryptionType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SseConfig",
+    "properties": {
+      "KeyArn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "An encryption key ARN."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TagMap",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Omics/ReferenceStoreProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Omics/ReferenceStoreProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The store's ARN."
+      },
+      "CreationTime": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "When the store was created."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "A description for the store."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "A name for the store."
+      },
+      "ReferenceStoreId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 18
+      },
+      "SseConfig": {
+        "type": {
+          "$ref": "#/49"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/50"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Omics/ReferenceStore",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/52"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Omics/ReferenceStore@default",
+    "body": {
+      "$ref": "#/53"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Omics/RunProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/55"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Omics/RunProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 16,
+        "description": "The run's ARN."
+      },
+      "CacheBehavior": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The cache behavior for the run."
+      },
+      "CacheId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Identifier of the cache associated with this run."
+      },
+      "CreationTime": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "When the run was created."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The run's ID."
+      },
+      "LogLevel": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The run's log level."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The run's name."
+      },
+      "NetworkingMode": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The networking mode for the run."
+      },
+      "OutputUri": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "An output URI for the run."
+      },
+      "Priority": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The run's priority."
+      },
+      "RetentionMode": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The run's retention mode."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "A service role ARN for the run."
+      },
+      "RunGroupId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The run's group ID."
+      },
+      "RunOutputUri": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The destination for workflow outputs."
+      },
+      "StartTime": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "When the run started."
+      },
+      "StartedBy": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "Who started the run."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The run's status."
+      },
+      "StorageCapacity": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The run's storage capacity in gibibytes."
+      },
+      "StorageType": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The run's storage type."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/57"
+        },
+        "flags": 0,
+        "description": "Tags for the run."
+      },
+      "Uuid": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The universally unique identifier for the run."
+      },
+      "WorkflowId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The run's workflow ID."
+      },
+      "WorkflowOwnerId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The ID of the workflow owner."
+      },
+      "WorkflowType": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The run's workflow type."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Omics/Run",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/58"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Omics/Run@default",
+    "body": {
+      "$ref": "#/59"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DefaultRunSetting",
+    "properties": {
+      "CacheBehavior": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The cache behavior for the runs. Requires CacheId; without it the service silently ignores this value. When CacheId is set and this is omitted, the run cache's own behavior applies."
+      },
+      "CacheId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The identifier of the run cache to associate with the runs."
+      },
+      "ConfigurationName": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The name of the run configuration to use for the workflow runs. Read echoes the resolved configuration identifier rather than the submitted name."
+      },
+      "EngineSettings": {
+        "type": {
+          "$ref": "#/66"
+        },
+        "flags": 0,
+        "description": "Engine-specific settings shared across all runs, as free-form JSON. Use it for configuration options specific to the workflow engine, such as Nextflow profiles. A per-run setting can replace this value for that run."
+      },
+      "LogLevel": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The verbosity level for CloudWatch Logs emitted during each run. OFF also suppresses log-group creation and its permission pre-check. When omitted, the service applies ALL."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "An optional user-friendly name applied to each workflow run. A per-run setting can replace this value for that run."
+      },
+      "NetworkingMode": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The networking behavior for the runs. VPC additionally requires ConfigurationName, and that configuration must carry a VPC config, otherwise the service rejects the request. When omitted, the service applies RESTRICTED."
+      },
+      "OutputBucketOwnerId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The expected AWS account ID of the owner of the output S3 bucket. Supplying it makes the service's bucket-ownership verification strict. A per-run setting can replace this value for that run."
+      },
+      "OutputUri": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The destination S3 URI for workflow outputs. Must begin with s3:// and RoleArn must grant write permission to the bucket; the service rejects other values at submit time. A per-run setting can replace this value for that run."
+      },
+      "Parameters": {
+        "type": {
+          "$ref": "#/67"
+        },
+        "flags": 0,
+        "description": "Workflow parameter names and values shared across all runs, as free-form JSON. A per-run setting is merged with this map, and the run-specific value wins when keys overlap."
+      },
+      "Priority": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "An integer priority for the workflow runs. Higher values correspond to higher priority; 0 is the lowest. When omitted, the service applies 0. A per-run setting can replace this value for that run."
+      },
+      "RetentionMode": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The retention behavior for runs after completion. When omitted, the service applies RETAIN."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The IAM role ARN that grants HealthOmics permissions to access required AWS resources such as Amazon S3 and CloudWatch. The role must have the same permissions required for individual StartRun calls."
+      },
+      "RunGroupId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The identifier of the run group to contain all workflow runs in the batch."
+      },
+      "RunTags": {
+        "type": {
+          "$ref": "#/63"
+        },
+        "flags": 0
+      },
+      "ScratchStorageMode": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The scratch ephemeral storage mode for storage mounted at /tmp. When omitted, the service applies SHARED. Applies only to CPU tasks; for tasks that use GPUs the service always applies LOCAL."
+      },
+      "StorageCapacity": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The filesystem size in gibibytes (GiB) provisioned for each workflow run and shared by all tasks in that run. When omitted, the value is inherited from the workflow. Forced to no value when StorageType is DYNAMIC."
+      },
+      "StorageType": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The storage type for the workflow runs. When omitted, the service applies STATIC, unless StorageCapacity is set, which infers STATIC."
+      },
+      "WorkflowId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The identifier of the workflow to run. The workflow must be ACTIVE."
+      },
+      "WorkflowOwnerId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The AWS account ID of the workflow owner, used for cross-account workflow sharing. Read returns the resolved owner account, which is the caller's account when the workflow is owned locally."
+      },
+      "WorkflowType": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The type of the originating workflow. Batch runs are not supported with READY2RUN workflows, so the service rejects a batch that targets one. When omitted, the service applies PRIVATE and returns it on read."
+      },
+      "WorkflowVersionName": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The version name of the specified workflow. Read derives this from the resolved workflow version ARN."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RunSummary",
+    "properties": {
+      "CancelledRunCount": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The number of cancelled runs."
+      },
+      "CompletedRunCount": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The number of completed runs."
+      },
+      "DeletedRunCount": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The number of deleted runs."
+      },
+      "FailedRunCount": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The number of failed runs."
+      },
+      "PendingRunCount": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The number of pending runs."
+      },
+      "RunningRunCount": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The number of running runs."
+      },
+      "StartingRunCount": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The number of starting runs."
+      },
+      "StoppingRunCount": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The number of stopping runs."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RunTags",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SubmissionSummary",
+    "properties": {
+      "FailedCancelSubmissionCount": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The number of failed cancel submissions."
+      },
+      "FailedDeleteSubmissionCount": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The number of failed delete submissions."
+      },
+      "FailedStartSubmissionCount": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The number of failed start submissions."
+      },
+      "PendingStartSubmissionCount": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The number of pending start submissions."
+      },
+      "SuccessfulCancelSubmissionCount": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The number of successful cancel submissions."
+      },
+      "SuccessfulDeleteSubmissionCount": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The number of successful delete submissions."
+      },
+      "SuccessfulStartSubmissionCount": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The number of successful start submissions."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RunBatch_EngineSettings",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RunBatch_Parameters",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Omics/RunBatchProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/65"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Omics/RunBatchProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 16,
+        "description": "The batch's ARN."
+      },
+      "CreationTime": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "When the batch was created."
+      },
+      "DefaultRunSetting": {
+        "type": {
+          "$ref": "#/61"
+        },
+        "flags": 0
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The batch's ID, which is the identifier portion of its ARN."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The batch's name. Names are not unique and may be reused."
+      },
+      "RunSummary": {
+        "type": {
+          "$ref": "#/62"
+        },
+        "flags": 2
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The batch's status."
+      },
+      "SubmissionSummary": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 2
+      },
+      "SubmittedTime": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "When all run submissions for the batch completed."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0,
+        "description": "Tags for the batch. These are not inherited by the individual runs; use DefaultRunSetting RunTags to tag runs."
+      },
+      "TotalRuns": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "The total number of runs in the batch."
+      },
+      "Uuid": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The universally unique identifier for the batch."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Omics/RunBatch",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/70"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Omics/RunBatch@default",
+    "body": {
+      "$ref": "#/71"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "Tag",
     "properties": {
       "Key": {
@@ -272,7 +1710,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/20"
+      "$ref": "#/73"
     }
   },
   {
@@ -344,7 +1782,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/75"
         },
         "flags": 0,
         "description": "Tags for the run cache."
@@ -371,7 +1809,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/76"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -382,7 +1820,7 @@
     "$type": "ResourceType",
     "name": "AWS.Omics/RunCache@default",
     "body": {
-      "$ref": "#/24"
+      "$ref": "#/77"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -450,7 +1888,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/79"
         },
         "flags": 0
       }
@@ -476,7 +1914,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/81"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -487,7 +1925,7 @@
     "$type": "ResourceType",
     "name": "AWS.Omics/RunGroup@default",
     "body": {
-      "$ref": "#/29"
+      "$ref": "#/82"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -600,7 +2038,7 @@
       },
       "PropagatedSetLevelTags": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/90"
         },
         "flags": 0,
         "description": "The tags keys to propagate to the S3 objects associated with read sets in the sequence store."
@@ -614,7 +2052,7 @@
       },
       "S3AccessPolicy": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/91"
         },
         "flags": 0,
         "description": "The resource policy that controls S3 access on the store"
@@ -634,7 +2072,7 @@
       },
       "SseConfig": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/87"
         },
         "flags": 0
       },
@@ -653,7 +2091,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/88"
         },
         "flags": 0
       },
@@ -686,7 +2124,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/92"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -697,9 +2135,132 @@
     "$type": "ResourceType",
     "name": "AWS.Omics/SequenceStore@default",
     "body": {
-      "$ref": "#/40"
+      "$ref": "#/93"
     },
     "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Omics/TaskProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Omics/TaskProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 16,
+        "description": "The ARN of the task resource."
+      },
+      "Cpus": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "The task's CPU usage."
+      },
+      "CreationTime": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "When the task was created."
+      },
+      "Gpus": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "The number of Graphics Processing Units (GPU) specified in the task."
+      },
+      "InstanceType": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The instance type for the task."
+      },
+      "LogStream": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The task's log stream."
+      },
+      "Memory": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "The task's memory use in gigabytes."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The task's name."
+      },
+      "RunId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The workflow run ID."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The task's status."
+      },
+      "TaskId": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "The task's ID."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Omics/Task",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/96"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Omics/Task@default",
+    "body": {
+      "$ref": "#/97"
+    },
+    "readableScopes": 31,
     "writableScopes": 0
   },
   {
@@ -781,13 +2342,13 @@
       },
       "Reference": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/100"
         },
         "flags": 1
       },
       "SseConfig": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/101"
         },
         "flags": 0
       },
@@ -817,7 +2378,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/103"
         },
         "flags": 0
       },
@@ -849,7 +2410,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/105"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -860,7 +2421,7 @@
     "$type": "ResourceType",
     "name": "AWS.Omics/VariantStore@default",
     "body": {
-      "$ref": "#/49"
+      "$ref": "#/106"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -876,13 +2437,13 @@
     "properties": {
       "ImageMappings": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/122"
         },
         "flags": 0
       },
       "RegistryMappings": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/123"
         },
         "flags": 0
       }
@@ -900,7 +2461,7 @@
       },
       "excludeFilePatterns": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/124"
         },
         "flags": 0
       },
@@ -912,7 +2473,7 @@
       },
       "sourceReference": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/113"
         },
         "flags": 0
       }
@@ -1016,7 +2577,7 @@
       },
       "Optional": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/125"
         },
         "flags": 0
       }
@@ -1040,13 +2601,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/54"
+      "$ref": "#/111"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/55"
+      "$ref": "#/112"
     }
   },
   {
@@ -1080,7 +2641,7 @@
       },
       "ContainerRegistryMap": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/109"
         },
         "flags": 0
       },
@@ -1098,7 +2659,7 @@
       },
       "DefinitionRepository": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/110"
         },
         "flags": 4
       },
@@ -1140,7 +2701,7 @@
       },
       "ParameterTemplate": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/119"
         },
         "flags": 0
       },
@@ -1171,7 +2732,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/115"
         },
         "flags": 0
       },
@@ -1237,7 +2798,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/127"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1248,7 +2809,7 @@
     "$type": "ResourceType",
     "name": "AWS.Omics/Workflow@default",
     "body": {
-      "$ref": "#/71"
+      "$ref": "#/128"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1264,13 +2825,13 @@
     "properties": {
       "ImageMappings": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/143"
         },
         "flags": 0
       },
       "RegistryMappings": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/144"
         },
         "flags": 0
       }
@@ -1288,7 +2849,7 @@
       },
       "excludeFilePatterns": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/145"
         },
         "flags": 0
       },
@@ -1300,7 +2861,7 @@
       },
       "sourceReference": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/135"
         },
         "flags": 0
       }
@@ -1399,7 +2960,7 @@
       },
       "Optional": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/125"
         },
         "flags": 0
       }
@@ -1423,13 +2984,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/76"
+      "$ref": "#/133"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/77"
+      "$ref": "#/134"
     }
   },
   {
@@ -1460,7 +3021,7 @@
       },
       "ContainerRegistryMap": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/131"
         },
         "flags": 0
       },
@@ -1478,7 +3039,7 @@
       },
       "DefinitionRepository": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/132"
         },
         "flags": 4
       },
@@ -1508,7 +3069,7 @@
       },
       "ParameterTemplate": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/140"
         },
         "flags": 0
       },
@@ -1539,7 +3100,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/137"
         },
         "flags": 0
       },
@@ -1616,7 +3177,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/147"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1627,7 +3188,7 @@
     "$type": "ResourceType",
     "name": "AWS.Omics/WorkflowVersion@default",
     "body": {
-      "$ref": "#/91"
+      "$ref": "#/148"
     },
     "readableScopes": 0,
     "writableScopes": 0

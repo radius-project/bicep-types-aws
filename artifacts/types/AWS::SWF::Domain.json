@@ -1,0 +1,119 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SWF-Domain",
+  "type": "AWS::SWF::Domain",
+  "time": "2026-11-05T21:25:30.162Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Name"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with the SWF domain.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag. Tag keys are case-sensitive and must be unique per SWF domain.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value associated with the tag key on the SWF domain. May be an empty string.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource type definition for AWS::SWF::Domain. An Amazon Simple Workflow Service (SWF) domain is a logical container for workflow executions, activity types, and workflow types. This type is read-only: domains are provisioned out-of-band and referenced/read through CloudFormation.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "swf:ListDomains"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "swf:DescribeDomain",
+          "swf:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the domain.",
+        "maxLength": 1600,
+        "minLength": 1,
+        "pattern": "^arn:aws.*:swf:.*:[0-9]{12}:/domain/.+$",
+        "type": "string"
+      },
+      "Description": {
+        "description": "A text description of the SWF domain, provided at registration. This value is immutable once the domain is created.",
+        "maxLength": 1024,
+        "minLength": 0,
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the domain. The name must be unique within the region in which the domain is registered.",
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Status": {
+        "description": "The registration status of the domain. A domain can be in REGISTERED or DEPRECATED state.",
+        "enum": [
+          "REGISTERED",
+          "DEPRECATED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs applied to the domain.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "WorkflowExecutionRetentionPeriodInDays": {
+        "description": "The duration (in days) that records and histories of workflow executions on the domain should be kept by the service. Valid values are 0-90 days, or the string NONE. A value of 0 or NONE means no retention.",
+        "maxLength": 8,
+        "minLength": 1,
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Name",
+      "/properties/Description",
+      "/properties/WorkflowExecutionRetentionPeriodInDays",
+      "/properties/Tags",
+      "/properties/Status"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-swf.git",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "swf:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::SWF::Domain"
+  }
+}

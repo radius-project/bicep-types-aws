@@ -1,0 +1,126 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Artifact-Report",
+  "type": "AWS::Artifact::Report",
+  "time": "2026-10-12T16:45:23.224Z",
+  "schema": {
+    "additionalProperties": false,
+    "description": "Resource schema for AWS Artifact Report",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "artifact:ListReports"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "artifact:GetReportMetadata"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "AcceptanceType": {
+        "description": "Acceptance type for report.",
+        "enum": [
+          "PASSTHROUGH",
+          "EXPLICIT"
+        ],
+        "type": "string"
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the report.",
+        "type": "string"
+      },
+      "Category": {
+        "description": "Category for the report resource.",
+        "type": "string"
+      },
+      "CompanyName": {
+        "description": "Associated company name for the report resource.",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "Timestamp indicating when the report resource was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "Description for the report resource.",
+        "type": "string"
+      },
+      "Name": {
+        "description": "Name for the report resource.",
+        "type": "string"
+      },
+      "PeriodEnd": {
+        "description": "Timestamp indicating the report resource effective end.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "PeriodStart": {
+        "description": "Timestamp indicating the report resource effective start.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ProductName": {
+        "description": "Associated product name for the report resource.",
+        "type": "string"
+      },
+      "ReportId": {
+        "description": "Unique resource ID for the report resource.",
+        "pattern": "^report-[a-zA-Z0-9]{16}$",
+        "type": "string"
+      },
+      "SequenceNumber": {
+        "description": "Sequence number to enforce optimistic locking.",
+        "minimum": 1,
+        "type": "integer"
+      },
+      "Series": {
+        "description": "Series for the report resource.",
+        "type": "string"
+      },
+      "State": {
+        "description": "Current state of the report resource.",
+        "enum": [
+          "PUBLISHED",
+          "UNPUBLISHED"
+        ],
+        "type": "string"
+      },
+      "TermArn": {
+        "description": "Unique resource ARN for term resource.",
+        "type": "string"
+      },
+      "Version": {
+        "description": "Version for the report resource.",
+        "pattern": "^[0-9]+$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/ReportId",
+      "/properties/Name",
+      "/properties/Description",
+      "/properties/PeriodStart",
+      "/properties/PeriodEnd",
+      "/properties/CreatedAt",
+      "/properties/State",
+      "/properties/Series",
+      "/properties/Category",
+      "/properties/CompanyName",
+      "/properties/ProductName",
+      "/properties/TermArn",
+      "/properties/Version",
+      "/properties/AcceptanceType",
+      "/properties/SequenceNumber"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::Artifact::Report"
+  }
+}

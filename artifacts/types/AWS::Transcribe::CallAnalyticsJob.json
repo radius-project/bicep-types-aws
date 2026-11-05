@@ -1,0 +1,211 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Transcribe-CallAnalyticsJob",
+  "type": "AWS::Transcribe::CallAnalyticsJob",
+  "time": "2026-11-05T20:29:01.117Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/CallAnalyticsJobName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/CallAnalyticsJobName",
+      "/properties/ChannelDefinitions",
+      "/properties/DataAccessRoleArn",
+      "/properties/Media",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "ChannelDefinition": {
+        "additionalProperties": false,
+        "properties": {
+          "ChannelId": {
+            "description": "The audio channel ID",
+            "maximum": 1,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "ParticipantRole": {
+            "description": "The speaker role",
+            "enum": [
+              "AGENT",
+              "CUSTOMER"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Media": {
+        "additionalProperties": false,
+        "properties": {
+          "MediaFileUri": {
+            "description": "The Amazon S3 location of the media file",
+            "maxLength": 2000,
+            "minLength": 1,
+            "pattern": "^(s3://|http(s*)://).+$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "Transcript": {
+        "additionalProperties": false,
+        "properties": {
+          "TranscriptFileUri": {
+            "description": "The Amazon S3 location of the transcript",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource type definition for a Transcribe Call Analytics Job",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "transcribe:ListCallAnalyticsJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "transcribe:GetCallAnalyticsJob",
+          "transcribe:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the Call Analytics job",
+        "type": "string"
+      },
+      "CallAnalyticsJobName": {
+        "description": "A unique name for the Call Analytics job",
+        "maxLength": 200,
+        "minLength": 1,
+        "pattern": "^[0-9a-zA-Z._-]+$",
+        "type": "string"
+      },
+      "CallAnalyticsJobStatus": {
+        "description": "The status of the Call Analytics job",
+        "enum": [
+          "QUEUED",
+          "IN_PROGRESS",
+          "FAILED",
+          "COMPLETED"
+        ],
+        "type": "string"
+      },
+      "ChannelDefinitions": {
+        "description": "Channel definitions for the Call Analytics job",
+        "items": {
+          "$ref": "#/definitions/ChannelDefinition"
+        },
+        "maxItems": 2,
+        "minItems": 2,
+        "type": "array"
+      },
+      "CreationTime": {
+        "description": "The date and time the Call Analytics job was created",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DataAccessRoleArn": {
+        "description": "The ARN of an IAM role with permissions to access the S3 bucket containing input files",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:(aws|aws-cn|aws-us-gov|aws-iso-{0,1}[a-z]{0,1}):iam::[0-9]{0,63}:role/[A-Za-z0-9:_/+=,@.-]{0,1024}$",
+        "type": "string"
+      },
+      "LanguageCode": {
+        "description": "The language code used for the Call Analytics job",
+        "type": "string"
+      },
+      "Media": {
+        "$ref": "#/definitions/Media",
+        "description": "Describes the Amazon S3 location of the media file"
+      },
+      "MediaFormat": {
+        "description": "The format of the input media file",
+        "enum": [
+          "mp3",
+          "mp4",
+          "wav",
+          "flac",
+          "ogg",
+          "amr",
+          "webm",
+          "m4a"
+        ],
+        "type": "string"
+      },
+      "MediaSampleRateHertz": {
+        "description": "The sample rate of the audio in hertz",
+        "maximum": 48000,
+        "minimum": 8000,
+        "type": "integer"
+      },
+      "Tags": {
+        "description": "Tags associated with the Call Analytics job",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "minItems": 1,
+        "type": "array"
+      },
+      "Transcript": {
+        "$ref": "#/definitions/Transcript",
+        "description": "Provides the Amazon S3 URI for the transcript"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/CallAnalyticsJobStatus",
+      "/properties/LanguageCode",
+      "/properties/MediaSampleRateHertz",
+      "/properties/MediaFormat",
+      "/properties/Transcript",
+      "/properties/CreationTime"
+    ],
+    "required": [
+      "CallAnalyticsJobName",
+      "Media"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "transcribe:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Transcribe::CallAnalyticsJob"
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Omics-Reference",
+  "type": "AWS::Omics::Reference",
+  "time": "2026-11-05T21:12:25.203Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ReferenceStoreId",
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Description",
+      "/properties/Name",
+      "/properties/ReferenceStoreId",
+      "/properties/Tags"
+    ],
+    "description": "Resource Type definition for AWS::Omics::Reference. Represents a genomic reference stored in an AWS HealthOmics reference store.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ReferenceStoreId": {
+              "maxLength": 36,
+              "minLength": 10,
+              "pattern": "^[0-9]+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "ReferenceStoreId"
+          ]
+        },
+        "permissions": [
+          "omics:ListReferences"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "omics:GetReferenceMetadata",
+          "omics:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The reference's ARN.",
+        "maxLength": 127,
+        "minLength": 1,
+        "pattern": "^arn:.+$",
+        "type": "string"
+      },
+      "CreationJobId": {
+        "description": "The reference's creation job ID.",
+        "maxLength": 127,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9]+$",
+        "type": "string"
+      },
+      "CreationTime": {
+        "description": "When the reference was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "CreationType": {
+        "description": "The reference's creation type.",
+        "enum": [
+          "IMPORT"
+        ],
+        "type": "string"
+      },
+      "Description": {
+        "description": "The reference's description.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+        "type": "string"
+      },
+      "Id": {
+        "description": "The reference's ID.",
+        "maxLength": 36,
+        "minLength": 10,
+        "pattern": "^[0-9]+$",
+        "type": "string"
+      },
+      "Md5": {
+        "description": "The reference's MD5 checksum.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[\\p{L}||\\p{N}]+$",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The reference's name.",
+        "maxLength": 255,
+        "minLength": 3,
+        "pattern": "^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$",
+        "type": "string"
+      },
+      "ReferenceStoreId": {
+        "description": "The reference's reference store ID.",
+        "maxLength": 36,
+        "minLength": 10,
+        "pattern": "^[0-9]+$",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The reference's status.",
+        "enum": [
+          "ACTIVE",
+          "DELETING",
+          "DELETED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags for the reference.",
+        "insertionOrder": false,
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "Value": {
+              "maxLength": 256,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "UpdateTime": {
+        "description": "When the reference was updated.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Id",
+      "/properties/Md5",
+      "/properties/Status",
+      "/properties/CreationTime",
+      "/properties/UpdateTime",
+      "/properties/CreationType",
+      "/properties/CreationJobId"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "omics:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Omics::Reference"
+  }
+}

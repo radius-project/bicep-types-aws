@@ -5128,11 +5128,315 @@
   },
   {
     "$type": "ObjectType",
+    "name": "Schema",
+    "properties": {
+      "RegistryName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Name of the registry to identify where the Schema is located."
+      },
+      "SchemaArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Amazon Resource Name for the Schema. This attribute can be used to uniquely represent the Schema."
+      },
+      "SchemaName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Name of the schema. This parameter requires RegistryName to be provided."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Glue/SchemaVersionProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/SchemaVersionProperties",
+    "properties": {
+      "Schema": {
+        "type": {
+          "$ref": "#/255"
+        },
+        "flags": 1
+      },
+      "SchemaDefinition": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Complete definition of the schema in plain-text."
+      },
+      "VersionId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "Represents the version ID associated with the schema version."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/SchemaVersion",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/257"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Glue/SchemaVersion@default",
+    "body": {
+      "$ref": "#/258"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Glue/SchemaVersionMetadataProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/SchemaVersionMetadataProperties",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "Metadata key"
+      },
+      "SchemaVersionId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "Represents the version ID associated with the schema version."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "Metadata value"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/SchemaVersionMetadata",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/261"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Glue/SchemaVersionMetadata@default",
+    "body": {
+      "$ref": "#/262"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CloudWatchEncryption",
+    "properties": {
+      "CloudWatchEncryptionMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EncryptionConfiguration",
+    "properties": {
+      "CloudWatchEncryption": {
+        "type": {
+          "$ref": "#/264"
+        },
+        "flags": 0
+      },
+      "JobBookmarksEncryption": {
+        "type": {
+          "$ref": "#/266"
+        },
+        "flags": 0
+      },
+      "S3Encryptions": {
+        "type": {
+          "$ref": "#/268"
+        },
+        "flags": 0,
+        "description": "The encryption configuration for Amazon Simple Storage Service (Amazon S3) data."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JobBookmarksEncryption",
+    "properties": {
+      "JobBookmarksEncryptionMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3Encryption",
+    "properties": {
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "S3EncryptionMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/267"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Glue/SecurityConfigurationProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/SecurityConfigurationProperties",
+    "properties": {
+      "EncryptionConfiguration": {
+        "type": {
+          "$ref": "#/265"
+        },
+        "flags": 1
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The name for the security configuration."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/SecurityConfiguration",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/270"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Glue/SecurityConfiguration@default",
+    "body": {
+      "$ref": "#/271"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "ConnectionsList",
     "properties": {
       "Connections": {
         "type": {
-          "$ref": "#/258"
+          "$ref": "#/276"
         },
         "flags": 0,
         "description": "A list of connection names used by the session."
@@ -5197,7 +5501,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/257"
+      "$ref": "#/275"
     }
   },
   {
@@ -5213,13 +5517,13 @@
       },
       "Command": {
         "type": {
-          "$ref": "#/256"
+          "$ref": "#/274"
         },
         "flags": 1
       },
       "Connections": {
         "type": {
-          "$ref": "#/255"
+          "$ref": "#/273"
         },
         "flags": 0
       },
@@ -5232,7 +5536,7 @@
       },
       "DefaultArguments": {
         "type": {
-          "$ref": "#/260"
+          "$ref": "#/278"
         },
         "flags": 0,
         "description": "A map array of key-value pairs. Max is 75 pairs."
@@ -5316,7 +5620,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/261"
+          "$ref": "#/279"
         },
         "flags": 0,
         "description": "The tags belonging to the session."
@@ -5357,7 +5661,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/262"
+          "$ref": "#/280"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -5368,7 +5672,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/Session@default",
     "body": {
-      "$ref": "#/263"
+      "$ref": "#/281"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -5406,7 +5710,7 @@
     "properties": {
       "IcebergTableInput": {
         "type": {
-          "$ref": "#/273"
+          "$ref": "#/291"
         },
         "flags": 0,
         "description": "Specifies the Iceberg table configuration."
@@ -5467,7 +5771,7 @@
     "properties": {
       "Fields": {
         "type": {
-          "$ref": "#/286"
+          "$ref": "#/304"
         },
         "flags": 1,
         "description": "The partition fields."
@@ -5487,14 +5791,14 @@
     "properties": {
       "Fields": {
         "type": {
-          "$ref": "#/287"
+          "$ref": "#/305"
         },
         "flags": 1,
         "description": "The fields in the schema."
       },
       "IdentifierFieldIds": {
         "type": {
-          "$ref": "#/288"
+          "$ref": "#/306"
         },
         "flags": 0,
         "description": "The identifier field IDs."
@@ -5555,7 +5859,7 @@
     "properties": {
       "Fields": {
         "type": {
-          "$ref": "#/289"
+          "$ref": "#/307"
         },
         "flags": 1,
         "description": "The sort fields."
@@ -5623,28 +5927,28 @@
       },
       "PartitionSpec": {
         "type": {
-          "$ref": "#/268"
+          "$ref": "#/286"
         },
         "flags": 0,
         "description": "The partition spec for the Iceberg table."
       },
       "Properties": {
         "type": {
-          "$ref": "#/290"
+          "$ref": "#/308"
         },
         "flags": 0,
         "description": "The properties for the Iceberg table."
       },
       "Schema": {
         "type": {
-          "$ref": "#/269"
+          "$ref": "#/287"
         },
         "flags": 1,
         "description": "The schema for the Iceberg table."
       },
       "WriteOrder": {
         "type": {
-          "$ref": "#/271"
+          "$ref": "#/289"
         },
         "flags": 0,
         "description": "The write order for the Iceberg table."
@@ -5662,7 +5966,7 @@
     "properties": {
       "IcebergInput": {
         "type": {
-          "$ref": "#/266"
+          "$ref": "#/284"
         },
         "flags": 0,
         "description": "Specifies an IcebergInput structure that defines an Apache Iceberg metadata table."
@@ -5722,7 +6026,7 @@
     "properties": {
       "SchemaId": {
         "type": {
-          "$ref": "#/277"
+          "$ref": "#/295"
         },
         "flags": 0,
         "description": "A structure that contains schema identity fields. Either this or the SchemaVersionId has to be provided."
@@ -5756,7 +6060,7 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/291"
+          "$ref": "#/309"
         },
         "flags": 0,
         "description": "These key-value pairs define initialization parameters for the SerDe."
@@ -5776,21 +6080,21 @@
     "properties": {
       "SkewedColumnNames": {
         "type": {
-          "$ref": "#/292"
+          "$ref": "#/310"
         },
         "flags": 0,
         "description": "A list of names of columns that contain skewed values."
       },
       "SkewedColumnValueLocationMaps": {
         "type": {
-          "$ref": "#/293"
+          "$ref": "#/311"
         },
         "flags": 0,
         "description": "A mapping of skewed values to the columns that contain them."
       },
       "SkewedColumnValues": {
         "type": {
-          "$ref": "#/294"
+          "$ref": "#/312"
         },
         "flags": 0,
         "description": "A list of names of columns that contain skewed values."
@@ -5803,14 +6107,14 @@
     "properties": {
       "BucketColumns": {
         "type": {
-          "$ref": "#/295"
+          "$ref": "#/313"
         },
         "flags": 0,
         "description": "A list of reducer grouping columns, clustering columns, and bucketing columns in the table."
       },
       "Columns": {
         "type": {
-          "$ref": "#/296"
+          "$ref": "#/314"
         },
         "flags": 0,
         "description": "A list of the Columns in the table."
@@ -5852,35 +6156,35 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/297"
+          "$ref": "#/315"
         },
         "flags": 0,
         "description": "The user-supplied properties in key-value form."
       },
       "SchemaReference": {
         "type": {
-          "$ref": "#/278"
+          "$ref": "#/296"
         },
         "flags": 0,
         "description": "An object that references a schema stored in the AWS Glue Schema Registry."
       },
       "SerdeInfo": {
         "type": {
-          "$ref": "#/279"
+          "$ref": "#/297"
         },
         "flags": 0,
         "description": "The serialization/deserialization (SerDe) information."
       },
       "SkewedInfo": {
         "type": {
-          "$ref": "#/280"
+          "$ref": "#/298"
         },
         "flags": 0,
         "description": "The information about values that appear frequently in a column (skewed values)."
       },
       "SortColumns": {
         "type": {
-          "$ref": "#/298"
+          "$ref": "#/316"
         },
         "flags": 0,
         "description": "A list specifying the sort order of each bucket in the table."
@@ -5955,14 +6259,14 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/299"
+          "$ref": "#/317"
         },
         "flags": 0,
         "description": "These key-value pairs define properties associated with the table."
       },
       "PartitionKeys": {
         "type": {
-          "$ref": "#/300"
+          "$ref": "#/318"
         },
         "flags": 0,
         "description": "A list of columns by which the table is partitioned. Only primitive types are supported as partition keys."
@@ -5976,7 +6280,7 @@
       },
       "StorageDescriptor": {
         "type": {
-          "$ref": "#/281"
+          "$ref": "#/299"
         },
         "flags": 0,
         "description": "A storage descriptor containing information about the physical storage of this table."
@@ -5990,14 +6294,14 @@
       },
       "TargetTable": {
         "type": {
-          "$ref": "#/282"
+          "$ref": "#/300"
         },
         "flags": 0,
         "description": "A TableIdentifier structure that describes a target table for resource linking."
       },
       "ViewDefinition": {
         "type": {
-          "$ref": "#/284"
+          "$ref": "#/302"
         },
         "flags": 0,
         "description": "The view definition for the table."
@@ -6038,14 +6342,14 @@
       },
       "Representations": {
         "type": {
-          "$ref": "#/301"
+          "$ref": "#/319"
         },
         "flags": 4,
         "description": "The representations of the view."
       },
       "SubObjects": {
         "type": {
-          "$ref": "#/302"
+          "$ref": "#/320"
         },
         "flags": 4,
         "description": "The sub-objects of the view."
@@ -6096,13 +6400,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/267"
+      "$ref": "#/285"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/272"
+      "$ref": "#/290"
     }
   },
   {
@@ -6114,7 +6418,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/270"
+      "$ref": "#/288"
     }
   },
   {
@@ -6153,7 +6457,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/265"
+      "$ref": "#/283"
     }
   },
   {
@@ -6164,7 +6468,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/276"
+      "$ref": "#/294"
     }
   },
   {
@@ -6175,13 +6479,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/265"
+      "$ref": "#/283"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/285"
+      "$ref": "#/303"
     }
   },
   {
@@ -6221,14 +6525,14 @@
       },
       "OpenTableFormatInput": {
         "type": {
-          "$ref": "#/275"
+          "$ref": "#/293"
         },
         "flags": 4,
         "description": "Specifies an OpenTableFormatInput structure when creating an open format table."
       },
       "TableInput": {
         "type": {
-          "$ref": "#/283"
+          "$ref": "#/301"
         },
         "flags": 0,
         "description": "A structure used to define a table."
@@ -6255,7 +6559,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/304"
+          "$ref": "#/322"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -6266,7 +6570,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/Table@default",
     "body": {
-      "$ref": "#/305"
+      "$ref": "#/323"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -6277,7 +6581,7 @@
     "properties": {
       "IcebergConfiguration": {
         "type": {
-          "$ref": "#/308"
+          "$ref": "#/326"
         },
         "flags": 0,
         "description": "The configuration for an Iceberg compaction optimizer."
@@ -6361,7 +6665,7 @@
     "properties": {
       "IcebergConfiguration": {
         "type": {
-          "$ref": "#/309"
+          "$ref": "#/327"
         },
         "flags": 0,
         "description": "The IcebergConfiguration property helps optimize your Iceberg tables in AWS Glue by allowing you to specify format-specific settings that control how data is stored, compressed, and managed."
@@ -6374,7 +6678,7 @@
     "properties": {
       "IcebergConfiguration": {
         "type": {
-          "$ref": "#/310"
+          "$ref": "#/328"
         },
         "flags": 0,
         "description": "The configuration for an Iceberg snapshot retention optimizer."
@@ -6387,7 +6691,7 @@
     "properties": {
       "CompactionConfiguration": {
         "type": {
-          "$ref": "#/307"
+          "$ref": "#/325"
         },
         "flags": 0,
         "description": "The configuration for a compaction optimizer. This configuration defines how data files in your table will be compacted to improve query performance and reduce storage costs."
@@ -6401,14 +6705,14 @@
       },
       "OrphanFileDeletionConfiguration": {
         "type": {
-          "$ref": "#/311"
+          "$ref": "#/329"
         },
         "flags": 0,
         "description": "OrphanFileDeletionConfiguration is a property that can be included within the TableOptimizer resource. It controls the automatic deletion of orphaned files - files that are not tracked by the table metadata, and older than the configured age limit."
       },
       "RetentionConfiguration": {
         "type": {
-          "$ref": "#/312"
+          "$ref": "#/330"
         },
         "flags": 0,
         "description": "The configuration for a snapshot retention optimizer for Apache Iceberg tables."
@@ -6422,7 +6726,7 @@
       },
       "VpcConfiguration": {
         "type": {
-          "$ref": "#/314"
+          "$ref": "#/332"
         },
         "flags": 0,
         "description": "An object that describes the VPC configuration for a table optimizer. This configuration is necessary to perform optimization on tables that are in a customer VPC."
@@ -6473,7 +6777,7 @@
       },
       "TableOptimizerConfiguration": {
         "type": {
-          "$ref": "#/313"
+          "$ref": "#/331"
         },
         "flags": 1,
         "description": "Specifies configuration details of a table optimizer."
@@ -6507,7 +6811,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/316"
+          "$ref": "#/334"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -6518,9 +6822,83 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/TableOptimizer@default",
     "body": {
-      "$ref": "#/317"
+      "$ref": "#/335"
     },
     "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Glue/TableVersionProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/TableVersionProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The ARN of the table version."
+      },
+      "DatabaseName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the database in the catalog in which the table resides."
+      },
+      "TableName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the table."
+      },
+      "VersionId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ID value that identifies this table version."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Glue/TableVersion",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/338"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Glue/TableVersion@default",
+    "body": {
+      "$ref": "#/339"
+    },
+    "readableScopes": 31,
     "writableScopes": 0
   },
   {
@@ -6529,7 +6907,7 @@
     "properties": {
       "Arguments": {
         "type": {
-          "$ref": "#/324"
+          "$ref": "#/346"
         },
         "flags": 0,
         "description": "The job arguments used when this trigger fires. For this job run, they replace the default arguments set in the job definition itself."
@@ -6550,7 +6928,7 @@
       },
       "NotificationProperty": {
         "type": {
-          "$ref": "#/322"
+          "$ref": "#/344"
         },
         "flags": 0,
         "description": "Specifies configuration properties of a job run notification."
@@ -6651,7 +7029,7 @@
     "properties": {
       "Conditions": {
         "type": {
-          "$ref": "#/325"
+          "$ref": "#/347"
         },
         "flags": 0,
         "description": "A list of the conditions that determine when the trigger will fire."
@@ -6673,7 +7051,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/320"
+      "$ref": "#/342"
     }
   },
   {
@@ -6683,7 +7061,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/319"
+      "$ref": "#/341"
     }
   },
   {
@@ -6697,7 +7075,7 @@
     "properties": {
       "Actions": {
         "type": {
-          "$ref": "#/327"
+          "$ref": "#/349"
         },
         "flags": 1,
         "description": "The actions initiated by this trigger."
@@ -6711,7 +7089,7 @@
       },
       "EventBatchingCondition": {
         "type": {
-          "$ref": "#/321"
+          "$ref": "#/343"
         },
         "flags": 0,
         "description": "Batch condition that must be met (specified number of events received or batch time window expired) before EventBridge event trigger fires."
@@ -6725,7 +7103,7 @@
       },
       "Predicate": {
         "type": {
-          "$ref": "#/323"
+          "$ref": "#/345"
         },
         "flags": 0,
         "description": "The predicate of this trigger, which defines when it will fire."
@@ -6746,7 +7124,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/328"
+          "$ref": "#/350"
         },
         "flags": 0,
         "description": "The tags to use with this trigger."
@@ -6787,7 +7165,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/329"
+          "$ref": "#/351"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -6798,7 +7176,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/Trigger@default",
     "body": {
-      "$ref": "#/330"
+      "$ref": "#/352"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -6809,7 +7187,7 @@
     "properties": {
       "AllowedValues": {
         "type": {
-          "$ref": "#/335"
+          "$ref": "#/357"
         },
         "flags": 0
       },
@@ -6839,13 +7217,13 @@
     "properties": {
       "JobConfiguration": {
         "type": {
-          "$ref": "#/336"
+          "$ref": "#/358"
         },
         "flags": 0
       },
       "SessionConfiguration": {
         "type": {
-          "$ref": "#/337"
+          "$ref": "#/359"
         },
         "flags": 0
       }
@@ -6894,7 +7272,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/334"
+      "$ref": "#/356"
     }
   },
   {
@@ -6903,7 +7281,7 @@
     "properties": {
       "Configuration": {
         "type": {
-          "$ref": "#/333"
+          "$ref": "#/355"
         },
         "flags": 0,
         "description": "UsageProfile configuration for supported service ex: (Jobs, Sessions)."
@@ -6931,7 +7309,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/339"
+          "$ref": "#/361"
         },
         "flags": 0,
         "description": "The tags to be applied to this UsageProfiles."
@@ -6958,7 +7336,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/340"
+          "$ref": "#/362"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -6969,7 +7347,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/UsageProfile@default",
     "body": {
-      "$ref": "#/341"
+      "$ref": "#/363"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -7001,7 +7379,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/343"
+      "$ref": "#/365"
     }
   },
   {
@@ -7059,7 +7437,7 @@
       },
       "ResourceUris": {
         "type": {
-          "$ref": "#/345"
+          "$ref": "#/367"
         },
         "flags": 0,
         "description": "The resource URIs for the function."
@@ -7086,7 +7464,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/346"
+          "$ref": "#/368"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -7097,7 +7475,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/UserDefinedFunction@default",
     "body": {
-      "$ref": "#/347"
+      "$ref": "#/369"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -7122,7 +7500,7 @@
     "properties": {
       "DefaultRunProperties": {
         "type": {
-          "$ref": "#/350"
+          "$ref": "#/372"
         },
         "flags": 0,
         "description": "A collection of properties to be used as part of each execution of the workflow"
@@ -7150,7 +7528,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/351"
+          "$ref": "#/373"
         },
         "flags": 0,
         "description": "The tags to use with this workflow."
@@ -7177,7 +7555,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/352"
+          "$ref": "#/374"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -7188,7 +7566,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/Workflow@default",
     "body": {
-      "$ref": "#/353"
+      "$ref": "#/375"
     },
     "readableScopes": 0,
     "writableScopes": 0

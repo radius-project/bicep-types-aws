@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-RDS-DBCluster",
   "type": "AWS::RDS::DBCluster",
-  "time": "2026-10-20T10:27:41.724Z",
+  "time": "2026-11-05T11:47:29.68Z",
   "schema": {
     "additionalProperties": false,
     "conditionalCreateOnlyProperties": [
@@ -17,6 +17,7 @@
       "/properties/DBSystemId",
       "/properties/DatabaseName",
       "/properties/EngineMode",
+      "/properties/WithExpressConfiguration",
       "/properties/KmsKeyId",
       "/properties/PubliclyAccessible",
       "/properties/RestoreToTime",
@@ -177,6 +178,7 @@
           "rds:DescribeDBSnapshots",
           "rds:DescribeEvents",
           "rds:EnableHttpEndpoint",
+          "rds:EnableInternetAccessGateway",
           "rds:ModifyDBCluster",
           "rds:RestoreDBClusterFromSnapshot",
           "rds:RestoreDBClusterToPointInTime",
@@ -193,6 +195,7 @@
           "rds:DeleteDBCluster",
           "rds:DeleteDBInstance",
           "rds:DescribeDBClusters",
+          "rds:DescribeDBInstances",
           "rds:DescribeGlobalClusters",
           "rds:RemoveFromGlobalCluster"
         ]
@@ -534,6 +537,10 @@
         },
         "type": "array",
         "uniqueItems": true
+      },
+      "WithExpressConfiguration": {
+        "description": "",
+        "type": "boolean"
       }
     },
     "propertyTransform": {
@@ -581,6 +588,7 @@
       "/properties/ClusterScalabilityType",
       "/properties/DBInstanceParameterGroupName",
       "/properties/DeleteAutomatedBackups",
+      "/properties/WithExpressConfiguration",
       "/properties/MasterUserAuthenticationType",
       "/properties/MasterUserPassword",
       "/properties/RestoreToTime",

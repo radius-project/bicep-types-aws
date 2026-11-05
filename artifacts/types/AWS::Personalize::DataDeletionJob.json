@@ -1,0 +1,105 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Personalize-DataDeletionJob",
+  "type": "AWS::Personalize::DataDeletionJob",
+  "time": "2026-11-05T21:24:15.314Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/JobName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DataSource",
+      "/properties/DatasetGroupArn",
+      "/properties/JobName",
+      "/properties/RoleArn"
+    ],
+    "definitions": {
+      "DataSource": {
+        "additionalProperties": false,
+        "description": "The Amazon S3 bucket that contains the list of userIds to delete.",
+        "properties": {
+          "DataLocation": {
+            "description": "The path to the Amazon S3 bucket where the data is stored.",
+            "maxLength": 256,
+            "pattern": "^(s3|http|https)://.+$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Personalize::DataDeletionJob",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "personalize:ListDataDeletionJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "personalize:DescribeDataDeletionJob"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/DataDeletionJobArn"
+    ],
+    "properties": {
+      "CreationDateTime": {
+        "description": "The creation date and time of the data deletion job.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DataDeletionJobArn": {
+        "description": "The Amazon Resource Name (ARN) of the data deletion job.",
+        "maxLength": 256,
+        "pattern": "^arn:([a-z\\d-]+):personalize:.*:.*:.+$",
+        "type": "string"
+      },
+      "DataSource": {
+        "$ref": "#/definitions/DataSource"
+      },
+      "DatasetGroupArn": {
+        "description": "The Amazon Resource Name (ARN) of the dataset group that has the datasets you want to delete records from.",
+        "maxLength": 256,
+        "pattern": "^arn:([a-z\\d-]+):personalize:.*:.*:.+$",
+        "type": "string"
+      },
+      "JobName": {
+        "description": "The name for the data deletion job.",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9\\-_]*$",
+        "type": "string"
+      },
+      "LastUpdatedDateTime": {
+        "description": "The date and time the data deletion job was last updated.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "RoleArn": {
+        "description": "The Amazon Resource Name (ARN) of the IAM role that has permissions to read from the Amazon S3 data source.",
+        "maxLength": 256,
+        "pattern": "^arn:([a-z\\d-]+):iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the data deletion job.",
+        "maxLength": 256,
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/DataDeletionJobArn",
+      "/properties/Status",
+      "/properties/CreationDateTime",
+      "/properties/LastUpdatedDateTime"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::Personalize::DataDeletionJob"
+  }
+}

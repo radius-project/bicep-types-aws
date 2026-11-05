@@ -16,6 +16,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.RAM/PermissionAssociationProperties](#awsrampermissionassociationproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.RAM/PrincipalAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.RAM/PrincipalAssociationProperties](#awsramprincipalassociationproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.RAM/ResourceAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.RAM/ResourceAssociationProperties](#awsramresourceassociationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.RAM/ResourceShare@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -23,6 +39,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.RAM/ResourceShareProperties](#awsramresourceshareproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.RAM/SourceAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.RAM/SourceAssociationProperties](#awsramsourceassociationproperties) (Required, Identifier): properties of the resource
 
 ## AWS.RAM/PermissionAssociationProperties
 ### Properties
@@ -46,6 +70,36 @@
 * **ResourceType**: string (Required): The resource type this permission can be used with.
 * **Tags**: [Tag](#tag)[]
 * **Version**: string (ReadOnly): Version of the permission.
+
+## AWS.RAM/PrincipalAssociationProperties
+### Properties
+* **AssociationType**: string (ReadOnly): The type of entity included in this association.
+* **CreationTime**: string (ReadOnly): The date and time when the association was created.
+* **External**: bool (ReadOnly): Indicates whether the principal belongs to the same organization in AWS Organizations as the AWS account that owns the resource share.
+* **LastUpdatedTime**: string (ReadOnly): The date and time when the association was last updated.
+* **Principal**: string (Required, Identifier): Specifies the principal to associate with the resource share. The possible values are:
+
+- An AWS account ID
+
+- An Amazon Resource Name (ARN) of an organization in AWS Organizations
+
+- An ARN of an organizational unit (OU) in AWS Organizations
+
+- An ARN of an IAM role
+
+- An ARN of an IAM user
+* **ResourceShareArn**: string (Required, Identifier): Specifies the [Amazon Resource Name (ARN)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of the resource share.
+* **Status**: string (ReadOnly): The current status of the association.
+
+## AWS.RAM/ResourceAssociationProperties
+### Properties
+* **AssociationType**: string (ReadOnly): The type of entity included in this association.
+* **CreationTime**: string (ReadOnly): The date and time when the association was created.
+* **External**: bool (ReadOnly): Indicates whether the principal belongs to the same organization in AWS Organizations as the AWS account that owns the resource share.
+* **LastUpdatedTime**: string (ReadOnly): The date and time when the association was last updated.
+* **ResourceArn**: string (Required, Identifier): Specifies the [Amazon Resource Name (ARN)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of the resource to associate with the resource share.
+* **ResourceShareArn**: string (Required, Identifier): Specifies the [Amazon Resource Name (ARN)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of the resource share.
+* **Status**: string (ReadOnly): The current status of the association.
 
 ## AWS.RAM/ResourceShareProperties
 ### Properties
@@ -73,6 +127,15 @@
 * **Sources**: string[] (WriteOnly): Specifies from which source accounts the service principal has access to the resources in this resource share.
 * **Status**: string (ReadOnly): The current status of the resource share.
 * **Tags**: [Tag](#tag)[]: Specifies one or more tags to attach to the resource share itself. It doesn't attach the tags to the resources associated with the resource share.
+
+## AWS.RAM/SourceAssociationProperties
+### Properties
+* **CreationTime**: string (ReadOnly): The date and time when the association was created.
+* **LastUpdatedTime**: string (ReadOnly): The date and time when the association was last updated.
+* **ResourceShareArn**: string (Required, Identifier): Specifies the [Amazon Resource Name (ARN)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of the resource share.
+* **SourceId**: string (Required, Identifier): Specifies the ID of the source account to associate with the resource share.
+* **SourceType**: string (ReadOnly): The type of the source.
+* **Status**: string (ReadOnly): The current status of the association.
 
 ## Permission_PolicyTemplate
 ### Properties

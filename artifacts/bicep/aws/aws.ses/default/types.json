@@ -3410,53 +3410,150 @@
   },
   {
     "$type": "ObjectType",
-    "name": "Action",
+    "name": "Filter",
     "properties": {
-      "AddHeaderAction": {
+      "IpFilter": {
         "type": {
           "$ref": "#/251"
         },
-        "flags": 0
+        "flags": 1
       },
-      "BounceAction": {
+      "Name": {
         "type": {
-          "$ref": "#/252"
+          "$ref": "#/10"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "The name of the IP address filter."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IpFilter",
+    "properties": {
+      "Cidr": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "A single IP address or a range of IP addresses to block or allow, specified in CIDR notation."
       },
-      "ConnectAction": {
+      "Policy": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 1,
+        "description": "Indicates whether to block or allow incoming mail from the specified IP addresses."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SES/ReceiptFilterProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SES/ReceiptFilterProperties",
+    "properties": {
+      "Filter": {
+        "type": {
+          "$ref": "#/250"
+        },
+        "flags": 1
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 18
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SES/ReceiptFilter",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
         "type": {
           "$ref": "#/253"
         },
-        "flags": 0
-      },
-      "LambdaAction": {
-        "type": {
-          "$ref": "#/254"
-        },
-        "flags": 0
-      },
-      "S3Action": {
-        "type": {
-          "$ref": "#/256"
-        },
-        "flags": 0
-      },
-      "SNSAction": {
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SES/ReceiptFilter@default",
+    "body": {
+      "$ref": "#/254"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Action",
+    "properties": {
+      "AddHeaderAction": {
         "type": {
           "$ref": "#/257"
         },
         "flags": 0
       },
-      "StopAction": {
+      "BounceAction": {
         "type": {
           "$ref": "#/258"
         },
         "flags": 0
       },
-      "WorkmailAction": {
+      "ConnectAction": {
         "type": {
           "$ref": "#/259"
+        },
+        "flags": 0
+      },
+      "LambdaAction": {
+        "type": {
+          "$ref": "#/260"
+        },
+        "flags": 0
+      },
+      "S3Action": {
+        "type": {
+          "$ref": "#/262"
+        },
+        "flags": 0
+      },
+      "SNSAction": {
+        "type": {
+          "$ref": "#/263"
+        },
+        "flags": 0
+      },
+      "StopAction": {
+        "type": {
+          "$ref": "#/264"
+        },
+        "flags": 0
+      },
+      "WorkmailAction": {
+        "type": {
+          "$ref": "#/265"
         },
         "flags": 0
       }
@@ -3576,7 +3673,7 @@
     "properties": {
       "Actions": {
         "type": {
-          "$ref": "#/260"
+          "$ref": "#/266"
         },
         "flags": 0,
         "description": "An ordered list of actions to perform on messages that match at least one of the recipient email addresses or domains specified in the receipt rule."
@@ -3597,7 +3694,7 @@
       },
       "Recipients": {
         "type": {
-          "$ref": "#/261"
+          "$ref": "#/267"
         },
         "flags": 0,
         "description": "The recipient domains and email addresses that the receipt rule applies to. If this field is not specified, this rule matches all recipients on all verified domains."
@@ -3722,7 +3819,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/250"
+      "$ref": "#/256"
     }
   },
   {
@@ -3748,7 +3845,7 @@
       },
       "Rule": {
         "type": {
-          "$ref": "#/255"
+          "$ref": "#/261"
         },
         "flags": 1,
         "description": "A data structure that contains the specified rule's name, actions, recipients, domains, enabled status, scan status, and TLS policy."
@@ -3789,7 +3886,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/263"
+          "$ref": "#/269"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3800,7 +3897,60 @@
     "$type": "ResourceType",
     "name": "AWS.SES/ReceiptRule@default",
     "body": {
-      "$ref": "#/264"
+      "$ref": "#/270"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SES/ReceiptRuleSetProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SES/ReceiptRuleSetProperties",
+    "properties": {
+      "RuleSetName": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 16,
+        "description": "The name of the rule set."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SES/ReceiptRuleSet",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/273"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SES/ReceiptRuleSet@default",
+    "body": {
+      "$ref": "#/274"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3864,7 +4014,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/266"
+      "$ref": "#/276"
     }
   },
   {
@@ -3879,14 +4029,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/269"
+          "$ref": "#/279"
         },
         "flags": 0,
         "description": "The tags (keys and values) associated with the email template."
       },
       "Template": {
         "type": {
-          "$ref": "#/267"
+          "$ref": "#/277"
         },
         "flags": 0
       }
@@ -3912,7 +4062,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/270"
+          "$ref": "#/280"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -3923,7 +4073,7 @@
     "$type": "ResourceType",
     "name": "AWS.SES/Template@default",
     "body": {
-      "$ref": "#/271"
+      "$ref": "#/281"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3934,7 +4084,7 @@
     "properties": {
       "Policy": {
         "type": {
-          "$ref": "#/274"
+          "$ref": "#/284"
         },
         "flags": 1
       }
@@ -3992,7 +4142,7 @@
     "properties": {
       "SuppressedReasons": {
         "type": {
-          "$ref": "#/278"
+          "$ref": "#/288"
         },
         "flags": 1,
         "description": "The reasons that cause messages to be added to the suppression list."
@@ -4019,13 +4169,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/275"
+      "$ref": "#/285"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/276"
+      "$ref": "#/286"
     }
   },
   {
@@ -4041,28 +4191,28 @@
       },
       "ReputationEntity": {
         "type": {
-          "$ref": "#/273"
+          "$ref": "#/283"
         },
         "flags": 0,
         "description": "The reputation configuration for the tenant. Sending status remains managed by SES."
       },
       "ResourceAssociations": {
         "type": {
-          "$ref": "#/280"
+          "$ref": "#/290"
         },
         "flags": 0,
         "description": "The list of resources to associate with the tenant."
       },
       "SuppressionAttributes": {
         "type": {
-          "$ref": "#/277"
+          "$ref": "#/287"
         },
         "flags": 0,
         "description": "The suppression attributes for the tenant."
       },
       "Tags": {
         "type": {
-          "$ref": "#/281"
+          "$ref": "#/291"
         },
         "flags": 0,
         "description": "The tags (keys and values) associated with the tenant."
@@ -4096,7 +4246,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/282"
+          "$ref": "#/292"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4107,7 +4257,7 @@
     "$type": "ResourceType",
     "name": "AWS.SES/Tenant@default",
     "body": {
-      "$ref": "#/283"
+      "$ref": "#/293"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -4148,13 +4298,13 @@
     "properties": {
       "DashboardAttributes": {
         "type": {
-          "$ref": "#/285"
+          "$ref": "#/295"
         },
         "flags": 0
       },
       "GuardianAttributes": {
         "type": {
-          "$ref": "#/286"
+          "$ref": "#/296"
         },
         "flags": 0
       },
@@ -4187,7 +4337,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/288"
+          "$ref": "#/298"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -4198,7 +4348,7 @@
     "$type": "ResourceType",
     "name": "AWS.SES/VdmAttributes@default",
     "body": {
-      "$ref": "#/289"
+      "$ref": "#/299"
     },
     "readableScopes": 0,
     "writableScopes": 0

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Transfer-Server",
   "type": "AWS::Transfer::Server",
-  "time": "2026-10-12T15:28:13.853Z",
+  "time": "2026-11-05T16:40:10.814Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -12,7 +12,8 @@
     "conditionalCreateOnlyProperties": [
       "/properties/EndpointDetails",
       "/properties/EndpointDetails/AddressAllocationIds",
-      "/properties/IpAddressType"
+      "/properties/IpAddressType",
+      "/properties/ProtocolDetails/SftpPorts"
     ],
     "createOnlyProperties": [
       "/properties/Domain"
@@ -21,6 +22,13 @@
       "As2Transport": {
         "enum": [
           "HTTP"
+        ],
+        "type": "string"
+      },
+      "CommunicationMode": {
+        "enum": [
+          "CLIENT_TALK_FIRST",
+          "SERVER_TALK_FIRST"
         ],
         "type": "string"
       },
@@ -166,6 +174,15 @@
           "SetStatOption": {
             "$ref": "#/definitions/SetStatOption"
           },
+          "SftpPorts": {
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/SftpPortWithOptions"
+            },
+            "maxItems": 3,
+            "minItems": 1,
+            "type": "array"
+          },
           "TlsSessionResumptionMode": {
             "$ref": "#/definitions/TlsSessionResumptionMode"
           }
@@ -212,6 +229,23 @@
           "PUBLIC_KEY_AND_PASSWORD"
         ],
         "type": "string"
+      },
+      "SftpPortWithOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "CommunicationMode": {
+            "$ref": "#/definitions/CommunicationMode"
+          },
+          "SftpPort": {
+            "maximum": 65535,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "SftpPort"
+        ],
+        "type": "object"
       },
       "State": {
         "enum": [

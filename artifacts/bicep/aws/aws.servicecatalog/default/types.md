@@ -48,6 +48,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.ServiceCatalog/PortfolioProperties](#awsservicecatalogportfolioproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.ServiceCatalog/PortfolioPrincipalAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ServiceCatalog/PortfolioPrincipalAssociationProperties](#awsservicecatalogportfolioprincipalassociationproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.ServiceCatalog/PortfolioProductAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ServiceCatalog/PortfolioProductAssociationProperties](#awsservicecatalogportfolioproductassociationproperties) (Identifier): properties of the resource
+
 ## Resource AWS.ServiceCatalog/PortfolioShare@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -72,6 +88,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.ServiceCatalog/ServiceActionProperties](#awsservicecatalogserviceactionproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.ServiceCatalog/ServiceActionAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ServiceCatalog/ServiceActionAssociationProperties](#awsservicecatalogserviceactionassociationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.ServiceCatalog/StackSetConstraint@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -87,6 +111,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ServiceCatalog/TagOptionProperties](#awsservicecatalogtagoptionproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.ServiceCatalog/TagOptionAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ServiceCatalog/TagOptionAssociationProperties](#awsservicecatalogtagoptionassociationproperties) (Identifier): properties of the resource
 
 ## AWS.ServiceCatalog/CloudFormationProductProperties
 ### Properties
@@ -155,6 +187,20 @@
 * **ProductId**: string (Required): The product identifier.
 * **Rules**: string (Required): A json encoded string of the template constraint rules
 
+## AWS.ServiceCatalog/PortfolioPrincipalAssociationProperties
+### Properties
+* **AcceptLanguage**: string (WriteOnly): The language code.
+* **PortfolioId**: string (Identifier): The portfolio identifier.
+* **PrincipalARN**: string (Identifier): The ARN of the principal (user, role, or group).
+* **PrincipalType**: string (Required): The principal type. The supported value is IAM if you use a fully defined Amazon Resource Name (ARN), or IAM_PATTERN if you use an ARN with no accountID, with or without wildcard characters.
+
+## AWS.ServiceCatalog/PortfolioProductAssociationProperties
+### Properties
+* **AcceptLanguage**: string (WriteOnly): The language code.
+* **PortfolioId**: string (Identifier): The portfolio identifier.
+* **ProductId**: string (Identifier): The product identifier.
+* **SourcePortfolioId**: string (WriteOnly): The identifier of the source portfolio. The source portfolio must be a portfolio imported from a different account than the one creating the association. This account must have previously shared this portfolio with the account creating the association.
+
 ## AWS.ServiceCatalog/PortfolioProperties
 ### Properties
 * **AcceptLanguage**: string (WriteOnly)
@@ -181,6 +227,12 @@
 * **ProductId**: string (Required): The product identifier
 * **TagUpdateOnProvisionedProduct**: string (Required): ALLOWED or NOT_ALLOWED, to permit or prevent changes to the tags on provisioned instances of the specified portfolio / product combination
 
+## AWS.ServiceCatalog/ServiceActionAssociationProperties
+### Properties
+* **ProductId**: string (Required, Identifier)
+* **ProvisioningArtifactId**: string (Required, Identifier)
+* **ServiceActionId**: string (Required, Identifier)
+
 ## AWS.ServiceCatalog/ServiceActionProperties
 ### Properties
 * **AcceptLanguage**: string (WriteOnly)
@@ -202,6 +254,11 @@
 * **ProductId**: string (Required): The product identifier.
 * **RegionList**: string[] (Required): One or more AWS Regions where the provisioned product will be available.
 * **StackInstanceControl**: string (Required): Permission to create, update, and delete stack instances. Choose from ALLOWED and NOT_ALLOWED.
+
+## AWS.ServiceCatalog/TagOptionAssociationProperties
+### Properties
+* **ResourceId**: string (Identifier): The CloudformationProduct or Portfolio identifier.
+* **TagOptionId**: string (Identifier): The TagOption identifier.
 
 ## AWS.ServiceCatalog/TagOptionProperties
 ### Properties

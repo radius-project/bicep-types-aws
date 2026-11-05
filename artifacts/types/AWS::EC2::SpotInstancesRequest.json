@@ -1,0 +1,510 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-SpotInstancesRequest",
+  "type": "AWS::EC2::SpotInstancesRequest",
+  "time": "2026-11-05T20:58:40.737Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/SpotInstanceRequestId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/AvailabilityZoneGroup",
+      "/properties/InstanceInterruptionBehavior",
+      "/properties/LaunchGroup",
+      "/properties/LaunchSpecification",
+      "/properties/SpotPrice",
+      "/properties/Tags",
+      "/properties/Type",
+      "/properties/ValidFrom",
+      "/properties/ValidUntil"
+    ],
+    "definitions": {
+      "BlockDeviceMapping": {
+        "additionalProperties": false,
+        "description": "A block device mapping the launched instance receives.",
+        "properties": {
+          "DeviceName": {
+            "description": "The device name exposed to the instance.",
+            "type": "string"
+          },
+          "Ebs": {
+            "$ref": "#/definitions/EbsBlockDevice"
+          },
+          "NoDevice": {
+            "description": "Suppresses the specified device included in the block device mapping of the AMI.",
+            "type": "string"
+          },
+          "VirtualName": {
+            "description": "The virtual device name of an instance store volume.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "EbsBlockDevice": {
+        "additionalProperties": false,
+        "description": "An EBS volume the launched instance receives.",
+        "properties": {
+          "DeleteOnTermination": {
+            "description": "Whether the volume is deleted when the instance terminates.",
+            "type": "boolean"
+          },
+          "Encrypted": {
+            "description": "Whether the volume is encrypted.",
+            "type": "boolean"
+          },
+          "Iops": {
+            "description": "The number of I/O operations per second the volume provisions.",
+            "type": "integer"
+          },
+          "KmsKeyId": {
+            "description": "The identifier of the KMS key used to encrypt the volume.",
+            "type": "string"
+          },
+          "SnapshotId": {
+            "description": "The ID of the snapshot the volume is created from.",
+            "type": "string"
+          },
+          "Throughput": {
+            "description": "The throughput the volume provisions, in MiB/s.",
+            "type": "integer"
+          },
+          "VolumeSize": {
+            "description": "The size of the volume, in GiB.",
+            "type": "integer"
+          },
+          "VolumeType": {
+            "description": "The volume type.",
+            "enum": [
+              "standard",
+              "io1",
+              "io2",
+              "gp2",
+              "sc1",
+              "st1",
+              "gp3"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "GroupIdentifier": {
+        "additionalProperties": false,
+        "description": "A security group the Spot Instance request launches into.",
+        "properties": {
+          "GroupId": {
+            "description": "The ID of the security group.",
+            "type": "string"
+          },
+          "GroupName": {
+            "description": "The name of the security group.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "IamInstanceProfileSpecification": {
+        "additionalProperties": false,
+        "description": "The IAM instance profile the launched instance receives. A request supplies either Arn or Name and the read view returns that one alone.",
+        "properties": {
+          "Arn": {
+            "description": "The Amazon Resource Name (ARN) of the instance profile.",
+            "type": "string"
+          },
+          "Name": {
+            "description": "The name of the instance profile. A request specifies either Name or Arn, and the service returns whichever was specified.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "InstanceIpv6Address": {
+        "additionalProperties": false,
+        "description": "An IPv6 address to assign to the network interface.",
+        "properties": {
+          "Ipv6Address": {
+            "description": "The IPv6 address.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "InstanceNetworkInterfaceSpecification": {
+        "additionalProperties": false,
+        "description": "A network interface specified inline on the request. This form is mutually exclusive with the launch specification's top-level SubnetId, which the service omits from the read view when an interface is given.",
+        "properties": {
+          "AssociatePublicIpAddress": {
+            "description": "Whether to assign a public IPv4 address.",
+            "type": "boolean"
+          },
+          "DeleteOnTermination": {
+            "description": "Whether the interface is deleted when the instance terminates.",
+            "type": "boolean"
+          },
+          "Description": {
+            "description": "A description for the network interface.",
+            "type": "string"
+          },
+          "DeviceIndex": {
+            "description": "The position of the interface in the attachment order.",
+            "type": "integer"
+          },
+          "Ipv6AddressCount": {
+            "description": "The number of IPv6 addresses to assign automatically.",
+            "type": "integer"
+          },
+          "Ipv6Addresses": {
+            "description": "Specific IPv6 addresses to assign.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/InstanceIpv6Address"
+            },
+            "type": "array"
+          },
+          "NetworkInterfaceId": {
+            "description": "The identifier of an existing network interface to attach.",
+            "type": "string"
+          },
+          "PrivateIpAddress": {
+            "description": "The primary private IPv4 address.",
+            "type": "string"
+          },
+          "PrivateIpAddresses": {
+            "description": "Private IPv4 addresses to assign to the interface.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/PrivateIpAddressSpecification"
+            },
+            "type": "array"
+          },
+          "SecondaryPrivateIpAddressCount": {
+            "description": "The number of secondary private IPv4 addresses to assign automatically.",
+            "type": "integer"
+          },
+          "SubnetId": {
+            "description": "The ID of the subnet the interface is created in.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "LaunchSpecification": {
+        "additionalProperties": false,
+        "description": "The launch specification the Spot Instance request was created with, as the service returns it.",
+        "properties": {
+          "AddressingType": {
+            "description": "The addressing type.",
+            "type": "string"
+          },
+          "BlockDeviceMappings": {
+            "description": "The block device mappings for the launched instance.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/BlockDeviceMapping"
+            },
+            "type": "array"
+          },
+          "EbsOptimized": {
+            "description": "Whether the launched instance is optimized for EBS I/O.",
+            "type": "boolean"
+          },
+          "IamInstanceProfile": {
+            "$ref": "#/definitions/IamInstanceProfileSpecification"
+          },
+          "ImageId": {
+            "description": "The ID of the AMI the instance launches from.",
+            "type": "string"
+          },
+          "InstanceType": {
+            "description": "The instance type. Deliberately unconstrained: com.amazonaws.ec2#InstanceType is a 1405-member enum that AWS extends with every instance family, so a schema enum would reject a launch on a type newer than this schema. Every other Smithy enum behind a property here is small and closed and is constrained.",
+            "type": "string"
+          },
+          "KernelId": {
+            "description": "The ID of the kernel. Only a paravirtual machine image uses one, so a request backed by an HVM image does not carry it.",
+            "type": "string"
+          },
+          "KeyName": {
+            "description": "The name of the key pair.",
+            "type": "string"
+          },
+          "Monitoring": {
+            "$ref": "#/definitions/MonitoringEnabled"
+          },
+          "NetworkInterfaces": {
+            "description": "The network interfaces specified inline on the request.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/InstanceNetworkInterfaceSpecification"
+            },
+            "type": "array"
+          },
+          "Placement": {
+            "$ref": "#/definitions/SpotPlacement"
+          },
+          "RamdiskId": {
+            "description": "The ID of the RAM disk. Only a paravirtual machine image uses one, so a request backed by an HVM image does not carry it.",
+            "type": "string"
+          },
+          "SecurityGroups": {
+            "description": "The security groups the launched instance joins.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/GroupIdentifier"
+            },
+            "type": "array"
+          },
+          "SubnetId": {
+            "description": "The ID of the subnet the instance launches in.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "MonitoringEnabled": {
+        "additionalProperties": false,
+        "description": "Whether detailed monitoring is enabled for the launched instance.",
+        "properties": {
+          "Enabled": {
+            "description": "Whether detailed monitoring is enabled.",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "Enabled"
+        ],
+        "type": "object"
+      },
+      "PrivateIpAddressSpecification": {
+        "additionalProperties": false,
+        "description": "A private IPv4 address to assign to the network interface.",
+        "properties": {
+          "Primary": {
+            "description": "Whether this is the primary private address.",
+            "type": "boolean"
+          },
+          "PrivateIpAddress": {
+            "description": "The private IPv4 address.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "SpotInstanceStatus": {
+        "additionalProperties": false,
+        "description": "The status code and status message describing the Spot Instance request.",
+        "properties": {
+          "Code": {
+            "description": "The status code.",
+            "type": "string"
+          },
+          "Message": {
+            "description": "The description for the status code.",
+            "type": "string"
+          },
+          "UpdateTime": {
+            "description": "The date and time of the most recent status update.",
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "SpotPlacement": {
+        "additionalProperties": false,
+        "description": "The placement of the launched instance.",
+        "properties": {
+          "AvailabilityZone": {
+            "description": "The Availability Zone the instance launches in.",
+            "type": "string"
+          },
+          "AvailabilityZoneId": {
+            "description": "The ID of the Availability Zone the instance launches in. The service derives this from AvailabilityZone; the two cannot both be supplied.",
+            "type": "string"
+          },
+          "GroupName": {
+            "description": "The name of the placement group the instance launches into.",
+            "type": "string"
+          },
+          "Tenancy": {
+            "description": "The tenancy of the launched instance.",
+            "enum": [
+              "default",
+              "dedicated",
+              "host"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource schema for an EC2 Spot Instance request. This is a read-only resource representing one Spot Instance request record: cancelling a request neither terminates the instance it launched nor removes the record, so CloudFormation observes the request rather than owning its lifecycle.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "ec2:DescribeSpotInstanceRequests"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ec2:DescribeSpotInstanceRequests",
+          "ec2:DescribeTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the Spot Instance request.",
+        "type": "string"
+      },
+      "AvailabilityZoneGroup": {
+        "description": "The Availability Zone group. Spot Instance requests sharing a group launch in the same Availability Zone.",
+        "type": "string"
+      },
+      "CreateTime": {
+        "description": "The date and time the Spot Instance request was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "InstanceId": {
+        "description": "The ID of the instance launched to fulfill the Spot Instance request.",
+        "type": "string"
+      },
+      "InstanceInterruptionBehavior": {
+        "description": "The behavior when a Spot Instance is interrupted.",
+        "enum": [
+          "hibernate",
+          "stop",
+          "terminate"
+        ],
+        "type": "string"
+      },
+      "LaunchGroup": {
+        "description": "The instance launch group. Spot Instances in a launch group launch and terminate together.",
+        "type": "string"
+      },
+      "LaunchSpecification": {
+        "$ref": "#/definitions/LaunchSpecification"
+      },
+      "LaunchedAvailabilityZone": {
+        "description": "The Availability Zone the request is launched in.",
+        "type": "string"
+      },
+      "LaunchedAvailabilityZoneId": {
+        "description": "The ID of the Availability Zone the request is launched in.",
+        "type": "string"
+      },
+      "ProductDescription": {
+        "description": "The product description associated with the Spot Instance.",
+        "enum": [
+          "Linux/UNIX",
+          "Linux/UNIX (Amazon VPC)",
+          "Windows",
+          "Windows (Amazon VPC)"
+        ],
+        "type": "string"
+      },
+      "SpotInstanceRequestId": {
+        "description": "The ID of the Spot Instance request.",
+        "type": "string"
+      },
+      "SpotPrice": {
+        "description": "The maximum hourly price paid for the Spot Instance. The service normalizes this value to six decimal places, and returns the instance type's On-Demand price when the request does not specify one.",
+        "type": "string"
+      },
+      "State": {
+        "description": "The state of the Spot Instance request.",
+        "enum": [
+          "open",
+          "active",
+          "closed",
+          "cancelled",
+          "failed",
+          "disabled"
+        ],
+        "type": "string"
+      },
+      "Status": {
+        "$ref": "#/definitions/SpotInstanceStatus"
+      },
+      "Tags": {
+        "description": "The tags assigned to the Spot Instance request.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "Type": {
+        "description": "The Spot Instance request type.",
+        "enum": [
+          "one-time",
+          "persistent"
+        ],
+        "type": "string"
+      },
+      "ValidFrom": {
+        "description": "The earliest date and time, in UTC, at which the request may be fulfilled. The service returns it for any request that supplied it.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ValidUntil": {
+        "description": "The end date of the request. A one-time request that does not specify one is valid for seven days from creation.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/CreateTime",
+      "/properties/InstanceId",
+      "/properties/LaunchedAvailabilityZone",
+      "/properties/LaunchedAvailabilityZoneId",
+      "/properties/ProductDescription",
+      "/properties/SpotInstanceRequestId",
+      "/properties/State",
+      "/properties/Status"
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeSpotInstanceRequests.html",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "ec2:DescribeTags"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::EC2::SpotInstancesRequest"
+  }
+}

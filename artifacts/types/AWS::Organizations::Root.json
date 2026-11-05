@@ -1,0 +1,148 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Organizations-Root",
+  "type": "AWS::Organizations::Root",
+  "time": "2026-11-05T21:07:23.939Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/OrganizationId",
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "PolicyTypeSummary": {
+        "additionalProperties": false,
+        "properties": {
+          "Status": {
+            "description": "The status of the policy type as it relates to the associated root.",
+            "enum": [
+              "ENABLED",
+              "PENDING_ENABLE",
+              "PENDING_DISABLE"
+            ],
+            "type": "string"
+          },
+          "Type": {
+            "description": "The name of the policy type.",
+            "enum": [
+              "SERVICE_CONTROL_POLICY",
+              "RESOURCE_CONTROL_POLICY",
+              "TAG_POLICY",
+              "BACKUP_POLICY",
+              "AISERVICES_OPT_OUT_POLICY",
+              "CHATBOT_POLICY",
+              "DECLARATIVE_POLICY_EC2",
+              "SECURITYHUB_POLICY",
+              "INSPECTOR_POLICY",
+              "UPGRADE_ROLLOUT_POLICY",
+              "BEDROCK_POLICY",
+              "S3_POLICY",
+              "NETWORK_SECURITY_DIRECTOR_POLICY"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key identifier of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The string value associated with the key of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Organizations::Root. Represents the root of an AWS Organization: the top-level parent node in the hierarchy that can contain organizational units (OUs) and accounts.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "organizations:ListRoots"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "organizations:ListRoots",
+          "organizations:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the root.",
+        "pattern": "^arn:aws:organizations::\\d{12}:root\\/o-[a-z0-9]{10,32}\\/r-[0-9a-z]{4,32}$",
+        "type": "string"
+      },
+      "Id": {
+        "description": "The unique identifier (ID) for the root.",
+        "maxLength": 34,
+        "pattern": "^r-[0-9a-z]{4,32}$",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The friendly name of the root.",
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
+      "OrganizationId": {
+        "description": "The unique identifier (ID) of the organization that contains this root.",
+        "pattern": "^o-[a-z0-9]{10,32}$",
+        "type": "string"
+      },
+      "PolicyTypes": {
+        "description": "The types of policies currently enabled for the root.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/PolicyTypeSummary"
+        },
+        "type": "array"
+      },
+      "Tags": {
+        "description": "A list of tags attached to the root.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Id",
+      "/properties/OrganizationId",
+      "/properties/Name",
+      "/properties/PolicyTypes",
+      "/properties/Tags"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "organizations:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Organizations::Root"
+  }
+}

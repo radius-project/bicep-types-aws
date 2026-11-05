@@ -1,0 +1,168 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Personalize-DatasetImportJob",
+  "type": "AWS::Personalize::DatasetImportJob",
+  "time": "2026-11-05T21:20:41.967Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/JobName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DataSource",
+      "/properties/DatasetArn",
+      "/properties/ImportMode",
+      "/properties/JobName",
+      "/properties/PublishAttributionMetricsToS3",
+      "/properties/RoleArn",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "DataSource": {
+        "additionalProperties": false,
+        "description": "Describes the data source that contains the data to upload to a dataset.",
+        "properties": {
+          "DataLocation": {
+            "description": "The path to the Amazon S3 bucket where the data that you want to upload to your dataset is stored.",
+            "maxLength": 256,
+            "pattern": "^(s3|http|https)://.+$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "One part of a key-value pair that makes up a tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The optional part of a key-value pair that makes up a tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Personalize::DatasetImportJob",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "personalize:ListDatasetImportJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "personalize:DescribeDatasetImportJob",
+          "personalize:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/DatasetImportJobArn"
+    ],
+    "properties": {
+      "CreationDateTime": {
+        "description": "The creation date and time of the dataset import job.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DataSource": {
+        "$ref": "#/definitions/DataSource"
+      },
+      "DatasetArn": {
+        "description": "The Amazon Resource Name (ARN) of the dataset that receives the imported data.",
+        "maxLength": 256,
+        "pattern": "^arn:([a-z\\d-]+):personalize:.*:.*:.+$",
+        "type": "string"
+      },
+      "DatasetImportJobArn": {
+        "description": "The Amazon Resource Name (ARN) of the dataset import job.",
+        "maxLength": 256,
+        "pattern": "^arn:([a-z\\d-]+):personalize:.*:.*:.+$",
+        "type": "string"
+      },
+      "ImportMode": {
+        "description": "Specify how to add the new records to an existing dataset.",
+        "enum": [
+          "FULL",
+          "INCREMENTAL"
+        ],
+        "type": "string"
+      },
+      "JobName": {
+        "description": "The name for the dataset import job.",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9\\-_]*$",
+        "type": "string"
+      },
+      "LastUpdatedDateTime": {
+        "description": "The date and time the status of the dataset import job was last updated.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "PublishAttributionMetricsToS3": {
+        "description": "If you created a metric attribution, specifies whether to publish metrics for this import job to Amazon S3.",
+        "type": "boolean"
+      },
+      "RoleArn": {
+        "description": "The ARN of the IAM role that has permissions to read from the Amazon S3 data source.",
+        "maxLength": 256,
+        "pattern": "^arn:([a-z\\d-]+):iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the dataset import job.",
+        "maxLength": 256,
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A list of tags to apply to the dataset import job.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "minItems": 0,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/DatasetImportJobArn",
+      "/properties/Status",
+      "/properties/CreationDateTime",
+      "/properties/LastUpdatedDateTime"
+    ],
+    "required": [
+      "JobName",
+      "DatasetArn",
+      "DataSource"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "personalize:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Personalize::DatasetImportJob"
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Glue-SecurityConfiguration",
+  "type": "AWS::Glue::SecurityConfiguration",
+  "time": "2026-08-06T16:42:18.533Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name"
+    ],
+    "definitions": {
+      "CloudWatchEncryption": {
+        "additionalProperties": false,
+        "description": "The encryption configuration for Amazon CloudWatch.",
+        "properties": {
+          "CloudWatchEncryptionMode": {
+            "type": "string"
+          },
+          "KmsKeyArn": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "EncryptionConfiguration": {
+        "additionalProperties": false,
+        "description": "The encryption configuration for the security configuration.",
+        "properties": {
+          "CloudWatchEncryption": {
+            "$ref": "#/definitions/CloudWatchEncryption"
+          },
+          "JobBookmarksEncryption": {
+            "$ref": "#/definitions/JobBookmarksEncryption"
+          },
+          "S3Encryptions": {
+            "description": "The encryption configuration for Amazon Simple Storage Service (Amazon S3) data.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/S3Encryption"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "JobBookmarksEncryption": {
+        "additionalProperties": false,
+        "description": "The encryption configuration for job bookmarks.",
+        "properties": {
+          "JobBookmarksEncryptionMode": {
+            "type": "string"
+          },
+          "KmsKeyArn": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "S3Encryption": {
+        "additionalProperties": false,
+        "description": "Specifies how Amazon Simple Storage Service (Amazon S3) data should be encrypted.",
+        "properties": {
+          "KmsKeyArn": {
+            "type": "string"
+          },
+          "S3EncryptionMode": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Glue::SecurityConfiguration",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "glue:CreateSecurityConfiguration",
+          "glue:GetSecurityConfiguration"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "glue:DeleteSecurityConfiguration"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "glue:GetSecurityConfigurations"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "glue:GetSecurityConfiguration"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Name"
+    ],
+    "properties": {
+      "EncryptionConfiguration": {
+        "$ref": "#/definitions/EncryptionConfiguration"
+      },
+      "Name": {
+        "description": "The name for the security configuration.",
+        "type": "string"
+      }
+    },
+    "required": [
+      "EncryptionConfiguration",
+      "Name"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::Glue::SecurityConfiguration"
+  }
+}

@@ -16,6 +16,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Lex/BotAliasProperties](#awslexbotaliasproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Lex/BotVersion@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Lex/BotVersionProperties](#awslexbotversionproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Lex/ResourcePolicy@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -87,6 +95,13 @@
 * **RoleArn**: string (Required)
 * **TestBotAliasSettings**: [TestBotAliasSettings](#testbotaliassettings) (WriteOnly)
 * **TestBotAliasTags**: [Tag](#tag)[] (WriteOnly)
+
+## AWS.Lex/BotVersionProperties
+### Properties
+* **BotId**: string (Required, Identifier)
+* **BotVersion**: string (ReadOnly, Identifier)
+* **BotVersionLocaleSpecification**: [BotVersionLocaleSpecification](#botversionlocalespecification)[] (Required, WriteOnly)
+* **Description**: string
 
 ## AWS.Lex/ResourcePolicyProperties
 ### Properties
@@ -255,6 +270,15 @@
 * **BotMemberId**: string (Required): The unique ID of a bot that is a member of this network of bots.
 * **BotMemberName**: string (Required): The unique name of a bot that is a member of this network of bots.
 * **BotMemberVersion**: string (Required): The version of a bot that is a member of this network of bots.
+
+## BotVersionLocaleDetails
+### Properties
+* **SourceBotVersion**: string (Required)
+
+## BotVersionLocaleSpecification
+### Properties
+* **BotVersionLocaleDetails**: [BotVersionLocaleDetails](#botversionlocaledetails) (Required)
+* **LocaleId**: string (Required)
 
 ## Button
 ### Properties

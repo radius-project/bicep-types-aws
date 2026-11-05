@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EKS-Cluster",
   "type": "AWS::EKS::Cluster",
-  "time": "2026-10-30T07:49:35.129Z",
+  "time": "2026-11-05T08:22:02.618Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -52,10 +52,10 @@
       },
       "BlockStorage": {
         "additionalProperties": false,
-        "description": "Todo: add description",
+        "description": "Indicates the current configuration of the block storage capability on your EKS Auto Mode cluster. For example, if the capability is enabled or disabled. If the block storage capability is enabled, EKS Auto Mode will create and delete EBS volumes in your AWS account.",
         "properties": {
           "Enabled": {
-            "description": "Todo: add description",
+            "description": "Indicates if the block storage capability is enabled on your EKS Auto Mode cluster. If the block storage capability is enabled, EKS Auto Mode will create and delete EBS volumes in your AWS account.",
             "type": "boolean"
           }
         },
@@ -87,14 +87,14 @@
       },
       "ComputeConfig": {
         "additionalProperties": false,
-        "description": "Todo: add description",
+        "description": "Indicates the current configuration of the compute capability on your EKS Auto Mode cluster. For example, if the capability is enabled or disabled. If the compute capability is enabled, EKS Auto Mode will create and delete EC2 Managed Instances in your AWS account.",
         "properties": {
           "Enabled": {
-            "description": "Todo: add description",
+            "description": "Request to enable or disable the compute capability on your EKS Auto Mode cluster. If the compute capability is enabled, EKS Auto Mode will create and delete EC2 Managed Instances in your AWS account.",
             "type": "boolean"
           },
           "NodePools": {
-            "description": "Todo: add description",
+            "description": "Configuration for node pools that defines the compute resources for your EKS Auto Mode cluster. Valid values are general-purpose and system.",
             "insertionOrder": false,
             "items": {
               "type": "string"
@@ -102,7 +102,7 @@
             "type": "array"
           },
           "NodeRoleArn": {
-            "description": "Todo: add description",
+            "description": "The ARN of the IAM Role EKS will assign to EC2 Managed Instances in your EKS Auto Mode cluster. This value cannot be changed after the compute capability of EKS Auto Mode is enabled.",
             "type": "string"
           }
         },
@@ -148,10 +148,10 @@
       },
       "ElasticLoadBalancing": {
         "additionalProperties": false,
-        "description": "Todo: add description",
+        "description": "Indicates the current configuration of the load balancing capability on your EKS Auto Mode cluster. For example, if the capability is enabled or disabled.",
         "properties": {
           "Enabled": {
-            "description": "Todo: add description",
+            "description": "Indicates if the load balancing capability is enabled on your EKS Auto Mode cluster. If the load balancing capability is enabled, EKS Auto Mode will create and delete load balancers in your AWS account.",
             "type": "boolean"
           },
           "GatewayApi": {
@@ -281,7 +281,7 @@
         "properties": {
           "ElasticLoadBalancing": {
             "$ref": "#/definitions/ElasticLoadBalancing",
-            "description": "Todo: add description"
+            "description": "Request to enable or disable the load balancing capability on your EKS Auto Mode cluster."
           },
           "IpFamily": {
             "description": "Ipv4 or Ipv6. You can only specify ipv6 for 1.21 and later clusters that use version 1.10.1 or later of the Amazon VPC CNI add-on",
@@ -579,11 +579,11 @@
       },
       "StorageConfig": {
         "additionalProperties": false,
-        "description": "Todo: add description",
+        "description": "Request to update the configuration of the storage capability of your EKS Auto Mode cluster. For example, enable the capability.",
         "properties": {
           "BlockStorage": {
             "$ref": "#/definitions/BlockStorage",
-            "description": "Todo: add description"
+            "description": "Request to configure EBS Block Storage settings for your EKS Auto Mode cluster."
           }
         },
         "type": "object"

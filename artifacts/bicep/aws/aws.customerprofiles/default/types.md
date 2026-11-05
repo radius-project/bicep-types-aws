@@ -112,6 +112,7 @@
 * **Description**: string
 * **DisplayName**: string
 * **DomainName**: string (Required, Identifier)
+* **Filter**: [Filter](#filter)
 * **LastUpdatedAt**: string (ReadOnly): The timestamp of when the calculated attribute definition was most recently edited.
 * **Readiness**: [Readiness](#readiness) (ReadOnly)
 * **Statistic**: string (Required)
@@ -241,6 +242,9 @@
 * **SegmentType**: string (ReadOnly): The SQL query that defines the segment criteria.
 * **Tags**: [Tag](#tag)[]: The tags used to organize, track, or control access for this resource.
 
+## CalculatedAttributeDefinition_Attributes
+### Properties
+
 ## Conditions
 ### Properties
 * **ObjectCount**: int
@@ -318,6 +322,20 @@
 ### Properties
 * **Name**: string
 * **ObjectTypeField**: [ObjectTypeField](#objecttypefield)
+
+## Filter
+### Properties
+* **Groups**: [FilterGroup](#filtergroup)[] (Required): Holds the list of Filter groups within the Filter definition.
+* **Include**: string (Required)
+
+## FilterDimension
+### Properties
+* **Attributes**: [CalculatedAttributeDefinition_Attributes](#calculatedattributedefinitionattributes) (Required): Is the attribute within the FilterDimension map
+
+## FilterGroup
+### Properties
+* **Dimensions**: [FilterDimension](#filterdimension)[] (Required): Object that holds the attributes to filter on.
+* **Type**: string (Required)
 
 ## FlowDefinition
 ### Properties
@@ -419,7 +437,7 @@
 ### Properties
 * **TimestampFormat**: string: The format the timestamp field in your JSON object is specified. This value should be one of EPOCHMILLI or ISO_8601. E.g. if your object type is MyType and source JSON is {"generatedAt": {"timestamp": "2001-07-04T12:08:56.235Z"}}, then TimestampFormat should be "ISO_8601".
 * **TimestampSource**: string: An expression specifying the field in your JSON object from which the date should be parsed. The expression should follow the structure of \"{ObjectTypeName.<Location of timestamp field in JSON pointer format>}\". E.g. if your object type is MyType and source JSON is {"generatedAt": {"timestamp": "1737587945945"}}, then TimestampSource should be "{MyType.generatedAt.timestamp}".
-* **Unit**: string (Required)
+* **Unit**: string
 * **Value**: int
 * **ValueRange**: [ValueRange](#valuerange)
 

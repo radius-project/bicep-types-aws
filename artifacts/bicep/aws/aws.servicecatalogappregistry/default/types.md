@@ -16,6 +16,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.ServiceCatalogAppRegistry/AttributeGroupProperties](#awsservicecatalogappregistryattributegroupproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.ServiceCatalogAppRegistry/AttributeGroupAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ServiceCatalogAppRegistry/AttributeGroupAssociationProperties](#awsservicecatalogappregistryattributegroupassociationproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.ServiceCatalogAppRegistry/ResourceAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ServiceCatalogAppRegistry/ResourceAssociationProperties](#awsservicecatalogappregistryresourceassociationproperties) (Required, Identifier): properties of the resource
+
 ## AttributeGroup_Attributes
 ### Properties
 
@@ -30,6 +46,13 @@
 * **Name**: string (Required): The name of the application. 
 * **Tags**: [Tags](#tags)
 
+## AWS.ServiceCatalogAppRegistry/AttributeGroupAssociationProperties
+### Properties
+* **Application**: string (Required): The name or the Id of the Application.
+* **ApplicationArn**: string (ReadOnly, Identifier)
+* **AttributeGroup**: string (Required): The name or the Id of the AttributeGroup.
+* **AttributeGroupArn**: string (ReadOnly, Identifier)
+
 ## AWS.ServiceCatalogAppRegistry/AttributeGroupProperties
 ### Properties
 * **Arn**: string (ReadOnly)
@@ -38,6 +61,14 @@
 * **Id**: string (ReadOnly, Identifier)
 * **Name**: string (Required): The name of the attribute group. 
 * **Tags**: [Tags](#tags)
+
+## AWS.ServiceCatalogAppRegistry/ResourceAssociationProperties
+### Properties
+* **Application**: string (Required): The name or the Id of the Application.
+* **ApplicationArn**: string (ReadOnly, Identifier)
+* **Resource**: string (Required): The name or the Id of the Resource.
+* **ResourceArn**: string (ReadOnly, Identifier)
+* **ResourceType**: string (Required, Identifier): The type of the CFN Resource for now it's enum CFN_STACK.
 
 ## Tags
 ### Properties

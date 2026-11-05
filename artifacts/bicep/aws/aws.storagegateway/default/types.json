@@ -1,48 +1,21 @@
 [
   {
     "$type": "ObjectType",
-    "name": "CacheAttributes",
+    "name": "CacheReportFilter",
     "properties": {
-      "CacheStaleTimeoutInSeconds": {
+      "Name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The parameter name for the filter."
+      },
+      "Values": {
         "type": {
           "$ref": "#/3"
         },
-        "flags": 0,
-        "description": "How long the directory contents cached by the gateway are considered valid."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "NFSFileShareDefaults",
-    "properties": {
-      "DirectoryMode": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The Unix directory mode in the form nnnn."
-      },
-      "FileMode": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The Unix file mode in the form nnnn."
-      },
-      "GroupId": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0,
-        "description": "The default group ID for files in the file share."
-      },
-      "OwnerId": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0,
-        "description": "The default owner ID for files in the file share."
+        "flags": 1,
+        "description": "The parameter values for the filter."
       }
     }
   },
@@ -52,36 +25,22 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "The key name of the tag. Cannot be prefixed with aws:."
       },
       "Value": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
-        "flags": 1
+        "flags": 1,
+        "description": "The value for the tag. Cannot be prefixed with aws:."
       }
     }
   },
   {
-    "$type": "IntegerType"
-  },
-  {
     "$type": "StringType"
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.StorageGateway/NFSFileShareProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/4"
-    }
-  },
-  {
-    "$type": "BooleanType"
   },
   {
     "$type": "ArrayType",
@@ -90,198 +49,134 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.StorageGateway/CacheReportProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
     "$type": "ObjectType",
-    "name": "AWS.StorageGateway/NFSFileShareProperties",
+    "name": "AWS.StorageGateway/CacheReportProperties",
     "properties": {
-      "AuditDestinationARN": {
+      "CacheReportARN": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the cache report."
+      },
+      "CacheReportStatus": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The status of the cache report."
+      },
+      "EndTime": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The time at which the cache report generation ended."
+      },
+      "ExclusionFilters": {
+        "type": {
+          "$ref": "#/5"
         },
         "flags": 0,
-        "description": "The ARN of the CloudWatch log group that receives the share's audit logs. Removing this property from a template detaches audit logging: the update sends the empty string, which the service treats as the reset."
+        "description": "The list of filters that determine which files are excluded from the cache report."
       },
-      "BucketRegion": {
+      "FileShareARN": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
-        "flags": 0,
-        "description": "The Region of the S3 bucket, required when the bucket is reached through a VPC endpoint."
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the file share for which the cache report is generated."
       },
-      "CacheAttributes": {
-        "type": {
-          "$ref": "#/0"
-        },
-        "flags": 0
-      },
-      "ClientList": {
+      "InclusionFilters": {
         "type": {
           "$ref": "#/6"
         },
         "flags": 0,
-        "description": "The IPv4 or IPv6 addresses and CIDR blocks permitted to mount the NFS share. Removing this property from a template leaves the share's current value: the service documents no value that resets it."
-      },
-      "DefaultStorageClass": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The S3 storage class for new objects. The service accepts S3_STANDARD, S3_INTELLIGENT_TIERING, S3_STANDARD_IA and S3_ONEZONE_IA; it is a length-bounded string in the API model rather than an enumeration."
-      },
-      "EncryptionType": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The server-side encryption the gateway applies to objects it writes."
-      },
-      "FileShareARN": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 18,
-        "description": "The ARN of the file share."
-      },
-      "FileShareId": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 2,
-        "description": "The ID of the file share."
-      },
-      "FileShareName": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The name of the file share, which defaults to the bucket name when omitted. Removing this property from a template leaves the share's current value: the service documents no value that resets it."
-      },
-      "FileShareStatus": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 2,
-        "description": "The status of the file share. The service reports CREATING, UPDATING, AVAILABLE, DELETING and FORCE_DELETING; it is a length-bounded string in the API model rather than an enumeration."
-      },
-      "GatewayARN": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The ARN of the S3 File Gateway that hosts the share."
-      },
-      "GuessMIMETypeEnabled": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "Whether the gateway infers the MIME type of uploaded objects from their extension."
-      },
-      "KMSEncrypted": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "Deprecated by the service in favour of EncryptionType; true selects KMS encryption. Retained because it remains readable and settable."
-      },
-      "KMSKey": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The KMS key used for encryption, when EncryptionType selects KMS. Removing this property from a template leaves the share's current value: the service documents no value that resets it."
+        "description": "The list of filters that determine which files are included in the cache report."
       },
       "LocationARN": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 1,
-        "description": "The ARN of the S3 bucket, or bucket prefix, the share exposes."
+        "description": "The ARN of the Amazon S3 bucket (or access point) where the cache report is stored."
       },
-      "NFSFileShareDefaults": {
+      "ReportCompletionPercent": {
         "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0
-      },
-      "NotificationPolicy": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The upload-notification settling period, as a JSON document."
-      },
-      "ObjectACL": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The canned S3 ACL applied to objects the gateway writes."
-      },
-      "Path": {
-        "type": {
-          "$ref": "#/4"
+          "$ref": "#/7"
         },
         "flags": 2,
-        "description": "The export path the share is mounted or mapped at."
+        "description": "The percentage of the cache report generation that is complete."
       },
-      "ReadOnly": {
+      "ReportName": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/2"
         },
-        "flags": 0,
-        "description": "Whether clients may write to the share."
-      },
-      "RequesterPays": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "Whether the bucket is a Requester Pays bucket."
+        "flags": 2,
+        "description": "The name of the cache report."
       },
       "Role": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 1,
-        "description": "The ARN of the IAM role the gateway assumes when it accesses the S3 location."
+        "description": "The ARN of the IAM role that the S3 File Gateway assumes when it accesses the underlying storage."
       },
-      "Squash": {
+      "StartTime": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
-        "flags": 0,
-        "description": "How the NFS share maps client user IDs. The service accepts RootSquash, NoSquash and AllSquash; it is a length-bounded string in the API model rather than an enumeration."
+        "flags": 2,
+        "description": "The time at which the cache report generation started."
       },
       "Tags": {
         "type": {
           "$ref": "#/8"
         },
         "flags": 0,
-        "description": "Tags assigned to the file share."
-      },
-      "VPCEndpointDNSName": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The DNS name of the S3 VPC endpoint the gateway uses to reach the bucket."
+        "description": "A list of up to 50 key/value tags assigned to the cache report."
       }
     }
   },
   {
     "$type": "ObjectType",
-    "name": "AWS.StorageGateway/NFSFileShare",
+    "name": "AWS.StorageGateway/CacheReport",
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 17,
         "description": "the resource alias"
@@ -297,11 +192,331 @@
   },
   {
     "$type": "ResourceType",
-    "name": "AWS.StorageGateway/NFSFileShare@default",
+    "name": "AWS.StorageGateway/CacheReport@default",
     "body": {
       "$ref": "#/10"
     },
-    "readableScopes": 0,
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DeviceiSCSIAttributes",
+    "properties": {
+      "ChapEnabled": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Indicates whether mutual CHAP is enabled for the iSCSI target."
+      },
+      "NetworkInterfaceId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The network interface identifier of the VTL device."
+      },
+      "NetworkInterfacePort": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The port used to communicate with iSCSI VTL device targets."
+      },
+      "TargetARN": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Specifies the unique Amazon Resource Name (ARN) that encodes the iSCSI qualified name (IQN) of a tape drive or media changer target."
+      }
+    }
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.StorageGateway/DeviceProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.StorageGateway/DeviceProperties",
+    "properties": {
+      "DeviceiSCSIAttributes": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 2
+      },
+      "GatewayARN": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the tape gateway that the device is associated with."
+      },
+      "GatewayId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The identifier of the tape gateway that the device is associated with."
+      },
+      "VTLDeviceARN": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 16,
+        "description": "The unique Amazon Resource Name (ARN) of the device (tape drive or media changer)."
+      },
+      "VTLDeviceName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The name of the device, as it appears in the device's Amazon Resource Name (ARN)."
+      },
+      "VTLDeviceProductIdentifier": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The model number of the device that the VTL device emulates."
+      },
+      "VTLDeviceType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The type of device that the VTL device emulates."
+      },
+      "VTLDeviceVendor": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The vendor of the device that the VTL device object emulates."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.StorageGateway/Device",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.StorageGateway/Device@default",
+    "body": {
+      "$ref": "#/16"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NetworkInterface",
+    "properties": {
+      "Ipv4Address": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The Internet Protocol version 4 (IPv4) address of the interface."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.StorageGateway/GatewayProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/18"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/19"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.StorageGateway/GatewayProperties",
+    "properties": {
+      "Ec2InstanceId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The ID of the Amazon EC2 instance that was used to launch the gateway."
+      },
+      "Ec2InstanceRegion": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The Amazon Web Services Region where the Amazon EC2 instance is located."
+      },
+      "EndpointType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The type of endpoint for your gateway."
+      },
+      "GatewayARN": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the gateway."
+      },
+      "GatewayId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The unique identifier assigned to your gateway during activation, extracted from the ARN."
+      },
+      "GatewayName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The name you configured for your gateway."
+      },
+      "GatewayNetworkInterfaces": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 2,
+        "description": "A list of the gateway's network interfaces."
+      },
+      "GatewayRegion": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "A value that indicates the Amazon Web Services Region where the gateway is activated."
+      },
+      "GatewayState": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "A value that indicates the operating state of the gateway."
+      },
+      "GatewayTimezone": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "A value that indicates the time zone configured for the gateway (e.g. GMT-4:00)."
+      },
+      "GatewayType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The type of gateway (e.g. STORED, CACHED, VTL, FILE_S3, FILE_FSX_SMB)."
+      },
+      "HostEnvironment": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The type of hardware or software platform on which the gateway is running."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 2,
+        "description": "A list of up to 50 tags assigned to the gateway."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.StorageGateway/Gateway",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.StorageGateway/Gateway@default",
+    "body": {
+      "$ref": "#/24"
+    },
+    "readableScopes": 31,
     "writableScopes": 0
   },
   {
@@ -310,7 +525,7 @@
     "properties": {
       "CacheStaleTimeoutInSeconds": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/7"
         },
         "flags": 0,
         "description": "How long the directory contents cached by the gateway are considered valid."
@@ -323,28 +538,28 @@
     "properties": {
       "DirectoryMode": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The Unix directory mode in the form nnnn."
       },
       "FileMode": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The Unix file mode in the form nnnn."
       },
       "GroupId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/7"
         },
         "flags": 0,
         "description": "The default group ID for files in the file share."
       },
       "OwnerId": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/7"
         },
         "flags": 0,
         "description": "The default owner ID for files in the file share."
@@ -357,13 +572,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 1
       }
@@ -371,538 +586,213 @@
   },
   {
     "$type": "StringLiteralType",
-    "value": "AWS.StorageGateway/SMBFileShareProperties"
+    "value": "AWS.StorageGateway/NFSFileShareProperties"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/2"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/14"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/28"
     }
   },
   {
     "$type": "ObjectType",
-    "name": "AWS.StorageGateway/SMBFileShareProperties",
+    "name": "AWS.StorageGateway/NFSFileShareProperties",
     "properties": {
-      "AccessBasedEnumeration": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "Whether clients see only the files and folders they may access."
-      },
-      "AdminUserList": {
-        "type": {
-          "$ref": "#/16"
-        },
-        "flags": 0,
-        "description": "Users and groups granted administrative privileges on the SMB share."
-      },
       "AuditDestinationARN": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The ARN of the CloudWatch log group that receives the share's audit logs. Removing this property from a template detaches audit logging: the update sends the empty string, which the service treats as the reset."
       },
-      "Authentication": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The authentication the SMB share uses. The service accepts ActiveDirectory and GuestAccess; it is a length-bounded string in the API model rather than an enumeration."
-      },
       "BucketRegion": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The Region of the S3 bucket, required when the bucket is reached through a VPC endpoint."
       },
       "CacheAttributes": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/26"
         },
         "flags": 0
       },
-      "CaseSensitivity": {
+      "ClientList": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/30"
         },
         "flags": 0,
-        "description": "Whether the SMB share is case sensitive or defers to the client."
+        "description": "The IPv4 or IPv6 addresses and CIDR blocks permitted to mount the NFS share. Removing this property from a template leaves the share's current value: the service documents no value that resets it."
       },
       "DefaultStorageClass": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The S3 storage class for new objects. The service accepts S3_STANDARD, S3_INTELLIGENT_TIERING, S3_STANDARD_IA and S3_ONEZONE_IA; it is a length-bounded string in the API model rather than an enumeration."
       },
       "EncryptionType": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The server-side encryption the gateway applies to objects it writes."
       },
       "FileShareARN": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 18,
         "description": "The ARN of the file share."
       },
       "FileShareId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 2,
         "description": "The ID of the file share."
       },
       "FileShareName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The name of the file share, which defaults to the bucket name when omitted. Removing this property from a template leaves the share's current value: the service documents no value that resets it."
       },
       "FileShareStatus": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 2,
         "description": "The status of the file share. The service reports CREATING, UPDATING, AVAILABLE, DELETING and FORCE_DELETING; it is a length-bounded string in the API model rather than an enumeration."
       },
       "GatewayARN": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The ARN of the S3 File Gateway that hosts the share."
       },
       "GuessMIMETypeEnabled": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "Whether the gateway infers the MIME type of uploaded objects from their extension."
       },
-      "InvalidUserList": {
-        "type": {
-          "$ref": "#/17"
-        },
-        "flags": 0,
-        "description": "Users and groups denied access to the SMB share."
-      },
       "KMSEncrypted": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "Deprecated by the service in favour of EncryptionType; true selects KMS encryption. Retained because it remains readable and settable."
       },
       "KMSKey": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The KMS key used for encryption, when EncryptionType selects KMS. Removing this property from a template leaves the share's current value: the service documents no value that resets it."
       },
       "LocationARN": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The ARN of the S3 bucket, or bucket prefix, the share exposes."
       },
+      "NFSFileShareDefaults": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0
+      },
       "NotificationPolicy": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The upload-notification settling period, as a JSON document."
       },
       "ObjectACL": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The canned S3 ACL applied to objects the gateway writes."
       },
-      "OplocksEnabled": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "Whether the SMB share grants opportunistic locks. Removing this property from a template leaves the live value unchanged rather than restoring the created default, because that default depends on the gateway's software version -- opportunistic locking is enabled by default only on appliances at 1.19.0.0 or above -- and the version is not part of this resource. Set the value explicitly rather than relying on removal."
-      },
       "Path": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 2,
         "description": "The export path the share is mounted or mapped at."
       },
       "ReadOnly": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "Whether clients may write to the share."
       },
       "RequesterPays": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "Whether the bucket is a Requester Pays bucket."
       },
       "Role": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The ARN of the IAM role the gateway assumes when it accesses the S3 location."
       },
-      "SMBACLEnabled": {
+      "Squash": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/2"
         },
         "flags": 0,
-        "description": "Whether the SMB share uses Windows ACLs rather than POSIX permissions."
-      },
-      "Tags": {
-        "type": {
-          "$ref": "#/18"
-        },
-        "flags": 0,
-        "description": "Tags assigned to the file share."
-      },
-      "VPCEndpointDNSName": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The DNS name of the S3 VPC endpoint the gateway uses to reach the bucket."
-      },
-      "ValidUserList": {
-        "type": {
-          "$ref": "#/19"
-        },
-        "flags": 0,
-        "description": "Users and groups permitted to access the SMB share."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.StorageGateway/SMBFileShare",
-    "properties": {
-      "name": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "the resource name"
-      },
-      "alias": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 17,
-        "description": "the resource alias"
-      },
-      "properties": {
-        "type": {
-          "$ref": "#/20"
-        },
-        "flags": 17,
-        "description": "properties of the resource"
-      }
-    }
-  },
-  {
-    "$type": "ResourceType",
-    "name": "AWS.StorageGateway/SMBFileShare@default",
-    "body": {
-      "$ref": "#/21"
-    },
-    "readableScopes": 0,
-    "writableScopes": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The tag key. Cannot be prefixed with aws:."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The tag value."
-      }
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.StorageGateway/TapeProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/23"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.StorageGateway/TapeProperties",
-    "properties": {
-      "GatewayARN": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The Amazon Resource Name (ARN) of the Tape Gateway that hosts the virtual tape."
-      },
-      "KMSEncrypted": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 4,
-        "description": "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional."
-      },
-      "KMSKey": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The Amazon Resource Name (ARN) of a symmetric customer master key (CMK) used for Amazon S3 server-side encryption. This value must be set if KMSEncrypted is true."
-      },
-      "PoolId": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The ID of the pool that you want to add your tape to for archiving. Tapes in this pool are archived in the S3 storage class that is associated with the pool."
-      },
-      "Tags": {
-        "type": {
-          "$ref": "#/25"
-        },
-        "flags": 0,
-        "description": "A list of up to 50 tags to assign to the virtual tape."
-      },
-      "TapeARN": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 18,
-        "description": "The Amazon Resource Name (ARN) of the virtual tape."
-      },
-      "TapeBarcode": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "The barcode that you want to assign to the virtual tape. Barcodes cannot be reused, even after a tape is deleted."
-      },
-      "TapeCreatedDate": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 2,
-        "description": "The date and time that the virtual tape was created."
-      },
-      "TapeSizeInBytes": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 1,
-        "description": "The size, in bytes, of the virtual tape that you want to create."
-      },
-      "TapeStatus": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 2,
-        "description": "The current status of the virtual tape."
-      },
-      "TapeUsedInBytes": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 2,
-        "description": "The size, in bytes, of data stored on the virtual tape."
-      },
-      "Worm": {
-        "type": {
-          "$ref": "#/7"
-        },
-        "flags": 0,
-        "description": "Set to true to create a write-once-read-many (WORM) virtual tape."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.StorageGateway/Tape",
-    "properties": {
-      "name": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "the resource name"
-      },
-      "alias": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 17,
-        "description": "the resource alias"
-      },
-      "properties": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 17,
-        "description": "properties of the resource"
-      }
-    }
-  },
-  {
-    "$type": "ResourceType",
-    "name": "AWS.StorageGateway/Tape@default",
-    "body": {
-      "$ref": "#/27"
-    },
-    "readableScopes": 0,
-    "writableScopes": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The tag key."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The tag value."
-      }
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.StorageGateway/TapePoolProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/29"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.StorageGateway/TapePoolProperties",
-    "properties": {
-      "PoolARN": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 18,
-        "description": "The Amazon Resource Name (ARN) of the custom tape pool."
-      },
-      "PoolId": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 2,
-        "description": "The unique identifier of the custom tape pool, extracted from the ARN."
-      },
-      "PoolName": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The name of the custom tape pool."
-      },
-      "RetentionLockTimeInDays": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0,
-        "description": "Tape retention lock time in days (up to 36,500 days / 100 years)."
-      },
-      "RetentionLockType": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "Tape retention lock type. Governance mode allows authorized removal; compliance mode prevents all removal."
-      },
-      "StorageClass": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The storage class associated with the custom pool (S3 Glacier or S3 Glacier Deep Archive)."
+        "description": "How the NFS share maps client user IDs. The service accepts RootSquash, NoSquash and AllSquash; it is a length-bounded string in the API model rather than an enumeration."
       },
       "Tags": {
         "type": {
           "$ref": "#/31"
         },
         "flags": 0,
-        "description": "A list of up to 50 tags for the tape pool."
+        "description": "Tags assigned to the file share."
+      },
+      "VPCEndpointDNSName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The DNS name of the S3 VPC endpoint the gateway uses to reach the bucket."
       }
     }
   },
   {
     "$type": "ObjectType",
-    "name": "AWS.StorageGateway/TapePool",
+    "name": "AWS.StorageGateway/NFSFileShare",
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 17,
         "description": "the resource alias"
@@ -918,9 +808,353 @@
   },
   {
     "$type": "ResourceType",
-    "name": "AWS.StorageGateway/TapePool@default",
+    "name": "AWS.StorageGateway/NFSFileShare@default",
     "body": {
       "$ref": "#/33"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CacheAttributes",
+    "properties": {
+      "CacheStaleTimeoutInSeconds": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "How long the directory contents cached by the gateway are considered valid."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NFSFileShareDefaults",
+    "properties": {
+      "DirectoryMode": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The Unix directory mode in the form nnnn."
+      },
+      "FileMode": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The Unix file mode in the form nnnn."
+      },
+      "GroupId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The default group ID for files in the file share."
+      },
+      "OwnerId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The default owner ID for files in the file share."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.StorageGateway/SMBFileShareProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/37"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.StorageGateway/SMBFileShareProperties",
+    "properties": {
+      "AccessBasedEnumeration": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Whether clients see only the files and folders they may access."
+      },
+      "AdminUserList": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 0,
+        "description": "Users and groups granted administrative privileges on the SMB share."
+      },
+      "AuditDestinationARN": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The ARN of the CloudWatch log group that receives the share's audit logs. Removing this property from a template detaches audit logging: the update sends the empty string, which the service treats as the reset."
+      },
+      "Authentication": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The authentication the SMB share uses. The service accepts ActiveDirectory and GuestAccess; it is a length-bounded string in the API model rather than an enumeration."
+      },
+      "BucketRegion": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The Region of the S3 bucket, required when the bucket is reached through a VPC endpoint."
+      },
+      "CacheAttributes": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0
+      },
+      "CaseSensitivity": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Whether the SMB share is case sensitive or defers to the client."
+      },
+      "DefaultStorageClass": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The S3 storage class for new objects. The service accepts S3_STANDARD, S3_INTELLIGENT_TIERING, S3_STANDARD_IA and S3_ONEZONE_IA; it is a length-bounded string in the API model rather than an enumeration."
+      },
+      "EncryptionType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The server-side encryption the gateway applies to objects it writes."
+      },
+      "FileShareARN": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18,
+        "description": "The ARN of the file share."
+      },
+      "FileShareId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The ID of the file share."
+      },
+      "FileShareName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The name of the file share, which defaults to the bucket name when omitted. Removing this property from a template leaves the share's current value: the service documents no value that resets it."
+      },
+      "FileShareStatus": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The status of the file share. The service reports CREATING, UPDATING, AVAILABLE, DELETING and FORCE_DELETING; it is a length-bounded string in the API model rather than an enumeration."
+      },
+      "GatewayARN": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The ARN of the S3 File Gateway that hosts the share."
+      },
+      "GuessMIMETypeEnabled": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Whether the gateway infers the MIME type of uploaded objects from their extension."
+      },
+      "InvalidUserList": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0,
+        "description": "Users and groups denied access to the SMB share."
+      },
+      "KMSEncrypted": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Deprecated by the service in favour of EncryptionType; true selects KMS encryption. Retained because it remains readable and settable."
+      },
+      "KMSKey": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The KMS key used for encryption, when EncryptionType selects KMS. Removing this property from a template leaves the share's current value: the service documents no value that resets it."
+      },
+      "LocationARN": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The ARN of the S3 bucket, or bucket prefix, the share exposes."
+      },
+      "NotificationPolicy": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The upload-notification settling period, as a JSON document."
+      },
+      "ObjectACL": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The canned S3 ACL applied to objects the gateway writes."
+      },
+      "OplocksEnabled": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Whether the SMB share grants opportunistic locks. Removing this property from a template leaves the live value unchanged rather than restoring the created default, because that default depends on the gateway's software version -- opportunistic locking is enabled by default only on appliances at 1.19.0.0 or above -- and the version is not part of this resource. Set the value explicitly rather than relying on removal."
+      },
+      "Path": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The export path the share is mounted or mapped at."
+      },
+      "ReadOnly": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Whether clients may write to the share."
+      },
+      "RequesterPays": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Whether the bucket is a Requester Pays bucket."
+      },
+      "Role": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The ARN of the IAM role the gateway assumes when it accesses the S3 location."
+      },
+      "SMBACLEnabled": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Whether the SMB share uses Windows ACLs rather than POSIX permissions."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "Tags assigned to the file share."
+      },
+      "VPCEndpointDNSName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The DNS name of the S3 VPC endpoint the gateway uses to reach the bucket."
+      },
+      "ValidUserList": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 0,
+        "description": "Users and groups permitted to access the SMB share."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.StorageGateway/SMBFileShare",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.StorageGateway/SMBFileShare@default",
+    "body": {
+      "$ref": "#/44"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -931,14 +1165,291 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The tag key. Cannot be prefixed with aws:."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.StorageGateway/TapeProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/46"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.StorageGateway/TapeProperties",
+    "properties": {
+      "GatewayARN": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the Tape Gateway that hosts the virtual tape."
+      },
+      "KMSEncrypted": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 4,
+        "description": "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional."
+      },
+      "KMSKey": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of a symmetric customer master key (CMK) used for Amazon S3 server-side encryption. This value must be set if KMSEncrypted is true."
+      },
+      "PoolId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The ID of the pool that you want to add your tape to for archiving. Tapes in this pool are archived in the S3 storage class that is associated with the pool."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 0,
+        "description": "A list of up to 50 tags to assign to the virtual tape."
+      },
+      "TapeARN": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the virtual tape."
+      },
+      "TapeBarcode": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The barcode that you want to assign to the virtual tape. Barcodes cannot be reused, even after a tape is deleted."
+      },
+      "TapeCreatedDate": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The date and time that the virtual tape was created."
+      },
+      "TapeSizeInBytes": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The size, in bytes, of the virtual tape that you want to create."
+      },
+      "TapeStatus": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The current status of the virtual tape."
+      },
+      "TapeUsedInBytes": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The size, in bytes, of data stored on the virtual tape."
+      },
+      "Worm": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Set to true to create a write-once-read-many (WORM) virtual tape."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.StorageGateway/Tape",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/49"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.StorageGateway/Tape@default",
+    "body": {
+      "$ref": "#/50"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The tag key."
       },
       "Value": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.StorageGateway/TapePoolProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/52"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.StorageGateway/TapePoolProperties",
+    "properties": {
+      "PoolARN": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the custom tape pool."
+      },
+      "PoolId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the custom tape pool, extracted from the ARN."
+      },
+      "PoolName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The name of the custom tape pool."
+      },
+      "RetentionLockTimeInDays": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "Tape retention lock time in days (up to 36,500 days / 100 years)."
+      },
+      "RetentionLockType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Tape retention lock type. Governance mode allows authorized removal; compliance mode prevents all removal."
+      },
+      "StorageClass": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The storage class associated with the custom pool (S3 Glacier or S3 Glacier Deep Archive)."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 0,
+        "description": "A list of up to 50 tags for the tape pool."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.StorageGateway/TapePool",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.StorageGateway/TapePool@default",
+    "body": {
+      "$ref": "#/56"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The tag value."
@@ -952,7 +1463,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/35"
+      "$ref": "#/58"
     }
   },
   {
@@ -961,119 +1472,119 @@
     "properties": {
       "CreatedDate": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 2,
         "description": "The date the volume was created."
       },
       "GatewayARN": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) of the gateway on which to create the volume."
       },
       "KMSEncrypted": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/13"
         },
         "flags": 4,
         "description": "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3."
       },
       "KMSKey": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "The Amazon Resource Name (ARN) of a symmetric customer master key (CMK) used for Amazon S3 server-side encryption."
       },
       "NetworkInterfaceId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The network interface of the gateway on which to expose the iSCSI target. Only IPv4 addresses are accepted."
       },
       "SnapshotId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 4,
         "description": "The snapshot ID of the snapshot to restore as the new cached volume (e.g., snap-1122aabb)."
       },
       "SourceVolumeARN": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 4,
         "description": "The ARN of an existing volume from which to create the new volume."
       },
       "Tags": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/60"
         },
         "flags": 0,
         "description": "A list of up to 50 tags to assign to the volume."
       },
       "TargetARN": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 2,
         "description": "The Amazon Resource Name (ARN) of the volume target, which includes the iSCSI target name."
       },
       "TargetName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 1,
         "description": "The name of the iSCSI target used by an initiator to connect to a volume and used as a suffix for the target ARN."
       },
       "VolumeARN": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the storage volume."
       },
       "VolumeAttachmentStatus": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 2,
         "description": "Indicates whether the storage volume is attached to or detached from the gateway."
       },
       "VolumeId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 2,
         "description": "The unique identifier of the volume, extracted from the ARN."
       },
       "VolumeSizeInBytes": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/7"
         },
         "flags": 1,
         "description": "The size of the volume in bytes."
       },
       "VolumeStatus": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 2,
         "description": "The status of the storage volume."
       },
       "VolumeType": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 2,
         "description": "The type of the volume (CACHED iSCSI)."
       },
       "VolumeUsedInBytes": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/7"
         },
         "flags": 2,
         "description": "The size of the data stored on the volume in bytes."
@@ -1086,21 +1597,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/2"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/61"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1111,7 +1622,7 @@
     "$type": "ResourceType",
     "name": "AWS.StorageGateway/Volume@default",
     "body": {
-      "$ref": "#/39"
+      "$ref": "#/62"
     },
     "readableScopes": 0,
     "writableScopes": 0

@@ -24,6 +24,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.RDS/DBClusterProperties](#awsrdsdbclusterproperties) (Identifier): properties of the resource
 
+## Resource AWS.RDS/DBClusterAutomatedBackup@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.RDS/DBClusterAutomatedBackupProperties](#awsrdsdbclusterautomatedbackupproperties) (Identifier): properties of the resource
+
 ## Resource AWS.RDS/DBClusterEndpoint@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -47,6 +55,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.RDS/DBInstanceProperties](#awsrdsdbinstanceproperties) (Identifier): properties of the resource
+
+## Resource AWS.RDS/DBInstanceAutomatedBackup@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.RDS/DBInstanceAutomatedBackupProperties](#awsrdsdbinstanceautomatedbackupproperties) (Identifier): properties of the resource
 
 ## Resource AWS.RDS/DBParameterGroup@default
 * **Readable Scope(s)**: None
@@ -144,6 +160,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.RDS/OptionGroupProperties](#awsrdsoptiongroupproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.RDS/ReservedDBInstance@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.RDS/ReservedDBInstanceProperties](#awsrdsreserveddbinstanceproperties) (Identifier): properties of the resource
+
 ## AdditionalStorageVolume
 ### Properties
 * **AllocatedStorage**: string: The amount of storage allocated for the additional storage volume, in gibibytes (GiB). The minimum is 20 GiB. The maximum is 65,536 GiB (64 TiB).
@@ -218,6 +242,29 @@
 * **Status**: string: A value that indicates the status of a custom engine version (CEV).
 * **Tags**: [Tag](#tag)[]: A list of tags. For more information, see [Tagging Amazon RDS Resources](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html) in the *Amazon RDS User Guide.*
 * **UseAwsProvidedLatestImage**: bool (WriteOnly): Specifies whether to use the latest service-provided Amazon Machine Image (AMI) for the CEV. If you specify ``UseAwsProvidedLatestImage``, you can't also specify ``ImageId``.
+
+## AWS.RDS/DBClusterAutomatedBackupProperties
+### Properties
+* **AllocatedStorage**: int (ReadOnly): For all database engines except Amazon Aurora, specifies the allocated storage size in gibibytes (GiB). For Aurora, this value is always 1.
+* **AvailabilityZones**: string[] (ReadOnly): The Availability Zones where instances in the DB cluster can be created.
+* **BackupRetentionPeriod**: int: The retention period for the automated backups.
+* **ClusterCreateTime**: string (ReadOnly): The time when the DB cluster was created, in Universal Coordinated Time (UTC).
+* **DBClusterArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the source DB cluster.
+* **DBClusterAutomatedBackupsArn**: string (Identifier): The Amazon Resource Name (ARN) of the automated backups of the DB cluster.
+* **DBClusterIdentifier**: string: The identifier of the source DB cluster.
+* **DbClusterResourceId**: string (ReadOnly): The resource ID of the source DB cluster, which can't be changed and which is unique to an AWS Region.
+* **Engine**: string: The name of the database engine for this automated backup.
+* **EngineMode**: string: The engine mode of the database engine for the automated backup.
+* **EngineVersion**: string: The version of the database engine for the automated backup.
+* **IAMDatabaseAuthenticationEnabled**: bool: Indicates whether mapping of AWS Identity and Access Management (IAM) accounts to database accounts is enabled.
+* **KmsKeyId**: string (ReadOnly): The AWS KMS key ID for an automated backup.
+* **MasterUsername**: string: The master user name of the automated backup.
+* **Port**: int: The port number that the automated backup used for connections.
+* **Region**: string (ReadOnly): The AWS Region associated with the automated backup.
+* **RestoreWindow**: [RestoreWindow](#restorewindow) (ReadOnly)
+* **Status**: string (ReadOnly): The status of the automated backup: retained for a deleted DB cluster, or active while the source cluster still exists.
+* **StorageEncrypted**: bool: Indicates whether the source DB cluster is encrypted.
+* **Tags**: [Tag](#tag)[] (ReadOnly): A list of tags assigned to the automated backup.
 
 ## AWS.RDS/DBClusterEndpointProperties
 ### Properties
@@ -578,6 +625,36 @@
 * **VpcSecurityGroupIds**: string[]: A list of EC2 VPC security groups to associate with this DB cluster.
  If you plan to update the resource, don't specify VPC security groups in a shared VPC.
  Valid for: Aurora DB clusters and Multi-AZ DB clusters
+* **WithExpressConfiguration**: bool (WriteOnly)
+
+## AWS.RDS/DBInstanceAutomatedBackupProperties
+### Properties
+* **AllocatedStorage**: int: The allocated storage size for the automated backup in gibibytes (GiB).
+* **AvailabilityZone**: string (ReadOnly): The Availability Zone that the automated backup was created in.
+* **BackupRetentionPeriod**: int: The retention period for the automated backups.
+* **BackupTarget**: string (ReadOnly): The location where automated backups are stored: Dedicated Local Zones, AWS Outposts, or the AWS Region.
+* **DBInstanceArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the source DB instance.
+* **DBInstanceAutomatedBackupsArn**: string (Identifier): The Amazon Resource Name (ARN) of the automated backup.
+* **DBInstanceIdentifier**: string: The identifier for the source DB instance, which can't be changed and which is unique to an AWS Region.
+* **DbiResourceId**: string (ReadOnly): The resource ID for the source DB instance, which can't be changed and which is unique to an AWS Region.
+* **Encrypted**: bool: Indicates whether the automated backup is encrypted.
+* **Engine**: string: The name of the database engine for this automated backup.
+* **EngineVersion**: string (ReadOnly): The version of the database engine for the automated backup.
+* **IAMDatabaseAuthenticationEnabled**: bool (ReadOnly): Indicates whether mapping of AWS Identity and Access Management (IAM) accounts to database accounts is enabled.
+* **InstanceCreateTime**: string (ReadOnly): The date and time when the DB instance was created.
+* **Iops**: int (ReadOnly): The IOPS (I/O operations per second) value for the automated backup.
+* **KmsKeyId**: string (ReadOnly): The AWS KMS key ID for an automated backup.
+* **LicenseModel**: string (ReadOnly): The license model information for the automated backup.
+* **MasterUsername**: string: The master user name of an automated backup.
+* **OptionGroupName**: string (ReadOnly): The option group the automated backup is associated with.
+* **Port**: int: The port number that the automated backup used for connections.
+* **Region**: string (ReadOnly): The AWS Region associated with the automated backup.
+* **RestoreWindow**: [RestoreWindow](#restorewindow) (ReadOnly)
+* **Status**: string (ReadOnly): The status of the automated backup: active for current instances, retained for deleted instances, or creating while waiting for the first automated snapshot to become available.
+* **StorageThroughput**: int (ReadOnly): The storage throughput for the automated backup.
+* **StorageType**: string: The storage type associated with the automated backup.
+* **Tags**: [Tag](#tag)[] (ReadOnly): A list of tags assigned to the automated backup.
+* **VpcId**: string (ReadOnly): The VPC ID associated with the DB instance.
 
 ## AWS.RDS/DBInstanceProperties
 ### Properties
@@ -875,7 +952,9 @@
   +   ``sqlserver-ee`` 
   +   ``sqlserver-se`` 
   +   ``sqlserver-ex`` 
-  +   ``sqlserver-web``
+  +   ``sqlserver-web`` 
+  +  ``sqlserver-dev-ee`` (for RDS for SQL Server Developer Edition with Enterprise Edition capabilities)
+  +  ``sqlserver-dev-se`` (for RDS for SQL Server Developer Edition with Standard Edition capabilities)
 * **EngineLifecycleSupport**: string: The lifecycle type for this DB instance.
   By default, this value is set to ``open-source-rds-extended-support``, which enrolls your DB instance into Amazon RDS Extended Support. At the end of standard support, you can avoid charges for Extended Support by setting the value to ``open-source-rds-extended-support-disabled``. In this case, creating the DB instance will fail if the DB major version is past its end of standard support date.
   This setting applies only to RDS for MySQL and RDS for PostgreSQL. For Amazon Aurora DB instances, the engine lifecycle support is managed by the DB cluster.
@@ -1402,6 +1481,25 @@ If you specify the SourceDBClusterIdentifier property, don't specify this proper
   This value is stored as a lowercase string.
 * **Tags**: [Tag](#tag)[]: Tags to assign to the option group.
 
+## AWS.RDS/ReservedDBInstanceProperties
+### Properties
+* **CurrencyCode**: string (ReadOnly): The currency code for the reserved DB instance.
+* **DBInstanceClass**: string (ReadOnly): The DB instance class for the reserved DB instance.
+* **DBInstanceCount**: int: The number of reserved DB instances.
+* **Duration**: int (ReadOnly): The duration of the reservation in seconds.
+* **FixedPrice**: int (ReadOnly): The fixed price charged for this reserved DB instance.
+* **MultiAZ**: bool (ReadOnly): Indicates whether the reservation applies to Multi-AZ deployments.
+* **OfferingType**: string (ReadOnly): The offering type of this reserved DB instance.
+* **ProductDescription**: string (ReadOnly): The description of the reserved DB instance.
+* **RecurringCharges**: [RecurringCharge](#recurringcharge)[] (ReadOnly): The recurring price charged to run this reserved DB instance.
+* **ReservedDBInstanceArn**: string (Identifier): The Amazon Resource Name (ARN) for the reserved DB instance.
+* **ReservedDBInstanceId**: string (ReadOnly): The unique identifier for the reservation.
+* **ReservedDBInstancesOfferingId**: string (ReadOnly): The offering identifier.
+* **StartTime**: string (ReadOnly): The time the reservation started.
+* **State**: string (ReadOnly): The state of the reserved DB instance.
+* **Tags**: [Tag](#tag)[] (ReadOnly): A list of tags.
+* **UsagePrice**: int (ReadOnly): The hourly price charged for this reserved DB instance.
+
 ## CertificateDetails
 ### Properties
 * **CAIdentifier**: string (ReadOnly): The CA identifier of the CA certificate used for the DB instance's server certificate.
@@ -1494,6 +1592,21 @@ If you specify the SourceDBClusterIdentifier property, don't specify this proper
 ### Properties
 * **Address**: string (ReadOnly): The host address of the reader endpoint.
 
+## RecurringCharge
+### Properties
+* **RecurringChargeAmount**: int: The amount of the recurring charge.
+* **RecurringChargeFrequency**: string: The frequency of the recurring charge.
+
+## RestoreWindow
+### Properties
+* **EarliestTime**: string: The earliest time you can restore a DB cluster to.
+* **LatestTime**: string: The latest time you can restore a DB cluster to.
+
+## RestoreWindow
+### Properties
+* **EarliestTime**: string: The earliest time you can restore an instance to.
+* **LatestTime**: string: The latest time you can restore an instance to.
+
 ## ScalingConfiguration
 ### Properties
 * **AutoPause**: bool: Indicates whether to allow or disallow automatic pause for an Aurora DB cluster in ``serverless`` DB engine mode. A DB cluster can be paused only when it's idle (it has no connections).
@@ -1548,6 +1661,11 @@ If you specify the SourceDBClusterIdentifier property, don't specify this proper
 
 ## Tag
 ### Properties
+* **Key**: string (Required): A key is the required name of the tag.
+* **Value**: string (Required): A value is the optional value of the tag.
+
+## Tag
+### Properties
 * **Key**: string (Required): The key name of the tag.
 * **Value**: string (Required): The value for the tag.
 
@@ -1560,6 +1678,11 @@ If you specify the SourceDBClusterIdentifier property, don't specify this proper
 ### Properties
 * **Key**: string (Required): A key is the required name of the tag. The string value can be from 1 to 128 Unicode characters in length and can't be prefixed with ``aws:`` or ``rds:``. The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$").
 * **Value**: string: A value is the optional value of the tag. The string value can be from 1 to 256 Unicode characters in length and can't be prefixed with ``aws:`` or ``rds:``. The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$").
+
+## Tag
+### Properties
+* **Key**: string (Required): A key is the required name of the tag.
+* **Value**: string (Required): A value is the optional value of the tag.
 
 ## Tag
 ### Properties
@@ -1610,6 +1733,11 @@ If you specify the SourceDBClusterIdentifier property, don't specify this proper
 ### Properties
 * **Key**: string (Required): A key is the required name of the tag. The string value can be from 1 to 128 Unicode characters in length and can't be prefixed with ``aws:`` or ``rds:``. The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$").
 * **Value**: string: A value is the optional value of the tag. The string value can be from 1 to 256 Unicode characters in length and can't be prefixed with ``aws:`` or ``rds:``. The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$").
+
+## Tag
+### Properties
+* **Key**: string (Required): The key of the tag.
+* **Value**: string (Required): The value of the tag.
 
 ## TagFormat
 ### Properties

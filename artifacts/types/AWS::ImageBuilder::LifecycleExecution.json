@@ -1,0 +1,119 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ImageBuilder-LifecycleExecution",
+  "type": "AWS::ImageBuilder::LifecycleExecution",
+  "time": "2026-11-05T21:19:25.354Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/LifecycleExecutionId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ResourceArn"
+    ],
+    "definitions": {
+      "LifecycleExecutionResourcesImpactedSummary": {
+        "additionalProperties": false,
+        "description": "Contains details for an image resource that was identified for a lifecycle action.",
+        "properties": {
+          "HasImpactedResources": {
+            "description": "Indicates whether an image resource that was identified for a lifecycle action has associated resources that are also impacted.",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "LifecycleExecutionState": {
+        "additionalProperties": false,
+        "description": "The current state of the lifecycle execution.",
+        "properties": {
+          "Status": {
+            "description": "The runtime status of the lifecycle execution.",
+            "enum": [
+              "IN_PROGRESS",
+              "CANCELLED",
+              "CANCELLING",
+              "FAILED",
+              "SUCCESS",
+              "PENDING"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Represents a runtime instance of an EC2 Image Builder lifecycle policy. Lifecycle executions are created automatically when a lifecycle policy runs or when StartResourceStateUpdate is called.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ResourceArn": {
+              "description": "The ARN of the Image Builder resource for which to list lifecycle executions.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "ResourceArn"
+          ]
+        },
+        "permissions": [
+          "imagebuilder:ListLifecycleExecutions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "imagebuilder:GetLifecycleExecution",
+          "imagebuilder:ListLifecycleExecutionResources"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the lifecycle execution.",
+        "type": "string"
+      },
+      "EndTime": {
+        "description": "The timestamp when the lifecycle runtime instance completed.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "LifecycleExecutionId": {
+        "description": "The unique identifier for the lifecycle execution.",
+        "pattern": "^lce-[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+        "type": "string"
+      },
+      "ResourceArn": {
+        "description": "The ARN of the Image Builder resource for which to list lifecycle executions.",
+        "type": "string"
+      },
+      "ResourcesImpactedSummary": {
+        "$ref": "#/definitions/LifecycleExecutionResourcesImpactedSummary"
+      },
+      "StartTime": {
+        "description": "The timestamp when the lifecycle runtime instance started.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "State": {
+        "$ref": "#/definitions/LifecycleExecutionState"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/LifecycleExecutionId",
+      "/properties/ResourcesImpactedSummary",
+      "/properties/State",
+      "/properties/StartTime",
+      "/properties/EndTime"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::ImageBuilder::LifecycleExecution"
+  }
+}

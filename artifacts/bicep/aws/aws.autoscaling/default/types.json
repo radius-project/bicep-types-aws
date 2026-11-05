@@ -1377,6 +1377,319 @@
     "writableScopes": 0
   },
   {
+    "$type": "ObjectType",
+    "name": "BlockDevice",
+    "properties": {
+      "DeleteOnTermination": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0,
+        "description": "Indicates whether the volume is deleted on instance termination. "
+      },
+      "Encrypted": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0,
+        "description": "Specifies whether the volume should be encrypted. "
+      },
+      "Iops": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0,
+        "description": "The number of input/output (I/O) operations per second (IOPS) to provision for the volume. "
+      },
+      "SnapshotId": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0,
+        "description": "The snapshot ID of the volume to use."
+      },
+      "Throughput": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0,
+        "description": "The throughput (MiBps) to provision for a gp3 volume."
+      },
+      "VolumeSize": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0,
+        "description": "The volume size, in GiBs."
+      },
+      "VolumeType": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0,
+        "description": "The volume type."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BlockDeviceMapping",
+    "properties": {
+      "DeviceName": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 1,
+        "description": "The device name exposed to the EC2 instance (for example, /dev/sdh or xvdh). "
+      },
+      "Ebs": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0,
+        "description": "Parameters used to automatically set up EBS volumes when an instance is launched."
+      },
+      "NoDevice": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0,
+        "description": "Setting this value to true suppresses the specified device included in the block device mapping of the AMI."
+      },
+      "VirtualName": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0,
+        "description": "The name of the virtual device."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MetadataOptions",
+    "properties": {
+      "HttpEndpoint": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0,
+        "description": "This parameter enables or disables the HTTP metadata endpoint on your instances."
+      },
+      "HttpPutResponseHopLimit": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0,
+        "description": "The desired HTTP PUT response hop limit for instance metadata requests."
+      },
+      "HttpTokens": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0,
+        "description": "The state of token usage for your instance metadata requests."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.AutoScaling/LaunchConfigurationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/74"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/35"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/35"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AutoScaling/LaunchConfigurationProperties",
+    "properties": {
+      "AssociatePublicIpAddress": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0,
+        "description": "For Auto Scaling groups that are running in a virtual private cloud (VPC), specifies whether to assign a public IP address to the group's instances."
+      },
+      "BlockDeviceMappings": {
+        "type": {
+          "$ref": "#/77"
+        },
+        "flags": 0,
+        "description": "Specifies how block devices are exposed to the instance. You can specify virtual devices and EBS volumes."
+      },
+      "ClassicLinkVPCId": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 4,
+        "description": "The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances to."
+      },
+      "ClassicLinkVPCSecurityGroups": {
+        "type": {
+          "$ref": "#/78"
+        },
+        "flags": 4,
+        "description": "The IDs of one or more security groups for the VPC that you specified in the ClassicLinkVPCId property."
+      },
+      "EbsOptimized": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0,
+        "description": "Specifies whether the launch configuration is optimized for EBS I/O (true) or not (false)."
+      },
+      "IamInstanceProfile": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0,
+        "description": "Provides the name or the Amazon Resource Name (ARN) of the instance profile associated with the IAM role for the instance. The instance profile contains the IAM role."
+      },
+      "ImageId": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 1,
+        "description": "Provides the unique ID of the Amazon Machine Image (AMI) that was assigned during registration."
+      },
+      "InstanceId": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 4,
+        "description": "The ID of the Amazon EC2 instance you want to use to create the launch configuration."
+      },
+      "InstanceMonitoring": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0,
+        "description": "Controls whether instances in this group are launched with detailed (true) or basic (false) monitoring."
+      },
+      "InstanceType": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 1,
+        "description": "Specifies the instance type of the EC2 instance."
+      },
+      "KernelId": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 4,
+        "description": "Provides the ID of the kernel associated with the EC2 AMI."
+      },
+      "KeyName": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0,
+        "description": "Provides the name of the EC2 key pair."
+      },
+      "LaunchConfigurationName": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 16,
+        "description": "The name of the launch configuration. This name must be unique per Region per account."
+      },
+      "MetadataOptions": {
+        "type": {
+          "$ref": "#/75"
+        },
+        "flags": 0,
+        "description": "The metadata options for the instances."
+      },
+      "PlacementTenancy": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0,
+        "description": "The tenancy of the instance, either default or dedicated."
+      },
+      "RamDiskId": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 4,
+        "description": "The ID of the RAM disk to select."
+      },
+      "SecurityGroups": {
+        "type": {
+          "$ref": "#/79"
+        },
+        "flags": 0,
+        "description": "A list that contains the security groups to assign to the instances in the Auto Scaling group."
+      },
+      "SpotPrice": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0,
+        "description": "The maximum hourly price you are willing to pay for any Spot Instances launched to fulfill the request."
+      },
+      "UserData": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0,
+        "description": "The Base64-encoded user data to make available to the launched EC2 instances."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AutoScaling/LaunchConfiguration",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.AutoScaling/LaunchConfiguration@default",
+    "body": {
+      "$ref": "#/81"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
     "$type": "StringLiteralType",
     "value": "AWS.AutoScaling/LifecycleHookProperties"
   },
@@ -1462,7 +1775,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/84"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1473,7 +1786,7 @@
     "$type": "ResourceType",
     "name": "AWS.AutoScaling/LifecycleHook@default",
     "body": {
-      "$ref": "#/75"
+      "$ref": "#/85"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1484,7 +1797,7 @@
     "properties": {
       "Dimensions": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/105"
         },
         "flags": 0
       },
@@ -1496,7 +1809,7 @@
       },
       "Metrics": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/106"
         },
         "flags": 0
       },
@@ -1532,7 +1845,7 @@
     "properties": {
       "Dimensions": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/107"
         },
         "flags": 0
       },
@@ -1574,7 +1887,7 @@
       },
       "MetricStat": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/91"
         },
         "flags": 0
       },
@@ -1610,7 +1923,7 @@
     "properties": {
       "Metric": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/88"
         },
         "flags": 1
       },
@@ -1664,7 +1977,7 @@
       },
       "MetricSpecifications": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/108"
         },
         "flags": 1
       },
@@ -1688,7 +2001,7 @@
     "properties": {
       "MetricDataQueries": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/109"
         },
         "flags": 1
       }
@@ -1700,7 +2013,7 @@
     "properties": {
       "MetricDataQueries": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/110"
         },
         "flags": 1
       }
@@ -1712,7 +2025,7 @@
     "properties": {
       "MetricDataQueries": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/111"
         },
         "flags": 1
       }
@@ -1724,37 +2037,37 @@
     "properties": {
       "CustomizedCapacityMetricSpecification": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/94"
         },
         "flags": 0
       },
       "CustomizedLoadMetricSpecification": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/95"
         },
         "flags": 0
       },
       "CustomizedScalingMetricSpecification": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/96"
         },
         "flags": 0
       },
       "PredefinedLoadMetricSpecification": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/98"
         },
         "flags": 0
       },
       "PredefinedMetricPairSpecification": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/99"
         },
         "flags": 0
       },
       "PredefinedScalingMetricSpecification": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/100"
         },
         "flags": 0
       },
@@ -1850,7 +2163,7 @@
     "properties": {
       "CustomizedMetricSpecification": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/87"
         },
         "flags": 0
       },
@@ -1862,7 +2175,7 @@
       },
       "PredefinedMetricSpecification": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/92"
         },
         "flags": 0
       },
@@ -1898,7 +2211,7 @@
       },
       "MetricStat": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/104"
         },
         "flags": 0
       },
@@ -1922,7 +2235,7 @@
     "properties": {
       "Metric": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/88"
         },
         "flags": 1
       },
@@ -1949,43 +2262,43 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/80"
+      "$ref": "#/90"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/93"
+      "$ref": "#/103"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/80"
+      "$ref": "#/90"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/87"
+      "$ref": "#/97"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/79"
+      "$ref": "#/89"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/79"
+      "$ref": "#/89"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/79"
+      "$ref": "#/89"
     }
   },
   {
@@ -1995,7 +2308,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/91"
+      "$ref": "#/101"
     }
   },
   {
@@ -2066,7 +2379,7 @@
       },
       "PredictiveScalingConfiguration": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/93"
         },
         "flags": 0,
         "description": "A predictive scaling policy. Includes support for predefined metrics only."
@@ -2080,14 +2393,14 @@
       },
       "StepAdjustments": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/113"
         },
         "flags": 0,
         "description": "A set of adjustments that enable you to scale based on the size of the alarm breach. Required if the policy type is StepScaling. (Not used with any other policy type.)"
       },
       "TargetTrackingConfiguration": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/102"
         },
         "flags": 0,
         "description": "A target tracking scaling policy. Includes support for predefined or customized metrics."
@@ -2114,7 +2427,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/114"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2125,7 +2438,7 @@
     "$type": "ResourceType",
     "name": "AWS.AutoScaling/ScalingPolicy@default",
     "body": {
-      "$ref": "#/105"
+      "$ref": "#/115"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2223,7 +2536,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/118"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2234,7 +2547,7 @@
     "$type": "ResourceType",
     "name": "AWS.AutoScaling/ScheduledAction@default",
     "body": {
-      "$ref": "#/109"
+      "$ref": "#/119"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2267,7 +2580,7 @@
       },
       "InstanceReusePolicy": {
         "type": {
-          "$ref": "#/111"
+          "$ref": "#/121"
         },
         "flags": 0
       },
@@ -2311,7 +2624,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/113"
+          "$ref": "#/123"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2322,7 +2635,7 @@
     "$type": "ResourceType",
     "name": "AWS.AutoScaling/WarmPool@default",
     "body": {
-      "$ref": "#/114"
+      "$ref": "#/124"
     },
     "readableScopes": 0,
     "writableScopes": 0

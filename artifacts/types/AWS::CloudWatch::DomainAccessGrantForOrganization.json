@@ -1,0 +1,232 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudWatch-DomainAccessGrantForOrganization",
+  "type": "AWS::CloudWatch::DomainAccessGrantForOrganization",
+  "time": "2026-11-05T17:45:08.621Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/GrantId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DomainId",
+      "/properties/Name",
+      "/properties/Principal",
+      "/properties/Permission",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "OrganizationAccessGrantPrincipal": {
+        "additionalProperties": false,
+        "description": "The principal the grant is issued to. Supply PrincipalId, or PrincipalAttributes for an attribute-based grant.",
+        "properties": {
+          "PrincipalAttributes": {
+            "description": "Attribute key-value pairs that select the principals the grant applies to.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/PrincipalAttribute"
+            },
+            "maxItems": 10,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "PrincipalId": {
+            "description": "The identifier of the principal, such as an IAM role ARN or an Identity Center user ID.",
+            "maxLength": 2048,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9][a-zA-Z0-9:/_+=,.@-]*$",
+            "type": "string"
+          },
+          "PrincipalType": {
+            "description": "The type of principal the grant is issued to.",
+            "enum": [
+              "IDC_USER",
+              "IDC_GROUP",
+              "IAM_USER",
+              "IAM_ROLE",
+              "IAM_ROOT"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "PrincipalType"
+        ],
+        "type": "object"
+      },
+      "PrincipalAttribute": {
+        "additionalProperties": false,
+        "description": "An attribute key-value pair used to select principals.",
+        "properties": {
+          "Key": {
+            "description": "The attribute name.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The attribute value.",
+            "maxLength": 512,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::CloudWatch::DomainAccessGrantForOrganization. An organization access grant authorizes a principal to administer an organization domain.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "cloudwatch:CreateDomainAccessGrantForOrganization",
+          "cloudwatch:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "cloudwatch:DeleteDomainAccessGrantForOrganization",
+          "cloudwatch:GetDomainAccessGrantForOrganization",
+          "cloudwatch:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "cloudwatch:ListDomainAccessGrantsForOrganization"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "cloudwatch:GetDomainAccessGrantForOrganization",
+          "cloudwatch:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the access grant.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:[^:]+:cloudwatch:[^:]*:[0-9]{12}:organization-access-grant/(?:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The timestamp when the grant was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "description": "The principal that created the grant.",
+        "type": "string"
+      },
+      "DomainId": {
+        "description": "The ID of the organization domain the grant belongs to.",
+        "pattern": "^d-[0-9a-z]{1,25}$",
+        "type": "string"
+      },
+      "GrantId": {
+        "description": "The unique ID of the access grant.",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        "type": "string"
+      },
+      "GrantType": {
+        "description": "Who manages the grant.",
+        "enum": [
+          "SERVICE_MANAGED",
+          "CUSTOMER_MANAGED"
+        ],
+        "type": "string"
+      },
+      "Name": {
+        "description": "A name that identifies the access grant.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9_-]+$",
+        "type": "string"
+      },
+      "Permission": {
+        "description": "The permission granted.",
+        "enum": [
+          "ADMIN"
+        ],
+        "type": "string"
+      },
+      "Principal": {
+        "$ref": "#/definitions/OrganizationAccessGrantPrincipal",
+        "description": "The principal receiving the grant."
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "UpdatedAt": {
+        "description": "The timestamp when the grant was last updated.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/GrantId",
+      "/properties/GrantType",
+      "/properties/CreatedBy",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt"
+    ],
+    "replacementStrategy": "delete_then_create",
+    "required": [
+      "DomainId",
+      "Name",
+      "Principal",
+      "Permission"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "cloudwatch:ListTagsForResource",
+        "cloudwatch:TagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::CloudWatch::DomainAccessGrantForOrganization"
+  }
+}

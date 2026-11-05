@@ -1,5 +1,13 @@
 # AWS.NeptuneGraph @ default
 
+## Resource AWS.NeptuneGraph/ExportTask@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.NeptuneGraph/ExportTaskProperties](#awsneptunegraphexporttaskproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.NeptuneGraph/Graph@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -16,6 +24,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.NeptuneGraph/GraphSnapshotProperties](#awsneptunegraphgraphsnapshotproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.NeptuneGraph/ImportTask@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.NeptuneGraph/ImportTaskProperties](#awsneptunegraphimporttaskproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.NeptuneGraph/PrivateGraphEndpoint@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -23,6 +39,20 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.NeptuneGraph/PrivateGraphEndpointProperties](#awsneptunegraphprivategraphendpointproperties) (Required, Identifier): properties of the resource
+
+## AWS.NeptuneGraph/ExportTaskProperties
+### Properties
+* **Arn**: string (Identifier): The ARN of the export task.
+* **Destination**: string (Required): The Amazon S3 URI where data will be exported to.
+* **ExportFilter**: [ExportFilter](#exportfilter): The export filter of the export task.
+* **Format**: string (Required): The format of the export task.
+* **GraphIdentifier**: string (Required): The source graph identifier of the export task.
+* **KmsKeyIdentifier**: string (Required): The KMS key identifier of the export task.
+* **ParquetType**: string: The parquet type of the export task.
+* **RoleArn**: string (Required): The ARN of the IAM role that will allow data to be exported to the destination.
+* **Status**: string (ReadOnly): The current status of the export task.
+* **Tags**: [Tag](#tag)[]: Tags to be applied to the export task.
+* **TaskId**: string (ReadOnly): The unique identifier of the export task.
 
 ## AWS.NeptuneGraph/GraphProperties
 ### Properties
@@ -68,6 +98,17 @@ _Default_: If not specified, the default value is 1.
 * **Status**: string (ReadOnly): The current status of the graph snapshot.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
+## AWS.NeptuneGraph/ImportTaskProperties
+### Properties
+* **Arn**: string (Identifier): The ARN of the import task.
+* **Format**: string: Specifies the format of the Amazon S3 data to be imported.
+* **GraphIdentifier**: string (Required): The unique identifier of the Neptune Analytics graph that the data is imported into.
+* **ParquetType**: string: The parquet type of the import task.
+* **RoleArn**: string (Required): The ARN of the IAM role that will allow access to the data that is to be imported.
+* **Source**: string (Required): A URL identifying the location of the data to be imported. This can be an Amazon S3 path, or can point to a Neptune database endpoint or snapshot.
+* **Status**: string (ReadOnly): The status of the import task.
+* **TaskId**: string (ReadOnly): The unique identifier of the import task.
+
 ## AWS.NeptuneGraph/PrivateGraphEndpointProperties
 ### Properties
 * **GraphIdentifier**: string (Required): The auto-generated Graph Id assigned by the service.
@@ -78,6 +119,17 @@ _Default_: If not specified, the default value is 1.
 * **SubnetIds**: string[]: The subnet Ids associated with the VPC where you want the private graph endpoint to be created, ie, the graph will be reachable from within the VPC.
 * **VpcEndpointId**: string (ReadOnly): VPC endpoint that provides a private connection between the Graph and specified VPC.
 * **VpcId**: string (Required): The VPC where you want the private graph endpoint to be created, ie, the graph will be reachable from within the VPC.
+
+## ExportFilter
+### Properties
+* **EdgeFilter**: [ExportTask_EdgeFilter](#exporttaskedgefilter): Used to specify filters on a per-label basis for edges.
+* **VertexFilter**: [ExportTask_VertexFilter](#exporttaskvertexfilter): Used to specify filters on a per-label basis for vertices.
+
+## ExportTask_EdgeFilter
+### Properties
+
+## ExportTask_VertexFilter
+### Properties
 
 ## ImportOptions
 ### Properties
@@ -101,6 +153,11 @@ _Default_: If not specified, the default value is 1.
 * **PreserveEdgeIds**: bool: Neptune Analytics currently does not support user defined edge ids. The edge ids are not imported by default. They are imported if preserveEdgeIds is set to true, and ids are stored as properties on the relationships with the property name neptuneEdgeId.
 * **S3ExportKmsKeyId**: string (Required): The KMS key to use to encrypt data in the S3 bucket where the graph data is exported.
 * **S3ExportPath**: string (Required): The path to an S3 bucket from which to import data.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
 
 ## Tag
 ### Properties

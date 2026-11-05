@@ -1,0 +1,189 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-StorageGateway-Gateway",
+  "type": "AWS::StorageGateway::Gateway",
+  "time": "2026-11-05T20:50:39.059Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/GatewayId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/GatewayName",
+      "/properties/GatewayTimezone",
+      "/properties/GatewayRegion",
+      "/properties/GatewayType"
+    ],
+    "definitions": {
+      "NetworkInterface": {
+        "additionalProperties": false,
+        "description": "Describes a gateway's network interface.",
+        "properties": {
+          "Ipv4Address": {
+            "description": "The Internet Protocol version 4 (IPv4) address of the interface.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::StorageGateway::Gateway. Read-only view of an AWS Storage Gateway (a software appliance, on-premises or EC2-hosted, that connects to cloud storage). Gateway activation requires a single-use key from a running appliance and cannot be performed declaratively, so this type supports read and list only.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "storagegateway:ListGateways"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "storagegateway:DescribeGatewayInformation",
+          "storagegateway:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/GatewayARN"
+    ],
+    "properties": {
+      "Ec2InstanceId": {
+        "description": "The ID of the Amazon EC2 instance that was used to launch the gateway.",
+        "type": "string"
+      },
+      "Ec2InstanceRegion": {
+        "description": "The Amazon Web Services Region where the Amazon EC2 instance is located.",
+        "type": "string"
+      },
+      "EndpointType": {
+        "description": "The type of endpoint for your gateway.",
+        "maxLength": 8,
+        "minLength": 4,
+        "type": "string"
+      },
+      "GatewayARN": {
+        "description": "The Amazon Resource Name (ARN) of the gateway.",
+        "maxLength": 500,
+        "minLength": 50,
+        "pattern": "^arn:[\\w-]+:storagegateway:[\\w-]+:\\d{12}:gateway/.+$",
+        "type": "string"
+      },
+      "GatewayId": {
+        "description": "The unique identifier assigned to your gateway during activation, extracted from the ARN.",
+        "maxLength": 30,
+        "minLength": 12,
+        "type": "string"
+      },
+      "GatewayName": {
+        "description": "The name you configured for your gateway.",
+        "maxLength": 255,
+        "minLength": 2,
+        "pattern": "^[ -\\.0-\\[\\]-~]*[!-\\.0-\\[\\]-~][ -\\.0-\\[\\]-~]*$",
+        "type": "string"
+      },
+      "GatewayNetworkInterfaces": {
+        "description": "A list of the gateway's network interfaces.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/NetworkInterface"
+        },
+        "type": "array"
+      },
+      "GatewayRegion": {
+        "description": "A value that indicates the Amazon Web Services Region where the gateway is activated.",
+        "maxLength": 25,
+        "minLength": 1,
+        "type": "string"
+      },
+      "GatewayState": {
+        "description": "A value that indicates the operating state of the gateway.",
+        "maxLength": 25,
+        "minLength": 2,
+        "type": "string"
+      },
+      "GatewayTimezone": {
+        "description": "A value that indicates the time zone configured for the gateway (e.g. GMT-4:00).",
+        "maxLength": 10,
+        "minLength": 3,
+        "type": "string"
+      },
+      "GatewayType": {
+        "description": "The type of gateway (e.g. STORED, CACHED, VTL, FILE_S3, FILE_FSX_SMB).",
+        "maxLength": 20,
+        "minLength": 2,
+        "type": "string"
+      },
+      "HostEnvironment": {
+        "description": "The type of hardware or software platform on which the gateway is running.",
+        "enum": [
+          "VMWARE",
+          "HYPER-V",
+          "EC2",
+          "KVM",
+          "OTHER",
+          "SNOWBALL"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A list of up to 50 tags assigned to the gateway.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/GatewayARN",
+      "/properties/GatewayId",
+      "/properties/GatewayState",
+      "/properties/GatewayNetworkInterfaces",
+      "/properties/Ec2InstanceId",
+      "/properties/Ec2InstanceRegion",
+      "/properties/HostEnvironment",
+      "/properties/EndpointType",
+      "/properties/Tags"
+    ],
+    "required": [
+      "GatewayName",
+      "GatewayTimezone",
+      "GatewayRegion"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "storagegateway:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::StorageGateway::Gateway"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-IoT-PolicyPrincipalAttachment",
+  "type": "AWS::IoT::PolicyPrincipalAttachment",
+  "time": "2026-10-01T20:53:05.822Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/PolicyName",
+      "/properties/Principal"
+    ],
+    "description": "Resource Type definition for AWS::IoT::PolicyPrincipalAttachment",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "iot:AttachPrincipalPolicy",
+          "iot:ListAttachedPolicies"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "iot:DetachPrincipalPolicy",
+          "iot:ListAttachedPolicies"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "Principal": {
+              "$ref": "resource-schema.json#/properties/Principal"
+            }
+          },
+          "required": [
+            "Principal"
+          ]
+        },
+        "permissions": [
+          "iot:ListAttachedPolicies"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "iot:ListAttachedPolicies"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/PolicyName",
+      "/properties/Principal"
+    ],
+    "properties": {
+      "PolicyName": {
+        "description": "The name of the AWS IoT policy",
+        "type": "string"
+      },
+      "Principal": {
+        "description": "The principal, which can be a certificate ARN (as returned from the CreateCertificate operation) or an Amazon Cognito ID",
+        "type": "string"
+      }
+    },
+    "required": [
+      "PolicyName",
+      "Principal"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::IoT::PolicyPrincipalAttachment"
+  }
+}

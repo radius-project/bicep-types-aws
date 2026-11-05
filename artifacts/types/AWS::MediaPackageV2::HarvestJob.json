@@ -1,0 +1,315 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaPackageV2-HarvestJob",
+  "type": "AWS::MediaPackageV2::HarvestJob",
+  "time": "2026-11-05T21:22:35.662Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ChannelGroupName",
+        "/properties/ChannelName",
+        "/properties/OriginEndpointName",
+        "/properties/HarvestJobName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ChannelGroupName",
+      "/properties/ChannelName",
+      "/properties/Description",
+      "/properties/Destination",
+      "/properties/HarvestJobName",
+      "/properties/HarvestedManifests",
+      "/properties/OriginEndpointName",
+      "/properties/ScheduleConfiguration",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "Destination": {
+        "additionalProperties": false,
+        "description": "The configuration for the destination where the harvested content will be exported.",
+        "properties": {
+          "S3Destination": {
+            "$ref": "#/definitions/S3DestinationConfig"
+          }
+        },
+        "required": [
+          "S3Destination"
+        ],
+        "type": "object"
+      },
+      "HarvestedDashManifest": {
+        "additionalProperties": false,
+        "description": "Information about a harvested DASH manifest.",
+        "properties": {
+          "ManifestName": {
+            "description": "The name of the harvested DASH manifest.",
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9_-]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ManifestName"
+        ],
+        "type": "object"
+      },
+      "HarvestedHlsManifest": {
+        "additionalProperties": false,
+        "description": "Information about a harvested HLS manifest.",
+        "properties": {
+          "ManifestName": {
+            "description": "The name of the harvested HLS manifest.",
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9_-]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ManifestName"
+        ],
+        "type": "object"
+      },
+      "HarvestedLowLatencyHlsManifest": {
+        "additionalProperties": false,
+        "description": "Information about a harvested Low-Latency HLS manifest.",
+        "properties": {
+          "ManifestName": {
+            "description": "The name of the harvested Low-Latency HLS manifest.",
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9_-]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ManifestName"
+        ],
+        "type": "object"
+      },
+      "HarvestedManifests": {
+        "additionalProperties": false,
+        "description": "A collection of harvested manifests of different types.",
+        "properties": {
+          "DashManifests": {
+            "description": "A list of harvested DASH manifests.",
+            "items": {
+              "$ref": "#/definitions/HarvestedDashManifest"
+            },
+            "type": "array"
+          },
+          "HlsManifests": {
+            "description": "A list of harvested HLS manifests.",
+            "items": {
+              "$ref": "#/definitions/HarvestedHlsManifest"
+            },
+            "type": "array"
+          },
+          "LowLatencyHlsManifests": {
+            "description": "A list of harvested Low-Latency HLS manifests.",
+            "items": {
+              "$ref": "#/definitions/HarvestedLowLatencyHlsManifest"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "HarvesterScheduleConfiguration": {
+        "additionalProperties": false,
+        "description": "Defines the schedule configuration for a harvest job.",
+        "properties": {
+          "EndTime": {
+            "description": "The end time for the harvest job.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "StartTime": {
+            "description": "The start time for the harvest job.",
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "StartTime",
+          "EndTime"
+        ],
+        "type": "object"
+      },
+      "S3DestinationConfig": {
+        "additionalProperties": false,
+        "description": "Configuration parameters for where in an S3 bucket to place the harvested content.",
+        "properties": {
+          "BucketName": {
+            "description": "The name of an S3 bucket within which harvested content will be exported.",
+            "maxLength": 63,
+            "minLength": 3,
+            "type": "string"
+          },
+          "DestinationPath": {
+            "description": "The path within the specified S3 bucket where the harvested content will be placed.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "pattern": "^[\\S]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "BucketName",
+          "DestinationPath"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Represents a harvest job resource in AWS Elemental MediaPackage V2, which is used to export content from an origin endpoint to an S3 bucket.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ChannelGroupName": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9_-]+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "ChannelGroupName"
+          ]
+        },
+        "permissions": [
+          "mediapackagev2:ListHarvestJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "mediapackagev2:GetHarvestJob",
+          "mediapackagev2:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the harvest job.",
+        "type": "string"
+      },
+      "ChannelGroupName": {
+        "description": "The name of the channel group containing the channel from which to harvest content.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9_-]+$",
+        "type": "string"
+      },
+      "ChannelName": {
+        "description": "The name of the channel from which to harvest content.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9_-]+$",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The date and time the harvest job was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "An optional description for the harvest job.",
+        "maxLength": 1024,
+        "minLength": 0,
+        "type": "string"
+      },
+      "Destination": {
+        "$ref": "#/definitions/Destination"
+      },
+      "HarvestJobName": {
+        "description": "A name for the harvest job. This name must be unique within the origin endpoint.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9_-]+$",
+        "type": "string"
+      },
+      "HarvestedManifests": {
+        "$ref": "#/definitions/HarvestedManifests"
+      },
+      "ModifiedAt": {
+        "description": "The date and time the harvest job was last modified.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "OriginEndpointName": {
+        "description": "The name of the origin endpoint from which to harvest content.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9_-]+$",
+        "type": "string"
+      },
+      "ScheduleConfiguration": {
+        "$ref": "#/definitions/HarvesterScheduleConfiguration"
+      },
+      "Status": {
+        "description": "The current status of the harvest job.",
+        "enum": [
+          "QUEUED",
+          "IN_PROGRESS",
+          "CANCELLED",
+          "COMPLETED",
+          "FAILED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A collection of tags associated with the harvest job.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/CreatedAt",
+      "/properties/ModifiedAt",
+      "/properties/Status"
+    ],
+    "required": [
+      "ChannelGroupName",
+      "ChannelName",
+      "OriginEndpointName",
+      "HarvestedManifests",
+      "ScheduleConfiguration",
+      "Destination"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "mediapackagev2:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::MediaPackageV2::HarvestJob"
+  }
+}

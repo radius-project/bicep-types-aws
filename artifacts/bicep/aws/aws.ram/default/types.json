@@ -298,6 +298,196 @@
     "writableScopes": 0
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.RAM/PrincipalAssociationProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.RAM/PrincipalAssociationProperties",
+    "properties": {
+      "AssociationType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The type of entity included in this association."
+      },
+      "CreationTime": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The date and time when the association was created."
+      },
+      "External": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "Indicates whether the principal belongs to the same organization in AWS Organizations as the AWS account that owns the resource share."
+      },
+      "LastUpdatedTime": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The date and time when the association was last updated."
+      },
+      "Principal": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "Specifies the principal to associate with the resource share. The possible values are:\n\n- An AWS account ID\n\n- An Amazon Resource Name (ARN) of an organization in AWS Organizations\n\n- An ARN of an organizational unit (OU) in AWS Organizations\n\n- An ARN of an IAM role\n\n- An ARN of an IAM user"
+      },
+      "ResourceShareArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "Specifies the [Amazon Resource Name (ARN)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of the resource share."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The current status of the association."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.RAM/PrincipalAssociation",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.RAM/PrincipalAssociation@default",
+    "body": {
+      "$ref": "#/18"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.RAM/ResourceAssociationProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.RAM/ResourceAssociationProperties",
+    "properties": {
+      "AssociationType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The type of entity included in this association."
+      },
+      "CreationTime": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The date and time when the association was created."
+      },
+      "External": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "Indicates whether the principal belongs to the same organization in AWS Organizations as the AWS account that owns the resource share."
+      },
+      "LastUpdatedTime": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The date and time when the association was last updated."
+      },
+      "ResourceArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "Specifies the [Amazon Resource Name (ARN)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of the resource to associate with the resource share."
+      },
+      "ResourceShareArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "Specifies the [Amazon Resource Name (ARN)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of the resource share."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The current status of the association."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.RAM/ResourceAssociation",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.RAM/ResourceAssociation@default",
+    "body": {
+      "$ref": "#/22"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
     "$type": "ObjectType",
     "name": "PermissionArnTemplateParameters",
     "properties": {
@@ -310,7 +500,7 @@
       },
       "PermissionTemplateParameters": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/28"
         },
         "flags": 0,
         "description": "The template parameters for the permission."
@@ -330,7 +520,7 @@
       },
       "Values": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/29"
         },
         "flags": 1,
         "description": "The values for the template parameter."
@@ -380,7 +570,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/17"
+      "$ref": "#/25"
     }
   },
   {
@@ -420,7 +610,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/19"
+      "$ref": "#/27"
     }
   },
   {
@@ -477,35 +667,35 @@
       },
       "PermissionArns": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/31"
         },
         "flags": 4,
         "description": "Specifies the [Amazon Resource Names (ARNs)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of the AWS RAM permission to associate with the resource share. If you do not specify an ARN for the permission, AWS RAM automatically attaches the default version of the permission for each resource type. You can associate only one permission with each resource type included in the resource share."
       },
       "Principals": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/32"
         },
         "flags": 4,
         "description": "Specifies the principals to associate with the resource share. The possible values are:\n\n- An AWS account ID\n\n- An Amazon Resource Name (ARN) of an organization in AWS Organizations\n\n- An ARN of an organizational unit (OU) in AWS Organizations\n\n- An ARN of an IAM role\n\n- An ARN of an IAM user"
       },
       "ResourceArns": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/33"
         },
         "flags": 4,
         "description": "Specifies a list of one or more ARNs of the resources to associate with the resource share."
       },
       "ResourceShareConfiguration": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/26"
         },
         "flags": 0,
         "description": "Specifies the configuration for the resource share"
       },
       "Sources": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/34"
         },
         "flags": 4,
         "description": "Specifies from which source accounts the service principal has access to the resources in this resource share."
@@ -519,7 +709,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/35"
         },
         "flags": 0,
         "description": "Specifies one or more tags to attach to the resource share itself. It doesn't attach the tags to the resources associated with the resource share."
@@ -546,7 +736,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/36"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -557,7 +747,95 @@
     "$type": "ResourceType",
     "name": "AWS.RAM/ResourceShare@default",
     "body": {
-      "$ref": "#/29"
+      "$ref": "#/37"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.RAM/SourceAssociationProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.RAM/SourceAssociationProperties",
+    "properties": {
+      "CreationTime": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The date and time when the association was created."
+      },
+      "LastUpdatedTime": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The date and time when the association was last updated."
+      },
+      "ResourceShareArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "Specifies the [Amazon Resource Name (ARN)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of the resource share."
+      },
+      "SourceId": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "Specifies the ID of the source account to associate with the resource share."
+      },
+      "SourceType": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The type of the source."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The current status of the association."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.RAM/SourceAssociation",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.RAM/SourceAssociation@default",
+    "body": {
+      "$ref": "#/41"
     },
     "readableScopes": 0,
     "writableScopes": 0

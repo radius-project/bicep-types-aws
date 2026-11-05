@@ -48,6 +48,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.S3/BucketPolicyProperties](#awss3bucketpolicyproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.S3/MultiRegionAccessPoint@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.S3/MultiRegionAccessPointProperties](#awss3multiregionaccesspointproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.S3/MultiRegionAccessPointPolicy@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -237,6 +245,14 @@
 * **MrapName**: string (Required, Identifier): The name of the Multi Region Access Point to apply policy
 * **Policy**: [MultiRegionAccessPointPolicy_Policy](#multiregionaccesspointpolicypolicy) (Required): Policy document to apply to a Multi Region Access Point
 * **PolicyStatus**: [MultiRegionAccessPointPolicy_PolicyStatus](#multiregionaccesspointpolicypolicystatus) (ReadOnly): The Policy Status associated with this Multi Region Access Point
+
+## AWS.S3/MultiRegionAccessPointProperties
+### Properties
+* **Alias**: string (ReadOnly): The alias is a unique identifier to, and is part of the public DNS name for this Multi Region Access Point
+* **CreatedAt**: string (ReadOnly): The timestamp of the when the Multi Region Access Point is created
+* **Name**: string (Identifier): The name you want to assign to this Multi Region Access Point.
+* **PublicAccessBlockConfiguration**: [PublicAccessBlockConfiguration](#publicaccessblockconfiguration): The PublicAccessBlock configuration that you want to apply to this Multi Region Access Point. You can enable the configuration options in any combination. For more information about when Amazon S3 considers a bucket or object public, see https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status 'The Meaning of Public' in the Amazon Simple Storage Service Developer Guide.
+* **Regions**: [Region](#region)[] (Required): The list of buckets that you want to associate this Multi Region Access Point with.
 
 ## AWS.S3/StorageLensGroupProperties
 ### Properties
@@ -556,6 +572,18 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 * **RestrictPublicBuckets**: bool: Specifies whether Amazon S3 should restrict public bucket policies for this bucket. Setting this element to ``TRUE`` restricts access to this bucket to only AWS-service principals and authorized users within this account if the bucket has a public policy.
  Enabling this setting doesn't affect previously stored bucket policies, except that public and cross-account access within any public bucket policy, including non-public delegation to specific accounts, is blocked.
 
+## PublicAccessBlockConfiguration
+### Properties
+* **BlockPublicAcls**: bool: Specifies whether Amazon S3 should block public access control lists (ACLs) for buckets in this account. Setting this element to TRUE causes the following behavior:
+- PUT Bucket acl and PUT Object acl calls fail if the specified ACL is public.
+ - PUT Object calls fail if the request includes a public ACL.
+. - PUT Bucket calls fail if the request includes a public ACL.
+Enabling this setting doesn't affect existing policies or ACLs.
+* **BlockPublicPolicy**: bool: Specifies whether Amazon S3 should block public bucket policies for buckets in this account. Setting this element to TRUE causes Amazon S3 to reject calls to PUT Bucket policy if the specified bucket policy allows public access. Enabling this setting doesn't affect existing bucket policies.
+* **IgnorePublicAcls**: bool: Specifies whether Amazon S3 should ignore public ACLs for buckets in this account. Setting this element to TRUE causes Amazon S3 to ignore all public ACLs on buckets in this account and any objects that they contain. Enabling this setting doesn't affect the persistence of any existing ACLs and doesn't prevent new public ACLs from being set.
+* **RestrictPublicBuckets**: bool: Specifies whether Amazon S3 should restrict public bucket policies for this bucket. Setting this element to TRUE restricts access to this bucket to only AWS services and authorized users within this account if the bucket has a public policy.
+Enabling this setting doesn't affect previously stored bucket policies, except that public and cross-account access within any public bucket policy, including non-public delegation to specific accounts, is blocked.
+
 ## QueueConfiguration
 ### Properties
 * **Event**: string (Required): The Amazon S3 bucket event about which you want to publish messages to Amazon SQS. For more information, see [Supported Event Types](https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html) in the *Amazon S3 User Guide*.
@@ -581,6 +609,11 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
   Replacement must be made for object keys containing special characters (such as carriage returns) when using XML requests. For more information, see [XML related object key constraints](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints).
 * **ReplaceKeyWith**: string: The specific object key to use in the redirect request. For example, redirect request to ``error.html``. Not required if one of the siblings is present. Can be present only if ``ReplaceKeyPrefixWith`` is not provided.
   Replacement must be made for object keys containing special characters (such as carriage returns) when using XML requests. For more information, see [XML related object key constraints](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints).
+
+## Region
+### Properties
+* **Bucket**: string (Required)
+* **BucketAccountId**: string
 
 ## ReplicaModifications
 ### Properties

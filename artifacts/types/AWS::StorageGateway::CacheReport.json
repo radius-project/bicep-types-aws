@@ -1,0 +1,198 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-StorageGateway-CacheReport",
+  "type": "AWS::StorageGateway::CacheReport",
+  "time": "2026-10-30T02:17:28.892Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/FileShareARN",
+      "/properties/LocationARN",
+      "/properties/Role",
+      "/properties/InclusionFilters",
+      "/properties/ExclusionFilters",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "CacheReportFilter": {
+        "additionalProperties": false,
+        "description": "A filter parameter and associated values that determine which files are included in or excluded from a cache report.",
+        "properties": {
+          "Name": {
+            "description": "The parameter name for the filter.",
+            "enum": [
+              "UploadFailureReason",
+              "UploadState"
+            ],
+            "type": "string"
+          },
+          "Values": {
+            "description": "The parameter values for the filter.",
+            "insertionOrder": false,
+            "items": {
+              "maxLength": 25,
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "Name",
+          "Values"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag. Cannot be prefixed with aws:.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag. Cannot be prefixed with aws:.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource type definition for AWS::StorageGateway::CacheReport. A cache report is a job that identifies files failing upload from an S3 File Gateway to Amazon S3. It is a read-only (job-type) resource.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "storagegateway:ListCacheReports"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "storagegateway:DescribeCacheReport",
+          "storagegateway:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/CacheReportARN"
+    ],
+    "properties": {
+      "CacheReportARN": {
+        "description": "The Amazon Resource Name (ARN) of the cache report.",
+        "maxLength": 500,
+        "minLength": 50,
+        "type": "string"
+      },
+      "CacheReportStatus": {
+        "description": "The status of the cache report.",
+        "enum": [
+          "IN_PROGRESS",
+          "COMPLETED",
+          "CANCELED",
+          "FAILED",
+          "ERROR"
+        ],
+        "type": "string"
+      },
+      "EndTime": {
+        "description": "The time at which the cache report generation ended.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ExclusionFilters": {
+        "description": "The list of filters that determine which files are excluded from the cache report.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/CacheReportFilter"
+        },
+        "type": "array"
+      },
+      "FileShareARN": {
+        "description": "The Amazon Resource Name (ARN) of the file share for which the cache report is generated.",
+        "maxLength": 500,
+        "minLength": 50,
+        "type": "string"
+      },
+      "InclusionFilters": {
+        "description": "The list of filters that determine which files are included in the cache report.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/CacheReportFilter"
+        },
+        "type": "array"
+      },
+      "LocationARN": {
+        "description": "The ARN of the Amazon S3 bucket (or access point) where the cache report is stored.",
+        "maxLength": 1400,
+        "minLength": 16,
+        "type": "string"
+      },
+      "ReportCompletionPercent": {
+        "description": "The percentage of the cache report generation that is complete.",
+        "maximum": 100,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "ReportName": {
+        "description": "The name of the cache report.",
+        "maxLength": 100,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Role": {
+        "description": "The ARN of the IAM role that the S3 File Gateway assumes when it accesses the underlying storage.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:(aws(|-cn|-us-gov|-iso[A-Za-z0-9_-]*|-eusc)):iam::([0-9]+):role/(\\S+)$",
+        "type": "string"
+      },
+      "StartTime": {
+        "description": "The time at which the cache report generation started.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A list of up to 50 key/value tags assigned to the cache report.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/CacheReportARN",
+      "/properties/CacheReportStatus",
+      "/properties/ReportName",
+      "/properties/ReportCompletionPercent",
+      "/properties/StartTime",
+      "/properties/EndTime"
+    ],
+    "required": [
+      "FileShareARN",
+      "LocationARN",
+      "Role"
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_StartCacheReport.html",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "storagegateway:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::StorageGateway::CacheReport"
+  }
+}

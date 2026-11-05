@@ -1,0 +1,299 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Transcribe-TranscriptionJob",
+  "type": "AWS::Transcribe::TranscriptionJob",
+  "time": "2026-11-05T01:39:30.286Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/TranscriptionJobName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ContentRedaction",
+      "/properties/LanguageCode",
+      "/properties/Media",
+      "/properties/MediaFormat",
+      "/properties/MediaSampleRateHertz",
+      "/properties/Settings",
+      "/properties/Subtitles",
+      "/properties/Tags",
+      "/properties/ToxicityDetection",
+      "/properties/TranscriptionJobName"
+    ],
+    "definitions": {
+      "ContentRedaction": {
+        "additionalProperties": false,
+        "properties": {
+          "PiiEntityTypes": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 11,
+            "minItems": 0,
+            "type": "array"
+          },
+          "RedactionOutput": {
+            "enum": [
+              "redacted",
+              "redacted_and_unredacted"
+            ],
+            "type": "string"
+          },
+          "RedactionType": {
+            "enum": [
+              "PII"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "RedactionType",
+          "RedactionOutput"
+        ],
+        "type": "object"
+      },
+      "Media": {
+        "additionalProperties": false,
+        "properties": {
+          "MediaFileUri": {
+            "description": "The Amazon S3 location of the media file",
+            "maxLength": 2000,
+            "minLength": 1,
+            "pattern": "^(s3://|http(s*)://).+$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Settings": {
+        "additionalProperties": false,
+        "properties": {
+          "ChannelIdentification": {
+            "type": "boolean"
+          },
+          "MaxAlternatives": {
+            "maximum": 10,
+            "minimum": 2,
+            "type": "integer"
+          },
+          "MaxSpeakerLabels": {
+            "maximum": 30,
+            "minimum": 2,
+            "type": "integer"
+          },
+          "ShowAlternatives": {
+            "type": "boolean"
+          },
+          "ShowSpeakerLabels": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "Subtitles": {
+        "additionalProperties": false,
+        "properties": {
+          "Formats": {
+            "items": {
+              "enum": [
+                "vtt",
+                "srt"
+              ],
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "ToxicityDetectionSettings": {
+        "additionalProperties": false,
+        "properties": {
+          "ToxicityCategories": {
+            "items": {
+              "enum": [
+                "ALL"
+              ],
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "ToxicityCategories"
+        ],
+        "type": "object"
+      },
+      "Transcript": {
+        "additionalProperties": false,
+        "properties": {
+          "RedactedTranscriptFileUri": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "pattern": "^(s3://|http(s*)://).+$",
+            "type": "string"
+          },
+          "TranscriptFileUri": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "pattern": "^(s3://|http(s*)://).+$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Transcribe::TranscriptionJob",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "transcribe:ListTranscriptionJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "transcribe:GetTranscriptionJob",
+          "transcribe:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the transcription job",
+        "maxLength": 1011,
+        "minLength": 1,
+        "pattern": "^arn:aws(-[^:]+)?:transcribe:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-Z-]*/[0-9a-zA-Z._-]+$",
+        "type": "string"
+      },
+      "ContentRedaction": {
+        "$ref": "#/definitions/ContentRedaction",
+        "description": "Content redaction settings"
+      },
+      "CreationTime": {
+        "description": "The date and time the transcription job was created",
+        "format": "date-time",
+        "type": "string"
+      },
+      "LanguageCode": {
+        "description": "The language code for the language spoken in the input media file",
+        "type": "string"
+      },
+      "Media": {
+        "$ref": "#/definitions/Media",
+        "description": "Describes the Amazon S3 location of the media file"
+      },
+      "MediaFormat": {
+        "description": "The format of the input media file",
+        "enum": [
+          "mp3",
+          "mp4",
+          "wav",
+          "flac",
+          "ogg",
+          "amr",
+          "webm",
+          "m4a"
+        ],
+        "type": "string"
+      },
+      "MediaSampleRateHertz": {
+        "description": "The sample rate, in hertz, of the audio track in the input media file",
+        "maximum": 48000,
+        "minimum": 8000,
+        "type": "integer"
+      },
+      "Settings": {
+        "$ref": "#/definitions/Settings",
+        "description": "Additional settings for the transcription job"
+      },
+      "Subtitles": {
+        "$ref": "#/definitions/Subtitles",
+        "description": "Subtitle generation settings"
+      },
+      "Tags": {
+        "description": "Tags associated with the transcription job",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "minItems": 1,
+        "type": "array"
+      },
+      "ToxicityDetection": {
+        "description": "Toxicity detection settings",
+        "items": {
+          "$ref": "#/definitions/ToxicityDetectionSettings"
+        },
+        "maxItems": 1,
+        "minItems": 1,
+        "type": "array"
+      },
+      "Transcript": {
+        "$ref": "#/definitions/Transcript",
+        "description": "The transcript output location"
+      },
+      "TranscriptionJobName": {
+        "description": "A unique name for the transcription job",
+        "maxLength": 200,
+        "minLength": 1,
+        "pattern": "^[0-9a-zA-Z._-]+$",
+        "type": "string"
+      },
+      "TranscriptionJobStatus": {
+        "description": "The status of the transcription job",
+        "enum": [
+          "QUEUED",
+          "IN_PROGRESS",
+          "FAILED",
+          "COMPLETED"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/TranscriptionJobStatus",
+      "/properties/Transcript",
+      "/properties/CreationTime"
+    ],
+    "required": [
+      "TranscriptionJobName",
+      "Media"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "transcribe:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Transcribe::TranscriptionJob"
+  }
+}

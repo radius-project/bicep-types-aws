@@ -1,0 +1,109 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NeptuneGraph-ImportTask",
+  "type": "AWS::NeptuneGraph::ImportTask",
+  "time": "2026-10-30T02:07:44.438Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/TaskId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Format",
+      "/properties/GraphIdentifier",
+      "/properties/ParquetType",
+      "/properties/RoleArn",
+      "/properties/Source"
+    ],
+    "description": "Represents an import task that loads data from Amazon S3 into an existing Neptune Analytics graph.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "neptune-graph:ListImportTasks"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "neptune-graph:GetImportTask"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of the import task.",
+        "type": "string"
+      },
+      "Format": {
+        "description": "Specifies the format of the Amazon S3 data to be imported.",
+        "enum": [
+          "CSV",
+          "OPEN_CYPHER",
+          "PARQUET",
+          "NTRIPLES"
+        ],
+        "type": "string"
+      },
+      "GraphIdentifier": {
+        "description": "The unique identifier of the Neptune Analytics graph that the data is imported into.",
+        "pattern": "^g-[a-z0-9]{10}$",
+        "type": "string"
+      },
+      "ParquetType": {
+        "description": "The parquet type of the import task.",
+        "enum": [
+          "COLUMNAR"
+        ],
+        "type": "string"
+      },
+      "RoleArn": {
+        "description": "The ARN of the IAM role that will allow access to the data that is to be imported.",
+        "pattern": "^arn:aws[^:]*:iam::\\d{12}:(role|role/service-role)(/[\\w+=,.@-]+)+$",
+        "type": "string"
+      },
+      "Source": {
+        "description": "A URL identifying the location of the data to be imported. This can be an Amazon S3 path, or can point to a Neptune database endpoint or snapshot.",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the import task.",
+        "enum": [
+          "INITIALIZING",
+          "EXPORTING",
+          "ANALYZING_DATA",
+          "IMPORTING",
+          "REPROVISIONING",
+          "ROLLING_BACK",
+          "SUCCEEDED",
+          "FAILED",
+          "CANCELLING",
+          "CANCELLED",
+          "DELETED"
+        ],
+        "type": "string"
+      },
+      "TaskId": {
+        "description": "The unique identifier of the import task.",
+        "pattern": "^t-[a-z0-9]{10}$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Status",
+      "/properties/TaskId"
+    ],
+    "required": [
+      "GraphIdentifier",
+      "Source",
+      "RoleArn"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::NeptuneGraph::ImportTask"
+  }
+}

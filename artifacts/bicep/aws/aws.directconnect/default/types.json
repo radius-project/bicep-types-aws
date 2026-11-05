@@ -905,6 +905,126 @@
   },
   {
     "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DirectConnect/ResiliencyGroupProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/43"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DirectConnect/ResiliencyGroupProperties",
+    "properties": {
+      "ConnectionArns": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0,
+        "description": "The ARNs of the connections that are members of the resiliency group. When specified, this is the complete, authoritative membership list: on update, connections not present are disassociated, and an explicit empty list removes all members. Omit the property to leave the existing membership unmanaged (unchanged on update). On create, an omitted or empty list means no connections are associated."
+      },
+      "IntendedResiliencyModel": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The resiliency model that the resiliency group is intended to meet. Required when creating a resiliency group."
+      },
+      "ResiliencyGroupArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the resiliency group."
+      },
+      "ResiliencyGroupId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ID of the resiliency group."
+      },
+      "ResiliencyGroupName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the resiliency group."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0,
+        "description": "The tags associated with the resiliency group."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DirectConnect/ResiliencyGroup",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DirectConnect/ResiliencyGroup@default",
+    "body": {
+      "$ref": "#/48"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "BgpPeer",
     "properties": {
       "AddressFamily": {
@@ -977,13 +1097,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/43"
+      "$ref": "#/50"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/44"
+      "$ref": "#/51"
     }
   },
   {
@@ -999,7 +1119,7 @@
       },
       "BgpPeers": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/53"
         },
         "flags": 3,
         "description": "The BGP peers configured on this virtual interface.."
@@ -1041,7 +1161,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/54"
         },
         "flags": 0,
         "description": "The tags associated with the private virtual interface."
@@ -1096,7 +1216,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/55"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1107,7 +1227,7 @@
     "$type": "ResourceType",
     "name": "AWS.DirectConnect/TransitVirtualInterface@default",
     "body": {
-      "$ref": "#/49"
+      "$ref": "#/56"
     },
     "readableScopes": 0,
     "writableScopes": 0

@@ -1,5 +1,13 @@
 # AWS.CloudWatch @ default
 
+## Resource AWS.CloudWatch/AccessGrant@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudWatch/AccessGrantProperties](#awscloudwatchaccessgrantproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.CloudWatch/AccessProfile@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -47,6 +55,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CloudWatch/DomainProperties](#awscloudwatchdomainproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.CloudWatch/DomainAccessGrantForOrganization@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudWatch/DomainAccessGrantForOrganizationProperties](#awscloudwatchdomainaccessgrantfororganizationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.CloudWatch/DomainForOrganization@default
 * **Readable Scope(s)**: None
@@ -128,6 +144,23 @@
 * **name**: string: the resource name
 * **properties**: [AWS.CloudWatch/ViewProperties](#awscloudwatchviewproperties) (Required, Identifier): properties of the resource
 
+## AccessGrant_ContextConditions
+### Properties
+
+## AccessGrant_Tags
+### Properties
+
+## AccessGrantPrincipal
+### Properties
+* **PrincipalAttributes**: [AccessGrantPrincipalAttribute](#accessgrantprincipalattribute)[]: Attribute conditions for attribute-based access. When provided, the grant targets any principal matching all specified conditions. Supported only for IDC_USER principals.
+* **PrincipalId**: string: The ID of the principal receiving the grant. An IAM principal ARN, an Identity Center UUID, or a service-defined identifier.
+* **PrincipalType**: string (Required): The type of principal receiving the grant.
+
+## AccessGrantPrincipalAttribute
+### Properties
+* **Key**: string (Required): The Identity Center user attribute to match on. One of userName, active, userStatus, displayName, email, name.givenName, name.familyName, enterprise.department, enterprise.division, enterprise.organization, enterprise.costCenter, or enterprise.employeeNumber.
+* **Value**: string (Required): The attribute value.
+
 ## ActionConfiguration
 ### Properties
 * **AlarmTagsPropagation**: [AlarmTagsPropagation](#alarmtagspropagation): Whether the alarm's tags are included in its action notifications and state-change events.
@@ -180,6 +213,23 @@
 * **Enabled**: bool (Required): Whether the alarm's tags are included in its action notifications and state-change events.
 * **ExcludedTagKeys**: string[]: The tag keys to leave out. Cannot be specified together with IncludedTagKeys.
 * **IncludedTagKeys**: string[]: The only tag keys to include. Cannot be specified together with ExcludedTagKeys.
+
+## AWS.CloudWatch/AccessGrantProperties
+### Properties
+* **AccountId**: string (ReadOnly): The AWS account ID that owns the grant.
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the access grant.
+* **CreatedAt**: string (ReadOnly): The timestamp when the grant was created.
+* **CreatedBy**: string (ReadOnly): The principal that created the grant.
+* **DomainId**: string (Required): The ID of the domain the grant belongs to.
+* **GrantId**: string (ReadOnly): The unique ID of the access grant.
+* **GrantType**: string (ReadOnly): Who manages the grant.
+* **Name**: string (Required): A name that identifies the access grant.
+* **Permission**: string (Required): The permission granted.
+* **Principal**: [AccessGrantPrincipal](#accessgrantprincipal) (Required): The principal receiving the grant.
+* **ScopedActions**: [ScopedActions](#scopedactions)[] (WriteOnly): Groups of actions allowed by the grant, each with the resource scopes and conditions that limit those actions.
+* **SpaceId**: string (Required): The space this grant applies to. Domain-scoped grants are returned by ListDomainAccessGrantsForOrganization instead.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **UpdatedAt**: string (ReadOnly): The timestamp when the grant was last updated.
 
 ## AWS.CloudWatch/AccessProfileProperties
 ### Properties
@@ -276,6 +326,20 @@
 * **DashboardName**: string (Identifier): The name of the dashboard. The name must be between 1 and 255 characters. If you do not specify a name, one will be generated automatically.
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs to associate with the cloudwatch dashboard. You can associate up to 50 tags with a dashboard
 
+## AWS.CloudWatch/DomainAccessGrantForOrganizationProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the access grant.
+* **CreatedAt**: string (ReadOnly): The timestamp when the grant was created.
+* **CreatedBy**: string (ReadOnly): The principal that created the grant.
+* **DomainId**: string (Required): The ID of the organization domain the grant belongs to.
+* **GrantId**: string (ReadOnly): The unique ID of the access grant.
+* **GrantType**: string (ReadOnly): Who manages the grant.
+* **Name**: string (Required): A name that identifies the access grant.
+* **Permission**: string (Required): The permission granted.
+* **Principal**: [OrganizationAccessGrantPrincipal](#organizationaccessgrantprincipal) (Required): The principal receiving the grant.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **UpdatedAt**: string (ReadOnly): The timestamp when the grant was last updated.
+
 ## AWS.CloudWatch/DomainForOrganizationProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the organization domain.
@@ -297,13 +361,13 @@
 
 ## AWS.CloudWatch/DomainProperties
 ### Properties
-* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the resource.
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the domain.
 * **CreatedAt**: string (ReadOnly): The timestamp when the domain was created.
 * **CustomEndpointUrls**: string[] (ReadOnly): Additional endpoint URLs derived from the domain name.
 * **DomainEndpointUrl**: string (ReadOnly): The HTTPS endpoint URL for accessing the domain.
 * **DomainId**: string (ReadOnly): The unique ID of the domain.
 * **IdentityCenterApplicationArn**: string (ReadOnly): The ARN of the Identity Center application. Absent for IAM-only domains.
-* **IdentityProviderConfiguration**: [IdentityProviderConfiguration](#identityproviderconfiguration)
+* **IdentityProviderConfiguration**: [IdentityProviderConfiguration](#identityproviderconfiguration): Identity provider configuration for the domain.
 * **IdentityProviders**: string[] (Required): The identity providers configured for the domain.
 * **Name**: string (Required): A name that identifies the domain.
 * **Region**: string (ReadOnly): The Region where this domain was created.
@@ -523,14 +587,39 @@
 * **MetricName**: string (Required): The name of the metric.
 * **Namespace**: string (Required): The namespace of the metric.
 
+## OrganizationAccessGrantPrincipal
+### Properties
+* **PrincipalAttributes**: [PrincipalAttribute](#principalattribute)[]: Attribute key-value pairs that select the principals the grant applies to.
+* **PrincipalId**: string: The identifier of the principal, such as an IAM role ARN or an Identity Center user ID.
+* **PrincipalType**: string (Required): The type of principal the grant is issued to.
+
 ## OTelEnrichmentMetricSelector
 ### Properties
 * **MetricNames**: string[]: Absent or empty means every metric in this namespace, in whichever direction this selector appears. Present means only these metric names.
 * **Namespace**: string (Required): The CloudWatch namespace this selector applies to.
 
+## PrincipalAttribute
+### Properties
+* **Key**: string (Required): The attribute name.
+* **Value**: string (Required): The attribute value.
+
 ## ResourceMetricSelection
 ### Properties
 * **IncludeMetrics**: string[] (Required): The list of metric names to include in detailed monitoring for the resource.
+
+## ResourceScope
+### Properties
+* **ResourceArns**: string[]: Specific resource ARNs or ARN patterns. When set, actions are limited to these resources. When absent, defaults to all resources of the type.
+* **ResourceType**: string (Required): The resource type name, for example DataSet or OmniDashboard.
+* **RowScopeGroups**: [RowScope](#rowscope)[][]: Row-level filters for this scope, as an OR of AND-groups: a row is visible when it matches every filter in any one group. Requires SignalTypes.
+* **SignalTypes**: string[]: Signal types this scope's row filtering applies to. Required when RowScopeGroups is set.
+* **Tags**: [AccessGrant_Tags](#accessgranttags): Tag-based conditions for dynamic resource scoping. Access applies only to resources carrying all of the specified tag key-value pairs.
+
+## RowScope
+### Properties
+* **Field**: string (Required): The field the allowlist applies to, for example serviceName or accountId.
+* **Operator**: string (Required): Match operator applied to this filter's values.
+* **Values**: string[] (Required): The values the field is matched against.
 
 ## ScheduleConfiguration
 ### Properties
@@ -546,6 +635,17 @@
 * **ScheduleConfiguration**: [ScheduleConfiguration](#scheduleconfiguration) (Required): The schedule configuration.
 * **ScheduledQueryRoleARN**: string (Required): The ARN of the IAM role that grants permissions to execute the scheduled query.
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs to associate with the scheduled query that backs the log alarm.
+
+## ScopedActions
+### Properties
+* **Actions**: string[] (Required): The actions this group applies to, each in vendor-code:Action form.
+* **ContextConditions**: [AccessGrant_ContextConditions](#accessgrantcontextconditions): Context conditions for fine-grained access control on these actions, as a map of condition keys to lists of allowed values.
+* **Resources**: [ResourceScope](#resourcescope)[]: Resource scopes constraining these actions to specific resources.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
 
 ## Tag
 ### Properties
@@ -571,6 +671,11 @@
 ### Properties
 * **Key**: string (Required): A unique identifier for the tag. The combination of tag keys and values can help you organize and categorize your resources.
 * **Value**: string (Required): The value for the specified tag key.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
 
 ## Tag
 ### Properties

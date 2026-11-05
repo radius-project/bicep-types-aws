@@ -128,6 +128,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Cognito/UserPoolUICustomizationAttachmentProperties](#awscognitouserpooluicustomizationattachmentproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Cognito/UserPoolUser@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Cognito/UserPoolUserProperties](#awscognitouserpooluserproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Cognito/UserPoolUserToGroupAttachment@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Cognito/UserPoolUserToGroupAttachmentProperties](#awscognitouserpoolusertogroupattachmentproperties) (Required, Identifier): properties of the resource
+
 ## AccountRecoverySetting
 ### Properties
 * **RecoveryMechanisms**: [RecoveryOption](#recoveryoption)[]
@@ -173,6 +189,11 @@
 * **ColorMode**: string (Required)
 * **Extension**: string (Required)
 * **ResourceId**: string
+
+## AttributeType
+### Properties
+* **Name**: string
+* **Value**: string
 
 ## AWS.Cognito/IdentityPoolPrincipalTagProperties
 ### Properties
@@ -359,6 +380,23 @@
 ### Properties
 * **ClientId**: string (Required, Identifier)
 * **CSS**: string
+* **UserPoolId**: string (Required, Identifier)
+
+## AWS.Cognito/UserPoolUserProperties
+### Properties
+* **ClientMetadata**: [UserPoolUser_ClientMetadata](#userpooluserclientmetadata) (WriteOnly)
+* **DesiredDeliveryMediums**: string[] (WriteOnly)
+* **ForceAliasCreation**: bool (WriteOnly)
+* **MessageAction**: string (WriteOnly)
+* **UserAttributes**: [AttributeType](#attributetype)[]
+* **Username**: string (Identifier)
+* **UserPoolId**: string (Required, Identifier)
+* **ValidationData**: [AttributeType](#attributetype)[] (WriteOnly)
+
+## AWS.Cognito/UserPoolUserToGroupAttachmentProperties
+### Properties
+* **GroupName**: string (Required, Identifier)
+* **Username**: string (Required, Identifier)
 * **UserPoolId**: string (Required, Identifier)
 
 ## CloudWatchLogsConfiguration
@@ -699,6 +737,9 @@
 ### Properties
 
 ## UserPoolReplica_UserPoolTagsAtCreate
+### Properties
+
+## UserPoolUser_ClientMetadata
 ### Properties
 
 ## VerificationMessageTemplate

@@ -24,6 +24,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.AppStream/ApplicationProperties](#awsappstreamapplicationproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.AppStream/ApplicationEntitlementAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.AppStream/ApplicationEntitlementAssociationProperties](#awsappstreamapplicationentitlementassociationproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.AppStream/ApplicationFleetAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.AppStream/ApplicationFleetAssociationProperties](#awsappstreamapplicationfleetassociationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.AppStream/DirectoryConfig@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -48,6 +64,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.AppStream/FleetProperties](#awsappstreamfleetproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.AppStream/Image@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.AppStream/ImageProperties](#awsappstreamimageproperties) (Identifier): properties of the resource
+
+## Resource AWS.AppStream/ImageBuilder@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.AppStream/ImageBuilderProperties](#awsappstreamimagebuilderproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.AppStream/Stack@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -63,6 +95,27 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.AppStream/StackFleetAssociationProperties](#awsappstreamstackfleetassociationproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.AppStream/StackUserAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.AppStream/StackUserAssociationProperties](#awsappstreamstackuserassociationproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.AppStream/User@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.AppStream/UserProperties](#awsappstreamuserproperties) (Required, Identifier): properties of the resource
+
+## AccessEndpoint
+### Properties
+* **EndpointType**: string (Required)
+* **VpceId**: string (Required)
 
 ## AccessEndpoint
 ### Properties
@@ -87,6 +140,15 @@
 ### Properties
 * **AgentAction**: string (Required): The agent action to configure. Valid values are COMPUTER_VISION, COMPUTER_INPUT, and FORWARD_MCP_TOOLS. COMPUTER_VISION allows agents to take screenshots of the desktop. COMPUTER_INPUT allows agents to click, type, and scroll on the desktop and requires COMPUTER_VISION to also be enabled. FORWARD_MCP_TOOLS allows agents to interact with applications and the desktop operating system through direct MCP calls rather than using computer use tools. Forwards MCP tools configured on the WorkSpaces application session to the agent.
 * **Permission**: string (Required): Whether the agent action is enabled or disabled.
+
+## Application
+### Properties
+* **DisplayName**: string: The application name to display.
+* **Enabled**: bool: Whether the application is enabled. AppStream can disable an application after image creation if there is a problem with it, so a healthy image reports true and this is the one Application member whose value is the service's judgement rather than an echo of the imported catalog.
+* **LaunchParameters**: string: The arguments passed to the application at launch.
+* **LaunchPath**: string: The path to the application executable in the instance.
+* **Metadata**: [Image_Metadata](#imagemetadata): Additional service-defined attributes describing the application. The keys are chosen by AppStream rather than by the caller, so the shape is a string map; a healthy imported image reports WORKING_DIRECTORY.
+* **Name**: string: The name of the application.
 
 ## ApplicationSettings
 ### Properties
@@ -127,6 +189,17 @@
 * **SetupScriptDetails**: [ScriptDetails](#scriptdetails)
 * **SourceS3Location**: [S3Location](#s3location) (Required)
 * **Tags**: [Tag](#tag)[]
+
+## AWS.AppStream/ApplicationEntitlementAssociationProperties
+### Properties
+* **ApplicationIdentifier**: string (Required, Identifier)
+* **EntitlementName**: string (Required, Identifier)
+* **StackName**: string (Required, Identifier)
+
+## AWS.AppStream/ApplicationFleetAssociationProperties
+### Properties
+* **ApplicationArn**: string (Required, Identifier)
+* **FleetName**: string (Required, Identifier)
 
 ## AWS.AppStream/ApplicationProperties
 ### Properties
@@ -191,6 +264,48 @@
 * **UsbDeviceFilterStrings**: string[]
 * **VpcConfig**: [VpcConfig](#vpcconfig)
 
+## AWS.AppStream/ImageBuilderProperties
+### Properties
+* **AccessEndpoints**: [AccessEndpoint](#accessendpoint)[]
+* **AppstreamAgentVersion**: string
+* **Description**: string
+* **DisableIMDSV1**: bool
+* **DisplayName**: string
+* **DomainJoinInfo**: [DomainJoinInfo](#domainjoininfo)
+* **EnableDefaultInternetAccess**: bool
+* **IamRoleArn**: string
+* **ImageArn**: string
+* **ImageName**: string (WriteOnly)
+* **InstanceType**: string (Required)
+* **Name**: string (Required, Identifier)
+* **RootVolumeConfig**: [VolumeConfig](#volumeconfig)
+* **SoftwaresToInstall**: string[] (WriteOnly)
+* **SoftwaresToUninstall**: string[] (WriteOnly)
+* **StreamingUrl**: string (ReadOnly)
+* **Tags**: [Tag](#tag)[]
+* **VpcConfig**: [VpcConfig](#vpcconfig)
+
+## AWS.AppStream/ImageProperties
+### Properties
+* **Applications**: [Application](#application)[] (ReadOnly): The applications associated with the image.
+* **AppstreamAgentVersion**: string (ReadOnly): The version of the AppStream agent reported for this image.
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the image.
+* **CreatedTime**: string (ReadOnly): The time the image was created.
+* **Description**: string (ReadOnly): The description displayed for the image.
+* **DisplayName**: string (ReadOnly): The name displayed for the image.
+* **DynamicAppProvidersEnabled**: string (ReadOnly): Indicates whether dynamic app providers are enabled within the image.
+* **ImageBuilderSupported**: bool (ReadOnly): Indicates whether an image builder can be launched from this image.
+* **ImageSharedWithOthers**: string (ReadOnly): Indicates whether the image is shared with another AWS account.
+* **ImageType**: string (ReadOnly): The type of the image.
+* **LatestAppstreamAgentVersion**: string (ReadOnly): Indicates whether the image is using the latest AppStream agent version.
+* **ManagedSoftwareIncluded**: bool (ReadOnly): Indicates whether the image includes license-included applications.
+* **Name**: string (ReadOnly): The unique name of the image.
+* **Platform**: string (ReadOnly): The operating system platform of the image.
+* **State**: string (ReadOnly): The state of the image.
+* **SupportedInstanceFamilies**: string[] (ReadOnly): The instance families that can launch from this image.
+* **Tags**: [Tag](#tag)[] (ReadOnly): The tags associated with the image.
+* **Visibility**: string (ReadOnly): Indicates whether the image is public, private, or shared.
+
 ## AWS.AppStream/StackFleetAssociationProperties
 ### Properties
 * **FleetName**: string (Required, Identifier): The name of the fleet. To associate a fleet with a stack, you must specify a dependency on the fleet resource.
@@ -215,6 +330,22 @@
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs.
 * **UserSettings**: [UserSetting](#usersetting)[]: The actions that are enabled or disabled for users during their streaming sessions. By default, these actions are enabled.
 
+## AWS.AppStream/StackUserAssociationProperties
+### Properties
+* **AuthenticationType**: string (Required, Identifier): The authentication type for the user who is associated with the stack. You must specify USERPOOL.
+* **SendEmailNotification**: bool: Specifies whether a welcome email is sent to a user after the user is created in the user pool.
+* **StackName**: string (Required, Identifier): The name of the stack that is associated with the user.
+* **UserName**: string (Required, Identifier): The name of the user who is associated with the stack.
+
+## AWS.AppStream/UserProperties
+### Properties
+* **Arn**: string (ReadOnly): Returns the Amazon Resource Name (ARN) for the Amazon AppStream User resource.
+* **AuthenticationType**: string (Required, Identifier): The authentication type for the user.
+* **FirstName**: string: The first name, or given name, of the user.
+* **LastName**: string: The last name, or surname, of the user.
+* **MessageAction**: string (WriteOnly): The action to take for the welcome email that is sent to a user after the user is created in the user pool. If you specify SUPPRESS, no email is sent. If you specify RESEND, do not specify the first name or last name of the user. If the value is null, the email is sent.
+* **UserName**: string (Required, Identifier): The email address of the user.
+
 ## CertificateBasedAuthProperties
 ### Properties
 * **CertificateAuthorityArn**: string
@@ -233,6 +364,14 @@
 ### Properties
 * **DirectoryName**: string
 * **OrganizationalUnitDistinguishedName**: string
+
+## DomainJoinInfo
+### Properties
+* **DirectoryName**: string
+* **OrganizationalUnitDistinguishedName**: string
+
+## Image_Metadata
+### Properties
 
 ## S3Location
 ### Properties
@@ -289,6 +428,16 @@
 
 ## Tag
 ### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
 * **Key**: string (Required): The key of the tag.
 * **Value**: string (Required): The value of the tag.
 
@@ -307,6 +456,15 @@
 ## VolumeConfig
 ### Properties
 * **VolumeSizeInGb**: int
+
+## VolumeConfig
+### Properties
+* **VolumeSizeInGb**: int
+
+## VpcConfig
+### Properties
+* **SecurityGroupIds**: string[]
+* **SubnetIds**: string[]
 
 ## VpcConfig
 ### Properties

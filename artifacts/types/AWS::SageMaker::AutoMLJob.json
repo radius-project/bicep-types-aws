@@ -1,0 +1,832 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-AutoMLJob",
+  "type": "AWS::SageMaker::AutoMLJob",
+  "time": "2026-11-05T21:17:50.244Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/AutoMLJobName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/AutoMLJobInputDataConfig",
+      "/properties/OutputDataConfig",
+      "/properties/RoleArn",
+      "/properties/AutoMLJobObjective",
+      "/properties/AutoMLProblemTypeConfig",
+      "/properties/SecurityConfig",
+      "/properties/DataSplitConfig",
+      "/properties/AutoMLComputeConfig",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "AutoMLAlgorithmConfig": {
+        "additionalProperties": false,
+        "description": "The selection of algorithms trained on your dataset to generate the model candidates.",
+        "properties": {
+          "AutoMLAlgorithms": {
+            "description": "The selection of algorithms trained on your dataset to generate the model candidates.",
+            "insertionOrder": false,
+            "items": {
+              "enum": [
+                "xgboost",
+                "linear-learner",
+                "mlp",
+                "lightgbm",
+                "catboost",
+                "randomforest",
+                "extra-trees",
+                "nn-torch",
+                "fastai",
+                "cnn-qr",
+                "deepar",
+                "prophet",
+                "npts",
+                "arima",
+                "ets"
+              ],
+              "type": "string"
+            },
+            "maxItems": 11,
+            "minItems": 0,
+            "type": "array"
+          }
+        },
+        "required": [
+          "AutoMLAlgorithms"
+        ],
+        "type": "object"
+      },
+      "AutoMLComputeConfig": {
+        "additionalProperties": false,
+        "description": "This data type is intended for use exclusively by SageMaker Canvas and cannot be used in other contexts at the moment.",
+        "properties": {
+          "EmrServerlessComputeConfig": {
+            "$ref": "#/definitions/EmrServerlessComputeConfig",
+            "description": "The configuration for using EMR Serverless to run the AutoML job V2."
+          }
+        },
+        "type": "object"
+      },
+      "AutoMLDataSource": {
+        "additionalProperties": false,
+        "description": "The data source for the AutoML job V2.",
+        "properties": {
+          "S3DataSource": {
+            "$ref": "#/definitions/AutoMLS3DataSource",
+            "description": "The Amazon S3 location of the input data."
+          }
+        },
+        "required": [
+          "S3DataSource"
+        ],
+        "type": "object"
+      },
+      "AutoMLDataSplitConfig": {
+        "additionalProperties": false,
+        "description": "This structure specifies how to split the data into train and validation datasets.",
+        "properties": {
+          "ValidationFraction": {
+            "description": "The validation fraction (optional) is a float that specifies the portion of the training dataset to be used for validation.",
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "AutoMLJobChannel": {
+        "additionalProperties": false,
+        "description": "A channel is a named input source that training algorithms can consume.",
+        "properties": {
+          "ChannelType": {
+            "description": "The type of channel.",
+            "enum": [
+              "training",
+              "validation"
+            ],
+            "type": "string"
+          },
+          "CompressionType": {
+            "description": "The compression type of the data.",
+            "enum": [
+              "None",
+              "Gzip"
+            ],
+            "type": "string"
+          },
+          "ContentType": {
+            "description": "The content type of the data from the input source.",
+            "maxLength": 256,
+            "pattern": ".*",
+            "type": "string"
+          },
+          "DataSource": {
+            "$ref": "#/definitions/AutoMLDataSource",
+            "description": "The data source for the channel."
+          }
+        },
+        "type": "object"
+      },
+      "AutoMLJobCompletionCriteria": {
+        "additionalProperties": false,
+        "description": "How long a job is allowed to run, or how many candidates a job is allowed to generate.",
+        "properties": {
+          "MaxAutoMLJobRuntimeInSeconds": {
+            "description": "The maximum runtime, in seconds, an AutoML job has to complete.",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "MaxCandidates": {
+            "description": "The maximum number of times a training job is allowed to run.",
+            "maximum": 750,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "MaxRuntimePerTrainingJobInSeconds": {
+            "description": "The maximum time, in seconds, that each training job executed inside hyperparameter tuning is allowed to run.",
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "AutoMLJobObjective": {
+        "additionalProperties": false,
+        "description": "The objective metric for the AutoML job.",
+        "properties": {
+          "MetricName": {
+            "description": "The name of the objective metric.",
+            "enum": [
+              "Accuracy",
+              "MSE",
+              "F1",
+              "F1macro",
+              "AUC",
+              "RMSE",
+              "BalancedAccuracy",
+              "R2",
+              "Recall",
+              "RecallMacro",
+              "Precision",
+              "PrecisionMacro",
+              "MAE",
+              "MAPE",
+              "MASE",
+              "WAPE",
+              "AverageWeightedQuantileLoss"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "MetricName"
+        ],
+        "type": "object"
+      },
+      "AutoMLOutputDataConfig": {
+        "additionalProperties": false,
+        "description": "The output data configuration.",
+        "properties": {
+          "KmsKeyId": {
+            "description": "The KMS encryption key ID.",
+            "maxLength": 2048,
+            "pattern": "^[a-zA-Z0-9:/_-]*$",
+            "type": "string"
+          },
+          "S3OutputPath": {
+            "description": "The Amazon S3 output path.",
+            "maxLength": 1024,
+            "pattern": "^(https|s3)://([^/]+)/?(.*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "S3OutputPath"
+        ],
+        "type": "object"
+      },
+      "AutoMLProblemTypeConfig": {
+        "additionalProperties": false,
+        "description": "A collection of settings specific to the problem type used to configure an AutoML job V2. There must be one and only one config of the following type.",
+        "properties": {
+          "ImageClassificationJobConfig": {
+            "$ref": "#/definitions/ImageClassificationJobConfig",
+            "description": "Settings used to configure an AutoML job V2 for the image classification problem type."
+          },
+          "TabularJobConfig": {
+            "$ref": "#/definitions/TabularJobConfig",
+            "description": "Settings used to configure an AutoML job V2 for the tabular problem type (regression, classification)."
+          },
+          "TextClassificationJobConfig": {
+            "$ref": "#/definitions/TextClassificationJobConfig",
+            "description": "Settings used to configure an AutoML job V2 for the text classification problem type."
+          },
+          "TextGenerationJobConfig": {
+            "$ref": "#/definitions/TextGenerationJobConfig",
+            "description": "Settings used to configure an AutoML job V2 for the text generation (LLMs fine-tuning) problem type."
+          },
+          "TimeSeriesForecastingJobConfig": {
+            "$ref": "#/definitions/TimeSeriesForecastingJobConfig",
+            "description": "Settings used to configure an AutoML job V2 for the time-series forecasting problem type."
+          }
+        },
+        "type": "object"
+      },
+      "AutoMLS3DataSource": {
+        "additionalProperties": false,
+        "description": "The Amazon S3 data source.",
+        "properties": {
+          "S3DataType": {
+            "description": "The data type.",
+            "enum": [
+              "ManifestFile",
+              "S3Prefix",
+              "AugmentedManifestFile"
+            ],
+            "type": "string"
+          },
+          "S3Uri": {
+            "description": "The URL to the Amazon S3 data source.",
+            "maxLength": 1024,
+            "pattern": "^(https|s3)://([^/]+)/?(.*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "S3DataType",
+          "S3Uri"
+        ],
+        "type": "object"
+      },
+      "AutoMLSecurityConfig": {
+        "additionalProperties": false,
+        "description": "Security options.",
+        "properties": {
+          "EnableInterContainerTrafficEncryption": {
+            "description": "Whether to use traffic encryption between the container layers.",
+            "type": "boolean"
+          },
+          "VolumeKmsKeyId": {
+            "description": "The key used to encrypt stored data.",
+            "maxLength": 2048,
+            "pattern": "^[a-zA-Z0-9:/_-]*$",
+            "type": "string"
+          },
+          "VpcConfig": {
+            "$ref": "#/definitions/VpcConfig",
+            "description": "The VPC configuration."
+          }
+        },
+        "type": "object"
+      },
+      "CandidateGenerationConfig": {
+        "additionalProperties": false,
+        "description": "Stores the configuration information for how model candidates are generated.",
+        "properties": {
+          "AlgorithmsConfig": {
+            "description": "Stores the configuration information for the selection of algorithms trained on tabular data.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/AutoMLAlgorithmConfig"
+            },
+            "maxItems": 1,
+            "minItems": 0,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "EmrServerlessComputeConfig": {
+        "additionalProperties": false,
+        "description": "This data type is intended for use exclusively by SageMaker Canvas and cannot be used in other contexts at the moment.",
+        "properties": {
+          "ExecutionRoleARN": {
+            "description": "The ARN of the IAM role that is used to access the data.",
+            "maxLength": 2048,
+            "minLength": 20,
+            "pattern": "^arn:aws[a-z\\-]*:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ExecutionRoleARN"
+        ],
+        "type": "object"
+      },
+      "HolidayConfigAttributes": {
+        "additionalProperties": false,
+        "description": "Stores the holiday featurization attributes applicable to each item of time-series datasets during the training of a forecasting model.",
+        "properties": {
+          "CountryCode": {
+            "description": "The country code for the holiday calendar.",
+            "maxLength": 2,
+            "minLength": 2,
+            "pattern": "^[A-Z]{2}$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ImageClassificationJobConfig": {
+        "additionalProperties": false,
+        "description": "The collection of settings used by an AutoML job V2 for the image classification problem type.",
+        "properties": {
+          "CompletionCriteria": {
+            "$ref": "#/definitions/AutoMLJobCompletionCriteria",
+            "description": "How long a job is allowed to run, or how many candidates a job is allowed to generate."
+          }
+        },
+        "type": "object"
+      },
+      "ModelAccessConfig": {
+        "additionalProperties": false,
+        "description": "The access configuration file to control access to the ML model.",
+        "properties": {
+          "AcceptEula": {
+            "description": "Specifies agreement to the model end-user license agreement (EULA).",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "AcceptEula"
+        ],
+        "type": "object"
+      },
+      "TabularJobConfig": {
+        "additionalProperties": false,
+        "description": "The collection of settings used by an AutoML job V2 for the tabular problem type.",
+        "properties": {
+          "CandidateGenerationConfig": {
+            "$ref": "#/definitions/CandidateGenerationConfig",
+            "description": "Stores the configuration information for how model candidates are generated."
+          },
+          "CompletionCriteria": {
+            "$ref": "#/definitions/AutoMLJobCompletionCriteria",
+            "description": "How long a job is allowed to run, or how many candidates a job is allowed to generate."
+          },
+          "FeatureSpecificationS3Uri": {
+            "description": "A URL to the Amazon S3 data source containing selected features.",
+            "maxLength": 1024,
+            "pattern": "^(https|s3)://([^/]+)/?(.*)$",
+            "type": "string"
+          },
+          "GenerateCandidateDefinitionsOnly": {
+            "description": "Generates possible candidates without training the models.",
+            "type": "boolean"
+          },
+          "Mode": {
+            "description": "The method that Autopilot uses to train the data.",
+            "enum": [
+              "AUTO",
+              "ENSEMBLING",
+              "HYPERPARAMETER_TUNING"
+            ],
+            "type": "string"
+          },
+          "ProblemType": {
+            "description": "The type of supervised learning problem available for the model candidates of the AutoML job V2.",
+            "enum": [
+              "BinaryClassification",
+              "MulticlassClassification",
+              "Regression"
+            ],
+            "type": "string"
+          },
+          "SampleWeightAttributeName": {
+            "description": "If specified, this column name indicates which column of the dataset should be treated as sample weights for use by the objective metric during the training, evaluation, and the selection of the best model.",
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9_-]+$",
+            "type": "string"
+          },
+          "TargetAttributeName": {
+            "description": "The name of the target variable in supervised learning.",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "TargetAttributeName"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair for tagging.",
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "TextClassificationJobConfig": {
+        "additionalProperties": false,
+        "description": "The collection of settings used by an AutoML job V2 for the text classification problem type.",
+        "properties": {
+          "CompletionCriteria": {
+            "$ref": "#/definitions/AutoMLJobCompletionCriteria",
+            "description": "How long a job is allowed to run, or how many candidates a job is allowed to generate."
+          },
+          "ContentColumn": {
+            "description": "The name of the column used to provide the sentences to be classified.",
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "TargetLabelColumn": {
+            "description": "The name of the column used to provide the class labels.",
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "ContentColumn",
+          "TargetLabelColumn"
+        ],
+        "type": "object"
+      },
+      "TextGenerationJobConfig": {
+        "additionalProperties": false,
+        "description": "The collection of settings used by an AutoML job V2 for the text generation problem type.",
+        "properties": {
+          "BaseModelName": {
+            "description": "The name of the base model to fine-tune.",
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9])*$",
+            "type": "string"
+          },
+          "CompletionCriteria": {
+            "$ref": "#/definitions/AutoMLJobCompletionCriteria",
+            "description": "How long a fine-tuning job is allowed to run."
+          },
+          "ModelAccessConfig": {
+            "$ref": "#/definitions/ModelAccessConfig",
+            "description": "The access configuration file to control access to the ML model."
+          },
+          "TextGenerationHyperParameters": {
+            "additionalProperties": false,
+            "description": "The hyperparameters used to configure and optimize the learning process of the base model.",
+            "patternProperties": {
+              "^[a-zA-Z0-9._-]+$": {
+                "maxLength": 16,
+                "pattern": "^[a-zA-Z0-9._-]+$",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "TimeSeriesConfig": {
+        "additionalProperties": false,
+        "description": "The collection of components that defines the time-series.",
+        "properties": {
+          "GroupingAttributeNames": {
+            "description": "A set of columns names that can be grouped with the item identifier column to create a composite key for which a target value is predicted.",
+            "insertionOrder": false,
+            "items": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 5,
+            "minItems": 1,
+            "type": "array"
+          },
+          "ItemIdentifierAttributeName": {
+            "description": "The name of the column that represents the set of item identifiers for which you want to predict the target value.",
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "TargetAttributeName": {
+            "description": "The name of the column representing the target variable that you want to predict for each item in your dataset.",
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "TimestampAttributeName": {
+            "description": "The name of the column indicating a point in time at which the target value of a given item is recorded.",
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "TargetAttributeName",
+          "TimestampAttributeName",
+          "ItemIdentifierAttributeName"
+        ],
+        "type": "object"
+      },
+      "TimeSeriesForecastingJobConfig": {
+        "additionalProperties": false,
+        "description": "The collection of settings used by an AutoML job V2 for the time-series forecasting problem type.",
+        "properties": {
+          "CandidateGenerationConfig": {
+            "$ref": "#/definitions/CandidateGenerationConfig",
+            "description": "Stores the configuration information for how model candidates are generated."
+          },
+          "CompletionCriteria": {
+            "$ref": "#/definitions/AutoMLJobCompletionCriteria",
+            "description": "How long a job is allowed to run, or how many candidates a job is allowed to generate."
+          },
+          "FeatureSpecificationS3Uri": {
+            "description": "A URL to the Amazon S3 data source containing additional selected features.",
+            "maxLength": 1024,
+            "pattern": "^(https|s3)://([^/]+)/?(.*)$",
+            "type": "string"
+          },
+          "ForecastFrequency": {
+            "description": "The frequency of predictions in a forecast.",
+            "maxLength": 5,
+            "minLength": 1,
+            "pattern": "^1Y|Y|([1-9]|1[0-1])M|M|[1-4]W|W|[1-6]D|D|([1-9]|1[0-9]|2[0-3])H|H|([1-9]|[1-5][0-9])min$",
+            "type": "string"
+          },
+          "ForecastHorizon": {
+            "description": "The number of time-steps that the model predicts.",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "ForecastQuantiles": {
+            "description": "The quantiles used to train the model for forecasts at a specified quantile.",
+            "insertionOrder": false,
+            "items": {
+              "maxLength": 4,
+              "minLength": 2,
+              "pattern": "^(^p[1-9]\\d?$)$",
+              "type": "string"
+            },
+            "maxItems": 5,
+            "minItems": 1,
+            "type": "array"
+          },
+          "HolidayConfig": {
+            "description": "The collection of holiday featurization attributes used to incorporate national holiday information into your forecasting model.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/HolidayConfigAttributes"
+            },
+            "maxItems": 1,
+            "minItems": 1,
+            "type": "array"
+          },
+          "TimeSeriesConfig": {
+            "$ref": "#/definitions/TimeSeriesConfig",
+            "description": "The collection of components that defines the time-series."
+          },
+          "Transformations": {
+            "$ref": "#/definitions/TimeSeriesTransformations",
+            "description": "The transformations modifying specific attributes of the time-series."
+          }
+        },
+        "required": [
+          "ForecastFrequency",
+          "ForecastHorizon",
+          "TimeSeriesConfig"
+        ],
+        "type": "object"
+      },
+      "TimeSeriesTransformations": {
+        "additionalProperties": false,
+        "description": "Transformations allowed on the dataset.",
+        "properties": {
+          "Aggregation": {
+            "additionalProperties": false,
+            "description": "A key value pair defining the aggregation method for a column, where the key is the column name and the value is the aggregation method.",
+            "patternProperties": {
+              "^.{1,256}$": {
+                "enum": [
+                  "sum",
+                  "avg",
+                  "first",
+                  "min",
+                  "max"
+                ],
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "Filling": {
+            "additionalProperties": false,
+            "description": "A key value pair defining the filling method for a column, where the key is the column name and the value is an object which defines the filling logic.",
+            "patternProperties": {
+              "^.{1,256}$": {
+                "additionalProperties": false,
+                "patternProperties": {
+                  "^(frontfill|middlefill|backfill|futurefill|frontfill_value|middlefill_value|backfill_value|futurefill_value)$": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "VpcConfig": {
+        "additionalProperties": false,
+        "description": "VPC configuration.",
+        "properties": {
+          "SecurityGroupIds": {
+            "description": "The VPC security group IDs.",
+            "insertionOrder": false,
+            "items": {
+              "maxLength": 32,
+              "pattern": "^[-0-9a-zA-Z]+$",
+              "type": "string"
+            },
+            "maxItems": 5,
+            "minItems": 1,
+            "type": "array"
+          },
+          "Subnets": {
+            "description": "The VPC subnet IDs.",
+            "insertionOrder": false,
+            "items": {
+              "maxLength": 32,
+              "pattern": "^[-0-9a-zA-Z]+$",
+              "type": "string"
+            },
+            "maxItems": 16,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "SecurityGroupIds",
+          "Subnets"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::SageMaker::AutoMLJob",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "sagemaker:ListAutoMLJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "sagemaker:DescribeAutoMLJobV2",
+          "sagemaker:ListTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/AutoMLJobArn"
+    ],
+    "properties": {
+      "AutoMLComputeConfig": {
+        "$ref": "#/definitions/AutoMLComputeConfig",
+        "description": "The compute configuration used for the AutoML job V2."
+      },
+      "AutoMLJobArn": {
+        "description": "The ARN of the AutoML job.",
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
+      "AutoMLJobInputDataConfig": {
+        "description": "An array of channel objects describing the input data and its location.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/AutoMLJobChannel"
+        },
+        "maxItems": 2,
+        "minItems": 1,
+        "type": "array"
+      },
+      "AutoMLJobName": {
+        "description": "The name of the AutoML job.",
+        "maxLength": 32,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,31}$",
+        "type": "string"
+      },
+      "AutoMLJobObjective": {
+        "$ref": "#/definitions/AutoMLJobObjective",
+        "description": "The objective metric for the AutoML job."
+      },
+      "AutoMLJobSecondaryStatus": {
+        "description": "The secondary status of the AutoML job.",
+        "type": "string"
+      },
+      "AutoMLJobStatus": {
+        "description": "The status of the AutoML job.",
+        "enum": [
+          "Completed",
+          "InProgress",
+          "Failed",
+          "Stopped",
+          "Stopping"
+        ],
+        "type": "string"
+      },
+      "AutoMLProblemTypeConfig": {
+        "$ref": "#/definitions/AutoMLProblemTypeConfig",
+        "description": "The configuration of the problem type for the AutoML job V2."
+      },
+      "AutoMLProblemTypeConfigName": {
+        "description": "The name of the problem type configuration used for the AutoML job V2.",
+        "enum": [
+          "ImageClassification",
+          "TextClassification",
+          "TimeSeriesForecasting",
+          "Tabular",
+          "TextGeneration"
+        ],
+        "type": "string"
+      },
+      "CreationTime": {
+        "description": "The creation time of the AutoML job.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DataSplitConfig": {
+        "$ref": "#/definitions/AutoMLDataSplitConfig",
+        "description": "The configuration for splitting the input training dataset."
+      },
+      "EndTime": {
+        "description": "The end time of the AutoML job.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "LastModifiedTime": {
+        "description": "The last modified time of the AutoML job.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "OutputDataConfig": {
+        "$ref": "#/definitions/AutoMLOutputDataConfig",
+        "description": "The output data configuration."
+      },
+      "RoleArn": {
+        "description": "The ARN of the role used to access the data.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws[a-z\\-]*:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$",
+        "type": "string"
+      },
+      "SecurityConfig": {
+        "$ref": "#/definitions/AutoMLSecurityConfig",
+        "description": "The security configuration for traffic encryption or Amazon VPC settings."
+      },
+      "Tags": {
+        "description": "Tags for the AutoML job.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/AutoMLJobArn",
+      "/properties/AutoMLJobName",
+      "/properties/AutoMLProblemTypeConfigName",
+      "/properties/AutoMLJobStatus",
+      "/properties/AutoMLJobSecondaryStatus",
+      "/properties/CreationTime",
+      "/properties/EndTime",
+      "/properties/LastModifiedTime"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "sagemaker:ListTags"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::SageMaker::AutoMLJob"
+  }
+}

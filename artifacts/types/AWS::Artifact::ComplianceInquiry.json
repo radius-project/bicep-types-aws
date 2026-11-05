@@ -1,0 +1,150 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Artifact-ComplianceInquiry",
+  "type": "AWS::Artifact::ComplianceInquiry",
+  "time": "2026-10-12T16:58:48.566Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with the compliance inquiry resource.",
+        "properties": {
+          "Key": {
+            "description": "A tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9\\s_.:/=+\\-@]*$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "A tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9\\s_.:/=+\\-@]*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource schema for AWS Artifact ComplianceInquiry",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "artifact:ListComplianceInquiries"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "artifact:GetComplianceInquiryMetadata",
+          "artifact:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the compliance inquiry resource.",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "Timestamp indicating when the resource was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Id": {
+        "description": "Unique resource ID for the compliance inquiry.",
+        "pattern": "^compliance-inquiry-[a-zA-Z0-9]{16}$",
+        "type": "string"
+      },
+      "InputSource": {
+        "description": "Type of inquiry content (text or file).",
+        "enum": [
+          "TEXT",
+          "FILE"
+        ],
+        "type": "string"
+      },
+      "Name": {
+        "description": "Title of the inquiry. Service-derived, which is why it is readOnly even though CreateComplianceInquiry accepts a name member: for a text inquiry the service DISCARDS the supplied name and sets this to the query text, and for a file inquiry to the uploaded file name. Measured -- sending name 'uluru-ct-probe-t93' with query 'Does AWS maintain a SOC 2 Type II report?' returned the query as the name on create, getMetadata and list alike. An accepted input is not an honoured input, so modelling it as settable would misrepresent the API.",
+        "type": "string"
+      },
+      "Status": {
+        "description": "Current processing status of the inquiry.",
+        "enum": [
+          "PROCESSING",
+          "HUMAN_REVIEW",
+          "COMPLETED",
+          "FAILED"
+        ],
+        "type": "string"
+      },
+      "StatusMessage": {
+        "description": "Status message providing additional context.",
+        "enum": [
+          "Compliance inquiry processing is complete.",
+          "Malware was detected on the file. Provide a new file and try again.",
+          "Compliance inquiry processing is in-progress.",
+          "An internal error occurred while processing the inquiry. Try again at a later time.",
+          "Human review is in progress.",
+          "Compliance inquiry processing is complete. One or more queries encountered errors during processing."
+        ],
+        "type": "string"
+      },
+      "SupportMode": {
+        "description": "Support mode for this inquiry. AI_ONLY provides AI-generated responses. FULL_SUPPORT includes human expert review. readOnly because the service assigns it on the only path this resource can be provisioned through: CreateComplianceInquiry documents supportMode as supported for file-upload mode only, and a text inquiry is assigned AI_ONLY by the service (measured). Settability on the text path was deliberately NOT probed, because the only discriminating probe is to request FULL_SUPPORT, which routes the inquiry to human expert review -- not a negligible-cost call.",
+        "enum": [
+          "AI_ONLY",
+          "FULL_SUPPORT"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags to associate with the compliance inquiry resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "UpdatedAt": {
+        "description": "Timestamp indicating when the resource was last modified.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Id",
+      "/properties/Name",
+      "/properties/Status",
+      "/properties/StatusMessage",
+      "/properties/InputSource",
+      "/properties/SupportMode",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "artifact:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Artifact::ComplianceInquiry"
+  }
+}

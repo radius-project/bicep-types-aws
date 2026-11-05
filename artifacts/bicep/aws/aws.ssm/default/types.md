@@ -8,6 +8,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SSM/AssociationProperties](#awsssmassociationproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.SSM/AutomationExecution@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SSM/AutomationExecutionProperties](#awsssmautomationexecutionproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.SSM/CloudConnector@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -47,6 +55,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SSM/MaintenanceWindowTaskProperties](#awsssmmaintenancewindowtaskproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.SSM/ManagedInstance@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SSM/ManagedInstanceProperties](#awsssmmanagedinstanceproperties) (Identifier): properties of the resource
 
 ## Resource AWS.SSM/OpsItem@default
 * **Readable Scope(s)**: None
@@ -96,6 +112,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SSM/ServiceSettingProperties](#awsssmservicesettingproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.SSM/Session@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SSM/SessionProperties](#awsssmsessionproperties) (Identifier): properties of the resource
+
 ## Association_Parameters
 ### Properties
 
@@ -127,6 +151,18 @@
 * **Tags**: [Tag](#tag)[]: A key-value pair to associate with a resource.
 * **Targets**: [Target](#target)[]: The targets that the SSM document sends commands to.
 * **WaitForSuccessTimeoutSeconds**: int (WriteOnly)
+
+## AWS.SSM/AutomationExecutionProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the Automation execution.
+* **AutomationExecutionId**: string (ReadOnly): The unique identifier of the Automation execution.
+* **AutomationExecutionStatus**: string (ReadOnly): The execution status of the Automation.
+* **DocumentName**: string (Required): The name of the Automation runbook (SSM document) used during the execution.
+* **DocumentVersion**: string (ReadOnly): The version of the Automation runbook used during the execution.
+* **ExecutedBy**: string (ReadOnly): The Amazon Resource Name (ARN) of the user or role that ran the automation.
+* **ExecutionStartTime**: string (ReadOnly): The time, in ISO-8601 Extended format, when the execution started.
+* **Mode**: string (ReadOnly): The automation execution mode.
+* **Tags**: [Tag](#tag)[]: Optional metadata assigned to the Automation execution.
 
 ## AWS.SSM/CloudConnectorProperties
 ### Properties
@@ -196,6 +232,21 @@
 * **TaskType**: string (Required): The type of task.
 * **WindowId**: string (Required, Identifier): The ID of the maintenance window where the task is registered.
 * **WindowTaskId**: string (ReadOnly, Identifier): Unique identifier of the maintenance window task.
+
+## AWS.SSM/ManagedInstanceProperties
+### Properties
+* **AgentVersion**: string (ReadOnly): The version of SSM Agent running on the managed node.
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the managed instance.
+* **ComputerName**: string (ReadOnly): The fully qualified host name of the managed node.
+* **InstanceId**: string (ReadOnly): The managed node ID.
+* **IPAddress**: string (ReadOnly): The IP address of the managed node.
+* **IsLatestVersion**: bool (ReadOnly): Indicates whether the latest version of SSM Agent is running on the managed node.
+* **PingStatus**: string (ReadOnly): Connection status of SSM Agent.
+* **PlatformName**: string (ReadOnly): The name of the operating system platform running on the managed node.
+* **PlatformType**: string (ReadOnly): The operating system platform type.
+* **PlatformVersion**: string (ReadOnly): The version of the OS platform running on the managed node.
+* **ResourceType**: string (ReadOnly): The type of instance. Instances are either EC2 instances or managed instances.
+* **Tags**: [ManagedInstance_Tags](#managedinstancetags)[]: Tags assigned to the managed instance.
 
 ## AWS.SSM/OpsItemProperties
 ### Properties
@@ -280,6 +331,17 @@
 * **SettingId**: string (Required): The ID of the service setting, such as /ssm/parameter-store/high-throughput-enabled.
 * **SettingValue**: string (Required): The value of the service setting.
 * **Status**: string (ReadOnly): The status of the service setting. The value can be Default, Customized or PendingUpdate.
+
+## AWS.SSM/SessionProperties
+### Properties
+* **AccessType**: string (ReadOnly): The access type for the session.
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the session.
+* **Owner**: string (ReadOnly): The ID of the Amazon Web Services user that started the session.
+* **Reason**: string: The reason for connecting to the instance.
+* **SessionId**: string (ReadOnly): The ID of the session.
+* **StartDate**: string (ReadOnly): The date and time, in ISO-8601 Extended format, when the session began.
+* **Status**: string (ReadOnly): The status of the session.
+* **Target**: string: The managed node to connect to for the session.
 
 ## AwsOrganizationsSource
 ### Properties
@@ -366,6 +428,11 @@
 ## MaintenanceWindowTask_TaskParameters
 ### Properties
 
+## ManagedInstance_Tags
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
 ## NotificationConfig
 ### Properties
 * **NotificationArn**: string (Required)
@@ -422,6 +489,11 @@
 * **IncludeFutureRegions**: bool
 * **SourceRegions**: string[] (Required)
 * **SourceType**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The name of the tag.
+* **Value**: string (Required): The value of the tag.
 
 ## Tag
 ### Properties

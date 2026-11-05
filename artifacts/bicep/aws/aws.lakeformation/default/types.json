@@ -6,6 +6,950 @@
   },
   {
     "$type": "ObjectType",
+    "name": "ColumnNames",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ColumnWildcard",
+    "properties": {
+      "ExcludedColumnNames": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "A list of column names to be excluded from the Data Cells Filter."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NameString",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RowFilter",
+    "properties": {
+      "AllRowsWildcard": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "An empty object representing a row wildcard."
+      },
+      "FilterExpression": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "A PartiQL predicate."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataCellsFilter_AllRowsWildcard",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.LakeFormation/DataCellsFilterProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.LakeFormation/DataCellsFilterProperties",
+    "properties": {
+      "ColumnNames": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "A list of columns to be included in this Data Cells Filter."
+      },
+      "ColumnWildcard": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "An object representing the Data Cells Filter's Columns. Either Column Names or a Wildcard is required"
+      },
+      "DatabaseName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "The name of the Database that the Table resides in."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "The desired name of the Data Cells Filter."
+      },
+      "RowFilter": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "An object representing the Data Cells Filter's Row Filter. Either a Filter Expression or a Wildcard is required"
+      },
+      "TableCatalogId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "The Catalog Id of the Table on which to create a Data Cells Filter."
+      },
+      "TableName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "The name of the Table to create a Data Cells Filter for."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.LakeFormation/DataCellsFilter",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.LakeFormation/DataCellsFilter@default",
+    "body": {
+      "$ref": "#/12"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CatalogIdString",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CatalogResource",
+    "properties": {
+      "Id": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "An identifier for the catalog resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ColumnNames",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ColumnWildcard",
+    "properties": {
+      "ExcludedColumnNames": {
+        "type": {
+          "$ref": "#/49"
+        },
+        "flags": 0,
+        "description": "Excludes column names. Any column with this name will be excluded."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataCellsFilterResource",
+    "properties": {
+      "DatabaseName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "A database in the GLUDC."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The name given by the user to the data filter cell."
+      },
+      "TableCatalogId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The ID of the catalog to which the table belongs."
+      },
+      "TableName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The name of the table."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataLakePrincipal",
+    "properties": {
+      "DataLakePrincipalIdentifier": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "An identifier for the LFlong principal."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataLakePrincipalList",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataLakePrincipalString",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataLocationResource",
+    "properties": {
+      "CatalogId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The identifier for the GLUDC where the location is registered with LFlong."
+      },
+      "ResourceArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) that uniquely identifies the data location resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DatabaseResource",
+    "properties": {
+      "CatalogId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The identifier for the Data Catalog. By default, it is the account ID of the caller."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The name of the database resource. Unique to the Data Catalog."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Expression",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IAMRoleArn",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LFTag",
+    "properties": {
+      "TagKey": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The key-name for the LF-tag."
+      },
+      "TagValues": {
+        "type": {
+          "$ref": "#/52"
+        },
+        "flags": 0,
+        "description": "A list of possible values of the corresponding ``TagKey`` of an LF-tag key-value pair."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LFTagKey",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LFTagKeyResource",
+    "properties": {
+      "CatalogId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The identifier for the GLUDC where the location is registered with GLUDC."
+      },
+      "TagKey": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The key-name for the LF-tag."
+      },
+      "TagValues": {
+        "type": {
+          "$ref": "#/53"
+        },
+        "flags": 1,
+        "description": "A list of possible values for the corresponding ``TagKey`` of an LF-tag key-value pair."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LFTagPair",
+    "properties": {
+      "CatalogId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "TagKey": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "TagValues": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LFTagPolicyResource",
+    "properties": {
+      "CatalogId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The identifier for the GLUDC. The GLUDC is the persistent metadata store. It contains database definitions, table definitions, and other control information to manage your LFlong environment."
+      },
+      "Expression": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 1,
+        "description": "A list of LF-tag conditions that apply to the resource's LF-tag policy."
+      },
+      "ResourceType": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The resource type for which the LF-tag policy applies."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LFTagValue",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LFTagsList",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NameString",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NullableBoolean",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PathString",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Permission",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PermissionList",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PrincipalPermissions",
+    "properties": {
+      "DataLakePrincipal": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0
+      },
+      "PermissionList": {
+        "type": {
+          "$ref": "#/61"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PrincipalPermissionsList",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PrincipalResourcePair",
+    "properties": {
+      "Principal": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1
+      },
+      "Resource": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Resource",
+    "properties": {
+      "Catalog": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "The identifier for the Data Catalog. By default, the account ID. The Data Catalog is the persistent metadata store. It contains database definitions, table definitions, and other control information to manage your LFlong environment."
+      },
+      "DataCellsFilter": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0,
+        "description": "A data cell filter."
+      },
+      "DataLocation": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "The location of an Amazon S3 path where permissions are granted or revoked."
+      },
+      "Database": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "The database for the resource. Unique to the Data Catalog. A database is a set of associated table definitions organized into a logical group. You can Grant and Revoke database permissions to a principal."
+      },
+      "LFTag": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 0,
+        "description": "The LF-tag key and values attached to a resource."
+      },
+      "LFTagPolicy": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 0,
+        "description": "A list of LF-tag conditions that define a resource's LF-tag policy."
+      },
+      "Table": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0,
+        "description": "The table for the resource. A table is a metadata definition that represents your data. You can Grant and Revoke table privileges to a principal."
+      },
+      "TableWithColumns": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0,
+        "description": "The table with columns for the resource. A principal with permissions to this resource can select metadata from the columns of a table in the Data Catalog and the underlying data in Amazon S3."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResourceArnString",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResourceType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TableResource",
+    "properties": {
+      "CatalogId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The identifier for the Data Catalog. By default, it is the account ID of the caller."
+      },
+      "DatabaseName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The name of the database for the table. Unique to a Data Catalog. A database is a set of associated table definitions organized into a logical group. You can Grant and Revoke database privileges to a principal."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The name of the table."
+      },
+      "TableWildcard": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0,
+        "description": "A wildcard object representing every table under a database.\n At least one of ``TableResource$Name`` or ``TableResource$TableWildcard`` is required."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TableWildcard",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TableWithColumnsResource",
+    "properties": {
+      "CatalogId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The identifier for the GLUDC where the location is registered with LFlong."
+      },
+      "ColumnNames": {
+        "type": {
+          "$ref": "#/63"
+        },
+        "flags": 0,
+        "description": "The list of column names for the table. At least one of ``ColumnNames`` or ``ColumnWildcard`` is required."
+      },
+      "ColumnWildcard": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "A wildcard specified by a ``ColumnWildcard`` object. At least one of ``ColumnNames`` or ``ColumnWildcard`` is required."
+      },
+      "DatabaseName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The name of the database for the table with columns resource. Unique to the Data Catalog. A database is a set of associated table definitions organized into a logical group. You can Grant and Revoke database privileges to a principal."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The name of the table resource. A table is a metadata definition that represents your data. You can Grant and Revoke table privileges to a principal."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TagValueList",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/19"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/26"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/26"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/29"
+    }
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "NullType"
+  },
+  {
+    "$type": "UnionType",
+    "elements": [
+      {
+        "$ref": "#/57"
+      },
+      {
+        "$ref": "#/58"
+      }
+    ]
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/38"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.LakeFormation/PrincipalPermissionsProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.LakeFormation/PrincipalPermissionsProperties",
+    "properties": {
+      "Catalog": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 4,
+        "description": "The identifier for the GLUDC. By default, the account ID. The GLUDC is the persistent metadata store. It contains database definitions, table definitions, and other control information to manage your Lake Formation environment."
+      },
+      "Permissions": {
+        "type": {
+          "$ref": "#/66"
+        },
+        "flags": 1,
+        "description": "The permissions granted or revoked."
+      },
+      "PermissionsWithGrantOption": {
+        "type": {
+          "$ref": "#/67"
+        },
+        "flags": 1,
+        "description": "Indicates the ability to grant permissions (as a subset of permissions granted)."
+      },
+      "Principal": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1,
+        "description": "The principal to be granted a permission."
+      },
+      "PrincipalIdentifier": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": ""
+      },
+      "Resource": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 1,
+        "description": "The resource to be granted or revoked permissions."
+      },
+      "ResourceIdentifier": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": ""
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.LakeFormation/PrincipalPermissions",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/68"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.LakeFormation/PrincipalPermissions@default",
+    "body": {
+      "$ref": "#/69"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.LakeFormation/ResourceProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.LakeFormation/ResourceProperties",
+    "properties": {
+      "HybridAccessEnabled": {
+        "type": {
+          "$ref": "#/57"
+        },
+        "flags": 0,
+        "description": "Indicates whether the data access of tables pointing to the location can be managed by both Lake Formation permissions as well as Amazon S3 bucket policies."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "The CloudFormation primary identifier for the LakeFormation::Resource. Mirrors ResourceArn once the resource exists; populated by the handler. Customers should reference the LakeFormation::Resource by ResourceArn."
+      },
+      "ResourceArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the Data Source."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The IAM role that registered a resource."
+      },
+      "UseServiceLinkedRole": {
+        "type": {
+          "$ref": "#/57"
+        },
+        "flags": 5,
+        "description": "Designates a trusted caller, an IAM principal, by registering this caller with the Data Catalog."
+      },
+      "WithFederation": {
+        "type": {
+          "$ref": "#/57"
+        },
+        "flags": 0,
+        "description": "Allows Lake Formation to assume a role to access tables in a federated database."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.LakeFormation/Resource",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/72"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.LakeFormation/Resource@default",
+    "body": {
+      "$ref": "#/73"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CatalogIdString",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "LFTagKey",
     "properties": {}
   },
@@ -20,12 +964,9 @@
     "properties": {}
   },
   {
-    "$type": "StringType"
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/5"
     }
   },
   {
@@ -35,7 +976,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/5"
     }
   },
   {
@@ -44,21 +985,21 @@
     "properties": {
       "CatalogId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The identifier for the Data Catalog. By default, the account ID. The Data Catalog is the persistent metadata store. It contains database definitions, table definitions, and other control information to manage your Lake Formation environment."
       },
       "TagKey": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "The key-name for the LF-tag."
       },
       "TagValues": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/81"
         },
         "flags": 1,
         "description": "A list of possible values an attribute can take."
@@ -71,21 +1012,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/82"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -96,7 +1037,316 @@
     "$type": "ResourceType",
     "name": "AWS.LakeFormation/Tag@default",
     "body": {
-      "$ref": "#/9"
+      "$ref": "#/83"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CatalogIdString",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CatalogResource",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ColumnNames",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataLakePrincipal",
+    "properties": {
+      "DataLakePrincipalIdentifier": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataLakePrincipalString",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DatabaseResource",
+    "properties": {
+      "CatalogId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LFTagKey",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LFTagPair",
+    "properties": {
+      "CatalogId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "TagKey": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "TagValues": {
+        "type": {
+          "$ref": "#/103"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LFTagValue",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LFTagsList",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NameString",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Resource",
+    "properties": {
+      "Catalog": {
+        "type": {
+          "$ref": "#/86"
+        },
+        "flags": 0
+      },
+      "Database": {
+        "type": {
+          "$ref": "#/90"
+        },
+        "flags": 0
+      },
+      "Table": {
+        "type": {
+          "$ref": "#/98"
+        },
+        "flags": 0
+      },
+      "TableWithColumns": {
+        "type": {
+          "$ref": "#/100"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResourceType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TableResource",
+    "properties": {
+      "CatalogId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "DatabaseName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "TableWildcard": {
+        "type": {
+          "$ref": "#/99"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TableWildcard",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TableWithColumnsResource",
+    "properties": {
+      "CatalogId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "ColumnNames": {
+        "type": {
+          "$ref": "#/105"
+        },
+        "flags": 1
+      },
+      "DatabaseName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TagValueList",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/92"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.LakeFormation/TagAssociationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/92"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.LakeFormation/TagAssociationProperties",
+    "properties": {
+      "LFTags": {
+        "type": {
+          "$ref": "#/108"
+        },
+        "flags": 1,
+        "description": "List of Lake Formation Tags to associate with the Lake Formation Resource"
+      },
+      "Resource": {
+        "type": {
+          "$ref": "#/96"
+        },
+        "flags": 1,
+        "description": "Resource to tag with the Lake Formation Tags"
+      },
+      "ResourceIdentifier": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "Unique string identifying the resource. Used as primary identifier, which ideally should be a string"
+      },
+      "TagsIdentifier": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "Unique string identifying the resource's tags. Used as primary identifier, which ideally should be a string"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.LakeFormation/TagAssociation",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/109"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.LakeFormation/TagAssociation@default",
+    "body": {
+      "$ref": "#/110"
     },
     "readableScopes": 0,
     "writableScopes": 0

@@ -1,5 +1,29 @@
 # AWS.StorageGateway @ default
 
+## Resource AWS.StorageGateway/CacheReport@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.StorageGateway/CacheReportProperties](#awsstoragegatewaycachereportproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.StorageGateway/Device@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.StorageGateway/DeviceProperties](#awsstoragegatewaydeviceproperties) (Identifier): properties of the resource
+
+## Resource AWS.StorageGateway/Gateway@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.StorageGateway/GatewayProperties](#awsstoragegatewaygatewayproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.StorageGateway/NFSFileShare@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -39,6 +63,48 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.StorageGateway/VolumeProperties](#awsstoragegatewayvolumeproperties) (Required, Identifier): properties of the resource
+
+## AWS.StorageGateway/CacheReportProperties
+### Properties
+* **CacheReportARN**: string (Identifier): The Amazon Resource Name (ARN) of the cache report.
+* **CacheReportStatus**: string (ReadOnly): The status of the cache report.
+* **EndTime**: string (ReadOnly): The time at which the cache report generation ended.
+* **ExclusionFilters**: [CacheReportFilter](#cachereportfilter)[]: The list of filters that determine which files are excluded from the cache report.
+* **FileShareARN**: string (Required): The Amazon Resource Name (ARN) of the file share for which the cache report is generated.
+* **InclusionFilters**: [CacheReportFilter](#cachereportfilter)[]: The list of filters that determine which files are included in the cache report.
+* **LocationARN**: string (Required): The ARN of the Amazon S3 bucket (or access point) where the cache report is stored.
+* **ReportCompletionPercent**: int (ReadOnly): The percentage of the cache report generation that is complete.
+* **ReportName**: string (ReadOnly): The name of the cache report.
+* **Role**: string (Required): The ARN of the IAM role that the S3 File Gateway assumes when it accesses the underlying storage.
+* **StartTime**: string (ReadOnly): The time at which the cache report generation started.
+* **Tags**: [Tag](#tag)[]: A list of up to 50 key/value tags assigned to the cache report.
+
+## AWS.StorageGateway/DeviceProperties
+### Properties
+* **DeviceiSCSIAttributes**: [DeviceiSCSIAttributes](#deviceiscsiattributes) (ReadOnly)
+* **GatewayARN**: string (ReadOnly): The Amazon Resource Name (ARN) of the tape gateway that the device is associated with.
+* **GatewayId**: string (ReadOnly): The identifier of the tape gateway that the device is associated with.
+* **VTLDeviceARN**: string (Identifier): The unique Amazon Resource Name (ARN) of the device (tape drive or media changer).
+* **VTLDeviceName**: string (ReadOnly): The name of the device, as it appears in the device's Amazon Resource Name (ARN).
+* **VTLDeviceProductIdentifier**: string (ReadOnly): The model number of the device that the VTL device emulates.
+* **VTLDeviceType**: string (ReadOnly): The type of device that the VTL device emulates.
+* **VTLDeviceVendor**: string (ReadOnly): The vendor of the device that the VTL device object emulates.
+
+## AWS.StorageGateway/GatewayProperties
+### Properties
+* **Ec2InstanceId**: string (ReadOnly): The ID of the Amazon EC2 instance that was used to launch the gateway.
+* **Ec2InstanceRegion**: string (ReadOnly): The Amazon Web Services Region where the Amazon EC2 instance is located.
+* **EndpointType**: string (ReadOnly): The type of endpoint for your gateway.
+* **GatewayARN**: string (Identifier): The Amazon Resource Name (ARN) of the gateway.
+* **GatewayId**: string (ReadOnly): The unique identifier assigned to your gateway during activation, extracted from the ARN.
+* **GatewayName**: string (Required): The name you configured for your gateway.
+* **GatewayNetworkInterfaces**: [NetworkInterface](#networkinterface)[] (ReadOnly): A list of the gateway's network interfaces.
+* **GatewayRegion**: string (Required): A value that indicates the Amazon Web Services Region where the gateway is activated.
+* **GatewayState**: string (ReadOnly): A value that indicates the operating state of the gateway.
+* **GatewayTimezone**: string (Required): A value that indicates the time zone configured for the gateway (e.g. GMT-4:00).
+* **GatewayType**: string: The type of gateway (e.g. STORED, CACHED, VTL, FILE_S3, FILE_FSX_SMB).
+* **HostEnvironment**: string (ReadOnly): The type of hardware or software platform on which the gateway is running.
+* **Tags**: [Tag](#tag)[] (ReadOnly): A list of up to 50 tags assigned to the gateway.
 
 ## AWS.StorageGateway/NFSFileShareProperties
 ### Properties
@@ -154,12 +220,38 @@
 ### Properties
 * **CacheStaleTimeoutInSeconds**: int: How long the directory contents cached by the gateway are considered valid.
 
+## CacheReportFilter
+### Properties
+* **Name**: string (Required): The parameter name for the filter.
+* **Values**: string[] (Required): The parameter values for the filter.
+
+## DeviceiSCSIAttributes
+### Properties
+* **ChapEnabled**: bool: Indicates whether mutual CHAP is enabled for the iSCSI target.
+* **NetworkInterfaceId**: string: The network interface identifier of the VTL device.
+* **NetworkInterfacePort**: int: The port used to communicate with iSCSI VTL device targets.
+* **TargetARN**: string: Specifies the unique Amazon Resource Name (ARN) that encodes the iSCSI qualified name (IQN) of a tape drive or media changer target.
+
+## NetworkInterface
+### Properties
+* **Ipv4Address**: string: The Internet Protocol version 4 (IPv4) address of the interface.
+
 ## NFSFileShareDefaults
 ### Properties
 * **DirectoryMode**: string: The Unix directory mode in the form nnnn.
 * **FileMode**: string: The Unix file mode in the form nnnn.
 * **GroupId**: int: The default group ID for files in the file share.
 * **OwnerId**: int: The default owner ID for files in the file share.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. Cannot be prefixed with aws:.
+* **Value**: string (Required): The value for the tag. Cannot be prefixed with aws:.
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
 
 ## Tag
 ### Properties

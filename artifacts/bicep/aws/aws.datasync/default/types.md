@@ -104,6 +104,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.DataSync/TaskProperties](#awsdatasynctaskproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.DataSync/TaskExecution@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.DataSync/TaskExecutionProperties](#awsdatasynctaskexecutionproperties) (Identifier): properties of the resource
+
 ## AWS.DataSync/AgentProperties
 ### Properties
 * **ActivationKey**: string (WriteOnly): Activation key of the Agent.
@@ -269,6 +277,27 @@
 * **Subdirectory**: string (WriteOnly): The subdirectory in the SMB file system that is used to read data from the SMB source location or write data to the SMB destination
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **User**: string: The user who can mount the share, has the permissions to access files and folders in the SMB share.
+
+## AWS.DataSync/TaskExecutionProperties
+### Properties
+* **BytesCompressed**: int (ReadOnly): The number of physical bytes transferred over the network after compression.
+* **BytesTransferred**: int (ReadOnly): The number of bytes sent to the network before compression.
+* **BytesWritten**: int (ReadOnly): The number of logical bytes written to the destination.
+* **EstimatedBytesToTransfer**: int (ReadOnly): The estimated number of bytes to transfer.
+* **EstimatedFilesToDelete**: int (ReadOnly): The estimated number of files to delete at the destination.
+* **EstimatedFilesToTransfer**: int (ReadOnly): The estimated number of files to transfer.
+* **FilesDeleted**: int (ReadOnly): The number of files deleted at the destination.
+* **FilesPrepared**: int (ReadOnly): The number of files prepared.
+* **FilesSkipped**: int (ReadOnly): The number of files skipped.
+* **FilesTransferred**: int (ReadOnly): The number of files transferred.
+* **FilesVerified**: int (ReadOnly): The number of files verified.
+* **OverrideOptions**: [Options](#options) (ReadOnly)
+* **StartTime**: string (ReadOnly): The time the task execution started.
+* **Status**: string (ReadOnly): The status of the task execution.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **TaskArn**: string: The ARN of the task that was executed.
+* **TaskExecutionArn**: string (Identifier): The ARN of the task execution.
+* **TaskMode**: string (ReadOnly): The task mode used for the execution.
 
 ## AWS.DataSync/TaskProperties
 ### Properties
@@ -478,6 +507,24 @@
 * **Uid**: string: The user ID (UID) of the file's owner.
 * **VerifyMode**: string: A value that determines whether a data integrity verification should be performed at the end of a task execution after all data and metadata have been transferred.
 
+## Options
+### Properties
+* **Atime**: string: Specifies whether to preserve file access time.
+* **BytesPerSecond**: int: Limits the bandwidth used by a DataSync task.
+* **Gid**: string: Specifies the group ID (GID) handling.
+* **LogLevel**: string: Specifies the level of log detail.
+* **Mtime**: string: Specifies whether to preserve file modification time.
+* **ObjectTags**: string: Specifies whether to preserve object tags.
+* **OverwriteMode**: string: Specifies whether to overwrite data at the destination.
+* **PosixPermissions**: string: Specifies POSIX permissions handling.
+* **PreserveDeletedFiles**: string: Specifies whether to preserve deleted files.
+* **PreserveDevices**: string: Specifies whether to preserve block and character devices.
+* **SecurityDescriptorCopyFlags**: string: Specifies which security descriptor components to copy.
+* **TaskQueueing**: string: Specifies whether tasks can be queued.
+* **TransferMode**: string: Specifies what to transfer.
+* **Uid**: string: Specifies the user ID (UID) handling.
+* **VerifyMode**: string: Specifies how and when to verify data integrity.
+
 ## Protocol
 ### Properties
 * **NFS**: [NFS](#nfs)
@@ -574,6 +621,11 @@
 ### Properties
 * **Key**: string (Required): The key for an AWS resource tag.
 * **Value**: string (Required): The value for an AWS resource tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
 
 ## Task_Destination
 ### Properties

@@ -24,6 +24,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.MediaPackageV2/ChannelPolicyProperties](#awsmediapackagev2channelpolicyproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.MediaPackageV2/HarvestJob@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MediaPackageV2/HarvestJobProperties](#awsmediapackagev2harvestjobproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.MediaPackageV2/OriginEndpoint@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -73,6 +81,22 @@
 * **OutputHeaderConfiguration**: [OutputHeaderConfiguration](#outputheaderconfiguration)
 * **OutputLockingMode**: string
 * **Tags**: [Tag](#tag)[]
+
+## AWS.MediaPackageV2/HarvestJobProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the harvest job.
+* **ChannelGroupName**: string (Required): The name of the channel group containing the channel from which to harvest content.
+* **ChannelName**: string (Required): The name of the channel from which to harvest content.
+* **CreatedAt**: string (ReadOnly): The date and time the harvest job was created.
+* **Description**: string: An optional description for the harvest job.
+* **Destination**: [Destination](#destination) (Required)
+* **HarvestedManifests**: [HarvestedManifests](#harvestedmanifests) (Required)
+* **HarvestJobName**: string: A name for the harvest job. This name must be unique within the origin endpoint.
+* **ModifiedAt**: string (ReadOnly): The date and time the harvest job was last modified.
+* **OriginEndpointName**: string (Required): The name of the origin endpoint from which to harvest content.
+* **ScheduleConfiguration**: [HarvesterScheduleConfiguration](#harvesterscheduleconfiguration) (Required)
+* **Status**: string (ReadOnly): The current status of the harvest job.
+* **Tags**: [Tag](#tag)[]: A collection of tags associated with the harvest job.
 
 ## AWS.MediaPackageV2/OriginEndpointPolicyProperties
 ### Properties
@@ -186,6 +210,10 @@
 * **TimingMode**: string
 * **TimingSource**: string: <p>The the method that the player uses to synchronize to coordinated universal time (UTC) wall clock time.</p>
 
+## Destination
+### Properties
+* **S3Destination**: [S3DestinationConfig](#s3destinationconfig) (Required)
+
 ## Encryption
 ### Properties
 * **CmafExcludeSegmentDrmMetadata**: bool: <p>Excludes SEIG and SGPD boxes from segment metadata in CMAF containers.</p> <p>When set to <code>true</code>, MediaPackage omits these DRM metadata boxes from CMAF segments, which can improve compatibility with certain devices and players that don't support these boxes.</p> <p>Important considerations:</p> <ul> <li> <p>This setting only affects CMAF container formats</p> </li> <li> <p>Key rotation can still be handled through media playlist signaling</p> </li> <li> <p>PSSH and TENC boxes remain unaffected</p> </li> <li> <p>Default behavior is preserved when this setting is disabled</p> </li> </ul> <p>Valid values: <code>true</code> | <code>false</code> </p> <p>Default: <code>false</code> </p>
@@ -218,6 +246,29 @@
 ## ForceEndpointErrorConfiguration
 ### Properties
 * **EndpointErrorConditions**: string[]: <p>The failover conditions for the endpoint. The options are:</p> <ul> <li> <p> <code>STALE_MANIFEST</code> - The manifest stalled and there are no new segments or parts.</p> </li> <li> <p> <code>INCOMPLETE_MANIFEST</code> - There is a gap in the manifest.</p> </li> <li> <p> <code>MISSING_DRM_KEY</code> - Key rotation is enabled but we're unable to fetch the key for the current key period.</p> </li> <li> <p> <code>SLATE_INPUT</code> - The segments which contain slate content are considered to be missing content.</p> </li> </ul>
+
+## HarvestedDashManifest
+### Properties
+* **ManifestName**: string (Required): The name of the harvested DASH manifest.
+
+## HarvestedHlsManifest
+### Properties
+* **ManifestName**: string (Required): The name of the harvested HLS manifest.
+
+## HarvestedLowLatencyHlsManifest
+### Properties
+* **ManifestName**: string (Required): The name of the harvested Low-Latency HLS manifest.
+
+## HarvestedManifests
+### Properties
+* **DashManifests**: [HarvestedDashManifest](#harvesteddashmanifest)[]: A list of harvested DASH manifests.
+* **HlsManifests**: [HarvestedHlsManifest](#harvestedhlsmanifest)[]: A list of harvested HLS manifests.
+* **LowLatencyHlsManifests**: [HarvestedLowLatencyHlsManifest](#harvestedlowlatencyhlsmanifest)[]: A list of harvested Low-Latency HLS manifests.
+
+## HarvesterScheduleConfiguration
+### Properties
+* **EndTime**: string (Required): The end time for the harvest job.
+* **StartTime**: string (Required): The start time for the harvest job.
 
 ## HlsManifestConfiguration
 ### Properties
@@ -294,6 +345,11 @@
 ### Properties
 * **PublishMQCS**: bool: <p>When true, AWS Elemental MediaPackage includes the MQCS in responses to the CDN. This setting is valid only when <code>InputType</code> is <code>CMAF</code>.</p>
 
+## S3DestinationConfig
+### Properties
+* **BucketName**: string (Required): The name of an S3 bucket within which harvested content will be exported.
+* **DestinationPath**: string (Required): The path within the specified S3 bucket where the harvested content will be placed.
+
 ## Scte
 ### Properties
 * **CustomAdTypes**: string[]: <p>A list of additional non-Ad SCTE-35 event types to treat as advertisements. When configured, events matching these types produce ad markers (such as <code>SCTE35-OUT</code> and <code>SCTE35-IN</code> in HLS DATERANGE tags) in manifests.</p> <p>Valid values: <code>PROGRAM</code> | <code>CHAPTER</code> | <code>UNSCHEDULED_EVENT</code> | <code>ALTERNATE_CONTENT_OPPORTUNITY</code> | <code>NETWORK</code> </p> <p>If you don't specify any values, the default is empty (only default ad types are used).</p>
@@ -346,6 +402,11 @@
 ### Properties
 * **Key**: string
 * **Value**: string
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

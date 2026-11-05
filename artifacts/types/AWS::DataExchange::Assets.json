@@ -1,0 +1,140 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DataExchange-Assets",
+  "type": "AWS::DataExchange::Assets",
+  "time": "2026-11-05T17:49:18.364Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/DataSetId",
+        "/properties/RevisionId",
+        "/properties/AssetId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DataSetId",
+      "/properties/Name",
+      "/properties/RevisionId"
+    ],
+    "description": "Definition of AWS::DataExchange::Assets Resource Type",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "DataSetId": {
+              "pattern": "^[a-zA-Z0-9]{30,40}$",
+              "type": "string"
+            },
+            "RevisionId": {
+              "pattern": "^[a-zA-Z0-9]{30,40}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "DataSetId",
+            "RevisionId"
+          ]
+        },
+        "permissions": [
+          "dataexchange:ListRevisionAssets"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "dataexchange:GetAsset",
+          "dataexchange:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN for the asset.",
+        "type": "string"
+      },
+      "AssetId": {
+        "description": "The unique identifier for the asset.",
+        "pattern": "^[a-zA-Z0-9]{30,40}$",
+        "type": "string"
+      },
+      "AssetType": {
+        "description": "The type of asset that is added to a data set.",
+        "enum": [
+          "S3_SNAPSHOT",
+          "REDSHIFT_DATA_SHARE",
+          "API_GATEWAY_API",
+          "S3_DATA_ACCESS",
+          "LAKE_FORMATION_DATA_PERMISSION"
+        ],
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The date and time that the asset was created, in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DataSetId": {
+        "description": "The unique identifier for the data set associated with this asset.",
+        "pattern": "^[a-zA-Z0-9]{30,40}$",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the asset.",
+        "type": "string"
+      },
+      "RevisionId": {
+        "description": "The unique identifier for the revision associated with this asset.",
+        "pattern": "^[a-zA-Z0-9]{30,40}$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags for the asset.",
+        "insertionOrder": false,
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "type": "string"
+            },
+            "Value": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "UpdatedAt": {
+        "description": "The date and time that the asset was last updated, in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/AssetId",
+      "/properties/AssetType",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt",
+      "/properties/Tags"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "dataexchange:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::DataExchange::Assets"
+  }
+}

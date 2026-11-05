@@ -1,0 +1,118 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SecurityAgent-Artifact",
+  "type": "AWS::SecurityAgent::Artifact",
+  "time": "2026-11-05T18:01:58.097Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/AgentSpaceId",
+        "/properties/ArtifactId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/AgentSpaceId",
+      "/properties/ArtifactContent",
+      "/properties/ArtifactType",
+      "/properties/FileName"
+    ],
+    "description": "Uploads an artifact to an agent space. Artifacts provide additional context for security testing, such as architecture diagrams, API specifications, or configuration files.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "securityagent:AddArtifact",
+          "securityagent:GetArtifact"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "securityagent:DeleteArtifact",
+          "securityagent:GetArtifact"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "AgentSpaceId": {
+              "description": "The unique identifier of the agent space.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "AgentSpaceId"
+          ]
+        },
+        "permissions": [
+          "securityagent:ListArtifacts"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "securityagent:GetArtifact"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "AgentSpaceId": {
+        "description": "The unique identifier of the agent space to add the artifact to.",
+        "type": "string"
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the artifact.",
+        "type": "string"
+      },
+      "ArtifactContent": {
+        "description": "The binary content of the artifact to upload, encoded as a Base64 string.",
+        "type": "string"
+      },
+      "ArtifactId": {
+        "description": "The unique identifier assigned to the uploaded artifact.",
+        "type": "string"
+      },
+      "ArtifactType": {
+        "description": "The file type of the artifact.",
+        "enum": [
+          "TXT",
+          "PNG",
+          "JPEG",
+          "MD",
+          "PDF",
+          "DOCX",
+          "DOC",
+          "JSON",
+          "YAML"
+        ],
+        "type": "string"
+      },
+      "FileName": {
+        "description": "The file name of the artifact.",
+        "type": "string"
+      },
+      "UpdatedAt": {
+        "description": "The date and time the artifact was last updated, in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ArtifactId",
+      "/properties/Arn",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "AgentSpaceId",
+      "ArtifactType",
+      "FileName"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::SecurityAgent::Artifact",
+    "writeOnlyProperties": [
+      "/properties/ArtifactContent"
+    ]
+  }
+}

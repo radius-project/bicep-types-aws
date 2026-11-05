@@ -1,0 +1,129 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Amplify-Jobs",
+  "type": "AWS::Amplify::Jobs",
+  "time": "2026-11-05T20:34:56.078Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/AppId",
+        "/properties/BranchName",
+        "/properties/JobId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/AppId",
+      "/properties/BranchName"
+    ],
+    "description": "Resource type definition for an Amplify job, which represents a build or deployment execution for a branch of an Amplify app.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "AppId": {
+              "description": "The unique ID for an Amplify app.",
+              "maxLength": 20,
+              "minLength": 1,
+              "pattern": "^d[a-z0-9]+$",
+              "type": "string"
+            },
+            "BranchName": {
+              "description": "The name of the branch to use for the job.",
+              "maxLength": 255,
+              "minLength": 1,
+              "pattern": "^(?s).+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "AppId",
+            "BranchName"
+          ]
+        },
+        "permissions": [
+          "amplify:ListJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "amplify:GetJob"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "AppId": {
+        "description": "The unique ID for an Amplify app.",
+        "maxLength": 20,
+        "minLength": 1,
+        "pattern": "^d[a-z0-9]+$",
+        "type": "string"
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) for the job.",
+        "maxLength": 1000,
+        "type": "string"
+      },
+      "BranchName": {
+        "description": "The name of the branch to use for the job.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^(?s).+$",
+        "type": "string"
+      },
+      "CommitId": {
+        "description": "The commit ID from a third-party repository provider for the job.",
+        "maxLength": 255,
+        "type": "string"
+      },
+      "CommitTime": {
+        "description": "The commit date and time for the job.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "JobId": {
+        "description": "The unique ID for the job.",
+        "maxLength": 255,
+        "pattern": "^[0-9]+$",
+        "type": "string"
+      },
+      "StartTime": {
+        "description": "The start date and time for the job.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The current status for the job.",
+        "enum": [
+          "CREATED",
+          "PENDING",
+          "PROVISIONING",
+          "RUNNING",
+          "FAILED",
+          "SUCCEED",
+          "CANCELLING",
+          "CANCELLED"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/JobId",
+      "/properties/CommitId",
+      "/properties/CommitTime",
+      "/properties/StartTime",
+      "/properties/Status"
+    ],
+    "required": [
+      "AppId",
+      "BranchName"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::Amplify::Jobs"
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AccountAccess-Entitlement",
+  "type": "AWS::AccountAccess::Entitlement",
+  "time": "2026-09-08T16:17:43.003Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ApplicationArn",
+      "/properties/Entitlement"
+    ],
+    "definitions": {
+      "Entitlement": {
+        "additionalProperties": false,
+        "properties": {
+          "PrincipalRole": {
+            "$ref": "#/definitions/PrincipalRoleEntitlement"
+          }
+        },
+        "required": [
+          "PrincipalRole"
+        ],
+        "type": "object"
+      },
+      "IdentityCenterPrincipal": {
+        "additionalProperties": false,
+        "oneOf": [
+          {
+            "required": [
+              "UserId"
+            ]
+          },
+          {
+            "required": [
+              "GroupId"
+            ]
+          }
+        ],
+        "properties": {
+          "GroupId": {
+            "description": "The ID of the group",
+            "maxLength": 47,
+            "minLength": 1,
+            "pattern": "^([0-9a-f]{10}-|)[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$",
+            "type": "string"
+          },
+          "UserId": {
+            "description": "The ID of the user",
+            "maxLength": 47,
+            "minLength": 1,
+            "pattern": "^([0-9a-f]{10}-|)[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Principal": {
+        "additionalProperties": false,
+        "properties": {
+          "IdentityCenter": {
+            "$ref": "#/definitions/IdentityCenterPrincipal"
+          }
+        },
+        "required": [
+          "IdentityCenter"
+        ],
+        "type": "object"
+      },
+      "PrincipalRoleEntitlement": {
+        "additionalProperties": false,
+        "properties": {
+          "Account": {
+            "description": "The AWS account ID",
+            "maxLength": 12,
+            "minLength": 12,
+            "pattern": "^[0-9]{12}$",
+            "type": "string"
+          },
+          "Principal": {
+            "$ref": "#/definitions/Principal"
+          },
+          "RoleArn": {
+            "description": "The ARN of the IAM role",
+            "pattern": "^arn:[a-z0-9-]+:iam::[0-9]{12}:role\\/([a-zA-Z0-9+=,.@_-]+\\/)*[a-zA-Z0-9+=,.@_-]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Principal",
+          "RoleArn"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::AccountAccess::Entitlement specifying an entitlement for account access",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "account-access:CreateEntitlement",
+          "account-access:GetEntitlement",
+          "account-access:ListEntitlements"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "account-access:DeleteEntitlement",
+          "account-access:GetEntitlement"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ApplicationArn": {
+              "$ref": "resource-schema.json#/properties/ApplicationArn"
+            }
+          },
+          "required": [
+            "ApplicationArn"
+          ]
+        },
+        "permissions": [
+          "account-access:ListEntitlements"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "account-access:GetEntitlement"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ApplicationArn",
+      "/properties/EntitlementId"
+    ],
+    "properties": {
+      "ApplicationArn": {
+        "description": "The ARN of the application",
+        "pattern": "^arn:[a-z0-9-]+:account-access:[a-z0-9]+(-[a-z0-9]+)*:[0-9]{12}:application/[a-zA-Z0-9-]+$",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The timestamp when the entitlement was created",
+        "type": "string"
+      },
+      "Entitlement": {
+        "$ref": "#/definitions/Entitlement",
+        "description": "The entitlement details"
+      },
+      "EntitlementId": {
+        "description": "The ID of the entitlement",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/EntitlementId",
+      "/properties/Entitlement/PrincipalRole/Account",
+      "/properties/CreatedAt"
+    ],
+    "required": [
+      "ApplicationArn",
+      "Entitlement"
+    ],
+    "resourceLink": {
+      "mappings": {
+        "EntitlementId": "/EntitlementId"
+      },
+      "templateUri": "/account-access/home?region=${awsRegion}#/entitlement/${EntitlementId}"
+    },
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-accountaccess.git",
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::AccountAccess::Entitlement"
+  }
+}

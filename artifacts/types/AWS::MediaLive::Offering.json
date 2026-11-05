@@ -1,0 +1,182 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaLive-Offering",
+  "type": "AWS::MediaLive::Offering",
+  "time": "2026-11-05T20:55:47.543Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/OfferingId"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "ReservationResourceSpecification": {
+        "additionalProperties": false,
+        "description": "Resource configuration (codec, resolution, bitrate, ...)",
+        "properties": {
+          "ChannelClass": {
+            "description": "Channel class, e.g. 'STANDARD'",
+            "enum": [
+              "STANDARD",
+              "SINGLE_PIPELINE"
+            ],
+            "type": "string"
+          },
+          "Codec": {
+            "description": "Codec, e.g. 'AVC'",
+            "enum": [
+              "MPEG2",
+              "AVC",
+              "HEVC",
+              "AUDIO",
+              "LINK",
+              "AV1"
+            ],
+            "type": "string"
+          },
+          "MaximumBitrate": {
+            "description": "Maximum bitrate, e.g. 'MAX_20_MBPS'",
+            "enum": [
+              "MAX_10_MBPS",
+              "MAX_20_MBPS",
+              "MAX_50_MBPS"
+            ],
+            "type": "string"
+          },
+          "MaximumFramerate": {
+            "description": "Maximum framerate, e.g. 'MAX_30_FPS' (Outputs only)",
+            "enum": [
+              "MAX_30_FPS",
+              "MAX_60_FPS"
+            ],
+            "type": "string"
+          },
+          "Resolution": {
+            "description": "Resolution, e.g. 'HD'",
+            "enum": [
+              "SD",
+              "HD",
+              "FHD",
+              "UHD"
+            ],
+            "type": "string"
+          },
+          "ResourceType": {
+            "description": "Resource type, 'INPUT', 'OUTPUT', 'MULTIPLEX', or 'CHANNEL'",
+            "enum": [
+              "INPUT",
+              "OUTPUT",
+              "MULTIPLEX",
+              "CHANNEL"
+            ],
+            "type": "string"
+          },
+          "SpecialFeature": {
+            "description": "Special feature, e.g. 'AUDIO_NORMALIZATION' (Channels only)",
+            "enum": [
+              "ADVANCED_AUDIO",
+              "AUDIO_NORMALIZATION",
+              "MGHD",
+              "MGUHD"
+            ],
+            "type": "string"
+          },
+          "VideoQuality": {
+            "description": "Video quality, e.g. 'STANDARD' (Outputs only)",
+            "enum": [
+              "STANDARD",
+              "ENHANCED",
+              "PREMIUM"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Definition of AWS::MediaLive::Offering Resource Type",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "medialive:ListOfferings"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "medialive:DescribeOffering"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "Unique offering ARN, e.g. 'arn:aws:medialive:us-west-2:123456789012:offering:87654321'",
+        "type": "string"
+      },
+      "CurrencyCode": {
+        "description": "Currency code for usagePrice and fixedPrice in ISO-4217 format, e.g. 'USD'",
+        "type": "string"
+      },
+      "Duration": {
+        "description": "Lease duration, e.g. '12'",
+        "type": "integer"
+      },
+      "DurationUnits": {
+        "description": "Units for duration, e.g. 'MONTHS'",
+        "enum": [
+          "MONTHS"
+        ],
+        "type": "string"
+      },
+      "FixedPrice": {
+        "description": "One-time charge for each reserved resource, e.g. '0.0' for a NO_UPFRONT offering",
+        "type": "number"
+      },
+      "OfferingDescription": {
+        "description": "Offering description, e.g. 'HD AVC output at 10-20 Mbps, 30 fps, and standard VQ in US West (Oregon)'",
+        "type": "string"
+      },
+      "OfferingId": {
+        "description": "Unique offering ID, e.g. '87654321'",
+        "type": "string"
+      },
+      "OfferingType": {
+        "description": "Offering type, e.g. 'NO_UPFRONT'",
+        "enum": [
+          "NO_UPFRONT"
+        ],
+        "type": "string"
+      },
+      "Region": {
+        "description": "AWS region, e.g. 'us-west-2'",
+        "type": "string"
+      },
+      "ResourceSpecification": {
+        "$ref": "#/definitions/ReservationResourceSpecification"
+      },
+      "UsagePrice": {
+        "description": "Recurring usage charge for each reserved resource, e.g. '157.0'",
+        "type": "number"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/OfferingId",
+      "/properties/CurrencyCode",
+      "/properties/Duration",
+      "/properties/DurationUnits",
+      "/properties/FixedPrice",
+      "/properties/OfferingDescription",
+      "/properties/OfferingType",
+      "/properties/Region",
+      "/properties/ResourceSpecification",
+      "/properties/UsagePrice"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::MediaLive::Offering"
+  }
+}

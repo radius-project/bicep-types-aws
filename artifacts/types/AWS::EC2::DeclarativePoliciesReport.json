@@ -1,0 +1,126 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-DeclarativePoliciesReport",
+  "type": "AWS::EC2::DeclarativePoliciesReport",
+  "time": "2026-11-05T20:31:58.294Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ReportId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/S3Bucket",
+      "/properties/S3Prefix",
+      "/properties/Tags",
+      "/properties/TargetId"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::EC2::DeclarativePoliciesReport. A read-only resource representing an EC2 declarative-policies account status report, which is a report generation job: for every account in an AWS Organizations scope it reports the current status of each attribute a declarative policy can govern.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "ec2:DescribeDeclarativePoliciesReports"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ec2:DescribeDeclarativePoliciesReports"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of the account status report.",
+        "type": "string"
+      },
+      "EndTime": {
+        "description": "The time when the report generation ended. Absent while the report is running and populated in every terminal state.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ReportId": {
+        "description": "The ID of the report.",
+        "type": "string"
+      },
+      "S3Bucket": {
+        "description": "The name of the Amazon S3 bucket where the report is located. The bucket must be in the same Region where the report generation request is made.",
+        "type": "string"
+      },
+      "S3Prefix": {
+        "description": "The prefix for your S3 object.",
+        "type": "string"
+      },
+      "StartTime": {
+        "description": "The time when the report generation started.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The current status of the report.",
+        "enum": [
+          "running",
+          "cancelled",
+          "complete",
+          "error"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Any tags assigned to the report.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "TargetId": {
+        "description": "The root ID, organizational unit ID, or account ID the report covers. Format: r-ab12 for a root, ou-ab12-cdef1234 for an organizational unit, or 123456789012 for an account.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/EndTime",
+      "/properties/ReportId",
+      "/properties/StartTime",
+      "/properties/Status"
+    ],
+    "required": [
+      "S3Bucket",
+      "TargetId"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::EC2::DeclarativePoliciesReport"
+  }
+}

@@ -56,6 +56,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SecurityHub/ConnectorV2Properties](#awssecurityhubconnectorv2properties) (Required, Identifier): properties of the resource
 
+## Resource AWS.SecurityHub/DelegatedAdmin@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SecurityHub/DelegatedAdminProperties](#awssecurityhubdelegatedadminproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.SecurityHub/FindingAggregator@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -103,6 +111,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SecurityHub/PolicyAssociationProperties](#awssecurityhubpolicyassociationproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.SecurityHub/ProductSubscription@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SecurityHub/ProductSubscriptionProperties](#awssecurityhubproductsubscriptionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SecurityHub/SecurityControl@default
 * **Readable Scope(s)**: None
@@ -359,6 +375,12 @@
 * **Provider**: [Provider](#provider) (Required)
 * **Tags**: [Tags](#tags)
 
+## AWS.SecurityHub/DelegatedAdminProperties
+### Properties
+* **AdminAccountId**: string (Required): The AWS-account identifier of the account to designate as the Security Hub CSPM administrator account.
+* **DelegatedAdminIdentifier**: string (ReadOnly, Identifier)
+* **Status**: string (ReadOnly)
+
 ## AWS.SecurityHub/FindingAggregatorProperties
 ### Properties
 * **FindingAggregationRegion**: string (ReadOnly)
@@ -415,6 +437,11 @@
 * **TargetId**: string (Required): The identifier of the target account, organizational unit, or the root
 * **TargetType**: string (Required): Indicates whether the target is an AWS account, organizational unit, or the organization root
 * **UpdatedAt**: string (ReadOnly): The date and time, in UTC and ISO 8601 format, that the configuration policy association was last updated
+
+## AWS.SecurityHub/ProductSubscriptionProperties
+### Properties
+* **ProductArn**: string (Required): The generic ARN of the product being subscribed to
+* **ProductSubscriptionArn**: string (ReadOnly, Identifier): The ARN of the product subscription for the account
 
 ## AWS.SecurityHub/SecurityControlProperties
 ### Properties

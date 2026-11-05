@@ -1,0 +1,175 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Bedrock-AsyncInvoke",
+  "type": "AWS::Bedrock::AsyncInvoke",
+  "time": "2026-11-05T21:09:38.066Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/InvocationId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "AsyncInvokeOutputDataConfig": {
+        "additionalProperties": false,
+        "description": "Asynchronous invocation output data settings.",
+        "properties": {
+          "S3OutputDataConfig": {
+            "$ref": "#/definitions/AsyncInvokeS3OutputDataConfig"
+          }
+        },
+        "required": [
+          "S3OutputDataConfig"
+        ],
+        "type": "object"
+      },
+      "AsyncInvokeS3OutputDataConfig": {
+        "additionalProperties": false,
+        "description": "Amazon S3 location configuration for storing the async invoke output data.",
+        "properties": {
+          "S3Uri": {
+            "description": "An S3 object URI starting with s3://.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "pattern": "^s3://[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9](/.*)?$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "S3Uri"
+        ],
+        "type": "object"
+      },
+      "AsyncInvokeStatus": {
+        "description": "The status of the async invocation.",
+        "enum": [
+          "InProgress",
+          "Completed",
+          "Failed"
+        ],
+        "type": "string"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A tag for the async invoke resource.",
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9\\s._:/=+@-]*$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9\\s._:/=+@-]*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Definition of AWS::Bedrock::AsyncInvoke Resource Type",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "bedrock:ListAsyncInvokes"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "bedrock:GetAsyncInvoke",
+          "bedrock:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/InvocationArn"
+    ],
+    "properties": {
+      "EndTime": {
+        "description": "When the invocation ended.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "InvocationArn": {
+        "description": "The ARN of the async invocation.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:async-invoke/[a-z0-9]{12}$",
+        "type": "string"
+      },
+      "InvocationId": {
+        "description": "The unique identifier of the async invocation.",
+        "maxLength": 12,
+        "minLength": 12,
+        "pattern": "^[a-z0-9]{12}$",
+        "type": "string"
+      },
+      "LastModifiedTime": {
+        "description": "When the invocation was last modified.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ModelArn": {
+        "description": "The ARN of the model used for the invocation.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "type": "string"
+      },
+      "OutputDataConfig": {
+        "$ref": "#/definitions/AsyncInvokeOutputDataConfig",
+        "description": "Where to store the output."
+      },
+      "Status": {
+        "$ref": "#/definitions/AsyncInvokeStatus",
+        "description": "The status of the async invocation."
+      },
+      "SubmitTime": {
+        "description": "When the invocation was submitted.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags to apply to the invocation.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "minItems": 0,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/InvocationArn",
+      "/properties/InvocationId",
+      "/properties/ModelArn",
+      "/properties/OutputDataConfig",
+      "/properties/Status",
+      "/properties/SubmitTime",
+      "/properties/EndTime",
+      "/properties/LastModifiedTime"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "bedrock:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Bedrock::AsyncInvoke"
+  }
+}

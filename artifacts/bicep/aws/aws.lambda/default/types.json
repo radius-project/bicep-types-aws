@@ -675,18 +675,120 @@
     "writableScopes": 0
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.Lambda/DurableExecutionProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Lambda/DurableExecutionProperties",
+    "properties": {
+      "DurableExecutionArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the durable execution."
+      },
+      "DurableExecutionName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The name of the durable execution."
+      },
+      "EndTimestamp": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The date and time when the durable execution ended, in ISO 8601 format."
+      },
+      "FunctionArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the Lambda function that was invoked to start this durable execution."
+      },
+      "FunctionName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The name or ARN of the Lambda function. Used as a filter for the List operation."
+      },
+      "StartTimestamp": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The date and time when the durable execution started, in ISO 8601 format."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The current status of the durable execution."
+      },
+      "Version": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The version of the Lambda function that was invoked for this durable execution."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Lambda/DurableExecution",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Lambda/DurableExecution@default",
+    "body": {
+      "$ref": "#/47"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
     "$type": "ObjectType",
     "name": "DestinationConfig",
     "properties": {
       "OnFailure": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/50"
         },
         "flags": 0
       },
       "OnSuccess": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/51"
         },
         "flags": 0
       }
@@ -728,7 +830,7 @@
     "properties": {
       "DestinationConfig": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/49"
         },
         "flags": 0
       },
@@ -782,7 +884,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/53"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -793,7 +895,7 @@
     "$type": "ResourceType",
     "name": "AWS.Lambda/EventInvokeConfig@default",
     "body": {
-      "$ref": "#/50"
+      "$ref": "#/54"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -811,7 +913,7 @@
       },
       "SchemaRegistryConfig": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/71"
         },
         "flags": 0,
         "description": "Specific configuration settings for a Kafka schema registry."
@@ -834,7 +936,7 @@
     "properties": {
       "OnFailure": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/67"
         },
         "flags": 0,
         "description": "The destination configuration for failed invocations."
@@ -874,7 +976,7 @@
     "properties": {
       "KafkaBootstrapServers": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/77"
         },
         "flags": 0,
         "description": "The list of bootstrap servers for your Kafka brokers in the following format: ``\"KafkaBootstrapServers\": [\"abc.xyz.com:xxxx\",\"abc2.xyz.com:xxxx\"]``."
@@ -900,7 +1002,7 @@
     "properties": {
       "Filters": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/78"
         },
         "flags": 0,
         "description": "A list of filters."
@@ -931,7 +1033,7 @@
     "properties": {
       "Metrics": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/79"
         },
         "flags": 0,
         "description": "The metrics you want your event source mapping to produce, including ``EventCount``, ``ErrorCount``, ``KafkaMetrics``. \n  +  ``EventCount`` to receive metrics related to the number of events processed by your event source mapping.\n  +  ``ErrorCount`` (Amazon MSK and self-managed Apache Kafka) to receive metrics related to the number of errors in your event source mapping processing.\n  +  ``KafkaMetrics`` (Amazon MSK and self-managed Apache Kafka) to receive metrics related to the Kafka consumers from your event source mapping.\n  \n  For more information about these metrics, see [Event source mapping metrics](https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics-types.html#event-source-mapping-metrics)."
@@ -1017,7 +1119,7 @@
     "properties": {
       "AccessConfigs": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/80"
         },
         "flags": 0,
         "description": "An array of access configuration objects that tell Lambda how to authenticate with your schema registry."
@@ -1038,7 +1140,7 @@
       },
       "SchemaValidationConfigs": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/81"
         },
         "flags": 0,
         "description": "An array of schema validation configuration objects, which tell Lambda the message attributes you want to validate and filter using your schema registry."
@@ -1064,7 +1166,7 @@
     "properties": {
       "Endpoints": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/61"
         },
         "flags": 0,
         "description": "The list of bootstrap servers for your Kafka brokers in the following format: ``\"KafkaBootstrapServers\": [\"abc.xyz.com:xxxx\",\"abc2.xyz.com:xxxx\"]``."
@@ -1091,7 +1193,7 @@
       },
       "SchemaRegistryConfig": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/71"
         },
         "flags": 0,
         "description": "Specific configuration settings for a Kafka schema registry."
@@ -1147,7 +1249,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/58"
+      "$ref": "#/62"
     }
   },
   {
@@ -1159,13 +1261,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/66"
+      "$ref": "#/70"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/68"
+      "$ref": "#/72"
     }
   },
   {
@@ -1190,13 +1292,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/71"
+      "$ref": "#/75"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/72"
+      "$ref": "#/76"
     }
   },
   {
@@ -1211,7 +1313,7 @@
     "properties": {
       "AmazonManagedKafkaEventSourceConfig": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/56"
         },
         "flags": 0,
         "description": "Specific configuration settings for an Amazon Managed Streaming for Apache Kafka (Amazon MSK) event source."
@@ -1225,28 +1327,28 @@
       },
       "BisectBatchOnFunctionError": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/83"
         },
         "flags": 0,
         "description": "(Kinesis and DynamoDB Streams only) If the function returns an error, split the batch in two and retry. The default value is false.\n  When using ``BisectBatchOnFunctionError``, check the ``BatchSize`` parameter in the ``OnFailure`` destination message's metadata. The ``BatchSize`` could be greater than 1 since LAM consolidates failed messages metadata when writing to the ``OnFailure`` destination."
       },
       "DestinationConfig": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/59"
         },
         "flags": 0,
         "description": "(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) A configuration object that specifies the destination of an event after Lambda processes it."
       },
       "DocumentDBEventSourceConfig": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/60"
         },
         "flags": 0,
         "description": "Specific configuration settings for a DocumentDB event source."
       },
       "Enabled": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/83"
         },
         "flags": 0,
         "description": "When true, the event source mapping is active. When false, Lambda pauses polling and invocation.\n Default: True"
@@ -1267,7 +1369,7 @@
       },
       "FilterCriteria": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/63"
         },
         "flags": 0,
         "description": "An object that defines the filter criteria that determine whether Lambda should process an event. For more information, see [Lambda event filtering](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html)."
@@ -1281,7 +1383,7 @@
       },
       "FunctionResponseTypes": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/84"
         },
         "flags": 0,
         "description": "(Kinesis, DynamoDB Streams, and SQS) A list of current response type enums applied to the event source mapping.\n Valid Values: ``ReportBatchItemFailures``"
@@ -1302,7 +1404,7 @@
       },
       "LoggingConfig": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/64"
         },
         "flags": 0,
         "description": "(Amazon MSK, and self-managed Apache Kafka only) The logging configuration for your event source. For more information, see [Event source mapping logging](https://docs.aws.amazon.com/lambda/latest/dg/esm-logging.html)."
@@ -1330,7 +1432,7 @@
       },
       "MetricsConfig": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/66"
         },
         "flags": 0,
         "description": "The metrics configuration for your event source. For more information, see [Event source mapping metrics](https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics-types.html#event-source-mapping-metrics)."
@@ -1344,42 +1446,42 @@
       },
       "ProvisionedPollerConfig": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/68"
         },
         "flags": 0,
         "description": "(Amazon SQS, Amazon MSK, and self-managed Apache Kafka only) The provisioned mode configuration for the event source. For more information, see [provisioned mode](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html#invocation-eventsourcemapping-provisioned-mode)."
       },
       "Queues": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/85"
         },
         "flags": 0,
         "description": "(Amazon MQ) The name of the Amazon MQ broker destination queue to consume."
       },
       "ScalingConfig": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": "This property is for Amazon SQS event sources only. You cannot use ``ProvisionedPollerConfig`` while using ``ScalingConfig``. These options are mutually exclusive. To remove the scaling configuration, pass an empty value."
       },
       "SelfManagedEventSource": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/73"
         },
         "flags": 0,
         "description": "The self-managed Apache Kafka cluster for your event source."
       },
       "SelfManagedKafkaEventSourceConfig": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/74"
         },
         "flags": 0,
         "description": "Specific configuration settings for a self-managed Apache Kafka event source."
       },
       "SourceAccessConfigurations": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/86"
         },
         "flags": 0,
         "description": "An array of the authentication protocol, VPC components, or virtual host to secure and define your event source."
@@ -1400,14 +1502,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/87"
         },
         "flags": 0,
         "description": "A list of tags to add to the event source mapping.\n  You must have the ``lambda:TagResource``, ``lambda:UntagResource``, and ``lambda:ListTags`` permissions for your [principal](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html) to manage the CFN stack. If you don't have these permissions, there might be unexpected behavior with stack-level tags propagating to the resource during resource creation and update."
       },
       "Topics": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/88"
         },
         "flags": 0,
         "description": "The name of the Kafka topic."
@@ -1441,7 +1543,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/89"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1452,7 +1554,7 @@
     "$type": "ResourceType",
     "name": "AWS.Lambda/EventSourceMapping@default",
     "body": {
-      "$ref": "#/86"
+      "$ref": "#/90"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1463,7 +1565,7 @@
     "properties": {
       "LambdaManagedInstancesCapacityProviderConfig": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/101"
         },
         "flags": 1,
         "description": "Configuration for Lambda-managed instances used by the capacity provider."
@@ -1571,7 +1673,7 @@
     "properties": {
       "Variables": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/112"
         },
         "flags": 0,
         "description": "Environment variable key-value pairs. For more information, see [Using Lambda environment variables](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html).\n If the value of the environment variable is a time or a duration, enclose the value in quotes."
@@ -1611,7 +1713,7 @@
       },
       "S3FilesConfig": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/105"
         },
         "flags": 0,
         "description": "The configuration for how your function accesses data on an Amazon S3 file system. Valid only when the file system access point ARN is an Amazon S3 Files access point. If you specify a different access point type (for example, Amazon Elastic File System), the operation returns an ``InvalidParameterException``."
@@ -1644,14 +1746,14 @@
     "properties": {
       "Command": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/113"
         },
         "flags": 0,
         "description": "Specifies parameters that you want to pass in with ENTRYPOINT. You can specify a maximum of 1,500 parameters in the list."
       },
       "EntryPoint": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/114"
         },
         "flags": 0,
         "description": "Specifies the entry point to their application, which is typically the location of the runtime executable. You can specify a maximum of 1,500 string entries in the list."
@@ -1849,21 +1951,21 @@
     "properties": {
       "Ipv6AllowedForDualStack": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/83"
         },
         "flags": 0,
         "description": "Allows outbound IPv6 traffic on VPC functions that are connected to dual-stack subnets."
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/111"
+          "$ref": "#/115"
         },
         "flags": 0,
         "description": "A list of VPC security group IDs."
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/112"
+          "$ref": "#/116"
         },
         "flags": 0,
         "description": "A list of VPC subnet IDs."
@@ -1912,7 +2014,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/94"
+      "$ref": "#/98"
     }
   },
   {
@@ -1924,7 +2026,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/104"
+      "$ref": "#/108"
     }
   },
   {
@@ -1933,7 +2035,7 @@
     "properties": {
       "Architectures": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/118"
         },
         "flags": 0,
         "description": "The instruction set architecture that the function supports. Enter a string array with one of the valid values (arm64 or x86_64). The default value is ``x86_64``."
@@ -1947,14 +2049,14 @@
       },
       "CapacityProviderConfig": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/92"
         },
         "flags": 0,
         "description": "Configuration for the capacity provider that manages compute resources for Lambda functions."
       },
       "Code": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/93"
         },
         "flags": 1,
         "description": "The code for the function. You can define your function code in multiple ways:\n  +  For .zip deployment packages, you can specify the S3 location of the .zip file in the ``S3Bucket``, ``S3Key``, and ``S3ObjectVersion`` properties.\n  +  For .zip deployment packages, you can alternatively define the function code inline in the ``ZipFile`` property. This method works only for Node.js and Python functions.\n  +  For container images, specify the URI of your container image in the ECR registry in the ``ImageUri`` property."
@@ -1968,7 +2070,7 @@
       },
       "DeadLetterConfig": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "A dead-letter queue configuration that specifies the queue or topic where Lambda sends asynchronous events when they fail processing. For more information, see [Dead-letter queues](https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-dlq)."
@@ -1982,28 +2084,28 @@
       },
       "DurableConfig": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/95"
         },
         "flags": 0,
         "description": "Configuration settings for [durable functions](https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html), including execution timeout, retention period for execution history, and an optional ARN of the KMSlong (KMS) customer managed key that is used to encrypt your durable execution's payload data, including input, output, and error payloads."
       },
       "Environment": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/96"
         },
         "flags": 0,
         "description": "Environment variables that are accessible from function code during execution."
       },
       "EphemeralStorage": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/97"
         },
         "flags": 0,
         "description": "The size of the function's ``/tmp`` directory in MB. The default value is 512, but it can be any whole number between 512 and 10,240 MB."
       },
       "FileSystemConfigs": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/119"
         },
         "flags": 0,
         "description": "Connection settings for an Amazon EFS or Amazon S3 Files file system. To connect a function to a file system, a mount target must be available in every Availability Zone that your function connects to. If your template contains an [AWS::EFS::MountTarget](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-mounttarget.html) or [AWS::S3Files::MountTarget](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3files-mounttarget.html) resource, you must also specify a ``DependsOn`` attribute to ensure that the mount target is created or updated before the function.\n For more information about using the ``DependsOn`` attribute, see [DependsOn Attribute](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-dependson.html)."
@@ -2017,7 +2119,7 @@
       },
       "FunctionScalingConfig": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/99"
         },
         "flags": 0,
         "description": "Configuration that defines the scaling behavior for a Lambda Managed Instances function, including the minimum and maximum number of execution environments that can be provisioned."
@@ -2031,7 +2133,7 @@
       },
       "ImageConfig": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/100"
         },
         "flags": 0,
         "description": "Configuration values that override the container image Dockerfile settings. For more information, see [Container image settings](https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-parms)."
@@ -2045,14 +2147,14 @@
       },
       "Layers": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/120"
         },
         "flags": 0,
         "description": "A list of [function layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) to add to the function's execution environment. Specify each layer by its ARN, including the version."
       },
       "LoggingConfig": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/102"
         },
         "flags": 0,
         "description": "The function's Amazon CloudWatch Logs configuration settings."
@@ -2073,7 +2175,7 @@
       },
       "PublishToLatestPublished": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/83"
         },
         "flags": 4,
         "description": ""
@@ -2108,35 +2210,35 @@
       },
       "RuntimeManagementConfig": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/104"
         },
         "flags": 0,
         "description": "Sets the runtime management configuration for a function's version. For more information, see [Runtime updates](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html)."
       },
       "SnapStart": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/106"
         },
         "flags": 4,
         "description": "The function's [SnapStart](https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html) setting."
       },
       "SnapStartResponse": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/107"
         },
         "flags": 2,
         "description": ""
       },
       "Tags": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/121"
         },
         "flags": 0,
         "description": "A list of [tags](https://docs.aws.amazon.com/lambda/latest/dg/tagging.html) to apply to the function.\n  You must have the ``lambda:TagResource``, ``lambda:UntagResource``, and ``lambda:ListTags`` permissions for your [principal](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html) to manage the CFN stack. If you don't have these permissions, there might be unexpected behavior with stack-level tags propagating to the resource during resource creation and update."
       },
       "TenancyConfig": {
         "type": {
-          "$ref": "#/105"
+          "$ref": "#/109"
         },
         "flags": 0,
         "description": "The function's tenant isolation configuration settings. Determines whether the Lambda function runs on a shared or dedicated infrastructure per unique tenant."
@@ -2150,14 +2252,14 @@
       },
       "TracingConfig": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/110"
         },
         "flags": 0,
         "description": "Set ``Mode`` to ``Active`` to sample and trace a subset of incoming requests with [X-Ray](https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html)."
       },
       "VpcConfig": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/111"
         },
         "flags": 0,
         "description": "For network connectivity to AWS resources in a VPC, specify a list of security groups and subnets in the VPC. When you connect a function to a VPC, it can access resources and the internet only through that VPC. For more information, see [Configuring a Lambda function to access resources in a VPC](https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html)."
@@ -2184,7 +2286,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/118"
+          "$ref": "#/122"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2195,7 +2297,228 @@
     "$type": "ResourceType",
     "name": "AWS.Lambda/Function@default",
     "body": {
-      "$ref": "#/119"
+      "$ref": "#/123"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Content",
+    "properties": {
+      "S3Bucket": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The Amazon S3 bucket of the layer archive."
+      },
+      "S3Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The Amazon S3 key of the layer archive."
+      },
+      "S3ObjectStorageMode": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Specifies whether Lambda should copy the deployment package to its internal storage (COPY) or reference it directly from your S3 bucket (REFERENCE)."
+      },
+      "S3ObjectVersion": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "For versioned objects, the version of the layer archive object to use."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Lambda/LayerVersionProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Lambda/LayerVersionProperties",
+    "properties": {
+      "CompatibleArchitectures": {
+        "type": {
+          "$ref": "#/127"
+        },
+        "flags": 0,
+        "description": "A list of compatible instruction set architectures."
+      },
+      "CompatibleRuntimes": {
+        "type": {
+          "$ref": "#/128"
+        },
+        "flags": 0,
+        "description": "A list of compatible function runtimes. Used for filtering with ListLayers and ListLayerVersions."
+      },
+      "Content": {
+        "type": {
+          "$ref": "#/125"
+        },
+        "flags": 5,
+        "description": "The function layer archive."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The description of the version."
+      },
+      "LayerName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The name or Amazon Resource Name (ARN) of the layer."
+      },
+      "LayerVersionArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18
+      },
+      "LicenseInfo": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The layer's software license."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Lambda/LayerVersion",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/129"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Lambda/LayerVersion@default",
+    "body": {
+      "$ref": "#/130"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Lambda/LayerVersionPermissionProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Lambda/LayerVersionPermissionProperties",
+    "properties": {
+      "Action": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The API action that grants access to the layer."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "ID generated by service"
+      },
+      "LayerVersionArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The name or Amazon Resource Name (ARN) of the layer."
+      },
+      "OrganizationId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "With the principal set to *, grant permission to all accounts in the specified organization."
+      },
+      "Principal": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "An account ID, or * to grant layer usage permission to all accounts in an organization, or all AWS accounts (if organizationId is not specified)."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Lambda/LayerVersionPermission",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/133"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Lambda/LayerVersionPermission@default",
+    "body": {
+      "$ref": "#/134"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2271,13 +2594,13 @@
     "properties": {
       "MicrovmHooks": {
         "type": {
-          "$ref": "#/128"
+          "$ref": "#/143"
         },
         "flags": 0
       },
       "MicrovmImageHooks": {
         "type": {
-          "$ref": "#/129"
+          "$ref": "#/144"
         },
         "flags": 0
       },
@@ -2295,13 +2618,13 @@
     "properties": {
       "CloudWatch": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/136"
         },
         "flags": 0
       },
       "Disabled": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/83"
         },
         "flags": 0
       }
@@ -2441,7 +2764,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/123"
+      "$ref": "#/138"
     }
   },
   {
@@ -2453,19 +2776,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/124"
+      "$ref": "#/139"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/131"
+      "$ref": "#/146"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/132"
+      "$ref": "#/147"
     }
   },
   {
@@ -2474,7 +2797,7 @@
     "properties": {
       "AdditionalOsCapabilities": {
         "type": {
-          "$ref": "#/134"
+          "$ref": "#/149"
         },
         "flags": 5
       },
@@ -2501,14 +2824,14 @@
       },
       "CodeArtifact": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/137"
         },
         "flags": 5,
         "description": "Code artifact for the active MicroVM image."
       },
       "CpuConfigurations": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/150"
         },
         "flags": 5
       },
@@ -2528,20 +2851,20 @@
       },
       "EgressNetworkConnectors": {
         "type": {
-          "$ref": "#/136"
+          "$ref": "#/151"
         },
         "flags": 5
       },
       "EnvironmentVariables": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/152"
         },
         "flags": 5,
         "description": "Environment variables to set in the container during the snapshot build."
       },
       "Hooks": {
         "type": {
-          "$ref": "#/126"
+          "$ref": "#/141"
         },
         "flags": 5
       },
@@ -2568,7 +2891,7 @@
       },
       "Logging": {
         "type": {
-          "$ref": "#/127"
+          "$ref": "#/142"
         },
         "flags": 5,
         "description": "Configuration for MicroVM image logging."
@@ -2582,7 +2905,7 @@
       },
       "Resources": {
         "type": {
-          "$ref": "#/138"
+          "$ref": "#/153"
         },
         "flags": 5
       },
@@ -2595,7 +2918,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/139"
+          "$ref": "#/154"
         },
         "flags": 0,
         "description": "Key-value pairs to associate with the MicroVM image for organization and management."
@@ -2629,7 +2952,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/140"
+          "$ref": "#/155"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2640,7 +2963,7 @@
     "$type": "ResourceType",
     "name": "AWS.Lambda/MicrovmImage@default",
     "body": {
-      "$ref": "#/141"
+      "$ref": "#/156"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2656,7 +2979,7 @@
     "properties": {
       "VpcEgressConfiguration": {
         "type": {
-          "$ref": "#/151"
+          "$ref": "#/166"
         },
         "flags": 1
       }
@@ -2713,7 +3036,7 @@
     "properties": {
       "AssociatedComputeResourceTypes": {
         "type": {
-          "$ref": "#/152"
+          "$ref": "#/167"
         },
         "flags": 1,
         "description": "The types of Lambda compute resources that can use this connector. Supported values are MicroVm and WebFunction."
@@ -2727,14 +3050,14 @@
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/153"
+          "$ref": "#/168"
         },
         "flags": 1,
         "description": "The IDs of the VPC security groups to attach to the ENIs. All security groups must be in the same VPC as the subnets."
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/154"
+          "$ref": "#/169"
         },
         "flags": 1,
         "description": "The IDs of the VPC subnets where Lambda provisions elastic network interfaces (ENIs). Specify 1 to 16 subnets. All subnets must be in the same VPC."
@@ -2766,7 +3089,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/150"
+      "$ref": "#/165"
     }
   },
   {
@@ -2781,7 +3104,7 @@
       },
       "Configuration": {
         "type": {
-          "$ref": "#/144"
+          "$ref": "#/159"
         },
         "flags": 1
       },
@@ -2817,7 +3140,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/156"
+          "$ref": "#/171"
         },
         "flags": 0,
         "description": "A list of tags to apply to the network connector. Use tags to categorize network connectors for cost allocation, access control, or operational management."
@@ -2844,7 +3167,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/157"
+          "$ref": "#/172"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2855,7 +3178,123 @@
     "$type": "ResourceType",
     "name": "AWS.Lambda/NetworkConnector@default",
     "body": {
-      "$ref": "#/158"
+      "$ref": "#/173"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Lambda/PermissionProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Lambda/PermissionProperties",
+    "properties": {
+      "Action": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The action that the principal can use on the function. For example, ``lambda:InvokeFunction`` or ``lambda:GetFunction``."
+      },
+      "EventSourceToken": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "For Alexa Smart Home functions, a token that the invoker must supply."
+      },
+      "FunctionName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "The name or ARN of the Lambda function, version, or alias.\n  **Name formats**\n +  *Function name* ? ``my-function`` (name-only), ``my-function:v1`` (with alias).\n  +  *Function ARN* ? ``arn:aws:lambda:us-west-2:123456789012:function:my-function``.\n  +  *Partial ARN* ? ``123456789012:function:my-function``.\n  \n You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length."
+      },
+      "FunctionUrlAuthType": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The type of authentication that your function URL uses. Set to ``AWS_IAM`` if you want to restrict access to authenticated users only. Set to ``NONE`` if you want to bypass IAM authentication to create a public endpoint. For more information, see [Control access to Lambda function URLs](https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html)."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": ""
+      },
+      "InvokedViaFunctionUrl": {
+        "type": {
+          "$ref": "#/83"
+        },
+        "flags": 0,
+        "description": "Indicates whether the permission applies when the function is invoked through a function URL."
+      },
+      "Principal": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The AWS-service, AWS-account, IAM user, or IAM role that invokes the function. If you specify a service, use ``SourceArn`` or ``SourceAccount`` to limit who can invoke the function through that service."
+      },
+      "PrincipalOrgID": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The identifier for your organization in AOlong. Use this to grant permissions to all the AWS-accounts under this organization."
+      },
+      "SourceAccount": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "For AWS-service, the ID of the AWS-account that owns the resource. Use this together with ``SourceArn`` to ensure that the specified account owns the resource. It is possible for an Amazon S3 bucket to be deleted by its owner and recreated by another account."
+      },
+      "SourceArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "For AWS-services, the ARN of the AWS resource that invokes the function. For example, an Amazon S3 bucket or Amazon SNS topic.\n Note that Lambda configures the comparison using the ``StringLike`` operator."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Lambda/Permission",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/176"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Lambda/Permission@default",
+    "body": {
+      "$ref": "#/177"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2885,7 +3324,7 @@
     "properties": {
       "PolicyDocument": {
         "type": {
-          "$ref": "#/163"
+          "$ref": "#/182"
         },
         "flags": 1,
         "description": "The policy document you want to add to your LAM resource. This is formatted as a JSON string.\n For more information, see [Working with resource-based policies in](https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html) in the *Developer Guide*."
@@ -2919,7 +3358,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/164"
+          "$ref": "#/183"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2930,7 +3369,7 @@
     "$type": "ResourceType",
     "name": "AWS.Lambda/ResourcePolicy@default",
     "body": {
-      "$ref": "#/165"
+      "$ref": "#/184"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2956,35 +3395,35 @@
     "properties": {
       "AllowCredentials": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/83"
         },
         "flags": 0,
         "description": "Specifies whether credentials are included in the CORS request."
       },
       "AllowHeaders": {
         "type": {
-          "$ref": "#/175"
+          "$ref": "#/194"
         },
         "flags": 0,
         "description": "Represents a collection of allowed headers."
       },
       "AllowMethods": {
         "type": {
-          "$ref": "#/176"
+          "$ref": "#/195"
         },
         "flags": 0,
         "description": "Represents a collection of allowed HTTP methods."
       },
       "AllowOrigins": {
         "type": {
-          "$ref": "#/177"
+          "$ref": "#/196"
         },
         "flags": 0,
         "description": "Represents a collection of allowed origins."
       },
       "ExposeHeaders": {
         "type": {
-          "$ref": "#/178"
+          "$ref": "#/197"
         },
         "flags": 0,
         "description": "Represents a collection of exposed headers."
@@ -3067,7 +3506,7 @@
       },
       "Cors": {
         "type": {
-          "$ref": "#/170"
+          "$ref": "#/189"
         },
         "flags": 0
       },
@@ -3128,7 +3567,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/181"
+          "$ref": "#/200"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3139,7 +3578,7 @@
     "$type": "ResourceType",
     "name": "AWS.Lambda/Url@default",
     "body": {
-      "$ref": "#/182"
+      "$ref": "#/201"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3235,21 +3674,21 @@
       },
       "FunctionScalingConfig": {
         "type": {
-          "$ref": "#/184"
+          "$ref": "#/203"
         },
         "flags": 0,
         "description": "The scaling configuration to apply to the function, including minimum and maximum execution environment limits."
       },
       "ProvisionedConcurrencyConfig": {
         "type": {
-          "$ref": "#/185"
+          "$ref": "#/204"
         },
         "flags": 0,
         "description": "Specifies a provisioned concurrency configuration for a function's version. Updates are not supported for this property."
       },
       "RuntimePolicy": {
         "type": {
-          "$ref": "#/186"
+          "$ref": "#/205"
         },
         "flags": 0,
         "description": "Specifies the runtime management configuration of a function. Displays runtimeVersionArn only for Manual."
@@ -3283,7 +3722,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/188"
+          "$ref": "#/207"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3294,7 +3733,7 @@
     "$type": "ResourceType",
     "name": "AWS.Lambda/Version@default",
     "body": {
-      "$ref": "#/189"
+      "$ref": "#/208"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3326,7 +3765,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/191"
+      "$ref": "#/210"
     }
   },
   {
@@ -3370,7 +3809,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/193"
+          "$ref": "#/212"
         },
         "flags": 0,
         "description": "A list of tags to apply to the function."
@@ -3404,7 +3843,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/194"
+          "$ref": "#/213"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3415,7 +3854,7 @@
     "$type": "ResourceType",
     "name": "AWS.Lambda/WebFunction@default",
     "body": {
-      "$ref": "#/195"
+      "$ref": "#/214"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3440,14 +3879,14 @@
       },
       "RevisionWeights": {
         "type": {
-          "$ref": "#/201"
+          "$ref": "#/220"
         },
         "flags": 0,
         "description": "The revision weights for the endpoint."
       },
       "ScalingConfig": {
         "type": {
-          "$ref": "#/199"
+          "$ref": "#/218"
         },
         "flags": 0,
         "description": "The scaling configuration for the endpoint."
@@ -3468,7 +3907,7 @@
       },
       "ThrottleConfig": {
         "type": {
-          "$ref": "#/200"
+          "$ref": "#/219"
         },
         "flags": 0,
         "description": "The throttling configuration for the endpoint."
@@ -3538,7 +3977,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/198"
+      "$ref": "#/217"
     }
   },
   {
@@ -3559,7 +3998,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/198"
+      "$ref": "#/217"
     }
   },
   {
@@ -3631,28 +4070,28 @@
       },
       "RegionalEndpoints": {
         "type": {
-          "$ref": "#/203"
+          "$ref": "#/222"
         },
         "flags": 2,
         "description": "Per-region endpoint status and configuration."
       },
       "Regions": {
         "type": {
-          "$ref": "#/204"
+          "$ref": "#/223"
         },
         "flags": 0,
         "description": "The list of AWS Regions for the endpoint."
       },
       "RevisionWeights": {
         "type": {
-          "$ref": "#/205"
+          "$ref": "#/224"
         },
         "flags": 0,
         "description": "List of revision routing entries. 1 or 2 entries. With 1 entry, weight must be 100. With 2 entries, weights must sum to 100."
       },
       "ScalingConfig": {
         "type": {
-          "$ref": "#/199"
+          "$ref": "#/218"
         },
         "flags": 0,
         "description": "The scaling configuration for the endpoint. Optionally constrains how many concurrent execution environments the endpoint can use, in addition to your account's vCPU quota."
@@ -3673,7 +4112,7 @@
       },
       "ThrottleConfig": {
         "type": {
-          "$ref": "#/200"
+          "$ref": "#/219"
         },
         "flags": 0,
         "description": "The throttling configuration for the endpoint. Optionally constrains the request rate that the endpoint accepts, in addition to your account's rate limit quota."
@@ -3721,7 +4160,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/206"
+          "$ref": "#/225"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3732,7 +4171,296 @@
     "$type": "ResourceType",
     "name": "AWS.Lambda/WebFunctionEndpoint@default",
     "body": {
-      "$ref": "#/207"
+      "$ref": "#/226"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LoggingConfig",
+    "properties": {
+      "ApplicationLogLevel": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The application log level."
+      },
+      "LogGroup": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The CloudWatch log group name."
+      },
+      "SystemLogLevel": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The system log level."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3Object",
+    "properties": {
+      "Bucket": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The S3 bucket name."
+      },
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The S3 object key."
+      },
+      "VersionId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The S3 object version ID."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Lambda/WebFunctionRevisionProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WebFunctionRevision_BuildConfig_CodeConfig",
+    "properties": {
+      "S3Object": {
+        "type": {
+          "$ref": "#/229"
+        },
+        "flags": 1,
+        "description": "The Amazon S3 location of the deployment artifact."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WebFunctionRevision_BuildConfig_RuntimeConfig",
+    "properties": {
+      "Runtime": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The runtime identifier."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WebFunctionRevision_BuildConfig",
+    "properties": {
+      "CodeConfig": {
+        "type": {
+          "$ref": "#/231"
+        },
+        "flags": 1,
+        "description": "The code configuration for the revision."
+      },
+      "RuntimeConfig": {
+        "type": {
+          "$ref": "#/232"
+        },
+        "flags": 1,
+        "description": "The runtime configuration for the revision."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WebFunctionRevision_ServiceConfig_EnvironmentVariables",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WebFunctionRevision_ServiceConfig_TelemetryConfig",
+    "properties": {
+      "LoggingConfig": {
+        "type": {
+          "$ref": "#/228"
+        },
+        "flags": 0,
+        "description": "The logging configuration for the web function."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WebFunctionRevision_ServiceConfig",
+    "properties": {
+      "EgressNetworkConnectorArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The versioned ARN of the network connector used for outbound network access from the revision."
+      },
+      "EnvironmentVariables": {
+        "type": {
+          "$ref": "#/234"
+        },
+        "flags": 0,
+        "description": "Environment variables for the function."
+      },
+      "ExecutionRoleArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The ARN of the execution role."
+      },
+      "MaxConcurrencyPerEnvironment": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The maximum concurrency per environment."
+      },
+      "TelemetryConfig": {
+        "type": {
+          "$ref": "#/235"
+        },
+        "flags": 0,
+        "description": "The telemetry configuration."
+      },
+      "TimeoutSeconds": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The function timeout in seconds."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Lambda/WebFunctionRevisionProperties",
+    "properties": {
+      "BuildConfig": {
+        "type": {
+          "$ref": "#/233"
+        },
+        "flags": 1,
+        "description": "The build configuration for the revision."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The timestamp when the revision was created."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "A description of the revision."
+      },
+      "FunctionArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the function."
+      },
+      "FunctionName": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The name of the web function this revision belongs to. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length."
+      },
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The ARN of the KMS key used to encrypt the revision."
+      },
+      "RevisionArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the revision."
+      },
+      "RevisionId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the revision."
+      },
+      "ServiceConfig": {
+        "type": {
+          "$ref": "#/236"
+        },
+        "flags": 1,
+        "description": "The service configuration for the revision."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The current state of the revision."
+      },
+      "StateReason": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The reason for the revision's current state."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Lambda/WebFunctionRevision",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/237"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Lambda/WebFunctionRevision@default",
+    "body": {
+      "$ref": "#/238"
     },
     "readableScopes": 0,
     "writableScopes": 0

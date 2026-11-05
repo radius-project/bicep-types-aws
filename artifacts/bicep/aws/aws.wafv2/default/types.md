@@ -85,6 +85,7 @@
 
 ## AssociationConfig
 ### Properties
+* **ChallengeJavascriptSdkInjection**: [ChallengeJavascriptSdkInjection](#challengejavascriptsdkinjection)
 * **RequestBody**: [RequestBody](#requestbody)
 
 ## AWS.WAFv2/IPSetProperties
@@ -251,6 +252,9 @@
 ## ChallengeConfig
 ### Properties
 * **ImmunityTimeProperty**: [ImmunityTimeProperty](#immunitytimeproperty)
+
+## ChallengeJavascriptSdkInjection
+### Properties
 
 ## ClientSideAction
 ### Properties

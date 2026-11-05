@@ -1,0 +1,331 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DataSync-TaskExecution",
+  "type": "AWS::DataSync::TaskExecution",
+  "time": "2026-11-05T17:24:21.542Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/TaskExecutionArn"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Tags",
+      "/properties/TaskArn"
+    ],
+    "definitions": {
+      "Options": {
+        "additionalProperties": false,
+        "description": "Options that determine how DataSync handles files, objects, and metadata during transfer.",
+        "properties": {
+          "Atime": {
+            "description": "Specifies whether to preserve file access time.",
+            "enum": [
+              "NONE",
+              "BEST_EFFORT"
+            ],
+            "type": "string"
+          },
+          "BytesPerSecond": {
+            "description": "Limits the bandwidth used by a DataSync task.",
+            "minimum": -1,
+            "type": "integer"
+          },
+          "Gid": {
+            "description": "Specifies the group ID (GID) handling.",
+            "enum": [
+              "NONE",
+              "INT_VALUE",
+              "NAME",
+              "BOTH"
+            ],
+            "type": "string"
+          },
+          "LogLevel": {
+            "description": "Specifies the level of log detail.",
+            "enum": [
+              "OFF",
+              "BASIC",
+              "TRANSFER"
+            ],
+            "type": "string"
+          },
+          "Mtime": {
+            "description": "Specifies whether to preserve file modification time.",
+            "enum": [
+              "NONE",
+              "PRESERVE"
+            ],
+            "type": "string"
+          },
+          "ObjectTags": {
+            "description": "Specifies whether to preserve object tags.",
+            "enum": [
+              "PRESERVE",
+              "NONE"
+            ],
+            "type": "string"
+          },
+          "OverwriteMode": {
+            "description": "Specifies whether to overwrite data at the destination.",
+            "enum": [
+              "ALWAYS",
+              "NEVER"
+            ],
+            "type": "string"
+          },
+          "PosixPermissions": {
+            "description": "Specifies POSIX permissions handling.",
+            "enum": [
+              "NONE",
+              "PRESERVE"
+            ],
+            "type": "string"
+          },
+          "PreserveDeletedFiles": {
+            "description": "Specifies whether to preserve deleted files.",
+            "enum": [
+              "PRESERVE",
+              "REMOVE"
+            ],
+            "type": "string"
+          },
+          "PreserveDevices": {
+            "description": "Specifies whether to preserve block and character devices.",
+            "enum": [
+              "NONE",
+              "PRESERVE"
+            ],
+            "type": "string"
+          },
+          "SecurityDescriptorCopyFlags": {
+            "description": "Specifies which security descriptor components to copy.",
+            "enum": [
+              "NONE",
+              "OWNER_DACL",
+              "OWNER_DACL_SACL"
+            ],
+            "type": "string"
+          },
+          "TaskQueueing": {
+            "description": "Specifies whether tasks can be queued.",
+            "enum": [
+              "ENABLED",
+              "DISABLED"
+            ],
+            "type": "string"
+          },
+          "TransferMode": {
+            "description": "Specifies what to transfer.",
+            "enum": [
+              "CHANGED",
+              "ALL"
+            ],
+            "type": "string"
+          },
+          "Uid": {
+            "description": "Specifies the user ID (UID) handling.",
+            "enum": [
+              "NONE",
+              "INT_VALUE",
+              "NAME",
+              "BOTH"
+            ],
+            "type": "string"
+          },
+          "VerifyMode": {
+            "description": "Specifies how and when to verify data integrity.",
+            "enum": [
+              "POINT_IN_TIME_CONSISTENT",
+              "ONLY_FILES_TRANSFERRED",
+              "NONE"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9\\s+=._:/-]+$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9\\s+=._:@/-]*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource schema for AWS::DataSync::TaskExecution - represents an execution of a DataSync transfer task.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "TaskArn": {
+              "maxLength": 128,
+              "pattern": "^arn:(aws|aws-cn|aws-us-gov|aws-eusc|aws-iso|aws-iso-b):datasync:[a-z\\-0-9]+:[0-9]{12}:task/task-[0-9a-f]{17}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "TaskArn"
+          ]
+        },
+        "permissions": [
+          "datasync:ListTaskExecutions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "datasync:DescribeTaskExecution",
+          "datasync:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/TaskExecutionArn"
+    ],
+    "properties": {
+      "BytesCompressed": {
+        "description": "The number of physical bytes transferred over the network after compression.",
+        "type": "integer"
+      },
+      "BytesTransferred": {
+        "description": "The number of bytes sent to the network before compression.",
+        "type": "integer"
+      },
+      "BytesWritten": {
+        "description": "The number of logical bytes written to the destination.",
+        "type": "integer"
+      },
+      "EstimatedBytesToTransfer": {
+        "description": "The estimated number of bytes to transfer.",
+        "type": "integer"
+      },
+      "EstimatedFilesToDelete": {
+        "description": "The estimated number of files to delete at the destination.",
+        "type": "integer"
+      },
+      "EstimatedFilesToTransfer": {
+        "description": "The estimated number of files to transfer.",
+        "type": "integer"
+      },
+      "FilesDeleted": {
+        "description": "The number of files deleted at the destination.",
+        "type": "integer"
+      },
+      "FilesPrepared": {
+        "description": "The number of files prepared.",
+        "type": "integer"
+      },
+      "FilesSkipped": {
+        "description": "The number of files skipped.",
+        "type": "integer"
+      },
+      "FilesTransferred": {
+        "description": "The number of files transferred.",
+        "type": "integer"
+      },
+      "FilesVerified": {
+        "description": "The number of files verified.",
+        "type": "integer"
+      },
+      "OverrideOptions": {
+        "$ref": "#/definitions/Options"
+      },
+      "StartTime": {
+        "description": "The time the task execution started.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the task execution.",
+        "enum": [
+          "QUEUED",
+          "CANCELLING",
+          "LAUNCHING",
+          "PREPARING",
+          "TRANSFERRING",
+          "VERIFYING",
+          "SUCCESS",
+          "ERROR"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "TaskArn": {
+        "description": "The ARN of the task that was executed.",
+        "maxLength": 128,
+        "pattern": "^arn:(aws|aws-cn|aws-us-gov|aws-eusc|aws-iso|aws-iso-b):datasync:[a-z\\-0-9]+:[0-9]{12}:task/task-[0-9a-f]{17}$",
+        "type": "string"
+      },
+      "TaskExecutionArn": {
+        "description": "The ARN of the task execution.",
+        "maxLength": 128,
+        "pattern": "^arn:(aws|aws-cn|aws-us-gov|aws-eusc|aws-iso|aws-iso-b):datasync:[a-z\\-0-9]+:[0-9]{12}:task/task-[0-9a-f]{17}/execution/exec-[0-9a-f]{17}$",
+        "type": "string"
+      },
+      "TaskMode": {
+        "description": "The task mode used for the execution.",
+        "enum": [
+          "BASIC",
+          "ENHANCED"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/TaskExecutionArn",
+      "/properties/Status",
+      "/properties/TaskMode",
+      "/properties/BytesCompressed",
+      "/properties/BytesTransferred",
+      "/properties/BytesWritten",
+      "/properties/EstimatedBytesToTransfer",
+      "/properties/EstimatedFilesToTransfer",
+      "/properties/EstimatedFilesToDelete",
+      "/properties/FilesTransferred",
+      "/properties/FilesDeleted",
+      "/properties/FilesSkipped",
+      "/properties/FilesVerified",
+      "/properties/FilesPrepared",
+      "/properties/StartTime",
+      "/properties/OverrideOptions"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "datasync:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::DataSync::TaskExecution"
+  }
+}

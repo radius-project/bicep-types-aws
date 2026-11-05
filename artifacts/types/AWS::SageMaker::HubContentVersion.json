@@ -1,0 +1,186 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-HubContentVersion",
+  "type": "AWS::SageMaker::HubContentVersion",
+  "time": "2026-11-05T17:42:17.681Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/HubName",
+      "/properties/HubContentType",
+      "/properties/HubContentName"
+    ],
+    "description": "Resource type definition for AWS::SageMaker::HubContentVersion",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "HubContentName": {
+              "maxLength": 63,
+              "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$",
+              "type": "string"
+            },
+            "HubContentType": {
+              "enum": [
+                "Model",
+                "Notebook",
+                "ModelReference",
+                "DataSet",
+                "JsonDoc"
+              ],
+              "type": "string"
+            },
+            "HubName": {
+              "maxLength": 63,
+              "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "HubName",
+            "HubContentType",
+            "HubContentName"
+          ]
+        },
+        "permissions": [
+          "sagemaker:ListHubContentVersions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "sagemaker:DescribeHubContent"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ResourceArn",
+      "/properties/HubContentVersion"
+    ],
+    "properties": {
+      "CreationTime": {
+        "description": "The date and time that the hub content was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DocumentSchemaVersion": {
+        "description": "The document schema version for the hub content.",
+        "maxLength": 14,
+        "minLength": 5,
+        "pattern": "^\\d{1,4}\\.\\d{1,4}\\.\\d{1,4}$",
+        "type": "string"
+      },
+      "HubArn": {
+        "description": "The Amazon Resource Name (ARN) of the hub.",
+        "maxLength": 255,
+        "type": "string"
+      },
+      "HubContentArn": {
+        "description": "The versioned Amazon Resource Name (ARN) of the hub content version.",
+        "maxLength": 255,
+        "type": "string"
+      },
+      "HubContentDescription": {
+        "description": "The description of the hub content.",
+        "maxLength": 1023,
+        "type": "string"
+      },
+      "HubContentDisplayName": {
+        "description": "The display name of the hub content.",
+        "maxLength": 255,
+        "type": "string"
+      },
+      "HubContentName": {
+        "description": "The name of the hub content.",
+        "maxLength": 63,
+        "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$",
+        "type": "string"
+      },
+      "HubContentStatus": {
+        "description": "The status of the hub content.",
+        "enum": [
+          "Available",
+          "Importing",
+          "Deleting",
+          "ImportFailed",
+          "DeleteFailed",
+          "PendingImport",
+          "PendingDelete"
+        ],
+        "type": "string"
+      },
+      "HubContentType": {
+        "description": "The type of hub content.",
+        "enum": [
+          "Model",
+          "Notebook",
+          "ModelReference",
+          "DataSet",
+          "JsonDoc"
+        ],
+        "type": "string"
+      },
+      "HubContentVersion": {
+        "description": "The version of the hub content.",
+        "maxLength": 14,
+        "minLength": 5,
+        "pattern": "^\\d{1,4}\\.\\d{1,4}\\.\\d{1,4}$",
+        "type": "string"
+      },
+      "HubName": {
+        "description": "The name of the hub that contains the hub content.",
+        "maxLength": 63,
+        "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$",
+        "type": "string"
+      },
+      "LastModifiedTime": {
+        "description": "The date and time that the hub content was last modified.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ReferenceMinVersion": {
+        "description": "The minimum version of the hub content referenced by a ModelReference.",
+        "maxLength": 14,
+        "minLength": 5,
+        "pattern": "^\\d{1,4}\\.\\d{1,4}\\.\\d{1,4}$",
+        "type": "string"
+      },
+      "ResourceArn": {
+        "description": "The versionless Amazon Resource Name (ARN) that identifies the hub content item; combined with HubContentVersion it forms the primary identifier of a hub content version.",
+        "maxLength": 255,
+        "type": "string"
+      },
+      "SageMakerPublicHubContentArn": {
+        "description": "The ARN of the public hub content that this hub content references, if any.",
+        "maxLength": 255,
+        "type": "string"
+      },
+      "SupportStatus": {
+        "description": "The support status of the hub content.",
+        "enum": [
+          "Supported",
+          "Deprecated",
+          "Restricted"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/HubContentVersion",
+      "/properties/ResourceArn",
+      "/properties/HubContentArn",
+      "/properties/HubArn",
+      "/properties/SageMakerPublicHubContentArn",
+      "/properties/ReferenceMinVersion",
+      "/properties/SupportStatus",
+      "/properties/HubContentStatus",
+      "/properties/CreationTime",
+      "/properties/LastModifiedTime",
+      "/properties/DocumentSchemaVersion",
+      "/properties/HubContentDisplayName",
+      "/properties/HubContentDescription"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::SageMaker::HubContentVersion"
+  }
+}

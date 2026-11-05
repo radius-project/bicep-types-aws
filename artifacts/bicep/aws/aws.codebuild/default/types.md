@@ -1,5 +1,21 @@
 # AWS.CodeBuild @ default
 
+## Resource AWS.CodeBuild/Build@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CodeBuild/BuildProperties](#awscodebuildbuildproperties) (Identifier): properties of the resource
+
+## Resource AWS.CodeBuild/BuildBatch@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CodeBuild/BuildBatchProperties](#awscodebuildbuildbatchproperties) (Identifier): properties of the resource
+
 ## Resource AWS.CodeBuild/Fleet@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -16,6 +32,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.CodeBuild/ProjectProperties](#awscodebuildprojectproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.CodeBuild/Report@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CodeBuild/ReportProperties](#awscodebuildreportproperties) (Identifier): properties of the resource
+
 ## Resource AWS.CodeBuild/ReportGroup@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -23,6 +47,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.CodeBuild/ReportGroupProperties](#awscodebuildreportgroupproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.CodeBuild/Sandbox@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CodeBuild/SandboxProperties](#awscodebuildsandboxproperties) (Identifier): properties of the resource
 
 ## Resource AWS.CodeBuild/SourceCredential@default
 * **Readable Scope(s)**: None
@@ -53,6 +85,38 @@ If you specify `CODEPIPELINE` or `NO_ARTIFACTS` for the `Type` property, don't s
 * `NO_ARTIFACTS`: The build project does not produce any build output.
 * `S3`: The build project stores build output in Amazon S3.
 
+
+## AWS.CodeBuild/BuildBatchProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the batch build.
+* **BuildBatchNumber**: int (ReadOnly): The number of the batch build.
+* **BuildBatchStatus**: string (ReadOnly): The current status of the batch build.
+* **BuildTimeoutInMinutes**: int (ReadOnly): How long, in minutes, for CodeBuild to wait before timing out the batch build.
+* **Complete**: bool (ReadOnly): Whether the batch build is complete.
+* **CurrentPhase**: string (ReadOnly): The current build phase of the batch build.
+* **EncryptionKey**: string (ReadOnly): The KMS key used to encrypt the batch build output artifacts.
+* **Id**: string (ReadOnly): The unique ID for the batch build.
+* **Initiator**: string (ReadOnly): The entity that started the batch build.
+* **ProjectName**: string: The name of the CodeBuild build project.
+* **QueuedTimeoutInMinutes**: int (ReadOnly): The number of minutes a batch build is allowed to be queued before it times out.
+* **StartTime**: string (ReadOnly): When the batch build started, in ISO 8601 format.
+
+## AWS.CodeBuild/BuildProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the build.
+* **BuildComplete**: bool (ReadOnly): Whether the build is complete.
+* **BuildNumber**: int (ReadOnly): The number of the build.
+* **BuildStatus**: string (ReadOnly): The current status of the build.
+* **CurrentPhase**: string (ReadOnly): The current build phase.
+* **EncryptionKey**: string (ReadOnly): The KMS key used to encrypt the build output artifacts.
+* **EndTime**: string (ReadOnly): When the build process ended, in ISO 8601 format.
+* **Id**: string (ReadOnly): The unique ID for the build (format: projectName:buildId).
+* **Initiator**: string (ReadOnly): The entity that started the build.
+* **ProjectName**: string: The name of the CodeBuild build project.
+* **QueuedTimeoutInMinutes**: int (ReadOnly): The number of minutes a build is allowed to be queued before it times out.
+* **ServiceRole**: string (ReadOnly): The name of a service role used for this build.
+* **StartTime**: string (ReadOnly): When the build process started, in ISO 8601 format.
+* **TimeoutInMinutes**: int (ReadOnly): How long, in minutes, from 5 to 2160 (36 hours), for CodeBuild to wait before timing out the build.
 
 ## AWS.CodeBuild/FleetProperties
 ### Properties
@@ -108,6 +172,34 @@ If you specify `CODEPIPELINE` or `NO_ARTIFACTS` for the `Type` property, don't s
 * **Tags**: [Tag](#tag)[]
 * **Type**: string (Required)
 
+## AWS.CodeBuild/ReportProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the report run.
+* **CodeCoverageSummary**: [CodeCoverageReportSummary](#codecoveragereportsummary) (ReadOnly)
+* **Created**: string (ReadOnly): The date and time this report run occurred, in ISO 8601 format.
+* **ExecutionId**: string (ReadOnly): The ARN of the build run that generated this report.
+* **Expired**: string (ReadOnly): The date and time a report expires, in ISO 8601 format. A report expires 30 days after it was run.
+* **ExportConfig**: [ReportExportConfig](#reportexportconfig) (ReadOnly)
+* **Name**: string (ReadOnly): The name of the report that was run, which the service derives from the report group that contains it.
+* **ReportGroupArn**: string (ReadOnly): The ARN of the report group associated with this report.
+* **Status**: string (ReadOnly): The status of this report. A TEST report reaches SUCCEEDED, FAILED or INCOMPLETE, and a CODE_COVERAGE report reaches COMPLETE or INCOMPLETE. The value is not constrained to a fixed set, because the service returns statuses that the public model does not declare.
+* **TestSummary**: [TestReportSummary](#testreportsummary) (ReadOnly)
+* **Truncated**: bool (ReadOnly): Whether this report run is truncated. The list of test cases is truncated after the maximum number of test cases is reached.
+* **Type**: string (ReadOnly): The type of the report that was run. CODE_COVERAGE is a code coverage report and TEST is a test report. The value is not constrained to those two, because the service can return a report type that the public model does not declare.
+
+## AWS.CodeBuild/SandboxProperties
+### Properties
+* **Arn**: string (Identifier): The ARN of the sandbox.
+* **EncryptionKey**: string (ReadOnly): The KMS key used for encrypting the sandbox output artifacts.
+* **Id**: string (ReadOnly): The ID of the sandbox.
+* **ProjectName**: string: The CodeBuild project name.
+* **QueuedTimeoutInMinutes**: int (ReadOnly): The number of minutes a sandbox is allowed to be queued before it times out.
+* **RequestTime**: string (ReadOnly): When the sandbox process was initially requested, expressed in ISO 8601 format.
+* **ServiceRole**: string (ReadOnly): The name of a service role used for this sandbox.
+* **StartTime**: string (ReadOnly): When the sandbox process started, expressed in ISO 8601 format.
+* **Status**: string (ReadOnly): The status of the sandbox.
+* **TimeoutInMinutes**: int (ReadOnly): How long, in minutes, for CodeBuild to wait before timing out this sandbox.
+
 ## AWS.CodeBuild/SourceCredentialProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): The ARN of the SourceCredential resource.
@@ -132,6 +224,15 @@ If you specify `CODEPIPELINE` or `NO_ARTIFACTS` for the `Type` property, don't s
 * **GroupName**: string
 * **Status**: string (Required)
 * **StreamName**: string
+
+## CodeCoverageReportSummary
+### Properties
+* **BranchCoveragePercentage**: int: The percentage of branches that are covered by the tests.
+* **BranchesCovered**: int: The number of conditional branches that are covered by the tests.
+* **BranchesMissed**: int: The number of conditional branches that are not covered by the tests.
+* **LineCoveragePercentage**: int: The percentage of lines that are covered by the tests.
+* **LinesCovered**: int: The number of lines that are covered by the tests.
+* **LinesMissed**: int: The number of lines that are not covered by the tests.
 
 ## ComputeConfiguration
 ### Properties
@@ -236,6 +337,14 @@ If you specify `CODEPIPELINE` or `NO_ARTIFACTS` for the `Type` property, don't s
 * **Credential**: string (Required)
 * **CredentialProvider**: string (Required)
 
+## Report_StatusCounts
+### Properties
+
+## ReportExportConfig
+### Properties
+* **ExportConfigType**: string: The export configuration type. S3 exports the report's raw data to an S3 bucket, and NO_EXPORT means the report is not exported.
+* **S3Destination**: [S3ReportExportConfig](#s3reportexportconfig)
+
 ## ReportExportConfig
 ### Properties
 * **ExportConfigType**: string (Required)
@@ -246,6 +355,15 @@ If you specify `CODEPIPELINE` or `NO_ARTIFACTS` for the `Type` property, don't s
 * **EncryptionDisabled**: bool
 * **Location**: string
 * **Status**: string (Required)
+
+## S3ReportExportConfig
+### Properties
+* **Bucket**: string: The name of the S3 bucket where the raw data of the report is exported.
+* **BucketOwner**: string: The account identifier of the owner of the S3 bucket. This allows the report to be exported to a bucket owned by another account.
+* **EncryptionDisabled**: bool: Whether the report's raw data is exported without encryption.
+* **EncryptionKey**: string: The encryption key for the report's encrypted raw data.
+* **Packaging**: string: The type of build output artifact to create. ZIP produces a ZIP file containing the raw data, and NONE produces individual files.
+* **Path**: string: The path to the exported report's raw data results.
 
 ## S3ReportExportConfig
 ### Properties
@@ -305,6 +423,12 @@ If you specify `CODEPIPELINE` or `NO_ARTIFACTS` for the `Type` property, don't s
 ### Properties
 * **MetricType**: string
 * **TargetValue**: int
+
+## TestReportSummary
+### Properties
+* **DurationInNanoSeconds**: int (Required): The number of nanoseconds it took to run all of the test cases in the report.
+* **StatusCounts**: [Report_StatusCounts](#reportstatuscounts) (Required): The number of test cases in the report by status. The key is the test case status and the value is the number of test cases with that status.
+* **Total**: int (Required): The number of test cases in the report.
 
 ## VpcConfig
 ### Properties

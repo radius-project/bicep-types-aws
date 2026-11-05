@@ -141,6 +141,9 @@
     "value": "AWS.Route53Profiles/ProfileAssociationProperties"
   },
   {
+    "$type": "IntegerType"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/7"
@@ -171,6 +174,13 @@
         "flags": 1,
         "description": "The name of an association between a  Profile and a VPC."
       },
+      "Priority": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The priority of the profile association, used to order the profiles applied to a VPC when multiple profiles are associated with it. Lower values have higher precedence. Omit for the first profile associated with a VPC. This orders whole profiles on a VPC and is distinct from the DNS Firewall rule group priority carried in a ProfileResourceAssociation's ResourceProperties."
+      },
       "ProfileId": {
         "type": {
           "$ref": "#/1"
@@ -187,7 +197,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -214,7 +224,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/11"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -225,7 +235,7 @@
     "$type": "ResourceType",
     "name": "AWS.Route53Profiles/ProfileAssociation@default",
     "body": {
-      "$ref": "#/11"
+      "$ref": "#/12"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -302,7 +312,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/15"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -313,7 +323,7 @@
     "$type": "ResourceType",
     "name": "AWS.Route53Profiles/ProfileResourceAssociation@default",
     "body": {
-      "$ref": "#/15"
+      "$ref": "#/16"
     },
     "readableScopes": 0,
     "writableScopes": 0

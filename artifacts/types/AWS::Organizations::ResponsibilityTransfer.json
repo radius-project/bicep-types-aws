@@ -1,0 +1,166 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Organizations-ResponsibilityTransfer",
+  "type": "AWS::Organizations::ResponsibilityTransfer",
+  "time": "2026-11-05T21:17:29.519Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name",
+      "/properties/Type",
+      "/properties/StartTimestamp",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A custom key-value pair associated with the transfer.",
+        "properties": {
+          "Key": {
+            "description": "The key identifier of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The string value associated with the key of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "TransferParticipant": {
+        "additionalProperties": false,
+        "description": "A participant in a transfer.",
+        "properties": {
+          "ManagementAccountEmail": {
+            "description": "The email address of the participant's management account.",
+            "maxLength": 64,
+            "minLength": 6,
+            "pattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$",
+            "type": "string"
+          },
+          "ManagementAccountId": {
+            "description": "The ID of the participant's management account.",
+            "maxLength": 12,
+            "minLength": 0,
+            "pattern": "^\\d{12}$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Organizations::ResponsibilityTransfer. Represents a responsibility transfer: the arrangement between two AWS Organizations management accounts in which one account designates the other with specified responsibilities, currently billing, for its organization. This type models the inbound view of a transfer, in which the calling account is the Target: the account that manages the other organization's specified responsibilities. Its List handler enumerates that direction, which is the one the framework can enumerate in a single paginated operation.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "organizations:ListInboundResponsibilityTransfers"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "organizations:DescribeResponsibilityTransfer",
+          "organizations:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the transfer as seen by the calling account, whose own account, organization and transfer direction the ARN carries. This resource type models the inbound view, in which the calling account is the transfer's Target, so the direction segment is always inbound; an outbound ARN identifies a resource of a different type.",
+        "pattern": "^arn:[a-z0-9][a-z0-9-.]{0,62}:organizations::\\d{12}:transfer\\/o-[a-z0-9]{10,32}\\/(billing)\\/(inbound|outbound)\\/rt-[0-9a-z]{8,32}$",
+        "type": "string"
+      },
+      "EndTimestamp": {
+        "description": "The date and time at which the transfer ended. Present once the transfer has been terminated; the service writes it on that transition and retains the record.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Id": {
+        "description": "The unique identifier (ID) of the transfer.",
+        "pattern": "^rt-[0-9a-z]{8,32}$",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name assigned to the transfer.",
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[ -~]+$",
+        "type": "string"
+      },
+      "OrganizationId": {
+        "description": "The unique identifier (ID) of the calling account's organization, as it appears in the transfer ARN.",
+        "pattern": "^o-[a-z0-9]{10,32}$",
+        "type": "string"
+      },
+      "Source": {
+        "$ref": "#/definitions/TransferParticipant"
+      },
+      "StartTimestamp": {
+        "description": "The time at which the transfer starts.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the transfer.",
+        "enum": [
+          "REQUESTED",
+          "DECLINED",
+          "CANCELED",
+          "EXPIRED",
+          "ACCEPTED",
+          "WITHDRAWN"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A list of tags attached to the transfer.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "Target": {
+        "$ref": "#/definitions/TransferParticipant"
+      },
+      "Type": {
+        "description": "The type of responsibility the transfer designates.",
+        "enum": [
+          "BILLING"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/EndTimestamp",
+      "/properties/Id",
+      "/properties/OrganizationId",
+      "/properties/Source",
+      "/properties/Status",
+      "/properties/Target"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "organizations:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Organizations::ResponsibilityTransfer"
+  }
+}

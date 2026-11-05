@@ -1,0 +1,280 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaLive-Reservation",
+  "type": "AWS::MediaLive::Reservation",
+  "time": "2026-11-05T20:44:34.941Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ReservationId"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "RenewalSettings": {
+        "additionalProperties": false,
+        "description": "The Renewal settings for Reservations.",
+        "properties": {
+          "AutomaticRenewal": {
+            "description": "Automatic renewal status for the reservation.",
+            "enum": [
+              "DISABLED",
+              "ENABLED",
+              "UNAVAILABLE"
+            ],
+            "type": "string"
+          },
+          "RenewalCount": {
+            "description": "Count for the reservation renewal.",
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "ReservationResourceSpecification": {
+        "additionalProperties": false,
+        "description": "Resource configuration (codec, resolution, bitrate, and so on).",
+        "properties": {
+          "ChannelClass": {
+            "description": "Channel class, e.g. 'STANDARD'.",
+            "enum": [
+              "STANDARD",
+              "SINGLE_PIPELINE"
+            ],
+            "type": "string"
+          },
+          "Codec": {
+            "description": "Codec, e.g. 'AVC'.",
+            "enum": [
+              "MPEG2",
+              "AVC",
+              "HEVC",
+              "AUDIO",
+              "LINK",
+              "AV1"
+            ],
+            "type": "string"
+          },
+          "MaximumBitrate": {
+            "description": "Maximum bitrate, e.g. 'MAX_20_MBPS'.",
+            "enum": [
+              "MAX_10_MBPS",
+              "MAX_20_MBPS",
+              "MAX_50_MBPS"
+            ],
+            "type": "string"
+          },
+          "MaximumFramerate": {
+            "description": "Maximum framerate, e.g. 'MAX_30_FPS' (Outputs only).",
+            "enum": [
+              "MAX_30_FPS",
+              "MAX_60_FPS"
+            ],
+            "type": "string"
+          },
+          "Resolution": {
+            "description": "Resolution, e.g. 'HD'.",
+            "enum": [
+              "SD",
+              "HD",
+              "FHD",
+              "UHD"
+            ],
+            "type": "string"
+          },
+          "ResourceType": {
+            "description": "Resource type, 'INPUT', 'OUTPUT', 'MULTIPLEX', or 'CHANNEL'.",
+            "enum": [
+              "INPUT",
+              "OUTPUT",
+              "MULTIPLEX",
+              "CHANNEL"
+            ],
+            "type": "string"
+          },
+          "SpecialFeature": {
+            "description": "Special feature, e.g. 'AUDIO_NORMALIZATION' (Channels only).",
+            "enum": [
+              "ADVANCED_AUDIO",
+              "AUDIO_NORMALIZATION",
+              "MGHD",
+              "MGUHD"
+            ],
+            "type": "string"
+          },
+          "VideoQuality": {
+            "description": "Video quality, e.g. 'STANDARD' (Outputs only).",
+            "enum": [
+              "STANDARD",
+              "ENHANCED",
+              "PREMIUM"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with the reservation.",
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource schema for AWS::MediaLive::Reservation. A MediaLive Reservation is a purchased offering (reserved capacity) representing a 12-month billing commitment. This resource is read-only: reservations are purchased and managed outside of CloudFormation, and can only be deleted once expired.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "medialive:ListReservations"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "medialive:DescribeReservation",
+          "medialive:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "Unique reservation ARN, e.g. 'arn:aws:medialive:us-west-2:123456789012:reservation:1234567'.",
+        "type": "string"
+      },
+      "Count": {
+        "description": "Number of reserved resources.",
+        "type": "integer"
+      },
+      "CurrencyCode": {
+        "description": "Currency code for usagePrice and fixedPrice in ISO-4217 format, e.g. 'USD'.",
+        "type": "string"
+      },
+      "Duration": {
+        "description": "Lease duration, e.g. '12'.",
+        "type": "integer"
+      },
+      "DurationUnits": {
+        "description": "Units for duration, e.g. 'MONTHS'.",
+        "enum": [
+          "MONTHS"
+        ],
+        "type": "string"
+      },
+      "End": {
+        "description": "Reservation UTC end date and time in ISO-8601 format, e.g. '2019-03-01T00:00:00'.",
+        "type": "string"
+      },
+      "FixedPrice": {
+        "description": "One-time charge for each reserved resource, e.g. '0.0' for a NO_UPFRONT offering.",
+        "type": "number"
+      },
+      "Name": {
+        "description": "User specified reservation name.",
+        "type": "string"
+      },
+      "OfferingDescription": {
+        "description": "Offering description, e.g. 'HD AVC output at 10-20 Mbps, 30 fps, and standard VQ in US West (Oregon)'.",
+        "type": "string"
+      },
+      "OfferingId": {
+        "description": "Unique offering ID, e.g. '87654321'.",
+        "type": "string"
+      },
+      "OfferingType": {
+        "description": "Offering type, e.g. 'NO_UPFRONT'.",
+        "enum": [
+          "NO_UPFRONT"
+        ],
+        "type": "string"
+      },
+      "Region": {
+        "description": "AWS region, e.g. 'us-west-2'.",
+        "type": "string"
+      },
+      "RenewalSettings": {
+        "$ref": "#/definitions/RenewalSettings"
+      },
+      "ReservationId": {
+        "description": "Unique reservation ID, e.g. '1234567'.",
+        "type": "string"
+      },
+      "ResourceSpecification": {
+        "$ref": "#/definitions/ReservationResourceSpecification"
+      },
+      "Start": {
+        "description": "Reservation UTC start date and time in ISO-8601 format, e.g. '2018-03-01T00:00:00'.",
+        "type": "string"
+      },
+      "State": {
+        "description": "Current state of reservation, e.g. 'ACTIVE'.",
+        "enum": [
+          "ACTIVE",
+          "EXPIRED",
+          "CANCELED",
+          "DELETED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A collection of key-value pairs associated with the reservation.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "UsagePrice": {
+        "description": "Recurring usage charge for each reserved resource, e.g. '157.0'.",
+        "type": "number"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/ReservationId",
+      "/properties/Name",
+      "/properties/Count",
+      "/properties/OfferingId",
+      "/properties/OfferingDescription",
+      "/properties/OfferingType",
+      "/properties/CurrencyCode",
+      "/properties/Duration",
+      "/properties/DurationUnits",
+      "/properties/Start",
+      "/properties/End",
+      "/properties/FixedPrice",
+      "/properties/UsagePrice",
+      "/properties/Region",
+      "/properties/State",
+      "/properties/RenewalSettings",
+      "/properties/ResourceSpecification",
+      "/properties/Tags"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "medialive:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::MediaLive::Reservation"
+  }
+}

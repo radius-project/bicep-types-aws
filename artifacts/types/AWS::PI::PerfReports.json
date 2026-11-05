@@ -1,0 +1,189 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-PI-PerfReports",
+  "type": "AWS::PI::PerfReports",
+  "time": "2026-11-04T22:38:40.118Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ServiceType",
+        "/properties/Identifier",
+        "/properties/AnalysisReportId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ServiceType",
+      "/properties/Identifier",
+      "/properties/StartTime",
+      "/properties/EndTime",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Creates and manages a Performance Insights performance analysis report for a specified DB instance.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "pi:CreatePerformanceAnalysisReport",
+          "pi:GetPerformanceAnalysisReport",
+          "pi:ListTagsForResource",
+          "pi:TagResource",
+          "pi:GetResourceMetadata",
+          "rds:DescribeDBInstances"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "pi:DeletePerformanceAnalysisReport",
+          "pi:GetPerformanceAnalysisReport",
+          "pi:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "Identifier": {
+              "maxLength": 256,
+              "minLength": 0,
+              "pattern": "^[a-zA-Z0-9-]+$",
+              "type": "string"
+            },
+            "ServiceType": {
+              "enum": [
+                "RDS",
+                "DOCDB"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "ServiceType",
+            "Identifier"
+          ]
+        },
+        "permissions": [
+          "pi:ListPerformanceAnalysisReports"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "pi:GetPerformanceAnalysisReport",
+          "pi:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "AnalysisReportId": {
+        "description": "A unique identifier for the analysis report.",
+        "maxLength": 100,
+        "minLength": 1,
+        "pattern": "^report-[0-9a-f]{17}$",
+        "type": "string"
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the performance analysis report.",
+        "maxLength": 1011,
+        "minLength": 1,
+        "pattern": "^arn:.*:pi:.*$",
+        "type": "string"
+      },
+      "CreateTime": {
+        "description": "The time the analysis report was created in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "EndTime": {
+        "description": "The end time defined for the analysis report in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Identifier": {
+        "description": "An immutable, AWS Region-unique identifier for a data source. Performance Insights gathers metrics from this data source. To use an Amazon RDS instance as a data source, specify its DbiResourceId value.",
+        "maxLength": 256,
+        "minLength": 0,
+        "pattern": "^[a-zA-Z0-9-]+$",
+        "type": "string"
+      },
+      "ServiceType": {
+        "description": "The AWS service for which Performance Insights returns metrics. Valid values are RDS and DOCDB.",
+        "enum": [
+          "RDS",
+          "DOCDB"
+        ],
+        "type": "string"
+      },
+      "StartTime": {
+        "description": "The start time defined for the analysis report in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the analysis report.",
+        "enum": [
+          "RUNNING",
+          "SUCCEEDED",
+          "FAILED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/AnalysisReportId",
+      "/properties/CreateTime",
+      "/properties/Status"
+    ],
+    "required": [
+      "ServiceType",
+      "Identifier",
+      "StartTime",
+      "EndTime"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "pi:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::PI::PerfReports"
+  }
+}

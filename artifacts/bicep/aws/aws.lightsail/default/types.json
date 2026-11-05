@@ -448,12 +448,114 @@
     "writableScopes": 0
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.Lightsail/ContactMethodProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Lightsail/ContactMethodProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the contact method."
+      },
+      "ContactEndpoint": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The destination of the contact method, such as an email address or a mobile phone number."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The timestamp when the contact method was created."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The name of the contact method."
+      },
+      "Protocol": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The protocol of the contact method, such as Email or SMS (text messaging)."
+      },
+      "ResourceType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The Lightsail resource type of the contact method."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The current status of the contact method."
+      },
+      "SupportCode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The support code for the contact method."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Lightsail/ContactMethod",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Lightsail/ContactMethod@default",
+    "body": {
+      "$ref": "#/27"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
     "$type": "ObjectType",
     "name": "Container",
     "properties": {
       "Command": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/38"
         },
         "flags": 0,
         "description": "The launch command for the container."
@@ -467,7 +569,7 @@
       },
       "Environment": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "The environment variables of the container."
@@ -481,7 +583,7 @@
       },
       "Ports": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "The open firewall ports of the container."
@@ -494,14 +596,14 @@
     "properties": {
       "Containers": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "An object that describes the configuration for the containers of the deployment."
       },
       "PublicEndpoint": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "An object that describes the endpoint of the deployment."
@@ -598,7 +700,7 @@
     "properties": {
       "EcrImagePullerRole": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "An object to describe a request to activate or deactivate the role that you can use to grant an Amazon Lightsail container service access to Amazon Elastic Container Registry (Amazon ECR) private repositories."
@@ -617,7 +719,7 @@
       },
       "DomainNames": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "An object that describes the configuration for the containers of the deployment."
@@ -644,7 +746,7 @@
       },
       "HealthCheckConfig": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/32"
         },
         "flags": 0,
         "description": "An object that describes the health check configuration of the container."
@@ -680,19 +782,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/27"
+      "$ref": "#/31"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/33"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/29"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/25"
     }
   },
   {
@@ -728,13 +830,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/31"
+      "$ref": "#/35"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/33"
+      "$ref": "#/37"
     }
   },
   {
@@ -749,7 +851,7 @@
       },
       "ContainerServiceDeployment": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/30"
         },
         "flags": 0,
         "description": "Describes a container deployment configuration of an Amazon Lightsail container service."
@@ -777,14 +879,14 @@
       },
       "PrivateRegistryAccess": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "A Boolean value to indicate whether the container service has access to private container image repositories, such as Amazon Elastic Container Registry (Amazon ECR) private repositories."
       },
       "PublicDomainNames": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "The public domain names to use with the container service, such as example.com and www.example.com."
@@ -805,7 +907,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -839,7 +941,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/47"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -850,7 +952,7 @@
     "$type": "ResourceType",
     "name": "AWS.Lightsail/Container@default",
     "body": {
-      "$ref": "#/44"
+      "$ref": "#/48"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -944,13 +1046,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/46"
+      "$ref": "#/50"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/47"
+      "$ref": "#/51"
     }
   },
   {
@@ -1049,7 +1151,7 @@
       },
       "RelationalDatabaseParameters": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/53"
         },
         "flags": 4,
         "description": "Update one or more parameters of the relational database."
@@ -1063,7 +1165,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/54"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1090,7 +1192,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/55"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1101,7 +1203,7 @@
     "$type": "ResourceType",
     "name": "AWS.Lightsail/Database@default",
     "body": {
-      "$ref": "#/52"
+      "$ref": "#/56"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1153,7 +1255,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/54"
+      "$ref": "#/58"
     }
   },
   {
@@ -1218,7 +1320,7 @@
       },
       "Location": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/60"
         },
         "flags": 2,
         "description": "The Region name and Availability Zone where the database snapshot is located."
@@ -1274,7 +1376,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/61"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1301,7 +1403,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/62"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1312,7 +1414,7 @@
     "$type": "ResourceType",
     "name": "AWS.Lightsail/DatabaseSnapshot@default",
     "body": {
-      "$ref": "#/59"
+      "$ref": "#/63"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1330,7 +1432,7 @@
       },
       "AutoSnapshotAddOnRequest": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/66"
         },
         "flags": 0
       },
@@ -1403,13 +1505,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/61"
+      "$ref": "#/65"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/64"
+      "$ref": "#/68"
     }
   },
   {
@@ -1418,7 +1520,7 @@
     "properties": {
       "AddOns": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/70"
         },
         "flags": 0,
         "description": "An array of objects representing the add-ons to enable for the new instance."
@@ -1473,7 +1575,7 @@
       },
       "Location": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/67"
         },
         "flags": 0
       },
@@ -1514,7 +1616,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/71"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1541,7 +1643,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/72"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1552,7 +1654,7 @@
     "$type": "ResourceType",
     "name": "AWS.Lightsail/Disk@default",
     "body": {
-      "$ref": "#/69"
+      "$ref": "#/73"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1604,7 +1706,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/71"
+      "$ref": "#/75"
     }
   },
   {
@@ -1655,7 +1757,7 @@
       },
       "Location": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/77"
         },
         "flags": 2,
         "description": "The AWS Region and Availability Zone where the disk snapshot was created."
@@ -1697,7 +1799,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/78"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1724,7 +1826,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/79"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1735,9 +1837,269 @@
     "$type": "ResourceType",
     "name": "AWS.Lightsail/DiskSnapshot@default",
     "body": {
-      "$ref": "#/76"
+      "$ref": "#/80"
     },
     "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DestinationInfo",
+    "properties": {
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ID of the resource created at the destination."
+      },
+      "Service": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The destination service of the record."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DiskInfo",
+    "properties": {
+      "IsSystemDisk": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "A Boolean value indicating whether this disk is a system disk."
+      },
+      "Path": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The disk path."
+      },
+      "SizeInGb": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The size of the disk in GB."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ExportSnapshotRecordSourceInfo",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the source instance or disk snapshot."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The date when the source instance or disk snapshot was created."
+      },
+      "FromResourceArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the snapshot's source instance or disk."
+      },
+      "FromResourceName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the snapshot's source instance or disk."
+      },
+      "InstanceSnapshotInfo": {
+        "type": {
+          "$ref": "#/85"
+        },
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the source instance or disk snapshot."
+      },
+      "ResourceType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The Lightsail resource type (InstanceSnapshot or DiskSnapshot)."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InstanceSnapshotInfo",
+    "properties": {
+      "FromBlueprintId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The blueprint ID from which the source instance was created."
+      },
+      "FromBundleId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The bundle ID from which the source instance was created."
+      },
+      "FromDiskInfo": {
+        "type": {
+          "$ref": "#/87"
+        },
+        "flags": 0,
+        "description": "A list of objects describing the disks that were attached to the source instance."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResourceLocation",
+    "properties": {
+      "AvailabilityZone": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The Availability Zone."
+      },
+      "RegionName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The AWS Region name."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/83"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Lightsail/ExportSnapshotRecordProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Lightsail/ExportSnapshotRecordProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the export snapshot record."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The date when the export snapshot record was created."
+      },
+      "DestinationInfo": {
+        "type": {
+          "$ref": "#/82"
+        },
+        "flags": 2
+      },
+      "Location": {
+        "type": {
+          "$ref": "#/86"
+        },
+        "flags": 2
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The export snapshot record name."
+      },
+      "RecordId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The unique identifier extracted from the ARN of the export snapshot record."
+      },
+      "ResourceType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The Lightsail resource type (ExportSnapshotRecord)."
+      },
+      "SourceInfo": {
+        "type": {
+          "$ref": "#/84"
+        },
+        "flags": 2
+      },
+      "State": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The current state of the export snapshot record."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Lightsail/ExportSnapshotRecord",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/89"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Lightsail/ExportSnapshotRecord@default",
+    "body": {
+      "$ref": "#/90"
+    },
+    "readableScopes": 31,
     "writableScopes": 0
   },
   {
@@ -1753,7 +2115,7 @@
       },
       "AutoSnapshotAddOnRequest": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/93"
         },
         "flags": 0
       },
@@ -1847,7 +2209,7 @@
       },
       "Disks": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/105"
         },
         "flags": 0,
         "description": "Disks attached to the Instance."
@@ -1900,13 +2262,13 @@
     "properties": {
       "MonthlyTransfer": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/97"
         },
         "flags": 0
       },
       "Ports": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/106"
         },
         "flags": 1,
         "description": "Ports to the Instance."
@@ -1940,13 +2302,13 @@
       },
       "CidrListAliases": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/107"
         },
         "flags": 0
       },
       "Cidrs": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/108"
         },
         "flags": 0
       },
@@ -1966,7 +2328,7 @@
       },
       "Ipv6Cidrs": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/109"
         },
         "flags": 0
       },
@@ -2044,13 +2406,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/80"
+      "$ref": "#/94"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/85"
+      "$ref": "#/99"
     }
   },
   {
@@ -2096,7 +2458,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/78"
+      "$ref": "#/92"
     }
   },
   {
@@ -2108,7 +2470,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/87"
+      "$ref": "#/101"
     }
   },
   {
@@ -2117,7 +2479,7 @@
     "properties": {
       "AddOns": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/114"
         },
         "flags": 0,
         "description": "An array of objects representing the add-ons to enable for the new instance."
@@ -2145,7 +2507,7 @@
       },
       "Hardware": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/95"
         },
         "flags": 0
       },
@@ -2164,7 +2526,7 @@
       },
       "Ipv6Addresses": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/115"
         },
         "flags": 2,
         "description": "IPv6 addresses of the instance"
@@ -2185,13 +2547,13 @@
       },
       "Location": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/96"
         },
         "flags": 0
       },
       "Networking": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/98"
         },
         "flags": 0
       },
@@ -2225,7 +2587,7 @@
       },
       "State": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/100"
         },
         "flags": 0
       },
@@ -2238,7 +2600,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/116"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -2279,7 +2641,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/117"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2290,7 +2652,7 @@
     "$type": "ResourceType",
     "name": "AWS.Lightsail/Instance@default",
     "body": {
-      "$ref": "#/104"
+      "$ref": "#/118"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2342,7 +2704,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/107"
+      "$ref": "#/121"
     }
   },
   {
@@ -2393,7 +2755,7 @@
       },
       "Location": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/120"
         },
         "flags": 2
       },
@@ -2427,7 +2789,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/123"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -2454,7 +2816,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/124"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2465,7 +2827,7 @@
     "$type": "ResourceType",
     "name": "AWS.Lightsail/InstanceSnapshot@default",
     "body": {
-      "$ref": "#/111"
+      "$ref": "#/125"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2517,7 +2879,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/114"
+      "$ref": "#/128"
     }
   },
   {
@@ -2554,7 +2916,7 @@
       },
       "Location": {
         "type": {
-          "$ref": "#/113"
+          "$ref": "#/127"
         },
         "flags": 2
       },
@@ -2574,7 +2936,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/130"
         },
         "flags": 0,
         "description": "The tag keys and optional values to add to the resource during create."
@@ -2601,7 +2963,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/131"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2612,7 +2974,7 @@
     "$type": "ResourceType",
     "name": "AWS.Lightsail/KeyPair@default",
     "body": {
-      "$ref": "#/118"
+      "$ref": "#/132"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2650,7 +3012,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/120"
+      "$ref": "#/134"
     }
   },
   {
@@ -2659,7 +3021,7 @@
     "properties": {
       "AttachedInstances": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/136"
         },
         "flags": 0,
         "description": "The names of the instances attached to the load balancer."
@@ -2714,7 +3076,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/137"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -2748,7 +3110,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/124"
+          "$ref": "#/138"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2759,7 +3121,7 @@
     "$type": "ResourceType",
     "name": "AWS.Lightsail/LoadBalancer@default",
     "body": {
-      "$ref": "#/125"
+      "$ref": "#/139"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2780,7 +3142,7 @@
     "properties": {
       "CertificateAlternativeNames": {
         "type": {
-          "$ref": "#/128"
+          "$ref": "#/142"
         },
         "flags": 0,
         "description": "An array of strings listing alternative domains and subdomains for your SSL/TLS certificate."
@@ -2855,7 +3217,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/129"
+          "$ref": "#/143"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2866,7 +3228,7 @@
     "$type": "ResourceType",
     "name": "AWS.Lightsail/LoadBalancerTlsCertificate@default",
     "body": {
-      "$ref": "#/130"
+      "$ref": "#/144"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2935,7 +3297,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/133"
+          "$ref": "#/147"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2946,7 +3308,7 @@
     "$type": "ResourceType",
     "name": "AWS.Lightsail/StaticIp@default",
     "body": {
-      "$ref": "#/134"
+      "$ref": "#/148"
     },
     "readableScopes": 0,
     "writableScopes": 0

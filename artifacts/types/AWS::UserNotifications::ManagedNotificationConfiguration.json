@@ -1,0 +1,71 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-UserNotifications-ManagedNotificationConfiguration",
+  "type": "AWS::UserNotifications::ManagedNotificationConfiguration",
+  "time": "2026-11-05T01:23:20.352Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Category",
+        "/properties/SubCategory"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Category",
+      "/properties/SubCategory"
+    ],
+    "description": "Resource type definition for AWS User Notifications ManagedNotificationConfiguration. This is a read-only resource representing AWS-managed notification configurations.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "notifications:ListManagedNotificationConfigurations"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "notifications:GetManagedNotificationConfiguration"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of the ManagedNotificationConfiguration.",
+        "pattern": "^arn:[-.a-z0-9]{1,63}:notifications::[0-9]{12}:managed-notification-configuration/category/[a-zA-Z0-9\\-]{3,64}/sub-category/[a-zA-Z0-9\\-]{3,64}$",
+        "type": "string"
+      },
+      "Category": {
+        "description": "The category of the ManagedNotificationConfiguration.",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description of the ManagedNotificationConfiguration.",
+        "maxLength": 256,
+        "minLength": 0,
+        "pattern": "^[^\\u0001-\\u001F\\u007F-\\u009F]*$",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the ManagedNotificationConfiguration.",
+        "maxLength": 64,
+        "minLength": 1,
+        "type": "string"
+      },
+      "SubCategory": {
+        "description": "The subCategory of the ManagedNotificationConfiguration.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Name",
+      "/properties/Description"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::UserNotifications::ManagedNotificationConfiguration"
+  }
+}

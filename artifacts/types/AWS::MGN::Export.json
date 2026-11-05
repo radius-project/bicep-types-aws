@@ -1,0 +1,174 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MGN-Export",
+  "type": "AWS::MGN::Export",
+  "time": "2026-11-05T17:24:23.854Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ExportID"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/S3Bucket",
+      "/properties/S3Key",
+      "/properties/S3BucketOwner",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "ExportTaskSummary": {
+        "additionalProperties": false,
+        "description": "Summary of the export task results.",
+        "properties": {
+          "ApplicationsCount": {
+            "description": "The number of applications included in the export.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "ServersCount": {
+            "description": "The number of servers included in the export.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "WavesCount": {
+            "description": "The number of waves included in the export.",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::MGN::Export. Represents an AWS Application Migration Service (MGN) export task.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "mgn:ListExports"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "mgn:ListExports",
+          "mgn:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of the export task.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "type": "string"
+      },
+      "CreationDateTime": {
+        "description": "The datetime when the export task was created.",
+        "maxLength": 32,
+        "minLength": 19,
+        "type": "string"
+      },
+      "EndDateTime": {
+        "description": "The datetime when the export task ended.",
+        "maxLength": 32,
+        "minLength": 19,
+        "type": "string"
+      },
+      "ExportID": {
+        "description": "The unique identifier of the export task.",
+        "maxLength": 24,
+        "minLength": 24,
+        "pattern": "^export-[0-9a-zA-Z]{17}$",
+        "type": "string"
+      },
+      "ProgressPercentage": {
+        "description": "The progress percentage of the export task.",
+        "type": "number"
+      },
+      "S3Bucket": {
+        "description": "The S3 bucket where the export data is stored.",
+        "pattern": "^[a-zA-Z0-9.\\-_]{1,255}$",
+        "type": "string"
+      },
+      "S3BucketOwner": {
+        "description": "The account ID of the S3 bucket owner.",
+        "maxLength": 12,
+        "minLength": 12,
+        "pattern": "^[0-9]{12}$",
+        "type": "string"
+      },
+      "S3Key": {
+        "description": "The S3 key for the export data file.",
+        "pattern": "^[^\\x00]{1,1020}\\.csv$",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the export task.",
+        "enum": [
+          "PENDING",
+          "STARTED",
+          "FAILED",
+          "SUCCEEDED"
+        ],
+        "type": "string"
+      },
+      "Summary": {
+        "$ref": "#/definitions/ExportTaskSummary"
+      },
+      "Tags": {
+        "description": "Tags associated with the export task.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/ExportID",
+      "/properties/CreationDateTime",
+      "/properties/EndDateTime",
+      "/properties/Status",
+      "/properties/ProgressPercentage",
+      "/properties/Summary"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "mgn:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::MGN::Export"
+  }
+}

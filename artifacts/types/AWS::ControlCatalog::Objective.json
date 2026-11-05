@@ -1,0 +1,89 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ControlCatalog-Objective",
+  "type": "AWS::ControlCatalog::Objective",
+  "time": "2026-11-05T21:17:16.841Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ObjectiveId"
+      ]
+    ],
+    "additionalProperties": false,
+    "description": "Returns information about an objective in the AWS Control Catalog.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "controlcatalog:ListObjectives"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "controlcatalog:ListObjectives"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) that identifies the objective.",
+        "maxLength": 2048,
+        "minLength": 36,
+        "pattern": "^arn:(aws(?:[-a-z]*)?):controlcatalog:::objective/[0-9a-z]+$",
+        "type": "string"
+      },
+      "CreateTime": {
+        "description": "The time when the objective was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description of the objective.",
+        "type": "string"
+      },
+      "Domain": {
+        "additionalProperties": false,
+        "description": "The domain that the objective belongs to.",
+        "properties": {
+          "Arn": {
+            "description": "The Amazon Resource Name (ARN) of the related domain.",
+            "type": "string"
+          },
+          "Name": {
+            "description": "The name of the related domain.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "LastUpdateTime": {
+        "description": "The time when the objective was most recently updated.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the objective.",
+        "type": "string"
+      },
+      "ObjectiveId": {
+        "description": "The unique identifier of the objective.",
+        "pattern": "^[0-9a-z]+$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/ObjectiveId",
+      "/properties/Name",
+      "/properties/Description",
+      "/properties/Domain",
+      "/properties/CreateTime",
+      "/properties/LastUpdateTime"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::ControlCatalog::Objective"
+  }
+}

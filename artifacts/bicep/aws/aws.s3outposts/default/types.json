@@ -412,5 +412,177 @@
     },
     "readableScopes": 0,
     "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FailedReason",
+    "properties": {
+      "ErrorCode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The failure code, if any, for a create or delete endpoint operation."
+      },
+      "Message": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Additional error details describing the endpoint failure and recommended action."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NetworkInterface",
+    "properties": {
+      "NetworkInterfaceId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "iso8601UTC",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.S3Outposts/EndpointProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/29"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.S3Outposts/EndpointProperties",
+    "properties": {
+      "AccessType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The type of access for the on-premise network connectivity for the Outpost endpoint. To access endpoint from an on-premises network, you must specify the access type and provide the customer owned Ipv4 pool."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the endpoint."
+      },
+      "CidrBlock": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The VPC CIDR committed by this endpoint."
+      },
+      "CreationTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time the endpoint was created."
+      },
+      "CustomerOwnedIpv4Pool": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ID of the customer-owned IPv4 pool for the Endpoint. IP addresses will be allocated from this pool for the endpoint."
+      },
+      "FailedReason": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 0,
+        "description": "The failure reason, if any, for a create or delete endpoint operation."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ID of the endpoint."
+      },
+      "NetworkInterfaces": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 2,
+        "description": "The network interfaces of the endpoint."
+      },
+      "OutpostId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The id of the customer outpost on which the bucket resides."
+      },
+      "SecurityGroupId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The ID of the security group to use with the endpoint."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      },
+      "SubnetId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The ID of the subnet in the selected VPC. The subnet must belong to the Outpost."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.S3Outposts/Endpoint",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.S3Outposts/Endpoint@default",
+    "body": {
+      "$ref": "#/34"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

@@ -1,0 +1,167 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-ImageUsageReport",
+  "type": "AWS::EC2::ImageUsageReport",
+  "time": "2026-11-05T21:14:28.072Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ReportId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/AccountIds",
+      "/properties/ImageId",
+      "/properties/ResourceTypes",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "ImageUsageResourceType": {
+        "additionalProperties": false,
+        "properties": {
+          "ResourceType": {
+            "description": "The type of resource to report usage for. Valid values are ec2:Instance and ec2:LaunchTemplate.",
+            "type": "string"
+          },
+          "ResourceTypeOptions": {
+            "description": "Options that refine what is reported for this resource type.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/ImageUsageResourceTypeOption"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "ImageUsageResourceTypeOption": {
+        "additionalProperties": false,
+        "properties": {
+          "OptionName": {
+            "description": "The name of the resource type option. version-depth is valid only for ec2:LaunchTemplate.",
+            "type": "string"
+          },
+          "OptionValues": {
+            "description": "The values for the resource type option.",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource type definition for AWS::EC2::ImageUsageReport. An image usage report records where an AMI is used across accounts and resource types. EC2 imposes an unrenewable thirty-day expiry on every report and provides no renew API, so this type is read-only: the report is observed rather than managed.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "ec2:DescribeImageUsageReports"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ec2:DescribeImageUsageReports"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "AccountIds": {
+        "description": "The accounts to include in the report. Absent from the response when the request omitted it.",
+        "insertionOrder": false,
+        "items": {
+          "type": "string"
+        },
+        "maxItems": 200,
+        "type": "array"
+      },
+      "Arn": {
+        "description": "The ARN of the image usage report.",
+        "type": "string"
+      },
+      "CreationTime": {
+        "description": "When the report was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ExpirationTime": {
+        "description": "When the report expires, thirty days after creation. The expiry is unrenewable.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ImageId": {
+        "description": "The ID of the AMI the report covers. The caller must own the image.",
+        "type": "string"
+      },
+      "ReportId": {
+        "description": "The ID of the image usage report.",
+        "type": "string"
+      },
+      "ResourceTypes": {
+        "description": "The resource types to report usage for.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/ImageUsageResourceType"
+        },
+        "type": "array"
+      },
+      "State": {
+        "description": "The state of the report: available, pending, or error.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags on the report.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/CreationTime",
+      "/properties/ExpirationTime",
+      "/properties/ReportId",
+      "/properties/State"
+    ],
+    "required": [
+      "ImageId",
+      "ResourceTypes"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-ec2",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "ec2:DescribeImageUsageReports"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::EC2::ImageUsageReport"
+  }
+}

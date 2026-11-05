@@ -109,6 +109,139 @@
     "writableScopes": 0
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.Route53/DNSSECProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Route53/DNSSECProperties",
+    "properties": {
+      "HostedZoneId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The unique string (ID) used to identify a hosted zone."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Route53/DNSSEC",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Route53/DNSSEC@default",
+    "body": {
+      "$ref": "#/10"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Route53/DelegationSetProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Route53/DelegationSetProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the delegation set."
+      },
+      "CallerReference": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "A unique string that identifies the request and allows retrying failed CreateReusableDelegationSet requests without risk of executing the operation twice."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ID that Amazon Route 53 assigns to a reusable delegation set."
+      },
+      "NameServers": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 2,
+        "description": "A list of the authoritative name servers for the delegation set."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Route53/DelegationSet",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Route53/DelegationSet@default",
+    "body": {
+      "$ref": "#/15"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
     "$type": "ObjectType",
     "name": "AlarmIdentifier",
     "properties": {
@@ -176,25 +309,25 @@
     "properties": {
       "AlarmIdentifier": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/17"
         },
         "flags": 0
       },
       "ChildHealthChecks": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/20"
         },
         "flags": 0
       },
       "EnableSNI": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/21"
         },
         "flags": 0
       },
       "FailureThreshold": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/22"
         },
         "flags": 0
       },
@@ -206,7 +339,7 @@
       },
       "HealthThreshold": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/22"
         },
         "flags": 0
       },
@@ -224,31 +357,31 @@
       },
       "Inverted": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/21"
         },
         "flags": 0
       },
       "MeasureLatency": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/21"
         },
         "flags": 0
       },
       "Port": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/22"
         },
         "flags": 0
       },
       "Regions": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/23"
         },
         "flags": 0
       },
       "RequestInterval": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/22"
         },
         "flags": 0
       },
@@ -281,7 +414,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/9"
+      "$ref": "#/18"
     }
   },
   {
@@ -290,7 +423,7 @@
     "properties": {
       "HealthCheckConfig": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/24"
         },
         "flags": 1,
         "description": "A complex type that contains information about the health check."
@@ -303,7 +436,7 @@
       },
       "HealthCheckTags": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -330,7 +463,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/26"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -341,7 +474,7 @@
     "$type": "ResourceType",
     "name": "AWS.Route53/HealthCheck@default",
     "body": {
-      "$ref": "#/18"
+      "$ref": "#/27"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -365,7 +498,7 @@
     "properties": {
       "EnableAcceleratedRecovery": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/21"
         },
         "flags": 0,
         "description": ""
@@ -432,7 +565,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/31"
     }
   },
   {
@@ -444,7 +577,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/24"
+      "$ref": "#/33"
     }
   },
   {
@@ -460,21 +593,21 @@
       },
       "HostedZoneConfig": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/29"
         },
         "flags": 0,
         "description": "A complex type that contains an optional comment.\n If you don't want to specify a comment, omit the ``HostedZoneConfig`` and ``Comment`` elements."
       },
       "HostedZoneFeatures": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/30"
         },
         "flags": 0,
         "description": "The features configuration for the hosted zone, including accelerated recovery settings and status information."
       },
       "HostedZoneTags": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/35"
         },
         "flags": 0,
         "description": "Adds, edits, or deletes tags for a health check or a hosted zone.\n For information about using tags for cost allocation, see [Using Cost Allocation Tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the *User Guide*."
@@ -495,21 +628,21 @@
       },
       "NameServers": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/36"
         },
         "flags": 2,
         "description": ""
       },
       "QueryLoggingConfig": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/32"
         },
         "flags": 0,
         "description": "Creates a configuration for DNS query logging. After you create a query logging configuration, Amazon Route 53 begins to publish log data to an Amazon CloudWatch Logs log group.\n DNS query logs contain information about the queries that Route 53 receives for a specified public hosted zone, such as the following:\n  +  Route 53 edge location that responded to the DNS query\n  +  Domain or subdomain that was requested\n  +  DNS record type, such as A or AAAA\n  +  DNS response code, such as ``NoError`` or ``ServFail``\n  \n  + Log Group and Resource Policy Before you create a query logging configuration, perform the following operations. If you create a query logging configuration using the Route 53 console, Route 53 performs these operations automatically. Create a CloudWatch Logs log group, and make note of the ARN, which you specify when you create a query logging configuration. Note the following: You must create the log group in the us-east-1 region. You must use the same to create the log group and the hosted zone that you want to configure query logging for. When you create log groups for query logging, we recommend that you use a consistent prefix, for example: /aws/route53/hosted zone name In the next step, you'll create a resource policy, which controls access to one or more log groups and the associated resources, such as Route 53 hosted zones. There's a limit on the number of resource policies that you can create, so we recommend that you use a consistent prefix so you can use the same resource policy for all the log groups that you create for query logging. Create a CloudWatch Logs resource policy, and give it the permissions that Route 53 needs to create log streams and to send query logs to log streams. You must create the CloudWatch Logs resource policy in the us-east-1 region. For the value of Resource, specify the ARN for the log group that you created in the previous step. To use the same resource policy for all the CloudWatch Logs log groups that you created for query logging configurations, replace the hosted zone name with *, for example: arn:aws:logs:us-east-1:123412341234:log-group:/aws/route53/* To avoid the confused deputy problem, a security issue where an entity without a permission for an action can coerce a more-privileged entity to perform it, you can optionally limit the permissions that a service has to a resource in a resource-based policy by supplying the following values: For aws:SourceArn, supply the hosted zone ARN used in creating the query logging configuration. For example, aws:SourceArn: arn:aws:route53:::hostedzone/hosted zone ID. For aws:SourceAccount, supply the account ID for the account that creates the query logging configuration. For example, aws:SourceAccount:111111111111. For more information, see The confused deputy problem in the IAM User Guide. You can't use the CloudWatch console to create or edit a resource policy. You must use the CloudWatch API, one of the SDKs, or the . + Log Streams and Edge Locations When Route 53 finishes creating the configuration for DNS query logging, it does the following: Creates a log stream for an edge location the first time that the edge location responds to DNS queries for the specified hosted zone. That log stream is used to log all queries that Route 53 responds to for that edge location. Begins to send query logs to the applicable log stream. The name of each log stream is in the following format: hosted zone ID/edge location code The edge location code is a three-letter code and an arbitrarily assigned number, for example, DFW3. The three-letter code typically corresponds with the International Air Transport Association airport code for an airport near the edge location. (These abbreviations might change in the future.) For a list of edge locations, see \"The Route 53 Global Network\" on the Route 53 Product Details page. + Queries That Are Logged Query logs contain only the queries that DNS resolvers forward to Route 53. If a DNS resolver has already cached the response to a query (such as the IP address for a load balancer for example.com), the resolver will continue to return the cached response. It doesn't forward another query to Route 53 until the TTL for the corresponding resource record set expires. Depending on how many DNS queries are submitted for a resource record set, and depending on the TTL for that resource record set, query logs might contain information about only one query out of every several thousand queries that are submitted to DNS. For more information about how DNS works, see Routing Internet Traffic to Your Website or Web Application in the Amazon Route 53 Developer Guide. + Log File Format For a list of the values in each query log and the format of each value, see Logging DNS Queries in the Amazon Route 53 Developer Guide. + Pricing For information about charges for query logs, see Amazon CloudWatch Pricing. + How to Stop Logging If you want Route 53 to stop sending query logs to CloudWatch Logs, delete the query logging configuration. For more information, see DeleteQueryLoggingConfig."
       },
       "VPCs": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "*Private hosted zones:* A complex type that contains information about the VPCs that are associated with the specified hosted zone.\n  For public hosted zones, omit ``VPCs``, ``VPCId``, and ``VPCRegion``."
@@ -536,7 +669,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/38"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -547,7 +680,7 @@
     "$type": "ResourceType",
     "name": "AWS.Route53/HostedZone@default",
     "body": {
-      "$ref": "#/30"
+      "$ref": "#/39"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -610,7 +743,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/42"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -621,7 +754,7 @@
     "$type": "ResourceType",
     "name": "AWS.Route53/KeySigningKey@default",
     "body": {
-      "$ref": "#/34"
+      "$ref": "#/43"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -639,7 +772,7 @@
       },
       "EvaluateTargetHealth": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/21"
         },
         "flags": 0,
         "description": "When EvaluateTargetHealth is true, an alias resource record set inherits the health of the referenced AWS resource, such as an ELB load balancer or another resource record set in the hosted zone."
@@ -743,14 +876,14 @@
       },
       "Bias": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/22"
         },
         "flags": 0,
         "description": "The bias increases or decreases the size of the geographic region from which Route 53 routes traffic to a resource."
       },
       "Coordinates": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/48"
         },
         "flags": 0,
         "description": "Contains the longitude and latitude for a geographic region."
@@ -841,14 +974,14 @@
     "properties": {
       "AliasTarget": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "Alias resource record sets only: Information about the AWS resource, such as a CloudFront distribution or an Amazon S3 bucket, that you want to route traffic to."
       },
       "CidrRoutingConfig": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "The object that is specified in resource record set object when you are linking a resource record set to a CIDR location."
@@ -869,7 +1002,7 @@
       },
       "GeoLocation": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "A complex type that lets you control how Amazon Route 53 responds to DNS queries based on the geographic origin of the query."
@@ -897,7 +1030,7 @@
       },
       "MultiValueAnswer": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/21"
         },
         "flags": 0,
         "description": "To route traffic approximately randomly to multiple resources, such as web servers, create one multivalue answer record for each resource and specify true for MultiValueAnswer."
@@ -918,7 +1051,7 @@
       },
       "ResourceRecords": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/65"
         },
         "flags": 0,
         "description": "One or more values that correspond with the value that you specified for the Type property."
@@ -946,7 +1079,7 @@
       },
       "Weight": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/22"
         },
         "flags": 0,
         "description": "Among resource record sets that have the same combination of DNS name and type, a value that determines the proportion of DNS queries that Amazon Route 53 responds to using the current resource record set. Route 53 calculates the sum of the weights for the resource record sets that have the same combination of DNS name and type. Route 53 then responds to queries based on the ratio of a resource's weight to the total."
@@ -973,7 +1106,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/66"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -984,7 +1117,7 @@
     "$type": "ResourceType",
     "name": "AWS.Route53/RecordSet@default",
     "body": {
-      "$ref": "#/58"
+      "$ref": "#/67"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1041,7 +1174,7 @@
       },
       "Version": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/22"
         },
         "flags": 2,
         "description": "The version number that Amazon Route 53 assigned to the traffic policy."
@@ -1068,7 +1201,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/70"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1079,7 +1212,7 @@
     "$type": "ResourceType",
     "name": "AWS.Route53/TrafficPolicy@default",
     "body": {
-      "$ref": "#/62"
+      "$ref": "#/71"
     },
     "readableScopes": 0,
     "writableScopes": 0

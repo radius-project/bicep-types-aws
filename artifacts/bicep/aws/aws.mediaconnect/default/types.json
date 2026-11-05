@@ -3700,6 +3700,397 @@
   },
   {
     "$type": "ObjectType",
+    "name": "GatewayNetwork",
+    "properties": {
+      "CidrBlock": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "A unique IP address range to use for this network. These IP addresses should be in the form of a Classless Inter-Domain Routing (CIDR) block; for example, 10.0.0.0/16."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The name of the network. This name is used to reference the network and must be unique among networks in this gateway."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaConnect/GatewayProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/15"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/177"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaConnect/GatewayProperties",
+    "properties": {
+      "EgressCidrBlocks": {
+        "type": {
+          "$ref": "#/179"
+        },
+        "flags": 1,
+        "description": "The range of IP addresses that contribute content or initiate output requests for flows communicating with this gateway. These IP addresses should be in the form of a Classless Inter-Domain Routing (CIDR) block; for example, 10.0.0.0/16."
+      },
+      "GatewayArn": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the gateway."
+      },
+      "GatewayState": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The current status of the gateway."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The name of the gateway. This name can not be modified after the gateway is created."
+      },
+      "Networks": {
+        "type": {
+          "$ref": "#/180"
+        },
+        "flags": 1,
+        "description": "The list of networks in the gateway."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaConnect/Gateway",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/181"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MediaConnect/Gateway@default",
+    "body": {
+      "$ref": "#/182"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaConnect/OfferingProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Offering_ResourceSpecification",
+    "properties": {
+      "ReservedBitrate": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The amount of outbound bandwidth that is discounted in the offering."
+      },
+      "ResourceType": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The type of resource and the unit that is being billed for."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaConnect/OfferingProperties",
+    "properties": {
+      "CurrencyCode": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The type of currency that is used for billing. The currencyCode used for all reservations is US dollars."
+      },
+      "Duration": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "The length of time that your reservation would be active."
+      },
+      "DurationUnits": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The unit of measurement for the duration of the offering."
+      },
+      "OfferingArn": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) that MediaConnect assigns to the offering."
+      },
+      "OfferingDescription": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "A description of the offering."
+      },
+      "PricePerUnit": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The cost of a single unit. This value, in combination with priceUnits, makes up the rate."
+      },
+      "PriceUnits": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The unit of measurement that is used for billing. This value, in combination with pricePerUnit, makes up the rate."
+      },
+      "ResourceSpecification": {
+        "type": {
+          "$ref": "#/185"
+        },
+        "flags": 2,
+        "description": "A definition of the amount of outbound bandwidth that you would be reserving if you purchase the offering."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaConnect/Offering",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/186"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MediaConnect/Offering@default",
+    "body": {
+      "$ref": "#/187"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResourceSpecification",
+    "properties": {
+      "ReservedBitrate": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 0,
+        "description": "The amount of outbound bandwidth that is discounted in the offering."
+      },
+      "ResourceType": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The type of resource and the unit that is being billed for."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MediaConnect/ReservationProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaConnect/ReservationProperties",
+    "properties": {
+      "CurrencyCode": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The type of currency that is used for billing."
+      },
+      "Duration": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "The length of time that this reservation is active."
+      },
+      "DurationUnits": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The unit of measurement for the duration of the reservation."
+      },
+      "End": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The day and time that this reservation expires."
+      },
+      "OfferingArn": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the offering."
+      },
+      "OfferingDescription": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "A description of the offering."
+      },
+      "PricePerUnit": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The cost of a single unit."
+      },
+      "PriceUnits": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The unit of measurement that is used for billing."
+      },
+      "ReservationArn": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) that MediaConnect assigns to the reservation when you purchase an offering."
+      },
+      "ReservationName": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The name that you assigned to the reservation when you purchased the offering."
+      },
+      "ReservationState": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The status of the reservation."
+      },
+      "ResourceSpecification": {
+        "type": {
+          "$ref": "#/189"
+        },
+        "flags": 2
+      },
+      "Start": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The day and time that the reservation becomes active."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MediaConnect/Reservation",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/191"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MediaConnect/Reservation@default",
+    "body": {
+      "$ref": "#/192"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "AutomaticEncryptionKeyConfiguration",
     "properties": {}
   },
@@ -3733,19 +4124,19 @@
     "properties": {
       "BlackFrames": {
         "type": {
-          "$ref": "#/179"
+          "$ref": "#/196"
         },
         "flags": 0
       },
       "FrozenFrames": {
         "type": {
-          "$ref": "#/197"
+          "$ref": "#/214"
         },
         "flags": 0
       },
       "SilentAudio": {
         "type": {
-          "$ref": "#/225"
+          "$ref": "#/242"
         },
         "flags": 0
       }
@@ -3778,7 +4169,7 @@
       },
       "SourceTransitDecryption": {
         "type": {
-          "$ref": "#/231"
+          "$ref": "#/248"
         },
         "flags": 1
       },
@@ -3848,7 +4239,7 @@
       },
       "ProtocolConfigurations": {
         "type": {
-          "$ref": "#/233"
+          "$ref": "#/250"
         },
         "flags": 1,
         "description": "A list of exactly two protocol configurations for the failover input sources. Both must use the same protocol type."
@@ -3872,7 +4263,7 @@
     "properties": {
       "EncryptionKeyConfiguration": {
         "type": {
-          "$ref": "#/234"
+          "$ref": "#/251"
         },
         "flags": 1
       },
@@ -3948,7 +4339,7 @@
       },
       "SourceTransitDecryption": {
         "type": {
-          "$ref": "#/193"
+          "$ref": "#/210"
         },
         "flags": 1
       }
@@ -3985,7 +4376,7 @@
       },
       "SourceTransitDecryption": {
         "type": {
-          "$ref": "#/203"
+          "$ref": "#/220"
         },
         "flags": 1
       }
@@ -3997,7 +4388,7 @@
     "properties": {
       "EncryptionKeyConfiguration": {
         "type": {
-          "$ref": "#/235"
+          "$ref": "#/252"
         },
         "flags": 1
       },
@@ -4039,7 +4430,7 @@
       },
       "ProtocolConfigurations": {
         "type": {
-          "$ref": "#/237"
+          "$ref": "#/254"
         },
         "flags": 1,
         "description": "A list of exactly two protocol configurations for the merge input sources. Both must use the same protocol type."
@@ -4131,7 +4522,7 @@
     "properties": {
       "EncryptionKeyConfiguration": {
         "type": {
-          "$ref": "#/238"
+          "$ref": "#/255"
         },
         "flags": 1
       },
@@ -4208,7 +4599,7 @@
     "properties": {
       "EncryptionSecret": {
         "type": {
-          "$ref": "#/186"
+          "$ref": "#/203"
         },
         "flags": 1
       },
@@ -4245,7 +4636,7 @@
     "properties": {
       "DecryptionConfiguration": {
         "type": {
-          "$ref": "#/227"
+          "$ref": "#/244"
         },
         "flags": 0
       },
@@ -4285,7 +4676,7 @@
     "properties": {
       "EncryptionKey": {
         "type": {
-          "$ref": "#/223"
+          "$ref": "#/240"
         },
         "flags": 1
       }
@@ -4297,7 +4688,7 @@
     "properties": {
       "DecryptionConfiguration": {
         "type": {
-          "$ref": "#/227"
+          "$ref": "#/244"
         },
         "flags": 0
       },
@@ -4336,7 +4727,7 @@
       },
       "ProtocolConfiguration": {
         "type": {
-          "$ref": "#/214"
+          "$ref": "#/231"
         },
         "flags": 1
       }
@@ -4373,7 +4764,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/232"
+      "$ref": "#/249"
     }
   },
   {
@@ -4394,7 +4785,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/236"
+      "$ref": "#/253"
     }
   },
   {
@@ -4415,7 +4806,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/230"
+      "$ref": "#/247"
     }
   },
   {
@@ -4430,7 +4821,7 @@
       },
       "AssociatedDestinationEndpointArns": {
         "type": {
-          "$ref": "#/240"
+          "$ref": "#/257"
         },
         "flags": 2,
         "description": "The Amazon Resource Names (ARNs) of one or more destination endpoints that are associated with this router input."
@@ -4444,13 +4835,13 @@
       },
       "Configuration": {
         "type": {
-          "$ref": "#/212"
+          "$ref": "#/229"
         },
         "flags": 1
       },
       "ContentQualityAnalysisConfiguration": {
         "type": {
-          "$ref": "#/210"
+          "$ref": "#/227"
         },
         "flags": 0
       },
@@ -4489,7 +4880,7 @@
       },
       "MaintenanceConfiguration": {
         "type": {
-          "$ref": "#/198"
+          "$ref": "#/215"
         },
         "flags": 0
       },
@@ -4541,7 +4932,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/241"
+          "$ref": "#/258"
         },
         "flags": 0,
         "description": "Key-value pairs that can be used to tag and organize this router input."
@@ -4554,7 +4945,7 @@
       },
       "TransitEncryption": {
         "type": {
-          "$ref": "#/217"
+          "$ref": "#/234"
         },
         "flags": 0
       },
@@ -4587,7 +4978,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/242"
+          "$ref": "#/259"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4598,7 +4989,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaConnect/RouterInput@default",
     "body": {
-      "$ref": "#/243"
+      "$ref": "#/260"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -4609,7 +5000,7 @@
     "properties": {
       "AllowRules": {
         "type": {
-          "$ref": "#/252"
+          "$ref": "#/269"
         },
         "flags": 1,
         "description": "The list of allowed CIDR blocks for the public router network interface."
@@ -4668,7 +5059,7 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/253"
+          "$ref": "#/270"
         },
         "flags": 1,
         "description": "The IDs of the security groups to associate with the router network interface within the VPC."
@@ -4685,7 +5076,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/246"
+      "$ref": "#/263"
     }
   },
   {
@@ -4701,7 +5092,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/250"
+      "$ref": "#/267"
     }
   },
   {
@@ -4730,7 +5121,7 @@
       },
       "Configuration": {
         "type": {
-          "$ref": "#/247"
+          "$ref": "#/264"
         },
         "flags": 1
       },
@@ -4776,7 +5167,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/255"
+          "$ref": "#/272"
         },
         "flags": 0,
         "description": "Key-value pairs that can be used to tag and organize this router network interface."
@@ -4810,7 +5201,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/256"
+          "$ref": "#/273"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4821,7 +5212,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaConnect/RouterNetworkInterface@default",
     "body": {
-      "$ref": "#/257"
+      "$ref": "#/274"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -4902,7 +5293,7 @@
     "properties": {
       "EncryptionKeyConfiguration": {
         "type": {
-          "$ref": "#/306"
+          "$ref": "#/323"
         },
         "flags": 1
       },
@@ -4945,7 +5336,7 @@
     "properties": {
       "DestinationTransitEncryption": {
         "type": {
-          "$ref": "#/270"
+          "$ref": "#/287"
         },
         "flags": 1
       },
@@ -4976,7 +5367,7 @@
     "properties": {
       "DestinationTransitEncryption": {
         "type": {
-          "$ref": "#/279"
+          "$ref": "#/296"
         },
         "flags": 1
       },
@@ -5001,7 +5392,7 @@
     "properties": {
       "EncryptionKeyConfiguration": {
         "type": {
-          "$ref": "#/307"
+          "$ref": "#/324"
         },
         "flags": 1
       },
@@ -5141,7 +5532,7 @@
       },
       "TlsEncryption": {
         "type": {
-          "$ref": "#/303"
+          "$ref": "#/320"
         },
         "flags": 0
       }
@@ -5199,7 +5590,7 @@
     "properties": {
       "EncryptionSecret": {
         "type": {
-          "$ref": "#/264"
+          "$ref": "#/281"
         },
         "flags": 1
       },
@@ -5217,7 +5608,7 @@
     "properties": {
       "DestinationTransitEncryption": {
         "type": {
-          "$ref": "#/263"
+          "$ref": "#/280"
         },
         "flags": 1
       },
@@ -5255,7 +5646,7 @@
       },
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/299"
+          "$ref": "#/316"
         },
         "flags": 0
       },
@@ -5281,7 +5672,7 @@
     "properties": {
       "EncryptionKey": {
         "type": {
-          "$ref": "#/295"
+          "$ref": "#/312"
         },
         "flags": 1
       }
@@ -5293,7 +5684,7 @@
     "properties": {
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/299"
+          "$ref": "#/316"
         },
         "flags": 0
       },
@@ -5332,7 +5723,7 @@
       },
       "ProtocolConfiguration": {
         "type": {
-          "$ref": "#/287"
+          "$ref": "#/304"
         },
         "flags": 1
       }
@@ -5362,7 +5753,7 @@
     "properties": {
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/308"
+          "$ref": "#/325"
         },
         "flags": 1
       },
@@ -5412,7 +5803,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/302"
+      "$ref": "#/319"
     }
   },
   {
@@ -5427,7 +5818,7 @@
       },
       "AssociatedSourceEndpointArns": {
         "type": {
-          "$ref": "#/310"
+          "$ref": "#/327"
         },
         "flags": 2,
         "description": "The Amazon Resource Names (ARNs) of one or more source endpoints that are associated with this router output."
@@ -5441,7 +5832,7 @@
       },
       "Configuration": {
         "type": {
-          "$ref": "#/285"
+          "$ref": "#/302"
         },
         "flags": 1
       },
@@ -5454,7 +5845,7 @@
       },
       "FabricConfiguration": {
         "type": {
-          "$ref": "#/268"
+          "$ref": "#/285"
         },
         "flags": 0
       },
@@ -5474,7 +5865,7 @@
       },
       "MaintenanceConfiguration": {
         "type": {
-          "$ref": "#/274"
+          "$ref": "#/291"
         },
         "flags": 0
       },
@@ -5531,7 +5922,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/311"
+          "$ref": "#/328"
         },
         "flags": 0,
         "description": "Key-value pairs that can be used to tag this router output."
@@ -5571,7 +5962,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/312"
+          "$ref": "#/329"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -5582,7 +5973,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaConnect/RouterOutput@default",
     "body": {
-      "$ref": "#/313"
+      "$ref": "#/330"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -5616,7 +6007,7 @@
     "properties": {
       "SourceAllowRules": {
         "type": {
-          "$ref": "#/340"
+          "$ref": "#/357"
         },
         "flags": 1,
         "description": "The rules that specify which CIDR blocks can connect to the source endpoint. You can specify up to 10 rules."
@@ -5767,7 +6158,7 @@
       },
       "EncryptionPassphrase": {
         "type": {
-          "$ref": "#/315"
+          "$ref": "#/332"
         },
         "flags": 0
       },
@@ -5786,7 +6177,7 @@
     "properties": {
       "EncryptionPassphrase": {
         "type": {
-          "$ref": "#/315"
+          "$ref": "#/332"
         },
         "flags": 0
       },
@@ -5844,13 +6235,13 @@
       },
       "ProtocolConfiguration": {
         "type": {
-          "$ref": "#/341"
+          "$ref": "#/358"
         },
         "flags": 1
       },
       "SourceNetworkingConfiguration": {
         "type": {
-          "$ref": "#/342"
+          "$ref": "#/359"
         },
         "flags": 1
       },
@@ -5896,7 +6287,7 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/343"
+          "$ref": "#/360"
         },
         "flags": 1,
         "description": "The IDs of the security groups to associate with the source endpoint. You can specify from 1 to 5 security groups."
@@ -5913,7 +6304,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/319"
+      "$ref": "#/336"
     }
   },
   {
@@ -5939,7 +6330,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/338"
+      "$ref": "#/355"
     }
   },
   {
@@ -5954,7 +6345,7 @@
       },
       "AssociatedResourceDetails": {
         "type": {
-          "$ref": "#/325"
+          "$ref": "#/342"
         },
         "flags": 2
       },
@@ -5974,7 +6365,7 @@
       },
       "Configuration": {
         "type": {
-          "$ref": "#/326"
+          "$ref": "#/343"
         },
         "flags": 1
       },
@@ -6039,7 +6430,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/345"
+          "$ref": "#/362"
         },
         "flags": 0,
         "description": "The tags associated with the source endpoint. Each tag is a key-value pair."
@@ -6073,7 +6464,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/346"
+          "$ref": "#/363"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -6084,7 +6475,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaConnect/SourceEndpoint@default",
     "body": {
-      "$ref": "#/347"
+      "$ref": "#/364"
     },
     "readableScopes": 0,
     "writableScopes": 0

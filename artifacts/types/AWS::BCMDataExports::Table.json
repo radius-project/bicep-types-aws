@@ -1,0 +1,101 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-BCMDataExports-Table",
+  "type": "AWS::BCMDataExports::Table",
+  "time": "2026-11-05T20:49:56.281Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/TableName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/TableName"
+    ],
+    "definitions": {
+      "Column": {
+        "additionalProperties": false,
+        "description": "Includes basic information for a data column such as its description, name, and type.",
+        "properties": {
+          "Description": {
+            "description": "The description for a column.",
+            "maxLength": 1024,
+            "minLength": 0,
+            "pattern": "^[\\S\\s]*$",
+            "type": "string"
+          },
+          "Name": {
+            "description": "The column name.",
+            "maxLength": 1024,
+            "minLength": 0,
+            "pattern": "^[\\S\\s]*$",
+            "type": "string"
+          },
+          "Type": {
+            "description": "The kind of data a column stores.",
+            "maxLength": 1024,
+            "minLength": 0,
+            "pattern": "^[\\S\\s]*$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Returns the metadata for the specified table and table properties, including the list of columns in the table schema, their data types, and column descriptions.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "bcm-data-exports:ListTables"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "bcm-data-exports:GetTable"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the table.",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The table description.",
+        "maxLength": 1024,
+        "minLength": 0,
+        "pattern": "^[\\S\\s]*$",
+        "type": "string"
+      },
+      "Schema": {
+        "description": "The schema of the table.",
+        "items": {
+          "$ref": "#/definitions/Column"
+        },
+        "type": "array"
+      },
+      "TableName": {
+        "description": "The name of the table.",
+        "maxLength": 1024,
+        "minLength": 0,
+        "pattern": "^[\\S\\s]*$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Description",
+      "/properties/Schema"
+    ],
+    "required": [
+      "TableName"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::BCMDataExports::Table"
+  }
+}

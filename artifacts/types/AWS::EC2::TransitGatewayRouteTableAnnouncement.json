@@ -1,0 +1,147 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-TransitGatewayRouteTableAnnouncement",
+  "type": "AWS::EC2::TransitGatewayRouteTableAnnouncement",
+  "time": "2026-11-05T03:48:06.631Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/TransitGatewayRouteTableAnnouncementId"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::EC2::TransitGatewayRouteTableAnnouncement. Advertises a transit gateway route table to a peering attachment.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "ec2:DescribeTransitGatewayRouteTableAnnouncements"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ec2:DescribeTransitGatewayRouteTableAnnouncements"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "AnnouncementDirection": {
+        "description": "The direction for the route table announcement.",
+        "enum": [
+          "outgoing",
+          "incoming"
+        ],
+        "type": "string"
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the transit gateway route table announcement.",
+        "type": "string"
+      },
+      "CoreNetworkId": {
+        "description": "The ID of the core network for the transit gateway route table announcement.",
+        "type": "string"
+      },
+      "CreationTime": {
+        "description": "The timestamp when the transit gateway route table announcement was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "PeerCoreNetworkId": {
+        "description": "The ID of the core network for the peer.",
+        "type": "string"
+      },
+      "PeerTransitGatewayId": {
+        "description": "The ID of the peer transit gateway for the transit gateway route table announcement.",
+        "type": "string"
+      },
+      "PeeringAttachmentId": {
+        "description": "The ID of the transit gateway peering attachment over which the route table is announced.",
+        "type": "string"
+      },
+      "State": {
+        "description": "The state of the transit gateway route table announcement.",
+        "enum": [
+          "available",
+          "pending",
+          "failing",
+          "failed",
+          "deleting",
+          "deleted"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags applied to the transit gateway route table announcement.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "TransitGatewayId": {
+        "description": "The ID of the transit gateway.",
+        "type": "string"
+      },
+      "TransitGatewayRouteTableAnnouncementId": {
+        "description": "The ID of the transit gateway route table announcement.",
+        "type": "string"
+      },
+      "TransitGatewayRouteTableId": {
+        "description": "The ID of the transit gateway route table to announce.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/TransitGatewayRouteTableAnnouncementId",
+      "/properties/TransitGatewayRouteTableId",
+      "/properties/PeeringAttachmentId",
+      "/properties/TransitGatewayId",
+      "/properties/CoreNetworkId",
+      "/properties/PeerTransitGatewayId",
+      "/properties/PeerCoreNetworkId",
+      "/properties/AnnouncementDirection",
+      "/properties/State",
+      "/properties/CreationTime",
+      "/properties/Tags"
+    ],
+    "required": [],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "ec2:DescribeTransitGatewayRouteTableAnnouncements"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::EC2::TransitGatewayRouteTableAnnouncement"
+  }
+}

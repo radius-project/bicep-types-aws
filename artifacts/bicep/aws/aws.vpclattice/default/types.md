@@ -40,6 +40,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.VpcLattice/ResourceConfigurationProperties](#awsvpclatticeresourceconfigurationproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.VpcLattice/ResourceEndpointAssociation@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.VpcLattice/ResourceEndpointAssociationProperties](#awsvpclatticeresourceendpointassociationproperties) (Identifier): properties of the resource
+
 ## Resource AWS.VpcLattice/ResourceGateway@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -176,6 +184,16 @@
 * **ResourceConfigurationType**: string (Required)
 * **ResourceGatewayId**: string
 * **Tags**: [Tag](#tag)[]
+
+## AWS.VpcLattice/ResourceEndpointAssociationProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the VPC endpoint association.
+* **CreatedAt**: string (ReadOnly): The date and time that the VPC endpoint association was created, in ISO-8601 format.
+* **Id**: string (ReadOnly): The ID of the VPC endpoint association.
+* **ResourceConfigurationArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the resource configuration.
+* **ResourceConfigurationId**: string (Identifier): The ID of the resource configuration associated with the VPC endpoint.
+* **VpcEndpointId**: string (ReadOnly): The ID of the VPC endpoint.
+* **VpcEndpointOwner**: string (ReadOnly): The AWS account ID of the owner of the VPC endpoint.
 
 ## AWS.VpcLattice/ResourceGatewayProperties
 ### Properties

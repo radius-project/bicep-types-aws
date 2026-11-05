@@ -8,6 +8,30 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SSO/ApplicationProperties](#awsssoapplicationproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.SSO/ApplicationAssignment@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SSO/ApplicationAssignmentProperties](#awsssoapplicationassignmentproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.SSO/ApplicationProvider@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SSO/ApplicationProviderProperties](#awsssoapplicationproviderproperties) (Identifier): properties of the resource
+
+## Resource AWS.SSO/Assignment@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SSO/AssignmentProperties](#awsssoassignmentproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.SSO/Instance@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -41,6 +65,15 @@
 ### Properties
 * **Source**: string[] (Required)
 
+## ApplicationProvider_Scopes
+### Properties
+
+## AWS.SSO/ApplicationAssignmentProperties
+### Properties
+* **ApplicationArn**: string (Required, Identifier): The ARN of the application.
+* **PrincipalId**: string (Required, Identifier): An identifier for an object in IAM Identity Center, such as a user or group
+* **PrincipalType**: string (Required, Identifier): The entity type for which the assignment will be created.
+
 ## AWS.SSO/ApplicationProperties
 ### Properties
 * **ApplicationArn**: string (ReadOnly, Identifier): The Application ARN that is returned upon creation of the Identity Center (SSO) Application
@@ -52,6 +85,22 @@
 * **PortalOptions**: [PortalOptionsConfiguration](#portaloptionsconfiguration): A structure that describes the options for the portal associated with an application
 * **Status**: string: Specifies whether the application is enabled or disabled
 * **Tags**: [Tag](#tag)[]
+
+## AWS.SSO/ApplicationProviderProperties
+### Properties
+* **ApplicationProviderArn**: string (Identifier): The ARN of the application provider.
+* **DisplayData**: [DisplayData](#displaydata) (ReadOnly)
+* **FederationProtocol**: string (ReadOnly): The protocol used to federate to the application provider.
+* **ResourceServerConfig**: [ResourceServerConfig](#resourceserverconfig) (ReadOnly)
+
+## AWS.SSO/AssignmentProperties
+### Properties
+* **InstanceArn**: string (Required, Identifier): The sso instance that the permission set is owned.
+* **PermissionSetArn**: string (Required, Identifier): The permission set that the assignment will be assigned
+* **PrincipalId**: string (Required, Identifier): The assignee's identifier, user id/group id
+* **PrincipalType**: string (Required, Identifier): The assignee's type, user/group
+* **TargetId**: string (Required, Identifier): The account id to be provisioned.
+* **TargetType**: string (Required, Identifier): The type of resource to be provisioned to, only aws account now
 
 ## AWS.SSO/InstanceAccessControlAttributeConfigurationProperties
 ### Properties
@@ -87,6 +136,12 @@
 * **Name**: string (Required)
 * **Path**: string
 
+## DisplayData
+### Properties
+* **Description**: string: The description of the application provider that appears in the portal.
+* **DisplayName**: string: The name of the application provider that appears in the portal.
+* **IconUrl**: string: A URL that points to an icon that represents the application provider.
+
 ## InstanceAccessControlAttributeConfiguration_InstanceAccessControlAttributeConfiguration
 ### Properties
 * **AccessControlAttributes**: [AccessControlAttribute](#accesscontrolattribute)[] (Required)
@@ -100,6 +155,10 @@
 ### Properties
 * **SignInOptions**: [SignInOptions](#signinoptions): A structure that describes the sign-in options for the access portal
 * **Visibility**: string: Indicates whether this application is visible in the access portal
+
+## ResourceServerConfig
+### Properties
+* **Scopes**: [ApplicationProvider_Scopes](#applicationproviderscopes): A map of IAM Identity Center access scopes associated with this resource server.
 
 ## SignInOptions
 ### Properties

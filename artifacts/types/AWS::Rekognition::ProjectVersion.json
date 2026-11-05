@@ -1,0 +1,253 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Rekognition-ProjectVersion",
+  "type": "AWS::Rekognition::ProjectVersion",
+  "time": "2026-11-05T21:21:26.007Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ProjectArn",
+      "/properties/VersionName",
+      "/properties/OutputConfig",
+      "/properties/KmsKeyId",
+      "/properties/VersionDescription",
+      "/properties/FeatureConfig"
+    ],
+    "definitions": {
+      "ContentModerationConfig": {
+        "additionalProperties": false,
+        "description": "Configuration options for Content Moderation training.",
+        "properties": {
+          "ConfidenceThreshold": {
+            "description": "The confidence level you plan to use to identify if unsafe content is present during inference.",
+            "maximum": 100,
+            "minimum": 0,
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "CustomizationFeatureConfig": {
+        "additionalProperties": false,
+        "description": "Feature specific configuration for the training job.",
+        "properties": {
+          "ContentModeration": {
+            "$ref": "#/definitions/ContentModerationConfig"
+          }
+        },
+        "type": "object"
+      },
+      "EvaluationResult": {
+        "additionalProperties": false,
+        "description": "The training results for the project version.",
+        "properties": {
+          "F1Score": {
+            "description": "The F1 score for the evaluation of all labels.",
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "OutputConfig": {
+        "additionalProperties": false,
+        "description": "The S3 bucket and folder location where training output is placed.",
+        "properties": {
+          "S3Bucket": {
+            "description": "The S3 bucket where training output is placed.",
+            "maxLength": 255,
+            "minLength": 3,
+            "pattern": "^[0-9A-Za-z\\.\\-_]*$",
+            "type": "string"
+          },
+          "S3KeyPrefix": {
+            "description": "The prefix applied to the training output files.",
+            "maxLength": 1024,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^(?!aws:)[\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "The AWS::Rekognition::ProjectVersion type provides read-only visibility into a version of an Amazon Rekognition Custom Labels or Custom Moderation project (a trained model/adapter version).",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ProjectArn": {
+              "maxLength": 2048,
+              "minLength": 20,
+              "pattern": "^(^arn:[a-z\\d-]+:rekognition:[a-z\\d-]+:\\d{12}:project\\/[a-zA-Z0-9_.\\-]{1,255}\\/[0-9]+$)$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "ProjectArn"
+          ]
+        },
+        "permissions": [
+          "rekognition:DescribeProjectVersions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "rekognition:DescribeProjects",
+          "rekognition:DescribeProjectVersions",
+          "rekognition:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ProjectVersionArn"
+    ],
+    "properties": {
+      "BaseModelVersion": {
+        "description": "The base detection model version used to create the project version.",
+        "type": "string"
+      },
+      "BillableTrainingTimeInSeconds": {
+        "description": "The duration, in seconds, that you were billed for a successful training of the model version.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "CreationTimestamp": {
+        "description": "The Unix datetime for the date and time that training started.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "EvaluationResult": {
+        "$ref": "#/definitions/EvaluationResult"
+      },
+      "Feature": {
+        "description": "The feature that was customized.",
+        "enum": [
+          "CONTENT_MODERATION",
+          "CUSTOM_LABELS"
+        ],
+        "type": "string"
+      },
+      "FeatureConfig": {
+        "$ref": "#/definitions/CustomizationFeatureConfig"
+      },
+      "KmsKeyId": {
+        "description": "The identifier for your AWS Key Management Service key (AWS KMS key) used to encrypt training and test images, manifest files, and training results.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$",
+        "type": "string"
+      },
+      "OutputConfig": {
+        "$ref": "#/definitions/OutputConfig"
+      },
+      "ProjectArn": {
+        "description": "The ARN of the Amazon Rekognition project that manages this project version.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^(^arn:[a-z\\d-]+:rekognition:[a-z\\d-]+:\\d{12}:project\\/[a-zA-Z0-9_.\\-]{1,255}\\/[0-9]+$)$",
+        "type": "string"
+      },
+      "ProjectVersionArn": {
+        "description": "The Amazon Resource Name (ARN) of the project version.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^(^arn:[a-z\\d-]+:rekognition:[a-z\\d-]+:\\d{12}:project\\/[a-zA-Z0-9_.\\-]{1,255}\\/version\\/[a-zA-Z0-9_.\\-]{1,255}\\/[0-9]+$)$",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The current status of the project version.",
+        "enum": [
+          "TRAINING_IN_PROGRESS",
+          "TRAINING_COMPLETED",
+          "TRAINING_FAILED",
+          "STARTING",
+          "RUNNING",
+          "FAILED",
+          "STOPPING",
+          "STOPPED",
+          "DELETING",
+          "COPYING_IN_PROGRESS",
+          "COPYING_COMPLETED",
+          "COPYING_FAILED",
+          "DEPRECATED",
+          "EXPIRED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "TrainingEndTimestamp": {
+        "description": "The Unix date and time that training of the model ended.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "VersionDescription": {
+        "description": "A description applied to the project version.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9-_. ()':,;?]+$",
+        "type": "string"
+      },
+      "VersionName": {
+        "description": "A name for the version of the project version. This value must be unique.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9_.\\-]+$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ProjectVersionArn",
+      "/properties/Feature",
+      "/properties/Status",
+      "/properties/CreationTimestamp",
+      "/properties/TrainingEndTimestamp",
+      "/properties/BillableTrainingTimeInSeconds",
+      "/properties/BaseModelVersion",
+      "/properties/EvaluationResult",
+      "/properties/Tags"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "rekognition:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Rekognition::ProjectVersion"
+  }
+}

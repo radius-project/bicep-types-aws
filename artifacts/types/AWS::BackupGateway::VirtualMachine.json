@@ -1,0 +1,145 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-BackupGateway-VirtualMachine",
+  "type": "AWS::BackupGateway::VirtualMachine",
+  "time": "2026-11-05T21:18:19.471Z",
+  "schema": {
+    "additionalProperties": false,
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with the resource.",
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^[^\\x00]*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "VmwareTag": {
+        "additionalProperties": false,
+        "description": "A VMware tag attached to the virtual machine.",
+        "properties": {
+          "VmwareCategory": {
+            "description": "The category of the VMware tag.",
+            "maxLength": 80,
+            "minLength": 1,
+            "type": "string"
+          },
+          "VmwareTagDescription": {
+            "description": "The user-defined description of the VMware tag.",
+            "type": "string"
+          },
+          "VmwareTagName": {
+            "description": "The user-defined name of the VMware tag.",
+            "maxLength": 80,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Represents a virtual machine discovered by an AWS Backup Gateway hypervisor.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "backup-gateway:ListVirtualMachines"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "backup-gateway:GetVirtualMachine",
+          "backup-gateway:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ResourceArn"
+    ],
+    "properties": {
+      "HostName": {
+        "description": "The host name of the virtual machine.",
+        "maxLength": 100,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9-]*$",
+        "type": "string"
+      },
+      "HypervisorId": {
+        "description": "The ID of the virtual machine's hypervisor.",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the virtual machine.",
+        "maxLength": 100,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9-]*$",
+        "type": "string"
+      },
+      "Path": {
+        "description": "The path of the virtual machine.",
+        "maxLength": 4096,
+        "minLength": 1,
+        "pattern": "^[^\\x00]+$",
+        "type": "string"
+      },
+      "ResourceArn": {
+        "description": "The Amazon Resource Name (ARN) of the virtual machine.",
+        "maxLength": 500,
+        "minLength": 50,
+        "pattern": "^arn:(aws|aws-cn|aws-us-gov):backup-gateway(:[a-zA-Z-0-9]+){3}\\/[a-zA-Z-0-9]+$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags associated with the virtual machine.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "VmwareTags": {
+        "description": "The VMware tags associated with the virtual machine.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/VmwareTag"
+        },
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ResourceArn",
+      "/properties/HypervisorId",
+      "/properties/HostName",
+      "/properties/Name",
+      "/properties/Path",
+      "/properties/VmwareTags",
+      "/properties/Tags"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "backup-gateway:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::BackupGateway::VirtualMachine"
+  }
+}

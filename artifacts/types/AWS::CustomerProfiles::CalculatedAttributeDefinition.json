@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CustomerProfiles-CalculatedAttributeDefinition",
   "type": "AWS::CustomerProfiles::CalculatedAttributeDefinition",
-  "time": "2026-10-29T21:04:12.579Z",
+  "time": "2026-11-04T23:54:22.526Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -9,6 +9,7 @@
       "/properties/CalculatedAttributeName",
       "/properties/Statistic",
       "/properties/AttributeDetails",
+      "/properties/Filter",
       "/properties/UseHistoricalData",
       "/properties/Conditions/Range/TimestampSource",
       "/properties/Conditions/Range/TimestampFormat"
@@ -50,7 +51,7 @@
         "items": {
           "$ref": "#/definitions/AttributeItem"
         },
-        "maxItems": 2,
+        "maxItems": 50,
         "minItems": 1,
         "type": "array",
         "uniqueItems": true
@@ -111,6 +112,149 @@
         "minLength": 1,
         "type": "string"
       },
+      "Filter": {
+        "additionalProperties": false,
+        "description": "Defines how to filter the objects coming in for calculated attributes.",
+        "properties": {
+          "Groups": {
+            "$ref": "#/definitions/GroupList",
+            "description": "Holds the list of Filter groups within the Filter definition."
+          },
+          "Include": {
+            "$ref": "#/definitions/FilterInclude"
+          }
+        },
+        "required": [
+          "Include",
+          "Groups"
+        ],
+        "type": "object"
+      },
+      "FilterAttributeDimension": {
+        "additionalProperties": false,
+        "description": "Object that defines how to filter the incoming objects for the calculated attribute.",
+        "properties": {
+          "DimensionType": {
+            "$ref": "#/definitions/FilterDimensionType"
+          },
+          "Values": {
+            "description": "The values to apply the DimensionType on.",
+            "insertionOrder": false,
+            "items": {
+              "maxLength": 255,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "DimensionType",
+          "Values"
+        ],
+        "type": "object"
+      },
+      "FilterDimension": {
+        "additionalProperties": false,
+        "description": "Contains the map of attribute names to attribute dimensions.",
+        "properties": {
+          "Attributes": {
+            "additionalProperties": false,
+            "description": "Is the attribute within the FilterDimension map",
+            "minProperties": 1,
+            "patternProperties": {
+              "^[a-zA-Z0-9_.-]+$": {
+                "$ref": "#/definitions/FilterAttributeDimension"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "Attributes"
+        ],
+        "type": "object"
+      },
+      "FilterDimensionList": {
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/FilterDimension"
+        },
+        "maxItems": 10,
+        "minItems": 1,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "FilterDimensionType": {
+        "description": "The action to filter with.",
+        "enum": [
+          "INCLUSIVE",
+          "EXCLUSIVE",
+          "CONTAINS",
+          "BEGINS_WITH",
+          "ENDS_WITH",
+          "BEFORE",
+          "AFTER",
+          "BETWEEN",
+          "NOT_BETWEEN",
+          "ON",
+          "GREATER_THAN",
+          "LESS_THAN",
+          "GREATER_THAN_OR_EQUAL",
+          "LESS_THAN_OR_EQUAL",
+          "EQUAL"
+        ],
+        "type": "string"
+      },
+      "FilterGroup": {
+        "additionalProperties": false,
+        "description": "Object that holds the dimensions to filter on.",
+        "properties": {
+          "Dimensions": {
+            "$ref": "#/definitions/FilterDimensionList",
+            "description": "Object that holds the attributes to filter on."
+          },
+          "Type": {
+            "$ref": "#/definitions/FilterGroupType"
+          }
+        },
+        "required": [
+          "Type",
+          "Dimensions"
+        ],
+        "type": "object"
+      },
+      "FilterGroupType": {
+        "description": "The type of logical relationship between the dimensions of the Filter group.",
+        "enum": [
+          "ALL",
+          "ANY",
+          "NONE"
+        ],
+        "type": "string"
+      },
+      "FilterInclude": {
+        "description": "Define whether to include or exclude objects for Calculated Attributed calculation that fit the filter groups criteria.",
+        "enum": [
+          "ALL",
+          "ANY",
+          "NONE"
+        ],
+        "type": "string"
+      },
+      "GroupList": {
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/FilterGroup"
+        },
+        "maxItems": 2,
+        "minItems": 1,
+        "type": "array",
+        "uniqueItems": true
+      },
       "ObjectCount": {
         "description": "The number of profile objects used for the calculated attribute.",
         "maximum": 300,
@@ -143,9 +287,6 @@
             "$ref": "#/definitions/ValueRange"
           }
         },
-        "required": [
-          "Unit"
-        ],
         "type": "object"
       },
       "RangeUnit": {
@@ -158,7 +299,7 @@
       "RangeValue": {
         "description": "The amount of time of the specified unit.",
         "maximum": 2147483647,
-        "minimum": 1,
+        "minimum": 0,
         "type": "integer"
       },
       "Readiness": {
@@ -353,6 +494,9 @@
       },
       "DomainName": {
         "$ref": "#/definitions/DomainName"
+      },
+      "Filter": {
+        "$ref": "#/definitions/Filter"
       },
       "LastUpdatedAt": {
         "description": "The timestamp of when the calculated attribute definition was most recently edited.",

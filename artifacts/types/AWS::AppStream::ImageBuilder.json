@@ -1,0 +1,246 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AppStream-ImageBuilder",
+  "type": "AWS::AppStream::ImageBuilder",
+  "time": "2026-10-26T21:40:08.997Z",
+  "schema": {
+    "additionalProperties": false,
+    "anyOf": [
+      {
+        "required": [
+          "ImageName"
+        ]
+      },
+      {
+        "required": [
+          "ImageArn"
+        ]
+      }
+    ],
+    "createOnlyProperties": [
+      "/properties/Name"
+    ],
+    "definitions": {
+      "AccessEndpoint": {
+        "additionalProperties": false,
+        "properties": {
+          "EndpointType": {
+            "type": "string"
+          },
+          "VpceId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "EndpointType",
+          "VpceId"
+        ],
+        "type": "object"
+      },
+      "DomainJoinInfo": {
+        "additionalProperties": false,
+        "properties": {
+          "DirectoryName": {
+            "type": "string"
+          },
+          "OrganizationalUnitDistinguishedName": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value",
+          "Key"
+        ],
+        "type": "object"
+      },
+      "VolumeConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "VolumeSizeInGb": {
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "VpcConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "SecurityGroupIds": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "SubnetIds": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::AppStream::ImageBuilder",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "appstream:CreateImageBuilder",
+          "appstream:CreateImageBuilderStreamingURL",
+          "appstream:CreateStreamingURL",
+          "appstream:DeleteImageBuilder",
+          "appstream:DescribeImageBuilders",
+          "appstream:StartImageBuilder",
+          "appstream:StopImageBuilder",
+          "appstream:TagResource",
+          "iam:CreateServiceLinkedRole",
+          "iam:DeleteServiceLinkedRole",
+          "iam:GetServiceLinkedRoleDeletionStatus",
+          "iam:PassRole"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "appstream:DeleteImageBuilder",
+          "appstream:DescribeImageBuilders",
+          "appstream:ListTagsForResource",
+          "appstream:StartImageBuilder",
+          "appstream:StopImageBuilder",
+          "iam:CreateServiceLinkedRole",
+          "iam:DeleteServiceLinkedRole",
+          "iam:GetServiceLinkedRoleDeletionStatus"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "appstream:DescribeImageBuilders",
+          "appstream:ListTagsForResource",
+          "iam:CreateServiceLinkedRole",
+          "iam:DeleteServiceLinkedRole",
+          "iam:GetServiceLinkedRoleDeletionStatus"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "appstream:CreateImageBuilderStreamingURL",
+          "appstream:DescribeImageBuilders",
+          "appstream:ListTagsForResource",
+          "iam:CreateServiceLinkedRole",
+          "iam:DeleteServiceLinkedRole",
+          "iam:GetServiceLinkedRoleDeletionStatus"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Name"
+    ],
+    "properties": {
+      "AccessEndpoints": {
+        "items": {
+          "$ref": "#/definitions/AccessEndpoint"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "AppstreamAgentVersion": {
+        "type": "string"
+      },
+      "Description": {
+        "type": "string"
+      },
+      "DisableIMDSV1": {
+        "type": "boolean"
+      },
+      "DisplayName": {
+        "type": "string"
+      },
+      "DomainJoinInfo": {
+        "$ref": "#/definitions/DomainJoinInfo"
+      },
+      "EnableDefaultInternetAccess": {
+        "type": "boolean"
+      },
+      "IamRoleArn": {
+        "type": "string"
+      },
+      "ImageArn": {
+        "type": "string"
+      },
+      "ImageName": {
+        "type": "string"
+      },
+      "InstanceType": {
+        "type": "string"
+      },
+      "Name": {
+        "type": "string"
+      },
+      "RootVolumeConfig": {
+        "$ref": "#/definitions/VolumeConfig"
+      },
+      "SoftwaresToInstall": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "SoftwaresToUninstall": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "StreamingUrl": {
+        "type": "string"
+      },
+      "Tags": {
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "VpcConfig": {
+        "$ref": "#/definitions/VpcConfig"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/StreamingUrl"
+    ],
+    "required": [
+      "Name",
+      "InstanceType"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "appstream:ListTagsForResource",
+        "appstream:TagResource",
+        "appstream:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::AppStream::ImageBuilder",
+    "writeOnlyProperties": [
+      "/properties/SoftwaresToInstall",
+      "/properties/SoftwaresToUninstall",
+      "/properties/ImageName"
+    ]
+  }
+}

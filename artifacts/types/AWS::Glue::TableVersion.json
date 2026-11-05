@@ -1,0 +1,88 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Glue-TableVersion",
+  "type": "AWS::Glue::TableVersion",
+  "time": "2026-11-05T21:10:37.552Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/DatabaseName",
+        "/properties/TableName",
+        "/properties/VersionId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DatabaseName",
+      "/properties/TableName"
+    ],
+    "description": "Represents a specific version of a table in the AWS Glue Data Catalog.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "DatabaseName": {
+              "maxLength": 255,
+              "minLength": 1,
+              "type": "string"
+            },
+            "TableName": {
+              "maxLength": 255,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "DatabaseName",
+            "TableName"
+          ]
+        },
+        "permissions": [
+          "glue:GetTableVersions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "glue:GetTableVersion"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of the table version.",
+        "type": "string"
+      },
+      "DatabaseName": {
+        "description": "The name of the database in the catalog in which the table resides.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*",
+        "type": "string"
+      },
+      "TableName": {
+        "description": "The name of the table.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*",
+        "type": "string"
+      },
+      "VersionId": {
+        "description": "The ID value that identifies this table version.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/VersionId"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::Glue::TableVersion"
+  }
+}

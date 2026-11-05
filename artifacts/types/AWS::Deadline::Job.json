@@ -1,0 +1,206 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Deadline-Job",
+  "type": "AWS::Deadline::Job",
+  "time": "2026-11-05T21:18:52.709Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/FarmId",
+        "/properties/QueueId",
+        "/properties/JobId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/FarmId",
+      "/properties/MaxFailedTasksCount",
+      "/properties/MaxRetriesPerTask",
+      "/properties/MaxWorkerCount",
+      "/properties/Priority",
+      "/properties/QueueId",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Definition of AWS::Deadline::Job Resource Type",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "FarmId": {
+              "pattern": "^farm-[0-9a-f]{32}$",
+              "type": "string"
+            },
+            "QueueId": {
+              "pattern": "^queue-[0-9a-f]{32}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "FarmId",
+            "QueueId"
+          ]
+        },
+        "permissions": [
+          "deadline:ListJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "deadline:GetJob",
+          "deadline:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the job.",
+        "pattern": "^arn:aws[a-z-]*:deadline:[a-z0-9-]+:[0-9]+:farm/farm-[0-9a-f]{32}/queue/queue-[0-9a-f]{32}/job/job-[0-9a-f]{32}$",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The date and time the resource was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "description": "The user or system that created this resource.",
+        "type": "string"
+      },
+      "FarmId": {
+        "description": "The farm ID.",
+        "pattern": "^farm-[0-9a-f]{32}$",
+        "type": "string"
+      },
+      "JobId": {
+        "description": "The job ID.",
+        "pattern": "^job-[0-9a-f]{32}$",
+        "type": "string"
+      },
+      "LifecycleStatus": {
+        "description": "The life cycle status for the job.",
+        "enum": [
+          "CREATE_IN_PROGRESS",
+          "CREATE_FAILED",
+          "CREATE_COMPLETE",
+          "UPLOAD_IN_PROGRESS",
+          "UPLOAD_FAILED",
+          "UPDATE_IN_PROGRESS",
+          "UPDATE_FAILED",
+          "UPDATE_SUCCEEDED",
+          "ARCHIVED"
+        ],
+        "type": "string"
+      },
+      "LifecycleStatusMessage": {
+        "description": "A message that communicates the status of the life cycle for the job.",
+        "type": "string"
+      },
+      "MaxFailedTasksCount": {
+        "description": "The number of task failures before the job stops running and is marked as FAILED.",
+        "maximum": 2147483647,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "MaxRetriesPerTask": {
+        "description": "The maximum number of retries for each task.",
+        "maximum": 2147483647,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "MaxWorkerCount": {
+        "description": "The maximum number of worker hosts that can concurrently process a job.",
+        "maximum": 2147483647,
+        "minimum": -1,
+        "type": "integer"
+      },
+      "Name": {
+        "description": "The name of the job.",
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Priority": {
+        "description": "The priority of the job.",
+        "maximum": 100,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "QueueId": {
+        "description": "The queue ID.",
+        "pattern": "^queue-[0-9a-f]{32}$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags associated with the job.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "TaskRunStatus": {
+        "description": "The task run status for the job.",
+        "enum": [
+          "PENDING",
+          "READY",
+          "ASSIGNED",
+          "STARTING",
+          "SCHEDULED",
+          "INTERRUPTING",
+          "RUNNING",
+          "SUSPENDED",
+          "CANCELED",
+          "FAILED",
+          "SUCCEEDED",
+          "NOT_COMPATIBLE"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/JobId",
+      "/properties/Name",
+      "/properties/LifecycleStatus",
+      "/properties/LifecycleStatusMessage",
+      "/properties/TaskRunStatus",
+      "/properties/CreatedAt",
+      "/properties/CreatedBy"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "deadline:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Deadline::Job"
+  }
+}

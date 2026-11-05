@@ -1,0 +1,138 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-BedrockAgentCore-PolicyGeneration",
+  "type": "AWS::BedrockAgentCore::PolicyGeneration",
+  "time": "2026-11-05T17:44:19.614Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/PolicyEngineId",
+        "/properties/PolicyGenerationId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name",
+      "/properties/PolicyEngineId",
+      "/properties/Resource"
+    ],
+    "description": "Represents a policy generation request within the Amazon Bedrock AgentCore Policy system that converts natural language descriptions into Cedar policy statements.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "PolicyEngineId": {
+              "maxLength": 59,
+              "minLength": 12,
+              "pattern": "^[A-Za-z][A-Za-z0-9_]*-[a-z0-9_]{10}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "PolicyEngineId"
+          ]
+        },
+        "permissions": [
+          "bedrock-agentcore:ListPolicyGenerations"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "bedrock-agentcore:GetPolicyGeneration"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/PolicyGenerationArn"
+    ],
+    "properties": {
+      "CreatedAt": {
+        "description": "The timestamp when the policy generation request was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Name": {
+        "description": "A customer-assigned name for the policy generation request.",
+        "maxLength": 48,
+        "minLength": 1,
+        "pattern": "^[A-Za-z][A-Za-z0-9_]*$",
+        "type": "string"
+      },
+      "PolicyEngineId": {
+        "description": "The identifier of the policy engine associated with this policy generation.",
+        "maxLength": 59,
+        "minLength": 12,
+        "pattern": "^[A-Za-z][A-Za-z0-9_]*-[a-z0-9_]{10}$",
+        "type": "string"
+      },
+      "PolicyGenerationArn": {
+        "description": "The Amazon Resource Name (ARN) of the policy generation.",
+        "maxLength": 210,
+        "minLength": 103,
+        "pattern": "^arn:aws[-a-z]{0,7}:bedrock-agentcore:[a-z0-9-]{9,15}:[0-9]{12}:policy-engine/[a-zA-Z][a-zA-Z0-9-_]{0,47}-[a-zA-Z0-9_]{10}/policy-generation/[a-zA-Z][a-zA-Z0-9-_]{0,47}-[a-zA-Z0-9_]{10}$",
+        "type": "string"
+      },
+      "PolicyGenerationId": {
+        "description": "The unique identifier of the policy generation.",
+        "maxLength": 59,
+        "minLength": 12,
+        "pattern": "^[A-Za-z][A-Za-z0-9_]*-[a-z0-9_]{10}$",
+        "type": "string"
+      },
+      "Resource": {
+        "additionalProperties": false,
+        "description": "The resource information that provides context for policy generation.",
+        "properties": {
+          "Arn": {
+            "description": "The Amazon Resource Name (ARN) of the resource.",
+            "maxLength": 1011,
+            "minLength": 20,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Arn"
+        ],
+        "type": "object"
+      },
+      "Status": {
+        "description": "The current status of the policy generation.",
+        "enum": [
+          "GENERATING",
+          "GENERATED",
+          "GENERATE_FAILED",
+          "DELETE_FAILED"
+        ],
+        "type": "string"
+      },
+      "StatusReasons": {
+        "description": "Additional information about the generation status.",
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "UpdatedAt": {
+        "description": "The timestamp when the policy generation was last updated.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/PolicyGenerationArn",
+      "/properties/PolicyGenerationId",
+      "/properties/Status",
+      "/properties/StatusReasons",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "Name",
+      "PolicyEngineId",
+      "Resource"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::BedrockAgentCore::PolicyGeneration"
+  }
+}

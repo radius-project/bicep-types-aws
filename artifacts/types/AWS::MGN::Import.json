@@ -1,0 +1,199 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MGN-Import",
+  "type": "AWS::MGN::Import",
+  "time": "2026-11-05T17:01:19.265Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ImportID"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/S3BucketSource",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "ImportTaskSummary": {
+        "additionalProperties": false,
+        "description": "Import task summary.",
+        "properties": {
+          "Applications": {
+            "$ref": "#/definitions/ImportTaskSummaryCategory"
+          },
+          "Servers": {
+            "$ref": "#/definitions/ImportTaskSummaryCategory"
+          },
+          "Waves": {
+            "$ref": "#/definitions/ImportTaskSummaryCategory"
+          }
+        },
+        "type": "object"
+      },
+      "ImportTaskSummaryCategory": {
+        "additionalProperties": false,
+        "description": "Import task summary category counts.",
+        "properties": {
+          "CreatedCount": {
+            "description": "Number of resources created.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "ModifiedCount": {
+            "description": "Number of resources modified.",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "S3BucketSource": {
+        "additionalProperties": false,
+        "description": "The S3 bucket source of the import task.",
+        "properties": {
+          "S3Bucket": {
+            "description": "S3 bucket name.",
+            "pattern": "^[a-zA-Z0-9.\\-_]{1,255}$",
+            "type": "string"
+          },
+          "S3BucketOwner": {
+            "description": "S3 bucket owner account ID.",
+            "maxLength": 12,
+            "minLength": 12,
+            "pattern": "^[0-9]{12}$",
+            "type": "string"
+          },
+          "S3Key": {
+            "description": "S3 object key.",
+            "pattern": "^[^\\x00]{1,1020}\\.csv$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "S3Bucket",
+          "S3Key"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Definition of AWS::MGN::Import Resource Type",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "mgn:ListImports"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "mgn:ListImports",
+          "mgn:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of the import task.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "type": "string"
+      },
+      "CreationDateTime": {
+        "description": "The creation datetime of the import task.",
+        "maxLength": 32,
+        "minLength": 19,
+        "type": "string"
+      },
+      "EndDateTime": {
+        "description": "The end datetime of the import task.",
+        "maxLength": 32,
+        "minLength": 19,
+        "type": "string"
+      },
+      "ImportID": {
+        "description": "The ID of the import task.",
+        "maxLength": 24,
+        "minLength": 24,
+        "pattern": "^import-[0-9a-zA-Z]{17}$",
+        "type": "string"
+      },
+      "ProgressPercentage": {
+        "description": "The progress percentage of the import task.",
+        "type": "number"
+      },
+      "S3BucketSource": {
+        "$ref": "#/definitions/S3BucketSource",
+        "description": "The S3 bucket source of the import task."
+      },
+      "Status": {
+        "description": "The status of the import task.",
+        "enum": [
+          "PENDING",
+          "STARTED",
+          "FAILED",
+          "SUCCEEDED"
+        ],
+        "type": "string"
+      },
+      "Summary": {
+        "$ref": "#/definitions/ImportTaskSummary",
+        "description": "Import task summary."
+      },
+      "Tags": {
+        "description": "The tags associated with the import task.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/ImportID",
+      "/properties/Status",
+      "/properties/CreationDateTime",
+      "/properties/EndDateTime",
+      "/properties/ProgressPercentage",
+      "/properties/Summary"
+    ],
+    "required": [
+      "S3BucketSource"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "mgn:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::MGN::Import"
+  }
+}

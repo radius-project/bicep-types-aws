@@ -1,0 +1,116 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Events-Replay",
+  "type": "AWS::Events::Replay",
+  "time": "2026-11-05T20:53:02.47Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ReplayName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Destination",
+      "/properties/EventEndTime",
+      "/properties/EventSourceArn",
+      "/properties/EventStartTime",
+      "/properties/ReplayName"
+    ],
+    "description": "An EventBridge Replay replays archived events from an archive to an event bus.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "events:ListReplays"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "events:DescribeReplay"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ReplayArn"
+    ],
+    "properties": {
+      "Destination": {
+        "additionalProperties": false,
+        "description": "A ReplayDestination object that includes details about the destination for the replay.",
+        "properties": {
+          "Arn": {
+            "description": "The ARN of the event bus to replay events to.",
+            "maxLength": 1600,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Arn"
+        ],
+        "type": "object"
+      },
+      "EventEndTime": {
+        "description": "A time stamp for the time to stop replaying events.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "EventSourceArn": {
+        "description": "The ARN of the archive to replay events from.",
+        "maxLength": 1600,
+        "minLength": 1,
+        "type": "string"
+      },
+      "EventStartTime": {
+        "description": "A time stamp for the time to start replaying events.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ReplayArn": {
+        "description": "The ARN of the replay.",
+        "maxLength": 1600,
+        "minLength": 1,
+        "type": "string"
+      },
+      "ReplayName": {
+        "description": "The name of the replay.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[\\.\\-_A-Za-z0-9]+$",
+        "type": "string"
+      },
+      "ReplayStartTime": {
+        "description": "A time stamp for the time that the replay started.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "State": {
+        "description": "The current state of the replay.",
+        "enum": [
+          "STARTING",
+          "RUNNING",
+          "CANCELLING",
+          "COMPLETED",
+          "CANCELLED",
+          "FAILED"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ReplayArn",
+      "/properties/State",
+      "/properties/ReplayStartTime"
+    ],
+    "required": [
+      "ReplayName",
+      "EventSourceArn",
+      "EventStartTime",
+      "EventEndTime",
+      "Destination"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::Events::Replay"
+  }
+}

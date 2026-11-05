@@ -1,0 +1,99 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Cassandra-Stream",
+  "type": "AWS::Cassandra::Stream",
+  "time": "2026-11-05T20:17:18.692Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/KeyspaceName",
+        "/properties/TableName",
+        "/properties/StreamLabel"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/KeyspaceName",
+      "/properties/StreamViewType",
+      "/properties/TableName"
+    ],
+    "description": "Resource schema for a Cassandra CDC stream in Amazon Keyspaces. This is a read-only resource that represents a change data capture stream associated with an Amazon Keyspaces table.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "cassandra:ListStreams",
+          "cassandra:Select"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "cassandra:GetStream",
+          "cassandra:Select"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) that uniquely identifies the stream.",
+        "maxLength": 1024,
+        "minLength": 37,
+        "type": "string"
+      },
+      "CreationRequestDateTime": {
+        "description": "The date and time when the request to create this stream was issued, in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "KeyspaceName": {
+        "description": "The name of the keyspace containing the table associated with this stream.",
+        "maxLength": 48,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_]{0,47}$",
+        "type": "string"
+      },
+      "StreamLabel": {
+        "description": "A timestamp that serves as a unique identifier for this stream.",
+        "type": "string"
+      },
+      "StreamStatus": {
+        "description": "The current status of the stream.",
+        "enum": [
+          "ENABLING",
+          "ENABLED",
+          "DISABLING",
+          "DISABLED"
+        ],
+        "type": "string"
+      },
+      "StreamViewType": {
+        "description": "The format of the data records in this stream.",
+        "enum": [
+          "NEW_IMAGE",
+          "OLD_IMAGE",
+          "NEW_AND_OLD_IMAGES",
+          "KEYS_ONLY"
+        ],
+        "type": "string"
+      },
+      "TableName": {
+        "description": "The name of the table associated with this stream.",
+        "maxLength": 48,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_]{0,47}$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/StreamLabel",
+      "/properties/StreamStatus",
+      "/properties/CreationRequestDateTime"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::Cassandra::Stream"
+  }
+}

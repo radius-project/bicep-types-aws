@@ -282,18 +282,568 @@
   },
   {
     "$type": "ObjectType",
+    "name": "ExportTaskSummary",
+    "properties": {
+      "ApplicationsCount": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The number of applications included in the export."
+      },
+      "ServersCount": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The number of servers included in the export."
+      },
+      "WavesCount": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The number of waves included in the export."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MGN/ExportProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/16"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MGN/ExportProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The ARN of the export task."
+      },
+      "CreationDateTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The datetime when the export task was created."
+      },
+      "EndDateTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The datetime when the export task ended."
+      },
+      "ExportID": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the export task."
+      },
+      "ProgressPercentage": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "The progress percentage of the export task."
+      },
+      "S3Bucket": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The S3 bucket where the export data is stored."
+      },
+      "S3BucketOwner": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The account ID of the S3 bucket owner."
+      },
+      "S3Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The S3 key for the export data file."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The status of the export task."
+      },
+      "Summary": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0,
+        "description": "Tags associated with the export task."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MGN/Export",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MGN/Export@default",
+    "body": {
+      "$ref": "#/21"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ImportTaskSummary",
+    "properties": {
+      "Applications": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
+      "Servers": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
+      "Waves": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ImportTaskSummaryCategory",
+    "properties": {
+      "CreatedCount": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Number of resources created."
+      },
+      "ModifiedCount": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "Number of resources modified."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3BucketSource",
+    "properties": {
+      "S3Bucket": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "S3 bucket name."
+      },
+      "S3BucketOwner": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "S3 bucket owner account ID."
+      },
+      "S3Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "S3 object key."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MGN/ImportProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/26"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MGN/ImportProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The ARN of the import task."
+      },
+      "CreationDateTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The creation datetime of the import task."
+      },
+      "EndDateTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The end datetime of the import task."
+      },
+      "ImportID": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ID of the import task."
+      },
+      "ProgressPercentage": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 2,
+        "description": "The progress percentage of the import task."
+      },
+      "S3BucketSource": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 1,
+        "description": "The S3 bucket source of the import task."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The status of the import task."
+      },
+      "Summary": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 2,
+        "description": "Import task summary."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 0,
+        "description": "The tags associated with the import task."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MGN/Import",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/29"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MGN/Import@default",
+    "body": {
+      "$ref": "#/30"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ParticipatingServer",
+    "properties": {
+      "LaunchStatus": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The launch status of a participating server."
+      },
+      "LaunchedEc2InstanceID": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The EC2 instance ID of a launched participating server."
+      },
+      "SourceServerID": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The source server ID of a participating server."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MGN/JobProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/32"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/33"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MGN/JobProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The ARN of the job."
+      },
+      "CreationDateTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The date and time the job was created."
+      },
+      "EndDateTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The date and time the job ended."
+      },
+      "InitiatedBy": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The operation that initiated the job."
+      },
+      "JobId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the job."
+      },
+      "ParticipatingServers": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 2,
+        "description": "The list of servers participating in the job."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The status of the job."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0,
+        "description": "Tags associated with the job."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The type of the job."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MGN/Job",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MGN/Job@default",
+    "body": {
+      "$ref": "#/38"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "LaunchTemplateDiskConf",
     "properties": {
       "Iops": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "Launch template disk IOPS configuration."
       },
       "Throughput": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "Launch template disk throughput configuration, in MiB/s."
@@ -354,7 +904,7 @@
       },
       "SsmDocuments": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": "AWS Systems Manager Documents to execute, in order."
@@ -374,7 +924,7 @@
       },
       "ExternalParameters": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/44"
         },
         "flags": 0
       },
@@ -387,7 +937,7 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/45"
         },
         "flags": 0
       },
@@ -400,7 +950,7 @@
       },
       "TimeoutSeconds": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "AWS Systems Manager Document timeout, in seconds."
@@ -471,12 +1021,9 @@
     }
   },
   {
-    "$type": "IntegerType"
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/18"
+      "$ref": "#/43"
     }
   },
   {
@@ -486,7 +1033,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/48"
     }
   },
   {
@@ -551,7 +1098,7 @@
       },
       "LargeVolumeConf": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/40"
         },
         "flags": 0
       },
@@ -571,7 +1118,7 @@
       },
       "Licensing": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/41"
         },
         "flags": 0
       },
@@ -591,26 +1138,26 @@
       },
       "PostLaunchActions": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/42"
         },
         "flags": 0
       },
       "SmallVolumeConf": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/40"
         },
         "flags": 0
       },
       "SmallVolumeMaxSize": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "Small volume maximum size, in GiB."
       },
       "Tags": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "A set of tags to be associated with the Launch Configuration Template."
@@ -644,7 +1191,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/52"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -655,7 +1202,7 @@
     "$type": "ResourceType",
     "name": "AWS.MGN/LaunchConfigurationTemplate@default",
     "body": {
-      "$ref": "#/29"
+      "$ref": "#/53"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -678,7 +1225,7 @@
       },
       "SourceS3Configuration": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/57"
         },
         "flags": 1
       }
@@ -792,13 +1339,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/32"
+      "$ref": "#/56"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/34"
+      "$ref": "#/58"
     }
   },
   {
@@ -842,21 +1389,21 @@
       },
       "ScopeTags": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/55"
         },
         "flags": 0,
         "description": "Scope tags for the network migration definition."
       },
       "SourceConfigurations": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/62"
         },
         "flags": 1,
         "description": "A list of source configurations for the network migration."
       },
       "Tags": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/63"
         },
         "flags": 0,
         "description": "Tags to assign to the network migration definition."
@@ -870,14 +1417,14 @@
       },
       "TargetNetwork": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/59"
         },
         "flags": 1,
         "description": "The target network configuration including topology and CIDR ranges."
       },
       "TargetS3Configuration": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/60"
         },
         "flags": 1,
         "description": "The S3 configuration for storing the target network artifacts."
@@ -911,7 +1458,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/64"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -922,7 +1469,7 @@
     "$type": "ResourceType",
     "name": "AWS.MGN/NetworkMigrationDefinition@default",
     "body": {
-      "$ref": "#/41"
+      "$ref": "#/65"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -965,7 +1512,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/44"
+      "$ref": "#/68"
     }
   },
   {
@@ -988,7 +1535,7 @@
       },
       "BandwidthThrottling": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 1,
         "description": "Configure bandwidth throttling for the outbound data transfer rate of the Source Server in Mbps."
@@ -1051,7 +1598,7 @@
       },
       "ReplicationServersSecurityGroupsIDs": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/70"
         },
         "flags": 1,
         "description": "The security group IDs that will be used by the replication server."
@@ -1065,7 +1612,7 @@
       },
       "StagingAreaTags": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/67"
         },
         "flags": 1
       },
@@ -1078,7 +1625,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/71"
         },
         "flags": 0,
         "description": "A set of tags to be associated with the Replication Configuration Template resource."
@@ -1119,7 +1666,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/72"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1130,9 +1677,691 @@
     "$type": "ResourceType",
     "name": "AWS.MGN/ReplicationConfigurationTemplate@default",
     "body": {
-      "$ref": "#/49"
+      "$ref": "#/73"
     },
     "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CPU",
+    "properties": {
+      "Cores": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The number of CPU cores."
+      },
+      "ModelName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The CPU model name."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataReplicationInfo",
+    "properties": {
+      "DataReplicationInitiation": {
+        "type": {
+          "$ref": "#/78"
+        },
+        "flags": 0
+      },
+      "DataReplicationState": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The data replication state."
+      },
+      "LagDuration": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The data replication lag duration."
+      },
+      "LastSnapshotDateTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The last snapshot date and time. The MGN API returns timestamps with a numeric UTC offset (e.g. +00:00) rather than the Z suffix, so the pattern accepts both forms, deviating from the Smithy Z-only pattern which the live API does not honor."
+      },
+      "ReplicatedDisks": {
+        "type": {
+          "$ref": "#/93"
+        },
+        "flags": 0,
+        "description": "The replicated disks."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataReplicationInfoReplicatedDisk",
+    "properties": {
+      "BackloggedStorageBytes": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The backlogged storage in bytes."
+      },
+      "DeviceName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The replicated disk device name."
+      },
+      "ReplicatedStorageBytes": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The replicated storage in bytes."
+      },
+      "RescannedStorageBytes": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The rescanned storage in bytes."
+      },
+      "TotalStorageBytes": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The total storage in bytes."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataReplicationInitiation",
+    "properties": {
+      "StartDateTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The data replication initiation start date and time. The MGN API returns timestamps with a numeric UTC offset (e.g. +00:00) rather than the Z suffix, so the pattern accepts both forms, deviating from the Smithy Z-only pattern which the live API does not honor."
+      },
+      "Steps": {
+        "type": {
+          "$ref": "#/94"
+        },
+        "flags": 0,
+        "description": "The data replication initiation steps."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataReplicationInitiationStep",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the initiation step."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The status of the initiation step."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Disk",
+    "properties": {
+      "Bytes": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The disk size in bytes."
+      },
+      "DeviceName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The disk device name."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IdentificationHints",
+    "properties": {
+      "AwsInstanceID": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The AWS instance ID identification hint."
+      },
+      "Fqdn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The FQDN identification hint."
+      },
+      "Hostname": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The hostname identification hint."
+      },
+      "VmPath": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The VM path identification hint."
+      },
+      "VmWareUuid": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The VMware UUID identification hint."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LaunchedInstance",
+    "properties": {
+      "Ec2InstanceID": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The EC2 instance ID of the launched instance."
+      },
+      "FirstBoot": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The first boot status of the launched instance."
+      },
+      "JobID": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The job ID that launched the instance."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LifeCycle",
+    "properties": {
+      "AddedToServiceDateTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The date and time the source server was added to the service. The MGN API returns timestamps with a numeric UTC offset (e.g. +00:00) rather than the Z suffix, so the pattern accepts both forms, deviating from the Smithy Z-only pattern which the live API does not honor."
+      },
+      "ElapsedReplicationDuration": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The elapsed replication duration."
+      },
+      "FirstByteDateTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The date and time the first byte was replicated. The MGN API returns timestamps with a numeric UTC offset (e.g. +00:00) rather than the Z suffix, so the pattern accepts both forms, deviating from the Smithy Z-only pattern which the live API does not honor."
+      },
+      "LastCutover": {
+        "type": {
+          "$ref": "#/86"
+        },
+        "flags": 0
+      },
+      "LastSeenByServiceDateTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The date and time the source server was last seen by the service. The MGN API returns timestamps with a numeric UTC offset (e.g. +00:00) rather than the Z suffix, so the pattern accepts both forms, deviating from the Smithy Z-only pattern which the live API does not honor."
+      },
+      "LastTest": {
+        "type": {
+          "$ref": "#/87"
+        },
+        "flags": 0
+      },
+      "State": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The lifecycle state of the source server."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LifeCycleEvent",
+    "properties": {
+      "ApiCallDateTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The API call date and time of the event. The MGN API returns timestamps with a numeric UTC offset (e.g. +00:00) rather than the Z suffix, so the pattern accepts both forms, deviating from the Smithy Z-only pattern which the live API does not honor."
+      },
+      "JobID": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The job ID associated with the event."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LifeCycleEventNoJob",
+    "properties": {
+      "ApiCallDateTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The API call date and time of the event. The MGN API returns timestamps with a numeric UTC offset (e.g. +00:00) rather than the Z suffix, so the pattern accepts both forms, deviating from the Smithy Z-only pattern which the live API does not honor."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LifeCycleLastCutover",
+    "properties": {
+      "Finalized": {
+        "type": {
+          "$ref": "#/85"
+        },
+        "flags": 0
+      },
+      "Initiated": {
+        "type": {
+          "$ref": "#/84"
+        },
+        "flags": 0
+      },
+      "Reverted": {
+        "type": {
+          "$ref": "#/85"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LifeCycleLastTest",
+    "properties": {
+      "Finalized": {
+        "type": {
+          "$ref": "#/85"
+        },
+        "flags": 0
+      },
+      "Initiated": {
+        "type": {
+          "$ref": "#/84"
+        },
+        "flags": 0
+      },
+      "Reverted": {
+        "type": {
+          "$ref": "#/85"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NetworkInterface",
+    "properties": {
+      "Ips": {
+        "type": {
+          "$ref": "#/95"
+        },
+        "flags": 0,
+        "description": "The IP addresses of the network interface."
+      },
+      "IsPrimary": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "Whether this is the primary network interface."
+      },
+      "MacAddress": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The MAC address of the network interface."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OS",
+    "properties": {
+      "FullString": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The full OS string."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceProperties",
+    "properties": {
+      "Cpus": {
+        "type": {
+          "$ref": "#/96"
+        },
+        "flags": 0,
+        "description": "The source server CPUs."
+      },
+      "Disks": {
+        "type": {
+          "$ref": "#/97"
+        },
+        "flags": 0,
+        "description": "The source server disks."
+      },
+      "IdentificationHints": {
+        "type": {
+          "$ref": "#/81"
+        },
+        "flags": 0
+      },
+      "LastUpdatedDateTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The date and time the source properties were last updated. The MGN API returns timestamps with a numeric UTC offset (e.g. +00:00) rather than the Z suffix, so the pattern here accepts both Z and offset forms, deviating from the Smithy Z-only pattern which the live API does not honor."
+      },
+      "NetworkInterfaces": {
+        "type": {
+          "$ref": "#/98"
+        },
+        "flags": 0,
+        "description": "The source server network interfaces."
+      },
+      "Os": {
+        "type": {
+          "$ref": "#/89"
+        },
+        "flags": 0
+      },
+      "RamBytes": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The source server RAM in bytes."
+      },
+      "RecommendedInstanceType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The recommended EC2 instance type."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceServerConnectorAction",
+    "properties": {
+      "ConnectorArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The connector ARN."
+      },
+      "CredentialsSecretArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The Secrets Manager secret ARN for the connector credentials."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/77"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/79"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/75"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/80"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/88"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.MGN/SourceServerProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/92"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MGN/SourceServerProperties",
+    "properties": {
+      "ApplicationID": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The application ID associated with the source server."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The ARN of the source server."
+      },
+      "ConnectorAction": {
+        "type": {
+          "$ref": "#/91"
+        },
+        "flags": 2
+      },
+      "DataReplicationInfo": {
+        "type": {
+          "$ref": "#/76"
+        },
+        "flags": 2
+      },
+      "FqdnForActionFramework": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The FQDN for the action framework."
+      },
+      "IsArchived": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "Whether the source server is archived."
+      },
+      "LaunchedInstance": {
+        "type": {
+          "$ref": "#/82"
+        },
+        "flags": 2
+      },
+      "LifeCycle": {
+        "type": {
+          "$ref": "#/83"
+        },
+        "flags": 2
+      },
+      "ReplicationType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The replication type of the source server."
+      },
+      "SourceProperties": {
+        "type": {
+          "$ref": "#/90"
+        },
+        "flags": 2
+      },
+      "SourceServerID": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The source server ID."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/100"
+        },
+        "flags": 2,
+        "description": "The tags associated with the source server."
+      },
+      "UserProvidedID": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The user-provided ID for the source server."
+      },
+      "VcenterClientID": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The vCenter client ID associated with the source server."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.MGN/SourceServer",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/101"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.MGN/SourceServer@default",
+    "body": {
+      "$ref": "#/102"
+    },
+    "readableScopes": 31,
     "writableScopes": 0
   },
   {
@@ -1175,7 +2404,7 @@
       },
       "TotalApplications": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "The total number of applications in the wave."
@@ -1189,7 +2418,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/51"
+      "$ref": "#/104"
     }
   },
   {
@@ -1240,14 +2469,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/107"
         },
         "flags": 0,
         "description": "Tags to assign to the wave."
       },
       "WaveAggregatedStatus": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/105"
         },
         "flags": 2,
         "description": "The aggregated migration status of the wave."
@@ -1281,7 +2510,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/108"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1292,7 +2521,7 @@
     "$type": "ResourceType",
     "name": "AWS.MGN/Wave@default",
     "body": {
-      "$ref": "#/56"
+      "$ref": "#/109"
     },
     "readableScopes": 0,
     "writableScopes": 0

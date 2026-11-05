@@ -1,0 +1,107 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-VpcLattice-ResourceEndpointAssociation",
+  "type": "AWS::VpcLattice::ResourceEndpointAssociation",
+  "time": "2026-11-05T20:58:06.078Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ResourceConfigurationId",
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "description": "Read-only resource type representing the association between a VPC Lattice resource configuration and a VPC endpoint of type Resource. The association is created out-of-band when a Resource-type VPC endpoint targets a resource configuration; this type provides the resource-configuration owner's (provider-side) view of those associations, including endpoints owned by other accounts.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ResourceConfigurationId": {
+              "maxLength": 22,
+              "minLength": 22,
+              "pattern": "^rcfg-[0-9a-z]{17}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "ResourceConfigurationId"
+          ]
+        },
+        "permissions": [
+          "vpc-lattice:ListResourceEndpointAssociations"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "vpc-lattice:ListResourceEndpointAssociations"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ResourceConfigurationId",
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the VPC endpoint association.",
+        "maxLength": 2048,
+        "minLength": 21,
+        "pattern": "^arn:[a-z0-9\\-]+:vpc-lattice:[a-zA-Z0-9\\-]+:\\d{12}:resourceendpointassociation/rea-[0-9a-f]{17}$",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The date and time that the VPC endpoint association was created, in ISO-8601 format.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Id": {
+        "description": "The ID of the VPC endpoint association.",
+        "maxLength": 21,
+        "minLength": 21,
+        "pattern": "^rea-[0-9a-f]{17}$",
+        "type": "string"
+      },
+      "ResourceConfigurationArn": {
+        "description": "The Amazon Resource Name (ARN) of the resource configuration.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:[a-z0-9\\-]+:vpc-lattice:[a-zA-Z0-9\\-]+:\\d{12}:resourceconfiguration/rcfg-[0-9a-z]{17}$",
+        "type": "string"
+      },
+      "ResourceConfigurationId": {
+        "description": "The ID of the resource configuration associated with the VPC endpoint.",
+        "maxLength": 22,
+        "minLength": 22,
+        "pattern": "^rcfg-[0-9a-z]{17}$",
+        "type": "string"
+      },
+      "VpcEndpointId": {
+        "description": "The ID of the VPC endpoint.",
+        "maxLength": 22,
+        "minLength": 22,
+        "pattern": "^vpce-[0-9a-f]{17}$",
+        "type": "string"
+      },
+      "VpcEndpointOwner": {
+        "description": "The AWS account ID of the owner of the VPC endpoint.",
+        "maxLength": 12,
+        "minLength": 12,
+        "pattern": "^\\d{12}$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Id",
+      "/properties/ResourceConfigurationId",
+      "/properties/ResourceConfigurationArn",
+      "/properties/VpcEndpointId",
+      "/properties/VpcEndpointOwner",
+      "/properties/CreatedAt"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::VpcLattice::ResourceEndpointAssociation"
+  }
+}

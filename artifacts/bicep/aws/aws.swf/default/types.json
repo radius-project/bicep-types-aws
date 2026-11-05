@@ -1,0 +1,119 @@
+[
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. Tag keys are case-sensitive and must be unique per SWF domain."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value associated with the tag key on the SWF domain. May be an empty string."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SWF/DomainProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SWF/DomainProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the domain."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "A text description of the SWF domain, provided at registration. This value is immutable once the domain is created."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The name of the domain. The name must be unique within the region in which the domain is registered."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The registration status of the domain. A domain can be in REGISTERED or DEPRECATED state."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "An array of key-value pairs applied to the domain."
+      },
+      "WorkflowExecutionRetentionPeriodInDays": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The duration (in days) that records and histories of workflow executions on the domain should be kept by the service. Valid values are 0-90 days, or the string NONE. A value of 0 or NONE means no retention."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SWF/Domain",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SWF/Domain@default",
+    "body": {
+      "$ref": "#/5"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  }
+]

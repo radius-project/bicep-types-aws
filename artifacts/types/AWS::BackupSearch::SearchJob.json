@@ -1,0 +1,137 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-BackupSearch-SearchJob",
+  "type": "AWS::BackupSearch::SearchJob",
+  "time": "2026-11-05T21:20:34.5Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/SearchJobIdentifier"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name",
+      "/properties/SearchScope",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "SearchScope": {
+        "additionalProperties": false,
+        "description": "The search scope for the search job.",
+        "properties": {
+          "BackupResourceTypes": {
+            "description": "The resource types included in a search.",
+            "items": {
+              "enum": [
+                "S3",
+                "EBS"
+              ],
+              "type": "string"
+            },
+            "maxItems": 1,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "BackupResourceTypes"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Definition of AWS::BackupSearch::SearchJob Resource Type",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "backup-search:ListSearchJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "backup-search:GetSearchJob",
+          "backup-search:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/SearchJobArn"
+    ],
+    "properties": {
+      "CreationTime": {
+        "description": "The date and time the search job was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the search job.",
+        "maxLength": 500,
+        "type": "string"
+      },
+      "SearchJobArn": {
+        "description": "The Amazon Resource Name (ARN) of the search job.",
+        "type": "string"
+      },
+      "SearchJobIdentifier": {
+        "description": "The unique identifier of the search job.",
+        "type": "string"
+      },
+      "SearchScope": {
+        "$ref": "#/definitions/SearchScope",
+        "description": "The search scope for the search job."
+      },
+      "Status": {
+        "description": "The current status of the search job.",
+        "enum": [
+          "RUNNING",
+          "COMPLETED",
+          "STOPPING",
+          "STOPPED",
+          "FAILED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags associated with the search job.",
+        "insertionOrder": false,
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "Key": {
+              "type": "string"
+            },
+            "Value": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Key",
+            "Value"
+          ],
+          "type": "object"
+        },
+        "maxItems": 50,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/SearchJobArn",
+      "/properties/SearchJobIdentifier",
+      "/properties/CreationTime",
+      "/properties/Status"
+    ],
+    "required": [
+      "SearchScope"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "backup-search:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::BackupSearch::SearchJob"
+  }
+}

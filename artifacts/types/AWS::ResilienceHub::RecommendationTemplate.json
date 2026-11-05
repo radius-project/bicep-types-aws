@@ -1,0 +1,178 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ResilienceHub-RecommendationTemplate",
+  "type": "AWS::ResilienceHub::RecommendationTemplate",
+  "time": "2026-11-05T21:25:01.567Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/AssessmentArn",
+      "/properties/Format",
+      "/properties/Name",
+      "/properties/RecommendationTypes",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "S3Location": {
+        "additionalProperties": false,
+        "description": "The location of the Amazon S3 bucket.",
+        "properties": {
+          "Bucket": {
+            "description": "The name of the Amazon S3 bucket.",
+            "maxLength": 500,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Prefix": {
+            "description": "The prefix for the Amazon S3 bucket.",
+            "maxLength": 500,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A tag associated with the resource.",
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Defines a recommendation template created with the CreateRecommendationTemplate action.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "AssessmentArn": {
+              "pattern": "^arn:(aws|aws-cn|aws-iso|aws-iso-[a-z]{1}|aws-us-gov):[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:([a-z]{2}-((iso[a-z]{0,1}-)|(gov-)){0,1}[a-z]+-[0-9]):[0-9]{12}:[A-Za-z0-9/][A-Za-z0-9:_/+.-]{0,1023}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "AssessmentArn"
+          ]
+        },
+        "permissions": [
+          "resiliencehub:ListRecommendationTemplates"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "resiliencehub:ListRecommendationTemplates",
+          "resiliencehub:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/RecommendationTemplateArn"
+    ],
+    "properties": {
+      "AppArn": {
+        "description": "Amazon Resource Name (ARN) of the Resilience Hub application.",
+        "pattern": "^arn:(aws|aws-cn|aws-iso|aws-iso-[a-z]{1}|aws-us-gov):[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:([a-z]{2}-((iso[a-z]{0,1}-)|(gov-)){0,1}[a-z]+-[0-9]):[0-9]{12}:[A-Za-z0-9/][A-Za-z0-9:_/+.-]{0,1023}$",
+        "type": "string"
+      },
+      "AssessmentArn": {
+        "description": "Amazon Resource Name (ARN) of the assessment.",
+        "pattern": "^arn:(aws|aws-cn|aws-iso|aws-iso-[a-z]{1}|aws-us-gov):[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:([a-z]{2}-((iso[a-z]{0,1}-)|(gov-)){0,1}[a-z]+-[0-9]):[0-9]{12}:[A-Za-z0-9/][A-Za-z0-9:_/+.-]{0,1023}$",
+        "type": "string"
+      },
+      "Format": {
+        "description": "The format for the recommendation template.",
+        "enum": [
+          "CfnYaml",
+          "CfnJson"
+        ],
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name for the recommendation template.",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_\\-]{1,59}$",
+        "type": "string"
+      },
+      "RecommendationTemplateArn": {
+        "description": "Amazon Resource Name (ARN) for the recommendation template.",
+        "pattern": "^arn:(aws|aws-cn|aws-iso|aws-iso-[a-z]{1}|aws-us-gov):[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:([a-z]{2}-((iso[a-z]{0,1}-)|(gov-)){0,1}[a-z]+-[0-9]):[0-9]{12}:[A-Za-z0-9/][A-Za-z0-9:_/+.-]{0,1023}$",
+        "type": "string"
+      },
+      "RecommendationTypes": {
+        "description": "An array of strings that specify the recommendation template type or types.",
+        "items": {
+          "enum": [
+            "Alarm",
+            "Sop",
+            "Test"
+          ],
+          "type": "string"
+        },
+        "maxItems": 4,
+        "minItems": 1,
+        "type": "array"
+      },
+      "Status": {
+        "description": "Status of the recommendation template.",
+        "enum": [
+          "Pending",
+          "InProgress",
+          "Failed",
+          "Success"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags assigned to the resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "TemplatesLocation": {
+        "$ref": "#/definitions/S3Location",
+        "description": "The file location of the template."
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/RecommendationTemplateArn",
+      "/properties/AppArn",
+      "/properties/Status",
+      "/properties/TemplatesLocation"
+    ],
+    "required": [
+      "AssessmentArn",
+      "Name",
+      "RecommendationTypes",
+      "Format"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "resiliencehub:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::ResilienceHub::RecommendationTemplate"
+  }
+}

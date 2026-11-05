@@ -1,29 +1,628 @@
 [
   {
     "$type": "ObjectType",
+    "name": "AudienceQualityMetrics",
+    "properties": {
+      "RecallMetric": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The recall score of the generated audience."
+      },
+      "RelevanceMetrics": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The relevance scores of the generated audience."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AudienceSize",
+    "properties": {
+      "Type": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Whether the audience size is defined in absolute terms or as a percentage."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "Specify an audience size value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RelevanceMetric",
+    "properties": {
+      "AudienceSize": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Score": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The relevance score of the generated audience."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CleanRoomsML/AudienceGenerationJobProperties"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CleanRoomsML/AudienceGenerationJobProperties",
+    "properties": {
+      "AudienceGenerationJobArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the audience generation job."
+      },
+      "ConfiguredAudienceModelArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the configured audience model used for this audience generation job."
+      },
+      "CreateTime": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The time at which the audience generation job was created."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The description of the audience generation job."
+      },
+      "IncludeSeedInOutput": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "Configure whether the seed users are included in the output audience."
+      },
+      "Metrics": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 2
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The name of the audience generation job."
+      },
+      "StartedBy": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The AWS account that started this audience generation job."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The status of the audience generation job."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The tags that are associated to this audience generation job."
+      },
+      "UpdateTime": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The most recent time at which the audience generation job was updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CleanRoomsML/AudienceGenerationJob",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CleanRoomsML/AudienceGenerationJob@default",
+    "body": {
+      "$ref": "#/11"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The key of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The value of the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CleanRoomsML/AudienceModelProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/13"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CleanRoomsML/AudienceModelProperties",
+    "properties": {
+      "AudienceModelArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the audience model."
+      },
+      "CreateTime": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The time at which the audience model was created."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The description of the audience model."
+      },
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the KMS key. This key is used to encrypt and decrypt customer-owned data in the trained ML model and the associated data."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The name of the audience model resource."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The status of the audience model."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 2,
+        "description": "The tags that are assigned to the audience model."
+      },
+      "TrainingDataEndTime": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The end date and time of the training window."
+      },
+      "TrainingDataStartTime": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The start date and time of the training window."
+      },
+      "TrainingDatasetArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the training dataset for this audience model."
+      },
+      "UpdateTime": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The most recent time at which the audience model was updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CleanRoomsML/AudienceModel",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CleanRoomsML/AudienceModel@default",
+    "body": {
+      "$ref": "#/17"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AudienceDestination",
+    "properties": {
+      "S3Destination": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AudienceSizeConfig",
+    "properties": {
+      "AudienceSizeBins": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 1,
+        "description": "An array of the different audience output sizes."
+      },
+      "AudienceSizeType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "Whether the audience output sizes are defined as an absolute number or a percentage."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConfiguredAudienceModelOutputConfig",
+    "properties": {
+      "Destination": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The ARN of the IAM role that can write the Amazon S3 bucket."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3ConfigMap",
+    "properties": {
+      "S3Uri": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The Amazon S3 location URI."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CleanRoomsML/ConfiguredAudienceModelProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/23"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CleanRoomsML/ConfiguredAudienceModelProperties",
+    "properties": {
+      "AudienceModelArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the audience model used for this configured audience model."
+      },
+      "AudienceSizeConfig": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 2
+      },
+      "ConfiguredAudienceModelArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the configured audience model."
+      },
+      "CreateTime": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The time at which the configured audience model was created."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The description of the configured audience model."
+      },
+      "MinMatchingSeedSize": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The minimum number of users from the seed audience that must match with users in the training data of the audience model."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The name of the configured audience model."
+      },
+      "OutputConfig": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 2
+      },
+      "SharedAudienceMetrics": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 2,
+        "description": "Whether audience metrics are shared."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The status of the configured audience model."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 2,
+        "description": "Tags associated with the configured audience model."
+      },
+      "UpdateTime": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The most recent time at which the configured audience model was updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CleanRoomsML/ConfiguredAudienceModel",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CleanRoomsML/ConfiguredAudienceModel@default",
+    "body": {
+      "$ref": "#/29"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "ContainerConfig",
     "properties": {
       "Arguments": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/35"
         },
         "flags": 0
       },
       "Entrypoint": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/36"
         },
         "flags": 0
       },
       "ImageUri": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 1
       },
       "MetricDefinitions": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/37"
         },
         "flags": 0
       }
@@ -35,7 +634,7 @@
     "properties": {
       "ImageUri": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 1
       }
@@ -47,13 +646,13 @@
     "properties": {
       "Name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 1
       },
       "Regex": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 1
       }
@@ -65,37 +664,34 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 1
       }
     }
   },
   {
-    "$type": "StringType"
-  },
-  {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/6"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/6"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/33"
     }
   },
   {
@@ -105,7 +701,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/34"
     }
   },
   {
@@ -114,50 +710,50 @@
     "properties": {
       "ConfiguredModelAlgorithmArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 18
       },
       "Description": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 0
       },
       "InferenceContainerConfig": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/32"
         },
         "flags": 0
       },
       "KmsKeyArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 1
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "An arbitrary set of tags (key-value pairs) for this cleanrooms-ml configured model algorithm."
       },
       "TrainingContainerConfig": {
         "type": {
-          "$ref": "#/0"
+          "$ref": "#/31"
         },
         "flags": 0
       }
@@ -169,21 +765,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/40"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -194,7 +790,7 @@
     "$type": "ResourceType",
     "name": "AWS.CleanRoomsML/ConfiguredModelAlgorithm@default",
     "body": {
-      "$ref": "#/11"
+      "$ref": "#/41"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -205,7 +801,7 @@
     "properties": {
       "CustomDataIdentifiers": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/63"
         },
         "flags": 1
       }
@@ -222,13 +818,13 @@
     "properties": {
       "CustomEntityConfig": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/43"
         },
         "flags": 0
       },
       "EntitiesToRedact": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/64"
         },
         "flags": 1
       }
@@ -245,25 +841,25 @@
     "properties": {
       "AllowedAccountIds": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/65"
         },
         "flags": 1
       },
       "FilterPattern": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 0
       },
       "LogRedactionConfiguration": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/45"
         },
         "flags": 0
       },
       "LogType": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 0
       }
@@ -275,7 +871,7 @@
     "properties": {
       "NoiseLevel": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 1
       }
@@ -292,7 +888,7 @@
     "properties": {
       "Policies": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/51"
         },
         "flags": 1
       }
@@ -304,19 +900,19 @@
     "properties": {
       "TrainedModelExports": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/56"
         },
         "flags": 0
       },
       "TrainedModelInferenceJobs": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/59"
         },
         "flags": 0
       },
       "TrainedModels": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/62"
         },
         "flags": 0
       }
@@ -328,13 +924,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 1
       }
@@ -346,13 +942,13 @@
     "properties": {
       "Unit": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/4"
         },
         "flags": 1
       }
@@ -374,13 +970,13 @@
     "properties": {
       "FilesToExport": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/66"
         },
         "flags": 1
       },
       "MaxSize": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/57"
         },
         "flags": 1
       }
@@ -392,13 +988,13 @@
     "properties": {
       "Unit": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/4"
         },
         "flags": 1
       }
@@ -415,13 +1011,13 @@
     "properties": {
       "ContainerLogs": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/67"
         },
         "flags": 0
       },
       "MaxOutputSize": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/60"
         },
         "flags": 0
       }
@@ -433,13 +1029,13 @@
     "properties": {
       "Unit": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/4"
         },
         "flags": 1
       }
@@ -456,19 +1052,19 @@
     "properties": {
       "ContainerLogs": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/68"
         },
         "flags": 0
       },
       "ContainerMetrics": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/48"
         },
         "flags": 0
       },
       "MaxArtifactSize": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/53"
         },
         "flags": 0
       }
@@ -477,40 +1073,37 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/6"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/6"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
-    }
-  },
-  {
-    "$type": "IntegerType"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/6"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/17"
+      "$ref": "#/6"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/17"
+      "$ref": "#/47"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/47"
     }
   },
   {
@@ -520,7 +1113,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/52"
     }
   },
   {
@@ -529,49 +1122,49 @@
     "properties": {
       "CollaborationIdentifier": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 2
       },
       "ConfiguredModelAlgorithmArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 1
       },
       "ConfiguredModelAlgorithmAssociationArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 18
       },
       "Description": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 0
       },
       "MembershipIdentifier": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 1
       },
       "Name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 1
       },
       "PrivacyConfiguration": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/50"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/70"
         },
         "flags": 0,
         "description": "An arbitrary set of tags (key-value pairs) for this cleanrooms-ml configured model algorithm association."
@@ -584,21 +1177,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/71"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -609,9 +1202,1034 @@
     "$type": "ResourceType",
     "name": "AWS.CleanRoomsML/ConfiguredModelAlgorithmAssociation@default",
     "body": {
-      "$ref": "#/43"
+      "$ref": "#/72"
     },
     "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AccessBudget",
+    "properties": {
+      "AggregateRemainingBudget": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The total remaining budget across all active budget periods for this resource."
+      },
+      "Details": {
+        "type": {
+          "$ref": "#/88"
+        },
+        "flags": 1,
+        "description": "A list of budget details for this resource. Contains active budget periods that apply to the resource."
+      },
+      "ResourceArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The ARN of the resource that this access budget applies to."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AccessBudgetDetails",
+    "properties": {
+      "AutoRefresh": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "Specifies whether this budget automatically refreshes when the current period ends."
+      },
+      "Budget": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The total budget amount allocated for this period."
+      },
+      "BudgetType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The type of budget period. Calendar-based types reset automatically at regular intervals, while LIFETIME budgets never reset."
+      },
+      "RemainingBudget": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The amount of budget remaining in this period."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ColumnClassificationDetails",
+    "properties": {
+      "ColumnMapping": {
+        "type": {
+          "$ref": "#/89"
+        },
+        "flags": 1,
+        "description": "A mapping that defines the classification of data columns for synthetic data generation."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ComputeConfiguration",
+    "properties": {
+      "Worker": {
+        "type": {
+          "$ref": "#/87"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputChannel",
+    "properties": {
+      "DataSource": {
+        "type": {
+          "$ref": "#/79"
+        },
+        "flags": 1
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The ARN of the role used to run the query specified in the dataSource field."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InputChannelDataSource",
+    "properties": {
+      "ProtectedQueryInputParameters": {
+        "type": {
+          "$ref": "#/82"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MLSyntheticDataParameters",
+    "properties": {
+      "ColumnClassification": {
+        "type": {
+          "$ref": "#/76"
+        },
+        "flags": 0
+      },
+      "Epsilon": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The epsilon value for differential privacy, which controls the privacy-utility tradeoff in synthetic data generation."
+      },
+      "MaxMembershipInferenceAttackScore": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The maximum acceptable score for membership inference attack vulnerability."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PrivacyBudgets",
+    "properties": {
+      "AccessBudgets": {
+        "type": {
+          "$ref": "#/90"
+        },
+        "flags": 1,
+        "description": "A list of access budgets that apply to resources associated with this Clean Rooms ML input channel."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ProtectedQueryInputParameters",
+    "properties": {
+      "ComputeConfiguration": {
+        "type": {
+          "$ref": "#/77"
+        },
+        "flags": 0
+      },
+      "ResultFormat": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The format in which the query results should be returned."
+      },
+      "SqlParameters": {
+        "type": {
+          "$ref": "#/83"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ProtectedQuerySQLParameters",
+    "properties": {
+      "AnalysisTemplateArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The ARN associated with the analysis template within a collaboration."
+      },
+      "Parameters": {
+        "type": {
+          "$ref": "#/91"
+        },
+        "flags": 0,
+        "description": "The protected query SQL parameters."
+      },
+      "QueryString": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The query string to be submitted."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SyntheticDataColumnProperties",
+    "properties": {
+      "ColumnName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The name of the data column as it appears in the dataset."
+      },
+      "ColumnType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The data type of the column, which determines how the synthetic data generation algorithm processes and synthesizes values for this column."
+      },
+      "IsPredictiveValue": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "Indicates if this column contains predictive values that should be treated as target variables in machine learning models."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SyntheticDataConfiguration",
+    "properties": {
+      "SyntheticDataParameters": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WorkerComputeConfiguration",
+    "properties": {
+      "Number": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The number of compute workers that are used."
+      },
+      "Properties": {
+        "type": {
+          "$ref": "#/93"
+        },
+        "flags": 0,
+        "description": "The configuration properties for the worker compute environment."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The instance type of the compute workers that are used."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/75"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/84"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/74"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MLInputChannel_Parameters",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MLInputChannel_Properties_Spark",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MLInputChannel_Properties",
+    "properties": {
+      "Spark": {
+        "type": {
+          "$ref": "#/92"
+        },
+        "flags": 1,
+        "description": "The Spark configuration properties for SQL workloads."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CleanRoomsML/MLInputChannelProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/86"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CleanRoomsML/MLInputChannelProperties",
+    "properties": {
+      "CollaborationIdentifier": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The collaboration ID of the collaboration that contains the ML input channel."
+      },
+      "ConfiguredModelAlgorithmAssociations": {
+        "type": {
+          "$ref": "#/95"
+        },
+        "flags": 2,
+        "description": "The configured model algorithm associations that were used to create the ML input channel."
+      },
+      "CreateTime": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The time at which the ML input channel was created."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The description of the ML input channel."
+      },
+      "InputChannel": {
+        "type": {
+          "$ref": "#/78"
+        },
+        "flags": 2
+      },
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The ARN of the KMS key that was used to create the ML input channel."
+      },
+      "MembershipIdentifier": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The membership ID of the membership that contains the ML input channel."
+      },
+      "MlInputChannelArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the ML input channel."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The name of the ML input channel."
+      },
+      "NumberOfFiles": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The number of files in the ML input channel."
+      },
+      "NumberOfRecords": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The number of records in the ML input channel."
+      },
+      "PrivacyBudgets": {
+        "type": {
+          "$ref": "#/81"
+        },
+        "flags": 2
+      },
+      "ProtectedQueryIdentifier": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The ID of the protected query that was used to create the ML input channel."
+      },
+      "RetentionInDays": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The number of days to keep the data in the ML input channel."
+      },
+      "SizeInGb": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The size, in GB, of the ML input channel."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The status of the ML input channel."
+      },
+      "SyntheticDataConfiguration": {
+        "type": {
+          "$ref": "#/85"
+        },
+        "flags": 2
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/96"
+        },
+        "flags": 2,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
+      "UpdateTime": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The most recent time at which the ML input channel was updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CleanRoomsML/MLInputChannel",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/97"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CleanRoomsML/MLInputChannel@default",
+    "body": {
+      "$ref": "#/98"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ModelTrainingDataChannel",
+    "properties": {
+      "ChannelName": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "MlInputChannelArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "S3DataDistributionType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ResourceConfig",
+    "properties": {
+      "InstanceCount": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "InstanceType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "VolumeSizeInGB": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "StoppingCondition",
+    "properties": {
+      "MaxRuntimeInSeconds": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CleanRoomsML/TrainedModelProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/100"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TrainedModel_Environment",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TrainedModel_Hyperparameters",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/103"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CleanRoomsML/TrainedModelProperties",
+    "properties": {
+      "CollaborationIdentifier": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The collaboration ID of the trained model."
+      },
+      "ConfiguredModelAlgorithmAssociationArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The ARN of the configured model algorithm association."
+      },
+      "CreateTime": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The time at which the trained model was created."
+      },
+      "DataChannels": {
+        "type": {
+          "$ref": "#/105"
+        },
+        "flags": 2,
+        "description": "The data channels for the trained model."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The description of the trained model."
+      },
+      "Environment": {
+        "type": {
+          "$ref": "#/106"
+        },
+        "flags": 2,
+        "description": "The environment variables for the trained model."
+      },
+      "Hyperparameters": {
+        "type": {
+          "$ref": "#/107"
+        },
+        "flags": 2,
+        "description": "The hyperparameters for the trained model."
+      },
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The KMS key ARN used for encryption."
+      },
+      "MembershipIdentifier": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The membership ID of the trained model."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The name of the trained model."
+      },
+      "ResourceConfig": {
+        "type": {
+          "$ref": "#/101"
+        },
+        "flags": 2
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The status of the trained model."
+      },
+      "StoppingCondition": {
+        "type": {
+          "$ref": "#/102"
+        },
+        "flags": 2
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/108"
+        },
+        "flags": 2,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
+      "TrainedModelArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 16,
+        "description": "The ARN of the trained model."
+      },
+      "TrainedModelId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the trained model."
+      },
+      "TrainingContainerImageDigest": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The digest of the training container image."
+      },
+      "TrainingInputMode": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The training input mode."
+      },
+      "UpdateTime": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The time at which the trained model was last updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CleanRoomsML/TrainedModel",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/109"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CleanRoomsML/TrainedModel@default",
+    "body": {
+      "$ref": "#/110"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InferenceOutputConfiguration",
+    "properties": {
+      "Accept": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0
+      },
+      "Members": {
+        "type": {
+          "$ref": "#/117"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InferenceReceiverMember",
+    "properties": {
+      "AccountId": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "InferenceResourceConfig",
+    "properties": {
+      "InstanceCount": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "InstanceType": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ModelInferenceDataSource",
+    "properties": {
+      "MlInputChannelArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/113"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CleanRoomsML/TrainedModelInferenceJobProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/116"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CleanRoomsML/TrainedModelInferenceJobProperties",
+    "properties": {
+      "ConfiguredModelAlgorithmAssociationArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The ARN of the configured model algorithm association used for this job."
+      },
+      "CreateTime": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The time at which the trained model inference job was created."
+      },
+      "DataSource": {
+        "type": {
+          "$ref": "#/115"
+        },
+        "flags": 0,
+        "description": "The data source used for the inference job."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The description of the trained model inference job."
+      },
+      "MembershipIdentifier": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The membership ID that contains the trained model inference job."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The name of the trained model inference job."
+      },
+      "OutputConfiguration": {
+        "type": {
+          "$ref": "#/112"
+        },
+        "flags": 0,
+        "description": "The output configuration for the inference job."
+      },
+      "ResourceConfig": {
+        "type": {
+          "$ref": "#/114"
+        },
+        "flags": 0,
+        "description": "The resource configuration for the inference job."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The status of the trained model inference job."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/119"
+        },
+        "flags": 0,
+        "description": "Tags associated with the trained model inference job."
+      },
+      "TrainedModelArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The ARN of the trained model used for this inference job."
+      },
+      "TrainedModelInferenceJobArn": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 16,
+        "description": "The ARN of the trained model inference job."
+      },
+      "UpdateTime": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The most recent time at which the trained model inference job was updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CleanRoomsML/TrainedModelInferenceJob",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/120"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CleanRoomsML/TrainedModelInferenceJob@default",
+    "body": {
+      "$ref": "#/121"
+    },
+    "readableScopes": 31,
     "writableScopes": 0
   },
   {
@@ -620,13 +2238,13 @@
     "properties": {
       "ColumnName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 1
       },
       "ColumnTypes": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/133"
         },
         "flags": 1
       }
@@ -643,7 +2261,7 @@
     "properties": {
       "GlueDataSource": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/129"
         },
         "flags": 1
       }
@@ -655,13 +2273,13 @@
     "properties": {
       "InputConfig": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/127"
         },
         "flags": 1
       },
       "Type": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 1
       }
@@ -673,13 +2291,13 @@
     "properties": {
       "DataSource": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/125"
         },
         "flags": 1
       },
       "Schema": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/134"
         },
         "flags": 1
       }
@@ -696,19 +2314,19 @@
     "properties": {
       "CatalogId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 0
       },
       "DatabaseName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 1
       },
       "TableName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 1
       }
@@ -720,13 +2338,13 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 1
       }
@@ -745,13 +2363,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/6"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/45"
+      "$ref": "#/123"
     }
   },
   {
@@ -761,13 +2379,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/52"
+      "$ref": "#/130"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/48"
+      "$ref": "#/126"
     }
   },
   {
@@ -776,44 +2394,44 @@
     "properties": {
       "Description": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 1
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 1
       },
       "Status": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 2
       },
       "Tags": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/136"
         },
         "flags": 0,
         "description": "An arbitrary set of tags (key-value pairs) for this cleanrooms-ml training dataset."
       },
       "TrainingData": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/137"
         },
         "flags": 1
       },
       "TrainingDatasetArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 18
       }
@@ -825,21 +2443,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/6"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/138"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -850,7 +2468,7 @@
     "$type": "ResourceType",
     "name": "AWS.CleanRoomsML/TrainingDataset@default",
     "body": {
-      "$ref": "#/61"
+      "$ref": "#/139"
     },
     "readableScopes": 0,
     "writableScopes": 0

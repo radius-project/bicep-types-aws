@@ -1,0 +1,212 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Transcribe-MedicalTranscriptionJob",
+  "type": "AWS::Transcribe::MedicalTranscriptionJob",
+  "time": "2026-11-05T16:54:43.846Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/MedicalTranscriptionJobName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/LanguageCode",
+      "/properties/Media",
+      "/properties/MediaFormat",
+      "/properties/MediaSampleRateHertz",
+      "/properties/MedicalTranscriptionJobName",
+      "/properties/Settings",
+      "/properties/Specialty",
+      "/properties/Tags",
+      "/properties/Type"
+    ],
+    "definitions": {
+      "Media": {
+        "additionalProperties": false,
+        "properties": {
+          "MediaFileUri": {
+            "description": "The Amazon S3 location of the media file",
+            "maxLength": 2000,
+            "minLength": 1,
+            "pattern": "^(s3://|http(s*)://).+$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "MedicalTranscript": {
+        "additionalProperties": false,
+        "properties": {
+          "TranscriptFileUri": {
+            "description": "The Amazon S3 location of the transcript",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "MedicalTranscriptionSetting": {
+        "additionalProperties": false,
+        "properties": {
+          "ChannelIdentification": {
+            "description": "Enables channel identification in multi-channel audio",
+            "type": "boolean"
+          },
+          "ShowAlternatives": {
+            "description": "Include alternative transcriptions",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource type definition for an Amazon Transcribe Medical Transcription Job",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "transcribe:ListMedicalTranscriptionJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "transcribe:GetMedicalTranscriptionJob",
+          "transcribe:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the medical transcription job",
+        "type": "string"
+      },
+      "CreationTime": {
+        "description": "The date and time the medical transcription job was created",
+        "format": "date-time",
+        "type": "string"
+      },
+      "LanguageCode": {
+        "description": "The language code for the language spoken in the input media file. Must be en-US.",
+        "type": "string"
+      },
+      "Media": {
+        "$ref": "#/definitions/Media",
+        "description": "Describes the Amazon S3 location of the media file"
+      },
+      "MediaFormat": {
+        "description": "The format of the input media file",
+        "enum": [
+          "mp3",
+          "mp4",
+          "wav",
+          "flac",
+          "ogg",
+          "amr",
+          "webm",
+          "m4a"
+        ],
+        "type": "string"
+      },
+      "MediaSampleRateHertz": {
+        "description": "The sample rate of the audio in hertz",
+        "maximum": 48000,
+        "minimum": 16000,
+        "type": "integer"
+      },
+      "MedicalTranscriptionJobName": {
+        "description": "A unique name for the medical transcription job",
+        "maxLength": 200,
+        "minLength": 1,
+        "pattern": "^[0-9a-zA-Z._-]+$",
+        "type": "string"
+      },
+      "Settings": {
+        "$ref": "#/definitions/MedicalTranscriptionSetting",
+        "description": "Settings for the medical transcription job"
+      },
+      "Specialty": {
+        "description": "The medical specialty represented in the media",
+        "enum": [
+          "PRIMARYCARE"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags associated with the medical transcription job",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "minItems": 1,
+        "type": "array"
+      },
+      "Transcript": {
+        "$ref": "#/definitions/MedicalTranscript",
+        "description": "Provides the Amazon S3 URI for the transcript"
+      },
+      "TranscriptionJobStatus": {
+        "description": "The status of the medical transcription job",
+        "enum": [
+          "QUEUED",
+          "IN_PROGRESS",
+          "FAILED",
+          "COMPLETED"
+        ],
+        "type": "string"
+      },
+      "Type": {
+        "description": "Whether the input media is a dictation or conversation",
+        "enum": [
+          "CONVERSATION",
+          "DICTATION"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/TranscriptionJobStatus",
+      "/properties/Transcript",
+      "/properties/CreationTime"
+    ],
+    "required": [
+      "MedicalTranscriptionJobName",
+      "LanguageCode",
+      "Media",
+      "Specialty",
+      "Type"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "transcribe:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Transcribe::MedicalTranscriptionJob"
+  }
+}

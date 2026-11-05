@@ -928,6 +928,161 @@
     "writableScopes": 0
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.Route53Resolver/ResolverConfigProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Route53Resolver/ResolverConfigProperties",
+    "properties": {
+      "AutodefinedReverse": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "ResolverAutodefinedReverseStatus, possible values are ENABLING, ENABLED, DISABLING AND DISABLED."
+      },
+      "AutodefinedReverseFlag": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Represents the desired status of AutodefinedReverse. The only supported value on creation is DISABLE. Deletion of this resource will return AutodefinedReverse to its default value (ENABLED)."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Id"
+      },
+      "OwnerId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "AccountId"
+      },
+      "ResourceId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "ResourceId"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Route53Resolver/ResolverConfig",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Route53Resolver/ResolverConfig@default",
+    "body": {
+      "$ref": "#/41"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Route53Resolver/ResolverDNSSECConfigProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Route53Resolver/ResolverDNSSECConfigProperties",
+    "properties": {
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "Id"
+      },
+      "OwnerId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "AccountId"
+      },
+      "ResourceId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "ResourceId"
+      },
+      "ValidationStatus": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "ResolverDNSSECValidationStatus, possible values are ENABLING, ENABLED, DISABLING AND DISABLED."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Route53Resolver/ResolverDNSSECConfig",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Route53Resolver/ResolverDNSSECConfig@default",
+    "body": {
+      "$ref": "#/45"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
     "$type": "ObjectType",
     "name": "IpAddressRequest",
     "properties": {
@@ -984,7 +1139,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/39"
+      "$ref": "#/47"
     }
   },
   {
@@ -1002,7 +1157,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/40"
+      "$ref": "#/48"
     }
   },
   {
@@ -1025,7 +1180,7 @@
       },
       "Dns64Enabled": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "Specifies whether DNS64 is enabled for the Inbound Resolver Endpoint. When set to true, if a DNS AAAA query is made for a domain that has only an A (IPv4) record, the resolver automatically synthesizes an AAAA (IPv6) response by embedding the IPv4 address into the well-known prefix 64:ff9b::/96. Default is false."
@@ -1046,14 +1201,14 @@
       },
       "IpAddresses": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/51"
         },
         "flags": 1,
         "description": "The subnets and IP addresses in your VPC that DNS queries originate from (for outbound endpoints) or that you forward DNS queries to (for inbound endpoints). The subnet ID uniquely identifies a VPC."
       },
       "Ipv6InternetAccessEnabled": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "Specifies whether IPv6 Internet Gateway access is enabled through the Outbound Resolver Endpoint. When set to true, this property allows your Endpoint ENIs to reach public IPv6 target nameservers through an internet gateway. Default is false."
@@ -1081,7 +1236,7 @@
       },
       "Protocols": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "Protocols used for the endpoint. DoH-FIPS is applicable for inbound endpoints only."
@@ -1102,28 +1257,28 @@
       },
       "RniEnhancedMetricsEnabled": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "Specifies whether RNI enhanced metrics are enabled for the Resolver Endpoints. When set to true, one-minute granular metrics are published in CloudWatch for each RNI associated with this endpoint. When set to false, metrics are not published. Default is false."
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/53"
         },
         "flags": 1,
         "description": "The ID of one or more security groups that control access to this VPC. The security group must include one or more inbound rules (for inbound endpoints) or outbound rules (for outbound endpoints). Inbound and outbound rules must allow TCP and UDP access. For inbound access, open port 53. For outbound access, open the port that you're using for DNS queries on your network."
       },
       "Tags": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/54"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "TargetNameServerMetricsEnabled": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "Specifies whether target name server metrics are enabled for the Outbound Resolver Endpoint. When set to true, one-minute granular metrics are published in CloudWatch for each target name server associated with this endpoint. When set to false, metrics are not published. Default is false."
@@ -1150,7 +1305,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/55"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1161,7 +1316,251 @@
     "$type": "ResourceType",
     "name": "AWS.Route53Resolver/ResolverEndpoint@default",
     "body": {
-      "$ref": "#/48"
+      "$ref": "#/56"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Route53Resolver/ResolverQueryLoggingConfigProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/58"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Route53Resolver/ResolverQueryLoggingConfigProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Arn"
+      },
+      "AssociationCount": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 2,
+        "description": "Count"
+      },
+      "CreationTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Rfc3339TimeString"
+      },
+      "CreatorRequestId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The id of the creator request."
+      },
+      "DestinationArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "destination arn"
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "ResourceId"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "ResolverQueryLogConfigName"
+      },
+      "OwnerId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "AccountId"
+      },
+      "ShareStatus": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "ShareStatus, possible values are NOT_SHARED, SHARED_WITH_ME, SHARED_BY_ME."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "ResolverQueryLogConfigStatus, possible values are CREATING, CREATED, DELETED AND FAILED."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/60"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Route53Resolver/ResolverQueryLoggingConfig",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/61"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Route53Resolver/ResolverQueryLoggingConfig@default",
+    "body": {
+      "$ref": "#/62"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Route53Resolver/ResolverQueryLoggingConfigAssociationProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Route53Resolver/ResolverQueryLoggingConfigAssociationProperties",
+    "properties": {
+      "CreationTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Rfc3339TimeString"
+      },
+      "Error": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "ResolverQueryLogConfigAssociationError"
+      },
+      "ErrorMessage": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "ResolverQueryLogConfigAssociationErrorMessage"
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "Id"
+      },
+      "ResolverQueryLogConfigId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "ResolverQueryLogConfigId"
+      },
+      "ResourceId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "ResourceId"
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "ResolverQueryLogConfigAssociationStatus"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Route53Resolver/ResolverQueryLoggingConfigAssociation",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Route53Resolver/ResolverQueryLoggingConfigAssociation@default",
+    "body": {
+      "$ref": "#/66"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1234,13 +1633,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/50"
+      "$ref": "#/68"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/51"
+      "$ref": "#/69"
     }
   },
   {
@@ -1298,14 +1697,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/71"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "TargetIps": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/72"
         },
         "flags": 0,
         "description": "An array that contains the IP addresses and ports that an outbound endpoint forwards DNS queries to. Typically, these are the IP addresses of DNS resolvers on your network. Specify IPv4 addresses. IPv6 is not supported."
@@ -1332,7 +1731,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/73"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1343,7 +1742,81 @@
     "$type": "ResourceType",
     "name": "AWS.Route53Resolver/ResolverRule@default",
     "body": {
-      "$ref": "#/56"
+      "$ref": "#/74"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Route53Resolver/ResolverRuleAssociationProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Route53Resolver/ResolverRuleAssociationProperties",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of an association between a Resolver rule and a VPC.\n The name can be up to 64 characters long and can contain letters (a-z, A-Z), numbers (0-9), hyphens (-), underscores (_), and spaces. The name cannot consist of only numbers."
+      },
+      "ResolverRuleAssociationId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": ""
+      },
+      "ResolverRuleId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The ID of the Resolver rule that you associated with the VPC that is specified by ``VPCId``."
+      },
+      "VPCId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The ID of the VPC that you associated the Resolver rule with."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Route53Resolver/ResolverRuleAssociation",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/77"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Route53Resolver/ResolverRuleAssociation@default",
+    "body": {
+      "$ref": "#/78"
     },
     "readableScopes": 0,
     "writableScopes": 0

@@ -1,5 +1,13 @@
 # AWS.ControlTower @ default
 
+## Resource AWS.ControlTower/Baseline@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ControlTower/BaselineProperties](#awscontroltowerbaselineproperties) (Identifier): properties of the resource
+
 ## Resource AWS.ControlTower/EnabledBaseline@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -26,6 +34,12 @@
 
 ## AnyType
 ### Properties
+
+## AWS.ControlTower/BaselineProperties
+### Properties
+* **Arn**: string (Identifier): The full ARN of the baseline.
+* **Description**: string (ReadOnly): A description of the baseline.
+* **Name**: string (ReadOnly): A user-friendly name for the baseline.
 
 ## AWS.ControlTower/EnabledBaselineProperties
 ### Properties

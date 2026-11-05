@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-GameLift-GameSessionQueue",
   "type": "AWS::GameLift::GameSessionQueue",
-  "time": "2026-10-19T17:03:54.773Z",
+  "time": "2026-11-04T17:19:28.139Z",
   "schema": {
     "$schema": "https://schema.cloudformation.us-east-1.amazonaws.com/provider.definition.schema.v1.json",
     "additionalProperties": false,
@@ -130,16 +130,32 @@
     "handlers": {
       "create": {
         "permissions": [
+          "gamelift:AllowVendedLogDeliveryForResource",
           "gamelift:CreateGameSessionQueue",
           "gamelift:DescribeGameSessionQueues",
           "gamelift:ListTagsForResource",
-          "gamelift:TagResource"
+          "gamelift:TagResource",
+          "logs:PutDeliverySource",
+          "logs:PutDeliveryDestination",
+          "logs:CreateDelivery",
+          "logs:CreateLogGroup",
+          "logs:DescribeLogGroups",
+          "logs:DescribeResourcePolicies",
+          "logs:PutResourcePolicy",
+          "s3:CreateBucket",
+          "s3:GetBucketPolicy",
+          "s3:PutBucketPolicy",
+          "firehose:TagDeliveryStream",
+          "iam:CreateServiceLinkedRole"
         ]
       },
       "delete": {
         "permissions": [
           "gamelift:DescribeGameSessionQueues",
-          "gamelift:DeleteGameSessionQueue"
+          "gamelift:DeleteGameSessionQueue",
+          "logs:DeleteDelivery",
+          "logs:DeleteDeliveryDestination",
+          "logs:DeleteDeliverySource"
         ]
       },
       "list": {
@@ -155,11 +171,27 @@
       },
       "update": {
         "permissions": [
+          "gamelift:AllowVendedLogDeliveryForResource",
           "gamelift:UpdateGameSessionQueue",
           "gamelift:ListTagsForResource",
           "gamelift:TagResource",
           "gamelift:UntagResource",
-          "gamelift:DescribeGameSessionQueues"
+          "gamelift:DescribeGameSessionQueues",
+          "logs:PutDeliverySource",
+          "logs:PutDeliveryDestination",
+          "logs:CreateDelivery",
+          "logs:CreateLogGroup",
+          "logs:DeleteDelivery",
+          "logs:DeleteDeliveryDestination",
+          "logs:DeleteDeliverySource",
+          "logs:DescribeLogGroups",
+          "logs:DescribeResourcePolicies",
+          "logs:PutResourcePolicy",
+          "s3:CreateBucket",
+          "s3:GetBucketPolicy",
+          "s3:PutBucketPolicy",
+          "firehose:TagDeliveryStream",
+          "iam:CreateServiceLinkedRole"
         ]
       }
     },

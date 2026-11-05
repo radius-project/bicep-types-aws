@@ -1,0 +1,393 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EMRServerless-JobRun",
+  "type": "AWS::EMRServerless::JobRun",
+  "time": "2026-11-05T17:26:17.644Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ApplicationId",
+        "/properties/JobRunId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ApplicationId",
+      "/properties/Name",
+      "/properties/ExecutionRoleArn",
+      "/properties/Mode",
+      "/properties/ExecutionTimeoutMinutes",
+      "/properties/JobDriver",
+      "/properties/ConfigurationOverrides",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "Configuration": {
+        "additionalProperties": false,
+        "description": "A configuration specification to be used when provisioning a job run.",
+        "properties": {
+          "Classification": {
+            "description": "The classification within a configuration.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "pattern": ".*\\S.*",
+            "type": "string"
+          },
+          "Configurations": {
+            "description": "A list of additional configurations to apply within a configuration object.",
+            "items": {
+              "$ref": "#/definitions/Configuration"
+            },
+            "maxItems": 100,
+            "type": "array"
+          },
+          "Properties": {
+            "additionalProperties": false,
+            "description": "A set of properties specified within a configuration classification.",
+            "maxProperties": 100,
+            "patternProperties": {
+              "^.*\\S.*$": {
+                "maxLength": 1024,
+                "minLength": 0,
+                "pattern": "^.*\\S.*$",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "Classification"
+        ],
+        "type": "object"
+      },
+      "ConfigurationOverrides": {
+        "additionalProperties": false,
+        "description": "The configuration overrides for the job run.",
+        "properties": {
+          "ApplicationConfiguration": {
+            "description": "The override configurations for the application.",
+            "items": {
+              "$ref": "#/definitions/Configuration"
+            },
+            "maxItems": 100,
+            "type": "array"
+          },
+          "MonitoringConfiguration": {
+            "$ref": "#/definitions/MonitoringConfiguration"
+          }
+        },
+        "type": "object"
+      },
+      "Hive": {
+        "additionalProperties": false,
+        "description": "The configurations for the Hive job driver.",
+        "properties": {
+          "InitQueryFile": {
+            "description": "The query file for the Hive job run.",
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": ".*\\S.*",
+            "type": "string"
+          },
+          "Parameters": {
+            "description": "The parameters for the Hive job run.",
+            "maxLength": 102400,
+            "minLength": 1,
+            "pattern": ".*\\S.*",
+            "type": "string"
+          },
+          "Query": {
+            "description": "The query for the Hive job run.",
+            "maxLength": 10280,
+            "minLength": 1,
+            "pattern": ".*\\S.*",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Query"
+        ],
+        "type": "object"
+      },
+      "JobDriver": {
+        "additionalProperties": false,
+        "description": "The driver that the job runs on. This is a union: exactly one member must be specified.",
+        "oneOf": [
+          {
+            "required": [
+              "SparkSubmit"
+            ]
+          },
+          {
+            "required": [
+              "Hive"
+            ]
+          }
+        ],
+        "properties": {
+          "Hive": {
+            "$ref": "#/definitions/Hive"
+          },
+          "SparkSubmit": {
+            "$ref": "#/definitions/SparkSubmit"
+          }
+        },
+        "type": "object"
+      },
+      "ManagedPersistenceMonitoringConfiguration": {
+        "additionalProperties": false,
+        "description": "The managed log persistence configuration for a job run.",
+        "properties": {
+          "Enabled": {
+            "description": "Enables managed logging and defaults to true. If set to false, managed logging is turned off.",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "MonitoringConfiguration": {
+        "additionalProperties": false,
+        "description": "The configuration setting for monitoring.",
+        "properties": {
+          "ManagedPersistenceMonitoringConfiguration": {
+            "$ref": "#/definitions/ManagedPersistenceMonitoringConfiguration"
+          },
+          "S3MonitoringConfiguration": {
+            "$ref": "#/definitions/S3MonitoringConfiguration"
+          }
+        },
+        "type": "object"
+      },
+      "S3MonitoringConfiguration": {
+        "additionalProperties": false,
+        "description": "The Amazon S3 configuration for monitoring log publishing.",
+        "properties": {
+          "LogUri": {
+            "description": "The Amazon S3 destination URI for log publishing.",
+            "maxLength": 10280,
+            "minLength": 1,
+            "pattern": "[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\r\\n\\t]*",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "SparkSubmit": {
+        "additionalProperties": false,
+        "description": "The configurations for the Spark submit driver.",
+        "properties": {
+          "EntryPoint": {
+            "description": "The entry point for the Spark submit job run.",
+            "maxLength": 4096,
+            "minLength": 1,
+            "pattern": ".*\\S.*",
+            "type": "string"
+          },
+          "EntryPointArguments": {
+            "description": "The arguments for the Spark submit job run.",
+            "items": {
+              "maxLength": 10280,
+              "minLength": 0,
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "SparkSubmitParameters": {
+            "description": "The parameters for the Spark submit job run.",
+            "maxLength": 102400,
+            "minLength": 1,
+            "pattern": ".*\\S.*",
+            "type": "string"
+          }
+        },
+        "required": [
+          "EntryPoint"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9 /_.:=+@-]+$",
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^[A-Za-z0-9 /_.:=+@-]*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Represents an Amazon EMR Serverless job run. A job run is a unit of work, such as a Spark JAR, Hive query, or SparkSQL query, that you submit to an Amazon EMR Serverless application.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ApplicationId": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[0-9a-z]+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "ApplicationId"
+          ]
+        },
+        "permissions": [
+          "emr-serverless:ListJobRuns"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "emr-serverless:GetJobRun"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "ApplicationId": {
+        "description": "The ID of the application on which the job run is submitted.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[0-9a-z]+$",
+        "type": "string"
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the job run.",
+        "maxLength": 1024,
+        "minLength": 60,
+        "pattern": "^arn:(aws[a-zA-Z0-9-]*):emr-serverless:.+:(\\d{12}):\\/applications\\/[0-9a-zA-Z]+\\/jobruns\\/[0-9a-zA-Z]+$",
+        "type": "string"
+      },
+      "ConfigurationOverrides": {
+        "$ref": "#/definitions/ConfigurationOverrides"
+      },
+      "CreatedAt": {
+        "description": "The date and time when the job run was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "description": "The user who created the job run.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:(aws[a-zA-Z0-9-]*):(iam|sts)::(\\d{12})?:[\\w/+=,.@-]+$",
+        "type": "string"
+      },
+      "ExecutionRoleArn": {
+        "description": "The execution role ARN of the job run.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:(aws[a-zA-Z0-9-]*):iam::([0-9]{12}):(role((\\u002F)|(\\u002F[\\u0021-\\u007F]+\\u002F))[\\w+=,.@-]+)$",
+        "type": "string"
+      },
+      "ExecutionTimeoutMinutes": {
+        "description": "The maximum duration, in minutes, for the job run. If the job run exceeds this duration, it is cancelled automatically.",
+        "maximum": 1000000,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "JobDriver": {
+        "$ref": "#/definitions/JobDriver"
+      },
+      "JobRunId": {
+        "description": "The ID of the job run.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[0-9a-z]+$",
+        "type": "string"
+      },
+      "Mode": {
+        "description": "The mode of the job run.",
+        "enum": [
+          "BATCH",
+          "STREAMING"
+        ],
+        "type": "string"
+      },
+      "Name": {
+        "description": "The optional job run name.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": ".*\\S.*",
+        "type": "string"
+      },
+      "ReleaseLabel": {
+        "description": "The Amazon EMR release associated with the application on which the job is running.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9._/-]+$",
+        "type": "string"
+      },
+      "State": {
+        "description": "The state of the job run.",
+        "enum": [
+          "SUBMITTED",
+          "PENDING",
+          "SCHEDULED",
+          "RUNNING",
+          "SUCCESS",
+          "FAILED",
+          "CANCELLING",
+          "CANCELLED",
+          "QUEUED"
+        ],
+        "type": "string"
+      },
+      "StateDetails": {
+        "description": "The state details of the job run.",
+        "maxLength": 256,
+        "minLength": 1,
+        "pattern": ".*\\S.*",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags assigned to the job run.",
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array"
+      },
+      "UpdatedAt": {
+        "description": "The date and time when the job run was last updated.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/JobRunId",
+      "/properties/Arn",
+      "/properties/ReleaseLabel",
+      "/properties/State",
+      "/properties/StateDetails",
+      "/properties/CreatedAt",
+      "/properties/CreatedBy",
+      "/properties/UpdatedAt"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "emr-serverless:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::EMRServerless::JobRun"
+  }
+}

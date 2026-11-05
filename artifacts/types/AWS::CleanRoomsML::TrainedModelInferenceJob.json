@@ -1,0 +1,246 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CleanRoomsML-TrainedModelInferenceJob",
+  "type": "AWS::CleanRoomsML::TrainedModelInferenceJob",
+  "time": "2026-11-05T21:07:22.506Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/MembershipIdentifier",
+      "/properties/Name",
+      "/properties/TrainedModelArn",
+      "/properties/ResourceConfig",
+      "/properties/OutputConfiguration",
+      "/properties/DataSource",
+      "/properties/Description",
+      "/properties/ConfiguredModelAlgorithmAssociationArn",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "InferenceOutputConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "Accept": {
+            "maxLength": 256,
+            "type": "string"
+          },
+          "Members": {
+            "items": {
+              "$ref": "#/definitions/InferenceReceiverMember"
+            },
+            "maxItems": 1,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "Members"
+        ],
+        "type": "object"
+      },
+      "InferenceReceiverMember": {
+        "additionalProperties": false,
+        "properties": {
+          "AccountId": {
+            "maxLength": 12,
+            "minLength": 12,
+            "pattern": "^[0-9]{12}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "AccountId"
+        ],
+        "type": "object"
+      },
+      "InferenceResourceConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "InstanceCount": {
+            "maximum": 10,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "InstanceType": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "InstanceType"
+        ],
+        "type": "object"
+      },
+      "ModelInferenceDataSource": {
+        "additionalProperties": false,
+        "properties": {
+          "MlInputChannelArn": {
+            "maxLength": 2048,
+            "minLength": 20,
+            "pattern": "^arn:aws[-a-z]*:cleanrooms-ml:[-a-z0-9]+:[0-9]{12}:membership/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/ml-input-channel/[-a-zA-Z0-9_/.]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "MlInputChannelArn"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Represents a trained model inference job in AWS Clean Rooms ML.",
+    "handlers": {
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "MembershipIdentifier": {
+              "description": "The membership ID to list inference jobs for.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "MembershipIdentifier"
+          ]
+        },
+        "permissions": [
+          "cleanrooms-ml:ListTrainedModelInferenceJobs",
+          "cleanrooms:GetMembership",
+          "cleanrooms:PassMembership"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "cleanrooms-ml:GetTrainedModelInferenceJob",
+          "cleanrooms-ml:ListTagsForResource",
+          "cleanrooms:GetMembership",
+          "cleanrooms:PassMembership"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/TrainedModelInferenceJobArn"
+    ],
+    "properties": {
+      "ConfiguredModelAlgorithmAssociationArn": {
+        "description": "The ARN of the configured model algorithm association used for this job.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws[-a-z]*:cleanrooms-ml:[-a-z0-9]+:[0-9]{12}:membership/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/configured-model-algorithm-association/[-a-zA-Z0-9_/.]+$",
+        "type": "string"
+      },
+      "CreateTime": {
+        "description": "The time at which the trained model inference job was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DataSource": {
+        "$ref": "#/definitions/ModelInferenceDataSource",
+        "description": "The data source used for the inference job."
+      },
+      "Description": {
+        "description": "The description of the trained model inference job.",
+        "maxLength": 255,
+        "pattern": "^[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t\\r\\n]*$",
+        "type": "string"
+      },
+      "MembershipIdentifier": {
+        "description": "The membership ID that contains the trained model inference job.",
+        "maxLength": 36,
+        "minLength": 36,
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the trained model inference job.",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^(?!\\s*$)[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t]*$",
+        "type": "string"
+      },
+      "OutputConfiguration": {
+        "$ref": "#/definitions/InferenceOutputConfiguration",
+        "description": "The output configuration for the inference job."
+      },
+      "ResourceConfig": {
+        "$ref": "#/definitions/InferenceResourceConfig",
+        "description": "The resource configuration for the inference job."
+      },
+      "Status": {
+        "description": "The status of the trained model inference job.",
+        "enum": [
+          "CREATE_PENDING",
+          "CREATE_IN_PROGRESS",
+          "CREATE_FAILED",
+          "ACTIVE",
+          "CANCEL_PENDING",
+          "CANCEL_IN_PROGRESS",
+          "CANCEL_FAILED",
+          "INACTIVE"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags associated with the trained model inference job.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "TrainedModelArn": {
+        "description": "The ARN of the trained model used for this inference job.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws[-a-z]*:cleanrooms-ml:[-a-z0-9]+:[0-9]{12}:membership/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/trained-model/[-a-zA-Z0-9_/.]+$",
+        "type": "string"
+      },
+      "TrainedModelInferenceJobArn": {
+        "description": "The ARN of the trained model inference job.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws[-a-z]*:cleanrooms-ml:[-a-z0-9]+:[0-9]{12}:membership/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/trained-model-inference-job/[-a-zA-Z0-9_/.]+$",
+        "type": "string"
+      },
+      "UpdateTime": {
+        "description": "The most recent time at which the trained model inference job was updated.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/TrainedModelInferenceJobArn",
+      "/properties/Status",
+      "/properties/CreateTime",
+      "/properties/UpdateTime"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "cleanrooms-ml:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::CleanRoomsML::TrainedModelInferenceJob"
+  }
+}

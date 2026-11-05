@@ -8,6 +8,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.RedshiftServerless/NamespaceProperties](#awsredshiftserverlessnamespaceproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.RedshiftServerless/RecoveryPoint@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.RedshiftServerless/RecoveryPointProperties](#awsredshiftserverlessrecoverypointproperties) (Identifier): properties of the resource
+
 ## Resource AWS.RedshiftServerless/Snapshot@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -43,6 +51,16 @@
 * **RedshiftIdcApplicationArn**: string (WriteOnly): The ARN for the Redshift application that integrates with IAM Identity Center.
 * **SnapshotCopyConfigurations**: [SnapshotCopyConfiguration](#snapshotcopyconfiguration)[]: The snapshot copy configurations for the namespace.
 * **Tags**: [Tag](#tag)[]: The list of tags for the namespace.
+
+## AWS.RedshiftServerless/RecoveryPointProperties
+### Properties
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the recovery point.
+* **NamespaceArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the namespace the recovery point is associated with.
+* **NamespaceName**: string: The name of the namespace the recovery point is associated with.
+* **RecoveryPointCreateTime**: string (ReadOnly): The time the recovery point was created, in ISO 8601 format.
+* **RecoveryPointId**: string (ReadOnly): The unique identifier of the recovery point.
+* **Tags**: [Tag](#tag)[] (ReadOnly): The list of tags associated with the recovery point.
+* **TotalSizeInMegaBytes**: int (ReadOnly): The total size of the data in the recovery point in megabytes.
 
 ## AWS.RedshiftServerless/SnapshotProperties
 ### Properties
@@ -134,6 +152,11 @@
 * **DestinationKmsKeyId**: string
 * **DestinationRegion**: string (Required)
 * **SnapshotRetentionPeriod**: int
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

@@ -1,0 +1,245 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Location-Job",
+  "type": "AWS::Location::Job",
+  "time": "2026-11-05T20:53:35.144Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/JobId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Action",
+      "/properties/ActionOptions",
+      "/properties/ExecutionRoleArn",
+      "/properties/InputOptions",
+      "/properties/Name",
+      "/properties/OutputOptions",
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "JobAction": {
+        "enum": [
+          "ValidateAddress"
+        ],
+        "type": "string"
+      },
+      "JobActionOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "ValidateAddress": {
+            "$ref": "#/definitions/ValidateAddressActionOptions"
+          }
+        },
+        "type": "object"
+      },
+      "JobInputFormat": {
+        "enum": [
+          "Parquet"
+        ],
+        "type": "string"
+      },
+      "JobInputOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "Format": {
+            "$ref": "#/definitions/JobInputFormat"
+          },
+          "Location": {
+            "maxLength": 300,
+            "pattern": "^(arn:aws(-[a-z]+)*:[a-z0-9-]+:[a-z0-9-]*(:\\d{12})?:[\\w/+=,.-]+|s3://[a-z0-9][a-z0-9._-]{2,254}(/[^/]+)*/?)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Location",
+          "Format"
+        ],
+        "type": "object"
+      },
+      "JobOutputFormat": {
+        "enum": [
+          "Parquet"
+        ],
+        "type": "string"
+      },
+      "JobOutputOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "Format": {
+            "$ref": "#/definitions/JobOutputFormat"
+          },
+          "Location": {
+            "maxLength": 300,
+            "pattern": "^(arn:aws(-[a-z]+)*:[a-z0-9-]+:[a-z0-9-]*(:\\d{12})?:[\\w/+=,.-]+|s3://[a-z0-9][a-z0-9._-]{2,254}(/[^/]+)*/)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Format",
+          "Location"
+        ],
+        "type": "object"
+      },
+      "JobStatus": {
+        "enum": [
+          "Pending",
+          "Running",
+          "Completed",
+          "Failed",
+          "Cancelling",
+          "Cancelled"
+        ],
+        "type": "string"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.,:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.,:/=+\\-@]*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "ValidateAddressActionOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "AdditionalFeatures": {
+            "items": {
+              "enum": [
+                "Position",
+                "CountrySpecificAttributes"
+              ],
+              "type": "string"
+            },
+            "maxItems": 2,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "Definition of AWS::Location::Job Resource Type",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "geo:ListJobs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "geo:GetJob",
+          "geo:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/JobArn"
+    ],
+    "properties": {
+      "Action": {
+        "$ref": "#/definitions/JobAction",
+        "description": "The action to perform on the input data."
+      },
+      "ActionOptions": {
+        "$ref": "#/definitions/JobActionOptions",
+        "description": "Additional parameters for configuring job action."
+      },
+      "CreatedAt": {
+        "description": "Job creation time in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ExecutionRoleArn": {
+        "description": "The ARN of the IAM role that Amazon Location Service assumes during job processing.",
+        "type": "string"
+      },
+      "InputOptions": {
+        "$ref": "#/definitions/JobInputOptions",
+        "description": "Configuration for input data location and format."
+      },
+      "JobArn": {
+        "description": "The Amazon Resource Name (ARN) of the job.",
+        "maxLength": 1600,
+        "pattern": "^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0-9]+)*))(:[0-9]+):(([*])|([-a-z]+[/][*-._\\w]+))$",
+        "type": "string"
+      },
+      "JobId": {
+        "description": "The unique identifier of the job.",
+        "maxLength": 200,
+        "minLength": 1,
+        "pattern": "^[-._\\w]+$",
+        "type": "string"
+      },
+      "Name": {
+        "description": "An optional name for the job resource.",
+        "maxLength": 100,
+        "minLength": 1,
+        "pattern": "^[-._\\w]+$",
+        "type": "string"
+      },
+      "OutputOptions": {
+        "$ref": "#/definitions/JobOutputOptions",
+        "description": "Configuration for output data location and format."
+      },
+      "Status": {
+        "$ref": "#/definitions/JobStatus",
+        "description": "Current job status."
+      },
+      "Tags": {
+        "description": "Tags associated with the job.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array"
+      },
+      "UpdatedAt": {
+        "description": "Last update time in ISO 8601 format.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/JobArn",
+      "/properties/JobId",
+      "/properties/Status",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "Action",
+      "ExecutionRoleArn",
+      "InputOptions",
+      "OutputOptions"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "geo:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::Location::Job"
+  }
+}

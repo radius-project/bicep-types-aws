@@ -1,0 +1,162 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ElastiCache-ReservedCacheNode",
+  "type": "AWS::ElastiCache::ReservedCacheNode",
+  "time": "2026-11-05T21:11:47.505Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ReservedCacheNodeId"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "RecurringCharge": {
+        "additionalProperties": false,
+        "properties": {
+          "RecurringChargeAmount": {
+            "description": "The monetary amount of the recurring charge.",
+            "type": "number"
+          },
+          "RecurringChargeFrequency": {
+            "description": "The frequency of the recurring charge.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Represents an Amazon ElastiCache Reserved Cache Node. Reserved Cache Nodes provide a discounted hourly rate compared to on-demand cache node pricing.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "elasticache:DescribeReservedCacheNodes"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "elasticache:DescribeReservedCacheNodes",
+          "elasticache:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ReservationARN"
+    ],
+    "properties": {
+      "CacheNodeCount": {
+        "description": "The number of cache nodes that have been reserved.",
+        "type": "integer"
+      },
+      "CacheNodeType": {
+        "description": "The cache node type for the reserved cache nodes.",
+        "type": "string"
+      },
+      "Duration": {
+        "description": "The duration of the reservation in seconds.",
+        "type": "integer"
+      },
+      "FixedPrice": {
+        "description": "The fixed price charged for this reserved cache node.",
+        "type": "number"
+      },
+      "OfferingType": {
+        "description": "The offering type of this reserved cache node.",
+        "type": "string"
+      },
+      "ProductDescription": {
+        "description": "The description of the reserved cache node.",
+        "type": "string"
+      },
+      "RecurringCharges": {
+        "description": "The recurring price charged to run this reserved cache node.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/RecurringCharge"
+        },
+        "type": "array"
+      },
+      "ReservationARN": {
+        "description": "The Amazon Resource Name (ARN) of the reserved cache node.",
+        "type": "string"
+      },
+      "ReservedCacheNodeId": {
+        "description": "The unique identifier for the reservation.",
+        "type": "string"
+      },
+      "ReservedCacheNodesOfferingId": {
+        "description": "The offering identifier.",
+        "type": "string"
+      },
+      "StartTime": {
+        "description": "The time the reservation started.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "State": {
+        "description": "The state of the reserved cache node.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A list of tags.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "UsagePrice": {
+        "description": "The hourly price charged for this reserved cache node.",
+        "type": "number"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ReservationARN",
+      "/properties/ReservedCacheNodeId",
+      "/properties/ReservedCacheNodesOfferingId",
+      "/properties/CacheNodeType",
+      "/properties/StartTime",
+      "/properties/Duration",
+      "/properties/FixedPrice",
+      "/properties/UsagePrice",
+      "/properties/CacheNodeCount",
+      "/properties/ProductDescription",
+      "/properties/OfferingType",
+      "/properties/State",
+      "/properties/RecurringCharges",
+      "/properties/Tags"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "elasticache:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::ElastiCache::ReservedCacheNode"
+  }
+}

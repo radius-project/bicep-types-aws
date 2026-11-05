@@ -1178,6 +1178,181 @@
   },
   {
     "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Deadline/JobProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/69"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Deadline/JobProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the job."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The date and time the resource was created."
+      },
+      "CreatedBy": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The user or system that created this resource."
+      },
+      "FarmId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The farm ID."
+      },
+      "JobId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The job ID."
+      },
+      "LifecycleStatus": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The life cycle status for the job."
+      },
+      "LifecycleStatusMessage": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "A message that communicates the status of the life cycle for the job."
+      },
+      "MaxFailedTasksCount": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The number of task failures before the job stops running and is marked as FAILED."
+      },
+      "MaxRetriesPerTask": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The maximum number of retries for each task."
+      },
+      "MaxWorkerCount": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The maximum number of worker hosts that can concurrently process a job."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The name of the job."
+      },
+      "Priority": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "The priority of the job."
+      },
+      "QueueId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The queue ID."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/71"
+        },
+        "flags": 0,
+        "description": "The tags associated with the job."
+      },
+      "TaskRunStatus": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The task run status for the job."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Deadline/Job",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/72"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Deadline/Job@default",
+    "body": {
+      "$ref": "#/73"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "LicenseEndpointStatus",
     "properties": {}
   },
@@ -1220,7 +1395,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/70"
+      "$ref": "#/76"
     }
   },
   {
@@ -1247,7 +1422,7 @@
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/78"
         },
         "flags": 1
       },
@@ -1265,13 +1440,13 @@
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/79"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/80"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1304,7 +1479,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/81"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1315,7 +1490,7 @@
     "$type": "ResourceType",
     "name": "AWS.Deadline/LicenseEndpoint@default",
     "body": {
-      "$ref": "#/76"
+      "$ref": "#/82"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1392,7 +1567,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/85"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1403,7 +1578,89 @@
     "$type": "ResourceType",
     "name": "AWS.Deadline/Limit@default",
     "body": {
-      "$ref": "#/80"
+      "$ref": "#/86"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Deadline/MeteredProductProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Deadline/MeteredProductProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18
+      },
+      "Family": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2
+      },
+      "LicenseEndpointId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2
+      },
+      "ProductId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      },
+      "Vendor": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Deadline/MeteredProduct",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/89"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Deadline/MeteredProduct@default",
+    "body": {
+      "$ref": "#/90"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1435,7 +1692,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/82"
+      "$ref": "#/92"
     }
   },
   {
@@ -1493,7 +1750,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1526,7 +1783,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/95"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1537,7 +1794,7 @@
     "$type": "ResourceType",
     "name": "AWS.Deadline/Monitor@default",
     "body": {
-      "$ref": "#/86"
+      "$ref": "#/96"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1571,7 +1828,7 @@
     "properties": {
       "Posix": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/101"
         },
         "flags": 0
       },
@@ -1583,7 +1840,7 @@
       },
       "Windows": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/112"
         },
         "flags": 0
       }
@@ -1686,13 +1943,13 @@
       },
       "MaxPriorityOverride": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/106"
         },
         "flags": 0
       },
       "MinPriorityOverride": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/108"
         },
         "flags": 0
       },
@@ -1759,7 +2016,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/100"
+      "$ref": "#/110"
     }
   },
   {
@@ -1768,7 +2025,7 @@
     "properties": {
       "AllowedStorageProfileIds": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/114"
         },
         "flags": 0
       },
@@ -1804,13 +2061,13 @@
       },
       "JobAttachmentSettings": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/99"
         },
         "flags": 0
       },
       "JobRunAsUser": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/100"
         },
         "flags": 0
       },
@@ -1822,7 +2079,7 @@
       },
       "RequiredFileSystemLocationNames": {
         "type": {
-          "$ref": "#/105"
+          "$ref": "#/115"
         },
         "flags": 0
       },
@@ -1834,13 +2091,13 @@
       },
       "SchedulingConfiguration": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/105"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/116"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1867,7 +2124,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/117"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1878,7 +2135,7 @@
     "$type": "ResourceType",
     "name": "AWS.Deadline/Queue@default",
     "body": {
-      "$ref": "#/108"
+      "$ref": "#/118"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1960,7 +2217,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/112"
+          "$ref": "#/122"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1971,7 +2228,135 @@
     "$type": "ResourceType",
     "name": "AWS.Deadline/QueueEnvironment@default",
     "body": {
-      "$ref": "#/113"
+      "$ref": "#/123"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Deadline/QueueFleetAssociationProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Deadline/QueueFleetAssociationProperties",
+    "properties": {
+      "FarmId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17
+      },
+      "FleetId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17
+      },
+      "QueueId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Deadline/QueueFleetAssociation",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/126"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Deadline/QueueFleetAssociation@default",
+    "body": {
+      "$ref": "#/127"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Deadline/QueueLimitAssociationProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Deadline/QueueLimitAssociationProperties",
+    "properties": {
+      "FarmId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17
+      },
+      "LimitId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17
+      },
+      "QueueId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Deadline/QueueLimitAssociation",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/130"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Deadline/QueueLimitAssociation@default",
+    "body": {
+      "$ref": "#/131"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2017,7 +2402,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/115"
+      "$ref": "#/133"
     }
   },
   {
@@ -2038,7 +2423,7 @@
       },
       "FileSystemLocations": {
         "type": {
-          "$ref": "#/119"
+          "$ref": "#/137"
         },
         "flags": 0
       },
@@ -2076,7 +2461,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/120"
+          "$ref": "#/138"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2087,9 +2472,191 @@
     "$type": "ResourceType",
     "name": "AWS.Deadline/StorageProfile@default",
     "body": {
-      "$ref": "#/121"
+      "$ref": "#/139"
     },
     "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Deadline/VolumeProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Volume_Tags",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/142"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Deadline/VolumeProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the volume."
+      },
+      "AttachedWorkerId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The worker ID of the worker the volume is attached to."
+      },
+      "AvailabilityZoneId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The Availability Zone ID of the volume."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The date and time the resource was created."
+      },
+      "ExpiresAt": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The date and time the volume expires and will be deleted."
+      },
+      "FarmId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The farm ID of the farm that contains the fleet."
+      },
+      "FleetId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The fleet ID of the fleet that contains the volume."
+      },
+      "Iops": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The IOPS of the volume."
+      },
+      "LastAssignedAt": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The date and time the volume was last assigned to a worker."
+      },
+      "LastReleasedAt": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The date and time the volume was last released from a worker."
+      },
+      "SizeGiB": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The volume size in GiB."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The state of the volume."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/143"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
+      "ThroughputMiB": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The throughput of the volume in MiB."
+      },
+      "VolumeId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The volume ID."
+      },
+      "VolumeType": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The EBS volume type."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Deadline/Volume",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/144"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Deadline/Volume@default",
+    "body": {
+      "$ref": "#/145"
+    },
+    "readableScopes": 31,
     "writableScopes": 0
   },
   {
@@ -2105,7 +2672,7 @@
       },
       "IpAddresses": {
         "type": {
-          "$ref": "#/124"
+          "$ref": "#/148"
         },
         "flags": 0
       }
@@ -2117,14 +2684,14 @@
     "properties": {
       "IpV4Addresses": {
         "type": {
-          "$ref": "#/125"
+          "$ref": "#/149"
         },
         "flags": 0,
         "description": "The IpV4 address of the network."
       },
       "IpV6Addresses": {
         "type": {
-          "$ref": "#/126"
+          "$ref": "#/150"
         },
         "flags": 0,
         "description": "The IpV6 address for the network and node component."
@@ -2168,7 +2735,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/128"
+      "$ref": "#/152"
     }
   },
   {
@@ -2212,7 +2779,7 @@
       },
       "HostProperties": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/147"
         },
         "flags": 0,
         "description": "The IP address and host name of the worker."
@@ -2226,7 +2793,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/129"
+          "$ref": "#/153"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -2260,7 +2827,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/130"
+          "$ref": "#/154"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2271,7 +2838,7 @@
     "$type": "ResourceType",
     "name": "AWS.Deadline/Worker@default",
     "body": {
-      "$ref": "#/131"
+      "$ref": "#/155"
     },
     "readableScopes": 0,
     "writableScopes": 0

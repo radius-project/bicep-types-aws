@@ -64,6 +64,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.IoTSiteWise/ProjectProperties](#awsiotsitewiseprojectproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.IoTSiteWise/TimeSeries@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IoTSiteWise/TimeSeriesProperties](#awsiotsitewisetimeseriesproperties) (Identifier): properties of the resource
+
 ## AccessPolicyIdentity
 ### Properties
 * **IamRole**: [IamRole](#iamrole)
@@ -218,6 +226,18 @@
 * **ProjectName**: string (Required): A friendly name for the project.
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the project.
 
+## AWS.IoTSiteWise/TimeSeriesProperties
+### Properties
+* **Alias**: string (Identifier): The alias that identifies the time series.
+* **AssetId**: string: The ID of the asset in which the asset property was created.
+* **DataType**: string (ReadOnly): The data type of the time series.
+* **PropertyId**: string (ReadOnly): The ID of the asset property with which the time series is associated.
+* **Tags**: [Tag](#tag)[] (ReadOnly): A list of key-value pairs that contain metadata for the time series.
+* **TimeSeriesArn**: string (ReadOnly): The ARN of the time series.
+* **TimeSeriesCreationDate**: string (ReadOnly): The date that the time series was created, in Unix epoch time.
+* **TimeSeriesId**: string (Identifier): The ID of the time series.
+* **TimeSeriesLastUpdateDate**: string (ReadOnly): The date that the time series was last updated, in Unix epoch time.
+
 ## DatasetConfig
 ### Properties
 * **Session**: [SessionConfig](#sessionconfig): The session configuration for a SESSION dataset.
@@ -356,6 +376,11 @@
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
 
 ## Transform
 ### Properties

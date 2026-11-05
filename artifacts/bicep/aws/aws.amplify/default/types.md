@@ -24,6 +24,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Amplify/DomainProperties](#awsamplifydomainproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Amplify/Jobs@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Amplify/JobsProperties](#awsamplifyjobsproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Amplify/Webhook@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -106,6 +114,17 @@
 * **StatusReason**: string (ReadOnly)
 * **SubDomainSettings**: [SubDomainSetting](#subdomainsetting)[] (Required)
 * **UpdateStatus**: string (ReadOnly)
+
+## AWS.Amplify/JobsProperties
+### Properties
+* **AppId**: string (Required): The unique ID for an Amplify app.
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) for the job.
+* **BranchName**: string (Required): The name of the branch to use for the job.
+* **CommitId**: string (ReadOnly): The commit ID from a third-party repository provider for the job.
+* **CommitTime**: string (ReadOnly): The commit date and time for the job.
+* **JobId**: string (ReadOnly): The unique ID for the job.
+* **StartTime**: string (ReadOnly): The start date and time for the job.
+* **Status**: string (ReadOnly): The current status for the job.
 
 ## AWS.Amplify/WebhookProperties
 ### Properties

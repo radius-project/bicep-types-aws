@@ -8,6 +8,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SageMaker/ActionProperties](#awssagemakeractionproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.SageMaker/AIBenchmarkJob@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/AIBenchmarkJobProperties](#awssagemakeraibenchmarkjobproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.SageMaker/AIRecommendationJob@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/AIRecommendationJobProperties](#awssagemakerairecommendationjobproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.SageMaker/AIWorkloadConfig@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -48,6 +64,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SageMaker/ArtifactProperties](#awssagemakerartifactproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.SageMaker/AutoMLJob@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/AutoMLJobProperties](#awssagemakerautomljobproperties) (Identifier): properties of the resource
+
 ## Resource AWS.SageMaker/Cluster@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -55,6 +79,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SageMaker/ClusterProperties](#awssagemakerclusterproperties) (Identifier): properties of the resource
+
+## Resource AWS.SageMaker/ClusterSchedulerConfig@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/ClusterSchedulerConfigProperties](#awssagemakerclusterschedulerconfigproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SageMaker/CodeRepository@default
 * **Readable Scope(s)**: None
@@ -79,6 +111,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SageMaker/ContextProperties](#awssagemakercontextproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.SageMaker/DataQualityJobDefinition@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/DataQualityJobDefinitionProperties](#awssagemakerdataqualityjobdefinitionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SageMaker/Device@default
 * **Readable Scope(s)**: None
@@ -144,6 +184,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SageMaker/HubProperties](#awssagemakerhubproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.SageMaker/HubContentVersion@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/HubContentVersionProperties](#awssagemakerhubcontentversionproperties) (Identifier): properties of the resource
+
 ## Resource AWS.SageMaker/HumanTaskUi@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -151,6 +199,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SageMaker/HumanTaskUiProperties](#awssagemakerhumantaskuiproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.SageMaker/HyperParameterTuningJob@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/HyperParameterTuningJobProperties](#awssagemakerhyperparametertuningjobproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SageMaker/Image@default
 * **Readable Scope(s)**: None
@@ -208,6 +264,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SageMaker/ModelProperties](#awssagemakermodelproperties) (Identifier): properties of the resource
 
+## Resource AWS.SageMaker/ModelBiasJobDefinition@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/ModelBiasJobDefinitionProperties](#awssagemakermodelbiasjobdefinitionproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.SageMaker/ModelCard@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -215,6 +279,22 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SageMaker/ModelCardProperties](#awssagemakermodelcardproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.SageMaker/ModelCardExportJob@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/ModelCardExportJobProperties](#awssagemakermodelcardexportjobproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.SageMaker/ModelExplainabilityJobDefinition@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/ModelExplainabilityJobDefinitionProperties](#awssagemakermodelexplainabilityjobdefinitionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SageMaker/ModelPackage@default
 * **Readable Scope(s)**: None
@@ -232,6 +312,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SageMaker/ModelPackageGroupProperties](#awssagemakermodelpackagegroupproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.SageMaker/ModelQualityJobDefinition@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/ModelQualityJobDefinitionProperties](#awssagemakermodelqualityjobdefinitionproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.SageMaker/MonitoringSchedule@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -239,6 +327,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SageMaker/MonitoringScheduleProperties](#awssagemakermonitoringscheduleproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.SageMaker/MonitoringScheduleAlert@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/MonitoringScheduleAlertProperties](#awssagemakermonitoringschedulealertproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SageMaker/NotebookInstance@default
 * **Readable Scope(s)**: None
@@ -256,6 +352,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SageMaker/NotebookInstanceLifecycleConfigProperties](#awssagemakernotebookinstancelifecycleconfigproperties) (Identifier): properties of the resource
 
+## Resource AWS.SageMaker/OptimizationJob@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/OptimizationJobProperties](#awssagemakeroptimizationjobproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.SageMaker/PartnerApp@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -272,6 +376,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SageMaker/PipelineProperties](#awssagemakerpipelineproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.SageMaker/PipelineExecution@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/PipelineExecutionProperties](#awssagemakerpipelineexecutionproperties) (Identifier): properties of the resource
+
+## Resource AWS.SageMaker/ProcessingJob@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/ProcessingJobProperties](#awssagemakerprocessingjobproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.SageMaker/Project@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -287,6 +407,30 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SageMaker/SpaceProperties](#awssagemakerspaceproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.SageMaker/StudioLifecycleConfig@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/StudioLifecycleConfigProperties](#awssagemakerstudiolifecycleconfigproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.SageMaker/TrainingJob@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/TrainingJobProperties](#awssagemakertrainingjobproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.SageMaker/TransformJob@default
+* **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/TransformJobProperties](#awssagemakertransformjobproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SageMaker/TrialComponent@default
 * **Readable Scope(s)**: None
@@ -350,9 +494,66 @@
 * **CustomDetails**: [ModelCard_CustomDetails](#modelcardcustomdetails): customer details.
 * **EthicalConsiderations**: string: Any ethical considerations that the author wants to provide.
 
+## AIBenchmarkEndpoint
+### Properties
+* **Identifier**: string (Required): The name or Amazon Resource Name (ARN) of the SageMaker endpoint to benchmark.
+* **InferenceComponents**: [AIBenchmarkInferenceComponent](#aibenchmarkinferencecomponent)[]: The list of inference components to benchmark on the endpoint.
+* **TargetContainerHostname**: string: The hostname of the specific container to target within a multi-container endpoint.
+
+## AIBenchmarkInferenceComponent
+### Properties
+* **Identifier**: string (Required): The name or Amazon Resource Name (ARN) of the inference component.
+
+## AIBenchmarkNetworkConfig
+### Properties
+* **VpcConfig**: [VpcConfig](#vpcconfig): The VPC configuration, including security group IDs and subnet IDs.
+
+## AIBenchmarkOutputConfig
+### Properties
+* **S3OutputLocation**: string (Required): The Amazon S3 URI where benchmark results are stored.
+
+## AIBenchmarkTarget
+### Properties
+* **Endpoint**: [AIBenchmarkEndpoint](#aibenchmarkendpoint) (Required): The SageMaker endpoint to benchmark.
+
+## AICapacityReservationConfig
+### Properties
+* **CapacityReservationPreference**: string: The capacity reservation preference.
+* **MlReservationArns**: string[]: The list of ML reservation ARNs to use. The service accepts SageMaker training-plan ARNs only.
+
 ## AIDatasetConfig
 ### Properties
 * **InputDataConfig**: [AIWorkloadInputDataConfig](#aiworkloadinputdataconfig)[] (Required): An array of input data channel configurations for the workload.
+
+## AIModelSource
+### Properties
+* **S3**: [AIModelSourceS3](#aimodelsources3) (Required)
+
+## AIModelSourceS3
+### Properties
+* **S3Uri**: string: The Amazon S3 URI of the model artifacts.
+
+## AIRecommendationComputeSpec
+### Properties
+* **CapacityReservationConfig**: [AICapacityReservationConfig](#aicapacityreservationconfig)
+* **InstanceTypes**: string[]: The list of instance types to consider for recommendations. You can specify up to 3 instance types.
+
+## AIRecommendationConstraint
+### Properties
+* **Metric**: string (Required): The performance metric to optimize for.
+
+## AIRecommendationInferenceSpecification
+### Properties
+* **Framework**: string: The inference framework.
+
+## AIRecommendationOutputConfig
+### Properties
+* **ModelPackageGroupIdentifier**: string: The name or Amazon Resource Name (ARN) of the model package group where the optimized model is registered as a new model package version.
+* **S3OutputLocation**: string (Required): The Amazon S3 URI where the recommendation job writes its output results.
+
+## AIRecommendationPerformanceTarget
+### Properties
+* **Constraints**: [AIRecommendationConstraint](#airecommendationconstraint)[] (Required): The performance constraint that defines the optimization objective. The service accepts exactly one constraint.
 
 ## AIWorkloadConfigs
 ### Properties
@@ -386,6 +587,17 @@
 ## Algorithm_Environment
 ### Properties
 
+## AlgorithmSpecification
+### Properties
+* **AlgorithmName**: string: The name of the algorithm resource to use for the training job.
+* **ContainerArguments**: string[]: The arguments for the training container.
+* **ContainerEntrypoint**: string[]: The entrypoint for the training container.
+* **EnableSageMakerMetricsTimeSeries**: bool: Whether to enable SageMaker metrics time series.
+* **MetricDefinitions**: [MetricDefinition](#metricdefinition)[]: A list of metric definition objects.
+* **TrainingImage**: string: The registry path of the Docker image that contains the training algorithm.
+* **TrainingImageConfig**: [TrainingImageConfig](#trainingimageconfig)
+* **TrainingInputMode**: string (Required): The training input mode.
+
 ## AppLifecycleManagement
 ### Properties
 * **IdleSettings**: [IdleSettings](#idlesettings)
@@ -393,6 +605,12 @@
 ## AppLifecycleManagement
 ### Properties
 * **IdleSettings**: [IdleSettings](#idlesettings)
+
+## AppSpecification
+### Properties
+* **ContainerArguments**: string[]: The arguments for a container used to run a processing job.
+* **ContainerEntrypoint**: string[]: The entrypoint for a container used to run a processing job.
+* **ImageUri**: string (Required): The container image to be run by the processing job.
 
 ## Artifact_Properties
 ### Properties
@@ -429,6 +647,83 @@
 * **S3FailurePath**: string: The Amazon S3 location to upload failure inference responses to.
 * **S3OutputPath**: string: The Amazon S3 location to upload inference responses to.
 
+## AthenaDatasetDefinition
+### Properties
+* **Catalog**: string (Required): The name of the data catalog used in Athena query execution.
+* **Database**: string (Required): The name of the database used in the Athena query execution.
+* **KmsKeyId**: string: The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt data generated from an Athena query execution.
+* **OutputCompression**: string: The compression used for Athena query results.
+* **OutputFormat**: string (Required): The data storage format for Athena query results.
+* **OutputS3Uri**: string (Required): The location in Amazon S3 where Athena query results are stored.
+* **QueryString**: string (Required): The SQL query statements, to be executed.
+* **WorkGroup**: string: The name of the workgroup in which the Athena query is being started.
+
+## AutoMLAlgorithmConfig
+### Properties
+* **AutoMLAlgorithms**: string[] (Required): The selection of algorithms trained on your dataset to generate the model candidates.
+
+## AutoMLComputeConfig
+### Properties
+* **EmrServerlessComputeConfig**: [EmrServerlessComputeConfig](#emrserverlesscomputeconfig): The configuration for using EMR Serverless to run the AutoML job V2.
+
+## AutoMLDataSource
+### Properties
+* **S3DataSource**: [AutoMLS3DataSource](#automls3datasource) (Required): The Amazon S3 location of the input data.
+
+## AutoMLDataSplitConfig
+### Properties
+* **ValidationFraction**: int: The validation fraction (optional) is a float that specifies the portion of the training dataset to be used for validation.
+
+## AutoMLJob_Aggregation
+### Properties
+
+## AutoMLJob_Filling
+### Properties
+
+## AutoMLJob_TextGenerationHyperParameters
+### Properties
+
+## AutoMLJobChannel
+### Properties
+* **ChannelType**: string: The type of channel.
+* **CompressionType**: string: The compression type of the data.
+* **ContentType**: string: The content type of the data from the input source.
+* **DataSource**: [AutoMLDataSource](#automldatasource): The data source for the channel.
+
+## AutoMLJobCompletionCriteria
+### Properties
+* **MaxAutoMLJobRuntimeInSeconds**: int: The maximum runtime, in seconds, an AutoML job has to complete.
+* **MaxCandidates**: int: The maximum number of times a training job is allowed to run.
+* **MaxRuntimePerTrainingJobInSeconds**: int: The maximum time, in seconds, that each training job executed inside hyperparameter tuning is allowed to run.
+
+## AutoMLJobObjective
+### Properties
+* **MetricName**: string (Required): The name of the objective metric.
+
+## AutoMLOutputDataConfig
+### Properties
+* **KmsKeyId**: string: The KMS encryption key ID.
+* **S3OutputPath**: string (Required): The Amazon S3 output path.
+
+## AutoMLProblemTypeConfig
+### Properties
+* **ImageClassificationJobConfig**: [ImageClassificationJobConfig](#imageclassificationjobconfig): Settings used to configure an AutoML job V2 for the image classification problem type.
+* **TabularJobConfig**: [TabularJobConfig](#tabularjobconfig): Settings used to configure an AutoML job V2 for the tabular problem type (regression, classification).
+* **TextClassificationJobConfig**: [TextClassificationJobConfig](#textclassificationjobconfig): Settings used to configure an AutoML job V2 for the text classification problem type.
+* **TextGenerationJobConfig**: [TextGenerationJobConfig](#textgenerationjobconfig): Settings used to configure an AutoML job V2 for the text generation (LLMs fine-tuning) problem type.
+* **TimeSeriesForecastingJobConfig**: [TimeSeriesForecastingJobConfig](#timeseriesforecastingjobconfig): Settings used to configure an AutoML job V2 for the time-series forecasting problem type.
+
+## AutoMLS3DataSource
+### Properties
+* **S3DataType**: string (Required): The data type.
+* **S3Uri**: string (Required): The URL to the Amazon S3 data source.
+
+## AutoMLSecurityConfig
+### Properties
+* **EnableInterContainerTrafficEncryption**: bool: Whether to use traffic encryption between the container layers.
+* **VolumeKmsKeyId**: string: The key used to encrypt stored data.
+* **VpcConfig**: [VpcConfig](#vpcconfig): The VPC configuration.
+
 ## AutoPatchConfig
 ### Properties
 * **DeploymentConfig**: [DeploymentConfig](#deploymentconfig)
@@ -443,6 +738,10 @@
 ### Properties
 * **Alarms**: [Alarm](#alarm)[] (Required)
 
+## Autotune
+### Properties
+* **Mode**: string
+
 ## AWS.SageMaker/ActionProperties
 ### Properties
 * **ActionName**: string (Required): The name of the action. Must be unique to your account in an AWS Region.
@@ -456,6 +755,38 @@
 * **Source**: [ActionSource](#actionsource) (Required): The source type, ID, and URI.
 * **Status**: string: The status of the action.
 * **Tags**: [Tag](#tag)[]: A list of tags to apply to the action.
+
+## AWS.SageMaker/AIBenchmarkJobProperties
+### Properties
+* **AIBenchmarkJobArn**: string (Identifier): The Amazon Resource Name (ARN) of the AI benchmark job.
+* **AIBenchmarkJobName**: string (Required): The name of the AI benchmark job. The name must be unique within your AWS account in the current AWS Region.
+* **AIBenchmarkJobStatus**: string (ReadOnly): The status of the AI benchmark job.
+* **AIWorkloadConfigIdentifier**: string (Required): The name or Amazon Resource Name (ARN) of the AI workload configuration to use for this benchmark job.
+* **BenchmarkTarget**: [AIBenchmarkTarget](#aibenchmarktarget) (Required): The target endpoint to benchmark.
+* **CreationTime**: string (ReadOnly): A timestamp that indicates when the benchmark job was created.
+* **EndTime**: string (ReadOnly): A timestamp that indicates when the benchmark job completed.
+* **NetworkConfig**: [AIBenchmarkNetworkConfig](#aibenchmarknetworkconfig): The network configuration for the benchmark job, including VPC settings.
+* **OutputConfig**: [AIBenchmarkOutputConfig](#aibenchmarkoutputconfig) (Required): The output configuration for the benchmark job, including the Amazon S3 location where benchmark results are stored.
+* **RoleArn**: string (Required): The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker AI to perform tasks on your behalf.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## AWS.SageMaker/AIRecommendationJobProperties
+### Properties
+* **AIRecommendationJobArn**: string (Identifier): The Amazon Resource Name (ARN) of the AI recommendation job.
+* **AIRecommendationJobName**: string (Required): The name of the AI recommendation job. The name must be unique within your AWS account in the current AWS Region.
+* **AIRecommendationJobStatus**: string (ReadOnly): The status of the AI recommendation job.
+* **AIWorkloadConfigIdentifier**: string (Required): The name or Amazon Resource Name (ARN) of the AI workload configuration to use for this recommendation job.
+* **ComputeSpec**: [AIRecommendationComputeSpec](#airecommendationcomputespec)
+* **CreationTime**: string (ReadOnly): A timestamp that indicates when the recommendation job was created.
+* **EndTime**: string (ReadOnly): A timestamp that indicates when the recommendation job completed.
+* **InferenceSpecification**: [AIRecommendationInferenceSpecification](#airecommendationinferencespecification)
+* **ModelSource**: [AIModelSource](#aimodelsource) (Required)
+* **OptimizeModel**: bool: Whether to allow model optimization techniques such as quantization, speculative decoding, and kernel tuning.
+* **OutputConfig**: [AIRecommendationOutputConfig](#airecommendationoutputconfig) (Required)
+* **PerformanceTarget**: [AIRecommendationPerformanceTarget](#airecommendationperformancetarget) (Required)
+* **RoleArn**: string (Required): The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker AI to perform tasks on your behalf.
+* **StartTime**: string (ReadOnly): A timestamp that indicates when the recommendation job started running.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
 ## AWS.SageMaker/AIWorkloadConfigProperties
 ### Properties
@@ -510,6 +841,26 @@
 * **Source**: [ArtifactSource](#artifactsource) (Required): The source of the artifact.
 * **Tags**: [Tag](#tag)[]: A list of tags to apply to the artifact.
 
+## AWS.SageMaker/AutoMLJobProperties
+### Properties
+* **AutoMLComputeConfig**: [AutoMLComputeConfig](#automlcomputeconfig): The compute configuration used for the AutoML job V2.
+* **AutoMLJobArn**: string (Identifier): The ARN of the AutoML job.
+* **AutoMLJobInputDataConfig**: [AutoMLJobChannel](#automljobchannel)[]: An array of channel objects describing the input data and its location.
+* **AutoMLJobName**: string (ReadOnly): The name of the AutoML job.
+* **AutoMLJobObjective**: [AutoMLJobObjective](#automljobobjective): The objective metric for the AutoML job.
+* **AutoMLJobSecondaryStatus**: string (ReadOnly): The secondary status of the AutoML job.
+* **AutoMLJobStatus**: string (ReadOnly): The status of the AutoML job.
+* **AutoMLProblemTypeConfig**: [AutoMLProblemTypeConfig](#automlproblemtypeconfig): The configuration of the problem type for the AutoML job V2.
+* **AutoMLProblemTypeConfigName**: string (ReadOnly): The name of the problem type configuration used for the AutoML job V2.
+* **CreationTime**: string (ReadOnly): The creation time of the AutoML job.
+* **DataSplitConfig**: [AutoMLDataSplitConfig](#automldatasplitconfig): The configuration for splitting the input training dataset.
+* **EndTime**: string (ReadOnly): The end time of the AutoML job.
+* **LastModifiedTime**: string (ReadOnly): The last modified time of the AutoML job.
+* **OutputDataConfig**: [AutoMLOutputDataConfig](#automloutputdataconfig): The output data configuration.
+* **RoleArn**: string: The ARN of the role used to access the data.
+* **SecurityConfig**: [AutoMLSecurityConfig](#automlsecurityconfig): The security configuration for traffic encryption or Amazon VPC settings.
+* **Tags**: [Tag](#tag)[]: Tags for the AutoML job.
+
 ## AWS.SageMaker/ClusterProperties
 ### Properties
 * **AutoScaling**: [ClusterAutoScalingConfig](#clusterautoscalingconfig)
@@ -528,6 +879,19 @@
 * **Tags**: [Tag](#tag)[]: Custom tags for managing the SageMaker HyperPod cluster as an AWS resource. You can add tags to your cluster in the same way you add them in other AWS services that support tagging.
 * **TieredStorageConfig**: [TieredStorageConfig](#tieredstorageconfig)
 * **VpcConfig**: [VpcConfig](#vpcconfig)
+
+## AWS.SageMaker/ClusterSchedulerConfigProperties
+### Properties
+* **ClusterArn**: string (Required): ARN of the cluster.
+* **ClusterSchedulerConfigArn**: string (ReadOnly, Identifier): ARN of the cluster policy.
+* **ClusterSchedulerConfigId**: string (ReadOnly): ID of the cluster policy.
+* **ClusterSchedulerConfigVersion**: int (ReadOnly): Version of the cluster policy.
+* **CreationTime**: string (ReadOnly): Creation time of the cluster policy.
+* **Description**: string: Description of the cluster policy.
+* **Name**: string (Required): Name for the cluster policy.
+* **SchedulerConfig**: [SchedulerConfig](#schedulerconfig) (Required)
+* **Status**: string (ReadOnly): Status of the cluster policy.
+* **Tags**: [Tag](#tag)[]: Tags of the cluster policy.
 
 ## AWS.SageMaker/CodeRepositoryProperties
 ### Properties
@@ -563,6 +927,22 @@
 * **Properties**: [Context_Properties](#contextproperties): A list of properties to add to the context.
 * **Source**: [Context_Source](#contextsource) (Required): The source type, ID, and URI.
 * **Tags**: [Context_Tags](#contexttags)[]: A list of tags to apply to the context.
+
+## AWS.SageMaker/DataQualityJobDefinitionProperties
+### Properties
+* **CreationTime**: string (ReadOnly): The time at which the job definition was created.
+* **DataQualityAppSpecification**: [DataQualityAppSpecification](#dataqualityappspecification) (Required)
+* **DataQualityBaselineConfig**: [DataQualityBaselineConfig](#dataqualitybaselineconfig)
+* **DataQualityJobInput**: [DataQualityJobInput](#dataqualityjobinput) (Required)
+* **DataQualityJobOutputConfig**: [MonitoringOutputConfig](#monitoringoutputconfig) (Required)
+* **EndpointName**: string (WriteOnly)
+* **JobDefinitionArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of job definition.
+* **JobDefinitionName**: string
+* **JobResources**: [MonitoringResources](#monitoringresources) (Required)
+* **NetworkConfig**: [NetworkConfig](#networkconfig)
+* **RoleArn**: string (Required): The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.
+* **StoppingCondition**: [StoppingCondition](#stoppingcondition)
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
 ## AWS.SageMaker/DeviceFleetProperties
 ### Properties
@@ -653,6 +1033,25 @@
 * **Tags**: [Tag](#tag)[]: An array of key-value pair to apply to this resource.
 * **ThroughputConfig**: [ThroughputConfig](#throughputconfig)
 
+## AWS.SageMaker/HubContentVersionProperties
+### Properties
+* **CreationTime**: string (ReadOnly): The date and time that the hub content was created.
+* **DocumentSchemaVersion**: string (ReadOnly): The document schema version for the hub content.
+* **HubArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the hub.
+* **HubContentArn**: string (ReadOnly): The versioned Amazon Resource Name (ARN) of the hub content version.
+* **HubContentDescription**: string (ReadOnly): The description of the hub content.
+* **HubContentDisplayName**: string (ReadOnly): The display name of the hub content.
+* **HubContentName**: string: The name of the hub content.
+* **HubContentStatus**: string (ReadOnly): The status of the hub content.
+* **HubContentType**: string: The type of hub content.
+* **HubContentVersion**: string (Identifier): The version of the hub content.
+* **HubName**: string: The name of the hub that contains the hub content.
+* **LastModifiedTime**: string (ReadOnly): The date and time that the hub content was last modified.
+* **ReferenceMinVersion**: string (ReadOnly): The minimum version of the hub content referenced by a ModelReference.
+* **ResourceArn**: string (Identifier): The versionless Amazon Resource Name (ARN) that identifies the hub content item; combined with HubContentVersion it forms the primary identifier of a hub content version.
+* **SageMakerPublicHubContentArn**: string (ReadOnly): The ARN of the public hub content that this hub content references, if any.
+* **SupportStatus**: string (ReadOnly): The support status of the hub content.
+
 ## AWS.SageMaker/HubProperties
 ### Properties
 * **CreationTime**: string (ReadOnly): The date and time that the hub was created.
@@ -673,6 +1072,21 @@
 * **HumanTaskUiName**: string (Required): The name of the human task user interface.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs that contain metadata to help you categorize and organize a human review workflow user interface.
 * **UiTemplate**: [UiTemplate](#uitemplate) (WriteOnly): The Liquid template for the worker user interface.
+
+## AWS.SageMaker/HyperParameterTuningJobProperties
+### Properties
+* **Autotune**: [Autotune](#autotune)
+* **CreationTime**: string (ReadOnly)
+* **HyperParameterTuningJobArn**: string (Identifier)
+* **HyperParameterTuningJobConfig**: [HyperParameterTuningJobConfig](#hyperparametertuningjobconfig) (Required)
+* **HyperParameterTuningJobName**: string (Required)
+* **HyperParameterTuningJobStatus**: string (ReadOnly)
+* **ObjectiveStatusCounters**: [ObjectiveStatusCounters](#objectivestatuscounters) (ReadOnly)
+* **Tags**: [Tag](#tag)[]
+* **TrainingJobDefinition**: [TrainingJobDefinition](#trainingjobdefinition)
+* **TrainingJobDefinitions**: [TrainingJobDefinition](#trainingjobdefinition)[]
+* **TrainingJobStatusCounters**: [TrainingJobStatusCounters](#trainingjobstatuscounters) (ReadOnly)
+* **WarmStartConfig**: [HyperParameterTuningJobWarmStartConfig](#hyperparametertuningjobwarmstartconfig)
 
 ## AWS.SageMaker/ImageProperties
 ### Properties
@@ -766,6 +1180,34 @@
 * **TrackingServerSize**: string: The size of the MLFlow Tracking Server.
 * **WeeklyMaintenanceWindowStart**: string: The start of the time window for maintenance of the MLFlow Tracking Server in UTC time.
 
+## AWS.SageMaker/ModelBiasJobDefinitionProperties
+### Properties
+* **CreationTime**: string (ReadOnly): The time at which the job definition was created.
+* **EndpointName**: string (WriteOnly)
+* **JobDefinitionArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of job definition.
+* **JobDefinitionName**: string
+* **JobResources**: [MonitoringResources](#monitoringresources) (Required)
+* **ModelBiasAppSpecification**: [ModelBiasAppSpecification](#modelbiasappspecification) (Required)
+* **ModelBiasBaselineConfig**: [ModelBiasBaselineConfig](#modelbiasbaselineconfig)
+* **ModelBiasJobInput**: [ModelBiasJobInput](#modelbiasjobinput) (Required)
+* **ModelBiasJobOutputConfig**: [MonitoringOutputConfig](#monitoringoutputconfig) (Required)
+* **NetworkConfig**: [NetworkConfig](#networkconfig)
+* **RoleArn**: string (Required): The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.
+* **StoppingCondition**: [StoppingCondition](#stoppingcondition)
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## AWS.SageMaker/ModelCardExportJobProperties
+### Properties
+* **CreatedAt**: string (ReadOnly): The date and time that the model card export job was created.
+* **ExportArtifacts**: [ModelCardExportArtifacts](#modelcardexportartifacts) (ReadOnly): The exported model card artifacts.
+* **LastModifiedAt**: string (ReadOnly): The date and time that the model card export job was last modified.
+* **ModelCardExportJobArn**: string (Identifier): The Amazon Resource Name (ARN) of the model card export job.
+* **ModelCardExportJobName**: string (Required): The name of the model card export job.
+* **ModelCardName**: string (Required): The name or Amazon Resource Name (ARN) of the model card to export.
+* **ModelCardVersion**: int: The version of the model card to export. If a version is not provided, then the latest version of the model card is exported.
+* **OutputConfig**: [ModelCardExportOutputConfig](#modelcardexportoutputconfig) (Required): The model card output configuration that specifies the Amazon S3 path for exporting.
+* **Status**: string (ReadOnly): The completion status of the model card export job.
+
 ## AWS.SageMaker/ModelCardProperties
 ### Properties
 * **Content**: [Content](#content) (Required)
@@ -780,6 +1222,22 @@
 * **ModelCardVersion**: int (ReadOnly): A version of the model card.
 * **SecurityConfig**: [SecurityConfig](#securityconfig)
 * **Tags**: [Tag](#tag)[]: Key-value pairs used to manage metadata for model cards.
+
+## AWS.SageMaker/ModelExplainabilityJobDefinitionProperties
+### Properties
+* **CreationTime**: string (ReadOnly): The time at which the job definition was created.
+* **EndpointName**: string (WriteOnly)
+* **JobDefinitionArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of job definition.
+* **JobDefinitionName**: string
+* **JobResources**: [MonitoringResources](#monitoringresources) (Required)
+* **ModelExplainabilityAppSpecification**: [ModelExplainabilityAppSpecification](#modelexplainabilityappspecification) (Required)
+* **ModelExplainabilityBaselineConfig**: [ModelExplainabilityBaselineConfig](#modelexplainabilitybaselineconfig)
+* **ModelExplainabilityJobInput**: [ModelExplainabilityJobInput](#modelexplainabilityjobinput) (Required)
+* **ModelExplainabilityJobOutputConfig**: [MonitoringOutputConfig](#monitoringoutputconfig) (Required)
+* **NetworkConfig**: [NetworkConfig](#networkconfig)
+* **RoleArn**: string (Required): The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.
+* **StoppingCondition**: [StoppingCondition](#stoppingcondition)
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
 ## AWS.SageMaker/ModelPackageGroupProperties
 ### Properties
@@ -836,6 +1294,34 @@
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs. You can use tags to categorize your AWS resources in different ways, for example, by purpose, owner, or environment. For more information, see [Tagging AWS Resources](https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 * **VpcConfig**: [VpcConfig](#vpcconfig)
 
+## AWS.SageMaker/ModelQualityJobDefinitionProperties
+### Properties
+* **CreationTime**: string (ReadOnly): The time at which the job definition was created.
+* **EndpointName**: string (WriteOnly)
+* **JobDefinitionArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of job definition.
+* **JobDefinitionName**: string
+* **JobResources**: [MonitoringResources](#monitoringresources) (Required)
+* **ModelQualityAppSpecification**: [ModelQualityAppSpecification](#modelqualityappspecification) (Required)
+* **ModelQualityBaselineConfig**: [ModelQualityBaselineConfig](#modelqualitybaselineconfig)
+* **ModelQualityJobInput**: [ModelQualityJobInput](#modelqualityjobinput) (Required)
+* **ModelQualityJobOutputConfig**: [MonitoringOutputConfig](#monitoringoutputconfig) (Required)
+* **NetworkConfig**: [NetworkConfig](#networkconfig)
+* **RoleArn**: string (Required): The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.
+* **StoppingCondition**: [StoppingCondition](#stoppingcondition)
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## AWS.SageMaker/MonitoringScheduleAlertProperties
+### Properties
+* **Actions**: [MonitoringAlertActions](#monitoringalertactions) (ReadOnly): A list of alert actions taken in response to an alert going into InAlert status.
+* **AlertStatus**: string (ReadOnly): The current status of the alert.
+* **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the monitoring schedule alert.
+* **CreationTime**: string (ReadOnly): A timestamp that indicates when the alert was created.
+* **DatapointsToAlert**: int (Required): Within EvaluationPeriod, how many execution failures will raise an alert.
+* **EvaluationPeriod**: int (Required): The number of most recent monitoring executions to consider when evaluating alert status.
+* **LastModifiedTime**: string (ReadOnly): A timestamp that indicates when the alert was last updated.
+* **MonitoringAlertName**: string (Required): The name of the monitoring alert.
+* **MonitoringScheduleName**: string (Required): The name of the monitoring schedule.
+
 ## AWS.SageMaker/MonitoringScheduleProperties
 ### Properties
 * **CreationTime**: string (ReadOnly): The time at which the schedule was created.
@@ -877,6 +1363,23 @@
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs to apply to this resource.
 * **VolumeSizeInGB**: int: The size, in GB, of the ML storage volume to attach to the notebook instance. The default value is 5 GB. Expect some interruption of service if this parameter is changed as CloudFormation stops a notebook instance and starts it up again to update it.
 
+## AWS.SageMaker/OptimizationJobProperties
+### Properties
+* **CreationTime**: string (ReadOnly): The time when the optimization job was created.
+* **DeploymentInstanceType**: string (Required): The type of instance that hosts the optimized model that you create with the optimization job.
+* **LastModifiedTime**: string (ReadOnly): The time when the optimization job was last modified.
+* **ModelSource**: [OptimizationJobModelSource](#optimizationjobmodelsource) (Required)
+* **OptimizationConfigs**: [OptimizationConfig](#optimizationconfig)[] (Required, ReadOnly): A list of optimization configurations associated with the optimization job.
+* **OptimizationEnvironment**: [OptimizationJob_OptimizationEnvironment](#optimizationjoboptimizationenvironment): The environment variables to set in the model container.
+* **OptimizationJobArn**: string (Identifier): The Amazon Resource Name (ARN) of the optimization job.
+* **OptimizationJobName**: string (Required): The name of the optimization job.
+* **OptimizationJobStatus**: string (ReadOnly): The status of the optimization job.
+* **OutputConfig**: [OptimizationJobOutputConfig](#optimizationjoboutputconfig) (Required)
+* **RoleArn**: string (Required): The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker to perform tasks on your behalf.
+* **StoppingCondition**: [StoppingCondition](#stoppingcondition) (Required)
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **VpcConfig**: [OptimizationVpcConfig](#optimizationvpcconfig)
+
 ## AWS.SageMaker/PartnerAppProperties
 ### Properties
 * **ApplicationConfig**: [PartnerAppConfig](#partnerappconfig): A collection of settings that specify the maintenance schedule for the PartnerApp.
@@ -896,6 +1399,23 @@
 * **Tier**: string (Required): The tier of the PartnerApp.
 * **Type**: string (Required): The type of PartnerApp.
 
+## AWS.SageMaker/PipelineExecutionProperties
+### Properties
+* **CreatedBy**: [UserContext](#usercontext) (ReadOnly): Information about the user who created the pipeline execution.
+* **CreationTime**: string (ReadOnly): The time when the pipeline execution was created.
+* **LastModifiedBy**: [UserContext](#usercontext) (ReadOnly): Information about the user who last modified the pipeline execution.
+* **LastModifiedTime**: string (ReadOnly): The time when the pipeline execution was modified last.
+* **ParallelismConfiguration**: [ParallelismConfiguration](#parallelismconfiguration) (ReadOnly)
+* **PipelineArn**: string (ReadOnly): The ARN of the pipeline.
+* **PipelineExecutionArn**: string (Identifier): The Amazon Resource Name (ARN) of the pipeline execution.
+* **PipelineExecutionDescription**: string (ReadOnly): The description of the pipeline execution.
+* **PipelineExecutionDisplayName**: string (ReadOnly): The display name of the pipeline execution.
+* **PipelineExecutionId**: string (ReadOnly): The unique identifier of the pipeline execution.
+* **PipelineExecutionStatus**: string (ReadOnly): The status of the pipeline execution.
+* **PipelineName**: string (ReadOnly): The name or ARN of the pipeline.
+* **PipelineVersionId**: int (ReadOnly): The ID of the pipeline version to start execution from.
+* **Tags**: [Tag](#tag)[] (ReadOnly): Tags associated with the pipeline execution.
+
 ## AWS.SageMaker/PipelineProperties
 ### Properties
 * **ParallelismConfiguration**: [Pipeline_ParallelismConfiguration](#pipelineparallelismconfiguration)
@@ -905,6 +1425,31 @@
 * **PipelineName**: string (Required, Identifier): The name of the Pipeline.
 * **RoleArn**: string (Required): Role Arn
 * **Tags**: [Tag](#tag)[]
+
+## AWS.SageMaker/ProcessingJobProperties
+### Properties
+* **AppSpecification**: [AppSpecification](#appspecification) (Required)
+* **AutoMLJobArn**: string (ReadOnly): The ARN of an AutoML job associated with this processing job.
+* **CreationTime**: string (ReadOnly): The time at which the processing job was created.
+* **Environment**: [Environment](#environment)
+* **ExitMessage**: string (ReadOnly): An optional string, up to one KB in size, that contains metadata from the processing container when the processing job exits.
+* **ExperimentConfig**: [ExperimentConfig](#experimentconfig)
+* **FailureReason**: string (ReadOnly): A string, up to one KB in size, that contains the reason a processing job failed, if it failed.
+* **LastModifiedTime**: string (ReadOnly): The time at which the processing job was last modified.
+* **MonitoringScheduleArn**: string (ReadOnly): The ARN of a monitoring schedule for an endpoint associated with this processing job.
+* **NetworkConfig**: [NetworkConfig](#networkconfig)
+* **ProcessingEndTime**: string (ReadOnly): The time at which the processing job completed.
+* **ProcessingInputs**: [ProcessingInputsObject](#processinginputsobject)[]: An array of inputs configuring the data to download into the processing container.
+* **ProcessingJobArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the processing job.
+* **ProcessingJobName**: string: The name of the processing job. The name must be unique within an AWS Region in the AWS account.
+* **ProcessingJobStatus**: string (ReadOnly): Provides the status of a processing job.
+* **ProcessingOutputConfig**: [ProcessingOutputConfig](#processingoutputconfig)
+* **ProcessingResources**: [ProcessingResources](#processingresources) (Required)
+* **ProcessingStartTime**: string (ReadOnly): The time at which the processing job started.
+* **RoleArn**: string (Required): The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.
+* **StoppingCondition**: [StoppingCondition](#stoppingcondition)
+* **Tags**: [Tag](#tag)[]: (Optional) An array of key-value pairs. For more information, see Using Cost Allocation Tags(https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL) in the AWS Billing and Cost Management User Guide.
+* **TrainingJobArn**: string (ReadOnly): The ARN of a training job associated with this processing job
 
 ## AWS.SageMaker/ProjectProperties
 ### Properties
@@ -930,6 +1475,72 @@
 * **SpaceSharingSettings**: [SpaceSharingSettings](#spacesharingsettings)
 * **Tags**: [Tag](#tag)[]: A list of tags to apply to the space.
 * **Url**: string (ReadOnly)
+
+## AWS.SageMaker/StudioLifecycleConfigProperties
+### Properties
+* **StudioLifecycleConfigAppType**: string (Required): The App type that the Lifecycle Configuration is attached to.
+* **StudioLifecycleConfigArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the Lifecycle Configuration.
+* **StudioLifecycleConfigContent**: string (Required): The content of your Amazon SageMaker Studio Lifecycle Configuration script. This content must be base64 encoded.
+* **StudioLifecycleConfigName**: string (Required, Identifier): The name of the Amazon SageMaker Studio Lifecycle Configuration.
+* **Tags**: [Tag](#tag)[]: Tags to be associated with the Lifecycle Configuration. Each tag consists of a key and an optional value. Tag keys must be unique per resource. Tags are searchable using the Search API.
+
+## AWS.SageMaker/TrainingJobProperties
+### Properties
+* **AlgorithmSpecification**: [AlgorithmSpecification](#algorithmspecification) (Required)
+* **BillableTimeInSeconds**: int (ReadOnly): The billable time in seconds.
+* **CheckpointConfig**: [CheckpointConfig](#checkpointconfig)
+* **CreationTime**: string (ReadOnly): A timestamp that indicates when the training job was created.
+* **DebugHookConfig**: [DebugHookConfig](#debughookconfig)
+* **DebugRuleConfigurations**: [DebugRuleConfiguration](#debugruleconfiguration)[]
+* **EnableInterContainerTrafficEncryption**: bool: Encrypts inter-container traffic for the training job.
+* **EnableManagedSpotTraining**: bool: Enables managed spot training.
+* **EnableNetworkIsolation**: bool: Isolates the training container.
+* **Environment**: [TrainingJob_Environment](#trainingjobenvironment): The environment variables to set in the Docker container.
+* **ExperimentConfig**: [ExperimentConfig](#experimentconfig)
+* **HyperParameters**: [TrainingJob_HyperParameters](#trainingjobhyperparameters): Algorithm-specific parameters that influence the quality of the model.
+* **InfraCheckConfig**: [InfraCheckConfig](#infracheckconfig)
+* **InputDataConfig**: [Channel](#channel)[]: An array of Channel objects that describes each data input channel.
+* **LastModifiedTime**: string (ReadOnly): A timestamp that indicates when the status of the training job was last modified.
+* **OutputDataConfig**: [OutputDataConfig](#outputdataconfig) (Required)
+* **ProfilerConfig**: [ProfilerConfig](#profilerconfig)
+* **ProfilerRuleConfigurations**: [ProfilerRuleConfiguration](#profilerruleconfiguration)[]
+* **ProfilingStatus**: string (ReadOnly): Profiling status of a training job.
+* **RemoteDebugConfig**: [RemoteDebugConfig](#remotedebugconfig)
+* **ResourceConfig**: [ResourceConfig](#resourceconfig) (Required)
+* **RetryStrategy**: [RetryStrategy](#retrystrategy)
+* **RoleArn**: string (Required): The Amazon Resource Name (ARN) of an IAM role that SageMaker can assume to perform tasks on your behalf.
+* **SecondaryStatus**: string (ReadOnly): The secondary status of the training job.
+* **SecondaryStatusTransitions**: [SecondaryStatusTransition](#secondarystatustransition)[] (ReadOnly): A history of all of the secondary statuses that the training job has transitioned through.
+* **StoppingCondition**: [StoppingCondition](#stoppingcondition) (Required)
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+* **TensorBoardOutputConfig**: [TensorBoardOutputConfig](#tensorboardoutputconfig)
+* **TrainingJobArn**: string (Identifier): The Amazon Resource Name (ARN) of the training job.
+* **TrainingJobName**: string (Required): The name of the training job.
+* **TrainingJobStatus**: string (ReadOnly): The status of the training job.
+* **TrainingTimeInSeconds**: int (ReadOnly): The training time in seconds.
+* **VpcConfig**: [VpcConfig](#vpcconfig)
+
+## AWS.SageMaker/TransformJobProperties
+### Properties
+* **BatchStrategy**: string: Specifies the number of records to include in a mini-batch for an HTTP inference request.
+* **CreationTime**: string (ReadOnly): A timestamp that shows when the transform job was created.
+* **DataCaptureConfig**: [TransformJob_DataCaptureConfig](#transformjobdatacaptureconfig): Configuration to control how SageMaker captures inference data.
+* **DataProcessing**: [TransformJob_DataProcessing](#transformjobdataprocessing): The data structure used to specify the data to be used for inference in a batch transform job.
+* **Environment**: [TransformJob_Environment](#transformjobenvironment): The environment variables to set in the Docker container.
+* **ExperimentConfig**: [TransformJob_ExperimentConfig](#transformjobexperimentconfig): Associates a SageMaker job as a trial component with an experiment and trial.
+* **MaxConcurrentTransforms**: int: The maximum number of parallel requests that can be sent to each instance in a transform job.
+* **MaxPayloadInMB**: int: The maximum allowed size of the payload, in MB.
+* **ModelClientConfig**: [TransformJob_ModelClientConfig](#transformjobmodelclientconfig): Configures the timeout and maximum number of retries for processing a transform job invocation.
+* **ModelName**: string (Required): The name of the model that you want to use for the transform job.
+* **Tags**: [TransformJob_Tags](#transformjobtags)[]: An array of key-value pairs.
+* **TransformEndTime**: string (ReadOnly): Indicates when the transform job has been completed, or has stopped or failed.
+* **TransformInput**: [TransformJob_TransformInput](#transformjobtransforminput) (Required): Describes the input source and the way the transform job consumes it.
+* **TransformJobArn**: string (Identifier): The Amazon Resource Name (ARN) of the transform job.
+* **TransformJobName**: string (Required, ReadOnly): The name of the transform job. The name must be unique within an AWS Region in an AWS account.
+* **TransformJobStatus**: string (ReadOnly): The status of the transform job.
+* **TransformOutput**: [TransformJob_TransformOutput](#transformjobtransformoutput) (Required): Describes the results of the transform job.
+* **TransformResources**: [TransformJob_TransformResources](#transformjobtransformresources) (Required): Describes the resources, including ML instance types and ML instance count, to use for the transform job.
+* **TransformStartTime**: string (ReadOnly): Indicates when the transform job starts on ML instances.
 
 ## AWS.SageMaker/TrialComponentProperties
 ### Properties
@@ -992,6 +1603,53 @@
 * **S3DataDistributionType**: string: Whether input data distributed in Amazon S3 is fully replicated or sharded by an S3 key. Defauts to FullyReplicated
 * **S3InputMode**: string: Whether the Pipe or File is used as the input mode for transfering data for the monitoring job. Pipe mode is recommended for large datasets. File mode is useful for small files that fit in memory. Defaults to File.
 
+## BatchTransformInput
+### Properties
+* **DataCapturedDestinationS3Uri**: string (Required): A URI that identifies the Amazon S3 storage location where Batch Transform Job captures data.
+* **DatasetFormat**: [DatasetFormat](#datasetformat) (Required)
+* **EndTimeOffset**: string: Monitoring end time offset, e.g. PT0H
+* **FeaturesAttribute**: string: JSONpath to locate features in JSONlines dataset
+* **InferenceAttribute**: string: Index or JSONpath to locate predicted label(s)
+* **LocalPath**: string (Required): Path to the filesystem where the endpoint data is available to the container.
+* **ProbabilityAttribute**: string: Index or JSONpath to locate probabilities
+* **ProbabilityThresholdAttribute**: int
+* **S3DataDistributionType**: string: Whether input data distributed in Amazon S3 is fully replicated or sharded by an S3 key. Defauts to FullyReplicated
+* **S3InputMode**: string: Whether the Pipe or File is used as the input mode for transfering data for the monitoring job. Pipe mode is recommended for large datasets. File mode is useful for small files that fit in memory. Defaults to File.
+* **StartTimeOffset**: string: Monitoring start time offset, e.g. -PT1H
+
+## BatchTransformInput
+### Properties
+* **DataCapturedDestinationS3Uri**: string (Required): A URI that identifies the Amazon S3 storage location where Batch Transform Job captures data.
+* **DatasetFormat**: [DatasetFormat](#datasetformat) (Required)
+* **FeaturesAttribute**: string: JSONpath to locate features in JSONlines dataset
+* **InferenceAttribute**: string: Index or JSONpath to locate predicted label(s)
+* **LocalPath**: string (Required): Path to the filesystem where the endpoint data is available to the container.
+* **ProbabilityAttribute**: string: Index or JSONpath to locate probabilities
+* **S3DataDistributionType**: string: Whether input data distributed in Amazon S3 is fully replicated or sharded by an S3 key. Defauts to FullyReplicated
+* **S3InputMode**: string: Whether the Pipe or File is used as the input mode for transfering data for the monitoring job. Pipe mode is recommended for large datasets. File mode is useful for small files that fit in memory. Defaults to File.
+
+## BatchTransformInput
+### Properties
+* **DataCapturedDestinationS3Uri**: string (Required): A URI that identifies the Amazon S3 storage location where Batch Transform Job captures data.
+* **DatasetFormat**: [DatasetFormat](#datasetformat) (Required)
+* **EndTimeOffset**: string: Monitoring end time offset, e.g. PT0H
+* **InferenceAttribute**: string: Index or JSONpath to locate predicted label(s)
+* **LocalPath**: string (Required): Path to the filesystem where the endpoint data is available to the container.
+* **ProbabilityAttribute**: string: Index or JSONpath to locate probabilities
+* **ProbabilityThresholdAttribute**: int
+* **S3DataDistributionType**: string: Whether input data distributed in Amazon S3 is fully replicated or sharded by an S3 key. Defauts to FullyReplicated
+* **S3InputMode**: string: Whether the Pipe or File is used as the input mode for transfering data for the monitoring job. Pipe mode is recommended for large datasets. File mode is useful for small files that fit in memory. Defaults to File.
+* **StartTimeOffset**: string: Monitoring start time offset, e.g. -PT1H
+
+## BatchTransformInput
+### Properties
+* **DataCapturedDestinationS3Uri**: string (Required): A URI that identifies the Amazon S3 storage location where Batch Transform Job captures data.
+* **DatasetFormat**: [DatasetFormat](#datasetformat) (Required)
+* **ExcludeFeaturesAttribute**: string: Indexes or names of the features to be excluded from analysis
+* **LocalPath**: string (Required): Path to the filesystem where the endpoint data is available to the container.
+* **S3DataDistributionType**: string: Whether input data distributed in Amazon S3 is fully replicated or sharded by an S3 key. Defauts to FullyReplicated
+* **S3InputMode**: string: Whether the Pipe or File is used as the input mode for transfering data for the monitoring job. Pipe mode is recommended for large datasets. File mode is useful for small files that fit in memory. Defaults to File.
+
 ## Bias
 ### Properties
 * **PostTrainingReport**: [MetricsSource](#metricssource)
@@ -1009,6 +1667,10 @@
 * **BusinessProblem**: string: What business problem does the model solve?
 * **BusinessStakeholders**: string: Business stakeholders.
 * **LineOfBusiness**: string: Line of business.
+
+## CandidateGenerationConfig
+### Properties
+* **AlgorithmsConfig**: [AutoMLAlgorithmConfig](#automlalgorithmconfig)[]: Stores the configuration information for the selection of algorithms trained on tabular data.
 
 ## CapacityReservationConfig
 ### Properties
@@ -1055,6 +1717,16 @@
 * **TemplateName**: string (Required): The name of the template used for the project.
 * **TemplateURL**: string (Required): The URL of the CloudFormation template.
 
+## Channel
+### Properties
+* **ChannelName**: string (Required): The name of the channel.
+* **CompressionType**: string
+* **ContentType**: string
+* **DataSource**: [DataSource](#datasource) (Required)
+* **InputMode**: string
+* **RecordWrapperType**: string
+* **ShuffleConfig**: [ShuffleConfig](#shuffleconfig)
+
 ## ChannelSpecification
 ### Properties
 * **Description**: string
@@ -1063,6 +1735,11 @@
 * **SupportedCompressionTypes**: string[]
 * **SupportedContentTypes**: string[] (Required)
 * **SupportedInputModes**: string[] (Required)
+
+## CheckpointConfig
+### Properties
+* **LocalPath**: string
+* **S3Uri**: string (Required)
 
 ## ClarifyExplainerConfig
 ### Properties
@@ -1126,6 +1803,41 @@
 * **InstanceType**: string (Required): The ML compute instance type for the processing job.
 * **VolumeKmsKeyId**: string: The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance(s) that run the model monitoring job.
 * **VolumeSizeInGB**: int (Required): The size of the ML storage volume, in gigabytes, that you want to provision. You must specify sufficient ML storage for your scenario.
+
+## ClusterConfig
+### Properties
+* **InstanceCount**: int (Required): The number of ML compute instances to use in the model monitoring job. For distributed processing jobs, specify a value greater than 1. The default value is 1.
+* **InstanceType**: string (Required): The ML compute instance type for the processing job.
+* **VolumeKmsKeyId**: string: The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance(s) that run the model monitoring job.
+* **VolumeSizeInGB**: int (Required): The size of the ML storage volume, in gigabytes, that you want to provision. You must specify sufficient ML storage for your scenario.
+
+## ClusterConfig
+### Properties
+* **InstanceCount**: int (Required): The number of ML compute instances to use in the model monitoring job. For distributed processing jobs, specify a value greater than 1. The default value is 1.
+* **InstanceType**: string (Required): The ML compute instance type for the processing job.
+* **VolumeKmsKeyId**: string: The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance(s) that run the model monitoring job.
+* **VolumeSizeInGB**: int (Required): The size of the ML storage volume, in gigabytes, that you want to provision. You must specify sufficient ML storage for your scenario.
+
+## ClusterConfig
+### Properties
+* **InstanceCount**: int (Required): The number of ML compute instances to use in the model monitoring job. For distributed processing jobs, specify a value greater than 1. The default value is 1.
+* **InstanceType**: string (Required): The ML compute instance type for the processing job.
+* **VolumeKmsKeyId**: string: The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance(s) that run the model monitoring job.
+* **VolumeSizeInGB**: int (Required): The size of the ML storage volume, in gigabytes, that you want to provision. You must specify sufficient ML storage for your scenario.
+
+## ClusterConfig
+### Properties
+* **InstanceCount**: int (Required): The number of ML compute instances to use in the model monitoring job. For distributed processing jobs, specify a value greater than 1. The default value is 1.
+* **InstanceType**: string (Required): The ML compute instance type for the processing job.
+* **VolumeKmsKeyId**: string: The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance(s) that run the model monitoring job.
+* **VolumeSizeInGB**: int (Required): The size of the ML storage volume, in gigabytes, that you want to provision. You must specify sufficient ML storage for your scenario.
+
+## ClusterConfig
+### Properties
+* **InstanceCount**: int (Required): The number of ML compute instances to use in the processing job. For distributed processing jobs, specify a value greater than 1. The default value is 1.
+* **InstanceType**: string (Required): The ML compute instance type for the processing job.
+* **VolumeKmsKeyId**: string: The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance(s) that run the processing job.
+* **VolumeSizeInGB**: int (Required): The size of the ML storage volume in gigabytes that you want to provision. You must specify sufficient ML storage for your scenario.
 
 ## ClusterEbsVolumeConfig
 ### Properties
@@ -1275,6 +1987,11 @@
 * **CognitoUserGroup**: string (Required): An identifier for a user group.
 * **CognitoUserPool**: string (Required): An identifier for a user pool. The user pool must be in the same region as the service that you are calling.
 
+## CollectionConfiguration
+### Properties
+* **CollectionName**: string
+* **CollectionParameters**: [TrainingJob_CollectionParameters](#trainingjobcollectionparameters)
+
 ## ComputeQuotaConfig
 ### Properties
 * **ComputeQuotaResources**: [ComputeQuotaResourceConfig](#computequotaresourceconfig)[]: Per-instance-type compute quotas for the team. When VCpu / MemoryInGiB / Accelerators are partially specified, SageMaker auto-fills the remaining fields ratio-proportionally to the underlying instance ? Read may return values the customer did not supply (drift may flag this).
@@ -1294,6 +2011,22 @@
 ### Properties
 * **FairShareWeight**: int: Relative fair-share weight when fair-share scheduling is enabled on the parent ClusterSchedulerConfig. Defaults service-side to 0 when omitted.
 * **TeamName**: string (Required): The name of the team. Materialized as Kubernetes namespace 'hyperpod-ns-<TeamName>' on the EKS cluster, so the value must satisfy RFC 1123 namespace constraints. Reassignment is not supported (createOnly).
+
+## ConstraintsResource
+### Properties
+* **S3Uri**: string: The Amazon S3 URI for baseline constraint file in Amazon S3 that the current monitoring job should validated against.
+
+## ConstraintsResource
+### Properties
+* **S3Uri**: string: The Amazon S3 URI for baseline constraint file in Amazon S3 that the current monitoring job should validated against.
+
+## ConstraintsResource
+### Properties
+* **S3Uri**: string: The Amazon S3 URI for baseline constraint file in Amazon S3 that the current monitoring job should validated against.
+
+## ConstraintsResource
+### Properties
+* **S3Uri**: string: The Amazon S3 URI for baseline constraint file in Amazon S3 that the current monitoring job should validated against.
 
 ## ConstraintsResource
 ### Properties
@@ -1372,6 +2105,22 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 ### Properties
 * **Header**: bool: A boolean flag indicating if given CSV has header
 
+## Csv
+### Properties
+* **Header**: bool: A boolean flag indicating if given CSV has header
+
+## Csv
+### Properties
+* **Header**: bool: A boolean flag indicating if given CSV has header
+
+## Csv
+### Properties
+* **Header**: bool: A boolean flag indicating if given CSV has header
+
+## Csv
+### Properties
+* **Header**: bool: A boolean flag indicating if given CSV has header
+
 ## CustomerMetadataProperties
 ### Properties
 
@@ -1441,6 +2190,61 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **Database**: string (Required)
 * **TableName**: string (Required)
 
+## DataQualityAppSpecification
+### Properties
+* **ContainerArguments**: string[]: An array of arguments for the container used to run the monitoring job.
+* **ContainerEntrypoint**: string[]: Specifies the entrypoint for a container used to run the monitoring job.
+* **Environment**: [DataQualityJobDefinition_Environment](#dataqualityjobdefinitionenvironment): Sets the environment variables in the Docker container
+* **ImageUri**: string (Required): The container image to be run by the monitoring job.
+* **PostAnalyticsProcessorSourceUri**: string: An Amazon S3 URI to a script that is called after analysis has been performed. Applicable only for the built-in (first party) containers.
+* **RecordPreprocessorSourceUri**: string: An Amazon S3 URI to a script that is called per row prior to running analysis. It can base64 decode the payload and convert it into a flatted json so that the built-in container can use the converted data. Applicable only for the built-in (first party) containers
+
+## DataQualityBaselineConfig
+### Properties
+* **BaseliningJobName**: string
+* **ConstraintsResource**: [ConstraintsResource](#constraintsresource)
+* **StatisticsResource**: [StatisticsResource](#statisticsresource)
+
+## DataQualityJobDefinition_Environment
+### Properties
+
+## DataQualityJobInput
+### Properties
+* **BatchTransformInput**: [BatchTransformInput](#batchtransforminput)
+* **EndpointInput**: [EndpointInput](#endpointinput)
+
+## DatasetDefinition
+### Properties
+* **AthenaDatasetDefinition**: [AthenaDatasetDefinition](#athenadatasetdefinition)
+* **DataDistributionType**: string: Whether the generated dataset is FullyReplicated or ShardedByS3Key (default).
+* **InputMode**: string: Whether to use File or Pipe input mode. In File (default) mode, Amazon SageMaker copies the data from the input source onto the local Amazon Elastic Block Store (Amazon EBS) volumes before starting your training algorithm. This is the most commonly used input mode. In Pipe mode, Amazon SageMaker streams input data from the source directly to your algorithm without using the EBS volume.
+* **LocalPath**: string: The local path where you want Amazon SageMaker to download the Dataset Definition inputs to run a processing job. LocalPath is an absolute path to the input data. This is a required parameter when AppManaged is False (default).
+* **RedshiftDatasetDefinition**: [RedshiftDatasetDefinition](#redshiftdatasetdefinition)
+
+## DatasetFormat
+### Properties
+* **Csv**: [Csv](#csv)
+* **Json**: [Json](#json)
+* **Parquet**: bool
+
+## DatasetFormat
+### Properties
+* **Csv**: [Csv](#csv)
+* **Json**: [Json](#json)
+* **Parquet**: bool
+
+## DatasetFormat
+### Properties
+* **Csv**: [Csv](#csv)
+* **Json**: [Json](#json)
+* **Parquet**: bool
+
+## DatasetFormat
+### Properties
+* **Csv**: [Csv](#csv)
+* **Json**: [Json](#json)
+* **Parquet**: bool
+
 ## DatasetFormat
 ### Properties
 * **Csv**: [Csv](#csv)
@@ -1451,11 +2255,33 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 ### Properties
 * **S3DataSource**: [S3DataSource](#s3datasource) (Required)
 
+## DataSource
+### Properties
+* **FileSystemDataSource**: [FileSystemDataSource](#filesystemdatasource)
+* **S3DataSource**: [S3DataSource](#s3datasource)
+
 ## DataStorageConfig
 ### Properties
 * **ContentType**: [CaptureContentTypeHeader](#capturecontenttypeheader)
 * **Destination**: string (Required): The Amazon S3 bucket where the inference request and response data is stored.
 * **KmsKey**: string: The AWS Key Management Service key that Amazon SageMaker uses to encrypt captured data at rest using Amazon S3 server-side encryption.
+
+## DebugHookConfig
+### Properties
+* **CollectionConfigurations**: [CollectionConfiguration](#collectionconfiguration)[]
+* **HookParameters**: [TrainingJob_HookParameters](#trainingjobhookparameters)
+* **LocalPath**: string
+* **S3OutputPath**: string (Required)
+
+## DebugRuleConfiguration
+### Properties
+* **InstanceType**: string
+* **LocalPath**: string
+* **RuleConfigurationName**: string (Required)
+* **RuleEvaluatorImage**: string (Required)
+* **RuleParameters**: [TrainingJob_RuleParameters](#trainingjobruleparameters)
+* **S3OutputPath**: string
+* **VolumeSizeInGB**: int
 
 ## DefaultEbsStorageSettings
 ### Properties
@@ -1575,10 +2401,57 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **FileSystemId**: string (Required)
 * **FileSystemPath**: string
 
+## EmrServerlessComputeConfig
+### Properties
+* **ExecutionRoleARN**: string (Required): The ARN of the IAM role that is used to access the data.
+
 ## EmrSettings
 ### Properties
 * **AssumableRoleArns**: string[]: An array of Amazon Resource Names (ARNs) of the IAM roles that the execution role of SageMaker can assume.
 * **ExecutionRoleArns**: string[]: An array of ARNs of IAM roles used by EMR cluster instances or job execution environments.
+
+## EndpointInput
+### Properties
+* **EndpointName**: string (Required)
+* **ExcludeFeaturesAttribute**: string: Indexes or names of the features to be excluded from analysis
+* **LocalPath**: string (Required): Path to the filesystem where the endpoint data is available to the container.
+* **S3DataDistributionType**: string: Whether input data distributed in Amazon S3 is fully replicated or sharded by an S3 key. Defauts to FullyReplicated
+* **S3InputMode**: string: Whether the Pipe or File is used as the input mode for transfering data for the monitoring job. Pipe mode is recommended for large datasets. File mode is useful for small files that fit in memory. Defaults to File.
+
+## EndpointInput
+### Properties
+* **EndpointName**: string (Required)
+* **EndTimeOffset**: string: Monitoring end time offset, e.g. PT0H
+* **FeaturesAttribute**: string: JSONpath to locate features in JSONlines dataset
+* **InferenceAttribute**: string: Index or JSONpath to locate predicted label(s)
+* **LocalPath**: string (Required): Path to the filesystem where the endpoint data is available to the container.
+* **ProbabilityAttribute**: string: Index or JSONpath to locate probabilities
+* **ProbabilityThresholdAttribute**: int
+* **S3DataDistributionType**: string: Whether input data distributed in Amazon S3 is fully replicated or sharded by an S3 key. Defauts to FullyReplicated
+* **S3InputMode**: string: Whether the Pipe or File is used as the input mode for transfering data for the monitoring job. Pipe mode is recommended for large datasets. File mode is useful for small files that fit in memory. Defaults to File.
+* **StartTimeOffset**: string: Monitoring start time offset, e.g. -PT1H
+
+## EndpointInput
+### Properties
+* **EndpointName**: string (Required)
+* **FeaturesAttribute**: string: JSONpath to locate features in JSONlines dataset
+* **InferenceAttribute**: string: Index or JSONpath to locate predicted label(s)
+* **LocalPath**: string (Required): Path to the filesystem where the endpoint data is available to the container.
+* **ProbabilityAttribute**: string: Index or JSONpath to locate probabilities
+* **S3DataDistributionType**: string: Whether input data distributed in Amazon S3 is fully replicated or sharded by an S3 key. Defauts to FullyReplicated
+* **S3InputMode**: string: Whether the Pipe or File is used as the input mode for transfering data for the monitoring job. Pipe mode is recommended for large datasets. File mode is useful for small files that fit in memory. Defaults to File.
+
+## EndpointInput
+### Properties
+* **EndpointName**: string (Required)
+* **EndTimeOffset**: string: Monitoring end time offset, e.g. PT0H
+* **InferenceAttribute**: string: Index or JSONpath to locate predicted label(s)
+* **LocalPath**: string (Required): Path to the filesystem where the endpoint data is available to the container.
+* **ProbabilityAttribute**: string: Index or JSONpath to locate probabilities
+* **ProbabilityThresholdAttribute**: int
+* **S3DataDistributionType**: string: Whether input data distributed in Amazon S3 is fully replicated or sharded by an S3 key. Defauts to FullyReplicated
+* **S3InputMode**: string: Whether the Pipe or File is used as the input mode for transfering data for the monitoring job. Pipe mode is recommended for large datasets. File mode is useful for small files that fit in memory. Defaults to File.
+* **StartTimeOffset**: string: Monitoring start time offset, e.g. -PT1H
 
 ## EndpointInput
 ### Properties
@@ -1593,6 +2466,9 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **EndpointConfigName**: string: The name of the endpoint configuration.
 * **EndpointName**: string (Required)
 * **EndpointStatus**: string: The status of the endpoint. For possible values of the status of an endpoint.
+
+## Environment
+### Properties
 
 ## Environment
 ### Properties
@@ -1617,6 +2493,20 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 ### Properties
 * **Key**: string (Required): The tag key.
 * **Value**: string (Required): The tag value.
+
+## ExperimentConfig
+### Properties
+* **ExperimentName**: string: The name of an existing experiment to associate with the trial component.
+* **RunName**: string: The name of the experiment run to associate with the trial component.
+* **TrialComponentDisplayName**: string: The display name for the trial component. If this key isn't specified, the display name is the trial component name.
+* **TrialName**: string: The name of an existing trial to associate the trial component with. If not specified, a new trial is created.
+
+## ExperimentConfig
+### Properties
+* **ExperimentName**: string
+* **RunName**: string
+* **TrialComponentDisplayName**: string
+* **TrialName**: string
 
 ## Explainability
 ### Properties
@@ -1645,6 +2535,10 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **StorageType**: string
 * **TtlDuration**: [TtlDuration](#ttlduration)
 
+## FeatureStoreOutput
+### Properties
+* **FeatureGroupName**: string (Required): The name of the Amazon SageMaker FeatureGroup to use as the destination for processing job output. Note that your processing script is responsible for putting records into your Feature Store.
+
 ## FileSource
 ### Properties
 * **ContentDigest**: string: The digest of the file source.
@@ -1656,6 +2550,13 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **DefaultGid**: int: The default POSIX group ID (GID). If not specified, defaults to 100.
 * **DefaultUid**: int: The default POSIX user ID (UID). If not specified, defaults to 1000.
 * **MountPath**: string: The path within the image to mount the user's EFS home directory. The directory should be empty. If not specified, defaults to /home/sagemaker-user.
+
+## FileSystemDataSource
+### Properties
+* **DirectoryPath**: string (Required)
+* **FileSystemAccessMode**: string (Required)
+* **FileSystemId**: string (Required)
+* **FileSystemType**: string (Required)
 
 ## FSxLustreConfig
 ### Properties
@@ -1692,6 +2593,10 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **SageMakerImageName**: string: The SageMaker image name that you are hiding from the Studio user interface.
 * **VersionAliases**: string[]
 
+## HolidayConfigAttributes
+### Properties
+* **CountryCode**: string: The country code for the holiday calendar.
+
 ## Hub_S3StorageConfig
 ### Properties
 * **S3OutputPath**: string: The Amazon S3 bucket prefix for hosting hub content.
@@ -1710,11 +2615,180 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **Range**: [ParameterRange](#parameterrange)
 * **Type**: string (Required)
 
+## HyperParameterTuningJob_AlgorithmSpecification
+### Properties
+* **AlgorithmName**: string
+* **MetricDefinitions**: [HyperParameterTuningJob_AlgorithmSpecification_MetricDefinitions](#hyperparametertuningjobalgorithmspecificationmetricdefinitions)[]
+* **TrainingImage**: string
+* **TrainingInputMode**: string (Required)
+
+## HyperParameterTuningJob_AlgorithmSpecification_MetricDefinitions
+### Properties
+* **Name**: string (Required)
+* **Regex**: string (Required)
+
+## HyperParameterTuningJob_AutoParameters
+### Properties
+* **Name**: string (Required)
+* **ValueHint**: string (Required)
+
+## HyperParameterTuningJob_CategoricalParameterRanges
+### Properties
+* **Name**: string (Required)
+* **Values**: string[] (Required)
+
+## HyperParameterTuningJob_CheckpointConfig
+### Properties
+* **LocalPath**: string
+* **S3Uri**: string
+
+## HyperParameterTuningJob_ContinuousParameterRanges
+### Properties
+* **MaxValue**: string (Required)
+* **MinValue**: string (Required)
+* **Name**: string (Required)
+* **ScalingType**: string
+
+## HyperParameterTuningJob_Environment
+### Properties
+
+## HyperParameterTuningJob_HyperParameterTuningJobObjective
+### Properties
+* **MetricName**: string (Required): Name of the metric to optimize
+* **Type**: string (Required): Whether to minimize or maximize the objective metric
+
+## HyperParameterTuningJob_InputDataConfig
+### Properties
+* **ChannelName**: string (Required)
+* **DataSource**: [HyperParameterTuningJob_InputDataConfig_DataSource](#hyperparametertuningjobinputdataconfigdatasource) (Required)
+
+## HyperParameterTuningJob_InputDataConfig_DataSource
+### Properties
+* **S3DataSource**: [HyperParameterTuningJob_InputDataConfig_DataSource_S3DataSource](#hyperparametertuningjobinputdataconfigdatasources3datasource) (Required)
+
+## HyperParameterTuningJob_InputDataConfig_DataSource_S3DataSource
+### Properties
+* **S3DataDistributionType**: string
+* **S3DataType**: string (Required)
+* **S3Uri**: string (Required)
+
+## HyperParameterTuningJob_IntegerParameterRanges
+### Properties
+* **MaxValue**: string (Required)
+* **MinValue**: string (Required)
+* **Name**: string (Required)
+* **ScalingType**: string
+
+## HyperParameterTuningJob_OutputDataConfig
+### Properties
+* **CompressionType**: string: Compression type for output data
+* **KmsKeyId**: string: The AWS KMS key used to encrypt the output data
+* **S3OutputPath**: string (Required): The S3 path where you want Amazon SageMaker to store the output data
+
+## HyperParameterTuningJob_ParentHyperParameterTuningJobs
+### Properties
+* **HyperParameterTuningJobName**: string: The name of the parent hyperparameter tuning job
+
+## HyperParameterTuningJob_ResourceConfig
+### Properties
+* **InstanceCount**: int
+* **InstanceGroups**: [HyperParameterTuningJob_ResourceConfig_InstanceGroups](#hyperparametertuningjobresourceconfiginstancegroups)[]
+* **InstancePlacementConfig**: [HyperParameterTuningJob_ResourceConfig_InstancePlacementConfig](#hyperparametertuningjobresourceconfiginstanceplacementconfig)
+* **InstanceType**: string
+* **KeepAlivePeriodInSeconds**: int
+* **TrainingPlanArn**: string
+* **VolumeKmsKeyId**: string
+* **VolumeSizeInGB**: int (Required)
+
+## HyperParameterTuningJob_ResourceConfig_InstanceGroups
+### Properties
+* **InstanceCount**: int (Required)
+* **InstanceGroupName**: string (Required)
+* **InstanceType**: string (Required)
+
+## HyperParameterTuningJob_ResourceConfig_InstancePlacementConfig
+### Properties
+* **EnableMultipleJobs**: bool
+* **PlacementSpecifications**: [HyperParameterTuningJob_ResourceConfig_InstancePlacementConfig_PlacementSpecifications](#hyperparametertuningjobresourceconfiginstanceplacementconfigplacementspecifications)[]
+
+## HyperParameterTuningJob_ResourceConfig_InstancePlacementConfig_PlacementSpecifications
+### Properties
+* **InstanceCount**: int (Required)
+* **UltraServerId**: string
+
+## HyperParameterTuningJob_RetryStrategy
+### Properties
+* **MaximumRetryAttempts**: int (Required)
+
+## HyperParameterTuningJob_StaticHyperParameters
+### Properties
+
+## HyperParameterTuningJob_StoppingCondition
+### Properties
+* **MaxPendingTimeInSeconds**: int
+* **MaxRuntimeInSeconds**: int
+* **MaxWaitTimeInSeconds**: int
+
+## HyperParameterTuningJob_StrategyConfig
+### Properties
+* **HyperbandStrategyConfig**: [HyperParameterTuningJob_StrategyConfig_HyperbandStrategyConfig](#hyperparametertuningjobstrategyconfighyperbandstrategyconfig)
+
+## HyperParameterTuningJob_StrategyConfig_HyperbandStrategyConfig
+### Properties
+* **MaxResource**: int
+* **MinResource**: int
+
+## HyperParameterTuningJob_TuningJobCompletionCriteria
+### Properties
+* **BestObjectiveNotImproving**: [HyperParameterTuningJob_TuningJobCompletionCriteria_BestObjectiveNotImproving](#hyperparametertuningjobtuningjobcompletioncriteriabestobjectivenotimproving)
+* **ConvergenceDetected**: [HyperParameterTuningJob_TuningJobCompletionCriteria_ConvergenceDetected](#hyperparametertuningjobtuningjobcompletioncriteriaconvergencedetected)
+* **TargetObjectiveMetricValue**: int
+
+## HyperParameterTuningJob_TuningJobCompletionCriteria_BestObjectiveNotImproving
+### Properties
+* **MaxNumberOfTrainingJobsNotImproving**: int
+
+## HyperParameterTuningJob_TuningJobCompletionCriteria_ConvergenceDetected
+### Properties
+* **CompleteOnConvergence**: string
+
+## HyperParameterTuningJob_TuningObjective
+### Properties
+* **MetricName**: string (Required)
+* **Type**: string (Required)
+
+## HyperParameterTuningJob_VpcConfig
+### Properties
+* **SecurityGroupIds**: string[] (Required)
+* **Subnets**: string[] (Required)
+
+## HyperParameterTuningJobConfig
+### Properties
+* **HyperParameterTuningJobObjective**: [HyperParameterTuningJob_HyperParameterTuningJobObjective](#hyperparametertuningjobhyperparametertuningjobobjective): Specifies the metric used to evaluate training jobs
+* **ParameterRanges**: [ParameterRanges](#parameterranges)
+* **RandomSeed**: int
+* **ResourceLimits**: [ResourceLimits](#resourcelimits) (Required)
+* **Strategy**: string (Required): Strategy to use for hyperparameter tuning
+* **StrategyConfig**: [HyperParameterTuningJob_StrategyConfig](#hyperparametertuningjobstrategyconfig)
+* **TrainingJobEarlyStoppingType**: string
+* **TuningJobCompletionCriteria**: [HyperParameterTuningJob_TuningJobCompletionCriteria](#hyperparametertuningjobtuningjobcompletioncriteria)
+
 ## HyperParameterTuningJobObjective
 ### Properties
 * **MetricName**: string (Required)
 * **Type**: string (Required)
 
+## HyperParameterTuningJobWarmStartConfig
+### Properties
+* **ParentHyperParameterTuningJobs**: [HyperParameterTuningJob_ParentHyperParameterTuningJobs](#hyperparametertuningjobparenthyperparametertuningjobs)[] (Required)
+* **WarmStartType**: string (Required)
+
+## IamIdentity
+### Properties
+* **Arn**: string: The Amazon Resource Name (ARN) of the IAM identity.
+* **PrincipalId**: string: The ID of the principal that assumes the IAM identity.
+* **SourceIdentity**: string: The person or application which assumes the IAM identity.
+
 ## IdleSettings
 ### Properties
 * **IdleTimeoutInMinutes**: int
@@ -1728,6 +2802,10 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **LifecycleManagement**: string
 * **MaxIdleTimeoutInMinutes**: int
 * **MinIdleTimeoutInMinutes**: int
+
+## ImageClassificationJobConfig
+### Properties
+* **CompletionCriteria**: [AutoMLJobCompletionCriteria](#automljobcompletioncriteria): How long a job is allowed to run, or how many candidates a job is allowed to generate.
 
 ## ImageConfig
 ### Properties
@@ -1855,6 +2933,16 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **SupportedResponseMIMETypes**: string[] (Required): The supported MIME types for the output data.
 * **SupportedTransformInstanceTypes**: string[]: A list of the instance types on which a transformation job can be run or on which an endpoint can be deployed.
 
+## InfraCheckConfig
+### Properties
+* **EnableInfraCheck**: bool
+
+## InstanceGroup
+### Properties
+* **InstanceCount**: int (Required)
+* **InstanceGroupName**: string (Required)
+* **InstanceType**: string (Required)
+
 ## InstanceMetadataServiceConfiguration
 ### Properties
 * **MinimumInstanceMetadataServiceVersion**: string (Required): Indicates the minimum IMDS version that the notebook instance supports. When passed as part of CreateNotebookInstance, if no value is selected, then it defaults to IMDSv1. This means that both IMDSv1 and IMDSv2 are supported. If passed as part of UpdateNotebookInstance, there is no default.
@@ -1881,6 +2969,22 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **IntendedUses**: string: intended use cases.
 * **PurposeOfModel**: string: Why the model was developed?
 * **RiskRating**: string
+
+## Json
+### Properties
+* **Line**: bool: A boolean flag indicating if it is JSON line format
+
+## Json
+### Properties
+* **Line**: bool: A boolean flag indicating if it is JSON line format
+
+## Json
+### Properties
+* **Line**: bool: A boolean flag indicating if it is JSON line format
+
+## Json
+### Properties
+* **Line**: bool: A boolean flag indicating if it is JSON line format
 
 ## Json
 ### Properties
@@ -1997,6 +3101,11 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **Name**: string (Required)
 * **Regex**: string (Required)
 
+## MetricDefinition
+### Properties
+* **Name**: string (Required): The name of the metric.
+* **Regex**: string (Required): A regular expression that searches the output of a training job and gets the value of the metric.
+
 ## MetricGroup
 ### Properties
 * **MetricData**: [ModelCard_MetricData](#modelcardmetricdata)[] (Required)
@@ -2024,11 +3133,35 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## ModelAccessConfig
 ### Properties
+* **AcceptEula**: bool (Required): Specifies agreement to the model end-user license agreement (EULA).
+
+## ModelAccessConfig
+### Properties
 * **AcceptEula**: bool (Required): Specifies agreement to the model end-user license agreement (EULA). The `AcceptEula` value must be explicitly defined as `True` in order to accept the EULA that this model requires. You are responsible for reviewing and complying with any applicable license terms and making sure they are acceptable for your use case before downloading or using a model.
 
 ## ModelAccessConfig
 ### Properties
 * **AcceptEula**: bool (Required): Specifies agreement to the model end-user license agreement (EULA).
+
+## ModelBiasAppSpecification
+### Properties
+* **ConfigUri**: string (Required): The S3 URI to an analysis configuration file
+* **Environment**: [ModelBiasJobDefinition_Environment](#modelbiasjobdefinitionenvironment): Sets the environment variables in the Docker container
+* **ImageUri**: string (Required): The container image to be run by the monitoring job.
+
+## ModelBiasBaselineConfig
+### Properties
+* **BaseliningJobName**: string
+* **ConstraintsResource**: [ConstraintsResource](#constraintsresource)
+
+## ModelBiasJobDefinition_Environment
+### Properties
+
+## ModelBiasJobInput
+### Properties
+* **BatchTransformInput**: [BatchTransformInput](#batchtransforminput)
+* **EndpointInput**: [EndpointInput](#endpointinput)
+* **GroundTruthS3Input**: [MonitoringGroundTruthS3Input](#monitoringgroundtruths3input) (Required)
 
 ## ModelCard
 ### Properties
@@ -2068,6 +3201,23 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 ### Properties
 * **ContainerImage**: string[]: SageMaker training image uri.
 
+## ModelCardExportArtifacts
+### Properties
+* **S3ExportArtifacts**: string (Required): The Amazon S3 URI of the exported model artifacts.
+
+## ModelCardExportOutputConfig
+### Properties
+* **S3OutputPath**: string (Required): The Amazon S3 output path to export your model card PDF.
+
+## ModelCompilationConfig
+### Properties
+* **Image**: string: The URI of an LMI DLC in Amazon ECR.
+* **OverrideEnvironment**: [OptimizationJob_OverrideEnvironment](#optimizationjoboverrideenvironment): Environment variables that override the default ones in the model container.
+
+## ModelDashboardIndicatorAction
+### Properties
+* **Enabled**: bool: Indicates whether the alert action is turned on.
+
 ## ModelDataQuality
 ### Properties
 * **Constraints**: [MetricsSource](#metricssource)
@@ -2080,6 +3230,25 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 ## ModelDataSource
 ### Properties
 * **S3DataSource**: [S3ModelDataSource](#s3modeldatasource)
+
+## ModelExplainabilityAppSpecification
+### Properties
+* **ConfigUri**: string (Required): The S3 URI to an analysis configuration file
+* **Environment**: [ModelExplainabilityJobDefinition_Environment](#modelexplainabilityjobdefinitionenvironment): Sets the environment variables in the Docker container
+* **ImageUri**: string (Required): The container image to be run by the monitoring job.
+
+## ModelExplainabilityBaselineConfig
+### Properties
+* **BaseliningJobName**: string
+* **ConstraintsResource**: [ConstraintsResource](#constraintsresource)
+
+## ModelExplainabilityJobDefinition_Environment
+### Properties
+
+## ModelExplainabilityJobInput
+### Properties
+* **BatchTransformInput**: [BatchTransformInput](#batchtransforminput)
+* **EndpointInput**: [EndpointInput](#endpointinput)
 
 ## ModelInfrastructureConfig
 ### Properties
@@ -2174,11 +3343,49 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **Constraints**: [MetricsSource](#metricssource)
 * **Statistics**: [MetricsSource](#metricssource)
 
+## ModelQualityAppSpecification
+### Properties
+* **ContainerArguments**: string[]: An array of arguments for the container used to run the monitoring job.
+* **ContainerEntrypoint**: string[]: Specifies the entrypoint for a container used to run the monitoring job.
+* **Environment**: [ModelQualityJobDefinition_Environment](#modelqualityjobdefinitionenvironment): Sets the environment variables in the Docker container
+* **ImageUri**: string (Required): The container image to be run by the monitoring job.
+* **PostAnalyticsProcessorSourceUri**: string: An Amazon S3 URI to a script that is called after analysis has been performed. Applicable only for the built-in (first party) containers.
+* **ProblemType**: string (Required)
+* **RecordPreprocessorSourceUri**: string: An Amazon S3 URI to a script that is called per row prior to running analysis. It can base64 decode the payload and convert it into a flatted json so that the built-in container can use the converted data. Applicable only for the built-in (first party) containers
+
+## ModelQualityBaselineConfig
+### Properties
+* **BaseliningJobName**: string
+* **ConstraintsResource**: [ConstraintsResource](#constraintsresource)
+
+## ModelQualityJobDefinition_Environment
+### Properties
+
+## ModelQualityJobInput
+### Properties
+* **BatchTransformInput**: [BatchTransformInput](#batchtransforminput)
+* **EndpointInput**: [EndpointInput](#endpointinput)
+* **GroundTruthS3Input**: [MonitoringGroundTruthS3Input](#monitoringgroundtruths3input) (Required)
+
+## ModelQuantizationConfig
+### Properties
+* **Image**: string: The URI of an LMI DLC in Amazon ECR.
+* **OverrideEnvironment**: [OptimizationJob_OverrideEnvironment](#optimizationjoboverrideenvironment): Environment variables that override the default ones in the model container.
+
+## ModelShardingConfig
+### Properties
+* **Image**: string: The URI of an LMI DLC in Amazon ECR.
+* **OverrideEnvironment**: [OptimizationJob_OverrideEnvironment](#optimizationjoboverrideenvironment): Environment variables that override the default ones in the model container.
+
 ## ModelVariantConfig
 ### Properties
 * **InfrastructureConfig**: [ModelInfrastructureConfig](#modelinfrastructureconfig) (Required)
 * **ModelName**: string (Required): The name of the Amazon SageMaker Model entity.
 * **VariantName**: string (Required): The name of the variant.
+
+## MonitoringAlertActions
+### Properties
+* **ModelDashboardIndicator**: [ModelDashboardIndicatorAction](#modeldashboardindicatoraction)
 
 ## MonitoringAppSpecification
 ### Properties
@@ -2198,6 +3405,14 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **MonitoringScheduleName**: string (Required)
 * **ProcessingJobArn**: string: The Amazon Resource Name (ARN) of the monitoring job.
 * **ScheduledTime**: string (Required): The time the monitoring job was scheduled.
+
+## MonitoringGroundTruthS3Input
+### Properties
+* **S3Uri**: string (Required): A URI that identifies the Amazon S3 storage location where Amazon SageMaker saves the results of a monitoring job.
+
+## MonitoringGroundTruthS3Input
+### Properties
+* **S3Uri**: string (Required): A URI that identifies the Amazon S3 storage location where Amazon SageMaker saves the results of a monitoring job.
 
 ## MonitoringInput
 ### Properties
@@ -2220,10 +3435,62 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 ### Properties
 * **S3Output**: [S3Output](#s3output) (Required)
 
+## MonitoringOutput
+### Properties
+* **S3Output**: [S3Output](#s3output) (Required)
+
+## MonitoringOutput
+### Properties
+* **S3Output**: [S3Output](#s3output) (Required)
+
+## MonitoringOutput
+### Properties
+* **S3Output**: [S3Output](#s3output) (Required)
+
+## MonitoringOutput
+### Properties
+* **S3Output**: [S3Output](#s3output) (Required)
+
 ## MonitoringOutputConfig
 ### Properties
 * **KmsKeyId**: string: The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt the model artifacts at rest using Amazon S3 server-side encryption.
 * **MonitoringOutputs**: [MonitoringOutput](#monitoringoutput)[] (Required): Monitoring outputs for monitoring jobs. This is where the output of the periodic monitoring jobs is uploaded.
+
+## MonitoringOutputConfig
+### Properties
+* **KmsKeyId**: string: The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt the model artifacts at rest using Amazon S3 server-side encryption.
+* **MonitoringOutputs**: [MonitoringOutput](#monitoringoutput)[] (Required): Monitoring outputs for monitoring jobs. This is where the output of the periodic monitoring jobs is uploaded.
+
+## MonitoringOutputConfig
+### Properties
+* **KmsKeyId**: string: The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt the model artifacts at rest using Amazon S3 server-side encryption.
+* **MonitoringOutputs**: [MonitoringOutput](#monitoringoutput)[] (Required): Monitoring outputs for monitoring jobs. This is where the output of the periodic monitoring jobs is uploaded.
+
+## MonitoringOutputConfig
+### Properties
+* **KmsKeyId**: string: The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt the model artifacts at rest using Amazon S3 server-side encryption.
+* **MonitoringOutputs**: [MonitoringOutput](#monitoringoutput)[] (Required): Monitoring outputs for monitoring jobs. This is where the output of the periodic monitoring jobs is uploaded.
+
+## MonitoringOutputConfig
+### Properties
+* **KmsKeyId**: string: The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt the model artifacts at rest using Amazon S3 server-side encryption.
+* **MonitoringOutputs**: [MonitoringOutput](#monitoringoutput)[] (Required): Monitoring outputs for monitoring jobs. This is where the output of the periodic monitoring jobs is uploaded.
+
+## MonitoringResources
+### Properties
+* **ClusterConfig**: [ClusterConfig](#clusterconfig) (Required)
+
+## MonitoringResources
+### Properties
+* **ClusterConfig**: [ClusterConfig](#clusterconfig) (Required)
+
+## MonitoringResources
+### Properties
+* **ClusterConfig**: [ClusterConfig](#clusterconfig) (Required)
+
+## MonitoringResources
+### Properties
+* **ClusterConfig**: [ClusterConfig](#clusterconfig) (Required)
 
 ## MonitoringResources
 ### Properties
@@ -2249,6 +3516,36 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **EnableNetworkIsolation**: bool: Whether to allow inbound and outbound network calls to and from the containers used for the processing job.
 * **VpcConfig**: [VpcConfig](#vpcconfig)
 
+## NetworkConfig
+### Properties
+* **EnableInterContainerTrafficEncryption**: bool: Whether to encrypt all communications between distributed processing jobs. Choose True to encrypt communications. Encryption provides greater security for distributed processing jobs, but the processing might take longer.
+* **EnableNetworkIsolation**: bool: Whether to allow inbound and outbound network calls to and from the containers used for the processing job.
+* **VpcConfig**: [VpcConfig](#vpcconfig)
+
+## NetworkConfig
+### Properties
+* **EnableInterContainerTrafficEncryption**: bool: Whether to encrypt all communications between distributed processing jobs. Choose True to encrypt communications. Encryption provides greater security for distributed processing jobs, but the processing might take longer.
+* **EnableNetworkIsolation**: bool: Whether to allow inbound and outbound network calls to and from the containers used for the processing job.
+* **VpcConfig**: [VpcConfig](#vpcconfig)
+
+## NetworkConfig
+### Properties
+* **EnableInterContainerTrafficEncryption**: bool: Whether to encrypt all communications between distributed processing jobs. Choose True to encrypt communications. Encryption provides greater security for distributed processing jobs, but the processing might take longer.
+* **EnableNetworkIsolation**: bool: Whether to allow inbound and outbound network calls to and from the containers used for the processing job.
+* **VpcConfig**: [VpcConfig](#vpcconfig)
+
+## NetworkConfig
+### Properties
+* **EnableInterContainerTrafficEncryption**: bool: Whether to encrypt all communications between distributed processing jobs. Choose True to encrypt communications. Encryption provides greater security for distributed processing jobs, but the processing might take longer.
+* **EnableNetworkIsolation**: bool: Whether to allow inbound and outbound network calls to and from the containers used for the processing job.
+* **VpcConfig**: [VpcConfig](#vpcconfig)
+
+## NetworkConfig
+### Properties
+* **EnableInterContainerTrafficEncryption**: bool: Whether to encrypt all communications between distributed processing jobs. Choose True to encrypt communications. Encryption provides greater security for distributed processing jobs, but the processing might take longer.
+* **EnableNetworkIsolation**: bool: Whether to allow inbound and outbound network calls to and from the containers used for the processing job.
+* **VpcConfig**: [VpcConfig](#vpcconfig)
+
 ## NotebookInstanceLifecycleHook
 ### Properties
 * **Content**: string
@@ -2261,6 +3558,12 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 ### Properties
 * **Function**: [ModelCard_Function](#modelcardfunction): objective function that training job is optimized for.
 * **Notes**: string
+
+## ObjectiveStatusCounters
+### Properties
+* **Failed**: int
+* **Pending**: int
+* **Succeeded**: int
 
 ## OidcConfig
 ### Properties
@@ -2283,20 +3586,73 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 ### Properties
 * **KmsKeyId**: string
 
+## OptimizationConfig
+### Properties
+* **ModelCompilationConfig**: [ModelCompilationConfig](#modelcompilationconfig)
+* **ModelQuantizationConfig**: [ModelQuantizationConfig](#modelquantizationconfig)
+* **ModelShardingConfig**: [ModelShardingConfig](#modelshardingconfig)
+
+## OptimizationJob_OptimizationEnvironment
+### Properties
+
+## OptimizationJob_OverrideEnvironment
+### Properties
+
+## OptimizationJob_OverrideEnvironment
+### Properties
+
+## OptimizationJob_OverrideEnvironment
+### Properties
+
+## OptimizationJobModelSource
+### Properties
+* **S3**: [OptimizationJobModelSourceS3](#optimizationjobmodelsources3)
+
+## OptimizationJobModelSourceS3
+### Properties
+* **S3Uri**: string: An Amazon S3 URI that locates a source model to optimize with an optimization job.
+
+## OptimizationJobOutputConfig
+### Properties
+* **KmsKeyId**: string: The Amazon Resource Name (ARN) of a key in AWS Key Management Service (AWS KMS) used to encrypt your output artifacts.
+* **S3OutputLocation**: string: The Amazon S3 URI for where to store the optimized model that you create with an optimization job.
+
+## OptimizationVpcConfig
+### Properties
+* **SecurityGroupIds**: string[] (Required): The VPC security group IDs.
+* **Subnets**: string[] (Required): The ID of the subnets in the VPC to which you want to connect your optimization job.
+
 ## Orchestrator
 ### Properties
 * **Eks**: [ClusterOrchestratorEksConfig](#clusterorchestratoreksconfig)
 * **Slurm**: [ClusterOrchestratorSlurmConfig](#clusterorchestratorslurmconfig)
 
+## OutputDataConfig
+### Properties
+* **CompressionType**: string
+* **KmsKeyId**: string
+* **S3OutputPath**: string (Required)
+
 ## OwnershipSettings
 ### Properties
 * **OwnerUserProfileName**: string (Required)
+
+## ParallelismConfiguration
+### Properties
+* **MaxParallelExecutionSteps**: int (Required): The max number of steps that can be executed in parallel.
 
 ## ParameterRange
 ### Properties
 * **CategoricalParameterRangeSpecification**: [CategoricalParameterRangeSpecification](#categoricalparameterrangespecification)
 * **ContinuousParameterRangeSpecification**: [ContinuousParameterRangeSpecification](#continuousparameterrangespecification)
 * **IntegerParameterRangeSpecification**: [IntegerParameterRangeSpecification](#integerparameterrangespecification)
+
+## ParameterRanges
+### Properties
+* **AutoParameters**: [HyperParameterTuningJob_AutoParameters](#hyperparametertuningjobautoparameters)[]
+* **CategoricalParameterRanges**: [HyperParameterTuningJob_CategoricalParameterRanges](#hyperparametertuningjobcategoricalparameterranges)[]
+* **ContinuousParameterRanges**: [HyperParameterTuningJob_ContinuousParameterRanges](#hyperparametertuningjobcontinuousparameterranges)[]
+* **IntegerParameterRanges**: [HyperParameterTuningJob_IntegerParameterRanges](#hyperparametertuningjobintegerparameterranges)[]
 
 ## PartnerApp_Arguments
 ### Properties
@@ -2326,6 +3682,34 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **ConcurrencyThreshold**: int: The maximum number of in-flight requests on the target instance before the endpoint routes to another instance. Required when RoutingStrategy is PREFIX_AWARE. Valid values are 1 to 1024.
 * **PrefixLength**: int: The maximum length of the prefix used for routing decisions. Required when RoutingStrategy is PREFIX_AWARE. Valid values are 1024 to 65536.
 
+## PriorityClass
+### Properties
+* **Name**: string (Required): Name of the priority class.
+* **Weight**: int (Required): Weight of the priority class. Range 0-100, default 0.
+
+## ProcessingInputsObject
+### Properties
+* **AppManaged**: bool: When True, input operations such as data download are managed natively by the processing job application. When False (default), input operations are managed by Amazon SageMaker.
+* **DatasetDefinition**: [DatasetDefinition](#datasetdefinition)
+* **InputName**: string (Required): The name for the processing job input.
+* **S3Input**: [S3Input](#s3input)
+
+## ProcessingOutputConfig
+### Properties
+* **KmsKeyId**: string: The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt the processing job output. KmsKeyId can be an ID of a KMS key, ARN of a KMS key, or alias of a KMS key. The KmsKeyId is applied to all outputs.
+* **Outputs**: [ProcessingOutputsObject](#processingoutputsobject)[] (Required): An array of outputs configuring the data to upload from the processing container.
+
+## ProcessingOutputsObject
+### Properties
+* **AppManaged**: bool: When True, output operations such as data upload are managed natively by the processing job application. When False (default), output operations are managed by Amazon SageMaker.
+* **FeatureStoreOutput**: [FeatureStoreOutput](#featurestoreoutput)
+* **OutputName**: string (Required): The name for the processing job output.
+* **S3Output**: [S3Output](#s3output)
+
+## ProcessingResources
+### Properties
+* **ClusterConfig**: [ClusterConfig](#clusterconfig) (Required)
+
 ## ProductionVariant
 ### Properties
 * **CapacityReservationConfig**: [CapacityReservationConfig](#capacityreservationconfig): Settings for the capacity reservation for the compute instances that SageMaker AI reserves for an endpoint.
@@ -2345,6 +3729,23 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **VariantInstanceProvisionTimeoutInSeconds**: int: The timeout value, in seconds, for provisioning instances for the production variant. When SageMaker encounters an insufficient capacity error while provisioning instances, it retries with the next instance pool (if configured) or waits until the timeout expires. This timeout applies only to capacity provisioning and does not include the time for model download or container startup.
 * **VariantName**: string (Required): The name of the production variant.
 * **VolumeSizeInGB**: int: The size, in GB, of the ML storage volume attached to individual inference instance associated with the production variant. Currently only Amazon EBS gp2 storage volumes are supported.
+
+## ProfilerConfig
+### Properties
+* **DisableProfiler**: bool
+* **ProfilingIntervalInMilliseconds**: int
+* **ProfilingParameters**: [TrainingJob_ProfilingParameters](#trainingjobprofilingparameters)
+* **S3OutputPath**: string
+
+## ProfilerRuleConfiguration
+### Properties
+* **InstanceType**: string
+* **LocalPath**: string
+* **RuleConfigurationName**: string (Required)
+* **RuleEvaluatorImage**: string (Required)
+* **RuleParameters**: [TrainingJob_RuleParameters](#trainingjobruleparameters)
+* **S3OutputPath**: string
+* **VolumeSizeInGB**: int
 
 ## Project_ServiceCatalogProvisionedProductDetails
 ### Properties
@@ -2368,9 +3769,40 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **InstanceCount**: int (Required): The number of instances of the type specified by InstanceType.
 * **InstanceType**: string (Required): The instance type the model is deployed to.
 
+## RedshiftDatasetDefinition
+### Properties
+* **ClusterId**: string (Required): The Redshift cluster Identifier.
+* **ClusterRoleArn**: string (Required): The IAM role attached to your Redshift cluster that Amazon SageMaker uses to generate datasets.
+* **Database**: string (Required): The name of the Redshift database used in Redshift query execution.
+* **DbUser**: string (Required): The database user name used in Redshift query execution.
+* **KmsKeyId**: string: The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt data from a Redshift execution.
+* **OutputCompression**: string: The compression used for Redshift query results.
+* **OutputFormat**: string (Required): The data storage format for Redshift query results.
+* **OutputS3Uri**: string (Required): The location in Amazon S3 where the Redshift query results are stored.
+* **QueryString**: string (Required): The SQL query statements to be executed.
+
+## RemoteDebugConfig
+### Properties
+* **EnableRemoteDebug**: bool
+
 ## RepositoryAuthConfig
 ### Properties
 * **RepositoryCredentialsProviderArn**: string (Required): The Amazon Resource Name (ARN) of an AWS Lambda function that provides credentials to authenticate to the private Docker registry where your model image is hosted. For information about how to create an AWS Lambda function, see [Create a Lambda function with the console](https://docs.aws.amazon.com/lambda/latest/dg/getting-started-create-function.html) in the AWS Lambda Developer Guide
+
+## ResourceConfig
+### Properties
+* **InstanceCount**: int: The number of ML compute instances to use.
+* **InstanceGroups**: [InstanceGroup](#instancegroup)[]
+* **InstanceType**: string: The ML compute instance type.
+* **KeepAlivePeriodInSeconds**: int: The duration of time in seconds to retain configured resources in a warm pool for subsequent training jobs.
+* **VolumeKmsKeyId**: string
+* **VolumeSizeInGB**: int: The size of the ML storage volume in gigabytes.
+
+## ResourceLimits
+### Properties
+* **MaxNumberOfTrainingJobs**: int
+* **MaxParallelTrainingJobs**: int (Required)
+* **MaxRuntimeInSeconds**: int
 
 ## ResourceSharingConfig
 ### Properties
@@ -2412,6 +3844,10 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 ## RestrictedInstanceGroupsConfig
 ### Properties
 * **SharedEnvironmentConfig**: [SharedEnvironmentConfig](#sharedenvironmentconfig) (Required)
+
+## RetryStrategy
+### Properties
+* **MaximumRetryAttempts**: int (Required): The number of times to retry the job.
 
 ## RollingUpdatePolicy
 ### Properties
@@ -2465,6 +3901,14 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **S3DataType**: string (Required): The S3 Data Source Type
 * **S3Uri**: string (Required): Depending on the value specified for the S3DataType, identifies either a key name prefix or a manifest.
 
+## S3DataSource
+### Properties
+* **AttributeNames**: string[]
+* **InstanceGroupNames**: string[]
+* **S3DataDistributionType**: string
+* **S3DataType**: string (Required)
+* **S3Uri**: string (Required)
+
 ## S3FileSystem
 ### Properties
 * **S3Uri**: string
@@ -2479,6 +3923,15 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **MountPath**: string
 * **S3Uri**: string
 
+## S3Input
+### Properties
+* **LocalPath**: string: The local path in your container where you want Amazon SageMaker to write input data to. `LocalPath` is an absolute path to the input data and must begin with `/opt/ml/processing/`. LocalPath is a required parameter when `AppManaged` is `False` (default).
+* **S3CompressionType**: string: Whether to GZIP-decompress the data in Amazon S3 as it is streamed into the processing container. `Gzip` can only be used when `Pipe` mode is specified as the `S3InputMode`. In `Pipe` mode, Amazon SageMaker streams input data from the source directly to your container without using the EBS volume.
+* **S3DataDistributionType**: string: Whether to distribute the data from Amazon S3 to all processing instances with `FullyReplicated`, or whether the data from Amazon S3 is shared by Amazon S3 key, downloading one shard of data to each processing instance.
+* **S3DataType**: string (Required): Whether you use an S3Prefix or a ManifestFile for the data type. If you choose S3Prefix, S3Uri identifies a key name prefix. Amazon SageMaker uses all objects with the specified key name prefix for the processing job. If you choose ManifestFile, S3Uri identifies an object that is a manifest file containing a list of object keys that you want Amazon SageMaker to use for the processing job.
+* **S3InputMode**: string: Whether to use File or Pipe input mode. In File mode, Amazon SageMaker copies the data from the input source onto the local ML storage volume before starting your processing container. This is the most commonly used input mode. In Pipe mode, Amazon SageMaker streams input data from the source directly to your processing container into named pipes without using the ML storage volume.
+* **S3Uri**: string (Required): The URI of the Amazon S3 prefix Amazon SageMaker downloads data required to run a processing job.
+
 ## S3ModelDataSource
 ### Properties
 * **CompressionType**: string (Required): Specifies how the ML model data is prepared.
@@ -2491,6 +3944,36 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **LocalPath**: string (Required): The local path to the Amazon S3 storage location where Amazon SageMaker saves the results of a monitoring job. LocalPath is an absolute path for the output data.
 * **S3UploadMode**: string: Whether to upload the results of the monitoring job continuously or after the job completes.
 * **S3Uri**: string (Required): A URI that identifies the Amazon S3 storage location where Amazon SageMaker saves the results of a monitoring job.
+
+## S3Output
+### Properties
+* **LocalPath**: string (Required): The local path to the Amazon S3 storage location where Amazon SageMaker saves the results of a monitoring job. LocalPath is an absolute path for the output data.
+* **S3UploadMode**: string: Whether to upload the results of the monitoring job continuously or after the job completes.
+* **S3Uri**: string (Required): A URI that identifies the Amazon S3 storage location where Amazon SageMaker saves the results of a monitoring job.
+
+## S3Output
+### Properties
+* **LocalPath**: string (Required): The local path to the Amazon S3 storage location where Amazon SageMaker saves the results of a monitoring job. LocalPath is an absolute path for the output data.
+* **S3UploadMode**: string: Whether to upload the results of the monitoring job continuously or after the job completes.
+* **S3Uri**: string (Required): A URI that identifies the Amazon S3 storage location where Amazon SageMaker saves the results of a monitoring job.
+
+## S3Output
+### Properties
+* **LocalPath**: string (Required): The local path to the Amazon S3 storage location where Amazon SageMaker saves the results of a monitoring job. LocalPath is an absolute path for the output data.
+* **S3UploadMode**: string: Whether to upload the results of the monitoring job continuously or after the job completes.
+* **S3Uri**: string (Required): A URI that identifies the Amazon S3 storage location where Amazon SageMaker saves the results of a monitoring job.
+
+## S3Output
+### Properties
+* **LocalPath**: string (Required): The local path to the Amazon S3 storage location where Amazon SageMaker saves the results of a monitoring job. LocalPath is an absolute path for the output data.
+* **S3UploadMode**: string: Whether to upload the results of the monitoring job continuously or after the job completes.
+* **S3Uri**: string (Required): A URI that identifies the Amazon S3 storage location where Amazon SageMaker saves the results of a monitoring job.
+
+## S3Output
+### Properties
+* **LocalPath**: string: The local path of a directory where you want Amazon SageMaker to upload its contents to Amazon S3. LocalPath is an absolute path to a directory containing output files. This directory will be created by the platform and exist when your container's entrypoint is invoked.
+* **S3UploadMode**: string (Required): Whether to upload the results of the processing job continuously or after the job completes.
+* **S3Uri**: string (Required): A URI that identifies the Amazon S3 bucket where you want Amazon SageMaker to save the results of a processing job.
 
 ## S3StorageConfig
 ### Properties
@@ -2513,6 +3996,19 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 ### Properties
 * **DeploymentConfig**: [DeploymentConfig](#deploymentconfig)
 * **ScheduleExpression**: string (Required): A cron expression that specifies the schedule that SageMaker follows when updating the AMI.
+
+## SchedulerConfig
+### Properties
+* **FairShare**: string: When enabled, entities borrow idle compute based on assigned FairShareWeight.
+* **IdleResourceSharing**: string: Configuration for sharing idle compute resources across entities.
+* **PriorityClasses**: [PriorityClass](#priorityclass)[]: List of priority class configurations.
+
+## SecondaryStatusTransition
+### Properties
+* **EndTime**: string: A timestamp that shows when the training job transitioned out of this secondary status state into another secondary status state or when the training job has ended.
+* **StartTime**: string (Required): A timestamp that shows when the training job transitioned to the current secondary status state.
+* **Status**: string (Required): Contains a secondary status information from a training job.
+* **StatusMessage**: string: A detailed description of the progress within a secondary status.
 
 ## SecurityConfig
 ### Properties
@@ -2554,6 +4050,10 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **NotebookOutputOption**: string: Whether to include the notebook cell output when sharing the notebook. The default is Disabled.
 * **S3KmsKeyId**: string: When NotebookOutputOption is Allowed, the AWS Key Management Service (KMS) encryption key ID used to encrypt the notebook cell output in the Amazon S3 bucket.
 * **S3OutputPath**: string: When NotebookOutputOption is Allowed, the Amazon S3 bucket used to store the shared notebook snapshots.
+
+## ShuffleConfig
+### Properties
+* **Seed**: int (Required)
 
 ## SourceAlgorithm
 ### Properties
@@ -2616,10 +4116,44 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 ### Properties
 * **S3Uri**: string: The Amazon S3 URI for the baseline statistics file in Amazon S3 that the current monitoring job should be validated against.
 
+## StatisticsResource
+### Properties
+* **S3Uri**: string: The Amazon S3 URI for the baseline statistics file in Amazon S3 that the current monitoring job should be validated against.
+
 ## StoppingCondition
 ### Properties
 * **MaxRuntimeInSeconds**: int (Required): The maximum runtime allowed in seconds.
 
+## StoppingCondition
+### Properties
+* **MaxRuntimeInSeconds**: int (Required): The maximum runtime allowed in seconds.
+
+## StoppingCondition
+### Properties
+* **MaxRuntimeInSeconds**: int (Required): The maximum runtime allowed in seconds.
+
+## StoppingCondition
+### Properties
+* **MaxRuntimeInSeconds**: int (Required): The maximum runtime allowed in seconds.
+
+## StoppingCondition
+### Properties
+* **MaxRuntimeInSeconds**: int (Required): The maximum runtime allowed in seconds.
+
+## StoppingCondition
+### Properties
+* **MaxRuntimeInSeconds**: int: The maximum length of time, in seconds, that an optimization job can run.
+
+## StoppingCondition
+### Properties
+* **MaxRuntimeInSeconds**: int (Required): Specifies the maximum runtime in seconds.
+
+## StoppingCondition
+### Properties
+* **MaxPendingTimeInSeconds**: int: The maximum length of time, in seconds, that a training job can be pending before it is stopped.
+* **MaxRuntimeInSeconds**: int: The maximum length of time, in seconds, that a training job can run.
+* **MaxWaitTimeInSeconds**: int: The maximum length of time, in seconds, that a managed Spot training job has to complete.
+
 ## StudioWebPortalSettings
 ### Properties
 * **HiddenAppTypes**: string[]: Applications supported in Studio that are hidden from the Studio left navigation pane.
@@ -2633,10 +4167,31 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **HiddenInstanceTypes**: string[]: The instance types you are hiding from the Studio user interface.
 * **HiddenMlTools**: string[]: The machine learning tools that are hidden from the Studio left navigation pane.
 * **HiddenSageMakerImageVersionAliases**: [HiddenSageMakerImage](#hiddensagemakerimage)[]: The version aliases you are hiding from the Studio user interface.
+
+## TabularJobConfig
+### Properties
+* **CandidateGenerationConfig**: [CandidateGenerationConfig](#candidategenerationconfig): Stores the configuration information for how model candidates are generated.
+* **CompletionCriteria**: [AutoMLJobCompletionCriteria](#automljobcompletioncriteria): How long a job is allowed to run, or how many candidates a job is allowed to generate.
+* **FeatureSpecificationS3Uri**: string: A URL to the Amazon S3 data source containing selected features.
+* **GenerateCandidateDefinitionsOnly**: bool: Generates possible candidates without training the models.
+* **Mode**: string: The method that Autopilot uses to train the data.
+* **ProblemType**: string: The type of supervised learning problem available for the model candidates of the AutoML job V2.
+* **SampleWeightAttributeName**: string: If specified, this column name indicates which column of the dataset should be treated as sample weights for use by the objective metric during the training, evaluation, and the selection of the best model.
+* **TargetAttributeName**: string (Required): The name of the target variable in supervised learning.
 
 ## Tag
 ### Properties
 * **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag key. Tag keys must be unique per resource.
+* **Value**: string (Required): The tag value.
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag key. Tag keys must be unique per resource.
 * **Value**: string (Required): The tag value.
 
 ## Tag
@@ -2658,6 +4213,11 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
 
 ## Tag
 ### Properties
@@ -2671,6 +4231,11 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## Tag
 ### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
 * **Key**: string (Required): The key of the tag.
 * **Value**: string (Required): The value of the tag.
 
@@ -2678,6 +4243,11 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 
 ## Tag
 ### Properties
@@ -2718,6 +4288,11 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 ### Properties
 * **Key**: string (Required): The tag key.
 * **Value**: string (Required): The tag value.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties
@@ -2751,13 +4326,28 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## Tag
 ### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## Tag
+### Properties
 * **Key**: string (Required): The tag key. Tag keys must be unique per resource.
 * **Value**: string (Required): The tag value.
 
 ## Tag
 ### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## Tag
+### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+* **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 
 ## Tag
 ### Properties
@@ -2781,6 +4371,11 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## Tag
 ### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
+
+## Tag
+### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
 
@@ -2788,6 +4383,16 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag key. Tag keys must be unique per resource.
+* **Value**: string (Required): The tag value.
 
 ## Tag
 ### Properties
@@ -2811,12 +4416,40 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## Tag
 ### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
+
+## Tag
+### Properties
 * **Key**: string (Required): The key of the tag.
 * **Value**: string (Required): The value of the tag.
 
 ## TemplateProviderDetail
 ### Properties
 * **CfnTemplateProviderDetail**: [CfnTemplateProviderDetail](#cfntemplateproviderdetail) (Required)
+
+## TensorBoardOutputConfig
+### Properties
+* **LocalPath**: string
+* **S3OutputPath**: string (Required)
+
+## TextClassificationJobConfig
+### Properties
+* **CompletionCriteria**: [AutoMLJobCompletionCriteria](#automljobcompletioncriteria): How long a job is allowed to run, or how many candidates a job is allowed to generate.
+* **ContentColumn**: string (Required): The name of the column used to provide the sentences to be classified.
+* **TargetLabelColumn**: string (Required): The name of the column used to provide the class labels.
+
+## TextGenerationJobConfig
+### Properties
+* **BaseModelName**: string: The name of the base model to fine-tune.
+* **CompletionCriteria**: [AutoMLJobCompletionCriteria](#automljobcompletioncriteria): How long a fine-tuning job is allowed to run.
+* **ModelAccessConfig**: [ModelAccessConfig](#modelaccessconfig): The access configuration file to control access to the ML model.
+* **TextGenerationHyperParameters**: [AutoMLJob_TextGenerationHyperParameters](#automljobtextgenerationhyperparameters): The hyperparameters used to configure and optimize the learning process of the base model.
 
 ## ThroughputConfig
 ### Properties
@@ -2828,6 +4461,30 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 ### Properties
 * **InstanceMemoryAllocationPercentage**: int: The percentage of instance memory to allocate for tiered storage.
 * **Mode**: string (Required): The mode of tiered storage.
+
+## TimeSeriesConfig
+### Properties
+* **GroupingAttributeNames**: string[]: A set of columns names that can be grouped with the item identifier column to create a composite key for which a target value is predicted.
+* **ItemIdentifierAttributeName**: string (Required): The name of the column that represents the set of item identifiers for which you want to predict the target value.
+* **TargetAttributeName**: string (Required): The name of the column representing the target variable that you want to predict for each item in your dataset.
+* **TimestampAttributeName**: string (Required): The name of the column indicating a point in time at which the target value of a given item is recorded.
+
+## TimeSeriesForecastingJobConfig
+### Properties
+* **CandidateGenerationConfig**: [CandidateGenerationConfig](#candidategenerationconfig): Stores the configuration information for how model candidates are generated.
+* **CompletionCriteria**: [AutoMLJobCompletionCriteria](#automljobcompletioncriteria): How long a job is allowed to run, or how many candidates a job is allowed to generate.
+* **FeatureSpecificationS3Uri**: string: A URL to the Amazon S3 data source containing additional selected features.
+* **ForecastFrequency**: string (Required): The frequency of predictions in a forecast.
+* **ForecastHorizon**: int (Required): The number of time-steps that the model predicts.
+* **ForecastQuantiles**: string[]: The quantiles used to train the model for forecasts at a specified quantile.
+* **HolidayConfig**: [HolidayConfigAttributes](#holidayconfigattributes)[]: The collection of holiday featurization attributes used to incorporate national holiday information into your forecasting model.
+* **TimeSeriesConfig**: [TimeSeriesConfig](#timeseriesconfig) (Required): The collection of components that defines the time-series.
+* **Transformations**: [TimeSeriesTransformations](#timeseriestransformations): The transformations modifying specific attributes of the time-series.
+
+## TimeSeriesTransformations
+### Properties
+* **Aggregation**: [AutoMLJob_Aggregation](#automljobaggregation): A key value pair defining the aggregation method for a column, where the key is the column name and the value is the aggregation method.
+* **Filling**: [AutoMLJob_Filling](#automljobfilling): A key value pair defining the filling method for a column, where the key is the column name and the value is an object which defines the filling logic.
 
 ## TrafficRoutingConfig
 ### Properties
@@ -2847,11 +4504,69 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **Name**: string (Required)
 * **Value**: string (Required)
 
+## TrainingImageConfig
+### Properties
+* **TrainingRepositoryAccessMode**: string (Required)
+* **TrainingRepositoryAuthConfig**: [TrainingRepositoryAuthConfig](#trainingrepositoryauthconfig)
+
+## TrainingJob_CollectionParameters
+### Properties
+
+## TrainingJob_Environment
+### Properties
+
+## TrainingJob_HookParameters
+### Properties
+
+## TrainingJob_HyperParameters
+### Properties
+
+## TrainingJob_ProfilingParameters
+### Properties
+
+## TrainingJob_RuleParameters
+### Properties
+
+## TrainingJob_RuleParameters
+### Properties
+
+## TrainingJobDefinition
+### Properties
+* **AlgorithmSpecification**: [HyperParameterTuningJob_AlgorithmSpecification](#hyperparametertuningjobalgorithmspecification) (Required)
+* **CheckpointConfig**: [HyperParameterTuningJob_CheckpointConfig](#hyperparametertuningjobcheckpointconfig)
+* **DefinitionName**: string
+* **EnableInterContainerTrafficEncryption**: bool
+* **EnableManagedSpotTraining**: bool
+* **EnableNetworkIsolation**: bool
+* **Environment**: [HyperParameterTuningJob_Environment](#hyperparametertuningjobenvironment)
+* **HyperParameterRanges**: [ParameterRanges](#parameterranges)
+* **InputDataConfig**: [HyperParameterTuningJob_InputDataConfig](#hyperparametertuningjobinputdataconfig)[]
+* **OutputDataConfig**: [HyperParameterTuningJob_OutputDataConfig](#hyperparametertuningjoboutputdataconfig) (Required)
+* **ResourceConfig**: [HyperParameterTuningJob_ResourceConfig](#hyperparametertuningjobresourceconfig)
+* **RetryStrategy**: [HyperParameterTuningJob_RetryStrategy](#hyperparametertuningjobretrystrategy)
+* **RoleArn**: string (Required)
+* **StaticHyperParameters**: [HyperParameterTuningJob_StaticHyperParameters](#hyperparametertuningjobstatichyperparameters)
+* **StoppingCondition**: [HyperParameterTuningJob_StoppingCondition](#hyperparametertuningjobstoppingcondition) (Required)
+* **TuningObjective**: [HyperParameterTuningJob_TuningObjective](#hyperparametertuningjobtuningobjective)
+* **VpcConfig**: [HyperParameterTuningJob_VpcConfig](#hyperparametertuningjobvpcconfig)
+
+## TrainingJobStatusCounters
+### Properties
+* **Completed**: int
+* **InProgress**: int
+* **NonRetryableError**: int
+* **RetryableError**: int
+* **Stopped**: int
+
 ## TrainingMetric
 ### Properties
 * **Name**: string (Required)
 * **Notes**: string
 * **Value**: int (Required)
+
+## TrainingRepositoryAuthConfig
+### Properties
+* **TrainingRepositoryCredentialsProviderArn**: string (Required)
 
 ## TrainingSpecification
 ### Properties
@@ -2870,6 +4585,66 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **ContentType**: string: The multipurpose internet mail extension (MIME) type of the data. Amazon SageMaker uses the MIME type with each http call to transfer data to the transform job.
 * **DataSource**: [DataSource](#datasource) (Required)
 * **SplitType**: string: The method to use to split the transform job's data files into smaller batches. 
+
+## TransformJob_DataCaptureConfig
+### Properties
+* **DestinationS3Uri**: string (Required): The Amazon S3 location being used to capture the data.
+* **GenerateInferenceId**: bool: Flag that indicates whether to append inference id to the output.
+* **KmsKeyId**: string: The ARN of a KMS key that SageMaker uses to encrypt data on the storage volume.
+
+## TransformJob_DataProcessing
+### Properties
+* **InputFilter**: string: A JSONPath expression used to select a portion of the input data to pass to the algorithm.
+* **JoinSource**: string: Specifies the source of the data to join with the transformed data.
+* **OutputFilter**: string: A JSONPath expression used to select a portion of the joined dataset to save in the output file.
+
+## TransformJob_Environment
+### Properties
+
+## TransformJob_ExperimentConfig
+### Properties
+* **ExperimentName**: string: The name of an existing experiment to associate with the trial component.
+* **TrialComponentDisplayName**: string: The display name for the trial component.
+* **TrialName**: string: The name of an existing trial to associate the trial component with.
+
+## TransformJob_ModelClientConfig
+### Properties
+* **InvocationsMaxRetries**: int: The maximum number of retries when invocation requests are failing.
+* **InvocationsTimeoutInSeconds**: int: The timeout value in seconds for an invocation request.
+
+## TransformJob_Tags
+### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
+
+## TransformJob_TransformInput
+### Properties
+* **CompressionType**: string: If your transform data is compressed, specify the compression type.
+* **ContentType**: string: The multipurpose internet mail extension (MIME) type of the data.
+* **DataSource**: [TransformJob_TransformInput_DataSource](#transformjobtransforminputdatasource) (Required): Describes the location of the channel data.
+* **SplitType**: string: The method to use to split the transform job's data files into smaller batches.
+
+## TransformJob_TransformInput_DataSource
+### Properties
+* **S3DataSource**: [TransformJob_TransformInput_DataSource_S3DataSource](#transformjobtransforminputdatasources3datasource) (Required): The S3 location of the data source.
+
+## TransformJob_TransformInput_DataSource_S3DataSource
+### Properties
+* **S3DataType**: string (Required): The data type.
+* **S3Uri**: string (Required): The S3 URI.
+
+## TransformJob_TransformOutput
+### Properties
+* **Accept**: string: The MIME type used to specify the output data.
+* **AssembleWith**: string: Defines how to assemble the results of the transform job as a single S3 object.
+* **KmsKeyId**: string: The AWS KMS key that Amazon SageMaker uses to encrypt the model artifacts at rest using Amazon S3 server-side encryption.
+* **S3OutputPath**: string (Required): The Amazon S3 path where you want Amazon SageMaker to store the results of the transform job.
+
+## TransformJob_TransformResources
+### Properties
+* **InstanceCount**: int (Required): The number of ML compute instances to use in the transform job.
+* **InstanceType**: string (Required): The ML compute instance type for the transform job.
+* **VolumeKmsKeyId**: string: The AWS KMS key that Amazon SageMaker uses to encrypt model data on the storage volume.
 
 ## TransformJobDefinition
 ### Properties
@@ -2944,6 +4719,10 @@ You can't access the domain in Amazon SageMaker Studio. If you migrate the domai
 * **UserProfileArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the user's profile.
 * **UserProfileName**: string (ReadOnly): The name of the user's profile.
 
+## UserContext
+### Properties
+* **IamIdentity**: [IamIdentity](#iamidentity)
+
 ## UserSettings
 ### Properties
 * **AutoMountHomeEFS**: string: Indicates whether auto-mounting of an EFS volume is supported for the user profile. 
@@ -2997,8 +4776,23 @@ You can't access the domain in Amazon SageMaker Studio. If you migrate the domai
 
 ## VpcConfig
 ### Properties
+* **SecurityGroupIds**: string[] (Required): The VPC security group IDs, in the form sg-xxxxxxxx.
+* **Subnets**: string[] (Required): The ID of the subnets in the VPC to which you want to connect the benchmark job.
+
+## VpcConfig
+### Properties
+* **SecurityGroupIds**: string[] (Required): The VPC security group IDs.
+* **Subnets**: string[] (Required): The VPC subnet IDs.
+
+## VpcConfig
+### Properties
 * **SecurityGroupIds**: string[] (Required): The VPC security group IDs, in the form sg-xxxxxxxx. Specify the security groups for the VPC that is specified in the Subnets field.
 * **Subnets**: string[] (Required): The ID of the subnets in the VPC to which you want to connect your training job or model.
+
+## VpcConfig
+### Properties
+* **SecurityGroupIds**: string[] (Required): The VPC security group IDs, in the form sg-xxxxxxxx. Specify the security groups for the VPC that is specified in the Subnets field.
+* **Subnets**: string[] (Required): The ID of the subnets in the VPC to which you want to connect to your monitoring jobs.
 
 ## VpcConfig
 ### Properties
@@ -3014,6 +4808,31 @@ You can't access the domain in Amazon SageMaker Studio. If you migrate the domai
 ### Properties
 * **SecurityGroupIds**: string[] (Required): The VPC security group IDs, in the form sg-xxxxxxxx. Specify the security groups for the VPC that is specified in the Subnets field.
 * **Subnets**: string[] (Required): The ID of the subnets in the VPC to which you want to connect to your monitoring jobs.
+
+## VpcConfig
+### Properties
+* **SecurityGroupIds**: string[] (Required): The VPC security group IDs, in the form sg-xxxxxxxx. Specify the security groups for the VPC that is specified in the Subnets field.
+* **Subnets**: string[] (Required): The ID of the subnets in the VPC to which you want to connect to your monitoring jobs.
+
+## VpcConfig
+### Properties
+* **SecurityGroupIds**: string[] (Required): The VPC security group IDs, in the form sg-xxxxxxxx. Specify the security groups for the VPC that is specified in the Subnets field.
+* **Subnets**: string[] (Required): The ID of the subnets in the VPC to which you want to connect to your monitoring jobs.
+
+## VpcConfig
+### Properties
+* **SecurityGroupIds**: string[] (Required): The VPC security group IDs, in the form sg-xxxxxxxx. Specify the security groups for the VPC that is specified in the Subnets field.
+* **Subnets**: string[] (Required): The ID of the subnets in the VPC to which you want to connect to your monitoring jobs.
+
+## VpcConfig
+### Properties
+* **SecurityGroupIds**: string[] (Required): The VPC security group IDs, in the form 'sg-xxxxxxxx'. Specify the security groups for the VPC that is specified in the 'Subnets' field.
+* **Subnets**: string[] (Required): The ID of the subnets in the VPC to which you want to connect your training job or model. For information about the availability of specific instance types, see https://docs.aws.amazon.com/sagemaker/latest/dg/regions-quotas.html
+
+## VpcConfig
+### Properties
+* **SecurityGroupIds**: string[] (Required)
+* **Subnets**: string[] (Required)
 
 ## Workforce_AuthenticationRequestExtraParams
 ### Properties

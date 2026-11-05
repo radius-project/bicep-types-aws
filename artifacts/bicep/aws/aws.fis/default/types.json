@@ -1,6 +1,256 @@
 [
   {
     "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key in a tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value in a tag."
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.FIS/ActionProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.FIS/ActionProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the action."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The description for the action."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ID of the action."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The tags for the action."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.FIS/Action",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.FIS/Action@default",
+    "body": {
+      "$ref": "#/5"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ExperimentOptions",
+    "properties": {
+      "ActionsMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The actions mode."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.FIS/ExperimentProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.FIS/ExperimentProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the experiment."
+      },
+      "CreationTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time that the experiment was created."
+      },
+      "EndTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time that the experiment ended."
+      },
+      "ExperimentOptions": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "ExperimentTemplateId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ID of the experiment template."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ID of the experiment."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of an IAM role that grants the FIS service permission to perform service actions on your behalf."
+      },
+      "StartTime": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time that the experiment started."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 2,
+        "description": "The tags for the experiment."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.FIS/Experiment",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.FIS/Experiment@default",
+    "body": {
+      "$ref": "#/12"
+    },
+    "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "ActionId",
     "properties": {}
   },
@@ -10,7 +260,7 @@
     "properties": {
       "DashboardIdentifier": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 1
       }
@@ -22,32 +272,32 @@
     "properties": {
       "ActionId": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 1
       },
       "Description": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "Parameters": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/44"
         },
         "flags": 0,
         "description": "The parameters for the action, if applicable."
       },
       "StartAfter": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/45"
         },
         "flags": 0
       },
       "Targets": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "One or more targets for the action."
@@ -95,14 +345,14 @@
     "properties": {
       "AccountTargeting": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The account targeting setting for the experiment template."
       },
       "EmptyTargetResolutionMode": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "The target resolution failure mode for the experiment template."
@@ -115,25 +365,25 @@
     "properties": {
       "DataSources": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/49"
         },
         "flags": 0
       },
       "Outputs": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/51"
         },
         "flags": 1
       },
       "PostExperimentDuration": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "PreExperimentDuration": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 0
       }
@@ -150,19 +400,19 @@
     "properties": {
       "CloudWatchLogsConfiguration": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/52"
         },
         "flags": 0
       },
       "LogSchemaVersion": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/53"
         },
         "flags": 1
       },
       "S3Configuration": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/54"
         },
         "flags": 0
       }
@@ -174,13 +424,13 @@
     "properties": {
       "Source": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 1
       },
       "Value": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 0
       }
@@ -197,37 +447,37 @@
     "properties": {
       "Filters": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/56"
         },
         "flags": 0
       },
       "Parameters": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/57"
         },
         "flags": 0
       },
       "ResourceArns": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/58"
         },
         "flags": 0
       },
       "ResourceTags": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/59"
         },
         "flags": 0
       },
       "ResourceType": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 1
       },
       "SelectionMode": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 1
       }
@@ -239,13 +489,13 @@
     "properties": {
       "Path": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 1
       },
       "Values": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/60"
         },
         "flags": 1
       }
@@ -312,9 +562,6 @@
     "properties": {}
   },
   {
-    "$type": "StringType"
-  },
-  {
     "$type": "ObjectType",
     "name": "ExperimentTemplate_Parameters",
     "properties": {}
@@ -322,7 +569,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/30"
+      "$ref": "#/1"
     }
   },
   {
@@ -333,13 +580,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/30"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/15"
     }
   },
   {
@@ -348,7 +595,7 @@
     "properties": {
       "CloudWatchDashboards": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/48"
         },
         "flags": 0
       }
@@ -360,13 +607,13 @@
     "properties": {
       "BucketName": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 1
       },
       "Prefix": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 0
       }
@@ -378,7 +625,7 @@
     "properties": {
       "ExperimentReportS3Configuration": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/50"
         },
         "flags": 1
       }
@@ -390,7 +637,7 @@
     "properties": {
       "LogGroupArn": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 1
       }
@@ -405,13 +652,13 @@
     "properties": {
       "BucketName": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 1
       },
       "Prefix": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 0
       }
@@ -420,13 +667,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/14"
+      "$ref": "#/28"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/17"
+      "$ref": "#/31"
     }
   },
   {
@@ -437,7 +684,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/30"
+      "$ref": "#/1"
     }
   },
   {
@@ -448,25 +695,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/30"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/17"
+      "$ref": "#/31"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/30"
+      "$ref": "#/1"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/30"
+      "$ref": "#/1"
     }
   },
   {
@@ -476,7 +723,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/14"
+      "$ref": "#/28"
     }
   },
   {
@@ -490,61 +737,61 @@
     "properties": {
       "Actions": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/22"
         },
         "flags": 0
       },
       "Description": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 1
       },
       "ExperimentOptions": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/24"
         },
         "flags": 0
       },
       "ExperimentReportConfiguration": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/25"
         },
         "flags": 0
       },
       "Id": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 18
       },
       "LogConfiguration": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/27"
         },
         "flags": 0
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 1
       },
       "StopConditions": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/65"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/66"
         },
         "flags": 0
       },
       "Targets": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/36"
         },
         "flags": 1
       }
@@ -556,21 +803,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/67"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -581,9 +828,83 @@
     "$type": "ResourceType",
     "name": "AWS.FIS/ExperimentTemplate@default",
     "body": {
-      "$ref": "#/55"
+      "$ref": "#/68"
     },
     "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.FIS/SafetyLeverProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.FIS/SafetyLeverProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 16,
+        "description": "The Amazon Resource Name (ARN) of the safety lever."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ID of the safety lever."
+      },
+      "Reason": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The reason for the current state of the safety lever."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The status of the safety lever."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.FIS/SafetyLever",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/71"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.FIS/SafetyLever@default",
+    "body": {
+      "$ref": "#/72"
+    },
+    "readableScopes": 31,
     "writableScopes": 0
   },
   {
@@ -616,25 +937,25 @@
     "properties": {
       "AccountId": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 17
       },
       "Description": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 0
       },
       "ExperimentTemplateId": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 17
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 1
       }
@@ -646,21 +967,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/1"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/79"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -671,7 +992,7 @@
     "$type": "ResourceType",
     "name": "AWS.FIS/TargetAccountConfiguration@default",
     "body": {
-      "$ref": "#/63"
+      "$ref": "#/80"
     },
     "readableScopes": 0,
     "writableScopes": 0

@@ -1,0 +1,140 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ThinClient-SoftwareSet",
+  "type": "AWS::ThinClient::SoftwareSet",
+  "time": "2026-11-05T17:49:08.401Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Tags"
+    ],
+    "definitions": {
+      "Software": {
+        "additionalProperties": false,
+        "description": "Describes software.",
+        "properties": {
+          "Name": {
+            "description": "The name of the software component.",
+            "type": "string"
+          },
+          "Version": {
+            "description": "The version of the software component.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Describes a software set for Amazon WorkSpaces Thin Client.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "thinclient:ListSoftwareSets"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "thinclient:GetSoftwareSet",
+          "thinclient:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the software set.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:[\\w+=\\/,.@-]+:[a-zA-Z0-9\\-]+:[a-zA-Z0-9\\-]*:[0-9]{0,12}:[a-zA-Z0-9\\-\\/\\._]+$",
+        "type": "string"
+      },
+      "Id": {
+        "description": "The ID of the software set.",
+        "pattern": "^[0-9]{1,9}$",
+        "type": "string"
+      },
+      "ReleasedAt": {
+        "description": "The timestamp of when the software set was released.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Software": {
+        "description": "A list of the software components in the software set.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Software"
+        },
+        "type": "array"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "ValidationStatus": {
+        "description": "An option to define if the software set has been validated.",
+        "enum": [
+          "VALIDATED",
+          "NOT_VALIDATED"
+        ],
+        "type": "string"
+      },
+      "Version": {
+        "description": "The version of the software set.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Id",
+      "/properties/Version",
+      "/properties/ReleasedAt",
+      "/properties/ValidationStatus",
+      "/properties/Software"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "thinclient:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::ThinClient::SoftwareSet"
+  }
+}

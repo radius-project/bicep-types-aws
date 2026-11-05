@@ -40,6 +40,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Logs/DestinationProperties](#awslogsdestinationproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Logs/Integration@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Logs/IntegrationProperties](#awslogsintegrationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Logs/LogAnomalyDetector@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -55,6 +63,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Logs/LogGroupProperties](#awslogsloggroupproperties) (Identifier): properties of the resource
+
+## Resource AWS.Logs/LogStream@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Logs/LogStreamProperties](#awslogslogstreamproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Logs/MetricFilter@default
 * **Readable Scope(s)**: None
@@ -182,6 +198,13 @@ Length Constraints: Maximum length of 51200
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **TargetArn**: string (Required): The ARN of the physical target where the log events are delivered (for example, a Kinesis stream)
 
+## AWS.Logs/IntegrationProperties
+### Properties
+* **IntegrationName**: string (Required, Identifier): User provided identifier for integration, unique to the user account.
+* **IntegrationStatus**: string (ReadOnly): Status of creation for the Integration and its resources
+* **IntegrationType**: string (Required): The type of the Integration.
+* **ResourceConfig**: [Integration_ResourceConfig](#integrationresourceconfig) (Required, WriteOnly): OpenSearchResourceConfig for the given Integration
+
 ## AWS.Logs/LogAnomalyDetectorProperties
 ### Properties
 * **AccountId**: string (WriteOnly): Account ID for owner of detector
@@ -220,6 +243,11 @@ Length Constraints: Maximum length of 51200
  To set a log group so that its log events do not expire, do not specify this property.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to the log group.
  For more information, see [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html).
+
+## AWS.Logs/LogStreamProperties
+### Properties
+* **LogGroupName**: string (Required, Identifier): The name of the log group where the log stream is created.
+* **LogStreamName**: string (Identifier): The name of the log stream. The name must be unique wihtin the log group.
 
 ## AWS.Logs/MetricFilterProperties
 ### Properties
@@ -319,6 +347,10 @@ Length Constraints: Maximum length of 51200
  Dimension names must contain only ASCII characters, must include at least one non-whitespace character, and cannot start with a colon (:).
 * **Value**: string (Required): The log event field that will contain the value for this dimension. This dimension will only be published for a metric if the value is found in the log event. For example, ``$.eventType`` for JSON log events, or ``$server`` for space-delimited log events.
 
+## Integration_ResourceConfig
+### Properties
+* **OpenSearchResourceConfig**: [OpenSearchResourceConfig](#opensearchresourceconfig)
+
 ## LogGroup_DataProtectionPolicy
 ### Properties
 
@@ -345,6 +377,14 @@ Length Constraints: Maximum length of 51200
 * **OverwriteIfExists**: bool
 * **Source**: string (Required)
 * **Target**: string (Required)
+
+## OpenSearchResourceConfig
+### Properties
+* **ApplicationARN**: string
+* **DashboardViewerPrincipals**: string[] (Required)
+* **DataSourceRoleArn**: string (Required)
+* **KmsKeyArn**: string
+* **RetentionDays**: int
 
 ## ParseCloudfront
 ### Properties

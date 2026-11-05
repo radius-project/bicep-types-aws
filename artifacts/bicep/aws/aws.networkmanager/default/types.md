@@ -32,6 +32,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.NetworkManager/CoreNetworkProperties](#awsnetworkmanagercorenetworkproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.NetworkManager/CoreNetworkPrefixListAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.NetworkManager/CoreNetworkPrefixListAssociationProperties](#awsnetworkmanagercorenetworkprefixlistassociationproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.NetworkManager/CustomerGatewayAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.NetworkManager/CustomerGatewayAssociationProperties](#awsnetworkmanagercustomergatewayassociationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.NetworkManager/Device@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -64,6 +80,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.NetworkManager/LinkProperties](#awsnetworkmanagerlinkproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.NetworkManager/LinkAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.NetworkManager/LinkAssociationProperties](#awsnetworkmanagerlinkassociationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.NetworkManager/Site@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -87,6 +111,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.NetworkManager/TransitGatewayPeeringProperties](#awsnetworkmanagertransitgatewaypeeringproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.NetworkManager/TransitGatewayRegistration@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.NetworkManager/TransitGatewayRegistrationProperties](#awsnetworkmanagertransitgatewayregistrationproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.NetworkManager/TransitGatewayRouteTableAttachment@default
 * **Readable Scope(s)**: None
@@ -158,6 +190,12 @@
 * **SubnetArn**: string (WriteOnly): The subnet ARN for the connect peer.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
+## AWS.NetworkManager/CoreNetworkPrefixListAssociationProperties
+### Properties
+* **CoreNetworkId**: string (Required, Identifier): The ID of the core network.
+* **PrefixListAlias**: string (Required): The alias of the prefix list
+* **PrefixListArn**: string (Required, Identifier): The Amazon Resource Name (ARN) of the prefix list.
+
 ## AWS.NetworkManager/CoreNetworkProperties
 ### Properties
 * **CoreNetworkArn**: string (ReadOnly): The ARN (Amazon resource name) of core network
@@ -172,6 +210,13 @@
 * **Segments**: [CoreNetworkSegment](#corenetworksegment)[] (ReadOnly): The segments within a core network.
 * **State**: string (ReadOnly): The state of core network
 * **Tags**: [Tag](#tag)[]: The tags for the global network.
+
+## AWS.NetworkManager/CustomerGatewayAssociationProperties
+### Properties
+* **CustomerGatewayArn**: string (Required, Identifier): The Amazon Resource Name (ARN) of the customer gateway.
+* **DeviceId**: string (Required): The ID of the device
+* **GlobalNetworkId**: string (Required, Identifier): The ID of the global network.
+* **LinkId**: string: The ID of the link
 
 ## AWS.NetworkManager/DeviceProperties
 ### Properties
@@ -220,6 +265,12 @@
 * **Id**: string (ReadOnly, Identifier): The ID of the global network.
 * **State**: string: The state of the global network.
 * **Tags**: [Tag](#tag)[]: The tags for the global network.
+
+## AWS.NetworkManager/LinkAssociationProperties
+### Properties
+* **DeviceId**: string (Required, Identifier): The ID of the device
+* **GlobalNetworkId**: string (Required, Identifier): The ID of the global network.
+* **LinkId**: string (Required, Identifier): The ID of the link
 
 ## AWS.NetworkManager/LinkProperties
 ### Properties
@@ -283,6 +334,11 @@
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **TransitGatewayArn**: string (Required): The ARN (Amazon Resource Name) of the transit gateway that you will peer to a core network
 * **TransitGatewayPeeringAttachmentId**: string (ReadOnly): The ID of the TransitGatewayPeeringAttachment
+
+## AWS.NetworkManager/TransitGatewayRegistrationProperties
+### Properties
+* **GlobalNetworkId**: string (Required, Identifier): The ID of the global network.
+* **TransitGatewayArn**: string (Required, Identifier): The Amazon Resource Name (ARN) of the transit gateway.
 
 ## AWS.NetworkManager/TransitGatewayRouteTableAttachmentProperties
 ### Properties
