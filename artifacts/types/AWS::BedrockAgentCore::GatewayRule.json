@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-BedrockAgentCore-GatewayRule",
   "type": "AWS::BedrockAgentCore::GatewayRule",
-  "time": "2026-10-29T00:36:26.098Z",
+  "time": "2026-10-30T17:04:44.641Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -38,6 +38,29 @@
           }
         ]
       },
+      "CircuitBreakerConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "Mode": {
+            "allOf": [
+              {
+                "$ref": "#/definitions/CircuitBreakerMode"
+              },
+              {
+                "default": "ENABLED"
+              }
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "CircuitBreakerMode": {
+        "enum": [
+          "ENABLED",
+          "DISABLED"
+        ],
+        "type": "string"
+      },
       "Condition": {
         "oneOf": [
           {
@@ -64,6 +87,19 @@
               "MatchPaths"
             ],
             "title": "MatchPaths",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "MatchModels": {
+                "$ref": "#/definitions/MatchModels"
+              }
+            },
+            "required": [
+              "MatchModels"
+            ],
+            "title": "MatchModels",
             "type": "object"
           }
         ]
@@ -116,6 +152,92 @@
         ],
         "type": "object"
       },
+      "Fallback": {
+        "additionalProperties": false,
+        "properties": {
+          "CircuitBreaker": {
+            "$ref": "#/definitions/CircuitBreakerConfiguration"
+          },
+          "FirstByteTimeoutMilliseconds": {
+            "maximum": 900000,
+            "minimum": 50,
+            "type": "integer"
+          },
+          "TargetFallback": {
+            "items": {
+              "$ref": "#/definitions/FallbackTarget"
+            },
+            "maxItems": 2,
+            "minItems": 1,
+            "type": "array"
+          },
+          "TriggerOn": {
+            "$ref": "#/definitions/FallbackTriggers"
+          }
+        },
+        "required": [
+          "TargetFallback"
+        ],
+        "type": "object"
+      },
+      "FallbackError": {
+        "enum": [
+          "CONNECTION_ERROR",
+          "FIRST_BYTE_TIMEOUT",
+          "UNROUTABLE"
+        ],
+        "type": "string"
+      },
+      "FallbackTarget": {
+        "additionalProperties": false,
+        "properties": {
+          "FirstByteTimeoutMilliseconds": {
+            "maximum": 900000,
+            "minimum": 50,
+            "type": "integer"
+          },
+          "Model": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9][a-zA-Z0-9\\-._/@:]*$",
+            "type": "string"
+          },
+          "TargetName": {
+            "pattern": "^([0-9a-zA-Z][-]?){1,100}$",
+            "type": "string"
+          },
+          "TriggerOn": {
+            "$ref": "#/definitions/FallbackTriggers"
+          }
+        },
+        "required": [
+          "TargetName"
+        ],
+        "type": "object"
+      },
+      "FallbackTriggers": {
+        "additionalProperties": false,
+        "properties": {
+          "Errors": {
+            "items": {
+              "$ref": "#/definitions/FallbackError"
+            },
+            "maxItems": 3,
+            "minItems": 1,
+            "type": "array"
+          },
+          "StatusCodes": {
+            "items": {
+              "pattern": "^[4-5]([0-9]{2}|XX)$",
+              "type": "string"
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
       "GatewayRuleStatus": {
         "enum": [
           "CREATING",
@@ -141,6 +263,55 @@
           "Arn"
         ],
         "type": "object"
+      },
+      "MatchModelEntry": {
+        "additionalProperties": false,
+        "properties": {
+          "Operator": {
+            "allOf": [
+              {
+                "$ref": "#/definitions/MatchOperator"
+              },
+              {
+                "default": "StringLike"
+              }
+            ]
+          },
+          "Value": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9\\-\\._\\*\\?@:]+(/[a-zA-Z0-9\\-\\._\\*\\?@:]+)*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value"
+        ],
+        "type": "object"
+      },
+      "MatchModels": {
+        "additionalProperties": false,
+        "properties": {
+          "AnyOf": {
+            "items": {
+              "$ref": "#/definitions/MatchModelEntry"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "AnyOf"
+        ],
+        "type": "object"
+      },
+      "MatchOperator": {
+        "enum": [
+          "StringEquals",
+          "StringLike"
+        ],
+        "type": "string"
       },
       "MatchPaths": {
         "additionalProperties": false,
@@ -253,6 +424,15 @@
       "StaticRoute": {
         "additionalProperties": false,
         "properties": {
+          "Fallback": {
+            "$ref": "#/definitions/Fallback"
+          },
+          "Model": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9][a-zA-Z0-9\\-._/@:]*$",
+            "type": "string"
+          },
           "TargetName": {
             "pattern": "^([0-9a-zA-Z][-]?){1,100}$",
             "type": "string"
@@ -283,8 +463,17 @@
             "minLength": 1,
             "type": "string"
           },
+          "Fallback": {
+            "$ref": "#/definitions/Fallback"
+          },
           "Metadata": {
             "$ref": "#/definitions/TrafficSplitMetadataMap"
+          },
+          "Model": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9][a-zA-Z0-9\\-._/@:]*$",
+            "type": "string"
           },
           "Name": {
             "maxLength": 64,
@@ -447,7 +636,7 @@
         "items": {
           "$ref": "#/definitions/Condition"
         },
-        "maxItems": 2,
+        "maxItems": 3,
         "minItems": 0,
         "type": "array"
       },

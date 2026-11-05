@@ -163,6 +163,7 @@
 * **EventTriggerConditions**: [EventTriggerCondition](#eventtriggercondition)[] (Required)
 * **EventTriggerLimits**: [EventTriggerLimits](#eventtriggerlimits)
 * **EventTriggerName**: string (Required, Identifier)
+* **IntentFilterDefinition**: [IntentFilterDefinition](#intentfilterdefinition)
 * **LastUpdatedAt**: string (ReadOnly): The timestamp of when the event trigger was most recently updated.
 * **ObjectTypeName**: string (Required)
 * **SegmentFilter**: string
@@ -337,6 +338,27 @@
 ## IncrementalPullConfig
 ### Properties
 * **DatetimeTypeFieldName**: string
+
+## Intent
+### Properties
+* **IntentDomain**: string (Required): The domain of the intent.
+* **Type**: string (Required): The type of the intent.
+
+## IntentFilterCondition
+### Properties
+* **ComparisonOperator**: string (Required): The operator used to compare the predicted intent against a list of values.
+* **Intent**: [Intent](#intent) (Required)
+* **Values**: string[] (Required): A list of intent values used for comparison.
+
+## IntentFilterDefinition
+### Properties
+* **Groups**: [IntentFilterGroup](#intentfiltergroup)[] (Required)
+* **LogicalOperator**: string (Required)
+
+## IntentFilterGroup
+### Properties
+* **Conditions**: [IntentFilterCondition](#intentfiltercondition)[] (Required)
+* **LogicalOperator**: string (Required)
 
 ## JobSchedule
 ### Properties

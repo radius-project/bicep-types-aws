@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ApiGateway-DomainName",
   "type": "AWS::ApiGateway::DomainName",
-  "time": "2026-09-18T14:29:42.312Z",
+  "time": "2026-10-30T18:02:59.826Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -63,13 +63,18 @@
         "permissions": [
           "apigateway:POST",
           "apigateway:PUT",
-          "apigateway:GET"
+          "apigateway:GET",
+          "apigateway:AddCertificateToDomain",
+          "s3:GetObject",
+          "s3:GetObjectVersion",
+          "cloudfront:UpdateDistribution"
         ]
       },
       "delete": {
         "permissions": [
           "apigateway:GET",
-          "apigateway:DELETE"
+          "apigateway:DELETE",
+          "apigateway:RemoveCertificateFromDomain"
         ]
       },
       "list": {
@@ -87,7 +92,12 @@
           "apigateway:GET",
           "apigateway:PUT",
           "apigateway:PATCH",
-          "apigateway:DELETE"
+          "apigateway:DELETE",
+          "apigateway:AddCertificateToDomain",
+          "apigateway:RemoveCertificateFromDomain",
+          "s3:GetObject",
+          "s3:GetObjectVersion",
+          "cloudfront:UpdateDistribution"
         ]
       }
     },

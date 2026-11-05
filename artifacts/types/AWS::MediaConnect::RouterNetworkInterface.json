@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaConnect-RouterNetworkInterface",
   "type": "AWS::MediaConnect::RouterNetworkInterface",
-  "time": "2026-09-23T17:47:53.845Z",
+  "time": "2026-10-29T02:49:09.382Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -33,6 +33,7 @@
         "properties": {
           "Cidr": {
             "description": "The CIDR block that is allowed to access the public router network interface.",
+            "pattern": "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}/([0-9]|[12][0-9]|3[0-2])$",
             "type": "string"
           }
         },
@@ -104,10 +105,6 @@
           "Key",
           "Value"
         ],
-        "type": "object"
-      },
-      "Unit": {
-        "additionalProperties": false,
         "type": "object"
       },
       "VpcRouterNetworkInterfaceConfiguration": {
@@ -206,13 +203,14 @@
         "description": "The name of the router network interface.",
         "maxLength": 128,
         "minLength": 1,
+        "pattern": "^[a-zA-Z0-9]([a-zA-Z0-9\\-_]*[a-zA-Z0-9])?$",
         "type": "string"
       },
       "NetworkInterfaceType": {
         "$ref": "#/definitions/RouterNetworkInterfaceType"
       },
       "RegionName": {
-        "description": "The AWS Region for the router network interface. Defaults to the current region if not specified.",
+        "description": "The Amazon Web Services Region for the router network interface. Defaults to the current region if not specified.",
         "type": "string"
       },
       "State": {
