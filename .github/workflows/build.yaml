@@ -69,3 +69,19 @@ jobs:
 
       - run: npm test
         working-directory: src/aws-type-generator
+
+      # Same Bicep version and checksum that Radius pins in build/tools.yaml.
+      - name: Install Bicep
+        env:
+          BICEP_VERSION: v0.46.1
+          BICEP_SHA256: 3e011d629ea4311b7a7dd8f0040ab2b1a072ea4ff5d02cb75e0e55a9a6703fb9
+        run: |
+          mkdir -p "${RUNNER_TEMP}/bicep"
+          curl -fsSL --retry 3 -o "${RUNNER_TEMP}/bicep/bicep" "https://github.com/Azure/bicep/releases/download/${BICEP_VERSION}/bicep-linux-x64"
+          echo "${BICEP_SHA256}  ${RUNNER_TEMP}/bicep/bicep" | sha256sum --check
+          chmod +x "${RUNNER_TEMP}/bicep/bicep"
+          echo "${RUNNER_TEMP}/bicep" >> "${GITHUB_PATH}"
+
+      - name: Build templates with the generated types
+        working-directory: src/aws-type-generator
+        run: npm run test:bicep

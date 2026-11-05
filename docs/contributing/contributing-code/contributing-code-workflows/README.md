@@ -4,7 +4,7 @@ This document describes the workflows that run during pull requests to the bicep
 
 ## `build.yaml`
 
-This workflow is used to build and test the AWS downloader and AWS generator to ensure that no errors or bugs are present when we download the AWS resource type schema from the CloudControl API. The generator tests are in `src/aws-type-generator/src/convert.test.ts`, and the downloader tests, including the breaking change check, are in `src/aws-type-downloader`.
+This workflow is used to build and test the AWS downloader and AWS generator to ensure that no errors or bugs are present when we download the AWS resource type schema from the CloudControl API. The generator tests are in `src/aws-type-generator/src/convert.test.ts`, and the downloader tests, including the breaking change check, are in `src/aws-type-downloader`. It also builds the templates in `src/aws-type-generator/bicep-test` with the Bicep CLI against types generated from the test fixtures, to check how Bicep reads the generated types. Run it locally with `npm run build && npm run test:bicep` in `src/aws-type-generator`, with `bicep` on your `PATH`.
 
 ## `generate-types.yaml`
 
