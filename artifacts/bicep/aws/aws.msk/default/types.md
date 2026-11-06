@@ -109,6 +109,20 @@
 ## AWS.MSK/ClusterProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier)
+* **BootstrapBrokerString**: string (ReadOnly): The plaintext broker addresses, as host:port pairs separated by commas.
+* **BootstrapBrokerStringIpv6**: string (ReadOnly): The plaintext broker addresses for IPv6 connectivity.
+* **BootstrapBrokerStringPublicSaslIam**: string (ReadOnly): The SASL/IAM broker addresses for public access.
+* **BootstrapBrokerStringPublicSaslScram**: string (ReadOnly): The SASL/SCRAM broker addresses for public access.
+* **BootstrapBrokerStringPublicTls**: string (ReadOnly): The TLS broker addresses for public access.
+* **BootstrapBrokerStringSaslIam**: string (ReadOnly): The SASL/IAM broker addresses.
+* **BootstrapBrokerStringSaslIamIpv6**: string (ReadOnly): The SASL/IAM broker addresses for IPv6 connectivity.
+* **BootstrapBrokerStringSaslScram**: string (ReadOnly): The SASL/SCRAM broker addresses.
+* **BootstrapBrokerStringSaslScramIpv6**: string (ReadOnly): The SASL/SCRAM broker addresses for IPv6 connectivity.
+* **BootstrapBrokerStringTls**: string (ReadOnly): The TLS broker addresses.
+* **BootstrapBrokerStringTlsIpv6**: string (ReadOnly): The TLS broker addresses for IPv6 connectivity.
+* **BootstrapBrokerStringVpcConnectivitySaslIam**: string (ReadOnly): The SASL/IAM broker addresses for multi-VPC private connectivity.
+* **BootstrapBrokerStringVpcConnectivitySaslScram**: string (ReadOnly): The SASL/SCRAM broker addresses for multi-VPC private connectivity.
+* **BootstrapBrokerStringVpcConnectivityTls**: string (ReadOnly): The TLS broker addresses for multi-VPC private connectivity.
 * **BrokerNodeGroupInfo**: [BrokerNodeGroupInfo](#brokernodegroupinfo) (Required)
 * **ClientAuthentication**: [ClientAuthentication](#clientauthentication)
 * **ClusterName**: string (Required)
@@ -149,6 +163,8 @@
 ## AWS.MSK/ServerlessClusterProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier)
+* **BootstrapBrokerStringSaslIam**: string (ReadOnly): The SASL/IAM broker addresses.
+* **BootstrapBrokerStringSaslIamIpv6**: string (ReadOnly): The SASL/IAM broker addresses for IPv6 connectivity.
 * **ClientAuthentication**: [ClientAuthentication](#clientauthentication) (Required)
 * **ClusterName**: string (Required)
 * **Tags**: [ServerlessCluster_Tags](#serverlessclustertags): A key-value pair to associate with a resource.

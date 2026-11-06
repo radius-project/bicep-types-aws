@@ -4,7 +4,7 @@ This document describes the workflows that run during pull requests to the bicep
 
 ## `build.yaml`
 
-This workflow is used to build and test the AWS downloader and AWS generator to ensure that no errors or bugs are present when we download the AWS resource type schema from the CloudControl API. The generator tests are in `src/aws-type-generator/src/convert.test.ts`, and the downloader tests, including the breaking change check, are in `src/aws-type-downloader`. It also builds the templates in `src/aws-type-generator/bicep-test` with the Bicep CLI against types generated from the test fixtures, to check how Bicep reads the generated types. Run it locally with `npm run build && npm run test:bicep` in `src/aws-type-generator`, with `bicep` on your `PATH`.
+This workflow is used to build and test the AWS downloader and AWS generator to ensure that no errors or bugs are present when we download the AWS resource type schema from the CloudControl API. The generator tests are in `src/aws-type-generator/src/*.test.ts`, and the downloader tests, including the breaking change check, are in `src/aws-type-downloader`. It also builds the templates in `src/aws-type-generator/bicep-test` with the Bicep CLI against types generated from the test fixtures, to check how Bicep reads the generated types. Run it locally with `npm run build && npm run test:bicep` in `src/aws-type-generator`, with `bicep` on your `PATH`.
 
 ## `generate-types.yaml`
 
@@ -20,9 +20,11 @@ go run . breaking-changes --old <copy of the previous types> --new ../../artifac
 go run . added-types --old <copy of the previous types> --new ../../artifacts/types
 ```
 
+The generator also applies the schemas and extra properties Radius owns, from the commit the `radius` submodule pins, and the pull request body names that commit. If AWS publishes a type or a property with the same name as one Radius provides, the generator keeps Radius's type and AWS's property, and the workflow opens an issue titled "AWS types clash with Radius types" instead of failing. While that issue is open, a run that finds different clashes adds them as a comment, and a run that finds the same ones changes nothing. A clash is reported when either side is new, compared with what the checked-in types were generated from: `artifacts/types` on `main`, and the Radius commit recorded in `artifacts/radius-commit`, which the workflow updates on every run. A type clash is new if either the AWS type or Radius's hand-written schema is new. A property clash is new if either the type's property or Radius's extra property is new, where the type's property comes from AWS's schema or Radius's, whichever the extension used. A clash both sides already had isn't reported again, so a clash a person reviewed and kept stays quiet. Close the issue once the clashes are reviewed.
+
 Merging the pull request publishes the updated types through `publish-bicep.yaml`.
 
-The workflow needs these repository secrets: `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` to read the AWS CloudFormation registry, and `RADIUS_TYPES_BOT_CLIENT_ID` and `RADIUS_TYPES_BOT_PRIVATE_KEY` for the GitHub App that opens the pull request. The app needs read and write access to contents and pull requests on this repository.
+The workflow needs these repository secrets: `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` to read the AWS CloudFormation registry, and `RADIUS_TYPES_BOT_CLIENT_ID` and `RADIUS_TYPES_BOT_PRIVATE_KEY` for the GitHub App that opens the pull request. The app needs read and write access to contents and pull requests on this repository. The issue is opened with the workflow's own token.
 
 ## `approve-publish.yaml` and `publish-bicep.yaml`
 
