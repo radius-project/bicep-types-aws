@@ -1,0 +1,117 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudHSMV2-Backup",
+  "type": "AWS::CloudHSMV2::Backup",
+  "time": "2026-11-06T23:02:30.245Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/BackupId"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Represents a backup of an AWS CloudHSM cluster. Backups are created by the service when a cluster is activated, when an HSM is added to or removed from an active cluster, and periodically thereafter.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "cloudhsm:DescribeBackups"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "cloudhsm:DescribeBackups"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the backup.",
+        "type": "string"
+      },
+      "BackupId": {
+        "description": "The identifier (ID) of the backup.",
+        "pattern": "^backup-[2-7a-zA-Z]{11,16}$",
+        "type": "string"
+      },
+      "BackupState": {
+        "description": "The state of the backup.",
+        "enum": [
+          "CREATE_IN_PROGRESS",
+          "READY",
+          "DELETED",
+          "PENDING_DELETION"
+        ],
+        "type": "string"
+      },
+      "ClusterId": {
+        "description": "The identifier (ID) of the cluster that was backed up.",
+        "pattern": "^cluster-[2-7a-zA-Z]{11,16}$",
+        "type": "string"
+      },
+      "CreateTimestamp": {
+        "description": "The date and time when the backup was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "NeverExpires": {
+        "description": "Whether the backup is exempt from the cluster's backup retention policy.",
+        "type": "boolean"
+      },
+      "Tags": {
+        "description": "The list of tags for the backup.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/BackupId",
+      "/properties/BackupState",
+      "/properties/ClusterId",
+      "/properties/CreateTimestamp",
+      "/properties/NeverExpires",
+      "/properties/Tags"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "cloudhsm:ListTags"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::CloudHSMV2::Backup"
+  }
+}

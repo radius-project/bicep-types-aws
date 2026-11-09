@@ -64,6 +64,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.CustomerProfiles/RecommenderProperties](#awscustomerprofilesrecommenderproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.CustomerProfiles/RecommenderFilter@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CustomerProfiles/RecommenderFilterProperties](#awscustomerprofilesrecommenderfilterproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.CustomerProfiles/RecommenderSchema@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -201,6 +209,18 @@
 * **SourcePriority**: int: Defines the priority order of object types. Lower value indicates higher priority.
 * **Tags**: [Tag](#tag)[]: The tags (keys and values) associated with the integration.
 * **TemplateId**: string: A unique identifier for the object template.
+
+## AWS.CustomerProfiles/RecommenderFilterProperties
+### Properties
+* **CreatedAt**: string (ReadOnly): The timestamp of when the recommender filter was created.
+* **Description**: string: The description of the recommender filter.
+* **DomainName**: string (Required): The unique name of the domain.
+* **RecommenderFilterArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the recommender filter.
+* **RecommenderFilterExpression**: string (Required): The filter expression that defines which items to include or exclude from recommendations.
+* **RecommenderFilterName**: string (Required): The name of the recommender filter.
+* **RecommenderSchemaName**: string: The name of the recommender schema to use for this recommender filter. If not specified, the default schema is used.
+* **Status**: string (ReadOnly): The status of the recommender filter.
+* **Tags**: [RecommenderFilter_Tags](#recommenderfiltertags)[]: The tags used to organize, track, or control access for this resource.
 
 ## AWS.CustomerProfiles/RecommenderProperties
 ### Properties
@@ -463,6 +483,11 @@
 ## RecommenderConfig
 ### Properties
 * **EventsConfig**: [EventsConfig](#eventsconfig)
+
+## RecommenderFilter_Tags
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## RecommenderSchema_Fields
 ### Properties

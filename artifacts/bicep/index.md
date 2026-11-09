@@ -1043,6 +1043,10 @@
 ### aws.cloudhsm/cluster
 * **Link**: [default](aws/aws.cloudhsm/default/types.md#resource-awscloudhsmclusterdefault)
 
+## aws.cloudhsmv2
+### aws.cloudhsmv2/backup
+* **Link**: [default](aws/aws.cloudhsmv2/default/types.md#resource-awscloudhsmv2backupdefault)
+
 ## aws.cloudtrail
 ### aws.cloudtrail/channel
 * **Link**: [default](aws/aws.cloudtrail/default/types.md#resource-awscloudtrailchanneldefault)
@@ -1515,6 +1519,9 @@
 
 ### aws.customerprofiles/recommender
 * **Link**: [default](aws/aws.customerprofiles/default/types.md#resource-awscustomerprofilesrecommenderdefault)
+
+### aws.customerprofiles/recommenderfilter
+* **Link**: [default](aws/aws.customerprofiles/default/types.md#resource-awscustomerprofilesrecommenderfilterdefault)
 
 ### aws.customerprofiles/recommenderschema
 * **Link**: [default](aws/aws.customerprofiles/default/types.md#resource-awscustomerprofilesrecommenderschemadefault)
