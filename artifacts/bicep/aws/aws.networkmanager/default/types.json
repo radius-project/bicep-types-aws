@@ -5,10 +5,37 @@
     "properties": {
       "Protocol": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "Tunnel protocol for connect attachment"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NatRule",
+    "properties": {
+      "MatchSourceCidr": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The IPv4 CIDR that source traffic is matched against for translation."
+      },
+      "NatCidr": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The IPv4 CIDR that matched source traffic is translated into. Must have the same prefix length as MatchSourceCidr."
+      },
+      "RuleNumber": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The rule number that uniquely identifies the NAT rule on the attachment."
       }
     }
   },
@@ -18,21 +45,21 @@
     "properties": {
       "AttachmentPolicyRuleNumber": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The rule number in the policy document that applies to this change."
       },
       "NetworkFunctionGroupName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The name of the network function group to change."
       },
       "Tags": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/7"
         },
         "flags": 0,
         "description": "The key-value tags that changed for the network function group."
@@ -45,21 +72,21 @@
     "properties": {
       "AttachmentPolicyRuleNumber": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The rule number in the policy document that applies to this change."
       },
       "SegmentName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The name of the segment to change."
       },
       "Tags": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/8"
         },
         "flags": 0,
         "description": "The list of key-value tags that changed for the segment."
@@ -72,14 +99,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -95,13 +122,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/4"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/4"
     }
   },
   {
@@ -111,13 +138,22 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
     }
   },
   {
@@ -126,63 +162,84 @@
     "properties": {
       "AttachmentId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 18,
         "description": "The ID of the attachment."
       },
       "AttachmentPolicyRuleNumber": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 2,
         "description": "The policy rule number associated with the attachment."
       },
       "AttachmentType": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The type of attachment."
       },
       "CoreNetworkArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The ARN of a core network."
       },
       "CoreNetworkId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "ID of the CoreNetwork that the attachment will be attached to."
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "Creation time of the attachment."
       },
       "EdgeLocation": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "Edge location of the attachment."
       },
       "LastModificationErrors": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 2,
         "description": "Errors from the last modification of the attachment."
       },
+      "NatGatewayRules": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 4,
+        "description": "The complete set of NAT gateway rules on the attachment. Updating this property replaces the entire rule set, and rules left out of the new value are removed. To remove all rules, specify an empty list or remove this property. NAT gateway support can't be enabled without rules, so it is then disabled unless NatGatewaySupport is specified. Only the core network owner can configure NAT gateway rules. The rules aren't returned when the attachment is read, so drift detection doesn't check them. Not available in AWS GovCloud (US)."
+      },
+      "NatGatewaySupport": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Whether NAT gateway support is enabled on the attachment. Required when NatGatewayRules lists rules. Set to DISABLE with NatGatewayRules to keep the rules on the attachment without translating traffic, and set it to ENABLE to activate them again. An attachment that is pending acceptance applies this setting once it is accepted. Only the core network owner can configure or read NAT gateway settings. Not available in AWS GovCloud (US)."
+      },
+      "NatSystemRouteSupport": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 2,
+        "description": "Whether system routes are installed for the NAT CIDRs of the attachment's NAT gateway rules. On Connect attachments this is always false and is not configurable. Not available in AWS GovCloud (US)."
+      },
       "NetworkFunctionGroupName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The name of the network function group attachment."
@@ -196,70 +253,70 @@
       },
       "OwnerAccountId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The ID of the attachment account owner."
       },
       "ProposedNetworkFunctionGroupChange": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 2,
         "description": "The attachment to move from one network function group to another."
       },
       "ProposedSegmentChange": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/3"
         },
         "flags": 2,
         "description": "The attachment to move from one segment to another."
       },
       "ResourceArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The attachment resource ARN."
       },
       "RoutingPolicyLabel": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 4,
         "description": "Routing policy label"
       },
       "SegmentName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The name of the segment attachment."
       },
       "State": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "State of the attachment."
       },
       "Tags": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/13"
         },
         "flags": 0,
         "description": "Tags for the attachment."
       },
       "TransportAttachmentId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "Id of transport attachment"
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "Last update time of the attachment."
@@ -272,21 +329,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/14"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -297,7 +354,7 @@
     "$type": "ResourceType",
     "name": "AWS.NetworkManager/ConnectAttachment@default",
     "body": {
-      "$ref": "#/12"
+      "$ref": "#/15"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -308,7 +365,7 @@
     "properties": {
       "PeerAsn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 0
       }
@@ -320,28 +377,28 @@
     "properties": {
       "CoreNetworkAddress": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The address of a core network."
       },
       "CoreNetworkAsn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The ASN of the Coret Network."
       },
       "PeerAddress": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The address of a core network Connect peer."
       },
       "PeerAsn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The ASN of the Connect peer."
@@ -354,34 +411,34 @@
     "properties": {
       "BgpConfigurations": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/22"
         },
         "flags": 0
       },
       "CoreNetworkAddress": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The IP address of a core network."
       },
       "InsideCidrBlocks": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "The inside IP addresses used for a Connect peer configuration."
       },
       "PeerAddress": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The IP address of the Connect peer."
       },
       "Protocol": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0
       }
@@ -393,14 +450,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -415,13 +472,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/15"
+      "$ref": "#/18"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/5"
     }
   },
   {
@@ -431,19 +488,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/17"
+      "$ref": "#/20"
     }
   },
   {
@@ -452,98 +509,98 @@
     "properties": {
       "BgpOptions": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/17"
         },
         "flags": 4,
         "description": "Bgp options for connect peer."
       },
       "Configuration": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/19"
         },
         "flags": 2,
         "description": "Configuration of the connect peer."
       },
       "ConnectAttachmentId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The ID of the attachment to connect."
       },
       "ConnectPeerId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 18,
         "description": "The ID of the Connect peer."
       },
       "CoreNetworkAddress": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 4,
         "description": "The IP address of a core network."
       },
       "CoreNetworkId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The ID of the core network."
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "Connect peer creation time."
       },
       "EdgeLocation": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The Connect peer Regions where edges are located."
       },
       "InsideCidrBlocks": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "The inside IP addresses used for a Connect peer configuration."
       },
       "LastModificationErrors": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/26"
         },
         "flags": 2,
         "description": "Errors from the last modification of the connect peer."
       },
       "PeerAddress": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The IP address of the Connect peer."
       },
       "State": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "State of the connect peer."
       },
       "SubnetArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 4,
         "description": "The subnet ARN for the connect peer."
       },
       "Tags": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -556,21 +613,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/28"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -581,7 +638,7 @@
     "$type": "ResourceType",
     "name": "AWS.NetworkManager/ConnectPeer@default",
     "body": {
-      "$ref": "#/26"
+      "$ref": "#/29"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -592,14 +649,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The tag key. Printable ASCII with at least one non-space character and no leading or trailing space, at most 128 characters, and cannot be prefixed with aws:."
       },
       "Value": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The tag value. Printable ASCII with at least one non-space character and no leading or trailing space, at most 256 characters, and cannot be prefixed with aws:."
@@ -613,7 +670,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/28"
+      "$ref": "#/31"
     }
   },
   {
@@ -622,77 +679,77 @@
     "properties": {
       "ConnectedDeviceId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The ID of the second device in the connection."
       },
       "ConnectedLinkId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The ID of the link for the second device."
       },
       "ConnectionArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the connection."
       },
       "ConnectionId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The ID of the connection."
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The date and time that the connection was created."
       },
       "Description": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The description of the connection."
       },
       "DeviceId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The ID of the first device in the connection."
       },
       "GlobalNetworkId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The ID of the global network that the connection belongs to."
       },
       "LinkId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The ID of the link for the first device."
       },
       "State": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The state of the connection."
       },
       "Tags": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "The tags for the connection."
@@ -705,21 +762,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/34"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -730,7 +787,7 @@
     "$type": "ResourceType",
     "name": "AWS.NetworkManager/Connection@default",
     "body": {
-      "$ref": "#/32"
+      "$ref": "#/35"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -741,21 +798,21 @@
     "properties": {
       "Asn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The ASN of a core network edge."
       },
       "EdgeLocation": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The Region where a core network edge is located."
       },
       "InsideCidrBlocks": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/41"
         },
         "flags": 0
       }
@@ -767,20 +824,20 @@
     "properties": {
       "EdgeLocations": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/42"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "Name of network function group"
       },
       "Segments": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/45"
         },
         "flags": 0
       }
@@ -792,20 +849,20 @@
     "properties": {
       "EdgeLocations": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/46"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "Name of segment"
       },
       "SharedSegments": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/47"
         },
         "flags": 0
       }
@@ -817,14 +874,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -834,25 +891,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/5"
     }
   },
   {
@@ -861,13 +918,13 @@
     "properties": {
       "SendTo": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/43"
         },
         "flags": 0
       },
       "SendVia": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/44"
         },
         "flags": 0
       }
@@ -876,13 +933,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/5"
     }
   },
   {
@@ -892,13 +949,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/34"
+      "$ref": "#/37"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/35"
+      "$ref": "#/38"
     }
   },
   {
@@ -909,13 +966,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/36"
+      "$ref": "#/39"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/37"
+      "$ref": "#/40"
     }
   },
   {
@@ -924,84 +981,84 @@
     "properties": {
       "CoreNetworkArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The ARN (Amazon resource name) of core network"
       },
       "CoreNetworkId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 18,
         "description": "The Id of core network"
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The creation time of core network"
       },
       "Description": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The description of core network"
       },
       "Edges": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/49"
         },
         "flags": 2,
         "description": "The edges within a core network."
       },
       "GlobalNetworkId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The ID of the global network that your core network is a part of."
       },
       "NetworkFunctionGroups": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/50"
         },
         "flags": 2,
         "description": "The network function groups within a core network."
       },
       "OwnerAccount": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "Owner of the core network"
       },
       "PolicyDocument": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "Live policy document for the core network, you must provide PolicyDocument in Json Format"
       },
       "Segments": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/52"
         },
         "flags": 2,
         "description": "The segments within a core network."
       },
       "State": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The state of core network"
       },
       "Tags": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "The tags for the global network."
@@ -1014,21 +1071,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/54"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1039,7 +1096,7 @@
     "$type": "ResourceType",
     "name": "AWS.NetworkManager/CoreNetwork@default",
     "body": {
-      "$ref": "#/52"
+      "$ref": "#/55"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1054,21 +1111,21 @@
     "properties": {
       "CoreNetworkId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "The ID of the core network."
       },
       "PrefixListAlias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The alias of the prefix list"
       },
       "PrefixListArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "The Amazon Resource Name (ARN) of the prefix list."
@@ -1081,21 +1138,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/58"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1106,7 +1163,7 @@
     "$type": "ResourceType",
     "name": "AWS.NetworkManager/CoreNetworkPrefixListAssociation@default",
     "body": {
-      "$ref": "#/56"
+      "$ref": "#/59"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1121,28 +1178,28 @@
     "properties": {
       "CustomerGatewayArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "The Amazon Resource Name (ARN) of the customer gateway."
       },
       "DeviceId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The ID of the device"
       },
       "GlobalNetworkId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "The ID of the global network."
       },
       "LinkId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The ID of the link"
@@ -1155,21 +1212,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/62"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1180,7 +1237,7 @@
     "$type": "ResourceType",
     "name": "AWS.NetworkManager/CustomerGatewayAssociation@default",
     "body": {
-      "$ref": "#/60"
+      "$ref": "#/63"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1191,14 +1248,14 @@
     "properties": {
       "SubnetArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The Amazon Resource Name (ARN) of the subnet that the device is located in."
       },
       "Zone": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The Zone that the device is located in. Specify the ID of an Availability Zone, Local Zone, Wavelength Zone, or an Outpost."
@@ -1211,21 +1268,21 @@
     "properties": {
       "Address": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The physical address."
       },
       "Latitude": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The latitude."
       },
       "Longitude": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The longitude."
@@ -1238,14 +1295,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -1259,7 +1316,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/64"
+      "$ref": "#/67"
     }
   },
   {
@@ -1268,98 +1325,98 @@
     "properties": {
       "AWSLocation": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/65"
         },
         "flags": 0,
         "description": "The Amazon Web Services location of the device, if applicable."
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The date and time that the device was created."
       },
       "Description": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The description of the device."
       },
       "DeviceArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The Amazon Resource Name (ARN) of the device."
       },
       "DeviceId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 18,
         "description": "The ID of the device."
       },
       "GlobalNetworkId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "The ID of the global network."
       },
       "Location": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/66"
         },
         "flags": 0,
         "description": "The site location."
       },
       "Model": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The device model"
       },
       "SerialNumber": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The device serial number."
       },
       "SiteId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The site ID."
       },
       "State": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The state of the device."
       },
       "Tags": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": "The tags for the device."
       },
       "Type": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The device type."
       },
       "Vendor": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The device vendor."
@@ -1372,21 +1429,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/70"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1397,10 +1454,37 @@
     "$type": "ResourceType",
     "name": "AWS.NetworkManager/Device@default",
     "body": {
-      "$ref": "#/68"
+      "$ref": "#/71"
     },
     "readableScopes": 0,
     "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NatRule",
+    "properties": {
+      "MatchSourceCidr": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The IPv4 CIDR that source traffic is matched against for translation."
+      },
+      "NatCidr": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The IPv4 CIDR that matched source traffic is translated into. Must have the same prefix length as MatchSourceCidr."
+      },
+      "RuleNumber": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The rule number that uniquely identifies the NAT rule on the attachment."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -1408,21 +1492,21 @@
     "properties": {
       "AttachmentPolicyRuleNumber": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The rule number in the policy document that applies to this change."
       },
       "NetworkFunctionGroupName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The name of the network function group to change."
       },
       "Tags": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/77"
         },
         "flags": 0,
         "description": "The key-value tags that changed for the network function group."
@@ -1435,21 +1519,21 @@
     "properties": {
       "AttachmentPolicyRuleNumber": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The rule number in the policy document that applies to this change."
       },
       "SegmentName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The name of the segment to change."
       },
       "Tags": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/78"
         },
         "flags": 0,
         "description": "The key-value tags that changed for the segment."
@@ -1462,14 +1546,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -1479,13 +1563,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/72"
+      "$ref": "#/76"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/72"
+      "$ref": "#/76"
     }
   },
   {
@@ -1495,19 +1579,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/72"
+      "$ref": "#/73"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/76"
     }
   },
   {
@@ -1516,133 +1606,154 @@
     "properties": {
       "AttachmentId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 18,
         "description": "Id of the attachment."
       },
       "AttachmentPolicyRuleNumber": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 2,
         "description": "The policy rule number associated with the attachment."
       },
       "AttachmentType": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "Attachment type."
       },
       "CoreNetworkArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The ARN of a core network for the Direct Connect Gateway attachment."
       },
       "CoreNetworkId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The ID of a core network for the Direct Connect Gateway attachment."
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "Creation time of the attachment."
       },
       "DirectConnectGatewayArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The ARN of the Direct Connect Gateway."
       },
       "EdgeLocations": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/80"
         },
         "flags": 1,
         "description": "The Regions where the edges are located."
       },
       "LastModificationErrors": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/81"
         },
         "flags": 2,
         "description": "Errors from the last modification of the attachment."
       },
+      "NatGatewayRules": {
+        "type": {
+          "$ref": "#/82"
+        },
+        "flags": 4,
+        "description": "The complete set of NAT gateway rules on the attachment. Updating this property replaces the entire rule set, and rules left out of the new value are removed. To remove all rules, specify an empty list or remove this property. NAT gateway support can't be enabled without rules, so it is then disabled unless NatGatewaySupport is specified. Only the core network owner can configure NAT gateway rules. The rules aren't returned when the attachment is read, so drift detection doesn't check them. Not available in AWS GovCloud (US)."
+      },
+      "NatGatewaySupport": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Whether NAT gateway support is enabled on the attachment. Required when NatGatewayRules lists rules. Set to DISABLE with NatGatewayRules to keep the rules on the attachment without translating traffic, and set it to ENABLE to activate them again. An attachment that is pending acceptance applies this setting once it is accepted. Only the core network owner can configure or read NAT gateway settings. Not available in AWS GovCloud (US)."
+      },
+      "NatSystemRouteSupport": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "Whether system routes are installed for the NAT CIDRs of the attachment's NAT gateway rules. If omitted, a new NAT gateway configuration uses the service default of true and an existing configuration keeps its current value, so removing this property from a template doesn't reset the setting. Only the core network owner can configure this setting. Not available in AWS GovCloud (US)."
+      },
       "NetworkFunctionGroupName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The name of the network function group attachment."
       },
       "OwnerAccountId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "Owner account of the attachment."
       },
       "ProposedNetworkFunctionGroupChange": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/74"
         },
         "flags": 2,
         "description": "The attachment to move from one network function group to another."
       },
       "ProposedSegmentChange": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/75"
         },
         "flags": 2,
         "description": "The attachment to move from one segment to another."
       },
       "ResourceArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The ARN of the Resource."
       },
       "RoutingPolicyLabel": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 4,
         "description": "Routing policy label"
       },
       "SegmentName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The name of the segment attachment.."
       },
       "State": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "State of the attachment."
       },
       "Tags": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/83"
         },
         "flags": 0,
         "description": "Tags for the attachment."
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "Last update time of the attachment."
@@ -1655,21 +1766,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/84"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1680,7 +1791,7 @@
     "$type": "ResourceType",
     "name": "AWS.NetworkManager/DirectConnectGatewayAttachment@default",
     "body": {
-      "$ref": "#/80"
+      "$ref": "#/85"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1691,14 +1802,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -1712,7 +1823,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/82"
+      "$ref": "#/87"
     }
   },
   {
@@ -1721,42 +1832,42 @@
     "properties": {
       "Arn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The Amazon Resource Name (ARN) of the global network."
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The date and time that the global network was created."
       },
       "Description": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The description of the global network."
       },
       "Id": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 18,
         "description": "The ID of the global network."
       },
       "State": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The state of the global network."
       },
       "Tags": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/89"
         },
         "flags": 0,
         "description": "The tags for the global network."
@@ -1769,21 +1880,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/90"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1794,7 +1905,7 @@
     "$type": "ResourceType",
     "name": "AWS.NetworkManager/GlobalNetwork@default",
     "body": {
-      "$ref": "#/86"
+      "$ref": "#/91"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1805,14 +1916,14 @@
     "properties": {
       "DownloadSpeed": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "Download speed in Mbps."
       },
       "UploadSpeed": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "Upload speed in Mbps."
@@ -1825,14 +1936,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -1846,7 +1957,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/89"
+      "$ref": "#/94"
     }
   },
   {
@@ -1855,77 +1966,77 @@
     "properties": {
       "Bandwidth": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/93"
         },
         "flags": 1,
         "description": "The Bandwidth for the link."
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The date and time that the device was created."
       },
       "Description": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The description of the link."
       },
       "GlobalNetworkId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "The ID of the global network."
       },
       "LinkArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The Amazon Resource Name (ARN) of the link."
       },
       "LinkId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 18,
         "description": "The ID of the link."
       },
       "Provider": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The provider of the link."
       },
       "SiteId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The ID of the site"
       },
       "State": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The state of the link."
       },
       "Tags": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/96"
         },
         "flags": 0,
         "description": "The tags for the link."
       },
       "Type": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The type of the link."
@@ -1938,21 +2049,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/97"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1963,7 +2074,7 @@
     "$type": "ResourceType",
     "name": "AWS.NetworkManager/Link@default",
     "body": {
-      "$ref": "#/93"
+      "$ref": "#/98"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1978,21 +2089,21 @@
     "properties": {
       "DeviceId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "The ID of the device"
       },
       "GlobalNetworkId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "The ID of the global network."
       },
       "LinkId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "The ID of the link"
@@ -2005,21 +2116,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/101"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2030,7 +2141,7 @@
     "$type": "ResourceType",
     "name": "AWS.NetworkManager/LinkAssociation@default",
     "body": {
-      "$ref": "#/97"
+      "$ref": "#/102"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2041,21 +2152,21 @@
     "properties": {
       "Address": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The physical address."
       },
       "Latitude": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The latitude."
       },
       "Longitude": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The longitude."
@@ -2068,14 +2179,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -2089,7 +2200,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/100"
+      "$ref": "#/105"
     }
   },
   {
@@ -2098,56 +2209,56 @@
     "properties": {
       "CreatedAt": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The date and time that the device was created."
       },
       "Description": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The description of the site."
       },
       "GlobalNetworkId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "The ID of the global network."
       },
       "Location": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/104"
         },
         "flags": 0,
         "description": "The location of the site."
       },
       "SiteArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The Amazon Resource Name (ARN) of the site."
       },
       "SiteId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 18,
         "description": "The ID of the site."
       },
       "State": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The state of the site."
       },
       "Tags": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/107"
         },
         "flags": 0,
         "description": "The tags for the site."
@@ -2160,21 +2271,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/108"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2185,10 +2296,37 @@
     "$type": "ResourceType",
     "name": "AWS.NetworkManager/Site@default",
     "body": {
-      "$ref": "#/104"
+      "$ref": "#/109"
     },
     "readableScopes": 0,
     "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NatRule",
+    "properties": {
+      "MatchSourceCidr": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The IPv4 CIDR that source traffic is matched against for translation."
+      },
+      "NatCidr": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The IPv4 CIDR that matched source traffic is translated into. Must have the same prefix length as MatchSourceCidr."
+      },
+      "RuleNumber": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The rule number that uniquely identifies the NAT rule on the attachment."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -2196,21 +2334,21 @@
     "properties": {
       "AttachmentPolicyRuleNumber": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The rule number in the policy document that applies to this change."
       },
       "NetworkFunctionGroupName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The name of the network function group to change."
       },
       "Tags": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/115"
         },
         "flags": 0,
         "description": "The key-value tags that changed for the network function group."
@@ -2223,21 +2361,21 @@
     "properties": {
       "AttachmentPolicyRuleNumber": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The rule number in the policy document that applies to this change."
       },
       "SegmentName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The name of the segment to change."
       },
       "Tags": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/116"
         },
         "flags": 0,
         "description": "The key-value tags that changed for the segment."
@@ -2250,14 +2388,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -2267,13 +2405,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/108"
+      "$ref": "#/114"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/108"
+      "$ref": "#/114"
     }
   },
   {
@@ -2283,13 +2421,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/108"
+      "$ref": "#/111"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/114"
     }
   },
   {
@@ -2298,133 +2442,154 @@
     "properties": {
       "AttachmentId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 18,
         "description": "The ID of the attachment."
       },
       "AttachmentPolicyRuleNumber": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 2,
         "description": "The policy rule number associated with the attachment."
       },
       "AttachmentType": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The type of attachment."
       },
       "CoreNetworkArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The ARN of a core network for the VPC attachment."
       },
       "CoreNetworkId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The ID of a core network where you're creating a site-to-site VPN attachment."
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "Creation time of the attachment."
       },
       "EdgeLocation": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The Region where the edge is located."
       },
       "LastModificationErrors": {
         "type": {
-          "$ref": "#/112"
+          "$ref": "#/118"
         },
         "flags": 2,
         "description": "Errors from the last modification of the attachment."
       },
+      "NatGatewayRules": {
+        "type": {
+          "$ref": "#/119"
+        },
+        "flags": 4,
+        "description": "The complete set of NAT gateway rules on the attachment. Updating this property replaces the entire rule set, and rules left out of the new value are removed. To remove all rules, specify an empty list or remove this property. NAT gateway support can't be enabled without rules, so it is then disabled unless NatGatewaySupport is specified. Only the core network owner can configure NAT gateway rules. The rules aren't returned when the attachment is read, so drift detection doesn't check them. Not available in AWS GovCloud (US)."
+      },
+      "NatGatewaySupport": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Whether NAT gateway support is enabled on the attachment. Required when NatGatewayRules lists rules. Set to DISABLE with NatGatewayRules to keep the rules on the attachment without translating traffic, and set it to ENABLE to activate them again. An attachment that is pending acceptance applies this setting once it is accepted. Only the core network owner can configure or read NAT gateway settings. Not available in AWS GovCloud (US)."
+      },
+      "NatSystemRouteSupport": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "Whether system routes are installed for the NAT CIDRs of the attachment's NAT gateway rules. Configurable on BGP Site-to-Site VPN attachments. Always false and not configurable for static VPN attachments. If omitted, a new NAT gateway configuration uses the service default for the attachment and an existing configuration keeps its current value, so removing this property from a template doesn't reset the setting. Only the core network owner can configure this setting. Not available in AWS GovCloud (US)."
+      },
       "NetworkFunctionGroupName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The name of the network function group attachment."
       },
       "OwnerAccountId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "Owner account of the attachment."
       },
       "ProposedNetworkFunctionGroupChange": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/112"
         },
         "flags": 2,
         "description": "The attachment to move from one network function group to another."
       },
       "ProposedSegmentChange": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/113"
         },
         "flags": 2,
         "description": "The attachment to move from one segment to another."
       },
       "ResourceArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The ARN of the Resource."
       },
       "RoutingPolicyLabel": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 4,
         "description": "Routing policy label"
       },
       "SegmentName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The name of the segment that attachment is in."
       },
       "State": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The state of the attachment."
       },
       "Tags": {
         "type": {
-          "$ref": "#/113"
+          "$ref": "#/120"
         },
         "flags": 0,
         "description": "Tags for the attachment."
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "Last update time of the attachment."
       },
       "VpnConnectionArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The ARN of the site-to-site VPN attachment."
@@ -2437,183 +2602,14 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
-        },
-        "flags": 17,
-        "description": "the resource alias"
-      },
-      "properties": {
-        "type": {
-          "$ref": "#/114"
-        },
-        "flags": 17,
-        "description": "properties of the resource"
-      }
-    }
-  },
-  {
-    "$type": "ResourceType",
-    "name": "AWS.NetworkManager/SiteToSiteVpnAttachment@default",
-    "body": {
-      "$ref": "#/115"
-    },
-    "readableScopes": 0,
-    "writableScopes": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
-      }
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.NetworkManager/TransitGatewayPeeringProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/4"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/117"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.NetworkManager/TransitGatewayPeeringProperties",
-    "properties": {
-      "CoreNetworkArn": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 2,
-        "description": "The ARN (Amazon Resource Name) of the core network that you want to peer a transit gateway to."
-      },
-      "CoreNetworkId": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The Id of the core network that you want to peer a transit gateway to."
-      },
-      "CreatedAt": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 2,
-        "description": "The creation time of the transit gateway peering"
-      },
-      "EdgeLocation": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 2,
-        "description": "The location of the transit gateway peering"
-      },
-      "LastModificationErrors": {
-        "type": {
-          "$ref": "#/119"
-        },
-        "flags": 2,
-        "description": "Errors from the last modification of the transit gateway peering."
-      },
-      "OwnerAccountId": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 2,
-        "description": "Peering owner account Id"
-      },
-      "PeeringId": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 18,
-        "description": "The Id of the transit gateway peering"
-      },
-      "PeeringType": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 2,
-        "description": "Peering type (TransitGatewayPeering)"
-      },
-      "ResourceArn": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 2,
-        "description": "The ARN (Amazon Resource Name) of the resource that you will peer to a core network"
-      },
-      "State": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 2,
-        "description": "The state of the transit gateway peering"
-      },
-      "Tags": {
-        "type": {
-          "$ref": "#/120"
-        },
-        "flags": 0,
-        "description": "An array of key-value pairs to apply to this resource."
-      },
-      "TransitGatewayArn": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 1,
-        "description": "The ARN (Amazon Resource Name) of the transit gateway that you will peer to a core network"
-      },
-      "TransitGatewayPeeringAttachmentId": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 2,
-        "description": "The ID of the TransitGatewayPeeringAttachment"
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.NetworkManager/TransitGatewayPeering",
-    "properties": {
-      "name": {
-        "type": {
-          "$ref": "#/4"
-        },
-        "flags": 0,
-        "description": "the resource name"
-      },
-      "alias": {
-        "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
@@ -2629,9 +2625,178 @@
   },
   {
     "$type": "ResourceType",
-    "name": "AWS.NetworkManager/TransitGatewayPeering@default",
+    "name": "AWS.NetworkManager/SiteToSiteVpnAttachment@default",
     "body": {
       "$ref": "#/122"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.NetworkManager/TransitGatewayPeeringProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/124"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.NetworkManager/TransitGatewayPeeringProperties",
+    "properties": {
+      "CoreNetworkArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The ARN (Amazon Resource Name) of the core network that you want to peer a transit gateway to."
+      },
+      "CoreNetworkId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The Id of the core network that you want to peer a transit gateway to."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The creation time of the transit gateway peering"
+      },
+      "EdgeLocation": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The location of the transit gateway peering"
+      },
+      "LastModificationErrors": {
+        "type": {
+          "$ref": "#/126"
+        },
+        "flags": 2,
+        "description": "Errors from the last modification of the transit gateway peering."
+      },
+      "OwnerAccountId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "Peering owner account Id"
+      },
+      "PeeringId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "The Id of the transit gateway peering"
+      },
+      "PeeringType": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "Peering type (TransitGatewayPeering)"
+      },
+      "ResourceArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The ARN (Amazon Resource Name) of the resource that you will peer to a core network"
+      },
+      "State": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The state of the transit gateway peering"
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/127"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
+      "TransitGatewayArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The ARN (Amazon Resource Name) of the transit gateway that you will peer to a core network"
+      },
+      "TransitGatewayPeeringAttachmentId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 2,
+        "description": "The ID of the TransitGatewayPeeringAttachment"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.NetworkManager/TransitGatewayPeering",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/128"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.NetworkManager/TransitGatewayPeering@default",
+    "body": {
+      "$ref": "#/129"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2646,14 +2811,14 @@
     "properties": {
       "GlobalNetworkId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "The ID of the global network."
       },
       "TransitGatewayArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "The Amazon Resource Name (ARN) of the transit gateway."
@@ -2666,21 +2831,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/125"
+          "$ref": "#/132"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2691,7 +2856,7 @@
     "$type": "ResourceType",
     "name": "AWS.NetworkManager/TransitGatewayRegistration@default",
     "body": {
-      "$ref": "#/126"
+      "$ref": "#/133"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2702,21 +2867,21 @@
     "properties": {
       "AttachmentPolicyRuleNumber": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The rule number in the policy document that applies to this change."
       },
       "NetworkFunctionGroupName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The name of the network function group to change."
       },
       "Tags": {
         "type": {
-          "$ref": "#/131"
+          "$ref": "#/138"
         },
         "flags": 0,
         "description": "The key-value tags that changed for the network function group."
@@ -2729,21 +2894,21 @@
     "properties": {
       "AttachmentPolicyRuleNumber": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The rule number in the policy document that applies to this change."
       },
       "SegmentName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The name of the segment to change."
       },
       "Tags": {
         "type": {
-          "$ref": "#/132"
+          "$ref": "#/139"
         },
         "flags": 0,
         "description": "The key-value tags that changed for the segment."
@@ -2756,14 +2921,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -2773,13 +2938,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/130"
+      "$ref": "#/137"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/130"
+      "$ref": "#/137"
     }
   },
   {
@@ -2789,13 +2954,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/130"
+      "$ref": "#/137"
     }
   },
   {
@@ -2804,140 +2969,140 @@
     "properties": {
       "AttachmentId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 18,
         "description": "The ID of the attachment."
       },
       "AttachmentPolicyRuleNumber": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 2,
         "description": "The policy rule number associated with the attachment."
       },
       "AttachmentType": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The type of attachment."
       },
       "CoreNetworkArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The ARN of a core network for the VPC attachment."
       },
       "CoreNetworkId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The ID of a core network where you're creating a site-to-site VPN attachment."
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "Creation time of the attachment."
       },
       "EdgeLocation": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The Region where the edge is located."
       },
       "LastModificationErrors": {
         "type": {
-          "$ref": "#/134"
+          "$ref": "#/141"
         },
         "flags": 2,
         "description": "Errors from the last modification of the attachment."
       },
       "NetworkFunctionGroupName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The name of the network function group attachment."
       },
       "OwnerAccountId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "Owner account of the attachment."
       },
       "PeeringId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The Id of peering between transit gateway and core network."
       },
       "ProposedNetworkFunctionGroupChange": {
         "type": {
-          "$ref": "#/128"
+          "$ref": "#/135"
         },
         "flags": 2,
         "description": "The attachment to move from one network function group to another."
       },
       "ProposedSegmentChange": {
         "type": {
-          "$ref": "#/129"
+          "$ref": "#/136"
         },
         "flags": 2,
         "description": "The attachment to move from one segment to another."
       },
       "ResourceArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The ARN of the Resource."
       },
       "RoutingPolicyLabel": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 4,
         "description": "Routing policy label"
       },
       "SegmentName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The name of the segment that attachment is in."
       },
       "State": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The state of the attachment."
       },
       "Tags": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/142"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "TransitGatewayRouteTableArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The Arn of transit gateway route table."
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "Last update time of the attachment."
@@ -2950,21 +3115,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/136"
+          "$ref": "#/143"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2975,10 +3140,37 @@
     "$type": "ResourceType",
     "name": "AWS.NetworkManager/TransitGatewayRouteTableAttachment@default",
     "body": {
-      "$ref": "#/137"
+      "$ref": "#/144"
     },
     "readableScopes": 0,
     "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NatRule",
+    "properties": {
+      "MatchSourceCidr": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The IPv4 CIDR that source traffic is matched against for translation."
+      },
+      "NatCidr": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The IPv4 CIDR that matched source traffic is translated into. Must have the same prefix length as MatchSourceCidr."
+      },
+      "RuleNumber": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 1,
+        "description": "The rule number that uniquely identifies the NAT rule on the attachment."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -2986,21 +3178,21 @@
     "properties": {
       "AttachmentPolicyRuleNumber": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The rule number in the policy document that applies to this change."
       },
       "NetworkFunctionGroupName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The name of the network function group to change."
       },
       "Tags": {
         "type": {
-          "$ref": "#/143"
+          "$ref": "#/151"
         },
         "flags": 0,
         "description": "The key-value tags that changed for the network function group."
@@ -3013,21 +3205,21 @@
     "properties": {
       "AttachmentPolicyRuleNumber": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The rule number in the policy document that applies to this change."
       },
       "SegmentName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The name of the segment to change."
       },
       "Tags": {
         "type": {
-          "$ref": "#/144"
+          "$ref": "#/152"
         },
         "flags": 0,
         "description": "The key-value tags that changed for the segment."
@@ -3040,14 +3232,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
       },
       "Value": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -."
@@ -3060,28 +3252,28 @@
     "properties": {
       "ApplianceModeSupport": {
         "type": {
-          "$ref": "#/145"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "Indicates whether to enable ApplianceModeSupport Support for Vpc Attachment. Valid Values: true | false"
       },
       "DnsSupport": {
         "type": {
-          "$ref": "#/145"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "Indicates whether to enable private DNS Support for Vpc Attachment. Valid Values: true | false"
       },
       "Ipv6Support": {
         "type": {
-          "$ref": "#/145"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "Indicates whether to enable Ipv6 Support for Vpc Attachment. Valid Values: enable | disable"
       },
       "SecurityGroupReferencingSupport": {
         "type": {
-          "$ref": "#/145"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "Indicates whether to enable Security Group Referencing Support for Vpc Attachment. Valid Values: true | false"
@@ -3091,17 +3283,14 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/141"
+      "$ref": "#/149"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/141"
+      "$ref": "#/149"
     }
-  },
-  {
-    "$type": "BooleanType"
   },
   {
     "$type": "StringLiteralType",
@@ -3110,19 +3299,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/4"
+      "$ref": "#/146"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/141"
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/149"
     }
   },
   {
@@ -3131,147 +3326,168 @@
     "properties": {
       "AttachmentId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 18,
         "description": "Id of the attachment."
       },
       "AttachmentPolicyRuleNumber": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 2,
         "description": "The policy rule number associated with the attachment."
       },
       "AttachmentType": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "Attachment type."
       },
       "CoreNetworkArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The ARN of a core network for the VPC attachment."
       },
       "CoreNetworkId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The ID of a core network for the VPC attachment."
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "Creation time of the attachment."
       },
       "EdgeLocation": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The Region where the edge is located."
       },
       "LastModificationErrors": {
         "type": {
-          "$ref": "#/147"
+          "$ref": "#/154"
         },
         "flags": 2,
         "description": "Errors from the last modification of the attachment."
       },
+      "NatGatewayRules": {
+        "type": {
+          "$ref": "#/155"
+        },
+        "flags": 4,
+        "description": "The complete set of NAT gateway rules on the attachment. Updating this property replaces the entire rule set, and rules left out of the new value are removed. To remove all rules, specify an empty list or remove this property. NAT gateway support can't be enabled without rules, so it is then disabled unless NatGatewaySupport is specified. Only the core network owner can configure NAT gateway rules. The rules aren't returned when the attachment is read, so drift detection doesn't check them. Not available in AWS GovCloud (US)."
+      },
+      "NatGatewaySupport": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Whether NAT gateway support is enabled on the attachment. Required when NatGatewayRules lists rules. Set to DISABLE with NatGatewayRules to keep the rules on the attachment without translating traffic, and set it to ENABLE to activate them again. An attachment that is pending acceptance applies this setting once it is accepted. Only the core network owner can configure or read NAT gateway settings. Not available in AWS GovCloud (US)."
+      },
+      "NatSystemRouteSupport": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 2,
+        "description": "Whether system routes are installed for the NAT CIDRs of the attachment's NAT gateway rules. On VPC attachments this is always true and is not configurable. Not available in AWS GovCloud (US)."
+      },
       "NetworkFunctionGroupName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The name of the network function group attachment."
       },
       "Options": {
         "type": {
-          "$ref": "#/142"
+          "$ref": "#/150"
         },
         "flags": 0,
         "description": "Vpc options of the attachment."
       },
       "OwnerAccountId": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "Owner account of the attachment."
       },
       "ProposedNetworkFunctionGroupChange": {
         "type": {
-          "$ref": "#/139"
+          "$ref": "#/147"
         },
         "flags": 2,
         "description": "The attachment to move from one network function group to another."
       },
       "ProposedSegmentChange": {
         "type": {
-          "$ref": "#/140"
+          "$ref": "#/148"
         },
         "flags": 2,
         "description": "The attachment to move from one segment to another."
       },
       "ResourceArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The ARN of the Resource."
       },
       "RoutingPolicyLabel": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 4,
         "description": "Routing policy label"
       },
       "SegmentName": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "The name of the segment attachment.."
       },
       "State": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "State of the attachment."
       },
       "SubnetArns": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/156"
         },
         "flags": 1,
         "description": "Subnet Arn list"
       },
       "Tags": {
         "type": {
-          "$ref": "#/149"
+          "$ref": "#/157"
         },
         "flags": 0,
         "description": "Tags for the attachment."
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 2,
         "description": "Last update time of the attachment."
       },
       "VpcArn": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "The ARN of the VPC."
@@ -3284,21 +3500,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/150"
+          "$ref": "#/158"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3309,7 +3525,7 @@
     "$type": "ResourceType",
     "name": "AWS.NetworkManager/VpcAttachment@default",
     "body": {
-      "$ref": "#/151"
+      "$ref": "#/159"
     },
     "readableScopes": 0,
     "writableScopes": 0

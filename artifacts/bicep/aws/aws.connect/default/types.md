@@ -684,7 +684,7 @@
 * **OutboundCallerConfig**: [OutboundCallerConfig](#outboundcallerconfig): The outbound caller ID name, number, and outbound whisper flow.
 * **OutboundEmailConfig**: [OutboundEmailConfig](#outboundemailconfig): The outbound email configuration for a specified queue.
 * **QueueArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) for the queue.
-* **QuickConnectArns**: string[]: The quick connects available to agents who are working the queue.
+* **QuickConnectArns**: string[]: The quick connects available to agents who are working the queue. To remove all quick connects from the queue, specify an empty list.
 * **Status**: string: The status of the queue.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **Type**: string (ReadOnly): The type of queue.

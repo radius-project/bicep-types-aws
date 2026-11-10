@@ -767,6 +767,12 @@
   {
     "$type": "ArrayType",
     "itemType": {
+      "$ref": "#/14"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
       "$ref": "#/31"
     }
   },
@@ -782,7 +788,7 @@
     "properties": {
       "GresCustomSettings": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": "Additional Slurm gres.conf records for the compute node group. Each item is a map of gres.conf attribute names to values describing one gres.conf record (for example a GPU topology, MIG, MPS, or custom GRES entry). AWS PCS adds the NodeName= prefix and merges these records with the GPU record it derives from the instance type."
@@ -796,7 +802,7 @@
       },
       "SlurmCustomSettings": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "Additional Slurm-specific configuration that directly maps to Slurm settings."
@@ -887,6 +893,13 @@
         "flags": 1,
         "description": "A list of EC2 instance configurations that AWS PCS can provision in the compute node group."
       },
+      "LaunchTemplateMode": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "How AWS PCS gets the launch template for the compute node group. CUSTOM uses CustomLaunchTemplate. MANAGED has AWS PCS generate and manage the launch template from the instance settings; omit CustomLaunchTemplate. Defaults to CUSTOM on create."
+      },
       "Name": {
         "type": {
           "$ref": "#/14"
@@ -914,19 +927,33 @@
         "flags": 1,
         "description": "Specifies the boundaries of the compute node group auto scaling."
       },
+      "SecurityGroupIds": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 0,
+        "description": "The IDs of the EC2 security groups configured directly on the compute node group. These replace the security groups from the custom launch template. A request cannot specify this property with a launch template that defines NetworkInterfaces. When not provided and a custom launch template is present, AWS PCS uses the security groups from the launch template."
+      },
       "SlurmConfiguration": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "Additional options related to the Slurm scheduler."
       },
       "SpotOptions": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "Additional configuration when you specify SPOT as the purchase option."
+      },
+      "SshKeyName": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 0,
+        "description": "The name of the EC2 key pair configured directly on the compute node group. The key pair must exist in the caller's account and Region and overrides the key pair from the custom launch template. When not provided and a custom launch template is present, AWS PCS uses the key pair from the launch template."
       },
       "Status": {
         "type": {
@@ -937,14 +964,14 @@
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/53"
         },
         "flags": 1,
         "description": "The list of subnet IDs where instances are provisioned by the compute node group. The subnets must be in the same VPC as the cluster."
       },
       "Tags": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0,
         "description": "1 or more tags added to the resource. Each tag consists of a tag key and tag value. The tag value is optional and can be an empty string."
@@ -971,7 +998,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/55"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -982,7 +1009,7 @@
     "$type": "ResourceType",
     "name": "AWS.PCS/ComputeNodeGroup@default",
     "body": {
-      "$ref": "#/55"
+      "$ref": "#/56"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1047,12 +1074,6 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/57"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
       "$ref": "#/58"
     }
   },
@@ -1063,12 +1084,18 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/60"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "Queue_SlurmConfiguration",
     "properties": {
       "SlurmCustomSettings": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/64"
         },
         "flags": 0,
         "description": "Custom Slurm parameters that directly map to Slurm configuration settings."
@@ -1100,14 +1127,14 @@
       },
       "ComputeNodeGroupConfigurations": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/62"
         },
         "flags": 0,
         "description": "The list of compute node group configurations associated with the queue. Queues assign jobs to associated compute node groups."
       },
       "ErrorInfo": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/63"
         },
         "flags": 2,
         "description": "The list of errors that occurred during queue provisioning."
@@ -1128,7 +1155,7 @@
       },
       "SlurmConfiguration": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/65"
         },
         "flags": 0,
         "description": "The Slurm configuration for the queue."
@@ -1142,7 +1169,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/66"
         },
         "flags": 0,
         "description": "1 or more tags added to the resource. Each tag consists of a tag key and tag value. The tag value is optional and can be an empty string."
@@ -1169,7 +1196,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/67"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1180,7 +1207,7 @@
     "$type": "ResourceType",
     "name": "AWS.PCS/Queue@default",
     "body": {
-      "$ref": "#/67"
+      "$ref": "#/68"
     },
     "readableScopes": 0,
     "writableScopes": 0
