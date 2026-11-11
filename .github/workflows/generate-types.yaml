@@ -140,7 +140,9 @@ jobs:
       # The generator kept Radius's type and AWS's property, so this reports the
       # clash for a person to review instead of failing. The report has only clashes
       # where either side is new, so a reviewed clash is not reported again.
-      # While the issue is open, a run with a different report adds it as a comment.
+      # A clash stays new until the refresh pull request merges, so a run that finds
+      # the same clashes in any issue, open or closed, does nothing. Otherwise it
+      # comments on the open issue, or opens one.
       - name: Open or update the issue for clashes with Radius types
         env:
           GH_TOKEN: ${{ github.token }}
@@ -160,23 +162,32 @@ jobs:
             echo
             cat "${REPORT}"
             echo
-            echo "Found by [this workflow run](${RUN_URL})."
+            echo "Found by [this workflow run](${RUN_URL}). Close this issue after the pull request that refreshes the types merges."
           } > "${RUNNER_TEMP}/radius-clashes-issue.md"
 
-          number="$(gh issue list --repo "${GITHUB_REPOSITORY}" --state open --label aws-types --limit 500 --json number,title \
-            --jq 'map(select(.title == env.TITLE)) | .[0].number // empty')"
-          if [[ -z "${number}" ]]; then
-            gh issue create --repo "${GITHUB_REPOSITORY}" --title "${TITLE}" --label aws-types --body-file "${RUNNER_TEMP}/radius-clashes-issue.md"
-            exit 0
-          fi
+          # Open issues first, then newest first.
+          issues="$(gh issue list --repo "${GITHUB_REPOSITORY}" --state all --label aws-types --limit 500 --json number,title,state \
+            --jq 'map(select(.title == env.TITLE)) | sort_by([.state != "OPEN", -.number]) | .[] | "\(.number) \(.state)"')"
 
           # Compare only the report, since the Radius commit and run link change every run.
-          reported="$(REPORT_TEXT="$(cat "${REPORT}")" gh issue view "${number}" --repo "${GITHUB_REPOSITORY}" --json body,comments \
-            --jq '[.body] + [.comments[].body] | any(contains(env.REPORT_TEXT))')"
-          if [[ "${reported}" == "true" ]]; then
-            echo "Issue #${number} already lists these clashes."
+          open_number=""
+          while read -r number state; do
+            [[ -n "${number}" ]] || continue
+            if [[ "${state}" == "OPEN" && -z "${open_number}" ]]; then
+              open_number="${number}"
+            fi
+            reported="$(REPORT_TEXT="$(cat "${REPORT}")" gh issue view "${number}" --repo "${GITHUB_REPOSITORY}" --json body,comments \
+              --jq '[.body] + [.comments[].body] | any(contains(env.REPORT_TEXT))')"
+            if [[ "${reported}" == "true" ]]; then
+              echo "Issue #${number} already lists these clashes."
+              exit 0
+            fi
+          done <<< "${issues}"
+
+          if [[ -n "${open_number}" ]]; then
+            gh issue comment "${open_number}" --repo "${GITHUB_REPOSITORY}" --body-file "${RUNNER_TEMP}/radius-clashes-issue.md"
           else
-            gh issue comment "${number}" --repo "${GITHUB_REPOSITORY}" --body-file "${RUNNER_TEMP}/radius-clashes-issue.md"
+            gh issue create --repo "${GITHUB_REPOSITORY}" --title "${TITLE}" --label aws-types --body-file "${RUNNER_TEMP}/radius-clashes-issue.md"
           fi
 
       - name: Generate reference documentation
