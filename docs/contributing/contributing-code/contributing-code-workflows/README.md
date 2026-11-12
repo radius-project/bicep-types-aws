@@ -38,7 +38,7 @@ must be reviewed independently of the smaller token scopes requested by the job.
 | Workflow | Source | Writes |
 | --- | --- | --- |
 | `publish-main-bicep.yaml` | Protected current main, push or manual dispatch | `ghcr.io/radius-project/bicep-types-aws:edge` |
-| `publish-release-bicep.yaml` | Trusted main-history `vX.Y.Z` or `vX.Y.Z-rc.N` tag | GHCR full version without `v` |
+| `publish-release-bicep.yaml` | Default-main `repository_dispatch`, selecting a frozen stable/RC source | GHCR full version without `v` |
 | `publish-bicep.yaml` | Existing canonical main/tag publication | Dispatches the legacy external ACR publisher |
 
 The GHCR workflows are a staging layer. The old dispatcher is deliberately still
@@ -84,6 +84,15 @@ does not prove either condition. Do not substitute a developer's default AWS
 credentials. AWS credentials are passed only to the trusted downloader step,
 after dependencies have been built, not to generator scripts or the uploader.
 
+Release orchestration and tooling come from the default-branch commit selected by
+GitHub for `repository_dispatch`, **not** from tag-controlled workflow YAML.
+A separate schema-input job runs only the controller's downloader with the
+`publish-bicep` environment's read-only AWS identity. A fresh, unprivileged job
+runs the frozen generator without environment secrets or package-write authority.
+The uploader checks out the controller commit, authenticates the original
+capture, and imports only the data-only OCI graph. The frozen source can never
+choose commands, helpers or destinations in a privileged job.
+
 The fresh uploader uses this repository's `GITHUB_TOKEN` with `packages: write`.
 It authenticates Actions evidence and copies a validated data-only Bicep OCI graph.
 It never executes generated content, runs npm scripts, or receives an App private
@@ -119,7 +128,25 @@ retry fails and requires recovery from current main.
 ## Versioned evidence and recovery
 
 Only full stable versions and dotted RCs are supported, for example `v0.62.1` and
-`v0.62.1-rc.2`. The tag must resolve to the exact source SHA; Radius independently
+`v0.62.1-rc.2`. Tag pushes do not start the release producer. The trusted Radius
+controller uses its existing sibling-repository Contents-write token to send
+`repository_dispatch` with event type `aws-bicep-release` and this payload:
+
+```json
+{
+  "version": "v0.62.1",
+  "sourceCommit": "<frozen AWS source SHA>"
+}
+```
+
+The dispatch endpoint does not return a run ID or guarantee idempotency. The
+Radius controller must durably record request intent before its first POST and
+reconcile subsequent attempts by discovery, never automatically redispatch after
+an uncertain response. A run title is only a discovery hint, not source evidence.
+Do not delete request intent or reconstruct missing generation to bypass an
+ambiguous outcome.
+
+The tag must resolve to the exact source SHA; Radius independently
 matches it to the controller-frozen AWS commit. Full-version tags follow a
 publish-once CI policy: identical retries verify content, conflicting digests fail,
 and no release path force-overwrites an existing version.
@@ -132,6 +159,29 @@ The tar contains the native OCI layout, `source.json`, and the original
 A successful publishing attempt uploads
 `aws-bicep-extension-<publishRunId>-<publishAttempt>`, containing exactly one file:
 `aws-bicep-extension.json`. Partial receipts are uploaded separately.
+
+For release snapshots, root `source.json` is
+`{source, manifestDigest}`. `source` retains `repository`, tag `ref`, frozen
+`commit`, workflow path, original `runId` and `generationAttempt`, and adds:
+
+```json
+{
+  "controller": {
+    "repository": "radius-project/bicep-types-aws",
+    "ref": "refs/heads/main",
+    "commit": "<original capture run's default-main SHA>"
+  }
+}
+```
+
+Publishing and original-generation runs must each authenticate as default-main
+`repository_dispatch` runs of this workflow. Their controller SHAs are checked
+against protected main history independently of the frozen tag/source SHA.
+Actions artifact run metadata binds to the controller, not the tagged source.
+The collector verifies the raw artifact digest before parsing `source.json` and
+binding its source, controller and original generation to API evidence. Recovery
+may run a newer controller but must retain the original capture's controller.
+Main snapshots are unchanged. The final public record below is also unchanged:
 
 The record has this shape:
 
@@ -160,9 +210,11 @@ retains the original successful capture attempt even when the publishing attempt
 increases. An overall failed run is valid generation evidence if its capture job
 succeeded and the artifact was created within that job's timestamps.
 
-For a separate recovery run, manually select the **same tag** and supply both
-`generation-run-id` and `generation-run-attempt` of the original successful
-capture. The previous publication must have failed; another active publication
+For a separate recovery run, an authorized caller sends another
+`aws-bicep-release` repository dispatch with the **same version and sourceCommit**
+and both numeric `generationRunId` and `generationRunAttempt` of the original
+successful capture. These fields must be supplied together. The previous
+publication must have failed; another active publication
 must finish first. A new dispatch after a successful publishing run fails rather
 than creating a second successful no-op. Rerunning that same successful run ID
 is supported and emits a record for its new publishing attempt.
@@ -173,6 +225,41 @@ refresh AWS schemas to reconstruct a previously captured/published version.
 The Radius controller reads artifacts with an AWS-only Actions/Contents/Metadata
 read App token and persists its authenticated record before creating the Radius
 tag. The AWS producer does not modify the Deployment Engine lock.
+
+## Required operator security review (not implemented settings)
+
+The trusted-main job split prevents candidate generation from sharing AWS secrets
+or a package writer. It does **not** make repository-scoped GitHub credentials
+workflow-scoped. The review remains blocked on an independently approved operating
+boundary; this code change alone is not proof that arbitrary workflow revisions
+cannot obtain authority.
+
+- Verify `publish-bicep` environment deployment rules allow only protected main,
+  require independent reviewers, and inventory overlapping repository/organization
+  AWS secrets and their consumers. The existing environment has reviewer
+  protection, but its main-only restriction was not configured by this change.
+  Do not remove or move existing grants without a separate approved operation.
+- Audit who can write same-repository branches/workflows, create or move release
+  tags, approve environments or bypass branch protection. Restrict tag creation,
+  update and deletion to approved release actors as a separate proposal. Required
+  reviews on main alone do not control all off-main workflows.
+- Account for existing unsafe workflow commits and legacy triggers: preventing
+  future edits alone does not stop someone from tagging an older unsafe revision.
+  Existing trusted maintainers' write/bypass authority is distinct from running
+  untrusted candidate code with credentials.
+- `GITHUB_TOKEN` package-write access and package Manage Actions access are
+  repository-scoped. A workflow could omit an environment, so environment approval
+  alone is not a global package-write restriction. GitHub documents push rulesets
+  with file-path restrictions for private/internal repositories; do not assume
+  that mechanism is available or sufficient for this public repository.
+- Operators must establish an applicable, enforceable policy covering all
+  credential-bearing workflow/legacy entry points before activating the package
+  grant. If that cannot be established with the existing source-owned token,
+  a different credential architecture needs separate approval. No broker, PAT,
+  grant change, tag rule or environment setting is introduced here.
+
+References: [GitHub ruleset support](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/available-rules-for-rulesets)
+and [package permission scope](https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages).
 
 ## Coordinated handoff prerequisites
 
