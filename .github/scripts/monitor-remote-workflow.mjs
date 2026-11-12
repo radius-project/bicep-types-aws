@@ -72,11 +72,13 @@ function retryAfterMilliseconds(error) {
  *   sleep?: (ms: number) => Promise<void>,
  *   now?: () => number,
  *   random?: () => number,
+ *   onRunFound?: () => Promise<void>,
  * }} options
  */
 export default async ({
   github,
   core,
+  onRunFound,
   sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
   now = () => Date.now(),
   random = () => Math.random()
@@ -355,6 +357,8 @@ export default async ({
     core.setOutput("run_id", String(run.id));
     core.setOutput("run_url", runUrl);
     core.setOutput("run_state", "found");
+    // Persist discovered identity before a long polling wait can be interrupted.
+    await onRunFound?.();
     core.info(`Monitoring correlated remote run: ${runUrl}`);
 
     while (true) {

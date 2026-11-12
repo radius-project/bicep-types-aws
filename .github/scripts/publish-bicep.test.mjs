@@ -389,6 +389,47 @@ test("mirror integrates public monitor with App API and preserves exact request 
   assert.equal(options.receipt.status, "published");
 });
 
+test("mirror checkpoints discovered remote identity before an interrupted polling wait", async (t) => {
+  for (const reuseActive of [false, true]) {
+    const directory = await scratch(t);
+    const payload = copyRequest(main, ghcrReceipt());
+    const remoteRun = {
+      id: 901, event: "repository_dispatch",
+      display_title: `bicep-types-aws / ${payload.release_identifier}`,
+      status: "in_progress", conclusion: null,
+      html_url: "https://github.com/azure-octo/radius-publisher/actions/runs/901"
+    };
+    let dispatches = 0;
+    let checkpoint;
+    const publisherGithub = {
+      paginate: async () => reuseActive ? [remoteRun] : [],
+      rest: {
+        actions: { listWorkflowRuns: async () => ({ data: { workflow_runs: [remoteRun] } }) },
+        repos: { createDispatchEvent: async () => { dispatches++; } }
+      }
+    };
+    await assert.rejects(mirrorMain(mirrorOptions(directory, {
+      publisherGithub,
+      monitor: (options) => monitorRemoteWorkflow({
+        ...options,
+        sleep: async () => {
+          // Read before either monitor completion or mirrorMain's finally block.
+          checkpoint = JSON.parse(await readFile(join(directory, "receipt.json"), "utf8"));
+          throw new Error("Polling interrupted");
+        }
+      })
+    })), /Polling interrupted/);
+    assert.equal(dispatches, reuseActive ? 0 : 1);
+    assert.equal(checkpoint.status, "mirror-pending");
+    assert.equal(checkpoint.mirror.status, "requested");
+    assert.equal(checkpoint.mirror.run_id, "901");
+    assert.equal(checkpoint.mirror.run_url, remoteRun.html_url);
+    assert.equal(checkpoint.mirror.run_state, "found");
+    assert.equal(checkpoint.mirror.release_identifier, payload.release_identifier);
+    assert.equal(checkpoint.mirror.conclusion, undefined);
+  }
+});
+
 test("mirror failure, unknown acceptance and wrong bytes retain honest partial receipts", async (t) => {
   for (const failure of ["mirror", "edge", "remote", "unknown", "missing-conclusion"]) {
     const directory = await scratch(t);
