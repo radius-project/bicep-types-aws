@@ -10,19 +10,23 @@ import {
   capture, captureJob, checkReleaseHistory, existingManifest, hash, identity,
   mainWorkflow, maximumSnapshotSize, originalSource, packageInfo, prepare, publish,
   releaseWorkflow, repository, select, selectSnapshot, snapshotName, target, tool,
-  validateManifest, verifyArtifact, verifyCapture, verifySource, versions
+  validateManifest, verifyArtifact, verifyCapture, verifySource, versions,
+  releaseRunName, resolveGeneration, prepareSchemas, schemaSnapshotName
 } from "./publish-bicep.mjs";
 
 const sha = "a".repeat(40);
+const controllerSha = "c".repeat(40);
 const source = {
   repository, ref: "refs/tags/v0.62.1", commit: sha,
-  workflow: releaseWorkflow, runId: 100, generationAttempt: 1
+  workflow: releaseWorkflow, runId: 100, generationAttempt: 1,
+  controller: { repository, ref: "refs/heads/main", commit: controllerSha }
 };
-const main = { ...source, workflow: mainWorkflow, ref: "refs/heads/main" };
+const { controller: unusedController, ...mainSource } = source;
+const main = { ...mainSource, workflow: mainWorkflow, ref: "refs/heads/main" };
 const artifact = {
   id: 200, name: snapshotName(source), expired: false, size_in_bytes: 10,
   digest: `sha256:${"b".repeat(64)}`, created_at: "2026-10-01T00:01:00Z",
-  workflow_run: { id: 100, head_sha: sha, head_branch: "v0.62.1" }
+  workflow_run: { id: 100, head_sha: controllerSha, head_branch: "main" }
 };
 const manifest = {
   schemaVersion: 2, mediaType: "application/vnd.oci.image.manifest.v1+json",
@@ -40,8 +44,10 @@ const manifest = {
 const apiRun = (s = source) => ({
   id: s.runId, run_attempt: s.generationAttempt, run_number: s.runId,
   repository: { full_name: repository }, head_repository: { full_name: repository },
-  head_sha: s.commit, head_branch: s.ref.replace(/^refs\/(heads|tags)\//, ""),
-  path: s.workflow, event: "push", status: "completed", conclusion: "failure"
+  head_sha: s.controller?.commit ?? s.commit, head_branch: "main",
+  path: s.workflow, event: s.workflow === releaseWorkflow ? "repository_dispatch" : "push",
+  display_title: s.workflow === releaseWorkflow ? releaseRunName(s) : "Main",
+  status: "completed", conclusion: "failure"
 });
 function github(s = source, overrides = {}) {
   const state = {
@@ -101,28 +107,42 @@ const missing = (reference) => Object.assign(new Error("not found"), {
   stderr: `Error response from registry: failed to fetch the content of "${reference}": ${reference}: not found\n`
 });
 
-test("only canonical main and full stable/dotted RC events are eligible", () => {
+test("release control is default-main dispatch with a separately frozen source", () => {
   const context = {
     repo: { owner: "radius-project", repo: "bicep-types-aws" },
-    eventName: "push", ref: source.ref, sha, runId: 100
+    eventName: "repository_dispatch", ref: "refs/heads/main", sha: controllerSha, runId: 100,
+    payload: { action: "aws-bicep-release", client_payload: { version: "v0.62.1", sourceCommit: sha } }
   };
   const env = {
-    GITHUB_WORKFLOW_REF: `${repository}/${releaseWorkflow}@${source.ref}`,
+    GITHUB_WORKFLOW_REF: `${repository}/${releaseWorkflow}@refs/heads/main`,
     GITHUB_RUN_ATTEMPT: "1", GITHUB_REF_PROTECTED: "true"
   };
   assert.deepEqual(identity(context, env), source);
-  for (const ref of ["refs/tags/v0.62", "refs/tags/v0.62.1-rc1",
-    "refs/tags/v0.62.1-rc.0", "refs/tags/v01.2.3", "refs/heads/topic",
-    "refs/tags/v0.62.1+meta"]) {
-    assert.throws(() => identity({ ...context, ref }, env));
+  for (const version of ["v0.62", "v0.62.1-rc1", "v0.62.1-rc.0", "v01.2.3", "topic", "v0.62.1+meta"]) {
+    assert.throws(() => identity({ ...context, payload: {
+      ...context.payload, client_payload: { ...context.payload.client_payload, version }
+    } }, env));
   }
+  for (const eventName of ["push", "workflow_dispatch"])
+    assert.throws(() => identity({ ...context, eventName, ref: source.ref }, env));
+  assert.throws(() => identity({ ...context, ref: "refs/heads/candidate" }, env));
+  assert.throws(() => identity({ ...context, payload: {
+    ...context.payload, client_payload: { ...context.payload.client_payload, command: "candidate-command" }
+  } }, env));
+  for (const extra of [
+    { generationRunId: 90 }, { generationRunAttempt: 1 },
+    { generationRunId: "90", generationRunAttempt: 1 },
+    { generationRunId: 90, generationRunAttempt: 0 }
+  ]) assert.throws(() => identity({ ...context, payload: {
+    ...context.payload, client_payload: { ...context.payload.client_payload, ...extra }
+  } }, env));
   assert.throws(() => identity({ ...context, eventName: "pull_request" }, env));
   assert.throws(() => identity({ ...context, repo: { owner: "fork", repo: "bicep-types-aws" } }, env));
   assert.throws(() => identity(context, { ...env, GITHUB_WORKFLOW_REF: "wrong" }));
-  assert.deepEqual(identity({ ...context, ref: main.ref }, {
+  assert.deepEqual(identity({ ...context, sha, eventName: "push", ref: main.ref }, {
     ...env, GITHUB_WORKFLOW_REF: `${repository}/${mainWorkflow}@${main.ref}`
   }), main);
-  assert.throws(() => identity({ ...context, ref: main.ref }, {
+  assert.throws(() => identity({ ...context, sha, eventName: "push", ref: main.ref }, {
     ...env, GITHUB_WORKFLOW_REF: `${repository}/${mainWorkflow}@${main.ref}`,
     GITHUB_REF_PROTECTED: "false"
   }));
@@ -151,6 +171,78 @@ test("cross-run recovery requires an original run and capture attempt", () => {
   assert.throws(() => originalSource(main, "90", "1"));
 });
 
+test("recovery authenticates the original controller independently of the current controller", async (t) => {
+  const current = {
+    ...source, runId: 101,
+    controller: { ...source.controller, commit: "d".repeat(40) }
+  };
+  const { api } = github(source);
+  const generation = await resolveGeneration(api, current, "100", "1");
+  assert.deepEqual(generation, source);
+  const directory = await scratch(t);
+  const archive = join(directory, "snapshot.tar");
+  await writeFile(archive, "original capture");
+  const originalArtifact = { ...artifact, digest: hash(await readFile(archive)) };
+  const raw = JSON.stringify(manifest);
+  const run = async (args) => {
+    if (args[0] === "tar") return JSON.stringify({ source, manifestDigest: hash(raw) });
+    if (args.includes("fetch-config")) return "{}";
+    if (args.includes("fetch")) return raw;
+    return "";
+  };
+  const prepared = await prepare(api, archive, generation, originalArtifact, directory, run);
+  assert.deepEqual(prepared.record.generation, {
+    workflow: releaseWorkflow, runId: 100, runAttempt: 1,
+    artifactId: artifact.id, artifactDigest: originalArtifact.digest
+  });
+  assert.deepEqual(Object.keys(prepared.record).sort(),
+    ["name", "source", "version", "reference", "digest", "generation"].sort());
+  assert.deepEqual(prepared.record.source, { repository, commit: sha });
+  await assert.rejects(prepare(api, archive, { ...generation, controller: current.controller },
+    originalArtifact, directory, run));
+  for (const mutation of [
+    { event: "push" }, { head_branch: "v0.62.1" }, { path: mainWorkflow },
+    { display_title: `Publish AWS v0.62.1 at ${"e".repeat(40)}` }
+  ]) {
+    api.rest.actions.getWorkflowRunAttempt = async () => ({ data: { ...apiRun(source), ...mutation } });
+    await assert.rejects(resolveGeneration(api, current, "100", "1"));
+  }
+});
+
+test("schema handoff verifies controller job, digest and safe data before extracting", async (t) => {
+  const directory = await scratch(t);
+  const archive = join(directory, "inputs.tar");
+  await writeFile(archive, "raw schema input");
+  const inputArtifact = {
+    ...artifact, name: schemaSnapshotName(source), digest: hash(await readFile(archive))
+  };
+  const { api, state } = github(source);
+  state.jobs[0].name = "Capture AWS schema inputs";
+  let extracted = false;
+  const run = async (args) => {
+    if (args.includes("-xOf")) return JSON.stringify(source);
+    if (args.includes("-tf")) return "source.json\nschemas/\nschemas/AWS::S3::Bucket.json\n";
+    if (args.includes("-tvf")) return "-rw-r--r-- source.json\ndrwxr-xr-x schemas/\n-rw-r--r-- schemas/AWS::S3::Bucket.json\n";
+    extracted = true;
+    return "";
+  };
+  await prepareSchemas(api, archive, source, inputArtifact, directory, run);
+  assert.equal(extracted, true);
+  for (const invalid of ["../escape", "/absolute", "schemas/../../escape"]) {
+    extracted = false;
+    await assert.rejects(prepareSchemas(api, archive, source, inputArtifact, directory,
+      (args) => args.includes("-tf") ? invalid : run(args)));
+    assert.equal(extracted, false);
+  }
+  extracted = false;
+  await assert.rejects(prepareSchemas(api, archive, source, inputArtifact, directory,
+    (args) => args.includes("-tvf") ? "lrwxrwxrwx schemas/link" : run(args)), /links/);
+  assert.equal(extracted, false);
+  state.jobs[0].conclusion = "failure";
+  await assert.rejects(prepareSchemas(api, archive, source, inputArtifact, directory, run));
+  assert.equal(extracted, false);
+});
+
 test("missing, expired, ambiguous, oversized and substituted snapshots fail closed", () => {
   assert.equal(selectSnapshot([artifact], source, false), artifact);
   assert.equal(selectSnapshot([], source, false), undefined);
@@ -159,7 +251,7 @@ test("missing, expired, ambiguous, oversized and substituted snapshots fail clos
   assert.throws(() => selectSnapshot([artifact, artifact], source, false));
   for (const change of [
     { expired: true }, { digest: "bad" }, { size_in_bytes: maximumSnapshotSize + 1 },
-    { name: "wrong" }, { workflow_run: { ...artifact.workflow_run, head_sha: "c".repeat(40) } }
+    { name: "wrong" }, { workflow_run: { ...artifact.workflow_run, head_sha: sha } }
   ]) assert.throws(() => verifyArtifact({ ...artifact, ...change }, source));
 });
 
@@ -185,7 +277,7 @@ test("successful duplicate dispatch fails; same run retry and explicit failed re
   assert.throws(() => checkReleaseHistory([old], recovery, recovery, false));
   checkReleaseHistory([old], recovery, source, true);
   assert.throws(() => checkReleaseHistory([{ ...old, status: "in_progress" }], recovery, source, true));
-  assert.throws(() => checkReleaseHistory([{ ...old, head_sha: "c".repeat(40) }], recovery, source, true));
+  assert.throws(() => checkReleaseHistory([{ ...old, display_title: `Publish AWS v0.62.1 at ${"d".repeat(40)}` }], recovery, source, true));
 });
 
 test("preflight refuses an existing version without capture before generation", async () => {
@@ -315,10 +407,18 @@ test("workflow authority and evidence wiring remain bounded", async () => {
     assert.match(text, /digest-mismatch: error/);
     assert.match(text, /cancel-in-progress: false/);
     assert.match(generation, /--radius "\$\{INPUT_DIRECTORY\}\/schemas\/radius"/);
-    assert.match(generation, /git -C radius rev-parse HEAD > "\$\{INPUT_DIRECTORY\}\/schemas\/radius-commit"/);
+    assert.match(generation, /git -C (candidate\/)?radius rev-parse HEAD > "\$\{INPUT_DIRECTORY\}\/schemas\/radius-commit"/);
     assert.doesNotMatch(text, /biceptypes\.azurecr\.io|:latest|permission-contents: write/);
   }
   const release = await read("publish-release-bicep.yaml");
+  assert.match(release, /repository_dispatch:\n    types: \[aws-bicep-release\]/);
+  assert.doesNotMatch(release, /\n  push:|\n  workflow_dispatch:/);
+  const schemas = release.split("\n  schemas:\n")[1].split("\n  capture:\n")[0];
+  const capture = release.split("\n  capture:\n")[1].split("\n  publish:\n")[0];
+  assert.match(schemas, /environment: publish-bicep/);
+  assert.doesNotMatch(schemas, /npm |node candidate|candidate\/src\/aws-type-downloader/);
+  assert.doesNotMatch(capture, /environment:|secrets\.|packages: write|id-token: write/);
+  assert.match(capture, /node candidate\/src\/aws-type-generator/);
   assert.match(release, new RegExp(`name: ${captureJob}`));
   assert.match(release, /record\/aws-bicep-extension\.json/);
   const generation = await read("generate-types.yaml");
@@ -368,10 +468,23 @@ test("native Bicep/ORAS raw snapshot, stable/RC publish, retry, restore and conf
     const radiusCommit = (await tool(["git", "-C", "radius", "rev-parse", "HEAD"])).trim();
     assert.equal(radiusCommit, (await tool(["git", "rev-parse", "HEAD:radius"])).trim());
     await writeFile(join(directory, "schemas/radius-commit"), `${radiusCommit}\n`);
+    await writeFile(join(directory, "source.json"), JSON.stringify(s));
+    const schemaArchive = join(directory, schemaSnapshotName(s));
+    await tool(["tar", "-cf", schemaArchive, "-C", directory, "source.json", "schemas"]);
+    const received = join(directory, "received");
+    await mkdir(received);
+    const schemaApi = github(s);
+    schemaApi.state.jobs[0].name = "Capture AWS schema inputs";
+    await prepareSchemas(schemaApi.api, schemaArchive, s, {
+      ...artifact, id: 201, name: schemaSnapshotName(s),
+      size_in_bytes: (await lstat(schemaArchive)).size,
+      digest: hash(await readFile(schemaArchive))
+    }, received);
+    assert.equal(await readFile(join(received, "schemas/radius-commit"), "utf8"), `${radiusCommit}\n`);
     if (process.env.AWS_BICEP_TEST_GENERATOR === "true") {
       await tool(["node", resolve("src/aws-type-generator/dist/src/main.js"),
-        "--input", join(directory, "schemas"), "--output", join(directory, "generated"),
-        "--radius", join(directory, "schemas/radius"), "--releaseVersion", versions(s).typeVersion]);
+        "--input", join(received, "schemas"), "--output", join(directory, "generated"),
+        "--radius", join(received, "schemas/radius"), "--releaseVersion", versions(s).typeVersion]);
     } else {
       await cp(join(root, "artifacts/bicep"), join(directory, "generated"), { recursive: true });
     }
@@ -389,7 +502,7 @@ test("native Bicep/ORAS raw snapshot, stable/RC publish, retry, restore and conf
     const a = {
       ...artifact, size_in_bytes: (await lstat(archive)).size,
       digest: hash(await readFile(archive)),
-      workflow_run: { ...artifact.workflow_run, head_branch: ref.slice("refs/tags/".length) }
+      workflow_run: { ...artifact.workflow_run }
     };
     const { api } = github(s);
     const result = await prepare(api, archive, s, a, directory);
@@ -409,6 +522,14 @@ test("native Bicep/ORAS raw snapshot, stable/RC publish, retry, restore and conf
     await publish(api, { ...s, generationAttempt: 2 }, result, directory, run);
     assert.equal(result.record.generation.runAttempt, 1);
     assert.deepEqual(await readdir(join(directory, "record")), ["aws-bicep-extension.json"]);
+    if (process.env.AWS_BICEP_TEST_EVIDENCE_DIRECTORY) {
+      const evidence = join(resolve(process.env.AWS_BICEP_TEST_EVIDENCE_DIRECTORY), versions(s).version);
+      await mkdir(evidence, { recursive: true });
+      await cp(archive, join(evidence, snapshotName(s)));
+      await cp(join(directory, "record/aws-bicep-extension.json"), join(evidence, "aws-bicep-extension.json"));
+      await cp(join(directory, "manifest.json"), join(evidence, "manifest.json"));
+      await writeFile(join(evidence, "source.json"), await tool(["tar", "-xOf", archive, "source.json"]));
+    }
     const compile = join(directory, "compile");
     await mkdir(compile);
     await cp(join(root, ".github/scripts/testdata/aws-publish/main.bicep"), join(compile, "main.bicep"));

@@ -41,10 +41,35 @@ export async function tool(args, options = {}) {
 
 export function identity(context, env) {
   assert.equal(`${context.repo.owner}/${context.repo.repo}`, repository);
+  if (context.eventName === "repository_dispatch") {
+    assert.equal(context.payload.action, "aws-bicep-release");
+    assert.equal(context.ref, "refs/heads/main");
+    assert.equal(env.GITHUB_REF_PROTECTED, "true");
+    assert.equal(env.GITHUB_WORKFLOW_REF, `${repository}/${releaseWorkflow}@refs/heads/main`);
+    const payload = context.payload.client_payload;
+    assert.ok(payload && typeof payload === "object" && !Array.isArray(payload));
+    assert.ok(Object.keys(payload).every((key) =>
+      ["version", "sourceCommit", "generationRunId", "generationRunAttempt"].includes(key)));
+    assert.match(payload.version, /^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(-rc\.[1-9]\d*)?$/);
+    assert.match(payload.sourceCommit, shaPattern);
+    assert.equal(payload.generationRunId !== undefined, payload.generationRunAttempt !== undefined,
+      "Supply original generation run AND attempt");
+    for (const key of ["generationRunId", "generationRunAttempt"])
+      if (payload[key] !== undefined) assert.ok(positive(payload[key]), `Invalid ${key}`);
+    assert.match(context.sha, shaPattern);
+    assert.ok(positive(context.runId));
+    assert.match(env.GITHUB_RUN_ATTEMPT, /^[1-9]\d*$/);
+    assert.ok(positive(Number(env.GITHUB_RUN_ATTEMPT)));
+    return {
+      repository, ref: `refs/tags/${payload.version}`, commit: payload.sourceCommit,
+      workflow: releaseWorkflow, runId: context.runId,
+      generationAttempt: Number(env.GITHUB_RUN_ATTEMPT),
+      controller: { repository, ref: "refs/heads/main", commit: context.sha }
+    };
+  }
   assert.ok(["push", "workflow_dispatch"].includes(context.eventName));
   const main = context.ref === "refs/heads/main";
-  const match = context.ref.match(releasePattern);
-  assert.ok(main || match, "Only main or full stable/dotted RC tags may publish");
+  assert.ok(main, "Release publication requires the default-main dispatch controller");
   if (main) assert.equal(env.GITHUB_REF_PROTECTED, "true");
   const workflow = main ? mainWorkflow : releaseWorkflow;
   assert.equal(
@@ -103,11 +128,51 @@ export async function verifyRun(github, source) {
   assert.equal(run.run_attempt, source.generationAttempt);
   assert.equal(run.repository.full_name, repository);
   assert.equal(run.head_repository.full_name, repository);
-  assert.equal(run.head_sha, source.commit);
-  assert.equal(run.head_branch, source.ref.replace(/^refs\/(heads|tags)\//, ""));
   assert.equal(run.path, source.workflow);
-  assert.ok(["push", "workflow_dispatch"].includes(run.event));
+  if (source.workflow === releaseWorkflow) {
+    assert.deepEqual(source.controller, {
+      repository, ref: "refs/heads/main", commit: run.head_sha
+    });
+    assert.match(run.head_sha, shaPattern);
+    assert.equal(run.head_branch, "main");
+    assert.equal(run.event, "repository_dispatch");
+    assert.equal(run.display_title, releaseRunName(source));
+    await verifyMainAncestor(github, run.head_sha);
+  } else {
+    assert.equal(run.head_sha, source.commit);
+    assert.equal(run.head_branch, "main");
+    assert.ok(["push", "workflow_dispatch"].includes(run.event));
+  }
   return run;
+}
+
+export const releaseRunName = (source) =>
+  `Publish AWS ${source.ref.slice("refs/tags/".length)} at ${source.commit}`;
+
+async function verifyMainAncestor(github, commit) {
+  const { data: main } = await github.rest.repos.getBranch({
+    ...repo, branch: "main", request: request()
+  });
+  assert.equal(main.protected, true, "Protected main is required");
+  const { data: comparison } = await github.rest.repos.compareCommitsWithBasehead({
+    ...repo, basehead: `${commit}...${main.commit.sha}`, request: request()
+  });
+  assert.ok(["ahead", "identical"].includes(comparison.status),
+    "Controller/source commit must belong to trusted main history");
+  return main.commit.sha;
+}
+
+export async function resolveGeneration(github, source, runId, attempt) {
+  const generation = originalSource(source, runId, attempt);
+  if (runId) {
+    const { data: run } = await github.rest.actions.getWorkflowRunAttempt({
+      ...repo, run_id: generation.runId, attempt_number: generation.generationAttempt,
+      request: request()
+    });
+    generation.controller = { repository, ref: "refs/heads/main", commit: run.head_sha };
+  }
+  await verifyRun(github, generation);
+  return generation;
 }
 
 export async function verifySource(github, source) {
@@ -147,28 +212,28 @@ export async function newerMainRun(github, source) {
   );
 }
 
-export function verifyArtifact(artifact, source) {
+export function verifyArtifact(artifact, source, name = snapshotName(source)) {
   assert.ok(positive(artifact.id));
-  assert.equal(artifact.name, snapshotName(source));
+  assert.equal(artifact.name, name);
   assert.equal(artifact.expired, false, "Original snapshot expired; do not regenerate");
   assert.ok(artifact.size_in_bytes > 0 && artifact.size_in_bytes <= maximumSnapshotSize);
   assert.match(artifact.digest, digestPattern);
   assert.equal(artifact.workflow_run.id, source.runId);
-  assert.equal(artifact.workflow_run.head_sha, source.commit);
+  assert.equal(artifact.workflow_run.head_sha, source.controller?.commit ?? source.commit);
   assert.equal(
     artifact.workflow_run.head_branch,
-    source.ref.replace(/^refs\/(heads|tags)\//, "")
+    source.workflow === releaseWorkflow ? "main" : source.ref.replace(/^refs\/(heads|tags)\//, "")
   );
 }
 
-export async function verifyCapture(github, source, artifact) {
-  verifyArtifact(artifact, source);
+export async function verifyCapture(github, source, artifact, jobName, artifactName) {
+  verifyArtifact(artifact, source, artifactName);
   await verifyRun(github, source);
   const jobs = await github.paginate(github.rest.actions.listJobsForWorkflowRunAttempt, {
     ...repo, run_id: source.runId, attempt_number: source.generationAttempt,
     per_page: 100, request: request()
   });
-  const name = source.workflow === releaseWorkflow ? captureJob : "Capture main AWS Bicep types";
+  const name = jobName ?? (source.workflow === releaseWorkflow ? captureJob : "Capture main AWS Bicep types");
   const captures = jobs.filter((job) => job.name === name);
   assert.equal(captures.length, 1, "Missing or ambiguous original capture job");
   const job = captures[0];
@@ -196,12 +261,13 @@ export function selectSnapshot(artifacts, source, reuseRequested) {
 }
 
 export function checkReleaseHistory(runs, source, generation, reuseRequested) {
-  const branch = source.ref.slice("refs/tags/".length);
+  const prefix = `Publish AWS ${source.ref.slice("refs/tags/".length)} at `;
   const previous = runs.filter((run) =>
-    run.id !== source.runId && run.head_branch === branch &&
-    ["push", "workflow_dispatch"].includes(run.event)
+    run.id !== source.runId && run.head_branch === "main" &&
+    run.path === releaseWorkflow && run.event === "repository_dispatch" &&
+    run.display_title?.startsWith(prefix)
   );
-  assert.ok(previous.every((run) => run.head_sha === source.commit),
+  assert.ok(previous.every((run) => run.display_title === releaseRunName(source)),
     "A previous run used another source for this version");
   assert.ok(previous.every((run) => run.status === "completed"),
     "Another publication/recovery is active; wait for it to finish");
@@ -246,7 +312,7 @@ export async function select(github, source, generation, reuseRequested, run = t
   if (source.workflow === releaseWorkflow) {
     const runs = await github.paginate(github.rest.actions.listWorkflowRuns, {
       ...repo, workflow_id: "publish-release-bicep.yaml",
-      branch: source.ref.slice("refs/tags/".length), per_page: 100, request: request()
+      branch: "main", event: "repository_dispatch", per_page: 100, request: request()
     });
     checkReleaseHistory(runs, source, generation, reuseRequested);
   }
@@ -371,6 +437,26 @@ export async function prepare(github, archive, expectedSource, artifact, directo
   return receipt;
 }
 
+export const schemaSnapshotName = (source) => `aws-schema-inputs-${source.runId}.tar`;
+
+export async function prepareSchemas(github, archive, source, artifact, directory, run = tool) {
+  assert.equal(source.workflow, releaseWorkflow);
+  verifyArtifact(artifact, source, schemaSnapshotName(source));
+  const stat = await lstat(archive);
+  assert.ok(stat.isFile() && stat.size > 0 && stat.size <= maximumSnapshotSize);
+  assert.equal(hash(await readFile(archive)), artifact.digest, "Schema input digest mismatch");
+  assert.deepEqual(JSON.parse(await run(["tar", "-xOf", archive, "source.json"])), source);
+  await verifyCapture(github, source, artifact, "Capture AWS schema inputs", schemaSnapshotName(source));
+  // Only regular schema data and directories from the authenticated input job are extracted.
+  const names = (await run(["tar", "-tf", archive])).trim().split("\n");
+  assert.ok(names.every((name) =>
+    name === "source.json" || name === "schemas" ||
+    (name.startsWith("schemas/") && !name.split("/").includes(".."))));
+  const entries = (await run(["tar", "-tvf", archive])).trim().split("\n");
+  assert.ok(entries.every((entry) => ["-", "d"].includes(entry[0])), "Schema links are forbidden");
+  await run(["tar", "-xf", archive, "-C", directory, "schemas"]);
+}
+
 export async function publish(github, source, receipt, directory, run = tool) {
   const { record } = receipt;
   assert.equal(record.reference, `${target}:${versions(source).version}`);
@@ -425,10 +511,13 @@ export default async function script({ github, core, context }) {
     const source = identity(context, process.env);
     const directory = core.getInput("directory", { required: true });
     await mkdir(directory, { recursive: true });
-    assert.equal((await tool(["git", "rev-parse", "HEAD"])).trim(), source.commit);
-    const runId = core.getInput("generation_run_id");
-    const attempt = core.getInput("generation_run_attempt");
-    const generation = originalSource(source, runId, attempt);
+    assert.equal((await tool(["git", "rev-parse", "HEAD"])).trim(), source.controller?.commit ?? source.commit);
+    const payload = context.eventName === "repository_dispatch" ? context.payload.client_payload : {};
+    for (const key of ["generationRunId", "generationRunAttempt"])
+      if (payload[key] !== undefined) assert.ok(positive(payload[key]), `Invalid ${key}`);
+    const runId = payload.generationRunId?.toString() ?? core.getInput("generation_run_id");
+    const attempt = payload.generationRunAttempt?.toString() ?? core.getInput("generation_run_attempt");
+    const generation = await resolveGeneration(github, source, runId, attempt);
     const operation = core.getInput("operation", { required: true });
     if (operation === "select") {
       const artifact = await select(github, source, generation, Boolean(runId));
@@ -436,6 +525,25 @@ export default async function script({ github, core, context }) {
       core.setOutput("generation_run_id", generation.runId);
       core.setOutput("reuse", String(Boolean(artifact)));
       core.setOutput("type_version", versions(source).typeVersion);
+      core.setOutput("source_commit", source.commit);
+    } else if (operation === "capture-schemas") {
+      assert.equal(source.workflow, releaseWorkflow);
+      assert.equal(source.generationAttempt, 1, "Never refresh schema inputs on retry");
+      assert.equal(runId, "", "Recovery must reuse original inputs");
+      await verifySource(github, source);
+      await save(join(directory, "source.json"), source);
+      const archive = join(directory, schemaSnapshotName(source));
+      await tool(["tar", "-cf", archive, "-C", directory, "source.json", "schemas"]);
+      assert.ok((await lstat(archive)).size <= maximumSnapshotSize);
+    } else if (operation === "prepare-schemas") {
+      await verifySource(github, source);
+      const id = Number(core.getInput("artifact_id", { required: true }));
+      assert.ok(positive(id));
+      const { data: artifact } = await github.rest.actions.getArtifact({
+        ...repo, artifact_id: id, request: request()
+      });
+      await prepareSchemas(github, join(directory, "input-download", schemaSnapshotName(source)),
+        source, artifact, directory);
     } else if (operation === "capture") {
       assert.equal(runId, "", "Explicit recovery may only reuse");
       await verifySource(github, source);
