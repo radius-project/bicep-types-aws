@@ -314,6 +314,8 @@ test("workflow authority and evidence wiring remain bounded", async () => {
     assert.match(text, /skip-decompress: true/);
     assert.match(text, /digest-mismatch: error/);
     assert.match(text, /cancel-in-progress: false/);
+    assert.match(generation, /--radius "\$\{INPUT_DIRECTORY\}\/schemas\/radius"/);
+    assert.match(generation, /git -C radius rev-parse HEAD > "\$\{INPUT_DIRECTORY\}\/schemas\/radius-commit"/);
     assert.doesNotMatch(text, /biceptypes\.azurecr\.io|:latest|permission-contents: write/);
   }
   const release = await read("publish-release-bicep.yaml");
@@ -336,10 +338,13 @@ test("generator CLI preserves legacy dashed arguments and default resource ident
     for (const option of ["--release-version", "--releaseVersion"]) {
       const output = join(directory, `${version}-${option}`);
       await tool(["node", resolve("src/aws-type-generator/dist/src/main.js"),
-        "--input", input, "--output", output, option, version]);
+        "--input", input, "--output", output,
+        "--radius", resolve("src/aws-type-generator/testdata/radius"), option, version]);
       const index = JSON.parse(await readFile(join(output, "index.json")));
       assert.deepEqual(index.settings, { name: "aws", version, isSingleton: false });
-      assert.deepEqual(Object.keys(index.resources), ["AWS.Kinesis/Stream@default"]);
+      assert.ok(index.resources["AWS.Kinesis/Stream@default"]);
+      assert.ok(index.resources["AWS.S3/Object@default"], "Retain Radius-owned handwritten types");
+      assert.ok(Object.keys(index.resources).every((name) => name.endsWith("@default")));
     }
   }
 });
@@ -354,7 +359,22 @@ test("native Bicep/ORAS raw snapshot, stable/RC publish, retry, restore and conf
     const s = { ...source, ref };
     const directory = await scratch(t);
     await cp(join(root, "artifacts/types"), join(directory, "schemas"), { recursive: true });
-    await cp(join(root, "artifacts/bicep"), join(directory, "generated"), { recursive: true });
+    const radiusInputs = join(directory, "schemas/radius/pkg/aws");
+    await mkdir(join(radiusInputs, "extraproperties"), { recursive: true });
+    await cp(join(root, "radius/pkg/aws/extraproperties/extra_properties.json"),
+      join(radiusInputs, "extraproperties/extra_properties.json"));
+    if ((await readdir(join(root, "radius/pkg/aws"))).includes("schemas"))
+      await cp(join(root, "radius/pkg/aws/schemas"), join(radiusInputs, "schemas"), { recursive: true });
+    const radiusCommit = (await tool(["git", "-C", "radius", "rev-parse", "HEAD"])).trim();
+    assert.equal(radiusCommit, (await tool(["git", "rev-parse", "HEAD:radius"])).trim());
+    await writeFile(join(directory, "schemas/radius-commit"), `${radiusCommit}\n`);
+    if (process.env.AWS_BICEP_TEST_GENERATOR === "true") {
+      await tool(["node", resolve("src/aws-type-generator/dist/src/main.js"),
+        "--input", join(directory, "schemas"), "--output", join(directory, "generated"),
+        "--radius", join(directory, "schemas/radius"), "--releaseVersion", versions(s).typeVersion]);
+    } else {
+      await cp(join(root, "artifacts/bicep"), join(directory, "generated"), { recursive: true });
+    }
     // Model the generator's legacy index metadata without calling AWS or changing tracked output.
     const indexPath = join(directory, "generated/index.json");
     const index = JSON.parse(await readFile(indexPath));
@@ -362,6 +382,9 @@ test("native Bicep/ORAS raw snapshot, stable/RC publish, retry, restore and conf
     await writeFile(indexPath, JSON.stringify(index));
     const archive = await capture(s, directory, registry,
       join(directory, "schemas"), join(directory, "generated"));
+    assert.equal((await tool(["tar", "-xOf", archive, "schemas/radius-commit"])).trim(), radiusCommit);
+    assert.equal(await tool(["tar", "-xOf", archive, "schemas/radius/pkg/aws/extraproperties/extra_properties.json"]),
+      await readFile(join(radiusInputs, "extraproperties/extra_properties.json"), "utf8"));
     assert.ok((await lstat(archive)).size <= maximumSnapshotSize);
     const a = {
       ...artifact, size_in_bytes: (await lstat(archive)).size,

@@ -33,6 +33,9 @@ jobs:
           bash .github/scripts/install-bicep-tools.sh "${RUNNER_TEMP}/bicep-tools"
           echo "${RUNNER_TEMP}/bicep-tools" >> "${GITHUB_PATH}"
 
+      - name: Checkout pinned Radius schema inputs
+        run: git submodule update --init -- radius
+
       - name: Exercise helper and native OCI fixtures
         run: bash .github/scripts/test-publish-bicep.sh
 
