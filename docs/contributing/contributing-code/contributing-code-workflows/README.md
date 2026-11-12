@@ -291,6 +291,10 @@ publication must have failed; another active publication
 must finish first. A new dispatch after a successful publishing run fails rather
 than creating a second successful no-op. Rerunning that same successful run ID
 is supported and emits a record for its new publishing attempt.
+Later queued or pending dispatches waiting for the release concurrency lock do
+not block the current capture; earlier history and completed runs still do.
+Recovery skips schema refresh but allows the uploader after a successful capture
+passthrough, unless the workflow was cancelled.
 
 Missing, expired, ambiguous or mismatched original capture evidence is fatal.
 Restore the original evidence through the approved recovery process; never

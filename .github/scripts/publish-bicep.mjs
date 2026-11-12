@@ -261,13 +261,18 @@ export function selectSnapshot(artifacts, source, reuseRequested) {
   return undefined;
 }
 
-export function checkReleaseHistory(runs, source, generation, reuseRequested) {
+export function checkReleaseHistory(runs, source, generation, reuseRequested, currentRunNumber) {
+  assert.ok(positive(currentRunNumber), "Missing authenticated release run sequence");
   const prefix = `Publish AWS ${source.ref.slice("refs/tags/".length)} at `;
   const previous = runs.filter((run) =>
     run.id !== source.runId && run.head_branch === "main" &&
     run.path === releaseWorkflow && run.event === "repository_dispatch" &&
     run.display_title?.startsWith(prefix)
-  );
+  ).filter((run) => {
+    assert.ok(positive(run.run_number), "Missing release history run sequence");
+    // A later request waiting on our concurrency lock is not prior generation.
+    return !(run.run_number > currentRunNumber && ["queued", "pending"].includes(run.status));
+  });
   assert.ok(previous.every((run) => run.display_title === releaseRunName(source)),
     "A previous run used another source for this version");
   assert.ok(previous.every((run) => run.status === "completed"),
@@ -311,11 +316,12 @@ export async function select(github, source, generation, reuseRequested, run = t
     assert.equal(main, source.commit, "Start generation from current protected main");
   await verifyRun(github, generation);
   if (source.workflow === releaseWorkflow) {
+    const currentRun = await verifyRun(github, source);
     const runs = await github.paginate(github.rest.actions.listWorkflowRuns, {
       ...repo, workflow_id: "publish-release-bicep.yaml",
       branch: "main", event: "repository_dispatch", per_page: 100, request: request()
     });
-    checkReleaseHistory(runs, source, generation, reuseRequested);
+    checkReleaseHistory(runs, source, generation, reuseRequested, currentRun.run_number);
   }
   const artifacts = await github.paginate(github.rest.actions.listWorkflowRunArtifacts, {
     ...repo, run_id: generation.runId, per_page: 100, request: request()

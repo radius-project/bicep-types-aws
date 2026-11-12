@@ -293,14 +293,50 @@ test("original successful capture remains valid when later publication failed", 
 test("successful duplicate dispatch fails; same run retry and explicit failed recovery differ", () => {
   const old = apiRun();
   const retry = { ...source, generationAttempt: 2 };
-  checkReleaseHistory([{ ...old, conclusion: "success" }], retry, source, false);
+  checkReleaseHistory([{ ...old, conclusion: "success" }], retry, source, false, 100);
   const recovery = { ...source, runId: 101 };
-  checkReleaseHistory([apiRun(recovery)], retry, retry, false);
-  assert.throws(() => checkReleaseHistory([{ ...old, conclusion: "success" }], recovery, source, true));
-  assert.throws(() => checkReleaseHistory([old], recovery, recovery, false));
-  checkReleaseHistory([old], recovery, source, true);
-  assert.throws(() => checkReleaseHistory([{ ...old, status: "in_progress" }], recovery, source, true));
-  assert.throws(() => checkReleaseHistory([{ ...old, display_title: `Publish AWS v0.62.1 at ${"d".repeat(40)}` }], recovery, source, true));
+  checkReleaseHistory([apiRun(recovery)], retry, retry, false, 100);
+  assert.throws(() => checkReleaseHistory([{ ...old, conclusion: "success" }], recovery, source, true, 101));
+  assert.throws(() => checkReleaseHistory([old], recovery, recovery, false, 101));
+  checkReleaseHistory([old], recovery, source, true, 101);
+  assert.throws(() => checkReleaseHistory([{ ...old, status: "in_progress" }], recovery, source, true, 101));
+  assert.throws(() => checkReleaseHistory([{ ...old, display_title: `Publish AWS v0.62.1 at ${"d".repeat(40)}` }], recovery, source, true, 101));
+});
+
+test("later queued dispatches cannot prevent the active release's first capture", async () => {
+  for (const status of ["queued", "pending"]) {
+    // Run IDs are deliberately not ordered: only the authenticated run_number decides.
+    const later = { ...apiRun(), id: 99, run_number: 11, status, conclusion: null };
+    const { api } = github(source, { runs: [later] });
+    api.rest.actions.getWorkflowRunAttempt = async () => ({
+      data: { ...apiRun(), run_number: 10 }
+    });
+    assert.equal(await select(api, source, source, false, async (args) => {
+      throw missing(args.at(-1));
+    }), undefined);
+  }
+});
+
+test("release ordering retains completed, active and earlier recovery history", () => {
+  const other = { ...apiRun(), id: 99, run_number: 11 };
+  for (const status of ["in_progress", "waiting", "completed"]) {
+    assert.throws(() => checkReleaseHistory(
+      [{ ...other, status }], source, source, false, 10));
+  }
+  assert.throws(() => checkReleaseHistory(
+    [{ ...other, conclusion: "success" }], source, source, true, 10), /successful/);
+  for (const status of ["queued", "pending"]) {
+    assert.throws(() => checkReleaseHistory(
+      [{ ...other, run_number: 9, status }], source, source, false, 10), /active/);
+  }
+  const recovery = { ...source, runId: 101 };
+  checkReleaseHistory([
+    apiRun(source),
+    { ...other, id: 102, run_number: 102, status: "queued" }
+  ], recovery, source, true, 101);
+  assert.throws(() => checkReleaseHistory([], source, source, false, undefined), /authenticated/);
+  assert.throws(() => checkReleaseHistory(
+    [{ ...other, run_number: undefined, status: "queued" }], source, source, false, 10), /history/);
 });
 
 test("preflight refuses an existing version without capture before generation", async () => {
@@ -704,6 +740,9 @@ test("workflow authority and evidence wiring remain bounded", async () => {
   assert.doesNotMatch(release, /\n  push:|\n  workflow_dispatch:/);
   const schemas = release.split("\n  schemas:\n")[1].split("\n  capture:\n")[0];
   const capture = release.split("\n  capture:\n")[1].split("\n  publish:\n")[0];
+  const publish = release.split("\n  publish:\n")[1];
+  assert.match(publish, /if: \$\{\{ !cancelled\(\) && needs\.capture\.result == 'success' \}\}/,
+    "Recovery must run after successful capture even when schemas was skipped, but never after cancellation/failure");
   assert.match(schemas, /environment: publish-bicep/);
   assert.doesNotMatch(schemas, /npm |node candidate|candidate\/src\/aws-type-downloader/);
   assert.doesNotMatch(capture, /environment:|secrets\.|packages: write|id-token: write/);
