@@ -251,16 +251,16 @@ tag. The AWS producer does not modify the Deployment Engine lock.
 
 This is a cross-repository, non-atomic rollout, not a feature toggle:
 
-Keep this handoff **DRAFT and MERGE-BLOCKED** until the private copy capability,
-scoped publisher App grants, package access/Public availability and controlled
-writer-drain plan are ready. No new Azure federation or production credential
-grant in `radius-project` is part of these prerequisites.
+Review readiness does not authorize production activation. Scoped publisher App
+grants, package access/Public availability and the controlled writer-drain plan
+remain operational prerequisites. No new Azure federation or production
+credential grant in `radius-project` is part of these prerequisites.
 
 The companion implementation is
 [azure-octo/radius-publisher#38](https://github.com/azure-octo/radius-publisher/pull/38)
-at `ead5df1d6f553e6807d6b6ebed5be21054c739ee`. It is a draft dependency, not a
-claim that the receiver is deployed. Deploy the receiver before activating this
-caller or the first public `edge`. Drain queued/running old workflow revisions,
+merged as `4438d85adcf53f192217d53cd393352237433ca7`; the private copy capability
+is deployed. Merge this caller after its source producer and before the first
+public `edge` activation. Drain queued/running old workflow revisions,
 including those using old concurrency keys; the new lock cannot stop them.
 
 1. Prepare the GHCR staging producer, verify the schema identity, and validate
@@ -307,4 +307,4 @@ historical reconciliation remain supported throughout.
 Local fixtures do not authorize or perform live GHCR/ACR/AWS calls, identity or
 settings writes, release dispatches, merges, private publisher edits, or upstream
 Radius changes. Keep ACR resources and supported artifacts; no deletion is part of
-this handoff. The draft cannot merge merely because its local checks pass.
+this handoff. Passing local checks and review readiness do not activate publishing.
