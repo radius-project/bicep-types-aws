@@ -101,6 +101,7 @@ export async function mirrorMain({
     await save(directory, receipt);
     await monitor({
       github: publisherGithub,
+      onRunFound: () => save(directory, receipt),
       core: {
         getInput: (name) => inputs[name] ?? "",
         info: (message) => core.info(message),

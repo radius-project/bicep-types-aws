@@ -682,6 +682,29 @@ test("monitors an existing active run to completion", async () => {
   assert.equal(core.outputs.get("conclusion"), "success");
 });
 
+test("failed discovery checkpoint stops monitoring before polling or success", async () => {
+  const core = createCore();
+  const github = createGithub({ runs: [{
+    ...successfulRun(43, core.inputs.RELEASE_IDENTIFIER), status: "in_progress", conclusion: null
+  }] });
+  let slept = false;
+  await monitorRemoteWorkflow({
+    github, core,
+    sleep: async () => { slept = true; },
+    onRunFound: async () => {
+      await Promise.resolve();
+      assert.equal(core.outputs.get("run_id"), "43");
+      assert.equal(core.outputs.get("run_state"), "found");
+      throw new Error("Receipt checkpoint failed");
+    }
+  });
+  assert.deepEqual(core.failures, ["Receipt checkpoint failed"]);
+  assert.equal(slept, false);
+  assert.equal(github.calls.get, 0);
+  assert.equal(github.dispatches.length, 0);
+  assert.equal(core.outputs.has("conclusion"), false);
+});
+
 test("dispatches a retry after an existing failed run", async () => {
   const identifier = "0.61.0-dddddddd";
   const failed = {
