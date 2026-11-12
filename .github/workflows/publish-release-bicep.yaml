@@ -244,6 +244,7 @@ jobs:
   publish:
     name: Publish full AWS Bicep version
     needs: [capture]
+    if: ${{ !cancelled() && needs.capture.result == 'success' }}
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     environment: publish-bicep
