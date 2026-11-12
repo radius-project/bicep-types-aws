@@ -48,8 +48,12 @@ Its independent AWS schema refresh can differ from GHCR's capture; staging does
 not promise registry digest parity. ACR development `latest` maps to GHCR `edge`,
 not GHCR stable `latest`.
 
-Deploy the private exact-digest copy capability and prepare the A2 caller before
-the first public `edge` publication/cutover. The private main-generation gate
+The private exact-digest copy capability is deployed in
+[azure-octo/radius-publisher#38](https://github.com/azure-octo/radius-publisher/pull/38).
+Merge the producer first, then the AWS copy-request caller in
+[#322](https://github.com/radius-project/bicep-types-aws/pull/322), before activating
+public packages. Merging this producer starts its main publishing workflow;
+it does not itself activate public distribution. The private main-generation gate
 rejects legacy production-main requests once canonical GHCR `edge` exists: the
 old payload cannot prove ordering between live schema refreshes at the same SHA.
 Only positively absent `edge` permits legacy main generation; authorization or
@@ -68,7 +72,11 @@ publisher. This staging PR adds neither that request nor direct Azure authority.
 ## Capture and credential boundary
 
 Each new publication captures the actual schema inputs, generated types and native
-OCI layout once. The downloader needs CloudFormation `ListTypes` and
+OCI layout once. The capture includes the Radius-owned schemas and extra
+properties from the pinned `radius` submodule under `schemas/radius`, plus its
+commit in `schemas/radius-commit`. Generation uses that explicit snapshot path,
+so both upstream schema sources are retained for retries without changing the
+release-record contract. The downloader needs CloudFormation `ListTypes` and
 `DescribeType` for public AWS-owned resource schemas in `us-west-2`. Verify that
 the existing `AWS_ACCESS_KEY_ID`/`AWS_SECRET_ACCESS_KEY` identity is available to
 this repository and limited to the required read operations; a workflow reference
@@ -120,7 +128,8 @@ The capture job is named `Capture versioned AWS Bicep types`. It uploads the raw
 file `bicep-types-aws-<generationRunId>.tar` with native Actions `archive: false`,
 an immutable artifact ID and SHA-256, a 64 MiB maximum and 90-day retention.
 The tar contains the native OCI layout, `source.json`, and the original
-`schemas/` and `generated/` directories. A successful publishing attempt uploads
+`schemas/` (including pinned Radius inputs) and `generated/` directories.
+A successful publishing attempt uploads
 `aws-bicep-extension-<publishRunId>-<publishAttempt>`, containing exactly one file:
 `aws-bicep-extension.json`. Partial receipts are uploaded separately.
 
@@ -171,18 +180,18 @@ This is a cross-repository, non-atomic rollout, not a feature toggle:
 
 1. Prepare the GHCR staging producer, verify the schema identity, and validate
    stable/RC evidence and original-snapshot recovery. Before bootstrapping Public
-   `edge`, deploy the private copy capability and prepare the A2 caller described
-   below; the legacy main-generation gate will reject requests once `edge` exists.
+   `edge`, merge the A2 caller described below after this producer. The private
+   copy capability is already deployed; its legacy main-generation gate rejects
+   requests once `edge` exists.
 2. Prepare the AWS follow-up that requests a copy of main's exact GHCR digest to
    ACR `aws:latest` from the existing private publisher and removes the legacy
    schema-regenerating production dispatcher. Keep existing Azure authentication
    in `azure-octo/radius-publisher`; do not add Azure login, federation or ACR
    credentials to this repository. Authenticate the source-owned GHCR evidence
    and copy the fixed digest without regenerating schemas.
-3. Prepare a separately authorized change in
-   `azure-octo/radius-publisher/.github/workflows/publish-bicep-types-aws.yml`
-   that provides authenticated exact-digest copies and gates legacy production
-   main generation on positively absent canonical GHCR `edge`. Preserve tagged
+3. Use the deployed private publisher's authenticated exact-digest copy path and
+   legacy main gate, which permits regeneration only on positively absent
+   canonical GHCR `edge`. Preserve tagged
    legacy requests, explicit `test/aws` and all unrelated workflows. Coordinate
    retirement of tagged legacy writers with the release cutover; old tags retain
    old dispatch YAML, so deleting only the current-main caller is insufficient.

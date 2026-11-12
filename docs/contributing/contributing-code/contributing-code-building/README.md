@@ -36,6 +36,9 @@ To generate from checked-in schemas without AWS access, run the generator with
 `--input` pointing to `artifacts/types` and `--output` pointing to a temporary
 directory. `--releaseVersion` controls extension index metadata, not resource
 API versions (`@default`) or the OCI publication tag.
+When invoking `dist/src/main.js` directly from the repository root, also pass
+`--radius "$PWD/radius"` so the generator uses this repository's pinned Radius
+schemas rather than resolving its package-relative default from the wrong directory.
 
 The publishing helper tests require no dependencies beyond Node:
 

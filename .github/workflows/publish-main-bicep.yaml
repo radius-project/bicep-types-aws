@@ -72,6 +72,12 @@ jobs:
           echo "${RUNNER_TEMP}/bicep-tools" >> "${GITHUB_PATH}"
           mkdir -p "${INPUT_DIRECTORY}/schemas" "${INPUT_DIRECTORY}/generated"
           cp artifacts/types/*.json "${INPUT_DIRECTORY}/schemas/"
+          mkdir -p "${INPUT_DIRECTORY}/schemas/radius/pkg/aws/extraproperties"
+          cp radius/pkg/aws/extraproperties/extra_properties.json "${INPUT_DIRECTORY}/schemas/radius/pkg/aws/extraproperties/"
+          if [[ -d radius/pkg/aws/schemas ]]; then
+            cp -R radius/pkg/aws/schemas "${INPUT_DIRECTORY}/schemas/radius/pkg/aws/"
+          fi
+          git -C radius rev-parse HEAD > "${INPUT_DIRECTORY}/schemas/radius-commit"
 
       - name: Refresh public AWS schemas with read-only credentials
         if: steps.select.outputs.reuse == 'false'
@@ -93,6 +99,7 @@ jobs:
         run: |
           node src/aws-type-generator/dist/src/main.js \
             --input "${INPUT_DIRECTORY}/schemas" --output "${INPUT_DIRECTORY}/generated" \
+            --radius "${INPUT_DIRECTORY}/schemas/radius" \
             --releaseVersion latest
 
       - name: Capture native OCI layout and schema inputs/output
