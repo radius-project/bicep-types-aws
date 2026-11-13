@@ -3252,20 +3252,6 @@
 ### aws.iotdeviceadvisor/suiterun
 * **Link**: [default](aws/aws.iotdeviceadvisor/default/types.md#resource-awsiotdeviceadvisorsuiterundefault)
 
-## aws.iotevents
-### aws.iotevents/alarmmodel
-* **Link**: [default](aws/aws.iotevents/default/types.md#resource-awsioteventsalarmmodeldefault)
-
-### aws.iotevents/detectormodel
-* **Link**: [default](aws/aws.iotevents/default/types.md#resource-awsioteventsdetectormodeldefault)
-
-### aws.iotevents/input
-* **Link**: [default](aws/aws.iotevents/default/types.md#resource-awsioteventsinputdefault)
-
-## aws.iotfleethub
-### aws.iotfleethub/application
-* **Link**: [default](aws/aws.iotfleethub/default/types.md#resource-awsiotfleethubapplicationdefault)
-
 ## aws.iotsecuretunneling
 ### aws.iotsecuretunneling/tunnel
 * **Link**: [default](aws/aws.iotsecuretunneling/default/types.md#resource-awsiotsecuretunnelingtunneldefault)
@@ -3697,14 +3683,6 @@
 
 ### aws.logs/transformer
 * **Link**: [default](aws/aws.logs/default/types.md#resource-awslogstransformerdefault)
-
-## aws.lookoutmetrics
-### aws.lookoutmetrics/anomalydetector
-* **Link**: [default](aws/aws.lookoutmetrics/default/types.md#resource-awslookoutmetricsanomalydetectordefault)
-
-## aws.lookoutvision
-### aws.lookoutvision/project
-* **Link**: [default](aws/aws.lookoutvision/default/types.md#resource-awslookoutvisionprojectdefault)
 
 ## aws.m2
 ### aws.m2/application
@@ -4160,19 +4138,6 @@
 ### aws.networksecuritymanager/template
 * **Link**: [default](aws/aws.networksecuritymanager/default/types.md#resource-awsnetworksecuritymanagertemplatedefault)
 
-## aws.nimblestudio
-### aws.nimblestudio/launchprofile
-* **Link**: [default](aws/aws.nimblestudio/default/types.md#resource-awsnimblestudiolaunchprofiledefault)
-
-### aws.nimblestudio/streamingimage
-* **Link**: [default](aws/aws.nimblestudio/default/types.md#resource-awsnimblestudiostreamingimagedefault)
-
-### aws.nimblestudio/studio
-* **Link**: [default](aws/aws.nimblestudio/default/types.md#resource-awsnimblestudiostudiodefault)
-
-### aws.nimblestudio/studiocomponent
-* **Link**: [default](aws/aws.nimblestudio/default/types.md#resource-awsnimblestudiostudiocomponentdefault)
-
 ## aws.oam
 ### aws.oam/link
 * **Link**: [default](aws/aws.oam/default/types.md#resource-awsoamlinkdefault)
@@ -4299,10 +4264,6 @@
 
 ### aws.opensearchservice/domain
 * **Link**: [default](aws/aws.opensearchservice/default/types.md#resource-awsopensearchservicedomaindefault)
-
-## aws.opsworkscm
-### aws.opsworkscm/server
-* **Link**: [default](aws/aws.opsworkscm/default/types.md#resource-awsopsworkscmserverdefault)
 
 ## aws.organizations
 ### aws.organizations/account

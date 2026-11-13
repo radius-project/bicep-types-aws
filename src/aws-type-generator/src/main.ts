@@ -6,7 +6,7 @@ import { writeMarkdown } from "bicep-types";
 import { SchemaRecord } from "./schemarecord";
 import { convertSchemaRecordToTypes } from "./convert";
 import { applyRadius, defaultRadiusPaths, loadPreviousRadius, loadRadius, newClashes, RadiusPaths, renderClashReport } from "./radius";
-import { logOut, ILogger, defaultLogger, findRecursive } from './utils';
+import { logOut, ILogger, defaultLogger, findRecursive, removeStaleNamespaces } from './utils';
 import { writeFile, readFile } from 'fs/promises';
 import { TypeFile, buildIndex, readTypesJson, writeIndexJson, writeIndexMarkdown, TypeSettings } from 'bicep-types'; 
 
@@ -102,6 +102,10 @@ async function main() {
             // writer types.md
             fs.writeFileSync(`${outFolder}/types.md`, writeMarkdown(definition.types, `${definition.namespace} @ ${definition.apiVersion}`))
         })
+
+        const namespaces = new Set(definitions.map(definition => definition.namespace.toLowerCase()))
+        removeStaleNamespaces(path.resolve(argv.output, 'aws'), namespaces)
+            .forEach(namespace => console.log(`removing ${namespace}, which has no types`))
 
         await buildTypeIndex(defaultLogger, argv.output, argv.releaseVersion)
 
