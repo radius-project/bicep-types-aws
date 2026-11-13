@@ -2,7 +2,7 @@
 
 ### Identifiers AWS assigns
 
-Some resource types, such as `AWS::EC2::VPC`, get their primary identifier from AWS when AWS creates them, so a template can't set it. Radius keeps a record of each AWS resource it deploys, keyed by the resource's `alias`, so every deploy of the same alias updates the same resource. A retried deploy sends the same create request again, so it doesn't create a second resource.
+Some resource types, such as `AWS::EC2::VPC`, get their primary identifier from AWS when AWS creates them, so a template can't set it. Radius keeps a record of each AWS resource it deploys, keyed by the resource's `alias`, so every deploy of the same alias updates the same resource. A retried deploy finds a create that AWS already accepted, so it doesn't create a second resource.
 
 ```bicep
 extension aws
@@ -17,7 +17,7 @@ resource vpc 'AWS.EC2/VPC@default' = {
 
 To manage a resource that already exists, set the top-level `name` to its identifier. To only read it, use `existing`.
 
-This needs a Radius release after v0.62.0, or an edge build. One case can still create a second resource: if Radius loses track of a create that AWS accepted, such as when it restarts at that moment, the next deploy of the alias finds the resource through the same request. For types served through AWS Cloud Control, that works for 36 hours, which is how long Cloud Control keeps the request.
+This needs a Radius release after v0.62.0, or an edge build. If Radius loses track of a create that AWS accepted, such as when it restarts at that moment, the next deploy of the alias finds that resource. For a type served through AWS Cloud Control, Radius finds it by sending the same create request again, and Cloud Control keeps a request for 36 hours. If the next deploy comes after that, it can create a second resource.
 
 ### Read-only resource types
 
