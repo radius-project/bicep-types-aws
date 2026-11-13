@@ -112,11 +112,11 @@ jobs:
           mkdir -p "${RUNNER_TEMP}/previous-radius"
           previous="$(cat artifacts/radius-commit 2>/dev/null || true)"
           if [[ ! "${previous}" =~ ^[0-9a-f]{40}$ ]]; then
-            echo "::warning::artifacts/radius-commit has no commit, so every clash with a Radius schema is reported."
+            echo "::warning::artifacts/radius-commit has no commit, so every clash with a Radius schema is reported, and the breaking-change report compares with AWS's previous types alone."
             exit 0
           fi
           if ! git -C radius fetch -q --depth 1 origin "${previous}"; then
-            echo "::warning::Could not fetch the previous Radius commit ${previous}, so every clash with a Radius schema is reported."
+            echo "::warning::Could not fetch the previous Radius commit ${previous}, so every clash with a Radius schema is reported, and the breaking-change report compares with AWS's previous types alone."
             exit 0
           fi
           git -C radius archive "${previous}" | tar -x -C "${RUNNER_TEMP}/previous-radius"
@@ -132,7 +132,8 @@ jobs:
           pushd ./src/aws-type-generator
           npm ci
           npm run start -- --input ../../artifacts/types --output ../../artifacts/bicep --clash-report "${RUNNER_TEMP}/radius-clashes.md" \
-            --previous-input "${RUNNER_TEMP}/previous-types" --previous-radius "${RUNNER_TEMP}/previous-radius"
+            --previous-input "${RUNNER_TEMP}/previous-types" --previous-radius "${RUNNER_TEMP}/previous-radius" \
+            --effective-output "${RUNNER_TEMP}/effective-types" --previous-effective-output "${RUNNER_TEMP}/previous-effective-types"
           popd
           git -C radius rev-parse HEAD > artifacts/radius-commit
 
@@ -190,9 +191,13 @@ jobs:
             gh issue create --repo "${GITHUB_REPOSITORY}" --title "${TITLE}" --label aws-types --body-file "${RUNNER_TEMP}/radius-clashes-issue.md"
           fi
 
+      # The reference docs and the breaking-change report read the effective types:
+      # AWS's types with the schemas and extra properties Radius owns applied, so they
+      # match what the extension offers. The new-types report reads AWS's types, since
+      # it reports what AWS added.
       - name: Generate reference documentation
         run: |
-          python ./.github/scripts/generate-reference-docs.py ./artifacts/types ./docs/reference/supported-resources.md
+          python ./.github/scripts/generate-reference-docs.py "${RUNNER_TEMP}/effective-types" ./docs/reference/supported-resources.md
 
       - name: Check for breaking changes and new types
         working-directory: src/aws-type-downloader
@@ -203,7 +208,7 @@ jobs:
           {
             echo "## Changes that can break existing templates"
             echo
-            go run . breaking-changes --old "${RUNNER_TEMP}/previous-types" --new ../../artifacts/types --max-length "${SUMMARY_BREAKING_REPORT_MAX_LENGTH}"
+            go run . breaking-changes --old "${RUNNER_TEMP}/previous-effective-types" --new "${RUNNER_TEMP}/effective-types" --max-length "${SUMMARY_BREAKING_REPORT_MAX_LENGTH}"
             echo
             echo "## New read-only and create-and-delete-only types"
             echo
@@ -211,7 +216,7 @@ jobs:
           } >> "${GITHUB_STEP_SUMMARY}"
 
           radius_commit="$(git -C ../../radius rev-parse HEAD)"
-          report="$(go run . breaking-changes --old "${RUNNER_TEMP}/previous-types" --new ../../artifacts/types --max-length "${PR_BREAKING_REPORT_MAX_LENGTH}")"
+          report="$(go run . breaking-changes --old "${RUNNER_TEMP}/previous-effective-types" --new "${RUNNER_TEMP}/effective-types" --max-length "${PR_BREAKING_REPORT_MAX_LENGTH}")"
           added="$(go run . added-types --old "${RUNNER_TEMP}/previous-types" --new ../../artifacts/types --max-length "${PR_ADDED_REPORT_MAX_LENGTH}")"
 
           cat > "${RUNNER_TEMP}/pr-body.md" <<EOF
@@ -225,7 +230,7 @@ jobs:
 
           ## Changes that can break existing templates
 
-          These are removed resource types, types that became read-only, types that can no longer be updated, removed properties, properties that became required, and properties whose type changed.
+          These are removed resource types, types that became read-only, types that can no longer be updated, removed properties, properties that became required, and properties whose type changed. They include changes from the schemas and extra properties Radius owns.
 
           ${report}
 
