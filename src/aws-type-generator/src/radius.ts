@@ -273,6 +273,22 @@ function hasOwn(value: object, key: string): boolean {
     return Object.prototype.hasOwnProperty.call(value, key)
 }
 
+// writeRecords writes each record to <directory>/<type>.json, in the same form as
+// the downloaded AWS types, so tools that read those, such as the breaking-change
+// report, can read these too. It first removes the JSON files already there, so a
+// type that is gone doesn't linger.
+export function writeRecords(directory: string, records: SchemaRecord[]) {
+    fs.mkdirSync(directory, { recursive: true })
+    for (const file of fs.readdirSync(directory)) {
+        if (file.endsWith(".json")) {
+            fs.rmSync(path.join(directory, file))
+        }
+    }
+    for (const record of records) {
+        fs.writeFileSync(path.join(directory, `${record.type}.json`), JSON.stringify(record, null, 2) + "\n")
+    }
+}
+
 function radiusRecord(schema: Schema): SchemaRecord {
     return { arn: "", type: schema.typeName, time: "", schema: cloneDeep(schema) }
 }

@@ -4,7 +4,7 @@ import path from "path";
 import { afterAll, describe, expect, test } from '@jest/globals';
 import { BicepType, ObjectType, ObjectTypePropertyFlags, TypeBaseKind } from "bicep-types";
 import { convertSchemaRecordToTypes } from "./convert";
-import { applyRadius, defaultRadiusPaths, loadPreviousRadius, loadRadius, newClashes, RadiusInputs, readExtraProperties, readSchemas, renderClashReport } from "./radius";
+import { applyRadius, defaultRadiusPaths, loadPreviousRadius, loadRadius, newClashes, RadiusInputs, readExtraProperties, readSchemas, renderClashReport, writeRecords } from "./radius";
 import { Schema, SchemaRecord } from "./schemarecord";
 
 const fixtureRoot = path.resolve('./testdata/radius')
@@ -409,5 +409,19 @@ describe('renderClashReport', () => {
         const records = [awsRecord('AWS::S3::Object'), awsRecord('AWS::MSK::Cluster', { Id: { type: 'string' } as any, BootstrapBrokerString: { type: 'string' } as any })]
 
         expect(renderClashReport(applyRadius(records, radius).clashes)).toBe(renderClashReport(applyRadius(records, radius).clashes))
+    })
+})
+
+describe('writeRecords', () => {
+    test('writes each record as <type>.json and removes JSON files already there', () => {
+        const dir = path.join(tempDir(), 'effective')
+        writeJson(path.join(dir, 'AWS::IoTEvents::Input.json'), {})
+        writeJson(path.join(dir, 'notes.txt'), 'keep')
+        const records = applyRadius([awsRecord('AWS::MSK::Cluster')], { ...emptyInputs(), extraProperties: { 'AWS::MSK::Cluster': { BrokerString: { type: 'string' } as any } } }).records
+
+        writeRecords(dir, records)
+
+        expect(fs.readdirSync(dir).sort()).toEqual(['AWS::MSK::Cluster.json', 'notes.txt'])
+        expect(JSON.parse(fs.readFileSync(path.join(dir, 'AWS::MSK::Cluster.json'), 'utf8'))).toEqual(records[0])
     })
 })

@@ -4,7 +4,7 @@ This document describes the workflows that run during pull requests to the bicep
 
 ## `build.yaml`
 
-This workflow is used to build and test the AWS downloader and AWS generator to ensure that no errors or bugs are present when we download the AWS resource type schema from the CloudControl API. The generator tests are in `src/aws-type-generator/src/*.test.ts`, and the downloader tests, including the breaking change check, are in `src/aws-type-downloader`. It also builds the templates in `src/aws-type-generator/bicep-test` with the Bicep CLI against types generated from the test fixtures, to check how Bicep reads the generated types. Run it locally with `npm run build && npm run test:bicep` in `src/aws-type-generator`, with `bicep` on your `PATH`.
+This workflow is used to build and test the AWS downloader and AWS generator to ensure that no errors or bugs are present when we download the AWS resource type schema from the CloudControl API. The generator tests are in `src/aws-type-generator/src/*.test.ts`, and the downloader tests, including the breaking change check, are in `src/aws-type-downloader`. It also builds the templates in `src/aws-type-generator/bicep-test` with the Bicep CLI against types generated from the test fixtures, to check how Bicep reads the generated types. Run it locally with `npm run build && npm run test:bicep` in `src/aws-type-generator`, with `bicep` on your `PATH`. Last, `npm run test:reports` changes the Radius test fixtures and checks that the breaking-change report and the reference docs show the changes.
 
 ## `generate-types.yaml`
 
@@ -12,12 +12,17 @@ This workflow downloads the latest AWS resource type schemas, regenerates the Bi
 
 The downloader keeps the types that AWS Cloud Control can create, including create-and-delete-only types that it can't update, and the read-only types that AWS creates on its own. A read-only type's schema has a read handler but no create handler, and a create-and-delete-only type's schema has a create handler but no update handler. Other types that Cloud Control can't create, such as legacy and deprecated types, are left out.
 
-The pull request body lists the changes that can break existing templates: removed resource types, types that became read-only, types that can no longer be updated, removed properties, properties that became required, and properties whose type changed. It also lists the new read-only and create-and-delete-only types, so a reviewer can check that each one belongs in the extension. The lists are cut short to fit in the pull request body. The job summary of the workflow run has longer lists, which are cut short only past the job summary limits set in `generate-types.yaml`. To run the checks locally, copy `artifacts/types` to another directory, run the downloader, and then run:
+The pull request body lists the changes that can break existing templates: removed resource types, types that became read-only, types that can no longer be updated, removed properties, properties that became required, and properties whose type changed. This report and the reference documentation read the effective types, AWS's types with the schemas and extra properties Radius owns applied, so they cover Radius's changes too. The report compares them with the effective types from the previous AWS types and the Radius commit in `artifacts/radius-commit`. It also lists the new read-only and create-and-delete-only types, so a reviewer can check that each one belongs in the extension. The lists are cut short to fit in the pull request body. The job summary of the workflow run has longer lists, which are cut short only past the job summary limits set in `generate-types.yaml`. To run the checks locally, copy `artifacts/types` to another directory, extract the Radius commit in `artifacts/radius-commit` to another directory, run the downloader, and then run:
 
 ```bash
-cd src/aws-type-downloader
-go run . breaking-changes --old <copy of the previous types> --new ../../artifacts/types
+cd src/aws-type-generator
+npm run start -- --input ../../artifacts/types --output ../../artifacts/bicep \
+  --previous-input <copy of the previous types> --previous-radius <previous Radius checkout> \
+  --effective-output <effective types> --previous-effective-output <previous effective types>
+cd ../aws-type-downloader
+go run . breaking-changes --old <previous effective types> --new <effective types>
 go run . added-types --old <copy of the previous types> --new ../../artifacts/types
+python ../../.github/scripts/generate-reference-docs.py <effective types> ../../docs/reference/supported-resources.md
 ```
 
 The generator also applies the schemas and extra properties Radius owns, from the commit the `radius` submodule pins, and the pull request body names that commit. If AWS publishes a type or a property with the same name as one Radius provides, the generator keeps Radius's type and AWS's property, and the workflow opens an issue titled "AWS types clash with Radius types" instead of failing. A run that finds the same clashes as any issue with that title, open or closed, changes nothing. A run that finds different clashes adds them as a comment on the open issue, or opens a new one if none is open. A clash is reported when either side is new, compared with what the checked-in types were generated from: `artifacts/types` on `main`, and the Radius commit recorded in `artifacts/radius-commit`, which the workflow updates on every run. A type clash is new if either the AWS type or Radius's hand-written schema is new. A property clash is new if either the type's property or Radius's extra property is new, where the type's property comes from AWS's schema or Radius's, whichever the extension used. A clash both sides already had isn't reported again, so a clash a person reviewed and kept stays quiet. Close the issue after the pull request that refreshes the types merges.
