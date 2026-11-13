@@ -71,7 +71,7 @@
 * **Arn**: string (ReadOnly)
 * **AttributeDefinitions**: [AttributeDefinition](#attributedefinition)[]
 * **BillingMode**: string
-* **GlobalSecondaryIndexes**: [GlobalSecondaryIndex](#globalsecondaryindex)[] (WriteOnly)
+* **GlobalSecondaryIndexes**: [GlobalSecondaryIndex](#globalsecondaryindex)[]
 * **GlobalTableSourceArn**: string (WriteOnly)
 * **GlobalTableWitnesses**: [GlobalTableWitness](#globaltablewitness)[]
 * **KeySchema**: [KeySchema](#keyschema)[]
@@ -79,7 +79,7 @@
 * **MultiRegionConsistency**: string
 * **ReadOnDemandThroughputSettings**: [ReadOnDemandThroughputSettings](#readondemandthroughputsettings)
 * **ReadProvisionedThroughputSettings**: [GlobalReadProvisionedThroughputSettings](#globalreadprovisionedthroughputsettings)
-* **Replicas**: [ReplicaSpecification](#replicaspecification)[] (Required, WriteOnly)
+* **Replicas**: [ReplicaSpecification](#replicaspecification)[] (Required)
 * **SSESpecification**: [SSESpecification](#ssespecification)
 * **StreamArn**: string (ReadOnly)
 * **StreamSpecification**: [StreamSpecification](#streamspecification)
@@ -147,6 +147,27 @@
   For detailed information about the limits in DynamoDB, see [Limits in Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html) in the Amazon DynamoDB Developer Guide.
 * **VectorIndexes**: [VectorIndex](#vectorindex)[]
 * **WarmThroughput**: [WarmThroughput](#warmthroughput): Represents the warm throughput (in read units per second and write units per second) for creating a table.
+
+## CapacityAutoScalingSettings
+### Properties
+* **MaxCapacity**: int (Required)
+* **MinCapacity**: int (Required)
+* **SeedCapacity**: int (WriteOnly)
+* **TargetTrackingScalingPolicyConfiguration**: [TargetTrackingScalingPolicyConfiguration](#targettrackingscalingpolicyconfiguration) (Required)
+
+## CapacityAutoScalingSettings
+### Properties
+* **MaxCapacity**: int (Required)
+* **MinCapacity**: int (Required)
+* **SeedCapacity**: int (WriteOnly)
+* **TargetTrackingScalingPolicyConfiguration**: [TargetTrackingScalingPolicyConfiguration](#targettrackingscalingpolicyconfiguration) (Required)
+
+## CapacityAutoScalingSettings
+### Properties
+* **MaxCapacity**: int (Required)
+* **MinCapacity**: int (Required)
+* **SeedCapacity**: int (WriteOnly)
+* **TargetTrackingScalingPolicyConfiguration**: [TargetTrackingScalingPolicyConfiguration](#targettrackingscalingpolicyconfiguration) (Required)
 
 ## CapacityAutoScalingSettings
 ### Properties
@@ -308,6 +329,11 @@
 ## ReadOnDemandThroughputSettings
 ### Properties
 * **MaxReadRequestUnits**: int
+
+## ReadProvisionedThroughputSettings
+### Properties
+* **ReadCapacityAutoScalingSettings**: [CapacityAutoScalingSettings](#capacityautoscalingsettings)
+* **ReadCapacityUnits**: int
 
 ## ReadProvisionedThroughputSettings
 ### Properties
@@ -482,6 +508,10 @@
 ## WriteOnDemandThroughputSettings
 ### Properties
 * **MaxWriteRequestUnits**: int
+
+## WriteProvisionedThroughputSettings
+### Properties
+* **WriteCapacityAutoScalingSettings**: [CapacityAutoScalingSettings](#capacityautoscalingsettings)
 
 ## WriteProvisionedThroughputSettings
 ### Properties

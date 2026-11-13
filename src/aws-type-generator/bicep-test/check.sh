@@ -2,8 +2,8 @@
 
 # Generates Bicep types from the test fixtures, publishes them as a local
 # extension, and builds each template in this directory with the Bicep CLI.
-# The first line of each template lists the diagnostics the build must report,
-# as "// expect: <codes>" or "// expect: none". Run `npm run build` first.
+# The first line of each template lists the diagnostics, warnings or errors, the
+# build must report, as "// expect: <codes>" or "// expect: none". Run `npm run build` first.
 
 set -euo pipefail
 
@@ -31,14 +31,18 @@ for template in "${here}"/*.bicep; do
         continue
     fi
 
-    if ! output="$(bicep build "${work}/${name}" --stdout 2>&1 > /dev/null)"; then
+    # A template can expect errors too, so a failed build only fails the check when
+    # it reports no diagnostics or different ones.
+    built=true
+    output="$(bicep build "${work}/${name}" --stdout 2>&1 > /dev/null)" || built=false
+
+    got="$(echo "${output}" | sed -nE 's/.* : (Warning|Error) ([^:]+):.*/\2/p' | sort -u | tr '\n' ' ' | sed 's/ $//')"
+    if [[ "${built}" == false && -z "${got}" ]]; then
         echo "FAIL ${name}: the build failed"
         echo "${output}"
         failed=1
         continue
     fi
-
-    got="$(echo "${output}" | sed -nE 's/.* : (Warning|Error) ([^:]+):.*/\2/p' | sort -u | tr '\n' ' ' | sed 's/ $//')"
     if [[ "${got}" != "${want/none/}" ]]; then
         echo "FAIL ${name}: got diagnostics \"${got:-none}\", want \"${want}\""
         echo "${output}"

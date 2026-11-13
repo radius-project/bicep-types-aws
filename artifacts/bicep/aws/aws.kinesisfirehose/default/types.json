@@ -277,7 +277,7 @@
         "type": {
           "$ref": "#/74"
         },
-        "flags": 4
+        "flags": 0
       },
       "LogGroupName": {
         "type": {
@@ -673,7 +673,7 @@
       },
       "CloudWatchLoggingOptions": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/98"
         },
         "flags": 0
       },
@@ -777,7 +777,7 @@
         "type": {
           "$ref": "#/73"
         },
-        "flags": 4
+        "flags": 0
       }
     }
   },
@@ -985,7 +985,7 @@
       },
       "S3Configuration": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/108"
         },
         "flags": 1
       },
@@ -1113,7 +1113,7 @@
         "type": {
           "$ref": "#/73"
         },
-        "flags": 5
+        "flags": 1
       }
     }
   },
@@ -1423,7 +1423,7 @@
       },
       "S3BackupConfiguration": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/104"
         },
         "flags": 0
       },
@@ -1435,13 +1435,13 @@
       },
       "S3Configuration": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/99"
         },
         "flags": 1
       },
       "SecretsManagerConfiguration": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/107"
         },
         "flags": 0
       },
@@ -1515,7 +1515,7 @@
         "type": {
           "$ref": "#/73"
         },
-        "flags": 4
+        "flags": 0
       },
       "Prefix": {
         "type": {
@@ -1593,19 +1593,19 @@
         "type": {
           "$ref": "#/74"
         },
-        "flags": 5
+        "flags": 1
       },
       "RoleARN": {
         "type": {
           "$ref": "#/73"
         },
-        "flags": 4
+        "flags": 0
       },
       "SecretARN": {
         "type": {
           "$ref": "#/73"
         },
-        "flags": 4
+        "flags": 0
       }
     }
   },
@@ -1891,7 +1891,7 @@
       },
       "S3Configuration": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/102"
         },
         "flags": 1
       },
@@ -2248,6 +2248,378 @@
   },
   {
     "$type": "ObjectType",
+    "name": "CloudWatchLoggingOptions",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 4
+      },
+      "LogGroupName": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0
+      },
+      "LogStreamName": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3DestinationConfiguration",
+    "properties": {
+      "BucketARN": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 1
+      },
+      "BufferingHints": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "CloudWatchLoggingOptions": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      },
+      "CompressionFormat": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0
+      },
+      "EncryptionConfiguration": {
+        "type": {
+          "$ref": "#/100"
+        },
+        "flags": 0
+      },
+      "ErrorOutputPrefix": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 4
+      },
+      "Prefix": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0
+      },
+      "RoleARN": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EncryptionConfiguration",
+    "properties": {
+      "KMSEncryptionConfig": {
+        "type": {
+          "$ref": "#/101"
+        },
+        "flags": 0
+      },
+      "NoEncryptionConfig": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KMSEncryptionConfig",
+    "properties": {
+      "AWSKMSKeyARN": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 5
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3DestinationConfiguration",
+    "properties": {
+      "BucketARN": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 1
+      },
+      "BufferingHints": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "CloudWatchLoggingOptions": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      },
+      "CompressionFormat": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0
+      },
+      "EncryptionConfiguration": {
+        "type": {
+          "$ref": "#/103"
+        },
+        "flags": 0
+      },
+      "ErrorOutputPrefix": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0
+      },
+      "Prefix": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0
+      },
+      "RoleARN": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EncryptionConfiguration",
+    "properties": {
+      "KMSEncryptionConfig": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0
+      },
+      "NoEncryptionConfig": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 4
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3DestinationConfiguration",
+    "properties": {
+      "BucketARN": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 1
+      },
+      "BufferingHints": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "CloudWatchLoggingOptions": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      },
+      "CompressionFormat": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0
+      },
+      "EncryptionConfiguration": {
+        "type": {
+          "$ref": "#/105"
+        },
+        "flags": 0
+      },
+      "ErrorOutputPrefix": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 4
+      },
+      "Prefix": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0
+      },
+      "RoleARN": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EncryptionConfiguration",
+    "properties": {
+      "KMSEncryptionConfig": {
+        "type": {
+          "$ref": "#/106"
+        },
+        "flags": 0
+      },
+      "NoEncryptionConfig": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KMSEncryptionConfig",
+    "properties": {
+      "AWSKMSKeyARN": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 5
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SecretsManagerConfiguration",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 5
+      },
+      "RoleARN": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 4
+      },
+      "SecretARN": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 4
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3DestinationConfiguration",
+    "properties": {
+      "BucketARN": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 1
+      },
+      "BufferingHints": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "CloudWatchLoggingOptions": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      },
+      "CompressionFormat": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0
+      },
+      "EncryptionConfiguration": {
+        "type": {
+          "$ref": "#/109"
+        },
+        "flags": 0
+      },
+      "ErrorOutputPrefix": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0
+      },
+      "Prefix": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0
+      },
+      "RoleARN": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EncryptionConfiguration",
+    "properties": {
+      "KMSEncryptionConfig": {
+        "type": {
+          "$ref": "#/110"
+        },
+        "flags": 0
+      },
+      "NoEncryptionConfig": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "KMSEncryptionConfig",
+    "properties": {
+      "AWSKMSKeyARN": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 5
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "AWS.KinesisFirehose/DeliveryStream",
     "properties": {
       "name": {
@@ -2277,7 +2649,7 @@
     "$type": "ResourceType",
     "name": "AWS.KinesisFirehose/DeliveryStream@default",
     "body": {
-      "$ref": "#/98"
+      "$ref": "#/111"
     },
     "readableScopes": 0,
     "writableScopes": 0

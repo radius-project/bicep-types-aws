@@ -287,7 +287,7 @@
 * **Description**: string: Description of action group
 * **FunctionSchema**: [FunctionSchema](#functionschema)
 * **ParentActionGroupSignature**: string
-* **SkipResourceInUseCheckOnDelete**: bool: Specifies whether to allow deleting action group while it is in use.
+* **SkipResourceInUseCheckOnDelete**: bool (WriteOnly): Specifies whether to allow deleting action group while it is in use.
 
 ## AgentAliasHistoryEvent
 ### Properties
@@ -397,7 +397,7 @@
 
 ## AWS.Bedrock/AgentProperties
 ### Properties
-* **ActionGroups**: [AgentActionGroup](#agentactiongroup)[] (WriteOnly): List of ActionGroups
+* **ActionGroups**: [AgentActionGroup](#agentactiongroup)[]: List of ActionGroups
 * **AgentArn**: string (ReadOnly): Arn representation of the Agent.
 * **AgentCollaboration**: string
 * **AgentCollaborators**: [AgentCollaborator](#agentcollaborator)[]: List of Agent Collaborators
@@ -790,7 +790,7 @@
 * **Name**: string (Required): Name for a prompt resource.
 * **Tags**: [TagsMap](#tagsmap)
 * **UpdatedAt**: string (ReadOnly): Time Stamp.
-* **Variants**: [PromptVariant](#promptvariant)[] (WriteOnly): List of prompt variants
+* **Variants**: [PromptVariant](#promptvariant)[]: List of prompt variants
 * **Version**: string (ReadOnly): Draft Version.
 
 ## AWS.Bedrock/PromptVersionProperties

@@ -179,7 +179,7 @@
 * **BidPercentage**: int
 * **CapacityTags**: [ComputeEnvironment_CapacityTags](#computeenvironmentcapacitytags): Capacity-level tags for compute environments.
 * **DesiredvCpus**: int
-* **Ec2Configuration**: [Ec2ConfigurationObject](#ec2configurationobject)[] (ReadOnly)
+* **Ec2Configuration**: [Ec2ConfigurationObject](#ec2configurationobject)[]
 * **Ec2KeyPair**: string
 * **ImageId**: string
 * **InstanceRole**: string
@@ -249,7 +249,7 @@
 
 ## Ec2ConfigurationObject
 ### Properties
-* **BatchImageStatus**: string
+* **BatchImageStatus**: string (ReadOnly)
 * **ImageIdOverride**: string
 * **ImageKubernetesVersion**: string
 * **ImageType**: string (Required)

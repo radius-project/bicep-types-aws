@@ -2,7 +2,7 @@ import { Dictionary } from "lodash";
 import isEqual from "lodash/isEqual";
 import { boolean } from "yargs";
 import { Context, SchemaDefinition, SchemaRecord } from "./schemarecord";
-import { All, TypeBaseKind, TypeFactory, ObjectTypeProperty, ObjectTypePropertyFlags, ObjectType, ResourceType, ScopeType, BicepType, TypeReference } from "bicep-types";
+import { All, TypeBaseKind, TypeFactory, ObjectTypeProperty, ObjectTypePropertyFlags, ObjectType, ResourceType, ScopeType, BicepType, TypeReference, ArrayType, UnionType } from "bicep-types";
 
 export function convertSchemaRecordToTypes(records: SchemaRecord[]): BicepType[] {
     const factory = new TypeFactory()
@@ -31,66 +31,9 @@ function visitSchemaRecord(factory: TypeFactory, record: SchemaRecord): Resource
     // A template references a read-only type with `existing` and sets its primary identifier, so the
     // identifier stays settable even though AWS lists it as read-only.
     const settable = isReadOnly(record) ? record.schema.primaryIdentifier ?? [] : []
-    if (record.schema.readOnlyProperties) {
-        record.schema.readOnlyProperties.filter(p => !settable.includes(p)).forEach(p => {
-            const parts = p.split('/').filter(s => s.length > 0)
-            parts.shift()
-
-            let property: ObjectTypeProperty | undefined
-            let current = factory.lookupType(properties) as ObjectType
-            parts.forEach(part => {
-                if (current.type !== TypeBaseKind.ObjectType) {
-                    return;
-                }
-                if (!current.properties) {
-                    console.warn(`could not resolve property ${p}`);
-                    return;
-                }
-
-                property = current.properties[part];
-                if (!property) {
-                    console.warn(`could not resolve property ${p}`);
-                    return;
-                }
-
-                current = factory.lookupType(property.type) as ObjectType;
-            })
-
-            if (property) {
-                property.flags |= ObjectTypePropertyFlags.ReadOnly
-            }
-        })
-    }
-    if (record.schema.writeOnlyProperties) {
-        record.schema.writeOnlyProperties.forEach(p => {
-            const parts = p.split('/').filter(s => s.length > 0)
-            parts.shift()
-
-            let property: ObjectTypeProperty | undefined
-            let current = factory.lookupType(properties) as ObjectType
-            parts.forEach(part => {
-                if (current.type !== TypeBaseKind.ObjectType) {
-                    return;
-                }
-                if (!current.properties) {
-                    console.warn(`could not resolve property ${p}`)
-                    return
-                }
-
-                property = current.properties[part]
-                if (!property) {
-                    console.warn(`could not resolve property ${p}`)
-                    return
-                }
-
-                current = factory.lookupType(property.type) as ObjectType
-            })
-
-            if (property) {
-                property.flags |= ObjectTypePropertyFlags.WriteOnly
-            }
-        })
-    }
+    record.schema.readOnlyProperties?.filter(p => !settable.includes(p))
+        .forEach(p => markProperties(factory, properties, p, ObjectTypePropertyFlags.ReadOnly))
+    record.schema.writeOnlyProperties?.forEach(p => markProperties(factory, properties, p, ObjectTypePropertyFlags.WriteOnly))
 
     if (record.schema.oneOf) {
         // Handling the "oneOf" case where oneOf is present under the properties block
@@ -130,6 +73,139 @@ function visitSchemaRecord(factory: TypeFactory, record: SchemaRecord): Resource
 function isReadOnly(record: SchemaRecord): boolean {
     const handlers = record.schema.handlers ?? {}
     return 'read' in handlers && !('create' in handlers)
+}
+
+
+// An edge from a type to a type it references: a named property or the
+// additionalProperties of an object, the items of an array, or an element of a union.
+type Edge = { kind: 'property', name: string } | { kind: 'additional' } | { kind: 'items' } | { kind: 'element', index: number }
+
+// markProperties sets flags on every property a schema pointer such as
+// /properties/OutputGroups/*/Settings/Salt names. A `*` steps into an array's items or
+// a map's values, so only the leaf is marked, never the array or map that holds it, and
+// a pointer that ends in `*` marks the property that holds the items. Every member of a
+// union that resolves the rest of the pointer is followed. A type that other paths also
+// use is copied for this path first, so the flag doesn't reach those other uses.
+// Nothing is marked, with a warning, when the pointer doesn't resolve.
+function markProperties(factory: TypeFactory, root: TypeReference, pointer: string, flag: ObjectTypePropertyFlags) {
+    const parts = pointer.split('/').filter(s => s.length > 0)
+    parts.shift()
+
+    const paths = findPaths(factory, root, parts, 0, [], undefined)
+    if (paths.length === 0) {
+        console.warn(`could not resolve property ${pointer}`)
+        return
+    }
+    for (const path of paths) {
+        // Every path ends with the property, so own the path to the object that holds it.
+        let holder = root
+        for (const edge of path.slice(0, -1)) {
+            holder = ownPath(factory, holder, edge)
+        }
+        const last = path[path.length - 1] as { kind: 'property', name: string }
+        const object = factory.lookupType(holder) as ObjectType
+        object.properties[last.name].flags |= flag
+    }
+}
+
+// findPaths returns the edges from root to each property the remaining parts name.
+// The last edge of each path is the property.
+function findPaths(factory: TypeFactory, reference: TypeReference, parts: string[], i: number, path: Edge[], holder: Edge[] | undefined): Edge[][] {
+    if (i === parts.length) {
+        return holder ? [holder] : []
+    }
+
+    const type = factory.lookupType(reference)
+    if (type.type === TypeBaseKind.UnionType) {
+        return (type as UnionType).elements.flatMap((element: TypeReference, index: number) =>
+            findPaths(factory, element, parts, i, [...path, { kind: 'element', index }], holder))
+    }
+
+    const part = parts[i]
+    if (part === '*') {
+        if (type.type === TypeBaseKind.ArrayType) {
+            return findPaths(factory, (type as ArrayType).itemType as TypeReference, parts, i + 1, [...path, { kind: 'items' }], holder)
+        }
+        const values = type.type === TypeBaseKind.ObjectType ? (type as ObjectType).additionalProperties : undefined
+        return values ? findPaths(factory, values as TypeReference, parts, i + 1, [...path, { kind: 'additional' }], holder) : []
+    }
+
+    const property = type.type === TypeBaseKind.ObjectType ? (type as ObjectType).properties[part] : undefined
+    if (!property) {
+        return []
+    }
+    const next: Edge[] = [...path, { kind: 'property', name: part }]
+    return findPaths(factory, property.type as TypeReference, parts, i + 1, next, next)
+}
+
+// ownPath follows one edge from owner. When the type it reaches is also referenced
+// from somewhere else, it points the edge at a copy of that type first, so changes
+// made along this path stay on this path. Returns the type the edge now reaches.
+function ownPath(factory: TypeFactory, owner: TypeReference, edge: Edge): TypeReference {
+    const ownerType = factory.lookupType(owner)
+    const reached = target(ownerType, edge)
+    if (references(factory, reached) <= 1) {
+        return reached
+    }
+
+    const copy = copyType(factory.lookupType(reached))
+    factory.types.push(copy)
+    const reference = new TypeReference(factory.types.length - 1)
+    if (edge.kind === 'property') {
+        const object = ownerType as ObjectType
+        object.properties[edge.name] = { ...object.properties[edge.name], type: reference }
+    } else if (edge.kind === 'additional') {
+        (ownerType as ObjectType).additionalProperties = reference
+    } else if (edge.kind === 'items') {
+        (ownerType as ArrayType).itemType = reference
+    } else {
+        (ownerType as UnionType).elements[edge.index] = reference
+    }
+    return reference
+}
+
+function target(type: BicepType, edge: Edge): TypeReference {
+    switch (edge.kind) {
+        case 'property': return (type as ObjectType).properties[edge.name].type as TypeReference
+        case 'additional': return (type as ObjectType).additionalProperties as TypeReference
+        case 'items': return (type as ArrayType).itemType as TypeReference
+        case 'element': return (type as UnionType).elements[edge.index] as TypeReference
+    }
+}
+
+// copyType copies a type one level deep: its own fields and property entries, which
+// still reference the same types.
+function copyType(type: BicepType): BicepType {
+    if (type.type === TypeBaseKind.ObjectType) {
+        const object = type as ObjectType
+        const properties: Dictionary<ObjectTypeProperty> = {}
+        Object.entries(object.properties).forEach(([name, property]) => properties[name] = { ...property })
+        return { ...object, properties }
+    }
+    if (type.type === TypeBaseKind.UnionType) {
+        return { ...type, elements: [...(type as UnionType).elements] } as BicepType
+    }
+    return { ...type }
+}
+
+// references counts the places that reference a type.
+function references(factory: TypeFactory, reference: TypeReference): number {
+    let count = 0
+    const same = (r: unknown) => r instanceof TypeReference && r.index === reference.index
+    for (const type of factory.types) {
+        if (type.type === TypeBaseKind.ObjectType) {
+            const object = type as ObjectType
+            count += Object.values(object.properties).filter(p => same(p.type)).length
+            count += same(object.additionalProperties) ? 1 : 0
+        } else if (type.type === TypeBaseKind.ArrayType) {
+            count += same((type as ArrayType).itemType) ? 1 : 0
+        } else if (type.type === TypeBaseKind.UnionType) {
+            count += (type as UnionType).elements.filter(same).length
+        } else if (type.type === TypeBaseKind.ResourceType) {
+            count += same((type as ResourceType).body) ? 1 : 0
+        }
+    }
+    return count
 }
 
 function convertOneOfPropertiesToUnion(context: Context, factory: TypeFactory, record: SchemaRecord, properties: TypeReference, typeName: string, oneofInDefinitions: boolean) {

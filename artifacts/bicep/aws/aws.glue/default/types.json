@@ -226,7 +226,7 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 0,
+        "flags": 2,
         "description": "An identifier for the Lake Formation principal."
       }
     }
@@ -259,14 +259,14 @@
         "type": {
           "$ref": "#/16"
         },
-        "flags": 0,
+        "flags": 2,
         "description": "The permissions that are granted to the principal."
       },
       "Principal": {
         "type": {
           "$ref": "#/9"
         },
-        "flags": 0
+        "flags": 2
       }
     }
   },
@@ -327,7 +327,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/24"
     }
   },
   {
@@ -381,14 +381,14 @@
         "type": {
           "$ref": "#/18"
         },
-        "flags": 2,
+        "flags": 0,
         "description": "An array of PrincipalPermissions objects for default database permissions."
       },
       "CreateTableDefaultPermissions": {
         "type": {
           "$ref": "#/19"
         },
-        "flags": 2,
+        "flags": 0,
         "description": "An array of PrincipalPermissions objects for default table permissions."
       },
       "CreateTime": {
@@ -463,6 +463,38 @@
   },
   {
     "$type": "ObjectType",
+    "name": "PrincipalPermissions",
+    "properties": {
+      "Permissions": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2,
+        "description": "The permissions that are granted to the principal."
+      },
+      "Principal": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 2
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataLakePrincipal",
+    "properties": {
+      "DataLakePrincipalIdentifier": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "An identifier for the Lake Formation principal."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "AWS.Glue/Catalog",
     "properties": {
       "name": {
@@ -492,7 +524,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/Catalog@default",
     "body": {
-      "$ref": "#/24"
+      "$ref": "#/26"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -510,7 +542,7 @@
       },
       "ContainsCustomDatatype": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/32"
         },
         "flags": 0,
         "description": "Indicates whether the CSV file contains custom data types."
@@ -545,7 +577,7 @@
       },
       "Header": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "A list of strings representing column names."
@@ -669,21 +701,21 @@
     "properties": {
       "CsvClassifier": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/28"
         },
         "flags": 0,
         "description": "A classifier for comma-separated values (CSV)."
       },
       "GrokClassifier": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/29"
         },
         "flags": 0,
         "description": "A classifier that uses grok."
       },
       "JsonClassifier": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/30"
         },
         "flags": 0,
         "description": "A classifier for JSON content."
@@ -697,7 +729,7 @@
       },
       "XMLClassifier": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "A classifier for XML content."
@@ -724,7 +756,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/35"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -735,7 +767,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/Classifier@default",
     "body": {
-      "$ref": "#/34"
+      "$ref": "#/36"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -753,14 +785,14 @@
       },
       "BasicAuthenticationCredentials": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/40"
         },
         "flags": 4,
         "description": "For supplying basic auth credentials when not providing a SecretArn value"
       },
       "CustomAuthenticationCredentials": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/47"
         },
         "flags": 4,
         "description": "A structure containing the authentication credentials in the CreateConnection request."
@@ -774,7 +806,7 @@
       },
       "OAuth2Properties": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/44"
         },
         "flags": 0,
         "description": "A structure containing properties for OAuth2 in the CreateConnection request."
@@ -834,21 +866,21 @@
     "properties": {
       "AthenaProperties": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/48"
         },
         "flags": 0,
         "description": "Connection properties specific to the Athena compute environment."
       },
       "AuthenticationConfiguration": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/38"
         },
         "flags": 4,
         "description": "The authentication configuration used to connect to the connection."
       },
       "ConnectionProperties": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": "A map of key-value pairs used as parameters for this connection."
@@ -869,7 +901,7 @@
       },
       "MatchCriteria": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "A list of criteria that can be used in selecting this connection."
@@ -883,21 +915,21 @@
       },
       "PhysicalConnectionRequirements": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "The physical connection requirements."
       },
       "PythonProperties": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "Connection properties specific to the Python compute environment."
       },
       "SparkProperties": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "Connection properties specific to the Spark compute environment."
@@ -911,7 +943,7 @@
       },
       "ValidateForComputeEnvironments": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/53"
         },
         "flags": 4
       }
@@ -977,21 +1009,21 @@
     "properties": {
       "AuthorizationCodeProperties": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/39"
         },
         "flags": 4,
         "description": "The set of properties required for the the OAuth2 AUTHORIZATION_CODE grant type workflow."
       },
       "OAuth2ClientApplication": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "The OAuth2 client app used for the connection."
       },
       "OAuth2Credentials": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/43"
         },
         "flags": 4,
         "description": "A structure containing the OAuth2 credentials used in the authentication configuration."
@@ -1012,7 +1044,7 @@
       },
       "TokenUrlParametersMap": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/54"
         },
         "flags": 0,
         "description": "A map of key-value pairs used in the authentication configuration."
@@ -1032,7 +1064,7 @@
       },
       "SecurityGroupIdList": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/55"
         },
         "flags": 0,
         "description": "The security group ID list used by the connection."
@@ -1054,7 +1086,7 @@
     "name": "Connection_CustomAuthenticationCredentials",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/44"
+      "$ref": "#/46"
     }
   },
   {
@@ -1062,7 +1094,7 @@
     "name": "Connection_AthenaProperties",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/44"
+      "$ref": "#/46"
     }
   },
   {
@@ -1070,7 +1102,7 @@
     "name": "Connection_ConnectionProperties",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/44"
+      "$ref": "#/46"
     }
   },
   {
@@ -1084,7 +1116,7 @@
     "name": "Connection_PythonProperties",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/44"
+      "$ref": "#/46"
     }
   },
   {
@@ -1092,7 +1124,7 @@
     "name": "Connection_SparkProperties",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/44"
+      "$ref": "#/46"
     }
   },
   {
@@ -1106,7 +1138,7 @@
     "name": "Connection_TokenUrlParametersMap",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/44"
+      "$ref": "#/46"
     }
   },
   {
@@ -1124,7 +1156,7 @@
     "name": "Connection_Tags",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/44"
+      "$ref": "#/46"
     }
   },
   {
@@ -1140,7 +1172,7 @@
       },
       "ConnectionInput": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/41"
         },
         "flags": 1,
         "description": "The connection properties used for this connection."
@@ -1154,7 +1186,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/57"
         },
         "flags": 0,
         "description": "The collection of tags. Each tag element is associated with a given resource."
@@ -1181,7 +1213,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/58"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1192,7 +1224,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/Connection@default",
     "body": {
-      "$ref": "#/57"
+      "$ref": "#/59"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1203,13 +1235,13 @@
     "properties": {
       "Password": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/83"
         },
         "flags": 0
       },
       "Username": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/83"
         },
         "flags": 0
       }
@@ -1248,13 +1280,13 @@
     "properties": {
       "ClientId": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/83"
         },
         "flags": 0
       },
       "ClientSecret": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/83"
         },
         "flags": 0
       },
@@ -1272,19 +1304,19 @@
       },
       "Scope": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/68"
         },
         "flags": 0
       },
       "TokenUrl": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/68"
         },
         "flags": 0
       },
       "TokenUrlParameters": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/86"
         },
         "flags": 0
       }
@@ -1296,14 +1328,14 @@
     "properties": {
       "AdditionalRequestParameters": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/87"
         },
         "flags": 0,
         "description": "Key-value pairs of additional request parameters."
       },
       "Url": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/68"
         },
         "flags": 0
       }
@@ -1315,26 +1347,26 @@
     "properties": {
       "AuthenticationTypes": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/88"
         },
         "flags": 1,
         "description": "A list of authentication types supported."
       },
       "BasicAuthenticationProperties": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/61"
         },
         "flags": 0
       },
       "CustomAuthenticationProperties": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/70"
         },
         "flags": 0
       },
       "OAuth2Properties": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/67"
         },
         "flags": 0
       }
@@ -1346,25 +1378,25 @@
     "properties": {
       "AuthorizationCode": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/68"
         },
         "flags": 0
       },
       "AuthorizationCodeUrl": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/68"
         },
         "flags": 0
       },
       "ClientId": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/83"
         },
         "flags": 0
       },
       "ClientSecret": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/83"
         },
         "flags": 0
       },
@@ -1376,13 +1408,13 @@
       },
       "Prompt": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/68"
         },
         "flags": 0
       },
       "RedirectUri": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/68"
         },
         "flags": 0
       },
@@ -1394,19 +1426,19 @@
       },
       "Scope": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/68"
         },
         "flags": 0
       },
       "TokenUrl": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/68"
         },
         "flags": 0
       },
       "TokenUrlParameters": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/89"
         },
         "flags": 0
       }
@@ -1418,19 +1450,19 @@
     "properties": {
       "AuthorizationCodeProperties": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/66"
         },
         "flags": 0
       },
       "ClientCredentialsProperties": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/63"
         },
         "flags": 0
       },
       "JWTBearerProperties": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/77"
         },
         "flags": 0
       },
@@ -1449,7 +1481,7 @@
     "properties": {
       "AllowedValues": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/90"
         },
         "flags": 0,
         "description": "A list of allowed values for the property."
@@ -1504,13 +1536,13 @@
     "properties": {
       "LimitParameter": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/72"
         },
         "flags": 0
       },
       "NextPage": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/72"
         },
         "flags": 1
       }
@@ -1522,7 +1554,7 @@
     "properties": {
       "AuthenticationParameters": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/91"
         },
         "flags": 1
       }
@@ -1534,14 +1566,14 @@
     "properties": {
       "Schema": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/92"
         },
         "flags": 0,
         "description": "The schema definition for this entity."
       },
       "SourceConfiguration": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/84"
         },
         "flags": 0
       }
@@ -1574,7 +1606,7 @@
       },
       "Value": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/81"
         },
         "flags": 0
       }
@@ -1593,7 +1625,7 @@
       },
       "FilterOverrides": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/75"
         },
         "flags": 0
       },
@@ -1647,7 +1679,7 @@
     "properties": {
       "BetweenConfiguration": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/62"
         },
         "flags": 0
       },
@@ -1667,13 +1699,13 @@
       },
       "FilterStringConfiguration": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/76"
         },
         "flags": 0
       },
       "OperatorMappings": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/93"
         },
         "flags": 0,
         "description": "A map of logical filter operators to their API-specific string representations."
@@ -1693,7 +1725,7 @@
     "properties": {
       "BetweenConfiguration": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/62"
         },
         "flags": 0
       },
@@ -1713,7 +1745,7 @@
       },
       "OperatorMappings": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "A map of logical filter operators to their field-specific API representations, overriding the global operator mappings."
@@ -1759,7 +1791,7 @@
       },
       "JwtToken": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/83"
         },
         "flags": 0
       },
@@ -1771,13 +1803,13 @@
       },
       "TokenUrl": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/68"
         },
         "flags": 0
       },
       "TokenUrlParameters": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/95"
         },
         "flags": 0
       }
@@ -1789,13 +1821,13 @@
     "properties": {
       "LimitParameter": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/72"
         },
         "flags": 1
       },
       "OffsetParameter": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/72"
         },
         "flags": 1
       }
@@ -1807,13 +1839,13 @@
     "properties": {
       "CursorConfiguration": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/69"
         },
         "flags": 0
       },
       "OffsetConfiguration": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/78"
         },
         "flags": 0
       }
@@ -1865,20 +1897,20 @@
     "properties": {
       "EntityConfigurations": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/96"
         },
         "flags": 0,
         "description": "A map of entity configurations."
       },
       "GlobalSourceConfiguration": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/84"
         },
         "flags": 0
       },
       "ValidationEndpointConfiguration": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/97"
         },
         "flags": 0,
         "description": "Configuration for the validation endpoint. Only supports RequestMethod and RequestPath."
@@ -1932,13 +1964,13 @@
     "properties": {
       "FilterConfiguration": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/74"
         },
         "flags": 0
       },
       "PaginationConfiguration": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/79"
         },
         "flags": 0
       },
@@ -1951,7 +1983,7 @@
       },
       "RequestParameters": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/98"
         },
         "flags": 0,
         "description": "Request parameters configuration."
@@ -1965,7 +1997,7 @@
       },
       "ResponseConfiguration": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/80"
         },
         "flags": 0
       }
@@ -1992,25 +2024,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/66"
+      "$ref": "#/68"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/66"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/66"
+      "$ref": "#/68"
     }
   },
   {
@@ -2022,7 +2042,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/81"
+      "$ref": "#/68"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/83"
     }
   },
   {
@@ -2030,7 +2062,7 @@
     "name": "ConnectionType_Schema",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/71"
+      "$ref": "#/73"
     }
   },
   {
@@ -2052,7 +2084,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/66"
+      "$ref": "#/68"
     }
   },
   {
@@ -2060,7 +2092,7 @@
     "name": "ConnectionType_EntityConfigurations",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/69"
+      "$ref": "#/71"
     }
   },
   {
@@ -2086,7 +2118,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/66"
+      "$ref": "#/68"
     }
   },
   {
@@ -2096,7 +2128,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/83"
+      "$ref": "#/85"
     }
   },
   {
@@ -2105,7 +2137,7 @@
     "properties": {
       "ConnectionProperties": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/64"
         },
         "flags": 4
       },
@@ -2125,7 +2157,7 @@
       },
       "ConnectorAuthenticationConfiguration": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/65"
         },
         "flags": 4
       },
@@ -2145,13 +2177,13 @@
       },
       "RestConfiguration": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/82"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/100"
         },
         "flags": 0,
         "description": "Tags to assign to the connection type."
@@ -2178,7 +2210,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/101"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2189,7 +2221,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/ConnectionType@default",
     "body": {
-      "$ref": "#/100"
+      "$ref": "#/102"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2228,7 +2260,7 @@
       },
       "Tables": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/117"
         },
         "flags": 0,
         "description": "A list of the tables to be synchronized."
@@ -2255,7 +2287,7 @@
       },
       "DeltaTables": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/118"
         },
         "flags": 0,
         "description": ""
@@ -2309,7 +2341,7 @@
       },
       "Exclusions": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/119"
         },
         "flags": 0,
         "description": "A list of global patterns used to exclude from the crawl."
@@ -2323,7 +2355,7 @@
       },
       "Paths": {
         "type": {
-          "$ref": "#/118"
+          "$ref": "#/120"
         },
         "flags": 0,
         "description": "One or more Amazon S3 paths that contains Hudi metadata folders as s3://bucket/prefix ."
@@ -2343,7 +2375,7 @@
       },
       "Exclusions": {
         "type": {
-          "$ref": "#/119"
+          "$ref": "#/121"
         },
         "flags": 0,
         "description": "A list of global patterns used to exclude from the crawl."
@@ -2357,7 +2389,7 @@
       },
       "Paths": {
         "type": {
-          "$ref": "#/120"
+          "$ref": "#/122"
         },
         "flags": 0,
         "description": "One or more Amazon S3 paths that contains Iceberg metadata folders as s3://bucket/prefix ."
@@ -2377,14 +2409,14 @@
       },
       "EnableAdditionalMetadata": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/123"
         },
         "flags": 0,
         "description": "Specify a value of RAWTYPES or COMMENTS to enable additional metadata in table responses. RAWTYPES provides the native-level datatype. COMMENTS provides comments associated with a column or table in the database.\n\nIf you do not need additional metadata, keep the field empty."
       },
       "Exclusions": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/124"
         },
         "flags": 0,
         "description": "A list of glob patterns used to exclude from the crawl. For more information, see Catalog Tables with a Crawler."
@@ -2478,7 +2510,7 @@
       },
       "Exclusions": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/125"
         },
         "flags": 0,
         "description": "A list of glob patterns used to exclude from the crawl."
@@ -2538,56 +2570,56 @@
     "properties": {
       "CatalogTargets": {
         "type": {
-          "$ref": "#/124"
+          "$ref": "#/126"
         },
         "flags": 0,
         "description": "Specifies AWS Glue Data Catalog targets."
       },
       "DeltaTargets": {
         "type": {
-          "$ref": "#/125"
+          "$ref": "#/127"
         },
         "flags": 0,
         "description": "Specifies an array of Delta data store targets."
       },
       "DynamoDBTargets": {
         "type": {
-          "$ref": "#/126"
+          "$ref": "#/128"
         },
         "flags": 0,
         "description": "Specifies Amazon DynamoDB targets."
       },
       "HudiTargets": {
         "type": {
-          "$ref": "#/127"
+          "$ref": "#/129"
         },
         "flags": 0,
         "description": "Specifies Apache Hudi data store targets."
       },
       "IcebergTargets": {
         "type": {
-          "$ref": "#/128"
+          "$ref": "#/130"
         },
         "flags": 0,
         "description": "Specifies Apache Iceberg data store targets."
       },
       "JdbcTargets": {
         "type": {
-          "$ref": "#/129"
+          "$ref": "#/131"
         },
         "flags": 0,
         "description": "Specifies JDBC targets."
       },
       "MongoDBTargets": {
         "type": {
-          "$ref": "#/130"
+          "$ref": "#/132"
         },
         "flags": 0,
         "description": "A list of Mongo DB targets."
       },
       "S3Targets": {
         "type": {
-          "$ref": "#/131"
+          "$ref": "#/133"
         },
         "flags": 0,
         "description": "Specifies Amazon Simple Storage Service (Amazon S3) targets."
@@ -2651,18 +2683,6 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/102"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/103"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
       "$ref": "#/104"
     }
   },
@@ -2687,6 +2707,12 @@
   {
     "$type": "ArrayType",
     "itemType": {
+      "$ref": "#/108"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
       "$ref": "#/109"
     }
   },
@@ -2694,6 +2720,12 @@
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/111"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/113"
     }
   },
   {
@@ -2711,7 +2743,7 @@
     "name": "Crawler_Tags",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/44"
+      "$ref": "#/46"
     }
   },
   {
@@ -2720,7 +2752,7 @@
     "properties": {
       "Classifiers": {
         "type": {
-          "$ref": "#/133"
+          "$ref": "#/135"
         },
         "flags": 0,
         "description": "A list of UTF-8 strings that specify the names of custom classifiers that are associated with the crawler."
@@ -2755,7 +2787,7 @@
       },
       "LakeFormationConfiguration": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/110"
         },
         "flags": 0
       },
@@ -2768,7 +2800,7 @@
       },
       "RecrawlPolicy": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/112"
         },
         "flags": 0
       },
@@ -2781,13 +2813,13 @@
       },
       "Schedule": {
         "type": {
-          "$ref": "#/112"
+          "$ref": "#/114"
         },
         "flags": 0
       },
       "SchemaChangePolicy": {
         "type": {
-          "$ref": "#/113"
+          "$ref": "#/115"
         },
         "flags": 0
       },
@@ -2800,14 +2832,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/134"
+          "$ref": "#/136"
         },
         "flags": 0,
         "description": "The tags to use with this crawler."
       },
       "Targets": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/116"
         },
         "flags": 1
       }
@@ -2833,7 +2865,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/137"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2844,7 +2876,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/Crawler@default",
     "body": {
-      "$ref": "#/136"
+      "$ref": "#/138"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2864,7 +2896,7 @@
     "name": "CustomEntityType_Tags",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/44"
+      "$ref": "#/46"
     }
   },
   {
@@ -2873,7 +2905,7 @@
     "properties": {
       "ContextWords": {
         "type": {
-          "$ref": "#/139"
+          "$ref": "#/141"
         },
         "flags": 0,
         "description": "A list of context words."
@@ -2894,7 +2926,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/140"
+          "$ref": "#/142"
         },
         "flags": 4,
         "description": "Tags to associate with the custom entity type."
@@ -2921,7 +2953,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/141"
+          "$ref": "#/143"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -2932,7 +2964,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/CustomEntityType@default",
     "body": {
-      "$ref": "#/142"
+      "$ref": "#/144"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2963,13 +2995,13 @@
     "properties": {
       "ConnectionPasswordEncryption": {
         "type": {
-          "$ref": "#/144"
+          "$ref": "#/146"
         },
         "flags": 0
       },
       "EncryptionAtRest": {
         "type": {
-          "$ref": "#/146"
+          "$ref": "#/148"
         },
         "flags": 0
       }
@@ -3019,7 +3051,7 @@
       },
       "DataCatalogEncryptionSettings": {
         "type": {
-          "$ref": "#/145"
+          "$ref": "#/147"
         },
         "flags": 1
       }
@@ -3045,7 +3077,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/150"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3056,7 +3088,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/DataCatalogEncryptionSettings@default",
     "body": {
-      "$ref": "#/149"
+      "$ref": "#/151"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3127,14 +3159,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/153"
+          "$ref": "#/155"
         },
         "flags": 0,
         "description": "A map of key-value pairs to apply to this resource."
       },
       "TargetTable": {
         "type": {
-          "$ref": "#/151"
+          "$ref": "#/153"
         },
         "flags": 0,
         "description": "An object representing an AWS Glue table."
@@ -3161,7 +3193,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/154"
+          "$ref": "#/156"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3172,7 +3204,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/DataQualityRuleset@default",
     "body": {
-      "$ref": "#/155"
+      "$ref": "#/157"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3223,7 +3255,7 @@
     "properties": {
       "CreateTableDefaultPermissions": {
         "type": {
-          "$ref": "#/162"
+          "$ref": "#/164"
         },
         "flags": 0,
         "description": "Creates a set of default permissions on the table for principals. Used by AWS Lake Formation. Not used in the normal course of AWS Glue operations."
@@ -3237,7 +3269,7 @@
       },
       "FederatedDatabase": {
         "type": {
-          "$ref": "#/160"
+          "$ref": "#/162"
         },
         "flags": 0,
         "description": "A FederatedDatabase structure that references an entity outside the AWS Glue Data Catalog."
@@ -3258,14 +3290,14 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/163"
+          "$ref": "#/165"
         },
         "flags": 0,
         "description": "These key-value pairs define parameters and properties of the database."
       },
       "TargetDatabase": {
         "type": {
-          "$ref": "#/158"
+          "$ref": "#/160"
         },
         "flags": 0,
         "description": "A DatabaseIdentifier structure that describes a target database for resource linking."
@@ -3298,14 +3330,14 @@
     "properties": {
       "Permissions": {
         "type": {
-          "$ref": "#/164"
+          "$ref": "#/166"
         },
         "flags": 0,
         "description": "The permissions that are granted to the principal."
       },
       "Principal": {
         "type": {
-          "$ref": "#/157"
+          "$ref": "#/159"
         },
         "flags": 0,
         "description": "The principal who is granted permissions."
@@ -3315,7 +3347,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/161"
+      "$ref": "#/163"
     }
   },
   {
@@ -3323,7 +3355,7 @@
     "name": "Database_Parameters",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/44"
+      "$ref": "#/46"
     }
   },
   {
@@ -3349,7 +3381,7 @@
       },
       "DatabaseInput": {
         "type": {
-          "$ref": "#/159"
+          "$ref": "#/161"
         },
         "flags": 1,
         "description": "The metadata for the database."
@@ -3383,7 +3415,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/166"
+          "$ref": "#/168"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3394,7 +3426,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/Database@default",
     "body": {
-      "$ref": "#/167"
+      "$ref": "#/169"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3436,7 +3468,7 @@
       },
       "Scopes": {
         "type": {
-          "$ref": "#/170"
+          "$ref": "#/172"
         },
         "flags": 0,
         "description": "The downstream scopes that Glue identity center configuration can access"
@@ -3470,7 +3502,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/171"
+          "$ref": "#/173"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3481,7 +3513,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/IdentityCenterConfiguration@default",
     "body": {
-      "$ref": "#/172"
+      "$ref": "#/174"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3514,7 +3546,7 @@
       },
       "SourceProperties": {
         "type": {
-          "$ref": "#/176"
+          "$ref": "#/178"
         },
         "flags": 4
       }
@@ -3556,7 +3588,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/177"
+      "$ref": "#/179"
     }
   },
   {
@@ -3566,7 +3598,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/177"
+      "$ref": "#/179"
     }
   },
   {
@@ -3575,7 +3607,7 @@
     "properties": {
       "AdditionalEncryptionContext": {
         "type": {
-          "$ref": "#/174"
+          "$ref": "#/176"
         },
         "flags": 0
       },
@@ -3607,7 +3639,7 @@
       },
       "IntegrationConfig": {
         "type": {
-          "$ref": "#/175"
+          "$ref": "#/177"
         },
         "flags": 0
       },
@@ -3641,7 +3673,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/181"
+          "$ref": "#/183"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -3675,7 +3707,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/182"
+          "$ref": "#/184"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3686,7 +3718,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/Integration@default",
     "body": {
-      "$ref": "#/183"
+      "$ref": "#/185"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3731,7 +3763,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/185"
+      "$ref": "#/187"
     }
   },
   {
@@ -3788,21 +3820,21 @@
       },
       "SourceProcessingProperties": {
         "type": {
-          "$ref": "#/187"
+          "$ref": "#/189"
         },
         "flags": 0,
         "description": "The resource properties associated with the integration source."
       },
       "Tags": {
         "type": {
-          "$ref": "#/188"
+          "$ref": "#/190"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "TargetProcessingProperties": {
         "type": {
-          "$ref": "#/189"
+          "$ref": "#/191"
         },
         "flags": 0,
         "description": "The resource properties associated with the integration target."
@@ -3829,7 +3861,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/190"
+          "$ref": "#/192"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3840,7 +3872,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/IntegrationResourceProperty@default",
     "body": {
-      "$ref": "#/191"
+      "$ref": "#/193"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3851,7 +3883,7 @@
     "properties": {
       "Connections": {
         "type": {
-          "$ref": "#/199"
+          "$ref": "#/201"
         },
         "flags": 0,
         "description": "A list of connections used by the job."
@@ -3969,7 +4001,7 @@
     "name": "Job_DefaultArguments",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/44"
+      "$ref": "#/46"
     }
   },
   {
@@ -3977,7 +4009,7 @@
     "name": "Job_NonOverridableArguments",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/44"
+      "$ref": "#/46"
     }
   },
   {
@@ -3985,7 +4017,7 @@
     "name": "Job_Tags",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/44"
+      "$ref": "#/46"
     }
   },
   {
@@ -4001,21 +4033,21 @@
       },
       "Command": {
         "type": {
-          "$ref": "#/196"
+          "$ref": "#/198"
         },
         "flags": 1,
         "description": "The code that executes a job."
       },
       "Connections": {
         "type": {
-          "$ref": "#/193"
+          "$ref": "#/195"
         },
         "flags": 0,
         "description": "Specifies the connections used by a job"
       },
       "DefaultArguments": {
         "type": {
-          "$ref": "#/201"
+          "$ref": "#/203"
         },
         "flags": 0,
         "description": "The default arguments for this job, specified as name-value pairs."
@@ -4036,7 +4068,7 @@
       },
       "ExecutionProperty": {
         "type": {
-          "$ref": "#/195"
+          "$ref": "#/197"
         },
         "flags": 0,
         "description": "The maximum number of concurrent runs that are allowed for this job."
@@ -4099,14 +4131,14 @@
       },
       "NonOverridableArguments": {
         "type": {
-          "$ref": "#/202"
+          "$ref": "#/204"
         },
         "flags": 0,
         "description": "Non-overridable arguments for this job, specified as name-value pairs."
       },
       "NotificationProperty": {
         "type": {
-          "$ref": "#/198"
+          "$ref": "#/200"
         },
         "flags": 0,
         "description": "Specifies configuration properties of a notification."
@@ -4134,7 +4166,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/203"
+          "$ref": "#/205"
         },
         "flags": 0,
         "description": "The tags to use with this job."
@@ -4175,7 +4207,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/204"
+          "$ref": "#/206"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4186,7 +4218,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/Job@default",
     "body": {
-      "$ref": "#/205"
+      "$ref": "#/207"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -4265,7 +4297,7 @@
     "properties": {
       "GlueTables": {
         "type": {
-          "$ref": "#/214"
+          "$ref": "#/216"
         },
         "flags": 0,
         "description": "The database and table in the AWS Glue Data Catalog that is used for input or output data."
@@ -4318,7 +4350,7 @@
     "properties": {
       "MLUserDataEncryption": {
         "type": {
-          "$ref": "#/210"
+          "$ref": "#/212"
         },
         "flags": 0
       },
@@ -4337,7 +4369,7 @@
     "properties": {
       "FindMatchesParameters": {
         "type": {
-          "$ref": "#/207"
+          "$ref": "#/209"
         },
         "flags": 0
       },
@@ -4353,7 +4385,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/208"
+      "$ref": "#/210"
     }
   },
   {
@@ -4388,7 +4420,7 @@
       },
       "InputRecordTables": {
         "type": {
-          "$ref": "#/209"
+          "$ref": "#/211"
         },
         "flags": 1,
         "description": "A list of AWS Glue table definitions used by the transform."
@@ -4430,7 +4462,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/216"
+          "$ref": "#/218"
         },
         "flags": 0,
         "description": "The tags to use with this machine learning transform."
@@ -4444,7 +4476,7 @@
       },
       "TransformEncryption": {
         "type": {
-          "$ref": "#/212"
+          "$ref": "#/214"
         },
         "flags": 0,
         "description": "The encryption-at-rest settings of the transform."
@@ -4458,7 +4490,7 @@
       },
       "TransformParameters": {
         "type": {
-          "$ref": "#/213"
+          "$ref": "#/215"
         },
         "flags": 1,
         "description": "The algorithm-specific parameters that are associated with the machine learning transform."
@@ -4492,7 +4524,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/217"
+          "$ref": "#/219"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4503,7 +4535,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/MLTransform@default",
     "body": {
-      "$ref": "#/218"
+      "$ref": "#/220"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -4561,20 +4593,20 @@
     "properties": {
       "Parameters": {
         "type": {
-          "$ref": "#/228"
+          "$ref": "#/230"
         },
         "flags": 0,
         "description": "Key-value pairs defining partition parameters."
       },
       "StorageDescriptor": {
         "type": {
-          "$ref": "#/227"
+          "$ref": "#/229"
         },
         "flags": 0
       },
       "Values": {
         "type": {
-          "$ref": "#/229"
+          "$ref": "#/231"
         },
         "flags": 1,
         "description": "The values of the partition. Although this parameter is not required by the SDK, you must specify this parameter for a valid input. The values for the keys for the new partition must be passed as an array of String objects that must be ordered in the same order as the partition keys appearing in the Amazon S3 prefix. Otherwise AWS Glue will add the values to the wrong keys."
@@ -4614,7 +4646,7 @@
     "properties": {
       "SchemaId": {
         "type": {
-          "$ref": "#/223"
+          "$ref": "#/225"
         },
         "flags": 0
       },
@@ -4647,7 +4679,7 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/230"
+          "$ref": "#/232"
         },
         "flags": 0,
         "description": "These key-value pairs define initialization parameters for the SerDe."
@@ -4667,21 +4699,21 @@
     "properties": {
       "SkewedColumnNames": {
         "type": {
-          "$ref": "#/231"
+          "$ref": "#/233"
         },
         "flags": 0,
         "description": "A list of values that appear so frequently as to be considered skewed."
       },
       "SkewedColumnValueLocationMaps": {
         "type": {
-          "$ref": "#/232"
+          "$ref": "#/234"
         },
         "flags": 0,
         "description": "A mapping of skewed values to the columns that contain them."
       },
       "SkewedColumnValues": {
         "type": {
-          "$ref": "#/233"
+          "$ref": "#/235"
         },
         "flags": 0,
         "description": "A list of names of columns that contain skewed values."
@@ -4694,14 +4726,14 @@
     "properties": {
       "BucketColumns": {
         "type": {
-          "$ref": "#/234"
+          "$ref": "#/236"
         },
         "flags": 0,
         "description": "A list of reducer grouping columns, clustering columns, and bucketing columns in the table."
       },
       "Columns": {
         "type": {
-          "$ref": "#/235"
+          "$ref": "#/237"
         },
         "flags": 0,
         "description": "A list of the Columns in the table."
@@ -4743,32 +4775,32 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/236"
+          "$ref": "#/238"
         },
         "flags": 0,
         "description": "The user-supplied properties in key-value form."
       },
       "SchemaReference": {
         "type": {
-          "$ref": "#/224"
+          "$ref": "#/226"
         },
         "flags": 0
       },
       "SerdeInfo": {
         "type": {
-          "$ref": "#/225"
+          "$ref": "#/227"
         },
         "flags": 0
       },
       "SkewedInfo": {
         "type": {
-          "$ref": "#/226"
+          "$ref": "#/228"
         },
         "flags": 0
       },
       "SortColumns": {
         "type": {
-          "$ref": "#/237"
+          "$ref": "#/239"
         },
         "flags": 0,
         "description": "A list specifying the sort order of each bucket in the table."
@@ -4787,7 +4819,7 @@
     "name": "Partition_Parameters",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/44"
+      "$ref": "#/46"
     }
   },
   {
@@ -4801,7 +4833,7 @@
     "name": "Partition_Parameters",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/44"
+      "$ref": "#/46"
     }
   },
   {
@@ -4815,7 +4847,7 @@
     "name": "Partition_SkewedColumnValueLocationMaps",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/44"
+      "$ref": "#/46"
     }
   },
   {
@@ -4833,7 +4865,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/220"
+      "$ref": "#/222"
     }
   },
   {
@@ -4841,13 +4873,13 @@
     "name": "Partition_Parameters",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/44"
+      "$ref": "#/46"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/221"
+      "$ref": "#/223"
     }
   },
   {
@@ -4881,7 +4913,7 @@
       },
       "PartitionInput": {
         "type": {
-          "$ref": "#/222"
+          "$ref": "#/224"
         },
         "flags": 1
       },
@@ -4914,7 +4946,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/239"
+          "$ref": "#/241"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4925,7 +4957,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/Partition@default",
     "body": {
-      "$ref": "#/240"
+      "$ref": "#/242"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -4957,7 +4989,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/242"
+      "$ref": "#/244"
     }
   },
   {
@@ -4987,7 +5019,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/244"
+          "$ref": "#/246"
         },
         "flags": 0,
         "description": "List of tags to tag the Registry"
@@ -5014,7 +5046,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/245"
+          "$ref": "#/247"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -5025,7 +5057,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/Registry@default",
     "body": {
-      "$ref": "#/246"
+      "$ref": "#/248"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -5097,7 +5129,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/250"
+      "$ref": "#/252"
     }
   },
   {
@@ -5113,7 +5145,7 @@
       },
       "CheckpointVersion": {
         "type": {
-          "$ref": "#/249"
+          "$ref": "#/251"
         },
         "flags": 0
       },
@@ -5154,7 +5186,7 @@
       },
       "Registry": {
         "type": {
-          "$ref": "#/248"
+          "$ref": "#/250"
         },
         "flags": 0
       },
@@ -5167,7 +5199,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/252"
+          "$ref": "#/254"
         },
         "flags": 0,
         "description": "List of tags to tag the schema"
@@ -5194,7 +5226,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/253"
+          "$ref": "#/255"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -5205,7 +5237,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/Schema@default",
     "body": {
-      "$ref": "#/254"
+      "$ref": "#/256"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -5247,7 +5279,7 @@
     "properties": {
       "Schema": {
         "type": {
-          "$ref": "#/256"
+          "$ref": "#/258"
         },
         "flags": 1
       },
@@ -5287,7 +5319,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/258"
+          "$ref": "#/260"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -5298,7 +5330,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/SchemaVersion@default",
     "body": {
-      "$ref": "#/259"
+      "$ref": "#/261"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -5354,7 +5386,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/262"
+          "$ref": "#/264"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -5365,7 +5397,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/SchemaVersionMetadata@default",
     "body": {
-      "$ref": "#/263"
+      "$ref": "#/265"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -5394,19 +5426,19 @@
     "properties": {
       "CloudWatchEncryption": {
         "type": {
-          "$ref": "#/265"
+          "$ref": "#/267"
         },
         "flags": 0
       },
       "JobBookmarksEncryption": {
         "type": {
-          "$ref": "#/267"
+          "$ref": "#/269"
         },
         "flags": 0
       },
       "S3Encryptions": {
         "type": {
-          "$ref": "#/269"
+          "$ref": "#/271"
         },
         "flags": 0,
         "description": "The encryption configuration for Amazon Simple Storage Service (Amazon S3) data."
@@ -5452,7 +5484,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/268"
+      "$ref": "#/270"
     }
   },
   {
@@ -5465,7 +5497,7 @@
     "properties": {
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/266"
+          "$ref": "#/268"
         },
         "flags": 1
       },
@@ -5498,7 +5530,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/271"
+          "$ref": "#/273"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -5509,7 +5541,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/SecurityConfiguration@default",
     "body": {
-      "$ref": "#/272"
+      "$ref": "#/274"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -5520,7 +5552,7 @@
     "properties": {
       "Connections": {
         "type": {
-          "$ref": "#/277"
+          "$ref": "#/279"
         },
         "flags": 0,
         "description": "A list of connection names used by the session."
@@ -5588,7 +5620,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/276"
+      "$ref": "#/278"
     }
   },
   {
@@ -5604,13 +5636,13 @@
       },
       "Command": {
         "type": {
-          "$ref": "#/275"
+          "$ref": "#/277"
         },
         "flags": 1
       },
       "Connections": {
         "type": {
-          "$ref": "#/274"
+          "$ref": "#/276"
         },
         "flags": 0
       },
@@ -5623,7 +5655,7 @@
       },
       "DefaultArguments": {
         "type": {
-          "$ref": "#/279"
+          "$ref": "#/281"
         },
         "flags": 0,
         "description": "A map array of key-value pairs. Max is 75 pairs."
@@ -5707,7 +5739,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/280"
+          "$ref": "#/282"
         },
         "flags": 0,
         "description": "The tags belonging to the session."
@@ -5748,7 +5780,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/281"
+          "$ref": "#/283"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -5759,7 +5791,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/Session@default",
     "body": {
-      "$ref": "#/282"
+      "$ref": "#/284"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -5797,7 +5829,7 @@
     "properties": {
       "IcebergTableInput": {
         "type": {
-          "$ref": "#/292"
+          "$ref": "#/294"
         },
         "flags": 0,
         "description": "Specifies the Iceberg table configuration."
@@ -5858,7 +5890,7 @@
     "properties": {
       "Fields": {
         "type": {
-          "$ref": "#/305"
+          "$ref": "#/307"
         },
         "flags": 1,
         "description": "The partition fields."
@@ -5878,14 +5910,14 @@
     "properties": {
       "Fields": {
         "type": {
-          "$ref": "#/306"
+          "$ref": "#/308"
         },
         "flags": 1,
         "description": "The fields in the schema."
       },
       "IdentifierFieldIds": {
         "type": {
-          "$ref": "#/307"
+          "$ref": "#/309"
         },
         "flags": 0,
         "description": "The identifier field IDs."
@@ -5946,7 +5978,7 @@
     "properties": {
       "Fields": {
         "type": {
-          "$ref": "#/308"
+          "$ref": "#/310"
         },
         "flags": 1,
         "description": "The sort fields."
@@ -6014,28 +6046,28 @@
       },
       "PartitionSpec": {
         "type": {
-          "$ref": "#/287"
+          "$ref": "#/289"
         },
         "flags": 0,
         "description": "The partition spec for the Iceberg table."
       },
       "Properties": {
         "type": {
-          "$ref": "#/309"
+          "$ref": "#/311"
         },
         "flags": 0,
         "description": "The properties for the Iceberg table."
       },
       "Schema": {
         "type": {
-          "$ref": "#/288"
+          "$ref": "#/290"
         },
         "flags": 1,
         "description": "The schema for the Iceberg table."
       },
       "WriteOrder": {
         "type": {
-          "$ref": "#/290"
+          "$ref": "#/292"
         },
         "flags": 0,
         "description": "The write order for the Iceberg table."
@@ -6053,7 +6085,7 @@
     "properties": {
       "IcebergInput": {
         "type": {
-          "$ref": "#/285"
+          "$ref": "#/287"
         },
         "flags": 0,
         "description": "Specifies an IcebergInput structure that defines an Apache Iceberg metadata table."
@@ -6113,7 +6145,7 @@
     "properties": {
       "SchemaId": {
         "type": {
-          "$ref": "#/296"
+          "$ref": "#/298"
         },
         "flags": 0,
         "description": "A structure that contains schema identity fields. Either this or the SchemaVersionId has to be provided."
@@ -6147,7 +6179,7 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/310"
+          "$ref": "#/312"
         },
         "flags": 0,
         "description": "These key-value pairs define initialization parameters for the SerDe."
@@ -6167,21 +6199,21 @@
     "properties": {
       "SkewedColumnNames": {
         "type": {
-          "$ref": "#/311"
+          "$ref": "#/313"
         },
         "flags": 0,
         "description": "A list of names of columns that contain skewed values."
       },
       "SkewedColumnValueLocationMaps": {
         "type": {
-          "$ref": "#/312"
+          "$ref": "#/314"
         },
         "flags": 0,
         "description": "A mapping of skewed values to the columns that contain them."
       },
       "SkewedColumnValues": {
         "type": {
-          "$ref": "#/313"
+          "$ref": "#/315"
         },
         "flags": 0,
         "description": "A list of names of columns that contain skewed values."
@@ -6194,14 +6226,14 @@
     "properties": {
       "BucketColumns": {
         "type": {
-          "$ref": "#/314"
+          "$ref": "#/316"
         },
         "flags": 0,
         "description": "A list of reducer grouping columns, clustering columns, and bucketing columns in the table."
       },
       "Columns": {
         "type": {
-          "$ref": "#/315"
+          "$ref": "#/317"
         },
         "flags": 0,
         "description": "A list of the Columns in the table."
@@ -6243,35 +6275,35 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/316"
+          "$ref": "#/318"
         },
         "flags": 0,
         "description": "The user-supplied properties in key-value form."
       },
       "SchemaReference": {
         "type": {
-          "$ref": "#/297"
+          "$ref": "#/299"
         },
         "flags": 0,
         "description": "An object that references a schema stored in the AWS Glue Schema Registry."
       },
       "SerdeInfo": {
         "type": {
-          "$ref": "#/298"
+          "$ref": "#/300"
         },
         "flags": 0,
         "description": "The serialization/deserialization (SerDe) information."
       },
       "SkewedInfo": {
         "type": {
-          "$ref": "#/299"
+          "$ref": "#/301"
         },
         "flags": 0,
         "description": "The information about values that appear frequently in a column (skewed values)."
       },
       "SortColumns": {
         "type": {
-          "$ref": "#/317"
+          "$ref": "#/319"
         },
         "flags": 0,
         "description": "A list specifying the sort order of each bucket in the table."
@@ -6346,14 +6378,14 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/318"
+          "$ref": "#/320"
         },
         "flags": 0,
         "description": "These key-value pairs define properties associated with the table."
       },
       "PartitionKeys": {
         "type": {
-          "$ref": "#/319"
+          "$ref": "#/321"
         },
         "flags": 0,
         "description": "A list of columns by which the table is partitioned. Only primitive types are supported as partition keys."
@@ -6367,7 +6399,7 @@
       },
       "StorageDescriptor": {
         "type": {
-          "$ref": "#/300"
+          "$ref": "#/302"
         },
         "flags": 0,
         "description": "A storage descriptor containing information about the physical storage of this table."
@@ -6381,14 +6413,14 @@
       },
       "TargetTable": {
         "type": {
-          "$ref": "#/301"
+          "$ref": "#/303"
         },
         "flags": 0,
         "description": "A TableIdentifier structure that describes a target table for resource linking."
       },
       "ViewDefinition": {
         "type": {
-          "$ref": "#/303"
+          "$ref": "#/305"
         },
         "flags": 0,
         "description": "The view definition for the table."
@@ -6429,14 +6461,14 @@
       },
       "Representations": {
         "type": {
-          "$ref": "#/320"
+          "$ref": "#/322"
         },
-        "flags": 4,
+        "flags": 0,
         "description": "The representations of the view."
       },
       "SubObjects": {
         "type": {
-          "$ref": "#/321"
+          "$ref": "#/323"
         },
         "flags": 4,
         "description": "The sub-objects of the view."
@@ -6465,21 +6497,21 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 0,
+        "flags": 4,
         "description": "The connection used for validation."
       },
       "ViewExpandedText": {
         "type": {
           "$ref": "#/1"
         },
-        "flags": 0,
+        "flags": 4,
         "description": "The expanded text of the view."
       },
       "ViewOriginalText": {
         "type": {
           "$ref": "#/1"
         },
-        "flags": 0,
+        "flags": 4,
         "description": "The original text of the view."
       }
     }
@@ -6487,13 +6519,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/286"
+      "$ref": "#/288"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/291"
+      "$ref": "#/293"
     }
   },
   {
@@ -6505,7 +6537,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/289"
+      "$ref": "#/291"
     }
   },
   {
@@ -6521,7 +6553,7 @@
     "name": "Table_Parameters",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/44"
+      "$ref": "#/46"
     }
   },
   {
@@ -6535,7 +6567,7 @@
     "name": "Table_SkewedColumnValueLocationMaps",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/44"
+      "$ref": "#/46"
     }
   },
   {
@@ -6553,7 +6585,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/284"
+      "$ref": "#/286"
     }
   },
   {
@@ -6561,13 +6593,13 @@
     "name": "Table_Parameters",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/44"
+      "$ref": "#/46"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/295"
+      "$ref": "#/297"
     }
   },
   {
@@ -6575,19 +6607,19 @@
     "name": "Table_Parameters",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/44"
+      "$ref": "#/46"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/284"
+      "$ref": "#/286"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/304"
+      "$ref": "#/306"
     }
   },
   {
@@ -6627,14 +6659,14 @@
       },
       "OpenTableFormatInput": {
         "type": {
-          "$ref": "#/294"
+          "$ref": "#/296"
         },
         "flags": 4,
         "description": "Specifies an OpenTableFormatInput structure when creating an open format table."
       },
       "TableInput": {
         "type": {
-          "$ref": "#/302"
+          "$ref": "#/304"
         },
         "flags": 0,
         "description": "A structure used to define a table."
@@ -6661,7 +6693,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/323"
+          "$ref": "#/325"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -6672,7 +6704,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/Table@default",
     "body": {
-      "$ref": "#/324"
+      "$ref": "#/326"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -6683,7 +6715,7 @@
     "properties": {
       "IcebergConfiguration": {
         "type": {
-          "$ref": "#/327"
+          "$ref": "#/329"
         },
         "flags": 0,
         "description": "The configuration for an Iceberg compaction optimizer."
@@ -6767,7 +6799,7 @@
     "properties": {
       "IcebergConfiguration": {
         "type": {
-          "$ref": "#/328"
+          "$ref": "#/330"
         },
         "flags": 0,
         "description": "The IcebergConfiguration property helps optimize your Iceberg tables in AWS Glue by allowing you to specify format-specific settings that control how data is stored, compressed, and managed."
@@ -6780,7 +6812,7 @@
     "properties": {
       "IcebergConfiguration": {
         "type": {
-          "$ref": "#/329"
+          "$ref": "#/331"
         },
         "flags": 0,
         "description": "The configuration for an Iceberg snapshot retention optimizer."
@@ -6793,7 +6825,7 @@
     "properties": {
       "CompactionConfiguration": {
         "type": {
-          "$ref": "#/326"
+          "$ref": "#/328"
         },
         "flags": 0,
         "description": "The configuration for a compaction optimizer. This configuration defines how data files in your table will be compacted to improve query performance and reduce storage costs."
@@ -6807,14 +6839,14 @@
       },
       "OrphanFileDeletionConfiguration": {
         "type": {
-          "$ref": "#/330"
+          "$ref": "#/332"
         },
         "flags": 0,
         "description": "OrphanFileDeletionConfiguration is a property that can be included within the TableOptimizer resource. It controls the automatic deletion of orphaned files - files that are not tracked by the table metadata, and older than the configured age limit."
       },
       "RetentionConfiguration": {
         "type": {
-          "$ref": "#/331"
+          "$ref": "#/333"
         },
         "flags": 0,
         "description": "The configuration for a snapshot retention optimizer for Apache Iceberg tables."
@@ -6828,7 +6860,7 @@
       },
       "VpcConfiguration": {
         "type": {
-          "$ref": "#/333"
+          "$ref": "#/335"
         },
         "flags": 0,
         "description": "An object that describes the VPC configuration for a table optimizer. This configuration is necessary to perform optimization on tables that are in a customer VPC."
@@ -6879,7 +6911,7 @@
       },
       "TableOptimizerConfiguration": {
         "type": {
-          "$ref": "#/332"
+          "$ref": "#/334"
         },
         "flags": 1,
         "description": "Specifies configuration details of a table optimizer."
@@ -6913,7 +6945,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/335"
+          "$ref": "#/337"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -6924,7 +6956,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/TableOptimizer@default",
     "body": {
-      "$ref": "#/336"
+      "$ref": "#/338"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -6987,7 +7019,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/339"
+          "$ref": "#/341"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -6998,7 +7030,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/TableVersion@default",
     "body": {
-      "$ref": "#/340"
+      "$ref": "#/342"
     },
     "readableScopes": 31,
     "writableScopes": 0
@@ -7009,7 +7041,7 @@
     "properties": {
       "Arguments": {
         "type": {
-          "$ref": "#/347"
+          "$ref": "#/349"
         },
         "flags": 0,
         "description": "The job arguments used when this trigger fires. For this job run, they replace the default arguments set in the job definition itself."
@@ -7030,7 +7062,7 @@
       },
       "NotificationProperty": {
         "type": {
-          "$ref": "#/345"
+          "$ref": "#/347"
         },
         "flags": 0,
         "description": "Specifies configuration properties of a job run notification."
@@ -7131,7 +7163,7 @@
     "properties": {
       "Conditions": {
         "type": {
-          "$ref": "#/348"
+          "$ref": "#/350"
         },
         "flags": 0,
         "description": "A list of the conditions that determine when the trigger will fire."
@@ -7150,13 +7182,13 @@
     "name": "Trigger_Arguments",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/44"
+      "$ref": "#/46"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/343"
+      "$ref": "#/345"
     }
   },
   {
@@ -7166,7 +7198,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/342"
+      "$ref": "#/344"
     }
   },
   {
@@ -7174,7 +7206,7 @@
     "name": "Trigger_Tags",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/44"
+      "$ref": "#/46"
     }
   },
   {
@@ -7183,7 +7215,7 @@
     "properties": {
       "Actions": {
         "type": {
-          "$ref": "#/350"
+          "$ref": "#/352"
         },
         "flags": 1,
         "description": "The actions initiated by this trigger."
@@ -7197,7 +7229,7 @@
       },
       "EventBatchingCondition": {
         "type": {
-          "$ref": "#/344"
+          "$ref": "#/346"
         },
         "flags": 0,
         "description": "Batch condition that must be met (specified number of events received or batch time window expired) before EventBridge event trigger fires."
@@ -7211,7 +7243,7 @@
       },
       "Predicate": {
         "type": {
-          "$ref": "#/346"
+          "$ref": "#/348"
         },
         "flags": 0,
         "description": "The predicate of this trigger, which defines when it will fire."
@@ -7232,7 +7264,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/351"
+          "$ref": "#/353"
         },
         "flags": 0,
         "description": "The tags to use with this trigger."
@@ -7273,7 +7305,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/352"
+          "$ref": "#/354"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -7284,7 +7316,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/Trigger@default",
     "body": {
-      "$ref": "#/353"
+      "$ref": "#/355"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -7295,7 +7327,7 @@
     "properties": {
       "AllowedValues": {
         "type": {
-          "$ref": "#/358"
+          "$ref": "#/360"
         },
         "flags": 0
       },
@@ -7325,13 +7357,13 @@
     "properties": {
       "JobConfiguration": {
         "type": {
-          "$ref": "#/359"
+          "$ref": "#/361"
         },
         "flags": 0
       },
       "SessionConfiguration": {
         "type": {
-          "$ref": "#/360"
+          "$ref": "#/362"
         },
         "flags": 0
       }
@@ -7368,7 +7400,7 @@
     "name": "UsageProfile_JobConfiguration",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/355"
+      "$ref": "#/357"
     }
   },
   {
@@ -7376,7 +7408,7 @@
     "name": "UsageProfile_SessionConfiguration",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/355"
+      "$ref": "#/357"
     }
   },
   {
@@ -7386,7 +7418,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/357"
+      "$ref": "#/359"
     }
   },
   {
@@ -7395,7 +7427,7 @@
     "properties": {
       "Configuration": {
         "type": {
-          "$ref": "#/356"
+          "$ref": "#/358"
         },
         "flags": 0,
         "description": "UsageProfile configuration for supported service ex: (Jobs, Sessions)."
@@ -7423,7 +7455,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/362"
+          "$ref": "#/364"
         },
         "flags": 0,
         "description": "The tags to be applied to this UsageProfiles."
@@ -7450,7 +7482,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/363"
+          "$ref": "#/365"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -7461,7 +7493,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/UsageProfile@default",
     "body": {
-      "$ref": "#/364"
+      "$ref": "#/366"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -7493,7 +7525,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/366"
+      "$ref": "#/368"
     }
   },
   {
@@ -7551,7 +7583,7 @@
       },
       "ResourceUris": {
         "type": {
-          "$ref": "#/368"
+          "$ref": "#/370"
         },
         "flags": 0,
         "description": "The resource URIs for the function."
@@ -7578,7 +7610,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/369"
+          "$ref": "#/371"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -7589,7 +7621,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/UserDefinedFunction@default",
     "body": {
-      "$ref": "#/370"
+      "$ref": "#/372"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -7603,7 +7635,7 @@
     "name": "Workflow_DefaultRunProperties",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/44"
+      "$ref": "#/46"
     }
   },
   {
@@ -7611,7 +7643,7 @@
     "name": "Workflow_Tags",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/44"
+      "$ref": "#/46"
     }
   },
   {
@@ -7620,7 +7652,7 @@
     "properties": {
       "DefaultRunProperties": {
         "type": {
-          "$ref": "#/373"
+          "$ref": "#/375"
         },
         "flags": 0,
         "description": "A collection of properties to be used as part of each execution of the workflow"
@@ -7648,7 +7680,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/374"
+          "$ref": "#/376"
         },
         "flags": 0,
         "description": "The tags to use with this workflow."
@@ -7675,7 +7707,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/375"
+          "$ref": "#/377"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -7686,7 +7718,7 @@
     "$type": "ResourceType",
     "name": "AWS.Glue/Workflow@default",
     "body": {
-      "$ref": "#/376"
+      "$ref": "#/378"
     },
     "readableScopes": 0,
     "writableScopes": 0

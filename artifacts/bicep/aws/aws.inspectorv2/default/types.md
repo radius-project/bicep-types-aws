@@ -268,6 +268,20 @@
 * **State**: string (ReadOnly)
 * **StateReason**: string (ReadOnly): Reason for the current scope state.
 
+## ScopeConfiguration
+### Properties
+* **ScopeType**: string (Required)
+* **ScopeValues**: string[]: List of subscription IDs. Empty for TENANT scope.
+* **State**: string (ReadOnly)
+* **StateReason**: string (ReadOnly): Reason for the current scope state.
+
+## ScopeConfiguration
+### Properties
+* **ScopeType**: string (Required)
+* **ScopeValues**: string[]: List of subscription IDs. Empty for TENANT scope.
+* **State**: string (ReadOnly)
+* **StateReason**: string (ReadOnly): Reason for the current scope state.
+
 ## ScopeSettings
 ### Properties
 * **projectSelectionScope**: string

@@ -101,7 +101,7 @@
 ### Properties
 * **Address**: string (ReadOnly)
 * **Port**: int (ReadOnly)
-* **VpcEndpoints**: [VpcEndpoint](#vpcendpoint)[] (ReadOnly)
+* **VpcEndpoints**: [VpcEndpoint](#vpcendpoint)[]
 
 ## Namespace
 ### Properties
@@ -126,10 +126,10 @@
 
 ## NetworkInterface
 ### Properties
-* **AvailabilityZone**: string
-* **NetworkInterfaceId**: string
-* **PrivateIpAddress**: string
-* **SubnetId**: string
+* **AvailabilityZone**: string (ReadOnly)
+* **NetworkInterfaceId**: string (ReadOnly)
+* **PrivateIpAddress**: string (ReadOnly)
+* **SubnetId**: string (ReadOnly)
 
 ## PerformanceTarget
 ### Properties
@@ -178,8 +178,8 @@
 ## VpcEndpoint
 ### Properties
 * **NetworkInterfaces**: [NetworkInterface](#networkinterface)[]
-* **VpcEndpointId**: string
-* **VpcId**: string
+* **VpcEndpointId**: string (ReadOnly)
+* **VpcId**: string (ReadOnly)
 
 ## Workgroup
 ### Properties

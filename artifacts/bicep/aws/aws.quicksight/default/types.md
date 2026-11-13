@@ -861,7 +861,7 @@ At least one asset type is required.
 * **AwsAccountId**: string (Identifier)
 * **CustomInstructions**: [CustomInstructions](#custominstructions)
 * **DataSetRelations**: [DataSetRelation](#datasetrelation)[]
-* **DataSets**: [DataSetReference](#datasetreference)[] (WriteOnly)
+* **DataSets**: [DataSetReference](#datasetreference)[]
 * **Description**: string
 * **FolderArns**: string[] (WriteOnly)
 * **Name**: string
@@ -3599,7 +3599,7 @@ At least one asset type is required.
 ## DataSetReference
 ### Properties
 * **DataSetArn**: string (Required)
-* **DataSetName**: string
+* **DataSetName**: string (WriteOnly)
 
 ## DataSetRefreshProperties
 ### Properties

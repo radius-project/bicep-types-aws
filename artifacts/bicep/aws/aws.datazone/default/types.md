@@ -356,7 +356,7 @@
 * **DomainIdentifier**: string (Identifier)
 * **DomainUnitId**: string (ReadOnly)
 * **DomainUnitIdentifier**: string (WriteOnly)
-* **EnvironmentConfigurations**: [EnvironmentConfiguration](#environmentconfiguration)[] (ReadOnly)
+* **EnvironmentConfigurations**: [EnvironmentConfiguration](#environmentconfiguration)[]
 * **Id**: string (ReadOnly)
 * **Identifier**: string (ReadOnly, Identifier)
 * **LastUpdatedAt**: string (ReadOnly)
@@ -465,7 +465,7 @@
 * **DeploymentOrder**: int
 * **Description**: string
 * **EnvironmentBlueprintId**: string (Required)
-* **EnvironmentConfigurationId**: string
+* **EnvironmentConfigurationId**: string (ReadOnly)
 * **Name**: string (Required)
 
 ## EnvironmentConfigurationParameter
@@ -477,7 +477,7 @@
 ## EnvironmentConfigurationParametersDetails
 ### Properties
 * **ParameterOverrides**: [EnvironmentConfigurationParameter](#environmentconfigurationparameter)[]
-* **ResolvedParameters**: [EnvironmentConfigurationParameter](#environmentconfigurationparameter)[]
+* **ResolvedParameters**: [EnvironmentConfigurationParameter](#environmentconfigurationparameter)[] (ReadOnly)
 * **SsmPath**: string
 
 ## EnvironmentConfigurationUserParameter

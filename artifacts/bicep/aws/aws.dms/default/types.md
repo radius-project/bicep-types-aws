@@ -204,9 +204,9 @@ If you specify multiple values, they must be of the same type. For example, if y
 * **MigrationProjectIdentifier**: string (WriteOnly): [DEPRECATED] This property is unused and will be ignored. Identity is managed via the resource ARN (primaryIdentifier) and Name (additionalIdentifier).
 * **MigrationProjectName**: string: The property describes a name to identify the migration project.
 * **SchemaConversionApplicationAttributes**: [MigrationProject_SchemaConversionApplicationAttributes](#migrationprojectschemaconversionapplicationattributes): The property describes schema conversion application attributes for the migration project.
-* **SourceDataProviderDescriptors**: [DataProviderDescriptor](#dataproviderdescriptor)[] (ReadOnly, WriteOnly): The property describes source data provider descriptors for the migration project.
+* **SourceDataProviderDescriptors**: [DataProviderDescriptor](#dataproviderdescriptor)[]: The property describes source data provider descriptors for the migration project.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
-* **TargetDataProviderDescriptors**: [DataProviderDescriptor](#dataproviderdescriptor)[] (ReadOnly, WriteOnly): The property describes target data provider descriptors for the migration project.
+* **TargetDataProviderDescriptors**: [DataProviderDescriptor](#dataproviderdescriptor)[]: The property describes target data provider descriptors for the migration project.
 * **TransformationRules**: string: The property describes transformation rules for the migration project.
 
 ## AWS.DMS/ReplicationConfigProperties
@@ -392,9 +392,17 @@ If you specify multiple values, they must be of the same type. For example, if y
 
 ## DataProviderDescriptor
 ### Properties
-* **DataProviderArn**: string
-* **DataProviderIdentifier**: string
-* **DataProviderName**: string
+* **DataProviderArn**: string (ReadOnly)
+* **DataProviderIdentifier**: string (WriteOnly)
+* **DataProviderName**: string (ReadOnly)
+* **SecretsManagerAccessRoleArn**: string
+* **SecretsManagerSecretId**: string
+
+## DataProviderDescriptor
+### Properties
+* **DataProviderArn**: string (ReadOnly)
+* **DataProviderIdentifier**: string (WriteOnly)
+* **DataProviderName**: string (ReadOnly)
 * **SecretsManagerAccessRoleArn**: string
 * **SecretsManagerSecretId**: string
 

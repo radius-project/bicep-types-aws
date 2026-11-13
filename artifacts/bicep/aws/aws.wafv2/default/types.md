@@ -120,9 +120,9 @@
 ## AWS.WAFv2/RuleGroupProperties
 ### Properties
 * **Arn**: string (ReadOnly)
-* **AvailableLabels**: [LabelSummary](#labelsummary)[] (ReadOnly): Collection of Available Labels.
+* **AvailableLabels**: [LabelSummary](#labelsummary)[]: Collection of Available Labels.
 * **Capacity**: int (Required)
-* **ConsumedLabels**: [LabelSummary](#labelsummary)[] (ReadOnly): Collection of Consumed Labels.
+* **ConsumedLabels**: [LabelSummary](#labelsummary)[]: Collection of Consumed Labels.
 * **CustomResponseBodies**: [CustomResponseBodies](#customresponsebodies)
 * **Description**: string
 * **Id**: string (ReadOnly, Identifier)
@@ -584,7 +584,11 @@
 
 ## LabelSummary
 ### Properties
-* **Name**: string (Identifier)
+* **Name**: string (ReadOnly, Identifier)
+
+## LabelSummary
+### Properties
+* **Name**: string (ReadOnly, Identifier)
 
 ## LoggingConfiguration_ActionCondition
 ### Properties

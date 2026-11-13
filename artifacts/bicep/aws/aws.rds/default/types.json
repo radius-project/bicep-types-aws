@@ -1674,14 +1674,14 @@
         "type": {
           "$ref": "#/3"
         },
-        "flags": 0,
+        "flags": 2,
         "description": ""
       },
       "StorageOperationStatus": {
         "type": {
           "$ref": "#/1"
         },
-        "flags": 0,
+        "flags": 2,
         "description": ""
       },
       "StorageThroughput": {
@@ -1946,7 +1946,7 @@
         "type": {
           "$ref": "#/66"
         },
-        "flags": 2,
+        "flags": 0,
         "description": "The additional storage volumes associated with the DB instance. RDS supports additional storage volumes for RDS for Oracle and RDS for SQL Server."
       },
       "AllocatedStorage": {
@@ -2259,7 +2259,7 @@
       },
       "Endpoint": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/78"
         },
         "flags": 2,
         "description": ""
@@ -2653,6 +2653,33 @@
   },
   {
     "$type": "ObjectType",
+    "name": "Endpoint",
+    "properties": {
+      "Address": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Specifies the DNS address of the DB instance."
+      },
+      "HostedZoneId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Specifies the ID that Amazon Route 53 assigns when you create a hosted zone."
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Specifies the port that the database engine is listening on."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "AWS.RDS/DBInstance",
     "properties": {
       "name": {
@@ -2682,7 +2709,7 @@
     "$type": "ResourceType",
     "name": "AWS.RDS/DBInstance@default",
     "body": {
-      "$ref": "#/78"
+      "$ref": "#/79"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2734,7 +2761,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/81"
+      "$ref": "#/82"
     }
   },
   {
@@ -2883,7 +2910,7 @@
       },
       "RestoreWindow": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/81"
         },
         "flags": 2
       },
@@ -2910,7 +2937,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/84"
         },
         "flags": 2,
         "description": "A list of tags assigned to the automated backup."
@@ -2944,7 +2971,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/85"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -2955,7 +2982,7 @@
     "$type": "ResourceType",
     "name": "AWS.RDS/DBInstanceAutomatedBackup@default",
     "body": {
-      "$ref": "#/85"
+      "$ref": "#/86"
     },
     "readableScopes": 31,
     "writableScopes": 0
@@ -2995,7 +3022,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/87"
+      "$ref": "#/88"
     }
   },
   {
@@ -3032,14 +3059,14 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/90"
         },
         "flags": 0,
         "description": "A mapping of parameter names and values for the parameter update. You must specify at least one parameter name and value.\n For more information about parameter groups, see [Working with parameter groups](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithParamGroups.html) in the *Amazon RDS User Guide*, or [Working with parameter groups](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_WorkingWithParamGroups.html) in the *Amazon Aurora User Guide*.\n  AWS CloudFormation doesn't support specifying an apply method for each individual parameter. The default apply method for each parameter is used."
       },
       "Tags": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/91"
         },
         "flags": 0,
         "description": "Tags to assign to the DB parameter group."
@@ -3066,7 +3093,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/92"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3077,7 +3104,7 @@
     "$type": "ResourceType",
     "name": "AWS.RDS/DBParameterGroup@default",
     "body": {
-      "$ref": "#/92"
+      "$ref": "#/93"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3148,13 +3175,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/94"
+      "$ref": "#/95"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/95"
+      "$ref": "#/96"
     }
   },
   {
@@ -3175,7 +3202,7 @@
     "properties": {
       "Auth": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/98"
         },
         "flags": 0,
         "description": "The authorization mechanism that the proxy uses."
@@ -3252,7 +3279,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/99"
         },
         "flags": 0,
         "description": "An optional set of key-value pairs to associate arbitrary data of your choosing with the proxy."
@@ -3273,14 +3300,14 @@
       },
       "VpcSecurityGroupIds": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/100"
         },
         "flags": 0,
         "description": "VPC security group IDs to associate with the new proxy."
       },
       "VpcSubnetIds": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/101"
         },
         "flags": 1,
         "description": "VPC subnet IDs to associate with the new proxy."
@@ -3307,7 +3334,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/102"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3318,7 +3345,7 @@
     "$type": "ResourceType",
     "name": "AWS.RDS/DBProxy@default",
     "body": {
-      "$ref": "#/102"
+      "$ref": "#/103"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3348,7 +3375,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/104"
+      "$ref": "#/105"
     }
   },
   {
@@ -3411,7 +3438,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/107"
         },
         "flags": 0,
         "description": "An optional set of key-value pairs to associate arbitrary data of your choosing with the DB proxy endpoint."
@@ -3432,14 +3459,14 @@
       },
       "VpcSecurityGroupIds": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/108"
         },
         "flags": 0,
         "description": "VPC security group IDs to associate with the new DB proxy endpoint."
       },
       "VpcSubnetIds": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/109"
         },
         "flags": 1,
         "description": "VPC subnet IDs to associate with the new DB proxy endpoint."
@@ -3466,7 +3493,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/110"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3477,7 +3504,7 @@
     "$type": "ResourceType",
     "name": "AWS.RDS/DBProxyEndpoint@default",
     "body": {
-      "$ref": "#/110"
+      "$ref": "#/111"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3516,7 +3543,7 @@
       },
       "SessionPinningFilters": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/115"
         },
         "flags": 0,
         "description": "Each item in the list represents a class of SQL operations that normally cause all later statements in a session using a proxy to be pinned to the same underlying database connection."
@@ -3568,7 +3595,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/113"
+      "$ref": "#/114"
     }
   },
   {
@@ -3577,19 +3604,19 @@
     "properties": {
       "ConnectionPoolConfigurationInfo": {
         "type": {
-          "$ref": "#/112"
+          "$ref": "#/113"
         },
         "flags": 0
       },
       "DBClusterIdentifiers": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/117"
         },
         "flags": 0
       },
       "DBInstanceIdentifiers": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/118"
         },
         "flags": 0
       },
@@ -3602,7 +3629,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/118"
+          "$ref": "#/119"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -3643,7 +3670,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/119"
+          "$ref": "#/120"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3654,7 +3681,7 @@
     "$type": "ResourceType",
     "name": "AWS.RDS/DBProxyTargetGroup@default",
     "body": {
-      "$ref": "#/120"
+      "$ref": "#/121"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3686,7 +3713,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/122"
+      "$ref": "#/123"
     }
   },
   {
@@ -3751,7 +3778,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/124"
+          "$ref": "#/125"
         },
         "flags": 0,
         "description": "An optional set of key-value pairs to associate arbitrary data of your choosing with the DB shard group."
@@ -3778,7 +3805,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/125"
+          "$ref": "#/126"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3789,7 +3816,7 @@
     "$type": "ResourceType",
     "name": "AWS.RDS/DBShardGroup@default",
     "body": {
-      "$ref": "#/126"
+      "$ref": "#/127"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3821,7 +3848,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/128"
+      "$ref": "#/129"
     }
   },
   {
@@ -3991,7 +4018,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/130"
+          "$ref": "#/131"
         },
         "flags": 0,
         "description": "The tags to be assigned to the DB snapshot."
@@ -4025,7 +4052,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/131"
+          "$ref": "#/132"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4036,7 +4063,7 @@
     "$type": "ResourceType",
     "name": "AWS.RDS/DBSnapshot@default",
     "body": {
-      "$ref": "#/132"
+      "$ref": "#/133"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -4074,7 +4101,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/134"
+      "$ref": "#/135"
     }
   },
   {
@@ -4104,14 +4131,14 @@
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/136"
+          "$ref": "#/137"
         },
         "flags": 1,
         "description": "The EC2 Subnet IDs for the DB subnet group."
       },
       "Tags": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/138"
         },
         "flags": 0,
         "description": "Tags to assign to the DB subnet group."
@@ -4138,7 +4165,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/138"
+          "$ref": "#/139"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4149,7 +4176,7 @@
     "$type": "ResourceType",
     "name": "AWS.RDS/DBSubnetGroup@default",
     "body": {
-      "$ref": "#/139"
+      "$ref": "#/140"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -4228,19 +4255,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/142"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
       "$ref": "#/143"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/141"
+      "$ref": "#/144"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/142"
     }
   },
   {
@@ -4291,14 +4318,14 @@
       },
       "SwitchoverDetails": {
         "type": {
-          "$ref": "#/145"
+          "$ref": "#/146"
         },
         "flags": 2,
         "description": "The source and target member mappings in the Blue/Green Deployment."
       },
       "Tags": {
         "type": {
-          "$ref": "#/146"
+          "$ref": "#/147"
         },
         "flags": 0,
         "description": "The tags assigned to the Blue/Green Deployment."
@@ -4368,7 +4395,7 @@
       },
       "Tasks": {
         "type": {
-          "$ref": "#/147"
+          "$ref": "#/148"
         },
         "flags": 2,
         "description": "The provisioning tasks for the Blue/Green Deployment."
@@ -4402,7 +4429,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/149"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4413,7 +4440,7 @@
     "$type": "ResourceType",
     "name": "AWS.RDS/Deployment@default",
     "body": {
-      "$ref": "#/149"
+      "$ref": "#/150"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -4457,7 +4484,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/151"
+      "$ref": "#/152"
     }
   },
   {
@@ -4473,7 +4500,7 @@
       },
       "EventCategories": {
         "type": {
-          "$ref": "#/153"
+          "$ref": "#/154"
         },
         "flags": 0,
         "description": "A list of event categories for a particular source type (``SourceType``) that you want to subscribe to. You can see a list of the categories for a given source type in the \"Amazon RDS event categories and event messages\" section of the [Amazon RDS User Guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.Messages.html) or the [Amazon Aurora User Guide](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_Events.Messages.html). You can also see this list by using the ``DescribeEventCategories`` operation."
@@ -4487,7 +4514,7 @@
       },
       "SourceIds": {
         "type": {
-          "$ref": "#/154"
+          "$ref": "#/155"
         },
         "flags": 0,
         "description": "The list of identifiers of the event sources for which events are returned. If not specified, then all sources are included in the response. An identifier must begin with a letter and must contain only ASCII letters, digits, and hyphens. It can't end with a hyphen or contain two consecutive hyphens.\n Constraints:\n  +  If ``SourceIds`` are supplied, ``SourceType`` must also be provided.\n  +  If the source type is a DB instance, a ``DBInstanceIdentifier`` value must be supplied.\n  +  If the source type is a DB cluster, a ``DBClusterIdentifier`` value must be supplied.\n  +  If the source type is a DB parameter group, a ``DBParameterGroupName`` value must be supplied.\n  +  If the source type is a DB security group, a ``DBSecurityGroupName`` value must be supplied.\n  +  If the source type is a DB snapshot, a ``DBSnapshotIdentifier`` value must be supplied.\n  +  If the source type is a DB cluster snapshot, a ``DBClusterSnapshotIdentifier`` value must be supplied.\n  +  If the source type is an RDS Proxy, a ``DBProxyName`` value must be supplied."
@@ -4508,7 +4535,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/155"
+          "$ref": "#/156"
         },
         "flags": 0,
         "description": "An optional array of key-value pairs to apply to this subscription."
@@ -4535,7 +4562,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/156"
+          "$ref": "#/157"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4546,7 +4573,7 @@
     "$type": "ResourceType",
     "name": "AWS.RDS/EventSubscription@default",
     "body": {
-      "$ref": "#/157"
+      "$ref": "#/158"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -4591,7 +4618,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/160"
+      "$ref": "#/161"
     }
   },
   {
@@ -4635,7 +4662,7 @@
       },
       "GlobalEndpoint": {
         "type": {
-          "$ref": "#/159"
+          "$ref": "#/160"
         },
         "flags": 2
       },
@@ -4655,7 +4682,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/162"
+          "$ref": "#/163"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -4682,7 +4709,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/163"
+          "$ref": "#/164"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -4693,7 +4720,7 @@
     "$type": "ResourceType",
     "name": "AWS.RDS/GlobalCluster@default",
     "body": {
-      "$ref": "#/164"
+      "$ref": "#/165"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -4734,7 +4761,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/167"
+      "$ref": "#/168"
     }
   },
   {
@@ -4744,7 +4771,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/167"
+      "$ref": "#/168"
     }
   },
   {
@@ -4753,7 +4780,7 @@
     "properties": {
       "AdditionalEncryptionContext": {
         "type": {
-          "$ref": "#/166"
+          "$ref": "#/167"
         },
         "flags": 0,
         "description": "An optional set of non-secret key?value pairs that contains additional contextual information about the data. For more information, see [Encryption context](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context) in the *Key Management Service Developer Guide*.\n You can only include this parameter if you specify the ``KMSKeyId`` parameter."
@@ -4809,7 +4836,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/171"
+          "$ref": "#/172"
         },
         "flags": 0,
         "description": "A list of tags. For more information, see [Tagging Amazon RDS Resources](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html) in the *Amazon RDS User Guide.*."
@@ -4843,7 +4870,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/172"
+          "$ref": "#/173"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4854,7 +4881,7 @@
     "$type": "ResourceType",
     "name": "AWS.RDS/Integration@default",
     "body": {
-      "$ref": "#/173"
+      "$ref": "#/174"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -4865,7 +4892,7 @@
     "properties": {
       "DBSecurityGroupMemberships": {
         "type": {
-          "$ref": "#/178"
+          "$ref": "#/179"
         },
         "flags": 0,
         "description": "A list of DB security groups used for this option."
@@ -4879,7 +4906,7 @@
       },
       "OptionSettings": {
         "type": {
-          "$ref": "#/179"
+          "$ref": "#/180"
         },
         "flags": 0,
         "description": "The option settings to include in an option group."
@@ -4900,7 +4927,7 @@
       },
       "VpcSecurityGroupMemberships": {
         "type": {
-          "$ref": "#/180"
+          "$ref": "#/181"
         },
         "flags": 0,
         "description": "A list of VPC security group names used for this option."
@@ -4956,7 +4983,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/176"
+      "$ref": "#/177"
     }
   },
   {
@@ -4972,13 +4999,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/175"
+      "$ref": "#/176"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/177"
+      "$ref": "#/178"
     }
   },
   {
@@ -5001,7 +5028,7 @@
       },
       "OptionConfigurations": {
         "type": {
-          "$ref": "#/182"
+          "$ref": "#/183"
         },
         "flags": 0,
         "description": "A list of all available options for an option group."
@@ -5022,7 +5049,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/183"
+          "$ref": "#/184"
         },
         "flags": 0,
         "description": "Tags to assign to the option group."
@@ -5049,7 +5076,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/184"
+          "$ref": "#/185"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -5060,7 +5087,7 @@
     "$type": "ResourceType",
     "name": "AWS.RDS/OptionGroup@default",
     "body": {
-      "$ref": "#/185"
+      "$ref": "#/186"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -5112,13 +5139,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/187"
+      "$ref": "#/188"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/188"
+      "$ref": "#/189"
     }
   },
   {
@@ -5183,7 +5210,7 @@
       },
       "RecurringCharges": {
         "type": {
-          "$ref": "#/190"
+          "$ref": "#/191"
         },
         "flags": 2,
         "description": "The recurring price charged to run this reserved DB instance."
@@ -5225,7 +5252,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/191"
+          "$ref": "#/192"
         },
         "flags": 2,
         "description": "A list of tags."
@@ -5259,7 +5286,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/192"
+          "$ref": "#/193"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -5270,7 +5297,7 @@
     "$type": "ResourceType",
     "name": "AWS.RDS/ReservedDBInstance@default",
     "body": {
-      "$ref": "#/193"
+      "$ref": "#/194"
     },
     "readableScopes": 31,
     "writableScopes": 0

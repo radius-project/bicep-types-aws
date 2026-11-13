@@ -74,6 +74,30 @@
 * **Enabled**: bool
 * **LogLevel**: string
 
+## ModuleLoggingConfiguration
+### Properties
+* **CloudWatchLogGroupArn**: string (ReadOnly)
+* **Enabled**: bool
+* **LogLevel**: string
+
+## ModuleLoggingConfiguration
+### Properties
+* **CloudWatchLogGroupArn**: string (ReadOnly)
+* **Enabled**: bool
+* **LogLevel**: string
+
+## ModuleLoggingConfiguration
+### Properties
+* **CloudWatchLogGroupArn**: string (ReadOnly)
+* **Enabled**: bool
+* **LogLevel**: string
+
+## ModuleLoggingConfiguration
+### Properties
+* **CloudWatchLogGroupArn**: string (ReadOnly)
+* **Enabled**: bool
+* **LogLevel**: string
+
 ## NetworkConfiguration
 ### Properties
 * **SecurityGroupIds**: string[]: A list of security groups to use for the environment.

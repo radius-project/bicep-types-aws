@@ -66,7 +66,7 @@
 ## AWS.CodePipeline/CustomActionTypeProperties
 ### Properties
 * **Category**: string (Required, Identifier): The category of the custom action, such as a build action or a test action.
-* **ConfigurationProperties**: [ConfigurationProperties](#configurationproperties)[] (WriteOnly): The configuration properties for the custom action.
+* **ConfigurationProperties**: [ConfigurationProperties](#configurationproperties)[]: The configuration properties for the custom action.
 * **Id**: string (ReadOnly)
 * **InputArtifactDetails**: [ArtifactDetails](#artifactdetails) (Required): The details of the input artifact for the action, such as its commit ID.
 * **OutputArtifactDetails**: [ArtifactDetails](#artifactdetails) (Required): The details of the output artifact of the action, such as its commit ID.
@@ -124,7 +124,7 @@
 * **Queryable**: bool: Indicates that the property is used with PollForJobs. When creating a custom action, an action can have up to one queryable property. If it has one, that property must be both required and not secret.If you create a pipeline with a custom action type, and that custom action contains a queryable property, the value for that configuration property is subject to other restrictions. The value must be less than or equal to twenty (20) characters. The value can contain only alphanumeric characters, underscores, and hyphens. 
 * **Required**: bool (Required): Whether the configuration property is a required value.
 * **Secret**: bool (Required): Whether the configuration property is secret. Secrets are hidden from all calls except for GetJobDetails, GetThirdPartyJobDetails, PollForJobs, and PollForThirdPartyJobs.
-* **Type**: string: The type of the configuration property.
+* **Type**: string (WriteOnly): The type of the configuration property.
 
 ## EncryptionKey
 ### Properties

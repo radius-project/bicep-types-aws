@@ -887,11 +887,11 @@
 * **ClusterStatus**: string (ReadOnly): The status of the HyperPod Cluster.
 * **CreationTime**: string (ReadOnly): The time at which the HyperPod cluster was created.
 * **FailureMessage**: string (ReadOnly): The failure message of the HyperPod Cluster.
-* **InstanceGroups**: [ClusterInstanceGroup](#clusterinstancegroup)[] (ReadOnly)
+* **InstanceGroups**: [ClusterInstanceGroup](#clusterinstancegroup)[]
 * **NodeProvisioningMode**: string: Determines the scaling strategy for the SageMaker HyperPod cluster. When set to 'Continuous', enables continuous scaling which dynamically manages node provisioning. If the parameter is omitted, uses the standard scaling approach in previous release.
 * **NodeRecovery**: string: If node auto-recovery is set to true, faulty nodes will be replaced or rebooted when a failure is detected. If set to false, nodes will be labelled when a fault is detected.
 * **Orchestrator**: [Orchestrator](#orchestrator)
-* **RestrictedInstanceGroups**: [ClusterRestrictedInstanceGroup](#clusterrestrictedinstancegroup)[] (ReadOnly)
+* **RestrictedInstanceGroups**: [ClusterRestrictedInstanceGroup](#clusterrestrictedinstancegroup)[]
 * **RestrictedInstanceGroupsConfig**: [RestrictedInstanceGroupsConfig](#restrictedinstancegroupsconfig)
 * **Tags**: [Tag](#tag)[]: Custom tags for managing the SageMaker HyperPod cluster as an AWS resource. You can add tags to your cluster in the same way you add them in other AWS services that support tagging.
 * **TieredStorageConfig**: [TieredStorageConfig](#tieredstorageconfig)
@@ -1145,7 +1145,7 @@
 * **LastModifiedTime**: string (ReadOnly)
 * **RuntimeConfig**: [InferenceComponentRuntimeConfig](#inferencecomponentruntimeconfig)
 * **Specification**: [InferenceComponentSpecification](#inferencecomponentspecification)
-* **Specifications**: [InferenceComponentSpecificationForInstanceType](#inferencecomponentspecificationforinstancetype)[] (ReadOnly, WriteOnly)
+* **Specifications**: [InferenceComponentSpecificationForInstanceType](#inferencecomponentspecificationforinstancetype)[]
 * **Tags**: [Tag](#tag)[]
 * **VariantName**: string
 
@@ -1386,7 +1386,7 @@
 * **DeploymentInstanceType**: string (Required): The type of instance that hosts the optimized model that you create with the optimization job.
 * **LastModifiedTime**: string (ReadOnly): The time when the optimization job was last modified.
 * **ModelSource**: [OptimizationJobModelSource](#optimizationjobmodelsource) (Required)
-* **OptimizationConfigs**: [OptimizationConfig](#optimizationconfig)[] (Required, ReadOnly): A list of optimization configurations associated with the optimization job.
+* **OptimizationConfigs**: [OptimizationConfig](#optimizationconfig)[] (Required): A list of optimization configurations associated with the optimization job.
 * **OptimizationEnvironment**: [OptimizationJob_OptimizationEnvironment](#optimizationjoboptimizationenvironment): The environment variables to set in the model container.
 * **OptimizationJobArn**: string (Identifier): The Amazon Resource Name (ARN) of the optimization job.
 * **OptimizationJobName**: string (Required): The name of the optimization job.
@@ -1877,7 +1877,7 @@
 ### Properties
 * **AutoPatchConfig**: [AutoPatchConfig](#autopatchconfig)
 * **CapacityRequirements**: [ClusterCapacityRequirements](#clustercapacityrequirements)
-* **CurrentCount**: int: The number of instances that are currently in the instance group of a SageMaker HyperPod cluster.
+* **CurrentCount**: int (ReadOnly): The number of instances that are currently in the instance group of a SageMaker HyperPod cluster.
 * **ExecutionRole**: string (Required)
 * **ImageId**: string
 * **ImageReleaseVersion**: string: The version of the HyperPod-managed AMI for the instance group, in semantic version format MAJOR.MINOR.PATCH (for example, 1.2.3). Supported only for EKS-orchestrated clusters. If omitted at creation, the latest available version is used (or the version of an existing same-architecture instance group when adding a group). Changing this value on an existing instance group triggers a software update via UpdateClusterSoftware. Automatic patching (AutoPatchConfig) and out-of-band software updates can advance the running version past this value; CloudFormation does not revert such changes and may report the property as drifted. Only an explicit change to this value in the template triggers an update.
@@ -1943,7 +1943,7 @@
 
 ## ClusterRestrictedInstanceGroup
 ### Properties
-* **CurrentCount**: int: The number of instances that are currently in the restricted instance group of a SageMaker HyperPod cluster.
+* **CurrentCount**: int (ReadOnly): The number of instances that are currently in the restricted instance group of a SageMaker HyperPod cluster.
 * **EnvironmentConfig**: [EnvironmentConfig](#environmentconfig)
 * **ExecutionRole**: string (Required)
 * **InstanceCount**: int (Required): The number of instances you specified to add to the restricted instance group of a SageMaker HyperPod cluster.
@@ -2877,7 +2877,7 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **ArtifactUrl**: string
 * **ContainerMetricsConfig**: [ContainerMetricsConfig](#containermetricsconfig)
 * **Environment**: [EnvironmentMap](#environmentmap)
-* **Image**: string
+* **Image**: string (WriteOnly)
 
 ## InferenceComponentDataCacheConfig
 ### Properties
@@ -2927,8 +2927,8 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 ### Properties
 * **ComputeResourceRequirements**: [InferenceComponentComputeResourceRequirements](#inferencecomponentcomputeresourcerequirements)
 * **Container**: [InferenceComponentContainerSpecificationForInstanceType](#inferencecomponentcontainerspecificationforinstancetype)
-* **CurrentDataCacheConfig**: [InferenceComponentDataCacheConfig](#inferencecomponentdatacacheconfig): The data caching configuration actually in effect for this instance type, including a value the service chose rather than the template: SageMaker enables caching automatically on instance types with more than 232 GiB of local NVMe storage, whether or not DataCacheConfig was set. Returned by Describe and not settable; set DataCacheConfig instead.
-* **DataCacheConfig**: [InferenceComponentDataCacheConfig](#inferencecomponentdatacacheconfig)
+* **CurrentDataCacheConfig**: [InferenceComponentDataCacheConfig](#inferencecomponentdatacacheconfig) (ReadOnly): The data caching configuration actually in effect for this instance type, including a value the service chose rather than the template: SageMaker enables caching automatically on instance types with more than 232 GiB of local NVMe storage, whether or not DataCacheConfig was set. Returned by Describe and not settable; set DataCacheConfig instead.
+* **DataCacheConfig**: [InferenceComponentDataCacheConfig](#inferencecomponentdatacacheconfig) (WriteOnly)
 * **InstanceType**: string (Required)
 * **ModelName**: string
 * **SchedulingConfig**: [InferenceComponentSchedulingConfig](#inferencecomponentschedulingconfig)
@@ -3254,7 +3254,7 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## ModelCompilationConfig
 ### Properties
-* **Image**: string: The URI of an LMI DLC in Amazon ECR.
+* **Image**: string (ReadOnly): The URI of an LMI DLC in Amazon ECR.
 * **OverrideEnvironment**: [OptimizationJob_OverrideEnvironment](#optimizationjoboverrideenvironment): Environment variables that override the default ones in the model container.
 
 ## ModelDashboardIndicatorAction
@@ -3416,12 +3416,12 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## ModelQuantizationConfig
 ### Properties
-* **Image**: string: The URI of an LMI DLC in Amazon ECR.
+* **Image**: string (ReadOnly): The URI of an LMI DLC in Amazon ECR.
 * **OverrideEnvironment**: [OptimizationJob_OverrideEnvironment](#optimizationjoboverrideenvironment): Environment variables that override the default ones in the model container.
 
 ## ModelShardingConfig
 ### Properties
-* **Image**: string: The URI of an LMI DLC in Amazon ECR.
+* **Image**: string (ReadOnly): The URI of an LMI DLC in Amazon ECR.
 * **OverrideEnvironment**: [OptimizationJob_OverrideEnvironment](#optimizationjoboverrideenvironment): Environment variables that override the default ones in the model container.
 
 ## ModelVariantConfig
@@ -3727,7 +3727,7 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## PatchSchedule
 ### Properties
-* **NextPatchDate**: string: The date and time of the next scheduled patch, set by the system when a patch AMI is detected.
+* **NextPatchDate**: string (ReadOnly): The date and time of the next scheduled patch, set by the system when a patch AMI is detected.
 
 ## Pipeline_ParallelismConfiguration
 ### Properties
@@ -4803,6 +4803,12 @@ You can access the domain in Amazon SageMaker Studio. If you migrate the domain 
 DISABLED
 You can't access the domain in Amazon SageMaker Studio. If you migrate the domain to Amazon SageMaker Unified Studio, you can access it only in that studio interface.
 
+
+## UserContext
+### Properties
+* **DomainId**: string (ReadOnly): The domain associated with the user.
+* **UserProfileArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the user's profile.
+* **UserProfileName**: string (ReadOnly): The name of the user's profile.
 
 ## UserContext
 ### Properties

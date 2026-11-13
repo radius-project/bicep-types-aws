@@ -272,8 +272,8 @@
 * **AllowFullTableExternalDataAccess**: string: Allows third-party engines to access data in Amazon S3 locations that are registered with Lake Formation.
 * **CatalogId**: string (ReadOnly): The ID of the catalog.
 * **CatalogProperties**: [CatalogProperties](#catalogproperties)
-* **CreateDatabaseDefaultPermissions**: [PrincipalPermissions](#principalpermissions)[] (ReadOnly): An array of PrincipalPermissions objects for default database permissions.
-* **CreateTableDefaultPermissions**: [PrincipalPermissions](#principalpermissions)[] (ReadOnly): An array of PrincipalPermissions objects for default table permissions.
+* **CreateDatabaseDefaultPermissions**: [PrincipalPermissions](#principalpermissions)[]: An array of PrincipalPermissions objects for default database permissions.
+* **CreateTableDefaultPermissions**: [PrincipalPermissions](#principalpermissions)[]: An array of PrincipalPermissions objects for default table permissions.
 * **CreateTime**: int (ReadOnly): The time at which the catalog was created.
 * **Description**: string: A description of the catalog.
 * **FederatedCatalog**: [FederatedCatalog](#federatedcatalog)
@@ -845,7 +845,11 @@
 
 ## DataLakePrincipal
 ### Properties
-* **DataLakePrincipalIdentifier**: string: An identifier for the Lake Formation principal.
+* **DataLakePrincipalIdentifier**: string (ReadOnly): An identifier for the Lake Formation principal.
+
+## DataLakePrincipal
+### Properties
+* **DataLakePrincipalIdentifier**: string (ReadOnly): An identifier for the Lake Formation principal.
 
 ## DataLakePrincipal
 ### Properties
@@ -1248,8 +1252,13 @@ If you do not need additional metadata, keep the field empty.
 
 ## PrincipalPermissions
 ### Properties
-* **Permissions**: string[]: The permissions that are granted to the principal.
-* **Principal**: [DataLakePrincipal](#datalakeprincipal)
+* **Permissions**: string[] (ReadOnly): The permissions that are granted to the principal.
+* **Principal**: [DataLakePrincipal](#datalakeprincipal) (ReadOnly)
+
+## PrincipalPermissions
+### Properties
+* **Permissions**: string[] (ReadOnly): The permissions that are granted to the principal.
+* **Principal**: [DataLakePrincipal](#datalakeprincipal) (ReadOnly)
 
 ## PrincipalPrivileges
 ### Properties
@@ -1591,16 +1600,16 @@ If you do not need additional metadata, keep the field empty.
 ### Properties
 * **Definer**: string: The definer of the view.
 * **IsProtected**: bool: Indicates whether the view is protected.
-* **Representations**: [ViewRepresentation](#viewrepresentation)[] (WriteOnly): The representations of the view.
+* **Representations**: [ViewRepresentation](#viewrepresentation)[]: The representations of the view.
 * **SubObjects**: string[] (WriteOnly): The sub-objects of the view.
 
 ## ViewRepresentation
 ### Properties
 * **Dialect**: string: The dialect of the view representation.
 * **DialectVersion**: string: The version of the dialect.
-* **ValidationConnection**: string: The connection used for validation.
-* **ViewExpandedText**: string: The expanded text of the view.
-* **ViewOriginalText**: string: The original text of the view.
+* **ValidationConnection**: string (WriteOnly): The connection used for validation.
+* **ViewExpandedText**: string (WriteOnly): The expanded text of the view.
+* **ViewOriginalText**: string (WriteOnly): The original text of the view.
 
 ## VpcConfiguration
 ### Properties

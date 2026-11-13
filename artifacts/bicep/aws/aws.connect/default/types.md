@@ -871,7 +871,7 @@
 * **Description**: string: The description of the workspace
 * **Id**: string (ReadOnly): The identifier of the workspace.
 * **InstanceArn**: string (Required): The identifier of the Amazon Connect instance.
-* **Media**: [MediaItem](#mediaitem)[] (WriteOnly): The media items for the workspace
+* **Media**: [MediaItem](#mediaitem)[]: The media items for the workspace
 * **Name**: string (Required): The name of the workspace.
 * **Pages**: [WorkspacePage](#workspacepage)[]: The pages associated with the workspace
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
@@ -1317,7 +1317,7 @@
 
 ## MediaItem
 ### Properties
-* **Source**: string
+* **Source**: string (WriteOnly)
 * **Type**: string (Required)
 
 ## Metric_MetricCalculation

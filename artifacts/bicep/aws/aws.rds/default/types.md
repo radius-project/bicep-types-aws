@@ -173,8 +173,8 @@
 * **AllocatedStorage**: string: The amount of storage allocated for the additional storage volume, in gibibytes (GiB). The minimum is 20 GiB. The maximum is 65,536 GiB (64 TiB).
 * **Iops**: int: The number of I/O operations per second (IOPS) provisioned for the additional storage volume.
 * **MaxAllocatedStorage**: int: The upper limit in gibibytes (GiB) to which RDS can automatically scale the storage of the additional storage volume.
-* **StorageOperationPercentProgress**: int
-* **StorageOperationStatus**: string
+* **StorageOperationPercentProgress**: int (ReadOnly)
+* **StorageOperationStatus**: string (ReadOnly)
 * **StorageThroughput**: int: The storage throughput value for the additional storage volume, in mebibytes per second (MiBps). This setting applies only to the General Purpose SSD (``gp3``) storage type.
 * **StorageType**: string: The storage type for the additional storage volume.
  Valid Values: ``GP3 | IO2``
@@ -658,7 +658,7 @@
 
 ## AWS.RDS/DBInstanceProperties
 ### Properties
-* **AdditionalStorageVolumes**: [AdditionalStorageVolume](#additionalstoragevolume)[] (ReadOnly): The additional storage volumes associated with the DB instance. RDS supports additional storage volumes for RDS for Oracle and RDS for SQL Server.
+* **AdditionalStorageVolumes**: [AdditionalStorageVolume](#additionalstoragevolume)[]: The additional storage volumes associated with the DB instance. RDS supports additional storage volumes for RDS for Oracle and RDS for SQL Server.
 * **AllocatedStorage**: string: The amount of storage in gibibytes (GiB) to be initially allocated for the database instance.
   If any value is set in the ``Iops`` parameter, ``AllocatedStorage`` must be at least 100 GiB, which corresponds to the minimum Iops value of 1,000. If you increase the ``Iops`` value (in 1,000 IOPS increments), then you must also increase the ``AllocatedStorage`` value (in 100-GiB increments). 
    *Amazon Aurora* 
@@ -1553,6 +1553,12 @@ If you specify the SourceDBClusterIdentifier property, don't specify this proper
 ## Endpoint
 ### Properties
 * **Address**: string (ReadOnly): Specifies the connection endpoint for the primary instance of the DB cluster.
+* **Port**: string (ReadOnly): Specifies the port that the database engine is listening on.
+
+## Endpoint
+### Properties
+* **Address**: string (ReadOnly): Specifies the DNS address of the DB instance.
+* **HostedZoneId**: string (ReadOnly): Specifies the ID that Amazon Route 53 assigns when you create a hosted zone.
 * **Port**: string (ReadOnly): Specifies the port that the database engine is listening on.
 
 ## Endpoint

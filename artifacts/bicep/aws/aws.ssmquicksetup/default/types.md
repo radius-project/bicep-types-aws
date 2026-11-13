@@ -23,7 +23,7 @@
 
 ## AWS.SSMQuickSetup/ConfigurationManagerProperties
 ### Properties
-* **ConfigurationDefinitions**: [ConfigurationDefinition](#configurationdefinition)[] (Required, ReadOnly)
+* **ConfigurationDefinitions**: [ConfigurationDefinition](#configurationdefinition)[] (Required)
 * **CreatedAt**: string (ReadOnly)
 * **Description**: string
 * **LastModifiedAt**: string (ReadOnly)
@@ -42,7 +42,7 @@
 
 ## ConfigurationDefinition
 ### Properties
-* **id**: string
+* **id**: string (ReadOnly)
 * **LocalDeploymentAdministrationRoleArn**: string
 * **LocalDeploymentExecutionRoleName**: string
 * **Parameters**: [ConfigurationParametersMap](#configurationparametersmap) (Required)

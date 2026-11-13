@@ -34,7 +34,7 @@
 * **KmsKeyArn**: string: KMS key ARN for encrypting the canary's Lambda function environment variables at rest. If omitted, Lambda uses an AWS-managed key.
 * **Name**: string (Required, Identifier): Name of the canary.
 * **ProvisionedResourceCleanup**: string: Setting to control if provisioned resources created by Synthetics are deleted alongside the canary. Default is AUTOMATIC.
-* **Replicas**: [Replica](#replica)[] (ReadOnly, WriteOnly): List of replica locations for multi-location canary execution
+* **Replicas**: [Replica](#replica)[]: List of replica locations for multi-location canary execution
 * **ResourcesToReplicateTags**: string[] (WriteOnly): List of resources which canary tags should be replicated to.
 * **RunConfig**: [RunConfig](#runconfig): Provide canary run configuration
 * **RuntimeVersion**: string (Required): Runtime version of Synthetics Library
@@ -86,13 +86,13 @@
 
 ## Replica
 ### Properties
-* **CanaryState**: string: State of the replica canary (CREATING, READY, RUNNING, etc.)
-* **KmsKeyArn**: string: ARN of the KMS key used to encrypt the replica canary's Lambda function environment variables
-* **LastModified**: int: Last modified timestamp of the replica
+* **CanaryState**: string (ReadOnly): State of the replica canary (CREATING, READY, RUNNING, etc.)
+* **KmsKeyArn**: string (WriteOnly): ARN of the KMS key used to encrypt the replica canary's Lambda function environment variables
+* **LastModified**: int (ReadOnly): Last modified timestamp of the replica
 * **Location**: string (Required): AWS region for the replica (e.g., us-east-1)
-* **ReplicationStatus**: [ReplicaReplicationStatus](#replicareplicationstatus): Replication status for this replica
-* **ResourcesToReplicateTags**: string[]: Resources to replicate tags to for this replica (e.g., lambda-function)
-* **Tags**: [Tag](#tag)[]: Tags to apply to this replica canary and optionally its Lambda function
+* **ReplicationStatus**: [ReplicaReplicationStatus](#replicareplicationstatus) (ReadOnly): Replication status for this replica
+* **ResourcesToReplicateTags**: string[] (WriteOnly): Resources to replicate tags to for this replica (e.g., lambda-function)
+* **Tags**: [Tag](#tag)[] (WriteOnly): Tags to apply to this replica canary and optionally its Lambda function
 * **VpcConfig**: [VPCConfig](#vpcconfig): VPC configuration for this replica location
 
 ## ReplicaReplicationStatus
@@ -137,6 +137,13 @@
 * **BaseCanaryRunId**: string (Required): Canary run id to be used as base reference for visual testing
 * **BaseScreenshots**: [BaseScreenshot](#basescreenshot)[]: List of screenshots used as base reference for visual testing
 * **BrowserType**: string
+
+## VPCConfig
+### Properties
+* **Ipv6AllowedForDualStack**: bool: Allow outbound IPv6 traffic on VPC canaries that are connected to dual-stack subnets if set to true
+* **SecurityGroupIds**: string[] (Required)
+* **SubnetIds**: string[] (Required)
+* **VpcId**: string (ReadOnly)
 
 ## VPCConfig
 ### Properties

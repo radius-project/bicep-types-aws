@@ -790,7 +790,7 @@
         "type": {
           "$ref": "#/84"
         },
-        "flags": 4,
+        "flags": 0,
         "description": "Contains additional notebook engine MAP<string, string> parameter mappings in the form of key-value pairs. To specify an Athena notebook that the Jupyter server will download and serve, specify a value for the StartSessionRequest$NotebookVersion field, and then add a key named NotebookId to AdditionalConfigs that has the value of the Athena notebook ID."
       },
       "Classifications": {
@@ -804,28 +804,28 @@
         "type": {
           "$ref": "#/14"
         },
-        "flags": 4,
+        "flags": 0,
         "description": "The number of DPUs to use for the coordinator. A coordinator is a special executor that orchestrates processing work and manages other executors in a notebook session. The default is 1."
       },
       "DefaultExecutorDpuSize": {
         "type": {
           "$ref": "#/14"
         },
-        "flags": 4,
+        "flags": 0,
         "description": "The default number of DPUs to use for executors. An executor is the smallest unit of compute that a notebook session can request from Athena. The default is 1."
       },
       "MaxConcurrentDpus": {
         "type": {
           "$ref": "#/14"
         },
-        "flags": 4,
+        "flags": 0,
         "description": "The maximum number of DPUs that can run concurrently."
       },
       "SparkProperties": {
         "type": {
           "$ref": "#/86"
         },
-        "flags": 4,
+        "flags": 0,
         "description": "Specifies custom jar files and Spark properties for use cases like cluster encryption, table formats, and general Spark tuning."
       }
     }
@@ -1156,13 +1156,13 @@
       },
       "EngineConfiguration": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/92"
         },
         "flags": 0
       },
       "EngineVersion": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/91"
         },
         "flags": 0
       },
@@ -1421,6 +1421,72 @@
   },
   {
     "$type": "ObjectType",
+    "name": "EngineVersion",
+    "properties": {
+      "EffectiveEngineVersion": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2
+      },
+      "SelectedEngineVersion": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EngineConfiguration",
+    "properties": {
+      "AdditionalConfigs": {
+        "type": {
+          "$ref": "#/84"
+        },
+        "flags": 4,
+        "description": "Contains additional notebook engine MAP<string, string> parameter mappings in the form of key-value pairs. To specify an Athena notebook that the Jupyter server will download and serve, specify a value for the StartSessionRequest$NotebookVersion field, and then add a key named NotebookId to AdditionalConfigs that has the value of the Athena notebook ID."
+      },
+      "Classifications": {
+        "type": {
+          "$ref": "#/85"
+        },
+        "flags": 0,
+        "description": "The configuration classifications that can be specified for the engine."
+      },
+      "CoordinatorDpuSize": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 4,
+        "description": "The number of DPUs to use for the coordinator. A coordinator is a special executor that orchestrates processing work and manages other executors in a notebook session. The default is 1."
+      },
+      "DefaultExecutorDpuSize": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 4,
+        "description": "The default number of DPUs to use for executors. An executor is the smallest unit of compute that a notebook session can request from Athena. The default is 1."
+      },
+      "MaxConcurrentDpus": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 4,
+        "description": "The maximum number of DPUs that can run concurrently."
+      },
+      "SparkProperties": {
+        "type": {
+          "$ref": "#/86"
+        },
+        "flags": 4,
+        "description": "Specifies custom jar files and Spark properties for use cases like cluster encryption, table formats, and general Spark tuning."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "AWS.Athena/WorkGroup",
     "properties": {
       "name": {
@@ -1450,7 +1516,7 @@
     "$type": "ResourceType",
     "name": "AWS.Athena/WorkGroup@default",
     "body": {
-      "$ref": "#/91"
+      "$ref": "#/93"
     },
     "readableScopes": 0,
     "writableScopes": 0

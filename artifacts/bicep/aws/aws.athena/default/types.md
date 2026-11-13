@@ -162,6 +162,20 @@
 * **MaxConcurrentDpus**: int (WriteOnly): The maximum number of DPUs that can run concurrently.
 * **SparkProperties**: [WorkGroup_SparkProperties](#workgroupsparkproperties) (WriteOnly): Specifies custom jar files and Spark properties for use cases like cluster encryption, table formats, and general Spark tuning.
 
+## EngineConfiguration
+### Properties
+* **AdditionalConfigs**: [WorkGroup_AdditionalConfigs](#workgroupadditionalconfigs): Contains additional notebook engine MAP<string, string> parameter mappings in the form of key-value pairs. To specify an Athena notebook that the Jupyter server will download and serve, specify a value for the StartSessionRequest$NotebookVersion field, and then add a key named NotebookId to AdditionalConfigs that has the value of the Athena notebook ID.
+* **Classifications**: [Classification](#classification)[]: The configuration classifications that can be specified for the engine.
+* **CoordinatorDpuSize**: int: The number of DPUs to use for the coordinator. A coordinator is a special executor that orchestrates processing work and manages other executors in a notebook session. The default is 1.
+* **DefaultExecutorDpuSize**: int: The default number of DPUs to use for executors. An executor is the smallest unit of compute that a notebook session can request from Athena. The default is 1.
+* **MaxConcurrentDpus**: int: The maximum number of DPUs that can run concurrently.
+* **SparkProperties**: [WorkGroup_SparkProperties](#workgroupsparkproperties): Specifies custom jar files and Spark properties for use cases like cluster encryption, table formats, and general Spark tuning.
+
+## EngineVersion
+### Properties
+* **EffectiveEngineVersion**: string (ReadOnly)
+* **SelectedEngineVersion**: string
+
 ## EngineVersion
 ### Properties
 * **EffectiveEngineVersion**: string (ReadOnly)

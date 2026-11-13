@@ -143,10 +143,10 @@ Constraint: If both solution stack name and source configuration are specified, 
 
 ## OptionSetting
 ### Properties
-* **Namespace**: string (Required): A unique namespace that identifies the option's associated AWS resource.
-* **OptionName**: string (Required): The name of the configuration option.
-* **ResourceName**: string: A unique resource name for the option setting. Use it for a time–based scaling configuration option.
-* **Value**: string: The current value for the configuration option.
+* **Namespace**: string (Required, WriteOnly): A unique namespace that identifies the option's associated AWS resource.
+* **OptionName**: string (Required, WriteOnly): The name of the configuration option.
+* **ResourceName**: string (WriteOnly): A unique resource name for the option setting. Use it for a time–based scaling configuration option.
+* **Value**: string (WriteOnly): The current value for the configuration option.
 
 ## SourceBundle
 ### Properties

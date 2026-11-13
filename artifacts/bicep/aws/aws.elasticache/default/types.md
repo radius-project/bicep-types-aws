@@ -349,8 +349,28 @@
 
 ## Endpoint
 ### Properties
+* **Address**: string (ReadOnly)
+* **Port**: string (ReadOnly)
+
+## Endpoint
+### Properties
 * **Address**: string (ReadOnly): The DNS hostname of the cache node.
 * **Port**: string (ReadOnly): The port number that the cache engine is listening on.
+
+## Endpoint
+### Properties
+* **Address**: string (ReadOnly): The DNS hostname of the cache node.
+* **Port**: string (ReadOnly): The port number that the cache engine is listening on.
+
+## Endpoint
+### Properties
+* **Address**: string (ReadOnly): The DNS hostname of the cache node.
+* **Port**: string (ReadOnly): The port number that the cache engine is listening on.
+
+## Endpoint
+### Properties
+* **Address**: string (ReadOnly): Endpoint address.
+* **Port**: string (ReadOnly): Endpoint port.
 
 ## Endpoint
 ### Properties

@@ -618,7 +618,7 @@ Always present in responses.
 * **MemoryArn**: string (ReadOnly, Identifier)
 * **MemoryExecutionRoleArn**: string
 * **MemoryId**: string (ReadOnly)
-* **MemoryStrategies**: [MemoryStrategy](#memorystrategy)[] (ReadOnly, WriteOnly)
+* **MemoryStrategies**: [MemoryStrategy](#memorystrategy)[]
 * **Name**: string (Required)
 * **NamespaceKeys**: [NamespaceKeyEntry](#namespacekeyentry)[]
 * **Status**: string (ReadOnly)
@@ -1057,18 +1057,18 @@ Always present in responses.
 ## CustomMemoryStrategy
 ### Properties
 * **Configuration**: [CustomConfigurationInput](#customconfigurationinput)
-* **CreatedAt**: string: Creation timestamp of the memory strategy
+* **CreatedAt**: string (ReadOnly): Creation timestamp of the memory strategy
 * **Description**: string
 * **MemoryRecordSchema**: [MemoryRecordSchema](#memoryrecordschema)
 * **Name**: string (Required)
 * **Namespaces**: string[]
 * **NamespaceTemplates**: string[]
-* **RecordExpiryDurationDays**: int
-* **RecordExpirySpecification**: [RecordExpirySpecification](#recordexpiryspecification)
-* **Status**: string: Status of the memory strategy
-* **StrategyId**: string: Unique identifier for the memory strategy
-* **Type**: string: Type of memory strategy
-* **UpdatedAt**: string: Last update timestamp of the memory strategy
+* **RecordExpiryDurationDays**: int (ReadOnly)
+* **RecordExpirySpecification**: [RecordExpirySpecification](#recordexpiryspecification) (WriteOnly)
+* **Status**: string (ReadOnly): Status of the memory strategy
+* **StrategyId**: string (ReadOnly): Unique identifier for the memory strategy
+* **Type**: string (ReadOnly): Type of memory strategy
+* **UpdatedAt**: string (ReadOnly): Last update timestamp of the memory strategy
 
 ## CustomOauth2ProviderConfigInput
 ### Properties
@@ -1166,19 +1166,19 @@ Always present in responses.
 
 ## EpisodicMemoryStrategy
 ### Properties
-* **CreatedAt**: string: Creation timestamp of the memory strategy
+* **CreatedAt**: string (ReadOnly): Creation timestamp of the memory strategy
 * **Description**: string
 * **MemoryRecordSchema**: [MemoryRecordSchema](#memoryrecordschema)
 * **Name**: string (Required)
 * **Namespaces**: string[]
 * **NamespaceTemplates**: string[]
-* **RecordExpiryDurationDays**: int
-* **RecordExpirySpecification**: [RecordExpirySpecification](#recordexpiryspecification)
+* **RecordExpiryDurationDays**: int (ReadOnly)
+* **RecordExpirySpecification**: [RecordExpirySpecification](#recordexpiryspecification) (WriteOnly)
 * **ReflectionConfiguration**: [EpisodicReflectionConfigurationInput](#episodicreflectionconfigurationinput)
-* **Status**: string: Status of the memory strategy
-* **StrategyId**: string: Unique identifier for the memory strategy
-* **Type**: string: Type of memory strategy
-* **UpdatedAt**: string: Last update timestamp of the memory strategy
+* **Status**: string (ReadOnly): Status of the memory strategy
+* **StrategyId**: string (ReadOnly): Unique identifier for the memory strategy
+* **Type**: string (ReadOnly): Type of memory strategy
+* **UpdatedAt**: string (ReadOnly): Last update timestamp of the memory strategy
 
 ## EpisodicOverride
 ### Properties
@@ -2073,18 +2073,18 @@ Always present in responses.
 
 ## SemanticMemoryStrategy
 ### Properties
-* **CreatedAt**: string: Creation timestamp of the memory strategy
+* **CreatedAt**: string (ReadOnly): Creation timestamp of the memory strategy
 * **Description**: string
 * **MemoryRecordSchema**: [MemoryRecordSchema](#memoryrecordschema)
 * **Name**: string (Required)
 * **Namespaces**: string[]
 * **NamespaceTemplates**: string[]
-* **RecordExpiryDurationDays**: int
-* **RecordExpirySpecification**: [RecordExpirySpecification](#recordexpiryspecification)
-* **Status**: string: Status of the memory strategy
-* **StrategyId**: string: Unique identifier for the memory strategy
-* **Type**: string: Type of memory strategy
-* **UpdatedAt**: string: Last update timestamp of the memory strategy
+* **RecordExpiryDurationDays**: int (ReadOnly)
+* **RecordExpirySpecification**: [RecordExpirySpecification](#recordexpiryspecification) (WriteOnly)
+* **Status**: string (ReadOnly): Status of the memory strategy
+* **StrategyId**: string (ReadOnly): Unique identifier for the memory strategy
+* **Type**: string (ReadOnly): Type of memory strategy
+* **UpdatedAt**: string (ReadOnly): Last update timestamp of the memory strategy
 
 ## SemanticOverride
 ### Properties
@@ -2161,18 +2161,18 @@ Always present in responses.
 
 ## SummaryMemoryStrategy
 ### Properties
-* **CreatedAt**: string: Creation timestamp of the memory strategy
+* **CreatedAt**: string (ReadOnly): Creation timestamp of the memory strategy
 * **Description**: string
 * **MemoryRecordSchema**: [MemoryRecordSchema](#memoryrecordschema)
 * **Name**: string (Required)
 * **Namespaces**: string[]
 * **NamespaceTemplates**: string[]
-* **RecordExpiryDurationDays**: int
-* **RecordExpirySpecification**: [RecordExpirySpecification](#recordexpiryspecification)
-* **Status**: string: Status of the memory strategy
-* **StrategyId**: string: Unique identifier for the memory strategy
-* **Type**: string: Type of memory strategy
-* **UpdatedAt**: string: Last update timestamp of the memory strategy
+* **RecordExpiryDurationDays**: int (ReadOnly)
+* **RecordExpirySpecification**: [RecordExpirySpecification](#recordexpiryspecification) (WriteOnly)
+* **Status**: string (ReadOnly): Status of the memory strategy
+* **StrategyId**: string (ReadOnly): Unique identifier for the memory strategy
+* **Type**: string (ReadOnly): Type of memory strategy
+* **UpdatedAt**: string (ReadOnly): Last update timestamp of the memory strategy
 
 ## SummaryOverride
 ### Properties
@@ -2331,18 +2331,18 @@ Always present in responses.
 
 ## UserPreferenceMemoryStrategy
 ### Properties
-* **CreatedAt**: string: Creation timestamp of the memory strategy
+* **CreatedAt**: string (ReadOnly): Creation timestamp of the memory strategy
 * **Description**: string
 * **MemoryRecordSchema**: [MemoryRecordSchema](#memoryrecordschema)
 * **Name**: string (Required)
 * **Namespaces**: string[]
 * **NamespaceTemplates**: string[]
-* **RecordExpiryDurationDays**: int
-* **RecordExpirySpecification**: [RecordExpirySpecification](#recordexpiryspecification)
-* **Status**: string: Status of the memory strategy
-* **StrategyId**: string: Unique identifier for the memory strategy
-* **Type**: string: Type of memory strategy
-* **UpdatedAt**: string: Last update timestamp of the memory strategy
+* **RecordExpiryDurationDays**: int (ReadOnly)
+* **RecordExpirySpecification**: [RecordExpirySpecification](#recordexpiryspecification) (WriteOnly)
+* **Status**: string (ReadOnly): Status of the memory strategy
+* **StrategyId**: string (ReadOnly): Unique identifier for the memory strategy
+* **Type**: string (ReadOnly): Type of memory strategy
+* **UpdatedAt**: string (ReadOnly): Last update timestamp of the memory strategy
 
 ## UserPreferenceOverride
 ### Properties

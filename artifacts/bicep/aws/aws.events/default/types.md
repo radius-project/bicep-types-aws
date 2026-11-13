@@ -246,6 +246,12 @@ Targets are the resources that are invoked when a rule is triggered.
 
 ## ConnectionHttpParameters
 ### Properties
+* **BodyParameters**: [Parameter](#parameter)[]
+* **HeaderParameters**: [Parameter](#parameter)[]
+* **QueryStringParameters**: [Parameter](#parameter)[]
+
+## ConnectionHttpParameters
+### Properties
 * **BodyParameters**: [Parameter](#parameter)[] (WriteOnly)
 * **HeaderParameters**: [Parameter](#parameter)[] (WriteOnly)
 * **QueryStringParameters**: [Parameter](#parameter)[] (WriteOnly)
@@ -361,6 +367,11 @@ Targets are the resources that are invoked when a rule is triggered.
 ## ReplicationConfig
 ### Properties
 * **State**: string (Required)
+
+## ResourceParameters
+### Properties
+* **ResourceAssociationArn**: string (ReadOnly)
+* **ResourceConfigurationArn**: string (Required)
 
 ## ResourceParameters
 ### Properties

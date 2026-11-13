@@ -325,7 +325,7 @@
 * **FeedbackURL**: string: The URL that users are redirected to after they click the Send Feedback link. If no URL is specified, no Send Feedback link is displayed.
 * **Name**: string (Identifier): The name of the stack.
 * **RedirectURL**: string: The URL that users are redirected to after their streaming session ends.
-* **StorageConnectors**: [StorageConnector](#storageconnector)[] (ReadOnly): The storage connectors to enable.
+* **StorageConnectors**: [StorageConnector](#storageconnector)[]: The storage connectors to enable.
 * **StreamingExperienceSettings**: [StreamingExperienceSettings](#streamingexperiencesettings): The streaming protocol that you want your stack to prefer. This can be UDP or TCP. Currently, UDP is only supported in the Windows native client.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs.
 * **UserSettings**: [UserSetting](#usersetting)[]: The actions that are enabled or disabled for users during their streaming sessions. By default, these actions are enabled.
@@ -406,7 +406,7 @@
 ### Properties
 * **ConnectorType**: string (Required): The type of storage connector.
 * **Domains**: string[]: The names of the domains for the account.
-* **ResourceIdentifier**: string: The ARN of the storage connector.
+* **ResourceIdentifier**: string (ReadOnly): The ARN of the storage connector.
 
 ## StreamingExperienceSettings
 ### Properties

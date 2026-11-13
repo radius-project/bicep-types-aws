@@ -212,7 +212,7 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 0,
+        "flags": 2,
         "description": "Customer provided actual UUID for property"
       },
       "LogicalId": {
@@ -246,7 +246,7 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 0,
+        "flags": 2,
         "description": "Customer provided actual UUID for property"
       },
       "LogicalId": {
@@ -341,7 +341,7 @@
         "type": {
           "$ref": "#/16"
         },
-        "flags": 2
+        "flags": 0
       },
       "AssetId": {
         "type": {
@@ -368,7 +368,7 @@
         "type": {
           "$ref": "#/17"
         },
-        "flags": 2
+        "flags": 0
       },
       "Tags": {
         "type": {
@@ -451,7 +451,7 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 0,
+        "flags": 2,
         "description": "The Actual ID of the composite model"
       },
       "Name": {
@@ -506,7 +506,7 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 0,
+        "flags": 2,
         "description": "Customer provided actual ID for hierarchy"
       },
       "LogicalId": {
@@ -540,7 +540,7 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 0,
+        "flags": 4,
         "description": "The data type of the structure for this property."
       },
       "ExternalId": {
@@ -554,7 +554,7 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 0,
+        "flags": 2,
         "description": "The ID of the Asset Model Property"
       },
       "LogicalId": {
@@ -733,7 +733,7 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 1,
+        "flags": 5,
         "description": "The name of the property"
       }
     }
@@ -844,7 +844,7 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 0,
+        "flags": 4,
         "description": "The ID of the hierarchy that is trying to be referenced"
       },
       "HierarchyLogicalId": {
@@ -864,7 +864,7 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 0,
+        "flags": 2,
         "description": "The ID of the property that is trying to be referenced"
       },
       "PropertyLogicalId": {
@@ -909,7 +909,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/30"
+      "$ref": "#/65"
     }
   },
   {
@@ -937,7 +937,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/24"
+      "$ref": "#/55"
     }
   },
   {
@@ -967,7 +967,7 @@
         "type": {
           "$ref": "#/49"
         },
-        "flags": 6,
+        "flags": 0,
         "description": "The composite asset models that are part of this asset model. Composite asset models are asset models that contain specific properties."
       },
       "AssetModelDescription": {
@@ -988,7 +988,7 @@
         "type": {
           "$ref": "#/50"
         },
-        "flags": 2,
+        "flags": 0,
         "description": "The hierarchy definitions of the asset model. Each hierarchy specifies an asset model whose assets can be children of any other assets created from this asset model. You can specify up to 10 hierarchies per asset model."
       },
       "AssetModelId": {
@@ -1009,7 +1009,7 @@
         "type": {
           "$ref": "#/51"
         },
-        "flags": 6,
+        "flags": 0,
         "description": "The property definitions of the asset model. You can specify up to 200 properties per asset model."
       },
       "AssetModelType": {
@@ -1032,6 +1032,433 @@
         },
         "flags": 0,
         "description": "A list of key-value pairs that contain metadata for the asset model."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AssetModelProperty",
+    "properties": {
+      "DataType": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The data type of the asset model property."
+      },
+      "DataTypeSpec": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 4,
+        "description": "The data type of the structure for this property."
+      },
+      "ExternalId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The External ID of the Asset Model Property"
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The ID of the Asset Model Property"
+      },
+      "LogicalId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "Customer provided Logical ID for property."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The name of the asset model property."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/56"
+        },
+        "flags": 1,
+        "description": "The property type"
+      },
+      "Unit": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The unit of the asset model property, such as Newtons or RPM."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PropertyType",
+    "properties": {
+      "Attribute": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0
+      },
+      "Metric": {
+        "type": {
+          "$ref": "#/61"
+        },
+        "flags": 0
+      },
+      "Transform": {
+        "type": {
+          "$ref": "#/57"
+        },
+        "flags": 0
+      },
+      "TypeName": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Transform",
+    "properties": {
+      "Expression": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The mathematical expression that defines the transformation function. You can specify up to 10 functions per expression."
+      },
+      "Variables": {
+        "type": {
+          "$ref": "#/58"
+        },
+        "flags": 1,
+        "description": "The list of variables used in the expression."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/59"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ExpressionVariable",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The friendly name of the variable to be used in the expression."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/60"
+        },
+        "flags": 1,
+        "description": "The variable that identifies an asset property from which to use values."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VariableValue",
+    "properties": {
+      "HierarchyExternalId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 4,
+        "description": "The External ID of the hierarchy that is trying to be referenced"
+      },
+      "HierarchyId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 4,
+        "description": "The ID of the hierarchy that is trying to be referenced"
+      },
+      "HierarchyLogicalId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 4
+      },
+      "PropertyExternalId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The External ID of the property that is trying to be referenced"
+      },
+      "PropertyId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The ID of the property that is trying to be referenced"
+      },
+      "PropertyLogicalId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "PropertyPath": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0,
+        "description": "The path of the property that is trying to be referenced"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Metric",
+    "properties": {
+      "Expression": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The mathematical expression that defines the metric aggregation function. You can specify up to 10 functions per expression."
+      },
+      "Variables": {
+        "type": {
+          "$ref": "#/62"
+        },
+        "flags": 1,
+        "description": "The list of variables used in the expression."
+      },
+      "Window": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 1,
+        "description": "The window (time interval) over which AWS IoT SiteWise computes the metric's aggregation expression"
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/63"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ExpressionVariable",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The friendly name of the variable to be used in the expression."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 1,
+        "description": "The variable that identifies an asset property from which to use values."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VariableValue",
+    "properties": {
+      "HierarchyExternalId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The External ID of the hierarchy that is trying to be referenced"
+      },
+      "HierarchyId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 4,
+        "description": "The ID of the hierarchy that is trying to be referenced"
+      },
+      "HierarchyLogicalId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "PropertyExternalId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The External ID of the property that is trying to be referenced"
+      },
+      "PropertyId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The ID of the property that is trying to be referenced"
+      },
+      "PropertyLogicalId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "PropertyPath": {
+        "type": {
+          "$ref": "#/67"
+        },
+        "flags": 0,
+        "description": "The path of the property that is trying to be referenced"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ExpressionVariable",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The friendly name of the variable to be used in the expression."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/66"
+        },
+        "flags": 1,
+        "description": "The variable that identifies an asset property from which to use values."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VariableValue",
+    "properties": {
+      "HierarchyExternalId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 4,
+        "description": "The External ID of the hierarchy that is trying to be referenced"
+      },
+      "HierarchyId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 4,
+        "description": "The ID of the hierarchy that is trying to be referenced"
+      },
+      "HierarchyLogicalId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 4
+      },
+      "PropertyExternalId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The External ID of the property that is trying to be referenced"
+      },
+      "PropertyId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The ID of the property that is trying to be referenced"
+      },
+      "PropertyLogicalId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "PropertyPath": {
+        "type": {
+          "$ref": "#/71"
+        },
+        "flags": 0,
+        "description": "The path of the property that is trying to be referenced"
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/68"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PropertyPathDefinition",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 5,
+        "description": "The name of the property"
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/70"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PropertyPathDefinition",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 5,
+        "description": "The name of the property"
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/72"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PropertyPathDefinition",
+    "properties": {
+      "Name": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 5,
+        "description": "The name of the property"
       }
     }
   },
@@ -1066,7 +1493,7 @@
     "$type": "ResourceType",
     "name": "AWS.IoTSiteWise/AssetModel@default",
     "body": {
-      "$ref": "#/55"
+      "$ref": "#/73"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1096,7 +1523,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/57"
+      "$ref": "#/75"
     }
   },
   {
@@ -1147,7 +1574,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/77"
         },
         "flags": 0,
         "description": "A list of key-value pairs that contain metadata for the dashboard."
@@ -1174,7 +1601,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/78"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1185,7 +1612,7 @@
     "$type": "ResourceType",
     "name": "AWS.IoTSiteWise/Dashboard@default",
     "body": {
-      "$ref": "#/61"
+      "$ref": "#/79"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1196,7 +1623,7 @@
     "properties": {
       "Session": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/84"
         },
         "flags": 0,
         "description": "The session configuration for a SESSION dataset."
@@ -1209,7 +1636,7 @@
     "properties": {
       "SourceDetail": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/85"
         },
         "flags": 0,
         "description": "The details of the dataset source associated with the dataset."
@@ -1276,7 +1703,7 @@
     "properties": {
       "Kendra": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/83"
         },
         "flags": 0,
         "description": "Contains details about the Kendra dataset source."
@@ -1308,7 +1735,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/68"
+      "$ref": "#/86"
     }
   },
   {
@@ -1324,7 +1751,7 @@
       },
       "DatasetConfig": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/81"
         },
         "flags": 0,
         "description": "The configuration for the dataset."
@@ -1352,7 +1779,7 @@
       },
       "DatasetSource": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/82"
         },
         "flags": 0,
         "description": "The data source for the dataset."
@@ -1366,7 +1793,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/88"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1400,7 +1827,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/89"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1411,7 +1838,7 @@
     "$type": "ResourceType",
     "name": "AWS.IoTSiteWise/Dataset@default",
     "body": {
-      "$ref": "#/72"
+      "$ref": "#/90"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1450,14 +1877,14 @@
     "properties": {
       "GreengrassV2": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/97"
         },
         "flags": 0,
         "description": "A gateway that runs on AWS IoT Greengrass V2."
       },
       "SiemensIE": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/98"
         },
         "flags": 0,
         "description": "A gateway that runs on Siemens Industrial Edge."
@@ -1527,13 +1954,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/76"
+      "$ref": "#/94"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/81"
+      "$ref": "#/99"
     }
   },
   {
@@ -1542,7 +1969,7 @@
     "properties": {
       "GatewayCapabilitySummaries": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/101"
         },
         "flags": 0,
         "description": "A list of gateway capability summaries that each contain a namespace and status."
@@ -1563,7 +1990,7 @@
       },
       "GatewayPlatform": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/95"
         },
         "flags": 1,
         "description": "The gateway's platform. You can only specify one platform in a gateway."
@@ -1577,7 +2004,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/102"
         },
         "flags": 0,
         "description": "A list of key-value pairs that contain metadata for the gateway."
@@ -1604,7 +2031,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/103"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1615,7 +2042,7 @@
     "$type": "ResourceType",
     "name": "AWS.IoTSiteWise/Gateway@default",
     "body": {
-      "$ref": "#/86"
+      "$ref": "#/104"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1630,7 +2057,7 @@
     "name": "PortalTypeConfiguration",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/90"
+      "$ref": "#/108"
     }
   },
   {
@@ -1639,7 +2066,7 @@
     "properties": {
       "PortalTools": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/111"
         },
         "flags": 1
       }
@@ -1702,7 +2129,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/91"
+      "$ref": "#/109"
     }
   },
   {
@@ -1711,7 +2138,7 @@
     "properties": {
       "Alarms": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/113"
         },
         "flags": 0,
         "description": "Contains the configuration information of an alarm created in an AWS IoT SiteWise Monitor portal. You can use the alarm to monitor an asset property and get notified when the asset property value is outside a specified range."
@@ -1788,7 +2215,7 @@
       },
       "PortalTypeConfiguration": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/107"
         },
         "flags": 0
       },
@@ -1801,7 +2228,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/114"
         },
         "flags": 0,
         "description": "A list of key-value pairs that contain metadata for the portal."
@@ -1828,7 +2255,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/115"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1839,7 +2266,7 @@
     "$type": "ResourceType",
     "name": "AWS.IoTSiteWise/Portal@default",
     "body": {
-      "$ref": "#/98"
+      "$ref": "#/116"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1880,7 +2307,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/101"
+      "$ref": "#/119"
     }
   },
   {
@@ -1889,7 +2316,7 @@
     "properties": {
       "AssetIds": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/121"
         },
         "flags": 0,
         "description": "The IDs of the assets to be associated to the project."
@@ -1931,7 +2358,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/122"
         },
         "flags": 0,
         "description": "A list of key-value pairs that contain metadata for the project."
@@ -1958,7 +2385,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/105"
+          "$ref": "#/123"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1969,7 +2396,7 @@
     "$type": "ResourceType",
     "name": "AWS.IoTSiteWise/Project@default",
     "body": {
-      "$ref": "#/106"
+      "$ref": "#/124"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2001,7 +2428,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/108"
+      "$ref": "#/126"
     }
   },
   {
@@ -2038,7 +2465,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/128"
         },
         "flags": 2,
         "description": "A list of key-value pairs that contain metadata for the time series."
@@ -2093,7 +2520,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/111"
+          "$ref": "#/129"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -2104,7 +2531,7 @@
     "$type": "ResourceType",
     "name": "AWS.IoTSiteWise/TimeSeries@default",
     "body": {
-      "$ref": "#/112"
+      "$ref": "#/130"
     },
     "readableScopes": 31,
     "writableScopes": 0

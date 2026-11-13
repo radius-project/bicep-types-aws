@@ -667,6 +667,85 @@ describe('maps', () => {
     })
 })
 
+
+describe('nested read-only and write-only properties', () => {
+    function convertWith(properties: any, definitions: any, marks: { readOnlyProperties?: string[], writeOnlyProperties?: string[] }): BicepType[] {
+        const record: SchemaRecord = {
+            arn: '', type: 'AWS::Test::Thing', time: '',
+            schema: { typeName: 'AWS::Test::Thing', primaryIdentifier: ['/properties/Id'], additionalProperties: false, definitions, properties: { Id: { type: 'string' }, ...properties }, ...marks } as any,
+        }
+        return convertSchemaRecordToTypes([record])
+    }
+    const item = { type: 'object', additionalProperties: false, properties: { Name: { type: 'string' }, Secret: { type: 'string' } } }
+
+    test('a pointer through an array marks only the leaf', () => {
+        const types = convertWith({ Items: { type: 'array', items: { $ref: '#/definitions/Item' } } }, { Item: item }, { writeOnlyProperties: ['/properties/Items/*/Secret'] })
+
+        expect(lookupObjectType(types, 'AWS.Test/ThingProperties')!.properties['Items'].flags).toBe(ObjectTypePropertyFlags.None)
+        expect(lookupObjectType(types, 'Item')!.properties['Secret'].flags).toBe(ObjectTypePropertyFlags.WriteOnly)
+        expect(lookupObjectType(types, 'Item')!.properties['Name'].flags).toBe(ObjectTypePropertyFlags.None)
+    })
+
+    test('a pointer through a map marks only the leaf', () => {
+        const types = convertWith({ Map: { type: 'object', additionalProperties: false, patternProperties: { '.*': { $ref: '#/definitions/Item' } } } }, { Item: item }, { readOnlyProperties: ['/properties/Map/*/Name'] })
+
+        expect(lookupObjectType(types, 'AWS.Test/ThingProperties')!.properties['Map'].flags).toBe(ObjectTypePropertyFlags.None)
+        expect(lookupObjectType(types, 'Item')!.properties['Name'].flags).toBe(ObjectTypePropertyFlags.ReadOnly)
+    })
+
+    test('a pointer through an object or string property marks the leaf', () => {
+        const types = convertWith({ Settings: { type: ['object', 'string'], additionalProperties: false, properties: { Secret: { type: 'string' } } } }, {}, { writeOnlyProperties: ['/properties/Settings/Secret'] })
+
+        const settings = types.find(t => t.type === TypeBaseKind.ObjectType && Object.keys((t as ObjectType).properties).includes('Secret')) as ObjectType
+        expect(settings.properties['Secret'].flags).toBe(ObjectTypePropertyFlags.WriteOnly)
+        expect(lookupObjectType(types, 'AWS.Test/ThingProperties')!.properties['Settings'].flags).toBe(ObjectTypePropertyFlags.None)
+    })
+
+    test('a definition used on another path keeps its flags there', () => {
+        const types = convertWith({ Input: { $ref: '#/definitions/Item' }, Results: { type: 'array', items: { $ref: '#/definitions/Item' } } }, { Item: item }, { readOnlyProperties: ['/properties/Results/*/Name'] })
+
+        const properties = lookupObjectType(types, 'AWS.Test/ThingProperties')!.properties
+        const input = types[(properties['Input'].type as TypeReference).index] as ObjectType
+        const results = types[(types[(properties['Results'].type as TypeReference).index] as ArrayType).itemType.index] as ObjectType
+        expect(input.properties['Name'].flags).toBe(ObjectTypePropertyFlags.None)
+        expect(results.properties['Name'].flags).toBe(ObjectTypePropertyFlags.ReadOnly)
+    })
+
+    test('a definition marked on every path is marked everywhere', () => {
+        const types = convertWith({ Input: { $ref: '#/definitions/Item' }, Results: { type: 'array', items: { $ref: '#/definitions/Item' } } }, { Item: item }, { writeOnlyProperties: ['/properties/Input/Secret', '/properties/Results/*/Secret'] })
+
+        const items = types.filter(t => t.type === TypeBaseKind.ObjectType && (t as ObjectType).name === 'Item') as ObjectType[]
+        expect(items.map(i => i.properties['Secret'].flags)).toEqual(items.map(() => ObjectTypePropertyFlags.WriteOnly))
+    })
+
+    test('a pointer through a union follows every member that resolves it', () => {
+        const types = convertWith({
+            Settings: { type: ['array', 'object'], items: { type: 'string' }, additionalProperties: false, patternProperties: { '.*': { $ref: '#/definitions/Item' } } },
+        }, { Item: item }, { writeOnlyProperties: ['/properties/Settings/*/Secret'] })
+
+        expect(lookupObjectType(types, 'Item')!.properties['Secret'].flags).toBe(ObjectTypePropertyFlags.WriteOnly)
+        expect(lookupObjectType(types, 'AWS.Test/ThingProperties')!.properties['Settings'].flags).toBe(ObjectTypePropertyFlags.None)
+    })
+
+    test('a pointer that ends in * marks the array', () => {
+        const types = convertWith({ Items: { type: 'array', items: { type: 'string' } } }, {}, { readOnlyProperties: ['/properties/Items/*'] })
+
+        expect(lookupObjectType(types, 'AWS.Test/ThingProperties')!.properties['Items'].flags).toBe(ObjectTypePropertyFlags.ReadOnly)
+    })
+
+    test.each([
+        ['a missing property', '/properties/Items/*/Missing'],
+        ['* on a property that is not an array or map', '/properties/Id/*/Name'],
+    ])('a pointer to %s marks nothing', (_, pointer) => {
+        const types = convertWith({ Items: { type: 'array', items: { $ref: '#/definitions/Item' } } }, { Item: item }, { writeOnlyProperties: [pointer] })
+
+        const properties = lookupObjectType(types, 'AWS.Test/ThingProperties')!.properties
+        expect(properties['Items'].flags).toBe(ObjectTypePropertyFlags.None)
+        expect(properties['Id'].flags).toBe(ObjectTypePropertyFlags.Identifier)
+        expect(Object.values(lookupObjectType(types, 'Item')!.properties).map(p => p.flags)).toEqual([ObjectTypePropertyFlags.None, ObjectTypePropertyFlags.None])
+    })
+})
+
 function lookupObjectType(types: BicepType[], name: string): ObjectType | undefined {
     return types.find(t => (t as ObjectType).type === TypeBaseKind.ObjectType && (t as ObjectType).name === name) as ObjectType;
 }
