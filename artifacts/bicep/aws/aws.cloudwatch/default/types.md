@@ -32,6 +32,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.CloudWatch/AlarmMuteRuleProperties](#awscloudwatchalarmmuteruleproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.CloudWatch/AnomalyDetector@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudWatch/AnomalyDetectorProperties](#awscloudwatchanomalydetectorproperties) (Identifier): properties of the resource
+
 ## Resource AWS.CloudWatch/CompositeAlarm@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -304,6 +312,18 @@
 * **WarmUpConfiguration**: [WarmUpConfiguration](#warmupconfiguration): The warm-up configuration for the alarm. A warm-up period delays alarm evaluation after you create or update the alarm. During the warm-up period, the alarm stays in ``INSUFFICIENT_DATA`` and does not perform alarm actions.
  For more information, see [Alarm warm-up periods](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/alarm-warm-up.html) in the *Amazon CloudWatch User Guide*.
 
+## AWS.CloudWatch/AnomalyDetectorProperties
+### Properties
+* **Configuration**: [Configuration](#configuration)
+* **Dimensions**: [Dimension](#dimension)[]
+* **Id**: string (ReadOnly, Identifier): The detector's identity as a JSON object: the metric and its statistic, or the metric math queries.
+* **MetricCharacteristics**: [MetricCharacteristics](#metriccharacteristics)
+* **MetricMathAnomalyDetector**: [MetricMathAnomalyDetector](#metricmathanomalydetector)
+* **MetricName**: string
+* **Namespace**: string
+* **SingleMetricAnomalyDetector**: [SingleMetricAnomalyDetector](#singlemetricanomalydetector)
+* **Stat**: string
+
 ## AWS.CloudWatch/CompositeAlarmProperties
 ### Properties
 * **ActionConfiguration**: [ActionConfiguration](#actionconfiguration): Configuration that applies to the notifications this alarm sends when it performs its actions.
@@ -489,10 +509,20 @@
 * **Type**: string (ReadOnly): The ownership category of the view. Views created through CloudFormation are always USER views; MANAGED views are provisioned by AWS.
 * **UpdatedAt**: string (ReadOnly): The timestamp when the view was last updated.
 
+## Configuration
+### Properties
+* **ExcludedTimeRanges**: [Range](#range)[]
+* **MetricTimeZone**: string
+
 ## Dimension
 ### Properties
 * **Name**: string (Required): The name of the dimension, from 1–255 characters in length. This dimension name must have been included when the metric was published.
 * **Value**: string (Required): The value for the dimension, from 1–255 characters in length.
+
+## Dimension
+### Properties
+* **Name**: string (Required)
+* **Value**: string (Required)
 
 ## EncryptionConfiguration
 ### Properties
@@ -546,6 +576,16 @@
 * **MetricName**: string: The name of the metric that you want the alarm to watch. This is a required field.
 * **Namespace**: string: The namespace of the metric that the alarm will watch.
 
+## Metric
+### Properties
+* **Dimensions**: [Dimension](#dimension)[]
+* **MetricName**: string (Required)
+* **Namespace**: string (Required)
+
+## MetricCharacteristics
+### Properties
+* **PeriodicSpikes**: bool
+
 ## MetricDataQuery
 ### Properties
 * **AccountId**: string: The ID of the account where the metrics are located, if this is a cross-account alarm.
@@ -560,6 +600,20 @@
  When you create an alarm based on a metric math expression, specify ``True`` for this value for only the one math expression that the alarm is based on. You must specify ``False`` for ``ReturnData`` for all the other metrics and expressions used in the alarm.
  This field is required.
 
+## MetricDataQuery
+### Properties
+* **AccountId**: string
+* **Expression**: string
+* **Id**: string (Required, Identifier)
+* **Label**: string
+* **MetricStat**: [MetricStat](#metricstat)
+* **Period**: int
+* **ReturnData**: bool
+
+## MetricMathAnomalyDetector
+### Properties
+* **MetricDataQueries**: [MetricDataQuery](#metricdataquery)[]
+
 ## MetricStat
 ### Properties
 * **Metric**: [Metric](#metric) (Required): The metric to return, including the metric name, namespace, and dimensions.
@@ -571,6 +625,13 @@
 * **Stat**: string (Required): The statistic to return. It can include any CW statistic or extended statistic. For a list of valid values, see the table in [Statistics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Statistic) in the *User Guide*.
 * **Unit**: string: The unit to use for the returned data points. 
  Valid values are: Seconds, Microseconds, Milliseconds, Bytes, Kilobytes, Megabytes, Gigabytes, Terabytes, Bits, Kilobits, Megabits, Gigabits, Terabits, Percent, Count, Bytes/Second, Kilobytes/Second, Megabytes/Second, Gigabytes/Second, Terabytes/Second, Bits/Second, Kilobits/Second, Megabits/Second, Gigabits/Second, Terabits/Second, Count/Second, or None.
+
+## MetricStat
+### Properties
+* **Metric**: [Metric](#metric) (Required)
+* **Period**: int (Required)
+* **Stat**: string (Required)
+* **Unit**: string
 
 ## MetricStreamFilter
 ### Properties
@@ -602,6 +663,11 @@
 ### Properties
 * **Key**: string (Required): The attribute name.
 * **Value**: string (Required): The attribute value.
+
+## Range
+### Properties
+* **EndTime**: string (Required)
+* **StartTime**: string (Required)
 
 ## ResourceMetricSelection
 ### Properties
@@ -641,6 +707,14 @@
 * **Actions**: string[] (Required): The actions this group applies to, each in vendor-code:Action form.
 * **ContextConditions**: [AccessGrant_ContextConditions](#accessgrantcontextconditions): Context conditions for fine-grained access control on these actions, as a map of condition keys to lists of allowed values.
 * **Resources**: [ResourceScope](#resourcescope)[]: Resource scopes constraining these actions to specific resources.
+
+## SingleMetricAnomalyDetector
+### Properties
+* **AccountId**: string
+* **Dimensions**: [Dimension](#dimension)[]
+* **MetricName**: string
+* **Namespace**: string
+* **Stat**: string
 
 ## Tag
 ### Properties

@@ -1,5 +1,13 @@
 # AWS.DocDB @ default
 
+## Resource AWS.DocDB/DBCluster@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.DocDB/DBClusterProperties](#awsdocdbdbclusterproperties) (Identifier): properties of the resource
+
 ## Resource AWS.DocDB/DBClusterParameterGroup@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -7,6 +15,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.DocDB/DBClusterParameterGroupProperties](#awsdocdbdbclusterparametergroupproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.DocDB/DBInstance@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.DocDB/DBInstanceProperties](#awsdocdbdbinstanceproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.DocDB/DBSubnetGroup@default
 * **Readable Scope(s)**: None
@@ -40,6 +56,60 @@
 * **Parameters**: [DBClusterParameterGroup_Parameters](#dbclusterparametergroupparameters) (Required): An object containing key-value pairs of parameters to set for the DB cluster parameter group.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
+## AWS.DocDB/DBClusterProperties
+### Properties
+* **AvailabilityZones**: string[] (WriteOnly)
+* **BackupRetentionPeriod**: int
+* **ClusterResourceId**: string (ReadOnly)
+* **CopyTagsToSnapshot**: bool
+* **DBClusterIdentifier**: string
+* **DBClusterParameterGroupName**: string
+* **DBSubnetGroupName**: string
+* **DeletionProtection**: bool
+* **EnableCloudwatchLogsExports**: string[]
+* **Endpoint**: string (ReadOnly)
+* **EngineVersion**: string
+* **GlobalClusterIdentifier**: string (WriteOnly)
+* **Id**: string (ReadOnly, Identifier): The cluster identifier, the same as DBClusterIdentifier.
+* **KmsKeyId**: string (WriteOnly)
+* **ManageMasterUserPassword**: bool
+* **MasterUsername**: string
+* **MasterUserPassword**: string (WriteOnly)
+* **MasterUserSecretKmsKeyId**: string (WriteOnly)
+* **NetworkType**: string
+* **Port**: int
+* **PreferredBackupWindow**: string
+* **PreferredMaintenanceWindow**: string
+* **ReadEndpoint**: string (ReadOnly)
+* **RestoreToTime**: string (WriteOnly)
+* **RestoreType**: string (WriteOnly)
+* **RotateMasterUserPassword**: bool (WriteOnly)
+* **ServerlessV2PlatformVersion**: string (ReadOnly)
+* **ServerlessV2ScalingConfiguration**: [ServerlessV2ScalingConfiguration](#serverlessv2scalingconfiguration)
+* **SnapshotIdentifier**: string (WriteOnly)
+* **SourceDBClusterIdentifier**: string (WriteOnly)
+* **StorageEncrypted**: bool
+* **StorageType**: string
+* **Tags**: [Tag](#tag)[]
+* **UseLatestRestorableTime**: bool (WriteOnly)
+* **VpcSecurityGroupIds**: string[]
+
+## AWS.DocDB/DBInstanceProperties
+### Properties
+* **AutoMinorVersionUpgrade**: bool
+* **AvailabilityZone**: string
+* **CACertificateIdentifier**: string
+* **CertificateRotationRestart**: bool (WriteOnly)
+* **DBClusterIdentifier**: string (Required)
+* **DBInstanceClass**: string (Required)
+* **DBInstanceIdentifier**: string
+* **EnablePerformanceInsights**: bool
+* **Endpoint**: string (ReadOnly)
+* **Id**: string (ReadOnly, Identifier): The instance identifier, the same as DBInstanceIdentifier.
+* **Port**: string (ReadOnly)
+* **PreferredMaintenanceWindow**: string
+* **Tags**: [Tag](#tag)[]
+
 ## AWS.DocDB/DBSubnetGroupProperties
 ### Properties
 * **DBSubnetGroupDescription**: string (Required): The description for the subnet group.
@@ -71,10 +141,25 @@
 ## DBClusterParameterGroup_Parameters
 ### Properties
 
+## ServerlessV2ScalingConfiguration
+### Properties
+* **MaxCapacity**: int (Required)
+* **MinCapacity**: int (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
 ## Tag
 ### Properties
 * **Key**: string (Required): The key name of the tag.
 * **Value**: string (Required): The value for the tag.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

@@ -8,6 +8,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.KinesisAnalyticsV2/ApplicationProperties](#awskinesisanalyticsv2applicationproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.KinesisAnalyticsV2/ApplicationCloudWatchLoggingOption@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.KinesisAnalyticsV2/ApplicationCloudWatchLoggingOptionProperties](#awskinesisanalyticsv2applicationcloudwatchloggingoptionproperties) (Required, Identifier): properties of the resource
+
 ## Application_PropertyMap
 ### Properties
 
@@ -51,6 +59,12 @@
 ### Properties
 * **RollbackEnabled**: bool (Required): Describes whether system initiated rollbacks are enabled for a Flink-based Kinesis Data Analytics application.
 
+## AWS.KinesisAnalyticsV2/ApplicationCloudWatchLoggingOptionProperties
+### Properties
+* **ApplicationName**: string (Required)
+* **CloudWatchLoggingOption**: [CloudWatchLoggingOption](#cloudwatchloggingoption) (Required)
+* **Id**: string (ReadOnly, Identifier): ApplicationName and the logging option ID AWS assigns, joined with "|".
+
 ## AWS.KinesisAnalyticsV2/ApplicationProperties
 ### Properties
 * **ApplicationConfiguration**: [ApplicationConfiguration](#applicationconfiguration): Use this parameter to configure the application.
@@ -73,6 +87,10 @@
 * **CheckpointInterval**: int: Describes the interval in milliseconds between checkpoint operations.
 * **ConfigurationType**: string (Required): Describes whether the application uses Kinesis Data Analytics' default checkpointing behavior. You must set this property to `CUSTOM` in order to set the `CheckpointingEnabled`, `CheckpointInterval`, or `MinPauseBetweenCheckpoints` parameters.
 * **MinPauseBetweenCheckpoints**: int: Describes the minimum time in milliseconds after a checkpoint operation completes that a new checkpoint operation can start. If a checkpoint operation takes longer than the CheckpointInterval, the application otherwise performs continual checkpoint operations. For more information, see Tuning Checkpointing in the Apache Flink Documentation.
+
+## CloudWatchLoggingOption
+### Properties
+* **LogStreamARN**: string (Required)
 
 ## CodeContent
 ### Properties

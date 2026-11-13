@@ -125,7 +125,7 @@
 * **EbsRootVolumeIops**: int: The IOPS, of the Amazon EBS root device volume of the Linux AMI that is used for each Amazon EC2 instance. Available in Amazon EMR releases 6.15.0 and later.
 * **EbsRootVolumeSize**: int: The size, in GiB, of the Amazon EBS root device volume of the Linux AMI that is used for each EC2 instance. Available in Amazon EMR version 4.x and later.
 * **EbsRootVolumeThroughput**: int: The throughput, in MiB/s, of the Amazon EBS root device volume of the Linux AMI that is used for each Amazon EC2 instance. Available in Amazon EMR releases 6.15.0 and later.
-* **Id**: string (ReadOnly, Identifier): The unique identifier for the cluster.
+* **Id**: string (ReadOnly, Identifier): The cluster ID, such as j-2AXXXXXXGAPLF, which AWS assigns.
 * **Instances**: [JobFlowInstancesConfig](#jobflowinstancesconfig) (Required): A specification of the number and type of Amazon EC2 instances.
 * **JobFlowRole**: string (Required): Also called instance profile and EC2 role. An IAM role for an EMR cluster. The EC2 instances of the cluster assume this role. The default role is EMR_EC2_DefaultRole. In order to use the default role, you must have already created it using the CLI or console
 * **KerberosAttributes**: [KerberosAttributes](#kerberosattributes): Attributes for Kerberos configuration when Kerberos authentication is enabled using a security configuration. For more information see Use Kerberos Authentication in the Amazon EMR Management Guide.
@@ -458,7 +458,7 @@
 * **Ec2SubnetIds**: string[]: Applies to clusters that use the instance fleet configuration. When multiple EC2 subnet IDs are specified, Amazon EMR evaluates them and launches instances in the optimal subnet.
 * **EmrManagedMasterSecurityGroup**: string: The identifier of the Amazon EC2 security group for the master node. If you specify EmrManagedMasterSecurityGroup, you must also specify EmrManagedSlaveSecurityGroup.
 * **EmrManagedSlaveSecurityGroup**: string: The identifier of the Amazon EC2 security group for the core and task nodes. If you specify EmrManagedSlaveSecurityGroup, you must also specify EmrManagedMasterSecurityGroup.
-* **HadoopVersion**: string: Applies only to Amazon EMR release versions earlier than 4.0. The Hadoop version for the cluster. Valid inputs are "0.18" (no longer maintained), "0.20" (no longer maintained), "0.20.205" (no longer maintained), "1.0.3", "2.2.0", or "2.4.0". If you do not set this value, the default of 0.18 is used, unless the AmiVersion parameter is set in the RunJobFlow call, in which case the default version of Hadoop for that AMI version is used.
+* **HadoopVersion**: string (WriteOnly): Applies only to Amazon EMR release versions earlier than 4.0. The Hadoop version for the cluster. Valid inputs are "0.18" (no longer maintained), "0.20" (no longer maintained), "0.20.205" (no longer maintained), "1.0.3", "2.2.0", or "2.4.0". If you do not set this value, the default of 0.18 is used, unless the AmiVersion parameter is set in the RunJobFlow call, in which case the default version of Hadoop for that AMI version is used.
 * **KeepJobFlowAliveWhenNoSteps**: bool: Specifies whether the cluster should remain available after completing all steps. Defaults to true. For more information about configuring cluster termination, see Control Cluster Termination in the EMR Management Guide.
 * **MasterInstanceFleet**: [InstanceFleetConfig](#instancefleetconfig)
 * **MasterInstanceGroup**: [InstanceGroupConfig](#instancegroupconfig): Configuration for the instance groups in a cluster.

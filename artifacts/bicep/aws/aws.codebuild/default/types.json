@@ -608,6 +608,238 @@
   },
   {
     "$type": "ObjectType",
+    "name": "ProjectSourceVersion",
+    "properties": {
+      "SourceIdentifier": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "SourceVersion": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VpcConfig",
+    "properties": {
+      "SecurityGroupIds": {
+        "type": {
+          "$ref": "#/53"
+        },
+        "flags": 0
+      },
+      "Subnets": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 0
+      },
+      "VpcId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceAuth",
+    "properties": {
+      "Resource": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ScopeConfiguration",
+    "properties": {
+      "Domain": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The domain of the GitHub Enterprise organization or the GitLab Self Managed group. Note that this parameter is only required if your project's source type is GITHUB_ENTERPRISE or GITLAB_SELF_MANAGED."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "The name of either the enterprise or organization that will send webhook events to CodeBuild, depending on if the webhook is a global or organization webhook respectively."
+      },
+      "Scope": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The type of scope for a GitHub or GitLab webhook. The scope default is GITHUB_ORGANIZATION. Allowed values: GITHUB_ORGANIZATION | GITHUB_GLOBAL | GITLAB_GROUP"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RegistryCredential",
+    "properties": {
+      "Credential": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "CredentialProvider": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "FilterGroup",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WebhookFilter",
+    "properties": {
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Pattern": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "ExcludeMatchedPattern": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Source",
+    "properties": {
+      "Auth": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 0
+      },
+      "BuildSpec": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "BuildStatusConfig": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 0
+      },
+      "GitCloneDepth": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "GitSubmodulesConfig": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 0
+      },
+      "InsecureSsl": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      },
+      "Location": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "ReportBuildStatus": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      },
+      "SourceIdentifier": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ProjectCache",
+    "properties": {
+      "Modes": {
+        "type": {
+          "$ref": "#/56"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The type of cache used by the build project. Allowed values: NO_CACHE | S3 | LOCAL."
+      },
+      "Location": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "CacheNamespace": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Defines the scope of the cache. You can use this namespace to share a cache across multiple projects."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "Artifacts",
     "properties": {
       "ArtifactIdentifier": {
@@ -672,17 +904,35 @@
   },
   {
     "$type": "ObjectType",
+    "name": "LogsConfig",
+    "properties": {
+      "CloudWatchLogs": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0
+      },
+      "S3Logs": {
+        "type": {
+          "$ref": "#/49"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "BatchRestrictions",
     "properties": {
       "ComputeTypesAllowed": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/57"
         },
         "flags": 0
       },
       "FleetsAllowed": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/58"
         },
         "flags": 0
       },
@@ -696,17 +946,35 @@
   },
   {
     "$type": "ObjectType",
-    "name": "BuildStatusConfig",
+    "name": "ProjectBuildBatchConfig",
     "properties": {
-      "Context": {
+      "CombineArtifacts": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      },
+      "ServiceRole": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 0
       },
-      "TargetUrl": {
+      "BatchReportMode": {
         "type": {
           "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "TimeoutInMins": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "Restrictions": {
+        "type": {
+          "$ref": "#/39"
         },
         "flags": 0
       }
@@ -738,75 +1006,23 @@
   },
   {
     "$type": "ObjectType",
-    "name": "DockerServer",
-    "properties": {
-      "ComputeType": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1,
-        "description": "Information about the compute resources the docker server uses. Valid Values: BUILD_GENERAL1_SMALL | BUILD_GENERAL1_MEDIUM | BUILD_GENERAL1_LARGE | BUILD_GENERAL1_XLARGE | BUILD_GENERAL1_2XLARGE | BUILD_LAMBDA_1GB | BUILD_LAMBDA_2GB | BUILD_LAMBDA_4GB | BUILD_LAMBDA_8GB | BUILD_LAMBDA_10GB | ATTRIBUTE_BASED_COMPUTE | CUSTOM_INSTANCE_TYPE"
-      },
-      "SecurityGroupIds": {
-        "type": {
-          "$ref": "#/55"
-        },
-        "flags": 0,
-        "description": "A list of one or more security groups IDs."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "Environment",
     "properties": {
-      "Certificate": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0
-      },
-      "ComputeType": {
+      "Type": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 1
       },
-      "DockerServer": {
-        "type": {
-          "$ref": "#/32"
-        },
-        "flags": 0,
-        "description": "Contains docker server information."
-      },
       "EnvironmentVariables": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/59"
         },
         "flags": 0
       },
       "Fleet": {
         "type": {
-          "$ref": "#/41"
-        },
-        "flags": 0
-      },
-      "HostKernel": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "The kernel version of the host operating system for the build environment. Allowed values: LINUX_KERNEL_4 | LINUX_KERNEL_6 | LINUX_KERNEL_LATEST"
-      },
-      "Image": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1
-      },
-      "ImagePullCredentialsType": {
-        "type": {
-          "$ref": "#/1"
+          "$ref": "#/50"
         },
         "flags": 0
       },
@@ -816,17 +1032,49 @@
         },
         "flags": 0
       },
-      "RegistryCredential": {
+      "ImagePullCredentialsType": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/1"
         },
         "flags": 0
       },
-      "Type": {
+      "Image": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 1
+      },
+      "RegistryCredential": {
+        "type": {
+          "$ref": "#/32"
+        },
+        "flags": 0
+      },
+      "ComputeType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Certificate": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "DockerServer": {
+        "type": {
+          "$ref": "#/51"
+        },
+        "flags": 0,
+        "description": "Contains docker server information."
+      },
+      "HostKernel": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The kernel version of the host operating system for the build environment. Allowed values: LINUX_KERNEL_4 | LINUX_KERNEL_6 | LINUX_KERNEL_LATEST"
       }
     }
   },
@@ -834,126 +1082,23 @@
     "$type": "ObjectType",
     "name": "EnvironmentVariable",
     "properties": {
-      "Name": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 17
-      },
-      "Type": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0
-      },
       "Value": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "FilterGroup",
-    "properties": {}
-  },
-  {
-    "$type": "ObjectType",
-    "name": "GitSubmodulesConfig",
-    "properties": {
-      "FetchSubmodules": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "LogsConfig",
-    "properties": {
-      "CloudWatchLogs": {
-        "type": {
-          "$ref": "#/31"
-        },
-        "flags": 0
-      },
-      "S3Logs": {
-        "type": {
-          "$ref": "#/46"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ProjectBuildBatchConfig",
-    "properties": {
-      "BatchReportMode": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0
-      },
-      "CombineArtifacts": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0
-      },
-      "Restrictions": {
-        "type": {
-          "$ref": "#/29"
-        },
-        "flags": 0
-      },
-      "ServiceRole": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0
-      },
-      "TimeoutInMins": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ProjectCache",
-    "properties": {
-      "CacheNamespace": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "Defines the scope of the cache. You can use this namespace to share a cache across multiple projects."
-      },
-      "Location": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0
-      },
-      "Modes": {
-        "type": {
-          "$ref": "#/58"
-        },
-        "flags": 0
       },
       "Type": {
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
-        "description": "The type of cache used by the build project. Allowed values: NO_CACHE | S3 | LOCAL."
+        "flags": 0
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17
       }
     }
   },
@@ -962,12 +1107,6 @@
     "name": "ProjectFileSystemLocation",
     "properties": {
       "Identifier": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1
-      },
-      "Location": {
         "type": {
           "$ref": "#/1"
         },
@@ -985,6 +1124,12 @@
         },
         "flags": 1
       },
+      "Location": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
       "Type": {
         "type": {
           "$ref": "#/1"
@@ -995,31 +1140,19 @@
   },
   {
     "$type": "ObjectType",
-    "name": "ProjectFleet",
+    "name": "Tag",
     "properties": {
-      "FleetArn": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ProjectSourceVersion",
-    "properties": {
-      "SourceIdentifier": {
+      "Value": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 1
       },
-      "SourceVersion": {
+      "Key": {
         "type": {
           "$ref": "#/1"
         },
-        "flags": 0
+        "flags": 1
       }
     }
   },
@@ -1035,19 +1168,7 @@
       },
       "FilterGroups": {
         "type": {
-          "$ref": "#/60"
-        },
-        "flags": 0
-      },
-      "PullRequestBuildPolicy": {
-        "type": {
-          "$ref": "#/44"
-        },
-        "flags": 0
-      },
-      "ScopeConfiguration": {
-        "type": {
-          "$ref": "#/47"
+          "$ref": "#/61"
         },
         "flags": 0
       },
@@ -1056,40 +1177,46 @@
           "$ref": "#/2"
         },
         "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PullRequestBuildPolicy",
-    "properties": {
-      "ApproverRoles": {
+      },
+      "ScopeConfiguration": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/31"
         },
         "flags": 0
       },
-      "RequiresCommentApproval": {
+      "PullRequestBuildPolicy": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/52"
         },
-        "flags": 1
+        "flags": 0
       }
     }
   },
   {
     "$type": "ObjectType",
-    "name": "RegistryCredential",
+    "name": "BuildStatusConfig",
     "properties": {
-      "Credential": {
+      "Context": {
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1
+        "flags": 0
       },
-      "CredentialProvider": {
+      "TargetUrl": {
         "type": {
           "$ref": "#/1"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GitSubmodulesConfig",
+    "properties": {
+      "FetchSubmodules": {
+        "type": {
+          "$ref": "#/2"
         },
         "flags": 1
       }
@@ -1121,185 +1248,52 @@
   },
   {
     "$type": "ObjectType",
-    "name": "ScopeConfiguration",
+    "name": "ProjectFleet",
     "properties": {
-      "Domain": {
+      "FleetArn": {
         "type": {
           "$ref": "#/1"
         },
-        "flags": 0,
-        "description": "The domain of the GitHub Enterprise organization or the GitLab Self Managed group. Note that this parameter is only required if your project's source type is GITHUB_ENTERPRISE or GITLAB_SELF_MANAGED."
-      },
-      "Name": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 17,
-        "description": "The name of either the enterprise or organization that will send webhook events to CodeBuild, depending on if the webhook is a global or organization webhook respectively."
-      },
-      "Scope": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "The type of scope for a GitHub or GitLab webhook. The scope default is GITHUB_ORGANIZATION. Allowed values: GITHUB_ORGANIZATION | GITHUB_GLOBAL | GITLAB_GROUP"
+        "flags": 0
       }
     }
   },
   {
     "$type": "ObjectType",
-    "name": "Source",
+    "name": "DockerServer",
     "properties": {
-      "Auth": {
-        "type": {
-          "$ref": "#/49"
-        },
-        "flags": 0
-      },
-      "BuildSpec": {
+      "ComputeType": {
         "type": {
           "$ref": "#/1"
         },
-        "flags": 0
+        "flags": 1,
+        "description": "Information about the compute resources the docker server uses. Valid Values: BUILD_GENERAL1_SMALL | BUILD_GENERAL1_MEDIUM | BUILD_GENERAL1_LARGE | BUILD_GENERAL1_XLARGE | BUILD_GENERAL1_2XLARGE | BUILD_LAMBDA_1GB | BUILD_LAMBDA_2GB | BUILD_LAMBDA_4GB | BUILD_LAMBDA_8GB | BUILD_LAMBDA_10GB | ATTRIBUTE_BASED_COMPUTE | CUSTOM_INSTANCE_TYPE"
       },
-      "BuildStatusConfig": {
-        "type": {
-          "$ref": "#/30"
-        },
-        "flags": 0
-      },
-      "GitCloneDepth": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0
-      },
-      "GitSubmodulesConfig": {
-        "type": {
-          "$ref": "#/36"
-        },
-        "flags": 0
-      },
-      "InsecureSsl": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0
-      },
-      "Location": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0
-      },
-      "ReportBuildStatus": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0
-      },
-      "SourceIdentifier": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0
-      },
-      "Type": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SourceAuth",
-    "properties": {
-      "Resource": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0
-      },
-      "Type": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Key": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1
-      },
-      "Value": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "VpcConfig",
-    "properties": {
       "SecurityGroupIds": {
         "type": {
           "$ref": "#/62"
         },
-        "flags": 0
-      },
-      "Subnets": {
-        "type": {
-          "$ref": "#/63"
-        },
-        "flags": 0
-      },
-      "VpcId": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0
+        "flags": 0,
+        "description": "A list of one or more security groups IDs."
       }
     }
   },
   {
     "$type": "ObjectType",
-    "name": "WebhookFilter",
+    "name": "PullRequestBuildPolicy",
     "properties": {
-      "ExcludeMatchedPattern": {
+      "RequiresCommentApproval": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "ApproverRoles": {
+        "type": {
+          "$ref": "#/63"
         },
         "flags": 0
-      },
-      "Pattern": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1
-      },
-      "Type": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1
       }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
     }
   },
   {
@@ -1323,7 +1317,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/52"
+      "$ref": "#/1"
     }
   },
   {
@@ -1335,19 +1329,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/52"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/59"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
       "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/43"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/34"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/60"
     }
   },
   {
@@ -1369,7 +1369,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/40"
+      "$ref": "#/35"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/37"
     }
   },
   {
@@ -1381,72 +1387,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/42"
+      "$ref": "#/45"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/48"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/50"
+      "$ref": "#/44"
     }
   },
   {
     "$type": "ObjectType",
     "name": "AWS.CodeBuild/ProjectProperties",
     "properties": {
-      "Arn": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 2
-      },
-      "Artifacts": {
-        "type": {
-          "$ref": "#/28"
-        },
-        "flags": 1,
-        "description": "Specifies output settings for artifacts generated by an AWS CodeBuild build."
-      },
-      "AutoRetryLimit": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0
-      },
-      "BadgeEnabled": {
-        "type": {
-          "$ref": "#/2"
-        },
-        "flags": 0,
-        "description": "Indicates whether AWS CodeBuild generates a publicly accessible URL for your project's build badge."
-      },
-      "BuildBatchConfig": {
-        "type": {
-          "$ref": "#/38"
-        },
-        "flags": 0,
-        "description": "Defines the batch build options for the project."
-      },
-      "Cache": {
-        "type": {
-          "$ref": "#/39"
-        },
-        "flags": 0,
-        "description": "Settings that AWS CodeBuild uses to store and reuse build dependencies."
-      },
-      "ConcurrentBuildLimit": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0,
-        "description": "The maximum number of concurrent builds that are allowed for this project."
-      },
       "Description": {
         "type": {
           "$ref": "#/1"
@@ -1454,43 +1407,25 @@
         "flags": 0,
         "description": "A description that makes the build project easy to identify."
       },
-      "EncryptionKey": {
+      "ResourceAccessRole": {
         "type": {
           "$ref": "#/1"
         },
         "flags": 0
       },
-      "Environment": {
+      "VpcConfig": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/29"
         },
-        "flags": 1
+        "flags": 0
       },
-      "FileSystemLocations": {
+      "SecondarySources": {
         "type": {
           "$ref": "#/65"
         },
         "flags": 0
       },
-      "LogsConfig": {
-        "type": {
-          "$ref": "#/37"
-        },
-        "flags": 0
-      },
-      "Name": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 16
-      },
-      "QueuedTimeoutInMinutes": {
-        "type": {
-          "$ref": "#/3"
-        },
-        "flags": 0
-      },
-      "ResourceAccessRole": {
+      "EncryptionKey": {
         "type": {
           "$ref": "#/1"
         },
@@ -1502,15 +1437,21 @@
         },
         "flags": 0
       },
-      "SecondarySourceVersions": {
+      "Source": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/35"
         },
-        "flags": 0
+        "flags": 1
       },
-      "SecondarySources": {
+      "Name": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/1"
+        },
+        "flags": 16
+      },
+      "LogsConfig": {
+        "type": {
+          "$ref": "#/38"
         },
         "flags": 0
       },
@@ -1520,11 +1461,23 @@
         },
         "flags": 1
       },
-      "Source": {
+      "QueuedTimeoutInMinutes": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/3"
         },
-        "flags": 1
+        "flags": 0
+      },
+      "SecondarySourceVersions": {
+        "type": {
+          "$ref": "#/67"
+        },
+        "flags": 0
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/68"
+        },
+        "flags": 0
       },
       "SourceVersion": {
         "type": {
@@ -1532,23 +1485,44 @@
         },
         "flags": 0
       },
-      "Tags": {
+      "Triggers": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 0
+      },
+      "Artifacts": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 1,
+        "description": "Specifies output settings for artifacts generated by an AWS CodeBuild build."
+      },
+      "BadgeEnabled": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Indicates whether AWS CodeBuild generates a publicly accessible URL for your project's build badge."
+      },
+      "FileSystemLocations": {
         "type": {
           "$ref": "#/69"
         },
         "flags": 0
       },
-      "TimeoutInMinutes": {
+      "Environment": {
+        "type": {
+          "$ref": "#/42"
+        },
+        "flags": 1
+      },
+      "ConcurrentBuildLimit": {
         "type": {
           "$ref": "#/3"
         },
-        "flags": 0
-      },
-      "Triggers": {
-        "type": {
-          "$ref": "#/43"
-        },
-        "flags": 4
+        "flags": 0,
+        "description": "The maximum number of concurrent builds that are allowed for this project."
       },
       "Visibility": {
         "type": {
@@ -1556,9 +1530,35 @@
         },
         "flags": 0
       },
-      "VpcConfig": {
+      "Arn": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/1"
+        },
+        "flags": 2
+      },
+      "BuildBatchConfig": {
+        "type": {
+          "$ref": "#/40"
+        },
+        "flags": 0,
+        "description": "Defines the batch build options for the project."
+      },
+      "TimeoutInMinutes": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0
+      },
+      "Cache": {
+        "type": {
+          "$ref": "#/36"
+        },
+        "flags": 0,
+        "description": "Settings that AWS CodeBuild uses to store and reuse build dependencies."
+      },
+      "AutoRetryLimit": {
+        "type": {
+          "$ref": "#/3"
         },
         "flags": 0
       }

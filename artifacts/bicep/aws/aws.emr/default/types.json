@@ -35,32 +35,32 @@
   },
   {
     "$type": "ObjectType",
-    "name": "AutoScalingPolicy",
+    "name": "AutoTerminationPolicy",
     "properties": {
-      "Constraints": {
-        "type": {
-          "$ref": "#/28"
-        },
-        "flags": 1
-      },
-      "Rules": {
+      "IdleTimeout": {
         "type": {
           "$ref": "#/41"
         },
-        "flags": 1
+        "flags": 0,
+        "description": "Specifies the amount of idle time in seconds after which the cluster automatically terminates. You can specify a minimum of 60 seconds and a maximum of 604800 seconds (seven days)"
       }
     }
   },
   {
     "$type": "ObjectType",
-    "name": "AutoTerminationPolicy",
+    "name": "AutoScalingPolicy",
     "properties": {
-      "IdleTimeout": {
+      "Constraints": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 1
+      },
+      "Rules": {
         "type": {
           "$ref": "#/42"
         },
-        "flags": 0,
-        "description": "Specifies the amount of idle time in seconds after which the cluster automatically terminates. You can specify a minimum of 60 seconds and a maximum of 604800 seconds (seven days)"
+        "flags": 1
       }
     }
   },
@@ -77,7 +77,7 @@
       },
       "ScriptBootstrapAction": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/30"
         },
         "flags": 1
       }
@@ -102,7 +102,7 @@
       },
       "EvaluationPeriods": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The number of periods, in five-minute increments, during which the alarm condition must exist before the alarm triggers automatic scaling activity. The default value is 1."
@@ -123,7 +123,7 @@
       },
       "Period": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 1,
         "description": "The period, in seconds, over which the statistic is applied. EMR CloudWatch metrics are emitted every five minutes (300 seconds), so if an EMR CloudWatch metric is specified, specify 300."
@@ -137,7 +137,7 @@
       },
       "Threshold": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 1,
         "description": "The value against which the specified statistic is compared."
@@ -153,73 +153,32 @@
   },
   {
     "$type": "ObjectType",
-    "name": "CloudWatchLogConfiguration",
-    "properties": {
-      "Enabled": {
-        "type": {
-          "$ref": "#/44"
-        },
-        "flags": 1,
-        "description": "Specifies if CloudWatch logging is enabled."
-      },
-      "EncryptionKeyArn": {
-        "type": {
-          "$ref": "#/39"
-        },
-        "flags": 0,
-        "description": "The ARN of the encryption key used to encrypt the logs."
-      },
-      "LogGroupName": {
-        "type": {
-          "$ref": "#/39"
-        },
-        "flags": 0,
-        "description": "The name of the CloudWatch log group where logs are published."
-      },
-      "LogStreamNamePrefix": {
-        "type": {
-          "$ref": "#/39"
-        },
-        "flags": 0,
-        "description": "The prefix of the log stream name."
-      },
-      "LogTypes": {
-        "type": {
-          "$ref": "#/45"
-        },
-        "flags": 0,
-        "description": "A map of log types to file names for publishing logs to the standard output or standard error streams for CloudWatch. Valid log types include STEP_LOGS, SPARK_DRIVER, and SPARK_EXECUTOR. Valid file names for each type include STDOUT and STDERR."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "ComputeLimits",
     "properties": {
       "MaximumCapacityUnits": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 1,
         "description": " The upper boundary of EC2 units. It is measured through vCPU cores or instances for instance groups and measured through units for instance fleets. Managed scaling activities are not allowed beyond this boundary. The limit only applies to the core and task nodes. The master node cannot be scaled after initial configuration."
       },
       "MaximumCoreCapacityUnits": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The upper boundary of EC2 units for core node type in a cluster. It is measured through vCPU cores or instances for instance groups and measured through units for instance fleets. The core units are not allowed to scale beyond this boundary. The parameter is used to split capacity allocation between core and task nodes. "
       },
       "MaximumOnDemandCapacityUnits": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": " The upper boundary of On-Demand EC2 units. It is measured through vCPU cores or instances for instance groups and measured through units for instance fleets. The On-Demand units are not allowed to scale beyond this boundary. The parameter is used to split capacity allocation between On-Demand and Spot Instances."
       },
       "MinimumCapacityUnits": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 1,
         "description": "The lower boundary of EC2 units. It is measured through vCPU cores or instances for instance groups and measured through units for instance fleets. Managed scaling activities are not allowed beyond this boundary. The limit only applies to the core and task nodes. The master node cannot be scaled after initial configuration."
@@ -230,6 +189,44 @@
         },
         "flags": 1,
         "description": "The unit type used for specifying a managed scaling policy. "
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EbsBlockDeviceConfig",
+    "properties": {
+      "VolumeSpecification": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 1
+      },
+      "VolumesPerInstance": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "Number of EBS volumes with a specific volume configuration that are associated with every instance in the instance group. Use of this property can confuse CloudFormation drift detection. The EbsBlockDeviceConfigs read from the system may return a list with one entry per volume,replacing any entry specified in the template with a VolumesPerInstance greater than one by that many entries containing only the VolumeSpecification.Thus to avoid false drift detection, it is recommended to supply repeated entries in EbsBlockDeviceConfigs for any VolumeSpecification which is intended to be repeated and not to use this property."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EbsConfiguration",
+    "properties": {
+      "EbsBlockDeviceConfigs": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0
+      },
+      "EbsOptimized": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0,
+        "description": "Indicates whether an Amazon EBS volume is EBS-optimized."
       }
     }
   },
@@ -260,49 +257,11 @@
   },
   {
     "$type": "ObjectType",
-    "name": "EbsBlockDeviceConfig",
-    "properties": {
-      "VolumeSpecification": {
-        "type": {
-          "$ref": "#/37"
-        },
-        "flags": 1
-      },
-      "VolumesPerInstance": {
-        "type": {
-          "$ref": "#/42"
-        },
-        "flags": 0,
-        "description": "Number of EBS volumes with a specific volume configuration that are associated with every instance in the instance group. Use of this property can confuse CloudFormation drift detection. The EbsBlockDeviceConfigs read from the system may return a list with one entry per volume,replacing any entry specified in the template with a VolumesPerInstance greater than one by that many entries containing only the VolumeSpecification.Thus to avoid false drift detection, it is recommended to supply repeated entries in EbsBlockDeviceConfigs for any VolumeSpecification which is intended to be repeated and not to use this property."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "EbsConfiguration",
-    "properties": {
-      "EbsBlockDeviceConfigs": {
-        "type": {
-          "$ref": "#/48"
-        },
-        "flags": 0
-      },
-      "EbsOptimized": {
-        "type": {
-          "$ref": "#/44"
-        },
-        "flags": 0,
-        "description": "Indicates whether an Amazon EBS volume is EBS-optimized."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "HadoopJarStepConfig",
     "properties": {
       "Args": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/48"
         },
         "flags": 0
       },
@@ -322,7 +281,7 @@
       },
       "StepProperties": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": "A list of Java properties that are set when the step runs. You can use these properties to pass key-value pairs to your main function."
@@ -335,11 +294,17 @@
     "properties": {
       "InstanceTypeConfigs": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/50"
         },
         "flags": 0
       },
       "LaunchSpecifications": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 0
+      },
+      "ResizeSpecifications": {
         "type": {
           "$ref": "#/12"
         },
@@ -352,22 +317,16 @@
         "flags": 0,
         "description": "The friendly name of the instance fleet."
       },
-      "ResizeSpecifications": {
-        "type": {
-          "$ref": "#/13"
-        },
-        "flags": 0
-      },
       "TargetOnDemandCapacity": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The target capacity of On-Demand units for the instance fleet, which determines how many On-Demand Instances to provision"
       },
       "TargetSpotCapacity": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The target capacity of Spot units for the instance fleet, which determines how many Spot Instances to provision."
@@ -380,13 +339,13 @@
     "properties": {
       "OnDemandSpecification": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/22"
         },
         "flags": 0
       },
       "SpotSpecification": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/32"
         },
         "flags": 0
       }
@@ -396,15 +355,15 @@
     "$type": "ObjectType",
     "name": "InstanceFleetResizingSpecifications",
     "properties": {
-      "OnDemandResizeSpecification": {
+      "SpotResizeSpecification": {
         "type": {
           "$ref": "#/24"
         },
         "flags": 0
       },
-      "SpotResizeSpecification": {
+      "OnDemandResizeSpecification": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/23"
         },
         "flags": 0
       }
@@ -416,7 +375,7 @@
     "properties": {
       "AutoScalingPolicy": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/2"
         },
         "flags": 0,
         "description": "An automatic scaling policy for a core instance group or task instance group in an Amazon EMR cluster. The automatic scaling policy defines how an instance group dynamically adds and terminates EC2 instances in response to the value of a CloudWatch metric."
@@ -430,7 +389,7 @@
       },
       "Configurations": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "The list of configurations supplied for an EMR cluster instance group. You can specify a separate configuration for each instance group (master, core, and task)."
@@ -444,14 +403,14 @@
       },
       "EbsConfiguration": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/7"
         },
         "flags": 0,
         "description": "EBS configurations that will be attached to each EC2 instance in the instance group."
       },
       "InstanceCount": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 1,
         "description": "Target number of instances for the instance group."
@@ -492,14 +451,14 @@
       },
       "BidPriceAsPercentageOfOnDemandPrice": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The bid price, as a percentage of On-Demand price, for each EC2 Spot Instance as defined by InstanceType. Expressed as a number (for example, 20 specifies 20%). If neither BidPrice nor BidPriceAsPercentageOfOnDemandPrice is provided, BidPriceAsPercentageOfOnDemandPrice defaults to 100%."
       },
       "Configurations": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "A configuration classification that applies when provisioning cluster instances, which can include configurations for applications and software that run on the cluster."
@@ -513,7 +472,7 @@
       },
       "EbsConfiguration": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/7"
         },
         "flags": 0,
         "description": "The configuration of Amazon Elastic Block Store (Amazon EBS) attached to each instance as defined by InstanceType."
@@ -527,14 +486,14 @@
       },
       "Priority": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The priority at which Amazon EMR launches the Amazon EC2 instances with this instance type. Priority starts at 0, which is the highest priority. Amazon EMR considers the highest priority first."
       },
       "WeightedCapacity": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The number of units that a provisioned instance of this type provides toward fulfilling the target capacities defined in InstanceFleetConfig. This value is 1 for a master instance fleet, and must be 1 or greater for core and task instance fleets. Defaults to 1 if not specified."
@@ -547,31 +506,17 @@
     "properties": {
       "AdditionalMasterSecurityGroups": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "A list of additional Amazon EC2 security group IDs for the master node."
       },
       "AdditionalSlaveSecurityGroups": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/54"
         },
         "flags": 0,
         "description": "A list of additional Amazon EC2 security group IDs for the core and task nodes."
-      },
-      "CoreInstanceFleet": {
-        "type": {
-          "$ref": "#/11"
-        },
-        "flags": 0,
-        "description": ""
-      },
-      "CoreInstanceGroup": {
-        "type": {
-          "$ref": "#/14"
-        },
-        "flags": 0,
-        "description": "Configuration for the instance groups in a cluster."
       },
       "Ec2KeyName": {
         "type": {
@@ -589,7 +534,7 @@
       },
       "Ec2SubnetIds": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/55"
         },
         "flags": 0,
         "description": "Applies to clusters that use the instance fleet configuration. When multiple EC2 subnet IDs are specified, Amazon EMR evaluates them and launches instances in the optimal subnet."
@@ -612,32 +557,60 @@
         "type": {
           "$ref": "#/39"
         },
-        "flags": 0,
+        "flags": 4,
         "description": "Applies only to Amazon EMR release versions earlier than 4.0. The Hadoop version for the cluster. Valid inputs are \"0.18\" (no longer maintained), \"0.20\" (no longer maintained), \"0.20.205\" (no longer maintained), \"1.0.3\", \"2.2.0\", or \"2.4.0\". If you do not set this value, the default of 0.18 is used, unless the AmiVersion parameter is set in the RunJobFlow call, in which case the default version of Hadoop for that AMI version is used."
       },
       "KeepJobFlowAliveWhenNoSteps": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "Specifies whether the cluster should remain available after completing all steps. Defaults to true. For more information about configuring cluster termination, see Control Cluster Termination in the EMR Management Guide."
       },
+      "CoreInstanceFleet": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": ""
+      },
       "MasterInstanceFleet": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/10"
         },
         "flags": 0
       },
+      "TaskInstanceFleets": {
+        "type": {
+          "$ref": "#/56"
+        },
+        "flags": 0,
+        "description": ""
+      },
+      "CoreInstanceGroup": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Configuration for the instance groups in a cluster."
+      },
       "MasterInstanceGroup": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "Configuration for the instance groups in a cluster."
+      },
+      "TaskInstanceGroups": {
+        "type": {
+          "$ref": "#/57"
         },
         "flags": 0,
         "description": "Configuration for the instance groups in a cluster."
       },
       "Placement": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/35"
         },
         "flags": 0,
         "description": "The Availability Zone in which the cluster runs."
@@ -649,30 +622,16 @@
         "flags": 0,
         "description": "The identifier of the Amazon EC2 security group for the Amazon EMR service to access clusters in VPC private subnets."
       },
-      "TaskInstanceFleets": {
-        "type": {
-          "$ref": "#/57"
-        },
-        "flags": 0,
-        "description": ""
-      },
-      "TaskInstanceGroups": {
-        "type": {
-          "$ref": "#/58"
-        },
-        "flags": 0,
-        "description": "Configuration for the instance groups in a cluster."
-      },
       "TerminationProtected": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "Specifies whether to lock the cluster to prevent the Amazon EC2 instances from being terminated by API call, user intervention, or in the event of a job-flow error."
       },
       "UnhealthyNodeReplacement": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "Indicates whether Amazon EMR should gracefully replace core nodes that have degraded within the cluster."
@@ -742,9 +701,9 @@
     "$type": "ObjectType",
     "name": "ManagedScalingPolicy",
     "properties": {
-      "ComputeLimits": {
+      "UtilizationPerformanceIndex": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/41"
         },
         "flags": 0
       },
@@ -754,11 +713,64 @@
         },
         "flags": 0
       },
-      "UtilizationPerformanceIndex": {
+      "ComputeLimits": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/5"
         },
         "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "MonitoringConfiguration",
+    "properties": {
+      "CloudWatchLogConfiguration": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CloudWatchLogConfiguration",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 1,
+        "description": "Specifies if CloudWatch logging is enabled."
+      },
+      "LogGroupName": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 0,
+        "description": "The name of the CloudWatch log group where logs are published."
+      },
+      "LogStreamNamePrefix": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 0,
+        "description": "The prefix of the log stream name."
+      },
+      "EncryptionKeyArn": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 0,
+        "description": "The ARN of the encryption key used to encrypt the logs."
+      },
+      "LogTypes": {
+        "type": {
+          "$ref": "#/58"
+        },
+        "flags": 0,
+        "description": "A map of log types to file names for publishing logs to the standard output or standard error streams for CloudWatch. Valid log types include STEP_LOGS, SPARK_DRIVER, and SPARK_EXECUTOR. Valid file names for each type include STDOUT and STDERR."
       }
     }
   },
@@ -782,11 +794,60 @@
   },
   {
     "$type": "ObjectType",
-    "name": "MonitoringConfiguration",
+    "name": "OnDemandProvisioningSpecification",
     "properties": {
-      "CloudWatchLogConfiguration": {
+      "AllocationStrategy": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/39"
+        },
+        "flags": 1,
+        "description": "Specifies the strategy to use in launching On-Demand instance fleets. Currently, the only option is lowest-price (the default), which launches the lowest price first."
+      },
+      "CapacityReservationOptions": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "OnDemandResizingSpecification",
+    "properties": {
+      "TimeoutDurationMinutes": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0
+      },
+      "AllocationStrategy": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 0
+      },
+      "CapacityReservationOptions": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SpotResizingSpecification",
+    "properties": {
+      "TimeoutDurationMinutes": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0
+      },
+      "AllocationStrategy": {
+        "type": {
+          "$ref": "#/39"
         },
         "flags": 0
       }
@@ -820,82 +881,6 @@
   },
   {
     "$type": "ObjectType",
-    "name": "OnDemandProvisioningSpecification",
-    "properties": {
-      "AllocationStrategy": {
-        "type": {
-          "$ref": "#/39"
-        },
-        "flags": 1,
-        "description": "Specifies the strategy to use in launching On-Demand instance fleets. Currently, the only option is lowest-price (the default), which launches the lowest price first."
-      },
-      "CapacityReservationOptions": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "OnDemandResizingSpecification",
-    "properties": {
-      "AllocationStrategy": {
-        "type": {
-          "$ref": "#/39"
-        },
-        "flags": 0
-      },
-      "CapacityReservationOptions": {
-        "type": {
-          "$ref": "#/22"
-        },
-        "flags": 0
-      },
-      "TimeoutDurationMinutes": {
-        "type": {
-          "$ref": "#/42"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PlacementGroupConfig",
-    "properties": {
-      "InstanceRole": {
-        "type": {
-          "$ref": "#/39"
-        },
-        "flags": 1,
-        "description": "Role of the instance in the cluster."
-      },
-      "PlacementStrategy": {
-        "type": {
-          "$ref": "#/39"
-        },
-        "flags": 0,
-        "description": "Amazon EC2 Placement Group strategy associated with instance role."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PlacementType",
-    "properties": {
-      "AvailabilityZone": {
-        "type": {
-          "$ref": "#/39"
-        },
-        "flags": 1,
-        "description": "The Amazon EC2 Availability Zone for the cluster. AvailabilityZone is used for uniform instance groups, while AvailabilityZones (plural) is used for instance fleets."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "ScalingAction",
     "properties": {
       "Market": {
@@ -907,7 +892,7 @@
       },
       "SimpleScalingPolicyConfiguration": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/31"
         },
         "flags": 1,
         "description": "The type of adjustment the automatic scaling activity makes when triggered, and the periodicity of the adjustment."
@@ -920,14 +905,14 @@
     "properties": {
       "MaxCapacity": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 1,
         "description": "The upper boundary of EC2 instances in an instance group beyond which scaling activities are not allowed to grow. Scale-out activities will not add instances beyond this boundary."
       },
       "MinCapacity": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 1,
         "description": "The lower boundary of EC2 instances in an instance group below which scaling activities are not allowed to shrink. Scale-in activities will not terminate instances below this boundary."
@@ -940,7 +925,7 @@
     "properties": {
       "Action": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/26"
         },
         "flags": 1,
         "description": "The conditions that trigger an automatic scaling activity."
@@ -961,7 +946,7 @@
       },
       "Trigger": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/29"
         },
         "flags": 1,
         "description": "The CloudWatch alarm definition that determines when automatic scaling activity is triggered."
@@ -1014,14 +999,14 @@
       },
       "CoolDown": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The amount of time, in seconds, after a scaling activity completes before any further trigger-related scaling activities can start. The default value is 0."
       },
       "ScalingAdjustment": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 1,
         "description": "The amount by which to scale in or scale out, based on the specified AdjustmentType. A positive value adds to the instance group's EC2 instance count while a negative number removes instances. If AdjustmentType is set to EXACT_CAPACITY, the number should only be a positive integer. If AdjustmentType is set to PERCENT_CHANGE_IN_CAPACITY, the value should express the percentage as an integer. For example, -20 indicates a decrease in 20% increments of cluster capacity."
@@ -1041,7 +1026,7 @@
       },
       "BlockDurationMinutes": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The defined duration for Spot Instances (also known as Spot blocks) in minutes. When specified, the Spot Instance does not terminate before the defined duration expires, and defined duration pricing for Spot Instances applies. Valid values are 60, 120, 180, 240, 300, or 360. The duration period starts as soon as a Spot Instance receives its instance ID. At the end of the duration, Amazon EC2 marks the Spot Instance for termination and provides a Spot Instance termination notice, which gives the instance a two-minute warning before it terminates."
@@ -1055,28 +1040,10 @@
       },
       "TimeoutDurationMinutes": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 1,
         "description": "The spot provisioning timeout period in minutes. If Spot Instances are not provisioned within this time period, the TimeOutAction is taken. Minimum value is 5 and maximum value is 1440. The timeout applies only during initial provisioning, when the cluster is first created."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "SpotResizingSpecification",
-    "properties": {
-      "AllocationStrategy": {
-        "type": {
-          "$ref": "#/39"
-        },
-        "flags": 0
-      },
-      "TimeoutDurationMinutes": {
-        "type": {
-          "$ref": "#/42"
-        },
-        "flags": 0
       }
     }
   },
@@ -1093,7 +1060,7 @@
       },
       "HadoopJarStep": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/9"
         },
         "flags": 1,
         "description": "The JAR file used for the step."
@@ -1104,6 +1071,39 @@
         },
         "flags": 1,
         "description": "The name of the step."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PlacementGroupConfig",
+    "properties": {
+      "InstanceRole": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 1,
+        "description": "Role of the instance in the cluster."
+      },
+      "PlacementStrategy": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 0,
+        "description": "Amazon EC2 Placement Group strategy associated with instance role."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PlacementType",
+    "properties": {
+      "AvailabilityZone": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 1,
+        "description": "The Amazon EC2 Availability Zone for the cluster. AvailabilityZone is used for uniform instance groups, while AvailabilityZones (plural) is used for instance fleets."
       }
     }
   },
@@ -1133,21 +1133,21 @@
     "properties": {
       "Iops": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The number of I/O operations per second (IOPS) that the volume supports."
       },
       "SizeInGB": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 1,
         "description": "The volume size, in gibibytes (GiB). This can be a number from 1 - 1024. If the volume type is EBS-optimized, the minimum value is 10."
       },
       "Throughput": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The throughput, in mebibyte per second (MiB/s). This optional parameter can be a number from 125 - 1000 and is valid only for gp3 volumes."
@@ -1176,27 +1176,28 @@
     }
   },
   {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/29"
-    }
-  },
-  {
     "$type": "IntegerType"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/20"
+      "$ref": "#/28"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/21"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/6"
     }
   },
   {
     "$type": "BooleanType"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Cluster_LogTypes",
-    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -1206,7 +1207,31 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/7"
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/39"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
     }
   },
   {
@@ -1224,30 +1249,6 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/18"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/15"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/7"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/7"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
       "$ref": "#/39"
     }
   },
@@ -1260,20 +1261,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/39"
+      "$ref": "#/10"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/13"
     }
   },
   {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/14"
-    }
+    "$type": "ObjectType",
+    "name": "Cluster_LogTypes",
+    "properties": {}
   },
   {
     "$type": "ArrayType",
@@ -1316,19 +1316,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/7"
+      "$ref": "#/8"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/33"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/35"
+      "$ref": "#/34"
     }
   },
   {
@@ -1341,6 +1341,13 @@
     "$type": "ObjectType",
     "name": "AWS.EMR/ClusterProperties",
     "properties": {
+      "MasterPublicDNS": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 2,
+        "description": "The public DNS name of the master node (instance), such as ec2-12-123-123-123.us-west-2.compute.amazonaws.com."
+      },
       "AdditionalInfo": {
         "type": {
           "$ref": "#/62"
@@ -1364,7 +1371,7 @@
       },
       "AutoTerminationPolicy": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/1"
         },
         "flags": 0,
         "description": "An auto-termination policy for an Amazon EMR cluster. An auto-termination policy defines the amount of idle time in seconds after which a cluster automatically terminates."
@@ -1390,37 +1397,23 @@
         "flags": 0,
         "description": "Available only in Amazon EMR version 5.7.0 and later. The ID of a custom Amazon EBS-backed Linux AMI if the cluster uses a custom AMI."
       },
-      "EbsRootVolumeIops": {
-        "type": {
-          "$ref": "#/42"
-        },
-        "flags": 0,
-        "description": "The IOPS, of the Amazon EBS root device volume of the Linux AMI that is used for each Amazon EC2 instance. Available in Amazon EMR releases 6.15.0 and later."
-      },
       "EbsRootVolumeSize": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The size, in GiB, of the Amazon EBS root device volume of the Linux AMI that is used for each EC2 instance. Available in Amazon EMR version 4.x and later."
-      },
-      "EbsRootVolumeThroughput": {
-        "type": {
-          "$ref": "#/42"
-        },
-        "flags": 0,
-        "description": "The throughput, in MiB/s, of the Amazon EBS root device volume of the Linux AMI that is used for each Amazon EC2 instance. Available in Amazon EMR releases 6.15.0 and later."
       },
       "Id": {
         "type": {
           "$ref": "#/39"
         },
         "flags": 18,
-        "description": "The unique identifier for the cluster."
+        "description": "The cluster ID, such as j-2AXXXXXXGAPLF, which AWS assigns."
       },
       "Instances": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/15"
         },
         "flags": 1,
         "description": "A specification of the number and type of Amazon EC2 instances."
@@ -1434,7 +1427,7 @@
       },
       "KerberosAttributes": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/16"
         },
         "flags": 0,
         "description": "Attributes for Kerberos configuration when Kerberos authentication is enabled using a security configuration. For more information see Use Kerberos Authentication in the Amazon EMR Management Guide."
@@ -1455,24 +1448,10 @@
       },
       "ManagedScalingPolicy": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "The specified managed scaling policy for an Amazon EMR cluster. "
-      },
-      "MasterPublicDNS": {
-        "type": {
-          "$ref": "#/39"
-        },
-        "flags": 2,
-        "description": "The public DNS name of the master node (instance), such as ec2-12-123-123-123.us-west-2.compute.amazonaws.com."
-      },
-      "MonitoringConfiguration": {
-        "type": {
-          "$ref": "#/21"
-        },
-        "flags": 0,
-        "description": "Specifies the configuration for cluster logging."
       },
       "Name": {
         "type": {
@@ -1481,26 +1460,19 @@
         "flags": 1,
         "description": "The name of the job flow."
       },
-      "OSReleaseLabel": {
-        "type": {
-          "$ref": "#/39"
-        },
-        "flags": 0,
-        "description": "Specifies a particular Amazon Linux release for all nodes in a cluster launch RunJobFlow request. If a release is not specified, Amazon EMR uses the latest validated Amazon Linux release for cluster launch."
-      },
-      "PlacementGroupConfigs": {
-        "type": {
-          "$ref": "#/66"
-        },
-        "flags": 0,
-        "description": "The configuration specifies the placement strategy that can be applied to instance roles during cluster creation."
-      },
       "ReleaseLabel": {
         "type": {
           "$ref": "#/39"
         },
         "flags": 0,
         "description": "The Amazon EMR release label, which determines the version of open-source application packages installed on the cluster. Release labels are in the form emr-x.x.x, where x.x.x is an Amazon EMR release version such as emr-5.14.0. "
+      },
+      "OSReleaseLabel": {
+        "type": {
+          "$ref": "#/39"
+        },
+        "flags": 0,
+        "description": "Specifies a particular Amazon Linux release for all nodes in a cluster launch RunJobFlow request. If a release is not specified, Amazon EMR uses the latest validated Amazon Linux release for cluster launch."
       },
       "ScaleDownBehavior": {
         "type": {
@@ -1523,25 +1495,46 @@
         "flags": 1,
         "description": "The IAM role that Amazon EMR assumes in order to access AWS resources on your behalf."
       },
-      "SessionEnabled": {
-        "type": {
-          "$ref": "#/44"
-        },
-        "flags": 0,
-        "description": "Indicates whether Spark Connect sessions are enabled on the cluster. When set to true, you can start Spark Connect sessions using the StartSession operation. This property cannot be changed after the cluster is created."
-      },
       "StepConcurrencyLevel": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "Specifies the number of steps that can be executed concurrently."
       },
       "Steps": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/66"
         },
         "flags": 4
+      },
+      "VisibleToAllUsers": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0,
+        "description": "Indicates whether the cluster is visible to IAM principals in the AWS account associated with the cluster. When true, IAM principals in the AWS account can perform EMR cluster actions on the cluster that their IAM policies allow. When false, only the IAM principal that created the cluster and the AWS account root user can perform EMR actions, regardless of IAM permissions policies attached to other IAM principals."
+      },
+      "EbsRootVolumeIops": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "The IOPS, of the Amazon EBS root device volume of the Linux AMI that is used for each Amazon EC2 instance. Available in Amazon EMR releases 6.15.0 and later."
+      },
+      "EbsRootVolumeThroughput": {
+        "type": {
+          "$ref": "#/41"
+        },
+        "flags": 0,
+        "description": "The throughput, in MiB/s, of the Amazon EBS root device volume of the Linux AMI that is used for each Amazon EC2 instance. Available in Amazon EMR releases 6.15.0 and later."
+      },
+      "PlacementGroupConfigs": {
+        "type": {
+          "$ref": "#/67"
+        },
+        "flags": 0,
+        "description": "The configuration specifies the placement strategy that can be applied to instance roles during cluster creation."
       },
       "Tags": {
         "type": {
@@ -1549,12 +1542,19 @@
         },
         "flags": 0
       },
-      "VisibleToAllUsers": {
+      "MonitoringConfiguration": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/19"
         },
         "flags": 0,
-        "description": "Indicates whether the cluster is visible to IAM principals in the AWS account associated with the cluster. When true, IAM principals in the AWS account can perform EMR cluster actions on the cluster that their IAM policies allow. When false, only the IAM principal that created the cluster and the AWS account root user can perform EMR actions, regardless of IAM permissions policies attached to other IAM principals."
+        "description": "Specifies the configuration for cluster logging."
+      },
+      "SessionEnabled": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0,
+        "description": "Indicates whether Spark Connect sessions are enabled on the cluster. When set to true, you can start Spark Connect sessions using the StartSession operation. This property cannot be changed after the cluster is created."
       }
     }
   },
@@ -1634,7 +1634,7 @@
       },
       "VolumesPerInstance": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "Use of this property can confuse CloudFormation drift detection. The EbsBlockDeviceConfigs read from the system may return a list with one entry per volume, replacing any entry specified in the template with a VolumesPerInstance greater than one by that many entries containing only the VolumeSpecification. Thus to avoid false drift detection, it is recommended to supply repeated entries in EbsBlockDeviceConfigs for any VolumeSpecification which is intended to be repeated and not to use this property.\n"
@@ -1654,7 +1654,7 @@
       },
       "EbsOptimized": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "Indicates whether an Amazon EBS volume is EBS-optimized."
@@ -1714,7 +1714,7 @@
       },
       "BidPriceAsPercentageOfOnDemandPrice": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The bid price, as a percentage of On-Demand price, for each Amazon EC2 Spot Instance as defined by InstanceType. Expressed as a number (for example, 20 specifies 20%). If neither BidPrice nor BidPriceAsPercentageOfOnDemandPrice is provided, BidPriceAsPercentageOfOnDemandPrice defaults to 100%."
@@ -1749,14 +1749,14 @@
       },
       "Priority": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The priority at which Amazon EMR launches the Amazon EC2 instances with this instance type."
       },
       "WeightedCapacity": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The number of units that a provisioned instance of this type provides toward fulfilling the target capacities defined in InstanceFleetConfig. This value is 1 for a master instance fleet, and must be 1 or greater for core and task instance fleets. Defaults to 1 if not specified."
@@ -1829,7 +1829,7 @@
       },
       "TimeoutDurationMinutes": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "On-Demand resize timeout in minutes."
@@ -1849,7 +1849,7 @@
       },
       "BlockDurationMinutes": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The defined duration for Spot Instances (also known as Spot blocks) in minutes. When specified, the Spot Instance does not terminate before the defined duration expires, and defined duration pricing for Spot Instances applies. Valid values are 60, 120, 180, 240, 300, or 360."
@@ -1863,7 +1863,7 @@
       },
       "TimeoutDurationMinutes": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 1,
         "description": "The Spot provisioning timeout period in minutes. If Spot Instances are not provisioned within this time period, the TimeOutAction is taken. Minimum value is 5 and maximum value is 1440. The timeout applies only during initial provisioning, when the cluster is first created."
@@ -1883,7 +1883,7 @@
       },
       "TimeoutDurationMinutes": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "Spot resize timeout in minutes."
@@ -1896,21 +1896,21 @@
     "properties": {
       "Iops": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The number of I/O operations per second (IOPS) that the volume supports."
       },
       "SizeInGB": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 1,
         "description": "The volume size, in gibibytes (GiB). This can be a number from 1 - 1024. If the volume type is EBS-optimized, the minimum value is 10."
       },
       "Throughput": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The throughput, in mebibyte per second (MiB/s). This optional parameter can be a number from 125 - 1000 and is valid only for gp3 volumes."
@@ -2012,14 +2012,14 @@
       },
       "TargetOnDemandCapacity": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The target capacity of On-Demand units for the instance fleet, which determines how many On-Demand instances to provision."
       },
       "TargetSpotCapacity": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The target capacity of Spot units for the instance fleet, which determines how many Spot instances to provision."
@@ -2122,7 +2122,7 @@
       },
       "EvaluationPeriods": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0
       },
@@ -2140,7 +2140,7 @@
       },
       "Period": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 1
       },
@@ -2152,7 +2152,7 @@
       },
       "Threshold": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 1
       },
@@ -2176,7 +2176,7 @@
       },
       "VolumesPerInstance": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "Use of this property can confuse CloudFormation drift detection. The EbsBlockDeviceConfigs read from the system may return a list with one entry per volume, replacing any entry specified in the template with a VolumesPerInstance greater than one by that many entries containing only the VolumeSpecification. Thus to avoid false drift detection, it is recommended to supply repeated entries in EbsBlockDeviceConfigs for any VolumeSpecification which is intended to be repeated and not to use this property.\n"
@@ -2195,7 +2195,7 @@
       },
       "EbsOptimized": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/45"
         },
         "flags": 0
       }
@@ -2243,13 +2243,13 @@
     "properties": {
       "MaxCapacity": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 1
       },
       "MinCapacity": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 1
       }
@@ -2309,13 +2309,13 @@
       },
       "CoolDown": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0
       },
       "ScalingAdjustment": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 1
       }
@@ -2327,19 +2327,19 @@
     "properties": {
       "Iops": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0
       },
       "SizeInGB": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 1
       },
       "Throughput": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0
       },
@@ -2426,7 +2426,7 @@
       },
       "InstanceCount": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 1
       },
@@ -2836,7 +2836,7 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "Whether CloudWatch Logs is enabled for the session."
@@ -2876,7 +2876,7 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "Whether Amazon EMR-managed logging is enabled for the session."
@@ -2920,7 +2920,7 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "Whether Amazon S3 logging is enabled for the session."
@@ -3090,7 +3090,7 @@
       },
       "SessionIdleTimeoutInMinutes": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "The idle timeout, in minutes. If the session is idle for this duration, Amazon EMR automatically terminates it."
@@ -3491,7 +3491,7 @@
       },
       "TrustedIdentityPropagationEnabled": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "A Boolean indicating whether to enable Trusted identity propagation for the Studio. The default value is false."

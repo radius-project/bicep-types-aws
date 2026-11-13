@@ -348,6 +348,9 @@
 ### aws.appsync/graphqlapi
 * **Link**: [default](aws/aws.appsync/default/types.md#resource-awsappsyncgraphqlapidefault)
 
+### aws.appsync/graphqlschema
+* **Link**: [default](aws/aws.appsync/default/types.md#resource-awsappsyncgraphqlschemadefault)
+
 ### aws.appsync/resolver
 * **Link**: [default](aws/aws.appsync/default/types.md#resource-awsappsyncresolverdefault)
 
@@ -1071,6 +1074,9 @@
 
 ### aws.cloudwatch/alarmmuterule
 * **Link**: [default](aws/aws.cloudwatch/default/types.md#resource-awscloudwatchalarmmuteruledefault)
+
+### aws.cloudwatch/anomalydetector
+* **Link**: [default](aws/aws.cloudwatch/default/types.md#resource-awscloudwatchanomalydetectordefault)
 
 ### aws.cloudwatch/compositealarm
 * **Link**: [default](aws/aws.cloudwatch/default/types.md#resource-awscloudwatchcompositealarmdefault)
@@ -1849,6 +1855,9 @@
 ### aws.dms/replicationconfig
 * **Link**: [default](aws/aws.dms/default/types.md#resource-awsdmsreplicationconfigdefault)
 
+### aws.dms/replicationinstance
+* **Link**: [default](aws/aws.dms/default/types.md#resource-awsdmsreplicationinstancedefault)
+
 ### aws.dms/replicationsubnetgroup
 * **Link**: [default](aws/aws.dms/default/types.md#resource-awsdmsreplicationsubnetgroupdefault)
 
@@ -1859,8 +1868,14 @@
 * **Link**: [default](aws/aws.dms/default/types.md#resource-awsdmsreplicationtaskassessmentrundefault)
 
 ## aws.docdb
+### aws.docdb/dbcluster
+* **Link**: [default](aws/aws.docdb/default/types.md#resource-awsdocdbdbclusterdefault)
+
 ### aws.docdb/dbclusterparametergroup
 * **Link**: [default](aws/aws.docdb/default/types.md#resource-awsdocdbdbclusterparametergroupdefault)
+
+### aws.docdb/dbinstance
+* **Link**: [default](aws/aws.docdb/default/types.md#resource-awsdocdbdbinstancedefault)
 
 ### aws.docdb/dbsubnetgroup
 * **Link**: [default](aws/aws.docdb/default/types.md#resource-awsdocdbdbsubnetgroupdefault)
@@ -2086,6 +2101,9 @@
 ### aws.ec2/networkacl
 * **Link**: [default](aws/aws.ec2/default/types.md#resource-awsec2networkacldefault)
 
+### aws.ec2/networkaclentry
+* **Link**: [default](aws/aws.ec2/default/types.md#resource-awsec2networkaclentrydefault)
+
 ### aws.ec2/networkinsightsaccessscope
 * **Link**: [default](aws/aws.ec2/default/types.md#resource-awsec2networkinsightsaccessscopedefault)
 
@@ -2103,6 +2121,9 @@
 
 ### aws.ec2/networkinterfaceattachment
 * **Link**: [default](aws/aws.ec2/default/types.md#resource-awsec2networkinterfaceattachmentdefault)
+
+### aws.ec2/networkinterfacepermission
+* **Link**: [default](aws/aws.ec2/default/types.md#resource-awsec2networkinterfacepermissiondefault)
 
 ### aws.ec2/networkperformancemetricsubscription
 * **Link**: [default](aws/aws.ec2/default/types.md#resource-awsec2networkperformancemetricsubscriptiondefault)
@@ -2332,6 +2353,9 @@
 ### aws.ec2/vpngateway
 * **Link**: [default](aws/aws.ec2/default/types.md#resource-awsec2vpngatewaydefault)
 
+### aws.ec2/vpngatewayroutepropagation
+* **Link**: [default](aws/aws.ec2/default/types.md#resource-awsec2vpngatewayroutepropagationdefault)
+
 ## aws.ecr
 ### aws.ecr/pullthroughcacherule
 * **Link**: [default](aws/aws.ecr/default/types.md#resource-awsecrpullthroughcacheruledefault)
@@ -2504,6 +2528,9 @@
 ## aws.elasticloadbalancingv2
 ### aws.elasticloadbalancingv2/listener
 * **Link**: [default](aws/aws.elasticloadbalancingv2/default/types.md#resource-awselasticloadbalancingv2listenerdefault)
+
+### aws.elasticloadbalancingv2/listenercertificate
+* **Link**: [default](aws/aws.elasticloadbalancingv2/default/types.md#resource-awselasticloadbalancingv2listenercertificatedefault)
 
 ### aws.elasticloadbalancingv2/listenerrule
 * **Link**: [default](aws/aws.elasticloadbalancingv2/default/types.md#resource-awselasticloadbalancingv2listenerruledefault)
@@ -2748,6 +2775,9 @@
 
 ### aws.fsx/filecache
 * **Link**: [default](aws/aws.fsx/default/types.md#resource-awsfsxfilecachedefault)
+
+### aws.fsx/filesystem
+* **Link**: [default](aws/aws.fsx/default/types.md#resource-awsfsxfilesystemdefault)
 
 ### aws.fsx/s3accesspointattachment
 * **Link**: [default](aws/aws.fsx/default/types.md#resource-awsfsxs3accesspointattachmentdefault)
@@ -3027,6 +3057,9 @@
 
 ### aws.iam/userpolicy
 * **Link**: [default](aws/aws.iam/default/types.md#resource-awsiamuserpolicydefault)
+
+### aws.iam/usertogroupaddition
+* **Link**: [default](aws/aws.iam/default/types.md#resource-awsiamusertogroupadditiondefault)
 
 ### aws.iam/virtualmfadevice
 * **Link**: [default](aws/aws.iam/default/types.md#resource-awsiamvirtualmfadevicedefault)
@@ -3442,6 +3475,9 @@
 ### aws.kinesisanalyticsv2/application
 * **Link**: [default](aws/aws.kinesisanalyticsv2/default/types.md#resource-awskinesisanalyticsv2applicationdefault)
 
+### aws.kinesisanalyticsv2/applicationcloudwatchloggingoption
+* **Link**: [default](aws/aws.kinesisanalyticsv2/default/types.md#resource-awskinesisanalyticsv2applicationcloudwatchloggingoptiondefault)
+
 ## aws.kinesisfirehose
 ### aws.kinesisfirehose/deliverystream
 * **Link**: [default](aws/aws.kinesisfirehose/default/types.md#resource-awskinesisfirehosedeliverystreamdefault)
@@ -3466,6 +3502,12 @@
 ## aws.lakeformation
 ### aws.lakeformation/datacellsfilter
 * **Link**: [default](aws/aws.lakeformation/default/types.md#resource-awslakeformationdatacellsfilterdefault)
+
+### aws.lakeformation/datalakesettings
+* **Link**: [default](aws/aws.lakeformation/default/types.md#resource-awslakeformationdatalakesettingsdefault)
+
+### aws.lakeformation/permissions
+* **Link**: [default](aws/aws.lakeformation/default/types.md#resource-awslakeformationpermissionsdefault)
 
 ### aws.lakeformation/principalpermissions
 * **Link**: [default](aws/aws.lakeformation/default/types.md#resource-awslakeformationprincipalpermissionsdefault)
@@ -3805,6 +3847,9 @@
 * **Link**: [default](aws/aws.mediaconvert/default/types.md#resource-awsmediaconvertqueuedefault)
 
 ## aws.medialive
+### aws.medialive/channel
+* **Link**: [default](aws/aws.medialive/default/types.md#resource-awsmedialivechanneldefault)
+
 ### aws.medialive/channelplacementgroup
 * **Link**: [default](aws/aws.medialive/default/types.md#resource-awsmedialivechannelplacementgroupdefault)
 
@@ -5125,6 +5170,9 @@
 ### aws.sagemaker/experiment
 * **Link**: [default](aws/aws.sagemaker/default/types.md#resource-awssagemakerexperimentdefault)
 
+### aws.sagemaker/experimenttrialcomponent
+* **Link**: [default](aws/aws.sagemaker/default/types.md#resource-awssagemakerexperimenttrialcomponentdefault)
+
 ### aws.sagemaker/featuregroup
 * **Link**: [default](aws/aws.sagemaker/default/types.md#resource-awssagemakerfeaturegroupdefault)
 
@@ -5361,6 +5409,9 @@
 * **Link**: [default](aws/aws.serverlessrepo/default/types.md#resource-awsserverlessrepoapplicationdefault)
 
 ## aws.servicecatalog
+### aws.servicecatalog/acceptedportfolioshare
+* **Link**: [default](aws/aws.servicecatalog/default/types.md#resource-awsservicecatalogacceptedportfoliosharedefault)
+
 ### aws.servicecatalog/cloudformationproduct
 * **Link**: [default](aws/aws.servicecatalog/default/types.md#resource-awsservicecatalogcloudformationproductdefault)
 
