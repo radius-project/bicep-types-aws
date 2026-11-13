@@ -75,7 +75,6 @@ function isReadOnly(record: SchemaRecord): boolean {
     return 'read' in handlers && !('create' in handlers)
 }
 
-
 // An edge from a type to a type it references: a named property or the
 // additionalProperties of an object, the items of an array, or an element of a union.
 type Edge = { kind: 'property', name: string } | { kind: 'additional' } | { kind: 'items' } | { kind: 'element', index: number }
