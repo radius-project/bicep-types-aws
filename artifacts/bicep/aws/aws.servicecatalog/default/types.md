@@ -278,6 +278,8 @@
 
 ## CloudFormationProvisionedProduct_Outputs
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## CodeStarParameters
 ### Properties

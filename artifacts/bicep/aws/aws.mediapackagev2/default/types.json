@@ -414,15 +414,21 @@
     "value": "AWS.MediaPackageV2/ChannelPolicyProperties"
   },
   {
+    "$type": "AnyType"
+  },
+  {
     "$type": "ObjectType",
     "name": "ChannelPolicy_Policy",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/28"
+    }
   },
   {
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/28"
+        "$ref": "#/29"
       },
       {
         "$ref": "#/8"
@@ -447,7 +453,7 @@
       },
       "Policy": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/30"
         },
         "flags": 1
       }
@@ -473,7 +479,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/31"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -484,7 +490,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaPackageV2/ChannelPolicy@default",
     "body": {
-      "$ref": "#/31"
+      "$ref": "#/32"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -495,7 +501,7 @@
     "properties": {
       "S3Destination": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/40"
         },
         "flags": 1
       }
@@ -546,21 +552,21 @@
     "properties": {
       "DashManifests": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "A list of harvested DASH manifests."
       },
       "HlsManifests": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "A list of harvested HLS manifests."
       },
       "LowLatencyHlsManifests": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0,
         "description": "A list of harvested Low-Latency HLS manifests."
@@ -628,12 +634,6 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/34"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
       "$ref": "#/35"
     }
   },
@@ -644,13 +644,19 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/37"
+    }
+  },
+  {
     "$type": "StringLiteralType",
     "value": "AWS.MediaPackageV2/HarvestJobProperties"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/40"
+      "$ref": "#/41"
     }
   },
   {
@@ -694,7 +700,7 @@
       },
       "Destination": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/34"
         },
         "flags": 1
       },
@@ -707,7 +713,7 @@
       },
       "HarvestedManifests": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/38"
         },
         "flags": 1
       },
@@ -727,7 +733,7 @@
       },
       "ScheduleConfiguration": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/39"
         },
         "flags": 1
       },
@@ -740,7 +746,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "A collection of tags associated with the harvest job."
@@ -767,7 +773,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/47"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -778,7 +784,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaPackageV2/HarvestJob@default",
     "body": {
-      "$ref": "#/47"
+      "$ref": "#/48"
     },
     "readableScopes": 31,
     "writableScopes": 0
@@ -932,14 +938,14 @@
     "properties": {
       "ErrorMetrics": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/109"
         },
         "flags": 0,
         "description": "<p>Playback device error reporting settings.</p>"
       },
       "FontDownload": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/62"
         },
         "flags": 0
       }
@@ -957,13 +963,13 @@
       },
       "AvailabilityStartTimeConfiguration": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/58"
         },
         "flags": 0
       },
       "BaseUrls": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/110"
         },
         "flags": 0,
         "description": "<p>The base URL to use for retrieving segments.</p>"
@@ -982,13 +988,13 @@
       },
       "DvbSettings": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/64"
         },
         "flags": 0
       },
       "FilterConfiguration": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/80"
         },
         "flags": 0
       },
@@ -1022,27 +1028,27 @@
       },
       "PeriodTriggers": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/111"
         },
         "flags": 0,
         "description": "<p>A list of triggers that controls when AWS Elemental MediaPackage separates the MPEG-DASH manifest into multiple periods. Leave this value empty to indicate that the manifest is contained all in one period. For more information about periods in the DASH manifest, see <a href=\"https://docs.aws.amazon.com/mediapackage/latest/userguide/multi-period.html\">Multi-period DASH in AWS Elemental MediaPackage</a>.</p>"
       },
       "Profiles": {
         "type": {
-          "$ref": "#/111"
+          "$ref": "#/112"
         },
         "flags": 0,
         "description": "<p>The profile that the output is compliant with.</p>"
       },
       "ProgramInformation": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/68"
         },
         "flags": 0
       },
       "ScteDash": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/95"
         },
         "flags": 0
       },
@@ -1054,7 +1060,7 @@
       },
       "SubtitleConfiguration": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/70"
         },
         "flags": 0
       },
@@ -1073,7 +1079,7 @@
       },
       "UtcTiming": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/73"
         },
         "flags": 0
       }
@@ -1141,7 +1147,7 @@
     "properties": {
       "TtmlConfiguration": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/71"
         },
         "flags": 0
       }
@@ -1213,7 +1219,7 @@
       },
       "EncryptionMethod": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/78"
         },
         "flags": 1
       },
@@ -1226,7 +1232,7 @@
       },
       "SpekeKeyProvider": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/101"
         },
         "flags": 1
       }
@@ -1313,7 +1319,7 @@
       },
       "Multiview": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/89"
         },
         "flags": 0
       },
@@ -1339,7 +1345,7 @@
     "properties": {
       "EndpointErrorConditions": {
         "type": {
-          "$ref": "#/112"
+          "$ref": "#/113"
         },
         "flags": 0,
         "description": "<p>The failover conditions for the endpoint. The options are:</p> <ul> <li> <p> <code>STALE_MANIFEST</code> - The manifest stalled and there are no new segments or parts.</p> </li> <li> <p> <code>INCOMPLETE_MANIFEST</code> - There is a gap in the manifest.</p> </li> <li> <p> <code>MISSING_DRM_KEY</code> - Key rotation is enabled but we're unable to fetch the key for the current key period.</p> </li> <li> <p> <code>SLATE_INPUT</code> - The segments which contain slate content are considered to be missing content.</p> </li> </ul>"
@@ -1359,7 +1365,7 @@
       },
       "FilterConfiguration": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/80"
         },
         "flags": 0
       },
@@ -1386,13 +1392,13 @@
       },
       "ScteHls": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/97"
         },
         "flags": 0
       },
       "StartTag": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/103"
         },
         "flags": 0
       },
@@ -1484,7 +1490,7 @@
       },
       "FilterConfiguration": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/84"
         },
         "flags": 0
       },
@@ -1511,13 +1517,13 @@
       },
       "ScteHls": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/97"
         },
         "flags": 0
       },
       "StartTag": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/103"
         },
         "flags": 0
       },
@@ -1597,7 +1603,7 @@
     "properties": {
       "FilterConfiguration": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/86"
         },
         "flags": 0
       },
@@ -1640,7 +1646,7 @@
       },
       "Sources": {
         "type": {
-          "$ref": "#/113"
+          "$ref": "#/114"
         },
         "flags": 1,
         "description": "<p>The source channels to composite, in tile order. Each channel must be one of the <code>AvailableSources</code> of the channel that this origin endpoint is on, and the number of channels must equal the number of tiles in <code>Layout</code>.</p>"
@@ -1673,14 +1679,14 @@
     "properties": {
       "CustomAdTypes": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/115"
         },
         "flags": 0,
         "description": "<p>A list of additional non-Ad SCTE-35 event types to treat as advertisements. When configured, events matching these types produce ad markers (such as <code>SCTE35-OUT</code> and <code>SCTE35-IN</code> in HLS DATERANGE tags) in manifests.</p> <p>Valid values: <code>PROGRAM</code> | <code>CHAPTER</code> | <code>UNSCHEDULED_EVENT</code> | <code>ALTERNATE_CONTENT_OPPORTUNITY</code> | <code>NETWORK</code> </p> <p>If you don't specify any values, the default is empty (only default ad types are used).</p>"
       },
       "ScteFilter": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/116"
         },
         "flags": 0,
         "description": "<p>The SCTE-35 message types that you want to be treated as ad markers in the output.</p>"
@@ -1750,7 +1756,7 @@
     "properties": {
       "Encryption": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/76"
         },
         "flags": 0
       },
@@ -1769,7 +1775,7 @@
       },
       "Scte": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/94"
         },
         "flags": 0
       },
@@ -1816,20 +1822,20 @@
       },
       "ContentKeyPeriodConfiguration": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "DrmSystems": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/117"
         },
         "flags": 1,
         "description": "<p>The DRM solution provider you're using to protect your content during distribution.</p>"
       },
       "EncryptionContractConfiguration": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/77"
         },
         "flags": 1
       },
@@ -1928,13 +1934,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/62"
+      "$ref": "#/63"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/58"
+      "$ref": "#/59"
     }
   },
   {
@@ -1992,7 +1998,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/64"
+      "$ref": "#/65"
     }
   },
   {
@@ -2004,7 +2010,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/81"
+      "$ref": "#/82"
     }
   },
   {
@@ -2016,7 +2022,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/84"
+      "$ref": "#/85"
     }
   },
   {
@@ -2028,13 +2034,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/86"
+      "$ref": "#/87"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/104"
+      "$ref": "#/105"
     }
   },
   {
@@ -2075,13 +2081,13 @@
       },
       "DashManifestUrls": {
         "type": {
-          "$ref": "#/118"
+          "$ref": "#/119"
         },
         "flags": 2
       },
       "DashManifests": {
         "type": {
-          "$ref": "#/119"
+          "$ref": "#/120"
         },
         "flags": 0,
         "description": "<p>A DASH manifest configuration.</p>"
@@ -2095,32 +2101,32 @@
       },
       "ForceEndpointErrorConfiguration": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/81"
         },
         "flags": 0
       },
       "HlsManifestUrls": {
         "type": {
-          "$ref": "#/120"
+          "$ref": "#/121"
         },
         "flags": 2
       },
       "HlsManifests": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/122"
         },
         "flags": 2,
         "description": "<p>An HTTP live streaming (HLS) manifest configuration.</p>"
       },
       "LowLatencyHlsManifestUrls": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/123"
         },
         "flags": 2
       },
       "LowLatencyHlsManifests": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/124"
         },
         "flags": 2,
         "description": "<p>A low-latency HLS manifest configuration.</p>"
@@ -2134,13 +2140,13 @@
       },
       "MssManifestUrls": {
         "type": {
-          "$ref": "#/124"
+          "$ref": "#/125"
         },
         "flags": 2
       },
       "MssManifests": {
         "type": {
-          "$ref": "#/125"
+          "$ref": "#/126"
         },
         "flags": 0,
         "description": "<p>The Microsoft Smooth Streaming (MSS) manifest configurations associated with this origin endpoint.</p>"
@@ -2153,7 +2159,7 @@
       },
       "Segment": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/100"
         },
         "flags": 0
       },
@@ -2172,7 +2178,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/126"
+          "$ref": "#/127"
         },
         "flags": 0
       },
@@ -2204,7 +2210,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/127"
+          "$ref": "#/128"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2215,7 +2221,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaPackageV2/OriginEndpoint@default",
     "body": {
-      "$ref": "#/128"
+      "$ref": "#/129"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2226,7 +2232,7 @@
     "properties": {
       "CdnIdentifierSecretArns": {
         "type": {
-          "$ref": "#/131"
+          "$ref": "#/132"
         },
         "flags": 1,
         "description": "<p>The ARN for the secret in Secrets Manager that your CDN uses for authorization to access the endpoint.</p>"
@@ -2253,13 +2259,16 @@
   {
     "$type": "ObjectType",
     "name": "OriginEndpointPolicy_Policy",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/28"
+    }
   },
   {
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/133"
+        "$ref": "#/134"
       },
       {
         "$ref": "#/8"
@@ -2272,7 +2281,7 @@
     "properties": {
       "CdnAuthConfiguration": {
         "type": {
-          "$ref": "#/130"
+          "$ref": "#/131"
         },
         "flags": 0
       },
@@ -2296,7 +2305,7 @@
       },
       "Policy": {
         "type": {
-          "$ref": "#/134"
+          "$ref": "#/135"
         },
         "flags": 1
       }
@@ -2322,7 +2331,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/136"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2333,7 +2342,7 @@
     "$type": "ResourceType",
     "name": "AWS.MediaPackageV2/OriginEndpointPolicy@default",
     "body": {
-      "$ref": "#/136"
+      "$ref": "#/137"
     },
     "readableScopes": 0,
     "writableScopes": 0

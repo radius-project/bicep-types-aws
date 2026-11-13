@@ -146,9 +146,13 @@
 
 ## AccessGrant_ContextConditions
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string[]
 
 ## AccessGrant_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## AccessGrantPrincipal
 ### Properties
@@ -530,6 +534,8 @@
 
 ## Integration_IntegrationAttributes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Integration_Tags
 ### Properties

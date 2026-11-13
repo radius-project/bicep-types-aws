@@ -164,6 +164,8 @@ granted.
 
 ## CredentialsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## CustomAuthCredentials
 ### Properties
@@ -199,6 +201,8 @@ granted.
 
 ## CustomProperties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## DatadogConnectorProfileCredentials
 ### Properties
@@ -376,6 +380,8 @@ granted.
 
 ## ProfileProperties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## RedshiftConnectorProfileCredentials
 ### Properties
@@ -616,6 +622,8 @@ Snow?ake account. This is written in the following format: < Database>< Schema><
 
 ## TokenUrlCustomProperties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TrendmicroConnectorProfileCredentials
 ### Properties

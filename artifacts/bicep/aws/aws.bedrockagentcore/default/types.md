@@ -269,6 +269,8 @@
 
 ## AdditionalClaims
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## AgentRuntimeArtifact
 ### Properties
@@ -825,6 +827,8 @@ Always present in responses.
 
 ## CapacityProvider_PropagatedTags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## CapacityProviderConfiguration
 ### Properties
@@ -942,6 +946,14 @@ Always present in responses.
 * **WalletSecretJsonKey**: string: The JSON key within the secret that contains the wallet secret value
 * **WalletSecretSource**: string
 
+## ComponentConfiguration
+### Properties
+* **Configuration**: [ConfigurationBundle_Configuration](#configurationbundleconfiguration) (Required): The configuration values as a flexible JSON document.
+
+## ComponentConfiguration
+### Properties
+* **Configuration**: [ConfigurationBundleVersion_Configuration](#configurationbundleversionconfiguration) (Required): The configuration values as a flexible JSON document.
+
 ## ComputeConfiguration
 ### Properties
 * **Ec2Configuration**: [Ec2Configuration](#ec2configuration) (Required)
@@ -951,9 +963,23 @@ Always present in responses.
 
 ## ConfigurationBundle_Components
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ComponentConfiguration](#componentconfiguration)
+
+## ConfigurationBundle_Configuration
+### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## ConfigurationBundleVersion_Components
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ComponentConfiguration](#componentconfiguration)
+
+## ConfigurationBundleVersion_Configuration
+### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## ConsentPortalSource
 ### Properties
@@ -1059,6 +1085,8 @@ Always present in responses.
 
 ## Dataset_Examples
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## DataSourceConfig
 ### Properties
@@ -1081,6 +1109,8 @@ Always present in responses.
 
 ## Dimensions
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## EbsVolumeConfiguration
 ### Properties
@@ -1113,6 +1143,8 @@ Always present in responses.
 
 ## EnvironmentVariablesMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## EphemeralBlockDeviceMapping
 ### Properties
@@ -1186,6 +1218,8 @@ Always present in responses.
 
 ## Evaluator_AdditionalModelRequestFields
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## EvaluatorConfig
 ### Properties
@@ -1236,6 +1270,8 @@ Always present in responses.
 
 ## Gateway_ProtocolType
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## GatewayInterceptorConfiguration
 ### Properties
@@ -1267,42 +1303,64 @@ Always present in responses.
 
 ## Harness_AdditionalParams
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Harness_AdditionalParams
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Harness_AdditionalParams
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Harness_AdditionalParams
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Harness_AdvertisedScopeMapping
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Harness_AwsIam
 ### Properties
 
 ## Harness_CustomParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Harness_EnvironmentVariables
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Harness_Headers
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Harness_InputSchema
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Harness_None
 ### Properties
 
 ## Harness_RetrievalConfig
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [HarnessAgentCoreMemoryRetrievalConfig](#harnessagentcorememoryretrievalconfig)
 
 ## Harness_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## HarnessAfterInvocationHook
 ### Properties
@@ -1333,6 +1391,12 @@ Always present in responses.
 * **Arn**: string (Required, Identifier)
 * **MessagesCount**: int
 * **RetrievalConfig**: [Harness_RetrievalConfig](#harnessretrievalconfig)
+
+## HarnessAgentCoreMemoryRetrievalConfig
+### Properties
+* **RelevanceScore**: int: Minimum relevance score for retrieved memories.
+* **StrategyId**: string
+* **TopK**: int: Maximum number of memory records to retrieve.
 
 ## HarnessAgentCoreRuntimeEnvironment
 ### Properties
@@ -2205,27 +2269,43 @@ Always present in responses.
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TargetConfiguration
 ### Properties

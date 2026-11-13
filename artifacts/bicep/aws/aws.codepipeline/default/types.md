@@ -185,9 +185,13 @@
 
 ## Pipeline_Configuration
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Pipeline_Configuration
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Pipeline_FailureConditions
 ### Properties

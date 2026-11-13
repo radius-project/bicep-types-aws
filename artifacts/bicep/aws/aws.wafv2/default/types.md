@@ -255,6 +255,11 @@
 
 ## ChallengeJavascriptSdkInjection
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ChallengeJavascriptSdkInjectionConfig](#challengejavascriptsdkinjectionconfig)
+
+## ChallengeJavascriptSdkInjectionConfig
+### Properties
 
 ## ClientSideAction
 ### Properties
@@ -343,9 +348,23 @@
 
 ## CustomResponseBodies
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [CustomResponseBody](#customresponsebody)
 
 ## CustomResponseBodies
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [CustomResponseBody](#customresponsebody)
+
+## CustomResponseBody
+### Properties
+* **Content**: string (Required)
+* **ContentType**: string (Required)
+
+## CustomResponseBody
+### Properties
+* **Content**: string (Required)
+* **ContentType**: string (Required)
 
 ## DataProtect
 ### Properties
@@ -582,9 +601,13 @@
 
 ## LoggingConfiguration_Method
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## LoggingConfiguration_QueryString
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## LoggingConfiguration_SingleHeader
 ### Properties
@@ -592,6 +615,8 @@
 
 ## LoggingConfiguration_UriPath
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## ManagedRuleGroupConfig
 ### Properties
@@ -739,9 +764,13 @@
 
 ## RateLimitAsn
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## RateLimitAsn
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## RateLimitCookie
 ### Properties
@@ -755,9 +784,13 @@
 
 ## RateLimitForwardedIP
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## RateLimitForwardedIP
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## RateLimitHeader
 ### Properties
@@ -771,15 +804,23 @@
 
 ## RateLimitHTTPMethod
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## RateLimitHTTPMethod
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## RateLimitIP
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## RateLimitIP
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## RateLimitJA3Fingerprint
 ### Properties
@@ -865,6 +906,12 @@
 
 ## RequestBody
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [RequestBodyAssociatedResourceTypeConfig](#requestbodyassociatedresourcetypeconfig)
+
+## RequestBodyAssociatedResourceTypeConfig
+### Properties
+* **DefaultSizeInspectionLimit**: string (Required)
 
 ## RequestInspection
 ### Properties
@@ -958,21 +1005,33 @@
 
 ## RuleGroup_All
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## RuleGroup_All
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## RuleGroup_All
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## RuleGroup_AllQueryArguments
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## RuleGroup_Method
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## RuleGroup_QueryString
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## RuleGroup_SingleHeader
 ### Properties
@@ -984,6 +1043,8 @@
 
 ## RuleGroup_UriPath
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## RuleGroupReferenceStatement
 ### Properties
@@ -1109,33 +1170,53 @@
 
 ## WebACL_AddressField
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## WebACL_All
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## WebACL_All
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## WebACL_All
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## WebACL_AllQueryArguments
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## WebACL_Count
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## WebACL_Method
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## WebACL_None
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## WebACL_PhoneNumberField
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## WebACL_QueryString
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## WebACL_SingleHeader
 ### Properties
@@ -1147,6 +1228,8 @@
 
 ## WebACL_UriPath
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## XssMatchStatement
 ### Properties

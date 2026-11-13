@@ -24,6 +24,8 @@
 
 ## NotificationRule_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Target
 ### Properties

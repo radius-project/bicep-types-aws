@@ -34,6 +34,8 @@
 
 ## AttributeFilterGroup
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## AWS.ApplicationSignals/DiscoveryProperties
 ### Properties
@@ -169,6 +171,8 @@ If you omit this parameter, 99 is used to represent 99% as the attainment goal.
 
 ## KeyAttributes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Metric
 ### Properties
@@ -235,12 +239,18 @@ If you omit this parameter, 99 is used to represent 99% as the attainment goal.
 
 ## ServiceLevelObjective_DependencyKeyAttributes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ServiceLevelObjective_MetricSourceAttributes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ServiceLevelObjective_MetricSourceKeyAttributes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Sli
 ### Properties

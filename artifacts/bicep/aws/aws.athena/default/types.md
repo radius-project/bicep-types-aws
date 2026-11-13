@@ -137,6 +137,8 @@
 
 ## DataCatalog_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## EncryptionConfiguration
 ### Properties
@@ -211,9 +213,13 @@
 
 ## Session_AdditionalConfigs
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Session_SparkProperties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Tag
 ### Properties
@@ -232,15 +238,23 @@
 
 ## WorkGroup_AdditionalConfigs
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## WorkGroup_LogTypes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string[]
 
 ## WorkGroup_Properties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## WorkGroup_SparkProperties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## WorkGroupConfiguration
 ### Properties

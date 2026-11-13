@@ -34,6 +34,8 @@
 
 ## AttributeGroup_Attributes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## AWS.ServiceCatalogAppRegistry/ApplicationProperties
 ### Properties
@@ -72,7 +74,11 @@
 
 ## Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 

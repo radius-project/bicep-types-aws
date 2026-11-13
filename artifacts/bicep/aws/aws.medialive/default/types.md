@@ -412,9 +412,13 @@ Not compatible with the inputSecurityGroups property.
 
 ## FailedMediaResourceMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [MediaResource](#mediaresource)
 
 ## Input_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## InputDestination
 ### Properties
@@ -499,6 +503,8 @@ pushed to.
 
 ## InputSecurityGroup_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## InputSource
 ### Properties
@@ -531,8 +537,21 @@ Subnet IDs must be mapped to two unique availability zones (AZ).
 ### Properties
 * **FlowArn**: string: The unique ARN of the MediaConnect Flow being used as a source.
 
+## MediaResource
+### Properties
+* **Destinations**: [MediaResourceNeighbor](#mediaresourceneighbor)[]
+* **Name**: string: The logical name of an AWS media resource.
+* **Sources**: [MediaResourceNeighbor](#mediaresourceneighbor)[]
+
 ## MediaResourceMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [MediaResource](#mediaresource)
+
+## MediaResourceNeighbor
+### Properties
+* **Arn**: string (Required): The ARN of a resource used in AWS media workflows.
+* **Name**: string: The logical name of an AWS media resource.
 
 ## MonitorDeployment
 ### Properties
@@ -721,18 +740,28 @@ Each stream encapsulates one captions stream (out of any number you can include)
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Tags
 ### Properties

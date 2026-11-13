@@ -363,6 +363,8 @@
 
 ## Content_Metadata
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ContentAssociationContents
 ### Properties
@@ -370,6 +372,8 @@
 
 ## CustomAttributes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## CustomerProfileAttributes
 ### Properties
@@ -633,12 +637,18 @@
 
 ## Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## VectorIngestionConfiguration
 ### Properties

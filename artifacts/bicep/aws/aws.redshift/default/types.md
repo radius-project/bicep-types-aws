@@ -326,6 +326,8 @@ The value must be either -1 or an integer between 1 and 3,653.
 
 ## Cluster_NamespaceResourcePolicy
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## DataShareAssociation
 ### Properties
@@ -336,6 +338,8 @@ The value must be either -1 or an integer between 1 and 3,653.
 
 ## EncryptionContextMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Endpoint
 ### Properties

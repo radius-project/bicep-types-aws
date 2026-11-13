@@ -241,6 +241,8 @@
 
 ## ResponderGateway_ExternalInboundEndpoint
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## RuleCondition
 ### Properties

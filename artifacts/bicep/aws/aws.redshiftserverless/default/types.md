@@ -121,6 +121,8 @@
 
 ## Namespace_NamespaceResourcePolicy
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## NetworkInterface
 ### Properties

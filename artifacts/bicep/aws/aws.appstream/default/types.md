@@ -372,6 +372,8 @@
 
 ## Image_Metadata
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## S3Location
 ### Properties

@@ -80,6 +80,21 @@
 * **name**: string: the resource name
 * **properties**: [AWS.AppConfig/HostedConfigurationVersionProperties](#awsappconfighostedconfigurationversionproperties) (Required, Identifier): properties of the resource
 
+## Action
+### Properties
+* **Description**: string: The description of the extension Action.
+* **Name**: string (Required): The name of the extension action.
+* **RoleArn**: string: The ARN of the role for invoking the extension action.
+* **Uri**: string (Required): The URI of the extension action.
+
+## AttributeValue
+### Properties
+* **BooleanValue**: bool: A boolean value.
+* **NumberArray**: int[]: An array of numeric values.
+* **NumberValue**: int: A numeric value.
+* **StringArray**: string[]: An array of string values.
+* **StringValue**: string: A string value.
+
 ## AWS.AppConfig/ApplicationProperties
 ### Properties
 * **ApplicationId**: string (ReadOnly, Identifier): The application Id
@@ -228,23 +243,39 @@ Expressed numerically, the deployment rolls out as follows: 2% of the targets, 4
 
 ## ExperimentDefinition_AttributeValues
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [AttributeValue](#attributevalue)
 
 ## ExperimentRun_Inline
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Extension_Actions
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [Action](#action)[]
 
 ## Extension_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [Parameter](#parameter)
 
 ## ExtensionAssociation_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Monitor
 ### Properties
 * **AlarmArn**: string (Required): Amazon Resource Name (ARN) of the Amazon CloudWatch alarm.
 * **AlarmRoleArn**: string: ARN of an AWS Identity and Access Management (IAM) role for AWS AppConfig to monitor AlarmArn.
+
+## Parameter
+### Properties
+* **Description**: string: The description of the extension Parameter.
+* **Dynamic**: bool
+* **Required**: bool (Required)
 
 ## Tag
 ### Properties

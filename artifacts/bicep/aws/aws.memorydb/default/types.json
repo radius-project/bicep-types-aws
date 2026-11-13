@@ -181,19 +181,31 @@
     "$type": "BooleanType"
   },
   {
+    "$type": "AnyType"
+  },
+  {
     "$type": "ObjectType",
     "name": "Cluster_DataTieringStatus",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/16"
+    }
   },
   {
     "$type": "ObjectType",
     "name": "Cluster_SupportedIpDiscoveryTypes",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/16"
+    }
   },
   {
     "$type": "ObjectType",
     "name": "Cluster_SupportedNetworkTypes",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/16"
+    }
   },
   {
     "$type": "ArrayType",
@@ -254,7 +266,7 @@
       },
       "DataTiering": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "Enables data tiering. Data tiering is only supported for clusters using the r6gd node type. This parameter must be set when using r6gd nodes."
@@ -289,7 +301,7 @@
       },
       "IpDiscovery": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "For clusters wth dual stack NetworkType, IpDiscovery controls the Ip protocol (ipv4 or ipv6) returned by the engine commands such as `cluster info` and `cluster nodes` which are used by clients to connect to the nodes in the cluster."
@@ -317,7 +329,7 @@
       },
       "NetworkType": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/19"
         },
         "flags": 0,
         "description": "Must be either ipv4 | ipv6 | dual_stack."
@@ -366,14 +378,14 @@
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "One or more Amazon VPC security groups associated with this cluster."
       },
       "SnapshotArns": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/21"
         },
         "flags": 4,
         "description": "A list of Amazon Resource Names (ARN) that uniquely identify the RDB snapshot files stored in Amazon S3. The snapshot files are used to populate the new cluster. The Amazon S3 object name in the ARN cannot contain any commas."
@@ -436,7 +448,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/22"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this cluster."
@@ -463,7 +475,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/23"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -474,7 +486,7 @@
     "$type": "ResourceType",
     "name": "AWS.MemoryDB/Cluster@default",
     "body": {
-      "$ref": "#/23"
+      "$ref": "#/24"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -506,7 +518,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/26"
     }
   },
   {
@@ -592,7 +604,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/28"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this multi region cluster."
@@ -626,7 +638,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/29"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -637,7 +649,7 @@
     "$type": "ResourceType",
     "name": "AWS.MemoryDB/MultiRegionCluster@default",
     "body": {
-      "$ref": "#/29"
+      "$ref": "#/30"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -700,7 +712,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/33"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -711,7 +723,7 @@
     "$type": "ResourceType",
     "name": "AWS.MemoryDB/MultiRegionParameterGroup@default",
     "body": {
-      "$ref": "#/33"
+      "$ref": "#/34"
     },
     "readableScopes": 31,
     "writableScopes": 0
@@ -743,12 +755,15 @@
   {
     "$type": "ObjectType",
     "name": "ParameterGroup_Parameters",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/16"
+    }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/35"
+      "$ref": "#/36"
     }
   },
   {
@@ -785,14 +800,14 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/38"
         },
         "flags": 4,
         "description": "An map of parameter names and values for the parameter update. You must supply at least one parameter name and value; subsequent arguments are optional."
       },
       "Tags": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this parameter group."
@@ -819,7 +834,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/40"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -830,7 +845,7 @@
     "$type": "ResourceType",
     "name": "AWS.MemoryDB/ParameterGroup@default",
     "body": {
-      "$ref": "#/40"
+      "$ref": "#/41"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -882,13 +897,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/42"
+      "$ref": "#/43"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/43"
+      "$ref": "#/44"
     }
   },
   {
@@ -939,7 +954,7 @@
       },
       "RecurringCharges": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/46"
         },
         "flags": 2,
         "description": "The recurring price charged to run this reserved node."
@@ -974,7 +989,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/47"
         },
         "flags": 2,
         "description": "A list of tags to be added to this resource."
@@ -1001,7 +1016,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/48"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1012,7 +1027,7 @@
     "$type": "ResourceType",
     "name": "AWS.MemoryDB/ReservedNode@default",
     "body": {
-      "$ref": "#/48"
+      "$ref": "#/49"
     },
     "readableScopes": 31,
     "writableScopes": 0
@@ -1148,7 +1163,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/51"
+      "$ref": "#/52"
     }
   },
   {
@@ -1164,7 +1179,7 @@
       },
       "ClusterConfiguration": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/51"
         },
         "flags": 2,
         "description": "The configuration of the cluster from which the snapshot was taken."
@@ -1213,7 +1228,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0,
         "description": "A list of tags to be added to this resource."
@@ -1240,7 +1255,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/55"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1251,7 +1266,7 @@
     "$type": "ResourceType",
     "name": "AWS.MemoryDB/Snapshot@default",
     "body": {
-      "$ref": "#/55"
+      "$ref": "#/56"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1295,7 +1310,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/57"
+      "$ref": "#/58"
     }
   },
   {
@@ -1325,21 +1340,21 @@
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/60"
         },
         "flags": 1,
         "description": "A list of VPC subnet IDs for the subnet group."
       },
       "SupportedNetworkTypes": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/61"
         },
         "flags": 2,
         "description": "Supported network types would be a list of network types supported by subnet group and can be either [ipv4] or [ipv4, dual_stack] or [ipv6]."
       },
       "Tags": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/62"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this subnet group."
@@ -1366,7 +1381,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/63"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1377,7 +1392,7 @@
     "$type": "ResourceType",
     "name": "AWS.MemoryDB/SubnetGroup@default",
     "body": {
-      "$ref": "#/63"
+      "$ref": "#/64"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1418,7 +1433,7 @@
     "properties": {
       "Passwords": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/68"
         },
         "flags": 0,
         "description": "Passwords used for this user account. You can create up to two passwords for each user."
@@ -1435,7 +1450,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/65"
+      "$ref": "#/66"
     }
   },
   {
@@ -1458,7 +1473,7 @@
       },
       "AuthenticationMode": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/69"
         },
         "flags": 4
       },
@@ -1471,7 +1486,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/70"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this user."
@@ -1505,7 +1520,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/71"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1516,7 +1531,7 @@
     "$type": "ResourceType",
     "name": "AWS.MemoryDB/User@default",
     "body": {
-      "$ref": "#/71"
+      "$ref": "#/72"
     },
     "readableScopes": 0,
     "writableScopes": 0

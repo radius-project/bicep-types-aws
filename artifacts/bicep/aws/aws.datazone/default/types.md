@@ -453,6 +453,8 @@
 
 ## EnvironmentBlueprintConfiguration_GlobalParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## EnvironmentConfiguration
 ### Properties
@@ -545,6 +547,8 @@
 
 ## Parameter
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## PolicyGrant_PolicyGrantDetail
 ### Properties
@@ -559,6 +563,8 @@
 
 ## PropertyMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ProvisioningConfiguration
 ### Properties
@@ -631,6 +637,8 @@
 
 ## TrackingAssets
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string[]
 
 ## UserProfileDetails
 ### Properties

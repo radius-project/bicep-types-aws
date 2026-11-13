@@ -577,9 +577,13 @@
 
 ## Catalog_CustomProperties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Catalog_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## CatalogProperties
 ### Properties
@@ -633,26 +637,47 @@
 * **LogicalOperator**: string: A logical operator.
 * **State**: string: The condition state. Currently, the values supported are SUCCEEDED, STOPPED, TIMEOUT, and FAILED.
 
+## ConfigurationObject
+### Properties
+* **AllowedValues**: string[]
+* **DefaultValue**: string
+* **MaxValue**: string
+* **MinValue**: string
+
 ## Connection_AthenaProperties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Connection_ConnectionProperties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Connection_CustomAuthenticationCredentials
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Connection_PythonProperties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Connection_SparkProperties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Connection_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Connection_TokenUrlParametersMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## ConnectionInput
 ### Properties
@@ -689,9 +714,23 @@
 
 ## ConnectionType_EntityConfigurations
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [EntityConfiguration](#entityconfiguration)
 
 ## ConnectionType_OperatorMappings
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
+
+## ConnectionType_OperatorMappings
+### Properties
+### Additional Properties
+* **Additional Properties Type**: string
+
+## ConnectionType_Schema
+### Properties
+### Additional Properties
+* **Additional Properties Type**: [FieldDefinition](#fielddefinition)
 
 ## ConnectionType_ValidationEndpointConfiguration
 ### Properties
@@ -738,6 +777,8 @@
 
 ## Crawler_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## CsvClassifier
 ### Properties
@@ -762,9 +803,13 @@
 
 ## CustomEntityType_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Database_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## DatabaseIdentifier
 ### Properties
@@ -808,6 +853,8 @@
 
 ## DataQualityRuleset_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## DataQualityTargetTable
 ### Properties
@@ -841,6 +888,11 @@ The valid values are null or a value between 0.1 to 1.5. A null value is used wh
 * **JobBookmarksEncryption**: [JobBookmarksEncryption](#jobbookmarksencryption)
 * **S3Encryptions**: [S3Encryption](#s3encryption)[]: The encryption configuration for Amazon Simple Storage Service (Amazon S3) data.
 
+## EntityConfiguration
+### Properties
+* **Schema**: [ConnectionType_Schema](#connectiontypeschema): The schema definition for this entity.
+* **SourceConfiguration**: [SourceConfiguration](#sourceconfiguration)
+
 ## EventBatchingCondition
 ### Properties
 * **BatchSize**: int (Required): Number of events that must be received from Amazon EventBridge before EventBridge event trigger fires.
@@ -867,6 +919,17 @@ The valid values are null or a value between 0.1 to 1.5. A null value is used wh
 * **ConnectionName**: string: The name of the connection to the external metastore.
 * **Identifier**: string: A unique identifier for the federated database.
 
+## FieldDefinition
+### Properties
+* **FieldDataType**: string (Required): The data type of the field.
+* **FilterOverrides**: [FilterOverrides](#filteroverrides)
+* **IsNullable**: bool: Indicates whether this field can contain null values.
+* **IsOrderable**: bool: Indicates whether this field can be used for ordering results.
+* **IsPartitionable**: bool: Indicates whether this field can be used for partitioning queries to the data source.
+* **IsQueryable**: bool: Indicates whether this field can be used in filter predicates when querying data.
+* **Name**: string (Required): The name of the field.
+* **ResponseDateFormat**: string: The format pattern for parsing date values from API responses. Accepts Java DateTimeFormatter patterns, EPOCH_SECONDS, or EPOCH_MILLIS.
+
 ## FilterConfiguration
 ### Properties
 * **BetweenConfiguration**: [BetweenConfiguration](#betweenconfiguration)
@@ -875,6 +938,13 @@ The valid values are null or a value between 0.1 to 1.5. A null value is used wh
 * **FilterStringConfiguration**: [FilterStringConfiguration](#filterstringconfiguration)
 * **OperatorMappings**: [ConnectionType_OperatorMappings](#connectiontypeoperatormappings): A map of logical filter operators to their API-specific string representations.
 * **StripQuotes**: bool: Indicates whether surrounding double quotes should be stripped from filter values before processing.
+
+## FilterOverrides
+### Properties
+* **BetweenConfiguration**: [BetweenConfiguration](#betweenconfiguration)
+* **DateTimeFormat**: string: The date and time format for filter expressions on this field, overriding the global DateTimeFormat.
+* **FieldName**: string: An override for the field name to use in filter expressions, if different from the schema field name.
+* **OperatorMappings**: [ConnectionType_OperatorMappings](#connectiontypeoperatormappings): A map of logical filter operators to their field-specific API representations, overriding the global operator mappings.
 
 ## FilterStringConfiguration
 ### Properties
@@ -993,6 +1063,8 @@ The valid values are null or a value between 0.1 to 1.5. A null value is used wh
 
 ## IntegrationAdditionalEncryptionContextMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## IntegrationConfig
 ### Properties
@@ -1022,12 +1094,18 @@ If you do not need additional metadata, keep the field empty.
 
 ## Job_DefaultArguments
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Job_NonOverridableArguments
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Job_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## JobBookmarksEncryption
 ### Properties
@@ -1061,6 +1139,8 @@ If you do not need additional metadata, keep the field empty.
 
 ## MLTransform_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## MLUserDataEncryption
 ### Properties
@@ -1131,15 +1211,23 @@ If you do not need additional metadata, keep the field empty.
 
 ## Partition_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Partition_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Partition_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Partition_SkewedColumnValueLocationMaps
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## PartitionInput
 ### Properties
@@ -1287,6 +1375,8 @@ If you do not need additional metadata, keep the field empty.
 
 ## Session_DefaultArguments
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## SessionCommand
 ### Properties
@@ -1316,6 +1406,8 @@ If you do not need additional metadata, keep the field empty.
 
 ## SourceProperties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## StorageDescriptor
 ### Properties
@@ -1351,18 +1443,28 @@ If you do not need additional metadata, keep the field empty.
 
 ## Table_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Table_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Table_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Table_Properties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Table_SkewedColumnValueLocationMaps
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## TableIdentifier
 ### Properties
@@ -1467,15 +1569,23 @@ If you do not need additional metadata, keep the field empty.
 
 ## Trigger_Arguments
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Trigger_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## UsageProfile_JobConfiguration
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ConfigurationObject](#configurationobject)
 
 ## UsageProfile_SessionConfiguration
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ConfigurationObject](#configurationobject)
 
 ## ViewDefinition
 ### Properties
@@ -1498,9 +1608,13 @@ If you do not need additional metadata, keep the field empty.
 
 ## Workflow_DefaultRunProperties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Workflow_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## XMLClassifier
 ### Properties

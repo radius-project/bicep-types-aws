@@ -98,6 +98,8 @@
 
 ## AccessPoint_Policy
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## AccountLevel
 ### Properties
@@ -484,6 +486,8 @@
 
 ## MultiRegionAccessPointPolicy_Policy
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## MultiRegionAccessPointPolicy_PolicyStatus
 ### Properties

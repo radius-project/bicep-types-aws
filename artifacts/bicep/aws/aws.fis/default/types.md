@@ -111,6 +111,21 @@
 * **BucketName**: string (Required)
 * **Prefix**: string
 
+## ExperimentTemplate_Parameters
+### Properties
+### Additional Properties
+* **Additional Properties Type**: string
+
+## ExperimentTemplate_Parameters
+### Properties
+### Additional Properties
+* **Additional Properties Type**: string
+
+## ExperimentTemplate_ResourceTags
+### Properties
+### Additional Properties
+* **Additional Properties Type**: string
+
 ## ExperimentTemplate_S3Configuration
 ### Properties
 * **BucketName**: string (Required)
@@ -118,9 +133,26 @@
 
 ## ExperimentTemplate_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
+
+## ExperimentTemplate_Targets
+### Properties
+### Additional Properties
+* **Additional Properties Type**: string
+
+## ExperimentTemplateAction
+### Properties
+* **ActionId**: string (Required)
+* **Description**: string
+* **Parameters**: [ExperimentTemplate_Parameters](#experimenttemplateparameters): The parameters for the action, if applicable.
+* **StartAfter**: string[]
+* **Targets**: [ExperimentTemplate_Targets](#experimenttemplatetargets): One or more targets for the action.
 
 ## ExperimentTemplateActionMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ExperimentTemplateAction](#experimenttemplateaction)
 
 ## ExperimentTemplateExperimentOptions
 ### Properties
@@ -145,8 +177,24 @@
 * **Source**: string (Required)
 * **Value**: string
 
+## ExperimentTemplateTarget
+### Properties
+* **Filters**: [ExperimentTemplateTargetFilter](#experimenttemplatetargetfilter)[]
+* **Parameters**: [ExperimentTemplate_Parameters](#experimenttemplateparameters)
+* **ResourceArns**: string[]
+* **ResourceTags**: [ExperimentTemplate_ResourceTags](#experimenttemplateresourcetags)
+* **ResourceType**: string (Required)
+* **SelectionMode**: string (Required)
+
+## ExperimentTemplateTargetFilter
+### Properties
+* **Path**: string (Required)
+* **Values**: string[] (Required)
+
 ## ExperimentTemplateTargetMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ExperimentTemplateTarget](#experimenttemplatetarget)
 
 ## Tag
 ### Properties

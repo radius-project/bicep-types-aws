@@ -203,6 +203,8 @@
 
 ## GlobalTable_PolicyDocument
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## GlobalTableWitness
 ### Properties
@@ -409,6 +411,8 @@
 
 ## Table_PolicyDocument
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Tag
 ### Properties

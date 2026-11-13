@@ -313,6 +313,12 @@
 
 ## PortalTypeConfiguration
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [PortalTypeEntry](#portaltypeentry)
+
+## PortalTypeEntry
+### Properties
+* **PortalTools**: string[] (Required)
 
 ## Project
 ### Properties

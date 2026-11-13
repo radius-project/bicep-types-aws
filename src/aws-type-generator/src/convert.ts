@@ -1,4 +1,5 @@
 import { Dictionary } from "lodash";
+import isEqual from "lodash/isEqual";
 import { boolean } from "yargs";
 import { Context, SchemaDefinition, SchemaRecord } from "./schemarecord";
 import { All, TypeBaseKind, TypeFactory, ObjectTypeProperty, ObjectTypePropertyFlags, ObjectType, ResourceType, ScopeType, BicepType, TypeReference } from "bicep-types";
@@ -366,16 +367,42 @@ function visitSchema(context: Context, factory: TypeFactory, record: SchemaRecor
     }
 }
 
+// visitAdditionalProperties returns the type of the values an object accepts under
+// keys other than its named properties, or undefined when it accepts none. Bicep
+// can't match keys against a pattern, so each patternProperties value type is
+// accepted under any key.
 function visitAdditionalProperties(context: Context, factory: TypeFactory, record: SchemaRecord, schema: SchemaDefinition): TypeReference | undefined {
-    if (typeof schema.additionalProperties === 'boolean' && schema.additionalProperties) {
+    const additional = schema.additionalProperties
+    if (additional === true) {
         return factory.addAnyType()
-    } else if (typeof schema.additionalProperties === 'boolean') {
-        return undefined
-    } else if (typeof schema.additionalProperties === 'object' && schema.additionalProperties !== null) {
-        return visitSchema(context.create("additionalProperties"), factory, record, undefined, schema.additionalProperties as SchemaDefinition)
-    } else if (!schema.additionalProperties) {
-        return undefined
-    } else {
+    }
+    if (additional !== undefined && additional !== null && additional !== false && typeof additional !== 'object') {
         throw new Error(`unhandled case for additionalProperties ${context}`)
     }
+
+    const values = Object.values(schema.patternProperties ?? {})
+    if (typeof additional === 'object' && additional !== null) {
+        values.push(additional)
+    }
+    if (values.length === 0) {
+        // JSON Schema accepts any key when additionalProperties is absent. An object
+        // with no named properties is a map, such as tags, so it stays open. One with
+        // named properties stays closed, so a misspelled property is still an error,
+        // and so does one whose properties are in oneOf or anyOf alternatives.
+        const hasProperties = Object.keys(schema.properties ?? {}).length > 0
+        const composed = schema.oneOf !== undefined || schema.anyOf !== undefined
+        return (additional === undefined || additional === null) && !hasProperties && !composed ? factory.addAnyType() : undefined
+    }
+
+    // A value that is one of several types, such as anyOf string, integer, or boolean,
+    // adds each alternative.
+    const alternatives = values.flatMap(value => !value.type && !value.$ref && (value.anyOf ?? value.oneOf) ? (value.anyOf ?? value.oneOf)! : [value])
+    if (alternatives.some(value => !value.type && !value.$ref)) {
+        // An alternative with no type would default to an object, so accept any value.
+        return factory.addAnyType()
+    }
+    const distinct = alternatives.filter((value, i) => alternatives.findIndex(other => isEqual(other, value)) === i)
+    const types = distinct.map((value, i) => visitSchema(
+        context.create(i === 0 ? "additionalProperties" : `additionalProperties${i}`), factory, record, undefined, value))
+    return types.length === 1 ? types[0] : factory.addUnionType(types)
 }

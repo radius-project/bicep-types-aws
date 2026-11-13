@@ -640,12 +640,18 @@ If you specify multiple values, they must be of the same type. For example, if y
 
 ## ReplicationConfig_ReplicationSettings
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## ReplicationConfig_SupplementalSettings
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## ReplicationConfig_TableMappings
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## S3Settings
 ### Properties

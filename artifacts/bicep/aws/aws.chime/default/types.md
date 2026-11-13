@@ -358,6 +358,8 @@
 
 ## MediaInsightsPipeline_MediaInsightsRuntimeMetadata
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## MediaInsightsPipelineConfigurationElement
 ### Properties

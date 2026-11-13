@@ -35,6 +35,8 @@
 
 ## Link_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## LinkConfiguration
 ### Properties
@@ -47,7 +49,11 @@
 
 ## Sink_Policy
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Sink_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 

@@ -331,9 +331,13 @@
 
 ## Listener_AuthenticationRequestExtraParams
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Listener_AuthenticationRequestExtraParams
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ListenerAttribute
 ### Properties
@@ -368,9 +372,13 @@
 
 ## ListenerRule_AuthenticationRequestExtraParams
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ListenerRule_AuthenticationRequestExtraParams
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## LoadBalancer_MinimumLoadBalancerCapacity
 ### Properties

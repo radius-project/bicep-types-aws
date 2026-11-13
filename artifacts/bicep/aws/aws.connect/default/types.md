@@ -356,6 +356,8 @@
 
 ## AssignContactCategoryAction
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## AssignSlaAction
 ### Properties
@@ -952,6 +954,8 @@
 
 ## EndAssociatedTasksAction
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## EntryPoint
 ### Properties
@@ -1504,6 +1508,12 @@
 * **Frequency**: string
 * **Interval**: int
 
+## Reference
+### Properties
+* **Type**: string (Required): The type of the reference. ``DATE`` must be of type Epoch timestamp. 
+ *Allowed values*: ``URL`` | ``ATTACHMENT`` | ``NUMBER`` | ``STRING`` | ``DATE`` | ``EMAIL``
+* **Value**: string (Required): A valid value for the reference. For example, for a URL reference, a formatted URL that is displayed to an agent in the Contact Control Panel (CCP).
+
 ## RequiredFieldInfo
 ### Properties
 * **Id**: [FieldIdentifier](#fieldidentifier) (Required)
@@ -1533,15 +1543,23 @@
 
 ## Rule_EmptyValue
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Rule_References
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [Reference](#reference)
 
 ## Rule_UserTags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Rule_UserTags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## RuleTriggerEventSource
 ### Properties
@@ -1807,6 +1825,8 @@
 
 ## View_Template
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## VoiceEnhancementConfig
 ### Properties

@@ -52,9 +52,13 @@
 
 ## Environment_AirflowConfigurationOptions
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Environment_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## LoggingConfiguration
 ### Properties

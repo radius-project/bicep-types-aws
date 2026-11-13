@@ -188,28 +188,28 @@
     "properties": {
       "Method": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/21"
         },
         "flags": 0,
         "description": "Inspect the HTTP method. The method indicates the type of operation that the request is asking the origin to perform. "
       },
       "QueryString": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/22"
         },
         "flags": 0,
         "description": "Inspect the query string. This is the part of a URL that appears after a ? character, if any. "
       },
       "SingleHeader": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "Inspect a single header. Provide the name of the header to inspect, for example, User-Agent or Referer. This setting isn't case sensitive."
       },
       "UriPath": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Inspect the request URI path. This is the part of a web request that identifies a resource, for example, /images/daily-ad.jpg. "
@@ -229,7 +229,7 @@
       },
       "Conditions": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/25"
         },
         "flags": 1,
         "description": "Match conditions for the filter."
@@ -270,14 +270,23 @@
     }
   },
   {
+    "$type": "AnyType"
+  },
+  {
     "$type": "ObjectType",
     "name": "LoggingConfiguration_Method",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
+    }
   },
   {
     "$type": "ObjectType",
     "name": "LoggingConfiguration_QueryString",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
+    }
   },
   {
     "$type": "ObjectType",
@@ -295,7 +304,10 @@
   {
     "$type": "ObjectType",
     "name": "LoggingConfiguration_UriPath",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
+    }
   },
   {
     "$type": "ArrayType",
@@ -332,7 +344,7 @@
       },
       "Filters": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/28"
         },
         "flags": 1,
         "description": "The filters that you want to apply to the logs."
@@ -354,28 +366,28 @@
     "properties": {
       "LogDestinationConfigs": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 1,
         "description": "The Amazon Resource Names (ARNs) of the logging destinations that you want to associate with the web ACL."
       },
       "LoggingFilter": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/29"
         },
         "flags": 0,
         "description": "Filtering that specifies which web requests are kept in the logs and which are dropped. You can filter on the rule action and on the web request labels that were applied by matching rules during web ACL evaluation."
       },
       "ManagedByFirewallManager": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/30"
         },
         "flags": 2,
         "description": "Indicates whether the logging configuration was created by AWS Firewall Manager, as part of an AWS WAF policy configuration. If true, only Firewall Manager can modify or delete the configuration."
       },
       "RedactedFields": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "The parts of the request that you want to keep out of the logs. For example, if you redact the HEADER field, the HEADER field in the firehose will be xxx."
@@ -409,7 +421,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/32"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -420,7 +432,7 @@
     "$type": "ResourceType",
     "name": "AWS.WAFv2/LoggingConfiguration@default",
     "body": {
-      "$ref": "#/32"
+      "$ref": "#/33"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -456,7 +468,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/34"
+      "$ref": "#/35"
     }
   },
   {
@@ -493,7 +505,7 @@
       },
       "RegularExpressionList": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/37"
         },
         "flags": 1
       },
@@ -506,7 +518,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/38"
         },
         "flags": 0
       }
@@ -532,7 +544,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/39"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -543,7 +555,7 @@
     "$type": "ResourceType",
     "name": "AWS.WAFv2/RegexPatternSet@default",
     "body": {
-      "$ref": "#/39"
+      "$ref": "#/40"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -554,7 +566,7 @@
     "properties": {
       "CustomRequestHandling": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/63"
         },
         "flags": 0
       }
@@ -566,7 +578,7 @@
     "properties": {
       "Statements": {
         "type": {
-          "$ref": "#/147"
+          "$ref": "#/148"
         },
         "flags": 1
       }
@@ -578,13 +590,13 @@
     "properties": {
       "AsnList": {
         "type": {
-          "$ref": "#/149"
+          "$ref": "#/150"
         },
         "flags": 0
       },
       "ForwardedIPConfig": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/72"
         },
         "flags": 0
       }
@@ -596,7 +608,7 @@
     "properties": {
       "CustomResponse": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/64"
         },
         "flags": 0
       }
@@ -630,7 +642,7 @@
     "properties": {
       "FieldToMatch": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/71"
         },
         "flags": 1
       },
@@ -642,7 +654,7 @@
       },
       "PreParseTextTransformations": {
         "type": {
-          "$ref": "#/150"
+          "$ref": "#/151"
         },
         "flags": 0
       },
@@ -660,7 +672,7 @@
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/151"
+          "$ref": "#/152"
         },
         "flags": 1
       }
@@ -672,7 +684,7 @@
     "properties": {
       "CustomRequestHandling": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/63"
         },
         "flags": 0
       }
@@ -684,7 +696,7 @@
     "properties": {
       "ImmunityTimeProperty": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/79"
         },
         "flags": 0
       }
@@ -696,7 +708,7 @@
     "properties": {
       "CustomRequestHandling": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/63"
         },
         "flags": 0
       }
@@ -708,7 +720,7 @@
     "properties": {
       "ImmunityTimeProperty": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/79"
         },
         "flags": 0
       }
@@ -720,20 +732,20 @@
     "properties": {
       "All": {
         "type": {
-          "$ref": "#/152"
+          "$ref": "#/153"
         },
         "flags": 0,
         "description": "Inspect all parts of the web request cookies."
       },
       "ExcludedCookies": {
         "type": {
-          "$ref": "#/153"
+          "$ref": "#/154"
         },
         "flags": 0
       },
       "IncludedCookies": {
         "type": {
-          "$ref": "#/154"
+          "$ref": "#/155"
         },
         "flags": 0
       }
@@ -745,7 +757,7 @@
     "properties": {
       "MatchPattern": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 1
       },
@@ -769,7 +781,7 @@
     "properties": {
       "CustomRequestHandling": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/63"
         },
         "flags": 0
       }
@@ -781,7 +793,7 @@
     "properties": {
       "PaymentNetworks": {
         "type": {
-          "$ref": "#/155"
+          "$ref": "#/156"
         },
         "flags": 1
       }
@@ -831,7 +843,7 @@
     "properties": {
       "InsertHeaders": {
         "type": {
-          "$ref": "#/156"
+          "$ref": "#/157"
         },
         "flags": 1,
         "description": "Collection of HTTP headers."
@@ -851,13 +863,13 @@
       },
       "ResponseCode": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/149"
         },
         "flags": 1
       },
       "ResponseHeaders": {
         "type": {
-          "$ref": "#/157"
+          "$ref": "#/158"
         },
         "flags": 0,
         "description": "Collection of HTTP headers."
@@ -867,7 +879,10 @@
   {
     "$type": "ObjectType",
     "name": "CustomResponseBodies",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/66"
+    }
   },
   {
     "$type": "ObjectType",
@@ -913,89 +928,89 @@
     "properties": {
       "AllQueryArguments": {
         "type": {
-          "$ref": "#/158"
+          "$ref": "#/159"
         },
         "flags": 0,
         "description": "All query arguments of a web request."
       },
       "Body": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/47"
         },
         "flags": 0
       },
       "Cookies": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/55"
         },
         "flags": 0
       },
       "HeaderOrder": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/75"
         },
         "flags": 0
       },
       "Headers": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/76"
         },
         "flags": 0
       },
       "JA3Fingerprint": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/80"
         },
         "flags": 0
       },
       "JA4Fingerprint": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/81"
         },
         "flags": 0
       },
       "JsonBody": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/82"
         },
         "flags": 0
       },
       "Method": {
         "type": {
-          "$ref": "#/159"
+          "$ref": "#/160"
         },
         "flags": 0,
         "description": "The HTTP method of a web request. The method indicates the type of operation that the request is asking the origin to perform."
       },
       "QueryString": {
         "type": {
-          "$ref": "#/160"
+          "$ref": "#/161"
         },
         "flags": 0,
         "description": "The query string of a web request. This is the part of a URL that appears after a ? character, if any."
       },
       "SingleHeader": {
         "type": {
-          "$ref": "#/161"
+          "$ref": "#/162"
         },
         "flags": 0
       },
       "SingleQueryArgument": {
         "type": {
-          "$ref": "#/162"
+          "$ref": "#/163"
         },
         "flags": 0,
         "description": "One query argument in a web request, identified by name, for example UserName or SalesRegion. The name can be up to 30 characters long and isn't case sensitive."
       },
       "UriFragment": {
         "type": {
-          "$ref": "#/143"
+          "$ref": "#/144"
         },
         "flags": 0
       },
       "UriPath": {
         "type": {
-          "$ref": "#/163"
+          "$ref": "#/164"
         },
         "flags": 0,
         "description": "The path component of the URI of a web request. This is the part of a web request that identifies a resource, for example, /images/daily-ad.jpg."
@@ -1026,13 +1041,13 @@
     "properties": {
       "CountryCodes": {
         "type": {
-          "$ref": "#/164"
+          "$ref": "#/165"
         },
         "flags": 0
       },
       "ForwardedIPConfig": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/72"
         },
         "flags": 0
       }
@@ -1044,20 +1059,20 @@
     "properties": {
       "All": {
         "type": {
-          "$ref": "#/165"
+          "$ref": "#/166"
         },
         "flags": 0,
         "description": "Inspect all parts of the web request headers."
       },
       "ExcludedHeaders": {
         "type": {
-          "$ref": "#/166"
+          "$ref": "#/167"
         },
         "flags": 0
       },
       "IncludedHeaders": {
         "type": {
-          "$ref": "#/167"
+          "$ref": "#/168"
         },
         "flags": 0
       }
@@ -1081,7 +1096,7 @@
     "properties": {
       "MatchPattern": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/74"
         },
         "flags": 1
       },
@@ -1135,7 +1150,7 @@
       },
       "IPSetForwardedIPConfig": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/77"
         },
         "flags": 0
       }
@@ -1147,7 +1162,7 @@
     "properties": {
       "ImmunityTime": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/149"
         },
         "flags": 1
       }
@@ -1189,7 +1204,7 @@
       },
       "MatchPattern": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/83"
         },
         "flags": 1
       },
@@ -1213,14 +1228,14 @@
     "properties": {
       "All": {
         "type": {
-          "$ref": "#/168"
+          "$ref": "#/169"
         },
         "flags": 0,
         "description": "Inspect all parts of the web request's JSON body."
       },
       "IncludedPaths": {
         "type": {
-          "$ref": "#/169"
+          "$ref": "#/170"
         },
         "flags": 0
       }
@@ -1304,7 +1319,7 @@
     "properties": {
       "CryptoConfig": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/57"
         },
         "flags": 0
       },
@@ -1334,7 +1349,7 @@
     "properties": {
       "Statement": {
         "type": {
-          "$ref": "#/138"
+          "$ref": "#/139"
         },
         "flags": 1
       }
@@ -1346,7 +1361,7 @@
     "properties": {
       "Statements": {
         "type": {
-          "$ref": "#/170"
+          "$ref": "#/171"
         },
         "flags": 1
       }
@@ -1369,7 +1384,7 @@
       },
       "Prices": {
         "type": {
-          "$ref": "#/171"
+          "$ref": "#/172"
         },
         "flags": 1
       },
@@ -1397,7 +1412,7 @@
     "properties": {
       "Priority": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/149"
         },
         "flags": 1
       },
@@ -1464,32 +1479,32 @@
       },
       "CustomKeys": {
         "type": {
-          "$ref": "#/174"
+          "$ref": "#/175"
         },
         "flags": 0,
         "description": "Specifies the aggregate keys to use in a rate-base rule."
       },
       "EvaluationWindowSec": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/149"
         },
         "flags": 0
       },
       "ForwardedIPConfig": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/72"
         },
         "flags": 0
       },
       "Limit": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/149"
         },
         "flags": 1
       },
       "ScopeDownStatement": {
         "type": {
-          "$ref": "#/138"
+          "$ref": "#/139"
         },
         "flags": 0
       }
@@ -1501,73 +1516,73 @@
     "properties": {
       "ASN": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/111"
         },
         "flags": 0
       },
       "Cookie": {
         "type": {
-          "$ref": "#/111"
+          "$ref": "#/112"
         },
         "flags": 0
       },
       "ForwardedIP": {
         "type": {
-          "$ref": "#/112"
+          "$ref": "#/113"
         },
         "flags": 0
       },
       "HTTPMethod": {
         "type": {
-          "$ref": "#/113"
+          "$ref": "#/114"
         },
         "flags": 0
       },
       "Header": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/115"
         },
         "flags": 0
       },
       "IP": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/116"
         },
         "flags": 0
       },
       "JA3Fingerprint": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/117"
         },
         "flags": 0
       },
       "JA4Fingerprint": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/118"
         },
         "flags": 0
       },
       "LabelNamespace": {
         "type": {
-          "$ref": "#/118"
+          "$ref": "#/119"
         },
         "flags": 0
       },
       "QueryArgument": {
         "type": {
-          "$ref": "#/119"
+          "$ref": "#/120"
         },
         "flags": 0
       },
       "QueryString": {
         "type": {
-          "$ref": "#/120"
+          "$ref": "#/121"
         },
         "flags": 0
       },
       "UriPath": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/122"
         },
         "flags": 0
       }
@@ -1581,7 +1596,10 @@
   {
     "$type": "ObjectType",
     "name": "RateLimitAsn",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
+    }
   },
   {
     "$type": "ObjectType",
@@ -1596,7 +1614,7 @@
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/175"
+          "$ref": "#/176"
         },
         "flags": 1
       }
@@ -1605,12 +1623,18 @@
   {
     "$type": "ObjectType",
     "name": "RateLimitForwardedIP",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
+    }
   },
   {
     "$type": "ObjectType",
     "name": "RateLimitHTTPMethod",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
+    }
   },
   {
     "$type": "ObjectType",
@@ -1625,7 +1649,7 @@
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/176"
+          "$ref": "#/177"
         },
         "flags": 1
       }
@@ -1634,7 +1658,10 @@
   {
     "$type": "ObjectType",
     "name": "RateLimitIP",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
+    }
   },
   {
     "$type": "ObjectType",
@@ -1686,7 +1713,7 @@
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/177"
+          "$ref": "#/178"
         },
         "flags": 1
       }
@@ -1698,7 +1725,7 @@
     "properties": {
       "TextTransformations": {
         "type": {
-          "$ref": "#/178"
+          "$ref": "#/179"
         },
         "flags": 1
       }
@@ -1710,7 +1737,7 @@
     "properties": {
       "TextTransformations": {
         "type": {
-          "$ref": "#/179"
+          "$ref": "#/180"
         },
         "flags": 1
       }
@@ -1722,13 +1749,13 @@
     "properties": {
       "FieldToMatch": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/71"
         },
         "flags": 1
       },
       "PreParseTextTransformations": {
         "type": {
-          "$ref": "#/180"
+          "$ref": "#/181"
         },
         "flags": 0
       },
@@ -1740,7 +1767,7 @@
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/181"
+          "$ref": "#/182"
         },
         "flags": 1
       }
@@ -1758,19 +1785,19 @@
       },
       "FieldToMatch": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/71"
         },
         "flags": 1
       },
       "PreParseTextTransformations": {
         "type": {
-          "$ref": "#/182"
+          "$ref": "#/183"
         },
         "flags": 0
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/183"
+          "$ref": "#/184"
         },
         "flags": 1
       }
@@ -1802,19 +1829,19 @@
     "properties": {
       "Action": {
         "type": {
-          "$ref": "#/129"
+          "$ref": "#/130"
         },
         "flags": 0
       },
       "CaptchaConfig": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/51"
         },
         "flags": 0
       },
       "ChallengeConfig": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/53"
         },
         "flags": 0
       },
@@ -1826,26 +1853,26 @@
       },
       "Priority": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/149"
         },
         "flags": 1
       },
       "RuleLabels": {
         "type": {
-          "$ref": "#/184"
+          "$ref": "#/185"
         },
         "flags": 0,
         "description": "Collection of Rule Labels."
       },
       "Statement": {
         "type": {
-          "$ref": "#/138"
+          "$ref": "#/139"
         },
         "flags": 1
       },
       "VisibilityConfig": {
         "type": {
-          "$ref": "#/144"
+          "$ref": "#/145"
         },
         "flags": 1
       }
@@ -1857,37 +1884,37 @@
     "properties": {
       "Allow": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/42"
         },
         "flags": 0
       },
       "Block": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/45"
         },
         "flags": 0
       },
       "Captcha": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/50"
         },
         "flags": 0
       },
       "Challenge": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/52"
         },
         "flags": 0
       },
       "Count": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/56"
         },
         "flags": 0
       },
       "Monetize": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/94"
         },
         "flags": 0
       }
@@ -1905,7 +1932,7 @@
       },
       "Capacity": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/149"
         },
         "flags": 0
       },
@@ -1929,14 +1956,14 @@
       },
       "Rules": {
         "type": {
-          "$ref": "#/185"
+          "$ref": "#/186"
         },
         "flags": 0,
         "description": "Collection of Rules."
       },
       "VisibilityConfig": {
         "type": {
-          "$ref": "#/144"
+          "$ref": "#/145"
         },
         "flags": 0
       }
@@ -1979,25 +2006,25 @@
       },
       "FieldToMatch": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/71"
         },
         "flags": 1
       },
       "PreParseTextTransformations": {
         "type": {
-          "$ref": "#/186"
+          "$ref": "#/187"
         },
         "flags": 0
       },
       "Size": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/149"
         },
         "flags": 1
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/187"
+          "$ref": "#/188"
         },
         "flags": 1
       }
@@ -2009,13 +2036,13 @@
     "properties": {
       "FieldToMatch": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/71"
         },
         "flags": 1
       },
       "PreParseTextTransformations": {
         "type": {
-          "$ref": "#/188"
+          "$ref": "#/189"
         },
         "flags": 0
       },
@@ -2027,7 +2054,7 @@
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/189"
+          "$ref": "#/190"
         },
         "flags": 1
       }
@@ -2039,85 +2066,85 @@
     "properties": {
       "AndStatement": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 0
       },
       "AsnMatchStatement": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0
       },
       "ByteMatchStatement": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/49"
         },
         "flags": 0
       },
       "GeoMatchStatement": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/73"
         },
         "flags": 0
       },
       "IPSetReferenceStatement": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/78"
         },
         "flags": 0
       },
       "LabelMatchStatement": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/89"
         },
         "flags": 0
       },
       "NotStatement": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/95"
         },
         "flags": 0
       },
       "OrStatement": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/96"
         },
         "flags": 0
       },
       "RateBasedStatement": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/108"
         },
         "flags": 0
       },
       "RegexMatchStatement": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/123"
         },
         "flags": 0
       },
       "RegexPatternSetReferenceStatement": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/124"
         },
         "flags": 0
       },
       "SizeConstraintStatement": {
         "type": {
-          "$ref": "#/136"
+          "$ref": "#/137"
         },
         "flags": 0
       },
       "SqliMatchStatement": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/138"
         },
         "flags": 0
       },
       "XssMatchStatement": {
         "type": {
-          "$ref": "#/146"
+          "$ref": "#/147"
         },
         "flags": 0
       }
@@ -2147,7 +2174,7 @@
     "properties": {
       "Priority": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/149"
         },
         "flags": 1
       },
@@ -2187,7 +2214,7 @@
     "properties": {
       "CloudWatchMetricsEnabled": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/30"
         },
         "flags": 1
       },
@@ -2199,7 +2226,7 @@
       },
       "SampledRequestsEnabled": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/30"
         },
         "flags": 1
       }
@@ -2216,19 +2243,19 @@
     "properties": {
       "FieldToMatch": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/71"
         },
         "flags": 1
       },
       "PreParseTextTransformations": {
         "type": {
-          "$ref": "#/190"
+          "$ref": "#/191"
         },
         "flags": 0
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/191"
+          "$ref": "#/192"
         },
         "flags": 1
       }
@@ -2237,7 +2264,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/138"
+      "$ref": "#/139"
     }
   },
   {
@@ -2246,30 +2273,27 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/148"
+      "$ref": "#/149"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/100"
+      "$ref": "#/101"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/140"
+      "$ref": "#/141"
     }
   },
   {
     "$type": "ObjectType",
     "name": "RuleGroup_All",
-    "properties": {}
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/8"
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
     }
   },
   {
@@ -2281,35 +2305,50 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/97"
+      "$ref": "#/8"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/59"
+      "$ref": "#/98"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/59"
+      "$ref": "#/60"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/60"
     }
   },
   {
     "$type": "ObjectType",
     "name": "RuleGroup_AllQueryArguments",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
+    }
   },
   {
     "$type": "ObjectType",
     "name": "RuleGroup_Method",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
+    }
   },
   {
     "$type": "ObjectType",
     "name": "RuleGroup_QueryString",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
+    }
   },
   {
     "$type": "ObjectType",
@@ -2338,23 +2377,9 @@
   {
     "$type": "ObjectType",
     "name": "RuleGroup_UriPath",
-    "properties": {}
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/8"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "RuleGroup_All",
-    "properties": {}
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/8"
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
     }
   },
   {
@@ -2366,7 +2391,10 @@
   {
     "$type": "ObjectType",
     "name": "RuleGroup_All",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
+    }
   },
   {
     "$type": "ArrayType",
@@ -2377,133 +2405,153 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/138"
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RuleGroup_All",
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/103"
+      "$ref": "#/8"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/97"
+      "$ref": "#/139"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/103"
+      "$ref": "#/104"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/108"
+      "$ref": "#/98"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/140"
+      "$ref": "#/104"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/140"
+      "$ref": "#/109"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/140"
+      "$ref": "#/141"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/140"
+      "$ref": "#/141"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/140"
+      "$ref": "#/141"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/100"
+      "$ref": "#/141"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/140"
+      "$ref": "#/141"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/100"
+      "$ref": "#/101"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/140"
+      "$ref": "#/141"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/85"
+      "$ref": "#/101"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/128"
+      "$ref": "#/141"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/100"
+      "$ref": "#/86"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/140"
+      "$ref": "#/129"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/100"
+      "$ref": "#/101"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/140"
+      "$ref": "#/141"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/100"
+      "$ref": "#/101"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/140"
+      "$ref": "#/141"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/101"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/141"
     }
   },
   {
@@ -2513,25 +2561,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/90"
+      "$ref": "#/91"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/90"
+      "$ref": "#/91"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/128"
+      "$ref": "#/129"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/139"
+      "$ref": "#/140"
     }
   },
   {
@@ -2546,27 +2594,27 @@
       },
       "AvailableLabels": {
         "type": {
-          "$ref": "#/193"
+          "$ref": "#/194"
         },
         "flags": 2,
         "description": "Collection of Available Labels."
       },
       "Capacity": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/149"
         },
         "flags": 1
       },
       "ConsumedLabels": {
         "type": {
-          "$ref": "#/194"
+          "$ref": "#/195"
         },
         "flags": 2,
         "description": "Collection of Consumed Labels."
       },
       "CustomResponseBodies": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/65"
         },
         "flags": 0
       },
@@ -2590,7 +2638,7 @@
       },
       "MonetizationConfig": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/93"
         },
         "flags": 0
       },
@@ -2602,7 +2650,7 @@
       },
       "Rules": {
         "type": {
-          "$ref": "#/195"
+          "$ref": "#/196"
         },
         "flags": 0,
         "description": "Collection of Rules."
@@ -2615,13 +2663,13 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/196"
+          "$ref": "#/197"
         },
         "flags": 0
       },
       "VisibilityConfig": {
         "type": {
-          "$ref": "#/144"
+          "$ref": "#/145"
         },
         "flags": 1
       }
@@ -2647,7 +2695,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/197"
+          "$ref": "#/198"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2658,7 +2706,7 @@
     "$type": "ResourceType",
     "name": "AWS.WAFv2/RuleGroup@default",
     "body": {
-      "$ref": "#/198"
+      "$ref": "#/199"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2675,7 +2723,7 @@
       },
       "EnableRegexInPath": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/30"
         },
         "flags": 0
       },
@@ -2687,13 +2735,13 @@
       },
       "RequestInspection": {
         "type": {
-          "$ref": "#/320"
+          "$ref": "#/321"
         },
         "flags": 1
       },
       "ResponseInspection": {
         "type": {
-          "$ref": "#/324"
+          "$ref": "#/325"
         },
         "flags": 0
       }
@@ -2705,7 +2753,7 @@
     "properties": {
       "EnableRegexInPath": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/30"
         },
         "flags": 0
       },
@@ -2717,13 +2765,13 @@
       },
       "RequestInspection": {
         "type": {
-          "$ref": "#/319"
+          "$ref": "#/320"
         },
         "flags": 0
       },
       "ResponseInspection": {
         "type": {
-          "$ref": "#/324"
+          "$ref": "#/325"
         },
         "flags": 0
       }
@@ -2735,7 +2783,7 @@
     "properties": {
       "ClientSideActionConfig": {
         "type": {
-          "$ref": "#/227"
+          "$ref": "#/228"
         },
         "flags": 1
       },
@@ -2753,7 +2801,7 @@
     "properties": {
       "EnableMachineLearning": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/30"
         },
         "flags": 0
       },
@@ -2776,7 +2824,7 @@
     "properties": {
       "CustomRequestHandling": {
         "type": {
-          "$ref": "#/237"
+          "$ref": "#/238"
         },
         "flags": 0
       }
@@ -2788,7 +2836,7 @@
     "properties": {
       "Statements": {
         "type": {
-          "$ref": "#/358"
+          "$ref": "#/359"
         },
         "flags": 1
       }
@@ -2806,7 +2854,7 @@
       },
       "Values": {
         "type": {
-          "$ref": "#/359"
+          "$ref": "#/360"
         },
         "flags": 1
       }
@@ -2823,7 +2871,7 @@
     "properties": {
       "Attributes": {
         "type": {
-          "$ref": "#/361"
+          "$ref": "#/362"
         },
         "flags": 1
       }
@@ -2835,13 +2883,13 @@
     "properties": {
       "AsnList": {
         "type": {
-          "$ref": "#/362"
+          "$ref": "#/363"
         },
         "flags": 0
       },
       "ForwardedIPConfig": {
         "type": {
-          "$ref": "#/256"
+          "$ref": "#/257"
         },
         "flags": 0
       }
@@ -2853,13 +2901,13 @@
     "properties": {
       "ChallengeJavascriptSdkInjection": {
         "type": {
-          "$ref": "#/224"
+          "$ref": "#/225"
         },
         "flags": 0
       },
       "RequestBody": {
         "type": {
-          "$ref": "#/317"
+          "$ref": "#/318"
         },
         "flags": 0
       }
@@ -2886,7 +2934,7 @@
     "properties": {
       "CustomResponse": {
         "type": {
-          "$ref": "#/238"
+          "$ref": "#/239"
         },
         "flags": 0
       }
@@ -2920,7 +2968,7 @@
     "properties": {
       "FieldToMatch": {
         "type": {
-          "$ref": "#/253"
+          "$ref": "#/254"
         },
         "flags": 1
       },
@@ -2932,7 +2980,7 @@
       },
       "PreParseTextTransformations": {
         "type": {
-          "$ref": "#/364"
+          "$ref": "#/365"
         },
         "flags": 0
       },
@@ -2950,7 +2998,7 @@
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/365"
+          "$ref": "#/366"
         },
         "flags": 1
       }
@@ -2962,7 +3010,7 @@
     "properties": {
       "CustomRequestHandling": {
         "type": {
-          "$ref": "#/237"
+          "$ref": "#/238"
         },
         "flags": 0
       }
@@ -2974,7 +3022,7 @@
     "properties": {
       "ImmunityTimeProperty": {
         "type": {
-          "$ref": "#/263"
+          "$ref": "#/264"
         },
         "flags": 0
       }
@@ -2986,7 +3034,7 @@
     "properties": {
       "CustomRequestHandling": {
         "type": {
-          "$ref": "#/237"
+          "$ref": "#/238"
         },
         "flags": 0
       }
@@ -2998,7 +3046,7 @@
     "properties": {
       "ImmunityTimeProperty": {
         "type": {
-          "$ref": "#/263"
+          "$ref": "#/264"
         },
         "flags": 0
       }
@@ -3007,7 +3055,10 @@
   {
     "$type": "ObjectType",
     "name": "ChallengeJavascriptSdkInjection",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/226"
+    }
   },
   {
     "$type": "ObjectType",
@@ -3020,7 +3071,7 @@
     "properties": {
       "ExemptUriRegularExpressions": {
         "type": {
-          "$ref": "#/366"
+          "$ref": "#/367"
         },
         "flags": 0
       },
@@ -3044,7 +3095,7 @@
     "properties": {
       "Challenge": {
         "type": {
-          "$ref": "#/226"
+          "$ref": "#/227"
         },
         "flags": 1
       }
@@ -3056,20 +3107,20 @@
     "properties": {
       "All": {
         "type": {
-          "$ref": "#/367"
+          "$ref": "#/368"
         },
         "flags": 0,
         "description": "Inspect all parts of the web request cookies."
       },
       "ExcludedCookies": {
         "type": {
-          "$ref": "#/368"
+          "$ref": "#/369"
         },
         "flags": 0
       },
       "IncludedCookies": {
         "type": {
-          "$ref": "#/369"
+          "$ref": "#/370"
         },
         "flags": 0
       }
@@ -3081,7 +3132,7 @@
     "properties": {
       "MatchPattern": {
         "type": {
-          "$ref": "#/228"
+          "$ref": "#/229"
         },
         "flags": 1
       },
@@ -3105,7 +3156,7 @@
     "properties": {
       "CustomRequestHandling": {
         "type": {
-          "$ref": "#/237"
+          "$ref": "#/238"
         },
         "flags": 0
       }
@@ -3117,7 +3168,7 @@
     "properties": {
       "PaymentNetworks": {
         "type": {
-          "$ref": "#/370"
+          "$ref": "#/371"
         },
         "flags": 1
       }
@@ -3167,7 +3218,7 @@
     "properties": {
       "InsertHeaders": {
         "type": {
-          "$ref": "#/371"
+          "$ref": "#/372"
         },
         "flags": 1,
         "description": "Collection of HTTP headers."
@@ -3187,13 +3238,13 @@
       },
       "ResponseCode": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/149"
         },
         "flags": 1
       },
       "ResponseHeaders": {
         "type": {
-          "$ref": "#/372"
+          "$ref": "#/373"
         },
         "flags": 0,
         "description": "Collection of HTTP headers."
@@ -3203,7 +3254,10 @@
   {
     "$type": "ObjectType",
     "name": "CustomResponseBodies",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/241"
+    }
   },
   {
     "$type": "ObjectType",
@@ -3235,19 +3289,19 @@
       },
       "ExcludeRateBasedDetails": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/30"
         },
         "flags": 0
       },
       "ExcludeRuleMatchDetails": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/30"
         },
         "flags": 0
       },
       "Field": {
         "type": {
-          "$ref": "#/254"
+          "$ref": "#/255"
         },
         "flags": 1
       }
@@ -3264,7 +3318,7 @@
     "properties": {
       "DataProtections": {
         "type": {
-          "$ref": "#/373"
+          "$ref": "#/374"
         },
         "flags": 1
       }
@@ -3281,13 +3335,13 @@
     "properties": {
       "Allow": {
         "type": {
-          "$ref": "#/205"
+          "$ref": "#/206"
         },
         "flags": 0
       },
       "Block": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/216"
         },
         "flags": 0
       }
@@ -3348,89 +3402,89 @@
     "properties": {
       "AllQueryArguments": {
         "type": {
-          "$ref": "#/376"
+          "$ref": "#/377"
         },
         "flags": 0,
         "description": "All query arguments of a web request."
       },
       "Body": {
         "type": {
-          "$ref": "#/217"
+          "$ref": "#/218"
         },
         "flags": 0
       },
       "Cookies": {
         "type": {
-          "$ref": "#/229"
+          "$ref": "#/230"
         },
         "flags": 0
       },
       "HeaderOrder": {
         "type": {
-          "$ref": "#/259"
+          "$ref": "#/260"
         },
         "flags": 0
       },
       "Headers": {
         "type": {
-          "$ref": "#/260"
+          "$ref": "#/261"
         },
         "flags": 0
       },
       "JA3Fingerprint": {
         "type": {
-          "$ref": "#/264"
+          "$ref": "#/265"
         },
         "flags": 0
       },
       "JA4Fingerprint": {
         "type": {
-          "$ref": "#/265"
+          "$ref": "#/266"
         },
         "flags": 0
       },
       "JsonBody": {
         "type": {
-          "$ref": "#/266"
+          "$ref": "#/267"
         },
         "flags": 0
       },
       "Method": {
         "type": {
-          "$ref": "#/377"
+          "$ref": "#/378"
         },
         "flags": 0,
         "description": "The HTTP method of a web request. The method indicates the type of operation that the request is asking the origin to perform."
       },
       "QueryString": {
         "type": {
-          "$ref": "#/378"
+          "$ref": "#/379"
         },
         "flags": 0,
         "description": "The query string of a web request. This is the part of a URL that appears after a ? character, if any."
       },
       "SingleHeader": {
         "type": {
-          "$ref": "#/379"
+          "$ref": "#/380"
         },
         "flags": 0
       },
       "SingleQueryArgument": {
         "type": {
-          "$ref": "#/380"
+          "$ref": "#/381"
         },
         "flags": 0,
         "description": "One query argument in a web request, identified by name, for example UserName or SalesRegion. The name can be up to 30 characters long and isn't case sensitive."
       },
       "UriFragment": {
         "type": {
-          "$ref": "#/352"
+          "$ref": "#/353"
         },
         "flags": 0
       },
       "UriPath": {
         "type": {
-          "$ref": "#/381"
+          "$ref": "#/382"
         },
         "flags": 0,
         "description": "The path component of the URI of a web request. This is the part of a web request that identifies a resource, for example, /images/daily-ad.jpg."
@@ -3443,7 +3497,7 @@
     "properties": {
       "FieldKeys": {
         "type": {
-          "$ref": "#/382"
+          "$ref": "#/383"
         },
         "flags": 0,
         "description": "List of field keys to protect"
@@ -3486,13 +3540,13 @@
     "properties": {
       "CountryCodes": {
         "type": {
-          "$ref": "#/383"
+          "$ref": "#/384"
         },
         "flags": 0
       },
       "ForwardedIPConfig": {
         "type": {
-          "$ref": "#/256"
+          "$ref": "#/257"
         },
         "flags": 0
       }
@@ -3504,20 +3558,20 @@
     "properties": {
       "All": {
         "type": {
-          "$ref": "#/384"
+          "$ref": "#/385"
         },
         "flags": 0,
         "description": "Inspect all parts of the web request headers."
       },
       "ExcludedHeaders": {
         "type": {
-          "$ref": "#/385"
+          "$ref": "#/386"
         },
         "flags": 0
       },
       "IncludedHeaders": {
         "type": {
-          "$ref": "#/386"
+          "$ref": "#/387"
         },
         "flags": 0
       }
@@ -3541,7 +3595,7 @@
     "properties": {
       "MatchPattern": {
         "type": {
-          "$ref": "#/258"
+          "$ref": "#/259"
         },
         "flags": 1
       },
@@ -3595,7 +3649,7 @@
       },
       "IPSetForwardedIPConfig": {
         "type": {
-          "$ref": "#/261"
+          "$ref": "#/262"
         },
         "flags": 0
       }
@@ -3607,7 +3661,7 @@
     "properties": {
       "ImmunityTime": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/149"
         },
         "flags": 1
       }
@@ -3649,7 +3703,7 @@
       },
       "MatchPattern": {
         "type": {
-          "$ref": "#/267"
+          "$ref": "#/268"
         },
         "flags": 1
       },
@@ -3673,14 +3727,14 @@
     "properties": {
       "All": {
         "type": {
-          "$ref": "#/387"
+          "$ref": "#/388"
         },
         "flags": 0,
         "description": "Inspect all parts of the web request's JSON body."
       },
       "IncludedPaths": {
         "type": {
-          "$ref": "#/388"
+          "$ref": "#/389"
         },
         "flags": 0
       }
@@ -3747,25 +3801,25 @@
     "properties": {
       "AWSManagedRulesACFPRuleSet": {
         "type": {
-          "$ref": "#/200"
+          "$ref": "#/201"
         },
         "flags": 0
       },
       "AWSManagedRulesATPRuleSet": {
         "type": {
-          "$ref": "#/201"
+          "$ref": "#/202"
         },
         "flags": 0
       },
       "AWSManagedRulesAntiDDoSRuleSet": {
         "type": {
-          "$ref": "#/202"
+          "$ref": "#/203"
         },
         "flags": 0
       },
       "AWSManagedRulesBotControlRuleSet": {
         "type": {
-          "$ref": "#/203"
+          "$ref": "#/204"
         },
         "flags": 0
       },
@@ -3777,7 +3831,7 @@
       },
       "PasswordField": {
         "type": {
-          "$ref": "#/252"
+          "$ref": "#/253"
         },
         "flags": 0
       },
@@ -3789,7 +3843,7 @@
       },
       "UsernameField": {
         "type": {
-          "$ref": "#/252"
+          "$ref": "#/253"
         },
         "flags": 0
       }
@@ -3801,13 +3855,13 @@
     "properties": {
       "ExcludedRules": {
         "type": {
-          "$ref": "#/389"
+          "$ref": "#/390"
         },
         "flags": 0
       },
       "ManagedRuleGroupConfigs": {
         "type": {
-          "$ref": "#/390"
+          "$ref": "#/391"
         },
         "flags": 0,
         "description": "Collection of ManagedRuleGroupConfig."
@@ -3820,14 +3874,14 @@
       },
       "RuleActionOverrides": {
         "type": {
-          "$ref": "#/391"
+          "$ref": "#/392"
         },
         "flags": 0,
         "description": "Action overrides for rules in the rule group."
       },
       "ScopeDownStatement": {
         "type": {
-          "$ref": "#/346"
+          "$ref": "#/347"
         },
         "flags": 0
       },
@@ -3856,7 +3910,7 @@
     "properties": {
       "CryptoConfig": {
         "type": {
-          "$ref": "#/231"
+          "$ref": "#/232"
         },
         "flags": 0
       },
@@ -3886,7 +3940,7 @@
     "properties": {
       "Statement": {
         "type": {
-          "$ref": "#/346"
+          "$ref": "#/347"
         },
         "flags": 1
       }
@@ -3910,7 +3964,7 @@
     "properties": {
       "Statements": {
         "type": {
-          "$ref": "#/392"
+          "$ref": "#/393"
         },
         "flags": 1
       }
@@ -3922,14 +3976,14 @@
     "properties": {
       "Count": {
         "type": {
-          "$ref": "#/393"
+          "$ref": "#/394"
         },
         "flags": 0,
         "description": "Count traffic towards application."
       },
       "None": {
         "type": {
-          "$ref": "#/394"
+          "$ref": "#/395"
         },
         "flags": 0,
         "description": "Keep the RuleGroup or ManagedRuleGroup behavior as is."
@@ -3953,7 +4007,7 @@
       },
       "Prices": {
         "type": {
-          "$ref": "#/395"
+          "$ref": "#/396"
         },
         "flags": 1
       },
@@ -3986,7 +4040,7 @@
     "properties": {
       "Priority": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/149"
         },
         "flags": 1
       },
@@ -4044,7 +4098,10 @@
   {
     "$type": "ObjectType",
     "name": "QueryString",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
+    }
   },
   {
     "$type": "ObjectType",
@@ -4058,32 +4115,32 @@
       },
       "CustomKeys": {
         "type": {
-          "$ref": "#/398"
+          "$ref": "#/399"
         },
         "flags": 0,
         "description": "Specifies the aggregate keys to use in a rate-base rule."
       },
       "EvaluationWindowSec": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/149"
         },
         "flags": 0
       },
       "ForwardedIPConfig": {
         "type": {
-          "$ref": "#/256"
+          "$ref": "#/257"
         },
         "flags": 0
       },
       "Limit": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/149"
         },
         "flags": 1
       },
       "ScopeDownStatement": {
         "type": {
-          "$ref": "#/346"
+          "$ref": "#/347"
         },
         "flags": 0
       }
@@ -4095,73 +4152,73 @@
     "properties": {
       "ASN": {
         "type": {
-          "$ref": "#/300"
+          "$ref": "#/301"
         },
         "flags": 0
       },
       "Cookie": {
         "type": {
-          "$ref": "#/301"
+          "$ref": "#/302"
         },
         "flags": 0
       },
       "ForwardedIP": {
         "type": {
-          "$ref": "#/302"
+          "$ref": "#/303"
         },
         "flags": 0
       },
       "HTTPMethod": {
         "type": {
-          "$ref": "#/303"
+          "$ref": "#/304"
         },
         "flags": 0
       },
       "Header": {
         "type": {
-          "$ref": "#/304"
+          "$ref": "#/305"
         },
         "flags": 0
       },
       "IP": {
         "type": {
-          "$ref": "#/305"
+          "$ref": "#/306"
         },
         "flags": 0
       },
       "JA3Fingerprint": {
         "type": {
-          "$ref": "#/306"
+          "$ref": "#/307"
         },
         "flags": 0
       },
       "JA4Fingerprint": {
         "type": {
-          "$ref": "#/307"
+          "$ref": "#/308"
         },
         "flags": 0
       },
       "LabelNamespace": {
         "type": {
-          "$ref": "#/308"
+          "$ref": "#/309"
         },
         "flags": 0
       },
       "QueryArgument": {
         "type": {
-          "$ref": "#/309"
+          "$ref": "#/310"
         },
         "flags": 0
       },
       "QueryString": {
         "type": {
-          "$ref": "#/310"
+          "$ref": "#/311"
         },
         "flags": 0
       },
       "UriPath": {
         "type": {
-          "$ref": "#/311"
+          "$ref": "#/312"
         },
         "flags": 0
       }
@@ -4175,7 +4232,10 @@
   {
     "$type": "ObjectType",
     "name": "RateLimitAsn",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
+    }
   },
   {
     "$type": "ObjectType",
@@ -4190,7 +4250,7 @@
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/399"
+          "$ref": "#/400"
         },
         "flags": 1
       }
@@ -4199,12 +4259,18 @@
   {
     "$type": "ObjectType",
     "name": "RateLimitForwardedIP",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
+    }
   },
   {
     "$type": "ObjectType",
     "name": "RateLimitHTTPMethod",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
+    }
   },
   {
     "$type": "ObjectType",
@@ -4219,7 +4285,7 @@
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/400"
+          "$ref": "#/401"
         },
         "flags": 1
       }
@@ -4228,7 +4294,10 @@
   {
     "$type": "ObjectType",
     "name": "RateLimitIP",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
+    }
   },
   {
     "$type": "ObjectType",
@@ -4280,7 +4349,7 @@
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/401"
+          "$ref": "#/402"
         },
         "flags": 1
       }
@@ -4292,7 +4361,7 @@
     "properties": {
       "TextTransformations": {
         "type": {
-          "$ref": "#/402"
+          "$ref": "#/403"
         },
         "flags": 1
       }
@@ -4304,7 +4373,7 @@
     "properties": {
       "TextTransformations": {
         "type": {
-          "$ref": "#/403"
+          "$ref": "#/404"
         },
         "flags": 1
       }
@@ -4328,13 +4397,13 @@
     "properties": {
       "FieldToMatch": {
         "type": {
-          "$ref": "#/253"
+          "$ref": "#/254"
         },
         "flags": 1
       },
       "PreParseTextTransformations": {
         "type": {
-          "$ref": "#/404"
+          "$ref": "#/405"
         },
         "flags": 0
       },
@@ -4346,7 +4415,7 @@
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/405"
+          "$ref": "#/406"
         },
         "flags": 1
       }
@@ -4364,19 +4433,19 @@
       },
       "FieldToMatch": {
         "type": {
-          "$ref": "#/253"
+          "$ref": "#/254"
         },
         "flags": 1
       },
       "PreParseTextTransformations": {
         "type": {
-          "$ref": "#/406"
+          "$ref": "#/407"
         },
         "flags": 0
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/407"
+          "$ref": "#/408"
         },
         "flags": 1
       }
@@ -4395,7 +4464,10 @@
   {
     "$type": "ObjectType",
     "name": "RequestBody",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/319"
+    }
   },
   {
     "$type": "ObjectType",
@@ -4415,7 +4487,7 @@
     "properties": {
       "PasswordField": {
         "type": {
-          "$ref": "#/252"
+          "$ref": "#/253"
         },
         "flags": 1
       },
@@ -4427,7 +4499,7 @@
       },
       "UsernameField": {
         "type": {
-          "$ref": "#/252"
+          "$ref": "#/253"
         },
         "flags": 1
       }
@@ -4439,19 +4511,19 @@
     "properties": {
       "AddressFields": {
         "type": {
-          "$ref": "#/410"
+          "$ref": "#/411"
         },
         "flags": 0
       },
       "EmailField": {
         "type": {
-          "$ref": "#/252"
+          "$ref": "#/253"
         },
         "flags": 0
       },
       "PasswordField": {
         "type": {
-          "$ref": "#/252"
+          "$ref": "#/253"
         },
         "flags": 0
       },
@@ -4463,13 +4535,13 @@
       },
       "PhoneNumberFields": {
         "type": {
-          "$ref": "#/412"
+          "$ref": "#/413"
         },
         "flags": 0
       },
       "UsernameField": {
         "type": {
-          "$ref": "#/252"
+          "$ref": "#/253"
         },
         "flags": 0
       }
@@ -4496,25 +4568,25 @@
     "properties": {
       "BodyContains": {
         "type": {
-          "$ref": "#/325"
+          "$ref": "#/326"
         },
         "flags": 0
       },
       "Header": {
         "type": {
-          "$ref": "#/326"
+          "$ref": "#/327"
         },
         "flags": 0
       },
       "Json": {
         "type": {
-          "$ref": "#/327"
+          "$ref": "#/328"
         },
         "flags": 0
       },
       "StatusCode": {
         "type": {
-          "$ref": "#/328"
+          "$ref": "#/329"
         },
         "flags": 0
       }
@@ -4526,13 +4598,13 @@
     "properties": {
       "FailureStrings": {
         "type": {
-          "$ref": "#/413"
+          "$ref": "#/414"
         },
         "flags": 1
       },
       "SuccessStrings": {
         "type": {
-          "$ref": "#/414"
+          "$ref": "#/415"
         },
         "flags": 1
       }
@@ -4544,7 +4616,7 @@
     "properties": {
       "FailureValues": {
         "type": {
-          "$ref": "#/415"
+          "$ref": "#/416"
         },
         "flags": 1
       },
@@ -4556,7 +4628,7 @@
       },
       "SuccessValues": {
         "type": {
-          "$ref": "#/416"
+          "$ref": "#/417"
         },
         "flags": 1
       }
@@ -4568,7 +4640,7 @@
     "properties": {
       "FailureValues": {
         "type": {
-          "$ref": "#/417"
+          "$ref": "#/418"
         },
         "flags": 1
       },
@@ -4580,7 +4652,7 @@
       },
       "SuccessValues": {
         "type": {
-          "$ref": "#/418"
+          "$ref": "#/419"
         },
         "flags": 1
       }
@@ -4592,13 +4664,13 @@
     "properties": {
       "FailureCodes": {
         "type": {
-          "$ref": "#/419"
+          "$ref": "#/420"
         },
         "flags": 1
       },
       "SuccessCodes": {
         "type": {
-          "$ref": "#/420"
+          "$ref": "#/421"
         },
         "flags": 1
       }
@@ -4615,19 +4687,19 @@
     "properties": {
       "Action": {
         "type": {
-          "$ref": "#/331"
+          "$ref": "#/332"
         },
         "flags": 0
       },
       "CaptchaConfig": {
         "type": {
-          "$ref": "#/221"
+          "$ref": "#/222"
         },
         "flags": 0
       },
       "ChallengeConfig": {
         "type": {
-          "$ref": "#/223"
+          "$ref": "#/224"
         },
         "flags": 0
       },
@@ -4639,32 +4711,32 @@
       },
       "OverrideAction": {
         "type": {
-          "$ref": "#/283"
+          "$ref": "#/284"
         },
         "flags": 0
       },
       "Priority": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/149"
         },
         "flags": 1
       },
       "RuleLabels": {
         "type": {
-          "$ref": "#/421"
+          "$ref": "#/422"
         },
         "flags": 0,
         "description": "Collection of Rule Labels."
       },
       "Statement": {
         "type": {
-          "$ref": "#/346"
+          "$ref": "#/347"
         },
         "flags": 1
       },
       "VisibilityConfig": {
         "type": {
-          "$ref": "#/355"
+          "$ref": "#/356"
         },
         "flags": 1
       }
@@ -4676,37 +4748,37 @@
     "properties": {
       "Allow": {
         "type": {
-          "$ref": "#/205"
+          "$ref": "#/206"
         },
         "flags": 0
       },
       "Block": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/216"
         },
         "flags": 0
       },
       "Captcha": {
         "type": {
-          "$ref": "#/220"
+          "$ref": "#/221"
         },
         "flags": 0
       },
       "Challenge": {
         "type": {
-          "$ref": "#/222"
+          "$ref": "#/223"
         },
         "flags": 0
       },
       "Count": {
         "type": {
-          "$ref": "#/230"
+          "$ref": "#/231"
         },
         "flags": 0
       },
       "Monetize": {
         "type": {
-          "$ref": "#/279"
+          "$ref": "#/280"
         },
         "flags": 0
       }
@@ -4718,7 +4790,7 @@
     "properties": {
       "ActionToUse": {
         "type": {
-          "$ref": "#/331"
+          "$ref": "#/332"
         },
         "flags": 1
       },
@@ -4742,13 +4814,13 @@
       },
       "ExcludedRules": {
         "type": {
-          "$ref": "#/422"
+          "$ref": "#/423"
         },
         "flags": 0
       },
       "RuleActionOverrides": {
         "type": {
-          "$ref": "#/423"
+          "$ref": "#/424"
         },
         "flags": 0,
         "description": "Action overrides for rules in the rule group."
@@ -4826,25 +4898,25 @@
       },
       "FieldToMatch": {
         "type": {
-          "$ref": "#/253"
+          "$ref": "#/254"
         },
         "flags": 1
       },
       "PreParseTextTransformations": {
         "type": {
-          "$ref": "#/425"
+          "$ref": "#/426"
         },
         "flags": 0
       },
       "Size": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/149"
         },
         "flags": 1
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/426"
+          "$ref": "#/427"
         },
         "flags": 1
       }
@@ -4861,13 +4933,13 @@
     "properties": {
       "FieldToMatch": {
         "type": {
-          "$ref": "#/253"
+          "$ref": "#/254"
         },
         "flags": 1
       },
       "PreParseTextTransformations": {
         "type": {
-          "$ref": "#/427"
+          "$ref": "#/428"
         },
         "flags": 0
       },
@@ -4879,7 +4951,7 @@
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/428"
+          "$ref": "#/429"
         },
         "flags": 1
       }
@@ -4891,97 +4963,97 @@
     "properties": {
       "AndStatement": {
         "type": {
-          "$ref": "#/206"
+          "$ref": "#/207"
         },
         "flags": 0
       },
       "AsnMatchStatement": {
         "type": {
-          "$ref": "#/210"
+          "$ref": "#/211"
         },
         "flags": 0
       },
       "ByteMatchStatement": {
         "type": {
-          "$ref": "#/219"
+          "$ref": "#/220"
         },
         "flags": 0
       },
       "GeoMatchStatement": {
         "type": {
-          "$ref": "#/257"
+          "$ref": "#/258"
         },
         "flags": 0
       },
       "IPSetReferenceStatement": {
         "type": {
-          "$ref": "#/262"
+          "$ref": "#/263"
         },
         "flags": 0
       },
       "LabelMatchStatement": {
         "type": {
-          "$ref": "#/273"
+          "$ref": "#/274"
         },
         "flags": 0
       },
       "ManagedRuleGroupStatement": {
         "type": {
-          "$ref": "#/276"
+          "$ref": "#/277"
         },
         "flags": 0
       },
       "NotStatement": {
         "type": {
-          "$ref": "#/280"
+          "$ref": "#/281"
         },
         "flags": 0
       },
       "OrStatement": {
         "type": {
-          "$ref": "#/282"
+          "$ref": "#/283"
         },
         "flags": 0
       },
       "RateBasedStatement": {
         "type": {
-          "$ref": "#/297"
+          "$ref": "#/298"
         },
         "flags": 0
       },
       "RegexMatchStatement": {
         "type": {
-          "$ref": "#/313"
+          "$ref": "#/314"
         },
         "flags": 0
       },
       "RegexPatternSetReferenceStatement": {
         "type": {
-          "$ref": "#/314"
+          "$ref": "#/315"
         },
         "flags": 0
       },
       "RuleGroupReferenceStatement": {
         "type": {
-          "$ref": "#/333"
+          "$ref": "#/334"
         },
         "flags": 0
       },
       "SizeConstraintStatement": {
         "type": {
-          "$ref": "#/343"
+          "$ref": "#/344"
         },
         "flags": 0
       },
       "SqliMatchStatement": {
         "type": {
-          "$ref": "#/345"
+          "$ref": "#/346"
         },
         "flags": 0
       },
       "XssMatchStatement": {
         "type": {
-          "$ref": "#/357"
+          "$ref": "#/358"
         },
         "flags": 0
       }
@@ -5011,7 +5083,7 @@
     "properties": {
       "Priority": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/149"
         },
         "flags": 1
       },
@@ -5053,7 +5125,10 @@
   {
     "$type": "ObjectType",
     "name": "UriPath",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
+    }
   },
   {
     "$type": "ObjectType",
@@ -5066,7 +5141,7 @@
     "properties": {
       "CloudWatchMetricsEnabled": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/30"
         },
         "flags": 1
       },
@@ -5078,7 +5153,7 @@
       },
       "SampledRequestsEnabled": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/30"
         },
         "flags": 1
       }
@@ -5095,19 +5170,19 @@
     "properties": {
       "FieldToMatch": {
         "type": {
-          "$ref": "#/253"
+          "$ref": "#/254"
         },
         "flags": 1
       },
       "PreParseTextTransformations": {
         "type": {
-          "$ref": "#/430"
+          "$ref": "#/431"
         },
         "flags": 0
       },
       "TextTransformations": {
         "type": {
-          "$ref": "#/431"
+          "$ref": "#/432"
         },
         "flags": 1
       }
@@ -5116,7 +5191,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/346"
+      "$ref": "#/347"
     }
   },
   {
@@ -5128,19 +5203,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/207"
+      "$ref": "#/208"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/207"
+      "$ref": "#/208"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/148"
+      "$ref": "#/149"
     }
   },
   {
@@ -5152,30 +5227,27 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/289"
+      "$ref": "#/290"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/348"
+      "$ref": "#/349"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/312"
+      "$ref": "#/313"
     }
   },
   {
     "$type": "ObjectType",
     "name": "WebACL_All",
-    "properties": {}
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/8"
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
     }
   },
   {
@@ -5187,53 +5259,68 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/285"
+      "$ref": "#/8"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/234"
+      "$ref": "#/286"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/234"
+      "$ref": "#/235"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/241"
+      "$ref": "#/235"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/241"
+      "$ref": "#/242"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/250"
+      "$ref": "#/242"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/251"
     }
   },
   {
     "$type": "ObjectType",
     "name": "WebACL_AllQueryArguments",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
+    }
   },
   {
     "$type": "ObjectType",
     "name": "WebACL_Method",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
+    }
   },
   {
     "$type": "ObjectType",
     "name": "WebACL_QueryString",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
+    }
   },
   {
     "$type": "ObjectType",
@@ -5262,24 +5349,10 @@
   {
     "$type": "ObjectType",
     "name": "WebACL_UriPath",
-    "properties": {}
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/8"
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
     }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/8"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "WebACL_All",
-    "properties": {}
   },
   {
     "$type": "ArrayType",
@@ -5296,7 +5369,10 @@
   {
     "$type": "ObjectType",
     "name": "WebACL_All",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
+    }
   },
   {
     "$type": "ArrayType",
@@ -5307,141 +5383,173 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/250"
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WebACL_All",
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/275"
+      "$ref": "#/8"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/332"
+      "$ref": "#/251"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/346"
+      "$ref": "#/276"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/333"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/347"
     }
   },
   {
     "$type": "ObjectType",
     "name": "WebACL_Count",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
+    }
   },
   {
     "$type": "ObjectType",
     "name": "WebACL_None",
-    "properties": {}
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/292"
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/285"
+      "$ref": "#/293"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/292"
+      "$ref": "#/286"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/298"
+      "$ref": "#/293"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/348"
+      "$ref": "#/299"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/348"
+      "$ref": "#/349"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/348"
+      "$ref": "#/349"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/348"
+      "$ref": "#/349"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/348"
+      "$ref": "#/349"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/289"
+      "$ref": "#/349"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/348"
+      "$ref": "#/290"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/289"
+      "$ref": "#/349"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/348"
+      "$ref": "#/290"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/312"
+      "$ref": "#/349"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/313"
     }
   },
   {
     "$type": "ObjectType",
     "name": "WebACL_AddressField",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
+    }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/409"
+      "$ref": "#/410"
     }
   },
   {
     "$type": "ObjectType",
     "name": "WebACL_PhoneNumberField",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/20"
+    }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/411"
+      "$ref": "#/412"
     }
   },
   {
@@ -5483,61 +5591,61 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/148"
+      "$ref": "#/149"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/148"
+      "$ref": "#/149"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/270"
+      "$ref": "#/271"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/250"
+      "$ref": "#/251"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/332"
+      "$ref": "#/333"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/330"
+      "$ref": "#/331"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/289"
+      "$ref": "#/290"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/348"
+      "$ref": "#/349"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/289"
+      "$ref": "#/290"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/348"
+      "$ref": "#/349"
     }
   },
   {
@@ -5549,13 +5657,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/289"
+      "$ref": "#/290"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/348"
+      "$ref": "#/349"
     }
   },
   {
@@ -5565,13 +5673,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/330"
+      "$ref": "#/331"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/347"
+      "$ref": "#/348"
     }
   },
   {
@@ -5586,7 +5694,7 @@
     "properties": {
       "ApplicationConfig": {
         "type": {
-          "$ref": "#/209"
+          "$ref": "#/210"
         },
         "flags": 0,
         "description": "Collection of application attributes."
@@ -5599,44 +5707,44 @@
       },
       "AssociationConfig": {
         "type": {
-          "$ref": "#/211"
+          "$ref": "#/212"
         },
         "flags": 0
       },
       "Capacity": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/149"
         },
         "flags": 2
       },
       "CaptchaConfig": {
         "type": {
-          "$ref": "#/221"
+          "$ref": "#/222"
         },
         "flags": 0
       },
       "ChallengeConfig": {
         "type": {
-          "$ref": "#/223"
+          "$ref": "#/224"
         },
         "flags": 0
       },
       "CustomResponseBodies": {
         "type": {
-          "$ref": "#/239"
+          "$ref": "#/240"
         },
         "flags": 0
       },
       "DataProtectionConfig": {
         "type": {
-          "$ref": "#/243"
+          "$ref": "#/244"
         },
         "flags": 0,
         "description": "Collection of dataProtects."
       },
       "DefaultAction": {
         "type": {
-          "$ref": "#/245"
+          "$ref": "#/246"
         },
         "flags": 1
       },
@@ -5660,7 +5768,7 @@
       },
       "MonetizationConfig": {
         "type": {
-          "$ref": "#/278"
+          "$ref": "#/279"
         },
         "flags": 0
       },
@@ -5672,13 +5780,13 @@
       },
       "OnSourceDDoSProtectionConfig": {
         "type": {
-          "$ref": "#/281"
+          "$ref": "#/282"
         },
         "flags": 0
       },
       "Rules": {
         "type": {
-          "$ref": "#/433"
+          "$ref": "#/434"
         },
         "flags": 0,
         "description": "Collection of Rules."
@@ -5691,19 +5799,19 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/434"
+          "$ref": "#/435"
         },
         "flags": 0
       },
       "TokenDomains": {
         "type": {
-          "$ref": "#/435"
+          "$ref": "#/436"
         },
         "flags": 0
       },
       "VisibilityConfig": {
         "type": {
-          "$ref": "#/355"
+          "$ref": "#/356"
         },
         "flags": 1
       }
@@ -5729,7 +5837,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/436"
+          "$ref": "#/437"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -5740,7 +5848,7 @@
     "$type": "ResourceType",
     "name": "AWS.WAFv2/WebACL@default",
     "body": {
-      "$ref": "#/437"
+      "$ref": "#/438"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -5792,7 +5900,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/441"
+          "$ref": "#/442"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -5803,7 +5911,7 @@
     "$type": "ResourceType",
     "name": "AWS.WAFv2/WebACLAssociation@default",
     "body": {
-      "$ref": "#/442"
+      "$ref": "#/443"
     },
     "readableScopes": 0,
     "writableScopes": 0

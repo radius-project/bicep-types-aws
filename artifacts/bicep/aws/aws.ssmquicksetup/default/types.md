@@ -18,6 +18,8 @@
 
 ## AutomationParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string[]
 
 ## AWS.SSMQuickSetup/ConfigurationManagerProperties
 ### Properties
@@ -49,9 +51,13 @@
 
 ## ConfigurationParametersMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## StatusDetails
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## StatusSummary
 ### Properties
@@ -63,7 +69,11 @@
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 

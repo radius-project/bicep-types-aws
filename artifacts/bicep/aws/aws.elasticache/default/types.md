@@ -404,6 +404,8 @@
 
 ## ParameterGroup_Properties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## RecurringCharge
 ### Properties

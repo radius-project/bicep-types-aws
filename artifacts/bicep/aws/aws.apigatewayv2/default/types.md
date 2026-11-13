@@ -142,15 +142,23 @@
 
 ## Api_Body
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Api_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ApiGatewayManagedOverrides_RouteSettings
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [RouteSettings](#routesettings)
 
 ## ApiGatewayManagedOverrides_StageVariables
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## AWS.ApiGatewayV2/ApiGatewayManagedOverridesProperties
 ### Properties
@@ -362,6 +370,8 @@
 
 ## DomainName_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## DomainNameConfiguration
 ### Properties
@@ -374,12 +384,18 @@
 
 ## Integration_RequestParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Integration_RequestTemplates
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Integration_ResponseParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ResponseParameterMap](#responseparametermap)
 
 ## IntegrationOverrides
 ### Properties
@@ -390,9 +406,13 @@
 
 ## IntegrationResponse_ResponseParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## IntegrationResponse_ResponseTemplates
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## JWTConfiguration
 ### Properties
@@ -414,17 +434,36 @@
 
 ## Model_Schema
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## MutualTlsAuthentication
 ### Properties
 * **TruststoreUri**: string: An Amazon S3 URL that specifies the truststore for mutual TLS authentication, for example, ``s3://bucket-name/key-name``. The truststore can contain certificates from public or private certificate authorities. To update the truststore, upload a new version to S3, and then update your custom domain name to use the new version. To update the truststore, you must have permissions to access the S3 object.
 * **TruststoreVersion**: string: The version of the S3 object that contains your truststore. To specify a version, you must have versioning enabled for the S3 bucket.
 
+## ParameterConstraints
+### Properties
+* **Required**: bool (Required): Specifies whether the parameter is required.
+
+## ResponseParameter
+### Properties
+* **Destination**: string
+* **Source**: string
+
+## ResponseParameterMap
+### Properties
+* **ResponseParameters**: [ResponseParameter](#responseparameter)[]
+
 ## Route_RequestModels
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Route_RequestParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## RouteOverrides
 ### Properties
@@ -436,9 +475,13 @@
 
 ## RouteParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ParameterConstraints](#parameterconstraints)
 
 ## RouteResponse_ResponseModels
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## RouteSettings
 ### Properties
@@ -456,12 +499,18 @@
 
 ## Stage_RouteSettings
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Stage_StageVariables
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Stage_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## StageOverrides
 ### Properties
@@ -483,4 +532,6 @@
 
 ## VpcLink_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 

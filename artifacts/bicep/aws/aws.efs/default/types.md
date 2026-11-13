@@ -103,6 +103,8 @@
 
 ## FileSystem_FileSystemPolicy
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## FileSystemProtection
 ### Properties

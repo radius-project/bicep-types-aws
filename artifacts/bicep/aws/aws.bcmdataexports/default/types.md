@@ -79,4 +79,11 @@
 
 ## TableConfigurations
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [TableProperties](#tableproperties)
+
+## TableProperties
+### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 

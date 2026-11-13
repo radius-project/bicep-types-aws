@@ -8,8 +8,17 @@
 * **name**: string: the resource name
 * **properties**: [AWS.ARCRegionSwitch/PlanProperties](#awsarcregionswitchplanproperties) (Required, Identifier): properties of the resource
 
+## AssociatedAlarm
+### Properties
+* **AlarmType**: string (Required)
+* **CrossAccountRole**: string
+* **ExternalId**: string
+* **ResourceIdentifier**: string (Required)
+
 ## AssociatedAlarmMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [AssociatedAlarm](#associatedalarm)
 
 ## AWS.ARCRegionSwitch/PlanProperties
 ### Properties
@@ -36,8 +45,15 @@
 ## ExecutionBlockConfiguration
 ### Properties
 
+## HealthCheckState
+### Properties
+* **HealthCheckId**: string
+* **Region**: string
+
 ## Plan_HealthChecksForPlan
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [HealthCheckState](#healthcheckstate)[]
 
 ## Plan_ReportOutputConfiguration
 ### Properties
@@ -62,6 +78,8 @@
 
 ## Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Trigger
 ### Properties

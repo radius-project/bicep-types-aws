@@ -564,6 +564,109 @@ describe('convert', () => {
     });
 });
 
+
+describe('maps', () => {
+    function additional(types: BicepType[], map: ObjectType): BicepType | undefined {
+        return map.additionalProperties ? types[(map.additionalProperties as TypeReference).index] : undefined
+    }
+
+    function convert(schema: any): { types: BicepType[], map: ObjectType } {
+        const record: SchemaRecord = {
+            arn: '', type: 'AWS::Test::Thing', time: '',
+            schema: { typeName: 'AWS::Test::Thing', primaryIdentifier: ['/properties/Id'], additionalProperties: false, properties: { Id: { type: 'string' } as any, Map: schema } },
+        }
+        const types = convertSchemaRecordToTypes([record])
+        const properties = lookupObjectType(types, 'AWS.Test/ThingProperties')!
+        return { types, map: types[(properties.properties['Map'].type as TypeReference).index] as ObjectType }
+    }
+
+    test('an object with no properties and no additionalProperties accepts any key', () => {
+        const { types, map } = convert({ type: 'object' })
+
+        expect(map.properties).toEqual({})
+        expect(additional(types, map)?.type).toBe(TypeBaseKind.AnyType)
+    })
+
+    test('patternProperties set the value type under any key', () => {
+        const { types, map } = convert({ type: 'object', additionalProperties: false, patternProperties: { '^[a-z]+$': { type: 'string' } } })
+
+        expect(additional(types, map)?.type).toBe(TypeBaseKind.StringType)
+    })
+
+    test('patternProperties with the same value type give one type', () => {
+        const { types, map } = convert({ type: 'object', additionalProperties: false, patternProperties: { '^a': { type: 'string' }, '^b': { type: 'string' } } })
+
+        expect(additional(types, map)?.type).toBe(TypeBaseKind.StringType)
+    })
+
+    test('patternProperties with different value types give a union', () => {
+        const { types, map } = convert({ type: 'object', patternProperties: { '^a': { type: 'string' }, '^b': { type: 'integer' } } })
+
+        const union = additional(types, map) as any
+        expect(union.type).toBe(TypeBaseKind.UnionType)
+        expect(union.elements.map((e: TypeReference) => types[e.index].type).sort()).toEqual([TypeBaseKind.IntegerType, TypeBaseKind.StringType].sort())
+    })
+
+    test('an additionalProperties schema and patternProperties are both accepted', () => {
+        const { types, map } = convert({ type: 'object', additionalProperties: { type: 'integer' }, patternProperties: { '^a': { type: 'string' } } })
+
+        expect((additional(types, map) as any).type).toBe(TypeBaseKind.UnionType)
+    })
+
+    test('an object with additionalProperties false and no patternProperties stays closed', () => {
+        const { map } = convert({ type: 'object', additionalProperties: false })
+
+        expect(map.additionalProperties).toBeUndefined()
+    })
+
+    test('an object with named properties and no additionalProperties stays closed', () => {
+        const { map } = convert({ type: 'object', properties: { Name: { type: 'string' } } })
+
+        expect(Object.keys(map.properties)).toEqual(['Name'])
+        expect(map.additionalProperties).toBeUndefined()
+    })
+
+    test('an object whose properties are in closed oneOf alternatives stays closed', () => {
+        const { map } = convert({
+            oneOf: [
+                { type: 'object', additionalProperties: false, properties: { Actions: { type: 'array' } } },
+                { type: 'object', additionalProperties: false, properties: { TargetNames: { type: 'array' } } },
+            ],
+        })
+
+        expect(map.additionalProperties).toBeUndefined()
+    })
+
+    test('patternProperties values with anyOf alternatives give a union of them', () => {
+        // AWS::StepFunctions::StateMachine DefinitionSubstitutions.
+        const { types, map } = convert({ additionalProperties: false, minProperties: 1, type: 'object', patternProperties: { '.*': { anyOf: [{ type: 'string' }, { type: 'integer' }, { type: 'boolean' }] } } })
+
+        const union = additional(types, map) as any
+        expect(union.type).toBe(TypeBaseKind.UnionType)
+        expect(union.elements.map((e: TypeReference) => types[e.index].type).sort()).toEqual([TypeBaseKind.BooleanType, TypeBaseKind.IntegerType, TypeBaseKind.StringType].sort())
+    })
+
+    test('patternProperties values with an untyped alternative accept any value', () => {
+        const { types, map } = convert({ type: 'object', patternProperties: { '.*': { anyOf: [{ type: 'string' }, { description: 'anything' }] } } })
+
+        expect(additional(types, map)?.type).toBe(TypeBaseKind.AnyType)
+    })
+
+    test('an object or string property keeps both', () => {
+        const record: SchemaRecord = {
+            arn: '', type: 'AWS::Test::Thing', time: '',
+            schema: { typeName: 'AWS::Test::Thing', primaryIdentifier: ['/properties/Id'], additionalProperties: false, properties: { Id: { type: 'string' } as any, Map: { type: ['object', 'string'] } as any } },
+        }
+        const types = convertSchemaRecordToTypes([record])
+        const map = lookupObjectType(types, 'AWS.Test/ThingProperties')!.properties['Map']
+        const union = types[(map.type as TypeReference).index] as any
+
+        expect(union.type).toBe(TypeBaseKind.UnionType)
+        const object = union.elements.map((e: TypeReference) => types[e.index]).find((t: BicepType) => t.type === TypeBaseKind.ObjectType)
+        expect(additional(types, object)?.type).toBe(TypeBaseKind.AnyType)
+    })
+})
+
 function lookupObjectType(types: BicepType[], name: string): ObjectType | undefined {
     return types.find(t => (t as ObjectType).type === TypeBaseKind.ObjectType && (t as ObjectType).name === name) as ObjectType;
 }

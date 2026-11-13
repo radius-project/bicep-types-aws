@@ -110,9 +110,13 @@
 
 ## CisScanConfiguration_TargetResourceTags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string[]
 
 ## CisTagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## CisTargets
 ### Properties
@@ -201,6 +205,8 @@
 
 ## FilterTagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## MapFilter
 ### Properties
@@ -220,6 +226,8 @@
 
 ## OneTimeSchedule
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## PackageFilter
 ### Properties
@@ -276,9 +284,13 @@
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Time
 ### Properties

@@ -65,6 +65,8 @@
 
 ## Canary_EnvironmentVariables
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Code
 ### Properties

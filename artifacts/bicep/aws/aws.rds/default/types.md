@@ -1515,6 +1515,8 @@ If you specify the SourceDBClusterIdentifier property, don't specify this proper
 
 ## DBClusterParameterGroup_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## DBClusterRole
 ### Properties
@@ -1535,6 +1537,8 @@ If you specify the SourceDBClusterIdentifier property, don't specify this proper
 
 ## DBParameterGroup_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## DeploymentTask
 ### Properties
@@ -1543,6 +1547,8 @@ If you specify the SourceDBClusterIdentifier property, don't specify this proper
 
 ## EncryptionContextMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Endpoint
 ### Properties

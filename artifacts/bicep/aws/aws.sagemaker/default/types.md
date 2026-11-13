@@ -471,6 +471,8 @@
 
 ## Action_Properties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ActionSource
 ### Properties
@@ -586,6 +588,8 @@
 
 ## Algorithm_Environment
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## AlgorithmSpecification
 ### Properties
@@ -614,6 +618,8 @@
 
 ## Artifact_Properties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ArtifactSource
 ### Properties
@@ -674,14 +680,25 @@
 ### Properties
 * **ValidationFraction**: int: The validation fraction (optional) is a float that specifies the portion of the training dataset to be used for validation.
 
+## AutoMLJob_additionalProperties
+### Properties
+### Additional Properties
+* **Additional Properties Type**: string
+
 ## AutoMLJob_Aggregation
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## AutoMLJob_Filling
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [AutoMLJob_additionalProperties](#automljobadditionalproperties)
 
 ## AutoMLJob_TextGenerationHyperParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## AutoMLJobChannel
 ### Properties
@@ -1893,6 +1910,8 @@
 
 ## ClusterKubernetesLabels
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ClusterKubernetesTaint
 ### Properties
@@ -2079,6 +2098,8 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## Context_Properties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Context_Source
 ### Properties
@@ -2123,6 +2144,8 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## CustomerMetadataProperties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string | string
 
 ## CustomFileSystem
 ### Properties
@@ -2207,6 +2230,8 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## DataQualityJobDefinition_Environment
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string | string
 
 ## DataQualityJobInput
 ### Properties
@@ -2469,9 +2494,13 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## Environment
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Environment
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## EnvironmentConfig
 ### Properties
@@ -2479,6 +2508,8 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## EnvironmentMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## EvaluationDetail
 ### Properties
@@ -2651,6 +2682,8 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## HyperParameterTuningJob_Environment
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## HyperParameterTuningJob_HyperParameterTuningJobObjective
 ### Properties
@@ -2722,6 +2755,8 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## HyperParameterTuningJob_StaticHyperParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## HyperParameterTuningJob_StoppingCondition
 ### Properties
@@ -3130,6 +3165,8 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## Model_Environment
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## ModelAccessConfig
 ### Properties
@@ -3156,6 +3193,8 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## ModelBiasJobDefinition_Environment
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string | string
 
 ## ModelBiasJobInput
 ### Properties
@@ -3170,6 +3209,8 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## ModelCard_CustomDetails
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ModelCard_Function
 ### Properties
@@ -3183,6 +3224,8 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## ModelCard_Metadata
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ModelCard_MetricData
 ### Properties
@@ -3244,6 +3287,8 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## ModelExplainabilityJobDefinition_Environment
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string | string
 
 ## ModelExplainabilityJobInput
 ### Properties
@@ -3360,6 +3405,8 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## ModelQualityJobDefinition_Environment
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string | string
 
 ## ModelQualityJobInput
 ### Properties
@@ -3498,6 +3545,8 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## MonitoringSchedule_Environment
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string | string
 
 ## MonitoringScheduleConfig
 ### Properties
@@ -3594,15 +3643,23 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## OptimizationJob_OptimizationEnvironment
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## OptimizationJob_OverrideEnvironment
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## OptimizationJob_OverrideEnvironment
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## OptimizationJob_OverrideEnvironment
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## OptimizationJobModelSource
 ### Properties
@@ -3656,6 +3713,8 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## PartnerApp_Arguments
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## PartnerAppConfig
 ### Properties
@@ -4511,24 +4570,38 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## TrainingJob_CollectionParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TrainingJob_Environment
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TrainingJob_HookParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TrainingJob_HyperParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TrainingJob_ProfilingParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TrainingJob_RuleParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TrainingJob_RuleParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TrainingJobDefinition
 ### Properties
@@ -4600,6 +4673,8 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## TransformJob_Environment
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TransformJob_ExperimentConfig
 ### Properties
@@ -4671,17 +4746,33 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## TrialComponent_InputArtifacts
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [TrialComponentArtifact](#trialcomponentartifact)
 
 ## TrialComponent_OutputArtifacts
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [TrialComponentArtifact](#trialcomponentartifact)
 
 ## TrialComponent_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [TrialComponentParameterValue](#trialcomponentparametervalue)
 
 ## TrialComponent_Tags
 ### Properties
 * **Key**: string (Required): The tag key.
 * **Value**: string (Required): The tag value.
+
+## TrialComponentArtifact
+### Properties
+* **MediaType**: string: The media type of the artifact.
+* **Value**: string (Required): The location of the artifact.
+
+## TrialComponentParameterValue
+### Properties
+* **NumberValue**: int: The numeric value of a numeric hyperparameter.
+* **StringValue**: string: The string value of a categorical hyperparameter.
 
 ## TrialComponentStatus
 ### Properties
@@ -4836,6 +4927,8 @@ You can't access the domain in Amazon SageMaker Studio. If you migrate the domai
 
 ## Workforce_AuthenticationRequestExtraParams
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## WorkforceVpcConfigRequest
 ### Properties

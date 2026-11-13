@@ -57,6 +57,15 @@
 
 ## ReplicationStatus
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ReplicationStatusType](#replicationstatustype)
+
+## ReplicationStatusType
+### Properties
+* **KmsKeyArn**: string: The ARN of the AWS KMS key that protects the replica in this region.
+* **KmsKeyId**: string: The AWS KMS key requested for this region, when replication failed before its ARN was known.
+* **Status**: string (Required)
+* **StatusMessage**: string
 
 ## Tag
 ### Properties

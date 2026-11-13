@@ -153,6 +153,8 @@
 
 ## DeliveryStream_ColumnToJsonKeyMappings
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## DeliveryStream_PartitionSpec
 ### Properties

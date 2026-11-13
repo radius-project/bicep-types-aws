@@ -300,12 +300,18 @@
 
 ## Cluster_AdditionalInfo
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Cluster_ConfigurationProperties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Cluster_LogTypes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string[]
 
 ## ComputeLimits
 ### Properties
@@ -389,6 +395,8 @@
 
 ## InstanceFleetConfig_ConfigurationProperties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## InstanceFleetProvisioningSpecifications
 ### Properties
@@ -424,6 +432,8 @@
 
 ## InstanceGroupConfig_ConfigurationProperties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## InstanceTypeConfig
 ### Properties
@@ -489,6 +499,8 @@
 
 ## LogTypesMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string[]
 
 ## ManagedScalingPolicy
 ### Properties
@@ -512,6 +524,8 @@
 
 ## NotebookExecution_EnvironmentVariables
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## NotebookS3Location
 ### Properties
@@ -615,6 +629,8 @@
 
 ## Session_Properties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## SessionCloudWatchLoggingConfiguration
 ### Properties
