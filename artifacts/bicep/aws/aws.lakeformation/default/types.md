@@ -8,6 +8,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.LakeFormation/DataCellsFilterProperties](#awslakeformationdatacellsfilterproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.LakeFormation/DataLakeSettings@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.LakeFormation/DataLakeSettingsProperties](#awslakeformationdatalakesettingsproperties) (Identifier): properties of the resource
+
+## Resource AWS.LakeFormation/Permissions@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.LakeFormation/PermissionsProperties](#awslakeformationpermissionsproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.LakeFormation/PrincipalPermissions@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -49,6 +65,29 @@
 * **RowFilter**: [RowFilter](#rowfilter): An object representing the Data Cells Filter's Row Filter. Either a Filter Expression or a Wildcard is required
 * **TableCatalogId**: string (Required, Identifier): The Catalog Id of the Table on which to create a Data Cells Filter.
 * **TableName**: string (Required, Identifier): The name of the Table to create a Data Cells Filter for.
+
+## AWS.LakeFormation/DataLakeSettingsProperties
+### Properties
+* **Admins**: [DataLakePrincipal](#datalakeprincipal)[]
+* **AllowExternalDataFiltering**: bool
+* **AllowFullTableExternalDataAccess**: bool
+* **AuthorizedSessionTagValueList**: string[]
+* **CreateDatabaseDefaultPermissions**: [PrincipalPermissions](#principalpermissions)[]
+* **CreateTableDefaultPermissions**: [PrincipalPermissions](#principalpermissions)[]
+* **ExternalDataFilteringAllowList**: [DataLakePrincipal](#datalakeprincipal)[]
+* **Id**: string (ReadOnly, Identifier): Always DataLakeSettings, because an account has one set of settings in each Region.
+* **MutationType**: string (WriteOnly)
+* **Parameters**: [DataLakeSettings_Parameters](#datalakesettingsparameters)
+* **ReadOnlyAdmins**: [DataLakePrincipal](#datalakeprincipal)[]
+* **TrustedResourceOwners**: string[]
+
+## AWS.LakeFormation/PermissionsProperties
+### Properties
+* **DataLakePrincipal**: [DataLakePrincipal](#datalakeprincipal) (Required)
+* **Id**: string (ReadOnly, Identifier): DataLakePrincipal and Resource, as a JSON object. The resource is the permissions in Permissions and PermissionsWithGrantOption, so other permissions of the principal on the resource stay as they are.
+* **Permissions**: string[]
+* **PermissionsWithGrantOption**: string[]
+* **Resource**: [Resource](#resource) (Required)
 
 ## AWS.LakeFormation/PrincipalPermissionsProperties
 ### Properties
@@ -95,7 +134,16 @@
 
 ## ColumnWildcard
 ### Properties
+* **ExcludedColumnNames**: string[]
+
+## ColumnWildcard
+### Properties
 * **ExcludedColumnNames**: string[]: Excludes column names. Any column with this name will be excluded.
+
+## DatabaseResource
+### Properties
+* **CatalogId**: string
+* **Name**: string
 
 ## DatabaseResource
 ### Properties
@@ -119,7 +167,25 @@
 
 ## DataLakePrincipal
 ### Properties
+* **DataLakePrincipalIdentifier**: string (Required)
+
+## DataLakePrincipal
+### Properties
+* **DataLakePrincipalIdentifier**: string
+
+## DataLakePrincipal
+### Properties
 * **DataLakePrincipalIdentifier**: string: An identifier for the LFlong principal.
+
+## DataLakeSettings_Parameters
+### Properties
+### Additional Properties
+* **Additional Properties Type**: any
+
+## DataLocationResource
+### Properties
+* **CatalogId**: string
+* **S3Resource**: string
 
 ## DataLocationResource
 ### Properties
@@ -149,6 +215,18 @@
 * **Expression**: [LFTag](#lftag)[] (Required): A list of LF-tag conditions that apply to the resource's LF-tag policy.
 * **ResourceType**: string (Required): The resource type for which the LF-tag policy applies.
 
+## PrincipalPermissions
+### Properties
+* **Permissions**: string[] (Required)
+* **Principal**: [DataLakePrincipal](#datalakeprincipal) (Required)
+
+## Resource
+### Properties
+* **DatabaseResource**: [DatabaseResource](#databaseresource)
+* **DataLocationResource**: [DataLocationResource](#datalocationresource)
+* **TableResource**: [TableResource](#tableresource)
+* **TableWithColumnsResource**: [TableWithColumnsResource](#tablewithcolumnsresource)
+
 ## Resource
 ### Properties
 * **Catalog**: [CatalogResource](#catalogresource): The identifier for the Data Catalog. By default, the account ID. The Data Catalog is the persistent metadata store. It contains database definitions, table definitions, and other control information to manage your LFlong environment.
@@ -174,6 +252,13 @@
 
 ## TableResource
 ### Properties
+* **CatalogId**: string
+* **DatabaseName**: string
+* **Name**: string
+* **TableWildcard**: [TableWildcard](#tablewildcard)
+
+## TableResource
+### Properties
 * **CatalogId**: string (Required): The identifier for the Data Catalog. By default, it is the account ID of the caller.
 * **DatabaseName**: string (Required): The name of the database for the table. Unique to a Data Catalog. A database is a set of associated table definitions organized into a logical group. You can Grant and Revoke database privileges to a principal.
 * **Name**: string: The name of the table.
@@ -192,6 +277,17 @@
 
 ## TableWildcard
 ### Properties
+
+## TableWildcard
+### Properties
+
+## TableWithColumnsResource
+### Properties
+* **CatalogId**: string
+* **ColumnNames**: string[]
+* **ColumnWildcard**: [ColumnWildcard](#columnwildcard)
+* **DatabaseName**: string
+* **Name**: string
 
 ## TableWithColumnsResource
 ### Properties

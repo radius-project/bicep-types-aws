@@ -1102,125 +1102,14 @@
   },
   {
     "$type": "ObjectType",
-    "name": "AuthorizationPolicy",
-    "properties": {
-      "Description": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0,
-        "description": "A brief description of the authorization policy."
-      },
-      "PolicyDocument": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1,
-        "description": "The Cedar policy document."
-      },
-      "ShadowMode": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0,
-        "description": "Whether the authorization policy runs in shadow (observe-only) mode."
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "CertificateAuthenticationRequest",
-    "properties": {
-      "ClientRootCertificateChainArn": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ClientAuthenticationRequest",
-    "properties": {
-      "ActiveDirectory": {
-        "type": {
-          "$ref": "#/62"
-        },
-        "flags": 0
-      },
-      "FederatedAuthentication": {
-        "type": {
-          "$ref": "#/63"
-        },
-        "flags": 0
-      },
-      "MutualAuthentication": {
-        "type": {
-          "$ref": "#/54"
-        },
-        "flags": 0
-      },
-      "Type": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ClientConnectOptions",
-    "properties": {
-      "Enabled": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 1
-      },
-      "LambdaFunctionArn": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ClientLoginBannerOptions",
-    "properties": {
-      "BannerText": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0
-      },
-      "Enabled": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ClientRouteEnforcementOptions",
-    "properties": {
-      "Enforced": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
     "name": "ConnectionLogOptions",
     "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 1
+      },
       "CloudwatchLogGroup": {
         "type": {
           "$ref": "#/5"
@@ -1233,18 +1122,39 @@
         },
         "flags": 0
       },
-      "Enabled": {
-        "type": {
-          "$ref": "#/26"
-        },
-        "flags": 1
-      },
       "IncludeAuthorizationPolicyContext": {
         "type": {
           "$ref": "#/26"
         },
         "flags": 0,
         "description": "Indicates whether authorization-policy evaluation context is included in the connection logs."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DevicePostureTrustProvider",
+    "properties": {
+      "TrustProviderType": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The device-posture trust provider type."
+      },
+      "TenantId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The tenant identifier registered with the trust provider."
+      },
+      "PublicSigningKeyUrl": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The URL of the public signing key. Conditionally required by the provider type and enforced server-side (crowdstrike/jumpcloud require it, jamf rejects it)."
       }
     }
   },
@@ -1270,40 +1180,46 @@
   },
   {
     "$type": "ObjectType",
-    "name": "DevicePostureTrustProvider",
+    "name": "AuthorizationPolicy",
     "properties": {
-      "PublicSigningKeyUrl": {
+      "PolicyDocument": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The Cedar policy document."
+      },
+      "ShadowMode": {
         "type": {
           "$ref": "#/5"
         },
         "flags": 0,
-        "description": "The URL of the public signing key. Conditionally required by the provider type and enforced server-side (crowdstrike/jumpcloud require it, jamf rejects it)."
+        "description": "Whether the authorization policy runs in shadow (observe-only) mode."
       },
-      "TenantId": {
+      "Description": {
         "type": {
           "$ref": "#/5"
         },
-        "flags": 1,
-        "description": "The tenant identifier registered with the trust provider."
-      },
-      "TrustProviderType": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1,
-        "description": "The device-posture trust provider type."
+        "flags": 0,
+        "description": "A brief description of the authorization policy."
       }
     }
   },
   {
     "$type": "ObjectType",
-    "name": "DirectoryServiceAuthenticationRequest",
+    "name": "ClientConnectOptions",
     "properties": {
-      "DirectoryId": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 1
+      },
+      "LambdaFunctionArn": {
         "type": {
           "$ref": "#/5"
         },
-        "flags": 1
+        "flags": 0
       }
     }
   },
@@ -1327,15 +1243,123 @@
   },
   {
     "$type": "ObjectType",
-    "name": "Tag",
+    "name": "ClientRouteEnforcementOptions",
     "properties": {
-      "Key": {
+      "Enforced": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ClientLoginBannerOptions",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 1
+      },
+      "BannerText": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DirectoryServiceAuthenticationRequest",
+    "properties": {
+      "DirectoryId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TransitGatewayConfiguration",
+    "properties": {
+      "TransitGatewayId": {
         "type": {
           "$ref": "#/5"
         },
         "flags": 1
       },
+      "AvailabilityZoneIds": {
+        "type": {
+          "$ref": "#/68"
+        },
+        "flags": 0
+      },
+      "AvailabilityZones": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CertificateAuthenticationRequest",
+    "properties": {
+      "ClientRootCertificateChainArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ClientAuthenticationRequest",
+    "properties": {
+      "MutualAuthentication": {
+        "type": {
+          "$ref": "#/63"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "ActiveDirectory": {
+        "type": {
+          "$ref": "#/61"
+        },
+        "flags": 0
+      },
+      "FederatedAuthentication": {
+        "type": {
+          "$ref": "#/58"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
       "Value": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Key": {
         "type": {
           "$ref": "#/5"
         },
@@ -1355,32 +1379,8 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/68"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "TransitGatewayConfiguration",
-    "properties": {
-      "AvailabilityZoneIds": {
-        "type": {
-          "$ref": "#/69"
-        },
-        "flags": 0
-      },
-      "AvailabilityZones": {
-        "type": {
           "$ref": "#/70"
         },
-        "flags": 0
-      },
-      "TransitGatewayId": {
-        "type": {
-          "$ref": "#/5"
-        },
         "flags": 1
       }
     }
@@ -1388,35 +1388,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/61"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/64"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/5"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/5"
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.EC2/ClientVpnEndpointProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/55"
+      "$ref": "#/54"
     }
   },
   {
@@ -1438,23 +1410,37 @@
     }
   },
   {
+    "$type": "StringLiteralType",
+    "value": "AWS.EC2/ClientVpnEndpointProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/66"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/64"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "AWS.EC2/ClientVpnEndpointProperties",
     "properties": {
-      "AuthenticationOptions": {
-        "type": {
-          "$ref": "#/72"
-        },
-        "flags": 1,
-        "description": "Information about the authentication method to be used to authenticate clients."
-      },
-      "AuthorizationPolicy": {
-        "type": {
-          "$ref": "#/53"
-        },
-        "flags": 0,
-        "description": "The Cedar authorization policy to associate with the Client VPN endpoint."
-      },
       "ClientCidrBlock": {
         "type": {
           "$ref": "#/5"
@@ -1464,31 +1450,10 @@
       },
       "ClientConnectOptions": {
         "type": {
-          "$ref": "#/56"
-        },
-        "flags": 0,
-        "description": "The options for managing connection authorization for new client connections."
-      },
-      "ClientLoginBannerOptions": {
-        "type": {
           "$ref": "#/57"
         },
         "flags": 0,
-        "description": "Options for enabling a customizable text banner that will be displayed on AWS provided clients when a VPN session is established."
-      },
-      "ClientRouteEnforcementOptions": {
-        "type": {
-          "$ref": "#/58"
-        },
-        "flags": 0,
-        "description": "Client route enforcement is a feature of the Client VPN service that helps enforce administrator defined routes on devices connected through the VPN. This feature helps improve your security posture by ensuring that network traffic originating from a connected client is not inadvertently sent outside the VPN tunnel.\nClient route enforcement works by monitoring the route table of a connected device for routing policy changes to the VPN connection. If the feature detects any VPN routing policy modifications, it will automatically force an update to the route table, reverting it back to the expected route configurations."
-      },
-      "ConnectionLogOptions": {
-        "type": {
-          "$ref": "#/59"
-        },
-        "flags": 1,
-        "description": "Information about the client connection logging options. If you enable client connection logging, data about client connections is sent to a Cloudwatch Logs log stream. The following information is logged: client connection requests, client connection results (successful and unsuccessful), reasons for unsuccessful client connection requests, client connection termination time."
+        "description": "The options for managing connection authorization for new client connections."
       },
       "Description": {
         "type": {
@@ -1497,53 +1462,26 @@
         "flags": 0,
         "description": "A brief description of the Client VPN endpoint."
       },
-      "DevicePostureOptions": {
+      "ClientRouteEnforcementOptions": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/59"
         },
         "flags": 0,
-        "description": "The device-posture trust providers to associate with the Client VPN endpoint."
+        "description": "Client route enforcement is a feature of the Client VPN service that helps enforce administrator defined routes on devices connected through the VPN. This feature helps improve your security posture by ensuring that network traffic originating from a connected client is not inadvertently sent outside the VPN tunnel.\nClient route enforcement works by monitoring the route table of a connected device for routing policy changes to the VPN connection. If the feature detects any VPN routing policy modifications, it will automatically force an update to the route table, reverting it back to the expected route configurations."
       },
-      "DisconnectOnSessionTimeout": {
+      "TagSpecifications": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/72"
         },
         "flags": 0,
-        "description": "Indicates whether the client VPN session is disconnected after the maximum sessionTimeoutHours is reached. If true, users are prompted to reconnect client VPN. If false, client VPN attempts to reconnect automatically."
+        "description": "The tags to apply to the Client VPN endpoint during creation."
       },
-      "DnsServers": {
+      "AuthenticationOptions": {
         "type": {
           "$ref": "#/73"
         },
-        "flags": 0,
-        "description": "Information about the DNS servers to be used for DNS resolution. A Client VPN endpoint can have up to two DNS servers. If no DNS server is specified, the DNS address configured on the device is used for the DNS server."
-      },
-      "EndpointIpAddressType": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0,
-        "description": "The IP address type of the Client VPN endpoint."
-      },
-      "Id": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 18
-      },
-      "SecurityGroupIds": {
-        "type": {
-          "$ref": "#/74"
-        },
-        "flags": 0,
-        "description": "The IDs of one or more security groups to apply to the target network. You must also specify the ID of the VPC that contains the security groups."
-      },
-      "SelfServicePortal": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0,
-        "description": "Specify whether to enable the self-service portal for the Client VPN endpoint"
+        "flags": 1,
+        "description": "Information about the authentication method to be used to authenticate clients."
       },
       "ServerCertificateArn": {
         "type": {
@@ -1559,19 +1497,40 @@
         "flags": 0,
         "description": "The maximum VPN session duration time in hours."
       },
+      "DnsServers": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 0,
+        "description": "Information about the DNS servers to be used for DNS resolution. A Client VPN endpoint can have up to two DNS servers. If no DNS server is specified, the DNS address configured on the device is used for the DNS server."
+      },
+      "SecurityGroupIds": {
+        "type": {
+          "$ref": "#/75"
+        },
+        "flags": 0,
+        "description": "The IDs of one or more security groups to apply to the target network. You must also specify the ID of the VPC that contains the security groups."
+      },
+      "DisconnectOnSessionTimeout": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0,
+        "description": "Indicates whether the client VPN session is disconnected after the maximum sessionTimeoutHours is reached. If true, users are prompted to reconnect client VPN. If false, client VPN attempts to reconnect automatically."
+      },
+      "ConnectionLogOptions": {
+        "type": {
+          "$ref": "#/53"
+        },
+        "flags": 1,
+        "description": "Information about the client connection logging options. If you enable client connection logging, data about client connections is sent to a Cloudwatch Logs log stream. The following information is logged: client connection requests, client connection results (successful and unsuccessful), reasons for unsuccessful client connection requests, client connection termination time."
+      },
       "SplitTunnel": {
         "type": {
           "$ref": "#/26"
         },
         "flags": 0,
         "description": "Indicates whether split-tunnel is enabled on the AWS Client VPN endpoint."
-      },
-      "TagSpecifications": {
-        "type": {
-          "$ref": "#/75"
-        },
-        "flags": 0,
-        "description": "The tags to apply to the Client VPN endpoint during creation."
       },
       "TrafficIpAddressType": {
         "type": {
@@ -1580,9 +1539,30 @@
         "flags": 0,
         "description": "The IP address type of the Client VPN endpoint."
       },
+      "ClientLoginBannerOptions": {
+        "type": {
+          "$ref": "#/60"
+        },
+        "flags": 0,
+        "description": "Options for enabling a customizable text banner that will be displayed on AWS provided clients when a VPN session is established."
+      },
+      "VpcId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The ID of the VPC to associate with the Client VPN endpoint. If no security group IDs are specified in the request, the default security group for the VPC is applied."
+      },
+      "SelfServicePortal": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Specify whether to enable the self-service portal for the Client VPN endpoint"
+      },
       "TransitGatewayConfiguration": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/62"
         },
         "flags": 0
       },
@@ -1593,12 +1573,19 @@
         "flags": 0,
         "description": "The transport protocol to be used by the VPN session."
       },
-      "VpcId": {
+      "Id": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "The Client VPN endpoint ID, such as cvpn-endpoint-0123456789abcdef0, which AWS assigns."
+      },
+      "EndpointIpAddressType": {
         "type": {
           "$ref": "#/5"
         },
         "flags": 0,
-        "description": "The ID of the VPC to associate with the Client VPN endpoint. If no security group IDs are specified in the request, the default security group for the VPC is applied."
+        "description": "The IP address type of the Client VPN endpoint."
       },
       "VpnPort": {
         "type": {
@@ -1606,6 +1593,20 @@
         },
         "flags": 0,
         "description": "The port number to assign to the Client VPN endpoint for TCP and UDP traffic."
+      },
+      "DevicePostureOptions": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 0,
+        "description": "The device-posture trust providers to associate with the Client VPN endpoint."
+      },
+      "AuthorizationPolicy": {
+        "type": {
+          "$ref": "#/56"
+        },
+        "flags": 0,
+        "description": "The Cedar authorization policy to associate with the Client VPN endpoint."
       }
     }
   },
@@ -1741,20 +1742,6 @@
         "flags": 18,
         "description": "The ID of the association between the Client VPN endpoint and the target network."
       },
-      "AvailabilityZone": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 4,
-        "description": "The Availability Zone to associate with the Client VPN endpoint. Used for Transit Gateway-based endpoints in place of SubnetId."
-      },
-      "AvailabilityZoneId": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 4,
-        "description": "The ID of the Availability Zone to associate with the Client VPN endpoint. Used for Transit Gateway-based endpoints in place of SubnetId."
-      },
       "ClientVpnEndpointId": {
         "type": {
           "$ref": "#/5"
@@ -1768,6 +1755,20 @@
         },
         "flags": 0,
         "description": "The ID of the subnet to associate with the Client VPN endpoint. Required for VPC-based endpoints. For Transit Gateway-based endpoints, use AvailabilityZone or AvailabilityZoneId instead."
+      },
+      "AvailabilityZone": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 4,
+        "description": "The Availability Zone to associate with the Client VPN endpoint. Used for Transit Gateway-based endpoints in place of SubnetId."
+      },
+      "AvailabilityZoneId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 4,
+        "description": "The ID of the Availability Zone to associate with the Client VPN endpoint. Used for Transit Gateway-based endpoints in place of SubnetId."
       }
     }
   },
@@ -28356,6 +28357,302 @@
       "$ref": "#/1315"
     },
     "readableScopes": 31,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PortRange",
+    "properties": {
+      "From": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "To": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Icmp",
+    "properties": {
+      "Type": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      },
+      "Code": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.EC2/NetworkAclEntryProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EC2/NetworkAclEntryProperties",
+    "properties": {
+      "PortRange": {
+        "type": {
+          "$ref": "#/1317"
+        },
+        "flags": 0,
+        "description": "The IPv4 network range to allow or deny, in CIDR notation (for example 172.16.0.0/24). We modify the specified CIDR block to its canonical form; for example, if you specify 100.68.0.18/18, we modify it to 100.68.0.0/18"
+      },
+      "NetworkAclId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The ID of the network ACL"
+      },
+      "RuleAction": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "Indicates whether to allow or deny the traffic that matches the rule"
+      },
+      "CidrBlock": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The IPv4 CIDR range to allow or deny, in CIDR notation (for example, 172.16.0.0/24). Requirement is conditional: You must specify the CidrBlock or Ipv6CidrBlock property"
+      },
+      "Egress": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0,
+        "description": "Indicates whether this is an egress rule (rule is applied to traffic leaving the subnet)"
+      },
+      "RuleNumber": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "Rule number to assign to the entry, such as 100. ACL entries are processed in ascending order by rule number. Entries can't use the same rule number unless one is an egress rule and the other is an ingress rule"
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "NetworkAclId, RuleNumber, and Egress joined with \"|\", such as acl-0123456789abcdef0|100|false."
+      },
+      "Ipv6CidrBlock": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The IPv6 network range to allow or deny, in CIDR notation (for example 2001:db8:1234:1a00::/64)"
+      },
+      "Protocol": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The protocol number. A value of \"-1\" means all protocols. If you specify \"-1\" or a protocol number other than \"6\" (TCP), \"17\" (UDP), or \"1\" (ICMP), traffic on all ports is allowed, regardless of any ports or ICMP types or codes that you specify. If you specify protocol \"58\" (ICMPv6) and specify an IPv4 CIDR block, traffic for all ICMP types and codes allowed, regardless of any that you specify. If you specify protocol \"58\" (ICMPv6) and specify an IPv6 CIDR block, you must specify an ICMP type and code"
+      },
+      "Icmp": {
+        "type": {
+          "$ref": "#/1318"
+        },
+        "flags": 0,
+        "description": "The Internet Control Message Protocol (ICMP) code and type. Requirement is conditional: Required if specifying 1 (ICMP) for the protocol parameter"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EC2/NetworkAclEntry",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/1320"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.EC2/NetworkAclEntry@default",
+    "body": {
+      "$ref": "#/1321"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.EC2/NetworkInterfacePermissionProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EC2/NetworkInterfacePermissionProperties",
+    "properties": {
+      "Id": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "The permission ID, such as eni-perm-0123456789abcdef0, which AWS assigns."
+      },
+      "AwsAccountId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "NetworkInterfaceId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      },
+      "Permission": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EC2/NetworkInterfacePermission",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/1324"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.EC2/NetworkInterfacePermission@default",
+    "body": {
+      "$ref": "#/1325"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.EC2/VPNGatewayRoutePropagationProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EC2/VPNGatewayRoutePropagationProperties",
+    "properties": {
+      "Id": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "VpnGatewayId and a name Radius generates, joined with \"|\". The resource is the propagation to the route tables in RouteTableIds, so other propagations from the gateway stay as they are."
+      },
+      "RouteTableIds": {
+        "type": {
+          "$ref": "#/1328"
+        },
+        "flags": 1,
+        "description": "The ID of the route table. The routing table must be associated with the same VPC that the virtual private gateway is attached to"
+      },
+      "VpnGatewayId": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The ID of the virtual private gateway that is attached to a VPC. The virtual private gateway must be attached to the same VPC that the routing tables are associated with"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.EC2/VPNGatewayRoutePropagation",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/1329"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.EC2/VPNGatewayRoutePropagation@default",
+    "body": {
+      "$ref": "#/1330"
+    },
+    "readableScopes": 0,
     "writableScopes": 0
   }
 ]

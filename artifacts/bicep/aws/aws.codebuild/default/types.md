@@ -159,7 +159,7 @@ If you specify `CODEPIPELINE` or `NO_ARTIFACTS` for the `Type` property, don't s
 * **SourceVersion**: string
 * **Tags**: [Tag](#tag)[]
 * **TimeoutInMinutes**: int
-* **Triggers**: [ProjectTriggers](#projecttriggers) (WriteOnly)
+* **Triggers**: [ProjectTriggers](#projecttriggers)
 * **Visibility**: string
 * **VpcConfig**: [VpcConfig](#vpcconfig)
 

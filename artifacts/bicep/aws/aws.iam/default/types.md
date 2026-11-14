@@ -96,6 +96,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.IAM/UserPolicyProperties](#awsiamuserpolicyproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.IAM/UserToGroupAddition@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.IAM/UserToGroupAdditionProperties](#awsiamusertogroupadditionproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.IAM/VirtualMFADevice@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -297,6 +305,12 @@
  If you don't specify a name, CFN generates a unique physical ID and uses that ID for the user name.
  If you specify a name, you must specify the ``CAPABILITY_NAMED_IAM`` value to acknowledge your template's capabilities. For more information, see [Acknowledging Resources in Templates](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html#using-iam-capabilities).
   Naming an IAM resource can cause an unrecoverable error if you reuse the same template in multiple Regions. To prevent this, we recommend using ``Fn::Join`` and ``AWS::Region`` to create a Region-specific name, as in the following example: ``{"Fn::Join": ["", [{"Ref": "AWS::Region"}, {"Ref": "MyResourceName"}]]}``.
+
+## AWS.IAM/UserToGroupAdditionProperties
+### Properties
+* **GroupName**: string (Required)
+* **Id**: string (ReadOnly, Identifier): GroupName and a name Radius generates, joined with "|". The resource is the users in Users, so other members of the group stay as they are.
+* **Users**: string[] (Required)
 
 ## AWS.IAM/VirtualMFADeviceProperties
 ### Properties
