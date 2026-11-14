@@ -43,7 +43,7 @@ schemas rather than resolving its package-relative default from the wrong direct
 The publishing helper tests require no dependencies beyond Node:
 
 ```bash
-node --test .github/scripts/publish-bicep.test.mjs
+node --test .github/scripts/publish-bicep.test.mjs .github/scripts/monitor-remote-workflow_test.mjs
 ```
 
 For native fixtures, install checksum-pinned tools into a user-owned directory,
@@ -55,9 +55,17 @@ PATH="/absolute/path/to/tools:$PATH" bash .github/scripts/test-publish-bicep.sh
 ```
 
 These fixtures use checked-in generated types and raw schemas; they test native
-packaging, full-version publishing/retry/conflict and a representative AWS compile.
+packaging, full-version publishing/retry/conflict, a representative AWS compile,
+and exact-digest development parity across two local registries. They interrupt
+main after its first write, recover from the original snapshot, and reject an
+older retry after a newer capture at the same source SHA. A local mock of the
+private receiver performs the second-registry copy; the source caller only
+dispatches a mocked request and anonymously verifies bytes. These tests do not
+run or embed the private publisher implementation. Correlation-monitor tests
+cover active-run reuse, fresh reconciliation of completed copies, unknown
+dispatch acceptance, failures and bounded retries.
 They do not call AWS, GHCR or ACR, and do not establish live credential readiness.
-The local HTTP registry is disposable and removed when the fixture exits.
+The local HTTP registries are disposable and removed when the fixture exits.
 OCI-enabled publication to literal TLS `localhost` can select HTTP; use a trusted
 non-loopback registry alias when testing TLS. This does not imply that all Bicep
 restore operations require that workaround.

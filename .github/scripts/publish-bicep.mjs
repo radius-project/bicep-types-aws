@@ -11,6 +11,7 @@ import { promisify } from "node:util";
 export const repository = "radius-project/bicep-types-aws";
 export const packageName = "bicep-types-aws";
 export const target = `ghcr.io/radius-project/${packageName}`;
+export const developmentMirror = "biceptypes.azurecr.io/aws:latest";
 export const releaseWorkflow = ".github/workflows/publish-release-bicep.yaml";
 export const mainWorkflow = ".github/workflows/publish-main-bicep.yaml";
 export const captureJob = "Capture versioned AWS Bicep types";
@@ -486,6 +487,8 @@ export async function publish(github, source, receipt, directory, run = tool) {
       assert.equal(hash(existing), record.digest, "Full-version conflict; never overwrite");
     } else {
       receipt.status = "partial";
+      if (source.workflow === mainWorkflow)
+        receipt.mirror = { reference: developmentMirror, status: "pending" };
       await save(join(directory, "receipt.json"), receipt);
       await run(["oras", "cp", "--from-oci-layout",
         `${join(directory, "layout")}@${record.digest}`, record.reference]);
@@ -503,7 +506,7 @@ export async function publish(github, source, receipt, directory, run = tool) {
     assert.equal(hash(await run(["oras", "manifest", "fetch", record.reference], {
       env: { ...process.env, DOCKER_CONFIG: anonymous }
     })), record.digest, "Anonymous manifest verification failed");
-    receipt.status = "published";
+    receipt.status = source.workflow === mainWorkflow ? "ghcr-published" : "published";
     await mkdir(join(directory, "record"), { recursive: true });
     await save(join(directory, "record/aws-bicep-extension.json"), record);
     return record;
