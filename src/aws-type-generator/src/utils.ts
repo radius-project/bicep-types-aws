@@ -12,6 +12,7 @@
 // ------------------------------------------------------------.
 import path from 'path';
 import { readdir, stat } from 'fs/promises';
+import fs from 'fs';
 
 export interface ILogger {
   out: (data: string) => void;
@@ -52,4 +53,24 @@ export async function findRecursive(basePath: string, filter: (name: string) => 
 
 export function logOut(logger: ILogger, line: string) {
   logger.out(`${line}\n`);
+}
+const namespaceFolderPattern = /^aws\.[a-z0-9]+$/;
+
+// removeStaleNamespaces deletes the namespace folders under awsDir, such as
+// aws.iotevents, that are not in keep, so a namespace whose types AWS removed
+// leaves the output and the index. Other files and folders are left alone.
+// Returns the names of the folders it removed.
+export function removeStaleNamespaces(awsDir: string, keep: Set<string>): string[] {
+  if (!fs.existsSync(awsDir)) {
+    return [];
+  }
+
+  const removed: string[] = [];
+  for (const entry of fs.readdirSync(awsDir, { withFileTypes: true })) {
+    if (entry.isDirectory() && namespaceFolderPattern.test(entry.name) && !keep.has(entry.name)) {
+      fs.rmSync(path.join(awsDir, entry.name), { recursive: true, force: true });
+      removed.push(entry.name);
+    }
+  }
+  return removed.sort();
 }
