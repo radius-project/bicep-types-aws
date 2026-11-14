@@ -335,6 +335,11 @@
 * **Name**: string (Required): Fleet Indexing aggregation type names such as Statistics, Percentiles and Cardinality
 * **Values**: string[] (Required): Fleet Indexing aggregation type values
 
+## AlertTarget
+### Properties
+* **AlertTargetArn**: string (Required): The ARN of the notification target to which alerts are sent.
+* **RoleArn**: string (Required): The ARN of the role that grants permission to send alerts to the notification target.
+
 ## AssetPropertyTimestamp
 ### Properties
 * **OffsetInNanos**: string
@@ -397,6 +402,8 @@
 
 ## Authorizer_TokenSigningPublicKeys
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## AuthorizerConfig
 ### Properties
@@ -1084,6 +1091,8 @@
 
 ## Job_DocumentParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## JobExecutionsRetryConfig
 ### Properties
@@ -1198,9 +1207,13 @@
 
 ## OTAUpdate_AdditionalParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## OTAUpdate_Attributes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## OTAUpdateFile
 ### Properties
@@ -1280,6 +1293,8 @@
 
 ## ResourceAttributes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## RetryCriteria
 ### Properties
@@ -1334,6 +1349,8 @@
 
 ## SecurityProfile_AlertTargets
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [AlertTarget](#alerttarget)
 
 ## SecurityProfile_MetricsExportConfig
 ### Properties
@@ -1524,9 +1541,13 @@
 
 ## Thing_Attributes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ThingGroup_Attributes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ThingGroup_ThingGroupProperties
 ### Properties
@@ -1576,9 +1597,13 @@
 
 ## TopicRule_ClientProperties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TopicRule_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TopicRulePayload
 ### Properties

@@ -322,6 +322,8 @@
 
 ## GroupPolicy_PolicyDocument
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## LoginProfile
 ### Properties
@@ -345,6 +347,8 @@
 
 ## RolePolicy_PolicyDocument
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## SAMLPrivateKey
 ### Properties
@@ -383,4 +387,6 @@
 
 ## UserPolicy_PolicyDocument
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 

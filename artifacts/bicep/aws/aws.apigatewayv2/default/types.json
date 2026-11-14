@@ -119,14 +119,23 @@
     "value": "AWS.ApiGatewayV2/ApiProperties"
   },
   {
+    "$type": "AnyType"
+  },
+  {
     "$type": "ObjectType",
     "name": "Api_Body",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/10"
+    }
   },
   {
     "$type": "ObjectType",
     "name": "Api_Tags",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/2"
+    }
   },
   {
     "$type": "ObjectType",
@@ -162,7 +171,7 @@
       },
       "Body": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/11"
         },
         "flags": 4,
         "description": "The OpenAPI definition. Supported only for HTTP APIs. To import an HTTP API, you must specify a ``Body`` or ``BodyS3Location``. If you specify a ``Body`` or ``BodyS3Location``, don't specify CloudFormation resources such as ``AWS::ApiGatewayV2::Authorizer`` or ``AWS::ApiGatewayV2::Route``. API Gateway doesn't support the combination of OpenAPI and CloudFormation resources."
@@ -260,7 +269,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "The collection of tags. Each tag element is associated with a given resource."
@@ -301,7 +310,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/13"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -312,7 +321,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGatewayV2/Api@default",
     "body": {
-      "$ref": "#/13"
+      "$ref": "#/14"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -377,7 +386,7 @@
     "properties": {
       "AuthorizationScopes": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/21"
         },
         "flags": 0,
         "description": "The authorization scopes supported by this route."
@@ -445,7 +454,7 @@
     "properties": {
       "AccessLogSettings": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/16"
         },
         "flags": 0,
         "description": "Settings for logging access in a stage."
@@ -459,7 +468,7 @@
       },
       "DefaultRouteSettings": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/19"
         },
         "flags": 0,
         "description": "The default route settings for the stage."
@@ -473,14 +482,14 @@
       },
       "RouteSettings": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/22"
         },
         "flags": 0,
         "description": "Route settings for the stage."
       },
       "StageVariables": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "A map that defines the stage variables for a Stage. Variable names can have alphanumeric and underscore characters, and the values must match [A-Za-z0-9-._~:/?#&=,]+."
@@ -496,12 +505,18 @@
   {
     "$type": "ObjectType",
     "name": "ApiGatewayManagedOverrides_RouteSettings",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/19"
+    }
   },
   {
     "$type": "ObjectType",
     "name": "ApiGatewayManagedOverrides_StageVariables",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/2"
+    }
   },
   {
     "$type": "StringLiteralType",
@@ -527,21 +542,21 @@
       },
       "Integration": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "Overrides the integration configuration for an API Gateway-managed integration."
       },
       "Route": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "Overrides the route configuration for an API Gateway-managed route."
       },
       "Stage": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "Overrides the stage configuration for an API Gateway-managed stage."
@@ -568,7 +583,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/25"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -579,7 +594,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGatewayV2/ApiGatewayManagedOverrides@default",
     "body": {
-      "$ref": "#/25"
+      "$ref": "#/26"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -649,7 +664,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/29"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -660,7 +675,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGatewayV2/ApiMapping@default",
     "body": {
-      "$ref": "#/29"
+      "$ref": "#/30"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -671,7 +686,7 @@
     "properties": {
       "Audience": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "A list of the intended recipients of the JWT. A valid JWT must provide an ``aud`` that matches at least one entry in this list. See [RFC 7519](https://docs.aws.amazon.com/https://tools.ietf.org/html/rfc7519#section-4.1.3). Required for the ``JWT`` authorizer type. Supported only for HTTP APIs."
@@ -763,7 +778,7 @@
       },
       "IdentitySource": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/35"
         },
         "flags": 0,
         "description": "The identity source for which authorization is requested.\n For a ``REQUEST`` authorizer, this is optional. The value is a set of one or more mapping expressions of the specified request parameters. The identity source can be headers, query string parameters, stage variables, and context parameters. For example, if an Auth header and a Name query string parameter are defined as identity sources, this value is route.request.header.Auth, route.request.querystring.Name for WebSocket APIs. For HTTP APIs, use selection expressions prefixed with ``$``, for example, ``$request.header.Auth``, ``$request.querystring.Name``. These parameters are used to perform runtime validation for Lambda-based authorizers by verifying all of the identity-related request parameters are present in the request, not null, and non-empty. Only when this is true does the authorizer invoke the authorizer Lambda function. Otherwise, it returns a 401 Unauthorized response without calling the Lambda function. For HTTP APIs, identity sources are also used as the cache key when caching is enabled. To learn more, see [Working with Lambda authorizers for HTTP APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-lambda-authorizer.html).\n For ``JWT``, a single entry that specifies where to extract the JSON Web Token (JWT) from inbound requests. Currently only header-based and query parameter-based selections are supported, for example ``$request.header.Authorization``."
@@ -777,7 +792,7 @@
       },
       "JwtConfiguration": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/32"
         },
         "flags": 0,
         "description": "The ``JWTConfiguration`` property specifies the configuration of a JWT authorizer. Required for the ``JWT`` authorizer type. Supported only for HTTP APIs."
@@ -811,7 +826,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -822,7 +837,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGatewayV2/Authorizer@default",
     "body": {
-      "$ref": "#/36"
+      "$ref": "#/37"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -885,7 +900,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/40"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -896,7 +911,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGatewayV2/Deployment@default",
     "body": {
-      "$ref": "#/40"
+      "$ref": "#/41"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -976,13 +991,16 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/42"
+      "$ref": "#/43"
     }
   },
   {
     "$type": "ObjectType",
     "name": "DomainName_Tags",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/2"
+    }
   },
   {
     "$type": "ObjectType",
@@ -1004,14 +1022,14 @@
       },
       "DomainNameConfigurations": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "The domain name configurations."
       },
       "MutualTlsAuthentication": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0,
         "description": "The mutual TLS authentication configuration for a custom domain name."
@@ -1039,7 +1057,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/47"
         },
         "flags": 0,
         "description": "The collection of tags associated with a domain name."
@@ -1066,7 +1084,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/48"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1077,7 +1095,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGatewayV2/DomainName@default",
     "body": {
-      "$ref": "#/48"
+      "$ref": "#/49"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1111,7 +1129,7 @@
     "properties": {
       "ResponseParameters": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/57"
         },
         "flags": 0
       }
@@ -1152,13 +1170,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/50"
+      "$ref": "#/51"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/50"
+      "$ref": "#/51"
     }
   },
   {
@@ -1168,17 +1186,26 @@
   {
     "$type": "ObjectType",
     "name": "Integration_RequestParameters",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/2"
+    }
   },
   {
     "$type": "ObjectType",
     "name": "Integration_RequestTemplates",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/2"
+    }
   },
   {
     "$type": "ObjectType",
     "name": "Integration_ResponseParameters",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/53"
+    }
   },
   {
     "$type": "ObjectType",
@@ -1277,21 +1304,21 @@
       },
       "RequestParameters": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/59"
         },
         "flags": 0,
         "description": "A key-value map specifying parameters."
       },
       "RequestTemplates": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/60"
         },
         "flags": 0,
         "description": "A map of Velocity templates that are applied on the request payload based on the value of the Content-Type header sent by the client."
       },
       "ResponseParameters": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/61"
         },
         "flags": 0,
         "description": "Parameters that transform the HTTP response from a backend integration before returning the response to clients. Supported only for HTTP APIs."
@@ -1312,7 +1339,7 @@
       },
       "TlsConfig": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/55"
         },
         "flags": 0,
         "description": "The TLS configuration for a private integration. If you specify a TLS configuration, private integration traffic uses the HTTPS protocol. Supported only for HTTP APIs."
@@ -1339,7 +1366,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/62"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1350,7 +1377,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGatewayV2/Integration@default",
     "body": {
-      "$ref": "#/62"
+      "$ref": "#/63"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1362,12 +1389,18 @@
   {
     "$type": "ObjectType",
     "name": "IntegrationResponse_ResponseParameters",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/10"
+    }
   },
   {
     "$type": "ObjectType",
     "name": "IntegrationResponse_ResponseTemplates",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/10"
+    }
   },
   {
     "$type": "ObjectType",
@@ -1410,14 +1443,14 @@
       },
       "ResponseParameters": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/66"
         },
         "flags": 0,
         "description": "A key-value map specifying response parameters that are passed to the method response from the backend. The key is a method response header parameter name and the mapped value is an integration response header value, a static value enclosed within a pair of single quotes, or a JSON expression from the integration response body. The mapping key must match the pattern of ``method.response.header.{name}``, where name is a valid and unique header name. The mapped non-static value must match the pattern of ``integration.response.header.{name}`` or ``integration.response.body.{JSON-expression}``, where ``{name}`` is a valid and unique response header name and ``{JSON-expression}`` is a valid JSON expression without the ``$`` prefix."
       },
       "ResponseTemplates": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/67"
         },
         "flags": 0,
         "description": "The collection of response templates for the integration response as a string-to-string map of key-value pairs. Response templates are represented as a key/value map, with a content-type as the key and a template as the value."
@@ -1451,7 +1484,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/68"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1462,7 +1495,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGatewayV2/IntegrationResponse@default",
     "body": {
-      "$ref": "#/68"
+      "$ref": "#/69"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1474,7 +1507,10 @@
   {
     "$type": "ObjectType",
     "name": "Model_Schema",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/10"
+    }
   },
   {
     "$type": "ObjectType",
@@ -1517,7 +1553,7 @@
       },
       "Schema": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/72"
         },
         "flags": 1,
         "description": "The schema for the model. For application/json models, this should be JSON schema draft 4 model."
@@ -1544,7 +1580,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/73"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1555,7 +1591,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGatewayV2/Model@default",
     "body": {
-      "$ref": "#/73"
+      "$ref": "#/74"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1587,7 +1623,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/75"
+      "$ref": "#/76"
     }
   },
   {
@@ -1631,7 +1667,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/78"
         },
         "flags": 0,
         "description": "The collection of tags associated with the portal product."
@@ -1658,7 +1694,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/79"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1669,7 +1705,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGatewayV2/PortalProduct@default",
     "body": {
-      "$ref": "#/79"
+      "$ref": "#/80"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1699,12 +1735,18 @@
   {
     "$type": "ObjectType",
     "name": "Route_RequestModels",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/10"
+    }
   },
   {
     "$type": "ObjectType",
     "name": "Route_RequestParameters",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/10"
+    }
   },
   {
     "$type": "ObjectType",
@@ -1726,7 +1768,7 @@
       },
       "AuthorizationScopes": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/84"
         },
         "flags": 0,
         "description": "The authorization scopes supported by this route."
@@ -1761,14 +1803,14 @@
       },
       "RequestModels": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/85"
         },
         "flags": 0,
         "description": "The request models for the route. Supported only for WebSocket APIs."
       },
       "RequestParameters": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/86"
         },
         "flags": 4,
         "description": "The request parameters for the route. Supported only for WebSocket APIs."
@@ -1823,7 +1865,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/87"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1834,7 +1876,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGatewayV2/Route@default",
     "body": {
-      "$ref": "#/87"
+      "$ref": "#/88"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1855,7 +1897,10 @@
   {
     "$type": "ObjectType",
     "name": "RouteParameters",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/90"
+    }
   },
   {
     "$type": "StringLiteralType",
@@ -1864,7 +1909,10 @@
   {
     "$type": "ObjectType",
     "name": "RouteResponse_ResponseModels",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/10"
+    }
   },
   {
     "$type": "ObjectType",
@@ -1886,14 +1934,14 @@
       },
       "ResponseModels": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/93"
         },
         "flags": 0,
         "description": "The response models for the route response."
       },
       "ResponseParameters": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/91"
         },
         "flags": 0,
         "description": "The route response parameters."
@@ -1941,7 +1989,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/94"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1952,7 +2000,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGatewayV2/RouteResponse@default",
     "body": {
-      "$ref": "#/94"
+      "$ref": "#/95"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1963,7 +2011,7 @@
     "properties": {
       "InvokeApi": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/98"
         },
         "flags": 1,
         "description": "Represents an InvokeApi action."
@@ -2003,14 +2051,14 @@
     "properties": {
       "MatchBasePaths": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/100"
         },
         "flags": 0,
         "description": "The base path to be matched."
       },
       "MatchHeaders": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/102"
         },
         "flags": 0,
         "description": "The headers to be matched."
@@ -2023,7 +2071,7 @@
     "properties": {
       "AnyOf": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/103"
         },
         "flags": 1,
         "description": "The string of the case sensitive base path to be matched."
@@ -2056,7 +2104,7 @@
     "properties": {
       "AnyOf": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/104"
         },
         "flags": 1,
         "description": "The header name and header value glob to be matched. The matchHeaders condition is matched if any of the header name and header value globs are matched."
@@ -2072,7 +2120,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/100"
+      "$ref": "#/101"
     }
   },
   {
@@ -2082,13 +2130,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/96"
+      "$ref": "#/97"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/98"
+      "$ref": "#/99"
     }
   },
   {
@@ -2097,14 +2145,14 @@
     "properties": {
       "Actions": {
         "type": {
-          "$ref": "#/105"
+          "$ref": "#/106"
         },
         "flags": 1,
         "description": "The resulting action based on matching a routing rules condition. Only InvokeApi is supported."
       },
       "Conditions": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/107"
         },
         "flags": 1,
         "description": "The conditions of the routing rule."
@@ -2159,7 +2207,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/108"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2170,7 +2218,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGatewayV2/RoutingRule@default",
     "body": {
-      "$ref": "#/108"
+      "$ref": "#/109"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2236,17 +2284,26 @@
   {
     "$type": "ObjectType",
     "name": "Stage_RouteSettings",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/10"
+    }
   },
   {
     "$type": "ObjectType",
     "name": "Stage_StageVariables",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/10"
+    }
   },
   {
     "$type": "ObjectType",
     "name": "Stage_Tags",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/10"
+    }
   },
   {
     "$type": "ObjectType",
@@ -2254,7 +2311,7 @@
     "properties": {
       "AccessLogSettings": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/111"
         },
         "flags": 0,
         "description": "Settings for logging access in this stage."
@@ -2282,7 +2339,7 @@
       },
       "DefaultRouteSettings": {
         "type": {
-          "$ref": "#/111"
+          "$ref": "#/112"
         },
         "flags": 0,
         "description": "The default route settings for the stage."
@@ -2303,7 +2360,7 @@
       },
       "RouteSettings": {
         "type": {
-          "$ref": "#/113"
+          "$ref": "#/114"
         },
         "flags": 0,
         "description": "Route settings for the stage."
@@ -2317,14 +2374,14 @@
       },
       "StageVariables": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/115"
         },
         "flags": 0,
         "description": "A map that defines the stage variables for a Stage. Variable names can have alphanumeric and underscore characters, and the values must match [A-Za-z0-9-._~:/?#&=,]+."
       },
       "Tags": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/116"
         },
         "flags": 0,
         "description": "The collection of tags. Each tag element is associated with a given resource."
@@ -2351,7 +2408,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/117"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2362,7 +2419,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGatewayV2/Stage@default",
     "body": {
-      "$ref": "#/117"
+      "$ref": "#/118"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2386,7 +2443,10 @@
   {
     "$type": "ObjectType",
     "name": "VpcLink_Tags",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/2"
+    }
   },
   {
     "$type": "ObjectType",
@@ -2401,21 +2461,21 @@
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/120"
+          "$ref": "#/121"
         },
         "flags": 0,
         "description": "A list of security group IDs for the VPC link."
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/122"
         },
         "flags": 1,
         "description": "A list of subnet IDs to include in the VPC link."
       },
       "Tags": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/123"
         },
         "flags": 0,
         "description": "The collection of tags. Each tag element is associated with a given resource."
@@ -2449,7 +2509,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/124"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2460,7 +2520,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGatewayV2/VpcLink@default",
     "body": {
-      "$ref": "#/124"
+      "$ref": "#/125"
     },
     "readableScopes": 0,
     "writableScopes": 0

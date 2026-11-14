@@ -152,7 +152,7 @@
 * **ClusterId**: string (Required, Identifier): The unique identifier of the EMR cluster.
 * **InstanceFleetId**: string (ReadOnly, Identifier): The unique identifier for instance fleet for specific cluster
 * **InstanceFleetType**: string (Required): The node type that the instance fleet hosts.
-* **InstanceTypeConfigs**: [InstanceTypeConfig](#instancetypeconfig)[] (WriteOnly): InstanceTypeConfigs determine the EC2 instances that Amazon EMR attempts to provision to fulfill On-Demand and Spot target capacities.
+* **InstanceTypeConfigs**: [InstanceTypeConfig](#instancetypeconfig)[]: InstanceTypeConfigs determine the EC2 instances that Amazon EMR attempts to provision to fulfill On-Demand and Spot target capacities.
 * **LaunchSpecifications**: [InstanceFleetProvisioningSpecifications](#instancefleetprovisioningspecifications): The launch specification for the instance fleet.
 * **Name**: string: The friendly name of the instance fleet.
 * **ResizeSpecifications**: [InstanceFleetResizingSpecifications](#instancefleetresizingspecifications): The resize specification for the instance fleet.
@@ -300,12 +300,18 @@
 
 ## Cluster_AdditionalInfo
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Cluster_ConfigurationProperties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Cluster_LogTypes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string[]
 
 ## ComputeLimits
 ### Properties
@@ -329,13 +335,13 @@
 ## EbsBlockDeviceConfig
 ### Properties
 * **VolumeSpecification**: [VolumeSpecification](#volumespecification) (Required): EBS volume specifications such as volume type, IOPS, size (GiB) and throughput (MiB/s) that are requested for the EBS volume attached to an Amazon EC2 instance in the cluster.
-* **VolumesPerInstance**: int: Use of this property can confuse CloudFormation drift detection. The EbsBlockDeviceConfigs read from the system may return a list with one entry per volume, replacing any entry specified in the template with a VolumesPerInstance greater than one by that many entries containing only the VolumeSpecification. Thus to avoid false drift detection, it is recommended to supply repeated entries in EbsBlockDeviceConfigs for any VolumeSpecification which is intended to be repeated and not to use this property.
+* **VolumesPerInstance**: int (WriteOnly): Use of this property can confuse CloudFormation drift detection. The EbsBlockDeviceConfigs read from the system may return a list with one entry per volume, replacing any entry specified in the template with a VolumesPerInstance greater than one by that many entries containing only the VolumeSpecification. Thus to avoid false drift detection, it is recommended to supply repeated entries in EbsBlockDeviceConfigs for any VolumeSpecification which is intended to be repeated and not to use this property.
 
 
 ## EbsBlockDeviceConfig
 ### Properties
 * **VolumeSpecification**: [VolumeSpecification](#volumespecification) (Required)
-* **VolumesPerInstance**: int: Use of this property can confuse CloudFormation drift detection. The EbsBlockDeviceConfigs read from the system may return a list with one entry per volume, replacing any entry specified in the template with a VolumesPerInstance greater than one by that many entries containing only the VolumeSpecification. Thus to avoid false drift detection, it is recommended to supply repeated entries in EbsBlockDeviceConfigs for any VolumeSpecification which is intended to be repeated and not to use this property.
+* **VolumesPerInstance**: int (WriteOnly): Use of this property can confuse CloudFormation drift detection. The EbsBlockDeviceConfigs read from the system may return a list with one entry per volume, replacing any entry specified in the template with a VolumesPerInstance greater than one by that many entries containing only the VolumeSpecification. Thus to avoid false drift detection, it is recommended to supply repeated entries in EbsBlockDeviceConfigs for any VolumeSpecification which is intended to be repeated and not to use this property.
 
 
 ## EbsConfiguration
@@ -350,7 +356,7 @@
 
 ## EbsConfiguration
 ### Properties
-* **EbsBlockDeviceConfigs**: [EbsBlockDeviceConfig](#ebsblockdeviceconfig)[] (WriteOnly)
+* **EbsBlockDeviceConfigs**: [EbsBlockDeviceConfig](#ebsblockdeviceconfig)[]
 * **EbsOptimized**: bool
 
 ## EMRConfiguration
@@ -389,6 +395,8 @@
 
 ## InstanceFleetConfig_ConfigurationProperties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## InstanceFleetProvisioningSpecifications
 ### Properties
@@ -424,6 +432,8 @@
 
 ## InstanceGroupConfig_ConfigurationProperties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## InstanceTypeConfig
 ### Properties
@@ -489,6 +499,8 @@
 
 ## LogTypesMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string[]
 
 ## ManagedScalingPolicy
 ### Properties
@@ -512,6 +524,8 @@
 
 ## NotebookExecution_EnvironmentVariables
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## NotebookS3Location
 ### Properties
@@ -615,6 +629,8 @@
 
 ## Session_Properties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## SessionCloudWatchLoggingConfiguration
 ### Properties

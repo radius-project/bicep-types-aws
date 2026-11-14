@@ -112,6 +112,8 @@
 
 ## Connector_ConnectorConfiguration
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ConnectorOperationStep
 ### Properties

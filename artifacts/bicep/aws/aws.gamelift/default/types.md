@@ -134,7 +134,7 @@
 * **InstanceConnectionPortRange**: [ConnectionPortRange](#connectionportrange)
 * **InstanceInboundPermissions**: [IpPermission](#ippermission)[]: A range of IP addresses and port settings that allow inbound traffic to connect to server processes on an Amazon GameLift server.
 * **InstanceType**: string: The name of an EC2 instance type that is supported in Amazon GameLift. A fleet instance type determines the computing resources of each instance in the fleet, including CPU, memory, storage, and networking capacity. Amazon GameLift supports the following EC2 instance types. See Amazon EC2 Instance Types for detailed descriptions.
-* **Locations**: [LocationConfiguration](#locationconfiguration)[] (ReadOnly)
+* **Locations**: [LocationConfiguration](#locationconfiguration)[]
 * **LogConfiguration**: [LogConfiguration](#logconfiguration)
 * **MaximumGameServerContainerGroupsPerInstance**: int (ReadOnly): The maximum number of game server container groups per instance, a number between 1-5000.
 * **MetricGroups**: string[]: The name of an Amazon CloudWatch metric group. A metric group aggregates the metrics for all fleets in the group. Specify a string containing the metric group name. You can use an existing name or use a new name to create a new metric group. Currently, this parameter can have only one string.
@@ -180,7 +180,7 @@
 * **FleetType**: string: Indicates whether to use On-Demand instances or Spot instances for this fleet. If empty, the default is ON_DEMAND. Both categories of instances use identical hardware and configurations based on the instance type selected for this fleet.
 * **InstanceRoleARN**: string: A unique identifier for an AWS IAM role that manages access to your AWS services. With an instance role ARN set, any application that runs on an instance in this fleet can assume the role, including install scripts, server processes, and daemons (background processes). Create a role or look up a role's ARN from the IAM dashboard in the AWS Management Console.
 * **InstanceRoleCredentialsProvider**: string: Credentials provider implementation that loads credentials from the Amazon EC2 Instance Metadata Service.
-* **Locations**: [LocationConfiguration](#locationconfiguration)[] (ReadOnly)
+* **Locations**: [LocationConfiguration](#locationconfiguration)[]
 * **LogPaths**: string[]: This parameter is no longer used. When hosting a custom game build, specify where Amazon GameLift should store log files using the Amazon GameLift server API call ProcessReady()
 * **MaxSize**: int: [DEPRECATED] The maximum value that is allowed for the fleet's instance count. When creating a new fleet, GameLift automatically sets this value to "1". Once the fleet is active, you can change this value.
 * **MetricGroups**: string[]: The name of an Amazon CloudWatch metric group. A metric group aggregates the metrics for all fleets in the group. Specify a string containing the metric group name. You can use an existing name or use a new name to create a new metric group. Currently, this parameter can have only one string.
@@ -412,14 +412,14 @@ Note: It is not currently possible to use the !Ref command to reference a script
 ### Properties
 * **Location**: string (Required)
 * **LocationCapacity**: [LocationCapacity](#locationcapacity)
-* **PlayerGatewayStatus**: string: The player gateway status for the location.
+* **PlayerGatewayStatus**: string (ReadOnly): The player gateway status for the location.
 * **StoppedActions**: string[]
 
 ## LocationConfiguration
 ### Properties
 * **Location**: string (Required)
 * **LocationCapacity**: [LocationCapacity](#locationcapacity)
-* **PlayerGatewayStatus**: string: The player gateway status for the location.
+* **PlayerGatewayStatus**: string (ReadOnly): The player gateway status for the location.
 
 ## LogConfiguration
 ### Properties

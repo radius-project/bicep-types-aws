@@ -142,7 +142,7 @@
 * **Arn**: string (ReadOnly): Arn
 * **CreationTime**: string (ReadOnly): Rfc3339TimeString
 * **CreatorRequestId**: string (ReadOnly): The id of the creator request.
-* **FirewallRules**: [FirewallRule](#firewallrule)[] (ReadOnly): FirewallRules
+* **FirewallRules**: [FirewallRule](#firewallrule)[]: FirewallRules
 * **Id**: string (ReadOnly, Identifier): ResourceId
 * **ModificationTime**: string (ReadOnly): Rfc3339TimeString
 * **Name**: string: FirewallRuleGroupName
@@ -270,10 +270,10 @@
 * **FirewallDomainListId**: string: ResourceId
 * **FirewallDomainRedirectionAction**: string: FirewallDomainRedirectionAction
 * **FirewallRuleType**: [FirewallRuleType](#firewallruletype): Advanced firewall rule type. Mutually exclusive with FirewallDomainListId and DnsThreatProtection/ConfidenceThreshold.
-* **FirewallThreatProtectionId**: string: ResourceId
+* **FirewallThreatProtectionId**: string (ReadOnly): ResourceId
 * **Priority**: int (Required): Rule Priority
 * **Qtype**: string: Qtype
-* **Status**: string: The status of the firewall rule.
+* **Status**: string (ReadOnly): The status of the firewall rule.
 
 ## FirewallRuleType
 ### Properties

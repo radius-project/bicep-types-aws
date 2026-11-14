@@ -43,7 +43,7 @@
 * **Frequency**: string (Required): The frequency at which anomaly reports are sent over email. 
 * **MonitorArnList**: string[] (Required): A list of cost anomaly monitors.
 * **ResourceTags**: [ResourceTag](#resourcetag)[]: Tags to assign to subscription.
-* **Subscribers**: [Subscriber](#subscriber)[] (Required, ReadOnly): A list of subscriber
+* **Subscribers**: [Subscriber](#subscriber)[] (Required): A list of subscriber
 * **SubscriptionArn**: string (ReadOnly, Identifier)
 * **SubscriptionName**: string (Required): The name of the subscription.
 * **Threshold**: int: The dollar value that triggers a notification if the threshold is exceeded. 
@@ -78,6 +78,6 @@
 ## Subscriber
 ### Properties
 * **Address**: string (Required)
-* **Status**: string
+* **Status**: string (ReadOnly)
 * **Type**: string (Required)
 

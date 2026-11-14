@@ -33,15 +33,21 @@
     "$type": "IntegerType"
   },
   {
+    "$type": "AnyType"
+  },
+  {
     "$type": "ObjectType",
     "name": "Queue_RedriveAllowPolicy",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/5"
+    }
   },
   {
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/5"
+        "$ref": "#/6"
       },
       {
         "$ref": "#/1"
@@ -51,13 +57,16 @@
   {
     "$type": "ObjectType",
     "name": "Queue_RedrivePolicy",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/5"
+    }
   },
   {
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/7"
+        "$ref": "#/8"
       },
       {
         "$ref": "#/1"
@@ -167,14 +176,14 @@
       },
       "RedriveAllowPolicy": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/7"
         },
         "flags": 0,
         "description": "The string that includes the parameters for the permissions for the dead-letter queue redrive permission and which source queues can specify dead-letter queues as a JSON object. The parameters are as follows:\n  +  ``redrivePermission``: The permission type that defines which source queues can specify the current queue as the dead-letter queue. Valid values are:\n  +  ``allowAll``: (Default) Any source queues in this AWS account in the same Region can specify this queue as the dead-letter queue.\n  +  ``denyAll``: No source queues can specify this queue as the dead-letter queue.\n  +  ``byQueue``: Only queues specified by the ``sourceQueueArns`` parameter can specify this queue as the dead-letter queue.\n  \n  +  ``sourceQueueArns``: The Amazon Resource Names (ARN)s of the source queues that can specify this queue as the dead-letter queue and redrive messages. You can specify this parameter only when the ``redrivePermission`` parameter is set to ``byQueue``. You can specify up to 10 source queue ARNs. To allow more than 10 source queues to specify dead-letter queues, set the ``redrivePermission`` parameter to ``allowAll``."
       },
       "RedrivePolicy": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "The string that includes the parameters for the dead-letter queue functionality of the source queue as a JSON object. The parameters are as follows:\n  +  ``deadLetterTargetArn``: The Amazon Resource Name (ARN) of the dead-letter queue to which SQS moves messages after the value of ``maxReceiveCount`` is exceeded.\n  +  ``maxReceiveCount``: The number of times a message is received by a consumer of the source queue before being moved to the dead-letter queue. When the ``ReceiveCount`` for a message exceeds the ``maxReceiveCount`` for a queue, SQS moves the message to the dead-letter-queue.\n  \n  The dead-letter queue of a FIFO queue must also be a FIFO queue. Similarly, the dead-letter queue of a standard queue must also be a standard queue.\n   *JSON* \n  ``{ \"deadLetterTargetArn\" : String, \"maxReceiveCount\" : Integer }`` \n  *YAML* \n  ``deadLetterTargetArn : String`` \n  ``maxReceiveCount : Integer``"
@@ -188,7 +197,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 0,
         "description": "The tags that you attach to this queue. For more information, see [Resource tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html) in the *User Guide*."
@@ -222,7 +231,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/11"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -233,7 +242,7 @@
     "$type": "ResourceType",
     "name": "AWS.SQS/Queue@default",
     "body": {
-      "$ref": "#/11"
+      "$ref": "#/12"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -245,7 +254,10 @@
   {
     "$type": "ObjectType",
     "name": "QueueInlinePolicy_PolicyDocument",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/5"
+    }
   },
   {
     "$type": "ObjectType",
@@ -253,7 +265,7 @@
     "properties": {
       "PolicyDocument": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/15"
         },
         "flags": 1,
         "description": "A policy document that contains permissions to add to the specified SQS queue"
@@ -287,7 +299,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/16"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -298,7 +310,7 @@
     "$type": "ResourceType",
     "name": "AWS.SQS/QueueInlinePolicy@default",
     "body": {
-      "$ref": "#/16"
+      "$ref": "#/17"
     },
     "readableScopes": 0,
     "writableScopes": 0

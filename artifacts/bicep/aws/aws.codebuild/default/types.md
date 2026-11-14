@@ -339,6 +339,8 @@ If you specify `CODEPIPELINE` or `NO_ARTIFACTS` for the `Type` property, don't s
 
 ## Report_StatusCounts
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: int
 
 ## ReportExportConfig
 ### Properties

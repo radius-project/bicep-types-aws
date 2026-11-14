@@ -43,8 +43,17 @@ For the tag value, you can specify a value that is 0 to 256 characters in length
 * **Filter**: [Filter](#filter)[] (Required)
 * **RuleName**: string (Required): The archive rule name
 
+## ArchiveRule_additionalProperties
+### Properties
+* **Contains**: string[]
+* **Eq**: string[]
+* **Exists**: bool
+* **Neq**: string[]
+
 ## ArchiveRule_Filter
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ArchiveRule_additionalProperties](#archiveruleadditionalproperties)
 
 ## AWS.AccessAnalyzer/AnalyzerProperties
 ### Properties

@@ -53,9 +53,13 @@
 
 ## Asset_Metadata
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Asset_Metadata
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## AssetFile
 ### Properties
@@ -186,6 +190,8 @@
 
 ## Service_AccessibleResources
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ServiceConfiguration
 ### Properties
@@ -210,4 +216,6 @@
 
 ## Trigger_Action
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 

@@ -230,6 +230,8 @@
 
 ## DataSource_Template
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## DataSourceConfiguration
 ### Properties

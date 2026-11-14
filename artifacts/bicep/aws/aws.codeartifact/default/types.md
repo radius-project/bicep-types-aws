@@ -78,6 +78,8 @@
 
 ## Domain_PermissionsPolicyDocument
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Package_OriginConfiguration
 ### Properties
@@ -115,6 +117,8 @@
 
 ## Repository_PermissionsPolicyDocument
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Tag
 ### Properties

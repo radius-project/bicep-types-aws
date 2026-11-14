@@ -56,6 +56,8 @@
 
 ## DataTransformationProfile_ProfileMapping
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ExistingVersionedProfileSource
 ### Properties

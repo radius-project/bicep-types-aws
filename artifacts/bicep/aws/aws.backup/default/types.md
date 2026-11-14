@@ -296,15 +296,23 @@
 
 ## BackupAccessPoint_AccessPointPolicy
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## BackupPlan_BackupOptions
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## BackupPlan_BackupPlanTags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## BackupPlan_RecoveryPointTags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## BackupPlanResourceType
 ### Properties
@@ -347,6 +355,8 @@
 
 ## BackupVault_BackupVaultTags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## CalculatedLifecycle
 ### Properties
@@ -432,6 +442,8 @@
 
 ## LogicallyAirGappedBackupVault_BackupVaultTags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## NotificationObjectType
 ### Properties
@@ -501,6 +513,8 @@
 
 ## SensitiveStringMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Tag
 ### Properties
@@ -529,4 +543,6 @@
 
 ## TieringConfiguration_TieringConfigurationTags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 

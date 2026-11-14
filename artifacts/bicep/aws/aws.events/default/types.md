@@ -83,6 +83,8 @@
 
 ## Archive_EventPattern
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## AuthParameters
 ### Properties
@@ -244,6 +246,12 @@ Targets are the resources that are invoked when a rule is triggered.
 
 ## ConnectionHttpParameters
 ### Properties
+* **BodyParameters**: [Parameter](#parameter)[]
+* **HeaderParameters**: [Parameter](#parameter)[]
+* **QueryStringParameters**: [Parameter](#parameter)[]
+
+## ConnectionHttpParameters
+### Properties
 * **BodyParameters**: [Parameter](#parameter)[] (WriteOnly)
 * **HeaderParameters**: [Parameter](#parameter)[] (WriteOnly)
 * **QueryStringParameters**: [Parameter](#parameter)[] (WriteOnly)
@@ -288,6 +296,8 @@ Targets are the resources that are invoked when a rule is triggered.
 
 ## EventBusPolicy_Statement
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## FailoverConfig
 ### Properties
@@ -363,6 +373,11 @@ Targets are the resources that are invoked when a rule is triggered.
 * **ResourceAssociationArn**: string (ReadOnly)
 * **ResourceConfigurationArn**: string (Required)
 
+## ResourceParameters
+### Properties
+* **ResourceAssociationArn**: string (ReadOnly)
+* **ResourceConfigurationArn**: string (Required)
+
 ## RetryPolicy
 ### Properties
 * **MaximumEventAgeInSeconds**: int
@@ -374,12 +389,18 @@ Targets are the resources that are invoked when a rule is triggered.
 
 ## Rule_HeaderParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Rule_InputPathsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Rule_QueryStringParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## RunCommandParameters
 ### Properties

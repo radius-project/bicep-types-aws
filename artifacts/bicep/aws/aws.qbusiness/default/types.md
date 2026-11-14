@@ -270,6 +270,8 @@
 
 ## DataSource_Configuration
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## DataSource_DocumentAttributeValue
 ### Properties

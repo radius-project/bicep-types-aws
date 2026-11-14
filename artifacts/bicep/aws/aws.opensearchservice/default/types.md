@@ -135,15 +135,23 @@
 
 ## Domain_AccessPolicies
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Domain_AdvancedOptions
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Domain_DomainEndpoints
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Domain_LogPublishingOptions
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [LogPublishingOption](#logpublishingoption)
 
 ## DomainEndpointOptions
 ### Properties
@@ -193,6 +201,11 @@
 * **PublicKey**: string (WriteOnly)
 * **RolesKey**: string
 * **SubjectKey**: string
+
+## LogPublishingOption
+### Properties
+* **CloudWatchLogsLogGroupArn**: string
+* **Enabled**: bool
 
 ## MasterUserOptions
 ### Properties

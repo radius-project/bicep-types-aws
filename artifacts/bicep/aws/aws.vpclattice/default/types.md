@@ -127,6 +127,8 @@
 
 ## AuthPolicy_Policy
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## AWS.VpcLattice/AccessLogSubscriptionProperties
 ### Properties
@@ -402,6 +404,8 @@
 
 ## ResourcePolicy_Policy
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## SharingConfig
 ### Properties
