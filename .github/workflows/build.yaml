@@ -12,6 +12,33 @@ on:
 permissions: {}
 
 jobs:
+  publishing-fixtures:
+    name: Test Bicep publishing without cloud credentials
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "20"
+          package-manager-cache: false
+
+      - name: Install pinned fixture tools
+        run: |
+          bash .github/scripts/install-bicep-tools.sh "${RUNNER_TEMP}/bicep-tools"
+          echo "${RUNNER_TEMP}/bicep-tools" >> "${GITHUB_PATH}"
+
+      - name: Checkout pinned Radius schema inputs
+        run: git submodule update --init -- radius
+
+      - name: Exercise helper and native OCI fixtures
+        run: bash .github/scripts/test-publish-bicep.sh
+
   build:
     name: Build and test
     runs-on: ubuntu-24.04
@@ -85,3 +112,8 @@ jobs:
       - name: Build templates with the generated types
         working-directory: src/aws-type-generator
         run: npm run test:bicep
+
+      - name: Verify actual generator CLI version compatibility without AWS
+        env:
+          AWS_BICEP_TEST_GENERATOR: "true"
+        run: node --test --test-name-pattern='generator CLI' .github/scripts/publish-bicep.test.mjs
