@@ -74,8 +74,15 @@
 ### Properties
 * **Scope**: string (Required)
 
+## DataIntegration_additionalProperties
+### Properties
+### Additional Properties
+* **Additional Properties Type**: string[]
+
 ## DataIntegration_Filters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string[]
 
 ## EventFilter
 ### Properties
@@ -98,6 +105,8 @@
 
 ## ObjectConfiguration
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [DataIntegration_additionalProperties](#dataintegrationadditionalproperties)
 
 ## ScheduleConfig
 ### Properties

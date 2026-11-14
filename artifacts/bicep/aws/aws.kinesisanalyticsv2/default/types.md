@@ -10,6 +10,8 @@
 
 ## Application_PropertyMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ApplicationCodeConfiguration
 ### Properties

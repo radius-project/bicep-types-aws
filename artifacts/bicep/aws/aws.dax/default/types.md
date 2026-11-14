@@ -59,9 +59,13 @@
 
 ## Cluster_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## ParameterGroup_ParameterNameValues
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## SSESpecification
 ### Properties

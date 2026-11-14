@@ -125,11 +125,30 @@ _Default_: If not specified, the default value is 1.
 * **EdgeFilter**: [ExportTask_EdgeFilter](#exporttaskedgefilter): Used to specify filters on a per-label basis for edges.
 * **VertexFilter**: [ExportTask_VertexFilter](#exporttaskvertexfilter): Used to specify filters on a per-label basis for vertices.
 
+## ExportFilterElement
+### Properties
+* **Properties**: [ExportTask_Properties](#exporttaskproperties): Property definitions for the filter element.
+
+## ExportFilterPropertyAttributes
+### Properties
+* **MultiValueHandling**: string: Specifies how to handle properties that have multiple values.
+* **OutputType**: string: Specifies the data type to use for the property in the exported data.
+* **SourcePropertyName**: string: The name of the property as it exists in the original graph data.
+
 ## ExportTask_EdgeFilter
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ExportFilterElement](#exportfilterelement)
+
+## ExportTask_Properties
+### Properties
+### Additional Properties
+* **Additional Properties Type**: [ExportFilterPropertyAttributes](#exportfilterpropertyattributes)
 
 ## ExportTask_VertexFilter
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ExportFilterElement](#exportfilterelement)
 
 ## ImportOptions
 ### Properties

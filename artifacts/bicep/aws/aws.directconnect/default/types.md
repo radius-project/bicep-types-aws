@@ -109,7 +109,7 @@
 ## AWS.DirectConnect/PrivateVirtualInterfaceProperties
 ### Properties
 * **AllocatePrivateVirtualInterfaceRoleArn**: string (WriteOnly): The Amazon Resource Name (ARN) of the role to allocate the private virtual interface. Needs directconnect:AllocatePrivateVirtualInterface permissions and tag permissions if applicable.
-* **BgpPeers**: [BgpPeer](#bgppeer)[] (Required, ReadOnly): The BGP peers configured on this virtual interface.
+* **BgpPeers**: [BgpPeer](#bgppeer)[] (Required): The BGP peers configured on this virtual interface.
 * **ConnectionId**: string (Required): The ID or ARN of the connection or LAG.
 * **DirectConnectGatewayId**: string: The ID or ARN of the Direct Connect gateway.
 * **EnableSiteLink**: bool: Indicates whether to enable or disable SiteLink.
@@ -125,7 +125,7 @@
 ## AWS.DirectConnect/PublicVirtualInterfaceProperties
 ### Properties
 * **AllocatePublicVirtualInterfaceRoleArn**: string (WriteOnly): The Amazon Resource Name (ARN) of the role to allocate the public virtual interface. Needs directconnect:AllocatePublicVirtualInterface permissions and tag permissions if applicable.
-* **BgpPeers**: [BgpPeer](#bgppeer)[] (Required, ReadOnly): The BGP peers configured on this virtual interface.
+* **BgpPeers**: [BgpPeer](#bgppeer)[] (Required): The BGP peers configured on this virtual interface.
 * **ConnectionId**: string (Required): The ID or ARN of the connection or LAG.
 * **RateLimit**: string: The rate limit (bandwidth allocation) for the virtual interface. The value must be one of the supported bandwidth values (e.g., 50Mbps, 1Gbps, 10Gbps) and cannot exceed the bandwidth of the parent connection or LAG.
 * **RouteFilterPrefixes**: string[]: The routes to be advertised to the AWS network in this region.
@@ -147,7 +147,7 @@
 ## AWS.DirectConnect/TransitVirtualInterfaceProperties
 ### Properties
 * **AllocateTransitVirtualInterfaceRoleArn**: string (WriteOnly): The Amazon Resource Name (ARN) of the role to allocate the TransitVifAllocation. Needs directconnect:AllocateTransitVirtualInterface permissions and tag permissions if applicable.
-* **BgpPeers**: [BgpPeer](#bgppeer)[] (Required, ReadOnly): The BGP peers configured on this virtual interface..
+* **BgpPeers**: [BgpPeer](#bgppeer)[] (Required): The BGP peers configured on this virtual interface..
 * **ConnectionId**: string (Required): The ID or ARN of the connection or LAG.
 * **DirectConnectGatewayId**: string (Required): The ID or ARN of the Direct Connect gateway.
 * **EnableSiteLink**: bool: Indicates whether to enable or disable SiteLink.
@@ -165,7 +165,7 @@
 * **AmazonAddress**: string: The IP address assigned to the Amazon interface.
 * **Asn**: string (Required): The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
 * **AuthKey**: string: The authentication key for BGP configuration. This string has a minimum length of 6 characters and and a maximum length of 80 characters.
-* **BgpPeerId**: string
+* **BgpPeerId**: string (ReadOnly)
 * **CustomerAddress**: string: The IP address assigned to the customer interface.
 
 ## BgpPeer
@@ -174,7 +174,7 @@
 * **AmazonAddress**: string: The IP address assigned to the Amazon interface.
 * **Asn**: string (Required): The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
 * **AuthKey**: string: The authentication key for BGP configuration. This string has a minimum length of 6 characters and and a maximum length of 80 characters.
-* **BgpPeerId**: string
+* **BgpPeerId**: string (ReadOnly)
 * **CustomerAddress**: string: The IP address assigned to the customer interface.
 
 ## BgpPeer
@@ -183,7 +183,7 @@
 * **AmazonAddress**: string: The IP address assigned to the Amazon interface.
 * **Asn**: string (Required): The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
 * **AuthKey**: string: The authentication key for BGP configuration. This string has a minimum length of 6 characters and and a maximum length of 80 characters.
-* **BgpPeerId**: string
+* **BgpPeerId**: string (ReadOnly)
 * **CustomerAddress**: string: The IP address assigned to the customer interface.
 
 ## Tag

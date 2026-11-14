@@ -117,9 +117,9 @@
 * **DashManifestUrls**: string[] (ReadOnly)
 * **Description**: string: <p>Enter any descriptive text that helps you to identify the origin endpoint.</p>
 * **ForceEndpointErrorConfiguration**: [ForceEndpointErrorConfiguration](#forceendpointerrorconfiguration)
-* **HlsManifests**: [HlsManifestConfiguration](#hlsmanifestconfiguration)[] (ReadOnly): <p>An HTTP live streaming (HLS) manifest configuration.</p>
+* **HlsManifests**: [HlsManifestConfiguration](#hlsmanifestconfiguration)[]: <p>An HTTP live streaming (HLS) manifest configuration.</p>
 * **HlsManifestUrls**: string[] (ReadOnly)
-* **LowLatencyHlsManifests**: [LowLatencyHlsManifestConfiguration](#lowlatencyhlsmanifestconfiguration)[] (ReadOnly): <p>A low-latency HLS manifest configuration.</p>
+* **LowLatencyHlsManifests**: [LowLatencyHlsManifestConfiguration](#lowlatencyhlsmanifestconfiguration)[]: <p>A low-latency HLS manifest configuration.</p>
 * **LowLatencyHlsManifestUrls**: string[] (ReadOnly)
 * **ModifiedAt**: string (ReadOnly): <p>The date and time the origin endpoint was modified.</p>
 * **MssManifests**: [MssManifestConfiguration](#mssmanifestconfiguration)[]: <p>The Microsoft Smooth Streaming (MSS) manifest configurations associated with this origin endpoint.</p>
@@ -280,7 +280,7 @@
 * **ScteHls**: [ScteHls](#sctehls)
 * **StartTag**: [StartTag](#starttag)
 * **UriPathType**: string
-* **Url**: string: <p>The egress domain URL for stream delivery from MediaPackage.</p>
+* **Url**: string (ReadOnly): <p>The egress domain URL for stream delivery from MediaPackage.</p>
 * **UrlEncodeChildManifest**: bool: <p>When enabled, MediaPackage URL-encodes the query string for API requests for HLS child manifests to comply with Amazon Web Services Signature Version 4 (SigV4) signature signing protocol. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv.html">Amazon Web Services Signature Version 4 for API requests</a> in <i>Identity and Access Management User Guide</i>.</p>
 
 ## IngestEndpoint
@@ -312,7 +312,7 @@
 * **ScteHls**: [ScteHls](#sctehls)
 * **StartTag**: [StartTag](#starttag)
 * **UriPathType**: string
-* **Url**: string: <p>The egress domain URL for stream delivery from MediaPackage.</p>
+* **Url**: string (ReadOnly): <p>The egress domain URL for stream delivery from MediaPackage.</p>
 * **UrlEncodeChildManifest**: bool: <p>When enabled, MediaPackage URL-encodes the query string for API requests for LL-HLS child manifests to comply with Amazon Web Services Signature Version 4 (SigV4) signature signing protocol. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv.html">Amazon Web Services Signature Version 4 for API requests</a> in <i>Identity and Access Management User Guide</i>.</p>
 
 ## MssFilterConfiguration

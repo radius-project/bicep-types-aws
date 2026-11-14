@@ -121,7 +121,7 @@
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): The ARN of the S3 Table Integration
 * **Encryption**: [EncryptionConfig](#encryptionconfig) (Required)
-* **LogSources**: [LogSource](#logsource)[] (ReadOnly): The CloudWatch Logs data sources to associate with the S3 Table Integration
+* **LogSources**: [LogSource](#logsource)[]: The CloudWatch Logs data sources to associate with the S3 Table Integration
 * **RoleArn**: string (Required): The ARN of the role used to access the S3 Table Integration
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource
 
@@ -274,7 +274,7 @@
 
 ## LogSource
 ### Properties
-* **Identifier**: string: The ID of the CloudWatch Logs data source association
+* **Identifier**: string (ReadOnly): The ID of the CloudWatch Logs data source association
 * **Name**: string (Required): The name of the CloudWatch Logs data source
 * **Type**: string (Required): The type of the CloudWatch Logs data source
 

@@ -84,9 +84,9 @@
 ### Properties
 * **Authentication**: [Authentication](#authentication): Authentication credentials for this actor
 * **Description**: string: Description of the actor
-* **EnableEmailMfa**: bool: Whether email-based MFA is enabled for this actor
+* **EnableEmailMfa**: bool (WriteOnly): Whether email-based MFA is enabled for this actor
 * **Identifier**: string: Identifier for the actor
-* **MfaForwardingAddress**: string: Server-generated email forwarding address for receiving MFA codes
+* **MfaForwardingAddress**: string (ReadOnly): Server-generated email forwarding address for receiving MFA codes
 * **Uris**: string[]: List of URIs this actor is authorized to access
 
 ## Actor
@@ -98,7 +98,7 @@
 
 ## Assets
 ### Properties
-* **Actors**: [Actor](#actor)[] (ReadOnly, WriteOnly): List of actors used during testing
+* **Actors**: [Actor](#actor)[]: List of actors used during testing
 * **ClientCertificates**: [ClientCertificate](#clientcertificate)[]: Client certificates that AWS Security Agent presents to target hosts that require mutual TLS (mTLS)
 * **Documents**: [DocumentInfo](#documentinfo)[]: List of documents providing additional context for the pentest
 * **Endpoints**: [Endpoint](#endpoint)[]: List of endpoints to test
@@ -123,7 +123,7 @@
 * **CodeReviewSettings**: [CodeReviewSettings](#codereviewsettings)
 * **CreatedAt**: string (ReadOnly): Timestamp when the agent space was created
 * **Description**: string: Description of the agent space
-* **IntegratedResources**: [IntegratedResource](#integratedresource)[] (ReadOnly)
+* **IntegratedResources**: [IntegratedResource](#integratedresource)[]
 * **KmsKeyId**: string: Identifier of the KMS key used to encrypt data. Can be a key ID, key ARN, alias name, or alias ARN. If not specified, an AWS managed key is used.
 * **Name**: string (Required): Name of the agent space
 * **Tags**: [Tag](#tag)[]: Tags for the agent space
@@ -283,7 +283,7 @@
 ## AzureDevOpsRepositoryResource
 ### Properties
 * **Name**: string (Required): Azure DevOps repository name
-* **Organization**: string: Read-only Azure DevOps organization that owns the repository, populated from service-side metadata
+* **Organization**: string (ReadOnly): Read-only Azure DevOps organization that owns the repository, populated from service-side metadata
 * **Project**: string (Required): Azure DevOps project that owns the repository
 
 ## BitbucketCapabilitiesResource
@@ -350,8 +350,8 @@
 * **Name**: string (Required): Customer-supplied logical name for the Confluence document
 * **PageId**: string (Required): Confluence page identifier
 * **SpaceKey**: string (Required): Confluence space key containing the document
-* **SpaceTitle**: string: Read-only human-readable title of the containing space, populated from service-side metadata
-* **Title**: string: Read-only human-readable title of the page, populated from service-side metadata
+* **SpaceTitle**: string (ReadOnly): Read-only human-readable title of the containing space, populated from service-side metadata
+* **Title**: string (ReadOnly): Read-only human-readable title of the page, populated from service-side metadata
 
 ## ConfluenceInput
 ### Properties

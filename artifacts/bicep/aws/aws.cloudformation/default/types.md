@@ -502,9 +502,13 @@ We recommend that type names adhere to the following pattern: company_or_organiz
 
 ## Stack_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Stack_StackPolicyBody
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## StackInstances
 ### Properties

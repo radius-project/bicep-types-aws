@@ -26,6 +26,8 @@
 
 ## ClassificationJob_Scoping
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## JobScheduleFrequency
 ### Properties

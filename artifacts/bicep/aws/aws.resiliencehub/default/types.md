@@ -34,15 +34,23 @@
 
 ## AppAssessment_Compliance
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [DisruptionCompliance](#disruptioncompliance)
 
 ## AppAssessment_ComponentScore
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ScoringComponentResiliencyScore](#scoringcomponentresiliencyscore)
 
 ## AppAssessment_DisruptionScore
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: int
 
 ## AppAssessment_Policy
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [FailurePolicy](#failurepolicy)
 
 ## AWS.ResilienceHub/AppAssessmentProperties
 ### Properties
@@ -105,11 +113,29 @@
 * **Currency**: string (Required): The cost currency, for example USD.
 * **Frequency**: string (Required): The cost frequency.
 
+## DisruptionCompliance
+### Properties
+* **AchievableRpoInSecs**: int: The Recovery Point Objective (RPO) that is achievable, in seconds.
+* **AchievableRtoInSecs**: int: The Recovery Time Objective (RTO) that is achievable, in seconds.
+* **ComplianceStatus**: string (Required): The current status of compliance for the resiliency policy.
+* **CurrentRpoInSecs**: int: The current RPO, in seconds.
+* **CurrentRtoInSecs**: int: The current RTO, in seconds.
+* **Message**: string: The disruption compliance message.
+* **RpoDescription**: string: The RPO description.
+* **RpoReferenceId**: string: Reference identifier of the RPO.
+* **RtoDescription**: string: The RTO description.
+* **RtoReferenceId**: string: Reference identifier of the RTO.
+
 ## EventSubscription
 ### Properties
 * **EventType**: string (Required): The type of event you would like to subscribe and get notification for.
 * **Name**: string (Required): Unique name to identify an event subscription.
 * **SnsTopicArn**: string: Amazon Resource Name (ARN) of the Amazon Simple Notification Service topic.
+
+## FailurePolicy
+### Properties
+* **RpoInSecs**: int (Required): Recovery Point Objective (RPO) in seconds.
+* **RtoInSecs**: int (Required): Recovery Time Objective (RTO) in seconds.
 
 ## FailurePolicy
 ### Properties
@@ -163,6 +189,13 @@
 * **Bucket**: string: The name of the Amazon S3 bucket.
 * **Prefix**: string: The prefix for the Amazon S3 bucket.
 
+## ScoringComponentResiliencyScore
+### Properties
+* **ExcludedCount**: int: Number of recommendations that were excluded from the assessment.
+* **OutstandingCount**: int: Number of recommendations that must be implemented to obtain the maximum possible score for the scoring component.
+* **PossibleScore**: int: Maximum possible score that can be obtained for the scoring component.
+* **Score**: int: Resiliency score points given for the scoring component.
+
 ## Tag
 ### Properties
 * **Key**: string (Required): The key name of the tag.
@@ -175,7 +208,11 @@
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 

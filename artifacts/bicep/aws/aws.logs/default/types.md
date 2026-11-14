@@ -333,9 +333,13 @@ Length Constraints: Maximum length of 51200
 
 ## DeliveryDestination_DestinationPolicy_DeliveryDestinationPolicy
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## DeliverySource_DeliverySourceConfiguration
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## DestinationConfiguration
 ### Properties
@@ -353,12 +357,18 @@ Length Constraints: Maximum length of 51200
 
 ## LogGroup_DataProtectionPolicy
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## LogGroup_FieldIndexPolicies
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## LogGroup_ResourcePolicyDocument
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## MetricTransformation
 ### Properties
@@ -503,6 +513,8 @@ Length Constraints: Maximum length of 51200
 
 ## Transformer_Column
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Transformer_CopyValue
 ### Properties
@@ -549,6 +561,8 @@ Length Constraints: Maximum length of 51200
 
 ## Transformer_MatchPattern
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Transformer_MoveKeys
 ### Properties

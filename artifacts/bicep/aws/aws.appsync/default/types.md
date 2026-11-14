@@ -389,6 +389,8 @@ As of September 2021, Amazon Elasticsearch Service is Amazon OpenSearch Service.
 
 ## GraphQLApi_EnvironmentVariables
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## HandlerConfig
 ### Properties

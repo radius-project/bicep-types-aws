@@ -192,12 +192,21 @@ Contains between 3 and 64 characters
 * **InstanceArn**: string (Required)
 * **UserAttribute**: string
 
+## Index_additionalProperties
+### Properties
+* **CharFilter**: string[]: Character filters to apply
+* **Filter**: string[]: Token filters to apply
+* **Tokenizer**: string: The tokenizer to use
+* **Type**: string: The analyzer type (e.g. custom, standard, simple)
+
 ## Index_Analysis
 ### Properties
 * **Analyzer**: [Index_Analysis_Analyzer](#indexanalysisanalyzer): Custom analyzer definitions
 
 ## Index_Analysis_Analyzer
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [Index_additionalProperties](#indexadditionalproperties)
 
 ## Index_Index
 ### Properties
@@ -211,11 +220,43 @@ Contains between 3 and 64 characters
 
 ## Index_Mappings_Properties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [PropertyMapping](#propertymapping)
+
+## Index_Method
+### Properties
+* **Engine**: string: The k-NN search engine to use
+* **Name**: string (Required): The algorithm name for k-NN search
+* **Parameters**: [Index_Method_Parameters](#indexmethodparameters): Additional parameters for the k-NN algorithm
+* **SpaceType**: string: The distance function used for k-NN search
+
+## Index_Method_Parameters
+### Properties
+* **EfConstruction**: int: The size of the dynamic list used during k-NN graph creation
+* **M**: int: Number of neighbors to consider during k-NN search
+
+## Index_Properties
+### Properties
+### Additional Properties
+* **Additional Properties Type**: [PropertyMapping](#propertymapping)
 
 ## IndexSettings
 ### Properties
 * **Analysis**: [Index_Analysis](#indexanalysis): Custom analysis configuration including analyzers, tokenizers, and filters
 * **Index**: [Index_Index](#indexindex)
+
+## PropertyMapping
+### Properties
+* **Analyzer**: string: The analyzer to use for this field (for text and keyword fields)
+* **CompressionLevel**: string: The compression level for knn_vector fields
+* **DataType**: string: The data type for knn_vector fields (e.g. float, byte). Controls how vector values are stored.
+* **Dimension**: int: Dimension size for vector fields, defines the number of dimensions in the vector
+* **Index**: bool: Whether a field should be indexed
+* **Method**: [Index_Method](#indexmethod): Configuration for k-NN search method
+* **Properties**: [Index_Properties](#indexproperties): Nested fields within an object or nested field type
+* **SpaceType**: string: The distance function used for k-NN search (field-level, outside Method)
+* **Type**: string (Required): The field data type. Must be a valid OpenSearch field type.
+* **Value**: string: Default value for the field when not specified in a document
 
 ## SamlConfigOptions
 ### Properties

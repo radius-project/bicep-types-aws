@@ -124,9 +124,13 @@
 
 ## Job_SettingsJson
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Job_UserMetadata
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## JobMessages
 ### Properties
@@ -135,9 +139,13 @@
 
 ## JobTemplate_SettingsJson
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## JobTemplate_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## OutputDetail
 ### Properties
@@ -150,12 +158,18 @@
 
 ## Preset_SettingsJson
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Preset_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Queue_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Tag
 ### Properties

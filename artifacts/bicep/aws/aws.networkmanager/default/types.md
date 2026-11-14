@@ -422,6 +422,8 @@
 
 ## CoreNetwork_PolicyDocument
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## CoreNetwork_Segments
 ### Properties

@@ -35,6 +35,8 @@
 
 ## Quota_MetricDimensions
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## QuotaContextInfo
 ### Properties

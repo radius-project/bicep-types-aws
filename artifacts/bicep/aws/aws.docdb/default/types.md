@@ -70,6 +70,8 @@
 
 ## DBClusterParameterGroup_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Tag
 ### Properties

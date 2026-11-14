@@ -400,6 +400,8 @@
 
 ## Component_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ComponentConfiguration
 ### Properties
@@ -429,6 +431,8 @@
 
 ## ContainerRecipe_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## DeletionSettings
 ### Properties
@@ -446,9 +450,13 @@
 
 ## DistributionConfiguration_AmiTags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## DistributionConfiguration_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## EbsInstanceBlockDeviceSpecification
 ### Properties
@@ -514,6 +522,8 @@
 
 ## Image_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ImageLoggingConfiguration
 ### Properties
@@ -521,9 +531,13 @@
 
 ## ImagePipeline_ImageTags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ImagePipeline_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ImagePipelineExecutionSettings
 ### Properties
@@ -532,9 +546,13 @@
 
 ## ImageRecipe_AmiTags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ImageRecipe_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ImageScanningConfiguration
 ### Properties
@@ -568,9 +586,13 @@
 
 ## InfrastructureConfiguration_ResourceTags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## InfrastructureConfiguration_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## InstanceBlockDeviceMapping
 ### Properties
@@ -659,15 +681,23 @@
 
 ## LifecyclePolicy_TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## LifecyclePolicy_TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## LifecyclePolicy_TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## LifecyclePolicy_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Logging
 ### Properties
@@ -749,6 +779,8 @@
 
 ## Workflow_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## WorkflowConfiguration
 ### Properties

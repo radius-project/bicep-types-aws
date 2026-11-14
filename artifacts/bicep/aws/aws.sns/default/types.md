@@ -98,10 +98,16 @@
 
 ## Topic_ArchivePolicy
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Topic_DataProtectionPolicy
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## TopicInlinePolicy_PolicyDocument
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 

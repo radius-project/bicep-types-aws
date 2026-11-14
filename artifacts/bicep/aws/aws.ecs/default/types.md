@@ -946,9 +946,13 @@
 
 ## DaemonTaskDefinition_Options
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## DaemonTaskDefinition_Options
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## DeploymentAlarms
 ### Properties
@@ -1983,6 +1987,8 @@
 
 ## Service_Options
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ServiceConnectAccessLogConfiguration
 ### Properties
@@ -2194,6 +2200,8 @@
 
 ## ServiceRevision_Options
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ServiceRevisionLoadBalancer
 ### Properties
@@ -2299,18 +2307,28 @@
 
 ## TaskDefinition_DockerLabels
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TaskDefinition_DriverOpts
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TaskDefinition_Labels
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TaskDefinition_Options
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TaskDefinition_Options
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TaskDefinitionPlacementConstraint
 ### Properties

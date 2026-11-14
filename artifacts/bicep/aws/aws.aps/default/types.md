@@ -190,6 +190,8 @@
 
 ## Scraper_Options
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Scraper_VpcConfiguration
 ### Properties
