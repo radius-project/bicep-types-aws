@@ -132,7 +132,7 @@
 * **ProductType**: string: The type of product.
 * **ProvisioningArtifactIds**: string (ReadOnly): The IDs of the provisioning artifacts
 * **ProvisioningArtifactNames**: string (ReadOnly): The names of the provisioning artifacts
-* **ProvisioningArtifactParameters**: [ProvisioningArtifactProperties](#provisioningartifactproperties)[] (WriteOnly): The configuration of the provisioning artifact (also known as a version).
+* **ProvisioningArtifactParameters**: [ProvisioningArtifactProperties](#provisioningartifactproperties)[]: The configuration of the provisioning artifact (also known as a version).
 * **ReplaceProvisioningArtifacts**: bool (WriteOnly): This property is turned off by default. If turned off, you can update provisioning artifacts or product attributes (such as description, distributor, name, owner, and more) and the associated provisioning artifacts will retain the same unique identifier. Provisioning artifacts are matched within the CloudFormationProduct resource, and only those that have been updated will be changed. Provisioning artifacts are matched by a combinaton of provisioning artifact template URL and name.
 * **SourceConnection**: [SourceConnection](#sourceconnection): A top level ProductViewDetail response containing details about the product's connection. AWS Service Catalog returns this field for the CreateProduct, UpdateProduct, DescribeProductAsAdmin, and SearchProductAsAdmin APIs. This response contains the same fields as the ConnectionParameters request, with the addition of the LastSync response.
 * **SupportDescription**: string: The support information about the product.
@@ -278,6 +278,8 @@
 
 ## CloudFormationProvisionedProduct_Outputs
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## CodeStarParameters
 ### Properties
@@ -296,7 +298,7 @@
 ## ProvisioningArtifactProperties
 ### Properties
 * **Description**: string: The description of the provisioning artifact, including how it differs from the previous provisioning artifact.
-* **DisableTemplateValidation**: bool: If set to true, AWS Service Catalog stops validating the specified provisioning artifact even if it is invalid.
+* **DisableTemplateValidation**: bool (WriteOnly): If set to true, AWS Service Catalog stops validating the specified provisioning artifact even if it is invalid.
 * **Info**: [CloudFormationProduct_Info](#cloudformationproductinfo) (Required): Specify the template source with one of the following options, but not both. Keys accepted: [ LoadTemplateFromURL, ImportFromPhysicalId ] The URL of the AWS CloudFormation template in Amazon S3 in JSON format. Specify the URL in JSON format as follows:
 
 "LoadTemplateFromURL": "https://s3.amazonaws.com/cf-templates-ozkq9d3hgiq2-us-east-1/..."

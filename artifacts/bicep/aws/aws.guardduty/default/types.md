@@ -261,8 +261,27 @@
 ### Properties
 * **Status**: string: Indicates whether or not you chose GuardDuty to add a predefined tag to the scanned S3 object.
 
+## Condition
+### Properties
+* **Eq**: string[]
+* **Equals**: string[]
+* **GreaterThan**: int
+* **GreaterThanOrEqual**: int
+* **Gt**: int
+* **Gte**: int
+* **LessThan**: int
+* **LessThanOrEqual**: int
+* **Lt**: int
+* **Lte**: int
+* **Matches**: string[]
+* **Neq**: string[]
+* **NotEquals**: string[]
+* **NotMatches**: string[]
+
 ## Filter_Criterion
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [Condition](#condition)
 
 ## FindingCriteria
 ### Properties

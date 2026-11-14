@@ -213,6 +213,8 @@
 
 ## Service_MatchLabels
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ServiceReportConfiguration
 ### Properties

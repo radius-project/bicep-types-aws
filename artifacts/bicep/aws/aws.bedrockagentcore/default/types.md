@@ -269,6 +269,8 @@
 
 ## AdditionalClaims
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## AgentRuntimeArtifact
 ### Properties
@@ -616,7 +618,7 @@ Always present in responses.
 * **MemoryArn**: string (ReadOnly, Identifier)
 * **MemoryExecutionRoleArn**: string
 * **MemoryId**: string (ReadOnly)
-* **MemoryStrategies**: [MemoryStrategy](#memorystrategy)[] (ReadOnly, WriteOnly)
+* **MemoryStrategies**: [MemoryStrategy](#memorystrategy)[]
 * **Name**: string (Required)
 * **NamespaceKeys**: [NamespaceKeyEntry](#namespacekeyentry)[]
 * **Status**: string (ReadOnly)
@@ -825,6 +827,8 @@ Always present in responses.
 
 ## CapacityProvider_PropagatedTags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## CapacityProviderConfiguration
 ### Properties
@@ -942,6 +946,14 @@ Always present in responses.
 * **WalletSecretJsonKey**: string: The JSON key within the secret that contains the wallet secret value
 * **WalletSecretSource**: string
 
+## ComponentConfiguration
+### Properties
+* **Configuration**: [ConfigurationBundle_Configuration](#configurationbundleconfiguration) (Required): The configuration values as a flexible JSON document.
+
+## ComponentConfiguration
+### Properties
+* **Configuration**: [ConfigurationBundleVersion_Configuration](#configurationbundleversionconfiguration) (Required): The configuration values as a flexible JSON document.
+
 ## ComputeConfiguration
 ### Properties
 * **Ec2Configuration**: [Ec2Configuration](#ec2configuration) (Required)
@@ -951,9 +963,23 @@ Always present in responses.
 
 ## ConfigurationBundle_Components
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ComponentConfiguration](#componentconfiguration)
+
+## ConfigurationBundle_Configuration
+### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## ConfigurationBundleVersion_Components
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ComponentConfiguration](#componentconfiguration)
+
+## ConfigurationBundleVersion_Configuration
+### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## ConsentPortalSource
 ### Properties
@@ -1031,18 +1057,18 @@ Always present in responses.
 ## CustomMemoryStrategy
 ### Properties
 * **Configuration**: [CustomConfigurationInput](#customconfigurationinput)
-* **CreatedAt**: string: Creation timestamp of the memory strategy
+* **CreatedAt**: string (ReadOnly): Creation timestamp of the memory strategy
 * **Description**: string
 * **MemoryRecordSchema**: [MemoryRecordSchema](#memoryrecordschema)
 * **Name**: string (Required)
 * **Namespaces**: string[]
 * **NamespaceTemplates**: string[]
-* **RecordExpiryDurationDays**: int
-* **RecordExpirySpecification**: [RecordExpirySpecification](#recordexpiryspecification)
-* **Status**: string: Status of the memory strategy
-* **StrategyId**: string: Unique identifier for the memory strategy
-* **Type**: string: Type of memory strategy
-* **UpdatedAt**: string: Last update timestamp of the memory strategy
+* **RecordExpiryDurationDays**: int (ReadOnly)
+* **RecordExpirySpecification**: [RecordExpirySpecification](#recordexpiryspecification) (WriteOnly)
+* **Status**: string (ReadOnly): Status of the memory strategy
+* **StrategyId**: string (ReadOnly): Unique identifier for the memory strategy
+* **Type**: string (ReadOnly): Type of memory strategy
+* **UpdatedAt**: string (ReadOnly): Last update timestamp of the memory strategy
 
 ## CustomOauth2ProviderConfigInput
 ### Properties
@@ -1059,6 +1085,8 @@ Always present in responses.
 
 ## Dataset_Examples
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## DataSourceConfig
 ### Properties
@@ -1081,6 +1109,8 @@ Always present in responses.
 
 ## Dimensions
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## EbsVolumeConfiguration
 ### Properties
@@ -1113,6 +1143,8 @@ Always present in responses.
 
 ## EnvironmentVariablesMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## EphemeralBlockDeviceMapping
 ### Properties
@@ -1134,19 +1166,19 @@ Always present in responses.
 
 ## EpisodicMemoryStrategy
 ### Properties
-* **CreatedAt**: string: Creation timestamp of the memory strategy
+* **CreatedAt**: string (ReadOnly): Creation timestamp of the memory strategy
 * **Description**: string
 * **MemoryRecordSchema**: [MemoryRecordSchema](#memoryrecordschema)
 * **Name**: string (Required)
 * **Namespaces**: string[]
 * **NamespaceTemplates**: string[]
-* **RecordExpiryDurationDays**: int
-* **RecordExpirySpecification**: [RecordExpirySpecification](#recordexpiryspecification)
+* **RecordExpiryDurationDays**: int (ReadOnly)
+* **RecordExpirySpecification**: [RecordExpirySpecification](#recordexpiryspecification) (WriteOnly)
 * **ReflectionConfiguration**: [EpisodicReflectionConfigurationInput](#episodicreflectionconfigurationinput)
-* **Status**: string: Status of the memory strategy
-* **StrategyId**: string: Unique identifier for the memory strategy
-* **Type**: string: Type of memory strategy
-* **UpdatedAt**: string: Last update timestamp of the memory strategy
+* **Status**: string (ReadOnly): Status of the memory strategy
+* **StrategyId**: string (ReadOnly): Unique identifier for the memory strategy
+* **Type**: string (ReadOnly): Type of memory strategy
+* **UpdatedAt**: string (ReadOnly): Last update timestamp of the memory strategy
 
 ## EpisodicOverride
 ### Properties
@@ -1186,6 +1218,8 @@ Always present in responses.
 
 ## Evaluator_AdditionalModelRequestFields
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## EvaluatorConfig
 ### Properties
@@ -1236,6 +1270,8 @@ Always present in responses.
 
 ## Gateway_ProtocolType
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## GatewayInterceptorConfiguration
 ### Properties
@@ -1267,42 +1303,64 @@ Always present in responses.
 
 ## Harness_AdditionalParams
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Harness_AdditionalParams
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Harness_AdditionalParams
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Harness_AdditionalParams
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Harness_AdvertisedScopeMapping
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Harness_AwsIam
 ### Properties
 
 ## Harness_CustomParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Harness_EnvironmentVariables
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Harness_Headers
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Harness_InputSchema
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Harness_None
 ### Properties
 
 ## Harness_RetrievalConfig
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [HarnessAgentCoreMemoryRetrievalConfig](#harnessagentcorememoryretrievalconfig)
 
 ## Harness_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## HarnessAfterInvocationHook
 ### Properties
@@ -1333,6 +1391,12 @@ Always present in responses.
 * **Arn**: string (Required, Identifier)
 * **MessagesCount**: int
 * **RetrievalConfig**: [Harness_RetrievalConfig](#harnessretrievalconfig)
+
+## HarnessAgentCoreMemoryRetrievalConfig
+### Properties
+* **RelevanceScore**: int: Minimum relevance score for retrieved memories.
+* **StrategyId**: string
+* **TopK**: int: Maximum number of memory records to retrieve.
 
 ## HarnessAgentCoreRuntimeEnvironment
 ### Properties
@@ -2009,18 +2073,18 @@ Always present in responses.
 
 ## SemanticMemoryStrategy
 ### Properties
-* **CreatedAt**: string: Creation timestamp of the memory strategy
+* **CreatedAt**: string (ReadOnly): Creation timestamp of the memory strategy
 * **Description**: string
 * **MemoryRecordSchema**: [MemoryRecordSchema](#memoryrecordschema)
 * **Name**: string (Required)
 * **Namespaces**: string[]
 * **NamespaceTemplates**: string[]
-* **RecordExpiryDurationDays**: int
-* **RecordExpirySpecification**: [RecordExpirySpecification](#recordexpiryspecification)
-* **Status**: string: Status of the memory strategy
-* **StrategyId**: string: Unique identifier for the memory strategy
-* **Type**: string: Type of memory strategy
-* **UpdatedAt**: string: Last update timestamp of the memory strategy
+* **RecordExpiryDurationDays**: int (ReadOnly)
+* **RecordExpirySpecification**: [RecordExpirySpecification](#recordexpiryspecification) (WriteOnly)
+* **Status**: string (ReadOnly): Status of the memory strategy
+* **StrategyId**: string (ReadOnly): Unique identifier for the memory strategy
+* **Type**: string (ReadOnly): Type of memory strategy
+* **UpdatedAt**: string (ReadOnly): Last update timestamp of the memory strategy
 
 ## SemanticOverride
 ### Properties
@@ -2097,18 +2161,18 @@ Always present in responses.
 
 ## SummaryMemoryStrategy
 ### Properties
-* **CreatedAt**: string: Creation timestamp of the memory strategy
+* **CreatedAt**: string (ReadOnly): Creation timestamp of the memory strategy
 * **Description**: string
 * **MemoryRecordSchema**: [MemoryRecordSchema](#memoryrecordschema)
 * **Name**: string (Required)
 * **Namespaces**: string[]
 * **NamespaceTemplates**: string[]
-* **RecordExpiryDurationDays**: int
-* **RecordExpirySpecification**: [RecordExpirySpecification](#recordexpiryspecification)
-* **Status**: string: Status of the memory strategy
-* **StrategyId**: string: Unique identifier for the memory strategy
-* **Type**: string: Type of memory strategy
-* **UpdatedAt**: string: Last update timestamp of the memory strategy
+* **RecordExpiryDurationDays**: int (ReadOnly)
+* **RecordExpirySpecification**: [RecordExpirySpecification](#recordexpiryspecification) (WriteOnly)
+* **Status**: string (ReadOnly): Status of the memory strategy
+* **StrategyId**: string (ReadOnly): Unique identifier for the memory strategy
+* **Type**: string (ReadOnly): Type of memory strategy
+* **UpdatedAt**: string (ReadOnly): Last update timestamp of the memory strategy
 
 ## SummaryOverride
 ### Properties
@@ -2205,27 +2269,43 @@ Always present in responses.
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TargetConfiguration
 ### Properties
@@ -2251,18 +2331,18 @@ Always present in responses.
 
 ## UserPreferenceMemoryStrategy
 ### Properties
-* **CreatedAt**: string: Creation timestamp of the memory strategy
+* **CreatedAt**: string (ReadOnly): Creation timestamp of the memory strategy
 * **Description**: string
 * **MemoryRecordSchema**: [MemoryRecordSchema](#memoryrecordschema)
 * **Name**: string (Required)
 * **Namespaces**: string[]
 * **NamespaceTemplates**: string[]
-* **RecordExpiryDurationDays**: int
-* **RecordExpirySpecification**: [RecordExpirySpecification](#recordexpiryspecification)
-* **Status**: string: Status of the memory strategy
-* **StrategyId**: string: Unique identifier for the memory strategy
-* **Type**: string: Type of memory strategy
-* **UpdatedAt**: string: Last update timestamp of the memory strategy
+* **RecordExpiryDurationDays**: int (ReadOnly)
+* **RecordExpirySpecification**: [RecordExpirySpecification](#recordexpiryspecification) (WriteOnly)
+* **Status**: string (ReadOnly): Status of the memory strategy
+* **StrategyId**: string (ReadOnly): Unique identifier for the memory strategy
+* **Type**: string (ReadOnly): Type of memory strategy
+* **UpdatedAt**: string (ReadOnly): Last update timestamp of the memory strategy
 
 ## UserPreferenceOverride
 ### Properties

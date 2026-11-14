@@ -247,9 +247,13 @@
 
 ## Cluster_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ClusterPolicy_Policy
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## ConfigurationInfo
 ### Properties
@@ -537,6 +541,8 @@
 
 ## ServerlessCluster_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## StorageInfo
 ### Properties
@@ -553,9 +559,13 @@
 
 ## Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Tls
 ### Properties

@@ -55,7 +55,11 @@
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 

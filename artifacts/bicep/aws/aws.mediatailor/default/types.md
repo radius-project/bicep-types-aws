@@ -97,6 +97,8 @@
 
 ## AdDecisionServerConfigurationHttpHeaders
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## AdMarkerPassthrough
 ### Properties
@@ -308,6 +310,8 @@
 
 ## ConfigurationAliases
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [PlaybackConfiguration_additionalProperties](#playbackconfigurationadditionalproperties)
 
 ## CustomOutputConfiguration
 ### Properties
@@ -333,21 +337,33 @@
 
 ## Function_Headers
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Function_Headers
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Function_Output
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Function_Output
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Function_Output
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Function_Output
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## FunctionRef
 ### Properties
@@ -434,8 +450,15 @@
 ### Properties
 * **ExcludeEventTypes**: string[]: Indicates that MediaTailor won't emit the selected events in the logs for playback sessions that are initialized with this configuration.
 
+## PlaybackConfiguration_additionalProperties
+### Properties
+### Additional Properties
+* **Additional Properties Type**: any
+
 ## PlaybackConfiguration_FunctionMapping
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## PrefetchConsumption
 ### Properties
@@ -454,9 +477,13 @@
 
 ## PrefetchSchedule_DynamicVariables
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## PrefetchSchedule_DynamicVariables
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## PreRollAdDecisionServerConfiguration
 ### Properties
@@ -546,6 +573,8 @@
 
 ## StringMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Tag
 ### Properties

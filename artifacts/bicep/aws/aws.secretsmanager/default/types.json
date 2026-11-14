@@ -10,9 +10,15 @@
     "$type": "StringType"
   },
   {
+    "$type": "AnyType"
+  },
+  {
     "$type": "ObjectType",
     "name": "ResourcePolicy_ResourcePolicy",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/3"
+    }
   },
   {
     "$type": "UnionType",
@@ -21,7 +27,7 @@
         "$ref": "#/2"
       },
       {
-        "$ref": "#/3"
+        "$ref": "#/4"
       }
     ]
   },
@@ -45,7 +51,7 @@
       },
       "ResourcePolicy": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 1,
         "description": "A JSON-formatted string for an AWS resource-based policy."
@@ -79,7 +85,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -90,7 +96,7 @@
     "$type": "ResourceType",
     "name": "AWS.SecretsManager/ResourcePolicy@default",
     "body": {
-      "$ref": "#/6"
+      "$ref": "#/7"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -204,7 +210,7 @@
     "properties": {
       "AutomaticallyAfterDays": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "The number of days between automatic scheduled rotations of the secret. You can use this value to check that your secret meets your compliance guidelines for how often secrets must be rotated."
@@ -235,7 +241,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/8"
+      "$ref": "#/9"
     }
   },
   {
@@ -244,7 +250,7 @@
     "properties": {
       "ExternalSecretRotationMetadata": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "The list of metadata needed to successfully rotate a managed external secret."
@@ -258,7 +264,7 @@
       },
       "HostedRotationLambda": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 4,
         "description": "Creates a new Lambda rotation function based on one of the Secrets Manager rotation function templates. To use a rotation function that already exists, specify RotationLambdaARN instead."
@@ -286,7 +292,7 @@
       },
       "RotationRules": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "A structure that defines the rotation configuration for this secret."
@@ -320,7 +326,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/15"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -331,7 +337,7 @@
     "$type": "ResourceType",
     "name": "AWS.SecretsManager/RotationSchedule@default",
     "body": {
-      "$ref": "#/15"
+      "$ref": "#/16"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -391,7 +397,7 @@
       },
       "PasswordLength": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "The length of the password. If you don't include this parameter, the default length is 32 characters."
@@ -459,13 +465,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/18"
+      "$ref": "#/19"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/19"
+      "$ref": "#/20"
     }
   },
   {
@@ -481,7 +487,7 @@
       },
       "GenerateSecretString": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/18"
         },
         "flags": 4,
         "description": "A structure that specifies how to generate a password to encrypt and store in the secret. To include a specific string in the secret, use ``SecretString`` instead. If you omit both ``GenerateSecretString`` and ``SecretString``, you create an empty secret. When you make a change to this property, a new secret version is created.\n We recommend that you specify the maximum length and include every character type that the system you are generating a password for can support."
@@ -509,7 +515,7 @@
       },
       "ReplicaRegions": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/22"
         },
         "flags": 0,
         "description": "A custom type that specifies a ``Region`` and the ``KmsKeyId`` for a replica secret."
@@ -523,7 +529,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "A list of tags to attach to the secret. Each tag is a key and value pair of strings in a JSON text string, for example:\n  ``[{\"Key\":\"CostCenter\",\"Value\":\"12345\"},{\"Key\":\"environment\",\"Value\":\"production\"}]`` \n Secrets Manager tag key names are case sensitive. A tag with the key \"ABC\" is a different tag from one with key \"abc\".\n Stack-level tags, tags you apply to the CloudFormation stack, are also attached to the secret. \n If you check tags in permissions policies as part of your security strategy, then adding or removing a tag can change permissions. If the completion of this operation would result in you losing your permissions for this secret, then Secrets Manager blocks the operation and returns an ``Access Denied`` error. For more information, see [Control access to secrets using tags](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_examples.html#tag-secrets-abac) and [Limit access to identities with tags that match secrets' tags](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_examples.html#auth-and-access_tags2).\n For information about how to format a JSON parameter for the various command line tool environments, see [Using JSON for Parameters](https://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html#cli-using-param-json). If your command-line tool or SDK requires quotation marks around the parameter, you should use single quotes to avoid confusion with the double quotes required in the JSON text.\n The following restrictions apply to tags:\n  +  Maximum number of tags per secret: 50\n  +  Maximum key length: 127 Unicode characters in UTF-8\n  +  Maximum value length: 255 Unicode characters in UTF-8\n  +  Tag keys and values are case sensitive.\n  +  Do not use the ``aws:`` prefix in your tag names or values because AWS reserves it for AWS use. You can't edit or delete tag names or values with this prefix. Tags with this prefix do not count against your tags per secret limit.\n  +  If you use your tagging schema across multiple services and resources, other services might have restrictions on allowed characters. Generally allowed characters: letters, spaces, and numbers representable in UTF-8, plus the following special characters: + - = . _ : / @."
@@ -557,7 +563,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -568,7 +574,7 @@
     "$type": "ResourceType",
     "name": "AWS.SecretsManager/Secret@default",
     "body": {
-      "$ref": "#/24"
+      "$ref": "#/25"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -627,7 +633,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/28"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -638,7 +644,7 @@
     "$type": "ResourceType",
     "name": "AWS.SecretsManager/SecretTargetAttachment@default",
     "body": {
-      "$ref": "#/28"
+      "$ref": "#/29"
     },
     "readableScopes": 0,
     "writableScopes": 0

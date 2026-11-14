@@ -112,9 +112,15 @@
     "value": "AWS.ServiceDiscovery/InstanceProperties"
   },
   {
+    "$type": "AnyType"
+  },
+  {
     "$type": "ObjectType",
     "name": "Instance_InstanceAttributes",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/8"
+    }
   },
   {
     "$type": "ObjectType",
@@ -122,7 +128,7 @@
     "properties": {
       "InstanceAttributes": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/9"
         },
         "flags": 1,
         "description": "A string map that contains information for the service that is specified in ServiceId."
@@ -163,7 +169,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/10"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -174,7 +180,7 @@
     "$type": "ResourceType",
     "name": "AWS.ServiceDiscovery/Instance@default",
     "body": {
-      "$ref": "#/10"
+      "$ref": "#/11"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -185,7 +191,7 @@
     "properties": {
       "SOA": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/15"
         },
         "flags": 0
       }
@@ -197,7 +203,7 @@
     "properties": {
       "DnsProperties": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/13"
         },
         "flags": 0
       }
@@ -209,7 +215,7 @@
     "properties": {
       "TTL": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -243,7 +249,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/15"
+      "$ref": "#/16"
     }
   },
   {
@@ -287,14 +293,14 @@
       },
       "Properties": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "Properties of the private DNS namespace."
       },
       "Tags": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/19"
         },
         "flags": 0,
         "description": "The tags for the namespace. Each tag consists of a key and an optional value, both of which you define. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters."
@@ -328,7 +334,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/20"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -339,7 +345,7 @@
     "$type": "ResourceType",
     "name": "AWS.ServiceDiscovery/PrivateDnsNamespace@default",
     "body": {
-      "$ref": "#/20"
+      "$ref": "#/21"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -350,7 +356,7 @@
     "properties": {
       "DnsProperties": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0
       }
@@ -362,7 +368,7 @@
     "properties": {
       "SOA": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/25"
         },
         "flags": 0
       }
@@ -374,7 +380,7 @@
     "properties": {
       "TTL": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -405,7 +411,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/26"
     }
   },
   {
@@ -449,14 +455,14 @@
       },
       "Properties": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "Properties for the public DNS namespace."
       },
       "Tags": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/28"
         },
         "flags": 0,
         "description": "The tags for the namespace. Each tag consists of a key and an optional value, both of which you define. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters."
@@ -483,7 +489,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/29"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -494,7 +500,7 @@
     "$type": "ResourceType",
     "name": "AWS.ServiceDiscovery/PublicDnsNamespace@default",
     "body": {
-      "$ref": "#/29"
+      "$ref": "#/30"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -505,7 +511,7 @@
     "properties": {
       "DnsRecords": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/37"
         },
         "flags": 1,
         "description": "A list of DNS records associated with the service."
@@ -532,7 +538,7 @@
     "properties": {
       "TTL": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 1,
         "description": "The time-to-live (TTL) for the DNS record."
@@ -552,7 +558,7 @@
     "properties": {
       "FailureThreshold": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "The number of consecutive health check failures that must occur before declaring the service unhealthy."
@@ -579,7 +585,7 @@
     "properties": {
       "FailureThreshold": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "The number of consecutive health check failures required before the service is considered unhealthy."
@@ -609,7 +615,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/32"
+      "$ref": "#/33"
     }
   },
   {
@@ -619,12 +625,15 @@
   {
     "$type": "ObjectType",
     "name": "Service_ServiceAttributes",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/1"
+    }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/35"
+      "$ref": "#/36"
     }
   },
   {
@@ -647,21 +656,21 @@
       },
       "DnsConfig": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/32"
         },
         "flags": 0,
         "description": "DNS-related configurations for the service."
       },
       "HealthCheckConfig": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "Settings for health checks. Used when routing is DNS-based."
       },
       "HealthCheckCustomConfig": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/35"
         },
         "flags": 0,
         "description": "Settings for custom health checks."
@@ -689,14 +698,14 @@
       },
       "ServiceAttributes": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "A string map that contains attributes and values for the service. You can specify a maximum of 30 key-value pairs."
       },
       "Tags": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "An array of key-value pairs to associate with the service."
@@ -730,7 +739,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/41"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -741,7 +750,7 @@
     "$type": "ResourceType",
     "name": "AWS.ServiceDiscovery/Service@default",
     "body": {
-      "$ref": "#/41"
+      "$ref": "#/42"
     },
     "readableScopes": 0,
     "writableScopes": 0

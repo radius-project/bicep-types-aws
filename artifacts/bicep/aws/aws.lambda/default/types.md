@@ -608,6 +608,8 @@
 
 ## Function_Variables
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## FunctionScalingConfig
 ### Properties
@@ -726,8 +728,22 @@
 * **MinimumPollers**: int: The minimum number of event pollers this event source can scale down to. For Amazon SQS events source mappings, default is 2, and minimum 2 required. For Amazon MSK and self-managed Apache Kafka event source mappings, default is 1.
 * **PollerGroupName**: string: (Amazon MSK and self-managed Apache Kafka) The name of the provisioned poller group. Use this option to group multiple ESMs within the event source's VPC to share Event Poller Unit (EPU) capacity. You can use this option to optimize Provisioned mode costs for your ESMs. You can group up to 100 ESMs per poller group and aggregate maximum pollers across all ESMs in a group cannot exceed 2000.
 
+## RegionalEndpoint
+### Properties
+* **AuthType**: string: The authentication type for the endpoint.
+* **DomainName**: string: The domain name of the endpoint.
+* **RevisionWeights**: [RevisionWeight](#revisionweight)[]: The revision weights for the endpoint.
+* **ScalingConfig**: [ScalingConfig](#scalingconfig): The scaling configuration for the endpoint.
+* **State**: string: The current state of the endpoint.
+* **StateReason**: string: The reason for the current state of the endpoint.
+* **ThrottleConfig**: [ThrottleConfig](#throttleconfig): The throttling configuration for the endpoint.
+* **UpdateStatus**: string: The status of the most recent update to the endpoint.
+* **UpdateStatusReason**: string: The reason for the current update status of the endpoint.
+
 ## ResourcePolicy_PolicyDocument
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Resources
 ### Properties
@@ -902,6 +918,8 @@
 
 ## WebFunctionEndpoint_RegionalEndpoints
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [RegionalEndpoint](#regionalendpoint)
 
 ## WebFunctionRevision_BuildConfig
 ### Properties
@@ -927,6 +945,8 @@
 
 ## WebFunctionRevision_ServiceConfig_EnvironmentVariables
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## WebFunctionRevision_ServiceConfig_TelemetryConfig
 ### Properties

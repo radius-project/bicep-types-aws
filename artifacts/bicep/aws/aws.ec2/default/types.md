@@ -1407,7 +1407,7 @@ Client route enforcement works by monitoring the route table of a connected devi
 * **Context**: string
 * **ExcessCapacityTerminationPolicy**: string
 * **FleetId**: string (ReadOnly, Identifier)
-* **LaunchTemplateConfigs**: [FleetLaunchTemplateConfigRequest](#fleetlaunchtemplateconfigrequest)[] (Required, WriteOnly)
+* **LaunchTemplateConfigs**: [FleetLaunchTemplateConfigRequest](#fleetlaunchtemplateconfigrequest)[] (Required)
 * **OnDemandOptions**: [OnDemandOptionsRequest](#ondemandoptionsrequest)
 * **ReplaceUnhealthyInstances**: bool
 * **ReservedCapacityOptions**: [ReservedCapacityOptionsRequest](#reservedcapacityoptionsrequest)
@@ -1653,7 +1653,7 @@ Client route enforcement works by monitoring the route table of a connected devi
 * **AdditionalInfo**: string (WriteOnly): This property is reserved for internal use. If you use it, the stack fails with this error: Bad property set: [Testing this property] (Service: AmazonEC2; Status Code: 400; Error Code: InvalidParameterCombination; Request ID: 0XXXXXX-49c7-4b40-8bcc-76885dcXXXXX).
 * **Affinity**: string: Indicates whether the instance is associated with a dedicated host. If you want the instance to always restart on the same host on which it was launched, specify host. If you want the instance to restart on any available host, but try to launch onto the last host it ran on (on a best-effort basis), specify default.
 * **AvailabilityZone**: string: The Availability Zone of the instance.
-* **BlockDeviceMappings**: [BlockDeviceMapping](#blockdevicemapping)[] (WriteOnly): The block device mapping entries that defines the block devices to attach to the instance at launch.
+* **BlockDeviceMappings**: [BlockDeviceMapping](#blockdevicemapping)[]: The block device mapping entries that defines the block devices to attach to the instance at launch.
 * **CpuOptions**: [Instance_CpuOptions](#instancecpuoptions): The CPU options for the instance.
 * **CreditSpecification**: [Instance_CreditSpecification](#instancecreditspecification): The credit option for CPU usage of the burstable performance instance. Valid values are standard and unlimited.
 * **DisableApiTermination**: bool: If you set this parameter to true, you can't terminate the instance using the Amazon EC2 console, CLI, or API; otherwise, you can.
@@ -2309,7 +2309,7 @@ Use this for ICMP and any protocol that uses ports.
 * **GroupName**: string: The name of the security group.
 * **Id**: string (ReadOnly, Identifier): The group name or group ID depending on whether the SG is created in default or specific VPC
 * **SecurityGroupEgress**: [Egress](#egress)[]: [VPC only] The outbound rules associated with the security group. There is a short interruption during which you cannot connect to the security group.
-* **SecurityGroupIngress**: [Ingress](#ingress)[] (WriteOnly): The inbound rules associated with the security group. There is a short interruption during which you cannot connect to the security group.
+* **SecurityGroupIngress**: [Ingress](#ingress)[]: The inbound rules associated with the security group. There is a short interruption during which you cannot connect to the security group.
 * **Tags**: [Tag](#tag)[]: Any tags assigned to the security group.
 * **VpcId**: string: The ID of the VPC for the security group.
 
@@ -3058,7 +3058,7 @@ Use this for ICMP and any protocol that uses ports.
 * **VpnConnectionId**: string (ReadOnly, Identifier)
 * **VpnGatewayId**: string: The ID of the virtual private gateway at the AWS side of the VPN connection.
  You must specify either ``TransitGatewayId`` or ``VpnGatewayId``, but not both.
-* **VpnTunnelOptionsSpecifications**: [VpnTunnelOptionsSpecification](#vpntunneloptionsspecification)[] (WriteOnly): The tunnel options for the VPN connection.
+* **VpnTunnelOptionsSpecifications**: [VpnTunnelOptionsSpecification](#vpntunneloptionsspecification)[]: The tunnel options for the VPN connection.
 
 ## AWS.EC2/VPNConnectionRouteProperties
 ### Properties
@@ -3122,8 +3122,8 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **DeviceName**: string (Required): The device name (for example, /dev/sdh or xvdh).
 * **Ebs**: [Ebs](#ebs): Parameters used to automatically set up EBS volumes when the instance is launched.
-* **NoDevice**: [Instance_NoDevice](#instancenodevice)
-* **VirtualName**: string
+* **NoDevice**: [Instance_NoDevice](#instancenodevice) (WriteOnly)
+* **VirtualName**: string (WriteOnly)
 
 ## BlockDeviceMapping
 ### Properties
@@ -3651,7 +3651,7 @@ Use this for ICMP and any protocol that uses ports.
 * **IpProtocol**: string (Required)
 * **SourcePrefixListId**: string
 * **SourceSecurityGroupId**: string
-* **SourceSecurityGroupName**: string
+* **SourceSecurityGroupName**: string (WriteOnly)
 * **SourceSecurityGroupOwnerId**: string
 * **ToPort**: int
 
@@ -3748,7 +3748,7 @@ Use this for ICMP and any protocol that uses ports.
 * **DeleteOnTermination**: bool
 * **Description**: string
 * **DeviceIndex**: int
-* **Groups**: string[]
+* **Groups**: string[] (WriteOnly)
 * **Ipv6AddressCount**: int
 * **Ipv6Addresses**: [InstanceIpv6Address](#instanceipv6address)[]
 * **NetworkInterfaceId**: string
@@ -4456,14 +4456,14 @@ Use this for ICMP and any protocol that uses ports.
 
 ## Placement
 ### Properties
-* **Affinity**: string
-* **AvailabilityZone**: string
+* **Affinity**: string (WriteOnly)
+* **AvailabilityZone**: string (WriteOnly)
 * **GroupName**: string
-* **HostId**: string
-* **HostResourceGroupArn**: string
-* **PartitionNumber**: int
-* **SpreadDomain**: string
-* **Tenancy**: string
+* **HostId**: string (WriteOnly)
+* **HostResourceGroupArn**: string (WriteOnly)
+* **PartitionNumber**: int (WriteOnly)
+* **SpreadDomain**: string (WriteOnly)
+* **Tenancy**: string (WriteOnly)
 
 ## Placement
 ### Properties
@@ -4668,7 +4668,7 @@ Use this for ICMP and any protocol that uses ports.
 * **IamFleetRole**: string (Required)
 * **InstanceInterruptionBehavior**: string
 * **InstancePoolsToUseCount**: int
-* **LaunchSpecifications**: [SpotFleetLaunchSpecification](#spotfleetlaunchspecification)[] (WriteOnly)
+* **LaunchSpecifications**: [SpotFleetLaunchSpecification](#spotfleetlaunchspecification)[]
 * **LaunchTemplateConfigs**: [LaunchTemplateConfig](#launchtemplateconfig)[]
 * **LoadBalancersConfig**: [LoadBalancersConfig](#loadbalancersconfig)
 * **OnDemandAllocationStrategy**: string
@@ -5336,11 +5336,11 @@ Use this for ICMP and any protocol that uses ports.
 
 ## TransitGatewayAttachmentBgpConfiguration
 ### Properties
-* **BgpStatus**: string: The BGP status.
-* **PeerAddress**: string: The interior BGP peer IP address for the appliance.
+* **BgpStatus**: string (ReadOnly): The BGP status.
+* **PeerAddress**: string (ReadOnly): The interior BGP peer IP address for the appliance.
 * **PeerAsn**: int: The peer Autonomous System Number (ASN).
-* **TransitGatewayAddress**: string: The interior BGP peer IP address for the transit gateway.
-* **TransitGatewayAsn**: int: The transit gateway Autonomous System Number (ASN).
+* **TransitGatewayAddress**: string (ReadOnly): The interior BGP peer IP address for the transit gateway.
+* **TransitGatewayAsn**: int (ReadOnly): The transit gateway Autonomous System Number (ASN).
 
 ## TransitGatewayConfiguration
 ### Properties
@@ -5483,6 +5483,76 @@ Use this for ICMP and any protocol that uses ports.
 
 ## VpcEncryptionControlExclusion
 ### Properties
+* **State**: string (ReadOnly): The current state of the exclusion configuration.
+* **StateMessage**: string (ReadOnly): A message providing additional information about the exclusion state.
+
+## VpcEncryptionControlExclusion
+### Properties
+* **State**: string (ReadOnly): The current state of the exclusion configuration.
+* **StateMessage**: string (ReadOnly): A message providing additional information about the exclusion state.
+
+## VpcEncryptionControlExclusion
+### Properties
+* **State**: string (ReadOnly): The current state of the exclusion configuration.
+* **StateMessage**: string (ReadOnly): A message providing additional information about the exclusion state.
+
+## VpcEncryptionControlExclusion
+### Properties
+* **State**: string (ReadOnly): The current state of the exclusion configuration.
+* **StateMessage**: string (ReadOnly): A message providing additional information about the exclusion state.
+
+## VpcEncryptionControlExclusion
+### Properties
+* **State**: string (ReadOnly): The current state of the exclusion configuration.
+* **StateMessage**: string (ReadOnly): A message providing additional information about the exclusion state.
+
+## VpcEncryptionControlExclusion
+### Properties
+* **State**: string (ReadOnly): The current state of the exclusion configuration.
+* **StateMessage**: string (ReadOnly): A message providing additional information about the exclusion state.
+
+## VpcEncryptionControlExclusion
+### Properties
+* **State**: string (ReadOnly): The current state of the exclusion configuration.
+* **StateMessage**: string (ReadOnly): A message providing additional information about the exclusion state.
+
+## VpcEncryptionControlExclusion
+### Properties
+* **State**: string (ReadOnly)
+* **StateMessage**: string (ReadOnly)
+
+## VpcEncryptionControlExclusion
+### Properties
+* **State**: string (ReadOnly)
+* **StateMessage**: string (ReadOnly)
+
+## VpcEncryptionControlExclusion
+### Properties
+* **State**: string (ReadOnly)
+* **StateMessage**: string (ReadOnly)
+
+## VpcEncryptionControlExclusion
+### Properties
+* **State**: string (ReadOnly)
+* **StateMessage**: string (ReadOnly)
+
+## VpcEncryptionControlExclusion
+### Properties
+* **State**: string (ReadOnly)
+* **StateMessage**: string (ReadOnly)
+
+## VpcEncryptionControlExclusion
+### Properties
+* **State**: string (ReadOnly)
+* **StateMessage**: string (ReadOnly)
+
+## VpcEncryptionControlExclusion
+### Properties
+* **State**: string (ReadOnly)
+* **StateMessage**: string (ReadOnly)
+
+## VpcEncryptionControlExclusion
+### Properties
 * **State**: string (ReadOnly)
 * **StateMessage**: string (ReadOnly)
 
@@ -5531,7 +5601,7 @@ Use this for ICMP and any protocol that uses ports.
 * **Phase2LifetimeSeconds**: int: The lifetime for phase 2 of the IKE negotiation, in seconds.
  Constraints: A value between 900 and 3,600. The value must be less than the value for ``Phase1LifetimeSeconds``.
  Default: ``3600``
-* **PreSharedKey**: string: The pre-shared key (PSK) to establish initial authentication between the virtual private gateway and customer gateway.
+* **PreSharedKey**: string (WriteOnly): The pre-shared key (PSK) to establish initial authentication between the virtual private gateway and customer gateway.
  Constraints: Allowed characters are alphanumeric characters, periods (.), and underscores (_). Must be between 8 and 64 characters in length and cannot start with zero (0).
 * **RekeyFuzzPercentage**: int: The percentage of the rekey window (determined by ``RekeyMarginTimeSeconds``) during which the rekey time is randomly selected.
  Constraints: A value between 0 and 100.

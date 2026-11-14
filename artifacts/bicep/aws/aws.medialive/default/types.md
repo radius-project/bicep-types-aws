@@ -241,7 +241,7 @@
 ### Properties
 * **Arn**: string (ReadOnly): The Unique ARN of the input (generated, immutable).
 * **AttachedChannels**: string[] (ReadOnly): A list of channel IDs that that input is attached to (currently an input can only be attached to one channel).
-* **Destinations**: [InputDestination](#inputdestination)[] (ReadOnly, WriteOnly): A list of the destinations of the input (PUSH-type).
+* **Destinations**: [InputDestination](#inputdestination)[]: A list of the destinations of the input (PUSH-type).
 * **DestinationUrls**: string[] (ReadOnly): A list of destination URLs of the input (PUSH-type).
 * **Id**: string (ReadOnly, Identifier): The generated ID of the input (unique for user account, immutable).
 * **InputClass**: string (ReadOnly): STANDARD - MediaLive expects two sources to be connected to this input. If the channel is also STANDARD, both sources will be ingested. If the channel is SINGLE_PIPELINE, only the first source will be ingested; the second source will always be ignored, even if the first source fails.
@@ -412,23 +412,27 @@ Not compatible with the inputSecurityGroups property.
 
 ## FailedMediaResourceMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [MediaResource](#mediaresource)
 
 ## Input_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## InputDestination
 ### Properties
-* **Ip**: string: The system-generated static IP address of endpoint.
+* **Ip**: string (ReadOnly): The system-generated static IP address of endpoint.
 It remains fixed for the lifetime of the input.
 * **Network**: string: The ID of the attached network.
 * **NetworkRoutes**: [InputDestinationRoute](#inputdestinationroute)[]: If the push input has an input location of ON-PREM it's a requirement to specify what the route of the input
 is going to be on the customer local network.
-* **Port**: string: The port number for the input.
-* **StaticIpAddress**: string: The static IP address for the input destination.
+* **Port**: string (ReadOnly): The port number for the input.
+* **StaticIpAddress**: string (WriteOnly): The static IP address for the input destination.
 * **StreamName**: string: The stream name for the input destination.
-* **Url**: string: This represents the endpoint that the customer stream will be
+* **Url**: string (ReadOnly): This represents the endpoint that the customer stream will be
 pushed to.
-* **Vpc**: [InputDestinationVpc](#inputdestinationvpc): The properties for a VPC type input destination.
+* **Vpc**: [InputDestinationVpc](#inputdestinationvpc) (ReadOnly): The properties for a VPC type input destination.
 
 ## InputDestinationRoute
 ### Properties
@@ -437,8 +441,8 @@ pushed to.
 
 ## InputDestinationVpc
 ### Properties
-* **AvailabilityZone**: string: The availability zone of the Input destination.
-* **NetworkInterfaceId**: string: The network interface ID of the Input destination in the VPC.
+* **AvailabilityZone**: string (ReadOnly): The availability zone of the Input destination.
+* **NetworkInterfaceId**: string (ReadOnly): The network interface ID of the Input destination in the VPC.
 
 ## InputDeviceHdSettings
 ### Properties
@@ -499,6 +503,8 @@ pushed to.
 
 ## InputSecurityGroup_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## InputSource
 ### Properties
@@ -531,8 +537,21 @@ Subnet IDs must be mapped to two unique availability zones (AZ).
 ### Properties
 * **FlowArn**: string: The unique ARN of the MediaConnect Flow being used as a source.
 
+## MediaResource
+### Properties
+* **Destinations**: [MediaResourceNeighbor](#mediaresourceneighbor)[]
+* **Name**: string: The logical name of an AWS media resource.
+* **Sources**: [MediaResourceNeighbor](#mediaresourceneighbor)[]
+
 ## MediaResourceMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [MediaResource](#mediaresource)
+
+## MediaResourceNeighbor
+### Properties
+* **Arn**: string (Required): The ARN of a resource used in AWS media workflows.
+* **Name**: string: The logical name of an AWS media resource.
 
 ## MonitorDeployment
 ### Properties
@@ -641,11 +660,11 @@ Subnet IDs must be mapped to two unique availability zones (AZ).
 ## RouterDestinationSettings
 ### Properties
 * **AvailabilityZoneName**: string (Required): The Availability Zone (AZ) name this destination is created in.
-* **RouterOutputArn**: string: The ARN of the MediaConnect Router output currently connected to this input.
+* **RouterOutputArn**: string (ReadOnly): The ARN of the MediaConnect Router output currently connected to this input.
 
 ## RouterSettings
 ### Properties
-* **Destinations**: [RouterDestinationSettings](#routerdestinationsettings)[] (ReadOnly): MediaConnect Router destinations associated with this input.
+* **Destinations**: [RouterDestinationSettings](#routerdestinationsettings)[]: MediaConnect Router destinations associated with this input.
 * **EncryptionType**: string: Encryption configuration for the MediaConnect Router association. AUTOMATIC uses a service-managed secret; SECRETS_MANAGER requires SecretArn.
 * **SecretArn**: string: The ARN of the Secrets Manager secret used to encrypt this input. Required when EncryptionType is SECRETS_MANAGER.
 
@@ -721,18 +740,28 @@ Each stream encapsulates one captions stream (out of any number you can include)
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Tags
 ### Properties

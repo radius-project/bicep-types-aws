@@ -338,6 +338,8 @@
 
 ## MLInputChannel_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## MLInputChannel_Properties
 ### Properties
@@ -345,6 +347,8 @@
 
 ## MLInputChannel_Properties_Spark
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## MLSyntheticDataParameters
 ### Properties
@@ -464,9 +468,13 @@
 
 ## TrainedModel_Environment
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TrainedModel_Hyperparameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TrainedModelArtifactMaxSize
 ### Properties

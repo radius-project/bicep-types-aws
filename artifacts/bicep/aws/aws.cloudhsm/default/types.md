@@ -31,6 +31,8 @@
 
 ## Cluster_SubnetMapping
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Cluster_Tags
 ### Properties

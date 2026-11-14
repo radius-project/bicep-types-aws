@@ -109,7 +109,7 @@
 * **AuthenticationRequestExtraParams**: [Listener_AuthenticationRequestExtraParams](#listenerauthenticationrequestextraparams): The query parameters (up to 10) to include in the redirect request to the authorization endpoint.
 * **AuthorizationEndpoint**: string (Required): The authorization endpoint of the IdP. This must be a full URL, including the HTTPS protocol, the domain, and the path.
 * **ClientId**: string (Required): The OAuth 2.0 client identifier.
-* **ClientSecret**: string: The OAuth 2.0 client secret. This parameter is required if you are creating a rule. If you are modifying a rule, you can omit this parameter if you set ``UseExistingClientSecret`` to true.
+* **ClientSecret**: string (WriteOnly): The OAuth 2.0 client secret. This parameter is required if you are creating a rule. If you are modifying a rule, you can omit this parameter if you set ``UseExistingClientSecret`` to true.
 * **Issuer**: string (Required): The OIDC issuer identifier of the IdP. This must be a full URL, including the HTTPS protocol, the domain, and the path.
 * **OnUnauthenticatedRequest**: string: The behavior if the user is not authenticated. The following are possible values:
   +  deny```` - Return an HTTP 401 Unauthorized error.
@@ -128,7 +128,7 @@
 * **AuthenticationRequestExtraParams**: [ListenerRule_AuthenticationRequestExtraParams](#listenerruleauthenticationrequestextraparams): The query parameters (up to 10) to include in the redirect request to the authorization endpoint.
 * **AuthorizationEndpoint**: string (Required): The authorization endpoint of the IdP. This must be a full URL, including the HTTPS protocol, the domain, and the path.
 * **ClientId**: string (Required): The OAuth 2.0 client identifier.
-* **ClientSecret**: string: The OAuth 2.0 client secret. This parameter is required if you are creating a rule. If you are modifying a rule, you can omit this parameter if you set ``UseExistingClientSecret`` to true.
+* **ClientSecret**: string (WriteOnly): The OAuth 2.0 client secret. This parameter is required if you are creating a rule. If you are modifying a rule, you can omit this parameter if you set ``UseExistingClientSecret`` to true.
 * **Issuer**: string (Required): The OIDC issuer identifier of the IdP. This must be a full URL, including the HTTPS protocol, the domain, and the path.
 * **OnUnauthenticatedRequest**: string: The behavior if the user is not authenticated. The following are possible values:
   +  deny```` - Return an HTTP 401 Unauthorized error.
@@ -148,7 +148,7 @@
 * **Certificates**: [Certificate](#certificate)[]: The default SSL server certificate for a secure listener. You must provide exactly one certificate if the listener protocol is HTTPS or TLS.
  For an HTTPS listener, update requires some interruptions. For a TLS listener, update requires no interruption.
  To create a certificate list for a secure listener, use [AWS::ElasticLoadBalancingV2::ListenerCertificate](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenercertificate.html).
-* **DefaultActions**: [Action](#action)[] (Required, WriteOnly): The actions for the default rule. You cannot define a condition for a default rule.
+* **DefaultActions**: [Action](#action)[] (Required): The actions for the default rule. You cannot define a condition for a default rule.
  To create additional rules for an Application Load Balancer, use [AWS::ElasticLoadBalancingV2::ListenerRule](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenerrule.html).
 * **ListenerArn**: string (ReadOnly, Identifier)
 * **ListenerAttributes**: [ListenerAttribute](#listenerattribute)[]: The listener attributes. Attributes that you do not modify retain their current values.
@@ -162,7 +162,7 @@
 
 ## AWS.ElasticLoadBalancingV2/ListenerRuleProperties
 ### Properties
-* **Actions**: [Action](#action)[] (Required, WriteOnly): The actions.
+* **Actions**: [Action](#action)[] (Required): The actions.
  The rule must include exactly one of the following types of actions: ``forward``, ``fixed-response``, or ``redirect``, and it must be the last action to be performed. If the rule is for an HTTPS listener, it can also optionally include an authentication action.
 * **Conditions**: [RuleCondition](#rulecondition)[] (Required): The conditions.
  The rule can optionally include up to one of each of the following conditions: ``http-request-method``, ``host-header``, ``path-pattern``, and ``source-ip``. A rule can also optionally include one or more of each of the following conditions: ``http-header`` and ``query-string``.
@@ -331,9 +331,13 @@
 
 ## Listener_AuthenticationRequestExtraParams
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Listener_AuthenticationRequestExtraParams
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ListenerAttribute
 ### Properties
@@ -368,9 +372,13 @@
 
 ## ListenerRule_AuthenticationRequestExtraParams
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ListenerRule_AuthenticationRequestExtraParams
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## LoadBalancer_MinimumLoadBalancerCapacity
 ### Properties

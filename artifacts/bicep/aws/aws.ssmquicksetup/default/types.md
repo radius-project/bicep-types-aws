@@ -18,10 +18,12 @@
 
 ## AutomationParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string[]
 
 ## AWS.SSMQuickSetup/ConfigurationManagerProperties
 ### Properties
-* **ConfigurationDefinitions**: [ConfigurationDefinition](#configurationdefinition)[] (Required, ReadOnly)
+* **ConfigurationDefinitions**: [ConfigurationDefinition](#configurationdefinition)[] (Required)
 * **CreatedAt**: string (ReadOnly)
 * **Description**: string
 * **LastModifiedAt**: string (ReadOnly)
@@ -40,7 +42,7 @@
 
 ## ConfigurationDefinition
 ### Properties
-* **id**: string
+* **id**: string (ReadOnly)
 * **LocalDeploymentAdministrationRoleArn**: string
 * **LocalDeploymentExecutionRoleName**: string
 * **Parameters**: [ConfigurationParametersMap](#configurationparametersmap) (Required)
@@ -49,9 +51,13 @@
 
 ## ConfigurationParametersMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## StatusDetails
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## StatusSummary
 ### Properties
@@ -63,7 +69,11 @@
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 

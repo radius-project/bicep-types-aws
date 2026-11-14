@@ -237,27 +237,41 @@
 
 ## EncryptionContextMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## EncryptionContextMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## EncryptionContextMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## EncryptionContextMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## EncryptionContextMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## EncryptionContextMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## EventFilter
 ### Properties
 
 ## IdentityProviderDetails
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ImageMetadata
 ### Properties
@@ -288,6 +302,19 @@
 
 ## LocalizedBrandingStringMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [LocalizedBrandingStrings](#localizedbrandingstrings)
+
+## LocalizedBrandingStrings
+### Properties
+* **BrowserTabTitle**: string (Required)
+* **ContactButtonText**: string
+* **ContactLink**: string
+* **LoadingText**: string
+* **LoginButtonText**: string
+* **LoginDescription**: string
+* **LoginTitle**: string
+* **WelcomeText**: string (Required)
 
 ## LogConfiguration
 ### Properties

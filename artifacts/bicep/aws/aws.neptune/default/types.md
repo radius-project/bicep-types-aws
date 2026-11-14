@@ -204,6 +204,8 @@ Example: mysubnetgroup
 
 ## DBClusterParameterGroup_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## DBClusterRole
 ### Properties
@@ -212,6 +214,8 @@ Example: mysubnetgroup
 
 ## DBParameterGroup_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## ServerlessScalingConfiguration
 ### Properties

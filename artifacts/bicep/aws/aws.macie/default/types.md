@@ -96,6 +96,17 @@
 
 ## Criterion
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [CriterionAdditionalProperties](#criterionadditionalproperties)
+
+## CriterionAdditionalProperties
+### Properties
+* **eq**: string[]
+* **gt**: int
+* **gte**: int
+* **lt**: int
+* **lte**: int
+* **neq**: string[]
 
 ## FindingCriteria
 ### Properties

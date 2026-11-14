@@ -126,6 +126,8 @@
 
 ## IdMappingWorkflow_ProviderConfiguration
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## IdMappingWorkflowInputSource
 ### Properties
@@ -140,6 +142,8 @@
 
 ## IdNamespace_ProviderConfiguration
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## IdNamespaceIdMappingWorkflowProperties
 ### Properties
@@ -176,6 +180,8 @@
 
 ## MatchingWorkflow_ProviderConfiguration
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## NamespaceProviderProperties
 ### Properties

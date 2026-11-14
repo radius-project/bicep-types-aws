@@ -223,6 +223,18 @@
 * **Source**: string (Required)
 * **SourcePort**: string (Required)
 
+## IPSet
+### Properties
+* **Definition**: string[]
+
+## IPSet
+### Properties
+* **Definition**: string[]
+
+## IPSetReference
+### Properties
+* **ReferenceArn**: string
+
 ## ListenerProperty
 ### Properties
 * **Port**: int: The port the proxy listener accepts traffic on.
@@ -240,6 +252,8 @@
 
 ## LoggingConfiguration_LogDestination
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## MatchAttributes
 ### Properties
@@ -263,6 +277,10 @@
 ### Properties
 * **FromPort**: int (Required)
 * **ToPort**: int (Required)
+
+## PortSet
+### Properties
+* **Definition**: string[]
 
 ## ProxySettings
 ### Properties
@@ -302,12 +320,18 @@
 
 ## RuleGroup_IPSetReferences
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [IPSetReference](#ipsetreference)
 
 ## RuleGroup_IPSets
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [IPSet](#ipset)
 
 ## RuleGroup_PortSets
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [PortSet](#portset)
 
 ## RuleGroup_SummaryConfiguration
 ### Properties
@@ -333,6 +357,8 @@
 
 ## RuleVariables
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [IPSet](#ipset)
 
 ## RuleVariables
 ### Properties

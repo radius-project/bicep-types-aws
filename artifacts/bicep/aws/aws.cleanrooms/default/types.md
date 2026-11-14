@@ -289,6 +289,8 @@
 
 ## Document
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## ErrorMessageConfiguration
 ### Properties
