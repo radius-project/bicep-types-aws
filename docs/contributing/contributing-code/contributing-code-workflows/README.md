@@ -30,8 +30,8 @@ Merging the pull request publishes the updated types through `publish-bicep.yaml
 The workflow needs these repository secrets: `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` to read the AWS CloudFormation registry, and `RADIUS_TYPES_BOT_CLIENT_ID` and `RADIUS_TYPES_BOT_PRIVATE_KEY` for the GitHub App that opens the pull request. The app needs read and write access to contents and pull requests on this repository. The issue is opened with the workflow's own token.
 Its secret-bearing job runs only on canonical protected current main. It uses the
 existing AWS schema identity and the types-bot App; neither is a GHCR credential.
-The App's maximum grants/installations and effective branch review/bypass policy
-must be reviewed independently of the smaller token scopes requested by the job.
+The workflow reuses the existing App credentials and repository-scoped token
+permissions; this migration does not add App grants or bypass branch protection.
 
 ## Staged publishing ownership
 
@@ -77,17 +77,17 @@ properties from the pinned `radius` submodule under `schemas/radius`, plus its
 commit in `schemas/radius-commit`. Generation uses that explicit snapshot path,
 so both upstream schema sources are retained for retries without changing the
 release-record contract. The downloader needs CloudFormation `ListTypes` and
-`DescribeType` for public AWS-owned resource schemas in `us-west-2`. Verify that
-the existing `AWS_ACCESS_KEY_ID`/`AWS_SECRET_ACCESS_KEY` identity is available to
-this repository and limited to the required read operations; a workflow reference
-does not prove either condition. Do not substitute a developer's default AWS
-credentials. AWS credentials are passed only to the trusted downloader step,
+`DescribeType` for public AWS-owned resource schemas in `us-west-2`. It reuses the
+existing `AWS_ACCESS_KEY_ID`/`AWS_SECRET_ACCESS_KEY` credentials used for schema
+generation. The downloader performs reads; this is not a claim about the
+identity's complete IAM permissions. Do not substitute a developer's default AWS
+credentials. Publishing workflows pass AWS credentials only to the trusted downloader step,
 after dependencies have been built, not to generator scripts or the uploader.
 
 Release orchestration and tooling come from the default-branch commit selected by
 GitHub for `repository_dispatch`, **not** from tag-controlled workflow YAML.
 A separate schema-input job runs only the controller's downloader with the
-`publish-bicep` environment's read-only AWS identity. A fresh, unprivileged job
+existing `publish-bicep` environment's AWS credentials. A fresh, unprivileged job
 runs the frozen generator without environment secrets or package-write authority.
 The uploader checks out the controller commit, authenticates the original
 capture, and imports only the data-only OCI graph. The frozen source can never
@@ -97,8 +97,8 @@ The fresh uploader uses this repository's `GITHUB_TOKEN` with `packages: write`.
 It authenticates Actions evidence and copies a validated data-only Bicep OCI graph.
 It never executes generated content, runs npm scripts, or receives an App private
 key or AWS credentials. No repository-wide write defaults or publishing PAT are
-needed. Existing PR-caller controls, App authority and main protection must still
-be verified before operational package grants; package access is repository-scoped.
+needed. This follows Radius's protected-main, trusted-workflow-maintainer model;
+package access remains repository-scoped, not restricted globally to one workflow.
 
 Bicep `0.46.1` and ORAS `1.3.4` are checksum-pinned. Packaging uses an explicit
 temporary `ociEnabled: true` configuration. Generated resource identities remain
@@ -230,46 +230,44 @@ The Radius controller reads artifacts with an AWS-only Actions/Contents/Metadata
 read App token and persists its authenticated record before creating the Radius
 tag. The AWS producer does not modify the Deployment Engine lock.
 
-## Required operator security review (not implemented settings)
+## Trust model and existing credentials
 
-The trusted-main job split prevents candidate generation from sharing AWS secrets
-or a package writer. It does **not** make repository-scoped GitHub credentials
-workflow-scoped. The review remains blocked on an independently approved operating
-boundary; this code change alone is not proof that arbitrary workflow revisions
-cannot obtain authority.
+The publishing boundary follows the established Radius pattern: reviewed,
+protected-main workflow code controls credential use, generation and publication
+run in separate jobs, and a fresh publisher authenticates artifacts before
+copying a fixed manifest to a fixed destination. Authorized workflow maintainers
+remain trusted; this migration is not a redesign of repository-wide authority.
 
-- Verify `publish-bicep` environment deployment rules allow only protected main,
-  require independent reviewers, and inventory overlapping repository/organization
-  AWS secrets and their consumers. The existing environment has reviewer
-  protection, but its main-only restriction was not configured by this change.
-  Do not remove or move existing grants without a separate approved operation.
-- Audit who can write same-repository branches/workflows, create or move release
-  tags, approve environments or bypass branch protection. Restrict tag creation,
-  update and deletion to approved release actors as a separate proposal. Required
-  reviews on main alone do not control all off-main workflows.
-- Account for existing unsafe workflow commits and legacy triggers: preventing
-  future edits alone does not stop someone from tagging an older unsafe revision.
-  Existing trusted maintainers' write/bypass authority is distinct from running
-  untrusted candidate code with credentials.
-- `GITHUB_TOKEN` package-write access and package Manage Actions access are
-  repository-scoped. A workflow could omit an environment, so environment approval
-  alone is not a global package-write restriction. GitHub documents push rulesets
-  with file-path restrictions for private/internal repositories; do not assume
-  that mechanism is available or sufficient for this public repository.
-- Operators must establish an applicable, enforceable policy covering all
-  credential-bearing workflow/legacy entry points before activating the package
-  grant. If that cannot be established with the existing source-owned token,
-  a different credential architecture needs separate approval. No broker, PAT,
-  grant change, tag rule or environment setting is introduced here.
+- PR build/test jobs receive no AWS secrets, publisher App keys or package-write
+  permission. Main schema capture and the existing schema-update workflow run
+  trusted protected-main code. Release candidate generation has no environment
+  secrets or package-write authority; its controller and publisher come from
+  default main, not the candidate.
+- Reuse the existing organization/environment AWS credentials for the existing
+  schema reads. The release schema job retains the `publish-bicep` environment's
+  reviewer gate. Main capture uses the credentials already available to this
+  repository. Secret availability at both scopes does not itself give PR code
+  access, and no secret grants or approval bypasses are added here.
+- `GITHUB_TOKEN` package access is repository-scoped in both AWS and Radius.
+  Environment approval is not a global restriction on alternate workflow
+  definitions. Protecting against an authorized maintainer changing those
+  definitions would be a different trust model, not an AWS-only prerequisite.
+- Existing tag-triggered legacy publication and its App credentials remain during
+  staging. The copy-request follow-up removes the current legacy caller; old tags
+  still retain their workflow definitions. Preserve the coordinated writer drain
+  and existing release behavior below rather than treating caller removal as
+  credential revocation.
 
-References: [GitHub ruleset support](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/available-rules-for-rulesets)
-and [package permission scope](https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages).
+No new IAM attestation, credential broker, App, tag policy or environment change
+is required solely to adopt this publishing pattern. This does not certify every
+historical workflow or the credentials' complete permissions, or authorize a
+merge, public visibility change or production dispatch.
 
 ## Coordinated handoff prerequisites
 
 This is a cross-repository, non-atomic rollout, not a feature toggle:
 
-1. Prepare the GHCR staging producer, verify the schema identity, and validate
+1. Prepare the GHCR staging producer using the existing schema credentials and validate
    stable/RC evidence and original-snapshot recovery. Before bootstrapping Public
    `edge`, merge the A2 caller described below after this producer. The private
    copy capability is already deployed; its legacy main-generation gate rejects
