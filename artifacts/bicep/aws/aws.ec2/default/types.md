@@ -152,6 +152,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/ExportInstanceTaskProperties](#awsec2exportinstancetaskproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.EC2/FcaPolicy@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/FcaPolicyProperties](#awsec2fcapolicyproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.EC2/FcaPolicyAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/FcaPolicyAssociationProperties](#awsec2fcapolicyassociationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.EC2/FlowLog@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -824,6 +840,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/TransitGatewayMulticastGroupSourceProperties](#awsec2transitgatewaymulticastgroupsourceproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.EC2/TransitGatewayNetworkFunctionAttachment@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/TransitGatewayNetworkFunctionAttachmentProperties](#awsec2transitgatewaynetworkfunctionattachmentproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.EC2/TransitGatewayPeeringAttachment@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -1482,6 +1506,34 @@ Client route enforcement works by monitoring the route table of a connected devi
 * **State**: string (ReadOnly): The state of the export task.
 * **Tags**: [Tag](#tag)[]: The tags for the export task.
 * **TargetEnvironment**: string (Required): The target virtualization environment.
+
+## AWS.EC2/FcaPolicyAssociationProperties
+### Properties
+* **AssociatedAt**: string (ReadOnly): The timestamp when the association was created.
+* **AssociationMode**: string (ReadOnly): The mode of the association.
+* **ExpectedEffectiveAt**: string (ReadOnly): The timestamp when the association is expected to take effect.
+* **FcaPolicyAssociationId**: string (ReadOnly, Identifier): The ID of the FCA policy association.
+* **FcaPolicyId**: string (Required): The ID of the FCA policy to associate.
+* **ManagedBy**: string (ReadOnly): Who manages the association: the account that created it, or a declarative policy.
+* **NetworkResourceId**: string (Required): The ID of the network resource to associate the FCA policy with.
+* **NetworkResourceScopeType**: string: Associate by scope instead of directly. When set, NetworkResourceId is the ID of the scope (an account ID, a VPC ID, or a subnet ID) and the association covers every eligible network resource in that scope; when omitted, NetworkResourceId is a direct network resource (for example a NAT gateway or instance) and must match the policy's NetworkResourceType.
+* **OwnerAccount**: string (ReadOnly): The AWS account ID that owns the FCA policy association.
+
+## AWS.EC2/FcaPolicyProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the FCA policy.
+* **Description**: string: The description of the FCA policy.
+* **FcaPolicyId**: string (ReadOnly): The ID of the FCA policy.
+* **InstanceFcaPolicyDocument**: [InstanceFcaPolicyDocument](#instancefcapolicydocument)
+* **LatestVersion**: int (ReadOnly): The latest version number of the FCA policy.
+* **NatFcaPolicyDocument**: [NatFcaPolicyDocument](#natfcapolicydocument)
+* **NetworkResourceType**: string (Required): The type of network resource the FCA policy applies to.
+* **OwnerAccount**: string (ReadOnly): The AWS account ID that owns the FCA policy.
+* **PcxFcaPolicyDocument**: [PcxFcaPolicyDocument](#pcxfcapolicydocument)
+* **PolicyCreatedAt**: string (ReadOnly): The timestamp when the FCA policy was created.
+* **ShowBackEnabled**: bool: Indicates whether show-back reporting is enabled for the FCA policy.
+* **Tags**: [Tag](#tag)[]: The tags for the FCA policy.
+* **VersionExpectedEffectiveAt**: string (ReadOnly): The timestamp when the latest version of the FCA policy is expected to take effect.
 
 ## AWS.EC2/FlowLogProperties
 ### Properties
@@ -2597,6 +2649,18 @@ Use this for ICMP and any protocol that uses ports.
 * **TransitGatewayAttachmentId**: string (ReadOnly): The ID of the transit gateway attachment.
 * **TransitGatewayMulticastDomainId**: string (Required, Identifier): The ID of the transit gateway multicast domain.
 
+## AWS.EC2/TransitGatewayNetworkFunctionAttachmentProperties
+### Properties
+* **AvailabilityZoneIds**: string[]: The Availability Zone IDs for the attachment.
+* **AvailabilityZones**: string[]: The Availability Zones for the attachment.
+* **CreationTime**: string (ReadOnly): The creation time of the attachment.
+* **ResourceId**: string (ReadOnly): The resource ID of the network function.
+* **ServiceName**: string (WriteOnly): The name of the network function service.
+* **State**: string (ReadOnly): The state of the attachment.
+* **Tags**: [Tag](#tag)[]: The tags for the attachment.
+* **TransitGatewayAttachmentId**: string (ReadOnly, Identifier): The ID of the network function attachment.
+* **TransitGatewayId**: string (Required): The ID of the transit gateway.
+
 ## AWS.EC2/TransitGatewayPeeringAttachmentProperties
 ### Properties
 * **CreationTime**: string (ReadOnly): The time the transit gateway peering attachment was created.
@@ -3187,12 +3251,22 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **ClientRootCertificateChainArn**: string (Required)
 
+## CidrMapping
+### Properties
+* **CidrLabel**: string (Required): The label for the CIDR range.
+* **CidrRange**: string (Required): The CIDR range.
+
 ## CidrOptions
 ### Properties
 * **Cidr**: string: The IP address range, in CIDR notation.
 * **PortRanges**: [PortRange](#portrange)[]: The list of port range.
 * **Protocol**: string: The IP protocol.
 * **SubnetIds**: string[]: The IDs of the subnets.
+
+## CidrRangeSpecifications
+### Properties
+* **Prefixes**: [CidrMapping](#cidrmapping)[] (Required): The CIDR range to label mappings.
+* **PrefixesType**: string (Required): The type of prefixes the mappings apply to.
 
 ## ClassicLoadBalancer
 ### Properties
@@ -3715,6 +3789,12 @@ Use this for ICMP and any protocol that uses ports.
 * **Dualstack**: [InstanceConnectEndpoint_InstanceConnectEndpointDnsNames](#instanceconnectendpointinstanceconnectendpointdnsnames): The dualstack DNS name of the EC2 Instance Connect Endpoint. A dualstack DNS name supports connections from both IPv4 and IPv6 clients.
 * **Ipv4**: [InstanceConnectEndpoint_InstanceConnectEndpointDnsNames](#instanceconnectendpointinstanceconnectendpointdnsnames): The IPv4-only DNS name of the EC2 Instance Connect Endpoint.
 
+## InstanceFcaPolicyDocument
+### Properties
+* **CidrRangeSpecifications**: [CidrRangeSpecifications](#cidrrangespecifications)
+* **Dimensions**: string[] (Required)
+* **ReportingGranularity**: string[] (Required)
+
 ## InstanceIpv6Address
 ### Properties
 * **Ipv6Address**: string (Required): The IPv6 address.
@@ -4226,6 +4306,12 @@ Use this for ICMP and any protocol that uses ports.
 * **ConfigurationType**: string
 * **StandbyAvailabilityZones**: [StandbyAvailabilityZone](#standbyavailabilityzone)[]
 
+## NatFcaPolicyDocument
+### Properties
+* **CidrRangeSpecifications**: [CidrRangeSpecifications](#cidrrangespecifications)
+* **Dimensions**: string[] (Required)
+* **ReportingGranularity**: string[] (Required)
+
 ## NativeApplicationOidcOptions
 ### Properties
 * **AuthorizationEndpoint**: string: The OIDC authorization endpoint.
@@ -4416,6 +4502,12 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **PacketHeaderStatement**: [PacketHeaderStatementRequest](#packetheaderstatementrequest)
 * **ResourceStatement**: [ResourceStatementRequest](#resourcestatementrequest)
+
+## PcxFcaPolicyDocument
+### Properties
+* **CidrRangeSpecifications**: [CidrRangeSpecifications](#cidrrangespecifications)
+* **Dimensions**: string[] (Required)
+* **ReportingGranularity**: string[] (Required)
 
 ## PeeringAttachmentStatus
 ### Properties
@@ -4852,6 +4944,11 @@ Use this for ICMP and any protocol that uses ports.
 
 ## Tag
 ### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
 * **Key**: string (Required): The tag key.
 * **Value**: string (Required): The tag value.
 
@@ -5144,6 +5241,11 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **Key**: string: The key of the tag. Constraints: Tag keys are case-sensitive and accept a maximum of 127 Unicode characters. May not begin with aws:.
 * **Value**: string: The value of the tag. Constraints: Tag values are case-sensitive and accept a maximum of 255 Unicode characters.
+
+## Tag
+### Properties
+* **Key**: string: The key of the tag.
+* **Value**: string: The value of the tag.
 
 ## Tag
 ### Properties

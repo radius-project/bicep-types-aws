@@ -276,6 +276,36 @@
 * **ActionCondition**: [LoggingConfiguration_ActionCondition](#loggingconfigurationactioncondition): A single action condition.
 * **LabelNameCondition**: [LoggingConfiguration_LabelNameCondition](#loggingconfigurationlabelnamecondition): A single label name condition.
 
+## ConnectedAccountChainConfig
+### Properties
+* **Chain**: string (Required)
+* **Prices**: [ConnectedAccountPrice](#connectedaccountprice)[] (Required)
+
+## ConnectedAccountChainConfig
+### Properties
+* **Chain**: string (Required)
+* **Prices**: [ConnectedAccountPrice](#connectedaccountprice)[] (Required)
+
+## ConnectedAccountConfig
+### Properties
+* **ConnectedAccountArn**: string (Required)
+* **PaymentNetworks**: [ConnectedAccountChainConfig](#connectedaccountchainconfig)[] (Required)
+
+## ConnectedAccountConfig
+### Properties
+* **ConnectedAccountArn**: string (Required)
+* **PaymentNetworks**: [ConnectedAccountChainConfig](#connectedaccountchainconfig)[] (Required)
+
+## ConnectedAccountPrice
+### Properties
+* **Amount**: string (Required)
+* **Currency**: string (Required)
+
+## ConnectedAccountPrice
+### Properties
+* **Amount**: string (Required)
+* **Currency**: string (Required)
+
 ## CookieMatchPattern
 ### Properties
 * **All**: [RuleGroup_All](#rulegroupall): Inspect all parts of the web request cookies.
@@ -645,11 +675,13 @@
 
 ## MonetizationConfig
 ### Properties
+* **ConnectedAccountConfigs**: [ConnectedAccountConfig](#connectedaccountconfig)[]
 * **CryptoConfig**: [CryptoConfig](#cryptoconfig)
 * **CurrencyMode**: string
 
 ## MonetizationConfig
 ### Properties
+* **ConnectedAccountConfigs**: [ConnectedAccountConfig](#connectedaccountconfig)[]
 * **CryptoConfig**: [CryptoConfig](#cryptoconfig)
 * **CurrencyMode**: string
 

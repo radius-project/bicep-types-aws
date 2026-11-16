@@ -6,7 +6,7 @@
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.FSx/BackupProperties](#awsfsxbackupproperties) (Required, Identifier): properties of the resource
+* **properties**: [AWS.FSx/BackupProperties](#awsfsxbackupproperties) (Identifier): properties of the resource
 
 ## Resource AWS.FSx/DataRepositoryAssociation@default
 * **Readable Scope(s)**: None
@@ -91,7 +91,7 @@
 ### Properties
 * **BackupId**: string (ReadOnly): The ID of the backup.
 * **CreationTime**: string (ReadOnly): The time when the backup was created.
-* **FileSystemId**: string (Required): The ID of the file system to back up.
+* **FileSystemId**: string: The ID of the file system to back up.
 * **Lifecycle**: string (ReadOnly): The lifecycle status of the backup.
 * **ResourceARN**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the backup.
 * **Tags**: [Tag](#tag)[]: The tags to apply to the backup at backup creation.

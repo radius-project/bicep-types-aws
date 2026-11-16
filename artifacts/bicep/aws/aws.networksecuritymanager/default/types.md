@@ -1,5 +1,13 @@
 # AWS.NetworkSecurityManager @ default
 
+## Resource AWS.NetworkSecurityManager/Deployment@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.NetworkSecurityManager/DeploymentProperties](#awsnetworksecuritymanagerdeploymentproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.NetworkSecurityManager/Policy@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -32,14 +40,36 @@
 * **name**: string: the resource name
 * **properties**: [AWS.NetworkSecurityManager/TemplateProperties](#awsnetworksecuritymanagertemplateproperties) (Required, Identifier): properties of the resource
 
+## AssociatedPolicy
+### Properties
+* **PolicyArn**: string (Required): ARN of the associated policy.
+
 ## AssociatedRule
 ### Properties
 * **RuleArn**: string (Required): ARN of the associated rule.
+
+## AssociatedScope
+### Properties
+* **ScopeArn**: string (Required): ARN of the associated scope.
 
 ## AssociatedTemplateAndRule
 ### Properties
 * **RuleArn**: string: ARN of the associated rule.
 * **TemplateArn**: string: ARN of the associated template.
+
+## AWS.NetworkSecurityManager/DeploymentProperties
+### Properties
+* **AssociatedPolicyList**: [AssociatedPolicy](#associatedpolicy)[]: List of policies associated with this deployment.
+* **AssociatedScopeList**: [AssociatedScope](#associatedscope)[]: List of scopes associated with this deployment.
+* **DeploymentArn**: string (ReadOnly, Identifier): The ARN of the deployment.
+* **DeploymentConfiguration**: [DeploymentConfiguration](#deploymentconfiguration)
+* **DeploymentDescription**: string: A description of the deployment.
+* **DeploymentId**: string (ReadOnly): The unique identifier of the deployment.
+* **DeploymentName**: string (Required): The name of the deployment.
+* **Status**: string (ReadOnly): The status of the deployment.
+* **Tags**: [Tag](#tag)[]: The tags associated with the deployment.
+* **UpdatedAt**: string (ReadOnly): An ISO 8601 timestamp indicating when the deployment was last modified.
+* **Version**: string (ReadOnly): The version number.
 
 ## AWS.NetworkSecurityManager/PolicyProperties
 ### Properties
@@ -95,11 +125,20 @@
 * **UpdatedAt**: string (ReadOnly): An ISO 8601 timestamp indicating when the template was last modified.
 * **Version**: string (ReadOnly): The version number.
 
+## DeploymentConfiguration
+### Properties
+* **EnableCrossAccountVisibility**: bool (Required): Whether cross-account visibility is enabled for the deployment.
+
 ## PolicyConfiguration
 ### Properties
 * **RemediationEnabled**: bool: Controls automatic remediation of non-compliant resources.
 * **ResourcesCleanUp**: bool: Controls automatic cleanup of unused resources.
 * **WafConfig**: [WafConfig](#wafconfig)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

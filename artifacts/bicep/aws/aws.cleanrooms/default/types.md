@@ -442,6 +442,7 @@
 ### Properties
 * **Bucket**: string (Required)
 * **KeyPrefix**: string
+* **ResultFormat**: string
 
 ## ProtectedQueryS3OutputConfiguration
 ### Properties

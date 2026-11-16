@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-OpenSearchServerless-Collection",
   "type": "AWS::OpenSearchServerless::Collection",
-  "time": "2026-10-19T20:39:07.246Z",
+  "time": "2026-11-15T21:19:58.308Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -14,7 +14,6 @@
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/Name",
-      "/properties/Tags",
       "/properties/Type",
       "/properties/StandbyReplicas",
       "/properties/CollectionGroupName",
@@ -124,6 +123,7 @@
           "aoss:BatchGetCollection",
           "aoss:AddCollectionToCollectionGroup",
           "aoss:TagResource",
+          "aoss:ListTagsForResource",
           "iam:CreateServiceLinkedRole",
           "kms:CreateGrant",
           "kms:DescribeKey"
@@ -149,7 +149,10 @@
       "update": {
         "permissions": [
           "aoss:UpdateCollection",
-          "aoss:BatchGetCollection"
+          "aoss:BatchGetCollection",
+          "aoss:TagResource",
+          "aoss:UntagResource",
+          "aoss:ListTagsForResource"
         ]
       }
     },
@@ -208,7 +211,7 @@
         "$ref": "#/definitions/StandbyReplicas"
       },
       "Tags": {
-        "description": "List of tags to be added to the resource",
+        "description": "List of tags to associate with the collection. Tag changes are applied in place without replacing the collection. Reading, adding, changing or removing tags requires the aoss:ListTagsForResource, aoss:TagResource and aoss:UntagResource permissions.",
         "insertionOrder": false,
         "items": {
           "$ref": "#/definitions/Tag"
@@ -237,14 +240,18 @@
     ],
     "tagging": {
       "cloudFormationSystemTags": true,
+      "permissions": [
+        "aoss:TagResource",
+        "aoss:UntagResource",
+        "aoss:ListTagsForResource"
+      ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
-      "tagUpdatable": false,
+      "tagUpdatable": true,
       "taggable": true
     },
     "typeName": "AWS::OpenSearchServerless::Collection",
     "writeOnlyProperties": [
-      "/properties/Tags",
       "/properties/EncryptionConfig"
     ]
   }

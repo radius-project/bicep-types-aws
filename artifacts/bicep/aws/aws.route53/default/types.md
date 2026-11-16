@@ -48,6 +48,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Route53/KeySigningKeyProperties](#awsroute53keysigningkeyproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Route53/QueryLoggingConfig@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Route53/QueryLoggingConfigProperties](#awsroute53queryloggingconfigproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Route53/RecordSet@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -128,6 +136,13 @@
 * **KeyManagementServiceArn**: string (Required): The Amazon resource name (ARN) for a customer managed key (CMK) in AWS Key Management Service (KMS). The KeyManagementServiceArn must be unique for each key signing key (KSK) in a single hosted zone.
 * **Name**: string (Required, Identifier): An alphanumeric string used to identify a key signing key (KSK). Name must be unique for each key signing key in the same hosted zone.
 * **Status**: string (Required): A string specifying the initial status of the key signing key (KSK). You can set the value to ACTIVE or INACTIVE.
+
+## AWS.Route53/QueryLoggingConfigProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the query logging configuration.
+* **CloudWatchLogsLogGroupArn**: string (Required): The Amazon Resource Name (ARN) of the CloudWatch Logs log group in us-east-1 that Amazon Route 53 publishes query logs to.
+* **HostedZoneId**: string (Required): The ID of the public hosted zone that Amazon Route 53 logs queries for.
+* **Id**: string (ReadOnly): The ID that Amazon Route 53 assigns to the configuration for DNS query logging.
 
 ## AWS.Route53/RecordSetProperties
 ### Properties

@@ -81,6 +81,12 @@
 * **ApacheKafkaClusterId**: string (Required): The ID of the Apache Kafka cluster.
 * **BootstrapBrokerString**: string (Required): The bootstrap broker string of the Apache Kafka cluster.
 
+## AuthorizerLogs
+### Properties
+* **CloudWatchLogs**: [CloudWatchLogs](#cloudwatchlogs)
+* **Firehose**: [Firehose](#firehose)
+* **S3**: [S3](#s3)
+
 ## AWS.MSK/BatchScramSecretProperties
 ### Properties
 * **ClusterArn**: string (Required, Identifier)
@@ -203,6 +209,7 @@
 * **InstanceType**: string (Required)
 * **SecurityGroups**: string[]
 * **StorageInfo**: [StorageInfo](#storageinfo)
+* **TopicReassignment**: string (WriteOnly)
 
 ## Catalog
 ### Properties
@@ -419,7 +426,8 @@
 
 ## LoggingInfo
 ### Properties
-* **BrokerLogs**: [BrokerLogs](#brokerlogs) (Required)
+* **AuthorizerLogs**: [AuthorizerLogs](#authorizerlogs)
+* **BrokerLogs**: [BrokerLogs](#brokerlogs)
 
 ## NodeExporter
 ### Properties

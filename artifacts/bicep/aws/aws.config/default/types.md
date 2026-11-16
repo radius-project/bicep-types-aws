@@ -238,6 +238,7 @@
 ## ConnectorConfiguration
 ### Properties
 * **Azure**: [AzureConnectorConfiguration](#azureconnectorconfiguration): The configuration for connecting to Microsoft Azure.
+* **Gcp**: [GcpConnectorConfiguration](#gcpconnectorconfiguration): The configuration for connecting to Google Cloud.
 
 ## CustomPolicyDetails
 ### Properties
@@ -256,6 +257,12 @@
 ## ExecutionControls
 ### Properties
 * **SsmControls**: [SsmControls](#ssmcontrols)
+
+## GcpConnectorConfiguration
+### Properties
+* **GcpOrganizationId**: string: The ID of the Google Cloud organization that contains the connector's management project, which is the project of the service account in ServiceAccountEmail. Required if the management project belongs to an organization. A connector needs an organization ID to record an entire organization or more than one project. Omit it only if the management project doesn't belong to an organization. In that case, the connector can record only the management project.
+* **ServiceAccountEmail**: string (Required): The email address of the Google Cloud service account that AWS Config uses.
+* **WorkloadIdentityPoolProvider**: string (Required): The full resource name of the workload identity pool provider that AWS Config uses to federate into Google Cloud.
 
 ## OrganizationAggregationSource
 ### Properties

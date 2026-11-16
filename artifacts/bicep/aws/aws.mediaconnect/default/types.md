@@ -346,6 +346,7 @@
 * **RoutedOutputs**: int (ReadOnly): The number of router outputs associated with the router input.
 * **RoutingScope**: string (Required)
 * **State**: string (ReadOnly)
+* **StreamDetails**: [RouterInputStreamDetails](#routerinputstreamdetails) (ReadOnly)
 * **Tags**: [Tag](#tag)[]: Key-value pairs that can be used to tag and organize this router input.
 * **Tier**: string (Required)
 * **TransitEncryption**: [RouterInputTransitEncryption](#routerinputtransitencryption)
@@ -719,6 +720,9 @@
 ### Properties
 
 ## RouterInputConfiguration
+### Properties
+
+## RouterInputStreamDetails
 ### Properties
 
 ## RouterInputTransitEncryption

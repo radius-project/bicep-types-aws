@@ -869,6 +869,11 @@ Always present in responses.
 ## CertificateConfiguration
 ### Properties
 
+## CertificateConfiguration
+### Properties
+* **S3**: [S3CertificateConfiguration](#s3certificateconfiguration)
+* **SecretsManager**: [SecretsManagerCertificateConfiguration](#secretsmanagercertificateconfiguration)
+
 ## CertificateLocation
 ### Properties
 * **SecretArn**: string (Required): Secrets Manager secret ARN.
@@ -1072,6 +1077,7 @@ Always present in responses.
 
 ## CustomOauth2ProviderConfigInput
 ### Properties
+* **CertificateConfigurations**: [CertificateConfiguration](#certificateconfiguration)[]
 * **ClientAuthenticationMethod**: string: The client authentication method to use when authenticating with the token endpoint
 * **ClientId**: string: The client ID for the custom OAuth2 provider
 * **ClientSecret**: string: The client secret for the custom OAuth2 provider
@@ -1352,6 +1358,9 @@ Always present in responses.
 ## Harness_None
 ### Properties
 
+## Harness_None
+### Properties
+
 ## Harness_RetrievalConfig
 ### Properties
 ### Additional Properties
@@ -1529,7 +1538,13 @@ Always present in responses.
 ## HarnessRemoteMcpConfig
 ### Properties
 * **Headers**: [Harness_Headers](#harnessheaders)
+* **OutboundAuth**: [HarnessRemoteMcpOutboundAuth](#harnessremotemcpoutboundauth): How the harness authenticates to this MCP endpoint. Defaults to None if omitted.
 * **Url**: string (Required)
+
+## HarnessRemoteMcpOutboundAuth
+### Properties
+* **AwsIam**: [IamCredentialProvider](#iamcredentialprovider): SigV4-sign requests using the harness execution role. Region defaults to the harness Region if omitted.
+* **None**: [Harness_None](#harnessnone): No authentication.
 
 ## HarnessSkill
 ### Properties
@@ -1598,6 +1613,11 @@ Always present in responses.
 ## HostingEnvironment
 ### Properties
 * **Arn**: string (Required): The ARN of the bedrock-agentcore hosting environment
+
+## IamCredentialProvider
+### Properties
+* **Region**: string: The AWS Region used for SigV4 signing.
+* **Service**: string (Required): The AWS service name used for SigV4 signing.
 
 ## IdpConfig
 ### Properties
@@ -1702,8 +1722,8 @@ Always present in responses.
 
 ## LifecycleConfiguration
 ### Properties
-* **IdleRuntimeSessionTimeout**: int
-* **MaxLifetime**: int
+* **IdleRuntimeSessionTimeout**: int: Timeout in seconds for idle runtime sessions. When a session remains idle for this duration, it will be automatically terminated. Valid range: 60 to 28800 seconds (8 hours), and must be less than or equal to MaxLifetime. Default: 900 seconds (15 minutes).
+* **MaxLifetime**: int: Maximum lifetime for the instance in seconds. Once reached, instances will be automatically terminated and replaced. Valid range: 60 to 28800 seconds (8 hours). Default: 28800 seconds (8 hours).
 
 ## LifecycleConfiguration
 ### Properties
@@ -1838,7 +1858,7 @@ Always present in responses.
 ## Oauth2Discovery
 ### Properties
 * **AuthorizationServerMetadata**: [Oauth2AuthorizationServerMetadata](#oauth2authorizationservermetadata)
-* **DiscoveryUrl**: string: The discovery URL for the OAuth2 provider
+* **DiscoveryUrl**: string: OpenID Connect discovery URL or OAuth 2.0 authorization server metadata URL
 
 ## Oauth2ProviderConfigInput
 ### Properties
@@ -1854,6 +1874,7 @@ Always present in responses.
 
 ## Oauth2ProviderConfigOutput
 ### Properties
+* **CertificateConfigurations**: [CertificateConfiguration](#certificateconfiguration)[]
 * **ClientAuthenticationMethod**: string: The client authentication method used when authenticating with the token endpoint
 * **ClientId**: string
 * **OauthDiscovery**: [Oauth2Discovery](#oauth2discovery)
@@ -2002,6 +2023,11 @@ Always present in responses.
 * **SamplingConfig**: [SamplingConfig](#samplingconfig) (Required)
 * **SessionConfig**: [SessionConfig](#sessionconfig)
 
+## S3CertificateConfiguration
+### Properties
+* **BucketOwnerAccountId**: string: The account ID of the Amazon S3 bucket owner, used for cross-account access to the bucket
+* **Uri**: string (Required): The URI of the Amazon S3 object that contains the PEM-encoded certificate
+
 ## S3FilesAccessPointConfiguration
 ### Properties
 * **AccessPointArn**: string (Required)
@@ -2056,6 +2082,10 @@ Always present in responses.
 ### Properties
 * **JsonKey**: string (Required): The JSON key within the secret that contains the credential value
 * **SecretId**: string (Required): The ID or ARN of the secret in AWS Secrets Manager
+
+## SecretsManagerCertificateConfiguration
+### Properties
+* **SecretArn**: string (Required): The ARN of the AWS Secrets Manager secret that contains the PEM-encoded certificate
 
 ## SelfManagedConfiguration
 ### Properties

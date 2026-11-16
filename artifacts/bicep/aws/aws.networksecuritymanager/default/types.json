@@ -1,6 +1,209 @@
 [
   {
     "$type": "ObjectType",
+    "name": "AssociatedPolicy",
+    "properties": {
+      "PolicyArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "ARN of the associated policy."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AssociatedScope",
+    "properties": {
+      "ScopeArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "ARN of the associated scope."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DeploymentConfiguration",
+    "properties": {
+      "EnableCrossAccountVisibility": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "Whether cross-account visibility is enabled for the deployment."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.NetworkSecurityManager/DeploymentProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/0"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.NetworkSecurityManager/DeploymentProperties",
+    "properties": {
+      "AssociatedPolicyList": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "List of policies associated with this deployment."
+      },
+      "AssociatedScopeList": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "List of scopes associated with this deployment."
+      },
+      "DeploymentArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 18,
+        "description": "The ARN of the deployment."
+      },
+      "DeploymentConfiguration": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0
+      },
+      "DeploymentDescription": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "A description of the deployment."
+      },
+      "DeploymentId": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the deployment."
+      },
+      "DeploymentName": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The name of the deployment."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The status of the deployment."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0,
+        "description": "The tags associated with the deployment."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "An ISO 8601 timestamp indicating when the deployment was last modified."
+      },
+      "Version": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The version number."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.NetworkSecurityManager/Deployment",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.NetworkSecurityManager/Deployment@default",
+    "body": {
+      "$ref": "#/11"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "AssociatedTemplateAndRule",
     "properties": {
       "RuleArn": {
@@ -39,7 +242,7 @@
       },
       "WafConfig": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/16"
         },
         "flags": 0
       }
@@ -84,19 +287,13 @@
     }
   },
   {
-    "$type": "StringType"
-  },
-  {
-    "$type": "BooleanType"
-  },
-  {
     "$type": "StringLiteralType",
     "value": "AWS.NetworkSecurityManager/PolicyProperties"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/0"
+      "$ref": "#/13"
     }
   },
   {
@@ -105,7 +302,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/2"
+      "$ref": "#/15"
     }
   },
   {
@@ -114,7 +311,7 @@
     "properties": {
       "AssociatedTemplateAndRuleList": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "List of templates and rules associated with this policy."
@@ -135,7 +332,7 @@
       },
       "PolicyConfiguration": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/14"
         },
         "flags": 1,
         "description": "Configuration settings for policy behavior."
@@ -163,7 +360,7 @@
       },
       "Priority": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/19"
         },
         "flags": 1,
         "description": "The priority of the policy."
@@ -177,7 +374,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "The tags associated with the policy."
@@ -218,7 +415,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/21"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -229,7 +426,7 @@
     "$type": "ResourceType",
     "name": "AWS.NetworkSecurityManager/Policy@default",
     "body": {
-      "$ref": "#/11"
+      "$ref": "#/22"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -259,7 +456,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/13"
+      "$ref": "#/24"
     }
   },
   {
@@ -324,7 +521,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/26"
         },
         "flags": 0,
         "description": "The tags associated with the rule."
@@ -365,7 +562,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/27"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -376,7 +573,7 @@
     "$type": "ResourceType",
     "name": "AWS.NetworkSecurityManager/Rule@default",
     "body": {
-      "$ref": "#/17"
+      "$ref": "#/28"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -406,7 +603,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/19"
+      "$ref": "#/30"
     }
   },
   {
@@ -457,7 +654,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/32"
         },
         "flags": 0,
         "description": "The tags associated with the scope."
@@ -498,7 +695,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/33"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -509,7 +706,7 @@
     "$type": "ResourceType",
     "name": "AWS.NetworkSecurityManager/Scope@default",
     "body": {
-      "$ref": "#/23"
+      "$ref": "#/34"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -552,13 +749,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/36"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/26"
+      "$ref": "#/37"
     }
   },
   {
@@ -567,7 +764,7 @@
     "properties": {
       "AssociatedRuleList": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "List of rules associated with this template."
@@ -588,7 +785,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "The tags associated with the template."
@@ -657,7 +854,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/41"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -668,7 +865,7 @@
     "$type": "ResourceType",
     "name": "AWS.NetworkSecurityManager/Template@default",
     "body": {
-      "$ref": "#/31"
+      "$ref": "#/42"
     },
     "readableScopes": 0,
     "writableScopes": 0

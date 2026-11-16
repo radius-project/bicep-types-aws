@@ -226,6 +226,7 @@ Note: It is not currently possible to use the !Ref command to reference a script
 * **CustomEventData**: string: Information that is added to all events that are related to this game session queue.
 * **Destinations**: [GameSessionQueueDestination](#gamesessionqueuedestination)[]: A list of fleets and/or fleet aliases that can be used to fulfill game session placement requests in the queue.
 * **FilterConfiguration**: [GameSessionQueue_FilterConfiguration](#gamesessionqueuefilterconfiguration): A list of locations where a queue is allowed to place new game sessions.
+* **LogConfiguration**: [GameSessionQueue_LogConfiguration](#gamesessionqueuelogconfiguration): A policy that determines where a game session queue's placement logs are delivered.
 * **Name**: string (Required, Identifier): A descriptive label that is associated with game session queue. Queue names must be unique within each Region.
 * **NotificationTarget**: string: An SNS topic ARN that is set up to receive game session placement notifications.
 * **PlayerLatencyPolicies**: [PlayerLatencyPolicy](#playerlatencypolicy)[]: A set of policies that act as a sliding cap on player latency.
@@ -319,6 +320,11 @@ Note: It is not currently possible to use the !Ref command to reference a script
 * **Protocol**: string (Required): Defines the protocol of these ports.
 * **ToPort**: int (Required): An ending value for the range of allowed port numbers. Port numbers are end-inclusive. This value must be equal to or greater than FromPort.
 
+## DeliveryDestination
+### Properties
+* **DestinationArn**: string: The Amazon Resource Name (ARN) of the resource that receives the placement logs. The resource type must match LogDestination (a CloudWatch Logs log group, S3 bucket, or Firehose delivery stream). Required for FIREHOSE; optional for CLOUDWATCH and S3.
+* **LogDestination**: string (Required): The type of service that receives the game session queue's placement logs.
+
 ## DeploymentConfiguration
 ### Properties
 * **ImpairmentStrategy**: string: The strategy to apply in case of impairment; defaults to MAINTAIN.
@@ -355,6 +361,10 @@ Note: It is not currently possible to use the !Ref command to reference a script
 ## GameSessionQueue_FilterConfiguration
 ### Properties
 * **AllowedLocations**: string[]
+
+## GameSessionQueue_LogConfiguration
+### Properties
+* **DeliveryDestinations**: [DeliveryDestination](#deliverydestination)[] (Required): The set of destinations that receive the game session queue's placement logs. A queue can deliver logs to between 1 and 3 destinations.
 
 ## GameSessionQueue_PriorityConfiguration
 ### Properties
