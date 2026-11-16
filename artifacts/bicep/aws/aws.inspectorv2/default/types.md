@@ -110,9 +110,13 @@
 
 ## CisScanConfiguration_TargetResourceTags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string[]
 
 ## CisTagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## CisTargets
 ### Properties
@@ -201,6 +205,8 @@
 
 ## FilterTagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## MapFilter
 ### Properties
@@ -220,6 +226,8 @@
 
 ## OneTimeSchedule
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## PackageFilter
 ### Properties
@@ -260,6 +268,20 @@
 * **State**: string (ReadOnly)
 * **StateReason**: string (ReadOnly): Reason for the current scope state.
 
+## ScopeConfiguration
+### Properties
+* **ScopeType**: string (Required)
+* **ScopeValues**: string[]: List of subscription IDs. Empty for TENANT scope.
+* **State**: string (ReadOnly)
+* **StateReason**: string (ReadOnly): Reason for the current scope state.
+
+## ScopeConfiguration
+### Properties
+* **ScopeType**: string (Required)
+* **ScopeValues**: string[]: List of subscription IDs. Empty for TENANT scope.
+* **State**: string (ReadOnly)
+* **StateReason**: string (ReadOnly): Reason for the current scope state.
+
 ## ScopeSettings
 ### Properties
 * **projectSelectionScope**: string
@@ -276,9 +298,13 @@
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Time
 ### Properties

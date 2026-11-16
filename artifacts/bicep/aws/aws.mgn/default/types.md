@@ -372,6 +372,8 @@
 
 ## ScopeTagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## SourceConfiguration
 ### Properties
@@ -411,12 +413,27 @@
 
 ## SsmDocumentExternalParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [SsmExternalParameter](#ssmexternalparameter)
 
 ## SsmDocumentParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [SsmParameterStoreParameter](#ssmparameterstoreparameter)[]
+
+## SsmExternalParameter
+### Properties
+* **DynamicPath**: string (Required): AWS Systems Manager Document external parameter dynamic path.
+
+## SsmParameterStoreParameter
+### Properties
+* **ParameterName**: string (Required): AWS Systems Manager Parameter Store parameter name.
+* **ParameterType**: string (Required): AWS Systems Manager Parameter Store parameter type.
 
 ## StagingAreaTagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Tag
 ### Properties

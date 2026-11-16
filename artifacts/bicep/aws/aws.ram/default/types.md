@@ -139,6 +139,8 @@
 
 ## Permission_PolicyTemplate
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## ResourceShareConfiguration
 ### Properties

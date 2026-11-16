@@ -283,14 +283,14 @@
     "properties": {
       "Filters": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "Restrictions for what files should be pulled from the source."
       },
       "Folders": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/26"
         },
         "flags": 1,
         "description": "Identifiers for the source folders to pull all files from recursively."
@@ -300,7 +300,10 @@
   {
     "$type": "ObjectType",
     "name": "ObjectConfiguration",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/28"
+    }
   },
   {
     "$type": "ObjectType",
@@ -350,14 +353,37 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "DataIntegration_Filters",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/24"
+    }
   },
   {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataIntegration_additionalProperties",
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/27"
     }
   },
   {
@@ -439,7 +465,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/30"
         },
         "flags": 0,
         "description": "The tags (keys and values) associated with the data integration."
@@ -466,7 +492,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/31"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -477,7 +503,7 @@
     "$type": "ResourceType",
     "name": "AWS.AppIntegrations/DataIntegration@default",
     "body": {
-      "$ref": "#/29"
+      "$ref": "#/32"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -542,7 +568,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/33"
+      "$ref": "#/36"
     }
   },
   {
@@ -565,7 +591,7 @@
       },
       "EventFilter": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/34"
         },
         "flags": 1,
         "description": "The EventFilter (source) associated with the event integration."
@@ -586,7 +612,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/38"
         },
         "flags": 0,
         "description": "The tags (keys and values) associated with the event integration."
@@ -613,7 +639,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/39"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -624,7 +650,7 @@
     "$type": "ResourceType",
     "name": "AWS.AppIntegrations/EventIntegration@default",
     "body": {
-      "$ref": "#/37"
+      "$ref": "#/40"
     },
     "readableScopes": 0,
     "writableScopes": 0

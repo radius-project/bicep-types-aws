@@ -20,7 +20,7 @@
 * **AssessmentReportsDestination**: [AssessmentReportsDestination](#assessmentreportsdestination)
 * **AwsAccount**: [AWSAccount](#awsaccount)
 * **CreationTime**: int (ReadOnly)
-* **Delegations**: [Delegation](#delegation)[] (WriteOnly): The list of delegations.
+* **Delegations**: [Delegation](#delegation)[]: The list of delegations.
 * **Description**: string (WriteOnly)
 * **FrameworkId**: string
 * **Name**: string (WriteOnly)
@@ -35,14 +35,20 @@
 * **Id**: string
 * **Name**: string (WriteOnly)
 
+## AWSAccount
+### Properties
+* **EmailAddress**: string (WriteOnly)
+* **Id**: string
+* **Name**: string (WriteOnly)
+
 ## AWSService
 ### Properties
 * **ServiceName**: string
 
 ## Delegation
 ### Properties
-* **AssessmentId**: string (Identifier)
-* **AssessmentName**: string
+* **AssessmentId**: string (WriteOnly, Identifier)
+* **AssessmentName**: string (WriteOnly)
 * **Comment**: string
 * **ControlSetId**: string
 * **CreatedBy**: string
@@ -60,7 +66,7 @@
 
 ## Scope
 ### Properties
-* **AwsAccounts**: [AWSAccount](#awsaccount)[] (WriteOnly): The AWS accounts included in scope.
+* **AwsAccounts**: [AWSAccount](#awsaccount)[]: The AWS accounts included in scope.
 * **AwsServices**: [AWSService](#awsservice)[] (WriteOnly): The AWS services included in scope.
 
 ## Tag

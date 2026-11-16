@@ -466,9 +466,13 @@
 
 ## RunBatch_EngineSettings
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## RunBatch_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## RunConfigurations
 ### Properties
@@ -487,6 +491,8 @@
 
 ## RunTags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## SequenceInformation
 ### Properties
@@ -497,6 +503,8 @@
 
 ## SequenceStore_S3AccessPolicy
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## SourceReference
 ### Properties
@@ -563,27 +571,43 @@
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## VpcConfig
 ### Properties
@@ -591,9 +615,23 @@
 * **SubnetIds**: string[]
 * **VpcOwnerAccountId**: string: The Amazon Web Services account ID of the cross-account VPC owner for RAM-shared VPC configurations.
 
-## WorkflowParameterTemplate
+## WorkflowParameter
 ### Properties
+* **Description**: string
+* **Optional**: bool
+
+## WorkflowParameter
+### Properties
+* **Description**: string
+* **Optional**: bool
 
 ## WorkflowParameterTemplate
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [WorkflowParameter](#workflowparameter)
+
+## WorkflowParameterTemplate
+### Properties
+### Additional Properties
+* **Additional Properties Type**: [WorkflowParameter](#workflowparameter)
 

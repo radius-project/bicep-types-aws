@@ -95,6 +95,12 @@
 
 ## CloudWatchLoggingOptions
 ### Properties
+* **Enabled**: bool
+* **LogGroupName**: string
+* **LogStreamName**: string
+
+## CloudWatchLoggingOptions
+### Properties
 * **Enabled**: bool (WriteOnly)
 * **LogGroupName**: string
 * **LogStreamName**: string
@@ -153,6 +159,8 @@
 
 ## DeliveryStream_ColumnToJsonKeyMappings
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## DeliveryStream_PartitionSpec
 ### Properties
@@ -214,6 +222,26 @@
 ## ElasticsearchRetryOptions
 ### Properties
 * **DurationInSeconds**: int
+
+## EncryptionConfiguration
+### Properties
+* **KMSEncryptionConfig**: [KMSEncryptionConfig](#kmsencryptionconfig)
+* **NoEncryptionConfig**: string
+
+## EncryptionConfiguration
+### Properties
+* **KMSEncryptionConfig**: [KMSEncryptionConfig](#kmsencryptionconfig)
+* **NoEncryptionConfig**: string
+
+## EncryptionConfiguration
+### Properties
+* **KMSEncryptionConfig**: [KMSEncryptionConfig](#kmsencryptionconfig)
+* **NoEncryptionConfig**: string
+
+## EncryptionConfiguration
+### Properties
+* **KMSEncryptionConfig**: [KMSEncryptionConfig](#kmsencryptionconfig)
+* **NoEncryptionConfig**: string
 
 ## EncryptionConfiguration
 ### Properties
@@ -294,6 +322,18 @@
 ### Properties
 * **KinesisStreamARN**: string (Required)
 * **RoleARN**: string (Required)
+
+## KMSEncryptionConfig
+### Properties
+* **AWSKMSKeyARN**: string (Required)
+
+## KMSEncryptionConfig
+### Properties
+* **AWSKMSKeyARN**: string (Required, WriteOnly)
+
+## KMSEncryptionConfig
+### Properties
+* **AWSKMSKeyARN**: string (Required, WriteOnly)
 
 ## KMSEncryptionConfig
 ### Properties
@@ -387,7 +427,51 @@
 * **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
 * **CompressionFormat**: string
 * **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
+* **ErrorOutputPrefix**: string
+* **Prefix**: string
+* **RoleARN**: string (Required)
+
+## S3DestinationConfiguration
+### Properties
+* **BucketARN**: string (Required)
+* **BufferingHints**: [BufferingHints](#bufferinghints)
+* **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
+* **CompressionFormat**: string
+* **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
+* **ErrorOutputPrefix**: string
+* **Prefix**: string
+* **RoleARN**: string (Required)
+
+## S3DestinationConfiguration
+### Properties
+* **BucketARN**: string (Required)
+* **BufferingHints**: [BufferingHints](#bufferinghints)
+* **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
+* **CompressionFormat**: string
+* **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
 * **ErrorOutputPrefix**: string (WriteOnly)
+* **Prefix**: string
+* **RoleARN**: string (Required)
+
+## S3DestinationConfiguration
+### Properties
+* **BucketARN**: string (Required)
+* **BufferingHints**: [BufferingHints](#bufferinghints)
+* **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
+* **CompressionFormat**: string
+* **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
+* **ErrorOutputPrefix**: string (WriteOnly)
+* **Prefix**: string
+* **RoleARN**: string (Required)
+
+## S3DestinationConfiguration
+### Properties
+* **BucketARN**: string (Required)
+* **BufferingHints**: [BufferingHints](#bufferinghints)
+* **CloudWatchLoggingOptions**: [CloudWatchLoggingOptions](#cloudwatchloggingoptions)
+* **CompressionFormat**: string
+* **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
+* **ErrorOutputPrefix**: string
 * **Prefix**: string
 * **RoleARN**: string (Required)
 
@@ -403,6 +487,12 @@
 ## SchemaEvolutionConfiguration
 ### Properties
 * **Enabled**: bool
+
+## SecretsManagerConfiguration
+### Properties
+* **Enabled**: bool (Required)
+* **RoleARN**: string
+* **SecretARN**: string
 
 ## SecretsManagerConfiguration
 ### Properties

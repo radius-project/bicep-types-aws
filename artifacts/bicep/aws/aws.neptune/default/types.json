@@ -386,9 +386,15 @@
     "value": "AWS.Neptune/DBClusterParameterGroupProperties"
   },
   {
+    "$type": "AnyType"
+  },
+  {
     "$type": "ObjectType",
     "name": "DBClusterParameterGroup_Parameters",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/17"
+    }
   },
   {
     "$type": "ArrayType",
@@ -423,14 +429,14 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/18"
         },
         "flags": 1,
         "description": "An array of parameters to be modified. A maximum of 20 parameters can be modified in a single request."
       },
       "Tags": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/19"
         },
         "flags": 0,
         "description": "The list of tags for the cluster parameter group."
@@ -457,7 +463,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/20"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -468,7 +474,7 @@
     "$type": "ResourceType",
     "name": "AWS.Neptune/DBClusterParameterGroup@default",
     "body": {
-      "$ref": "#/20"
+      "$ref": "#/21"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -500,7 +506,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/23"
     }
   },
   {
@@ -600,7 +606,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "An arbitrary set of tags (key-value pairs) for this DB instance."
@@ -627,7 +633,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/26"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -638,7 +644,7 @@
     "$type": "ResourceType",
     "name": "AWS.Neptune/DBInstance@default",
     "body": {
-      "$ref": "#/26"
+      "$ref": "#/27"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -670,12 +676,15 @@
   {
     "$type": "ObjectType",
     "name": "DBParameterGroup_Parameters",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/17"
+    }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/28"
+      "$ref": "#/29"
     }
   },
   {
@@ -705,14 +714,14 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/31"
         },
         "flags": 1,
         "description": "The parameters to set for this DB parameter group.\n\nThe parameters are expressed as a JSON object consisting of key-value pairs.\n\nChanges to dynamic parameters are applied immediately. During an update, if you have static parameters (whether they were changed or not), it triggers AWS CloudFormation to reboot the associated DB instance without failover."
       },
       "Tags": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/32"
         },
         "flags": 0,
         "description": "An optional array of key-value pairs to apply to this DB parameter group."
@@ -739,7 +748,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/33"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -750,7 +759,7 @@
     "$type": "ResourceType",
     "name": "AWS.Neptune/DBParameterGroup@default",
     "body": {
-      "$ref": "#/33"
+      "$ref": "#/34"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -788,7 +797,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/35"
+      "$ref": "#/36"
     }
   },
   {
@@ -811,14 +820,14 @@
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/38"
         },
         "flags": 1,
         "description": "The Amazon EC2 subnet IDs for the DB subnet group."
       },
       "Tags": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "An optional array of key-value pairs to apply to this DB subnet group."
@@ -845,7 +854,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/40"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -856,7 +865,7 @@
     "$type": "ResourceType",
     "name": "AWS.Neptune/DBSubnetGroup@default",
     "body": {
-      "$ref": "#/40"
+      "$ref": "#/41"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -898,7 +907,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/42"
+      "$ref": "#/43"
     }
   },
   {
@@ -914,7 +923,7 @@
       },
       "EventCategories": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "A list of event categories for a SourceType that you want to subscribe to. You can see a list of the categories for a given SourceType in the Events topic in the Amazon Neptune User Guide or by using the DescribeEventCategories action."
@@ -928,7 +937,7 @@
       },
       "SourceIds": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "The list of identifiers of the event sources for which events will be returned. If not specified, then all sources are included in the response. An identifier must begin with a letter and must contain only ASCII letters, digits, and hyphens; it cannot end with a hyphen or contain two consecutive hyphens."
@@ -949,7 +958,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/47"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -976,7 +985,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/48"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -987,7 +996,7 @@
     "$type": "ResourceType",
     "name": "AWS.Neptune/EventSubscription@default",
     "body": {
-      "$ref": "#/48"
+      "$ref": "#/49"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1019,7 +1028,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/50"
+      "$ref": "#/51"
     }
   },
   {
@@ -1070,7 +1079,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1097,7 +1106,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1108,7 +1117,7 @@
     "$type": "ResourceType",
     "name": "AWS.Neptune/GlobalCluster@default",
     "body": {
-      "$ref": "#/54"
+      "$ref": "#/55"
     },
     "readableScopes": 0,
     "writableScopes": 0

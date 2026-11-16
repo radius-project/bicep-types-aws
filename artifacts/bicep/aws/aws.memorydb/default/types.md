@@ -200,12 +200,18 @@ You cannot modify the value of TransitEncryptionEnabled after the cluster is cre
 
 ## Cluster_DataTieringStatus
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Cluster_SupportedIpDiscoveryTypes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Cluster_SupportedNetworkTypes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## ClusterConfiguration
 ### Properties
@@ -231,6 +237,8 @@ You cannot modify the value of TransitEncryptionEnabled after the cluster is cre
 
 ## ParameterGroup_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## RecurringCharge
 ### Properties

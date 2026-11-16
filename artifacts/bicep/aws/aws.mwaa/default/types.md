@@ -52,9 +52,13 @@
 
 ## Environment_AirflowConfigurationOptions
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Environment_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## LoggingConfiguration
 ### Properties
@@ -63,6 +67,30 @@
 * **TaskLogs**: [ModuleLoggingConfiguration](#moduleloggingconfiguration)
 * **WebserverLogs**: [ModuleLoggingConfiguration](#moduleloggingconfiguration)
 * **WorkerLogs**: [ModuleLoggingConfiguration](#moduleloggingconfiguration)
+
+## ModuleLoggingConfiguration
+### Properties
+* **CloudWatchLogGroupArn**: string (ReadOnly)
+* **Enabled**: bool
+* **LogLevel**: string
+
+## ModuleLoggingConfiguration
+### Properties
+* **CloudWatchLogGroupArn**: string (ReadOnly)
+* **Enabled**: bool
+* **LogLevel**: string
+
+## ModuleLoggingConfiguration
+### Properties
+* **CloudWatchLogGroupArn**: string (ReadOnly)
+* **Enabled**: bool
+* **LogLevel**: string
+
+## ModuleLoggingConfiguration
+### Properties
+* **CloudWatchLogGroupArn**: string (ReadOnly)
+* **Enabled**: bool
+* **LogLevel**: string
 
 ## ModuleLoggingConfiguration
 ### Properties

@@ -1,0 +1,91 @@
+{
+  "arn": "",
+  "type": "AWS::MediaLive::Channel",
+  "time": "",
+  "schema": {
+    "typeName": "AWS::MediaLive::Channel",
+    "description": "A trimmed copy of Radius's MediaLive channel schema, with secrets inside an array of output groups.",
+    "definitions": {
+      "EncoderSettings": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "OutputGroups": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/OutputGroup" }
+          }
+        }
+      },
+      "OutputGroup": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "Name": { "type": "string" },
+          "OutputGroupSettings": { "$ref": "#/definitions/OutputGroupSettings" }
+        }
+      },
+      "OutputGroupSettings": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "HlsGroupSettings": { "$ref": "#/definitions/HlsGroupSettings" }
+        }
+      },
+      "HlsGroupSettings": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "KeyProviderSettings": { "$ref": "#/definitions/KeyProviderSettings" },
+          "HlsCdnSettings": { "$ref": "#/definitions/HlsCdnSettings" }
+        }
+      },
+      "KeyProviderSettings": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "StaticKeySettings": { "$ref": "#/definitions/StaticKeySettings" }
+        }
+      },
+      "StaticKeySettings": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "StaticKeyValue": { "type": "string" }
+        }
+      },
+      "HlsCdnSettings": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "HlsAkamaiSettings": { "$ref": "#/definitions/HlsAkamaiSettings" }
+        }
+      },
+      "HlsAkamaiSettings": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "Salt": { "type": "string" },
+          "Token": { "type": "string" }
+        }
+      }
+    },
+    "properties": {
+      "Id": { "type": "string" },
+      "Name": { "type": "string" },
+      "EncoderSettings": { "$ref": "#/definitions/EncoderSettings" }
+    },
+    "primaryIdentifier": ["/properties/Id"],
+    "readOnlyProperties": ["/properties/Id"],
+    "writeOnlyProperties": [
+      "/properties/EncoderSettings/OutputGroups/*/OutputGroupSettings/HlsGroupSettings/KeyProviderSettings/StaticKeySettings/StaticKeyValue",
+      "/properties/EncoderSettings/OutputGroups/*/OutputGroupSettings/HlsGroupSettings/HlsCdnSettings/HlsAkamaiSettings/Salt"
+    ],
+    "handlers": {
+      "create": { "permissions": [] },
+      "read": { "permissions": [] },
+      "update": { "permissions": [] },
+      "delete": { "permissions": [] }
+    },
+    "additionalProperties": false
+  }
+}

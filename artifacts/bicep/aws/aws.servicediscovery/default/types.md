@@ -112,6 +112,8 @@
 
 ## Instance_InstanceAttributes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## PrivateDnsPropertiesMutable
 ### Properties
@@ -131,6 +133,8 @@
 
 ## Service_ServiceAttributes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## SOA
 ### Properties

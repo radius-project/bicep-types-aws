@@ -122,9 +122,18 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "Association_Parameters",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/14"
+    }
   },
   {
     "$type": "IntegerType"
@@ -231,7 +240,7 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "Parameter values that the SSM document uses at runtime."
@@ -245,7 +254,7 @@
       },
       "ScheduleOffset": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/16"
         },
         "flags": 0
       },
@@ -257,21 +266,21 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "A key-value pair to associate with a resource."
       },
       "Targets": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "The targets that the SSM document sends commands to."
       },
       "WaitForSuccessTimeoutSeconds": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/16"
         },
         "flags": 4
       }
@@ -297,7 +306,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/19"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -308,7 +317,7 @@
     "$type": "ResourceType",
     "name": "AWS.SSM/Association@default",
     "body": {
-      "$ref": "#/19"
+      "$ref": "#/20"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -340,7 +349,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/21"
+      "$ref": "#/22"
     }
   },
   {
@@ -405,7 +414,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "Optional metadata assigned to the Automation execution."
@@ -432,7 +441,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/25"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -443,7 +452,7 @@
     "$type": "ResourceType",
     "name": "AWS.SSM/AutomationExecution@default",
     "body": {
-      "$ref": "#/25"
+      "$ref": "#/26"
     },
     "readableScopes": 31,
     "writableScopes": 0
@@ -468,7 +477,7 @@
       },
       "Targets": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/31"
         },
         "flags": 0
       },
@@ -514,7 +523,7 @@
     "properties": {
       "AzureConfiguration": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/28"
         },
         "flags": 1
       }
@@ -526,7 +535,7 @@
     "properties": {
       "Subscriptions": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/33"
         },
         "flags": 1,
         "description": "List of Azure subscriptions."
@@ -554,7 +563,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/28"
+      "$ref": "#/29"
     }
   },
   {
@@ -564,7 +573,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/31"
+      "$ref": "#/32"
     }
   },
   {
@@ -594,7 +603,7 @@
       },
       "Configuration": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/30"
         },
         "flags": 1,
         "description": "The configuration for the cloud connector."
@@ -629,7 +638,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/35"
         },
         "flags": 0,
         "description": "Tags to apply to the cloud connector."
@@ -663,7 +672,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -674,7 +683,7 @@
     "$type": "ResourceType",
     "name": "AWS.SSM/CloudConnector@default",
     "body": {
-      "$ref": "#/36"
+      "$ref": "#/37"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -699,7 +708,7 @@
       },
       "Values": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "The value of a key-value pair that identifies the location of an attachment to a document. The format for Value depends on the type of key you specify."
@@ -759,19 +768,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/38"
+      "$ref": "#/39"
     }
+  },
+  {
+    "$type": "AnyType"
   },
   {
     "$type": "ObjectType",
     "name": "Document_Content",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/45"
+    }
   },
   {
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/44"
+        "$ref": "#/46"
       },
       {
         "$ref": "#/8"
@@ -781,13 +796,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/39"
+      "$ref": "#/40"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/40"
+      "$ref": "#/41"
     }
   },
   {
@@ -796,14 +811,14 @@
     "properties": {
       "Attachments": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 4,
         "description": "A list of key and value pairs that describe attachments to a version of a document."
       },
       "Content": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/47"
         },
         "flags": 1,
         "description": "The content for the Systems Manager document in JSON, YAML or String format."
@@ -831,14 +846,14 @@
       },
       "Requires": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/48"
         },
         "flags": 0,
         "description": "A list of SSM documents required by a document. For example, an ApplicationConfiguration document requires an ApplicationConfigurationSchema document."
       },
       "Tags": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": "Optional metadata that you assign to a resource. Tags enable you to categorize a resource in different ways, such as by purpose, owner, or environment."
@@ -886,7 +901,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/50"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -897,7 +912,7 @@
     "$type": "ResourceType",
     "name": "AWS.SSM/Document@default",
     "body": {
-      "$ref": "#/49"
+      "$ref": "#/51"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -929,7 +944,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/51"
+      "$ref": "#/53"
     }
   },
   {
@@ -945,7 +960,7 @@
       },
       "Cutoff": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/16"
         },
         "flags": 1,
         "description": "The number of hours before the end of the maintenance window that AWS Systems Manager stops scheduling new tasks for execution."
@@ -959,7 +974,7 @@
       },
       "Duration": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/16"
         },
         "flags": 1,
         "description": "The duration of the maintenance window in hours."
@@ -987,7 +1002,7 @@
       },
       "ScheduleOffset": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/16"
         },
         "flags": 0,
         "description": "The number of days to wait to run a maintenance window after the scheduled cron expression date and time."
@@ -1008,7 +1023,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/55"
         },
         "flags": 0,
         "description": "Optional metadata that you assign to a resource in the form of an arbitrary set of tags (key-value pairs). Tags enable you to categorize a resource in different ways, such as by purpose, owner, or environment. For example, you might want to tag a maintenance window to identify the type of tasks it will run, the types of targets, and the environment it will run in."
@@ -1042,7 +1057,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/56"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1053,7 +1068,7 @@
     "$type": "ResourceType",
     "name": "AWS.SSM/MaintenanceWindow@default",
     "body": {
-      "$ref": "#/55"
+      "$ref": "#/57"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1071,7 +1086,7 @@
       },
       "Values": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/60"
         },
         "flags": 1,
         "description": "User-defined criteria that maps to Key."
@@ -1091,7 +1106,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/57"
+      "$ref": "#/59"
     }
   },
   {
@@ -1128,7 +1143,7 @@
       },
       "Targets": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/62"
         },
         "flags": 1,
         "description": "The targets to register with the maintenance window."
@@ -1169,7 +1184,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/63"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1180,7 +1195,7 @@
     "$type": "ResourceType",
     "name": "AWS.SSM/MaintenanceWindowTarget@default",
     "body": {
-      "$ref": "#/62"
+      "$ref": "#/64"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1241,7 +1256,7 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/76"
         },
         "flags": 0
       }
@@ -1277,7 +1292,7 @@
     "properties": {
       "CloudWatchOutputConfig": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/66"
         },
         "flags": 0
       },
@@ -1307,7 +1322,7 @@
       },
       "NotificationConfig": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/72"
         },
         "flags": 0
       },
@@ -1325,7 +1340,7 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/77"
         },
         "flags": 0
       },
@@ -1337,7 +1352,7 @@
       },
       "TimeoutSeconds": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/16"
         },
         "flags": 0
       }
@@ -1373,7 +1388,7 @@
       },
       "NotificationEvents": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/78"
         },
         "flags": 0
       },
@@ -1402,7 +1417,7 @@
       },
       "Values": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/80"
         },
         "flags": 1
       }
@@ -1414,25 +1429,25 @@
     "properties": {
       "MaintenanceWindowAutomationParameters": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/68"
         },
         "flags": 0
       },
       "MaintenanceWindowLambdaParameters": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/69"
         },
         "flags": 0
       },
       "MaintenanceWindowRunCommandParameters": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/70"
         },
         "flags": 0
       },
       "MaintenanceWindowStepFunctionsParameters": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/71"
         },
         "flags": 0
       }
@@ -1441,12 +1456,18 @@
   {
     "$type": "ObjectType",
     "name": "MaintenanceWindowTask_Parameters",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/45"
+    }
   },
   {
     "$type": "ObjectType",
     "name": "MaintenanceWindowTask_Parameters",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/45"
+    }
   },
   {
     "$type": "ArrayType",
@@ -1473,13 +1494,16 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/72"
+      "$ref": "#/74"
     }
   },
   {
     "$type": "ObjectType",
     "name": "MaintenanceWindowTask_TaskParameters",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/45"
+    }
   },
   {
     "$type": "ObjectType",
@@ -1501,7 +1525,7 @@
       },
       "LoggingInfo": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/67"
         },
         "flags": 0,
         "description": "Information about an Amazon S3 bucket to write Run Command task-level logs to."
@@ -1529,7 +1553,7 @@
       },
       "Priority": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/16"
         },
         "flags": 1,
         "description": "The priority of the task in the maintenance window. The lower the number, the higher the priority. Tasks that have the same priority are scheduled in parallel."
@@ -1543,7 +1567,7 @@
       },
       "Targets": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/82"
         },
         "flags": 0,
         "description": "The targets (either instances or window target ids)."
@@ -1557,14 +1581,14 @@
       },
       "TaskInvocationParameters": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/75"
         },
         "flags": 0,
         "description": "The parameters to pass to the task when it runs. Populate only the fields that match the task type. All other fields should be empty."
       },
       "TaskParameters": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/83"
         },
         "flags": 0,
         "description": "The parameters to pass to the task when it runs."
@@ -1612,7 +1636,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/84"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1623,7 +1647,7 @@
     "$type": "ResourceType",
     "name": "AWS.SSM/MaintenanceWindowTask@default",
     "body": {
-      "$ref": "#/83"
+      "$ref": "#/85"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1653,7 +1677,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/86"
+      "$ref": "#/88"
     }
   },
   {
@@ -1739,7 +1763,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/89"
         },
         "flags": 0,
         "description": "Tags assigned to the managed instance."
@@ -1766,7 +1790,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/90"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1777,7 +1801,7 @@
     "$type": "ResourceType",
     "name": "AWS.SSM/ManagedInstance@default",
     "body": {
-      "$ref": "#/89"
+      "$ref": "#/91"
     },
     "readableScopes": 31,
     "writableScopes": 0
@@ -1807,7 +1831,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/91"
+      "$ref": "#/93"
     }
   },
   {
@@ -1879,7 +1903,7 @@
       },
       "Priority": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/16"
         },
         "flags": 0,
         "description": "The priority of the OpsItem."
@@ -1907,7 +1931,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/95"
         },
         "flags": 0,
         "description": "Tags for the OpsItem."
@@ -1948,7 +1972,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/96"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1959,7 +1983,7 @@
     "$type": "ResourceType",
     "name": "AWS.SSM/OpsItem@default",
     "body": {
-      "$ref": "#/95"
+      "$ref": "#/97"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1971,7 +1995,10 @@
   {
     "$type": "ObjectType",
     "name": "Parameter_Tags",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/8"
+    }
   },
   {
     "$type": "ObjectType",
@@ -2021,7 +2048,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/100"
         },
         "flags": 0,
         "description": "Optional metadata that you assign to a resource in the form of an arbitrary set of tags (key-value pairs). Tags enable you to categorize a resource in different ways, such as by purpose, owner, or environment. For example, you might want to tag a SYS parameter to identify the type of resource to which it applies, the environment, or the type of configuration data referenced by the parameter."
@@ -2069,7 +2096,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/101"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2080,7 +2107,7 @@
     "$type": "ResourceType",
     "name": "AWS.SSM/Parameter@default",
     "body": {
-      "$ref": "#/100"
+      "$ref": "#/102"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2097,7 +2124,7 @@
       },
       "Values": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/110"
         },
         "flags": 0
       }
@@ -2109,7 +2136,7 @@
     "properties": {
       "PatchFilters": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/111"
         },
         "flags": 0
       }
@@ -2133,7 +2160,7 @@
       },
       "Products": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/112"
         },
         "flags": 0
       }
@@ -2145,7 +2172,7 @@
     "properties": {
       "ApproveAfterDays": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/16"
         },
         "flags": 0
       },
@@ -2169,7 +2196,7 @@
       },
       "PatchFilterGroup": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/105"
         },
         "flags": 0
       }
@@ -2181,7 +2208,7 @@
     "properties": {
       "PatchRules": {
         "type": {
-          "$ref": "#/111"
+          "$ref": "#/113"
         },
         "flags": 0
       }
@@ -2214,7 +2241,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/102"
+      "$ref": "#/104"
     }
   },
   {
@@ -2226,7 +2253,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/105"
+      "$ref": "#/107"
     }
   },
   {
@@ -2254,13 +2281,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/104"
+      "$ref": "#/106"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/107"
+      "$ref": "#/109"
     }
   },
   {
@@ -2269,13 +2296,13 @@
     "properties": {
       "ApprovalRules": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/108"
         },
         "flags": 0
       },
       "ApprovedPatches": {
         "type": {
-          "$ref": "#/113"
+          "$ref": "#/115"
         },
         "flags": 0,
         "description": "A list of explicitly approved patches for the baseline."
@@ -2317,7 +2344,7 @@
       },
       "GlobalFilters": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/105"
         },
         "flags": 0,
         "description": "A set of global filters used to include patches in the baseline."
@@ -2345,14 +2372,14 @@
       },
       "PatchGroups": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/116"
         },
         "flags": 0,
         "description": "PatchGroups is used to associate instances with a specific patch baseline"
       },
       "RejectedPatches": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/117"
         },
         "flags": 0,
         "description": "A list of explicitly rejected patches for the baseline."
@@ -2366,14 +2393,14 @@
       },
       "Sources": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/118"
         },
         "flags": 0,
         "description": "Information about the patches to use to update the instances, including target operating systems and source repository. Applies to Linux instances only."
       },
       "Tags": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/119"
         },
         "flags": 0,
         "description": "Optional metadata that you assign to a resource. Tags enable you to categorize a resource in different ways."
@@ -2400,7 +2427,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/118"
+          "$ref": "#/120"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2411,7 +2438,7 @@
     "$type": "ResourceType",
     "name": "AWS.SSM/PatchBaseline@default",
     "body": {
-      "$ref": "#/119"
+      "$ref": "#/121"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2428,7 +2455,7 @@
       },
       "OrganizationalUnits": {
         "type": {
-          "$ref": "#/124"
+          "$ref": "#/126"
         },
         "flags": 0
       }
@@ -2476,7 +2503,7 @@
     "properties": {
       "AwsOrganizationsSource": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/123"
         },
         "flags": 0
       },
@@ -2488,7 +2515,7 @@
       },
       "SourceRegions": {
         "type": {
-          "$ref": "#/125"
+          "$ref": "#/127"
         },
         "flags": 1
       },
@@ -2546,7 +2573,7 @@
       },
       "S3Destination": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/124"
         },
         "flags": 0
       },
@@ -2564,7 +2591,7 @@
       },
       "SyncSource": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/125"
         },
         "flags": 0
       },
@@ -2596,7 +2623,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/127"
+          "$ref": "#/129"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2607,7 +2634,7 @@
     "$type": "ResourceType",
     "name": "AWS.SSM/ResourceDataSync@default",
     "body": {
-      "$ref": "#/128"
+      "$ref": "#/130"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2619,13 +2646,16 @@
   {
     "$type": "ObjectType",
     "name": "ResourcePolicy_Policy",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/45"
+    }
   },
   {
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/131"
+        "$ref": "#/133"
       },
       {
         "$ref": "#/8"
@@ -2638,7 +2668,7 @@
     "properties": {
       "Policy": {
         "type": {
-          "$ref": "#/132"
+          "$ref": "#/134"
         },
         "flags": 1,
         "description": "Actual policy statement."
@@ -2686,7 +2716,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/133"
+          "$ref": "#/135"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2697,7 +2727,7 @@
     "$type": "ResourceType",
     "name": "AWS.SSM/ResourcePolicy@default",
     "body": {
-      "$ref": "#/134"
+      "$ref": "#/136"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2774,7 +2804,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/139"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2785,7 +2815,7 @@
     "$type": "ResourceType",
     "name": "AWS.SSM/ServiceSetting@default",
     "body": {
-      "$ref": "#/138"
+      "$ref": "#/140"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2876,7 +2906,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/141"
+          "$ref": "#/143"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -2887,7 +2917,7 @@
     "$type": "ResourceType",
     "name": "AWS.SSM/Session@default",
     "body": {
-      "$ref": "#/142"
+      "$ref": "#/144"
     },
     "readableScopes": 31,
     "writableScopes": 0

@@ -58,6 +58,8 @@
 
 ## BatchParametersMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## BatchResourceRequirement
 ### Properties
@@ -147,6 +149,8 @@
 
 ## HeaderParametersMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## MQBrokerAccessCredentials
 ### Properties
@@ -382,6 +386,8 @@
 
 ## QueryStringParametersMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## S3LogDestination
 ### Properties
@@ -413,4 +419,6 @@
 
 ## TagMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 

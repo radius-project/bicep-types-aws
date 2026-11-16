@@ -155,12 +155,18 @@
 
 ## ComputeEnvironment_CapacityTags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ComputeEnvironment_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ComputeEnvironment_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ComputeEnvironmentOrder
 ### Properties
@@ -173,7 +179,7 @@
 * **BidPercentage**: int
 * **CapacityTags**: [ComputeEnvironment_CapacityTags](#computeenvironmentcapacitytags): Capacity-level tags for compute environments.
 * **DesiredvCpus**: int
-* **Ec2Configuration**: [Ec2ConfigurationObject](#ec2configurationobject)[] (ReadOnly)
+* **Ec2Configuration**: [Ec2ConfigurationObject](#ec2configurationobject)[]
 * **Ec2KeyPair**: string
 * **ImageId**: string
 * **InstanceRole**: string
@@ -197,6 +203,8 @@
 
 ## ConsumableResource_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ConsumableResourceProperties
 ### Properties
@@ -241,7 +249,7 @@
 
 ## Ec2ConfigurationObject
 ### Properties
-* **BatchImageStatus**: string
+* **BatchImageStatus**: string (ReadOnly)
 * **ImageIdOverride**: string
 * **ImageKubernetesVersion**: string
 * **ImageType**: string (Required)
@@ -433,6 +441,8 @@
 
 ## JobDefinition_Annotations
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## JobDefinition_FargatePlatformConfiguration
 ### Properties
@@ -445,27 +455,43 @@
 
 ## JobDefinition_FirelensConfiguration_Options
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## JobDefinition_Labels
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## JobDefinition_Limits
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## JobDefinition_Options
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## JobDefinition_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## JobDefinition_Requests
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## JobDefinition_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## JobQueue_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## JobStateTimeLimitAction
 ### Properties
@@ -595,6 +621,8 @@
 
 ## QuotaShare_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## QuotaShareCapacityLimit
 ### Properties
@@ -646,6 +674,8 @@
 
 ## SchedulingPolicy_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Secret
 ### Properties
@@ -654,6 +684,8 @@
 
 ## ServiceEnvironment_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ServiceEnvironmentOrder
 ### Properties

@@ -219,7 +219,7 @@
       },
       "ConfigurationEndpoint": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/17"
         },
         "flags": 2,
         "description": "Specifies the ConfigurationEndpoint address and port"
@@ -361,6 +361,24 @@
   },
   {
     "$type": "ObjectType",
+    "name": "Endpoint",
+    "properties": {
+      "Address": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "AWS.ElastiCache/CacheCluster",
     "properties": {
       "name": {
@@ -390,7 +408,7 @@
     "$type": "ResourceType",
     "name": "AWS.ElastiCache/CacheCluster@default",
     "body": {
-      "$ref": "#/17"
+      "$ref": "#/18"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -442,7 +460,7 @@
       },
       "ReshardingConfigurations": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "A list of PreferredAvailabilityZones objects that specifies the configuration of a node group in the resharded cluster. "
@@ -462,7 +480,7 @@
       },
       "PreferredAvailabilityZones": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "A list of preferred availability zones for the nodes of new node groups."
@@ -492,7 +510,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/21"
+      "$ref": "#/22"
     }
   },
   {
@@ -508,19 +526,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/19"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
       "$ref": "#/20"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/22"
+      "$ref": "#/21"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/23"
     }
   },
   {
@@ -599,14 +617,14 @@
       },
       "Members": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 1,
         "description": "The replication groups that comprise the Global Datastore."
       },
       "RegionalConfigurations": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/28"
         },
         "flags": 4,
         "description": "Describes the replication group IDs, the AWS regions where they are stored and the shard configuration for each that comprise the Global Datastore "
@@ -620,7 +638,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/29"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this Global Datastore."
@@ -647,7 +665,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/30"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -658,7 +676,7 @@
     "$type": "ResourceType",
     "name": "AWS.ElastiCache/GlobalReplicationGroup@default",
     "body": {
-      "$ref": "#/30"
+      "$ref": "#/31"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -688,12 +706,15 @@
   {
     "$type": "ObjectType",
     "name": "ParameterGroup_Properties",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/6"
+    }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/32"
+      "$ref": "#/33"
     }
   },
   {
@@ -723,14 +744,14 @@
       },
       "Properties": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/35"
         },
         "flags": 0,
         "description": "A comma-delimited list of parameter name/value pairs. For more information see ModifyCacheParameterGroup in the Amazon ElastiCache API Reference Guide."
       },
       "Tags": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "Tags are composed of a Key/Value pair. You can use tags to categorize and track each parameter group. The tag value null is permitted."
@@ -757,7 +778,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/37"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -768,7 +789,7 @@
     "$type": "ResourceType",
     "name": "AWS.ElastiCache/ParameterGroup@default",
     "body": {
-      "$ref": "#/37"
+      "$ref": "#/38"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -792,13 +813,13 @@
     "properties": {
       "CloudWatchLogsDetails": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/40"
         },
         "flags": 0
       },
       "KinesisFirehoseDetails": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 0
       }
@@ -843,7 +864,7 @@
     "properties": {
       "DestinationDetails": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/41"
         },
         "flags": 1
       },
@@ -890,7 +911,7 @@
       },
       "ReplicaAvailabilityZones": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/47"
         },
         "flags": 0,
         "description": "A list of Availability Zones to be used for the read replicas. The number of Availability Zones in this list must match the value of ReplicaCount or ReplicasPerNodeGroup if not specified."
@@ -950,13 +971,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/43"
+      "$ref": "#/44"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/44"
+      "$ref": "#/45"
     }
   },
   {
@@ -990,7 +1011,7 @@
       },
       "AddressesList": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/53"
         },
         "flags": 2,
         "description": "A list of endpoints for the read-only replicas. The order of the addresses maps to the order of the ports from the ReadEndPoint.Ports attribute."
@@ -1004,7 +1025,7 @@
       },
       "PortsList": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 2,
         "description": "A list of ports for the read-only replicas. The order of the ports maps to the order of the addresses from the ReadEndPoint.Addresses attribute."
@@ -1026,7 +1047,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/45"
+      "$ref": "#/46"
     }
   },
   {
@@ -1083,7 +1104,7 @@
       },
       "CacheSecurityGroupNames": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/49"
         },
         "flags": 4,
         "description": "A list of cache security group names to associate with this replication group."
@@ -1104,7 +1125,7 @@
       },
       "ConfigurationEndPoint": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/61"
         },
         "flags": 2,
         "description": "The configuration details of the replication group."
@@ -1167,7 +1188,7 @@
       },
       "LogDeliveryConfigurations": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "Specifies the destination, format and type of the logs."
@@ -1188,7 +1209,7 @@
       },
       "NodeGroupConfiguration": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/51"
         },
         "flags": 4,
         "description": "NodeGroupConfiguration is a property of the AWS::ElastiCache::ReplicationGroup resource that configures an Amazon ElastiCache (ElastiCache) Redis cluster node group."
@@ -1223,7 +1244,7 @@
       },
       "PreferredCacheClusterAZs": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/52"
         },
         "flags": 4,
         "description": "A list of EC2 Availability Zones in which the replication group's clusters are created. The order of the Availability Zones in the list is the order in which clusters are allocated. The primary cluster is created in the first AZ in the list. This parameter is not used if there is more than one node group (shard). You should use NodeGroupConfiguration instead."
@@ -1244,20 +1265,20 @@
       },
       "PrimaryEndPoint": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/62"
         },
         "flags": 2,
         "description": "The primary endpoint configuration"
       },
       "ReadEndPoint": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/55"
         },
         "flags": 2
       },
       "ReaderEndPoint": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/42"
         },
         "flags": 2,
         "description": "The endpoint of the reader node in the replication group."
@@ -1285,14 +1306,14 @@
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/56"
         },
         "flags": 4,
         "description": "One or more Amazon VPC security groups associated with this replication group."
       },
       "SnapshotArns": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/57"
         },
         "flags": 4,
         "description": "A list of Amazon Resource Names (ARN) that uniquely identify the Redis RDB snapshot files stored in Amazon S3."
@@ -1327,7 +1348,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/58"
         },
         "flags": 0,
         "description": "A list of cost allocation tags to be added to this resource. Tags are comma-separated key,value pairs (e.g. Key=myKey, Value=myKeyValue. You can include multiple tags as shown following: Key=myKey, Value=myKeyValue Key=mySecondKey, Value=mySecondKeyValue."
@@ -1348,10 +1369,50 @@
       },
       "UserGroupIds": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/59"
         },
         "flags": 0,
         "description": "The ID of user group to associate with the replication group."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Endpoint",
+    "properties": {
+      "Address": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The DNS hostname of the cache node."
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The port number that the cache engine is listening on."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Endpoint",
+    "properties": {
+      "Address": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The DNS hostname of the cache node."
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "The port number that the cache engine is listening on."
       }
     }
   },
@@ -1375,7 +1436,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/60"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1386,7 +1447,7 @@
     "$type": "ResourceType",
     "name": "AWS.ElastiCache/ReplicationGroup@default",
     "body": {
-      "$ref": "#/60"
+      "$ref": "#/63"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1438,13 +1499,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/62"
+      "$ref": "#/65"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/63"
+      "$ref": "#/66"
     }
   },
   {
@@ -1495,7 +1556,7 @@
       },
       "RecurringCharges": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/68"
         },
         "flags": 2,
         "description": "The recurring price charged to run this reserved cache node."
@@ -1537,7 +1598,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/69"
         },
         "flags": 2,
         "description": "A list of tags."
@@ -1571,7 +1632,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/70"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1582,7 +1643,7 @@
     "$type": "ResourceType",
     "name": "AWS.ElastiCache/ReservedCacheNode@default",
     "body": {
-      "$ref": "#/68"
+      "$ref": "#/71"
     },
     "readableScopes": 31,
     "writableScopes": 0
@@ -1593,13 +1654,13 @@
     "properties": {
       "DataStorage": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/75"
         },
         "flags": 0
       },
       "ECPUPerSecond": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/76"
         },
         "flags": 0
       }
@@ -1727,7 +1788,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/76"
+      "$ref": "#/79"
     }
   },
   {
@@ -1743,7 +1804,7 @@
       },
       "CacheUsageLimits": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/73"
         },
         "flags": 0
       },
@@ -1776,7 +1837,7 @@
       },
       "Endpoint": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/86"
         },
         "flags": 0
       },
@@ -1823,13 +1884,13 @@
       },
       "ReaderEndpoint": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/77"
         },
         "flags": 0
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/81"
         },
         "flags": 0,
         "description": "One or more Amazon VPC security groups associated with this Serverless Cache."
@@ -1843,7 +1904,7 @@
       },
       "SnapshotArnsToRestore": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/82"
         },
         "flags": 4,
         "description": "The ARN's of snapshot to restore Serverless Cache."
@@ -1864,14 +1925,14 @@
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/83"
         },
         "flags": 0,
         "description": "The subnet id's of the Serverless Cache."
       },
       "Tags": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/84"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this Serverless Cache."
@@ -1882,6 +1943,26 @@
         },
         "flags": 0,
         "description": "The ID of the user group."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Endpoint",
+    "properties": {
+      "Address": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "Endpoint address."
+      },
+      "Port": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 2,
+        "description": "Endpoint port."
       }
     }
   },
@@ -1905,7 +1986,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/85"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1916,7 +1997,7 @@
     "$type": "ResourceType",
     "name": "AWS.ElastiCache/ServerlessCache@default",
     "body": {
-      "$ref": "#/83"
+      "$ref": "#/87"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1975,7 +2056,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/86"
+      "$ref": "#/90"
     }
   },
   {
@@ -2012,7 +2093,7 @@
       },
       "ServerlessCacheConfiguration": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/89"
         },
         "flags": 2,
         "description": "The configuration of the serverless cache, at the time the snapshot was taken."
@@ -2047,7 +2128,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/92"
         },
         "flags": 0,
         "description": "A list of tags to be added to the serverless cache snapshot resource."
@@ -2074,7 +2155,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/93"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2085,7 +2166,7 @@
     "$type": "ResourceType",
     "name": "AWS.ElastiCache/ServerlessCacheSnapshot@default",
     "body": {
-      "$ref": "#/90"
+      "$ref": "#/94"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2165,13 +2246,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/92"
+      "$ref": "#/96"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/93"
+      "$ref": "#/97"
     }
   },
   {
@@ -2264,7 +2345,7 @@
       },
       "NodeSnapshots": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/99"
         },
         "flags": 2,
         "description": "A list of the cache nodes in the source cluster."
@@ -2355,7 +2436,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/100"
         },
         "flags": 0,
         "description": "A list of tags to be added to this resource."
@@ -2396,7 +2477,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/101"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2407,7 +2488,7 @@
     "$type": "ResourceType",
     "name": "AWS.ElastiCache/Snapshot@default",
     "body": {
-      "$ref": "#/98"
+      "$ref": "#/102"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2443,7 +2524,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/100"
+      "$ref": "#/104"
     }
   },
   {
@@ -2466,14 +2547,14 @@
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/106"
         },
         "flags": 1,
         "description": "The EC2 subnet IDs for the cache subnet group."
       },
       "Tags": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/107"
         },
         "flags": 0
       }
@@ -2499,7 +2580,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/108"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2510,7 +2591,7 @@
     "$type": "ResourceType",
     "name": "AWS.ElastiCache/SubnetGroup@default",
     "body": {
-      "$ref": "#/105"
+      "$ref": "#/109"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2551,7 +2632,7 @@
     "properties": {
       "Passwords": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/113"
         },
         "flags": 0,
         "description": "Passwords used for this user account. You can create up to two passwords for each user."
@@ -2574,7 +2655,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/107"
+      "$ref": "#/111"
     }
   },
   {
@@ -2597,7 +2678,7 @@
       },
       "AuthenticationMode": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/114"
         },
         "flags": 4
       },
@@ -2617,7 +2698,7 @@
       },
       "Passwords": {
         "type": {
-          "$ref": "#/111"
+          "$ref": "#/115"
         },
         "flags": 4,
         "description": "Passwords used for this user account. You can create up to two passwords for each user."
@@ -2631,7 +2712,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/112"
+          "$ref": "#/116"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this user."
@@ -2672,7 +2753,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/113"
+          "$ref": "#/117"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2683,7 +2764,7 @@
     "$type": "ResourceType",
     "name": "AWS.ElastiCache/User@default",
     "body": {
-      "$ref": "#/114"
+      "$ref": "#/118"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2715,7 +2796,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/116"
+      "$ref": "#/120"
     }
   },
   {
@@ -2751,7 +2832,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/118"
+          "$ref": "#/122"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this user."
@@ -2765,7 +2846,7 @@
       },
       "UserIds": {
         "type": {
-          "$ref": "#/119"
+          "$ref": "#/123"
         },
         "flags": 1,
         "description": "List of users associated to this user group."
@@ -2792,7 +2873,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/120"
+          "$ref": "#/124"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2803,7 +2884,7 @@
     "$type": "ResourceType",
     "name": "AWS.ElastiCache/UserGroup@default",
     "body": {
-      "$ref": "#/121"
+      "$ref": "#/125"
     },
     "readableScopes": 0,
     "writableScopes": 0

@@ -179,6 +179,8 @@
 
 ## DataLakeSettings_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## DataLocationResource
 ### Properties

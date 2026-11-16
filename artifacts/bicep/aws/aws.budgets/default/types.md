@@ -48,9 +48,13 @@
 
 ## Budget_CostFilters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Budget_PlannedBudgetLimits
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## BudgetData
 ### Properties

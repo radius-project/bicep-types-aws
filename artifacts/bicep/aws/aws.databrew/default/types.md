@@ -274,6 +274,8 @@
 
 ## ParameterMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## PathOptions
 ### Properties

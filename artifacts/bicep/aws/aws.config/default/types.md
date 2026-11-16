@@ -326,6 +326,8 @@
 
 ## RemediationConfiguration_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Scope
 ### Properties

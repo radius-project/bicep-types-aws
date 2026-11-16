@@ -132,21 +132,21 @@
         "type": {
           "$ref": "#/16"
         },
-        "flags": 0,
+        "flags": 2,
         "description": "State of the replica canary (CREATING, READY, RUNNING, etc.)"
       },
       "KmsKeyArn": {
         "type": {
           "$ref": "#/16"
         },
-        "flags": 0,
+        "flags": 4,
         "description": "ARN of the KMS key used to encrypt the replica canary's Lambda function environment variables"
       },
       "LastModified": {
         "type": {
           "$ref": "#/20"
         },
-        "flags": 0,
+        "flags": 2,
         "description": "Last modified timestamp of the replica"
       },
       "Location": {
@@ -160,26 +160,26 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 0,
+        "flags": 2,
         "description": "Replication status for this replica"
       },
       "ResourcesToReplicateTags": {
         "type": {
           "$ref": "#/21"
         },
-        "flags": 0,
+        "flags": 4,
         "description": "Resources to replicate tags to for this replica (e.g., lambda-function)"
       },
       "Tags": {
         "type": {
           "$ref": "#/22"
         },
-        "flags": 0,
+        "flags": 4,
         "description": "Tags to apply to this replica canary and optionally its Lambda function"
       },
       "VpcConfig": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/35"
         },
         "flags": 0,
         "description": "VPC configuration for this replica location"
@@ -422,7 +422,10 @@
   {
     "$type": "ObjectType",
     "name": "Canary_EnvironmentVariables",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/16"
+    }
   },
   {
     "$type": "ArrayType",
@@ -568,7 +571,7 @@
         "type": {
           "$ref": "#/30"
         },
-        "flags": 6,
+        "flags": 0,
         "description": "List of replica locations for multi-location canary execution"
       },
       "ResourcesToReplicateTags": {
@@ -651,6 +654,37 @@
   },
   {
     "$type": "ObjectType",
+    "name": "VPCConfig",
+    "properties": {
+      "Ipv6AllowedForDualStack": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "description": "Allow outbound IPv6 traffic on VPC canaries that are connected to dual-stack subnets if set to true"
+      },
+      "SecurityGroupIds": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 1
+      },
+      "SubnetIds": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 1
+      },
+      "VpcId": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 2
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "AWS.Synthetics/Canary",
     "properties": {
       "name": {
@@ -680,7 +714,7 @@
     "$type": "ResourceType",
     "name": "AWS.Synthetics/Canary@default",
     "body": {
-      "$ref": "#/35"
+      "$ref": "#/36"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -723,7 +757,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/38"
+      "$ref": "#/39"
     }
   },
   {
@@ -746,13 +780,13 @@
       },
       "ResourceArns": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/41"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/42"
         },
         "flags": 0
       }
@@ -778,7 +812,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/43"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -789,7 +823,7 @@
     "$type": "ResourceType",
     "name": "AWS.Synthetics/Group@default",
     "body": {
-      "$ref": "#/43"
+      "$ref": "#/44"
     },
     "readableScopes": 0,
     "writableScopes": 0

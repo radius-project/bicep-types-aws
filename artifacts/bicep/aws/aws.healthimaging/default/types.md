@@ -21,4 +21,6 @@
 
 ## Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 

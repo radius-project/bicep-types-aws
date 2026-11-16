@@ -98,6 +98,8 @@
 
 ## AccessPoint_Policy
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## AccountLevel
 ### Properties
@@ -424,7 +426,7 @@
 
 ## LifecycleConfiguration
 ### Properties
-* **Rules**: [Rule](#rule)[] (Required, WriteOnly): A lifecycle rule for individual objects in an Amazon S3 bucket.
+* **Rules**: [Rule](#rule)[] (Required): A lifecycle rule for individual objects in an Amazon S3 bucket.
 * **TransitionDefaultMinimumObjectSize**: string: Indicates which default minimum object size behavior is applied to the lifecycle configuration.
   This parameter applies to general purpose buckets only. It isn't supported for directory bucket lifecycle configurations.
    +  ``all_storage_classes_128K`` - Objects smaller than 128 KB will not transition to any storage class by default.
@@ -484,6 +486,8 @@
 
 ## MultiRegionAccessPointPolicy_Policy
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## MultiRegionAccessPointPolicy_PolicyStatus
 ### Properties
@@ -623,7 +627,7 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 ## ReplicationConfiguration
 ### Properties
 * **Role**: string (Required): The Amazon Resource Name (ARN) of the IAMlong (IAM) role that Amazon S3 assumes when replicating objects. For more information, see [How to Set Up Replication](https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-how-setup.html) in the *Amazon S3 User Guide*.
-* **Rules**: [ReplicationRule](#replicationrule)[] (Required, WriteOnly): A container for one or more replication rules. A replication configuration must have at least one rule and can contain a maximum of 1,000 rules.
+* **Rules**: [ReplicationRule](#replicationrule)[] (Required): A container for one or more replication rules. A replication configuration must have at least one rule and can contain a maximum of 1,000 rules.
 
 ## ReplicationDestination
 ### Properties
@@ -647,7 +651,7 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 * **Filter**: [ReplicationRuleFilter](#replicationrulefilter): A filter that identifies the subset of objects to which the replication rule applies. A ``Filter`` must specify exactly one ``Prefix``, ``TagFilter``, or an ``And`` child element. The use of the filter field indicates that this is a V2 replication configuration. This field isn't supported in a V1 replication configuration.
   V1 replication configuration only supports filtering by key prefix. To filter using a V1 replication configuration, add the ``Prefix`` directly as a child element of the ``Rule`` element.
 * **Id**: string: A unique identifier for the rule. The maximum value is 255 characters. If you don't specify a value, AWS CloudFormation generates a random ID. When using a V2 replication configuration this property is capitalized as "ID".
-* **Prefix**: string: An object key name prefix that identifies the object or objects to which the rule applies. The maximum prefix length is 1,024 characters. To include all objects in a bucket, specify an empty string. To filter using a V1 replication configuration, add the ``Prefix`` directly as a child element of the ``Rule`` element.
+* **Prefix**: string (WriteOnly): An object key name prefix that identifies the object or objects to which the rule applies. The maximum prefix length is 1,024 characters. To include all objects in a bucket, specify an empty string. To filter using a V1 replication configuration, add the ``Prefix`` directly as a child element of the ``Rule`` element.
   Replacement must be made for object keys containing special characters (such as carriage returns) when using XML requests. For more information, see [XML related object key constraints](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints).
 * **Priority**: int: The priority indicates which rule has precedence whenever two or more replication rules conflict. Amazon S3 will attempt to replicate objects according to all replication rules. However, if there are two or more rules with the same destination bucket, then objects will be replicated according to the rule with the highest priority. The higher the number, the higher the priority. 
  For more information, see [Replication](https://docs.aws.amazon.com/AmazonS3/latest/dev/replication.html) in the *Amazon S3 User Guide*.
@@ -696,11 +700,11 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 * **AbortIncompleteMultipartUpload**: [AbortIncompleteMultipartUpload](#abortincompletemultipartupload): Specifies a lifecycle rule that stops incomplete multipart uploads to an Amazon S3 bucket.
 * **ExpirationDate**: string: Indicates when objects are deleted from Amazon S3 and Amazon S3 Glacier. The date value must be in ISO 8601 format. The time is always midnight UTC. If you specify an expiration and transition time, you must use the same time unit for both properties (either in days or by date). The expiration time must also be later than the transition time.
 * **ExpirationInDays**: int: Indicates the number of days after creation when objects are deleted from Amazon S3 and Amazon S3 Glacier. If you specify an expiration and transition time, you must use the same time unit for both properties (either in days or by date). The expiration time must also be later than the transition time.
-* **ExpiredObjectDeleteMarker**: bool: Indicates whether Amazon S3 will remove a delete marker without any noncurrent versions. If set to true, the delete marker will be removed if there are no noncurrent versions. This cannot be specified with ``ExpirationInDays``, ``ExpirationDate``, or ``TagFilters``.
+* **ExpiredObjectDeleteMarker**: bool (WriteOnly): Indicates whether Amazon S3 will remove a delete marker without any noncurrent versions. If set to true, the delete marker will be removed if there are no noncurrent versions. This cannot be specified with ``ExpirationInDays``, ``ExpirationDate``, or ``TagFilters``.
 * **Id**: string: Unique identifier for the rule. The value can't be longer than 255 characters.
 * **NoncurrentVersionExpiration**: [NoncurrentVersionExpiration](#noncurrentversionexpiration): Specifies when noncurrent object versions expire. Upon expiration, S3 permanently deletes the noncurrent object versions. You set this lifecycle configuration action on a bucket that has versioning enabled (or suspended) to request that S3 delete noncurrent object versions at a specific period in the object's lifetime.
-* **NoncurrentVersionExpirationInDays**: int: (Deprecated.) For buckets with versioning enabled (or suspended), specifies the time, in days, between when a new version of the object is uploaded to the bucket and when old versions of the object expire. When object versions expire, Amazon S3 permanently deletes them. If you specify a transition and expiration time, the expiration time must be later than the transition time.
-* **NoncurrentVersionTransition**: [NoncurrentVersionTransition](#noncurrentversiontransition): (Deprecated.) For buckets with versioning enabled (or suspended), specifies when non-current objects transition to a specified storage class. If you specify a transition and expiration time, the expiration time must be later than the transition time. If you specify this property, don't specify the ``NoncurrentVersionTransitions`` property.
+* **NoncurrentVersionExpirationInDays**: int (WriteOnly): (Deprecated.) For buckets with versioning enabled (or suspended), specifies the time, in days, between when a new version of the object is uploaded to the bucket and when old versions of the object expire. When object versions expire, Amazon S3 permanently deletes them. If you specify a transition and expiration time, the expiration time must be later than the transition time.
+* **NoncurrentVersionTransition**: [NoncurrentVersionTransition](#noncurrentversiontransition) (WriteOnly): (Deprecated.) For buckets with versioning enabled (or suspended), specifies when non-current objects transition to a specified storage class. If you specify a transition and expiration time, the expiration time must be later than the transition time. If you specify this property, don't specify the ``NoncurrentVersionTransitions`` property.
 * **NoncurrentVersionTransitions**: [NoncurrentVersionTransition](#noncurrentversiontransition)[]: For buckets with versioning enabled (or suspended), one or more transition rules that specify when non-current objects transition to a specified storage class. If you specify a transition and expiration time, the expiration time must be later than the transition time. If you specify this property, don't specify the ``NoncurrentVersionTransition`` property.
 * **ObjectSizeGreaterThan**: string: Specifies the minimum object size in bytes for this rule to apply to. Objects must be larger than this value in bytes. For more information about size based rules, see [Lifecycle configuration using size-based rules](https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-configuration-examples.html#lc-size-rules) in the *Amazon S3 User Guide*.
 * **ObjectSizeLessThan**: string: Specifies the maximum object size in bytes for this rule to apply to. Objects must be smaller than this value in bytes. For more information about sized based rules, see [Lifecycle configuration using size-based rules](https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-configuration-examples.html#lc-size-rules) in the *Amazon S3 User Guide*.
@@ -708,7 +712,7 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
   Replacement must be made for object keys containing special characters (such as carriage returns) when using XML requests. For more information, see [XML related object key constraints](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints).
 * **Status**: string (Required): If ``Enabled``, the rule is currently being applied. If ``Disabled``, the rule is not currently being applied.
 * **TagFilters**: [TagFilter](#tagfilter)[]: Tags to use to identify a subset of objects to which the lifecycle rule applies.
-* **Transition**: [Transition](#transition): (Deprecated.) Specifies when an object transitions to a specified storage class. If you specify an expiration and transition time, you must use the same time unit for both properties (either in days or by date). The expiration time must also be later than the transition time. If you specify this property, don't specify the ``Transitions`` property.
+* **Transition**: [Transition](#transition) (WriteOnly): (Deprecated.) Specifies when an object transitions to a specified storage class. If you specify an expiration and transition time, you must use the same time unit for both properties (either in days or by date). The expiration time must also be later than the transition time. If you specify this property, don't specify the ``Transitions`` property.
 * **Transitions**: [Transition](#transition)[]: One or more transition rules that specify when an object transitions to a specified storage class. If you specify an expiration and transition time, you must use the same time unit for both properties (either in days or by date). The expiration time must also be later than the transition time. If you specify this property, don't specify the ``Transition`` property.
 
 ## S3BucketDestination

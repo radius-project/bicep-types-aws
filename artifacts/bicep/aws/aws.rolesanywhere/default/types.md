@@ -114,6 +114,8 @@
 
 ## Subject_Properties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Tag
 ### Properties

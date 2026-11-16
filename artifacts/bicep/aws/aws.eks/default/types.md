@@ -374,9 +374,13 @@
 
 ## Nodegroup_Labels
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Nodegroup_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## NodeRepairConfig
 ### Properties

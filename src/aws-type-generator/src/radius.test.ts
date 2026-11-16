@@ -122,7 +122,7 @@ describe('loadRadius', () => {
     test('reads both schema directories and the extra properties', () => {
         const radius = loadRadius(fixturePaths)
 
-        expect([...radius.native.keys()].sort()).toEqual(['AWS::CodeBuild::Project', 'AWS::DocDB::DBCluster'])
+        expect([...radius.native.keys()].sort()).toEqual(['AWS::CodeBuild::Project', 'AWS::DocDB::DBCluster', 'AWS::LakeFormation::DataLakeSettings'])
         expect([...radius.handwritten.keys()].sort()).toEqual(['AWS::IAM::AccountPasswordPolicy', 'AWS::S3::Object'])
         expect(Object.keys(radius.extraProperties).sort()).toEqual(['AWS::MSK::Cluster', 'AWS::MSK::ServerlessCluster'])
     })
@@ -171,7 +171,7 @@ describe('applyRadius', () => {
         const result = applyRadius(records, { ...loadRadius(fixturePaths), handwritten: new Map(), extraProperties: {} })
 
         expect(result.records.map(r => r.type)).toEqual([
-            'AWS::CodeBuild::Project', 'AWS::EC2::VPC', 'AWS::MSK::Cluster', 'AWS::MSK::ServerlessCluster', 'AWS::DocDB::DBCluster'])
+            'AWS::CodeBuild::Project', 'AWS::EC2::VPC', 'AWS::MSK::Cluster', 'AWS::MSK::ServerlessCluster', 'AWS::DocDB::DBCluster', 'AWS::LakeFormation::DataLakeSettings'])
         const project = result.records[0]
         expect(project.schema.description).toBe("Radius's schema for a CodeBuild project.")
         expect(Object.keys(project.schema.properties!)).toEqual(['Name', 'Arn', 'ServiceRole'])

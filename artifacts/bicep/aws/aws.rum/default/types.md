@@ -10,6 +10,8 @@
 
 ## AppMonitor_DimensionKeys
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## AppMonitor_JavaScriptSourceMaps
 ### Properties

@@ -308,9 +308,13 @@
 
 ## Campaign_ItemExplorationConfig
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Campaign_RankingInfluence
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: int
 
 ## CampaignConfig
 ### Properties
@@ -373,9 +377,13 @@
 
 ## Recommender_ExcludedDatasetColumns
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string[]
 
 ## Recommender_ItemExplorationConfig
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## RecommenderConfig
 ### Properties
@@ -404,6 +412,8 @@
 
 ## Solution_AlgorithmHyperParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Solution_AutoMLConfig
 ### Properties
@@ -412,6 +422,8 @@
 
 ## Solution_FeatureTransformationParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Solution_HpoConfig
 ### Properties

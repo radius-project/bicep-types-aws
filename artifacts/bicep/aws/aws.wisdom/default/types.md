@@ -309,7 +309,7 @@
 * **KnowledgeBaseArn**: string (Required): The Amazon Resource Name (ARN) of the knowledge base to which the message template belongs.
 * **Language**: string: The language code value for the language in which the message template is written. The supported language codes include de_DE, en_US, es_ES, fr_FR, id_ID, it_IT, ja_JP, ko_KR, pt_BR, zh_CN, zh_TW
 * **MessageTemplateArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the message template.
-* **MessageTemplateAttachments**: [MessageTemplateAttachment](#messagetemplateattachment)[] (ReadOnly, WriteOnly): List of message template attachments
+* **MessageTemplateAttachments**: [MessageTemplateAttachment](#messagetemplateattachment)[]: List of message template attachments
 * **MessageTemplateContentSha256**: string (ReadOnly): The content SHA256 of the message template.
 * **MessageTemplateId**: string (ReadOnly): The unique identifier of the message template.
 * **Name**: string (Required): The name of the message template.
@@ -363,6 +363,8 @@
 
 ## Content_Metadata
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ContentAssociationContents
 ### Properties
@@ -370,6 +372,8 @@
 
 ## CustomAttributes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## CustomerProfileAttributes
 ### Properties
@@ -528,9 +532,9 @@
 
 ## MessageTemplateAttachment
 ### Properties
-* **AttachmentId**: string
+* **AttachmentId**: string (ReadOnly)
 * **AttachmentName**: string (Required)
-* **S3PresignedUrl**: string (Required)
+* **S3PresignedUrl**: string (Required, WriteOnly)
 
 ## MessageTemplateAttributes
 ### Properties
@@ -633,12 +637,18 @@
 
 ## Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## VectorIngestionConfiguration
 ### Properties

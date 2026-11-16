@@ -326,6 +326,8 @@ The value must be either -1 or an integer between 1 and 3,653.
 
 ## Cluster_NamespaceResourcePolicy
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## DataShareAssociation
 ### Properties
@@ -336,6 +338,8 @@ The value must be either -1 or an integer between 1 and 3,653.
 
 ## EncryptionContextMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Endpoint
 ### Properties
@@ -344,7 +348,7 @@ The value must be either -1 or an integer between 1 and 3,653.
 
 ## EndpointAccess_VpcEndpoint
 ### Properties
-* **NetworkInterfaces**: [NetworkInterface](#networkinterface)[] (ReadOnly): One or more network interfaces of the endpoint. Also known as an interface endpoint.
+* **NetworkInterfaces**: [NetworkInterface](#networkinterface)[]: One or more network interfaces of the endpoint. Also known as an interface endpoint.
 * **VpcEndpointId**: string (ReadOnly): The connection endpoint ID for connecting an Amazon Redshift cluster through the proxy.
 * **VpcId**: string (ReadOnly): The VPC identifier that the endpoint is associated.
 
@@ -357,10 +361,10 @@ The value must be either -1 or an integer between 1 and 3,653.
 
 ## NetworkInterface
 ### Properties
-* **AvailabilityZone**: string: The Availability Zone.
-* **NetworkInterfaceId**: string: The network interface identifier.
-* **PrivateIpAddress**: string: The IPv4 address of the network interface within the subnet.
-* **SubnetId**: string: The subnet identifier.
+* **AvailabilityZone**: string (ReadOnly): The Availability Zone.
+* **NetworkInterfaceId**: string (ReadOnly): The network interface identifier.
+* **PrivateIpAddress**: string (ReadOnly): The IPv4 address of the network interface within the subnet.
+* **SubnetId**: string (ReadOnly): The subnet identifier.
 
 ## Parameter
 ### Properties
@@ -436,6 +440,6 @@ The value must be either -1 or an integer between 1 and 3,653.
 
 ## VpcSecurityGroup
 ### Properties
-* **Status**: string: The status of the VPC security group.
-* **VpcSecurityGroupId**: string: The identifier of the VPC security group.
+* **Status**: string (ReadOnly): The status of the VPC security group.
+* **VpcSecurityGroupId**: string (ReadOnly): The identifier of the VPC security group.
 

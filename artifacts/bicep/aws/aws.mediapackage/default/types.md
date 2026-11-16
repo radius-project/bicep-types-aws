@@ -62,7 +62,7 @@
 ### Properties
 * **Arn**: string (ReadOnly): The ARN of the Asset.
 * **CreatedAt**: string (ReadOnly): The time the Asset was initially submitted for Ingest.
-* **EgressEndpoints**: [EgressEndpoint](#egressendpoint)[] (ReadOnly): The list of egress endpoints available for the Asset.
+* **EgressEndpoints**: [EgressEndpoint](#egressendpoint)[]: The list of egress endpoints available for the Asset.
 * **Id**: string (Required, Identifier): The unique identifier for the Asset.
 * **PackagingGroupId**: string (Required): The ID of the PackagingGroup for the Asset.
 * **ResourceId**: string: The resource ID to include in SPEKE key requests.
@@ -206,8 +206,8 @@
 
 ## EgressEndpoint
 ### Properties
-* **PackagingConfigurationId**: string (Required): The ID of the PackagingConfiguration being applied to the Asset.
-* **Url**: string (Required): The URL of the parent manifest for the repackaged Asset.
+* **PackagingConfigurationId**: string (Required, ReadOnly): The ID of the PackagingConfiguration being applied to the Asset.
+* **Url**: string (Required, ReadOnly): The URL of the parent manifest for the repackaged Asset.
 
 ## EncryptionContractConfiguration
 ### Properties
@@ -235,7 +235,7 @@
 
 ## HlsIngest
 ### Properties
-* **ingestEndpoints**: [IngestEndpoint](#ingestendpoint)[] (ReadOnly): A list of endpoints to which the source stream should be sent.
+* **ingestEndpoints**: [IngestEndpoint](#ingestendpoint)[]: A list of endpoints to which the source stream should be sent.
 
 ## HlsManifest
 ### Properties
@@ -284,10 +284,10 @@
 
 ## IngestEndpoint
 ### Properties
-* **Id**: string (Identifier): The system generated unique identifier for the IngestEndpoint
-* **Password**: string: The system generated password for ingest authentication.
-* **Url**: string: The ingest URL to which the source stream should be sent.
-* **Username**: string: The system generated username for ingest authentication.
+* **Id**: string (ReadOnly, Identifier): The system generated unique identifier for the IngestEndpoint
+* **Password**: string (ReadOnly): The system generated password for ingest authentication.
+* **Url**: string (ReadOnly): The ingest URL to which the source stream should be sent.
+* **Username**: string (ReadOnly): The system generated username for ingest authentication.
 
 ## LogConfiguration
 ### Properties

@@ -59,7 +59,7 @@
 ## AWS.FraudDetector/DetectorProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): The ARN of the detector.
-* **AssociatedModels**: [Model](#model)[] (ReadOnly): The models to associate with this detector.
+* **AssociatedModels**: [Model](#model)[]: The models to associate with this detector.
 * **CreatedTime**: string (ReadOnly): The time when the detector was created.
 * **Description**: string: The description of the detector.
 * **DetectorId**: string (Required): The ID of the detector
@@ -68,7 +68,7 @@
 * **EventType**: [EventType](#eventtype) (Required): The event type to associate this detector with.
 * **LastUpdatedTime**: string (ReadOnly): The time when the detector was last updated.
 * **RuleExecutionMode**: string
-* **Rules**: [Rule](#rule)[] (Required, ReadOnly)
+* **Rules**: [Rule](#rule)[] (Required)
 * **Tags**: [Tag](#tag)[]: Tags associated with this detector.
 
 ## AWS.FraudDetector/EntityTypeProperties
@@ -85,9 +85,9 @@
 * **Arn**: string (ReadOnly, Identifier): The ARN of the event type.
 * **CreatedTime**: string (ReadOnly): The time when the event type was created.
 * **Description**: string: The description of the event type.
-* **EntityTypes**: [EntityType](#entitytype)[] (Required, ReadOnly)
-* **EventVariables**: [EventVariable](#eventvariable)[] (Required, ReadOnly)
-* **Labels**: [Label](#label)[] (Required, ReadOnly)
+* **EntityTypes**: [EntityType](#entitytype)[] (Required)
+* **EventVariables**: [EventVariable](#eventvariable)[] (Required)
+* **Labels**: [Label](#label)[] (Required)
 * **LastUpdatedTime**: string (ReadOnly): The time when the event type was last updated.
 * **Name**: string (Required): The name for the event type
 * **Tags**: [Tag](#tag)[]: Tags associated with this event type.
@@ -136,21 +136,21 @@
 
 ## EntityType
 ### Properties
-* **Arn**: string (Identifier)
-* **CreatedTime**: string: The time when the entity type was created.
+* **Arn**: string (ReadOnly, Identifier)
+* **CreatedTime**: string (ReadOnly): The time when the entity type was created.
 * **Description**: string: The description.
 * **Inline**: bool
-* **LastUpdatedTime**: string: The time when the entity type was last updated.
+* **LastUpdatedTime**: string (ReadOnly): The time when the entity type was last updated.
 * **Name**: string
 * **Tags**: [Tag](#tag)[]: Tags associated with this entity type.
 
 ## EntityType
 ### Properties
-* **Arn**: string (Identifier)
-* **CreatedTime**: string: The time when the event type was created.
+* **Arn**: string (ReadOnly, Identifier)
+* **CreatedTime**: string (ReadOnly): The time when the event type was created.
 * **Description**: string: The description.
 * **Inline**: bool
-* **LastUpdatedTime**: string: The time when the event type was last updated.
+* **LastUpdatedTime**: string (ReadOnly): The time when the event type was last updated.
 * **Name**: string
 * **Tags**: [Tag](#tag)[]: Tags associated with this event type.
 
@@ -159,88 +159,88 @@
 * **Arn**: string (ReadOnly, Identifier): The ARN of the event type.
 * **CreatedTime**: string (ReadOnly): The time when the event type was created.
 * **Description**: string: The description of the event type.
-* **EntityTypes**: [EntityType](#entitytype)[] (ReadOnly)
-* **EventVariables**: [EventVariable](#eventvariable)[] (ReadOnly)
+* **EntityTypes**: [EntityType](#entitytype)[]
+* **EventVariables**: [EventVariable](#eventvariable)[]
 * **Inline**: bool
-* **Labels**: [Label](#label)[] (ReadOnly)
+* **Labels**: [Label](#label)[]
 * **LastUpdatedTime**: string (ReadOnly): The time when the event type was last updated.
 * **Name**: string: The name for the event type
 * **Tags**: [Tag](#tag)[]: Tags associated with this event type.
 
 ## EventVariable
 ### Properties
-* **Arn**: string (Identifier)
-* **CreatedTime**: string: The time when the event variable was created.
+* **Arn**: string (ReadOnly, Identifier)
+* **CreatedTime**: string (ReadOnly): The time when the event variable was created.
 * **DataSource**: string
 * **DataType**: string
 * **DefaultValue**: string
 * **Description**: string: The description.
 * **Inline**: bool
-* **LastUpdatedTime**: string: The time when the event variable was last updated.
+* **LastUpdatedTime**: string (ReadOnly): The time when the event variable was last updated.
 * **Name**: string
 * **Tags**: [Tag](#tag)[]: Tags associated with this event variable.
 * **VariableType**: string
 
 ## EventVariable
 ### Properties
-* **Arn**: string (Identifier)
-* **CreatedTime**: string: The time when the event type was created.
+* **Arn**: string (ReadOnly, Identifier)
+* **CreatedTime**: string (ReadOnly): The time when the event type was created.
 * **DataSource**: string
 * **DataType**: string
 * **DefaultValue**: string
 * **Description**: string: The description.
 * **Inline**: bool
-* **LastUpdatedTime**: string: The time when the event type was last updated.
+* **LastUpdatedTime**: string (ReadOnly): The time when the event type was last updated.
 * **Name**: string
 * **Tags**: [Tag](#tag)[]: Tags associated with this event type.
 * **VariableType**: string
 
 ## Label
 ### Properties
-* **Arn**: string (Identifier)
-* **CreatedTime**: string: The time when the label was created.
+* **Arn**: string (ReadOnly, Identifier)
+* **CreatedTime**: string (ReadOnly): The time when the label was created.
 * **Description**: string: The description.
 * **Inline**: bool
-* **LastUpdatedTime**: string: The time when the label was last updated.
+* **LastUpdatedTime**: string (ReadOnly): The time when the label was last updated.
 * **Name**: string
 * **Tags**: [Tag](#tag)[]: Tags associated with this label.
 
 ## Label
 ### Properties
-* **Arn**: string (Identifier)
-* **CreatedTime**: string: The time when the event type was created.
+* **Arn**: string (ReadOnly, Identifier)
+* **CreatedTime**: string (ReadOnly): The time when the event type was created.
 * **Description**: string: The description.
 * **Inline**: bool
-* **LastUpdatedTime**: string: The time when the event type was last updated.
+* **LastUpdatedTime**: string (ReadOnly): The time when the event type was last updated.
 * **Name**: string
 * **Tags**: [Tag](#tag)[]: Tags associated with this event type.
 
 ## Model
 ### Properties
-* **Arn**: string (Identifier)
+* **Arn**: string (ReadOnly, Identifier)
 
 ## Outcome
 ### Properties
-* **Arn**: string (Identifier)
-* **CreatedTime**: string: The time when the outcome was created.
+* **Arn**: string (ReadOnly, Identifier)
+* **CreatedTime**: string (ReadOnly): The time when the outcome was created.
 * **Description**: string: The description.
 * **Inline**: bool
-* **LastUpdatedTime**: string: The time when the outcome was last updated.
+* **LastUpdatedTime**: string (ReadOnly): The time when the outcome was last updated.
 * **Name**: string
 * **Tags**: [Tag](#tag)[]: Tags associated with this outcome.
 
 ## Rule
 ### Properties
-* **Arn**: string (Identifier)
-* **CreatedTime**: string: The time when the event type was created.
+* **Arn**: string (ReadOnly, Identifier)
+* **CreatedTime**: string (ReadOnly): The time when the event type was created.
 * **Description**: string: The description.
 * **DetectorId**: string
 * **Expression**: string
 * **Language**: string
-* **LastUpdatedTime**: string: The time when the event type was last updated.
+* **LastUpdatedTime**: string (ReadOnly): The time when the event type was last updated.
 * **Outcomes**: [Outcome](#outcome)[]
 * **RuleId**: string
-* **RuleVersion**: string
+* **RuleVersion**: string (ReadOnly)
 * **Tags**: [Tag](#tag)[]: Tags associated with this event type.
 
 ## Tag

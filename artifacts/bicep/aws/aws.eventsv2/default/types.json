@@ -410,9 +410,15 @@
     "value": "AWS.EventsV2/ResourcePolicyProperties"
   },
   {
+    "$type": "AnyType"
+  },
+  {
     "$type": "ObjectType",
     "name": "ResourcePolicy_PolicyDocument",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/22"
+    }
   },
   {
     "$type": "ObjectType",
@@ -427,7 +433,7 @@
       },
       "PolicyDocument": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/23"
         },
         "flags": 1,
         "description": "The resource policy document, as a JSON object. The document can be up to 20 KB. This quota is adjustable. An empty object is not a valid policy. To remove the policy, delete this resource. The principals in the document must exist and be visible to the service when the policy is written. When you create a new IAM role or user, that principal might not be immediately visible to the service. You might need to enforce a delay before you include it in the document. For more information, see \"Changes that I make are not always immediately visible\" in the IAM User Guide. Declare Version. Write AWS account and role principals as ARNs rather than as account IDs. Write a single Action, Resource, or principal value as a scalar rather than as a one-element list. The service returns these forms as you wrote them. It normalizes other forms, and a normalized value can appear as drift. A stack update replaces the whole policy with this document, including any change made outside CloudFormation. For more information about event bus resource policies, see the Amazon EventBridge User Guide."
@@ -461,7 +467,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -472,7 +478,7 @@
     "$type": "ResourceType",
     "name": "AWS.EventsV2/ResourcePolicy@default",
     "body": {
-      "$ref": "#/24"
+      "$ref": "#/25"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -513,7 +519,10 @@
   {
     "$type": "ObjectType",
     "name": "EventBusV2MetadataMap",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/3"
+    }
   },
   {
     "$type": "ObjectType",
@@ -561,7 +570,7 @@
     "properties": {
       "Filters": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/45"
         },
         "flags": 1,
         "description": "The list of filters, 1-50 entries. An event must match every filter to be delivered."
@@ -578,7 +587,10 @@
   {
     "$type": "ObjectType",
     "name": "HeaderParametersMap",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/3"
+    }
   },
   {
     "$type": "ObjectType",
@@ -586,28 +598,28 @@
     "properties": {
       "EventBusV2Parameters": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/46"
         },
         "flags": 0,
         "description": "Parameters for forwarding events to another EventBridge event bus, used when TargetArn is an event bus ARN of the form arn:{partition}:events:{region}:{account}:event-busv2/{name}/{id}."
       },
       "HttpParameters": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/48"
         },
         "flags": 0,
         "description": "Parameters for invoking an HTTP endpoint target, such as an Amazon API Gateway endpoint or an EventBridge API destination."
       },
       "KinesisParameters": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": "Parameters for writing events to an Amazon Kinesis Data Streams target."
       },
       "LambdaParameters": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "Parameters for invoking an AWS Lambda function target."
@@ -621,21 +633,21 @@
       },
       "SnsParameters": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "Parameters for publishing events to an Amazon SNS topic target."
       },
       "SqsParameters": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "Parameters for sending events to an Amazon SQS queue target."
       },
       "StepFunctionsParameters": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "Parameters for starting an AWS Step Functions state machine execution target."
@@ -649,7 +661,7 @@
       },
       "UniversalTargetParameters": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0,
         "description": "Parameters for invoking an AWS service API as a universal service integration target, used when TargetArn has the form arn:{partition}:events:::aws-sdk:{service}:{apiAction}."
@@ -692,7 +704,10 @@
   {
     "$type": "ObjectType",
     "name": "MessageAttributeMap",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/38"
+    }
   },
   {
     "$type": "ObjectType",
@@ -764,7 +779,10 @@
   {
     "$type": "ObjectType",
     "name": "QueryStringParametersMap",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/3"
+    }
   },
   {
     "$type": "ObjectType",
@@ -819,7 +837,7 @@
     "properties": {
       "JsonataConfiguration": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/35"
         },
         "flags": 0,
         "description": "The JSONata expression configuration. Required when Type is JSONATA."
@@ -836,7 +854,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/30"
+      "$ref": "#/31"
     }
   },
   {
@@ -845,21 +863,21 @@
     "properties": {
       "DeduplicationConfiguration": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/28"
         },
         "flags": 0,
         "description": "Deduplication settings applied to the forwarded events on the downstream event bus."
       },
       "Metadata": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/29"
         },
         "flags": 0,
         "description": "Metadata forwarded with each event, as key-value string pairs."
       },
       "SystemMetadata": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/30"
         },
         "flags": 0,
         "description": "System metadata attached to each forwarded event, controlling FIFO ordering and deduplication on the downstream event bus."
@@ -878,7 +896,7 @@
     "properties": {
       "HeaderParameters": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "HTTP headers to add to the request."
@@ -892,14 +910,14 @@
       },
       "PathParameterValues": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/47"
         },
         "flags": 0,
         "description": "Values for the path parameters (wildcards) in the target URL, in order."
       },
       "QueryStringParameters": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "Query string parameters to add to the request."
@@ -973,7 +991,7 @@
     "properties": {
       "MessageAttributes": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "Custom message attributes to attach to each message; Amazon SNS subscription filter policies can match on them."
@@ -1021,7 +1039,7 @@
       },
       "MessageAttributes": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "Custom message attributes to attach to each message."
@@ -1042,7 +1060,7 @@
       },
       "MessageSystemAttributes": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "Message system attributes to attach to each message, such as AWSTraceHeader."
@@ -1110,7 +1128,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/42"
+      "$ref": "#/43"
     }
   },
   {
@@ -1119,7 +1137,7 @@
     "properties": {
       "BatchConfiguration": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Configuration for batching events into a single delivery to the target."
@@ -1154,14 +1172,14 @@
       },
       "FilterConfiguration": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/32"
         },
         "flags": 0,
         "description": "Configuration for filtering which events are delivered to the target. An event must match every filter to be delivered."
       },
       "InvokeConfiguration": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/34"
         },
         "flags": 1,
         "description": "Configuration for how the subscriber invokes its target, including the target ARN, the IAM role used to invoke it, and, optionally, the target-specific parameters object that matches the target type."
@@ -1175,7 +1193,7 @@
       },
       "LogConfiguration": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "Delivery logging configuration for the subscriber."
@@ -1189,14 +1207,14 @@
       },
       "OnFailureConfiguration": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "The destination for events that could not be delivered to the target."
       },
       "PointInTimeConfiguration": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "The point in time to start delivering events from. Used when StartingPosition is POINT_IN_TIME."
@@ -1210,7 +1228,7 @@
       },
       "RetryPolicy": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "The retry policy for failed deliveries to the target."
@@ -1238,14 +1256,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/56"
         },
         "flags": 0,
         "description": "The tags assigned to the subscriber."
       },
       "Transformer": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/44"
         },
         "flags": 0,
         "description": "Configuration for transforming events before delivery to the target."
@@ -1279,7 +1297,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/57"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1290,7 +1308,7 @@
     "$type": "ResourceType",
     "name": "AWS.EventsV2/Subscriber@default",
     "body": {
-      "$ref": "#/57"
+      "$ref": "#/58"
     },
     "readableScopes": 0,
     "writableScopes": 0

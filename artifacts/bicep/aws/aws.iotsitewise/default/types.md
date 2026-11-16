@@ -87,7 +87,7 @@
 ### Properties
 * **ChildAssetId**: string (Required): The ID of the child asset to be associated.
 * **ExternalId**: string: String-friendly customer provided external ID
-* **Id**: string: Customer provided actual UUID for property
+* **Id**: string (ReadOnly): Customer provided actual UUID for property
 * **LogicalId**: string: The LogicalID of a hierarchy in the parent asset's model.
 
 ## AssetModelCompositeModel
@@ -96,7 +96,7 @@
 * **CompositeModelProperties**: [AssetModelProperty](#assetmodelproperty)[]: The property definitions of the asset model. You can specify up to 200 properties per asset model.
 * **Description**: string: A description for the asset composite model.
 * **ExternalId**: string: The External ID of the composite model
-* **Id**: string: The Actual ID of the composite model
+* **Id**: string (ReadOnly): The Actual ID of the composite model
 * **Name**: string (Required): A unique, friendly name for the asset composite model.
 * **ParentAssetModelCompositeModelExternalId**: string: The parent composite model External ID
 * **Path**: string[]: The path of the composite model. This is only for derived composite models
@@ -106,16 +106,27 @@
 ### Properties
 * **ChildAssetModelId**: string (Required): The ID of the asset model. All assets in this hierarchy must be instances of the child AssetModelId asset model.
 * **ExternalId**: string: Customer provided external ID for hierarchy
-* **Id**: string: Customer provided actual ID for hierarchy
+* **Id**: string (ReadOnly): Customer provided actual ID for hierarchy
 * **LogicalId**: string: Customer provided logical ID for hierarchy.
 * **Name**: string (Required): The name of the asset model hierarchy.
 
 ## AssetModelProperty
 ### Properties
 * **DataType**: string (Required): The data type of the asset model property.
-* **DataTypeSpec**: string: The data type of the structure for this property.
+* **DataTypeSpec**: string (WriteOnly): The data type of the structure for this property.
 * **ExternalId**: string: The External ID of the Asset Model Property
-* **Id**: string: The ID of the Asset Model Property
+* **Id**: string (ReadOnly): The ID of the Asset Model Property
+* **LogicalId**: string: Customer provided Logical ID for property.
+* **Name**: string (Required): The name of the asset model property.
+* **Type**: [PropertyType](#propertytype) (Required): The property type
+* **Unit**: string: The unit of the asset model property, such as Newtons or RPM.
+
+## AssetModelProperty
+### Properties
+* **DataType**: string (Required): The data type of the asset model property.
+* **DataTypeSpec**: string (WriteOnly): The data type of the structure for this property.
+* **ExternalId**: string: The External ID of the Asset Model Property
+* **Id**: string (ReadOnly): The ID of the Asset Model Property
 * **LogicalId**: string: Customer provided Logical ID for property.
 * **Name**: string (Required): The name of the asset model property.
 * **Type**: [PropertyType](#propertytype) (Required): The property type
@@ -125,7 +136,7 @@
 ### Properties
 * **Alias**: string: The property alias that identifies the property.
 * **ExternalId**: string: String-friendly customer provided external ID
-* **Id**: string: Customer provided actual UUID for property
+* **Id**: string (ReadOnly): Customer provided actual UUID for property
 * **LogicalId**: string: Customer provided ID for property.
 * **NotificationState**: string: The MQTT notification state (ENABLED or DISABLED) for this asset property.
 * **Unit**: string: The unit of measure (such as Newtons or RPM) of the asset property. If you don't specify a value for this parameter, the service uses the value of the assetModelProperty in the asset model.
@@ -145,13 +156,13 @@
 ## AWS.IoTSiteWise/AssetModelProperties
 ### Properties
 * **AssetModelArn**: string (ReadOnly): The ARN of the asset model, which has the following format.
-* **AssetModelCompositeModels**: [AssetModelCompositeModel](#assetmodelcompositemodel)[] (ReadOnly, WriteOnly): The composite asset models that are part of this asset model. Composite asset models are asset models that contain specific properties.
+* **AssetModelCompositeModels**: [AssetModelCompositeModel](#assetmodelcompositemodel)[]: The composite asset models that are part of this asset model. Composite asset models are asset models that contain specific properties.
 * **AssetModelDescription**: string: A description for the asset model.
 * **AssetModelExternalId**: string: The external ID of the asset model.
-* **AssetModelHierarchies**: [AssetModelHierarchy](#assetmodelhierarchy)[] (ReadOnly): The hierarchy definitions of the asset model. Each hierarchy specifies an asset model whose assets can be children of any other assets created from this asset model. You can specify up to 10 hierarchies per asset model.
+* **AssetModelHierarchies**: [AssetModelHierarchy](#assetmodelhierarchy)[]: The hierarchy definitions of the asset model. Each hierarchy specifies an asset model whose assets can be children of any other assets created from this asset model. You can specify up to 10 hierarchies per asset model.
 * **AssetModelId**: string (ReadOnly, Identifier): The ID of the asset model.
 * **AssetModelName**: string (Required): A unique, friendly name for the asset model.
-* **AssetModelProperties**: [AssetModelProperty](#assetmodelproperty)[] (ReadOnly, WriteOnly): The property definitions of the asset model. You can specify up to 200 properties per asset model.
+* **AssetModelProperties**: [AssetModelProperty](#assetmodelproperty)[]: The property definitions of the asset model. You can specify up to 200 properties per asset model.
 * **AssetModelType**: string: The type of the asset model (ASSET_MODEL OR COMPONENT_MODEL or INTERFACE)
 * **EnforcedAssetModelInterfaceRelationships**: [EnforcedAssetModelInterfaceRelationship](#enforcedassetmodelinterfacerelationship)[]: a list of asset model and interface relationships
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the asset model.
@@ -161,11 +172,11 @@
 * **AssetArn**: string (ReadOnly): The ARN of the asset
 * **AssetDescription**: string: A description for the asset
 * **AssetExternalId**: string: The External ID of the asset
-* **AssetHierarchies**: [AssetHierarchy](#assethierarchy)[] (ReadOnly)
+* **AssetHierarchies**: [AssetHierarchy](#assethierarchy)[]
 * **AssetId**: string (ReadOnly, Identifier): The ID of the asset
 * **AssetModelId**: string (Required): The ID of the asset model from which to create the asset.
 * **AssetName**: string (Required): A unique, friendly name for the asset.
-* **AssetProperties**: [AssetProperty](#assetproperty)[] (ReadOnly)
+* **AssetProperties**: [AssetProperty](#assetproperty)[]
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs that contain metadata for the asset.
 
 ## AWS.IoTSiteWise/DashboardProperties
@@ -264,6 +275,21 @@
 * **Name**: string (Required): The friendly name of the variable to be used in the expression.
 * **Value**: [VariableValue](#variablevalue) (Required): The variable that identifies an asset property from which to use values.
 
+## ExpressionVariable
+### Properties
+* **Name**: string (Required): The friendly name of the variable to be used in the expression.
+* **Value**: [VariableValue](#variablevalue) (Required): The variable that identifies an asset property from which to use values.
+
+## ExpressionVariable
+### Properties
+* **Name**: string (Required): The friendly name of the variable to be used in the expression.
+* **Value**: [VariableValue](#variablevalue) (Required): The variable that identifies an asset property from which to use values.
+
+## ExpressionVariable
+### Properties
+* **Name**: string (Required): The friendly name of the variable to be used in the expression.
+* **Value**: [VariableValue](#variablevalue) (Required): The variable that identifies an asset property from which to use values.
+
 ## GatewayCapabilitySummary
 ### Properties
 * **CapabilityConfiguration**: string
@@ -298,6 +324,12 @@
 * **Variables**: [ExpressionVariable](#expressionvariable)[] (Required): The list of variables used in the expression.
 * **Window**: [MetricWindow](#metricwindow) (Required): The window (time interval) over which AWS IoT SiteWise computes the metric's aggregation expression
 
+## Metric
+### Properties
+* **Expression**: string (Required): The mathematical expression that defines the metric aggregation function. You can specify up to 10 functions per expression.
+* **Variables**: [ExpressionVariable](#expressionvariable)[] (Required): The list of variables used in the expression.
+* **Window**: [MetricWindow](#metricwindow) (Required): The window (time interval) over which AWS IoT SiteWise computes the metric's aggregation expression
+
 ## MetricWindow
 ### Properties
 * **Tumbling**: [TumblingWindow](#tumblingwindow)
@@ -313,6 +345,12 @@
 
 ## PortalTypeConfiguration
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [PortalTypeEntry](#portaltypeentry)
+
+## PortalTypeEntry
+### Properties
+* **PortalTools**: string[] (Required)
 
 ## Project
 ### Properties
@@ -320,7 +358,26 @@
 
 ## PropertyPathDefinition
 ### Properties
-* **Name**: string (Required): The name of the property
+* **Name**: string (Required, WriteOnly): The name of the property
+
+## PropertyPathDefinition
+### Properties
+* **Name**: string (Required, WriteOnly): The name of the property
+
+## PropertyPathDefinition
+### Properties
+* **Name**: string (Required, WriteOnly): The name of the property
+
+## PropertyPathDefinition
+### Properties
+* **Name**: string (Required, WriteOnly): The name of the property
+
+## PropertyType
+### Properties
+* **Attribute**: [Attribute](#attribute)
+* **Metric**: [Metric](#metric)
+* **Transform**: [Transform](#transform)
+* **TypeName**: string (Required)
 
 ## PropertyType
 ### Properties
@@ -387,6 +444,11 @@
 * **Expression**: string (Required): The mathematical expression that defines the transformation function. You can specify up to 10 functions per expression.
 * **Variables**: [ExpressionVariable](#expressionvariable)[] (Required): The list of variables used in the expression.
 
+## Transform
+### Properties
+* **Expression**: string (Required): The mathematical expression that defines the transformation function. You can specify up to 10 functions per expression.
+* **Variables**: [ExpressionVariable](#expressionvariable)[] (Required): The list of variables used in the expression.
+
 ## TumblingWindow
 ### Properties
 * **Interval**: string (Required)
@@ -399,10 +461,40 @@
 ## VariableValue
 ### Properties
 * **HierarchyExternalId**: string: The External ID of the hierarchy that is trying to be referenced
-* **HierarchyId**: string: The ID of the hierarchy that is trying to be referenced
+* **HierarchyId**: string (WriteOnly): The ID of the hierarchy that is trying to be referenced
 * **HierarchyLogicalId**: string
 * **PropertyExternalId**: string: The External ID of the property that is trying to be referenced
-* **PropertyId**: string: The ID of the property that is trying to be referenced
+* **PropertyId**: string (ReadOnly): The ID of the property that is trying to be referenced
+* **PropertyLogicalId**: string
+* **PropertyPath**: [PropertyPathDefinition](#propertypathdefinition)[]: The path of the property that is trying to be referenced
+
+## VariableValue
+### Properties
+* **HierarchyExternalId**: string (WriteOnly): The External ID of the hierarchy that is trying to be referenced
+* **HierarchyId**: string (WriteOnly): The ID of the hierarchy that is trying to be referenced
+* **HierarchyLogicalId**: string (WriteOnly)
+* **PropertyExternalId**: string: The External ID of the property that is trying to be referenced
+* **PropertyId**: string (ReadOnly): The ID of the property that is trying to be referenced
+* **PropertyLogicalId**: string
+* **PropertyPath**: [PropertyPathDefinition](#propertypathdefinition)[]: The path of the property that is trying to be referenced
+
+## VariableValue
+### Properties
+* **HierarchyExternalId**: string: The External ID of the hierarchy that is trying to be referenced
+* **HierarchyId**: string (WriteOnly): The ID of the hierarchy that is trying to be referenced
+* **HierarchyLogicalId**: string
+* **PropertyExternalId**: string: The External ID of the property that is trying to be referenced
+* **PropertyId**: string (ReadOnly): The ID of the property that is trying to be referenced
+* **PropertyLogicalId**: string
+* **PropertyPath**: [PropertyPathDefinition](#propertypathdefinition)[]: The path of the property that is trying to be referenced
+
+## VariableValue
+### Properties
+* **HierarchyExternalId**: string (WriteOnly): The External ID of the hierarchy that is trying to be referenced
+* **HierarchyId**: string (WriteOnly): The ID of the hierarchy that is trying to be referenced
+* **HierarchyLogicalId**: string (WriteOnly)
+* **PropertyExternalId**: string: The External ID of the property that is trying to be referenced
+* **PropertyId**: string (ReadOnly): The ID of the property that is trying to be referenced
 * **PropertyLogicalId**: string
 * **PropertyPath**: [PropertyPathDefinition](#propertypathdefinition)[]: The path of the property that is trying to be referenced
 

@@ -99,9 +99,13 @@
 
 ## Definition
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## DefinitionSubstitutions
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: bool | int | string
 
 ## DeploymentPreference
 ### Properties

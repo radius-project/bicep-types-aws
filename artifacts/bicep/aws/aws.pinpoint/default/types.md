@@ -57,9 +57,13 @@
 
 ## InAppTemplate_CustomConfig
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## InAppTemplate_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## OverrideButtonConfiguration
 ### Properties

@@ -154,9 +154,13 @@
 
 ## AccessGrant_ContextConditions
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string[]
 
 ## AccessGrant_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## AccessGrantPrincipal
 ### Properties
@@ -234,7 +238,7 @@
 * **Name**: string (Required): A name that identifies the access grant.
 * **Permission**: string (Required): The permission granted.
 * **Principal**: [AccessGrantPrincipal](#accessgrantprincipal) (Required): The principal receiving the grant.
-* **ScopedActions**: [ScopedActions](#scopedactions)[] (WriteOnly): Groups of actions allowed by the grant, each with the resource scopes and conditions that limit those actions.
+* **ScopedActions**: [ScopedActions](#scopedactions)[]: Groups of actions allowed by the grant, each with the resource scopes and conditions that limit those actions.
 * **SpaceId**: string (Required): The space this grant applies to. Domain-scoped grants are returned by ListDomainAccessGrantsForOrganization instead.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **UpdatedAt**: string (ReadOnly): The timestamp when the grant was last updated.
@@ -560,6 +564,8 @@
 
 ## Integration_IntegrationAttributes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Integration_Tags
 ### Properties
@@ -705,7 +711,7 @@
 ## ScopedActions
 ### Properties
 * **Actions**: string[] (Required): The actions this group applies to, each in vendor-code:Action form.
-* **ContextConditions**: [AccessGrant_ContextConditions](#accessgrantcontextconditions): Context conditions for fine-grained access control on these actions, as a map of condition keys to lists of allowed values.
+* **ContextConditions**: [AccessGrant_ContextConditions](#accessgrantcontextconditions) (WriteOnly): Context conditions for fine-grained access control on these actions, as a map of condition keys to lists of allowed values.
 * **Resources**: [ResourceScope](#resourcescope)[]: Resource scopes constraining these actions to specific resources.
 
 ## SingleMetricAnomalyDetector

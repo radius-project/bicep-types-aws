@@ -29,10 +29,12 @@ export interface SchemaDefinition {
     maxLength?: number
     minLength?: number
     properties?: { [name: string]: SchemaDefinition }
+    patternProperties?: { [pattern: string]: SchemaDefinition }
     '$ref'?: string
     required?: string[]
     type?: TypeName | TypeName[]
     oneOf?: SchemaDefinition[]
+    anyOf?: SchemaDefinition[]
 }
 
 export type TypeName = 'boolean' | 'number' | 'integer' | 'string' | 'object' | 'array' | 'null'

@@ -174,9 +174,13 @@
 
 ## RegistryRecord_CustomMetadata
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## RegistryRecord_CustomParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## RegistryRecordCredentialProviderConfiguration
 ### Properties

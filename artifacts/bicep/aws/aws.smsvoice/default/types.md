@@ -304,6 +304,8 @@
 
 ## ResourcePolicy_PolicyDocument
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## SnsDestination
 ### Properties

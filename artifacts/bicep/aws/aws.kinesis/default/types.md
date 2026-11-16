@@ -113,6 +113,8 @@
 
 ## ResourcePolicy_ResourcePolicy
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## S3DestinationConfiguration
 ### Properties
