@@ -440,6 +440,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/NetworkAclProperties](#awsec2networkaclproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.EC2/NetworkAclEntry@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/NetworkAclEntryProperties](#awsec2networkaclentryproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.EC2/NetworkInsightsAccessScope@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -487,6 +495,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/NetworkInterfaceAttachmentProperties](#awsec2networkinterfaceattachmentproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.EC2/NetworkInterfacePermission@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/NetworkInterfacePermissionProperties](#awsec2networkinterfacepermissionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.EC2/NetworkPerformanceMetricSubscription@default
 * **Readable Scope(s)**: None
@@ -1096,6 +1112,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/VPNGatewayProperties](#awsec2vpngatewayproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.EC2/VPNGatewayRoutePropagation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/VPNGatewayRoutePropagationProperties](#awsec2vpngatewayroutepropagationproperties) (Required, Identifier): properties of the resource
+
 ## AcceleratorCount
 ### Properties
 * **Max**: int: The maximum number of accelerators. To specify no maximum limit, omit this parameter. To exclude accelerator-enabled instance types, set ``Max`` to ``0``.
@@ -1336,7 +1360,7 @@ Client route enforcement works by monitoring the route table of a connected devi
 * **DisconnectOnSessionTimeout**: bool: Indicates whether the client VPN session is disconnected after the maximum sessionTimeoutHours is reached. If true, users are prompted to reconnect client VPN. If false, client VPN attempts to reconnect automatically.
 * **DnsServers**: string[]: Information about the DNS servers to be used for DNS resolution. A Client VPN endpoint can have up to two DNS servers. If no DNS server is specified, the DNS address configured on the device is used for the DNS server.
 * **EndpointIpAddressType**: string: The IP address type of the Client VPN endpoint.
-* **Id**: string (ReadOnly, Identifier)
+* **Id**: string (ReadOnly, Identifier): The Client VPN endpoint ID, such as cvpn-endpoint-0123456789abcdef0, which AWS assigns.
 * **SecurityGroupIds**: string[]: The IDs of one or more security groups to apply to the target network. You must also specify the ID of the VPC that contains the security groups.
 * **SelfServicePortal**: string: Specify whether to enable the self-service portal for the Client VPN endpoint
 * **ServerCertificateArn**: string (Required): The ARN of the server certificate. For more information, see the AWS Certificate Manager User Guide.
@@ -2003,6 +2027,19 @@ Client route enforcement works by monitoring the route table of a connected devi
 * **Tags**: [Tag](#tag)[]: The tags for the NAT gateway.
 * **VpcId**: string: The ID of the VPC in which the NAT gateway is located.
 
+## AWS.EC2/NetworkAclEntryProperties
+### Properties
+* **CidrBlock**: string: The IPv4 CIDR range to allow or deny, in CIDR notation (for example, 172.16.0.0/24). Requirement is conditional: You must specify the CidrBlock or Ipv6CidrBlock property
+* **Egress**: bool: Indicates whether this is an egress rule (rule is applied to traffic leaving the subnet)
+* **Icmp**: [Icmp](#icmp): The Internet Control Message Protocol (ICMP) code and type. Requirement is conditional: Required if specifying 1 (ICMP) for the protocol parameter
+* **Id**: string (ReadOnly, Identifier): NetworkAclId, RuleNumber, and Egress joined with "|", such as acl-0123456789abcdef0|100|false.
+* **Ipv6CidrBlock**: string: The IPv6 network range to allow or deny, in CIDR notation (for example 2001:db8:1234:1a00::/64)
+* **NetworkAclId**: string (Required): The ID of the network ACL
+* **PortRange**: [PortRange](#portrange): The IPv4 network range to allow or deny, in CIDR notation (for example 172.16.0.0/24). We modify the specified CIDR block to its canonical form; for example, if you specify 100.68.0.18/18, we modify it to 100.68.0.0/18
+* **Protocol**: int (Required): The protocol number. A value of "-1" means all protocols. If you specify "-1" or a protocol number other than "6" (TCP), "17" (UDP), or "1" (ICMP), traffic on all ports is allowed, regardless of any ports or ICMP types or codes that you specify. If you specify protocol "58" (ICMPv6) and specify an IPv4 CIDR block, traffic for all ICMP types and codes allowed, regardless of any that you specify. If you specify protocol "58" (ICMPv6) and specify an IPv6 CIDR block, you must specify an ICMP type and code
+* **RuleAction**: string (Required): Indicates whether to allow or deny the traffic that matches the rule
+* **RuleNumber**: int (Required): Rule number to assign to the entry, such as 100. ACL entries are processed in ascending order by rule number. Entries can't use the same rule number unless one is an egress rule and the other is an ingress rule
+
 ## AWS.EC2/NetworkAclProperties
 ### Properties
 * **Id**: string (ReadOnly, Identifier)
@@ -2077,6 +2114,13 @@ Client route enforcement works by monitoring the route table of a connected devi
 * **EnaSrdSpecification**: [EnaSrdSpecification](#enasrdspecification): Configures ENA Express for the network interface that this action attaches to the instance.
 * **InstanceId**: string (Required): The ID of the instance to which you will attach the ENI.
 * **NetworkInterfaceId**: string (Required): The ID of the ENI that you want to attach.
+
+## AWS.EC2/NetworkInterfacePermissionProperties
+### Properties
+* **AwsAccountId**: string (Required)
+* **Id**: string (ReadOnly, Identifier): The permission ID, such as eni-perm-0123456789abcdef0, which AWS assigns.
+* **NetworkInterfaceId**: string (Required)
+* **Permission**: string (Required)
 
 ## AWS.EC2/NetworkInterfaceProperties
 ### Properties
@@ -3072,6 +3116,12 @@ Use this for ICMP and any protocol that uses ports.
 * **Type**: string (Required): The type of VPN connection the virtual private gateway supports.
 * **VPNGatewayId**: string (ReadOnly, Identifier)
 
+## AWS.EC2/VPNGatewayRoutePropagationProperties
+### Properties
+* **Id**: string (ReadOnly, Identifier): VpnGatewayId and a name Radius generates, joined with "|". The resource is the propagation to the route tables in RouteTableIds, so other propagations from the gateway stay as they are.
+* **RouteTableIds**: string[] (Required): The ID of the route table. The routing table must be associated with the same VPC that the virtual private gateway is attached to
+* **VpnGatewayId**: string (Required): The ID of the virtual private gateway that is attached to a VPC. The virtual private gateway must be attached to the same VPC that the routing tables are associated with
+
 ## BaselineEbsBandwidthMbps
 ### Properties
 * **Max**: int: The maximum baseline bandwidth, in Mbps. To specify no maximum limit, omit this parameter.
@@ -3615,6 +3665,11 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **Arn**: string (Identifier): The Amazon Resource Name (ARN) of the instance profile.
 * **Name**: string: The name of the instance profile. A request specifies either Name or Arn, and the service returns whichever was specified.
+
+## Icmp
+### Properties
+* **Code**: int
+* **Type**: int
 
 ## IKEVersionsRequestListValue
 ### Properties
@@ -4477,6 +4532,11 @@ Use this for ICMP and any protocol that uses ports.
 * **PartitionNumber**: int: The number of the partition the instance should launch in. Valid only if the placement group strategy is set to ``partition``.
 * **SpreadDomain**: string: Reserved for future use.
 * **Tenancy**: string: The tenancy of the instance. An instance with a tenancy of dedicated runs on single-tenant hardware.
+
+## PortRange
+### Properties
+* **From**: int
+* **To**: int
 
 ## PortRange
 ### Properties

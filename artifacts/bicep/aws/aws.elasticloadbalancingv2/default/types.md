@@ -8,6 +8,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.ElasticLoadBalancingV2/ListenerProperties](#awselasticloadbalancingv2listenerproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.ElasticLoadBalancingV2/ListenerCertificate@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ElasticLoadBalancingV2/ListenerCertificateProperties](#awselasticloadbalancingv2listenercertificateproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.ElasticLoadBalancingV2/ListenerRule@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -142,6 +150,12 @@
 * **UseExistingClientSecret**: bool: Indicates whether to use the existing client secret when modifying a rule. If you are creating a rule, you can omit this parameter or set it to false.
 * **UserInfoEndpoint**: string (Required): The user info endpoint of the IdP. This must be a full URL, including the HTTPS protocol, the domain, and the path.
 
+## AWS.ElasticLoadBalancingV2/ListenerCertificateProperties
+### Properties
+* **Certificates**: [Certificate](#certificate)[] (Required)
+* **Id**: string (ReadOnly, Identifier): ListenerArn and a name Radius generates, joined with "|". The resource is the certificates in Certificates, so other certificates on the listener stay as they are.
+* **ListenerArn**: string (Required)
+
 ## AWS.ElasticLoadBalancingV2/ListenerProperties
 ### Properties
 * **AlpnPolicy**: string[]: [TLS listener] The name of the Application-Layer Protocol Negotiation (ALPN) policy.
@@ -261,6 +275,10 @@
 ## Certificate
 ### Properties
 * **CertificateArn**: string: The Amazon Resource Name (ARN) of the certificate.
+
+## Certificate
+### Properties
+* **CertificateArn**: string
 
 ## FixedResponseConfig
 ### Properties
