@@ -1,5 +1,13 @@
 # AWS.ServiceCatalog @ default
 
+## Resource AWS.ServiceCatalog/AcceptedPortfolioShare@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.ServiceCatalog/AcceptedPortfolioShareProperties](#awsservicecatalogacceptedportfolioshareproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.ServiceCatalog/CloudFormationProduct@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -119,6 +127,11 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.ServiceCatalog/TagOptionAssociationProperties](#awsservicecatalogtagoptionassociationproperties) (Identifier): properties of the resource
+
+## AWS.ServiceCatalog/AcceptedPortfolioShareProperties
+### Properties
+* **AcceptLanguage**: string (WriteOnly): The language code.
+* **PortfolioId**: string (Required, Identifier): The portfolio identifier.
 
 ## AWS.ServiceCatalog/CloudFormationProductProperties
 ### Properties

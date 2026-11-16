@@ -64,6 +64,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.DMS/ReplicationConfigProperties](#awsdmsreplicationconfigproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.DMS/ReplicationInstance@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.DMS/ReplicationInstanceProperties](#awsdmsreplicationinstanceproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.DMS/ReplicationSubnetGroup@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -222,6 +230,29 @@ If you specify multiple values, they must be of the same type. For example, if y
 * **TableMappings**: [ReplicationConfig_TableMappings](#replicationconfigtablemappings) (Required): JSON table mappings for AWS DMS Serverless replications that are provisioned using this replication configuration
 * **Tags**: [Tag](#tag)[]: <p>Contains a map of the key-value pairs for the resource tag or tags assigned to the dataset.</p>
 * **TargetEndpointArn**: string (Required): The Amazon Resource Name (ARN) of the target endpoint for this AWS DMS Serverless replication configuration
+
+## AWS.DMS/ReplicationInstanceProperties
+### Properties
+* **AllocatedStorage**: int
+* **AllowMajorVersionUpgrade**: bool (WriteOnly)
+* **AutoMinorVersionUpgrade**: bool
+* **AvailabilityZone**: string
+* **DnsNameServers**: string
+* **EngineVersion**: string
+* **Id**: string (ReadOnly, Identifier): The replication instance identifier, the same as ReplicationInstanceIdentifier.
+* **KmsKeyId**: string (WriteOnly)
+* **MultiAZ**: bool
+* **NetworkType**: string
+* **PreferredMaintenanceWindow**: string
+* **PubliclyAccessible**: bool
+* **ReplicationInstanceClass**: string (Required)
+* **ReplicationInstanceIdentifier**: string
+* **ReplicationInstancePrivateIpAddresses**: string (ReadOnly)
+* **ReplicationInstancePublicIpAddresses**: string (ReadOnly)
+* **ReplicationSubnetGroupIdentifier**: string
+* **ResourceIdentifier**: string
+* **Tags**: [Tag](#tag)[]
+* **VpcSecurityGroupIds**: string[]
 
 ## AWS.DMS/ReplicationSubnetGroupProperties
 ### Properties
@@ -751,6 +782,11 @@ If you specify multiple values, they must be of the same type. For example, if y
 ### Properties
 * **Key**: string (Required): <p>Tag key.</p>
 * **Value**: string (Required): <p>Tag value.</p>
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

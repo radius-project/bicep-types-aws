@@ -27,7 +27,7 @@
 ## AWS.DAX/ClusterProperties
 ### Properties
 * **Arn**: string (ReadOnly)
-* **AvailabilityZones**: string[]
+* **AvailabilityZones**: string[] (WriteOnly)
 * **ClusterDiscoveryEndpoint**: string (ReadOnly)
 * **ClusterDiscoveryEndpointURL**: string (ReadOnly)
 * **ClusterEndpointEncryptionType**: string

@@ -1,5 +1,13 @@
 # AWS.MediaLive @ default
 
+## Resource AWS.MediaLive/Channel@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.MediaLive/ChannelProperties](#awsmedialivechannelproperties) (Identifier): properties of the resource
+
 ## Resource AWS.MediaLive/ChannelPlacementGroup@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -136,6 +144,245 @@
 * **name**: string: the resource name
 * **properties**: [AWS.MediaLive/SignalMapProperties](#awsmedialivesignalmapproperties) (Required, Identifier): properties of the resource
 
+## AacSettings
+### Properties
+* **Bitrate**: int
+* **CodingMode**: string
+* **InputType**: string
+* **Profile**: string
+* **RateControlMode**: string
+* **RawFormat**: string
+* **SampleRate**: int
+* **Spec**: string
+* **VbrQuality**: string
+
+## AbWatermarkingCustomProfile
+### Properties
+* **EmbeddingFrequency**: int
+* **SceneCut**: int
+* **TargetPsnr**: int
+
+## Ac3Settings
+### Properties
+* **AttenuationControl**: string
+* **Bitrate**: int
+* **BitstreamMode**: string
+* **CodingMode**: string
+* **Dialnorm**: int
+* **DrcProfile**: string
+* **LfeFilter**: string
+* **MetadataControl**: string
+
+## AdditionalDestinations
+### Properties
+* **Destination**: [OutputLocationRef](#outputlocationref)
+
+## AncillarySourceSettings
+### Properties
+* **SourceAncillaryChannelNumber**: int
+
+## AnywhereSettings
+### Properties
+* **ChannelPlacementGroupId**: string
+* **ClusterId**: string
+
+## ArchiveCdnSettings
+### Properties
+* **ArchiveS3Settings**: [ArchiveFrameCaptureHlsS3Settings](#archiveframecapturehlss3settings)
+
+## ArchiveContainerSettings
+### Properties
+* **M2tsSettings**: [M2tsSettings](#m2tssettings)
+* **RawSettings**: [EmptyConfigurationSettings](#emptyconfigurationsettings)
+
+## ArchiveFrameCaptureHlsS3Settings
+### Properties
+* **CannedAcl**: string
+
+## ArchiveGroupSettings
+### Properties
+* **ArchiveCdnSettings**: [ArchiveCdnSettings](#archivecdnsettings)
+* **Destination**: [OutputLocationRef](#outputlocationref)
+* **RolloverInterval**: int
+
+## ArchiveOutputSettings
+### Properties
+* **ContainerSettings**: [ArchiveContainerSettings](#archivecontainersettings)
+* **Extension**: string
+* **NameModifier**: string
+
+## AudioChannelMapping
+### Properties
+* **InputChannelLevels**: [InputChannelLevel](#inputchannellevel)[]
+* **OutputChannel**: int
+
+## AudioCodecSettings
+### Properties
+* **AacSettings**: [AacSettings](#aacsettings)
+* **Ac3Settings**: [Ac3Settings](#ac3settings)
+* **Eac3AtmosSettings**: [Eac3AtmosSettings](#eac3atmossettings)
+* **Eac3Settings**: [Eac3Settings](#eac3settings)
+* **Mp2Settings**: [Mp2Settings](#mp2settings)
+* **PassThroughSettings**: [EmptyConfigurationSettings](#emptyconfigurationsettings)
+* **WavSettings**: [WavSettings](#wavsettings)
+
+## AudioDescription
+### Properties
+* **AudioDashRoles**: string[]
+* **AudioNormalizationSettings**: [AudioNormalizationSettings](#audionormalizationsettings)
+* **AudioSelectorName**: string
+* **AudioType**: string
+* **AudioTypeControl**: string
+* **AudioWatermarkingSettings**: [AudioWatermarkSettings](#audiowatermarksettings)
+* **CodecSettings**: [AudioCodecSettings](#audiocodecsettings)
+* **DvbDashAccessibility**: string
+* **LanguageCode**: string
+* **LanguageCodeControl**: string
+* **Name**: string
+* **RemixSettings**: [RemixSettings](#remixsettings)
+* **StreamName**: string
+
+## AudioDolbyEDecode
+### Properties
+* **ProgramSelection**: string
+
+## AudioFeedInput
+### Properties
+* **AudioSelectorName**: string
+* **FeedInput**: string
+
+## AudioHlsRenditionSelection
+### Properties
+* **GroupId**: string
+* **Name**: string
+
+## AudioLanguageSelection
+### Properties
+* **LanguageCode**: string
+* **LanguageSelectionPolicy**: string
+
+## AudioNormalizationSettings
+### Properties
+* **Algorithm**: string
+* **AlgorithmControl**: string
+* **PeakCalculation**: string
+* **PeakLimiterThreshold**: int
+* **TargetLkfs**: int
+
+## AudioOnlyHlsSettings
+### Properties
+* **AudioGroupId**: string
+* **AudioOnlyImage**: [InputLocation](#inputlocation)
+* **AudioTrackType**: string
+* **SegmentType**: string
+
+## AudioPid
+### Properties
+* **DolbyEDecode**: [AudioDolbyEDecode](#audiodolbyedecode)
+* **Pid**: int
+* **PremixSettings**: [AudioPreMixerSettings](#audiopremixersettings)
+
+## AudioPidSelection
+### Properties
+* **Pid**: int
+* **Pids**: [AudioPid](#audiopid)[]
+
+## AudioPreMixerSettings
+### Properties
+* **AudioNormalizationSettings**: [AudioNormalizationSettings](#audionormalizationsettings)
+* **Channels**: int
+* **GainDb**: int
+* **RemixSettings**: [RemixSettings](#remixsettings)
+
+## AudioSelector
+### Properties
+* **Name**: string
+* **SelectorSettings**: [AudioSelectorSettings](#audioselectorsettings)
+
+## AudioSelectorSettings
+### Properties
+* **AudioHlsRenditionSelection**: [AudioHlsRenditionSelection](#audiohlsrenditionselection)
+* **AudioLanguageSelection**: [AudioLanguageSelection](#audiolanguageselection)
+* **AudioPidSelection**: [AudioPidSelection](#audiopidselection)
+* **AudioTrackSelection**: [AudioTrackSelection](#audiotrackselection)
+
+## AudioSilenceFailoverSettings
+### Properties
+* **AudioSelectorName**: string
+* **AudioSilenceThresholdMsec**: int
+
+## AudioTrack
+### Properties
+* **PremixSettings**: [AudioPreMixerSettings](#audiopremixersettings)
+* **Track**: int
+
+## AudioTrackSelection
+### Properties
+* **DolbyEDecode**: [AudioDolbyEDecode](#audiodolbyedecode)
+* **Tracks**: [AudioTrack](#audiotrack)[]
+
+## AudioWatermarkSettings
+### Properties
+* **NielsenWatermarksSettings**: [NielsenWatermarksSettings](#nielsenwatermarkssettings)
+
+## AutomaticInputFailoverSettings
+### Properties
+* **ErrorClearTimeMsec**: int
+* **FailoverConditions**: [FailoverCondition](#failovercondition)[]
+* **InputPreference**: string
+* **SecondaryInputId**: string
+
+## Av1ColorSpaceSettings
+### Properties
+* **ColorSpacePassthroughSettings**: [EmptyConfigurationSettings](#emptyconfigurationsettings)
+* **Hdr10Settings**: [Hdr10Settings](#hdr10settings)
+* **Hlg2020Settings**: [EmptyConfigurationSettings](#emptyconfigurationsettings)
+* **Rec601Settings**: [EmptyConfigurationSettings](#emptyconfigurationsettings)
+* **Rec709Settings**: [EmptyConfigurationSettings](#emptyconfigurationsettings)
+
+## Av1Settings
+### Properties
+* **AfdSignaling**: string
+* **BitDepth**: string
+* **Bitrate**: int
+* **BufSize**: int
+* **ColorSpaceSettings**: [Av1ColorSpaceSettings](#av1colorspacesettings)
+* **FixedAfd**: string
+* **FramerateDenominator**: int
+* **FramerateNumerator**: int
+* **GopSize**: int
+* **GopSizeUnits**: string
+* **Level**: string
+* **LookAheadRateControl**: string
+* **MaxBitrate**: int
+* **MinBitrate**: int
+* **MinIInterval**: int
+* **ParDenominator**: int
+* **ParNumerator**: int
+* **QvbrQualityLevel**: int
+* **RateControlMode**: string
+* **SceneChangeDetect**: string
+* **SpatialAq**: string
+* **TemporalAq**: string
+* **TimecodeBurninSettings**: [TimecodeBurninSettings](#timecodeburninsettings)
+* **TimecodeInsertion**: string
+
+## AvailBlanking
+### Properties
+* **AvailBlankingImage**: [InputLocation](#inputlocation)
+* **State**: string
+
+## AvailConfiguration
+### Properties
+* **AvailSettings**: [AvailSettings](#availsettings)
+* **Scte35SegmentationScope**: string
+
+## AvailSettings
+### Properties
+* **Esam**: [Esam](#esam)
+* **Scte35SpliceInsert**: [Scte35SpliceInsertTimeSignalAposSettings](#scte35spliceinserttimesignalapossettings)
+* **Scte35TimeSignalApos**: [Scte35SpliceInsertTimeSignalAposSettings](#scte35spliceinserttimesignalapossettings)
+
 ## AWS.MediaLive/ChannelPlacementGroupProperties
 ### Properties
 * **Arn**: string (ReadOnly): The ARN of the channel placement group.
@@ -146,6 +393,30 @@
 * **Nodes**: string[]: List of nodes added to the channel placement group
 * **State**: string (ReadOnly)
 * **Tags**: [Tags](#tags)[]: A collection of key-value pairs.
+
+## AWS.MediaLive/ChannelProperties
+### Properties
+* **AnywhereSettings**: [AnywhereSettings](#anywheresettings)
+* **Arn**: string (ReadOnly)
+* **CdiInputSpecification**: [CdiInputSpecification](#cdiinputspecification)
+* **ChannelClass**: string
+* **ChannelEngineVersion**: [ChannelEngineVersionRequest](#channelengineversionrequest)
+* **ChannelSecurityGroups**: string[]
+* **Destinations**: [OutputDestination](#outputdestination)[]
+* **DryRun**: bool (WriteOnly)
+* **EncoderSettings**: [EncoderSettings](#encodersettings)
+* **Id**: string (ReadOnly, Identifier): The channel ID, which AWS assigns.
+* **InferenceSettings**: [InferenceSettings](#inferencesettings)
+* **InputAttachments**: [InputAttachment](#inputattachment)[]
+* **Inputs**: string[] (ReadOnly)
+* **InputSpecification**: [InputSpecification](#inputspecification)
+* **LinkedChannelSettings**: [LinkedChannelSettings](#linkedchannelsettings)
+* **LogLevel**: string
+* **Maintenance**: [MaintenanceCreateSettings](#maintenancecreatesettings)
+* **Name**: string
+* **RoleArn**: string
+* **Tags**: [Channel_Tags](#channeltags)
+* **Vpc**: [VpcOutputSettings](#vpcoutputsettings)
 
 ## AWS.MediaLive/CloudWatchAlarmTemplateGroupProperties
 ### Properties
@@ -401,10 +672,282 @@ Not compatible with the inputSecurityGroups property.
 * **Status**: string (ReadOnly)
 * **Tags**: [TagMap](#tagmap)
 
+## BandwidthReductionFilterSettings
+### Properties
+* **PostFilterSharpening**: string
+* **Strength**: string
+
+## BlackoutSlate
+### Properties
+* **BlackoutSlateImage**: [InputLocation](#inputlocation)
+* **NetworkEndBlackout**: string
+* **NetworkEndBlackoutImage**: [InputLocation](#inputlocation)
+* **NetworkId**: string
+* **State**: string
+
+## BurnInDvbSubDestinationSettings
+### Properties
+* **Alignment**: string
+* **BackgroundColor**: string
+* **BackgroundOpacity**: int
+* **Font**: [InputLocation](#inputlocation)
+* **FontColor**: string
+* **FontOpacity**: int
+* **FontResolution**: int
+* **FontSize**: string
+* **OutlineColor**: string
+* **OutlineSize**: int
+* **ShadowColor**: string
+* **ShadowOpacity**: int
+* **ShadowXOffset**: int
+* **ShadowYOffset**: int
+* **SubtitleRows**: string
+* **TeletextGridControl**: string
+* **XPosition**: int
+* **YPosition**: int
+
+## CaptionDescription
+### Properties
+* **Accessibility**: string
+* **CaptionDashRoles**: string[]
+* **CaptionSelectorName**: string
+* **DestinationSettings**: [CaptionDestinationSettings](#captiondestinationsettings)
+* **DvbDashAccessibility**: string
+* **LanguageCode**: string
+* **LanguageDescription**: string
+* **Name**: string
+
+## CaptionDestinationSettings
+### Properties
+* **AribDestinationSettings**: [EmptyConfigurationSettings](#emptyconfigurationsettings)
+* **BurnInDestinationSettings**: [BurnInDvbSubDestinationSettings](#burnindvbsubdestinationsettings)
+* **DvbSubDestinationSettings**: [BurnInDvbSubDestinationSettings](#burnindvbsubdestinationsettings)
+* **EbuTtDDestinationSettings**: [EbuTtDDestinationSettings](#ebuttddestinationsettings)
+* **EmbeddedDestinationSettings**: [EmbeddedDestinationSettings](#embeddeddestinationsettings)
+* **EmbeddedPlusScte20DestinationSettings**: [EmptyConfigurationSettings](#emptyconfigurationsettings)
+* **RtmpCaptionInfoDestinationSettings**: [EmptyConfigurationSettings](#emptyconfigurationsettings)
+* **Scte20PlusEmbeddedDestinationSettings**: [EmptyConfigurationSettings](#emptyconfigurationsettings)
+* **Scte27DestinationSettings**: [EmptyConfigurationSettings](#emptyconfigurationsettings)
+* **SmpteTtDestinationSettings**: [EmptyConfigurationSettings](#emptyconfigurationsettings)
+* **TeletextDestinationSettings**: [EmptyConfigurationSettings](#emptyconfigurationsettings)
+* **TtmlDestinationSettings**: [TtmlDestinationSettings](#ttmldestinationsettings)
+* **WebvttDestinationSettings**: [WebvttDestinationSettings](#webvttdestinationsettings)
+
+## CaptionLanguageMapping
+### Properties
+* **CaptionChannel**: int
+* **LanguageCode**: string
+* **LanguageDescription**: string
+
+## CaptionRectangle
+### Properties
+* **Height**: int
+* **LeftOffset**: int
+* **TopOffset**: int
+* **Width**: int
+
+## CaptionSelector
+### Properties
+* **LanguageCode**: string
+* **Name**: string
+* **SelectorSettings**: [CaptionSelectorSettings](#captionselectorsettings)
+
+## CaptionSelectorSettings
+### Properties
+* **AncillarySourceSettings**: [AncillarySourceSettings](#ancillarysourcesettings)
+* **AribSourceSettings**: [EmptyConfigurationSettings](#emptyconfigurationsettings)
+* **DvbSubSourceSettings**: [Scte27DvbSubSourceSettings](#scte27dvbsubsourcesettings)
+* **EmbeddedSourceSettings**: [EmbeddedSourceSettings](#embeddedsourcesettings)
+* **Scte20SourceSettings**: [Scte20SourceSettings](#scte20sourcesettings)
+* **Scte27SourceSettings**: [Scte27DvbSubSourceSettings](#scte27dvbsubsourcesettings)
+* **SmartSubtitleSourceSettings**: [SmartSubtitleSourceSettings](#smartsubtitlesourcesettings)
+* **TeletextSourceSettings**: [TeletextSourceSettings](#teletextsourcesettings)
+
+## CdiInputSpecification
+### Properties
+* **Resolution**: string
+
+## Channel_Tags
+### Properties
+### Additional Properties
+* **Additional Properties Type**: any
+
+## ChannelEngineVersionRequest
+### Properties
+* **Version**: string
+
 ## ClusterNetworkSettings
 ### Properties
 * **DefaultRoute**: string: Default value if the customer does not define it in channel Output API
 * **InterfaceMappings**: [InterfaceMapping](#interfacemapping)[]: Network mappings for the cluster
+
+## CmafIngestCaptionLanguageMapping
+### Properties
+* **CaptionChannel**: int
+* **LanguageCode**: string
+
+## CmafIngestFrameCaptureOutputSettings
+### Properties
+* **NameModifier**: string
+
+## CmafIngestGroupSettings
+### Properties
+* **AdditionalDestinations**: [AdditionalDestinations](#additionaldestinations)[]
+* **CaptionLanguageMappings**: [CmafIngestCaptionLanguageMapping](#cmafingestcaptionlanguagemapping)[]
+* **Destination**: [OutputLocationRef](#outputlocationref)
+* **Id3Behavior**: string
+* **Id3NameModifier**: string
+* **KlvBehavior**: string
+* **KlvNameModifier**: string
+* **NielsenId3Behavior**: string
+* **NielsenId3NameModifier**: string
+* **Scte35NameModifier**: string
+* **Scte35Type**: string
+* **SegmentLength**: int
+* **SegmentLengthUnits**: string
+* **SendDelayMs**: int
+* **TimedMetadataId3Frame**: string
+* **TimedMetadataId3Period**: int
+* **TimedMetadataPassthrough**: string
+* **WatermarkingSettings**: [CmafIngestWatermarkingSettings](#cmafingestwatermarkingsettings)
+
+## CmafIngestMediaPackageV2AbWatermarkerIrdetoSettings
+### Properties
+* **AdditionalDestinationsAlternateDestinations**: [OutputLocationRef](#outputlocationref)[]
+* **AlternateDestination**: [OutputLocationRef](#outputlocationref)
+* **CustomProfile**: [AbWatermarkingCustomProfile](#abwatermarkingcustomprofile)
+* **License**: string
+* **OperatorId**: int
+* **PolyPeriod**: int
+* **Profile**: string
+* **WatermarkIdLength**: string
+
+## CmafIngestWatermarkingSettings
+### Properties
+* **CmafIngestAbWatermarkerIrdetoSettings**: [CmafIngestMediaPackageV2AbWatermarkerIrdetoSettings](#cmafingestmediapackagev2abwatermarkerirdetosettings)
+
+## ColorCorrection
+### Properties
+* **InputColorSpace**: string
+* **OutputColorSpace**: string
+* **Uri**: string
+
+## ColorCorrectionSettings
+### Properties
+* **GlobalColorCorrections**: [ColorCorrection](#colorcorrection)[]
+
+## DisabledLockingSettings
+### Properties
+* **CustomEpoch**: string
+
+## DvbNitSettings
+### Properties
+* **NetworkId**: int
+* **NetworkName**: string
+* **RepInterval**: int
+
+## DvbSdtSettings
+### Properties
+* **OutputSdt**: string
+* **RepInterval**: int
+* **ServiceName**: string
+* **ServiceProviderName**: string
+
+## DvbTdtSettings
+### Properties
+* **RepInterval**: int
+
+## Eac3AtmosSettings
+### Properties
+* **Bitrate**: int
+* **CodingMode**: string
+* **Dialnorm**: int
+* **DrcLine**: string
+* **DrcRf**: string
+* **HeightTrim**: int
+* **SurroundTrim**: int
+
+## Eac3Settings
+### Properties
+* **AttenuationControl**: string
+* **Bitrate**: int
+* **BitstreamMode**: string
+* **CodingMode**: string
+* **DcFilter**: string
+* **Dialnorm**: int
+* **DrcLine**: string
+* **DrcRf**: string
+* **LfeControl**: string
+* **LfeFilter**: string
+* **LoRoCenterMixLevel**: int
+* **LoRoSurroundMixLevel**: int
+* **LtRtCenterMixLevel**: int
+* **LtRtSurroundMixLevel**: int
+* **MetadataControl**: string
+* **PassthroughControl**: string
+* **PhaseControl**: string
+* **StereoDownmix**: string
+* **SurroundExMode**: string
+* **SurroundMode**: string
+
+## EbuTtDDestinationSettings
+### Properties
+* **CopyrightHolder**: string
+* **DefaultFontSize**: int
+* **DefaultLineHeight**: int
+* **FillLineGap**: string
+* **FontFamily**: string
+* **StyleControl**: string
+
+## EmbeddedCaptionPositionSettings
+### Properties
+* **YPositionLine**: int
+
+## EmbeddedDestinationSettings
+### Properties
+* **Position**: [EmbeddedCaptionPositionSettings](#embeddedcaptionpositionsettings)
+* **StyleControl**: string
+
+## EmbeddedSourceSettings
+### Properties
+* **Convert608To708**: string
+* **Scte20Detection**: string
+* **Source608ChannelNumber**: int
+* **Source608TrackNumber**: int
+
+## EmptyConfigurationSettings
+### Properties
+
+## EncoderSettings
+### Properties
+* **AudioDescriptions**: [AudioDescription](#audiodescription)[]
+* **AvailBlanking**: [AvailBlanking](#availblanking)
+* **AvailConfiguration**: [AvailConfiguration](#availconfiguration)
+* **BlackoutSlate**: [BlackoutSlate](#blackoutslate)
+* **CaptionDescriptions**: [CaptionDescription](#captiondescription)[]
+* **ColorCorrectionSettings**: [ColorCorrectionSettings](#colorcorrectionsettings)
+* **FeatureActivations**: [FeatureActivations](#featureactivations)
+* **GlobalConfiguration**: [GlobalConfiguration](#globalconfiguration)
+* **MotionGraphicsConfiguration**: [MotionGraphicsConfiguration](#motiongraphicsconfiguration)
+* **NielsenConfiguration**: [NielsenConfiguration](#nielsenconfiguration)
+* **OutputGroups**: [OutputGroup](#outputgroup)[]
+* **ThumbnailConfiguration**: [ThumbnailConfiguration](#thumbnailconfiguration)
+* **TimecodeConfig**: [TimecodeConfig](#timecodeconfig)
+* **VideoDescriptions**: [VideoDescription](#videodescription)[]
+
+## EpochLockingSettings
+### Properties
+* **CustomEpoch**: string
+* **JamSyncTime**: string
+
+## Esam
+### Properties
+* **AcquisitionPointId**: string
+* **AdAvailOffset**: int
+* **PasswordParam**: string
+* **PoisEndpoint**: string
+* **Username**: string
+* **ZoneIdentity**: string
 
 ## EventBridgeRuleTemplateTarget
 ### Properties
@@ -415,10 +958,312 @@ Not compatible with the inputSecurityGroups property.
 ### Additional Properties
 * **Additional Properties Type**: [MediaResource](#mediaresource)
 
+## FailoverCondition
+### Properties
+* **FailoverConditionSettings**: [FailoverConditionSettings](#failoverconditionsettings)
+
+## FailoverConditionSettings
+### Properties
+* **AudioSilenceSettings**: [AudioSilenceFailoverSettings](#audiosilencefailoversettings)
+* **InputLossSettings**: [InputLossFailoverSettings](#inputlossfailoversettings)
+* **VideoBlackSettings**: [VideoBlackFailoverSettings](#videoblackfailoversettings)
+
+## FeatureActivations
+### Properties
+* **InputPrepareScheduleActions**: string
+* **OutputStaticImageOverlayScheduleActions**: string
+
+## FecOutputSettings
+### Properties
+* **ColumnDepth**: int
+* **IncludeFec**: string
+* **RowLength**: int
+
+## Fmp4HlsSettings
+### Properties
+* **AudioRenditionSets**: string
+* **NielsenId3Behavior**: string
+* **TimedMetadataBehavior**: string
+
+## FollowerChannelSettings
+### Properties
+* **LinkedChannelType**: string
+* **PrimaryChannelArn**: string
+
+## FrameCaptureCdnSettings
+### Properties
+* **FrameCaptureS3Settings**: [ArchiveFrameCaptureHlsS3Settings](#archiveframecapturehlss3settings)
+
+## FrameCaptureGroupSettings
+### Properties
+* **Destination**: [OutputLocationRef](#outputlocationref)
+* **FrameCaptureCdnSettings**: [FrameCaptureCdnSettings](#framecapturecdnsettings)
+
+## FrameCaptureSettings
+### Properties
+* **CaptureInterval**: int
+* **CaptureIntervalUnits**: string
+* **TimecodeBurninSettings**: [TimecodeBurninSettings](#timecodeburninsettings)
+
+## GlobalConfiguration
+### Properties
+* **InitialAudioGain**: int
+* **InputEndAction**: string
+* **InputLossBehavior**: [InputLossBehavior](#inputlossbehavior)
+* **OutputLockingMode**: string
+* **OutputLockingSettings**: [OutputLockingSettings](#outputlockingsettings)
+* **OutputTimingSource**: string
+* **SupportLowFramerateInputs**: string
+
+## H264ColorSpaceSettings
+### Properties
+* **ColorSpacePassthroughSettings**: [EmptyConfigurationSettings](#emptyconfigurationsettings)
+* **Rec601Settings**: [EmptyConfigurationSettings](#emptyconfigurationsettings)
+* **Rec709Settings**: [EmptyConfigurationSettings](#emptyconfigurationsettings)
+
+## H264H265FilterSettings
+### Properties
+* **BandwidthReductionFilterSettings**: [BandwidthReductionFilterSettings](#bandwidthreductionfiltersettings)
+* **TemporalFilterSettings**: [TemporalFilterSettings](#temporalfiltersettings)
+
+## H264Settings
+### Properties
+* **AdaptiveQuantization**: string
+* **AfdSignaling**: string
+* **Bitrate**: int
+* **BufFillPct**: int
+* **BufSize**: int
+* **ColorMetadata**: string
+* **ColorSpaceSettings**: [H264ColorSpaceSettings](#h264colorspacesettings)
+* **EntropyEncoding**: string
+* **FilterSettings**: [H264H265FilterSettings](#h264h265filtersettings)
+* **FixedAfd**: string
+* **FlickerAq**: string
+* **ForceFieldPictures**: string
+* **FramerateControl**: string
+* **FramerateDenominator**: int
+* **FramerateNumerator**: int
+* **GopBReference**: string
+* **GopClosedCadence**: int
+* **GopNumBFrames**: int
+* **GopSize**: int
+* **GopSizeUnits**: string
+* **Level**: string
+* **LookAheadRateControl**: string
+* **MaxBitrate**: int
+* **MinBitrate**: int
+* **MinIInterval**: int
+* **MinQp**: int
+* **NumRefFrames**: int
+* **ParControl**: string
+* **ParDenominator**: int
+* **ParNumerator**: int
+* **Profile**: string
+* **QualityLevel**: string
+* **QvbrQualityLevel**: int
+* **RateControlMode**: string
+* **ScanType**: string
+* **SceneChangeDetect**: string
+* **Slices**: int
+* **Softness**: int
+* **SpatialAq**: string
+* **SubgopLength**: string
+* **Syntax**: string
+* **TemporalAq**: string
+* **TimecodeBurninSettings**: [TimecodeBurninSettings](#timecodeburninsettings)
+* **TimecodeInsertion**: string
+
+## H265ColorSpaceSettings
+### Properties
+* **ColorSpacePassthroughSettings**: [EmptyConfigurationSettings](#emptyconfigurationsettings)
+* **DolbyVision81Settings**: [EmptyConfigurationSettings](#emptyconfigurationsettings)
+* **Hdr10Settings**: [Hdr10Settings](#hdr10settings)
+* **Hlg2020Settings**: [EmptyConfigurationSettings](#emptyconfigurationsettings)
+* **Rec601Settings**: [EmptyConfigurationSettings](#emptyconfigurationsettings)
+* **Rec709Settings**: [EmptyConfigurationSettings](#emptyconfigurationsettings)
+
+## H265Settings
+### Properties
+* **AdaptiveQuantization**: string
+* **AfdSignaling**: string
+* **AlternativeTransferFunction**: string
+* **Bitrate**: int
+* **BufSize**: int
+* **ColorMetadata**: string
+* **ColorSpaceSettings**: [H265ColorSpaceSettings](#h265colorspacesettings)
+* **Deblocking**: string
+* **FilterSettings**: [H264H265FilterSettings](#h264h265filtersettings)
+* **FixedAfd**: string
+* **FlickerAq**: string
+* **FramerateDenominator**: int
+* **FramerateNumerator**: int
+* **GopBReference**: string
+* **GopClosedCadence**: int
+* **GopNumBFrames**: int
+* **GopSize**: int
+* **GopSizeUnits**: string
+* **Level**: string
+* **LookAheadRateControl**: string
+* **MaxBitrate**: int
+* **MinBitrate**: int
+* **MinIInterval**: int
+* **MinQp**: int
+* **MvOverPictureBoundaries**: string
+* **MvTemporalPredictor**: string
+* **ParDenominator**: int
+* **ParNumerator**: int
+* **Profile**: string
+* **QvbrQualityLevel**: int
+* **RateControlMode**: string
+* **ScanType**: string
+* **SceneChangeDetect**: string
+* **Slices**: int
+* **SubgopLength**: string
+* **Tier**: string
+* **TileHeight**: int
+* **TilePadding**: string
+* **TileWidth**: int
+* **TimecodeBurninSettings**: [TimecodeBurninSettings](#timecodeburninsettings)
+* **TimecodeInsertion**: string
+* **TreeblockSize**: string
+
+## Hdr10Settings
+### Properties
+* **MaxCll**: int
+* **MaxFall**: int
+
+## HlsAkamaiSettings
+### Properties
+* **ConnectionRetryInterval**: int
+* **FilecacheDuration**: int
+* **HttpTransferMode**: string
+* **NumRetries**: int
+* **RestartDelay**: int
+* **Salt**: string (WriteOnly)
+* **Token**: string
+
+## HlsBasicPutSettings
+### Properties
+* **ConnectionRetryInterval**: int
+* **FilecacheDuration**: int
+* **NumRetries**: int
+* **RestartDelay**: int
+
+## HlsCdnSettings
+### Properties
+* **HlsAkamaiSettings**: [HlsAkamaiSettings](#hlsakamaisettings)
+* **HlsBasicPutSettings**: [HlsBasicPutSettings](#hlsbasicputsettings)
+* **HlsMediaStoreSettings**: [HlsMediaStoreSettings](#hlsmediastoresettings)
+* **HlsS3Settings**: [ArchiveFrameCaptureHlsS3Settings](#archiveframecapturehlss3settings)
+* **HlsWebdavSettings**: [HlsWebdavSettings](#hlswebdavsettings)
+
+## HlsGroupSettings
+### Properties
+* **AdMarkers**: string[]
+* **BaseUrlContent**: string
+* **BaseUrlContent1**: string
+* **BaseUrlManifest**: string
+* **BaseUrlManifest1**: string
+* **CaptionLanguageMappings**: [CaptionLanguageMapping](#captionlanguagemapping)[]
+* **CaptionLanguageSetting**: string
+* **ClientCache**: string
+* **CodecSpecification**: string
+* **ConstantIv**: string
+* **Destination**: [OutputLocationRef](#outputlocationref)
+* **DirectoryStructure**: string
+* **DiscontinuityTags**: string
+* **EncryptionType**: string
+* **HlsCdnSettings**: [HlsCdnSettings](#hlscdnsettings)
+* **HlsId3SegmentTagging**: string
+* **IFrameOnlyPlaylists**: string
+* **IncompleteSegmentBehavior**: string
+* **IndexNSegments**: int
+* **InputLossAction**: string
+* **IvInManifest**: string
+* **IvSource**: string
+* **KeepSegments**: int
+* **KeyFormat**: string
+* **KeyFormatVersions**: string
+* **KeyProviderSettings**: [KeyProviderSettings](#keyprovidersettings)
+* **ManifestCompression**: string
+* **ManifestDurationFormat**: string
+* **MinSegmentLength**: int
+* **Mode**: string
+* **OutputSelection**: string
+* **ProgramDateTime**: string
+* **ProgramDateTimeClock**: string
+* **ProgramDateTimePeriod**: int
+* **RedundantManifest**: string
+* **SegmentationMode**: string
+* **SegmentLength**: int
+* **SegmentsPerSubdirectory**: int
+* **StreamInfResolution**: string
+* **TimedMetadataId3Frame**: string
+* **TimedMetadataId3Period**: int
+* **TimestampDeltaMilliseconds**: int
+* **TsFileMode**: string
+
+## HlsInputSettings
+### Properties
+* **Bandwidth**: int
+* **BufferSegments**: int
+* **Retries**: int
+* **RetryInterval**: int
+* **Scte35Source**: string
+
+## HlsMediaStoreSettings
+### Properties
+* **ConnectionRetryInterval**: int
+* **FilecacheDuration**: int
+* **MediaStoreStorageClass**: string
+* **NumRetries**: int
+* **RestartDelay**: int
+
+## HlsOutputSettings
+### Properties
+* **H265PackagingType**: string
+* **HlsSettings**: [HlsSettings](#hlssettings)
+* **NameModifier**: string
+* **SegmentModifier**: string
+
+## HlsSettings
+### Properties
+* **AudioOnlyHlsSettings**: [AudioOnlyHlsSettings](#audioonlyhlssettings)
+* **Fmp4HlsSettings**: [Fmp4HlsSettings](#fmp4hlssettings)
+* **FrameCaptureHlsSettings**: [EmptyConfigurationSettings](#emptyconfigurationsettings)
+* **StandardHlsSettings**: [StandardHlsSettings](#standardhlssettings)
+
+## HlsWebdavSettings
+### Properties
+* **ConnectionRetryInterval**: int
+* **FilecacheDuration**: int
+* **HttpTransferMode**: string
+* **NumRetries**: int
+* **RestartDelay**: int
+
+## InferenceSettings
+### Properties
+* **AudioFeedInputs**: [AudioFeedInput](#audiofeedinput)[]
+* **EnrichmentMethods**: string[]
+* **FeedArn**: string
+
 ## Input_Tags
 ### Properties
 ### Additional Properties
 * **Additional Properties Type**: string
+
+## InputAttachment
+### Properties
+* **AutomaticInputFailoverSettings**: [AutomaticInputFailoverSettings](#automaticinputfailoversettings)
+* **InputAttachmentName**: string
+* **InputId**: string
+* **InputSettings**: [InputSettings](#inputsettings)
+* **LogicalInterfaceNames**: string[]
+
+## InputChannelLevel
+### Properties
+* **Gain**: int
+* **InputChannel**: int
 
 ## InputDestination
 ### Properties
@@ -496,6 +1341,24 @@ pushed to.
 * **ScanType**: string: The scan type of the video source.
 * **Width**: int: The width of the video source, in pixels.
 
+## InputLocation
+### Properties
+* **PasswordParam**: string
+* **Uri**: string
+* **Username**: string
+
+## InputLossBehavior
+### Properties
+* **BlackFrameMsec**: int
+* **InputLossImageColor**: string
+* **InputLossImageSlate**: [InputLocation](#inputlocation)
+* **InputLossImageType**: string
+* **RepeatFrameMsec**: int
+
+## InputLossFailoverSettings
+### Properties
+* **InputLossThresholdMsec**: int
+
 ## InputSdpLocation
 ### Properties
 * **MediaIndex**: int: The index of the media stream in the SDP file for one SMPTE 2110 stream.
@@ -506,12 +1369,32 @@ pushed to.
 ### Additional Properties
 * **Additional Properties Type**: string
 
+## InputSettings
+### Properties
+* **AudioSelectors**: [AudioSelector](#audioselector)[]
+* **CaptionSelectors**: [CaptionSelector](#captionselector)[]
+* **DeblockFilter**: string
+* **DenoiseFilter**: string
+* **FilterStrength**: int
+* **InputFilter**: string
+* **NetworkInputSettings**: [NetworkInputSettings](#networkinputsettings)
+* **Scte35Pid**: int
+* **Smpte2038DataPreference**: string
+* **SourceEndBehavior**: string
+* **VideoSelector**: [VideoSelector](#videoselector)
+
 ## InputSource
 ### Properties
 * **PasswordParam**: string: The key used to extract the password from EC2 Parameter store.
 * **Url**: string: This represents the customer's source URL where stream is
 pulled from.
 * **Username**: string: The username for the input source.
+
+## InputSpecification
+### Properties
+* **Codec**: string
+* **MaximumBitrate**: string
+* **Resolution**: string
 
 ## InputVpcRequest
 ### Properties
@@ -533,9 +1416,160 @@ Subnet IDs must be mapped to two unique availability zones (AZ).
 ### Properties
 * **Cidr**: string: IP address cidr pool
 
+## KeyProviderSettings
+### Properties
+* **StaticKeySettings**: [StaticKeySettings](#statickeysettings)
+
+## LinkedChannelSettings
+### Properties
+* **FollowerChannelSettings**: [FollowerChannelSettings](#followerchannelsettings)
+* **PrimaryChannelSettings**: [PrimaryChannelSettings](#primarychannelsettings)
+
+## M2tsSettings
+### Properties
+* **AbsentInputAudioBehavior**: string
+* **Arib**: string
+* **AribCaptionsPid**: string
+* **AribCaptionsPidControl**: string
+* **AudioBufferModel**: string
+* **AudioFramesPerPes**: int
+* **AudioPids**: string
+* **AudioStreamType**: string
+* **Bitrate**: int
+* **BufferModel**: string
+* **CcDescriptor**: string
+* **DvbNitSettings**: [DvbNitSettings](#dvbnitsettings)
+* **DvbSdtSettings**: [DvbSdtSettings](#dvbsdtsettings)
+* **DvbSubPids**: string
+* **DvbTdtSettings**: [DvbTdtSettings](#dvbtdtsettings)
+* **DvbTeletextPid**: string
+* **Ebif**: string
+* **EbpAudioInterval**: string
+* **EbpLookaheadMs**: int
+* **EbpPlacement**: string
+* **EcmPid**: string
+* **EsRateInPes**: string
+* **EtvPlatformPid**: string
+* **EtvSignalPid**: string
+* **FragmentTime**: int
+* **Klv**: string
+* **KlvDataPids**: string
+* **NielsenId3Behavior**: string
+* **NullPacketBitrate**: int
+* **PatInterval**: int
+* **PcrControl**: string
+* **PcrPeriod**: int
+* **PcrPid**: string
+* **PmtInterval**: int
+* **PmtPid**: string
+* **ProgramNum**: int
+* **RateMode**: string
+* **Scte27Pids**: string
+* **Scte35Control**: string
+* **Scte35Pid**: string
+* **Scte35PrerollPullupMilliseconds**: int
+* **SegmentationMarkers**: string
+* **SegmentationStyle**: string
+* **SegmentationTime**: int
+* **TimedMetadataBehavior**: string
+* **TimedMetadataPid**: string
+* **TransportStreamId**: int
+* **VideoPid**: string
+
+## M3u8Settings
+### Properties
+* **AudioFramesPerPes**: int
+* **AudioPids**: string
+* **EcmPid**: string
+* **KlvBehavior**: string
+* **KlvDataPids**: string
+* **NielsenId3Behavior**: string
+* **PatInterval**: int
+* **PcrControl**: string
+* **PcrPeriod**: int
+* **PcrPid**: string
+* **PmtInterval**: int
+* **PmtPid**: string
+* **ProgramNum**: int
+* **Scte35Behavior**: string
+* **Scte35Pid**: string
+* **TimedMetadataBehavior**: string
+* **TimedMetadataPid**: string
+* **TransportStreamId**: int
+* **VideoPid**: string
+
+## MaintenanceCreateSettings
+### Properties
+* **MaintenanceDay**: string
+* **MaintenanceStartTime**: string
+
 ## MediaConnectFlow
 ### Properties
 * **FlowArn**: string: The unique ARN of the MediaConnect Flow being used as a source.
+
+## MediaConnectRouterGroupSettings
+### Properties
+* **AvailabilityZones**: string[]
+
+## MediaConnectRouterOutputConnectionMap
+### Properties
+* **Pipeline0**: string
+* **Pipeline1**: string
+
+## MediaConnectRouterOutputDestinationSettings
+### Properties
+* **EncryptionType**: string
+* **SecretArn**: string
+
+## MediaConnectRouterOutputSettings
+### Properties
+* **ConnectedRouterInputs**: [MediaConnectRouterOutputConnectionMap](#mediaconnectrouteroutputconnectionmap)
+* **ContainerSettings**: [UdpMediaConnectRouterContainerSettings](#udpmediaconnectroutercontainersettings)
+* **Destination**: [OutputLocationRef](#outputlocationref)
+
+## MediaPackageGroupSettings
+### Properties
+* **Destination**: [OutputLocationRef](#outputlocationref)
+* **MediapackageV2GroupSettings**: [MediaPackageV2GroupSettings](#mediapackagev2groupsettings)
+
+## MediaPackageOutputDestinationSettings
+### Properties
+* **ChannelEndpointId**: string
+* **ChannelGroup**: string
+* **ChannelId**: string
+* **ChannelName**: string
+* **MediaPackageRegionName**: string
+
+## MediaPackageOutputSettings
+### Properties
+* **MediaPackageV2DestinationSettings**: [MediaPackageV2DestinationSettings](#mediapackagev2destinationsettings)
+
+## MediaPackageV2DestinationSettings
+### Properties
+* **AudioGroupId**: string
+* **AudioRenditionSets**: string
+* **HlsAutoSelect**: string
+* **HlsDefault**: string
+* **OutputUsage**: string[]
+
+## MediaPackageV2GroupSettings
+### Properties
+* **AdditionalDestinations**: [AdditionalDestinations](#additionaldestinations)[]
+* **CaptionLanguageMappings**: [CaptionLanguageMapping](#captionlanguagemapping)[]
+* **Id3Behavior**: string
+* **KlvBehavior**: string
+* **NielsenId3Behavior**: string
+* **Scte35Type**: string
+* **SegmentLength**: int
+* **SegmentLengthUnits**: string
+* **TimedMetadataId3Frame**: string
+* **TimedMetadataId3Period**: int
+* **TimedMetadataPassthrough**: string
+* **WatermarkingSettings**: [MediaPackageV2WatermarkingSettings](#mediapackagev2watermarkingsettings)
+
+## MediaPackageV2WatermarkingSettings
+### Properties
+* **MediaPackageV2AbWatermarkerIrdetoSettings**: [CmafIngestMediaPackageV2AbWatermarkerIrdetoSettings](#cmafingestmediapackagev2abwatermarkerirdetosettings)
 
 ## MediaResource
 ### Properties
@@ -559,6 +1593,76 @@ Subnet IDs must be mapped to two unique availability zones (AZ).
 * **ErrorMessage**: string: Error message associated with a failed monitor deployment of a signal map.
 * **Status**: string (Required)
 
+## MotionGraphicsConfiguration
+### Properties
+* **MotionGraphicsInsertion**: string
+* **MotionGraphicsSettings**: [MotionGraphicsSettings](#motiongraphicssettings)
+
+## MotionGraphicsSettings
+### Properties
+* **HtmlMotionGraphicsSettings**: [EmptyConfigurationSettings](#emptyconfigurationsettings)
+
+## Mp2Settings
+### Properties
+* **Bitrate**: int
+* **CodingMode**: string
+* **SampleRate**: int
+
+## Mpeg2FilterSettings
+### Properties
+* **TemporalFilterSettings**: [TemporalFilterSettings](#temporalfiltersettings)
+
+## Mpeg2Settings
+### Properties
+* **AdaptiveQuantization**: string
+* **AfdSignaling**: string
+* **ColorMetadata**: string
+* **ColorSpace**: string
+* **DisplayAspectRatio**: string
+* **FilterSettings**: [Mpeg2FilterSettings](#mpeg2filtersettings)
+* **FixedAfd**: string
+* **FramerateDenominator**: int
+* **FramerateNumerator**: int
+* **GopClosedCadence**: int
+* **GopNumBFrames**: int
+* **GopSize**: int
+* **GopSizeUnits**: string
+* **ScanType**: string
+* **SubgopLength**: string
+* **TimecodeBurninSettings**: [TimecodeBurninSettings](#timecodeburninsettings)
+* **TimecodeInsertion**: string
+
+## MsSmoothGroupSettings
+### Properties
+* **AcquisitionPointId**: string
+* **AudioOnlyTimecodeControl**: string
+* **CertificateMode**: string
+* **ConnectionRetryInterval**: int
+* **Destination**: [OutputLocationRef](#outputlocationref)
+* **EventId**: string
+* **EventIdMode**: string
+* **EventStopBehavior**: string
+* **FilecacheDuration**: int
+* **FragmentLength**: int
+* **InputLossAction**: string
+* **NumRetries**: int
+* **RestartDelay**: int
+* **SegmentationMode**: string
+* **SendDelayMs**: int
+* **SparseTrackType**: string
+* **StreamManifestBehavior**: string
+* **TimestampOffset**: string
+* **TimestampOffsetMode**: string
+
+## MsSmoothOutputSettings
+### Properties
+* **H265PackagingType**: string
+* **NameModifier**: string
+
+## MulticastInputSettings
+### Properties
+* **SourceIpAddress**: string
+
 ## MulticastSettings
 ### Properties
 * **Sources**: [MulticastSource](#multicastsource)[]: Placeholder documentation for __listOfMulticastSource
@@ -572,9 +1676,40 @@ Subnet IDs must be mapped to two unique availability zones (AZ).
 ### Properties
 * **EntitlementArn**: string: The MediaConnect entitlement ARN available as a Flow source.
 
+## MultiplexContainerSettings
+### Properties
+* **MultiplexM2tsSettings**: [MultiplexM2tsSettings](#multiplexm2tssettings)
+
+## MultiplexM2tsSettings
+### Properties
+* **AbsentInputAudioBehavior**: string
+* **Arib**: string
+* **AudioBufferModel**: string
+* **AudioFramesPerPes**: int
+* **AudioStreamType**: string
+* **CcDescriptor**: string
+* **Ebif**: string
+* **EsRateInPes**: string
+* **Klv**: string
+* **NielsenId3Behavior**: string
+* **PcrControl**: string
+* **PcrPeriod**: int
+* **Scte35Control**: string
+* **Scte35PrerollPullupMilliseconds**: int
+
 ## MultiplexOutputDestination
 ### Properties
 * **MultiplexMediaConnectOutputDestinationSettings**: [Multiplex_MultiplexMediaConnectOutputDestinationSettings](#multiplexmultiplexmediaconnectoutputdestinationsettings): Multiplex MediaConnect output destination settings.
+
+## MultiplexOutputSettings
+### Properties
+* **ContainerSettings**: [MultiplexContainerSettings](#multiplexcontainersettings)
+* **Destination**: [OutputLocationRef](#outputlocationref)
+
+## MultiplexProgramChannelDestinationSettings
+### Properties
+* **MultiplexId**: string
+* **ProgramName**: string
 
 ## MultiplexProgramPacketIdentifiersMap
 ### Properties
@@ -619,11 +1754,126 @@ Subnet IDs must be mapped to two unique availability zones (AZ).
 ## MultiplexVideoSettings
 ### Properties
 
+## NetworkInputSettings
+### Properties
+* **HlsInputSettings**: [HlsInputSettings](#hlsinputsettings)
+* **MulticastInputSettings**: [MulticastInputSettings](#multicastinputsettings)
+* **ServerValidation**: string
+
+## NielsenCBET
+### Properties
+* **CbetCheckDigitString**: string
+* **CbetStepaside**: string
+* **Csid**: string
+
+## NielsenConfiguration
+### Properties
+* **DistributorId**: string
+* **NielsenPcmToId3Tagging**: string
+
+## NielsenNaesIiNwOnlySettings
+### Properties
+* **CheckDigitString**: string
+* **Sid**: int
+* **Timezone**: string
+
+## NielsenWatermarksSettings
+### Properties
+* **NielsenCbetSettings**: [NielsenCBET](#nielsencbet)
+* **NielsenDistributionType**: string
+* **NielsenNaesIiNwSettings**: [NielsenNaesIiNwOnlySettings](#nielsennaesiinwonlysettings)
+* **NielsenNwOnlySettings**: [NielsenNaesIiNwOnlySettings](#nielsennaesiinwonlysettings)
+
 ## NodeInterfaceMapping
 ### Properties
 * **LogicalInterfaceName**: string: The logical name for this interface.
 * **NetworkInterfaceMode**: string: The network interface mode.
 * **PhysicalInterfaceName**: string: The physical interface name.
+
+## Output
+### Properties
+* **AudioDescriptionNames**: string[]
+* **CaptionDescriptionNames**: string[]
+* **OutputName**: string
+* **OutputSettings**: [OutputSettings](#outputsettings)
+* **VideoDescriptionName**: string
+
+## OutputDestination
+### Properties
+* **Id**: string (Identifier)
+* **LogicalInterfaceNames**: string[]
+* **MediaConnectRouterSettings**: [MediaConnectRouterOutputDestinationSettings](#mediaconnectrouteroutputdestinationsettings)[]
+* **MediaPackageSettings**: [MediaPackageOutputDestinationSettings](#mediapackageoutputdestinationsettings)[]
+* **MultiplexSettings**: [MultiplexProgramChannelDestinationSettings](#multiplexprogramchanneldestinationsettings)
+* **Settings**: [OutputDestinationSettings](#outputdestinationsettings)[]
+* **SrtSettings**: [SrtOutputDestinationSettings](#srtoutputdestinationsettings)[]
+
+## OutputDestinationSettings
+### Properties
+* **PasswordParam**: string
+* **StreamName**: string
+* **Url**: string
+* **Username**: string
+* **VirtualSourceAddress**: string
+
+## OutputGroup
+### Properties
+* **Name**: string
+* **OutputGroupSettings**: [OutputGroupSettings](#outputgroupsettings)
+* **Outputs**: [Output](#output)[]
+
+## OutputGroupSettings
+### Properties
+* **ArchiveGroupSettings**: [ArchiveGroupSettings](#archivegroupsettings)
+* **CmafIngestGroupSettings**: [CmafIngestGroupSettings](#cmafingestgroupsettings)
+* **FrameCaptureGroupSettings**: [FrameCaptureGroupSettings](#framecapturegroupsettings)
+* **HlsGroupSettings**: [HlsGroupSettings](#hlsgroupsettings)
+* **MediaConnectRouterGroupSettings**: [MediaConnectRouterGroupSettings](#mediaconnectroutergroupsettings)
+* **MediaPackageGroupSettings**: [MediaPackageGroupSettings](#mediapackagegroupsettings)
+* **MsSmoothGroupSettings**: [MsSmoothGroupSettings](#mssmoothgroupsettings)
+* **MultiplexGroupSettings**: [EmptyConfigurationSettings](#emptyconfigurationsettings)
+* **RtmpGroupSettings**: [RtmpGroupSettings](#rtmpgroupsettings)
+* **SrtGroupSettings**: [SrtGroupSettings](#srtgroupsettings)
+* **UdpGroupSettings**: [UdpGroupSettings](#udpgroupsettings)
+
+## OutputLocationRef
+### Properties
+* **DestinationRefId**: string
+
+## OutputLockingSettings
+### Properties
+* **DisabledLockingSettings**: [DisabledLockingSettings](#disabledlockingsettings)
+* **EpochLockingSettings**: [EpochLockingSettings](#epochlockingsettings)
+* **PipelineLockingSettings**: [PipelineLockingSettings](#pipelinelockingsettings)
+
+## OutputSettings
+### Properties
+* **ArchiveOutputSettings**: [ArchiveOutputSettings](#archiveoutputsettings)
+* **CmafIngestOutputSettings**: [CmafIngestFrameCaptureOutputSettings](#cmafingestframecaptureoutputsettings)
+* **FrameCaptureOutputSettings**: [CmafIngestFrameCaptureOutputSettings](#cmafingestframecaptureoutputsettings)
+* **HlsOutputSettings**: [HlsOutputSettings](#hlsoutputsettings)
+* **MediaConnectRouterOutputSettings**: [MediaConnectRouterOutputSettings](#mediaconnectrouteroutputsettings)
+* **MediaPackageOutputSettings**: [MediaPackageOutputSettings](#mediapackageoutputsettings)
+* **MsSmoothOutputSettings**: [MsSmoothOutputSettings](#mssmoothoutputsettings)
+* **MultiplexOutputSettings**: [MultiplexOutputSettings](#multiplexoutputsettings)
+* **RtmpOutputSettings**: [RtmpOutputSettings](#rtmpoutputsettings)
+* **SrtOutputSettings**: [SrtOutputSettings](#srtoutputsettings)
+* **UdpOutputSettings**: [UdpOutputSettings](#udpoutputsettings)
+
+## PipelineLockingSettings
+### Properties
+* **CustomEpoch**: string
+* **PipelineLockingMethod**: string
+
+## PrimaryChannelSettings
+### Properties
+* **LinkedChannelType**: string
+
+## RemixSettings
+### Properties
+* **ChannelMappings**: [AudioChannelMapping](#audiochannelmapping)[]
+* **ChannelsIn**: int
+* **ChannelsOut**: int
 
 ## RenewalSettings
 ### Properties
@@ -668,11 +1918,50 @@ Subnet IDs must be mapped to two unique availability zones (AZ).
 * **EncryptionType**: string: Encryption configuration for the MediaConnect Router association. AUTOMATIC uses a service-managed secret; SECRETS_MANAGER requires SecretArn.
 * **SecretArn**: string: The ARN of the Secrets Manager secret used to encrypt this input. Required when EncryptionType is SECRETS_MANAGER.
 
+## RtmpGroupSettings
+### Properties
+* **AdMarkers**: string[]
+* **AuthenticationScheme**: string
+* **CacheFullBehavior**: string
+* **CacheLength**: int
+* **CaptionData**: string
+* **IncludeFillerNalUnits**: string
+* **InputLossAction**: string
+* **RestartDelay**: int
+
+## RtmpOutputSettings
+### Properties
+* **CertificateMode**: string
+* **ConnectionRetryInterval**: int
+* **Destination**: [OutputLocationRef](#outputlocationref)
+* **NumRetries**: int
+
+## Scte20SourceSettings
+### Properties
+* **Convert608To708**: string
+* **Source608ChannelNumber**: int
+
+## Scte27DvbSubSourceSettings
+### Properties
+* **OcrLanguage**: string
+* **Pid**: int
+
+## Scte35SpliceInsertTimeSignalAposSettings
+### Properties
+* **AdAvailOffset**: int
+* **NoRegionalBlackoutFlag**: string
+* **WebDeliveryAllowedFlag**: string
+
 ## SdiSourceMapping
 ### Properties
 * **CardNumber**: int: The card number.
 * **ChannelNumber**: int: The channel number.
 * **SdiSource**: string: The SDI source.
+
+## SmartSubtitleSourceSettings
+### Properties
+* **CaptionSynchronizationMode**: string
+* **InferenceFeedOutput**: string
 
 ## Smpte2110ReceiverGroup
 ### Properties
@@ -702,6 +1991,10 @@ Each stream encapsulates one captions stream (out of any number you can include)
 * **SrtListenerPort**: string: The port at the upstream system (the listener) that MediaLive (the caller) connects to.
 * **StreamId**: string: The stream ID, if the upstream system uses this identifier.
 
+## SrtGroupSettings
+### Properties
+* **InputLossAction**: string
+
 ## SrtListenerDecryption
 ### Properties
 * **Algorithm**: string: The algorithm used to encrypt content.
@@ -713,10 +2006,36 @@ Each stream encapsulates one captions stream (out of any number you can include)
 * **MinimumLatency**: int: The preferred latency (in milliseconds) for implementing packet loss and recovery. Packet recovery is a key feature of SRT.
 * **StreamId**: string: The stream ID, if the upstream system uses this identifier.
 
+## SrtOutputDestinationSettings
+### Properties
+* **ConnectionMode**: string
+* **EncryptionPassphraseSecretArn**: string
+* **ListenerPort**: int
+* **StreamId**: string
+* **Url**: string
+
+## SrtOutputSettings
+### Properties
+* **BufferMsec**: int
+* **ContainerSettings**: [UdpMediaConnectRouterContainerSettings](#udpmediaconnectroutercontainersettings)
+* **Destination**: [OutputLocationRef](#outputlocationref)
+* **EncryptionType**: string
+* **Latency**: int
+
 ## SrtSettings
 ### Properties
 * **SrtCallerSources**: [SrtCallerSource](#srtcallersource)[]: Placeholder documentation for __listOfSrtCallerSource
 * **SrtListenerSettings**: [SrtListenerSettings](#srtlistenersettings): Settings for an SRT listener input. Configured only when the input uses the SRT_LISTENER input type.
+
+## StandardHlsSettings
+### Properties
+* **AudioRenditionSets**: string
+* **M3u8Settings**: [M3u8Settings](#m3u8settings)
+
+## StaticKeySettings
+### Properties
+* **KeyProviderServer**: [InputLocation](#inputlocation)
+* **StaticKeyValue**: string (WriteOnly)
 
 ## SuccessfulMonitorDeployment
 ### Properties
@@ -787,4 +2106,129 @@ Each stream encapsulates one captions stream (out of any number you can include)
 ### Properties
 * **Key**: string
 * **Value**: string
+
+## TeletextSourceSettings
+### Properties
+* **OutputRectangle**: [CaptionRectangle](#captionrectangle)
+* **PageNumber**: string
+
+## TemporalFilterSettings
+### Properties
+* **PostFilterSharpening**: string
+* **Strength**: string
+
+## TextCaptionPositionSettings
+### Properties
+* **YPositionPercentage**: int
+
+## ThumbnailConfiguration
+### Properties
+* **State**: string
+
+## TimecodeBurninSettings
+### Properties
+* **FontSize**: string
+* **Position**: string
+* **Prefix**: string
+
+## TimecodeConfig
+### Properties
+* **Source**: string
+* **SyncThreshold**: int
+
+## TtmlDestinationSettings
+### Properties
+* **Position**: [TextCaptionPositionSettings](#textcaptionpositionsettings)
+* **StyleControl**: string
+
+## UdpGroupSettings
+### Properties
+* **InputLossAction**: string
+* **TimedMetadataId3Frame**: string
+* **TimedMetadataId3Period**: int
+
+## UdpMediaConnectRouterContainerSettings
+### Properties
+* **M2tsSettings**: [M2tsSettings](#m2tssettings)
+
+## UdpOutputSettings
+### Properties
+* **BufferMsec**: int
+* **ContainerSettings**: [UdpMediaConnectRouterContainerSettings](#udpmediaconnectroutercontainersettings)
+* **Destination**: [OutputLocationRef](#outputlocationref)
+* **FecOutputSettings**: [FecOutputSettings](#fecoutputsettings)
+
+## VideoBlackFailoverSettings
+### Properties
+* **BlackDetectThreshold**: int
+* **VideoBlackThresholdMsec**: int
+
+## VideoCodecSettings
+### Properties
+* **Av1Settings**: [Av1Settings](#av1settings)
+* **FrameCaptureSettings**: [FrameCaptureSettings](#framecapturesettings)
+* **H264Settings**: [H264Settings](#h264settings)
+* **H265Settings**: [H265Settings](#h265settings)
+* **Mpeg2Settings**: [Mpeg2Settings](#mpeg2settings)
+
+## VideoDescription
+### Properties
+* **Border**: int
+* **CodecSettings**: [VideoCodecSettings](#videocodecsettings)
+* **CropRectangle**: [VideoPositionRectangle](#videopositionrectangle)
+* **Height**: int
+* **Name**: string
+* **OutputPositionRectangle**: [VideoPositionRectangle](#videopositionrectangle)
+* **RespondToAfd**: string
+* **ScalingBehavior**: string
+* **Sharpness**: int
+* **Width**: int
+
+## VideoPositionRectangle
+### Properties
+* **Height**: int
+* **Width**: int
+* **X**: int
+* **Y**: int
+
+## VideoSelector
+### Properties
+* **ColorSpace**: string
+* **ColorSpaceSettings**: [VideoSelectorColorSpaceSettings](#videoselectorcolorspacesettings)
+* **ColorSpaceUsage**: string
+* **SelectorSettings**: [VideoSelectorSettings](#videoselectorsettings)
+
+## VideoSelectorColorSpaceSettings
+### Properties
+* **Hdr10Settings**: [Hdr10Settings](#hdr10settings)
+
+## VideoSelectorPid
+### Properties
+* **Pid**: int
+
+## VideoSelectorProgramId
+### Properties
+* **ProgramId**: int
+
+## VideoSelectorSettings
+### Properties
+* **VideoSelectorPid**: [VideoSelectorPid](#videoselectorpid)
+* **VideoSelectorProgramId**: [VideoSelectorProgramId](#videoselectorprogramid)
+
+## VpcOutputSettings
+### Properties
+* **PublicAddressAllocationIds**: string[] (WriteOnly)
+* **SecurityGroupIds**: string[]
+* **SubnetIds**: string[]
+
+## WavSettings
+### Properties
+* **BitDepth**: int
+* **CodingMode**: string
+* **SampleRate**: int
+
+## WebvttDestinationSettings
+### Properties
+* **Position**: [TextCaptionPositionSettings](#textcaptionpositionsettings)
+* **StyleControl**: string
 

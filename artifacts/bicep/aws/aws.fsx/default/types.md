@@ -24,6 +24,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.FSx/FileCacheProperties](#awsfsxfilecacheproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.FSx/FileSystem@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.FSx/FileSystemProperties](#awsfsxfilesystemproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.FSx/S3AccessPointAttachment@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -73,6 +81,12 @@
 ### Properties
 * **Aggregates**: string[]: The list of aggregates that this volume resides on. Aggregates are storage pools which make up your primary storage tier.
 * **ConstituentsPerAggregate**: int (WriteOnly): Used to explicitly set the number of constituents within the FlexGroup per storage aggregate. This field is optional when creating a FlexGroup volume. If unspecified, the default value will be 8. This field cannot be provided when creating a FlexVol volume.
+
+## AuditLogConfiguration
+### Properties
+* **AuditLogDestination**: string
+* **FileAccessAuditLogLevel**: string (Required)
+* **FileShareAccessAuditLogLevel**: string (Required)
 
 ## AutocommitPeriod
 ### Properties
@@ -131,6 +145,28 @@
 * **Tags**: [Tag](#tag)[]: Tags to associate with the file cache
 * **VpcId**: string (ReadOnly): The VPC ID of the cache
 
+## AWS.FSx/FileSystemProperties
+### Properties
+* **BackupId**: string (WriteOnly)
+* **DNSName**: string (ReadOnly)
+* **FileSystemType**: string (Required)
+* **FileSystemTypeVersion**: string
+* **Id**: string (ReadOnly, Identifier): The file system ID, such as fs-0123456789abcdef0, which AWS assigns.
+* **KmsKeyId**: string
+* **LustreConfiguration**: [LustreConfiguration](#lustreconfiguration)
+* **LustreMountName**: string (ReadOnly)
+* **NetworkType**: string
+* **OntapConfiguration**: [OntapConfiguration](#ontapconfiguration)
+* **OpenZFSConfiguration**: [OpenZFSConfiguration](#openzfsconfiguration)
+* **ResourceARN**: string (ReadOnly)
+* **RootVolumeId**: string (ReadOnly)
+* **SecurityGroupIds**: string[] (WriteOnly)
+* **StorageCapacity**: int
+* **StorageType**: string
+* **SubnetIds**: string[] (Required)
+* **Tags**: [Tag](#tag)[]
+* **WindowsConfiguration**: [WindowsConfiguration](#windowsconfiguration)
+
 ## AWS.FSx/S3AccessPointAttachmentProperties
 ### Properties
 * **Lifecycle**: string (ReadOnly): The lifecycle status of the S3 access point attachment.
@@ -188,6 +224,11 @@
 
 ## ClientConfigurations
 ### Properties
+* **Clients**: string
+* **Options**: string[]
+
+## ClientConfigurations
+### Properties
 * **Clients**: string (Required): A value that specifies who can mount the file system. You can provide a wildcard character (*), an IP address (0.0.0.0), or a CIDR address (192.0.2.0/24). By default, Amazon FSx uses the wildcard character when specifying the client.
 * **Options**: string[] (Required): The configuration object for mounting a Network File System (NFS) file system.
 
@@ -198,10 +239,20 @@
 * **Path**: string: Specifies the location of the report on the linked S3 data repository.
 * **Scope**: string: Specifies the scope of the CompletionReport.
 
+## DataReadCacheConfiguration
+### Properties
+* **SizeGiB**: int
+* **SizingMode**: string
+
 ## DataRepositoryAssociation
 ### Properties
 * **DataRepositoryPath**: string (Required)
 * **FileCachePath**: string (Required)
+
+## DiskIopsConfiguration
+### Properties
+* **Iops**: int
+* **Mode**: string
 
 ## DurationSinceLastAccess
 ### Properties
@@ -211,6 +262,16 @@
 ## FileSystemGID
 ### Properties
 * **Gid**: int (Required): The GID of the file system user.
+
+## FsrmConfiguration
+### Properties
+* **EventLogDestination**: string
+* **FsrmServiceEnabled**: bool (Required)
+
+## LogConfiguration
+### Properties
+* **Destination**: string
+* **Level**: string (Required)
 
 ## LogConfiguration
 ### Properties
@@ -226,13 +287,58 @@
 * **PerUnitStorageThroughput**: int (Required)
 * **WeeklyMaintenanceStartTime**: string
 
+## LustreConfiguration
+### Properties
+* **AutoImportPolicy**: string
+* **AutomaticBackupRetentionDays**: int
+* **CopyTagsToBackups**: bool
+* **DailyAutomaticBackupStartTime**: string
+* **DataCompressionType**: string
+* **DataReadCacheConfiguration**: [DataReadCacheConfiguration](#datareadcacheconfiguration)
+* **DeploymentType**: string
+* **DriveCacheType**: string
+* **EfaEnabled**: bool
+* **ExportPath**: string
+* **ImportedFileChunkSize**: int
+* **ImportPath**: string
+* **LogConfiguration**: [LogConfiguration](#logconfiguration)
+* **MetadataConfiguration**: [MetadataConfiguration](#metadataconfiguration)
+* **PerUnitStorageThroughput**: int
+* **ThroughputCapacity**: int
+* **WeeklyMaintenanceStartTime**: string
+
 ## MetadataConfiguration
 ### Properties
 * **StorageCapacity**: int (Required)
 
+## MetadataConfiguration
+### Properties
+* **Iops**: int
+* **Mode**: string
+
+## NfsExports
+### Properties
+* **ClientConfigurations**: [ClientConfigurations](#clientconfigurations)[]
+
 ## NfsExports
 ### Properties
 * **ClientConfigurations**: [ClientConfigurations](#clientconfigurations)[] (Required): The configuration object for mounting a Network File System (NFS) file system.
+
+## OntapConfiguration
+### Properties
+* **AutomaticBackupRetentionDays**: int
+* **DailyAutomaticBackupStartTime**: string
+* **DeploymentType**: string (Required)
+* **DiskIopsConfiguration**: [DiskIopsConfiguration](#diskiopsconfiguration)
+* **EndpointIpAddressRange**: string
+* **EndpointIpv6AddressRange**: string
+* **FsxAdminPassword**: string (WriteOnly)
+* **HAPairs**: int
+* **PreferredSubnetId**: string
+* **RouteTableIds**: string[]
+* **ThroughputCapacity**: int
+* **ThroughputCapacityPerHAPair**: int
+* **WeeklyMaintenanceStartTime**: string
 
 ## OntapConfiguration
 ### Properties
@@ -266,6 +372,24 @@
 
 ## OpenZFSConfiguration
 ### Properties
+* **AutomaticBackupRetentionDays**: int
+* **CopyTagsToBackups**: bool
+* **CopyTagsToVolumes**: bool
+* **DailyAutomaticBackupStartTime**: string
+* **DeploymentType**: string (Required)
+* **DiskIopsConfiguration**: [DiskIopsConfiguration](#diskiopsconfiguration)
+* **EndpointIpAddressRange**: string
+* **EndpointIpv6AddressRange**: string
+* **Options**: string[] (WriteOnly)
+* **PreferredSubnetId**: string
+* **ReadCacheConfiguration**: [ReadCacheConfiguration](#readcacheconfiguration)
+* **RootVolumeConfiguration**: [RootVolumeConfiguration](#rootvolumeconfiguration) (WriteOnly)
+* **RouteTableIds**: string[]
+* **ThroughputCapacity**: int
+* **WeeklyMaintenanceStartTime**: string
+
+## OpenZFSConfiguration
+### Properties
 * **CopyTagsToSnapshots**: bool: A Boolean value indicating whether tags for the volume should be copied to snapshots. This value defaults to false. If this value is set to true, and you do not specify any tags, all tags for the original volume are copied over to snapshots. If this value is set to true, and you do specify one or more tags, only the specified tags for the original volume are copied over to snapshots. If you specify one or more tags when creating a new snapshot, no tags are copied over from the original volume, regardless of this value.
 * **DataCompressionType**: string: Specifies the method used to compress the data on the volume
 * **NfsExports**: [NfsExports](#nfsexports)[]: The configuration object for mounting a Network File System (NFS) file system.
@@ -294,6 +418,11 @@
 * **CopyStrategy**: string (Required): The configuration object for mounting a Network File System (NFS) file system.
 * **SnapshotARN**: string (Required): Specifies the snapshot to use when creating an OpenZFS volume from a snapshot.
 
+## ReadCacheConfiguration
+### Properties
+* **SizeGiB**: int
+* **SizingMode**: string
+
 ## ReleaseConfiguration
 ### Properties
 * **DurationSinceLastAccess**: [DurationSinceLastAccess](#durationsincelastaccess)
@@ -302,6 +431,15 @@
 ### Properties
 * **Type**: string (Required): Defines the type of time for the retention period of an FSx for ONTAP SnapLock volume. Set it to one of the valid types. If you set it to INFINITE, the files are retained forever. If you set it to UNSPECIFIED, the files are retained until you set an explicit retention period.
 * **Value**: int: Defines the amount of time for the retention period of an FSx for ONTAP SnapLock volume. You can't set a value for INFINITE or UNSPECIFIED.
+
+## RootVolumeConfiguration
+### Properties
+* **CopyTagsToSnapshots**: bool
+* **DataCompressionType**: string
+* **NfsExports**: [NfsExports](#nfsexports)[]
+* **ReadOnly**: bool
+* **RecordSizeKiB**: int
+* **UserAndGroupQuotas**: [UserAndGroupQuotas](#userandgroupquotas)[]
 
 ## S3
 ### Properties
@@ -328,6 +466,16 @@
 ## S3AccessPointVpcConfiguration
 ### Properties
 * **VpcId**: string (Required): Specifies the virtual private cloud (VPC) for the S3 access point VPC configuration, if one exists.
+
+## SelfManagedActiveDirectoryConfiguration
+### Properties
+* **DnsIps**: string[]
+* **DomainJoinServiceAccountSecret**: string
+* **DomainName**: string
+* **FileSystemAdministratorsGroup**: string
+* **OrganizationalUnitDistinguishedName**: string
+* **Password**: string (WriteOnly)
+* **UserName**: string
 
 ## SelfManagedActiveDirectoryConfiguration
 ### Properties
@@ -371,6 +519,11 @@
 
 ## Tag
 ### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
 * **Key**: string (Required): A value that specifies the TagKey, the name of the tag. Tag keys must be unique for the resource to which they are attached.
 * **Value**: string (Required): A value that specifies the TagValue, the value assigned to the corresponding tag key. Tag values can be null and don't have to be unique in a tag set. For example, you can have a key-value pair in a tag set of finances : April and also of payroll : April.
 
@@ -396,7 +549,29 @@
 
 ## UserAndGroupQuotas
 ### Properties
+* **Id**: int (Identifier)
+* **StorageCapacityQuotaGiB**: int
+* **Type**: string
+
+## UserAndGroupQuotas
+### Properties
 * **Id**: int (Required): The ID of the user or group that the quota applies to.
 * **StorageCapacityQuotaGiB**: int (Required): The user or group's storage quota, in gibibytes (GiB).
 * **Type**: string (Required): Specifies whether the quota applies to a user or group.
+
+## WindowsConfiguration
+### Properties
+* **ActiveDirectoryId**: string
+* **Aliases**: string[]
+* **AuditLogConfiguration**: [AuditLogConfiguration](#auditlogconfiguration)
+* **AutomaticBackupRetentionDays**: int
+* **CopyTagsToBackups**: bool
+* **DailyAutomaticBackupStartTime**: string
+* **DeploymentType**: string
+* **DiskIopsConfiguration**: [DiskIopsConfiguration](#diskiopsconfiguration)
+* **FsrmConfiguration**: [FsrmConfiguration](#fsrmconfiguration)
+* **PreferredSubnetId**: string
+* **SelfManagedActiveDirectoryConfiguration**: [SelfManagedActiveDirectoryConfiguration](#selfmanagedactivedirectoryconfiguration)
+* **ThroughputCapacity**: int (Required)
+* **WeeklyMaintenanceStartTime**: string
 

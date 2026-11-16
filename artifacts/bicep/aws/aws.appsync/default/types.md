@@ -72,6 +72,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.AppSync/GraphQLApiProperties](#awsappsyncgraphqlapiproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.AppSync/GraphQLSchema@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.AppSync/GraphQLSchemaProperties](#awsappsyncgraphqlschemaproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.AppSync/Resolver@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -261,6 +269,13 @@ As of September 2021, Amazon Elasticsearch Service is Amazon OpenSearch Service.
 * **XrayEnabled**: bool: A flag indicating whether to use AWS X-Ray tracing for this GraphqlApi.
 
 
+
+## AWS.AppSync/GraphQLSchemaProperties
+### Properties
+* **ApiId**: string (Required)
+* **Definition**: string (WriteOnly)
+* **DefinitionS3Location**: string (WriteOnly)
+* **Id**: string (ReadOnly, Identifier): The API ID, the same as ApiId, because an API has one schema.
 
 ## AWS.AppSync/ResolverProperties
 ### Properties
