@@ -13,9 +13,6 @@ concurrency:
   group: aws-bicep-release-${{ github.event.client_payload.version }}
   cancel-in-progress: false
 
-env:
-  INPUT_DIRECTORY: ${{ github.workspace }}/../aws-bicep-publication
-
 jobs:
   select:
     name: Authenticate AWS release request
@@ -33,6 +30,9 @@ jobs:
       type_version: ${{ steps.select.outputs.type_version }}
       source_commit: ${{ steps.select.outputs.source_commit }}
     steps:
+      - name: Set publication directory
+        run: echo "INPUT_DIRECTORY=${RUNNER_TEMP}/aws-bicep-publication" >> "${GITHUB_ENV}"
+
       - name: Checkout default-main controller
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -75,6 +75,9 @@ jobs:
     outputs:
       artifact_id: ${{ steps.upload.outputs.artifact-id }}
     steps:
+      - name: Set publication directory
+        run: echo "INPUT_DIRECTORY=${RUNNER_TEMP}/aws-bicep-publication" >> "${GITHUB_ENV}"
+
       - name: Checkout trusted controller and downloader
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -156,6 +159,9 @@ jobs:
         image: registry:2.8.3@sha256:a3d8aaa63ed8681a604f1dea0aa03f100d5895b6a58ace528858a7b332415373
         ports: [5000/tcp]
     steps:
+      - name: Set publication directory
+        run: echo "INPUT_DIRECTORY=${RUNNER_TEMP}/aws-bicep-publication" >> "${GITHUB_ENV}"
+
       - name: Checkout default-main capture helper
         if: needs.select.outputs.reuse == 'false'
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -253,6 +259,9 @@ jobs:
       actions: read
       packages: write
     steps:
+      - name: Set publication directory
+        run: echo "INPUT_DIRECTORY=${RUNNER_TEMP}/aws-bicep-publication" >> "${GITHUB_ENV}"
+
       - name: Checkout default-main publisher, never candidate code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
