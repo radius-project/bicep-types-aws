@@ -12,9 +12,6 @@ concurrency:
   group: aws-bicep-main
   cancel-in-progress: false
 
-env:
-  INPUT_DIRECTORY: ${{ github.workspace }}/../aws-bicep-publication
-
 jobs:
   capture:
     name: Capture main AWS Bicep types
@@ -32,6 +29,9 @@ jobs:
         image: registry:2.8.3@sha256:a3d8aaa63ed8681a604f1dea0aa03f100d5895b6a58ace528858a7b332415373
         ports: [5000/tcp]
     steps:
+      - name: Set publication directory
+        run: echo "INPUT_DIRECTORY=${RUNNER_TEMP}/aws-bicep-publication" >> "${GITHUB_ENV}"
+
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ github.sha }}
@@ -136,6 +136,9 @@ jobs:
       published: ${{ steps.publish.outputs.published }}
       receipt_artifact_id: ${{ steps.receipt.outputs.artifact-id }}
     steps:
+      - name: Set publication directory
+        run: echo "INPUT_DIRECTORY=${RUNNER_TEMP}/aws-bicep-publication" >> "${GITHUB_ENV}"
+
       - name: Checkout trusted publisher, not generated code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -206,6 +209,9 @@ jobs:
       contents: read
       actions: read
     steps:
+      - name: Set publication directory
+        run: echo "INPUT_DIRECTORY=${RUNNER_TEMP}/aws-bicep-publication" >> "${GITHUB_ENV}"
+
       - name: Checkout trusted mirror caller
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:

@@ -79,6 +79,12 @@ Source identity, immutable full-version rules and the R3 record ABI are unchange
 
 ## Capture and credential boundary
 
+Each producer job initializes `INPUT_DIRECTORY` under
+`$RUNNER_TEMP/aws-bicep-publication` through `GITHUB_ENV` before its other steps.
+All schema/snapshot downloads, uploads and receipts in that job use this path;
+jobs exchange artifacts, not local directories. The upload action rejects literal
+`.`/`..` path segments, so do not use a workspace-relative parent path.
+
 Each new publication captures the actual schema inputs, generated types and native
 OCI layout once. The capture includes the Radius-owned schemas and extra
 properties from the pinned `radius` submodule under `schemas/radius`, plus its

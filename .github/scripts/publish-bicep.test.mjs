@@ -700,6 +700,48 @@ test("mirror fails on changed capture evidence and preserves remote result if su
   assert.equal(options.receipt.status, "mirror-pending");
 });
 
+test("producer artifact paths use initialized runner temp without dot segments", async (t) => {
+  const directory = await scratch(t);
+  for (const [name, expectedPaths] of [
+    ["publish-main-bicep.yaml", { capture: 1, publish: 2, mirror: 2 }],
+    ["publish-release-bicep.yaml", { select: 0, schemas: 1, capture: 2, publish: 3 }]
+  ]) {
+    const text = await readFile(new URL(`../workflows/${name}`, import.meta.url), "utf8");
+    const [workflow, jobsText] = text.split("\njobs:\n");
+    assert.doesNotMatch(workflow, /INPUT_DIRECTORY|runner\.temp/);
+    const jobs = [...jobsText.matchAll(/^  ([a-z]+):\n([\s\S]*?)(?=^  [a-z]+:\n|$(?![\s\S]))/gm)];
+    assert.deepEqual(jobs.map(([, id]) => id), Object.keys(expectedPaths));
+    for (const [, id, body] of jobs) {
+      assert.doesNotMatch(body.split("\n    steps:\n")[0], /INPUT_DIRECTORY|runner\.temp/);
+      const initialization = body.match(/    steps:\n      - name: Set publication directory\n        run: (.+)/)?.[1];
+      assert.ok(initialization, `Initialize ${name}:${id} before using the directory`);
+      assert.equal([...body.matchAll(/INPUT_DIRECTORY=/g)].length, 1, "Steps share the initialized directory");
+      const temp = join(directory, `${name}-${id} temp`);
+      const envPath = join(directory, `${name}-${id}.env`);
+      await tool(["bash", "-c", initialization], {
+        env: { ...process.env, RUNNER_TEMP: temp, GITHUB_ENV: envPath }
+      });
+      const initialized = await readFile(envPath, "utf8");
+      assert.equal(initialized, `INPUT_DIRECTORY=${temp}/aws-bicep-publication\n`);
+      const expandedDirectory = initialized.trim().slice("INPUT_DIRECTORY=".length);
+      let paths = 0;
+      for (const [, step] of body.matchAll(/(?:^|\n)      - ([\s\S]*?)(?=\n      - |$(?![\s\S]))/g)) {
+        if (!/uses: actions\/(?:upload|download)-artifact@/.test(step)) continue;
+        paths++;
+        const path = step.match(/^          path: (.+)$/m)?.[1];
+        assert.ok(path?.startsWith("${{ env.INPUT_DIRECTORY }}"), `${name}:${id}: ${path}`);
+        const expanded = path.replace("${{ env.INPUT_DIRECTORY }}", expandedDirectory)
+          .replace(/\$\{\{ github\.run_id \}\}/g, "100");
+        assert.ok(expanded.startsWith(`${temp}/`), expanded);
+        assert.doesNotMatch(expanded, /\$\{\{/);
+        assert.ok(expanded.split("/").every((segment) => segment !== "." && segment !== ".."),
+          `upload-artifact rejects relative path segments: ${expanded}`);
+      }
+      assert.equal(paths, expectedPaths[id], `Check every artifact path in ${name}:${id}`);
+    }
+  }
+});
+
 test("workflow authority and evidence wiring remain bounded", async () => {
   const read = (name) => readFile(new URL(`../workflows/${name}`, import.meta.url), "utf8");
   for (const name of ["publish-main-bicep.yaml", "publish-release-bicep.yaml"]) {
