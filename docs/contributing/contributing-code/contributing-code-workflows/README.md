@@ -39,11 +39,20 @@ permissions; this migration does not add App grants or bypass branch protection.
 | --- | --- | --- |
 | `publish-main-bicep.yaml` | Protected current main, push or manual dispatch | Publishes GHCR `bicep-types-aws:edge`, then requests the private publisher copy its exact digest to ACR `aws:latest` |
 | `publish-release-bicep.yaml` | Default-main `repository_dispatch`, selecting a frozen stable/RC source | GHCR full stable/RC version without `v` ONLY |
-| Existing approved Radius R3 finalizer | Coordinated tagged release | GHCR stable `latest`/`X.Y`; requests private full stable/RC ACR copies and eligible stable channel promotion |
+| `publish-bicep.yaml` | `v*` tag push or manual dispatch on a `v*` tag only | Retains legacy private ACR publication for current Radius releases |
+| Pending Radius R3 finalizer ([radius-project/radius#13178](https://github.com/radius-project/radius/pull/13178)) | Future coordinated tagged release after activation | GHCR stable `latest`/`X.Y`; requests private full stable/RC ACR copies and eligible stable channel promotion |
 
-The current legacy `publish-bicep.yaml` dispatcher is removed by this handoff.
-Old tags still contain its caller YAML, so the separately authorized private
-publisher guard is a **merge and rollout blocker**, not optional cleanup.
+This handoff removes only the legacy dispatcher's **main** trigger. Keep its
+`v*` tag path and `get_release_version.py` until
+[radius-project/radius#13178](https://github.com/radius-project/radius/pull/13178)
+ships and the tagged handoff is activated; current Radius releases still depend
+on that ACR publication. The tag caller uses the existing publisher App and
+version/channel mapping. Its `<full-version>-<source-sha>` release identifier
+is present in the JSON payload and passed to the shared correlated monitor, which
+dispatches or resumes the matching run without time-window discovery or a separate
+duplicate dispatch. Main dispatch is rejected even when started manually.
+Old tags still contain earlier caller YAML, so the private publisher's legacy-main
+guard and coordinated writer drain remain part of the handoff.
 ACR development `aws:latest` maps to GHCR `edge`, not GHCR stable `latest`.
 The earlier A1 staging workflows and legacy publisher captured fresh schemas
 independently and made **no parity claim**; parity begins with this controlled
@@ -63,8 +72,8 @@ normally after bootstrap. Tagged legacy requests and Test remain unchanged by
 that main-specific gate.
 
 The AWS release producer never writes stable aliases or ACR compatibility tags.
-The existing approved Radius R3 finalizer alone coordinates tagged compatibility
-after activation. Production Azure login and ACR writes remain exclusively in
+The pending Radius R3 finalizer will coordinate tagged compatibility after its
+activation; it is not the current release path. Production Azure login and ACR writes remain exclusively in
 `azure-octo/radius-publisher`: `radius-project` workflows cannot publish there.
 Source identity, immutable full-version rules and the R3 record ABI are unchanged.
 
@@ -326,7 +335,7 @@ remain trusted; this migration is not a redesign of repository-wide authority.
   definitions. Protecting against an authorized maintainer changing those
   definitions would be a different trust model, not an AWS-only prerequisite.
 - Existing tag-triggered legacy publication and its App credentials remain during
-  staging. The copy-request follow-up removes the current legacy caller; old tags
+  staging. This change retains the tag-only caller and removes its main trigger; old tags
   still retain their workflow definitions. Preserve the coordinated writer drain
   and existing release behavior below rather than treating caller removal as
   credential revocation.
@@ -340,10 +349,13 @@ merge, public visibility change or production dispatch.
 
 This is a cross-repository, non-atomic rollout, not a feature toggle:
 
-Review readiness does not authorize production activation. Scoped publisher App
-grants, package access/Public availability and the controlled writer-drain plan
-remain operational prerequisites. No new Azure federation or production
-credential grant in `radius-project` is part of these prerequisites.
+Reuse the existing publisher App credentials and trusted-main pattern rather than
+adding a general IAM attestation or operator-approval migration gate. This does
+not claim the credentials' complete permissions were audited. Keep the actual
+source/candidate isolation, Public availability checks and writer-drain sequence;
+no new Azure federation or production credential grant in `radius-project` is needed.
+Review readiness is not permission to merge: merging starts the publishing
+workflow, and a public package permits its downstream private-copy request.
 
 The companion implementation is
 [azure-octo/radius-publisher#38](https://github.com/azure-octo/radius-publisher/pull/38)
@@ -359,7 +371,8 @@ including those using old concurrency keys; the new lock cannot stop them.
    requests once `edge` exists.
 2. Prepare this AWS caller that requests a copy of main's exact GHCR digest to
    ACR `aws:latest` from the existing private publisher and removes the legacy
-   schema-regenerating production dispatcher. Keep existing Azure authentication
+   schema-regenerating main trigger, retaining tagged publication until
+   `radius-project/radius#13178` ships. Keep existing Azure authentication
    in `azure-octo/radius-publisher`; do not add Azure login, federation or ACR
    credentials to this repository. Authenticate the source-owned GHCR evidence
    and copy the fixed digest without regenerating schemas.
@@ -380,6 +393,12 @@ including those using old concurrency keys; the new lock cannot stop them.
    an AWS main-publication maintenance window, and drain queued/running old
    production Bicep writers. A new private guard does not stop already-running
    jobs. Preserve reconciliation of already-published historical releases.
+   At the future R3 cutover, retire the tag-only caller and its version helper
+   only after `radius-project/radius#13178` ships. The retained legacy tag writer must not generate the
+   same new GHCR-contract release concurrently with R3's digest-pinned copy.
+   Already-generated ACR full versions may contain different bytes; pause/drain
+   unpublished legacy plans and old caller revisions instead of overwriting those
+   immutable versions or assuming caller removal changes historical content.
 6. Apply the private publisher and AWS copy-request handoff, verify main digest
    parity, then activate the Radius release finalizer. Rehearse paired RC
    and approved stable publication, aliases, partial recovery and ACR compatibility

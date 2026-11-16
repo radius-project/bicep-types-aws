@@ -72,7 +72,7 @@ function github(s = source, overrides = {}) {
       actions: {
         getArtifact: async () => ({ data: {
           ...artifact, workflow_run: {
-            ...artifact.workflow_run, head_branch: s.ref.replace(/^refs\/(heads|tags)\//, "")
+            ...artifact.workflow_run, head_sha: s.controller?.commit ?? s.commit, head_branch: "main"
           }
         } }),
         getWorkflowRunAttempt: async ({ run_id, attempt_number }) => ({
@@ -678,7 +678,7 @@ test("mirror fails on changed capture evidence and preserves remote result if su
     const { api } = github(main);
     let dispatched = false;
     api.rest.actions.getArtifact = async () => ({ data: {
-      ...artifact, workflow_run: { ...artifact.workflow_run, head_branch: "main" }, ...change
+      ...artifact, workflow_run: { ...artifact.workflow_run, head_sha: main.commit }, ...change
     } });
     await assert.rejects(mirrorMain(mirrorOptions(directory, {
       github: api, monitor: async () => { dispatched = true; }
@@ -752,7 +752,85 @@ test("workflow authority and evidence wiring remain bounded", async () => {
   const generation = await read("generate-types.yaml");
   assert.match(generation, /github\.repository == 'radius-project\/bicep-types-aws' && github\.ref == 'refs\/heads\/main' && github\.ref_protected/);
   assert.ok(generation.indexOf("branch.commit.sha !== context.sha") < generation.indexOf("secrets.AWS_ACCESS_KEY_ID"));
-  await assert.rejects(read("publish-bicep.yaml"), { code: "ENOENT" });
+  const legacy = await read("publish-bicep.yaml");
+  assert.match(legacy, /tags:\n      - v\*/);
+  assert.doesNotMatch(legacy, /branches:|refs\/heads\/main|DISPATCH_STARTED_AT|peter-evans\/repository-dispatch/);
+  assert.match(legacy, /if: github\.repository == 'radius-project\/bicep-types-aws' && startsWith\(github\.ref, 'refs\/tags\/v'\)/);
+  assert.match(legacy, /get_release_version\.py/);
+  assert.doesNotMatch(legacy, /packages: write|id-token: write|azure\/login|AWS_ACCESS|AWS_SECRET/);
+});
+
+test("retained tag caller preserves legacy channels and dispatches correlated payload once", async (t) => {
+  const workflow = await readFile(new URL("../workflows/publish-bicep.yaml", import.meta.url), "utf8");
+  const payloadTemplate = workflow.match(/INPUT_CLIENT_PAYLOAD: \|-\n((?: {12}.*\n)+)/)[1];
+  const identifierExpression = workflow.match(/INPUT_RELEASE_IDENTIFIER: \$\{\{ (.+) \}\}/)[1];
+  assert.equal(identifierExpression, "format('{0}-{1}', env.REL_VERSION, github.sha)");
+  assert.match(workflow, /INPUT_EVENT_TYPE: bicep-types-aws/);
+  assert.match(workflow, /INPUT_WORKFLOW_FILE: publish-bicep-types-aws\.yml/);
+  for (const [version, channel] of [
+    ["0.62.1", "0.62"], ["0.62.1-rc.2", "0.62.1-rc.2"],
+    ["0.62.1-rc2", "0.62.1-rc2"], ["0.62.1+build.2", "0.62"]
+  ]) {
+    const directory = await scratch(t);
+    const envPath = join(directory, "github-env");
+    const ref = `refs/tags/v${version}`;
+    await tool(["python3", resolve(".github/scripts/get_release_version.py")], {
+      env: { ...process.env, GITHUB_REF: ref, GITHUB_ENV: envPath }
+    });
+    const values = Object.fromEntries((await readFile(envPath, "utf8")).trim().split("\n")
+      .map((line) => line.split("=")));
+    assert.equal(values.REL_VERSION, version);
+    assert.equal(values.REL_CHANNEL, channel);
+    const identifier = `${values.REL_VERSION}-${sha}`;
+    const expressions = {
+      "github.repository": repository, "github.ref": ref, "github.sha": sha,
+      "env.REL_CHANNEL": values.REL_CHANNEL,
+      [identifierExpression]: identifier
+    };
+    const payload = JSON.parse(payloadTemplate.replace(/\$\{\{ toJSON\((.*?)\) \}\}/g,
+      (_, expression) => {
+        assert.ok(Object.hasOwn(expressions, expression), `Unexpected payload expression: ${expression}`);
+        return JSON.stringify(expressions[expression]);
+      }));
+    assert.deepEqual(payload, {
+      source_repository: repository, source_ref: ref, source_sha: sha,
+      rel_channel: channel, registry_target: "aws", release_identifier: identifier
+    });
+    const inputs = {
+      OWNER: "azure-octo", REPO: "radius-publisher", WORKFLOW_FILE: "publish-bicep-types-aws.yml",
+      EVENT_TYPE: "bicep-types-aws", RELEASE_IDENTIFIER: identifier, CLIENT_PAYLOAD: JSON.stringify(payload)
+    };
+    let dispatches = 0;
+    const outputs = {};
+    const failures = [];
+    const publisherGithub = {
+      paginate: async () => [],
+      rest: {
+        repos: { createDispatchEvent: async (request) => {
+          dispatches++;
+          assert.equal(request.event_type, inputs.EVENT_TYPE);
+          assert.deepEqual(request.client_payload, payload);
+        } },
+        actions: { listWorkflowRuns: async () => ({ data: { workflow_runs: [{
+          id: 901, event: "repository_dispatch",
+          display_title: `bicep-types-aws / ${identifier}`,
+          status: "completed", conclusion: "success"
+        }] } }) }
+      }
+    };
+    await monitorRemoteWorkflow({
+      github: publisherGithub,
+      core: {
+        getInput: (name) => inputs[name] ?? "", info: () => {},
+        setOutput: (name, value) => { outputs[name] = value; },
+        setFailed: (error) => failures.push(error)
+      }
+    });
+    assert.deepEqual(failures, []);
+    assert.equal(dispatches, 1);
+    assert.equal(outputs.conclusion, "success");
+    assert.equal(outputs.run_id, "901");
+  }
 });
 
 test("generator CLI preserves legacy dashed arguments and default resource identities", {
@@ -911,7 +989,7 @@ test("native two-registry main parity, interrupted original-snapshot recovery an
   const a = {
     ...artifact, size_in_bytes: (await lstat(archive)).size,
     digest: hash(await readFile(archive)),
-    workflow_run: { ...artifact.workflow_run, head_branch: "main" }
+    workflow_run: { ...artifact.workflow_run, head_sha: main.commit }
   };
   const { api } = github(main);
   api.rest.actions.getArtifact = async () => ({ data: a });
