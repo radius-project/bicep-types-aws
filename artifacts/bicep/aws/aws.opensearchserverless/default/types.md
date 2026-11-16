@@ -117,7 +117,7 @@ Contains only lowercase letters a-z, the numbers 0-9 and the hyphen (-)
 Contains between 3 and 64 characters
 
 * **StandbyReplicas**: string
-* **Tags**: [Tag](#tag)[] (WriteOnly): List of tags to be added to the resource
+* **Tags**: [Tag](#tag)[]: List of tags to associate with the collection. Tag changes are applied in place without replacing the collection. Reading, adding, changing or removing tags requires the aoss:ListTagsForResource, aoss:TagResource and aoss:UntagResource permissions.
 * **Type**: string
 * **VectorOptions**: [VectorOptions](#vectoroptions)
 

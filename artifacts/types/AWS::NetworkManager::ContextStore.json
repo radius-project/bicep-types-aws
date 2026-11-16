@@ -1,0 +1,132 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkManager-ContextStore",
+  "type": "AWS::NetworkManager::ContextStore",
+  "time": "2026-11-14T20:10:30.813Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/GlobalNetworkId"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Creates a Context Store paired to a Global Network for sharing network context with firewall vendors.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "networkmanager:CreateContextStore",
+          "networkmanager:GetContextStore",
+          "networkmanager:ListContextStores",
+          "networkmanager:TagResource",
+          "networkmanager:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "networkmanager:DeleteContextStore",
+          "networkmanager:GetContextStore"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "GlobalNetworkId": {
+              "$ref": "resource-schema.json#/properties/GlobalNetworkId"
+            }
+          }
+        },
+        "permissions": [
+          "networkmanager:ListContextStores",
+          "networkmanager:ListTagsForResource"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "networkmanager:GetContextStore",
+          "networkmanager:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "networkmanager:UpdateContextStore",
+          "networkmanager:GetContextStore",
+          "networkmanager:TagResource",
+          "networkmanager:UntagResource",
+          "networkmanager:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ContextStoreId"
+    ],
+    "properties": {
+      "ContextStoreArn": {
+        "description": "The ARN of the context store.",
+        "type": "string"
+      },
+      "ContextStoreId": {
+        "description": "The ID of the context store.",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "Creation timestamp.",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description of the context store.",
+        "type": "string"
+      },
+      "GlobalNetworkId": {
+        "description": "The ID of the global network.",
+        "type": "string"
+      },
+      "State": {
+        "description": "The state of the context store (PENDING / AVAILABLE / UPDATING / DELETING / DELETED).",
+        "type": "string"
+      },
+      "Tags": {
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ContextStoreId",
+      "/properties/ContextStoreArn",
+      "/properties/State",
+      "/properties/CreatedAt"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-networkmanager.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "networkmanager:TagResource",
+        "networkmanager:UntagResource",
+        "networkmanager:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::NetworkManager::ContextStore"
+  }
+}

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Glue-Catalog",
   "type": "AWS::Glue::Catalog",
-  "time": "2026-07-09T15:55:28.486Z",
+  "time": "2026-11-15T16:01:20.585Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -175,7 +175,9 @@
           "glue:GetTags",
           "iam:PassRole",
           "iam:CreateServiceLinkedRole",
+          "kms:CreateGrant",
           "kms:Decrypt",
+          "kms:DescribeKey",
           "kms:Encrypt",
           "kms:GenerateDataKey",
           "redshift-serverless:CreateNamespace",
@@ -232,7 +234,9 @@
           "glue:UntagResource",
           "glue:GetTags",
           "iam:PassRole",
+          "kms:CreateGrant",
           "kms:Decrypt",
+          "kms:DescribeKey",
           "kms:Encrypt",
           "kms:GenerateDataKey",
           "redshift-serverless:UpdateNamespace",
@@ -281,7 +285,8 @@
       },
       "CreateTime": {
         "description": "The time at which the catalog was created.",
-        "type": "integer"
+        "format": "date-time",
+        "type": "string"
       },
       "Description": {
         "description": "A description of the catalog.",
@@ -333,7 +338,8 @@
       },
       "UpdateTime": {
         "description": "The time at which the catalog was last updated.",
-        "type": "integer"
+        "format": "date-time",
+        "type": "string"
       }
     },
     "readOnlyProperties": [

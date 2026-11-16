@@ -686,7 +686,7 @@
 * **OutboundCallerConfig**: [OutboundCallerConfig](#outboundcallerconfig): The outbound caller ID name, number, and outbound whisper flow.
 * **OutboundEmailConfig**: [OutboundEmailConfig](#outboundemailconfig): The outbound email configuration for a specified queue.
 * **QueueArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) for the queue.
-* **QuickConnectArns**: string[]: The quick connects available to agents who are working the queue.
+* **QuickConnectArns**: string[]: The quick connects available to agents who are working the queue. To remove all quick connects from the queue, specify an empty list.
 * **Status**: string: The status of the queue.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **Type**: string (ReadOnly): The type of queue.
@@ -756,6 +756,7 @@
 * **ClientToken**: string
 * **Constraints**: [TaskTemplate_Constraints](#tasktemplateconstraints): The constraints for the task template
 * **ContactFlowArn**: string: The identifier of the contact flow.
+* **ContactHooks**: [TaskTemplate_ContactHooks](#tasktemplatecontacthooks): The contact hooks for the task template.
 * **Defaults**: [DefaultFieldValue](#defaultfieldvalue)[]
 * **Description**: string: The description of the task template.
 * **Fields**: [Field](#field)[]: The list of task template's fields
@@ -825,7 +826,7 @@
 * **PhoneConfig**: [UserPhoneConfig](#userphoneconfig): The phone settings for the user.
 * **PhoneNumberConfigs**: [PhoneNumberConfig](#phonenumberconfig)[]: Phone Number configurations of a user.
 * **RoutingProfileArn**: string (Required): The identifier of the routing profile for the user.
-* **SecurityProfileArns**: string[] (Required): One or more security profile arns for the user
+* **SecurityProfileArns**: string[] (Required): One or more customer-managed or AWS-managed security profile ARNs for the user.
 * **Tags**: [Tag](#tag)[]: One or more tags.
 * **UserArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) for the user.
 * **Username**: string (Required): The user name for the account.
@@ -1768,6 +1769,10 @@
 * **InvisibleFields**: [InvisibleFieldInfo](#invisiblefieldinfo)[]
 * **ReadOnlyFields**: [ReadOnlyFieldInfo](#readonlyfieldinfo)[]
 * **RequiredFields**: [RequiredFieldInfo](#requiredfieldinfo)[]
+
+## TaskTemplate_ContactHooks
+### Properties
+* **WrapUpFlowArn**: string: The identifier (arn) of the flow module that runs when an agent attempts to disconnect from a task created by referencing this template. If no agent ever connects to the task, the flow module runs when the task is terminated.
 
 ## TestCase_ChatEntryPointParameters
 ### Properties

@@ -144,6 +144,10 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Lambda/WebFunctionRevisionProperties](#awslambdawebfunctionrevisionproperties) (Required, Identifier): properties of the resource
 
+## AcceleratorConfig
+### Properties
+* **AcceleratorMemorySize**: int (Required): The minimum amount of memory (in GB) of each accelerator device exposed to the execution environment. Lambda might allocate more, depending on the accelerator instance types available. Valid values: 3, 6, 12, 16, 24, 48.
+
 ## AliasRoutingConfiguration
 ### Properties
 * **AdditionalVersionWeights**: [VersionWeight](#versionweight)[]: The second version, and the percentage of traffic that's routed to it.
@@ -275,6 +279,7 @@
 
 ## AWS.Lambda/FunctionProperties
 ### Properties
+* **AcceleratorConfig**: [AcceleratorConfig](#acceleratorconfig)
 * **Architectures**: string[]: The instruction set architecture that the function supports. Enter a string array with one of the valid values (arm64 or x86_64). The default value is ``x86_64``.
 * **Arn**: string (ReadOnly)
 * **CapacityProviderConfig**: [CapacityProviderConfig](#capacityproviderconfig): Configuration for the capacity provider that manages compute resources for Lambda functions.
@@ -315,6 +320,7 @@
 * **Runtime**: string: The identifier of the function's [runtime](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html). Runtime is required if the deployment package is a .zip file archive. Specifying a runtime results in an error if you're deploying a function using a container image.
  The following list includes deprecated runtimes. Lambda blocks creating new functions and updating existing functions shortly after each runtime is deprecated. For more information, see [Runtime use after deprecation](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-deprecation-levels).
  For a list of all currently supported runtimes, see [Supported runtimes](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtimes-supported).
+* **RuntimeConfig**: [RuntimeConfig](#runtimeconfig)
 * **RuntimeManagementConfig**: [RuntimeManagementConfig](#runtimemanagementconfig): Sets the runtime management configuration for a function's version. For more information, see [Runtime updates](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html).
 * **SnapStart**: [SnapStart](#snapstart) (WriteOnly): The function's [SnapStart](https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html) setting.
 * **SnapStartResponse**: [SnapStartResponse](#snapstartresponse) (ReadOnly)
@@ -357,6 +363,7 @@
 * **EnvironmentVariables**: [EnvironmentVariable](#environmentvariable)[] (Required, WriteOnly): Environment variables to set in the container during the snapshot build.
 * **Hooks**: [Hooks](#hooks) (Required, WriteOnly)
 * **ImageArn**: string (ReadOnly, Identifier): ARN of the MicroVM image.
+* **KmsKeyIdentifier**: string (WriteOnly): The customer managed KMS key used to encrypt the MicroVM image configuration at rest. When omitted, a service owned key is used.
 * **LatestActiveImageVersion**: string (ReadOnly): The latest active version of the MicroVM image.
 * **LatestFailedImageVersion**: string (ReadOnly): The latest failed version of the MicroVM image.
 * **Logging**: [Logging](#logging) (Required, WriteOnly): Configuration for MicroVM image logging.
@@ -574,6 +581,10 @@
 * **KMSKeyArn**: string: The ARN of the KMSlong (KMS) customer managed key that is used to encrypt your durable execution's payload data, including input, output, and error payloads.
 * **RetentionPeriodInDays**: int: The number of days to retain execution history after a durable execution completes. After this period, execution history is no longer available through the GetDurableExecutionHistory API.
 
+## ElasticIpConfiguration
+### Properties
+* **Type**: string (Required): The Elastic IP address type for the connector's ENIs. With None, Lambda doesn't assign an Elastic IP address. With ServiceManaged, Lambda allocates a service-managed Elastic IP address in your account for each ENI, associates it with that ENI, and releases it when it deletes the ENI. The connector's operator role must allow the ec2:AllocateAddress and ec2:AssociateAddress actions on Elastic IP addresses and on the connector's ENIs.
+
 ## Endpoints
 ### Properties
 * **KafkaBootstrapServers**: string[]: The list of bootstrap servers for your Kafka brokers in the following format: ``"KafkaBootstrapServers": ["abc.xyz.com:xxxx","abc2.xyz.com:xxxx"]``.
@@ -754,6 +765,11 @@
 * **RevisionId**: string (Required): The revision identifier.
 * **Weight**: int (Required): The traffic weight for this revision.
 
+## RuntimeConfig
+### Properties
+* **RuntimeAlias**: string (Required): The name of the runtime alias that controls the function's runtime update cadence (for example, stable or latest).
+* **RuntimeArn**: string (Required): The Amazon Resource Name (ARN) of the runtime that the function uses.
+
 ## RuntimeManagementConfig
 ### Properties
 * **RuntimeVersionArn**: string: The ARN of the runtime version you want the function to use.
@@ -912,6 +928,7 @@
 ## VpcEgressConfiguration
 ### Properties
 * **AssociatedComputeResourceTypes**: string[] (Required): The types of Lambda compute resources that can use this connector. Supported values are MicroVm and WebFunction.
+* **ElasticIpConfiguration**: [ElasticIpConfiguration](#elasticipconfiguration)
 * **NetworkProtocol**: string (Required): The network protocol for the connector. Specify IPv4 for IPv4-only networking, or DualStack for both IPv4 and IPv6.
 * **SecurityGroupIds**: string[] (Required): The IDs of the VPC security groups to attach to the ENIs. All security groups must be in the same VPC as the subnets.
 * **SubnetIds**: string[] (Required): The IDs of the VPC subnets where Lambda provisions elastic network interfaces (ENIs). Specify 1 to 16 subnets. All subnets must be in the same VPC.

@@ -24,6 +24,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.NetworkManager/ConnectPeerProperties](#awsnetworkmanagerconnectpeerproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.NetworkManager/ContextStore@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.NetworkManager/ContextStoreProperties](#awsnetworkmanagercontextstoreproperties) (Identifier): properties of the resource
+
+## Resource AWS.NetworkManager/ContextStoreAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.NetworkManager/ContextStoreAssociationProperties](#awsnetworkmanagercontextstoreassociationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.NetworkManager/CoreNetwork@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -146,6 +162,9 @@
 * **CreatedAt**: string (ReadOnly): Creation time of the attachment.
 * **EdgeLocation**: string (Required): Edge location of the attachment.
 * **LastModificationErrors**: string[] (ReadOnly): Errors from the last modification of the attachment.
+* **NatGatewayRules**: [NatRule](#natrule)[] (WriteOnly): The complete set of NAT gateway rules on the attachment. Updating this property replaces the entire rule set, and rules left out of the new value are removed. To remove all rules, specify an empty list or remove this property. NAT gateway support can't be enabled without rules, so it is then disabled unless NatGatewaySupport is specified. Only the core network owner can configure NAT gateway rules. The rules aren't returned when the attachment is read, so drift detection doesn't check them. Not available in AWS GovCloud (US).
+* **NatGatewaySupport**: string: Whether NAT gateway support is enabled on the attachment. Required when NatGatewayRules lists rules. Set to DISABLE with NatGatewayRules to keep the rules on the attachment without translating traffic, and set it to ENABLE to activate them again. An attachment that is pending acceptance applies this setting once it is accepted. Only the core network owner can configure or read NAT gateway settings. Not available in AWS GovCloud (US).
+* **NatSystemRouteSupport**: bool (ReadOnly): Whether system routes are installed for the NAT CIDRs of the attachment's NAT gateway rules. On Connect attachments this is always false and is not configurable. Not available in AWS GovCloud (US).
 * **NetworkFunctionGroupName**: string: The name of the network function group attachment.
 * **Options**: [ConnectAttachmentOptions](#connectattachmentoptions) (Required): Protocol options for connect attachment
 * **OwnerAccountId**: string (ReadOnly): The ID of the attachment account owner.
@@ -189,6 +208,23 @@
 * **State**: string (ReadOnly): State of the connect peer.
 * **SubnetArn**: string (WriteOnly): The subnet ARN for the connect peer.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## AWS.NetworkManager/ContextStoreAssociationProperties
+### Properties
+* **ContextStoreId**: string (Required, Identifier): The ID of the context store.
+* **CreatedAt**: string (ReadOnly): Creation timestamp (ISO-8601).
+* **ResourceArn**: string (Required, Identifier): The ARN of the Transit Gateway to associate.
+* **State**: string (ReadOnly): The state of the association (ASSOCIATING, ASSOCIATED, DISASSOCIATING, FAILED).
+
+## AWS.NetworkManager/ContextStoreProperties
+### Properties
+* **ContextStoreArn**: string (ReadOnly): The ARN of the context store.
+* **ContextStoreId**: string (ReadOnly, Identifier): The ID of the context store.
+* **CreatedAt**: string (ReadOnly): Creation timestamp.
+* **Description**: string: The description of the context store.
+* **GlobalNetworkId**: string: The ID of the global network.
+* **State**: string (ReadOnly): The state of the context store (PENDING / AVAILABLE / UPDATING / DELETING / DELETED).
+* **Tags**: [Tag](#tag)[]
 
 ## AWS.NetworkManager/CoreNetworkPrefixListAssociationProperties
 ### Properties
@@ -246,6 +282,9 @@
 * **DirectConnectGatewayArn**: string (Required): The ARN of the Direct Connect Gateway.
 * **EdgeLocations**: string[] (Required): The Regions where the edges are located.
 * **LastModificationErrors**: string[] (ReadOnly): Errors from the last modification of the attachment.
+* **NatGatewayRules**: [NatRule](#natrule)[] (WriteOnly): The complete set of NAT gateway rules on the attachment. Updating this property replaces the entire rule set, and rules left out of the new value are removed. To remove all rules, specify an empty list or remove this property. NAT gateway support can't be enabled without rules, so it is then disabled unless NatGatewaySupport is specified. Only the core network owner can configure NAT gateway rules. The rules aren't returned when the attachment is read, so drift detection doesn't check them. Not available in AWS GovCloud (US).
+* **NatGatewaySupport**: string: Whether NAT gateway support is enabled on the attachment. Required when NatGatewayRules lists rules. Set to DISABLE with NatGatewayRules to keep the rules on the attachment without translating traffic, and set it to ENABLE to activate them again. An attachment that is pending acceptance applies this setting once it is accepted. Only the core network owner can configure or read NAT gateway settings. Not available in AWS GovCloud (US).
+* **NatSystemRouteSupport**: bool: Whether system routes are installed for the NAT CIDRs of the attachment's NAT gateway rules. If omitted, a new NAT gateway configuration uses the service default of true and an existing configuration keeps its current value, so removing this property from a template doesn't reset the setting. Only the core network owner can configure this setting. Not available in AWS GovCloud (US).
 * **NetworkFunctionGroupName**: string (ReadOnly): The name of the network function group attachment.
 * **OwnerAccountId**: string (ReadOnly): Owner account of the attachment.
 * **ProposedNetworkFunctionGroupChange**: [ProposedNetworkFunctionGroupChange](#proposednetworkfunctiongroupchange) (ReadOnly): The attachment to move from one network function group to another.
@@ -307,6 +346,9 @@
 * **CreatedAt**: string (ReadOnly): Creation time of the attachment.
 * **EdgeLocation**: string (ReadOnly): The Region where the edge is located.
 * **LastModificationErrors**: string[] (ReadOnly): Errors from the last modification of the attachment.
+* **NatGatewayRules**: [NatRule](#natrule)[] (WriteOnly): The complete set of NAT gateway rules on the attachment. Updating this property replaces the entire rule set, and rules left out of the new value are removed. To remove all rules, specify an empty list or remove this property. NAT gateway support can't be enabled without rules, so it is then disabled unless NatGatewaySupport is specified. Only the core network owner can configure NAT gateway rules. The rules aren't returned when the attachment is read, so drift detection doesn't check them. Not available in AWS GovCloud (US).
+* **NatGatewaySupport**: string: Whether NAT gateway support is enabled on the attachment. Required when NatGatewayRules lists rules. Set to DISABLE with NatGatewayRules to keep the rules on the attachment without translating traffic, and set it to ENABLE to activate them again. An attachment that is pending acceptance applies this setting once it is accepted. Only the core network owner can configure or read NAT gateway settings. Not available in AWS GovCloud (US).
+* **NatSystemRouteSupport**: bool: Whether system routes are installed for the NAT CIDRs of the attachment's NAT gateway rules. Configurable on BGP Site-to-Site VPN attachments. Always false and not configurable for static VPN attachments. If omitted, a new NAT gateway configuration uses the service default for the attachment and an existing configuration keeps its current value, so removing this property from a template doesn't reset the setting. Only the core network owner can configure this setting. Not available in AWS GovCloud (US).
 * **NetworkFunctionGroupName**: string: The name of the network function group attachment.
 * **OwnerAccountId**: string (ReadOnly): Owner account of the attachment.
 * **ProposedNetworkFunctionGroupChange**: [ProposedNetworkFunctionGroupChange](#proposednetworkfunctiongroupchange) (ReadOnly): The attachment to move from one network function group to another.
@@ -373,6 +415,9 @@
 * **CreatedAt**: string (ReadOnly): Creation time of the attachment.
 * **EdgeLocation**: string (ReadOnly): The Region where the edge is located.
 * **LastModificationErrors**: string[] (ReadOnly): Errors from the last modification of the attachment.
+* **NatGatewayRules**: [NatRule](#natrule)[] (WriteOnly): The complete set of NAT gateway rules on the attachment. Updating this property replaces the entire rule set, and rules left out of the new value are removed. To remove all rules, specify an empty list or remove this property. NAT gateway support can't be enabled without rules, so it is then disabled unless NatGatewaySupport is specified. Only the core network owner can configure NAT gateway rules. The rules aren't returned when the attachment is read, so drift detection doesn't check them. Not available in AWS GovCloud (US).
+* **NatGatewaySupport**: string: Whether NAT gateway support is enabled on the attachment. Required when NatGatewayRules lists rules. Set to DISABLE with NatGatewayRules to keep the rules on the attachment without translating traffic, and set it to ENABLE to activate them again. An attachment that is pending acceptance applies this setting once it is accepted. Only the core network owner can configure or read NAT gateway settings. Not available in AWS GovCloud (US).
+* **NatSystemRouteSupport**: bool (ReadOnly): Whether system routes are installed for the NAT CIDRs of the attachment's NAT gateway rules. On VPC attachments this is always true and is not configurable. Not available in AWS GovCloud (US).
 * **NetworkFunctionGroupName**: string (ReadOnly): The name of the network function group attachment.
 * **Options**: [VpcOptions](#vpcoptions): Vpc options of the attachment.
 * **OwnerAccountId**: string (ReadOnly): Owner account of the attachment.
@@ -460,6 +505,30 @@
 * **Latitude**: string: The latitude.
 * **Longitude**: string: The longitude.
 
+## NatRule
+### Properties
+* **MatchSourceCidr**: string (Required): The IPv4 CIDR that source traffic is matched against for translation.
+* **NatCidr**: string (Required): The IPv4 CIDR that matched source traffic is translated into. Must have the same prefix length as MatchSourceCidr.
+* **RuleNumber**: int (Required): The rule number that uniquely identifies the NAT rule on the attachment.
+
+## NatRule
+### Properties
+* **MatchSourceCidr**: string (Required): The IPv4 CIDR that source traffic is matched against for translation.
+* **NatCidr**: string (Required): The IPv4 CIDR that matched source traffic is translated into. Must have the same prefix length as MatchSourceCidr.
+* **RuleNumber**: int (Required): The rule number that uniquely identifies the NAT rule on the attachment.
+
+## NatRule
+### Properties
+* **MatchSourceCidr**: string (Required): The IPv4 CIDR that source traffic is matched against for translation.
+* **NatCidr**: string (Required): The IPv4 CIDR that matched source traffic is translated into. Must have the same prefix length as MatchSourceCidr.
+* **RuleNumber**: int (Required): The rule number that uniquely identifies the NAT rule on the attachment.
+
+## NatRule
+### Properties
+* **MatchSourceCidr**: string (Required): The IPv4 CIDR that source traffic is matched against for translation.
+* **NatCidr**: string (Required): The IPv4 CIDR that matched source traffic is translated into. Must have the same prefix length as MatchSourceCidr.
+* **RuleNumber**: int (Required): The rule number that uniquely identifies the NAT rule on the attachment.
+
 ## ProposedNetworkFunctionGroupChange
 ### Properties
 * **AttachmentPolicyRuleNumber**: int: The rule number in the policy document that applies to this change.
@@ -534,6 +603,11 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

@@ -708,23 +708,47 @@
   },
   {
     "$type": "ObjectType",
-    "name": "BrokerLogs",
+    "name": "AuthorizerLogs",
     "properties": {
       "CloudWatchLogs": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/48"
         },
         "flags": 0
       },
       "Firehose": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/55"
         },
         "flags": 0
       },
       "S3": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/66"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BrokerLogs",
+    "properties": {
+      "CloudWatchLogs": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 0
+      },
+      "Firehose": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 0
+      },
+      "S3": {
+        "type": {
+          "$ref": "#/66"
         },
         "flags": 0
       }
@@ -742,13 +766,13 @@
       },
       "ClientSubnets": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/79"
         },
         "flags": 1
       },
       "ConnectivityInfo": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/50"
         },
         "flags": 0
       },
@@ -760,15 +784,21 @@
       },
       "SecurityGroups": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/80"
         },
         "flags": 0
       },
       "StorageInfo": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/69"
         },
         "flags": 0
+      },
+      "TopicReassignment": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4
       }
     }
   },
@@ -778,19 +808,19 @@
     "properties": {
       "Sasl": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/67"
         },
         "flags": 0
       },
       "Tls": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/70"
         },
         "flags": 0
       },
       "Unauthenticated": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/71"
         },
         "flags": 0
       }
@@ -844,13 +874,13 @@
       },
       "PublicAccess": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/64"
         },
         "flags": 0
       },
       "VpcConnectivity": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/72"
         },
         "flags": 0
       }
@@ -862,7 +892,7 @@
     "properties": {
       "ProvisionedThroughput": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/63"
         },
         "flags": 0
       },
@@ -910,13 +940,13 @@
     "properties": {
       "EncryptionAtRest": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/52"
         },
         "flags": 0
       },
       "EncryptionInTransit": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/53"
         },
         "flags": 0
       }
@@ -968,11 +998,17 @@
     "$type": "ObjectType",
     "name": "LoggingInfo",
     "properties": {
-      "BrokerLogs": {
+      "AuthorizerLogs": {
         "type": {
           "$ref": "#/44"
         },
-        "flags": 1
+        "flags": 0
+      },
+      "BrokerLogs": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0
       }
     }
   },
@@ -999,7 +1035,7 @@
     "properties": {
       "Prometheus": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/62"
         },
         "flags": 1
       }
@@ -1011,13 +1047,13 @@
     "properties": {
       "JmxExporter": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/57"
         },
         "flags": 0
       },
       "NodeExporter": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/60"
         },
         "flags": 0
       }
@@ -1095,13 +1131,13 @@
     "properties": {
       "Iam": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/56"
         },
         "flags": 0
       },
       "Scram": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/68"
         },
         "flags": 0
       }
@@ -1125,7 +1161,7 @@
     "properties": {
       "EBSStorageInfo": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/51"
         },
         "flags": 0
       }
@@ -1137,7 +1173,7 @@
     "properties": {
       "CertificateAuthorityArnList": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/81"
         },
         "flags": 0
       },
@@ -1167,7 +1203,7 @@
     "properties": {
       "ClientAuthentication": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/73"
         },
         "flags": 0
       }
@@ -1179,13 +1215,13 @@
     "properties": {
       "Sasl": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/75"
         },
         "flags": 0
       },
       "Tls": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/77"
         },
         "flags": 0
       }
@@ -1209,13 +1245,13 @@
     "properties": {
       "Iam": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/74"
         },
         "flags": 0
       },
       "Scram": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/76"
         },
         "flags": 0
       }
@@ -1299,13 +1335,13 @@
       },
       "BrokerNodeGroupInfo": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/46"
         },
         "flags": 1
       },
       "ClientAuthentication": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/47"
         },
         "flags": 0
       },
@@ -1317,7 +1353,7 @@
       },
       "ConfigurationInfo": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/49"
         },
         "flags": 0
       },
@@ -1330,7 +1366,7 @@
       },
       "EncryptionInfo": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/54"
         },
         "flags": 0
       },
@@ -1348,7 +1384,7 @@
       },
       "LoggingInfo": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/58"
         },
         "flags": 0
       },
@@ -1360,13 +1396,13 @@
       },
       "OpenMonitoring": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/61"
         },
         "flags": 0
       },
       "Rebalancing": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/65"
         },
         "flags": 0
       },
@@ -1378,14 +1414,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/83"
         },
         "flags": 0,
         "description": "A key-value pair to associate with a resource."
       },
       "ZookeeperAccess": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/78"
         },
         "flags": 4
       },
@@ -1509,7 +1545,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/84"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1520,7 +1556,7 @@
     "$type": "ResourceType",
     "name": "AWS.MSK/Cluster@default",
     "body": {
-      "$ref": "#/84"
+      "$ref": "#/85"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1537,7 +1573,7 @@
     "name": "ClusterPolicy_Policy",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/87"
+      "$ref": "#/88"
     }
   },
   {
@@ -1560,7 +1596,7 @@
       },
       "Policy": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/89"
         },
         "flags": 1,
         "description": "A policy document containing permissions to add to the specified cluster."
@@ -1587,7 +1623,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/90"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1598,7 +1634,7 @@
     "$type": "ResourceType",
     "name": "AWS.MSK/ClusterPolicy@default",
     "body": {
-      "$ref": "#/90"
+      "$ref": "#/91"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1666,13 +1702,13 @@
       },
       "KafkaVersionsList": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/97"
         },
         "flags": 0
       },
       "LatestRevision": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/94"
         },
         "flags": 0
       },
@@ -1710,7 +1746,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/98"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1721,7 +1757,7 @@
     "$type": "ResourceType",
     "name": "AWS.MSK/Configuration@default",
     "body": {
-      "$ref": "#/98"
+      "$ref": "#/99"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1797,14 +1833,14 @@
       },
       "ConsumerGroupsToExclude": {
         "type": {
-          "$ref": "#/130"
+          "$ref": "#/131"
         },
         "flags": 0,
         "description": "List of regular expression patterns indicating the consumer groups that should not be replicated."
       },
       "ConsumerGroupsToReplicate": {
         "type": {
-          "$ref": "#/131"
+          "$ref": "#/132"
         },
         "flags": 1,
         "description": "List of regular expression patterns indicating the consumer groups to copy."
@@ -1856,35 +1892,35 @@
     "properties": {
       "AmazonMskCluster": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/101"
         },
         "flags": 0,
         "description": "Details of an Amazon MSK cluster."
       },
       "ApacheKafkaCluster": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/102"
         },
         "flags": 0,
         "description": "Details of an Apache Kafka cluster."
       },
       "ClientAuthentication": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/109"
         },
         "flags": 0,
         "description": "Details of the client authentication used by the Apache Kafka cluster."
       },
       "EncryptionInTransit": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/111"
         },
         "flags": 0,
         "description": "Details of encryption in transit to the Apache Kafka cluster."
       },
       "VpcConfig": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/110"
         },
         "flags": 0,
         "description": "Details of an Amazon VPC which has network connectivity to the Apache Kafka cluster."
@@ -1897,21 +1933,21 @@
     "properties": {
       "MTLS": {
         "type": {
-          "$ref": "#/112"
+          "$ref": "#/113"
         },
         "flags": 0,
         "description": "Details for mTLS client authentication."
       },
       "SaslOAuthBearer": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/117"
         },
         "flags": 0,
         "description": "Details for client authentication using SASL/OAUTHBEARER."
       },
       "SaslScram": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/118"
         },
         "flags": 0,
         "description": "Details for SASL/SCRAM client authentication."
@@ -1924,14 +1960,14 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/132"
+          "$ref": "#/133"
         },
         "flags": 0,
         "description": "The AWS security groups to associate with the elastic network interfaces in order to specify what the replicator has access to. If a security group is not specified, the default security group associated with the VPC is used."
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/133"
+          "$ref": "#/134"
         },
         "flags": 1,
         "description": "The list of subnets to connect to in the virtual private cloud (VPC). AWS creates elastic network interfaces inside these subnets."
@@ -2049,21 +2085,21 @@
     "properties": {
       "ClientCredentials": {
         "type": {
-          "$ref": "#/113"
+          "$ref": "#/114"
         },
         "flags": 0,
         "description": "Details for SASL/OAUTHBEARER using standard client_credentials grant. Mutually exclusive with iamJwtBearer and clientCredentialsAssertion."
       },
       "ClientCredentialsAssertion": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/115"
         },
         "flags": 0,
         "description": "Details for SASL/OAUTHBEARER using client credentials grant with JWT client assertion (RFC 7521/7523). Mutually exclusive with clientCredentials and iamJwtBearer."
       },
       "IamJwtBearer": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/116"
         },
         "flags": 0,
         "description": "Details for SASL/OAUTHBEARER using JWT Bearer assertion grant (RFC 7523). Mutually exclusive with clientCredentials and clientCredentialsAssertion."
@@ -2129,7 +2165,7 @@
     "properties": {
       "ReplicatorLogDelivery": {
         "type": {
-          "$ref": "#/125"
+          "$ref": "#/126"
         },
         "flags": 0,
         "description": "The replicator logs configuration."
@@ -2142,7 +2178,7 @@
     "properties": {
       "ConsumerGroupReplication": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/105"
         },
         "flags": 1,
         "description": "Configuration relating to consumer group replication."
@@ -2184,7 +2220,7 @@
       },
       "TopicReplication": {
         "type": {
-          "$ref": "#/129"
+          "$ref": "#/130"
         },
         "flags": 1,
         "description": "Configuration relating to topic replication."
@@ -2231,21 +2267,21 @@
     "properties": {
       "CloudWatchLogs": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/103"
         },
         "flags": 0,
         "description": "Details of the CloudWatch Logs destination for replicator logs."
       },
       "Firehose": {
         "type": {
-          "$ref": "#/105"
+          "$ref": "#/106"
         },
         "flags": 0,
         "description": "Details of the Kinesis Data Firehose delivery stream that is the destination for replicator logs."
       },
       "S3": {
         "type": {
-          "$ref": "#/126"
+          "$ref": "#/127"
         },
         "flags": 0,
         "description": "Details of the Amazon S3 destination for replicator logs."
@@ -2329,28 +2365,28 @@
       },
       "StartingPosition": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/122"
         },
         "flags": 0,
         "description": "Configuration for specifying the position in the topics to start replicating from."
       },
       "TopicNameConfiguration": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/124"
         },
         "flags": 0,
         "description": "Configuration for specifying replicated topic names should be the same as their corresponding upstream topics or prefixed with source cluster alias."
       },
       "TopicsToExclude": {
         "type": {
-          "$ref": "#/134"
+          "$ref": "#/135"
         },
         "flags": 0,
         "description": "List of regular expression patterns indicating the topics that should not be replicated."
       },
       "TopicsToReplicate": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/136"
         },
         "flags": 1,
         "description": "List of regular expression patterns indicating the topics to copy."
@@ -2400,19 +2436,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/107"
+      "$ref": "#/108"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/120"
+      "$ref": "#/121"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/127"
+      "$ref": "#/128"
     }
   },
   {
@@ -2435,21 +2471,21 @@
       },
       "KafkaClusters": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/138"
         },
         "flags": 1,
         "description": "Specifies a list of Kafka clusters which are targets of the replicator."
       },
       "LogDelivery": {
         "type": {
-          "$ref": "#/119"
+          "$ref": "#/120"
         },
         "flags": 0,
         "description": "Configuration for log delivery for the replicator."
       },
       "ReplicationInfoList": {
         "type": {
-          "$ref": "#/138"
+          "$ref": "#/139"
         },
         "flags": 1,
         "description": "A list of replication configurations, where each configuration targets a given source cluster to target cluster replication flow."
@@ -2477,7 +2513,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/139"
+          "$ref": "#/140"
         },
         "flags": 0,
         "description": "A collection of tags associated with a resource"
@@ -2504,7 +2540,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/140"
+          "$ref": "#/141"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2515,7 +2551,7 @@
     "$type": "ResourceType",
     "name": "AWS.MSK/Replicator@default",
     "body": {
-      "$ref": "#/141"
+      "$ref": "#/142"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2526,7 +2562,7 @@
     "properties": {
       "Sasl": {
         "type": {
-          "$ref": "#/145"
+          "$ref": "#/146"
         },
         "flags": 1
       }
@@ -2550,7 +2586,7 @@
     "properties": {
       "Iam": {
         "type": {
-          "$ref": "#/144"
+          "$ref": "#/145"
         },
         "flags": 1
       }
@@ -2562,13 +2598,13 @@
     "properties": {
       "SecurityGroups": {
         "type": {
-          "$ref": "#/147"
+          "$ref": "#/148"
         },
         "flags": 0
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/149"
         },
         "flags": 1
       }
@@ -2601,7 +2637,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/146"
+      "$ref": "#/147"
     }
   },
   {
@@ -2616,7 +2652,7 @@
       },
       "ClientAuthentication": {
         "type": {
-          "$ref": "#/143"
+          "$ref": "#/144"
         },
         "flags": 1
       },
@@ -2628,14 +2664,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/150"
+          "$ref": "#/151"
         },
         "flags": 0,
         "description": "A key-value pair to associate with a resource."
       },
       "VpcConfigs": {
         "type": {
-          "$ref": "#/151"
+          "$ref": "#/152"
         },
         "flags": 1
       },
@@ -2675,7 +2711,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/152"
+          "$ref": "#/153"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2686,7 +2722,7 @@
     "$type": "ResourceType",
     "name": "AWS.MSK/ServerlessCluster@default",
     "body": {
-      "$ref": "#/153"
+      "$ref": "#/154"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2763,7 +2799,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/156"
+          "$ref": "#/157"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2774,7 +2810,7 @@
     "$type": "ResourceType",
     "name": "AWS.MSK/Topic@default",
     "body": {
-      "$ref": "#/157"
+      "$ref": "#/158"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2853,19 +2889,19 @@
       },
       "ClientSubnets": {
         "type": {
-          "$ref": "#/167"
+          "$ref": "#/168"
         },
         "flags": 1
       },
       "SecurityGroups": {
         "type": {
-          "$ref": "#/168"
+          "$ref": "#/169"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/162"
+          "$ref": "#/163"
         },
         "flags": 0
       },
@@ -2904,7 +2940,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/169"
+          "$ref": "#/170"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2915,7 +2951,7 @@
     "$type": "ResourceType",
     "name": "AWS.MSK/VpcConnection@default",
     "body": {
-      "$ref": "#/170"
+      "$ref": "#/171"
     },
     "readableScopes": 0,
     "writableScopes": 0

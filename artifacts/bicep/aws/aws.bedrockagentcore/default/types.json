@@ -6196,7 +6196,7 @@
       },
       "MatchValueStringList": {
         "type": {
-          "$ref": "#/471"
+          "$ref": "#/473"
         },
         "flags": 0
       }
@@ -6245,32 +6245,32 @@
     "properties": {
       "AdvertisedScopeMapping": {
         "type": {
-          "$ref": "#/472"
+          "$ref": "#/474"
         },
         "flags": 0,
         "description": "A map that associates each scope in AllowedScopes with a corresponding advertised scope value. The advertised scope appears in OAuth protected resource metadata and WWW-Authenticate response headers."
       },
       "AllowedAudience": {
         "type": {
-          "$ref": "#/473"
+          "$ref": "#/475"
         },
         "flags": 0
       },
       "AllowedClients": {
         "type": {
-          "$ref": "#/474"
+          "$ref": "#/476"
         },
         "flags": 0
       },
       "AllowedScopes": {
         "type": {
-          "$ref": "#/475"
+          "$ref": "#/477"
         },
         "flags": 0
       },
       "CustomClaims": {
         "type": {
-          "$ref": "#/476"
+          "$ref": "#/478"
         },
         "flags": 0
       },
@@ -6282,13 +6282,13 @@
       },
       "PrivateEndpoint": {
         "type": {
-          "$ref": "#/464"
+          "$ref": "#/466"
         },
         "flags": 0
       },
       "PrivateEndpointOverrides": {
         "type": {
-          "$ref": "#/477"
+          "$ref": "#/479"
         },
         "flags": 0
       }
@@ -6324,13 +6324,13 @@
       },
       "S3FilesAccessPoint": {
         "type": {
-          "$ref": "#/466"
+          "$ref": "#/468"
         },
         "flags": 0
       },
       "SessionStorage": {
         "type": {
-          "$ref": "#/468"
+          "$ref": "#/470"
         },
         "flags": 0
       }
@@ -6440,7 +6440,7 @@
       },
       "RetrievalConfig": {
         "type": {
-          "$ref": "#/478"
+          "$ref": "#/480"
         },
         "flags": 0
       }
@@ -6499,19 +6499,19 @@
       },
       "FilesystemConfigurations": {
         "type": {
-          "$ref": "#/479"
+          "$ref": "#/481"
         },
         "flags": 0
       },
       "LifecycleConfiguration": {
         "type": {
-          "$ref": "#/460"
+          "$ref": "#/462"
         },
         "flags": 0
       },
       "NetworkConfiguration": {
         "type": {
-          "$ref": "#/462"
+          "$ref": "#/464"
         },
         "flags": 0
       }
@@ -6523,7 +6523,7 @@
     "properties": {
       "AdditionalParams": {
         "type": {
-          "$ref": "#/480"
+          "$ref": "#/482"
         },
         "flags": 0,
         "description": "Provider-specific parameters passed through to the model provider unchanged."
@@ -6633,19 +6633,19 @@
     "properties": {
       "AwsIam": {
         "type": {
-          "$ref": "#/481"
+          "$ref": "#/483"
         },
         "flags": 0
       },
       "None": {
         "type": {
-          "$ref": "#/482"
+          "$ref": "#/484"
         },
         "flags": 0
       },
       "Oauth": {
         "type": {
-          "$ref": "#/463"
+          "$ref": "#/465"
         },
         "flags": 0
       }
@@ -6657,7 +6657,7 @@
     "properties": {
       "AdditionalParams": {
         "type": {
-          "$ref": "#/483"
+          "$ref": "#/485"
         },
         "flags": 0,
         "description": "Provider-specific parameters passed through to the Gemini model provider unchanged."
@@ -6819,7 +6819,7 @@
       },
       "InputSchema": {
         "type": {
-          "$ref": "#/484"
+          "$ref": "#/486"
         },
         "flags": 1,
         "description": "JSON Schema describing the tool's input parameters."
@@ -6832,7 +6832,7 @@
     "properties": {
       "AdditionalParams": {
         "type": {
-          "$ref": "#/485"
+          "$ref": "#/487"
         },
         "flags": 0,
         "description": "Provider-specific parameters passed through to LiteLLM unchanged."
@@ -6902,7 +6902,7 @@
       },
       "Strategies": {
         "type": {
-          "$ref": "#/486"
+          "$ref": "#/488"
         },
         "flags": 0,
         "description": "Strategy types to enable. Defaults to [SEMANTIC, SUMMARIZATION]."
@@ -6969,7 +6969,7 @@
     "properties": {
       "AdditionalParams": {
         "type": {
-          "$ref": "#/487"
+          "$ref": "#/489"
         },
         "flags": 0,
         "description": "Provider-specific parameters passed through to the model provider unchanged."
@@ -7025,9 +7025,16 @@
     "properties": {
       "Headers": {
         "type": {
-          "$ref": "#/488"
+          "$ref": "#/490"
         },
         "flags": 0
+      },
+      "OutboundAuth": {
+        "type": {
+          "$ref": "#/447"
+        },
+        "flags": 0,
+        "description": "How the harness authenticates to this MCP endpoint. Defaults to None if omitted."
       },
       "Url": {
         "type": {
@@ -7039,17 +7046,37 @@
   },
   {
     "$type": "ObjectType",
+    "name": "HarnessRemoteMcpOutboundAuth",
+    "properties": {
+      "AwsIam": {
+        "type": {
+          "$ref": "#/461"
+        },
+        "flags": 0,
+        "description": "SigV4-sign requests using the harness execution role. Region defaults to the harness Region if omitted."
+      },
+      "None": {
+        "type": {
+          "$ref": "#/491"
+        },
+        "flags": 0,
+        "description": "No authentication."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "HarnessSkill",
     "properties": {
       "AwsSkills": {
         "type": {
-          "$ref": "#/448"
+          "$ref": "#/449"
         },
         "flags": 0
       },
       "Git": {
         "type": {
-          "$ref": "#/450"
+          "$ref": "#/451"
         },
         "flags": 0
       },
@@ -7062,7 +7089,7 @@
       },
       "S3": {
         "type": {
-          "$ref": "#/451"
+          "$ref": "#/452"
         },
         "flags": 0
       }
@@ -7074,7 +7101,7 @@
     "properties": {
       "Paths": {
         "type": {
-          "$ref": "#/489"
+          "$ref": "#/492"
         },
         "flags": 0,
         "description": "Optionally filter allowed skills with glob syntax, e.g., ['core-skills/*']."
@@ -7107,7 +7134,7 @@
     "properties": {
       "Auth": {
         "type": {
-          "$ref": "#/449"
+          "$ref": "#/450"
         },
         "flags": 0
       },
@@ -7200,7 +7227,7 @@
     "properties": {
       "Config": {
         "type": {
-          "$ref": "#/457"
+          "$ref": "#/458"
         },
         "flags": 0
       },
@@ -7260,7 +7287,7 @@
     "properties": {
       "Config": {
         "type": {
-          "$ref": "#/459"
+          "$ref": "#/460"
         },
         "flags": 0
       },
@@ -7278,15 +7305,35 @@
     "properties": {
       "SlidingWindow": {
         "type": {
-          "$ref": "#/452"
+          "$ref": "#/453"
         },
         "flags": 0
       },
       "Summarization": {
         "type": {
-          "$ref": "#/454"
+          "$ref": "#/455"
         },
         "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IamCredentialProvider",
+    "properties": {
+      "Region": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The AWS Region used for SigV4 signing."
+      },
+      "Service": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The AWS service name used for SigV4 signing."
       }
     }
   },
@@ -7298,13 +7345,15 @@
         "type": {
           "$ref": "#/85"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Timeout in seconds for idle runtime sessions. When a session remains idle for this duration, it will be automatically terminated. Valid range: 60 to 28800 seconds (8 hours), and must be less than or equal to MaxLifetime. Default: 900 seconds (15 minutes)."
       },
       "MaxLifetime": {
         "type": {
           "$ref": "#/85"
         },
-        "flags": 0
+        "flags": 0,
+        "description": "Maximum lifetime for the instance in seconds. Once reached, instances will be automatically terminated and replaced. Valid range: 60 to 28800 seconds (8 hours). Default: 28800 seconds (8 hours)."
       }
     }
   },
@@ -7326,19 +7375,19 @@
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/490"
+          "$ref": "#/493"
         },
         "flags": 0
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/491"
+          "$ref": "#/494"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/492"
+          "$ref": "#/495"
         },
         "flags": 0
       },
@@ -7362,7 +7411,7 @@
       },
       "NetworkModeConfig": {
         "type": {
-          "$ref": "#/470"
+          "$ref": "#/472"
         },
         "flags": 0
       }
@@ -7374,7 +7423,7 @@
     "properties": {
       "CustomParameters": {
         "type": {
-          "$ref": "#/493"
+          "$ref": "#/496"
         },
         "flags": 0
       },
@@ -7398,7 +7447,7 @@
       },
       "Scopes": {
         "type": {
-          "$ref": "#/494"
+          "$ref": "#/497"
         },
         "flags": 1
       }
@@ -7410,13 +7459,13 @@
     "properties": {
       "ManagedVpcResource": {
         "type": {
-          "$ref": "#/461"
+          "$ref": "#/463"
         },
         "flags": 0
       },
       "SelfManagedLatticeResource": {
         "type": {
-          "$ref": "#/467"
+          "$ref": "#/469"
         },
         "flags": 0
       }
@@ -7434,7 +7483,7 @@
       },
       "PrivateEndpoint": {
         "type": {
-          "$ref": "#/464"
+          "$ref": "#/466"
         },
         "flags": 1
       }
@@ -7506,13 +7555,13 @@
     "properties": {
       "SecurityGroups": {
         "type": {
-          "$ref": "#/495"
+          "$ref": "#/498"
         },
         "flags": 1
       },
       "Subnets": {
         "type": {
-          "$ref": "#/496"
+          "$ref": "#/499"
         },
         "flags": 1
       }
@@ -7559,7 +7608,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/465"
+      "$ref": "#/467"
     }
   },
   {
@@ -7641,6 +7690,11 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "Harness_None",
+    "properties": {}
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/3"
@@ -7719,19 +7773,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/447"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/455"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/469"
+      "$ref": "#/448"
     }
   },
   {
@@ -7741,12 +7783,24 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/471"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/457"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "AWS.BedrockAgentCore/HarnessProperties",
     "properties": {
       "AllowedTools": {
         "type": {
-          "$ref": "#/498"
+          "$ref": "#/501"
         },
         "flags": 0,
         "description": "The tools that the agent is allowed to use."
@@ -7788,7 +7842,7 @@
       },
       "EnvironmentVariables": {
         "type": {
-          "$ref": "#/499"
+          "$ref": "#/502"
         },
         "flags": 0,
         "description": "Environment variables to set in the harness runtime environment."
@@ -7816,7 +7870,7 @@
       },
       "Hooks": {
         "type": {
-          "$ref": "#/500"
+          "$ref": "#/503"
         },
         "flags": 0,
         "description": "Lifecycle hooks that fire at well-defined points in the agent loop for policy enforcement, audit, and governance."
@@ -7851,7 +7905,7 @@
       },
       "Skills": {
         "type": {
-          "$ref": "#/501"
+          "$ref": "#/504"
         },
         "flags": 0,
         "description": "The skills available to the agent."
@@ -7865,14 +7919,14 @@
       },
       "SystemPrompt": {
         "type": {
-          "$ref": "#/502"
+          "$ref": "#/505"
         },
         "flags": 0,
         "description": "The system prompt that defines the agent's behavior."
       },
       "Tags": {
         "type": {
-          "$ref": "#/503"
+          "$ref": "#/506"
         },
         "flags": 0,
         "description": "Tags to apply to the harness resource."
@@ -7886,14 +7940,14 @@
       },
       "Tools": {
         "type": {
-          "$ref": "#/504"
+          "$ref": "#/507"
         },
         "flags": 0,
         "description": "The tools available to the agent."
       },
       "Truncation": {
         "type": {
-          "$ref": "#/458"
+          "$ref": "#/459"
         },
         "flags": 0,
         "description": "The truncation configuration for managing conversation context."
@@ -7934,7 +7988,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/505"
+          "$ref": "#/508"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -7945,7 +7999,7 @@
     "$type": "ResourceType",
     "name": "AWS.BedrockAgentCore/Harness@default",
     "body": {
-      "$ref": "#/506"
+      "$ref": "#/509"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -7980,7 +8034,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/509"
+      "$ref": "#/512"
     }
   },
   {
@@ -8044,7 +8098,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/511"
+          "$ref": "#/514"
         },
         "flags": 0,
         "description": "Tags to apply to the harness endpoint resource."
@@ -8085,7 +8139,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/512"
+          "$ref": "#/515"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -8096,7 +8150,7 @@
     "$type": "ResourceType",
     "name": "AWS.BedrockAgentCore/HarnessEndpoint@default",
     "body": {
-      "$ref": "#/513"
+      "$ref": "#/516"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -8131,7 +8185,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/516"
+      "$ref": "#/519"
     }
   },
   {
@@ -8181,7 +8235,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/518"
+          "$ref": "#/521"
         },
         "flags": 2,
         "description": "Tags associated with the parent harness."
@@ -8215,7 +8269,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/519"
+          "$ref": "#/522"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -8226,7 +8280,7 @@
     "$type": "ResourceType",
     "name": "AWS.BedrockAgentCore/HarnessVersion@default",
     "body": {
-      "$ref": "#/520"
+      "$ref": "#/523"
     },
     "readableScopes": 31,
     "writableScopes": 0
@@ -8267,31 +8321,31 @@
     "properties": {
       "EpisodicOverride": {
         "type": {
-          "$ref": "#/532"
+          "$ref": "#/535"
         },
         "flags": 0
       },
       "SelfManagedConfiguration": {
         "type": {
-          "$ref": "#/570"
+          "$ref": "#/573"
         },
         "flags": 0
       },
       "SemanticOverride": {
         "type": {
-          "$ref": "#/574"
+          "$ref": "#/577"
         },
         "flags": 0
       },
       "SummaryOverride": {
         "type": {
-          "$ref": "#/584"
+          "$ref": "#/587"
         },
         "flags": 0
       },
       "UserPreferenceOverride": {
         "type": {
-          "$ref": "#/594"
+          "$ref": "#/597"
         },
         "flags": 0
       }
@@ -8313,7 +8367,7 @@
     "properties": {
       "Configuration": {
         "type": {
-          "$ref": "#/525"
+          "$ref": "#/528"
         },
         "flags": 0
       },
@@ -8332,7 +8386,7 @@
       },
       "MemoryRecordSchema": {
         "type": {
-          "$ref": "#/548"
+          "$ref": "#/551"
         },
         "flags": 0
       },
@@ -8344,13 +8398,13 @@
       },
       "NamespaceTemplates": {
         "type": {
-          "$ref": "#/598"
+          "$ref": "#/601"
         },
         "flags": 0
       },
       "Namespaces": {
         "type": {
-          "$ref": "#/599"
+          "$ref": "#/602"
         },
         "flags": 0
       },
@@ -8362,7 +8416,7 @@
       },
       "RecordExpirySpecification": {
         "type": {
-          "$ref": "#/569"
+          "$ref": "#/572"
         },
         "flags": 0
       },
@@ -8425,7 +8479,7 @@
       },
       "MemoryRecordSchema": {
         "type": {
-          "$ref": "#/548"
+          "$ref": "#/551"
         },
         "flags": 0
       },
@@ -8437,13 +8491,13 @@
       },
       "NamespaceTemplates": {
         "type": {
-          "$ref": "#/600"
+          "$ref": "#/603"
         },
         "flags": 0
       },
       "Namespaces": {
         "type": {
-          "$ref": "#/601"
+          "$ref": "#/604"
         },
         "flags": 0
       },
@@ -8455,13 +8509,13 @@
       },
       "RecordExpirySpecification": {
         "type": {
-          "$ref": "#/569"
+          "$ref": "#/572"
         },
         "flags": 0
       },
       "ReflectionConfiguration": {
         "type": {
-          "$ref": "#/536"
+          "$ref": "#/539"
         },
         "flags": 0
       },
@@ -8501,19 +8555,19 @@
     "properties": {
       "Consolidation": {
         "type": {
-          "$ref": "#/533"
+          "$ref": "#/536"
         },
         "flags": 0
       },
       "Extraction": {
         "type": {
-          "$ref": "#/534"
+          "$ref": "#/537"
         },
         "flags": 0
       },
       "Reflection": {
         "type": {
-          "$ref": "#/535"
+          "$ref": "#/538"
         },
         "flags": 0
       }
@@ -8567,7 +8621,7 @@
       },
       "MemoryRecordSchema": {
         "type": {
-          "$ref": "#/548"
+          "$ref": "#/551"
         },
         "flags": 0
       },
@@ -8579,13 +8633,13 @@
       },
       "NamespaceTemplates": {
         "type": {
-          "$ref": "#/602"
+          "$ref": "#/605"
         },
         "flags": 0
       },
       "Namespaces": {
         "type": {
-          "$ref": "#/603"
+          "$ref": "#/606"
         },
         "flags": 0
       }
@@ -8597,19 +8651,19 @@
     "properties": {
       "MemoryRecordSchema": {
         "type": {
-          "$ref": "#/548"
+          "$ref": "#/551"
         },
         "flags": 0
       },
       "NamespaceTemplates": {
         "type": {
-          "$ref": "#/604"
+          "$ref": "#/607"
         },
         "flags": 0
       },
       "Namespaces": {
         "type": {
-          "$ref": "#/605"
+          "$ref": "#/608"
         },
         "flags": 0
       }
@@ -8621,7 +8675,7 @@
     "properties": {
       "LlmExtractionConfig": {
         "type": {
-          "$ref": "#/544"
+          "$ref": "#/547"
         },
         "flags": 0
       }
@@ -8684,7 +8738,7 @@
     "properties": {
       "ContentConfigurations": {
         "type": {
-          "$ref": "#/607"
+          "$ref": "#/610"
         },
         "flags": 1
       },
@@ -8714,7 +8768,7 @@
       },
       "Validation": {
         "type": {
-          "$ref": "#/597"
+          "$ref": "#/600"
         },
         "flags": 0
       }
@@ -8741,7 +8795,7 @@
     "properties": {
       "MetadataSchema": {
         "type": {
-          "$ref": "#/608"
+          "$ref": "#/611"
         },
         "flags": 0
       }
@@ -8763,31 +8817,31 @@
     "properties": {
       "CustomMemoryStrategy": {
         "type": {
-          "$ref": "#/528"
+          "$ref": "#/531"
         },
         "flags": 0
       },
       "EpisodicMemoryStrategy": {
         "type": {
-          "$ref": "#/531"
+          "$ref": "#/534"
         },
         "flags": 0
       },
       "SemanticMemoryStrategy": {
         "type": {
-          "$ref": "#/573"
+          "$ref": "#/576"
         },
         "flags": 0
       },
       "SummaryMemoryStrategy": {
         "type": {
-          "$ref": "#/583"
+          "$ref": "#/586"
         },
         "flags": 0
       },
       "UserPreferenceMemoryStrategy": {
         "type": {
-          "$ref": "#/593"
+          "$ref": "#/596"
         },
         "flags": 0
       }
@@ -8816,7 +8870,7 @@
     "properties": {
       "ExtractionConfig": {
         "type": {
-          "$ref": "#/537"
+          "$ref": "#/540"
         },
         "flags": 0
       },
@@ -8877,7 +8931,7 @@
       },
       "Validation": {
         "type": {
-          "$ref": "#/561"
+          "$ref": "#/564"
         },
         "flags": 0
       }
@@ -8889,7 +8943,7 @@
     "properties": {
       "AllowedValues": {
         "type": {
-          "$ref": "#/611"
+          "$ref": "#/614"
         },
         "flags": 0,
         "description": "List of allowed values for this namespace variable"
@@ -8967,13 +9021,13 @@
       },
       "InvocationConfiguration": {
         "type": {
-          "$ref": "#/542"
+          "$ref": "#/545"
         },
         "flags": 0
       },
       "TriggerConditions": {
         "type": {
-          "$ref": "#/614"
+          "$ref": "#/617"
         },
         "flags": 0
       }
@@ -9036,7 +9090,7 @@
       },
       "MemoryRecordSchema": {
         "type": {
-          "$ref": "#/548"
+          "$ref": "#/551"
         },
         "flags": 0
       },
@@ -9048,13 +9102,13 @@
       },
       "NamespaceTemplates": {
         "type": {
-          "$ref": "#/615"
+          "$ref": "#/618"
         },
         "flags": 0
       },
       "Namespaces": {
         "type": {
-          "$ref": "#/616"
+          "$ref": "#/619"
         },
         "flags": 0
       },
@@ -9066,7 +9120,7 @@
       },
       "RecordExpirySpecification": {
         "type": {
-          "$ref": "#/569"
+          "$ref": "#/572"
         },
         "flags": 0
       },
@@ -9106,13 +9160,13 @@
     "properties": {
       "Consolidation": {
         "type": {
-          "$ref": "#/575"
+          "$ref": "#/578"
         },
         "flags": 0
       },
       "Extraction": {
         "type": {
-          "$ref": "#/576"
+          "$ref": "#/579"
         },
         "flags": 0
       }
@@ -9160,13 +9214,13 @@
     "properties": {
       "Consolidation": {
         "type": {
-          "$ref": "#/523"
+          "$ref": "#/526"
         },
         "flags": 0
       },
       "Extraction": {
         "type": {
-          "$ref": "#/538"
+          "$ref": "#/541"
         },
         "flags": 0
       },
@@ -9185,7 +9239,7 @@
     "properties": {
       "Kinesis": {
         "type": {
-          "$ref": "#/543"
+          "$ref": "#/546"
         },
         "flags": 0
       }
@@ -9197,7 +9251,7 @@
     "properties": {
       "Resources": {
         "type": {
-          "$ref": "#/617"
+          "$ref": "#/620"
         },
         "flags": 1
       }
@@ -9209,7 +9263,7 @@
     "properties": {
       "AllowedValues": {
         "type": {
-          "$ref": "#/618"
+          "$ref": "#/621"
         },
         "flags": 0
       },
@@ -9227,7 +9281,7 @@
     "properties": {
       "AllowedValues": {
         "type": {
-          "$ref": "#/619"
+          "$ref": "#/622"
         },
         "flags": 1
       }
@@ -9271,7 +9325,7 @@
       },
       "MemoryRecordSchema": {
         "type": {
-          "$ref": "#/548"
+          "$ref": "#/551"
         },
         "flags": 0
       },
@@ -9283,13 +9337,13 @@
       },
       "NamespaceTemplates": {
         "type": {
-          "$ref": "#/620"
+          "$ref": "#/623"
         },
         "flags": 0
       },
       "Namespaces": {
         "type": {
-          "$ref": "#/621"
+          "$ref": "#/624"
         },
         "flags": 0
       },
@@ -9301,7 +9355,7 @@
       },
       "RecordExpirySpecification": {
         "type": {
-          "$ref": "#/569"
+          "$ref": "#/572"
         },
         "flags": 0
       },
@@ -9341,7 +9395,7 @@
     "properties": {
       "Consolidation": {
         "type": {
-          "$ref": "#/585"
+          "$ref": "#/588"
         },
         "flags": 0
       }
@@ -9403,19 +9457,19 @@
     "properties": {
       "MessageBasedTrigger": {
         "type": {
-          "$ref": "#/552"
+          "$ref": "#/555"
         },
         "flags": 0
       },
       "TimeBasedTrigger": {
         "type": {
-          "$ref": "#/587"
+          "$ref": "#/590"
         },
         "flags": 0
       },
       "TokenBasedTrigger": {
         "type": {
-          "$ref": "#/588"
+          "$ref": "#/591"
         },
         "flags": 0
       }
@@ -9483,7 +9537,7 @@
       },
       "MemoryRecordSchema": {
         "type": {
-          "$ref": "#/548"
+          "$ref": "#/551"
         },
         "flags": 0
       },
@@ -9495,13 +9549,13 @@
       },
       "NamespaceTemplates": {
         "type": {
-          "$ref": "#/623"
+          "$ref": "#/626"
         },
         "flags": 0
       },
       "Namespaces": {
         "type": {
-          "$ref": "#/624"
+          "$ref": "#/627"
         },
         "flags": 0
       },
@@ -9513,7 +9567,7 @@
       },
       "RecordExpirySpecification": {
         "type": {
-          "$ref": "#/569"
+          "$ref": "#/572"
         },
         "flags": 0
       },
@@ -9553,13 +9607,13 @@
     "properties": {
       "Consolidation": {
         "type": {
-          "$ref": "#/595"
+          "$ref": "#/598"
         },
         "flags": 0
       },
       "Extraction": {
         "type": {
-          "$ref": "#/596"
+          "$ref": "#/599"
         },
         "flags": 0
       }
@@ -9607,19 +9661,19 @@
     "properties": {
       "NumberValidation": {
         "type": {
-          "$ref": "#/566"
+          "$ref": "#/569"
         },
         "flags": 0
       },
       "StringListValidation": {
         "type": {
-          "$ref": "#/580"
+          "$ref": "#/583"
         },
         "flags": 0
       },
       "StringValidation": {
         "type": {
-          "$ref": "#/581"
+          "$ref": "#/584"
         },
         "flags": 0
       }
@@ -9676,25 +9730,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/540"
+      "$ref": "#/543"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/524"
+      "$ref": "#/527"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/554"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/551"
+      "$ref": "#/557"
     }
   },
   {
@@ -9706,13 +9754,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/560"
+      "$ref": "#/557"
     }
   },
   {
@@ -9724,7 +9766,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/589"
+      "$ref": "#/563"
     }
   },
   {
@@ -9736,13 +9778,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/578"
+      "$ref": "#/592"
     }
   },
   {
@@ -9760,6 +9796,18 @@
   {
     "$type": "ArrayType",
     "itemType": {
+      "$ref": "#/581"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
       "$ref": "#/3"
     }
   },
@@ -9772,7 +9820,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/589"
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/592"
     }
   },
   {
@@ -9794,19 +9848,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/540"
+      "$ref": "#/543"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/630"
+      "$ref": "#/633"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/560"
+      "$ref": "#/563"
     }
   },
   {
@@ -9846,7 +9900,7 @@
       },
       "IndexedKeys": {
         "type": {
-          "$ref": "#/626"
+          "$ref": "#/629"
         },
         "flags": 0
       },
@@ -9870,7 +9924,7 @@
       },
       "MemoryStrategies": {
         "type": {
-          "$ref": "#/627"
+          "$ref": "#/630"
         },
         "flags": 0
       },
@@ -9882,7 +9936,7 @@
       },
       "NamespaceKeys": {
         "type": {
-          "$ref": "#/628"
+          "$ref": "#/631"
         },
         "flags": 0
       },
@@ -9894,13 +9948,13 @@
       },
       "StreamDeliveryResources": {
         "type": {
-          "$ref": "#/579"
+          "$ref": "#/582"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/586"
+          "$ref": "#/589"
         },
         "flags": 0
       },
@@ -9918,31 +9972,31 @@
     "properties": {
       "CustomMemoryStrategy": {
         "type": {
-          "$ref": "#/634"
+          "$ref": "#/637"
         },
         "flags": 0
       },
       "EpisodicMemoryStrategy": {
         "type": {
-          "$ref": "#/635"
+          "$ref": "#/638"
         },
         "flags": 0
       },
       "SemanticMemoryStrategy": {
         "type": {
-          "$ref": "#/631"
+          "$ref": "#/634"
         },
         "flags": 0
       },
       "SummaryMemoryStrategy": {
         "type": {
-          "$ref": "#/632"
+          "$ref": "#/635"
         },
         "flags": 0
       },
       "UserPreferenceMemoryStrategy": {
         "type": {
-          "$ref": "#/633"
+          "$ref": "#/636"
         },
         "flags": 0
       }
@@ -9967,7 +10021,7 @@
       },
       "MemoryRecordSchema": {
         "type": {
-          "$ref": "#/548"
+          "$ref": "#/551"
         },
         "flags": 0
       },
@@ -9979,13 +10033,13 @@
       },
       "NamespaceTemplates": {
         "type": {
-          "$ref": "#/615"
+          "$ref": "#/618"
         },
         "flags": 0
       },
       "Namespaces": {
         "type": {
-          "$ref": "#/616"
+          "$ref": "#/619"
         },
         "flags": 0
       },
@@ -9997,7 +10051,7 @@
       },
       "RecordExpirySpecification": {
         "type": {
-          "$ref": "#/569"
+          "$ref": "#/572"
         },
         "flags": 4
       },
@@ -10050,7 +10104,7 @@
       },
       "MemoryRecordSchema": {
         "type": {
-          "$ref": "#/548"
+          "$ref": "#/551"
         },
         "flags": 0
       },
@@ -10062,13 +10116,13 @@
       },
       "NamespaceTemplates": {
         "type": {
-          "$ref": "#/620"
+          "$ref": "#/623"
         },
         "flags": 0
       },
       "Namespaces": {
         "type": {
-          "$ref": "#/621"
+          "$ref": "#/624"
         },
         "flags": 0
       },
@@ -10080,7 +10134,7 @@
       },
       "RecordExpirySpecification": {
         "type": {
-          "$ref": "#/569"
+          "$ref": "#/572"
         },
         "flags": 4
       },
@@ -10133,7 +10187,7 @@
       },
       "MemoryRecordSchema": {
         "type": {
-          "$ref": "#/548"
+          "$ref": "#/551"
         },
         "flags": 0
       },
@@ -10145,13 +10199,13 @@
       },
       "NamespaceTemplates": {
         "type": {
-          "$ref": "#/623"
+          "$ref": "#/626"
         },
         "flags": 0
       },
       "Namespaces": {
         "type": {
-          "$ref": "#/624"
+          "$ref": "#/627"
         },
         "flags": 0
       },
@@ -10163,7 +10217,7 @@
       },
       "RecordExpirySpecification": {
         "type": {
-          "$ref": "#/569"
+          "$ref": "#/572"
         },
         "flags": 4
       },
@@ -10203,7 +10257,7 @@
     "properties": {
       "Configuration": {
         "type": {
-          "$ref": "#/525"
+          "$ref": "#/528"
         },
         "flags": 0
       },
@@ -10222,7 +10276,7 @@
       },
       "MemoryRecordSchema": {
         "type": {
-          "$ref": "#/548"
+          "$ref": "#/551"
         },
         "flags": 0
       },
@@ -10234,13 +10288,13 @@
       },
       "NamespaceTemplates": {
         "type": {
-          "$ref": "#/598"
+          "$ref": "#/601"
         },
         "flags": 0
       },
       "Namespaces": {
         "type": {
-          "$ref": "#/599"
+          "$ref": "#/602"
         },
         "flags": 0
       },
@@ -10252,7 +10306,7 @@
       },
       "RecordExpirySpecification": {
         "type": {
-          "$ref": "#/569"
+          "$ref": "#/572"
         },
         "flags": 4
       },
@@ -10305,7 +10359,7 @@
       },
       "MemoryRecordSchema": {
         "type": {
-          "$ref": "#/548"
+          "$ref": "#/551"
         },
         "flags": 0
       },
@@ -10317,13 +10371,13 @@
       },
       "NamespaceTemplates": {
         "type": {
-          "$ref": "#/600"
+          "$ref": "#/603"
         },
         "flags": 0
       },
       "Namespaces": {
         "type": {
-          "$ref": "#/601"
+          "$ref": "#/604"
         },
         "flags": 0
       },
@@ -10335,13 +10389,13 @@
       },
       "RecordExpirySpecification": {
         "type": {
-          "$ref": "#/569"
+          "$ref": "#/572"
         },
         "flags": 4
       },
       "ReflectionConfiguration": {
         "type": {
-          "$ref": "#/536"
+          "$ref": "#/539"
         },
         "flags": 0
       },
@@ -10395,7 +10449,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/629"
+          "$ref": "#/632"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -10406,7 +10460,7 @@
     "$type": "ResourceType",
     "name": "AWS.BedrockAgentCore/Memory@default",
     "body": {
-      "$ref": "#/636"
+      "$ref": "#/639"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -10437,7 +10491,7 @@
       },
       "ClientSecretConfig": {
         "type": {
-          "$ref": "#/659"
+          "$ref": "#/665"
         },
         "flags": 0
       },
@@ -10448,6 +10502,29 @@
         "flags": 0
       }
     }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CertificateConfiguration",
+    "properties": {
+      "S3": {
+        "type": {
+          "$ref": "#/663"
+        },
+        "flags": 0
+      },
+      "SecretsManager": {
+        "type": {
+          "$ref": "#/666"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CertificateConfigurationsList",
+    "properties": {}
   },
   {
     "$type": "ObjectType",
@@ -10466,6 +10543,12 @@
     "$type": "ObjectType",
     "name": "CustomOauth2ProviderConfigInput",
     "properties": {
+      "CertificateConfigurations": {
+        "type": {
+          "$ref": "#/673"
+        },
+        "flags": 0
+      },
       "ClientAuthenticationMethod": {
         "type": {
           "$ref": "#/3"
@@ -10489,7 +10572,7 @@
       },
       "ClientSecretConfig": {
         "type": {
-          "$ref": "#/659"
+          "$ref": "#/665"
         },
         "flags": 0
       },
@@ -10502,32 +10585,32 @@
       },
       "OauthDiscovery": {
         "type": {
-          "$ref": "#/650"
+          "$ref": "#/655"
         },
         "flags": 1
       },
       "OnBehalfOfTokenExchangeConfig": {
         "type": {
-          "$ref": "#/653"
+          "$ref": "#/658"
         },
         "flags": 0
       },
       "PrivateEndpoint": {
         "type": {
-          "$ref": "#/654"
+          "$ref": "#/659"
         },
         "flags": 0
       },
       "PrivateEndpointOverrides": {
         "type": {
-          "$ref": "#/665"
+          "$ref": "#/674"
         },
         "flags": 0,
         "description": "A list of private endpoint overrides. Each override maps a specific domain to a private endpoint, enabling secure connectivity through VPC Lattice resource configurations."
       },
       "PrivateKeyJwtConfig": {
         "type": {
-          "$ref": "#/656"
+          "$ref": "#/661"
         },
         "flags": 0
       }
@@ -10551,7 +10634,7 @@
       },
       "ClientSecretConfig": {
         "type": {
-          "$ref": "#/659"
+          "$ref": "#/665"
         },
         "flags": 0
       },
@@ -10581,7 +10664,7 @@
       },
       "ClientSecretConfig": {
         "type": {
-          "$ref": "#/659"
+          "$ref": "#/665"
         },
         "flags": 0
       },
@@ -10618,7 +10701,7 @@
       },
       "ClientSecretConfig": {
         "type": {
-          "$ref": "#/659"
+          "$ref": "#/665"
         },
         "flags": 0
       },
@@ -10675,7 +10758,7 @@
       },
       "ClientSecretConfig": {
         "type": {
-          "$ref": "#/659"
+          "$ref": "#/665"
         },
         "flags": 0
       },
@@ -10707,21 +10790,21 @@
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/666"
+          "$ref": "#/675"
         },
         "flags": 0,
         "description": "The security group IDs to associate with the VPC Lattice resource gateway"
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/667"
+          "$ref": "#/676"
         },
         "flags": 1,
         "description": "The subnet IDs within the VPC where the VPC Lattice resource gateway is placed"
       },
       "Tags": {
         "type": {
-          "$ref": "#/663"
+          "$ref": "#/670"
         },
         "flags": 0,
         "description": "Tags to apply to the managed VPC Lattice resource gateway"
@@ -10753,7 +10836,7 @@
       },
       "ClientSecretConfig": {
         "type": {
-          "$ref": "#/659"
+          "$ref": "#/665"
         },
         "flags": 0
       },
@@ -10792,7 +10875,7 @@
       },
       "ResponseTypes": {
         "type": {
-          "$ref": "#/668"
+          "$ref": "#/677"
         },
         "flags": 0,
         "description": "The supported response types"
@@ -10812,7 +10895,7 @@
     "properties": {
       "AuthorizationServerMetadata": {
         "type": {
-          "$ref": "#/649"
+          "$ref": "#/654"
         },
         "flags": 0
       },
@@ -10821,7 +10904,7 @@
           "$ref": "#/3"
         },
         "flags": 0,
-        "description": "The discovery URL for the OAuth2 provider"
+        "description": "OpenID Connect discovery URL or OAuth 2.0 authorization server metadata URL"
       }
     }
   },
@@ -10831,55 +10914,55 @@
     "properties": {
       "AtlassianOauth2ProviderConfig": {
         "type": {
-          "$ref": "#/639"
+          "$ref": "#/642"
         },
         "flags": 0
       },
       "CustomOauth2ProviderConfig": {
         "type": {
-          "$ref": "#/641"
+          "$ref": "#/646"
         },
         "flags": 0
       },
       "GithubOauth2ProviderConfig": {
         "type": {
-          "$ref": "#/642"
+          "$ref": "#/647"
         },
         "flags": 0
       },
       "GoogleOauth2ProviderConfig": {
         "type": {
-          "$ref": "#/643"
+          "$ref": "#/648"
         },
         "flags": 0
       },
       "IncludedOauth2ProviderConfig": {
         "type": {
-          "$ref": "#/644"
+          "$ref": "#/649"
         },
         "flags": 0
       },
       "LinkedinOauth2ProviderConfig": {
         "type": {
-          "$ref": "#/646"
+          "$ref": "#/651"
         },
         "flags": 0
       },
       "MicrosoftOauth2ProviderConfig": {
         "type": {
-          "$ref": "#/648"
+          "$ref": "#/653"
         },
         "flags": 0
       },
       "SalesforceOauth2ProviderConfig": {
         "type": {
-          "$ref": "#/658"
+          "$ref": "#/664"
         },
         "flags": 0
       },
       "SlackOauth2ProviderConfig": {
         "type": {
-          "$ref": "#/661"
+          "$ref": "#/668"
         },
         "flags": 0
       }
@@ -10889,6 +10972,12 @@
     "$type": "ObjectType",
     "name": "Oauth2ProviderConfigOutput",
     "properties": {
+      "CertificateConfigurations": {
+        "type": {
+          "$ref": "#/678"
+        },
+        "flags": 0
+      },
       "ClientAuthenticationMethod": {
         "type": {
           "$ref": "#/3"
@@ -10904,32 +10993,32 @@
       },
       "OauthDiscovery": {
         "type": {
-          "$ref": "#/650"
+          "$ref": "#/655"
         },
         "flags": 0
       },
       "OnBehalfOfTokenExchangeConfig": {
         "type": {
-          "$ref": "#/653"
+          "$ref": "#/658"
         },
         "flags": 0
       },
       "PrivateEndpoint": {
         "type": {
-          "$ref": "#/654"
+          "$ref": "#/659"
         },
         "flags": 0
       },
       "PrivateEndpointOverrides": {
         "type": {
-          "$ref": "#/669"
+          "$ref": "#/679"
         },
         "flags": 0,
         "description": "The list of private endpoint overrides for the OAuth2 provider. Each override maps a specific domain to a private endpoint, enabling secure connectivity through VPC Lattice resource configurations."
       },
       "PrivateKeyJwtConfig": {
         "type": {
-          "$ref": "#/656"
+          "$ref": "#/661"
         },
         "flags": 0
       }
@@ -10948,7 +11037,7 @@
       },
       "TokenExchangeGrantTypeConfig": {
         "type": {
-          "$ref": "#/664"
+          "$ref": "#/671"
         },
         "flags": 0
       }
@@ -10960,13 +11049,13 @@
     "properties": {
       "ManagedVpcResource": {
         "type": {
-          "$ref": "#/647"
+          "$ref": "#/652"
         },
         "flags": 0
       },
       "SelfManagedLatticeResource": {
         "type": {
-          "$ref": "#/660"
+          "$ref": "#/667"
         },
         "flags": 0
       }
@@ -10985,7 +11074,7 @@
       },
       "PrivateEndpoint": {
         "type": {
-          "$ref": "#/654"
+          "$ref": "#/659"
         },
         "flags": 1
       }
@@ -10997,19 +11086,19 @@
     "properties": {
       "AdditionalHeaderClaims": {
         "type": {
-          "$ref": "#/638"
+          "$ref": "#/641"
         },
         "flags": 0
       },
       "AdditionalPayloadClaims": {
         "type": {
-          "$ref": "#/638"
+          "$ref": "#/641"
         },
         "flags": 0
       },
       "PrivateKeySource": {
         "type": {
-          "$ref": "#/657"
+          "$ref": "#/662"
         },
         "flags": 0
       },
@@ -11028,9 +11117,29 @@
     "properties": {
       "KmsKeySource": {
         "type": {
-          "$ref": "#/645"
+          "$ref": "#/650"
         },
         "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3CertificateConfiguration",
+    "properties": {
+      "BucketOwnerAccountId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The account ID of the Amazon S3 bucket owner, used for cross-account access to the bucket"
+      },
+      "Uri": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The URI of the Amazon S3 object that contains the PEM-encoded certificate"
       }
     }
   },
@@ -11052,7 +11161,7 @@
       },
       "ClientSecretConfig": {
         "type": {
-          "$ref": "#/659"
+          "$ref": "#/665"
         },
         "flags": 0
       },
@@ -11081,6 +11190,19 @@
         },
         "flags": 1,
         "description": "The ID or ARN of the secret in AWS Secrets Manager"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SecretsManagerCertificateConfiguration",
+    "properties": {
+      "SecretArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The ARN of the AWS Secrets Manager secret that contains the PEM-encoded certificate"
       }
     }
   },
@@ -11115,7 +11237,7 @@
       },
       "ClientSecretConfig": {
         "type": {
-          "$ref": "#/659"
+          "$ref": "#/665"
         },
         "flags": 0
       },
@@ -11166,7 +11288,7 @@
       },
       "ActorTokenScopes": {
         "type": {
-          "$ref": "#/670"
+          "$ref": "#/680"
         },
         "flags": 0,
         "description": "The actor token scopes. Only valid when ActorTokenContent is M2M."
@@ -11176,7 +11298,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/655"
+      "$ref": "#/643"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/643"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/660"
     }
   },
   {
@@ -11200,7 +11334,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/655"
+      "$ref": "#/643"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/660"
     }
   },
   {
@@ -11216,7 +11356,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/662"
+      "$ref": "#/669"
     }
   },
   {
@@ -11232,7 +11372,7 @@
       },
       "ClientSecretArn": {
         "type": {
-          "$ref": "#/640"
+          "$ref": "#/645"
         },
         "flags": 2,
         "description": "The ARN of the client secret in AWS Secrets Manager"
@@ -11288,14 +11428,14 @@
       },
       "Oauth2ProviderConfigInput": {
         "type": {
-          "$ref": "#/651"
+          "$ref": "#/656"
         },
         "flags": 4,
         "description": "The configuration settings for the OAuth2 provider"
       },
       "Oauth2ProviderConfigOutput": {
         "type": {
-          "$ref": "#/652"
+          "$ref": "#/657"
         },
         "flags": 2,
         "description": "The output configuration for the OAuth2 provider"
@@ -11309,7 +11449,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/672"
+          "$ref": "#/682"
         },
         "flags": 0,
         "description": "Tags to assign to the OAuth2 credential provider"
@@ -11336,7 +11476,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/673"
+          "$ref": "#/683"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -11347,7 +11487,7 @@
     "$type": "ResourceType",
     "name": "AWS.BedrockAgentCore/OAuth2CredentialProvider@default",
     "body": {
-      "$ref": "#/674"
+      "$ref": "#/684"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -11358,21 +11498,21 @@
     "properties": {
       "LogGroupNamePrefixes": {
         "type": {
-          "$ref": "#/692"
+          "$ref": "#/702"
         },
         "flags": 0,
         "description": "The list of CloudWatch log group name prefixes to monitor for agent traces. Mutually exclusive with LogGroupNames; specify exactly one of the two selectors."
       },
       "LogGroupNames": {
         "type": {
-          "$ref": "#/693"
+          "$ref": "#/703"
         },
         "flags": 0,
         "description": "The list of CloudWatch log group names to monitor for agent traces."
       },
       "ServiceNames": {
         "type": {
-          "$ref": "#/694"
+          "$ref": "#/704"
         },
         "flags": 1,
         "description": "The list of service names to filter traces within the specified log groups."
@@ -11412,7 +11552,7 @@
     "properties": {
       "Frequencies": {
         "type": {
-          "$ref": "#/695"
+          "$ref": "#/705"
         },
         "flags": 1,
         "description": "The list of frequencies at which clustering reports are generated."
@@ -11430,7 +11570,7 @@
     "properties": {
       "CloudWatchLogs": {
         "type": {
-          "$ref": "#/676"
+          "$ref": "#/686"
         },
         "flags": 1
       }
@@ -11474,7 +11614,7 @@
       },
       "Value": {
         "type": {
-          "$ref": "#/684"
+          "$ref": "#/694"
         },
         "flags": 1
       }
@@ -11531,7 +11671,7 @@
     "properties": {
       "CloudWatchConfig": {
         "type": {
-          "$ref": "#/677"
+          "$ref": "#/687"
         },
         "flags": 0
       }
@@ -11543,20 +11683,20 @@
     "properties": {
       "Filters": {
         "type": {
-          "$ref": "#/696"
+          "$ref": "#/706"
         },
         "flags": 0,
         "description": "The list of filters that determine which agent traces should be included in the evaluation."
       },
       "SamplingConfig": {
         "type": {
-          "$ref": "#/689"
+          "$ref": "#/699"
         },
         "flags": 1
       },
       "SessionConfig": {
         "type": {
-          "$ref": "#/690"
+          "$ref": "#/700"
         },
         "flags": 0
       }
@@ -11633,7 +11773,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/683"
+      "$ref": "#/693"
     }
   },
   {
@@ -11643,19 +11783,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/681"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/685"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
       "$ref": "#/691"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/695"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/701"
     }
   },
   {
@@ -11664,7 +11804,7 @@
     "properties": {
       "ClusteringConfig": {
         "type": {
-          "$ref": "#/678"
+          "$ref": "#/688"
         },
         "flags": 0,
         "description": "The configuration for clustering analysis of evaluation results."
@@ -11678,7 +11818,7 @@
       },
       "DataSourceConfig": {
         "type": {
-          "$ref": "#/680"
+          "$ref": "#/690"
         },
         "flags": 1,
         "description": "The data source configuration that specifies CloudWatch log groups and service names to monitor."
@@ -11699,7 +11839,7 @@
       },
       "Evaluators": {
         "type": {
-          "$ref": "#/698"
+          "$ref": "#/708"
         },
         "flags": 0,
         "description": "The list of evaluators to apply during online evaluation."
@@ -11713,7 +11853,7 @@
       },
       "Insights": {
         "type": {
-          "$ref": "#/699"
+          "$ref": "#/709"
         },
         "flags": 0,
         "description": "The list of insights to enable for failure analysis."
@@ -11741,14 +11881,14 @@
       },
       "OutputConfig": {
         "type": {
-          "$ref": "#/687"
+          "$ref": "#/697"
         },
         "flags": 0,
         "description": "The configuration that specifies where evaluation results should be written."
       },
       "Rule": {
         "type": {
-          "$ref": "#/688"
+          "$ref": "#/698"
         },
         "flags": 1,
         "description": "The evaluation rule that defines sampling configuration, filters, and session detection settings."
@@ -11762,7 +11902,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/700"
+          "$ref": "#/710"
         },
         "flags": 0,
         "description": "A list of tags to assign to the online evaluation configuration."
@@ -11796,7 +11936,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/701"
+          "$ref": "#/711"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -11807,7 +11947,7 @@
     "$type": "ResourceType",
     "name": "AWS.BedrockAgentCore/OnlineEvaluationConfig@default",
     "body": {
-      "$ref": "#/702"
+      "$ref": "#/712"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -11818,13 +11958,13 @@
     "properties": {
       "CoinbaseCDP": {
         "type": {
-          "$ref": "#/708"
+          "$ref": "#/718"
         },
         "flags": 0
       },
       "StripePrivy": {
         "type": {
-          "$ref": "#/708"
+          "$ref": "#/718"
         },
         "flags": 0
       }
@@ -11865,7 +12005,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/704"
+      "$ref": "#/714"
     }
   },
   {
@@ -11914,7 +12054,7 @@
       },
       "CredentialProviderConfigurations": {
         "type": {
-          "$ref": "#/710"
+          "$ref": "#/720"
         },
         "flags": 0,
         "description": "The credential provider configurations for the connector. Required when ProvisionMode is MANUAL or not specified. Empty for QUICK_CREATE until provisioning completes."
@@ -11976,7 +12116,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/711"
+          "$ref": "#/721"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -11987,7 +12127,7 @@
     "$type": "ResourceType",
     "name": "AWS.BedrockAgentCore/PaymentConnector@default",
     "body": {
-      "$ref": "#/712"
+      "$ref": "#/722"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -12012,7 +12152,7 @@
       },
       "ApiKeySecretConfig": {
         "type": {
-          "$ref": "#/720"
+          "$ref": "#/730"
         },
         "flags": 0
       },
@@ -12031,7 +12171,7 @@
       },
       "WalletSecretConfig": {
         "type": {
-          "$ref": "#/720"
+          "$ref": "#/730"
         },
         "flags": 0
       },
@@ -12056,7 +12196,7 @@
       },
       "ApiKeySecretArn": {
         "type": {
-          "$ref": "#/719"
+          "$ref": "#/729"
         },
         "flags": 1
       },
@@ -12075,7 +12215,7 @@
       },
       "WalletSecretArn": {
         "type": {
-          "$ref": "#/719"
+          "$ref": "#/729"
         },
         "flags": 0
       },
@@ -12105,13 +12245,13 @@
     "properties": {
       "CoinbaseCdpConfiguration": {
         "type": {
-          "$ref": "#/714"
+          "$ref": "#/724"
         },
         "flags": 0
       },
       "StripePrivyConfiguration": {
         "type": {
-          "$ref": "#/722"
+          "$ref": "#/732"
         },
         "flags": 0
       }
@@ -12123,13 +12263,13 @@
     "properties": {
       "CoinbaseCdpConfiguration": {
         "type": {
-          "$ref": "#/715"
+          "$ref": "#/725"
         },
         "flags": 0
       },
       "StripePrivyConfiguration": {
         "type": {
-          "$ref": "#/723"
+          "$ref": "#/733"
         },
         "flags": 0
       }
@@ -12193,7 +12333,7 @@
       },
       "AppSecretConfig": {
         "type": {
-          "$ref": "#/720"
+          "$ref": "#/730"
         },
         "flags": 0
       },
@@ -12219,7 +12359,7 @@
       },
       "AuthorizationPrivateKeyConfig": {
         "type": {
-          "$ref": "#/720"
+          "$ref": "#/730"
         },
         "flags": 0
       },
@@ -12244,7 +12384,7 @@
       },
       "AppSecretArn": {
         "type": {
-          "$ref": "#/719"
+          "$ref": "#/729"
         },
         "flags": 1
       },
@@ -12270,7 +12410,7 @@
       },
       "AuthorizationPrivateKeyArn": {
         "type": {
-          "$ref": "#/719"
+          "$ref": "#/729"
         },
         "flags": 1
       },
@@ -12314,7 +12454,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/724"
+      "$ref": "#/734"
     }
   },
   {
@@ -12357,19 +12497,19 @@
       },
       "ProviderConfigurationInput": {
         "type": {
-          "$ref": "#/717"
+          "$ref": "#/727"
         },
         "flags": 4
       },
       "ProviderConfigurationOutput": {
         "type": {
-          "$ref": "#/718"
+          "$ref": "#/728"
         },
         "flags": 2
       },
       "Tags": {
         "type": {
-          "$ref": "#/726"
+          "$ref": "#/736"
         },
         "flags": 0,
         "description": "Tags for the payment credential provider"
@@ -12396,7 +12536,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/727"
+          "$ref": "#/737"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -12407,7 +12547,7 @@
     "$type": "ResourceType",
     "name": "AWS.BedrockAgentCore/PaymentCredentialProvider@default",
     "body": {
-      "$ref": "#/728"
+      "$ref": "#/738"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -12419,7 +12559,7 @@
   },
   {
     "$type": "ObjectType",
-    "name": "AuthorizingClaimMatchValue",
+    "name": "AuthorizingClaimMatchValueType",
     "properties": {
       "ClaimMatchOperator": {
         "type": {
@@ -12429,7 +12569,7 @@
       },
       "ClaimMatchValue": {
         "type": {
-          "$ref": "#/737"
+          "$ref": "#/747"
         },
         "flags": 1
       }
@@ -12437,7 +12577,7 @@
   },
   {
     "$type": "ObjectType",
-    "name": "ClaimMatchValue",
+    "name": "ClaimMatchValueType",
     "properties": {}
   },
   {
@@ -12446,7 +12586,7 @@
     "properties": {
       "AuthorizingClaimMatchValue": {
         "type": {
-          "$ref": "#/731"
+          "$ref": "#/741"
         },
         "flags": 1
       },
@@ -12466,29 +12606,29 @@
   },
   {
     "$type": "ObjectType",
-    "name": "CustomJWTAuthorizer",
+    "name": "CustomJWTAuthorizerConfiguration",
     "properties": {
       "AllowedAudience": {
         "type": {
-          "$ref": "#/738"
+          "$ref": "#/748"
         },
         "flags": 0
       },
       "AllowedClients": {
         "type": {
-          "$ref": "#/739"
+          "$ref": "#/749"
         },
         "flags": 0
       },
       "AllowedScopes": {
         "type": {
-          "$ref": "#/740"
+          "$ref": "#/750"
         },
         "flags": 0
       },
       "CustomClaims": {
         "type": {
-          "$ref": "#/741"
+          "$ref": "#/751"
         },
         "flags": 0
       },
@@ -12534,7 +12674,7 @@
   },
   {
     "$type": "ObjectType",
-    "name": "PaymentManager_ClaimMatchValue",
+    "name": "PaymentManager_ClaimMatchValueType",
     "properties": {}
   },
   {
@@ -12558,7 +12698,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/733"
+      "$ref": "#/743"
     }
   },
   {
@@ -12568,7 +12708,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/735"
+      "$ref": "#/745"
     }
   },
   {
@@ -12577,7 +12717,7 @@
     "properties": {
       "AuthorizerConfiguration": {
         "type": {
-          "$ref": "#/730"
+          "$ref": "#/740"
         },
         "flags": 0,
         "description": "The authorizer configuration for the payment manager"
@@ -12647,14 +12787,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/743"
+          "$ref": "#/753"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "WorkloadIdentityDetails": {
         "type": {
-          "$ref": "#/736"
+          "$ref": "#/746"
         },
         "flags": 2,
         "description": "The workload identity details for the payment manager"
@@ -12681,7 +12821,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/744"
+          "$ref": "#/754"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -12692,7 +12832,7 @@
     "$type": "ResourceType",
     "name": "AWS.BedrockAgentCore/PaymentManager@default",
     "body": {
-      "$ref": "#/745"
+      "$ref": "#/755"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -12721,13 +12861,13 @@
     "properties": {
       "Cedar": {
         "type": {
-          "$ref": "#/747"
+          "$ref": "#/757"
         },
         "flags": 0
       },
       "Policy": {
         "type": {
-          "$ref": "#/750"
+          "$ref": "#/760"
         },
         "flags": 0
       }
@@ -12779,7 +12919,7 @@
       },
       "Definition": {
         "type": {
-          "$ref": "#/749"
+          "$ref": "#/759"
         },
         "flags": 1
       },
@@ -12833,7 +12973,7 @@
       },
       "StatusReasons": {
         "type": {
-          "$ref": "#/754"
+          "$ref": "#/764"
         },
         "flags": 2,
         "description": "Additional information about the policy status."
@@ -12873,7 +13013,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/755"
+          "$ref": "#/765"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -12884,7 +13024,7 @@
     "$type": "ResourceType",
     "name": "AWS.BedrockAgentCore/Policy@default",
     "body": {
-      "$ref": "#/756"
+      "$ref": "#/766"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -12925,7 +13065,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/759"
+      "$ref": "#/769"
     }
   },
   {
@@ -12983,14 +13123,14 @@
       },
       "StatusReasons": {
         "type": {
-          "$ref": "#/761"
+          "$ref": "#/771"
         },
         "flags": 2,
         "description": "Additional information about the policy engine status"
       },
       "Tags": {
         "type": {
-          "$ref": "#/762"
+          "$ref": "#/772"
         },
         "flags": 0,
         "description": "A list of tags to assign to the policy engine."
@@ -13024,7 +13164,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/763"
+          "$ref": "#/773"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -13035,7 +13175,7 @@
     "$type": "ResourceType",
     "name": "AWS.BedrockAgentCore/PolicyEngine@default",
     "body": {
-      "$ref": "#/764"
+      "$ref": "#/774"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -13104,7 +13244,7 @@
       },
       "Resource": {
         "type": {
-          "$ref": "#/767"
+          "$ref": "#/777"
         },
         "flags": 1,
         "description": "The resource information that provides context for policy generation."
@@ -13118,7 +13258,7 @@
       },
       "StatusReasons": {
         "type": {
-          "$ref": "#/768"
+          "$ref": "#/778"
         },
         "flags": 2,
         "description": "Additional information about the generation status."
@@ -13152,7 +13292,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/769"
+          "$ref": "#/779"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -13163,7 +13303,7 @@
     "$type": "ResourceType",
     "name": "AWS.BedrockAgentCore/PolicyGeneration@default",
     "body": {
-      "$ref": "#/770"
+      "$ref": "#/780"
     },
     "readableScopes": 31,
     "writableScopes": 0
@@ -13212,7 +13352,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/773"
+          "$ref": "#/783"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -13223,7 +13363,7 @@
     "$type": "ResourceType",
     "name": "AWS.BedrockAgentCore/ResourcePolicy@default",
     "body": {
-      "$ref": "#/774"
+      "$ref": "#/784"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -13244,13 +13384,13 @@
     "properties": {
       "CodeConfiguration": {
         "type": {
-          "$ref": "#/800"
+          "$ref": "#/810"
         },
         "flags": 0
       },
       "ContainerConfiguration": {
         "type": {
-          "$ref": "#/801"
+          "$ref": "#/811"
         },
         "flags": 0
       }
@@ -13312,13 +13452,13 @@
     "properties": {
       "HostingEnvironments": {
         "type": {
-          "$ref": "#/855"
+          "$ref": "#/865"
         },
         "flags": 0
       },
       "WorkloadIdentities": {
         "type": {
-          "$ref": "#/856"
+          "$ref": "#/866"
         },
         "flags": 0
       }
@@ -13330,7 +13470,7 @@
     "properties": {
       "CustomJWTAuthorizer": {
         "type": {
-          "$ref": "#/805"
+          "$ref": "#/815"
         },
         "flags": 0
       }
@@ -13348,7 +13488,7 @@
       },
       "ClaimMatchValue": {
         "type": {
-          "$ref": "#/797"
+          "$ref": "#/807"
         },
         "flags": 1
       }
@@ -13411,7 +13551,7 @@
       },
       "MatchValueStringList": {
         "type": {
-          "$ref": "#/857"
+          "$ref": "#/867"
         },
         "flags": 0
       }
@@ -13428,7 +13568,7 @@
     "properties": {
       "S3": {
         "type": {
-          "$ref": "#/840"
+          "$ref": "#/850"
         },
         "flags": 0
       }
@@ -13440,13 +13580,13 @@
     "properties": {
       "Code": {
         "type": {
-          "$ref": "#/799"
+          "$ref": "#/809"
         },
         "flags": 1
       },
       "EntryPoint": {
         "type": {
-          "$ref": "#/858"
+          "$ref": "#/868"
         },
         "flags": 1
       },
@@ -13481,7 +13621,7 @@
     "properties": {
       "AuthorizingClaimMatchValue": {
         "type": {
-          "$ref": "#/791"
+          "$ref": "#/801"
         },
         "flags": 1
       },
@@ -13510,31 +13650,31 @@
     "properties": {
       "AllowedAudience": {
         "type": {
-          "$ref": "#/860"
+          "$ref": "#/870"
         },
         "flags": 0
       },
       "AllowedClients": {
         "type": {
-          "$ref": "#/861"
+          "$ref": "#/871"
         },
         "flags": 0
       },
       "AllowedScopes": {
         "type": {
-          "$ref": "#/862"
+          "$ref": "#/872"
         },
         "flags": 0
       },
       "AllowedWorkloadConfiguration": {
         "type": {
-          "$ref": "#/789"
+          "$ref": "#/799"
         },
         "flags": 0
       },
       "CustomClaims": {
         "type": {
-          "$ref": "#/863"
+          "$ref": "#/873"
         },
         "flags": 0
       },
@@ -13546,13 +13686,13 @@
       },
       "PrivateEndpoint": {
         "type": {
-          "$ref": "#/830"
+          "$ref": "#/840"
         },
         "flags": 0
       },
       "PrivateEndpointOverrides": {
         "type": {
-          "$ref": "#/864"
+          "$ref": "#/874"
         },
         "flags": 0
       }
@@ -13620,25 +13760,25 @@
     "properties": {
       "CapacityProviderVolume": {
         "type": {
-          "$ref": "#/794"
+          "$ref": "#/804"
         },
         "flags": 0
       },
       "EfsAccessPoint": {
         "type": {
-          "$ref": "#/809"
+          "$ref": "#/819"
         },
         "flags": 0
       },
       "S3FilesAccessPoint": {
         "type": {
-          "$ref": "#/839"
+          "$ref": "#/849"
         },
         "flags": 0
       },
       "SessionStorage": {
         "type": {
-          "$ref": "#/844"
+          "$ref": "#/854"
         },
         "flags": 0
       }
@@ -13727,21 +13867,21 @@
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/868"
+          "$ref": "#/878"
         },
         "flags": 0,
         "description": "The security group IDs"
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/869"
+          "$ref": "#/879"
         },
         "flags": 1,
         "description": "The subnet IDs"
       },
       "Tags": {
         "type": {
-          "$ref": "#/870"
+          "$ref": "#/880"
         },
         "flags": 0,
         "description": "Tags to apply to the managed VPC Lattice resource gateway"
@@ -13782,7 +13922,7 @@
       },
       "NetworkModeConfig": {
         "type": {
-          "$ref": "#/848"
+          "$ref": "#/858"
         },
         "flags": 0
       }
@@ -13816,7 +13956,7 @@
       },
       "PrivateEndpoint": {
         "type": {
-          "$ref": "#/830"
+          "$ref": "#/840"
         },
         "flags": 1
       }
@@ -13843,7 +13983,7 @@
     "properties": {
       "RequestHeaderAllowlist": {
         "type": {
-          "$ref": "#/874"
+          "$ref": "#/884"
         },
         "flags": 0
       }
@@ -13968,13 +14108,13 @@
     "properties": {
       "SecurityGroups": {
         "type": {
-          "$ref": "#/877"
+          "$ref": "#/887"
         },
         "flags": 1
       },
       "Subnets": {
         "type": {
-          "$ref": "#/878"
+          "$ref": "#/888"
         },
         "flags": 1
       }
@@ -14023,7 +14163,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/817"
+      "$ref": "#/827"
     }
   },
   {
@@ -14047,7 +14187,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/803"
+      "$ref": "#/813"
     }
   },
   {
@@ -14071,13 +14211,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/803"
+      "$ref": "#/813"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/831"
+      "$ref": "#/841"
     }
   },
   {
@@ -14089,13 +14229,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/814"
+      "$ref": "#/824"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/817"
+      "$ref": "#/827"
     }
   },
   {
@@ -14127,7 +14267,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/831"
+      "$ref": "#/841"
     }
   },
   {
@@ -14179,7 +14319,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/814"
+      "$ref": "#/824"
     }
   },
   {
@@ -14195,7 +14335,7 @@
       },
       "AgentRuntimeArtifact": {
         "type": {
-          "$ref": "#/778"
+          "$ref": "#/788"
         },
         "flags": 1,
         "description": "The artifact of the agent"
@@ -14223,14 +14363,14 @@
       },
       "AuthorizerConfiguration": {
         "type": {
-          "$ref": "#/790"
+          "$ref": "#/800"
         },
         "flags": 0,
         "description": "Authorizer configuration for the agent runtime"
       },
       "CapacityProviderConfiguration": {
         "type": {
-          "$ref": "#/793"
+          "$ref": "#/803"
         },
         "flags": 0,
         "description": "Capacity provider configuration for the agent runtime"
@@ -14251,7 +14391,7 @@
       },
       "EnvironmentVariables": {
         "type": {
-          "$ref": "#/813"
+          "$ref": "#/823"
         },
         "flags": 0,
         "description": "Environment variables for the agent runtime"
@@ -14265,7 +14405,7 @@
       },
       "FilesystemConfigurations": {
         "type": {
-          "$ref": "#/881"
+          "$ref": "#/891"
         },
         "flags": 0,
         "description": "Filesystem configurations for the agent runtime"
@@ -14279,14 +14419,14 @@
       },
       "LifecycleConfiguration": {
         "type": {
-          "$ref": "#/822"
+          "$ref": "#/832"
         },
         "flags": 0,
         "description": "Lifecycle configuration for managing runtime sessions"
       },
       "NetworkConfiguration": {
         "type": {
-          "$ref": "#/827"
+          "$ref": "#/837"
         },
         "flags": 0,
         "description": "Network access configuration for the Agent"
@@ -14307,7 +14447,7 @@
       },
       "RequestHeaderConfiguration": {
         "type": {
-          "$ref": "#/835"
+          "$ref": "#/845"
         },
         "flags": 0,
         "description": "Configuration for HTTP request headers"
@@ -14328,13 +14468,13 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/847"
+          "$ref": "#/857"
         },
         "flags": 0
       },
       "WorkloadIdentityDetails": {
         "type": {
-          "$ref": "#/851"
+          "$ref": "#/861"
         },
         "flags": 2,
         "description": "Workload identity details for the agent"
@@ -14361,7 +14501,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/882"
+          "$ref": "#/892"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -14372,7 +14512,7 @@
     "$type": "ResourceType",
     "name": "AWS.BedrockAgentCore/Runtime@default",
     "body": {
-      "$ref": "#/883"
+      "$ref": "#/893"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -14524,7 +14664,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/894"
+          "$ref": "#/904"
         },
         "flags": 0
       },
@@ -14557,7 +14697,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/896"
+          "$ref": "#/906"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -14568,7 +14708,7 @@
     "$type": "ResourceType",
     "name": "AWS.BedrockAgentCore/RuntimeEndpoint@default",
     "body": {
-      "$ref": "#/897"
+      "$ref": "#/907"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -14610,7 +14750,7 @@
       },
       "KmsConfiguration": {
         "type": {
-          "$ref": "#/899"
+          "$ref": "#/909"
         },
         "flags": 2,
         "description": "The KMS configuration for the token vault."
@@ -14651,7 +14791,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/901"
+          "$ref": "#/911"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -14662,7 +14802,7 @@
     "$type": "ResourceType",
     "name": "AWS.BedrockAgentCore/TokenVault@default",
     "body": {
-      "$ref": "#/902"
+      "$ref": "#/912"
     },
     "readableScopes": 31,
     "writableScopes": 0
@@ -14698,7 +14838,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/904"
+      "$ref": "#/914"
     }
   },
   {
@@ -14707,7 +14847,7 @@
     "properties": {
       "AllowedResourceOauth2ReturnUrls": {
         "type": {
-          "$ref": "#/906"
+          "$ref": "#/916"
         },
         "flags": 0,
         "description": "The list of allowed OAuth2 return URLs for resources associated with this workload identity."
@@ -14735,7 +14875,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/907"
+          "$ref": "#/917"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -14769,7 +14909,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/908"
+          "$ref": "#/918"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -14780,7 +14920,7 @@
     "$type": "ResourceType",
     "name": "AWS.BedrockAgentCore/WorkloadIdentity@default",
     "body": {
-      "$ref": "#/909"
+      "$ref": "#/919"
     },
     "readableScopes": 0,
     "writableScopes": 0

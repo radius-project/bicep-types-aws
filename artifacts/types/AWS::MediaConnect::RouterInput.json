@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaConnect-RouterInput",
   "type": "AWS::MediaConnect::RouterInput",
-  "time": "2026-10-29T03:59:52.716Z",
+  "time": "2026-11-13T03:39:16.37Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -20,6 +20,11 @@
       "AutomaticEndpointEncryptionConfiguration": {
         "additionalProperties": false,
         "description": "The configuration for automatic endpoint encryption. In this mode, MediaConnect determines the encryption key when the endpoint connects. This type does not require any additional settings.",
+        "type": "object"
+      },
+      "AutomaticRtmpPushNamingConfiguration": {
+        "additionalProperties": false,
+        "description": "The automatic RTMP naming configuration, where MediaConnect generates the application and stream names. This type does not require any additional settings.",
         "type": "object"
       },
       "BlackFramesConfiguration": {
@@ -100,6 +105,11 @@
           "EndpointLifecycleManagement",
           "SourceTransitDecryption"
         ],
+        "type": "object"
+      },
+      "DestinationEndpointRouterInputStreamDetails": {
+        "additionalProperties": false,
+        "description": "Configuration details for a router input stream that is represented by a destination endpoint.",
         "type": "object"
       },
       "EndpointEncryptionConfiguration": {
@@ -211,6 +221,23 @@
         ],
         "type": "object"
       },
+      "FailoverRouterInputIndexedStreamDetails": {
+        "additionalProperties": false,
+        "description": "Configuration details for an indexed stream in a failover router input setup.",
+        "properties": {
+          "RtmpPush": {
+            "$ref": "#/definitions/RtmpPushStreamDetails"
+          },
+          "SourceIndex": {
+            "description": "The index number (0 or 1) assigned to this source in the failover configuration.",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "SourceIndex"
+        ],
+        "type": "object"
+      },
       "FailoverRouterInputProtocolConfiguration": {
         "description": "Protocol configuration settings for failover router inputs.",
         "oneOf": [
@@ -243,6 +270,19 @@
           {
             "additionalProperties": false,
             "properties": {
+              "RtmpPush": {
+                "$ref": "#/definitions/RtmpPushRouterInputConfiguration"
+              }
+            },
+            "required": [
+              "RtmpPush"
+            ],
+            "title": "RtmpPush",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
               "SrtCaller": {
                 "$ref": "#/definitions/SrtCallerRouterInputConfiguration"
               }
@@ -267,6 +307,23 @@
             "type": "object"
           }
         ]
+      },
+      "FailoverRouterInputStreamDetails": {
+        "additionalProperties": false,
+        "description": "Configuration details for a failover router input that can automatically switch between two sources.",
+        "properties": {
+          "SourceIndexOneStreamDetails": {
+            "$ref": "#/definitions/FailoverRouterInputIndexedStreamDetails"
+          },
+          "SourceIndexZeroStreamDetails": {
+            "$ref": "#/definitions/FailoverRouterInputIndexedStreamDetails"
+          }
+        },
+        "required": [
+          "SourceIndexOneStreamDetails",
+          "SourceIndexZeroStreamDetails"
+        ],
+        "type": "object"
       },
       "FlowTransitEncryption": {
         "additionalProperties": false,
@@ -387,6 +444,25 @@
         ],
         "type": "string"
       },
+      "ManualRtmpPushNamingConfiguration": {
+        "additionalProperties": false,
+        "description": "The manual RTMP naming configuration, where you specify the application and stream names.",
+        "properties": {
+          "ApplicationName": {
+            "description": "The name of the RTMP application. Together with the stream name, the application name forms the RTMP URL path, in the pattern rtmp://ingestAddress/applicationName/streamName.",
+            "type": "string"
+          },
+          "StreamName": {
+            "description": "The name of the RTMP stream. The stream name forms the final segment of the RTMP URL path.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ApplicationName",
+          "StreamName"
+        ],
+        "type": "object"
+      },
       "MediaConnectFlowRouterInputConfiguration": {
         "additionalProperties": false,
         "description": "Configuration settings for connecting a router input to a flow output. To connect the router input to the flow output, provide both flowArn and flowOutputArn. To disconnect it, call the update operation and omit both fields while keeping this configuration object. You can't change sourceTransitDecryption while the router input is connected to a flow output. To change it, first disconnect the router input, then update the decryption.",
@@ -408,6 +484,11 @@
         "required": [
           "SourceTransitDecryption"
         ],
+        "type": "object"
+      },
+      "MediaConnectFlowRouterInputStreamDetails": {
+        "additionalProperties": false,
+        "description": "Configuration details for a MediaConnect flow when used as a router input source.",
         "type": "object"
       },
       "MediaLiveChannelPipelineId": {
@@ -440,6 +521,11 @@
         "required": [
           "SourceTransitDecryption"
         ],
+        "type": "object"
+      },
+      "MediaLiveChannelRouterInputStreamDetails": {
+        "additionalProperties": false,
+        "description": "Configuration details for a MediaLive channel when used as a router input source.",
         "type": "object"
       },
       "MediaLiveTransitEncryption": {
@@ -524,6 +610,20 @@
         ],
         "type": "object"
       },
+      "MergeRouterInputIndexedStreamDetails": {
+        "additionalProperties": false,
+        "description": "Configuration details for an indexed stream in a merge router input setup.",
+        "properties": {
+          "SourceIndex": {
+            "description": "The index number (0 or 1) assigned to this source in the merge configuration.",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "SourceIndex"
+        ],
+        "type": "object"
+      },
       "MergeRouterInputProtocolConfiguration": {
         "description": "Protocol configuration settings for merge router inputs.",
         "oneOf": [
@@ -552,8 +652,51 @@
             ],
             "title": "Rist",
             "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "SrtListener": {
+                "$ref": "#/definitions/SrtListenerRouterInputConfiguration"
+              }
+            },
+            "required": [
+              "SrtListener"
+            ],
+            "title": "SrtListener",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "SrtCaller": {
+                "$ref": "#/definitions/SrtCallerRouterInputConfiguration"
+              }
+            },
+            "required": [
+              "SrtCaller"
+            ],
+            "title": "SrtCaller",
+            "type": "object"
           }
         ]
+      },
+      "MergeRouterInputStreamDetails": {
+        "additionalProperties": false,
+        "description": "Configuration details for a merge router input that combines two input sources.",
+        "properties": {
+          "SourceIndexOneStreamDetails": {
+            "$ref": "#/definitions/MergeRouterInputIndexedStreamDetails"
+          },
+          "SourceIndexZeroStreamDetails": {
+            "$ref": "#/definitions/MergeRouterInputIndexedStreamDetails"
+          }
+        },
+        "required": [
+          "SourceIndexOneStreamDetails",
+          "SourceIndexZeroStreamDetails"
+        ],
+        "type": "object"
       },
       "PreferredDayTimeMaintenanceConfiguration": {
         "additionalProperties": false,
@@ -708,7 +851,8 @@
           "RTP",
           "RIST",
           "SRT_CALLER",
-          "SRT_LISTENER"
+          "SRT_LISTENER",
+          "RTMP_PUSH"
         ],
         "type": "string"
       },
@@ -739,6 +883,19 @@
               "SrtListener"
             ],
             "title": "SrtListener",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "RtmpPush": {
+                "$ref": "#/definitions/RtmpPushRouterInputConfiguration"
+              }
+            },
+            "required": [
+              "RtmpPush"
+            ],
+            "title": "RtmpPush",
             "type": "object"
           },
           {
@@ -783,6 +940,89 @@
           "MIGRATING"
         ],
         "type": "string"
+      },
+      "RouterInputStreamDetails": {
+        "description": "Configuration details for the router input stream.",
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "DestinationEndpoint": {
+                "$ref": "#/definitions/DestinationEndpointRouterInputStreamDetails"
+              }
+            },
+            "required": [
+              "DestinationEndpoint"
+            ],
+            "title": "DestinationEndpoint",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Standard": {
+                "$ref": "#/definitions/StandardRouterInputStreamDetails"
+              }
+            },
+            "required": [
+              "Standard"
+            ],
+            "title": "Standard",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "MediaLiveChannel": {
+                "$ref": "#/definitions/MediaLiveChannelRouterInputStreamDetails"
+              }
+            },
+            "required": [
+              "MediaLiveChannel"
+            ],
+            "title": "MediaLiveChannel",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Failover": {
+                "$ref": "#/definitions/FailoverRouterInputStreamDetails"
+              }
+            },
+            "required": [
+              "Failover"
+            ],
+            "title": "Failover",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "MediaConnectFlow": {
+                "$ref": "#/definitions/MediaConnectFlowRouterInputStreamDetails"
+              }
+            },
+            "required": [
+              "MediaConnectFlow"
+            ],
+            "title": "MediaConnectFlow",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Merge": {
+                "$ref": "#/definitions/MergeRouterInputStreamDetails"
+              }
+            },
+            "required": [
+              "Merge"
+            ],
+            "title": "Merge",
+            "type": "object"
+          }
+        ]
       },
       "RouterInputTier": {
         "enum": [
@@ -865,6 +1105,86 @@
           "GLOBAL"
         ],
         "type": "string"
+      },
+      "RtmpPushNamingConfiguration": {
+        "description": "The configuration settings for the RTMP (Real-Time Messaging Protocol) application and stream names.",
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Manual": {
+                "$ref": "#/definitions/ManualRtmpPushNamingConfiguration"
+              }
+            },
+            "required": [
+              "Manual"
+            ],
+            "title": "Manual",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Automatic": {
+                "$ref": "#/definitions/AutomaticRtmpPushNamingConfiguration"
+              }
+            },
+            "required": [
+              "Automatic"
+            ],
+            "title": "Automatic",
+            "type": "object"
+          }
+        ]
+      },
+      "RtmpPushNamingType": {
+        "enum": [
+          "MANUAL",
+          "AUTOMATIC"
+        ],
+        "type": "string"
+      },
+      "RtmpPushRouterInputConfiguration": {
+        "additionalProperties": false,
+        "description": "The configuration settings for a router input using the RTMP (Real-Time Messaging Protocol) protocol.",
+        "properties": {
+          "NamingConfiguration": {
+            "$ref": "#/definitions/RtmpPushNamingConfiguration"
+          },
+          "NamingType": {
+            "$ref": "#/definitions/RtmpPushNamingType"
+          },
+          "Port": {
+            "description": "The port number for the RTMP protocol. The only valid value is 1935.",
+            "maximum": 1935,
+            "minimum": 1935,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "NamingConfiguration",
+          "Port"
+        ],
+        "type": "object"
+      },
+      "RtmpPushStreamDetails": {
+        "additionalProperties": false,
+        "description": "Configuration details for an RTMP (Real-Time Messaging Protocol) router input stream, including the application and stream names.",
+        "properties": {
+          "ApplicationName": {
+            "description": "The name of the RTMP application.",
+            "type": "string"
+          },
+          "StreamName": {
+            "description": "The name of the RTMP stream.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ApplicationName",
+          "StreamName"
+        ],
+        "type": "object"
       },
       "RtpRouterInputConfiguration": {
         "additionalProperties": false,
@@ -1038,6 +1358,16 @@
         ],
         "type": "object"
       },
+      "StandardRouterInputStreamDetails": {
+        "additionalProperties": false,
+        "description": "Configuration details for a standard router input stream type.",
+        "properties": {
+          "RtmpPush": {
+            "$ref": "#/definitions/RtmpPushStreamDetails"
+          }
+        },
+        "type": "object"
+      },
       "Tag": {
         "additionalProperties": false,
         "properties": {
@@ -1188,6 +1518,9 @@
       "State": {
         "$ref": "#/definitions/RouterInputState"
       },
+      "StreamDetails": {
+        "$ref": "#/definitions/RouterInputStreamDetails"
+      },
       "Tags": {
         "description": "Key-value pairs that can be used to tag and organize this router input.",
         "insertionOrder": false,
@@ -1212,6 +1545,12 @@
       "/properties/MaintenanceConfiguration/PreferredDayTime/Time": "($groups := $match(Time, /^([0-9]{2}):([0-9]{2})(?::([0-9]{2})(?:\\.[0-9]+)?)?(?:Z|([+\\-][0-9]{2}:[0-9]{2}))?$/).groups;$seconds := $groups[2] ? $groups[2] : \"00\";$timezone := $groups[3] ? $groups[3] : \"+00:00\";$join([$groups[0], \":\", $groups[1], \":\", $seconds, \"Z\"]);)"
     },
     "readOnlyProperties": [
+      "/properties/StreamDetails/Standard/RtmpPush/ApplicationName",
+      "/properties/StreamDetails/Standard/RtmpPush/StreamName",
+      "/properties/StreamDetails/Failover/SourceIndexZeroStreamDetails/RtmpPush/ApplicationName",
+      "/properties/StreamDetails/Failover/SourceIndexZeroStreamDetails/RtmpPush/StreamName",
+      "/properties/StreamDetails/Failover/SourceIndexOneStreamDetails/RtmpPush/ApplicationName",
+      "/properties/StreamDetails/Failover/SourceIndexOneStreamDetails/RtmpPush/StreamName",
       "/properties/Arn",
       "/properties/AssociatedDestinationEndpointArns",
       "/properties/ContentQualityAnalysisType",
@@ -1222,6 +1561,7 @@
       "/properties/MaintenanceType",
       "/properties/RoutedOutputs",
       "/properties/State",
+      "/properties/StreamDetails",
       "/properties/UpdatedAt"
     ],
     "required": [

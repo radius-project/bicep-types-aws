@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Batch-JobDefinition",
   "type": "AWS::Batch::JobDefinition",
-  "time": "2026-10-19T21:09:17.635Z",
+  "time": "2026-11-13T17:21:18.234Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -359,6 +359,28 @@
         ],
         "type": "object"
       },
+      "EksContainerLinuxCapabilities": {
+        "additionalProperties": false,
+        "properties": {
+          "Add": {
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          },
+          "Drop": {
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": false
+          }
+        },
+        "type": "object"
+      },
       "EksContainerResourceRequirements": {
         "additionalProperties": false,
         "properties": {
@@ -389,6 +411,9 @@
           "AllowPrivilegeEscalation": {
             "type": "boolean"
           },
+          "Capabilities": {
+            "$ref": "#/definitions/EksContainerLinuxCapabilities"
+          },
           "Privileged": {
             "type": "boolean"
           },
@@ -403,6 +428,9 @@
           },
           "RunAsUser": {
             "type": "integer"
+          },
+          "SeccompProfile": {
+            "$ref": "#/definitions/EksSeccompProfile"
           }
         },
         "type": "object"
@@ -524,6 +552,9 @@
           "Metadata": {
             "$ref": "#/definitions/EksMetadata"
           },
+          "SecurityContext": {
+            "$ref": "#/definitions/EksPodSecurityContext"
+          },
           "ServiceAccountName": {
             "type": "string"
           },
@@ -541,6 +572,27 @@
         },
         "type": "object"
       },
+      "EksPodSecurityContext": {
+        "additionalProperties": false,
+        "properties": {
+          "FsGroup": {
+            "type": "integer"
+          },
+          "RunAsGroup": {
+            "type": "integer"
+          },
+          "RunAsNonRoot": {
+            "type": "boolean"
+          },
+          "RunAsUser": {
+            "type": "integer"
+          },
+          "SeccompProfile": {
+            "$ref": "#/definitions/EksSeccompProfile"
+          }
+        },
+        "type": "object"
+      },
       "EksProperties": {
         "additionalProperties": false,
         "properties": {
@@ -548,6 +600,21 @@
             "$ref": "#/definitions/EksPodProperties"
           }
         },
+        "type": "object"
+      },
+      "EksSeccompProfile": {
+        "additionalProperties": false,
+        "properties": {
+          "LocalhostProfile": {
+            "type": "string"
+          },
+          "Type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Type"
+        ],
         "type": "object"
       },
       "EksSecret": {

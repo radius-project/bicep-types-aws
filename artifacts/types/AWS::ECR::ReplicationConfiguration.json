@@ -1,10 +1,24 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ECR-ReplicationConfiguration",
   "type": "AWS::ECR::ReplicationConfiguration",
-  "time": "2026-10-15T03:52:02.946Z",
+  "time": "2026-11-14T19:13:58.261Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
+      "DeleteReplication": {
+        "additionalProperties": false,
+        "description": "",
+        "properties": {
+          "Enabled": {
+            "description": "Whether image deletions and image tag removals in the source registry are replicated to the replication destinations.",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "Enabled"
+        ],
+        "type": "object"
+      },
       "Filter": {
         "description": "The repository filter to be applied for replication.",
         "pattern": "^(?:[a-z0-9]+(?:[._-][a-z0-9]*)*/)*[a-z0-9]*(?:[._-][a-z0-9]*)*$",
@@ -69,6 +83,10 @@
         "additionalProperties": false,
         "description": "An array of objects representing the replication destinations and repository filters for a replication configuration.",
         "properties": {
+          "DeleteReplication": {
+            "$ref": "#/definitions/DeleteReplication",
+            "description": ""
+          },
           "Destinations": {
             "description": "An array of objects representing the destination for a replication rule.",
             "items": {

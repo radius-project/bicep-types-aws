@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MSK-Cluster",
   "type": "AWS::MSK::Cluster",
-  "time": "2026-08-28T07:34:27.916Z",
+  "time": "2026-11-12T21:59:52.682Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -13,6 +13,21 @@
       "/properties/ClusterName"
     ],
     "definitions": {
+      "AuthorizerLogs": {
+        "additionalProperties": false,
+        "properties": {
+          "CloudWatchLogs": {
+            "$ref": "#/definitions/CloudWatchLogs"
+          },
+          "Firehose": {
+            "$ref": "#/definitions/Firehose"
+          },
+          "S3": {
+            "$ref": "#/definitions/S3"
+          }
+        },
+        "type": "object"
+      },
       "BrokerLogs": {
         "additionalProperties": false,
         "properties": {
@@ -48,7 +63,7 @@
             "$ref": "#/definitions/ConnectivityInfo"
           },
           "InstanceType": {
-            "maxLength": 32,
+            "maxLength": 64,
             "minLength": 5,
             "type": "string"
           },
@@ -62,6 +77,13 @@
           },
           "StorageInfo": {
             "$ref": "#/definitions/StorageInfo"
+          },
+          "TopicReassignment": {
+            "enum": [
+              "AUTO",
+              "MANUAL"
+            ],
+            "type": "string"
           }
         },
         "required": [
@@ -228,13 +250,13 @@
       "LoggingInfo": {
         "additionalProperties": false,
         "properties": {
+          "AuthorizerLogs": {
+            "$ref": "#/definitions/AuthorizerLogs"
+          },
           "BrokerLogs": {
             "$ref": "#/definitions/BrokerLogs"
           }
         },
-        "required": [
-          "BrokerLogs"
-        ],
         "type": "object"
       },
       "NetworkType": {
@@ -491,6 +513,8 @@
           "kms:CreateGrant",
           "kms:DescribeKey",
           "kafka:CreateCluster",
+          "kafka:UpdateConnectivity",
+          "kafka:DescribeClusterOperation",
           "kafka:DescribeCluster",
           "kafka:TagResource",
           "logs:CreateLogDelivery",
@@ -506,7 +530,7 @@
           "firehose:TagDeliveryStream",
           "acm-pca:GetCertificateAuthorityCertificate"
         ],
-        "timeoutInMinutes": 120
+        "timeoutInMinutes": 180
       },
       "delete": {
         "permissions": [
@@ -563,7 +587,7 @@
           "firehose:TagDeliveryStream",
           "acm-pca:GetCertificateAuthorityCertificate"
         ],
-        "timeoutInMinutes": 720
+        "timeoutInMinutes": 2160
       }
     },
     "primaryIdentifier": [
@@ -669,7 +693,8 @@
     },
     "typeName": "AWS::MSK::Cluster",
     "writeOnlyProperties": [
-      "/properties/ZookeeperAccess"
+      "/properties/ZookeeperAccess",
+      "/properties/BrokerNodeGroupInfo/TopicReassignment"
     ]
   }
 }

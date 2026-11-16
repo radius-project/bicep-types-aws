@@ -274,7 +274,7 @@
 * **CatalogProperties**: [CatalogProperties](#catalogproperties)
 * **CreateDatabaseDefaultPermissions**: [PrincipalPermissions](#principalpermissions)[]: An array of PrincipalPermissions objects for default database permissions.
 * **CreateTableDefaultPermissions**: [PrincipalPermissions](#principalpermissions)[]: An array of PrincipalPermissions objects for default table permissions.
-* **CreateTime**: int (ReadOnly): The time at which the catalog was created.
+* **CreateTime**: string (ReadOnly): The time at which the catalog was created.
 * **Description**: string: A description of the catalog.
 * **FederatedCatalog**: [FederatedCatalog](#federatedcatalog)
 * **Name**: string (Required): The name of the catalog to create.
@@ -283,7 +283,7 @@
 * **ResourceArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the catalog.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **TargetRedshiftCatalog**: [TargetRedshiftCatalog](#targetredshiftcatalog)
-* **UpdateTime**: int (ReadOnly): The time at which the catalog was last updated.
+* **UpdateTime**: string (ReadOnly): The time at which the catalog was last updated.
 
 ## AWS.Glue/ClassifierProperties
 ### Properties

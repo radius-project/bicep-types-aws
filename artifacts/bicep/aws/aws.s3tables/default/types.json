@@ -703,6 +703,32 @@
   },
   {
     "$type": "ObjectType",
+    "name": "LoggingConfiguration",
+    "properties": {
+      "TargetBucket": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The name of the general purpose bucket that logs are delivered to. The bucket must be in the same AWS Region and owned by the same AWS account as the table bucket. The bucket can't use SSE-KMS or DSSE-KMS default encryption, can't have S3 Object Lock enabled, and can't have Requester Pays enabled. You can deliver logs from multiple table buckets to the same target bucket. In this case, choose a different TargetPrefix for each table bucket so that you can tell their log objects apart."
+      },
+      "TargetObjectKeyFormat": {
+        "type": {
+          "$ref": "#/61"
+        },
+        "flags": 1
+      },
+      "TargetPrefix": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The prefix for the keys of the log objects that are delivered to the target bucket."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "MetricsConfiguration",
     "properties": {
       "Status": {
@@ -711,6 +737,19 @@
         },
         "flags": 0,
         "description": "Indicates whether Metrics are enabled."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PartitionedPrefix",
+    "properties": {
+      "PartitionDateSource": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The date to use for the log object key partitions. Valid values are EventTime, the time that the requests in the log were made, and DeliveryTime, the time that the log was delivered."
       }
     }
   },
@@ -727,7 +766,7 @@
       },
       "Rules": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/63"
         },
         "flags": 1,
         "description": "List of replication rules"
@@ -753,7 +792,7 @@
     "properties": {
       "Destinations": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/64"
         },
         "flags": 1,
         "description": "List of replication destinations"
@@ -805,6 +844,18 @@
   },
   {
     "$type": "ObjectType",
+    "name": "TargetObjectKeyFormat",
+    "properties": {
+      "PartitionedPrefix": {
+        "type": {
+          "$ref": "#/53"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "UnreferencedFileRemoval",
     "properties": {
       "NoncurrentDays": {
@@ -833,13 +884,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/54"
+      "$ref": "#/56"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/53"
+      "$ref": "#/55"
     }
   },
   {
@@ -849,7 +900,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/58"
+      "$ref": "#/60"
     }
   },
   {
@@ -862,21 +913,27 @@
         },
         "flags": 0
       },
-      "MetricsConfiguration": {
+      "LoggingConfiguration": {
         "type": {
           "$ref": "#/51"
         },
         "flags": 0
       },
-      "ReplicationConfiguration": {
+      "MetricsConfiguration": {
         "type": {
           "$ref": "#/52"
         },
         "flags": 0
       },
+      "ReplicationConfiguration": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 0
+      },
       "StorageClassConfiguration": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/57"
         },
         "flags": 0
       },
@@ -894,14 +951,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/66"
         },
         "flags": 0,
         "description": "User tags (key-value pairs) to associate with the table bucket."
       },
       "UnreferencedFileRemoval": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/62"
         },
         "flags": 0
       }
@@ -927,7 +984,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/67"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -938,7 +995,7 @@
     "$type": "ResourceType",
     "name": "AWS.S3Tables/TableBucket@default",
     "body": {
-      "$ref": "#/65"
+      "$ref": "#/68"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -948,7 +1005,7 @@
     "name": "ResourcePolicy",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/69"
+      "$ref": "#/72"
     }
   },
   {
@@ -963,7 +1020,7 @@
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/67"
+        "$ref": "#/70"
       },
       {
         "$ref": "#/2"
@@ -979,14 +1036,14 @@
     "name": "TableBucketPolicy_ResourcePolicy",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/69"
+      "$ref": "#/72"
     }
   },
   {
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/72"
+        "$ref": "#/75"
       },
       {
         "$ref": "#/2"
@@ -999,7 +1056,7 @@
     "properties": {
       "ResourcePolicy": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/76"
         },
         "flags": 1
       },
@@ -1031,7 +1088,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/77"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1042,7 +1099,7 @@
     "$type": "ResourceType",
     "name": "AWS.S3Tables/TableBucketPolicy@default",
     "body": {
-      "$ref": "#/75"
+      "$ref": "#/78"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1057,7 +1114,7 @@
     "name": "ResourcePolicy",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/69"
+      "$ref": "#/72"
     }
   },
   {
@@ -1079,7 +1136,7 @@
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/78"
+        "$ref": "#/81"
       },
       {
         "$ref": "#/2"
@@ -1095,14 +1152,14 @@
     "name": "TablePolicy_ResourcePolicy",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/69"
+      "$ref": "#/72"
     }
   },
   {
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/84"
+        "$ref": "#/87"
       },
       {
         "$ref": "#/2"
@@ -1121,7 +1178,7 @@
       },
       "ResourcePolicy": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/88"
         },
         "flags": 1
       },
@@ -1165,7 +1222,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/89"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1176,7 +1233,7 @@
     "$type": "ResourceType",
     "name": "AWS.S3Tables/TablePolicy@default",
     "body": {
-      "$ref": "#/87"
+      "$ref": "#/90"
     },
     "readableScopes": 0,
     "writableScopes": 0

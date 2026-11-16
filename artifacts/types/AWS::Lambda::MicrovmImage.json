@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Lambda-MicrovmImage",
   "type": "AWS::Lambda::MicrovmImage",
-  "time": "2026-10-21T16:24:11.542Z",
+  "time": "2026-11-12T20:41:47.765Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -51,7 +51,8 @@
         "properties": {
           "Architecture": {
             "enum": [
-              "ARM_64"
+              "ARM_64",
+              "X86_64"
             ],
             "type": "string"
           }
@@ -236,7 +237,12 @@
           "lambda:GetMicrovmImage",
           "lambda:CreateMicrovmImage",
           "lambda:PassNetworkConnector",
-          "iam:PassRole"
+          "iam:PassRole",
+          "kms:DescribeKey",
+          "kms:Encrypt",
+          "kms:Decrypt",
+          "kms:GenerateDataKey",
+          "kms:GenerateDataKeyWithoutPlaintext"
         ]
       },
       "delete": {
@@ -267,7 +273,12 @@
           "lambda:PassNetworkConnector",
           "iam:PassRole",
           "lambda:DeleteMicrovmImageVersion",
-          "lambda:GetMicrovmImageVersion"
+          "lambda:GetMicrovmImageVersion",
+          "kms:DescribeKey",
+          "kms:Encrypt",
+          "kms:Decrypt",
+          "kms:GenerateDataKey",
+          "kms:GenerateDataKeyWithoutPlaintext"
         ]
       }
     },
@@ -349,6 +360,13 @@
       },
       "ImageArn": {
         "description": "ARN of the MicroVM image.",
+        "type": "string"
+      },
+      "KmsKeyIdentifier": {
+        "description": "The customer managed KMS key used to encrypt the MicroVM image configuration at rest. When omitted, a service owned key is used.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^(arn:aws[a-z-]*:kms:[a-z0-9-]+:[0-9]{12}:(key|alias)/[a-zA-Z0-9:/_-]+|alias/[a-zA-Z0-9:/_-]+|[a-zA-Z0-9-]+)$",
         "type": "string"
       },
       "LatestActiveImageVersion": {
@@ -447,7 +465,8 @@
       "/properties/Resources",
       "/properties/AdditionalOsCapabilities",
       "/properties/Hooks",
-      "/properties/EnvironmentVariables"
+      "/properties/EnvironmentVariables",
+      "/properties/KmsKeyIdentifier"
     ]
   }
 }
