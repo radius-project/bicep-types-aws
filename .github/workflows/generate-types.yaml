@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-24.04
     # The pull request targets the branch the run starts from and every run
     # shares one head branch, so only runs from main may update it.
-    if: github.repository == 'radius-project/bicep-types-aws' && github.ref == 'refs/heads/main'
+    if: github.repository == 'radius-project/bicep-types-aws' && github.ref == 'refs/heads/main' && github.ref_protected
     # A full download describes every AWS resource type, which can take well
     # over 10 minutes when AWS throttles the requests.
     timeout-minutes: 60
@@ -62,7 +62,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          ref: ${{ github.sha }}
           persist-credentials: false
+
+      - name: Verify current protected main before using credentials
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const { data: branch } = await github.rest.repos.getBranch({
+              ...context.repo, branch: 'main'
+            });
+            if (!branch.protected || branch.commit.sha !== context.sha) {
+              throw new Error('Generation credentials require current protected main');
+            }
 
       - name: Get date string
         id: get_date_string
