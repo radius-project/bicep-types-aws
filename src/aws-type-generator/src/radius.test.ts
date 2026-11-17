@@ -4,7 +4,7 @@ import path from "path";
 import { afterAll, describe, expect, test } from '@jest/globals';
 import { BicepType, ObjectType, ObjectTypePropertyFlags, TypeBaseKind } from "bicep-types";
 import { convertSchemaRecordToTypes } from "./convert";
-import { applyRadius, defaultRadiusPaths, loadPreviousRadius, loadRadius, newClashes, RadiusInputs, readExtraProperties, readSchemas, renderClashReport, writeRecords } from "./radius";
+import { applyRadius, checkEffectiveOutputs, defaultRadiusPaths, loadPreviousRadius, loadRadius, newClashes, RadiusInputs, readExtraProperties, readSchemas, renderClashReport, writeRecords } from "./radius";
 import { Schema, SchemaRecord } from "./schemarecord";
 
 const fixtureRoot = path.resolve('./testdata/radius')
@@ -423,5 +423,37 @@ describe('writeRecords', () => {
 
         expect(fs.readdirSync(dir).sort()).toEqual(['AWS::MSK::Cluster.json', 'notes.txt'])
         expect(JSON.parse(fs.readFileSync(path.join(dir, 'AWS::MSK::Cluster.json'), 'utf8'))).toEqual(records[0])
+    })
+})
+
+describe('checkEffectiveOutputs', () => {
+    const radius = (root: string) => ({ root, ...defaultRadiusPaths })
+
+    test('accepts separate outputs outside every input', () => {
+        expect(() => checkEffectiveOutputs(['/work/new', '/work/old'], ['/in/aws', '/in/aws-old'], [radius('/in/radius'), radius('/in/radius-old')])).not.toThrow()
+    })
+
+    test('rejects the same directory for both outputs', () => {
+        expect(() => checkEffectiveOutputs(['/work/out', '/work/../work/out/'], [], [])).toThrow('must be different directories')
+    })
+
+    test('rejects an AWS input directory', () => {
+        expect(() => checkEffectiveOutputs(['/work/new', '/in/aws-old'], ['/in/aws', '/in/aws-old'], [])).toThrow('is an input directory')
+    })
+
+    test.each([
+        ['current native schemas', '/in/radius/pkg/aws/schemas/native'],
+        ['a directory under the current native schemas', '/in/radius/pkg/aws/schemas/native/docdb'],
+        ['previous hand-written schemas', '/in/radius-old/pkg/aws/schemas/handwritten/x'],
+    ])('rejects %s', (_, output) => {
+        expect(() => checkEffectiveOutputs([output], [], [radius('/in/radius'), radius('/in/radius-old')])).toThrow('is inside the Radius schema directory')
+    })
+
+    test('rejects the directory holding an extra properties file', () => {
+        expect(() => checkEffectiveOutputs(['/in/radius-old/pkg/aws/extraproperties'], [], [radius('/in/radius'), radius('/in/radius-old')])).toThrow('holds the Radius extra properties file')
+    })
+
+    test('accepts a sibling whose name starts with the schema directory name', () => {
+        expect(() => checkEffectiveOutputs(['/in/radius/pkg/aws/schemas/native-records', '/in/radius/pkg/aws/schemas'], [], [radius('/in/radius')])).not.toThrow()
     })
 })

@@ -277,6 +277,40 @@ function hasOwn(value: object, key: string): boolean {
 // the downloaded AWS types, so tools that read those, such as the breaking-change
 // report, can read these too. It first removes the JSON files already there, so a
 // type that is gone doesn't linger.
+// checkEffectiveOutputs throws if writing records to an output directory would
+// delete or change a file the generator reads. writeRecords replaces the JSON
+// files directly in its directory, and the Radius schema directories are read
+// recursively, so an output can't be an AWS input directory, sit inside a Radius
+// schema directory, hold an extra properties file, or be the other output.
+export function checkEffectiveOutputs(outputs: string[], awsInputs: string[], radius: RadiusPaths[]) {
+    const resolved = outputs.map(output => path.resolve(output))
+    if (new Set(resolved).size !== resolved.length) {
+        throw new Error("--effective-output and --previous-effective-output must be different directories")
+    }
+    const inside = (dir: string, root: string) => {
+        const relative = path.relative(root, dir)
+        return relative === "" || (relative !== ".." && !relative.startsWith(`..${path.sep}`) && !path.isAbsolute(relative))
+    }
+    for (const output of resolved) {
+        for (const input of awsInputs.map(dir => path.resolve(dir))) {
+            if (output === input) {
+                throw new Error(`${output} is an input directory, so it can't also be an effective output`)
+            }
+        }
+        for (const paths of radius) {
+            for (const schemas of [paths.nativeSchemas, paths.handwrittenSchemas].map(dir => path.resolve(paths.root, dir))) {
+                if (inside(output, schemas)) {
+                    throw new Error(`${output} is inside the Radius schema directory ${schemas}, so it can't be an effective output`)
+                }
+            }
+            const extraProperties = path.resolve(paths.root, paths.extraProperties)
+            if (path.dirname(extraProperties) === output) {
+                throw new Error(`${output} holds the Radius extra properties file ${extraProperties}, so it can't be an effective output`)
+            }
+        }
+    }
+}
+
 export function writeRecords(directory: string, records: SchemaRecord[]) {
     fs.mkdirSync(directory, { recursive: true })
     for (const file of fs.readdirSync(directory)) {
