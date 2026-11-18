@@ -7,14 +7,12 @@ import { cp, lstat, mkdir, mkdtemp, readFile, readdir, rm, writeFile } from "nod
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import {
-  capture, captureJob, checkReleaseHistory, developmentMirror, existingManifest, hash, identity,
+  capture, captureJob, checkReleaseHistory, existingManifest, hash, identity,
   mainWorkflow, maximumSnapshotSize, originalSource, packageInfo, prepare, publish,
   releaseWorkflow, repository, select, selectSnapshot, snapshotName, target, tool,
   validateManifest, verifyArtifact, verifyCapture, verifySource, versions,
   releaseRunName, resolveGeneration, prepareSchemas, schemaSnapshotName
 } from "./publish-bicep.mjs";
-import { copyRequest, mirrorMain } from "./mirror-main-bicep.mjs";
-import monitorRemoteWorkflow from "./monitor-remote-workflow.mjs";
 
 const sha = "a".repeat(40);
 const controllerSha = "c".repeat(40);
@@ -112,22 +110,6 @@ function receipt(s = source, bytes = JSON.stringify(manifest)) {
 const missing = (reference) => Object.assign(new Error("not found"), {
   code: 1,
   stderr: `Error response from registry: failed to fetch the content of "${reference}": ${reference}: not found\n`
-});
-const ghcrReceipt = () => ({
-  ...receipt(main), status: "ghcr-published", visibility: "public",
-  uploadedDigest: receipt(main).record.digest,
-  mirror: { reference: developmentMirror, status: "pending" }
-});
-const mirrorOptions = (directory, overrides = {}) => ({
-  github: github(main).api, publisherGithub: {}, core: { info: () => {} },
-  source: main, receipt: ghcrReceipt(), directory,
-  run: async () => JSON.stringify(manifest),
-  monitor: async ({ core }) => {
-    core.setOutput("run_id", "900");
-    core.setOutput("run_url", "https://github.com/azure-octo/radius-publisher/actions/runs/900");
-    core.setOutput("conclusion", "success");
-  },
-  ...overrides
 });
 
 test("release control is default-main dispatch with a separately frozen source", () => {
@@ -424,171 +406,53 @@ test("release publication never writes ACR or emits compatibility state", async 
   }
 });
 
-test("main uploads GHCR only and leaves a pending private mirror receipt", async (t) => {
+test("main is published only after uploaded digest, Public and anonymous GHCR verification", async (t) => {
   const directory = await scratch(t);
   const result = receipt(main);
   const commands = [];
-  await publish(github(main).api, main, result,
-    directory, async (args) => { commands.push(args); return JSON.stringify(manifest); });
+  const { api } = github(main);
+  api.rest.packages.getPackageForOrganization = async () => {
+    assert.equal(result.status, "uploaded");
+    assert.equal(result.uploadedDigest, result.record.digest);
+    return { data: { visibility: "public" } };
+  };
+  await publish(api, main, result, directory, async (args, options) => {
+    commands.push(args);
+    if (options?.env) {
+      assert.equal(result.status, "uploaded");
+      assert.equal(result.visibility, "public");
+      assert.deepEqual(JSON.parse(await readFile(join(options.env.DOCKER_CONFIG, "config.json"))), {});
+    } else {
+      assert.equal(result.status, "partial");
+    }
+    return JSON.stringify(manifest);
+  });
   assert.equal(commands.filter((args) => args.includes("cp")).length, 1);
+  assert.equal(commands.filter((args) => args.includes("fetch")).length, 2);
   assert.ok(commands.every((args) => args.every((arg) => !arg.includes("azurecr.io"))));
   const saved = JSON.parse(await readFile(join(directory, "receipt.json")));
-  assert.equal(saved.status, "ghcr-published");
-  assert.deepEqual(saved.mirror,
-    { reference: developmentMirror, status: "pending" });
+  assert.equal(saved.status, "published");
+  assert.equal(saved.mirror, undefined);
+  assert.deepEqual(JSON.parse(await readFile(join(directory, "record/aws-bicep-extension.json"))), result.record);
 });
 
-test("copy ABI binds original generation and keeps retry correlation stable", () => {
-  const result = ghcrReceipt();
-  const payload = copyRequest(main, result);
-  assert.deepEqual(payload, {
-    mode: "copy", source_repository: repository, source_ref: "refs/heads/main", source_sha: sha,
-    registry_target: "aws", rel_channel: "edge", digest: result.record.digest,
-    release_identifier: `copy-aws-edge-${sha}-100-1-${result.record.digest.slice(7)}`,
-    source_evidence: {
-      run_id: 100, run_attempt: 1, artifact_id: artifact.id, artifact_digest: artifact.digest
-    }
-  });
-  assert.deepEqual(copyRequest({ ...main, generationAttempt: 3 }, result), payload);
-  assert.ok(payload.release_identifier.length <= 200);
-  const changed = structuredClone(result);
-  changed.record.generation.runId = 101;
-  assert.notEqual(copyRequest({ ...main, runId: 101 }, changed).release_identifier, payload.release_identifier);
-  changed.record.digest = changed.uploadedDigest = hash("different schema generation");
-  assert.notEqual(copyRequest({ ...main, runId: 101 }, changed).release_identifier, payload.release_identifier);
-  for (const status of ["prepared", "uploaded", "superseded"])
-    assert.throws(() => copyRequest(main, { ...result, status }));
-  assert.throws(() => copyRequest(source, result));
-});
-
-test("private copy success requires correlated success and anonymous exact-digest reads", async (t) => {
-  const directory = await scratch(t);
-  const options = mirrorOptions(directory, {
-    monitor: async ({ core }) => {
-      assert.equal(core.getInput("REUSE_SUCCESSFUL"), "false");
-      assert.equal(core.getInput("WORKFLOW_FILE"), "publish-bicep-types-aws.yml");
-      assert.equal(core.getInput("EVENT_TYPE"), "bicep-types-aws");
-      assert.deepEqual(JSON.parse(core.getInput("CLIENT_PAYLOAD")), copyRequest(main, ghcrReceipt()));
-      core.setOutput("run_id", "900");
-      core.setOutput("conclusion", "success");
-    },
-    run: async (args, options) => {
-      assert.deepEqual(args.slice(0, 3), ["oras", "manifest", "fetch"]);
-      assert.deepEqual(JSON.parse(await readFile(join(options.env.DOCKER_CONFIG, "config.json"))), {});
+test("main upload and anonymous verification failures never report published", async (t) => {
+  for (const failure of ["copy", "uploaded-digest", "anonymous-denied", "anonymous-digest"]) {
+    const directory = await scratch(t);
+    const result = receipt(main);
+    await assert.rejects(publish(github(main).api, main, result, directory, async (args, options) => {
+      if (failure === "copy" && args.includes("cp")) throw new Error("Interrupted upload");
+      if (failure === "uploaded-digest" && args.includes("fetch")) return "wrong bytes";
+      if (options?.env) {
+        if (failure === "anonymous-denied") throw new Error("403 Forbidden");
+        if (failure === "anonymous-digest") return "wrong bytes";
+      }
       return JSON.stringify(manifest);
-    }
-  });
-  await mirrorMain(options);
-  assert.equal(options.receipt.status, "published");
-  assert.equal(options.receipt.mirror.status, "verified");
-  assert.equal(options.receipt.mirror.digest, options.receipt.record.digest);
-});
-
-test("mirror integrates public monitor with App API and preserves exact request and remote run identity", async (t) => {
-  const directory = await scratch(t);
-  const payload = copyRequest(main, ghcrReceipt());
-  let dispatches = 0;
-  const remoteRun = {
-    id: 901, event: "repository_dispatch",
-    display_title: `bicep-types-aws / ${payload.release_identifier}`,
-    status: "completed", conclusion: "success",
-    html_url: "https://github.com/azure-octo/radius-publisher/actions/runs/901"
-  };
-  const publisherGithub = {
-    paginate: async () => [{ ...remoteRun, id: 900 }],
-    rest: {
-      actions: { listWorkflowRuns: async () => ({ data: { workflow_runs: [remoteRun] } }) },
-      repos: { createDispatchEvent: async (request) => {
-        dispatches++;
-        assert.deepEqual(request, {
-          owner: "azure-octo", repo: "radius-publisher", event_type: "bicep-types-aws",
-          client_payload: payload
-        });
-      } }
-    }
-  };
-  const options = mirrorOptions(directory, { publisherGithub, monitor: monitorRemoteWorkflow });
-  await mirrorMain(options);
-  assert.equal(dispatches, 1, "Previous successful copy must not skip fresh reconciliation");
-  assert.equal(options.receipt.mirror.run_id, "901");
-  assert.equal(options.receipt.mirror.run_state, "found");
-  assert.equal(options.receipt.mirror.run_url, remoteRun.html_url);
-  assert.equal(options.receipt.mirror.release_identifier, payload.release_identifier);
-  assert.equal(options.receipt.status, "published");
-});
-
-test("mirror checkpoints discovered remote identity before an interrupted polling wait", async (t) => {
-  for (const reuseActive of [false, true]) {
-    const directory = await scratch(t);
-    const payload = copyRequest(main, ghcrReceipt());
-    const remoteRun = {
-      id: 901, event: "repository_dispatch",
-      display_title: `bicep-types-aws / ${payload.release_identifier}`,
-      status: "in_progress", conclusion: null,
-      html_url: "https://github.com/azure-octo/radius-publisher/actions/runs/901"
-    };
-    let dispatches = 0;
-    let checkpoint;
-    const publisherGithub = {
-      paginate: async () => reuseActive ? [remoteRun] : [],
-      rest: {
-        actions: { listWorkflowRuns: async () => ({ data: { workflow_runs: [remoteRun] } }) },
-        repos: { createDispatchEvent: async () => { dispatches++; } }
-      }
-    };
-    await assert.rejects(mirrorMain(mirrorOptions(directory, {
-      publisherGithub,
-      monitor: (options) => monitorRemoteWorkflow({
-        ...options,
-        sleep: async () => {
-          // Read before either monitor completion or mirrorMain's finally block.
-          checkpoint = JSON.parse(await readFile(join(directory, "receipt.json"), "utf8"));
-          throw new Error("Polling interrupted");
-        }
-      })
-    })), /Polling interrupted/);
-    assert.equal(dispatches, reuseActive ? 0 : 1);
-    assert.equal(checkpoint.status, "mirror-pending");
-    assert.equal(checkpoint.mirror.status, "requested");
-    assert.equal(checkpoint.mirror.run_id, "901");
-    assert.equal(checkpoint.mirror.run_url, remoteRun.html_url);
-    assert.equal(checkpoint.mirror.run_state, "found");
-    assert.equal(checkpoint.mirror.release_identifier, payload.release_identifier);
-    assert.equal(checkpoint.mirror.conclusion, undefined);
-  }
-});
-
-test("mirror failure, unknown acceptance and wrong bytes retain honest partial receipts", async (t) => {
-  for (const failure of ["mirror", "edge", "remote", "unknown", "missing-conclusion"]) {
-    const directory = await scratch(t);
-    let dispatched = false;
-    await assert.rejects(mirrorMain(mirrorOptions(directory, {
-      monitor: async ({ core }) => {
-        dispatched = true;
-        if (failure === "unknown") {
-          core.setOutput("run_state", "unknown");
-          core.setFailed("Timed out after uncertain dispatch; inspect before retry");
-        } else {
-          core.setOutput("run_id", "900");
-          if (failure !== "missing-conclusion")
-            core.setOutput("conclusion", failure === "remote" ? "failure" : "success");
-          if (failure === "remote") core.setFailed("Private publisher failed");
-        }
-      },
-      run: async (args) => {
-        if (dispatched &&
-          args.includes(failure === "mirror" ? developmentMirror : `${target}:edge`))
-          return "wrong manifest";
-        return JSON.stringify(manifest);
-      }
-    })));
+    }));
     const saved = JSON.parse(await readFile(join(directory, "receipt.json")));
-    assert.equal(saved.status, "mirror-pending");
-    assert.equal(saved.uploadedDigest, receipt(main).record.digest);
-    assert.equal(saved.mirror.status, "failed");
-    assert.ok(saved.mirror.error);
-    if (failure === "unknown") assert.equal(saved.mirror.run_state, "unknown");
-    else assert.equal(saved.mirror.run_id, "900");
+    assert.equal(saved.status, failure.startsWith("anonymous") ? "uploaded" : "partial");
+    assert.equal(saved.mirror, undefined);
+    await assert.rejects(lstat(join(directory, "record")), { code: "ENOENT" });
   }
 });
 
@@ -608,11 +472,8 @@ test("main bootstraps before any package read and retains private-upload receipt
   assert.equal(saved.status, "uploaded");
   assert.equal(saved.uploadedDigest, receipt(main).record.digest);
   assert.equal(saved.visibility, "private");
-  assert.equal(saved.mirror.status, "pending");
-  assert.equal(saved.mirror.digest, undefined);
-  await assert.rejects(mirrorMain(mirrorOptions(directory, {
-    receipt: saved, monitor: async () => assert.fail("Private GHCR must not dispatch")
-  })), /GHCR publication must succeed/);
+  assert.equal(saved.mirror, undefined);
+  await assert.rejects(lstat(join(directory, "record")), { code: "ENOENT" });
 });
 
 test("main publication read failure is surfaced after upload, not treated as absence", async (t) => {
@@ -626,7 +487,7 @@ test("main publication read failure is surfaced after upload, not treated as abs
   assert.equal(JSON.parse(await readFile(join(directory, "receipt.json"))).status, "uploaded");
 });
 
-test("older main SHA or older capture run at the SAME SHA never writes either registry", async (t) => {
+test("older main SHA or older capture run at the SAME SHA never writes GHCR", async (t) => {
   const directory = await scratch(t);
   for (const changes of [
     { mainSha: "c".repeat(40) },
@@ -644,7 +505,7 @@ test("older main SHA or older capture run at the SAME SHA never writes either re
   }
 });
 
-test("missing main supersession evidence fails before either registry write", async (t) => {
+test("missing main supersession evidence fails before GHCR write", async (t) => {
   const directory = await scratch(t);
   const { api } = github(main);
   api.rest.actions.listWorkflowRuns = () => { throw new Error("Actions evidence denied"); };
@@ -652,58 +513,10 @@ test("missing main supersession evidence fails before either registry write", as
     async () => assert.fail("No registry writes without supersession evidence")), /Actions evidence denied/);
 });
 
-test("mirror refuses stale SHA, newer same-SHA run, missing evidence and anonymous GHCR denial before dispatch", async (t) => {
-  for (const overrides of [
-    { mainSha: "c".repeat(40) },
-    { runs: [{ ...apiRun(main), id: 101, run_number: 101, status: "queued" }] },
-    { runs: [{ ...apiRun(main), id: 101, run_number: 101, conclusion: "failure" }] },
-    { jobs: [] }
-  ]) {
-    const directory = await scratch(t);
-    await assert.rejects(mirrorMain(mirrorOptions(directory, {
-      github: github(main, overrides).api,
-      monitor: async () => assert.fail("Superseded or invalid evidence must not dispatch")
-    })), /Superseded|Missing or ambiguous original capture job/);
-  }
-  const directory = await scratch(t);
-  await assert.rejects(mirrorMain(mirrorOptions(directory, {
-    run: async () => { throw new Error("403 Forbidden"); },
-    monitor: async () => assert.fail("Anonymous GHCR failure must not dispatch")
-  })), /403 Forbidden/);
-});
-
-test("mirror fails on changed capture evidence and preserves remote result if superseded during copy", async (t) => {
-  const directory = await scratch(t);
-  for (const change of [{ expired: true }, { digest: hash("substituted") }]) {
-    const { api } = github(main);
-    let dispatched = false;
-    api.rest.actions.getArtifact = async () => ({ data: {
-      ...artifact, workflow_run: { ...artifact.workflow_run, head_sha: main.commit }, ...change
-    } });
-    await assert.rejects(mirrorMain(mirrorOptions(directory, {
-      github: api, monitor: async () => { dispatched = true; }
-    })));
-    assert.equal(dispatched, false);
-  }
-  const { api, state } = github(main);
-  const options = mirrorOptions(directory, {
-    github: api, monitor: async ({ core }) => {
-      core.setOutput("run_id", "900");
-      core.setOutput("conclusion", "success");
-      state.runs = [{ ...apiRun(main), id: 101, run_number: 101 }];
-    }
-  });
-  await assert.rejects(mirrorMain(options), /Superseded main mirror run/);
-  assert.equal(options.receipt.mirror.run_id, "900");
-  assert.equal(options.receipt.mirror.conclusion, "success");
-  assert.equal(options.receipt.mirror.status, "failed");
-  assert.equal(options.receipt.status, "mirror-pending");
-});
-
 test("producer artifact paths use initialized runner temp without dot segments", async (t) => {
   const directory = await scratch(t);
   for (const [name, expectedPaths] of [
-    ["publish-main-bicep.yaml", { capture: 1, publish: 2, mirror: 2 }],
+    ["publish-main-bicep.yaml", { capture: 1, publish: 2 }],
     ["publish-release-bicep.yaml", { select: 0, schemas: 1, capture: 2, publish: 3 }]
   ]) {
     const text = await readFile(new URL(`../workflows/${name}`, import.meta.url), "utf8");
@@ -750,8 +563,7 @@ test("workflow authority and evidence wiring remain bounded", async () => {
     for (const [, body] of text.matchAll(/script: \|\n((?: {12}.*\n)+)/g))
       assert.doesNotThrow(() => new AsyncFunction("github", "getOctokit", "core", "context",
         body.replace(/^ {12}/gm, "")));
-    const [generation, rest] = text.split("\n  publish:\n");
-    const [uploader, mirror] = rest.split("\n  mirror:\n");
+    const [generation, uploader] = text.split("\n  publish:\n");
     assert.ok(uploader);
     assert.doesNotMatch(generation, /packages: write|id-token: write|azure\/login|BICEPTYPES_|PRIVATE_KEY/);
     assert.match(uploader, /packages: write/);
@@ -762,15 +574,10 @@ test("workflow authority and evidence wiring remain bounded", async () => {
     assert.match(text, /cancel-in-progress: false/);
     assert.match(generation, /--radius "\$\{INPUT_DIRECTORY\}\/schemas\/radius"/);
     assert.match(generation, /git -C (candidate\/)?radius rev-parse HEAD > "\$\{INPUT_DIRECTORY\}\/schemas\/radius-commit"/);
-    assert.doesNotMatch(text, /id-token: write|azure\/login|BICEPTYPES_|az acr/);
+    assert.doesNotMatch(text, /id-token: write|azure\/login|BICEPTYPES_|az acr|azurecr\.io|radius-publisher|RADIUS_PUBLISHER_BOT|mirror/);
     if (name === "publish-main-bicep.yaml") {
-      assert.match(mirror, /RADIUS_PUBLISHER_BOT_PRIVATE_KEY/);
-      assert.match(mirror, /owner: azure-octo/);
-      assert.match(mirror, /repositories: radius-publisher/);
-      assert.match(mirror, /if: needs.publish.outputs.published == 'true'/);
-      assert.doesNotMatch(mirror, /packages: write|AWS_ACCESS|AWS_SECRET|npm |go build|docker\/login/);
-      assert.match(mirror, /timeout-minutes: 25/);
-      assert.match(mirror, /aws-bicep-mirror-/);
+      assert.doesNotMatch(uploader, /receipt_artifact_id|outputs:/);
+      assert.match(uploader, /name: aws-bicep-edge-/);
       assert.match(uploader, /DOCKER_CONFIG=\$\{RUNNER_TEMP\}\/bicep-write-credentials/);
       assert.match(text, /group: aws-bicep-main/);
     } else {
@@ -794,84 +601,11 @@ test("workflow authority and evidence wiring remain bounded", async () => {
   const generation = await read("generate-types.yaml");
   assert.match(generation, /github\.repository == 'radius-project\/bicep-types-aws' && github\.ref == 'refs\/heads\/main' && github\.ref_protected/);
   assert.ok(generation.indexOf("branch.commit.sha !== context.sha") < generation.indexOf("secrets.AWS_ACCESS_KEY_ID"));
-  const legacy = await read("publish-bicep.yaml");
-  assert.match(legacy, /tags:\n      - v\*/);
-  assert.doesNotMatch(legacy, /branches:|refs\/heads\/main|DISPATCH_STARTED_AT|peter-evans\/repository-dispatch/);
-  assert.match(legacy, /if: github\.repository == 'radius-project\/bicep-types-aws' && startsWith\(github\.ref, 'refs\/tags\/v'\)/);
-  assert.match(legacy, /get_release_version\.py/);
-  assert.doesNotMatch(legacy, /packages: write|id-token: write|azure\/login|AWS_ACCESS|AWS_SECRET/);
-});
-
-test("retained tag caller preserves legacy channels and dispatches correlated payload once", async (t) => {
-  const workflow = await readFile(new URL("../workflows/publish-bicep.yaml", import.meta.url), "utf8");
-  const payloadTemplate = workflow.match(/INPUT_CLIENT_PAYLOAD: \|-\n((?: {12}.*\n)+)/)[1];
-  const identifierExpression = workflow.match(/INPUT_RELEASE_IDENTIFIER: \$\{\{ (.+) \}\}/)[1];
-  assert.equal(identifierExpression, "format('{0}-{1}', env.REL_VERSION, github.sha)");
-  assert.match(workflow, /INPUT_EVENT_TYPE: bicep-types-aws/);
-  assert.match(workflow, /INPUT_WORKFLOW_FILE: publish-bicep-types-aws\.yml/);
-  for (const [version, channel] of [
-    ["0.62.1", "0.62"], ["0.62.1-rc.2", "0.62.1-rc.2"],
-    ["0.62.1-rc2", "0.62.1-rc2"], ["0.62.1+build.2", "0.62"]
+  for (const path of [
+    "../workflows/publish-bicep.yaml", "get_release_version.py",
+    "mirror-main-bicep.mjs", "monitor-remote-workflow.mjs"
   ]) {
-    const directory = await scratch(t);
-    const envPath = join(directory, "github-env");
-    const ref = `refs/tags/v${version}`;
-    await tool(["python3", resolve(".github/scripts/get_release_version.py")], {
-      env: { ...process.env, GITHUB_REF: ref, GITHUB_ENV: envPath }
-    });
-    const values = Object.fromEntries((await readFile(envPath, "utf8")).trim().split("\n")
-      .map((line) => line.split("=")));
-    assert.equal(values.REL_VERSION, version);
-    assert.equal(values.REL_CHANNEL, channel);
-    const identifier = `${values.REL_VERSION}-${sha}`;
-    const expressions = {
-      "github.repository": repository, "github.ref": ref, "github.sha": sha,
-      "env.REL_CHANNEL": values.REL_CHANNEL,
-      [identifierExpression]: identifier
-    };
-    const payload = JSON.parse(payloadTemplate.replace(/\$\{\{ toJSON\((.*?)\) \}\}/g,
-      (_, expression) => {
-        assert.ok(Object.hasOwn(expressions, expression), `Unexpected payload expression: ${expression}`);
-        return JSON.stringify(expressions[expression]);
-      }));
-    assert.deepEqual(payload, {
-      source_repository: repository, source_ref: ref, source_sha: sha,
-      rel_channel: channel, registry_target: "aws", release_identifier: identifier
-    });
-    const inputs = {
-      OWNER: "azure-octo", REPO: "radius-publisher", WORKFLOW_FILE: "publish-bicep-types-aws.yml",
-      EVENT_TYPE: "bicep-types-aws", RELEASE_IDENTIFIER: identifier, CLIENT_PAYLOAD: JSON.stringify(payload)
-    };
-    let dispatches = 0;
-    const outputs = {};
-    const failures = [];
-    const publisherGithub = {
-      paginate: async () => [],
-      rest: {
-        repos: { createDispatchEvent: async (request) => {
-          dispatches++;
-          assert.equal(request.event_type, inputs.EVENT_TYPE);
-          assert.deepEqual(request.client_payload, payload);
-        } },
-        actions: { listWorkflowRuns: async () => ({ data: { workflow_runs: [{
-          id: 901, event: "repository_dispatch",
-          display_title: `bicep-types-aws / ${identifier}`,
-          status: "completed", conclusion: "success"
-        }] } }) }
-      }
-    };
-    await monitorRemoteWorkflow({
-      github: publisherGithub,
-      core: {
-        getInput: (name) => inputs[name] ?? "", info: () => {},
-        setOutput: (name, value) => { outputs[name] = value; },
-        setFailed: (error) => failures.push(error)
-      }
-    });
-    assert.deepEqual(failures, []);
-    assert.equal(dispatches, 1);
-    assert.equal(outputs.conclusion, "success");
-    assert.equal(outputs.run_id, "901");
+    await assert.rejects(lstat(new URL(path, import.meta.url)), { code: "ENOENT" });
   }
 });
 
@@ -998,21 +732,16 @@ test("native Bicep/ORAS raw snapshot, stable/RC publish, retry, restore and conf
   }
 });
 
-test("native two-registry main parity, interrupted original-snapshot recovery and same-SHA supersession", {
-  skip: !process.env.AWS_BICEP_TEST_REGISTRY || !process.env.AWS_BICEP_TEST_MIRROR
+test("native GHCR main interruption, original-snapshot recovery and same-SHA supersession", {
+  skip: !process.env.AWS_BICEP_TEST_REGISTRY
 }, async (t) => {
   const registry = process.env.AWS_BICEP_TEST_REGISTRY;
-  const mirrorRegistry = process.env.AWS_BICEP_TEST_MIRROR;
   assert.match(registry, /^localhost:\d+$/);
-  assert.match(mirrorRegistry, /^localhost:\d+$/);
-  assert.notEqual(registry, mirrorRegistry);
   const localTarget = `${registry}/development`;
-  const localMirror = `${mirrorRegistry}/aws:latest`;
   const run = async (args, options) => {
-    const mapped = args.map((arg) => arg.replaceAll(target, localTarget)
-      .replaceAll(developmentMirror, localMirror));
+    assert.ok(args.every((arg) => !arg.includes("azurecr.io")));
+    const mapped = args.map((arg) => arg.replaceAll(target, localTarget));
     if (args.includes("cp")) {
-      if (!args.includes("--from-oci-layout")) mapped.push("--from-plain-http");
       mapped.push("--to-plain-http");
     } else {
       mapped.push("--plain-http");
@@ -1036,17 +765,16 @@ test("native two-registry main parity, interrupted original-snapshot recovery an
   const { api } = github(main);
   api.rest.actions.getArtifact = async () => ({ data: a });
   const result = await prepare(api, archive, main, a, directory);
-  await publish(api, main, result, directory, run);
-  const originalPayload = copyRequest(main, result);
-  await assert.rejects(mirrorMain(mirrorOptions(directory, {
-    github: api, receipt: result, run,
-    monitor: async () => { throw new Error("Interrupted before private copy"); }
-  })), /Interrupted before private copy/);
+  await assert.rejects(publish(api, main, result, directory, async (args, options) => {
+    const output = await run(args, options);
+    if (args.includes("cp")) throw new Error("Interrupted after GHCR upload");
+    return output;
+  }), /Interrupted after GHCR upload/);
   const saved = JSON.parse(await readFile(join(directory, "receipt.json")));
-  assert.equal(saved.uploadedDigest, result.record.digest);
-  assert.equal(saved.mirror.status, "failed");
+  assert.equal(saved.status, "partial");
+  assert.equal(saved.mirror, undefined);
+  await assert.rejects(lstat(join(directory, "record")), { code: "ENOENT" });
   assert.equal(hash(await run(["oras", "manifest", "fetch", `${target}:edge`])), result.record.digest);
-  await assert.rejects(tool(["oras", "manifest", "fetch", "--plain-http", localMirror]), /not found/);
 
   // Changed live generation inputs cannot affect recovery from the retained raw archive.
   delete index.resources[Object.keys(index.resources)[0]];
@@ -1056,28 +784,22 @@ test("native two-registry main parity, interrupted original-snapshot recovery an
   const recovered = await prepare(api, archive, retry, a, recoveryDirectory);
   assert.deepEqual(recovered.record, result.record);
   await publish(api, retry, recovered, recoveryDirectory, run);
-  assert.deepEqual(copyRequest(retry, recovered), originalPayload);
-  // Only this local test receiver writes the second registry; the source caller only reads it.
-  const localReceiver = async ({ core }) => {
-    const payload = JSON.parse(core.getInput("CLIENT_PAYLOAD"));
-    await tool(["oras", "cp", "--from-plain-http", "--to-plain-http",
-      `${localTarget}@${payload.digest}`, localMirror]);
-    core.setOutput("run_id", "900");
-    core.setOutput("conclusion", "success");
-  };
-  await mirrorMain(mirrorOptions(recoveryDirectory, {
-    github: api, source: retry, receipt: recovered, run, monitor: localReceiver
-  }));
-  for (const reference of [`${target}:edge`, developmentMirror])
-    assert.equal(hash(await run(["oras", "manifest", "fetch", reference])), result.record.digest);
+  assert.equal(hash(await run(["oras", "manifest", "fetch", `${target}:edge`])), result.record.digest);
   assert.equal(recovered.status, "published");
-  assert.equal(recovered.mirror.digest, result.record.digest);
+  assert.equal(recovered.uploadedDigest, result.record.digest);
+  assert.equal(recovered.visibility, "public");
+  assert.equal(recovered.mirror, undefined);
   assert.equal(recovered.record.generation.runAttempt, 1);
+  assert.deepEqual(JSON.parse(await readFile(join(recoveryDirectory, "record/aws-bicep-extension.json"))),
+    result.record);
   assert.equal(hash(await readFile(archive)), a.digest);
 
   const newer = { ...main, runId: 101 };
-  const newerArchive = await capture(newer, directory, mirrorRegistry,
-    join(directory, "schemas"), join(directory, "generated"));
+  // Production captures have separate scratch registries; isolate this capture in the shared fixture.
+  const newerArchive = await capture(newer, directory, registry,
+    join(directory, "schemas"), join(directory, "generated"),
+    (args, options) => tool(args.map((arg) =>
+      arg.replace(`${registry}/aws:capture-edge`, `${registry}/newer-aws:capture-edge`)), options));
   const newerArtifact = {
     ...a, name: snapshotName(newer), id: 201,
     size_in_bytes: (await lstat(newerArchive)).size,
@@ -1089,17 +811,8 @@ test("native two-registry main parity, interrupted original-snapshot recovery an
   const newerResult = await prepare(newerApi, newerArchive, newer, newerArtifact, directory);
   assert.notEqual(newerResult.record.digest, result.record.digest);
   await publish(newerApi, newer, newerResult, directory, run);
-  await mirrorMain(mirrorOptions(directory, {
-    github: newerApi, source: newer, receipt: newerResult, run, monitor: localReceiver
-  }));
   const superseded = github(main, { runs: [apiRun(newer)] }).api;
   await assert.rejects(publish(superseded, retry, recovered, recoveryDirectory,
-    async () => assert.fail("Superseded same-SHA retry must not touch either registry")), /Superseded retry/);
-  await assert.rejects(mirrorMain(mirrorOptions(recoveryDirectory, {
-    github: superseded, source: retry, receipt: { ...recovered, status: "ghcr-published" },
-    run: async () => assert.fail("Stale mirror must not read registries"),
-    monitor: async () => assert.fail("Stale mirror must not dispatch")
-  })), /Superseded main mirror run/);
-  for (const reference of [`${target}:edge`, developmentMirror])
-    assert.equal(hash(await run(["oras", "manifest", "fetch", reference])), newerResult.record.digest);
+    async () => assert.fail("Superseded same-SHA retry must not touch GHCR")), /Superseded retry/);
+  assert.equal(hash(await run(["oras", "manifest", "fetch", `${target}:edge`])), newerResult.record.digest);
 });
