@@ -3,6 +3,7 @@
 
 import assert from "node:assert/strict";
 import { test } from "node:test";
+import { createHash } from "node:crypto";
 import { cp, lstat, mkdir, mkdtemp, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
@@ -20,6 +21,9 @@ import monitorRemoteWorkflow from "./monitor-remote-workflow.mjs";
 const sha = "a".repeat(40);
 const controllerSha = "c".repeat(40);
 const fixturePin = "e".repeat(40);
+const gitBlob = (data) => createHash("sha1").update(`blob ${Buffer.byteLength(data)}\0`).update(data).digest("hex");
+const content = (raw) => ({ data: { type: "file", encoding: "base64", sha: gitBlob(raw),
+  content: Buffer.from(raw).toString("base64") } });
 const source = {
   repository, ref: "refs/tags/v0.62.1", commit: sha,
   workflow: releaseWorkflow, runId: 100, generationAttempt: 1,
@@ -54,6 +58,9 @@ const apiRun = (s = source) => ({
   status: "completed", conclusion: "failure"
 });
 function github(s = source, overrides = {}) {
+  const version = s.ref.slice("refs/tags/".length), channel = version.slice(1).split(".").slice(0, 2).join(".");
+  const branch = `release/${channel}`, path = `.github/release-plans/${version}.yaml`;
+  const repoFull = "radius-project/radius";
   const state = {
     mainSha: sha, protected: true, tagSha: sha, comparison: "identical", radiusPin: fixturePin,
     runs: [], artifacts: [], visibility: "public",
@@ -66,12 +73,20 @@ function github(s = source, overrides = {}) {
   };
   const api = {
     rest: {
+      pulls: { list: () => [{ merged_at: "2026-11-18", merge_commit_sha: controllerSha,
+        head: { ref: `automation/prepare-release-${version.slice(1)}`, repo: { full_name: repoFull } },
+        base: { ref: "main", repo: { full_name: repoFull } } }] },
       git: { getTree: async () => ({ data: { truncated: false, tree: [
         { path: "radius", type: "commit", mode: "160000", sha: state.radiusPin }
       ] } }) },
       repos: {
         getBranch: async () => ({ data: { protected: state.protected, commit: { sha: state.mainSha } } }),
-        getCommit: async () => ({ data: { sha: state.tagSha } }),
+        getCommit: async ({ repo }) => ({ data: repo === "radius" ? {
+          files: [{ filename: path, status: "added" }]
+        } : { sha: state.tagSha } }),
+        getContent: async () => content(JSON.stringify({ schemaVersion: 2, version, channel, releaseBranch: branch,
+          releasePlanPath: path, siblingRepositories: [{ name: "bicep-types-aws", repository,
+            sourceCommit: s.commit, sourceRef: branch }] })),
         compareCommitsWithBasehead: async () => ({ data: { status: state.comparison } })
       },
       actions: {
@@ -226,7 +241,7 @@ test("a release-only AWS commit must be a plan-approved pin-only derivative", as
   api.rest.pulls = { list: () => [pull] };
   api.rest.repos.getContent = async ({ repo, ref, path: requested }) => {
     assert.equal(repo, "radius"); assert.equal(ref, merge); assert.equal(requested, path);
-    return { data: { type: "file", encoding: "base64", content: Buffer.from(JSON.stringify(plan)).toString("base64") } };
+    return content(JSON.stringify(plan));
   };
 
   const verify = () => verifySource(api, candidate);
@@ -271,10 +286,90 @@ test("only a frozen source with no Radius gitlink history gets the legacy smoke"
     assert.equal(args.sha, sha); assert.equal(args.path, "radius"); return { data: [] };
   };
   assert.equal(await frozenRadiusPin(api, sha), null);
+  api.rest.pulls.list = () => [];
+  await verifySource(api, source); // Historical tag before both pin-aware plans and the submodule.
   api.rest.repos.listCommits = async () => ({ data: [{ sha }] });
   await assert.rejects(frozenRadiusPin(api, sha), /removed/);
   api.rest.git.getTree = async () => ({ data: { truncated: true, tree: [] } });
   await assert.rejects(frozenRadiusPin(api, sha), /incomplete Git tree/);
+});
+
+test("the approved base is not the tag: require the App's post-approval lock, including for no-op pins", async () => {
+  const { api } = github();
+  const base = "1".repeat(40), product = fixturePin, tree = "2".repeat(40), lockCommit = "3".repeat(40);
+  const branch = "release/0.62", version = "v0.62.1", planPath = `.github/release-plans/${version}.yaml`;
+  const path = ".github/release-state/aws-pin.json", ref = "heads/automation/release-state-aws-0.62.1";
+  const sibling = { name: "bicep-types-aws", repository, sourceRef: "main", sourceCommit: base,
+    radiusPin: { productCommit: product, expectedTree: tree } };
+  const plan = { schemaVersion: 2, version, channel: "0.62", releaseBranch: branch, releasePlanPath: planPath,
+    source: { productRef: `refs/remotes/origin/${branch}`, productCommit: product }, siblingRepositories: [sibling] };
+  const lock = { schemaVersion: 1, version, planBlob: gitBlob(JSON.stringify(plan)), productCommit: product,
+    baseCommit: base, expectedTree: tree, landedCommit: source.commit };
+  const state = { ref: `refs/${ref}`, object: { type: "commit", sha: lockCommit } };
+  const signature = { verified: true, reason: "valid" };
+  const attestation = { sha: lockCommit, author: { login: "radius-release[bot]", type: "Bot" },
+    committer: { login: "web-flow" }, commit: { verification: signature },
+    parents: [{ sha: product }], files: [{ filename: path, status: "added" }] };
+  const tagged = { sha: source.commit, parents: [{ sha: base }], commit: { tree: { sha: tree } } };
+  let suffix = "", basePin = base, releaseOnly = true;
+  const merge = api.rest.repos.getCommit;
+  api.rest.repos.getCommit = async (args) => {
+    if (args.ref === lockCommit && args.repo === "radius") return { data: attestation };
+    if (args.ref === source.commit && args.repo === "bicep-types-aws") return { data: tagged };
+    return merge(args);
+  };
+  api.rest.git.getRef = async (args) => {
+    assert.equal(args.repo, "radius"); assert.equal(args.ref, ref);
+    return { data: state };
+  };
+  api.rest.repos.getContent = async (args) => {
+    assert.equal(args.repo, "radius");
+    if (args.path === planPath && args.ref === controllerSha) return content(JSON.stringify(plan) + suffix);
+    assert.equal(args.path, path); assert.equal(args.ref, lockCommit);
+    return content(JSON.stringify(lock));
+  };
+  api.rest.repos.getBranch = async ({ branch: name }) => ({ data: { protected: true,
+    commit: { sha: name === "main" ? controllerSha : source.commit } } });
+  api.rest.repos.compareCommitsWithBasehead = async (args) => ({ data:
+    releaseOnly && args.repo === "bicep-types-aws" && args.basehead === `${source.commit}...${controllerSha}`
+      ? { status: "behind", merge_base_commit: { sha: base } } : { status: "ahead" }
+  });
+  api.rest.git.getTree = async ({ tree_sha }) => ({ data: { truncated: false, tree: [
+    { path: "radius", type: "commit", mode: "160000", sha: tree_sha === base ? basePin : product }
+  ] } });
+
+  const verify = () => verifySource(api, source);
+  await verify();
+  for (const [object, key, bad, error] of [
+    [attestation.author, "login", "other-app[bot]", /release App/],
+    [signature, "verified", false, /release App/],
+    [attestation, "parents", [{ sha: product }, { sha: base }], /lock parent/],
+    [attestation, "files", [], /write only/],
+    [lock, "version", "v0.62.2", /lock does not match/],
+    [lock, "baseCommit", controllerSha, /lock does not match/],
+    [lock, "landedCommit", base, /lock does not match/],
+    [tagged, "parents", [{ sha: controllerSha }], /directly from the approved base/],
+    [tagged.commit.tree, "sha", base, /approved pin tree/],
+    [sibling.radiusPin, "productCommit", base, /pin intent/]
+  ]) {
+    const saved = object[key]; object[key] = bad;
+    await assert.rejects(verify, error);
+    object[key] = saved;
+  }
+  suffix = "\n"; // Same parsed plan; different Git blob.
+  await assert.rejects(verify, /lock does not match/);
+  suffix = "";
+  basePin = product;
+  await assert.rejects(verify, /No pin update was needed/);
+  releaseOnly = false; // Even an already-matching, main-ancestral base must have its approved lock.
+  sibling.sourceCommit = source.commit;
+  lock.baseCommit = source.commit;
+  lock.planBlob = gitBlob(JSON.stringify(plan));
+  await verify();
+  api.rest.git.getRef = async () => { throw new Error("Missing AWS lock"); };
+  await assert.rejects(verify, /Missing AWS lock/);
+  api.rest.pulls.list = () => [];
+  await assert.rejects(verify, /requires a merged Radius/);
 });
 
 test("cross-run recovery requires an original run and capture attempt", () => {

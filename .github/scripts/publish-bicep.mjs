@@ -7,7 +7,7 @@ import { createHash } from "node:crypto";
 import { lstat, mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { promisify } from "node:util";
-import { frozenRadiusPin, verifyPinOnlySource } from "./frozen-aws-source.mjs";
+import { frozenRadiusPin, verifyPlannedSource } from "./frozen-aws-source.mjs";
 
 export const repository = "radius-project/bicep-types-aws";
 export const packageName = "bicep-types-aws";
@@ -191,10 +191,10 @@ export async function verifySource(github, source) {
     const { data: comparison } = await github.rest.repos.compareCommitsWithBasehead({
       ...repo, basehead: `${source.commit}...${main.commit.sha}`, request: request()
     });
-    if (!["ahead", "identical"].includes(comparison.status)) {
-      assert.ok(["behind", "diverged"].includes(comparison.status), "Unrecognized AWS source ancestry");
-      await verifyPinOnlySource(github, source, comparison.merge_base_commit.sha);
-    }
+    const onMain = ["ahead", "identical"].includes(comparison.status);
+    assert.ok(onMain || ["behind", "diverged"].includes(comparison.status), "Unrecognized AWS source ancestry");
+    if (!onMain) assert.match(comparison.merge_base_commit?.sha, shaPattern);
+    await verifyPlannedSource(github, source, onMain ? null : comparison.merge_base_commit.sha);
   }
   return main.commit.sha;
 }

@@ -254,11 +254,19 @@ must match its protected-main merge base or the authenticated controller's
 protected-main tree except for the `radius` gitlink. A release-only mix of code
 that matches neither tree is not eligible. The
 publisher reads the plan **added by the merged Radius Prepare Release PR**
-at that PR's immutable merge SHA on protected Radius `main`. The plan must name
-this exact AWS branch and tagged commit, and `source.productCommit` must match
-the gitlink. A first RC uses the Radius merge parent; other product commits must
-belong to the matching protected Radius release branch. The Radius tag does not
-exist yet at this stage. The dispatch payload and an open release PR are not proof.
+at that PR's immutable merge SHA on protected Radius `main`. A legacy plan
+identifies the tagged AWS commit directly in the sibling `sourceCommit`. With
+`radiusPin`, `sourceCommit` is the frozen **base**. After approval, the controller
+lands the pin and writes `.github/release-state/aws-pin.json` in Radius on
+`automation/release-state-aws-<version without v>`. The publisher reads that file
+at the resolved App-signed commit, whose sole parent is the product commit, and
+verifies its version, raw approved plan blob, base, product, expected tree and
+landed SHA. The AWS tag must name the landed commit with that exact tree and
+gitlink. A changed pin requires a single parent (the base) and no other tree
+changes. An already-matching base is itself the locked commit. Neither case
+rewrites the plan or relies on a mutable branch tip. A first RC uses the Radius
+merge parent; other product commits must belong to the matching protected Radius
+release branch. The Radius tag does not exist yet at this stage.
 
 The capture job is named `Capture versioned AWS Bicep types`. It uploads the raw
 file `bicep-types-aws-<generationRunId>.tar` with native Actions `archive: false`,
