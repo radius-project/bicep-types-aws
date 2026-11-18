@@ -89,9 +89,14 @@ export function loadRadius(paths: RadiusPaths): RadiusInputs {
 
 // loadPreviousRadius reads the Radius inputs from an earlier Radius commit. Unlike
 // loadRadius, a missing extra properties file means there are none, because an older
-// commit may not have one.
+// commit may not have one. A directory with none of the inputs is not a Radius
+// checkout, and comparing with it would hide every Radius change, so it is an error.
 export function loadPreviousRadius(paths: RadiusPaths): RadiusInputs {
     const extraPropertiesPath = path.resolve(paths.root, paths.extraProperties)
+    const inputs = [paths.nativeSchemas, paths.handwrittenSchemas, paths.extraProperties].map(input => path.resolve(paths.root, input))
+    if (!inputs.some(input => fs.existsSync(input))) {
+        throw new Error(`${paths.root} has no Radius schemas or extra properties file, so it is not the previous Radius checkout`)
+    }
     return {
         native: readSchemas(paths.root, paths.nativeSchemas),
         handwritten: readSchemas(paths.root, paths.handwrittenSchemas),

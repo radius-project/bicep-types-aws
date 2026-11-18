@@ -273,6 +273,13 @@ describe('loadPreviousRadius', () => {
         expect(radius.native.size).toBe(0)
         expect(radius.extraProperties).toEqual({})
     })
+
+    test.each([
+        ['an empty directory', () => tempDir()],
+        ['a directory that does not exist', () => path.join(tempDir(), 'missing')],
+    ])('rejects %s, which would hide every Radius change', (_, root) => {
+        expect(() => loadPreviousRadius({ ...fixturePaths, root: root() })).toThrow('is not the previous Radius checkout')
+    })
 })
 
 describe('newClashes', () => {
