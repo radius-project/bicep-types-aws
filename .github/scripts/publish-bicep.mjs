@@ -150,15 +150,23 @@ export async function verifyRun(github, source) {
 export const releaseRunName = (source) =>
   `Publish AWS ${source.ref.slice("refs/tags/".length)} at ${source.commit}`;
 
+async function isAncestor(github, commit, head) {
+  assert.match(commit, shaPattern);
+  assert.match(head, shaPattern);
+  const { data: comparison } = await github.rest.repos.compareCommitsWithBasehead({
+    ...repo, basehead: `${commit}...${head}`, request: request()
+  });
+  assert.ok(["ahead", "identical", "behind", "diverged"].includes(comparison.status),
+    "Invalid ancestry comparison");
+  return ["ahead", "identical"].includes(comparison.status);
+}
+
 async function verifyMainAncestor(github, commit) {
   const { data: main } = await github.rest.repos.getBranch({
     ...repo, branch: "main", request: request()
   });
   assert.equal(main.protected, true, "Protected main is required");
-  const { data: comparison } = await github.rest.repos.compareCommitsWithBasehead({
-    ...repo, basehead: `${commit}...${main.commit.sha}`, request: request()
-  });
-  assert.ok(["ahead", "identical"].includes(comparison.status),
+  assert.ok(await isAncestor(github, commit, main.commit.sha),
     "Controller/source commit must belong to trusted main history");
   return main.commit.sha;
 }
@@ -183,17 +191,20 @@ export async function verifySource(github, source) {
   });
   assert.equal(main.protected, true, "Protected main is required");
   if (source.workflow === releaseWorkflow) {
+    const version = source.ref.match(releasePattern);
+    assert.ok(version, "Invalid full release version");
     const { data: tag } = await github.rest.repos.getCommit({
       ...repo, ref: source.ref, request: request()
     });
     assert.equal(tag.sha, source.commit, "Release tag moved from the frozen source");
-    const { data: comparison } = await github.rest.repos.compareCommitsWithBasehead({
-      ...repo, basehead: `${source.commit}...${main.commit.sha}`, request: request()
-    });
-    assert.ok(
-      ["ahead", "identical"].includes(comparison.status),
-      "Release source must belong to trusted main history"
-    );
+    if (!await isAncestor(github, source.commit, main.commit.sha)) {
+      const branch = `release/${version[1]}.${version[2]}`;
+      const { data: release } = await github.rest.repos.getBranch({
+        ...repo, branch, request: request()
+      });
+      assert.ok(await isAncestor(github, source.commit, release.commit.sha),
+        `Release source must belong to main or ${branch} history`);
+    }
   }
   return main.commit.sha;
 }
