@@ -463,4 +463,44 @@ describe('checkEffectiveOutputs', () => {
     test('accepts a sibling whose name starts with the schema directory name', () => {
         expect(() => checkEffectiveOutputs(['/in/radius/pkg/aws/schemas/native-records', '/in/radius/pkg/aws/schemas'], [], [radius('/in/radius')])).not.toThrow()
     })
+
+    describe('follows symbolic links', () => {
+        // Each case links an output to a directory the check must protect.
+        function setup() {
+            const root = tempDir()
+            const aws = path.join(root, 'aws')
+            const out = path.join(root, 'out')
+            const radiusRoot = path.join(root, 'radius')
+            fs.mkdirSync(aws)
+            fs.mkdirSync(out)
+            fs.mkdirSync(path.join(radiusRoot, defaultRadiusPaths.nativeSchemas), { recursive: true })
+            const link = (name: string, target: string) => {
+                fs.symlinkSync(target, path.join(root, name))
+                return path.join(root, name)
+            }
+            return { root, aws, out, radiusRoot, link }
+        }
+
+        test('rejects a second name for the other output', () => {
+            const { out, link } = setup()
+            expect(() => checkEffectiveOutputs([out, link('alias', out)], [], [])).toThrow('must be different directories')
+        })
+
+        test('rejects a link to an AWS input directory', () => {
+            const { aws, link } = setup()
+            expect(() => checkEffectiveOutputs([link('alias', aws)], [aws], [])).toThrow('is an input directory')
+        })
+
+        test('rejects a path under a link into a Radius schema directory', () => {
+            const { radiusRoot, link } = setup()
+            const output = path.join(link('alias', path.join(radiusRoot, 'pkg/aws/schemas')), 'native', 'new')
+            expect(() => checkEffectiveOutputs([output], [], [radius(radiusRoot)])).toThrow('is inside the Radius schema directory')
+        })
+
+        test('rejects an output when the Radius root is reached through a link', () => {
+            const { radiusRoot, link } = setup()
+            const output = path.join(radiusRoot, defaultRadiusPaths.nativeSchemas)
+            expect(() => checkEffectiveOutputs([output], [], [radius(link('radius-link', radiusRoot))])).toThrow('is inside the Radius schema directory')
+        })
+    })
 })

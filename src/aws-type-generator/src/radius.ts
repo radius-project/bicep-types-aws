@@ -288,7 +288,7 @@ function hasOwn(value: object, key: string): boolean {
 // recursively, so an output can't be an AWS input directory, sit inside a Radius
 // schema directory, hold an extra properties file, or be the other output.
 export function checkEffectiveOutputs(outputs: string[], awsInputs: string[], radius: RadiusPaths[]) {
-    const resolved = outputs.map(output => path.resolve(output))
+    const resolved = outputs.map(canonicalPath)
     if (new Set(resolved).size !== resolved.length) {
         throw new Error("--effective-output and --previous-effective-output must be different directories")
     }
@@ -297,23 +297,34 @@ export function checkEffectiveOutputs(outputs: string[], awsInputs: string[], ra
         return relative === "" || (relative !== ".." && !relative.startsWith(`..${path.sep}`) && !path.isAbsolute(relative))
     }
     for (const output of resolved) {
-        for (const input of awsInputs.map(dir => path.resolve(dir))) {
+        for (const input of awsInputs.map(canonicalPath)) {
             if (output === input) {
                 throw new Error(`${output} is an input directory, so it can't also be an effective output`)
             }
         }
         for (const paths of radius) {
-            for (const schemas of [paths.nativeSchemas, paths.handwrittenSchemas].map(dir => path.resolve(paths.root, dir))) {
+            for (const schemas of [paths.nativeSchemas, paths.handwrittenSchemas].map(dir => canonicalPath(path.resolve(paths.root, dir)))) {
                 if (inside(output, schemas)) {
                     throw new Error(`${output} is inside the Radius schema directory ${schemas}, so it can't be an effective output`)
                 }
             }
             const extraProperties = path.resolve(paths.root, paths.extraProperties)
-            if (path.dirname(extraProperties) === output) {
+            if (canonicalPath(path.dirname(extraProperties)) === output) {
                 throw new Error(`${output} holds the Radius extra properties file ${extraProperties}, so it can't be an effective output`)
             }
         }
     }
+}
+
+// canonicalPath resolves symbolic links, so two names for one directory compare equal.
+// A path that doesn't exist yet resolves through its nearest existing parent.
+function canonicalPath(target: string): string {
+    const absolute = path.resolve(target)
+    let existing = absolute
+    while (!fs.existsSync(existing) && path.dirname(existing) !== existing) {
+        existing = path.dirname(existing)
+    }
+    return path.join(fs.realpathSync(existing), path.relative(existing, absolute))
 }
 
 export function writeRecords(directory: string, records: SchemaRecord[]) {

@@ -5,7 +5,8 @@
 # applied. Changes a copy of the Radius test fixtures in each way the report
 # flags, then checks the report lists every change. Needs Go, Python, and
 # `npm run build` first. Last, checks that the generator rejects a previous Radius
-# checkout with no Radius inputs, without changing any file.
+# checkout with no Radius inputs, and effective outputs that reach a protected
+# directory through a symbolic link, without changing any file.
 
 set -euo pipefail
 
@@ -52,7 +53,10 @@ expect "docs list a hand-written type" "$(cat "${docs}")" "**[AWS::S3::Object]"
 # The rest run the generator with arguments it must reject before it writes
 # anything, on copies, so a run that wrongly goes ahead can only change ${work}.
 cp -R "${generator}/testdata" "${work}/aws"
-mkdir -p "${work}/empty"
+mkdir -p "${work}/empty" "${work}/out"
+ln -s "${work}/out" "${work}/out-link"
+ln -s "${work}/aws" "${work}/aws-link"
+ln -s "${work}/radius/pkg/aws/schemas" "${work}/schemas-link"
 
 snapshot() {
     (cd "${work}" && find . -type f -print0 | sort -z | xargs -0 shasum)
@@ -81,6 +85,12 @@ rejected "empty previous Radius checkout" "is not the previous Radius checkout" 
     "${previous[@]}" --previous-radius "${work}/empty" --effective-output "${work}/new-rejected"
 rejected "missing previous Radius checkout" "is not the previous Radius checkout" \
     "${previous[@]}" --previous-radius "${work}/missing" --effective-output "${work}/new-rejected"
+rejected "outputs linked to one directory" "must be different directories" \
+    --previous-input "${work}/aws" --previous-radius "${work}/radius" \
+    --effective-output "${work}/out" --previous-effective-output "${work}/out-link"
+rejected "output linked to the AWS input" "is an input directory" --effective-output "${work}/aws-link"
+rejected "output inside a linked schema directory" "is inside the Radius schema directory" \
+    --effective-output "${work}/schemas-link/native"
 
 if [[ "${failed}" -ne 0 ]]; then
     echo "${report}"
