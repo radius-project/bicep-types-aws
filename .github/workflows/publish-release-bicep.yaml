@@ -29,6 +29,7 @@ jobs:
       reuse: ${{ steps.select.outputs.reuse }}
       type_version: ${{ steps.select.outputs.type_version }}
       source_commit: ${{ steps.select.outputs.source_commit }}
+      radius_pin: ${{ steps.select.outputs.radius_pin }}
     steps:
       - name: Set publication directory
         run: echo "INPUT_DIRECTORY=${RUNNER_TEMP}/aws-bicep-publication" >> "${GITHUB_ENV}"
@@ -98,15 +99,21 @@ jobs:
           cache: false
 
       - name: Build controller downloader and retain pinned schema inputs
+        env:
+          RADIUS_PIN: ${{ needs.select.outputs.radius_pin }}
         run: |
           (cd src/aws-type-downloader && go build -o "${RUNNER_TEMP}/aws-type-downloader" .)
-          mkdir -p "${INPUT_DIRECTORY}/schemas/radius/pkg/aws/extraproperties"
+          mkdir -p "${INPUT_DIRECTORY}/schemas"
           cp candidate/artifacts/types/*.json "${INPUT_DIRECTORY}/schemas/"
-          cp candidate/radius/pkg/aws/extraproperties/extra_properties.json "${INPUT_DIRECTORY}/schemas/radius/pkg/aws/extraproperties/"
-          if [[ -d candidate/radius/pkg/aws/schemas ]]; then
-            cp -R candidate/radius/pkg/aws/schemas "${INPUT_DIRECTORY}/schemas/radius/pkg/aws/"
+          if [[ -n "${RADIUS_PIN}" ]]; then
+            test "$(git -C candidate/radius rev-parse HEAD)" = "${RADIUS_PIN}"
+            mkdir -p "${INPUT_DIRECTORY}/schemas/radius/pkg/aws/extraproperties"
+            cp candidate/radius/pkg/aws/extraproperties/extra_properties.json "${INPUT_DIRECTORY}/schemas/radius/pkg/aws/extraproperties/"
+            if [[ -d candidate/radius/pkg/aws/schemas ]]; then
+              cp -R candidate/radius/pkg/aws/schemas "${INPUT_DIRECTORY}/schemas/radius/pkg/aws/"
+            fi
+            git -C candidate/radius rev-parse HEAD > "${INPUT_DIRECTORY}/schemas/radius-commit"
           fi
-          git -C candidate/radius rev-parse HEAD > "${INPUT_DIRECTORY}/schemas/radius-commit"
 
       - name: Refresh schemas using only the trusted controller downloader
         env:
@@ -217,14 +224,19 @@ jobs:
         if: needs.select.outputs.reuse == 'false'
         env:
           TYPE_VERSION: ${{ needs.select.outputs.type_version }}
+          RADIUS_PIN: ${{ needs.select.outputs.radius_pin }}
         run: |
           npm --prefix candidate/bicep-types/src/bicep-types ci
           npm --prefix candidate/bicep-types/src/bicep-types run build
           npm --prefix candidate/src/aws-type-generator ci
           npm --prefix candidate/src/aws-type-generator run build
+          radius_args=()
+          if [[ -n "${RADIUS_PIN}" ]]; then
+            radius_args=(--radius "${INPUT_DIRECTORY}/schemas/radius")
+          fi
           node candidate/src/aws-type-generator/dist/src/main.js \
             --input "${INPUT_DIRECTORY}/schemas" --output "${INPUT_DIRECTORY}/generated" \
-            --radius "${INPUT_DIRECTORY}/schemas/radius" --releaseVersion "${TYPE_VERSION}"
+            "${radius_args[@]}" --releaseVersion "${TYPE_VERSION}"
 
       - name: Capture native data-only OCI graph
         if: needs.select.outputs.reuse == 'false'
@@ -268,9 +280,9 @@ jobs:
           ref: ${{ github.sha }}
           persist-credentials: false
 
-      - name: Install trusted OCI copy tool
+      - name: Install pinned Bicep and OCI tools
         run: |
-          bash .github/scripts/install-bicep-tools.sh "${RUNNER_TEMP}/bicep-tools" oras
+          bash .github/scripts/install-bicep-tools.sh "${RUNNER_TEMP}/bicep-tools"
           echo "${RUNNER_TEMP}/bicep-tools" >> "${GITHUB_PATH}"
           echo "DOCKER_CONFIG=${RUNNER_TEMP}/bicep-write-credentials" >> "${GITHUB_ENV}"
 

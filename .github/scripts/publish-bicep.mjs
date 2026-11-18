@@ -7,6 +7,7 @@ import { createHash } from "node:crypto";
 import { lstat, mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { promisify } from "node:util";
+import { frozenRadiusPin, verifyPinOnlySource } from "./frozen-aws-source.mjs";
 
 export const repository = "radius-project/bicep-types-aws";
 export const packageName = "bicep-types-aws";
@@ -190,10 +191,10 @@ export async function verifySource(github, source) {
     const { data: comparison } = await github.rest.repos.compareCommitsWithBasehead({
       ...repo, basehead: `${source.commit}...${main.commit.sha}`, request: request()
     });
-    assert.ok(
-      ["ahead", "identical"].includes(comparison.status),
-      "Release source must belong to trusted main history"
-    );
+    if (!["ahead", "identical"].includes(comparison.status)) {
+      assert.ok(["behind", "diverged"].includes(comparison.status), "Unrecognized AWS source ancestry");
+      await verifyPinOnlySource(github, source, comparison.merge_base_commit.sha);
+    }
   }
   return main.commit.sha;
 }
@@ -414,6 +415,16 @@ export async function prepare(github, archive, expectedSource, artifact, directo
   const layout = join(directory, "layout");
   await run(["oras", "cp", "--from-oci-layout", "--to-oci-layout",
     `${archive}@${metadata.manifestDigest}`, `${layout}:bundle`]);
+  // Compile against the exact authenticated data layer, including on snapshot recovery.
+  // No candidate template, executable extension, registry or cloud credentials are used.
+  const radiusPin = await frozenRadiusPin(github, expectedSource.commit);
+  if (expectedSource.workflow === mainWorkflow) assert.ok(radiusPin, "Main must retain the Radius overlay");
+  if (radiusPin)
+    assert.equal((await run(["tar", "-xOf", archive, "schemas/radius-commit"])).trim(), radiusPin,
+      "Captured Radius schemas do not match the frozen gitlink");
+  await run(["bash", ".github/scripts/smoke-test-aws-types.sh",
+    join(layout, "blobs/sha256", manifest.layers[0].digest.slice("sha256:".length)),
+    radiusPin ? "radius" : "legacy"]);
   const { version } = versions(expectedSource);
   manifest.annotations = {
     ...manifest.annotations,
@@ -535,6 +546,8 @@ export default async function script({ github, core, context }) {
       core.setOutput("reuse", String(Boolean(artifact)));
       core.setOutput("type_version", versions(source).typeVersion);
       core.setOutput("source_commit", source.commit);
+      if (source.workflow === releaseWorkflow)
+        core.setOutput("radius_pin", await frozenRadiusPin(github, source.commit) ?? "");
     } else if (operation === "capture-schemas") {
       assert.equal(source.workflow, releaseWorkflow);
       assert.equal(source.generationAttempt, 1, "Never refresh schema inputs on retry");

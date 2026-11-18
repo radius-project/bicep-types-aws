@@ -33,7 +33,9 @@ The generator reads every `.json` file under the schema directories, skips `*.me
 The extension now depends on a Radius version, so the submodule pins a Radius commit:
 
 - On `main`, the submodule pins a Radius `main` commit. Dependabot moves it forward.
-- On a release branch, the submodule must pin the Radius commit the release ships, `source.productCommit` in Radius's `.github/release-plans/vX.Y.Z.yaml`. Set it with `git -C radius fetch --depth 1 origin <commit> && git -C radius checkout <commit>`, then commit the `radius` change.
+- On `release/X.Y`, [Radius Prepare Release](https://github.com/radius-project/radius/actions/workflows/prepare-release.yaml) determines the Radius product commit. With automated pinning enabled, a mismatch opens or reuses a pull request in **this** repository changing only the `radius` gitlink. Review that PR, wait for the required GitHub Actions **Build and test** check, merge through normal branch protection, then rerun Prepare Release. Do not copy a SHA from an error or set the pin by hand: the AWS commit identifies the generator, not the Radius product. The frozen plan records both (`siblingRepositories[].sourceCommit` and `source.productCommit` respectively).
+
+Before enabling automated pins for a live channel, land the [release-branch CI change](https://github.com/radius-project/bicep-types-aws/pull/382), backport it and the packaged-overlay build test to each existing **pin-aware** release branch (including `release/0.63`), and require the **Build and test** context from GitHub Actions on those branches. New channels inherit the workflow from `main`. The CI membership check alone cannot tell whether a valid Radius commit is the one the plan selected.
 
 `artifacts/radius-commit` is not the pin. It records the Radius commit the checked-in types were generated from, so the weekly refresh can tell which Radius schemas are new.
 
