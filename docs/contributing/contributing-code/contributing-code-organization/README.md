@@ -16,7 +16,7 @@ In general you should ask for guidance before creating a new top-level folder in
 | `/radius`                   | the Radius repository, as a git submodule pinned to one commit                        |
 
 
-We **check-in** the generated assets so we can easily visualize the differences when changes are made. Also, this means it's possible to iterate on `aws-type-generator` without an AWS account.
+We **check-in** the generated assets so we can easily visualize the differences when changes are made. Also, this means it's possible to iterate on `aws-type-generator` without an AWS account. The generator writes into `/artifacts/bicep` in place, and removes each namespace folder, such as `aws.iotevents`, that no longer has any types, so a namespace AWS removes leaves the output and the index.
 
 ## Schemas from Radius
 
