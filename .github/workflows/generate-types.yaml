@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-24.04
     # The pull request targets the branch the run starts from and every run
     # shares one head branch, so only runs from main may update it.
-    if: github.repository == 'radius-project/bicep-types-aws' && github.ref == 'refs/heads/main'
+    if: github.repository == 'radius-project/bicep-types-aws' && github.ref == 'refs/heads/main' && github.ref_protected
     # A full download describes every AWS resource type, which can take well
     # over 10 minutes when AWS throttles the requests.
     timeout-minutes: 60
@@ -62,7 +62,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          ref: ${{ github.sha }}
           persist-credentials: false
+
+      - name: Verify current protected main before using credentials
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const { data: branch } = await github.rest.repos.getBranch({
+              ...context.repo, branch: 'main'
+            });
+            if (!branch.protected || branch.commit.sha !== context.sha) {
+              throw new Error('Generation credentials require current protected main');
+            }
 
       - name: Get date string
         id: get_date_string
@@ -106,17 +118,16 @@ jobs:
       # The clash report compares against the Radius commit the checked-in types were
       # generated from, recorded in artifacts/radius-commit. Dependabot moves the radius
       # submodule without regenerating the types, so the submodule commit on main can't
-      # tell which Radius schemas are new.
+      # tell which Radius schemas are new. Without this commit, both reports would compare
+      # with AWS's previous types alone and hide every Radius change, so the step fails.
       - name: Save the previous Radius inputs
         run: |
           mkdir -p "${RUNNER_TEMP}/previous-radius"
           previous="$(cat artifacts/radius-commit 2>/dev/null || true)"
           if [[ ! "${previous}" =~ ^[0-9a-f]{40}$ ]]; then
-            echo "::warning::artifacts/radius-commit has no commit, so every clash with a Radius schema is reported, and the breaking-change report compares with AWS's previous types alone."
-            exit 0
+            echo "::error::artifacts/radius-commit must hold the full Radius commit the checked-in types were generated from. Restore it from the last refresh pull request."
+            exit 1
           fi
-          # Without this commit, the breaking-change report would compare AWS's previous
-          # types with the effective types and report the wrong changes, so retry, then fail.
           for attempt in 1 2 3; do
             if git -C radius fetch -q --depth 1 origin "${previous}"; then
               break

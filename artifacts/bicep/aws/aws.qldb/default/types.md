@@ -27,6 +27,8 @@
 
 ## Stream_Arn
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Tag
 ### Properties

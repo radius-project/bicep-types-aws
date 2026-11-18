@@ -75,22 +75,52 @@
 * **Key**: string (Required)
 * **Value**: string (Required)
 
+## ComponentConfigurationUpdate
+### Properties
+* **Merge**: string
+* **Reset**: string[]
+
+## ComponentDependencyRequirement
+### Properties
+* **DependencyType**: string
+* **VersionRequirement**: string
+
+## ComponentDeploymentSpecification
+### Properties
+* **ComponentVersion**: string
+* **ConfigurationUpdate**: [ComponentConfigurationUpdate](#componentconfigurationupdate)
+* **RunWith**: [ComponentRunWith](#componentrunwith)
+
 ## ComponentPlatform
 ### Properties
 * **Attributes**: [ComponentVersion_Attributes](#componentversionattributes)
 * **Name**: string
 
+## ComponentRunWith
+### Properties
+* **PosixUser**: string
+* **SystemResourceLimits**: [SystemResourceLimits](#systemresourcelimits)
+* **WindowsUser**: string
+
 ## ComponentVersion_Attributes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ComponentVersion_ComponentDependencies
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ComponentDependencyRequirement](#componentdependencyrequirement)
 
 ## ComponentVersion_EnvironmentVariables
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ComponentVersion_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## CoreDevice_Tags
 ### Properties
@@ -99,9 +129,13 @@
 
 ## Deployment_Components
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ComponentDeploymentSpecification](#componentdeploymentspecification)
 
 ## Deployment_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## DeploymentComponentUpdatePolicy
 ### Properties
@@ -207,4 +241,9 @@
 * **DestinationPath**: string
 * **Permission**: string
 * **SourcePath**: string
+
+## SystemResourceLimits
+### Properties
+* **Cpus**: int
+* **Memory**: int
 

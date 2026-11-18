@@ -329,7 +329,7 @@
       },
       "Metadata": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "Per-file metadata document. Values may be strings, numbers, booleans, or lists of any of those (validated server-side)."
@@ -344,9 +344,15 @@
     }
   },
   {
+    "$type": "AnyType"
+  },
+  {
     "$type": "ObjectType",
     "name": "Asset_Metadata",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/14"
+    }
   },
   {
     "$type": "StringLiteralType",
@@ -361,7 +367,10 @@
   {
     "$type": "ObjectType",
     "name": "Asset_Metadata",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/14"
+    }
   },
   {
     "$type": "IntegerType"
@@ -407,14 +416,14 @@
       },
       "Files": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/17"
         },
         "flags": 4,
         "description": "Inline file list. Mutually exclusive with Zip; enforced by the handler at Create/Update time. Write-only: not repopulated by Read."
       },
       "Metadata": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "Asset metadata document. Required and optional keys depend on AssetType. Values may be strings, numbers, booleans, or lists of any of those - validated server-side; see the public Asset API docs for the per-type metadata schema."
@@ -428,7 +437,7 @@
       },
       "Version": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/19"
         },
         "flags": 2,
         "description": "The current asset version. Server-managed; bumps on every successful Update (including no-op updates). This is the drift signal for change detection."
@@ -462,7 +471,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/20"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -473,7 +482,7 @@
     "$type": "ResourceType",
     "name": "AWS.DevOpsAgent/Asset@default",
     "body": {
-      "$ref": "#/20"
+      "$ref": "#/21"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -512,13 +521,13 @@
       },
       "Resources": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/50"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/51"
         },
         "flags": 0
       }
@@ -537,7 +546,7 @@
       },
       "ResourceMetadata": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "Additional metadata for the resource"
@@ -604,7 +613,7 @@
       },
       "Resources": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/55"
         },
         "flags": 0,
         "description": "List of Dynatrace resources to monitor"
@@ -744,7 +753,7 @@
       },
       "Tools": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/56"
         },
         "flags": 1,
         "description": "List of MCP tools that can be used with the association"
@@ -771,7 +780,7 @@
       },
       "EnabledElevatedTools": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/57"
         },
         "flags": 0,
         "description": "The mutative MCP tools enabled for this integration, by tool name. Only tools the service classifies as MUTATIVE may be listed; other names are rejected. Tool names can be found in the console or from the association's current configuration. The list fully replaces the stored value on update: removing a name disables that tool, and removing the property disables all elevated tools."
@@ -805,7 +814,7 @@
       },
       "EnabledElevatedTools": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/58"
         },
         "flags": 0,
         "description": "The mutative MCP tools enabled for this integration, by tool name. Only tools the service classifies as MUTATIVE may be listed; other names are rejected. Tool names can be found in the console or from the association's current configuration. The list fully replaces the stored value on update: removing a name disables that tool, and removing the property disables all elevated tools. Independent of Tools, which selects the toolsets available to the agent."
@@ -819,7 +828,7 @@
       },
       "Tools": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/59"
         },
         "flags": 0,
         "description": "List of tool categories to enable for the Grafana MCP server"
@@ -852,7 +861,7 @@
     "properties": {
       "Tools": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/60"
         },
         "flags": 1,
         "description": "List of MCP tools available for the association"
@@ -913,7 +922,7 @@
       },
       "Services": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/61"
         },
         "flags": 1,
         "description": "List of PagerDuty service IDs available for the association"
@@ -996,13 +1005,13 @@
     "properties": {
       "Bidirectional": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/45"
         },
         "flags": 0
       },
       "TransmissionTarget": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/48"
         },
         "flags": 1
       },
@@ -1028,7 +1037,7 @@
     "properties": {
       "IncidentResponseTarget": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/46"
         },
         "flags": 1,
         "description": "Destination for IncidentResponse agent."
@@ -1069,13 +1078,13 @@
       },
       "Resources": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/62"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/63"
         },
         "flags": 0
       }
@@ -1084,42 +1093,33 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/24"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/33"
+      "$ref": "#/34"
     }
   },
   {
     "$type": "ObjectType",
     "name": "Association_ResourceMetadata",
-    "properties": {}
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/23"
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/14"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/33"
+      "$ref": "#/24"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/6"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/6"
+      "$ref": "#/34"
     }
   },
   {
@@ -1155,13 +1155,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/6"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/33"
+      "$ref": "#/6"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/24"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/34"
     }
   },
   {
@@ -1194,7 +1206,7 @@
       },
       "Configuration": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/42"
         },
         "flags": 1,
         "description": "The configuration that directs how AgentSpace interacts with the given service"
@@ -1208,7 +1220,7 @@
       },
       "LinkedAssociationIds": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/65"
         },
         "flags": 4,
         "description": "Set of linked association IDs for parent-child relationships"
@@ -1249,7 +1261,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/66"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1260,7 +1272,7 @@
     "$type": "ResourceType",
     "name": "AWS.DevOpsAgent/Association@default",
     "body": {
-      "$ref": "#/66"
+      "$ref": "#/67"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1310,28 +1322,28 @@
       },
       "Ipv4AddressesPerEni": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/19"
         },
         "flags": 0,
         "description": "Number of IPv4 addresses in each ENI for the service-managed Resource Gateway."
       },
       "PortRanges": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/73"
         },
         "flags": 0,
         "description": "TCP port ranges that a consumer can use to access the resource."
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/74"
         },
         "flags": 0,
         "description": "Security groups to attach to the service-managed Resource Gateway."
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/75"
         },
         "flags": 0,
         "description": "Subnets that the service-managed Resource Gateway will span."
@@ -1390,7 +1402,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/71"
+      "$ref": "#/72"
     }
   },
   {
@@ -1420,7 +1432,7 @@
       },
       "ConnectionConfiguration": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/69"
         },
         "flags": 1,
         "description": "The connection configuration for the Private Connection."
@@ -1441,7 +1453,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/77"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1468,7 +1480,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/78"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1479,7 +1491,7 @@
     "$type": "ResourceType",
     "name": "AWS.DevOpsAgent/PrivateConnection@default",
     "body": {
-      "$ref": "#/78"
+      "$ref": "#/79"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1543,7 +1555,7 @@
       },
       "WebIdentityTokenAudiences": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/122"
         },
         "flags": 1,
         "description": "List of audiences for the web identity token"
@@ -1583,7 +1595,7 @@
     "properties": {
       "OAuthClientCredentials": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/103"
         },
         "flags": 0
       }
@@ -1602,7 +1614,7 @@
       },
       "AuthorizationConfig": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/85"
         },
         "flags": 0
       }
@@ -1719,7 +1731,7 @@
     "properties": {
       "AuthorizationConfig": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/91"
         },
         "flags": 1
       },
@@ -1757,7 +1769,7 @@
     "properties": {
       "AuthorizationConfig": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/93"
         },
         "flags": 1
       },
@@ -1811,7 +1823,7 @@
       },
       "ExchangeParameters": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/123"
         },
         "flags": 0,
         "description": "OAuth token exchange parameters"
@@ -1825,7 +1837,7 @@
       },
       "Scopes": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/124"
         },
         "flags": 0,
         "description": "OAuth scopes"
@@ -1838,7 +1850,7 @@
     "properties": {
       "CustomHeaders": {
         "type": {
-          "$ref": "#/124"
+          "$ref": "#/125"
         },
         "flags": 0,
         "description": "Custom headers for the SigV4 MCP server"
@@ -1879,7 +1891,7 @@
     "properties": {
       "AuthorizationConfig": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/96"
         },
         "flags": 1
       },
@@ -1917,7 +1929,7 @@
     "properties": {
       "AuthorizationConfig": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/98"
         },
         "flags": 1
       },
@@ -1957,7 +1969,7 @@
       },
       "AlertPolicyIds": {
         "type": {
-          "$ref": "#/125"
+          "$ref": "#/126"
         },
         "flags": 0,
         "description": "List of alert policy IDs"
@@ -1971,14 +1983,14 @@
       },
       "ApplicationIds": {
         "type": {
-          "$ref": "#/126"
+          "$ref": "#/127"
         },
         "flags": 0,
         "description": "List of monitored APM application IDs"
       },
       "EntityGuids": {
         "type": {
-          "$ref": "#/127"
+          "$ref": "#/128"
         },
         "flags": 0,
         "description": "List of globally unique IDs for New Relic resources"
@@ -1998,7 +2010,7 @@
     "properties": {
       "ApiKey": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/100"
         },
         "flags": 1
       }
@@ -2010,7 +2022,7 @@
     "properties": {
       "AuthorizationConfig": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/101"
         },
         "flags": 1
       }
@@ -2043,7 +2055,7 @@
       },
       "ExchangeParameters": {
         "type": {
-          "$ref": "#/128"
+          "$ref": "#/129"
         },
         "flags": 0,
         "description": "OAuth token exchange parameters"
@@ -2056,7 +2068,7 @@
     "properties": {
       "OAuthClientCredentials": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/103"
         },
         "flags": 0
       }
@@ -2068,13 +2080,13 @@
     "properties": {
       "AuthorizationConfig": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/104"
         },
         "flags": 1
       },
       "Scopes": {
         "type": {
-          "$ref": "#/129"
+          "$ref": "#/130"
         },
         "flags": 1,
         "description": "PagerDuty scopes"
@@ -2108,7 +2120,7 @@
       },
       "WebIdentityTokenAudiences": {
         "type": {
-          "$ref": "#/130"
+          "$ref": "#/131"
         },
         "flags": 1,
         "description": "List of audiences for the web identity token"
@@ -2284,7 +2296,7 @@
     "properties": {
       "CustomHeaders": {
         "type": {
-          "$ref": "#/131"
+          "$ref": "#/132"
         },
         "flags": 0,
         "description": "Custom headers for the SigV4 MCP server"
@@ -2373,7 +2385,7 @@
     "properties": {
       "Scopes": {
         "type": {
-          "$ref": "#/132"
+          "$ref": "#/133"
         },
         "flags": 1,
         "description": "The scopes assigned to the service"
@@ -2409,7 +2421,7 @@
     "properties": {
       "OAuthClientCredentials": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/103"
         },
         "flags": 0
       }
@@ -2421,7 +2433,7 @@
     "properties": {
       "AuthorizationConfig": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/118"
         },
         "flags": 0
       },
@@ -2468,7 +2480,10 @@
   {
     "$type": "ObjectType",
     "name": "Service_ExchangeParameters",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/14"
+    }
   },
   {
     "$type": "ArrayType",
@@ -2479,7 +2494,10 @@
   {
     "$type": "ObjectType",
     "name": "Service_CustomHeaders",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/6"
+    }
   },
   {
     "$type": "ArrayType",
@@ -2502,7 +2520,10 @@
   {
     "$type": "ObjectType",
     "name": "Service_ExchangeParameters",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/14"
+    }
   },
   {
     "$type": "ArrayType",
@@ -2519,7 +2540,10 @@
   {
     "$type": "ObjectType",
     "name": "Service_CustomHeaders",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/6"
+    }
   },
   {
     "$type": "ArrayType",
@@ -2534,18 +2558,21 @@
   {
     "$type": "ObjectType",
     "name": "Service_AccessibleResources",
-    "properties": {}
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/134"
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/6"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/120"
+      "$ref": "#/135"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/121"
     }
   },
   {
@@ -2554,14 +2581,14 @@
     "properties": {
       "AccessibleResources": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/136"
         },
         "flags": 2,
         "description": "List of accessible resources for this service"
       },
       "AdditionalServiceDetails": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/81"
         },
         "flags": 2,
         "description": "Additional details specific to the service type"
@@ -2603,7 +2630,7 @@
       },
       "ServiceDetails": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/116"
         },
         "flags": 4,
         "description": "Service-specific configuration details for create operation"
@@ -2624,7 +2651,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/136"
+          "$ref": "#/137"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -2658,7 +2685,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/138"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2669,7 +2696,7 @@
     "$type": "ResourceType",
     "name": "AWS.DevOpsAgent/Service@default",
     "body": {
-      "$ref": "#/138"
+      "$ref": "#/139"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2680,7 +2707,7 @@
     "properties": {
       "Schedule": {
         "type": {
-          "$ref": "#/141"
+          "$ref": "#/142"
         },
         "flags": 1
       }
@@ -2706,7 +2733,10 @@
   {
     "$type": "ObjectType",
     "name": "Trigger_Action",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/14"
+    }
   },
   {
     "$type": "ObjectType",
@@ -2714,7 +2744,7 @@
     "properties": {
       "Action": {
         "type": {
-          "$ref": "#/143"
+          "$ref": "#/144"
         },
         "flags": 1,
         "description": "The action to perform when the trigger fires. A JSON object containing actionType and task."
@@ -2735,7 +2765,7 @@
       },
       "Condition": {
         "type": {
-          "$ref": "#/140"
+          "$ref": "#/141"
         },
         "flags": 1
       },
@@ -2796,7 +2826,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/144"
+          "$ref": "#/145"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2807,7 +2837,7 @@
     "$type": "ResourceType",
     "name": "AWS.DevOpsAgent/Trigger@default",
     "body": {
-      "$ref": "#/145"
+      "$ref": "#/146"
     },
     "readableScopes": 0,
     "writableScopes": 0

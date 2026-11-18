@@ -24,6 +24,8 @@
 
 ## DeploymentSpecifications
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Tags
 ### Properties

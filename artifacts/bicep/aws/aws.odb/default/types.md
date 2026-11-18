@@ -63,7 +63,7 @@
 * **Domain**: string (ReadOnly): The domain name for the Autonomous VM cluster.
 * **ExadataStorageInTBsLowestScaledValue**: int (ReadOnly): The minimum value to which you can scale down the Exadata storage, in TB.
 * **Hostname**: string (ReadOnly): The hostname for the Autonomous VM cluster.
-* **IamRoles**: [IamRole](#iamrole)[] (ReadOnly): The AWS Identity and Access Management (IAM) service roles associated with the Autonomous VM cluster.
+* **IamRoles**: [IamRole](#iamrole)[]: The AWS Identity and Access Management (IAM) service roles associated with the Autonomous VM cluster.
 * **IsMtlsEnabledVmCluster**: bool: Indicates whether mutual TLS (mTLS) authentication is enabled for the Autonomous VM cluster.
 * **LicenseModel**: string: The Oracle license model that applies to the Autonomous VM cluster. Valid values are LICENSE_INCLUDED or BRING_YOUR_OWN_LICENSE.
 * **MaintenanceWindow**: [MaintenanceWindow](#maintenancewindow): The scheduling details for the maintenance window. Patching and system updates take place during the maintenance window.
@@ -133,7 +133,7 @@
 * **CpuCoreCount**: int: The number of CPU cores enabled on the VM cluster.
 * **DataCollectionOptions**: [DataCollectionOptions](#datacollectionoptions): The set of diagnostic collection options enabled for the VM cluster.
 * **DataStorageSizeInTBs**: int: The size of the data disk group, in terabytes (TB), that's allocated for the VM cluster.
-* **DbNodes**: [DbNode](#dbnode)[] (ReadOnly): The DB nodes that are implicitly created and managed as part of this VM Cluster.
+* **DbNodes**: [DbNode](#dbnode)[]: The DB nodes that are implicitly created and managed as part of this VM Cluster.
 * **DbNodeStorageSizeInGBs**: int: The amount of local node storage, in gigabytes (GB), that's allocated for the VM cluster.
 * **DbServers**: string[]: The list of database servers for the VM cluster.
 * **DiskRedundancy**: string (ReadOnly): The type of redundancy configured for the VM cluster. NORMAL is 2-way redundancy. HIGH is 3-way redundancy.
@@ -141,7 +141,7 @@
 * **Domain**: string (ReadOnly): The domain of the VM cluster.
 * **GiVersion**: string: The software version of the Oracle Grid Infrastructure (GI) for the VM cluster.
 * **Hostname**: string: The host name for the VM cluster.
-* **IamRoles**: [IamRole](#iamrole)[] (ReadOnly): The AWS Identity and Access Management (IAM) service roles associated with the VM cluster.
+* **IamRoles**: [IamRole](#iamrole)[]: The AWS Identity and Access Management (IAM) service roles associated with the VM cluster.
 * **IsLocalBackupEnabled**: bool: Indicates whether database backups to local Exadata storage is enabled for the VM cluster.
 * **IsSparseDiskgroupEnabled**: bool: Indicates whether the VM cluster is configured with a sparse disk group.
 * **LicenseModel**: string: The Oracle license model applied to the VM cluster.
@@ -222,34 +222,34 @@
 
 ## DbNode
 ### Properties
-* **BackupIpId**: string: The Oracle Cloud ID (OCID) of the backup IP address that's associated with the DB node.
-* **BackupVnic2Id**: string: The OCID of the second backup virtual network interface card (VNIC) for the DB node.
-* **CpuCoreCount**: int: The number of CPU cores enabled on the DB node.
-* **DbNodeArn**: string: The Amazon Resource Name (ARN) of the DB node.
-* **DbNodeId**: string: The unique identifier of the DB node.
-* **DbNodeStorageSizeInGBs**: int: The amount of local node storage, in gigabytes (GB), that's allocated on the DB node.
+* **BackupIpId**: string (ReadOnly): The Oracle Cloud ID (OCID) of the backup IP address that's associated with the DB node.
+* **BackupVnic2Id**: string (ReadOnly): The OCID of the second backup virtual network interface card (VNIC) for the DB node.
+* **CpuCoreCount**: int (ReadOnly): The number of CPU cores enabled on the DB node.
+* **DbNodeArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the DB node.
+* **DbNodeId**: string (ReadOnly): The unique identifier of the DB node.
+* **DbNodeStorageSizeInGBs**: int (ReadOnly): The amount of local node storage, in gigabytes (GB), that's allocated on the DB node.
 * **DbServerId**: string (Required): The unique identifier of the database server that's associated with the DB node.
-* **DbSystemId**: string: The OCID of the DB system.
-* **HostIpId**: string: The OCID of the host IP address that's associated with the DB node.
-* **Hostname**: string: The host name for the DB node.
-* **MemorySizeInGBs**: int: The amount of memory, in gigabytes (GB), that allocated on the DB node.
-* **Ocid**: string: The OCID of the DB node.
-* **Status**: string: The current status of the DB node.
+* **DbSystemId**: string (ReadOnly): The OCID of the DB system.
+* **HostIpId**: string (ReadOnly): The OCID of the host IP address that's associated with the DB node.
+* **Hostname**: string (ReadOnly): The host name for the DB node.
+* **MemorySizeInGBs**: int (ReadOnly): The amount of memory, in gigabytes (GB), that allocated on the DB node.
+* **Ocid**: string (ReadOnly): The OCID of the DB node.
+* **Status**: string (ReadOnly): The current status of the DB node.
 * **Tags**: [Tag](#tag)[]
-* **Vnic2Id**: string: The OCID of the second VNIC.
-* **VnicId**: string: The OCID of the VNIC.
+* **Vnic2Id**: string (ReadOnly): The OCID of the second VNIC.
+* **VnicId**: string (ReadOnly): The OCID of the VNIC.
 
 ## IamRole
 ### Properties
 * **AwsIntegration**: string: The AWS integration configuration settings for the AWS Identity and Access Management (IAM) service role.
 * **IamRoleArn**: string: The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) service role.
-* **Status**: string: The current status of the AWS Identity and Access Management (IAM) service role.
+* **Status**: string (ReadOnly): The current status of the AWS Identity and Access Management (IAM) service role.
 
 ## IamRole
 ### Properties
 * **AwsIntegration**: string: The AWS integration configuration settings for the AWS Identity and Access Management (IAM) service role.
 * **IamRoleArn**: string: The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) service role.
-* **Status**: string: The current status of the AWS Identity and Access Management (IAM) service role.
+* **Status**: string (ReadOnly): The current status of the AWS Identity and Access Management (IAM) service role.
 
 ## MaintenanceWindow
 ### Properties

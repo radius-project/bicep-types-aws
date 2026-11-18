@@ -594,6 +594,8 @@
 
 ## ConfigurationPolicy_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ParameterConfiguration](#parameterconfiguration)
 
 ## Criteria
 ### Properties
@@ -658,6 +660,8 @@
 
 ## map
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## MapFilter
 ### Properties
@@ -742,8 +746,42 @@
 * **FieldName**: string (Required)
 * **Filter**: [StringFilter](#stringfilter) (Required)
 
+## ParameterConfiguration
+### Properties
+* **Value**: [ParameterValue](#parametervalue)
+* **ValueType**: string (Required): Identifies whether a control parameter uses a custom user-defined value or subscribes to the default AWS Security Hub behavior.
+
+## ParameterConfiguration
+### Properties
+* **Value**: [ParameterValue](#parametervalue)
+* **ValueType**: string (Required)
+
 ## Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ParameterConfiguration](#parameterconfiguration)
+
+## ParameterValue
+### Properties
+* **Boolean**: bool: A control parameter that is a boolean.
+* **Double**: int: A control parameter that is a double.
+* **Enum**: string: A control parameter that is an enum.
+* **EnumList**: string[]: A control parameter that is a list of enums.
+* **Integer**: int: A control parameter that is an integer.
+* **IntegerList**: int[]: A control parameter that is a list of integers.
+* **String**: string: A control parameter that is a string.
+* **StringList**: string[]: A control parameter that is a list of strings.
+
+## ParameterValue
+### Properties
+* **Boolean**: bool: A control parameter that is a boolean.
+* **Double**: int: A control parameter that is a double.
+* **Enum**: string: A control parameter that is a enum.
+* **EnumList**: string[]: A control parameter that is a list of enums.
+* **Integer**: int: A control parameter that is a integer.
+* **IntegerList**: int[]: A control parameter that is a list of integers.
+* **String**: string: A control parameter that is a string.
+* **StringList**: string[]: A control parameter that is a list of strings.
 
 ## Policy
 ### Properties
@@ -822,25 +860,41 @@
 
 ## Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 

@@ -99,6 +99,8 @@
 
 ## FileSystemPolicy_Policy
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## ImportDataRule
 ### Properties

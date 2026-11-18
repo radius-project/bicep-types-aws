@@ -501,18 +501,28 @@
 
 ## IdentityPool_CognitoEvents
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## IdentityPool_SupportedLoginProviders
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## IdentityPoolPrincipalTag_PrincipalTags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## IdentityPoolRoleAttachment_RoleMappings
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [RoleMapping](#rolemapping)
 
 ## IdentityPoolRoleAttachment_Roles
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## InboundFederation
 ### Properties
@@ -577,6 +587,8 @@
 
 ## LinksType
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## LogConfiguration
 ### Properties
@@ -588,6 +600,15 @@
 
 ## ManagedLoginBranding_Settings
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
+
+## MappingRule
+### Properties
+* **Claim**: string (Required)
+* **MatchType**: string (Required)
+* **RoleARN**: string (Required)
+* **Value**: string (Required)
 
 ## NotifyConfigurationType
 ### Properties
@@ -659,9 +680,20 @@
 * **BlockedIPRangeList**: string[]
 * **SkippedIPRangeList**: string[]
 
+## RoleMapping
+### Properties
+* **AmbiguousRoleResolution**: string
+* **IdentityProvider**: string
+* **RulesConfiguration**: [RulesConfigurationType](#rulesconfigurationtype)
+* **Type**: string (Required)
+
 ## RoutingType
 ### Properties
 * **Failover**: [FailoverType](#failovertype)
+
+## RulesConfigurationType
+### Properties
+* **Rules**: [MappingRule](#mappingrule)[] (Required)
 
 ## S3Configuration
 ### Properties
@@ -721,6 +753,8 @@
 
 ## UserPool_UserPoolTags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## UserPoolAddOns
 ### Properties
@@ -729,18 +763,28 @@
 
 ## UserPoolIdentityProvider_AttributeMapping
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## UserPoolIdentityProvider_ProviderDetails
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## UserPoolRegionalConfigurationAttachment_UserPoolTags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## UserPoolReplica_UserPoolTagsAtCreate
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## UserPoolUser_ClientMetadata
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## VerificationMessageTemplate
 ### Properties

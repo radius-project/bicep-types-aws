@@ -441,12 +441,18 @@
 
 ## Deployment_StageVariableOverrides
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Deployment_StageVariableOverrides
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Deployment_Variables
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## DeploymentCanarySettings
 ### Properties
@@ -472,9 +478,13 @@
 
 ## GatewayResponse_ResponseParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## GatewayResponse_ResponseTemplates
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Integration
 ### Properties
@@ -513,27 +523,43 @@
 
 ## Method_RequestModels
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Method_RequestParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Method_RequestParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: bool | string
 
 ## Method_RequestTemplates
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Method_ResponseModels
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Method_ResponseParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Method_ResponseParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: bool | string
 
 ## Method_ResponseTemplates
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## MethodResponse
 ### Properties
@@ -587,9 +613,13 @@
 
 ## Stage_StageVariableOverrides
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Stage_Variables
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## StageDescription
 ### Properties
@@ -676,4 +706,6 @@
 
 ## UsagePlan_Throttle
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ThrottleSettings](#throttlesettings)
 

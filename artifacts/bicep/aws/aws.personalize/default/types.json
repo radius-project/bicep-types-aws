@@ -440,12 +440,18 @@
   {
     "$type": "ObjectType",
     "name": "Campaign_ItemExplorationConfig",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/4"
+    }
   },
   {
     "$type": "ObjectType",
     "name": "Campaign_RankingInfluence",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/6"
+    }
   },
   {
     "$type": "StringLiteralType",
@@ -1855,7 +1861,7 @@
     "properties": {
       "ExcludedDatasetColumns": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/93"
         },
         "flags": 0,
         "description": "Specifies the columns to exclude from training. Each key is a dataset type, and each value is a list of columns."
@@ -1865,12 +1871,24 @@
   {
     "$type": "ObjectType",
     "name": "Recommender_ItemExplorationConfig",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/4"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/4"
+    }
   },
   {
     "$type": "ObjectType",
     "name": "Recommender_ExcludedDatasetColumns",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/92"
+    }
   },
   {
     "$type": "StringLiteralType",
@@ -1943,7 +1961,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/95"
         },
         "flags": 0,
         "description": "Tags to associate with the recommender."
@@ -1970,7 +1988,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/96"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1981,7 +1999,7 @@
     "$type": "ResourceType",
     "name": "AWS.Personalize/Recommender@default",
     "body": {
-      "$ref": "#/96"
+      "$ref": "#/97"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2011,7 +2029,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/98"
+      "$ref": "#/99"
     }
   },
   {
@@ -2048,7 +2066,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/101"
         },
         "flags": 0,
         "description": "The tags used to organize, track, or control access for this resource."
@@ -2075,7 +2093,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/102"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2086,7 +2104,7 @@
     "$type": "ResourceType",
     "name": "AWS.Personalize/Schema@default",
     "body": {
-      "$ref": "#/102"
+      "$ref": "#/103"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2104,7 +2122,7 @@
       },
       "Values": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/111"
         },
         "flags": 0,
         "description": "A list of the categories for the hyperparameter."
@@ -2176,14 +2194,14 @@
     "properties": {
       "AlgorithmHyperParameters": {
         "type": {
-          "$ref": "#/111"
+          "$ref": "#/112"
         },
         "flags": 0,
         "description": "Lists the hyperparameter names and ranges."
       },
       "AutoMLConfig": {
         "type": {
-          "$ref": "#/113"
+          "$ref": "#/114"
         },
         "flags": 0,
         "description": "The AutoMLConfig object containing a list of recipes to search when AutoML is performed."
@@ -2197,14 +2215,14 @@
       },
       "FeatureTransformationParameters": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/115"
         },
         "flags": 0,
         "description": "Lists the feature transformation parameters."
       },
       "HpoConfig": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/122"
         },
         "flags": 0,
         "description": "Describes the properties for hyperparameter optimization (HPO)"
@@ -2238,7 +2256,10 @@
   {
     "$type": "ObjectType",
     "name": "Solution_AlgorithmHyperParameters",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/4"
+    }
   },
   {
     "$type": "ArrayType",
@@ -2259,7 +2280,7 @@
       },
       "RecipeList": {
         "type": {
-          "$ref": "#/112"
+          "$ref": "#/113"
         },
         "flags": 0,
         "description": "The list of candidate recipes."
@@ -2269,12 +2290,9 @@
   {
     "$type": "ObjectType",
     "name": "Solution_FeatureTransformationParameters",
-    "properties": {}
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/104"
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/4"
     }
   },
   {
@@ -2290,26 +2308,32 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/107"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "Solution_HpoConfig_AlgorithmHyperParameterRanges",
     "properties": {
       "CategoricalHyperParameterRanges": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/116"
         },
         "flags": 0,
         "description": "The categorical hyperparameters and their ranges."
       },
       "ContinuousHyperParameterRanges": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/117"
         },
         "flags": 0,
         "description": "The continuous hyperparameters and their ranges."
       },
       "IntegerHyperParameterRanges": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/118"
         },
         "flags": 0,
         "description": "The integer hyperparameters and their ranges."
@@ -2369,21 +2393,21 @@
     "properties": {
       "AlgorithmHyperParameterRanges": {
         "type": {
-          "$ref": "#/118"
+          "$ref": "#/119"
         },
         "flags": 0,
         "description": "The hyperparameters and their allowable ranges"
       },
       "HpoObjective": {
         "type": {
-          "$ref": "#/119"
+          "$ref": "#/120"
         },
         "flags": 0,
         "description": "The metric to optimize during HPO."
       },
       "HpoResourceConfig": {
         "type": {
-          "$ref": "#/120"
+          "$ref": "#/121"
         },
         "flags": 0,
         "description": "Describes the resource configuration for hyperparameter optimization (HPO)."
@@ -2397,7 +2421,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/109"
+      "$ref": "#/110"
     }
   },
   {
@@ -2454,13 +2478,13 @@
       },
       "SolutionConfig": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/109"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/124"
         },
         "flags": 0,
         "description": "The tags used to organize, track, or control access for this resource."
@@ -2487,7 +2511,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/124"
+          "$ref": "#/125"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2498,7 +2522,7 @@
     "$type": "ResourceType",
     "name": "AWS.Personalize/Solution@default",
     "body": {
-      "$ref": "#/125"
+      "$ref": "#/126"
     },
     "readableScopes": 0,
     "writableScopes": 0

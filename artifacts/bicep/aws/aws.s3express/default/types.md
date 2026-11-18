@@ -30,6 +30,8 @@
 
 ## AccessPoint_Policy
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## AWS.S3Express/AccessPointProperties
 ### Properties

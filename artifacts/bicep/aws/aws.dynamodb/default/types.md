@@ -71,7 +71,7 @@
 * **Arn**: string (ReadOnly)
 * **AttributeDefinitions**: [AttributeDefinition](#attributedefinition)[]
 * **BillingMode**: string
-* **GlobalSecondaryIndexes**: [GlobalSecondaryIndex](#globalsecondaryindex)[] (WriteOnly)
+* **GlobalSecondaryIndexes**: [GlobalSecondaryIndex](#globalsecondaryindex)[]
 * **GlobalTableSourceArn**: string (WriteOnly)
 * **GlobalTableWitnesses**: [GlobalTableWitness](#globaltablewitness)[]
 * **KeySchema**: [KeySchema](#keyschema)[]
@@ -79,7 +79,7 @@
 * **MultiRegionConsistency**: string
 * **ReadOnDemandThroughputSettings**: [ReadOnDemandThroughputSettings](#readondemandthroughputsettings)
 * **ReadProvisionedThroughputSettings**: [GlobalReadProvisionedThroughputSettings](#globalreadprovisionedthroughputsettings)
-* **Replicas**: [ReplicaSpecification](#replicaspecification)[] (Required, WriteOnly)
+* **Replicas**: [ReplicaSpecification](#replicaspecification)[] (Required)
 * **SSESpecification**: [SSESpecification](#ssespecification)
 * **StreamArn**: string (ReadOnly)
 * **StreamSpecification**: [StreamSpecification](#streamspecification)
@@ -155,6 +155,27 @@
 * **SeedCapacity**: int (WriteOnly)
 * **TargetTrackingScalingPolicyConfiguration**: [TargetTrackingScalingPolicyConfiguration](#targettrackingscalingpolicyconfiguration) (Required)
 
+## CapacityAutoScalingSettings
+### Properties
+* **MaxCapacity**: int (Required)
+* **MinCapacity**: int (Required)
+* **SeedCapacity**: int (WriteOnly)
+* **TargetTrackingScalingPolicyConfiguration**: [TargetTrackingScalingPolicyConfiguration](#targettrackingscalingpolicyconfiguration) (Required)
+
+## CapacityAutoScalingSettings
+### Properties
+* **MaxCapacity**: int (Required)
+* **MinCapacity**: int (Required)
+* **SeedCapacity**: int (WriteOnly)
+* **TargetTrackingScalingPolicyConfiguration**: [TargetTrackingScalingPolicyConfiguration](#targettrackingscalingpolicyconfiguration) (Required)
+
+## CapacityAutoScalingSettings
+### Properties
+* **MaxCapacity**: int (Required)
+* **MinCapacity**: int (Required)
+* **SeedCapacity**: int (WriteOnly)
+* **TargetTrackingScalingPolicyConfiguration**: [TargetTrackingScalingPolicyConfiguration](#targettrackingscalingpolicyconfiguration) (Required)
+
 ## ContributorInsightsSpecification
 ### Properties
 * **Enabled**: bool (Required)
@@ -203,6 +224,8 @@
 
 ## GlobalTable_PolicyDocument
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## GlobalTableWitness
 ### Properties
@@ -312,6 +335,11 @@
 * **ReadCapacityAutoScalingSettings**: [CapacityAutoScalingSettings](#capacityautoscalingsettings)
 * **ReadCapacityUnits**: int
 
+## ReadProvisionedThroughputSettings
+### Properties
+* **ReadCapacityAutoScalingSettings**: [CapacityAutoScalingSettings](#capacityautoscalingsettings)
+* **ReadCapacityUnits**: int
+
 ## ReplicaGlobalSecondaryIndexSpecification
 ### Properties
 * **ContributorInsightsSpecification**: [ContributorInsightsSpecification](#contributorinsightsspecification)
@@ -409,6 +437,8 @@
 
 ## Table_PolicyDocument
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Tag
 ### Properties
@@ -478,6 +508,10 @@
 ## WriteOnDemandThroughputSettings
 ### Properties
 * **MaxWriteRequestUnits**: int
+
+## WriteProvisionedThroughputSettings
+### Properties
+* **WriteCapacityAutoScalingSettings**: [CapacityAutoScalingSettings](#capacityautoscalingsettings)
 
 ## WriteProvisionedThroughputSettings
 ### Properties

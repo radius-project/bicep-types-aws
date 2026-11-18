@@ -70,6 +70,8 @@
 
 ## QueueInlinePolicy_PolicyDocument
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Tag
 ### Properties

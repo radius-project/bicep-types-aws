@@ -184,7 +184,7 @@
 * **MediaPipelineArn**: string (Identifier): The ARN of the media live connector pipeline.
 * **MediaPipelineId**: string (ReadOnly): The ID of the media live connector pipeline.
 * **Sinks**: [LiveConnectorSinkConfiguration](#liveconnectorsinkconfiguration)[] (Required): The media live connector pipeline's data sinks.
-* **Sources**: [LiveConnectorSourceConfiguration](#liveconnectorsourceconfiguration)[] (Required, ReadOnly): The media live connector pipeline's data sources.
+* **Sources**: [LiveConnectorSourceConfiguration](#liveconnectorsourceconfiguration)[] (Required): The media live connector pipeline's data sources.
 * **Status**: string (ReadOnly): The status of the media live connector pipeline.
 * **Tags**: [Tag](#tag)[]: The tags associated with the media live connector pipeline.
 * **UpdatedTimestamp**: string (ReadOnly): The time at which the connector pipeline was last updated.
@@ -227,7 +227,7 @@
 
 ## ChimeSdkMeetingLiveConnectorConfiguration
 ### Properties
-* **Arn**: string: The configuration object's Chime SDK meeting ARN.
+* **Arn**: string (ReadOnly): The configuration object's Chime SDK meeting ARN.
 * **CompositedVideo**: [CompositedVideoArtifactsConfiguration](#compositedvideoartifactsconfiguration)
 * **MuxType**: string (Required): The configuration object's multiplex type.
 * **SourceConfiguration**: [SourceConfiguration](#sourceconfiguration)
@@ -358,6 +358,8 @@
 
 ## MediaInsightsPipeline_MediaInsightsRuntimeMetadata
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## MediaInsightsPipelineConfigurationElement
 ### Properties

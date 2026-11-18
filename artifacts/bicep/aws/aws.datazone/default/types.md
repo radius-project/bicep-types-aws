@@ -356,7 +356,7 @@
 * **DomainIdentifier**: string (Identifier)
 * **DomainUnitId**: string (ReadOnly)
 * **DomainUnitIdentifier**: string (WriteOnly)
-* **EnvironmentConfigurations**: [EnvironmentConfiguration](#environmentconfiguration)[] (ReadOnly)
+* **EnvironmentConfigurations**: [EnvironmentConfiguration](#environmentconfiguration)[]
 * **Id**: string (ReadOnly)
 * **Identifier**: string (ReadOnly, Identifier)
 * **LastUpdatedAt**: string (ReadOnly)
@@ -453,6 +453,8 @@
 
 ## EnvironmentBlueprintConfiguration_GlobalParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## EnvironmentConfiguration
 ### Properties
@@ -463,7 +465,7 @@
 * **DeploymentOrder**: int
 * **Description**: string
 * **EnvironmentBlueprintId**: string (Required)
-* **EnvironmentConfigurationId**: string
+* **EnvironmentConfigurationId**: string (ReadOnly)
 * **Name**: string (Required)
 
 ## EnvironmentConfigurationParameter
@@ -475,7 +477,7 @@
 ## EnvironmentConfigurationParametersDetails
 ### Properties
 * **ParameterOverrides**: [EnvironmentConfigurationParameter](#environmentconfigurationparameter)[]
-* **ResolvedParameters**: [EnvironmentConfigurationParameter](#environmentconfigurationparameter)[]
+* **ResolvedParameters**: [EnvironmentConfigurationParameter](#environmentconfigurationparameter)[] (ReadOnly)
 * **SsmPath**: string
 
 ## EnvironmentConfigurationUserParameter
@@ -545,6 +547,8 @@
 
 ## Parameter
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## PolicyGrant_PolicyGrantDetail
 ### Properties
@@ -559,6 +563,8 @@
 
 ## PropertyMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ProvisioningConfiguration
 ### Properties
@@ -631,6 +637,8 @@
 
 ## TrackingAssets
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string[]
 
 ## UserProfileDetails
 ### Properties

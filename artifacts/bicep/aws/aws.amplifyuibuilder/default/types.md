@@ -32,6 +32,18 @@
 * **name**: string: the resource name
 * **properties**: [AWS.AmplifyUIBuilder/ThemeProperties](#awsamplifyuibuilderthemeproperties) (Identifier): properties of the resource
 
+## ActionParameters
+### Properties
+* **Anchor**: [ComponentProperty](#componentproperty)
+* **Fields**: [ComponentProperties](#componentproperties)
+* **Global**: [ComponentProperty](#componentproperty)
+* **Id**: [ComponentProperty](#componentproperty) (Identifier)
+* **Model**: string
+* **State**: [MutationActionSetStateParameter](#mutationactionsetstateparameter)
+* **Target**: [ComponentProperty](#componentproperty)
+* **Type**: [ComponentProperty](#componentproperty)
+* **Url**: [ComponentProperty](#componentproperty)
+
 ## ApiConfiguration
 ### Properties
 * **DataStoreConfig**: [DataStoreRenderConfig](#datastorerenderconfig)
@@ -109,6 +121,25 @@
 
 ## ComponentBindingProperties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ComponentBindingPropertiesValue](#componentbindingpropertiesvalue)
+
+## ComponentBindingPropertiesValue
+### Properties
+* **BindingProperties**: [ComponentBindingPropertiesValueProperties](#componentbindingpropertiesvalueproperties)
+* **DefaultValue**: string
+* **Type**: string
+
+## ComponentBindingPropertiesValueProperties
+### Properties
+* **Bucket**: string
+* **DefaultValue**: string
+* **Field**: string
+* **Key**: string
+* **Model**: string
+* **Predicates**: [Predicate](#predicate)[]
+* **SlotName**: string
+* **UserAttribute**: string
 
 ## ComponentChild
 ### Properties
@@ -121,15 +152,74 @@
 
 ## ComponentCollectionProperties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ComponentDataConfiguration](#componentdataconfiguration)
+
+## ComponentConditionProperty
+### Properties
+* **Else**: [ComponentProperty](#componentproperty)
+* **Field**: string
+* **Operand**: string
+* **OperandType**: string
+* **Operator**: string
+* **Property**: string
+* **Then**: [ComponentProperty](#componentproperty)
+
+## ComponentDataConfiguration
+### Properties
+* **Identifiers**: string[]
+* **Model**: string (Required)
+* **Predicate**: [Predicate](#predicate)
+* **Sort**: [SortProperty](#sortproperty)[]
+
+## ComponentEvent
+### Properties
+* **Action**: string
+* **BindingEvent**: string
+* **Parameters**: [ActionParameters](#actionparameters)
 
 ## ComponentEvents
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ComponentEvent](#componentevent)
 
 ## ComponentOverrides
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ComponentOverridesValue](#componentoverridesvalue)
+
+## ComponentOverridesValue
+### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ComponentProperties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ComponentProperty](#componentproperty)
+
+## ComponentProperty
+### Properties
+* **BindingProperties**: [ComponentPropertyBindingProperties](#componentpropertybindingproperties)
+* **Bindings**: [FormBindings](#formbindings)
+* **CollectionBindingProperties**: [ComponentPropertyBindingProperties](#componentpropertybindingproperties)
+* **ComponentName**: string
+* **Concat**: [ComponentProperty](#componentproperty)[]
+* **Condition**: [ComponentConditionProperty](#componentconditionproperty)
+* **Configured**: bool
+* **DefaultValue**: string
+* **Event**: string
+* **ImportedValue**: string
+* **Model**: string
+* **Property**: string
+* **Type**: string
+* **UserAttribute**: string
+* **Value**: string
+
+## ComponentPropertyBindingProperties
+### Properties
+* **Field**: string
+* **Property**: string (Required)
 
 ## ComponentVariant
 ### Properties
@@ -138,17 +228,64 @@
 
 ## ComponentVariantValues
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## DataStoreRenderConfig
 ### Properties
+
+## FieldConfig
+### Properties
+* **Excluded**: bool
+* **InputType**: [FieldInputConfig](#fieldinputconfig)
+* **Label**: string
+* **Position**: [Form_FieldPosition](#formfieldposition)
+* **Validations**: [FieldValidationConfiguration](#fieldvalidationconfiguration)[]
+
+## FieldInputConfig
+### Properties
+* **DefaultChecked**: bool
+* **DefaultCountryCode**: string
+* **DefaultValue**: string
+* **DescriptiveText**: string
+* **FileUploaderConfig**: [FileUploaderFieldConfig](#fileuploaderfieldconfig)
+* **IsArray**: bool
+* **MaxValue**: int
+* **MinValue**: int
+* **Name**: string
+* **Placeholder**: string
+* **ReadOnly**: bool
+* **Required**: bool
+* **Step**: int
+* **Type**: string (Required)
+* **Value**: string
+* **ValueMappings**: [ValueMappings](#valuemappings)
 
 ## FieldPosition
 ### Properties
 
 ## FieldsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [FieldConfig](#fieldconfig)
 
-## Form_FormStyleConfig
+## FieldValidationConfiguration
+### Properties
+* **NumValues**: int[]
+* **StrValues**: string[]
+* **Type**: string (Required)
+* **ValidationMessage**: string
+
+## FileUploaderFieldConfig
+### Properties
+* **AcceptedFileTypes**: string[] (Required)
+* **AccessLevel**: string (Required)
+* **IsResumable**: bool
+* **MaxFileCount**: int
+* **MaxSize**: int
+* **ShowThumbnails**: bool
+
+## Form_FieldPosition
 ### Properties
 
 ## Form_FormStyleConfig
@@ -156,6 +293,19 @@
 
 ## Form_FormStyleConfig
 ### Properties
+
+## Form_FormStyleConfig
+### Properties
+
+## FormBindingElement
+### Properties
+* **Element**: string (Required)
+* **Property**: string (Required)
+
+## FormBindings
+### Properties
+### Additional Properties
+* **Additional Properties Type**: [FormBindingElement](#formbindingelement)
 
 ## FormButton
 ### Properties
@@ -175,6 +325,31 @@
 * **DataSourceType**: string (Required)
 * **DataTypeName**: string (Required)
 
+## FormInputBindingProperties
+### Properties
+### Additional Properties
+* **Additional Properties Type**: [FormInputBindingPropertiesValue](#forminputbindingpropertiesvalue)
+
+## FormInputBindingPropertiesValue
+### Properties
+* **BindingProperties**: [FormInputBindingPropertiesValueProperties](#forminputbindingpropertiesvalueproperties)
+* **Type**: string
+
+## FormInputBindingPropertiesValueProperties
+### Properties
+* **Model**: string
+
+## FormInputValueProperty
+### Properties
+* **BindingProperties**: [FormInputValuePropertyBindingProperties](#forminputvaluepropertybindingproperties)
+* **Concat**: [FormInputValueProperty](#forminputvalueproperty)[]
+* **Value**: string
+
+## FormInputValuePropertyBindingProperties
+### Properties
+* **Field**: string
+* **Property**: string (Required)
+
 ## FormStyle
 ### Properties
 * **HorizontalGap**: [Form_FormStyleConfig](#formformstyleconfig)
@@ -189,8 +364,23 @@
 * **SubscriptionsFilePath**: string (Required): The path to the GraphQL subscriptions file, relative to the component output directory.
 * **TypesFilePath**: string (Required): The path to the GraphQL types file, relative to the component output directory.
 
+## MutationActionSetStateParameter
+### Properties
+* **ComponentName**: string (Required)
+* **Property**: string (Required)
+* **Set**: [ComponentProperty](#componentproperty) (Required)
+
 ## NoApiRenderConfig
 ### Properties
+
+## Predicate
+### Properties
+* **And**: [Predicate](#predicate)[]
+* **Field**: string
+* **Operand**: string
+* **OperandType**: string
+* **Operator**: string
+* **Or**: [Predicate](#predicate)[]
 
 ## ReactStartCodegenJobData
 ### Properties
@@ -201,8 +391,24 @@
 * **Script**: string: The file type to use for a JavaScript project.
 * **Target**: string: The ECMAScript specification to use.
 
+## SectionalElement
+### Properties
+* **Excluded**: bool
+* **Level**: int
+* **Orientation**: string
+* **Position**: [FieldPosition](#fieldposition)
+* **Text**: string
+* **Type**: string (Required)
+
 ## SectionalElementMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [SectionalElement](#sectionalelement)
+
+## SortProperty
+### Properties
+* **Direction**: string (Required)
+* **Field**: string (Required)
 
 ## Tag
 ### Properties
@@ -211,12 +417,18 @@
 
 ## Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ThemeValue
 ### Properties
@@ -227,4 +439,14 @@
 ### Properties
 * **Key**: string
 * **Value**: [ThemeValue](#themevalue)
+
+## ValueMapping
+### Properties
+* **DisplayValue**: [FormInputValueProperty](#forminputvalueproperty)
+* **Value**: [FormInputValueProperty](#forminputvalueproperty) (Required)
+
+## ValueMappings
+### Properties
+* **BindingProperties**: [FormInputBindingProperties](#forminputbindingproperties)
+* **Values**: [ValueMapping](#valuemapping)[] (Required)
 

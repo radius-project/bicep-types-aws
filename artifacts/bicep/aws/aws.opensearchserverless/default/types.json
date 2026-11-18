@@ -561,14 +561,14 @@
     "properties": {
       "Analysis": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/38"
         },
         "flags": 0,
         "description": "Custom analysis configuration including analyzers, tokenizers, and filters"
       },
       "Index": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/39"
         },
         "flags": 0
       }
@@ -615,14 +615,14 @@
       },
       "Method": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/41"
         },
         "flags": 0,
         "description": "Configuration for k-NN search method"
       },
       "Properties": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "Nested fields within an object or nested field type"
@@ -651,9 +651,58 @@
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Index_additionalProperties",
+    "properties": {
+      "CharFilter": {
+        "type": {
+          "$ref": "#/34"
+        },
+        "flags": 0,
+        "description": "Character filters to apply"
+      },
+      "Filter": {
+        "type": {
+          "$ref": "#/35"
+        },
+        "flags": 0,
+        "description": "Token filters to apply"
+      },
+      "Tokenizer": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The tokenizer to use"
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The analyzer type (e.g. custom, standard, simple)"
+      }
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "Index_Analysis_Analyzer",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/36"
+    }
   },
   {
     "$type": "ObjectType",
@@ -661,7 +710,7 @@
     "properties": {
       "Analyzer": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/37"
         },
         "flags": 0,
         "description": "Custom analyzer definitions"
@@ -735,7 +784,7 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "Additional parameters for the k-NN algorithm"
@@ -752,7 +801,10 @@
   {
     "$type": "ObjectType",
     "name": "Index_Properties",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/33"
+    }
   },
   {
     "$type": "StringLiteralType",
@@ -761,7 +813,10 @@
   {
     "$type": "ObjectType",
     "name": "Index_Mappings_Properties",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/33"
+    }
   },
   {
     "$type": "ObjectType",
@@ -769,7 +824,7 @@
     "properties": {
       "Properties": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/44"
         },
         "flags": 0,
         "description": "Defines the fields within the mapping, including their types and configurations"
@@ -796,7 +851,7 @@
       },
       "Mappings": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "Index Mappings"
@@ -837,7 +892,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/46"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -848,7 +903,7 @@
     "$type": "ResourceType",
     "name": "AWS.OpenSearchServerless/Index@default",
     "body": {
-      "$ref": "#/44"
+      "$ref": "#/47"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -915,7 +970,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/51"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -926,7 +981,7 @@
     "$type": "ResourceType",
     "name": "AWS.OpenSearchServerless/LifecyclePolicy@default",
     "body": {
-      "$ref": "#/49"
+      "$ref": "#/52"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1078,13 +1133,13 @@
       },
       "IamFederationOptions": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/54"
         },
         "flags": 0
       },
       "IamIdentityCenterOptions": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/56"
         },
         "flags": 0
       },
@@ -1104,7 +1159,7 @@
       },
       "SamlOptions": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/60"
         },
         "flags": 0
       },
@@ -1136,7 +1191,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/63"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1147,7 +1202,7 @@
     "$type": "ResourceType",
     "name": "AWS.OpenSearchServerless/SecurityConfig@default",
     "body": {
-      "$ref": "#/61"
+      "$ref": "#/64"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1214,7 +1269,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/68"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1225,7 +1280,7 @@
     "$type": "ResourceType",
     "name": "AWS.OpenSearchServerless/SecurityPolicy@default",
     "body": {
-      "$ref": "#/66"
+      "$ref": "#/69"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1266,14 +1321,14 @@
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/72"
         },
         "flags": 0,
         "description": "The ID of one or more security groups to associate with the endpoint network interface"
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/73"
         },
         "flags": 1,
         "description": "The ID of one or more subnets in which to create an endpoint network interface"
@@ -1307,7 +1362,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/74"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1318,7 +1373,7 @@
     "$type": "ResourceType",
     "name": "AWS.OpenSearchServerless/VpcEndpoint@default",
     "body": {
-      "$ref": "#/72"
+      "$ref": "#/75"
     },
     "readableScopes": 0,
     "writableScopes": 0

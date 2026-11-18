@@ -107,6 +107,8 @@
 
 ## EventBusV2MetadataMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## EventBusV2SystemMetadata
 ### Properties
@@ -130,6 +132,8 @@
 
 ## HeaderParametersMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## InvokeConfiguration
 ### Properties
@@ -155,6 +159,14 @@
 
 ## MessageAttributeMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [MessageAttributeValue](#messageattributevalue)
+
+## MessageAttributeValue
+### Properties
+* **BinaryValue**: string: The attribute value for the Binary data type, Base64-encoded.
+* **DataType**: string (Required): The attribute data type. For Amazon SQS targets, specify String, Number, or Binary, optionally with a custom label suffix such as Number.float. For Amazon SNS targets, specify String, String.Array, Number, or Binary.
+* **StringValue**: string: The attribute value for the String and Number data types (and String.Array for Amazon SNS targets).
 
 ## OnFailureConfiguration
 ### Properties
@@ -179,9 +191,13 @@
 
 ## QueryStringParametersMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ResourcePolicy_PolicyDocument
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## RetryPolicy
 ### Properties

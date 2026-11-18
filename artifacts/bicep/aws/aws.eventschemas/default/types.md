@@ -71,6 +71,8 @@
 
 ## RegistryPolicy_Policy
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## TagsEntry
 ### Properties

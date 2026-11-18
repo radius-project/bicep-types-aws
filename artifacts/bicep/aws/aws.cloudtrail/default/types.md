@@ -158,6 +158,8 @@
 
 ## Dashboard_ViewProperties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## DataResource
 ### Properties

@@ -130,23 +130,132 @@
 * **UpdateDateTime**: string (ReadOnly): The date and time of the current update.
 * **WorkspaceId**: string (Required, Identifier): The ID of the workspace.
 
+## Component
+### Properties
+* **ComponentName**: string: The name of the component.
+* **ComponentTypeId**: string: The ID of the component type.
+* **DefinedIn**: string: The name of the property definition set in the component.
+* **Description**: string: The description of the component.
+* **Properties**: [Entity_Properties](#entityproperties): An object that maps strings to the properties to set in the component type. Each string in the mapping must be unique to this object.
+* **PropertyGroups**: [Entity_PropertyGroups](#entitypropertygroups): An object that maps strings to the property groups to set in the component type. Each string in the mapping must be unique to this object.
+* **Status**: [Status](#status): The current status of the entity.
+
 ## ComponentType_CompositeComponentTypes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [CompositeComponentType](#compositecomponenttype)
+
+## ComponentType_Configurations
+### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ComponentType_Error
 ### Properties
 
 ## ComponentType_Functions
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [Function](#function)
+
+## ComponentType_MapValue
+### Properties
+### Additional Properties
+* **Additional Properties Type**: [DataValue](#datavalue)
 
 ## ComponentType_PropertyDefinitions
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [PropertyDefinition](#propertydefinition)
 
 ## ComponentType_PropertyGroups
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [PropertyGroup](#propertygroup)
+
+## ComponentType_RelationshipValue
+### Properties
+* **TargetComponentName**: string
+* **TargetEntityId**: string
 
 ## ComponentType_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
+
+## CompositeComponent
+### Properties
+* **ComponentName**: string: The name of the component.
+* **ComponentPath**: string: The path of the component.
+* **ComponentTypeId**: string: The ID of the component type.
+* **Description**: string: The description of the component.
+* **Properties**: [Entity_Properties](#entityproperties): An object that maps strings to the properties to set in the component type. Each string in the mapping must be unique to this object.
+* **PropertyGroups**: [Entity_PropertyGroups](#entitypropertygroups): An object that maps strings to the property groups to set in the component type. Each string in the mapping must be unique to this object.
+* **Status**: [Status](#status): The current status of the component.
+
+## CompositeComponentType
+### Properties
+* **ComponentTypeId**: string (Identifier): The id of the composite component type.
+
+## DataConnector
+### Properties
+* **IsNative**: bool: A Boolean value that specifies whether the data connector is native to IoT TwinMaker.
+* **Lambda**: [LambdaFunction](#lambdafunction): The Lambda function associated with this data connector.
+
+## DataType
+### Properties
+* **AllowedValues**: [DataValue](#datavalue)[]: The allowed values for this data type.
+* **NestedType**: [DataType](#datatype): The nested type in the data type.
+* **Relationship**: [Relationship](#relationship): A relationship that associates a component with another component.
+* **Type**: string (Required): The underlying type of the data type.
+* **UnitOfMeasure**: string: The unit of measure used in this data type.
+
+## DataType
+### Properties
+* **AllowedValues**: [DataValue](#datavalue)[]: The allowed values for this data type.
+* **NestedType**: [DataType](#datatype): The nested type in the data type.
+* **Relationship**: [Relationship](#relationship): A relationship that associates a component with another component.
+* **Type**: string: The underlying type of the data type.
+* **UnitOfMeasure**: string: The unit of measure used in this data type.
+
+## DataValue
+### Properties
+* **BooleanValue**: bool: A Boolean value.
+* **DoubleValue**: int: A double value.
+* **Expression**: string: An expression that produces the value.
+* **IntegerValue**: int: An integer value.
+* **ListValue**: [DataValue](#datavalue)[]: A list of multiple values.
+* **LongValue**: int: A long value.
+* **MapValue**: [ComponentType_MapValue](#componenttypemapvalue): An object that maps strings to multiple DataValue objects. 
+
+
+* **RelationshipValue**: [ComponentType_RelationshipValue](#componenttyperelationshipvalue): A value that relates a component to another component.
+* **StringValue**: string: A string value.
+
+## DataValue
+### Properties
+* **BooleanValue**: bool: A Boolean value.
+* **DoubleValue**: int: A double value.
+* **Expression**: string: An expression that produces the value.
+* **IntegerValue**: int: An integer value.
+* **ListValue**: [DataValue](#datavalue)[]: A list of multiple values.
+* **LongValue**: int: A long value.
+* **MapValue**: [Entity_MapValue](#entitymapvalue): An object that maps strings to multiple DataValue objects.
+* **RelationshipValue**: [Entity_RelationshipValue](#entityrelationshipvalue): A value that relates a component to another component.
+* **StringValue**: string: A string value.
+
+## Definition
+### Properties
+* **Configuration**: [PropertyDefinitionConfiguration](#propertydefinitionconfiguration): An object that specifies information about a property configuration.
+* **DataType**: [DataType](#datatype): An object that contains information about the data type.
+* **DefaultValue**: [DataValue](#datavalue): An object that contains the default value.
+* **IsExternalId**: bool: A Boolean value that specifies whether the property ID comes from an external data store.
+* **IsFinal**: bool: A Boolean value that specifies whether the property definition can be updated.
+* **IsImported**: bool: A Boolean value that specifies whether the property definition is imported from an external data store.
+* **IsInherited**: bool: A Boolean value that specifies whether the property definition is inherited from a parent entity.
+* **IsRequiredInEntity**: bool: A Boolean value that specifies whether the property is required.
+* **IsStoredExternally**: bool: A Boolean value that specifies whether the property is stored externally.
+* **IsTimeSeries**: bool: A Boolean value that specifies whether the property consists of time series data.
 
 ## DestinationConfiguration
 ### Properties
@@ -155,19 +264,105 @@
 
 ## Entity_Components
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [Component](#component)
 
 ## Entity_CompositeComponents
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [CompositeComponent](#compositecomponent)
 
 ## Entity_Error
 ### Properties
 
+## Entity_MapValue
+### Properties
+### Additional Properties
+* **Additional Properties Type**: [DataValue](#datavalue)
+
+## Entity_Properties
+### Properties
+### Additional Properties
+* **Additional Properties Type**: [Property](#property)
+
+## Entity_Properties
+### Properties
+### Additional Properties
+* **Additional Properties Type**: [Property](#property)
+
+## Entity_PropertyGroups
+### Properties
+### Additional Properties
+* **Additional Properties Type**: [PropertyGroup](#propertygroup)
+
+## Entity_PropertyGroups
+### Properties
+### Additional Properties
+* **Additional Properties Type**: [PropertyGroup](#propertygroup)
+
+## Entity_RelationshipValue
+### Properties
+* **TargetComponentName**: string
+* **TargetEntityId**: string
+
 ## Entity_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
+
+## Function
+### Properties
+* **ImplementedBy**: [DataConnector](#dataconnector): The data connector.
+* **RequiredProperties**: string[]: The required properties of the function.
+* **Scope**: string: The scope of the function.
+
+## LambdaFunction
+### Properties
+* **Arn**: string (Required)
 
 ## MetadataTransferJobStatus
 ### Properties
 * **State**: string
+
+## Property
+### Properties
+* **Definition**: [Definition](#definition): The definition of the property.
+* **Value**: [DataValue](#datavalue): The value of the property.
+
+## PropertyDefinition
+### Properties
+* **Configurations**: [ComponentType_Configurations](#componenttypeconfigurations): An object that specifies information about a property.
+* **DataType**: [DataType](#datatype): An object that contains information about the data type.
+* **DefaultValue**: [DataValue](#datavalue): An object that contains the default value.
+* **IsExternalId**: bool: A Boolean value that specifies whether the property ID comes from an external data store.
+* **IsRequiredInEntity**: bool: A Boolean value that specifies whether the property is required.
+* **IsStoredExternally**: bool: A Boolean value that specifies whether the property is stored externally.
+* **IsTimeSeries**: bool: A Boolean value that specifies whether the property consists of time series data.
+
+## PropertyDefinitionConfiguration
+### Properties
+### Additional Properties
+* **Additional Properties Type**: string
+
+## PropertyGroup
+### Properties
+* **GroupType**: string: The type of property group.
+* **PropertyNames**: string[]: The list of property names in the property group.
+
+## PropertyGroup
+### Properties
+* **GroupType**: string: The type of property group.
+* **PropertyNames**: string[]: The list of property names in the property group.
+
+## Relationship
+### Properties
+* **RelationshipType**: string: The type of the relationship.
+* **TargetComponentTypeId**: string: The ID of the target component type associated with this relationship.
+
+## Relationship
+### Properties
+* **RelationshipType**: string: The type of the relationship.
+* **TargetComponentTypeId**: string: The ID of the target component type associated with this relationship.
 
 ## S3DestinationConfiguration
 ### Properties
@@ -175,12 +370,18 @@
 
 ## Scene_GeneratedSceneMetadata
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Scene_SceneMetadata
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Scene_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## SourceConfiguration
 ### Properties
@@ -198,7 +399,11 @@
 
 ## SyncJob_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Workspace_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 

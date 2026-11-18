@@ -93,7 +93,7 @@
 * **CertificateExport**: string: Specifies whether the certificate can be exported. ENABLED allows the certificate to be exported, DISABLED prevents export.
 * **CertificateTransparencyLoggingPreference**: string: You can opt out of certificate transparency logging by specifying the DISABLED option. Opt in by specifying ENABLED.
 * **DomainName**: string (Required): The fully qualified domain name (FQDN), such as www.example.com, with which you want to secure an ACM certificate
-* **DomainValidationOptions**: [DomainValidationOption](#domainvalidationoption)[] (WriteOnly): Domain information that domain name registrars use to verify your identity.
+* **DomainValidationOptions**: [DomainValidationOption](#domainvalidationoption)[]: Domain information that domain name registrars use to verify your identity.
 * **KeyAlgorithm**: string: Specifies the algorithm of the public and private key pair that your certificate uses to encrypt data.
 * **SubjectAlternativeNames**: string[]: Additional FQDNs to be included in the Subject Alternative Name extension of the ACM certificate.
 * **Tags**: [Tag](#tag)[]: Key-value pairs that can identify the certificate.
@@ -117,7 +117,7 @@
 ## DomainValidationOption
 ### Properties
 * **DomainName**: string
-* **HostedZoneId**: string
+* **HostedZoneId**: string (WriteOnly)
 * **ValidationDomain**: string
 
 ## Expiration

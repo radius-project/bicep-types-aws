@@ -118,6 +118,8 @@
 
 ## SqsNotificationConfiguration
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Subscriber_SubscriberIdentity
 ### Properties

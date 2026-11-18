@@ -94,9 +94,13 @@
 
 ## SamplingRule_Attributes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## SamplingRule_Attributes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## SamplingRuleRecord
 ### Properties

@@ -5,28 +5,28 @@
     "properties": {
       "MetricDimensions": {
         "type": {
-          "$ref": "#/4"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": "The metric dimensions, as name/value pairs that are part of the identity of a metric."
       },
       "MetricName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "The name of the metric."
       },
       "MetricNamespace": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "The namespace of the metric."
       },
       "MetricStatisticRecommendation": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "The metric statistic that AWS recommends you use when determining quota usage."
@@ -39,21 +39,21 @@
     "properties": {
       "ContextId": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "The resource, or resources, to which the quota applies. Either an Amazon Resource Name (ARN) for a specific resource, or '*' for the default value that applies to all resources without a specific applied value."
       },
       "ContextScope": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "The scope to which the quota value is applied. If RESOURCE, the quota value is applied to each resource in the account. If ACCOUNT, the quota value is applied to the account."
       },
       "ContextScopeType": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "The resource type to which the quota can be applied."
@@ -66,7 +66,7 @@
     "properties": {
       "PeriodUnit": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "The time unit."
@@ -86,14 +86,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "A string that contains a tag key."
       },
       "Value": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 1,
         "description": "A string that contains an optional tag value."
@@ -101,12 +101,15 @@
     }
   },
   {
-    "$type": "ObjectType",
-    "name": "Quota_MetricDimensions",
-    "properties": {}
+    "$type": "StringType"
   },
   {
-    "$type": "StringType"
+    "$type": "ObjectType",
+    "name": "Quota_MetricDimensions",
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/4"
+    }
   },
   {
     "$type": "IntegerType"
@@ -137,7 +140,7 @@
       },
       "Description": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 2,
         "description": "The quota description."
@@ -157,21 +160,21 @@
       },
       "QuotaAppliedAtLevel": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 2,
         "description": "The level at which the applied quota value is applied."
       },
       "QuotaArn": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 16,
         "description": "The Amazon Resource Name (ARN) of the quota."
       },
       "QuotaCode": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "The quota identifier. To find the quota code for a specific quota, use the ListServiceQuotas operation."
@@ -184,21 +187,21 @@
       },
       "QuotaName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 2,
         "description": "The quota name."
       },
       "ServiceCode": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "The service identifier. To find the service code value for an AWS service, use the ListServices operation."
       },
       "ServiceName": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 2,
         "description": "The service name."
@@ -212,7 +215,7 @@
       },
       "Unit": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 2,
         "description": "The unit of measurement for the quota value."
@@ -238,14 +241,14 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/4"
         },
         "flags": 17,
         "description": "the resource alias"

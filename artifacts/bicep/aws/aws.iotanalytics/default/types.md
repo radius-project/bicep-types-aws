@@ -262,6 +262,8 @@
 
 ## Pipeline_Attributes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## QueryAction
 ### Properties

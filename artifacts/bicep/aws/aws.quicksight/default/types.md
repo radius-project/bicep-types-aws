@@ -199,6 +199,10 @@
 ## ActionConnector_AuthenticationMetadata
 ### Properties
 
+## AdditionalNotes
+### Properties
+* **Text**: string
+
 ## AdHocFilteringOption
 ### Properties
 * **AvailabilityStatus**: string
@@ -207,6 +211,19 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag.
 * **Value**: string (Required): The value for the tag.
+
+## AggregateOperation
+### Properties
+* **Aggregations**: [Aggregation](#aggregation)[] (Required)
+* **Alias**: string (Required)
+* **GroupByColumnNames**: string[]
+* **Source**: [TransformOperationSource](#transformoperationsource) (Required)
+
+## Aggregation
+### Properties
+* **AggregationFunction**: [DataPrepAggregationFunction](#dataprepaggregationfunction) (Required)
+* **NewColumnId**: string (Required)
+* **NewColumnName**: string (Required)
 
 ## AggregationFunction
 ### Properties
@@ -231,6 +248,8 @@
 
 ## AggregationFunctionParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## AggregationSortConfiguration
 ### Properties
@@ -323,6 +342,18 @@
 ### Properties
 * **AnchorOption**: string
 * **ParameterName**: string
+
+## AppendedColumn
+### Properties
+* **ColumnName**: string (Required)
+* **NewColumnId**: string (Required)
+
+## AppendOperation
+### Properties
+* **Alias**: string (Required)
+* **AppendedColumns**: [AppendedColumn](#appendedcolumn)[] (Required)
+* **FirstSource**: [TransformOperationSource](#transformoperationsource)
+* **SecondSource**: [TransformOperationSource](#transformoperationsource)
 
 ## ApplicableTo
 ### Properties
@@ -830,7 +861,7 @@ At least one asset type is required.
 * **AwsAccountId**: string (Identifier)
 * **CustomInstructions**: [CustomInstructions](#custominstructions)
 * **DataSetRelations**: [DataSetRelation](#datasetrelation)[]
-* **DataSets**: [DataSetReference](#datasetreference)[] (WriteOnly)
+* **DataSets**: [DataSetReference](#datasetreference)[]
 * **Description**: string
 * **FolderArns**: string[] (WriteOnly)
 * **Name**: string
@@ -1522,6 +1553,14 @@ At least one asset type is required.
 * **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
+## CalculatedColumn
+### Properties
+* **ColumnId**: string (Required): <p>A unique ID to identify a calculated column. During a dataset update, if the column ID
+            of a calculated column matches that of an existing calculated column, Amazon QuickSight
+            preserves the existing calculated column.</p>
+* **ColumnName**: string (Required): <p>Column name.</p>
+* **Expression**: string (Required): <p>An expression that defines the calculated column.</p>
+
 ## CalculatedField
 ### Properties
 * **DataSetIdentifier**: string
@@ -2043,6 +2082,20 @@ At least one asset type is required.
 * **ColumnToMatch**: [ColumnIdentifier](#columnidentifier)
 * **SourceSheetControlId**: string
 
+## CastColumnTypeOperation
+### Properties
+* **ColumnName**: string (Required): <p>Column name.</p>
+* **Format**: string: <p>When casting a column from string to datetime type, you can supply a string in a
+            format supported by Amazon QuickSight to denote the source data format.</p>
+* **NewColumnType**: string (Required)
+* **SubType**: string
+
+## CastColumnTypesOperation
+### Properties
+* **Alias**: string (Required)
+* **CastColumnTypeOperations**: [CastColumnTypeOperation](#castcolumntypeoperation)[] (Required)
+* **Source**: [TransformOperationSource](#transformoperationsource) (Required)
+
 ## CategoricalDimensionField
 ### Properties
 * **Column**: [ColumnIdentifier](#columnidentifier) (Required)
@@ -2262,6 +2315,10 @@ At least one asset type is required.
 * **FormatConfiguration**: [FormatConfiguration](#formatconfiguration)
 * **Role**: string
 
+## ColumnDescription
+### Properties
+* **Text**: string: <p>The text of a description for a column.</p>
+
 ## ColumnGroup
 ### Properties
 * **GeoSpatialColumnGroup**: [GeoSpatialColumnGroup](#geospatialcolumngroup)
@@ -2322,11 +2379,15 @@ At least one asset type is required.
 * **GeographicRole**: string: <p>The geographic role of the column schema.</p>
 * **Name**: string: <p>The name of the column schema.</p>
 
-## ColumnSort
+## ColumnSemanticProperty
 ### Properties
-* **AggregationFunction**: [AggregationFunction](#aggregationfunction)
-* **Direction**: string (Required)
-* **SortBy**: [ColumnIdentifier](#columnidentifier) (Required)
+* **AdditionalNotes**: [AdditionalNotes](#additionalnotes)
+* **Description**: [ColumnDescription](#columndescription)
+* **SemanticType**: [ColumnSemanticType](#columnsemantictype)
+
+## ColumnSemanticType
+### Properties
+* **GeographicalRole**: string
 
 ## ColumnSort
 ### Properties
@@ -2339,6 +2400,17 @@ At least one asset type is required.
 * **AggregationFunction**: [AggregationFunction](#aggregationfunction)
 * **Direction**: string (Required)
 * **SortBy**: [ColumnIdentifier](#columnidentifier) (Required)
+
+## ColumnSort
+### Properties
+* **AggregationFunction**: [AggregationFunction](#aggregationfunction)
+* **Direction**: string (Required)
+* **SortBy**: [ColumnIdentifier](#columnidentifier) (Required)
+
+## ColumnTag
+### Properties
+* **ColumnDescription**: [ColumnDescription](#columndescription)
+* **ColumnGeographicRole**: string
 
 ## ColumnTooltipItem
 ### Properties
@@ -2363,6 +2435,11 @@ At least one asset type is required.
 * **Label**: string
 * **TooltipTarget**: string
 * **Visibility**: string
+
+## ColumnToUnpivot
+### Properties
+* **ColumnName**: string
+* **NewValue**: string
 
 ## ComboChartAggregatedFieldWells
 ### Properties
@@ -2772,6 +2849,12 @@ At least one asset type is required.
 * **ContributorDimensions**: [ColumnIdentifier](#columnidentifier)[] (Required)
 * **MeasureFieldId**: string (Required)
 
+## CreateColumnsOperation
+### Properties
+* **Alias**: string
+* **Columns**: [CalculatedColumn](#calculatedcolumn)[] (Required): <p>Calculated columns to create.</p>
+* **Source**: [TransformOperationSource](#transformoperationsource)
+
 ## CredentialPair
 ### Properties
 * **AlternateDataSourceParameters**: [DataSourceParameters](#datasourceparameters)[]: <p>A set of alternate data source parameters that you want to share for these
@@ -3065,6 +3148,13 @@ At least one asset type is required.
 * **ModelProfileId**: string (Required): The identifier of the model profile.
 * **QbsAwsAccountId**: string (Required): The QBS AWS account identifier.
 * **SubscriptionId**: string (Required): The subscription identifier.
+
+## CustomSql
+### Properties
+* **Columns**: [InputColumn](#inputcolumn)[] (Required): <p>The column schema from the SQL query result set.</p>
+* **DataSourceArn**: string (Required): <p>The Amazon Resource Name (ARN) of the data source.</p>
+* **Name**: string (Required): <p>A display name for the SQL query result.</p>
+* **SqlQuery**: string (Required): <p>The SQL query.</p>
 
 ## CustomValuesConfiguration
 ### Properties
@@ -3376,21 +3466,70 @@ At least one asset type is required.
 ### Properties
 * **AvailabilityStatus**: string
 
+## DataPrepAggregationFunction
+### Properties
+* **ListAggregation**: [DataPrepListAggregationFunction](#datapreplistaggregationfunction)
+* **PercentileAggregation**: [DataPrepPercentileAggregationFunction](#datapreppercentileaggregationfunction)
+* **SimpleAggregation**: [DataPrepSimpleAggregationFunction](#dataprepsimpleaggregationfunction)
+
 ## DataPrepConfiguration
 ### Properties
 * **DestinationTableMap**: [DestinationTableMap](#destinationtablemap) (Required)
 * **SourceTableMap**: [SourceTableMap](#sourcetablemap) (Required)
 * **TransformStepMap**: [TransformStepMap](#transformstepmap) (Required)
 
+## DataPrepListAggregationFunction
+### Properties
+* **Distinct**: bool (Required)
+* **InputColumnName**: string
+* **Separator**: string (Required)
+
+## DataPrepPercentileAggregationFunction
+### Properties
+* **InputColumnName**: string
+* **PercentileValue**: int (Required)
+
+## DataPrepSimpleAggregationFunction
+### Properties
+* **FunctionType**: string (Required)
+* **InputColumnName**: string
+
 ## DataQAEnabledOption
 ### Properties
 * **AvailabilityStatus**: string
+
+## DataSetColumnIdMapping
+### Properties
+* **SourceColumnId**: string (Required)
+* **TargetColumnId**: string (Required)
 
 ## DataSetConfiguration
 ### Properties
 * **ColumnGroupSchemaList**: [ColumnGroupSchema](#columngroupschema)[]: <p>A structure containing the list of column group schemas.</p>
 * **DataSetSchema**: [DataSetSchema](#datasetschema)
 * **Placeholder**: string: <p>Placeholder.</p>
+
+## DataSetDateComparisonFilterCondition
+### Properties
+* **Operator**: string (Required)
+* **Value**: [DataSetDateFilterValue](#datasetdatefiltervalue)
+
+## DataSetDateFilterCondition
+### Properties
+* **ColumnName**: string
+* **ComparisonFilterCondition**: [DataSetDateComparisonFilterCondition](#datasetdatecomparisonfiltercondition)
+* **RangeFilterCondition**: [DataSetDateRangeFilterCondition](#datasetdaterangefiltercondition)
+
+## DataSetDateFilterValue
+### Properties
+* **StaticValue**: string
+
+## DataSetDateRangeFilterCondition
+### Properties
+* **IncludeMaximum**: bool
+* **IncludeMinimum**: bool
+* **RangeMaximum**: [DataSetDateFilterValue](#datasetdatefiltervalue)
+* **RangeMinimum**: [DataSetDateFilterValue](#datasetdatefiltervalue)
 
 ## DataSetIdentifierDeclaration
 ### Properties
@@ -3412,6 +3551,28 @@ At least one asset type is required.
 * **DatasetName**: string
 * **Filters**: [TopicFilter](#topicfilter)[]
 * **NamedEntities**: [TopicNamedEntity](#topicnamedentity)[]
+
+## DataSetNumericComparisonFilterCondition
+### Properties
+* **Operator**: string (Required)
+* **Value**: [DataSetNumericFilterValue](#datasetnumericfiltervalue)
+
+## DataSetNumericFilterCondition
+### Properties
+* **ColumnName**: string
+* **ComparisonFilterCondition**: [DataSetNumericComparisonFilterCondition](#datasetnumericcomparisonfiltercondition)
+* **RangeFilterCondition**: [DataSetNumericRangeFilterCondition](#datasetnumericrangefiltercondition)
+
+## DataSetNumericFilterValue
+### Properties
+* **StaticValue**: int
+
+## DataSetNumericRangeFilterCondition
+### Properties
+* **IncludeMaximum**: bool
+* **IncludeMinimum**: bool
+* **RangeMaximum**: [DataSetNumericFilterValue](#datasetnumericfiltervalue)
+* **RangeMinimum**: [DataSetNumericFilterValue](#datasetnumericfiltervalue)
 
 ## DatasetParameter
 ### Properties
@@ -3438,7 +3599,7 @@ At least one asset type is required.
 ## DataSetReference
 ### Properties
 * **DataSetArn**: string (Required)
-* **DataSetName**: string
+* **DataSetName**: string (WriteOnly)
 
 ## DataSetRefreshProperties
 ### Properties
@@ -3467,6 +3628,30 @@ At least one asset type is required.
 ### Properties
 * **CustomInstructions**: [CustomInstruction](#custominstruction)[]
 * **Description**: [DataSetSemanticDescription](#datasetsemanticdescription)
+
+## DataSetStringComparisonFilterCondition
+### Properties
+* **Operator**: string (Required)
+* **Value**: [DataSetStringFilterValue](#datasetstringfiltervalue)
+
+## DataSetStringFilterCondition
+### Properties
+* **ColumnName**: string
+* **ComparisonFilterCondition**: [DataSetStringComparisonFilterCondition](#datasetstringcomparisonfiltercondition)
+* **ListFilterCondition**: [DataSetStringListFilterCondition](#datasetstringlistfiltercondition)
+
+## DataSetStringFilterValue
+### Properties
+* **StaticValue**: string
+
+## DataSetStringListFilterCondition
+### Properties
+* **Operator**: string (Required)
+* **Values**: [DataSetStringListFilterValue](#datasetstringlistfiltervalue)
+
+## DataSetStringListFilterValue
+### Properties
+* **StaticValues**: string[]
 
 ## DataSetUsageConfiguration
 ### Properties
@@ -4111,8 +4296,19 @@ At least one asset type is required.
 * **SourceField**: string
 * **SourceParameterName**: string
 
+## DestinationTable
+### Properties
+* **Alias**: string (Required)
+* **Source**: [DestinationTableSource](#destinationtablesource) (Required)
+
 ## DestinationTableMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [DestinationTable](#destinationtable)
+
+## DestinationTableSource
+### Properties
+* **TransformOperationId**: string (Required)
 
 ## DimensionField
 ### Properties
@@ -4331,8 +4527,15 @@ At least one asset type is required.
 * **TooltipFields**: [TooltipItem](#tooltipitem)[]
 * **TooltipTitleType**: string
 
+## FieldFolder
+### Properties
+* **Columns**: string[]: <p>A folder has a list of columns. A column can only be in one folder.</p>
+* **Description**: string: <p>The description for a field folder.</p>
+
 ## FieldFolderMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [FieldFolder](#fieldfolder)
 
 ## FieldLabelType
 ### Properties
@@ -4778,6 +4981,14 @@ At least one asset type is required.
 * **Title**: string (Required)
 * **Type**: string
 
+## FilterOperation
+### Properties
+* **ConditionExpression**: string: <p>An expression that must evaluate to a Boolean value. Rows for which the expression
+            evaluates to true are kept in the dataset.</p>
+* **DateFilterCondition**: [DataSetDateFilterCondition](#datasetdatefiltercondition)
+* **NumericFilterCondition**: [DataSetNumericFilterCondition](#datasetnumericfiltercondition)
+* **StringFilterCondition**: [DataSetStringFilterCondition](#datasetstringfiltercondition)
+
 ## FilterOperationSelectedFieldsConfiguration
 ### Properties
 * **SelectedColumns**: [ColumnIdentifier](#columnidentifier)[]: <p>The selected columns of a dataset.</p>
@@ -4891,6 +5102,12 @@ At least one asset type is required.
 * **StepSize**: int (Required)
 * **Title**: string (Required)
 * **Type**: string
+
+## FiltersOperation
+### Properties
+* **Alias**: string (Required)
+* **FilterOperations**: [FilterOperation](#filteroperation)[] (Required)
+* **Source**: [TransformOperationSource](#transformoperationsource) (Required)
 
 ## FilterTextAreaControl
 ### Properties
@@ -4939,6 +5156,8 @@ At least one asset type is required.
 
 ## Flow_FlowDefinition
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Font
 ### Properties
@@ -6727,6 +6946,16 @@ At least one asset type is required.
 * **Source**: [StaticFileSource](#staticfilesource)
 * **StaticFileId**: string (Required)
 
+## ImportTableOperation
+### Properties
+* **Alias**: string (Required)
+* **Source**: [ImportTableOperationSource](#importtableoperationsource) (Required)
+
+## ImportTableOperationSource
+### Properties
+* **ColumnIdMappings**: [DataSetColumnIdMapping](#datasetcolumnidmapping)[]
+* **SourceTableId**: string (Required)
+
 ## IncrementalRefresh
 ### Properties
 * **LookbackWindow**: [LookbackWindow](#lookbackwindow) (Required)
@@ -6754,6 +6983,13 @@ At least one asset type is required.
 ## InnerFilter
 ### Properties
 * **CategoryInnerFilter**: [CategoryInnerFilter](#categoryinnerfilter)
+
+## InputColumn
+### Properties
+* **Id**: string
+* **Name**: string (Required): <p>The name of this column in the underlying data source.</p>
+* **SubType**: string
+* **Type**: string (Required)
 
 ## InsightConfiguration
 ### Properties
@@ -6896,6 +7132,34 @@ At least one asset type is required.
 * **ItemsLimit**: int
 * **OtherCategories**: string
 
+## JoinInstruction
+### Properties
+* **LeftJoinKeyProperties**: [JoinKeyProperties](#joinkeyproperties)
+* **LeftOperand**: string (Required): <p>The operand on the left side of a join.</p>
+* **OnClause**: string (Required): <p>The join instructions provided in the <code>ON</code> clause of a join.</p>
+* **RightJoinKeyProperties**: [JoinKeyProperties](#joinkeyproperties)
+* **RightOperand**: string (Required): <p>The operand on the right side of a join.</p>
+* **Type**: string (Required)
+
+## JoinKeyProperties
+### Properties
+* **UniqueKey**: bool: <p>A value that indicates that a row in a table is uniquely identified by the columns in
+            a join key. This is used by Amazon QuickSight to optimize query performance.</p>
+
+## JoinOperandProperties
+### Properties
+* **OutputColumnNameOverrides**: [OutputColumnNameOverride](#outputcolumnnameoverride)[] (Required)
+
+## JoinOperation
+### Properties
+* **Alias**: string (Required)
+* **LeftOperand**: [TransformOperationSource](#transformoperationsource) (Required)
+* **LeftOperandProperties**: [JoinOperandProperties](#joinoperandproperties)
+* **OnClause**: string (Required)
+* **RightOperand**: [TransformOperationSource](#transformoperationsource) (Required)
+* **RightOperandProperties**: [JoinOperandProperties](#joinoperandproperties)
+* **Type**: string (Required)
+
 ## KbTemplateConfiguration
 ### Properties
 * **Template**: [KnowledgeBase_Template](#knowledgebasetemplate)
@@ -6908,6 +7172,8 @@ At least one asset type is required.
 
 ## KnowledgeBase_Template
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## KnowledgeBaseConfiguration
 ### Properties
@@ -7646,8 +7912,22 @@ At least one asset type is required.
 ### Properties
 * **TargetSheetId**: string (Required)
 
+## LogicalTable
+### Properties
+* **Alias**: string (Required): <p>A display name for the logical table.</p>
+* **DataTransforms**: [TransformOperation](#transformoperation)[]: <p>Transform operations that act on this logical table. For this structure to be valid, only one of the attributes can be non-null. </p>
+* **Source**: [LogicalTableSource](#logicaltablesource) (Required)
+
 ## LogicalTableMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [LogicalTable](#logicaltable)
+
+## LogicalTableSource
+### Properties
+* **DataSetArn**: string: <p>The Amazon Resource Number (ARN) of the parent dataset.</p>
+* **JoinInstruction**: [JoinInstruction](#joininstruction)
+* **PhysicalTableId**: string: <p>Physical table ID.</p>
 
 ## LongFormatText
 ### Properties
@@ -7875,6 +8155,13 @@ At least one asset type is required.
 * **NetworkInterfaceId**: string: <p>The network interface ID.</p>
 * **Status**: string
 * **SubnetId**: string: <p>The subnet ID associated with the network interface.</p>
+
+## NewDefaultValues
+### Properties
+* **DateTimeStaticValues**: string[]: <p>A list of static default values for a given date time parameter.</p>
+* **DecimalStaticValues**: int[]: <p>A list of static default values for a given decimal parameter.</p>
+* **IntegerStaticValues**: int[]: <p>A list of static default values for a given integer parameter.</p>
+* **StringStaticValues**: string[]: <p>A list of static default values for a given string parameter.</p>
 
 ## NullValueFormatConfiguration
 ### Properties
@@ -8168,6 +8455,17 @@ At least one asset type is required.
 * **SubType**: string
 * **Type**: string
 
+## OutputColumnNameOverride
+### Properties
+* **OutputColumnName**: string (Required)
+* **SourceColumnName**: string
+
+## OverrideDatasetParameterOperation
+### Properties
+* **NewDefaultValues**: [NewDefaultValues](#newdefaultvalues)
+* **NewParameterName**: string: <p>The new name for the parameter.</p>
+* **ParameterName**: string (Required): <p>The name of the parameter to be overridden with different values.</p>
+
 ## PaginationConfiguration
 ### Properties
 * **PageNumber**: int (Required)
@@ -8472,6 +8770,11 @@ At least one asset type is required.
 * **ParameterControlId**: string (Required)
 * **SourceParameterName**: string (Required)
 * **Title**: string (Required)
+
+## ParentDataSet
+### Properties
+* **DataSetArn**: string (Required)
+* **InputColumns**: [InputColumn](#inputcolumn)[] (Required)
 
 ## PercentageDisplayFormatConfiguration
 ### Properties
@@ -8581,8 +8884,17 @@ At least one asset type is required.
 * **Actions**: string[] (Required)
 * **Principal**: string (Required)
 
+## PhysicalTable
+### Properties
+* **CustomSql**: [CustomSql](#customsql)
+* **RelationalTable**: [RelationalTable](#relationaltable)
+* **S3Source**: [S3Source](#s3source)
+* **SaaSTable**: [SaaSTable](#saastable)
+
 ## PhysicalTableMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [PhysicalTable](#physicaltable)
 
 ## PieChartAggregatedFieldWells
 ### Properties
@@ -8710,10 +9022,16 @@ At least one asset type is required.
 * **VisualContentAltText**: string
 * **VisualId**: string (Required)
 
-## PivotFieldSortOptions
+## PivotConfiguration
 ### Properties
-* **FieldId**: string (Required)
-* **SortBy**: [PivotTableSortBy](#pivottablesortby) (Required)
+* **LabelColumnName**: string
+* **PivotedLabels**: [PivotedLabel](#pivotedlabel)[] (Required)
+
+## PivotedLabel
+### Properties
+* **LabelName**: string (Required)
+* **NewColumnId**: string (Required)
+* **NewColumnName**: string (Required)
 
 ## PivotFieldSortOptions
 ### Properties
@@ -8724,6 +9042,19 @@ At least one asset type is required.
 ### Properties
 * **FieldId**: string (Required)
 * **SortBy**: [PivotTableSortBy](#pivottablesortby) (Required)
+
+## PivotFieldSortOptions
+### Properties
+* **FieldId**: string (Required)
+* **SortBy**: [PivotTableSortBy](#pivottablesortby) (Required)
+
+## PivotOperation
+### Properties
+* **Alias**: string (Required)
+* **GroupByColumnNames**: string[]
+* **PivotConfiguration**: [PivotConfiguration](#pivotconfiguration) (Required)
+* **Source**: [TransformOperationSource](#transformoperationsource) (Required)
+* **ValueColumnConfiguration**: [ValueColumnConfiguration](#valuecolumnconfiguration) (Required)
 
 ## PivotTableAggregatedFieldWells
 ### Properties
@@ -9289,9 +9620,10 @@ At least one asset type is required.
 * **Host**: string (Required): <p>Host.</p>
 * **Port**: int (Required): <p>Port.</p>
 
-## ProgressBarOptions
+## ProfileLimitValue
 ### Properties
-* **Visibility**: string
+* **MaxValue**: int (Required)
+* **Unit**: string (Required)
 
 ## ProgressBarOptions
 ### Properties
@@ -9300,6 +9632,16 @@ At least one asset type is required.
 ## ProgressBarOptions
 ### Properties
 * **Visibility**: string
+
+## ProgressBarOptions
+### Properties
+* **Visibility**: string
+
+## ProjectOperation
+### Properties
+* **Alias**: string
+* **ProjectedColumns**: string[]: <p>Projected columns.</p>
+* **Source**: [TransformOperationSource](#transformoperationsource)
 
 ## ProviderConfig
 ### Properties
@@ -9689,6 +10031,14 @@ At least one asset type is required.
 * **ScheduleId**: string: <p>An unique identifier for the refresh schedule.</p>
 * **StartAfterDateTime**: string: <p>The date time after which refresh is to be scheduled</p>
 
+## RelationalTable
+### Properties
+* **Catalog**: string: <p>The catalog associated with a table.</p>
+* **DataSourceArn**: string (Required): <p>The Amazon Resource Name (ARN) for the data source.</p>
+* **InputColumns**: [InputColumn](#inputcolumn)[] (Required): <p>The column schema of the table.</p>
+* **Name**: string (Required): <p>The name of the relational table.</p>
+* **Schema**: string: <p>The schema name. This name applies to certain relational database engines.</p>
+
 ## RelativeDatesFilter
 ### Properties
 * **AnchorDateConfiguration**: [AnchorDateConfiguration](#anchordateconfiguration) (Required)
@@ -9748,9 +10098,22 @@ At least one asset type is required.
 * **DateTimeFormat**: string
 * **InfoIconLabelOptions**: [SheetControlInfoIconLabelOptions](#sheetcontrolinfoiconlabeloptions)
 * **TitleOptions**: [LabelOptions](#labeloptions)
+
+## RenameColumnOperation
+### Properties
+* **ColumnName**: string (Required): <p>The name of the column to be renamed.</p>
+* **NewColumnName**: string (Required): <p>The new name for the column.</p>
+
+## RenameColumnsOperation
+### Properties
+* **Alias**: string (Required)
+* **RenameColumnOperations**: [RenameColumnOperation](#renamecolumnoperation)[] (Required)
+* **Source**: [TransformOperationSource](#transformoperationsource) (Required)
 
 ## ResourceLimitsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ProfileLimitValue](#profilelimitvalue)
 
 ## ResourcePermission
 ### Properties
@@ -9968,6 +10331,11 @@ At least one asset type is required.
 * **Status**: string
 * **UsePrimaryBackgroundColor**: string
 
+## RowLevelPermissionConfiguration
+### Properties
+* **RowLevelPermissionDataSet**: [RowLevelPermissionDataSet](#rowlevelpermissiondataset)
+* **TagConfiguration**: [RowLevelPermissionTagConfiguration](#rowlevelpermissiontagconfiguration)
+
 ## RowLevelPermissionDataSet
 ### Properties
 * **Arn**: string (Required): <p>The Amazon Resource Name (ARN) of the dataset that contains permissions for RLS.</p>
@@ -9994,9 +10362,24 @@ At least one asset type is required.
 * **ManifestFileLocation**: [ManifestFileLocation](#manifestfilelocation) (Required)
 * **RoleArn**: string: <p>Use the <code>RoleArn</code> structure to override an account-wide role for a specific S3 data source. For example, say an account administrator has turned off all S3 access with an account-wide role. The administrator can then use <code>RoleArn</code> to bypass the account-wide role and allow S3 access for the single S3 data source that is specified in the structure, even if the account-wide role forbidding S3 access is still active.</p>
 
+## S3Source
+### Properties
+* **DataSourceArn**: string (Required): <p>The Amazon Resource Name (ARN) for the data source.</p>
+* **InputColumns**: [InputColumn](#inputcolumn)[] (Required): <p>A physical table type for an S3 data source.</p>
+         <note>
+            <p>For files that aren't JSON, only <code>STRING</code> data types are supported in input columns.</p>
+         </note>
+* **UploadSettings**: [UploadSettings](#uploadsettings)
+
 ## S3TablesParameters
 ### Properties
 * **TableBucketArn**: string
+
+## SaaSTable
+### Properties
+* **DataSourceArn**: string (Required)
+* **InputColumns**: [InputColumn](#inputcolumn)[] (Required)
+* **TablePath**: [TablePathElement](#tablepathelement)[] (Required)
 
 ## SameSheetTargetVisualConfiguration
 ### Properties
@@ -10408,8 +10791,17 @@ At least one asset type is required.
 * **SemanticMetadata**: [DataSetSemanticMetadata](#datasetsemanticmetadata)[]
 * **TableMap**: [SemanticTableMap](#semantictablemap)
 
+## SemanticTable
+### Properties
+* **Alias**: string (Required)
+* **DestinationTableId**: string (Required)
+* **RowLevelPermissionConfiguration**: [RowLevelPermissionConfiguration](#rowlevelpermissionconfiguration)
+* **SemanticMetadata**: [TableSemanticMetadata](#tablesemanticmetadata)
+
 ## SemanticTableMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [SemanticTable](#semantictable)
 
 ## SemanticType
 ### Properties
@@ -10462,6 +10854,11 @@ At least one asset type is required.
 ## ShapeConditionalFormat
 ### Properties
 * **BackgroundColor**: [ConditionalFormattingColor](#conditionalformattingcolor) (Required)
+
+## SharedColumnSemanticMetadata
+### Properties
+* **ColumnNames**: string[]
+* **ColumnProperties**: [ColumnSemanticProperty](#columnsemanticproperty)[] (Required)
 
 ## Sheet
 ### Properties
@@ -10869,8 +11266,15 @@ At least one asset type is required.
 * **OAuthParameters**: [OAuthParameters](#oauthparameters)
 * **Warehouse**: string (Required): <p>Warehouse.</p>
 
+## SourceTable
+### Properties
+* **DataSet**: [ParentDataSet](#parentdataset)
+* **PhysicalTableId**: string
+
 ## SourceTableMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [SourceTable](#sourcetable)
 
 ## SpaceResource
 ### Properties
@@ -11510,6 +11914,11 @@ At least one asset type is required.
 * **OverflowColumnHeaderVisibility**: string
 * **VerticalOverflowVisibility**: string
 
+## TablePathElement
+### Properties
+* **Id**: string
+* **Name**: string
+
 ## TablePinnedFieldOptions
 ### Properties
 * **PinnedLeftFields**: string[]
@@ -11536,6 +11945,10 @@ At least one asset type is required.
 ### Properties
 * **BackgroundColor**: [ConditionalFormattingColor](#conditionalformattingcolor)
 * **TextColor**: [ConditionalFormattingColor](#conditionalformattingcolor)
+
+## TableSemanticMetadata
+### Properties
+* **ColumnMetadata**: [SharedColumnSemanticMetadata](#sharedcolumnsemanticmetadata)[]
 
 ## TableSideBorderOptions
 ### Properties
@@ -11712,6 +12125,14 @@ At least one asset type is required.
 ### Properties
 * **Key**: string (Required): <p>Tag key.</p>
 * **Value**: string (Required): <p>Tag value.</p>
+
+## TagColumnOperation
+### Properties
+* **ColumnName**: string (Required): <p>The column that this operation acts on.</p>
+* **Tags**: [ColumnTag](#columntag)[] (Required): <p>The dataset column tag, currently only used for geospatial type tagging.</p>
+         <note>
+            <p>This is not tags for the Amazon Web Services tagging feature.</p>
+         </note>
 
 ## TemplateError
 ### Properties
@@ -12362,8 +12783,40 @@ At least one asset type is required.
 * **TotalCellStyle**: [TableCellStyle](#tablecellstyle)
 * **TotalsVisibility**: string
 
+## TransformOperation
+### Properties
+* **CastColumnTypeOperation**: [CastColumnTypeOperation](#castcolumntypeoperation)
+* **CreateColumnsOperation**: [CreateColumnsOperation](#createcolumnsoperation)
+* **FilterOperation**: [FilterOperation](#filteroperation)
+* **OverrideDatasetParameterOperation**: [OverrideDatasetParameterOperation](#overridedatasetparameteroperation)
+* **ProjectOperation**: [ProjectOperation](#projectoperation)
+* **RenameColumnOperation**: [RenameColumnOperation](#renamecolumnoperation)
+* **TagColumnOperation**: [TagColumnOperation](#tagcolumnoperation)
+* **UntagColumnOperation**: [UntagColumnOperation](#untagcolumnoperation)
+
+## TransformOperationSource
+### Properties
+* **ColumnIdMappings**: [DataSetColumnIdMapping](#datasetcolumnidmapping)[]
+* **TransformOperationId**: string (Required)
+
+## TransformStep
+### Properties
+* **AggregateStep**: [AggregateOperation](#aggregateoperation)
+* **AppendStep**: [AppendOperation](#appendoperation)
+* **CastColumnTypesStep**: [CastColumnTypesOperation](#castcolumntypesoperation)
+* **CreateColumnsStep**: [CreateColumnsOperation](#createcolumnsoperation)
+* **FiltersStep**: [FiltersOperation](#filtersoperation)
+* **ImportTableStep**: [ImportTableOperation](#importtableoperation)
+* **JoinStep**: [JoinOperation](#joinoperation)
+* **PivotStep**: [PivotOperation](#pivotoperation)
+* **ProjectStep**: [ProjectOperation](#projectoperation)
+* **RenameColumnsStep**: [RenameColumnsOperation](#renamecolumnsoperation)
+* **UnpivotStep**: [UnpivotOperation](#unpivotoperation)
+
 ## TransformStepMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [TransformStep](#transformstep)
 
 ## TransposedTableOption
 ### Properties
@@ -12517,6 +12970,8 @@ At least one asset type is required.
 
 ## TypeParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Typography
 ### Properties
@@ -12598,13 +13053,32 @@ At least one asset type is required.
 * **ComputationId**: string (Required)
 * **Name**: string
 
+## UnpivotOperation
+### Properties
+* **Alias**: string (Required)
+* **ColumnsToUnpivot**: [ColumnToUnpivot](#columntounpivot)[] (Required)
+* **Source**: [TransformOperationSource](#transformoperationsource) (Required)
+* **UnpivotedLabelColumnId**: string (Required)
+* **UnpivotedLabelColumnName**: string (Required)
+* **UnpivotedValueColumnId**: string (Required)
+* **UnpivotedValueColumnName**: string (Required)
+
+## UntagColumnOperation
+### Properties
+* **ColumnName**: string (Required): <p>The column that this operation acts on.</p>
+* **TagNames**: string[] (Required): <p>The column tags to remove from this column.</p>
+
 ## UploadedDocumentMetadata
 ### Properties
 * **Name**: string
 
-## ValidationStrategy
+## UploadSettings
 ### Properties
-* **Mode**: string (Required)
+* **ContainsHeader**: bool: <p>Whether the file has a header row, or the files each have a header row.</p>
+* **Delimiter**: string: <p>The delimiter between values in the file.</p>
+* **Format**: string
+* **StartFromRow**: int: <p>A row number to start reading data from.</p>
+* **TextQualifier**: string
 
 ## ValidationStrategy
 ### Properties
@@ -12613,6 +13087,14 @@ At least one asset type is required.
 ## ValidationStrategy
 ### Properties
 * **Mode**: string (Required)
+
+## ValidationStrategy
+### Properties
+* **Mode**: string (Required)
+
+## ValueColumnConfiguration
+### Properties
+* **AggregationFunction**: [DataPrepAggregationFunction](#dataprepaggregationfunction)
 
 ## VideoExtractionConfiguration
 ### Properties

@@ -5,8 +5,8 @@ import { writeTypesJson } from "bicep-types";
 import { writeMarkdown } from "bicep-types";
 import { SchemaRecord } from "./schemarecord";
 import { convertSchemaRecordToTypes } from "./convert";
-import { applyRadius, defaultRadiusPaths, loadPreviousRadius, loadRadius, newClashes, PreviousInputs, RadiusPaths, renderClashReport, writeRecords } from "./radius";
-import { logOut, ILogger, defaultLogger, findRecursive } from './utils';
+import { applyRadius, checkEffectiveOutputs, defaultRadiusPaths, loadPreviousRadius, loadRadius, newClashes, PreviousInputs, RadiusPaths, renderClashReport, writeRecords } from "./radius";
+import { logOut, ILogger, defaultLogger, findRecursive, removeStaleNamespaces } from './utils';
 import { writeFile, readFile } from 'fs/promises';
 import { TypeFile, buildIndex, readTypesJson, writeIndexJson, writeIndexMarkdown, TypeSettings } from 'bicep-types'; 
 
@@ -50,13 +50,17 @@ async function main() {
         if (argv.previousEffectiveOutput && !argv.previousInput) {
             throw new Error('--previous-effective-output needs --previous-input and --previous-radius')
         }
-        // writeRecords removes the JSON files in its directory, so it must not be an input.
-        const inputDirs = [argv.input, argv.previousInput].filter((d): d is string => d !== undefined).map(d => path.resolve(d))
-        for (const output of [argv.effectiveOutput, argv.previousEffectiveOutput]) {
-            if (output && inputDirs.includes(path.resolve(output))) {
-                throw new Error(`${output} is an input directory, so it can't also be an effective output`)
-            }
-        }
+        const radiusPaths = (root: string): RadiusPaths => ({
+            root: path.resolve(root),
+            nativeSchemas: argv.radiusNativeSchemas,
+            handwrittenSchemas: argv.radiusHandwrittenSchemas,
+            extraProperties: argv.radiusExtraProperties,
+        })
+        checkEffectiveOutputs(
+            [argv.effectiveOutput, argv.previousEffectiveOutput].filter((d): d is string => d !== undefined),
+            [argv.input, argv.previousInput].filter((d): d is string => d !== undefined),
+            [argv.radius, argv.previousRadius].filter((d): d is string => d !== undefined).map(radiusPaths),
+        )
         argv.input = path.resolve(argv.input)
         argv.output = path.resolve(argv.output)
 
@@ -65,12 +69,6 @@ async function main() {
 
         const downloaded = readRecords(argv.input)
 
-        const radiusPaths = (root: string): RadiusPaths => ({
-            root: path.resolve(root),
-            nativeSchemas: argv.radiusNativeSchemas,
-            handwrittenSchemas: argv.radiusHandwrittenSchemas,
-            extraProperties: argv.radiusExtraProperties,
-        })
         console.info(`reading Radius schemas from ${path.resolve(argv.radius)}`)
         const applied = applyRadius(downloaded, loadRadius(radiusPaths(argv.radius)))
 
@@ -125,6 +123,10 @@ async function main() {
             // writer types.md
             fs.writeFileSync(`${outFolder}/types.md`, writeMarkdown(definition.types, `${definition.namespace} @ ${definition.apiVersion}`))
         })
+
+        const namespaces = new Set(definitions.map(definition => definition.namespace.toLowerCase()))
+        removeStaleNamespaces(path.resolve(argv.output, 'aws'), namespaces)
+            .forEach(namespace => console.log(`removing ${namespace}, which has no types`))
 
         await buildTypeIndex(defaultLogger, argv.output, argv.releaseVersion)
 

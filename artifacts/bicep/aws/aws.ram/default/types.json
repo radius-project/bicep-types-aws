@@ -57,9 +57,15 @@
     "$type": "BooleanType"
   },
   {
+    "$type": "AnyType"
+  },
+  {
     "$type": "ObjectType",
     "name": "Permission_PolicyTemplate",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/5"
+    }
   },
   {
     "$type": "ArrayType",
@@ -99,7 +105,7 @@
       },
       "PolicyTemplate": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 1,
         "description": "Policy template for the permission."
@@ -113,7 +119,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/7"
         },
         "flags": 0
       },
@@ -146,7 +152,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/8"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -157,7 +163,7 @@
     "$type": "ResourceType",
     "name": "AWS.RAM/Permission@default",
     "body": {
-      "$ref": "#/8"
+      "$ref": "#/9"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -175,7 +181,7 @@
       },
       "Values": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 1,
         "description": "The values for the template parameter."
@@ -281,7 +287,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/14"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -292,7 +298,7 @@
     "$type": "ResourceType",
     "name": "AWS.RAM/PermissionAssociation@default",
     "body": {
-      "$ref": "#/14"
+      "$ref": "#/15"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -376,7 +382,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/18"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -387,7 +393,7 @@
     "$type": "ResourceType",
     "name": "AWS.RAM/PrincipalAssociation@default",
     "body": {
-      "$ref": "#/18"
+      "$ref": "#/19"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -471,7 +477,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/22"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -482,7 +488,7 @@
     "$type": "ResourceType",
     "name": "AWS.RAM/ResourceAssociation@default",
     "body": {
-      "$ref": "#/22"
+      "$ref": "#/23"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -500,7 +506,7 @@
       },
       "PermissionTemplateParameters": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/29"
         },
         "flags": 0,
         "description": "The template parameters for the permission."
@@ -520,7 +526,7 @@
       },
       "Values": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/30"
         },
         "flags": 1,
         "description": "The values for the template parameter."
@@ -570,7 +576,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/25"
+      "$ref": "#/26"
     }
   },
   {
@@ -610,7 +616,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/27"
+      "$ref": "#/28"
     }
   },
   {
@@ -667,35 +673,35 @@
       },
       "PermissionArns": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/32"
         },
         "flags": 4,
         "description": "Specifies the [Amazon Resource Names (ARNs)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of the AWS RAM permission to associate with the resource share. If you do not specify an ARN for the permission, AWS RAM automatically attaches the default version of the permission for each resource type. You can associate only one permission with each resource type included in the resource share."
       },
       "Principals": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/33"
         },
         "flags": 4,
         "description": "Specifies the principals to associate with the resource share. The possible values are:\n\n- An AWS account ID\n\n- An Amazon Resource Name (ARN) of an organization in AWS Organizations\n\n- An ARN of an organizational unit (OU) in AWS Organizations\n\n- An ARN of an IAM role\n\n- An ARN of an IAM user"
       },
       "ResourceArns": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/34"
         },
         "flags": 4,
         "description": "Specifies a list of one or more ARNs of the resources to associate with the resource share."
       },
       "ResourceShareConfiguration": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Specifies the configuration for the resource share"
       },
       "Sources": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/35"
         },
         "flags": 4,
         "description": "Specifies from which source accounts the service principal has access to the resources in this resource share."
@@ -709,7 +715,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/36"
         },
         "flags": 0,
         "description": "Specifies one or more tags to attach to the resource share itself. It doesn't attach the tags to the resources associated with the resource share."
@@ -736,7 +742,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/37"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -747,7 +753,7 @@
     "$type": "ResourceType",
     "name": "AWS.RAM/ResourceShare@default",
     "body": {
-      "$ref": "#/37"
+      "$ref": "#/38"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -824,7 +830,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/41"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -835,7 +841,7 @@
     "$type": "ResourceType",
     "name": "AWS.RAM/SourceAssociation@default",
     "body": {
-      "$ref": "#/41"
+      "$ref": "#/42"
     },
     "readableScopes": 0,
     "writableScopes": 0

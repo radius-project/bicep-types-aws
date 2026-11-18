@@ -81,6 +81,8 @@
 
 ## Pipeline_Policy
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Pipeline_VpcAttachmentOptions
 ### Properties

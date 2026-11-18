@@ -4,7 +4,7 @@ import path from "path";
 import { afterAll, describe, expect, test } from '@jest/globals';
 import { BicepType, ObjectType, ObjectTypePropertyFlags, TypeBaseKind } from "bicep-types";
 import { convertSchemaRecordToTypes } from "./convert";
-import { applyRadius, defaultRadiusPaths, loadPreviousRadius, loadRadius, newClashes, RadiusInputs, readExtraProperties, readSchemas, renderClashReport, writeRecords } from "./radius";
+import { applyRadius, checkEffectiveOutputs, defaultRadiusPaths, loadPreviousRadius, loadRadius, newClashes, RadiusInputs, readExtraProperties, readSchemas, renderClashReport, writeRecords } from "./radius";
 import { Schema, SchemaRecord } from "./schemarecord";
 
 const fixtureRoot = path.resolve('./testdata/radius')
@@ -122,7 +122,7 @@ describe('loadRadius', () => {
     test('reads both schema directories and the extra properties', () => {
         const radius = loadRadius(fixturePaths)
 
-        expect([...radius.native.keys()].sort()).toEqual(['AWS::CodeBuild::Project', 'AWS::DocDB::DBCluster'])
+        expect([...radius.native.keys()].sort()).toEqual(['AWS::CodeBuild::Project', 'AWS::DocDB::DBCluster', 'AWS::LakeFormation::DataLakeSettings'])
         expect([...radius.handwritten.keys()].sort()).toEqual(['AWS::IAM::AccountPasswordPolicy', 'AWS::S3::Object'])
         expect(Object.keys(radius.extraProperties).sort()).toEqual(['AWS::MSK::Cluster', 'AWS::MSK::ServerlessCluster'])
     })
@@ -171,7 +171,7 @@ describe('applyRadius', () => {
         const result = applyRadius(records, { ...loadRadius(fixturePaths), handwritten: new Map(), extraProperties: {} })
 
         expect(result.records.map(r => r.type)).toEqual([
-            'AWS::CodeBuild::Project', 'AWS::EC2::VPC', 'AWS::MSK::Cluster', 'AWS::MSK::ServerlessCluster', 'AWS::DocDB::DBCluster'])
+            'AWS::CodeBuild::Project', 'AWS::EC2::VPC', 'AWS::MSK::Cluster', 'AWS::MSK::ServerlessCluster', 'AWS::DocDB::DBCluster', 'AWS::LakeFormation::DataLakeSettings'])
         const project = result.records[0]
         expect(project.schema.description).toBe("Radius's schema for a CodeBuild project.")
         expect(Object.keys(project.schema.properties!)).toEqual(['Name', 'Arn', 'ServiceRole'])
@@ -272,6 +272,13 @@ describe('loadPreviousRadius', () => {
         expect([...radius.handwritten.keys()]).toEqual(['AWS::S3::Object'])
         expect(radius.native.size).toBe(0)
         expect(radius.extraProperties).toEqual({})
+    })
+
+    test.each([
+        ['an empty directory', () => tempDir()],
+        ['a directory that does not exist', () => path.join(tempDir(), 'missing')],
+    ])('rejects %s, which would hide every Radius change', (_, root) => {
+        expect(() => loadPreviousRadius({ ...fixturePaths, root: root() })).toThrow('is not the previous Radius checkout')
     })
 })
 
@@ -423,5 +430,77 @@ describe('writeRecords', () => {
 
         expect(fs.readdirSync(dir).sort()).toEqual(['AWS::MSK::Cluster.json', 'notes.txt'])
         expect(JSON.parse(fs.readFileSync(path.join(dir, 'AWS::MSK::Cluster.json'), 'utf8'))).toEqual(records[0])
+    })
+})
+
+describe('checkEffectiveOutputs', () => {
+    const radius = (root: string) => ({ root, ...defaultRadiusPaths })
+
+    test('accepts separate outputs outside every input', () => {
+        expect(() => checkEffectiveOutputs(['/work/new', '/work/old'], ['/in/aws', '/in/aws-old'], [radius('/in/radius'), radius('/in/radius-old')])).not.toThrow()
+    })
+
+    test('rejects the same directory for both outputs', () => {
+        expect(() => checkEffectiveOutputs(['/work/out', '/work/../work/out/'], [], [])).toThrow('must be different directories')
+    })
+
+    test('rejects an AWS input directory', () => {
+        expect(() => checkEffectiveOutputs(['/work/new', '/in/aws-old'], ['/in/aws', '/in/aws-old'], [])).toThrow('is an input directory')
+    })
+
+    test.each([
+        ['current native schemas', '/in/radius/pkg/aws/schemas/native'],
+        ['a directory under the current native schemas', '/in/radius/pkg/aws/schemas/native/docdb'],
+        ['previous hand-written schemas', '/in/radius-old/pkg/aws/schemas/handwritten/x'],
+    ])('rejects %s', (_, output) => {
+        expect(() => checkEffectiveOutputs([output], [], [radius('/in/radius'), radius('/in/radius-old')])).toThrow('is inside the Radius schema directory')
+    })
+
+    test('rejects the directory holding an extra properties file', () => {
+        expect(() => checkEffectiveOutputs(['/in/radius-old/pkg/aws/extraproperties'], [], [radius('/in/radius'), radius('/in/radius-old')])).toThrow('holds the Radius extra properties file')
+    })
+
+    test('accepts a sibling whose name starts with the schema directory name', () => {
+        expect(() => checkEffectiveOutputs(['/in/radius/pkg/aws/schemas/native-records', '/in/radius/pkg/aws/schemas'], [], [radius('/in/radius')])).not.toThrow()
+    })
+
+    describe('follows symbolic links', () => {
+        // Each case links an output to a directory the check must protect.
+        function setup() {
+            const root = tempDir()
+            const aws = path.join(root, 'aws')
+            const out = path.join(root, 'out')
+            const radiusRoot = path.join(root, 'radius')
+            fs.mkdirSync(aws)
+            fs.mkdirSync(out)
+            fs.mkdirSync(path.join(radiusRoot, defaultRadiusPaths.nativeSchemas), { recursive: true })
+            const link = (name: string, target: string) => {
+                fs.symlinkSync(target, path.join(root, name))
+                return path.join(root, name)
+            }
+            return { root, aws, out, radiusRoot, link }
+        }
+
+        test('rejects a second name for the other output', () => {
+            const { out, link } = setup()
+            expect(() => checkEffectiveOutputs([out, link('alias', out)], [], [])).toThrow('must be different directories')
+        })
+
+        test('rejects a link to an AWS input directory', () => {
+            const { aws, link } = setup()
+            expect(() => checkEffectiveOutputs([link('alias', aws)], [aws], [])).toThrow('is an input directory')
+        })
+
+        test('rejects a path under a link into a Radius schema directory', () => {
+            const { radiusRoot, link } = setup()
+            const output = path.join(link('alias', path.join(radiusRoot, 'pkg/aws/schemas')), 'native', 'new')
+            expect(() => checkEffectiveOutputs([output], [], [radius(radiusRoot)])).toThrow('is inside the Radius schema directory')
+        })
+
+        test('rejects an output when the Radius root is reached through a link', () => {
+            const { radiusRoot, link } = setup()
+            const output = path.join(radiusRoot, defaultRadiusPaths.nativeSchemas)
+            expect(() => checkEffectiveOutputs([output], [], [radius(link('radius-link', radiusRoot))])).toThrow('is inside the Radius schema directory')
+        })
     })
 })

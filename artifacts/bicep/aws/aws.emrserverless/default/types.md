@@ -30,6 +30,8 @@
 
 ## Application_Properties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Application_S3MonitoringConfiguration
 ### Properties
@@ -178,6 +180,8 @@
 
 ## JobRun_Properties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## LogTypeMapKeyValuePair
 ### Properties
@@ -232,6 +236,8 @@
 
 ## Session_Properties
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## SparkSubmit
 ### Properties
@@ -261,6 +267,12 @@
 * **DiskType**: string: Per worker DiskType resource. Shuffle optimized and Standard are only supported types and specifying diskType is optional
 * **Memory**: string (Required): Per worker memory resource. GB is the only supported unit and specifying GB is optional.
 
+## WorkerTypeSpecificationInput
+### Properties
+* **ImageConfiguration**: [ImageConfigurationInput](#imageconfigurationinput)
+
 ## WorkerTypeSpecificationInputMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [WorkerTypeSpecificationInput](#workertypespecificationinput)
 

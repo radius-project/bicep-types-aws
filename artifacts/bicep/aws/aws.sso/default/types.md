@@ -67,6 +67,8 @@
 
 ## ApplicationProvider_Scopes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ResourceServerScopeDetails](#resourceserverscopedetails)
 
 ## AWS.SSO/ApplicationAssignmentProperties
 ### Properties
@@ -159,6 +161,11 @@
 ## ResourceServerConfig
 ### Properties
 * **Scopes**: [ApplicationProvider_Scopes](#applicationproviderscopes): A map of IAM Identity Center access scopes associated with this resource server.
+
+## ResourceServerScopeDetails
+### Properties
+* **DetailedTitle**: string: The title of an access scope for a resource server.
+* **LongDescription**: string: The description of an access scope for a resource server.
 
 ## SignInOptions
 ### Properties

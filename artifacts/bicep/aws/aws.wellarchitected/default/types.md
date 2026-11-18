@@ -58,6 +58,8 @@
 
 ## AgentContext_Content
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## AggregationConfiguration
 ### Properties

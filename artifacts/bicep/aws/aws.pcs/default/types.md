@@ -109,6 +109,8 @@
 
 ## Cluster_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ComputeNodeGroup_CustomLaunchTemplate
 ### Properties
@@ -132,6 +134,8 @@
 
 ## ComputeNodeGroup_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ComputeNodeGroupConfiguration
 ### Properties
@@ -162,6 +166,8 @@
 
 ## GresCustomSetting
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## InstanceConfig
 ### Properties
@@ -200,6 +206,8 @@
 
 ## Queue_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## ScriptSource
 ### Properties

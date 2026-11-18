@@ -38,6 +38,8 @@
 
 ## AccessPoint_Policy
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## AWS.S3Outposts/AccessPointProperties
 ### Properties
@@ -83,6 +85,8 @@
 
 ## BucketPolicy_PolicyDocument
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## FailedReason
 ### Properties

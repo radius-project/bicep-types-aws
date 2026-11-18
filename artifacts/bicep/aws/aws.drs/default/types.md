@@ -188,6 +188,8 @@
 
 ## Job_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [LaunchActionParameter](#launchactionparameter)
 
 ## LaunchAction
 ### Properties
@@ -202,6 +204,11 @@
 * **Order**: int: Launch action order.
 * **Parameters**: [Job_Parameters](#jobparameters): Launch action parameters.
 * **Type**: string: Launch action type.
+
+## LaunchActionParameter
+### Properties
+* **Type**: string: Type of the parameter.
+* **Value**: string: Value of the parameter.
 
 ## LaunchActionRun
 ### Properties
@@ -254,6 +261,8 @@
 
 ## ReplicationConfigurationTemplate_StagingAreaTags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## SourceProperties
 ### Properties

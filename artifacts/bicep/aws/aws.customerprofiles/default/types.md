@@ -244,6 +244,8 @@
 
 ## CalculatedAttributeDefinition_Attributes
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [FilterAttributeDimension](#filterattributedimension)
 
 ## Conditions
 ### Properties
@@ -276,8 +278,17 @@
 ## Dimension
 ### Properties
 
+## DomainObjectTypeField
+### Properties
+* **ContentType**: string: The content type of the field.
+* **FeatureType**: string: The feature type of the field.
+* **Source**: string (Required): The source field name.
+* **Target**: string (Required): The target field name.
+
 ## DomainObjectTypeFields
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [DomainObjectTypeField](#domainobjecttypefield)
 
 ## DomainStats
 ### Properties
@@ -327,6 +338,11 @@
 ### Properties
 * **Groups**: [FilterGroup](#filtergroup)[] (Required): Holds the list of Filter groups within the Filter definition.
 * **Include**: string (Required)
+
+## FilterAttributeDimension
+### Properties
+* **DimensionType**: string (Required)
+* **Values**: string[] (Required): The values to apply the DimensionType on.
 
 ## FilterDimension
 ### Properties
@@ -466,11 +482,19 @@
 
 ## RecommenderSchema_Fields
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [RecommenderSchemaField](#recommenderschemafield)[]
 
 ## RecommenderSchema_Tags
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## RecommenderSchemaField
+### Properties
+* **ContentType**: string
+* **FeatureType**: string
+* **TargetFieldName**: string (Required)
 
 ## RecommenderUpdate
 ### Properties

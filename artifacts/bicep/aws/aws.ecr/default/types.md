@@ -169,6 +169,8 @@
 
 ## RegistryPolicy_PolicyText
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## ReplicationConfiguration
 ### Properties

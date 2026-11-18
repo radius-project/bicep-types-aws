@@ -104,8 +104,14 @@
 * **Not**: [Expression](#expression)
 * **Tags**: [TagValues](#tagvalues)
 
+## GraphDisplayConfig
+### Properties
+* **VisualType**: string (Required)
+
 ## GraphDisplayConfigMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [GraphDisplayConfig](#graphdisplayconfig)
 
 ## GroupDefinition
 ### Properties

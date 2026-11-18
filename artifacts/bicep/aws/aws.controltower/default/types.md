@@ -79,6 +79,8 @@
 
 ## LandingZone_Manifest
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Parameter
 ### Properties

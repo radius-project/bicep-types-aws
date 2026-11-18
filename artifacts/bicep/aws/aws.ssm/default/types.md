@@ -122,6 +122,8 @@
 
 ## Association_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string[]
 
 ## AttachmentsSource
 ### Properties
@@ -421,12 +423,18 @@
 
 ## MaintenanceWindowTask_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## MaintenanceWindowTask_Parameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## MaintenanceWindowTask_TaskParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## ManagedInstance_Tags
 ### Properties
@@ -441,6 +449,8 @@
 
 ## Parameter_Tags
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## PatchFilter
 ### Properties

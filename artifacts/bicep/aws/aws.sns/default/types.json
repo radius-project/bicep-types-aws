@@ -7,15 +7,21 @@
     "$type": "StringType"
   },
   {
+    "$type": "AnyType"
+  },
+  {
     "$type": "ObjectType",
     "name": "Subscription_DeliveryPolicy",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/2"
+    }
   },
   {
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/2"
+        "$ref": "#/3"
       },
       {
         "$ref": "#/1"
@@ -25,13 +31,16 @@
   {
     "$type": "ObjectType",
     "name": "Subscription_FilterPolicy",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/2"
+    }
   },
   {
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/4"
+        "$ref": "#/5"
       },
       {
         "$ref": "#/1"
@@ -44,13 +53,16 @@
   {
     "$type": "ObjectType",
     "name": "Subscription_RedrivePolicy",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/2"
+    }
   },
   {
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/7"
+        "$ref": "#/8"
       },
       {
         "$ref": "#/1"
@@ -60,13 +72,16 @@
   {
     "$type": "ObjectType",
     "name": "Subscription_ReplayPolicy",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/2"
+    }
   },
   {
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/9"
+        "$ref": "#/10"
       },
       {
         "$ref": "#/1"
@@ -86,7 +101,7 @@
       },
       "DeliveryPolicy": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/4"
         },
         "flags": 0,
         "description": "The delivery policy JSON assigned to the subscription. Enables the subscriber to define the message delivery retry strategy in the case of an HTTP/S endpoint subscribed to the topic."
@@ -100,7 +115,7 @@
       },
       "FilterPolicy": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/6"
         },
         "flags": 0,
         "description": "The filter policy JSON assigned to the subscription. Enables the subscriber to filter out unwanted messages."
@@ -121,14 +136,14 @@
       },
       "RawMessageDelivery": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/7"
         },
         "flags": 0,
         "description": "When set to true, enables raw message delivery. Raw messages don't contain any JSON formatting and can be sent to Amazon SQS and HTTP/S endpoints."
       },
       "RedrivePolicy": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/9"
         },
         "flags": 0,
         "description": "When specified, sends undeliverable messages to the specified Amazon SQS dead-letter queue. Messages that can't be delivered due to client errors are held in the dead-letter queue for further analysis or reprocessing."
@@ -142,7 +157,7 @@
       },
       "ReplayPolicy": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/11"
         },
         "flags": 0,
         "description": "Specifies whether Amazon SNS resends the notification to the subscription when a message's attribute changes."
@@ -183,7 +198,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -194,7 +209,7 @@
     "$type": "ResourceType",
     "name": "AWS.SNS/Subscription@default",
     "body": {
-      "$ref": "#/12"
+      "$ref": "#/13"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -280,21 +295,18 @@
   {
     "$type": "ObjectType",
     "name": "Topic_ArchivePolicy",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/2"
+    }
   },
   {
     "$type": "ObjectType",
     "name": "Topic_DataProtectionPolicy",
-    "properties": {}
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/14"
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/2"
     }
-  },
-  {
-    "$type": "IntegerType"
   },
   {
     "$type": "ArrayType",
@@ -303,9 +315,18 @@
     }
   },
   {
+    "$type": "IntegerType"
+  },
+  {
     "$type": "ArrayType",
     "itemType": {
       "$ref": "#/16"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
     }
   },
   {
@@ -314,28 +335,28 @@
     "properties": {
       "ArchivePolicy": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/19"
         },
         "flags": 0,
         "description": "The ``ArchivePolicy`` determines the number of days SNS retains messages in FIFO topics. You can set a retention period ranging from 1 to 365 days. This property is only applicable to FIFO topics; attempting to use it with standard topics will result in a creation failure."
       },
       "ContentBasedDeduplication": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/7"
         },
         "flags": 0,
         "description": "``ContentBasedDeduplication`` enables deduplication of messages based on their content for FIFO topics. By default, this property is set to false. If you create a FIFO topic with ``ContentBasedDeduplication`` set to false, you must provide a ``MessageDeduplicationId`` for each ``Publish`` action. When set to true, SNS automatically generates a ``MessageDeduplicationId`` using a SHA-256 hash of the message body (excluding message attributes). You can optionally override this generated value by specifying a ``MessageDeduplicationId`` in the ``Publish`` action. Note that this property only applies to FIFO topics; using it with standard topics will cause the creation to fail."
       },
       "DataProtectionPolicy": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "The body of the policy document you want to use for this topic.\n You can only add one policy per topic.\n The policy must be in JSON string format.\n Length Constraints: Maximum length of 30,720."
       },
       "DeliveryStatusLogging": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/21"
         },
         "flags": 0,
         "description": "The ``DeliveryStatusLogging`` configuration enables you to log the delivery status of messages sent from your Amazon SNS topic to subscribed endpoints with the following supported delivery protocols:\n  +  HTTP \n  +  Amazon Kinesis Data Firehose\n  +  AWS Lambda\n  +  Platform application endpoint\n  +  Amazon Simple Queue Service\n  \n Once configured, log entries are sent to Amazon CloudWatch Logs."
@@ -356,7 +377,7 @@
       },
       "FifoTopic": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/7"
         },
         "flags": 0,
         "description": "Set to true to create a FIFO topic."
@@ -370,7 +391,7 @@
       },
       "MaximumMessageSize": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/22"
         },
         "flags": 0,
         "description": "The maximum payload size, in bytes, for messages published to the topic. Valid values are ``1024`` to ``1048576`` (1 MiB). When this property is not specified, the topic uses the default SNS message size of ``262144`` bytes (256 KiB).\n A topic with ``MaximumMessageSize`` above ``262144`` supports a maximum of 100 subscriptions, all of which must use the SQS, AWS Lambda, or Amazon Data Firehose protocols. For more information, see [Publishing large messages with](https://docs.aws.amazon.com/sns/latest/dg/large-message-payloads.html) in the *Developer Guide*."
@@ -384,14 +405,14 @@
       },
       "Subscription": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "The SNS subscriptions (endpoints) for this topic.\n  If you specify the ``Subscription`` property in the ``AWS::SNS::Topic`` resource and it creates an associated subscription resource, the associated subscription is not deleted when the ``AWS::SNS::Topic`` resource is deleted."
       },
       "Tags": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": "The list of tags to add to a new topic.\n  To be able to tag a topic on creation, you must have the ``sns:CreateTopic`` and ``sns:TagResource`` permissions."
@@ -439,7 +460,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/25"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -450,7 +471,7 @@
     "$type": "ResourceType",
     "name": "AWS.SNS/Topic@default",
     "body": {
-      "$ref": "#/25"
+      "$ref": "#/26"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -462,7 +483,10 @@
   {
     "$type": "ObjectType",
     "name": "TopicInlinePolicy_PolicyDocument",
-    "properties": {}
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/2"
+    }
   },
   {
     "$type": "ObjectType",
@@ -470,7 +494,7 @@
     "properties": {
       "PolicyDocument": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/29"
         },
         "flags": 1,
         "description": "A policy document that contains permissions to add to the specified SNS topics."
@@ -504,7 +528,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/30"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -515,7 +539,7 @@
     "$type": "ResourceType",
     "name": "AWS.SNS/TopicInlinePolicy@default",
     "body": {
-      "$ref": "#/30"
+      "$ref": "#/31"
     },
     "readableScopes": 0,
     "writableScopes": 0

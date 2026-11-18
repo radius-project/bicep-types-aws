@@ -107,6 +107,8 @@
 
 ## Job_HyperParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## JobCheckpointConfig
 ### Properties

@@ -36,6 +36,17 @@
 ### Properties
 * **AudioRecognitionStrategy**: string
 
+## AllowedInputTypes
+### Properties
+* **AllowAudioInput**: bool (Required)
+* **AllowDTMFInput**: bool (Required)
+
+## AudioAndDTMFInputSpecification
+### Properties
+* **AudioSpecification**: [AudioSpecification](#audiospecification)
+* **DTMFSpecification**: [DTMFSpecification](#dtmfspecification)
+* **StartTimeoutMs**: int (Required)
+
 ## AudioFillerSettings
 ### Properties
 * **AudioType**: string
@@ -61,6 +72,11 @@
 ### Properties
 * **Destination**: [AudioLogDestination](#audiologdestination) (Required)
 * **Enabled**: bool (Required)
+
+## AudioSpecification
+### Properties
+* **EndTimeoutMs**: int (Required)
+* **MaxLengthMs**: int (Required)
 
 ## AWS.Lex/BotAliasProperties
 ### Properties
@@ -191,6 +207,8 @@
 
 ## Bot_PromptAttemptsSpecification
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [PromptAttemptSpecification](#promptattemptspecification)
 
 ## Bot_QInConnectAssistantConfiguration
 ### Properties
@@ -218,6 +236,8 @@
 
 ## Bot_SlotSpecifications
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [Specifications](#specifications)
 
 ## Bot_SpeechFoundationModel
 ### Properties
@@ -380,6 +400,13 @@
 * **DialogAction**: [DialogAction](#dialogaction)
 * **Intent**: [IntentOverride](#intentoverride)
 * **SessionAttributes**: [SessionAttribute](#sessionattribute)[]
+
+## DTMFSpecification
+### Properties
+* **DeletionCharacter**: string (Required)
+* **EndCharacter**: string (Required)
+* **EndTimeoutMs**: int (Required)
+* **MaxLength**: int (Required)
 
 ## ElicitationCodeHookInvocationSetting
 ### Properties
@@ -552,6 +579,8 @@
 
 ## Policy
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## PostDialogCodeHookInvocationSpecification
 ### Properties
@@ -576,6 +605,13 @@
 * **TimeoutConditional**: [ConditionalSpecification](#conditionalspecification)
 * **TimeoutNextStep**: [DialogState](#dialogstate)
 * **TimeoutResponse**: [ResponseSpecification](#responsespecification)
+
+## PromptAttemptSpecification
+### Properties
+* **AllowedInputTypes**: [AllowedInputTypes](#allowedinputtypes) (Required)
+* **AllowInterrupt**: bool
+* **AudioAndDTMFInputSpecification**: [AudioAndDTMFInputSpecification](#audioanddtmfinputspecification)
+* **TextInputSpecification**: [TextInputSpecification](#textinputspecification)
 
 ## PromptSpecification
 ### Properties
@@ -724,6 +760,12 @@
 * **RegexFilter**: [SlotValueRegexFilter](#slotvalueregexfilter)
 * **ResolutionStrategy**: string (Required)
 
+## Specifications
+### Properties
+* **SlotTypeId**: string
+* **SlotTypeName**: string
+* **ValueElicitationSetting**: [SubSlotValueElicitationSetting](#subslotvalueelicitationsetting) (Required)
+
 ## SpeechModelConfig
 ### Properties
 * **DeepgramConfig**: [DeepgramSpeechModelConfig](#deepgramspeechmodelconfig)
@@ -755,6 +797,13 @@
 * **SlotTypeId**: string
 * **SlotTypeName**: string
 
+## SubSlotValueElicitationSetting
+### Properties
+* **DefaultValueSpecification**: [SlotDefaultValueSpecification](#slotdefaultvaluespecification)
+* **PromptSpecification**: [PromptSpecification](#promptspecification)
+* **SampleUtterances**: [SampleUtterance](#sampleutterance)[]
+* **WaitAndContinueSpecification**: [WaitAndContinueSpecification](#waitandcontinuespecification)
+
 ## Tag
 ### Properties
 * **Key**: string (Required)
@@ -771,6 +820,10 @@
 * **ConversationLogSettings**: [ConversationLogSettings](#conversationlogsettings)
 * **Description**: string
 * **SentimentAnalysisSettings**: [Bot_SentimentAnalysisSettings](#botsentimentanalysissettings)
+
+## TextInputSpecification
+### Properties
+* **StartTimeoutMs**: int (Required)
 
 ## TextLogDestination
 ### Properties

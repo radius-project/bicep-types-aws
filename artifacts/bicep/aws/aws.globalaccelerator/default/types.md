@@ -53,12 +53,12 @@
 * **AttachmentArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the attachment.
 * **Name**: string (Required): The Friendly identifier of the attachment.
 * **Principals**: string[]: Principals to share the resources with.
-* **Resources**: [Resource](#resource)[] (WriteOnly): Resources shared using the attachment.
+* **Resources**: [Resource](#resource)[]: Resources shared using the attachment.
 * **Tags**: [Tag](#tag)[]
 
 ## AWS.GlobalAccelerator/EndpointGroupProperties
 ### Properties
-* **EndpointConfigurations**: [EndpointConfiguration](#endpointconfiguration)[] (WriteOnly): The list of endpoint objects.
+* **EndpointConfigurations**: [EndpointConfiguration](#endpointconfiguration)[]: The list of endpoint objects.
 * **EndpointGroupArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the endpoint group
 * **EndpointGroupRegion**: string (Required): The name of the AWS Region where the endpoint group is located
 * **HealthCheckIntervalSeconds**: int: The time in seconds between each health check for an endpoint. Must be a value of 10 or 30
@@ -80,7 +80,7 @@
 
 ## EndpointConfiguration
 ### Properties
-* **AttachmentArn**: string: Attachment ARN that provides access control to the cross account endpoint. Not required for resources hosted in the same account as the endpoint group.
+* **AttachmentArn**: string (WriteOnly): Attachment ARN that provides access control to the cross account endpoint. Not required for resources hosted in the same account as the endpoint group.
 * **ClientIPPreservationEnabled**: bool: true if client ip should be preserved
 * **EndpointId**: string (Required): Id of the endpoint. For Network/Application Load Balancer this value is the ARN.  For EIP, this value is the allocation ID.  For EC2 instances, this is the EC2 instance ID
 * **Weight**: int: The weight for the endpoint.
@@ -99,7 +99,7 @@
 ### Properties
 * **Cidr**: string
 * **EndpointId**: string
-* **Region**: string
+* **Region**: string (WriteOnly)
 
 ## Tag
 ### Properties

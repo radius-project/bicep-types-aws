@@ -261,12 +261,18 @@
 
 ## AdditionalModelRequestFields
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## AdditionalModelRequestFields
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## AdditionalModelRequestFields
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## Agent_AgentDescriptor
 ### Properties
@@ -281,7 +287,7 @@
 * **Description**: string: Description of action group
 * **FunctionSchema**: [FunctionSchema](#functionschema)
 * **ParentActionGroupSignature**: string
-* **SkipResourceInUseCheckOnDelete**: bool: Specifies whether to allow deleting action group while it is in use.
+* **SkipResourceInUseCheckOnDelete**: bool (WriteOnly): Specifies whether to allow deleting action group while it is in use.
 
 ## AgentAliasHistoryEvent
 ### Properties
@@ -391,7 +397,7 @@
 
 ## AWS.Bedrock/AgentProperties
 ### Properties
-* **ActionGroups**: [AgentActionGroup](#agentactiongroup)[] (WriteOnly): List of ActionGroups
+* **ActionGroups**: [AgentActionGroup](#agentactiongroup)[]: List of ActionGroups
 * **AgentArn**: string (ReadOnly): Arn representation of the Agent.
 * **AgentCollaboration**: string
 * **AgentCollaborators**: [AgentCollaborator](#agentcollaborator)[]: List of Agent Collaborators
@@ -784,7 +790,7 @@
 * **Name**: string (Required): Name for a prompt resource.
 * **Tags**: [TagsMap](#tagsmap)
 * **UpdatedAt**: string (ReadOnly): Time Stamp.
-* **Variants**: [PromptVariant](#promptvariant)[] (WriteOnly): List of prompt variants
+* **Variants**: [PromptVariant](#promptvariant)[]: List of prompt variants
 * **Version**: string (ReadOnly): Draft Version.
 
 ## AWS.Bedrock/PromptVersionProperties
@@ -861,9 +867,13 @@
 
 ## Blueprint_KmsEncryptionContext
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## Blueprint_Schema
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## BlueprintItem
 ### Properties
@@ -964,9 +974,13 @@
 
 ## DataAutomationProject_KmsEncryptionContext
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## DataSource_ConnectorParameters
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## DataSource_LastDayOfMonth
 ### Properties
@@ -988,6 +1002,8 @@
 
 ## DefinitionSubstitutions
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: bool | int | string
 
 ## DeletionProtectionConfiguration
 ### Properties
@@ -1318,9 +1334,13 @@
 
 ## KmsEncryptionContext
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## KnowledgeBase_ModelConfiguration
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## KnowledgeBaseConfig
 ### Properties
@@ -1337,6 +1357,8 @@
 
 ## KnowledgeBasePolicy_PolicyDocument
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## KnowledgeBaseRetrievalConfiguration
 ### Properties
@@ -1506,8 +1528,16 @@
 * **ModalityRouting**: [ModalityRoutingConfiguration](#modalityroutingconfiguration)
 * **Video**: [VideoOverrideConfiguration](#videooverrideconfiguration)
 
+## ParameterDetail
+### Properties
+* **Description**: string: Description of function parameter.
+* **Required**: bool: Information about if a parameter is required for function call. Default to false.
+* **Type**: string (Required)
+
 ## ParameterMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: [ParameterDetail](#parameterdetail)
 
 ## ParsingConfiguration
 ### Properties
@@ -1762,6 +1792,8 @@
 
 ## ResourcePolicy_PolicyDocument
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: any
 
 ## RetrieveAndGenerateConfig
 ### Properties
@@ -1862,6 +1894,8 @@
 
 ## Session_SessionMetadata
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## SessionSummaryConfiguration
 ### Properties
@@ -2013,24 +2047,38 @@
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TagsMap
 ### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## TopicConfig
 ### Properties
