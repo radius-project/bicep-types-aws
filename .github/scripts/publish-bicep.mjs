@@ -7,7 +7,6 @@ import { createHash } from "node:crypto";
 import { lstat, mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { promisify } from "node:util";
-import { frozenRadiusPin, verifyPlannedSource } from "./frozen-aws-source.mjs";
 
 export const repository = "radius-project/bicep-types-aws";
 export const packageName = "bicep-types-aws";
@@ -191,10 +190,10 @@ export async function verifySource(github, source) {
     const { data: comparison } = await github.rest.repos.compareCommitsWithBasehead({
       ...repo, basehead: `${source.commit}...${main.commit.sha}`, request: request()
     });
-    const onMain = ["ahead", "identical"].includes(comparison.status);
-    assert.ok(onMain || ["behind", "diverged"].includes(comparison.status), "Unrecognized AWS source ancestry");
-    if (!onMain) assert.match(comparison.merge_base_commit?.sha, shaPattern);
-    await verifyPlannedSource(github, source, onMain ? null : comparison.merge_base_commit.sha);
+    assert.ok(
+      ["ahead", "identical"].includes(comparison.status),
+      "Release source must belong to trusted main history"
+    );
   }
   return main.commit.sha;
 }
@@ -390,6 +389,23 @@ export function validateManifest(manifest, config) {
     assert.ok(!blob.urls, "Foreign blob URLs are forbidden");
   }
   assert.deepEqual(config, {}, "Executable provider configuration is forbidden");
+}
+
+export async function frozenRadiusPin(github, commit) {
+  const { data: root } = await github.rest.git.getTree({ ...repo, tree_sha: commit, request: request() });
+  assert.equal(root.truncated, false, "Cannot check the Radius pin in an incomplete Git tree");
+  const pin = root.tree.find((entry) => entry.path === "radius");
+  if (pin) {
+    assert.ok(pin.mode === "160000" && pin.type === "commit", "radius must be a gitlink");
+    assert.match(pin.sha, shaPattern);
+    return pin.sha;
+  }
+  // Only sources predating the submodule may use the legacy smoke.
+  const { data: history } = await github.rest.repos.listCommits({
+    ...repo, sha: commit, path: "radius", per_page: 1, request: request()
+  });
+  assert.deepEqual(history, [], "Frozen AWS source removed the Radius pin");
+  return null;
 }
 
 export async function prepare(github, archive, expectedSource, artifact, directory, run = tool) {

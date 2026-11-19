@@ -32,9 +32,9 @@ The generator reads every `.json` file under the schema directories, skips `*.me
 
 ### Automated release pins
 
-[Radius Prepare Release](https://github.com/radius-project/radius/actions/workflows/prepare-release.yaml) reads this repository without changing it. The release plan freezes the AWS base commit in `siblingRepositories[].sourceCommit` and, for an automated pin, records `radiusPin.productCommit` and `radiusPin.expectedTree`. Review those values before approving the release.
+With [post-approval pinning](https://github.com/radius-project/radius/pull/13803) enabled, Radius Prepare Release reads this repository without changing it. Review the frozen AWS base commit, Radius product commit and expected Git tree in the release plan before approving it.
 
-**After approval**, the Radius release controller uses a pin-only PR on `release/X.Y` if the gitlink needs to change. The required GitHub Actions **Build and test** check runs on the signed proposal. The controller verifies the landed parent, tree and gitlink and records the landed SHA in a release App-signed lock before tagging. If the base already has the right pin, the lock records the base instead. The approved plan does not change; resume the controller rather than copying a SHA or moving the tag by hand.
+**After approval**, the Radius controller opens or reuses a pin-only PR on `release/X.Y` if needed. The required GitHub Actions **Build and test** check runs on the signed proposal. The controller verifies the landed commit and records it in a signed receipt before tagging. If the base already has the right pin, the receipt records the base. Resume the controller rather than copying a SHA or moving the tag by hand.
 
 Before enabling automated pins for a live channel, land the [release-branch CI change](https://github.com/radius-project/bicep-types-aws/pull/382), backport it and the packaged-overlay build test to each existing **pin-aware** release branch (including `release/0.63`), and require the **Build and test** context from GitHub Actions on those branches. New channels inherit the workflow from `main`. The CI membership check alone cannot tell whether a valid Radius commit is the one the plan selected.
 

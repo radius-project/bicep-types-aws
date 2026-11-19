@@ -242,31 +242,13 @@ an uncertain response. A run title is only a discovery hint, not source evidence
 Do not delete request intent or reconstruct missing generation to bypass an
 ambiguous outcome.
 
-The tag must resolve to the exact source SHA; Radius independently
-matches it to the controller-frozen AWS commit. Full-version tags follow a
+The tag must resolve to the exact source SHA. For a plan with `radiusPin`, the
+Radius controller must use the landed commit from the verified receipt for
+dispatch and collection, not the pre-pin base in `siblingRepositories[].sourceCommit`.
+Plans without `radiusPin` use the frozen sibling `sourceCommit` directly.
+Full-version tags follow a
 publish-once CI policy: identical retries verify content, conflicting digests fail,
 and no release path force-overwrites an existing version.
-
-Normally the tagged AWS source belongs to protected `main` history. A release-only
-pin commit is eligible only on the matching protected `release/X.Y` history.
-Its complete Git tree (including `.gitmodules`, the generator and its dependencies)
-must match its protected-main merge base or the authenticated controller's
-protected-main tree except for the `radius` gitlink. A release-only mix of code
-that matches neither tree is not eligible. The
-publisher reads the plan **added by the merged Radius Prepare Release PR**
-at that PR's immutable merge SHA on protected Radius `main`. A legacy plan
-identifies the tagged AWS commit directly in the sibling `sourceCommit`. With
-`radiusPin`, `sourceCommit` is the frozen **base**. After approval, the controller
-lands the pin and writes `.github/release-state/aws-pin.json` in Radius on
-`automation/release-state-aws-<version without v>`. The publisher reads that file
-at the resolved App-signed commit, whose sole parent is the product commit, and
-verifies its version, raw approved plan blob, base, product, expected tree and
-landed SHA. The AWS tag must name the landed commit with that exact tree and
-gitlink. A changed pin requires a single parent (the base) and no other tree
-changes. An already-matching base is itself the locked commit. Neither case
-rewrites the plan or relies on a mutable branch tip. A first RC uses the Radius
-merge parent; other product commits must belong to the matching protected Radius
-release branch. The Radius tag does not exist yet at this stage.
 
 The capture job is named `Capture versioned AWS Bicep types`. It uploads the raw
 file `bicep-types-aws-<generationRunId>.tar` with native Actions `archive: false`,

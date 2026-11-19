@@ -3,7 +3,6 @@
 
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { createHash } from "node:crypto";
 import { cp, lstat, mkdir, mkdtemp, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
@@ -12,18 +11,14 @@ import {
   mainWorkflow, maximumSnapshotSize, originalSource, packageInfo, prepare, publish,
   releaseWorkflow, repository, select, selectSnapshot, snapshotName, target, tool,
   validateManifest, verifyArtifact, verifyCapture, verifySource, versions,
-  releaseRunName, resolveGeneration, prepareSchemas, schemaSnapshotName
+  releaseRunName, resolveGeneration, prepareSchemas, schemaSnapshotName, frozenRadiusPin
 } from "./publish-bicep.mjs";
 import { copyRequest, mirrorMain } from "./mirror-main-bicep.mjs";
-import { frozenRadiusPin } from "./frozen-aws-source.mjs";
 import monitorRemoteWorkflow from "./monitor-remote-workflow.mjs";
 
 const sha = "a".repeat(40);
 const controllerSha = "c".repeat(40);
 const fixturePin = "e".repeat(40);
-const gitBlob = (data) => createHash("sha1").update(`blob ${Buffer.byteLength(data)}\0`).update(data).digest("hex");
-const content = (raw) => ({ data: { type: "file", encoding: "base64", sha: gitBlob(raw),
-  content: Buffer.from(raw).toString("base64") } });
 const source = {
   repository, ref: "refs/tags/v0.62.1", commit: sha,
   workflow: releaseWorkflow, runId: 100, generationAttempt: 1,
@@ -58,9 +53,6 @@ const apiRun = (s = source) => ({
   status: "completed", conclusion: "failure"
 });
 function github(s = source, overrides = {}) {
-  const version = s.ref.slice("refs/tags/".length), channel = version.slice(1).split(".").slice(0, 2).join(".");
-  const branch = `release/${channel}`, path = `.github/release-plans/${version}.yaml`;
-  const repoFull = "radius-project/radius";
   const state = {
     mainSha: sha, protected: true, tagSha: sha, comparison: "identical", radiusPin: fixturePin,
     runs: [], artifacts: [], visibility: "public",
@@ -73,20 +65,12 @@ function github(s = source, overrides = {}) {
   };
   const api = {
     rest: {
-      pulls: { list: () => [{ merged_at: "2026-11-18", merge_commit_sha: controllerSha,
-        head: { ref: `automation/prepare-release-${version.slice(1)}`, repo: { full_name: repoFull } },
-        base: { ref: "main", repo: { full_name: repoFull } } }] },
       git: { getTree: async () => ({ data: { truncated: false, tree: [
         { path: "radius", type: "commit", mode: "160000", sha: state.radiusPin }
       ] } }) },
       repos: {
         getBranch: async () => ({ data: { protected: state.protected, commit: { sha: state.mainSha } } }),
-        getCommit: async ({ repo }) => ({ data: repo === "radius" ? {
-          files: [{ filename: path, status: "added" }]
-        } : { sha: state.tagSha } }),
-        getContent: async () => content(JSON.stringify({ schemaVersion: 2, version, channel, releaseBranch: branch,
-          releasePlanPath: path, siblingRepositories: [{ name: "bicep-types-aws", repository,
-            sourceCommit: s.commit, sourceRef: branch }] })),
+        getCommit: async () => ({ data: { sha: state.tagSha } }),
         compareCommitsWithBasehead: async () => ({ data: { status: state.comparison } })
       },
       actions: {
@@ -198,178 +182,11 @@ test("OCI versions do not change legacy extension metadata or @default API versi
     { version: "0.62.1-rc.2", typeVersion: "0.62.1-rc.2" });
 });
 
-test("release tag and controller must still resolve against trusted history", async () => {
+test("frozen release source must still resolve and belong to protected main history", async () => {
   await verifySource(github().api, source);
   for (const state of [{ tagSha: "c".repeat(40) }, { protected: false }, { comparison: "diverged" }]) {
     await assert.rejects(verifySource(github(source, state).api, source));
   }
-});
-
-test("a release-only AWS commit must be a plan-approved pin-only derivative", async () => {
-  const product = "b".repeat(40), merge = "d".repeat(40), forkPoint = "f".repeat(40);
-  const branch = "release/0.63", version = "v0.63.0-rc.1", path = `.github/release-plans/${version}.yaml`;
-  const candidate = { ...source, ref: `refs/tags/${version}` };
-  const { api } = github(candidate);
-  const mainHead = "0".repeat(39) + "1";
-  const sibling = { name: "bicep-types-aws", repository, sourceRef: branch, sourceCommit: candidate.commit };
-  const plan = { schemaVersion: 2, version, channel: "0.63", releaseBranch: branch, releasePlanPath: path,
-    releaseType: "rc", source: { productCommit: product, productRef: "HEAD" }, siblingRepositories: [sibling] };
-  const pull = { merged_at: "2026-11-18", merge_commit_sha: merge,
-    head: { ref: "automation/prepare-release-0.63.0-rc.1", repo: { full_name: "radius-project/radius" } },
-    base: { ref: "main", repo: { full_name: "radius-project/radius" } } };
-  const code = { path: "src", type: "tree", mode: "040000", sha: controllerSha };
-  const gitlink = { path: "radius", type: "commit", mode: "160000", sha: product };
-  const frozen = [code, gitlink];
-  const metadata = { files: [{ filename: path, status: "added" }], parents: [{ sha: product }] };
-  api.rest.repos.getCommit = async ({ repo, ref }) => {
-    if (repo === "bicep-types-aws" && ref === candidate.ref) return { data: { sha: candidate.commit } };
-    assert.equal(repo, "radius"); assert.equal(ref, merge);
-    return { data: metadata };
-  };
-  api.rest.repos.getBranch = async ({ branch: ref }) => {
-    assert.ok(ref === "main" || ref === branch);
-    return { data: { protected: true, commit: { sha: ref === "main" ? mainHead : candidate.commit } } };
-  };
-  api.rest.repos.compareCommitsWithBasehead = async ({ repo, basehead }) => ({ data:
-    repo === "bicep-types-aws" && basehead === `${candidate.commit}...${mainHead}`
-      ? { status: "diverged", merge_base_commit: { sha: forkPoint } } : { status: "ahead" }
-  });
-  const controllerTree = [{ ...code, sha: mainHead }, { ...gitlink, sha: forkPoint }];
-  api.rest.git.getTree = async ({ tree_sha }) => ({ data: { truncated: false,
-    tree: tree_sha === forkPoint ? [code, { ...gitlink, sha: forkPoint }] :
-      tree_sha === controllerSha ? controllerTree : frozen } });
-  api.rest.pulls = { list: () => [pull] };
-  api.rest.repos.getContent = async ({ repo, ref, path: requested }) => {
-    assert.equal(repo, "radius"); assert.equal(ref, merge); assert.equal(requested, path);
-    return content(JSON.stringify(plan));
-  };
-
-  const verify = () => verifySource(api, candidate);
-  await verify();
-  frozen[0] = controllerTree[0];
-  await verify();
-  frozen[0] = code;
-  for (const [object, key, bad, error] of [
-    [frozen, 0, { ...code, sha: merge }, /only the radius gitlink/],
-    [frozen, 1, { ...gitlink, mode: "120000" }, /gitlink/],
-    [pull, "merged_at", null, /merged Radius Prepare Release/],
-    [pull.head, "repo", { full_name: "fork/radius" }, /merged Radius Prepare Release/],
-    [metadata, "files", [], /introduce this version/],
-    [plan, "siblingRepositories", [sibling, sibling], /exactly one AWS/],
-    [sibling, "sourceCommit", forkPoint, /approved sibling/],
-    [sibling, "sourceRef", "release/0.62", /0\.63/],
-    [plan.source, "productCommit", forkPoint, /source.productCommit/],
-    [metadata, "parents", [{ sha: merge }], /merge parent/]
-  ]) {
-    const saved = object[key]; object[key] = bad;
-    await assert.rejects(verify, error);
-    object[key] = saved;
-  }
-  plan.source.productRef = `refs/remotes/origin/${branch}`;
-  await verify();
-  const compare = api.rest.repos.compareCommitsWithBasehead;
-  for (const [repo, basehead] of [
-    ["bicep-types-aws", `${candidate.commit}...${candidate.commit}`],
-    ["radius", `${merge}...${mainHead}`], ["radius", `${product}...${candidate.commit}`]
-  ]) {
-    api.rest.repos.compareCommitsWithBasehead = async (args) => args.repo === repo && args.basehead === basehead
-      ? { data: { status: "diverged" } } : compare(args);
-    await assert.rejects(verify, /is not on/);
-  }
-});
-
-test("only a frozen source with no Radius gitlink history gets the legacy smoke", async () => {
-  const { api } = github();
-  assert.equal(await frozenRadiusPin(api, sha), fixturePin);
-  api.rest.git.getTree = async () => ({ data: { truncated: false, tree: [] } });
-  api.rest.repos.listCommits = async (args) => {
-    assert.equal(args.sha, sha); assert.equal(args.path, "radius"); return { data: [] };
-  };
-  assert.equal(await frozenRadiusPin(api, sha), null);
-  api.rest.pulls.list = () => [];
-  await verifySource(api, source); // Historical tag before both pin-aware plans and the submodule.
-  api.rest.repos.listCommits = async () => ({ data: [{ sha }] });
-  await assert.rejects(frozenRadiusPin(api, sha), /removed/);
-  api.rest.git.getTree = async () => ({ data: { truncated: true, tree: [] } });
-  await assert.rejects(frozenRadiusPin(api, sha), /incomplete Git tree/);
-});
-
-test("the approved base is not the tag: require the App's post-approval lock, including for no-op pins", async () => {
-  const { api } = github();
-  const base = "1".repeat(40), product = fixturePin, tree = "2".repeat(40), lockCommit = "3".repeat(40);
-  const branch = "release/0.62", version = "v0.62.1", planPath = `.github/release-plans/${version}.yaml`;
-  const path = ".github/release-state/aws-pin.json", ref = "heads/automation/release-state-aws-0.62.1";
-  const sibling = { name: "bicep-types-aws", repository, sourceRef: "main", sourceCommit: base,
-    radiusPin: { productCommit: product, expectedTree: tree } };
-  const plan = { schemaVersion: 2, version, channel: "0.62", releaseBranch: branch, releasePlanPath: planPath,
-    source: { productRef: `refs/remotes/origin/${branch}`, productCommit: product }, siblingRepositories: [sibling] };
-  const lock = { schemaVersion: 1, version, planBlob: gitBlob(JSON.stringify(plan)), productCommit: product,
-    baseCommit: base, expectedTree: tree, landedCommit: source.commit };
-  const state = { ref: `refs/${ref}`, object: { type: "commit", sha: lockCommit } };
-  const signature = { verified: true, reason: "valid" };
-  const attestation = { sha: lockCommit, author: { login: "radius-release[bot]", type: "Bot" },
-    committer: { login: "web-flow" }, commit: { verification: signature },
-    parents: [{ sha: product }], files: [{ filename: path, status: "added" }] };
-  const tagged = { sha: source.commit, parents: [{ sha: base }], commit: { tree: { sha: tree } } };
-  let suffix = "", basePin = base, releaseOnly = true;
-  const merge = api.rest.repos.getCommit;
-  api.rest.repos.getCommit = async (args) => {
-    if (args.ref === lockCommit && args.repo === "radius") return { data: attestation };
-    if (args.ref === source.commit && args.repo === "bicep-types-aws") return { data: tagged };
-    return merge(args);
-  };
-  api.rest.git.getRef = async (args) => {
-    assert.equal(args.repo, "radius"); assert.equal(args.ref, ref);
-    return { data: state };
-  };
-  api.rest.repos.getContent = async (args) => {
-    assert.equal(args.repo, "radius");
-    if (args.path === planPath && args.ref === controllerSha) return content(JSON.stringify(plan) + suffix);
-    assert.equal(args.path, path); assert.equal(args.ref, lockCommit);
-    return content(JSON.stringify(lock));
-  };
-  api.rest.repos.getBranch = async ({ branch: name }) => ({ data: { protected: true,
-    commit: { sha: name === "main" ? controllerSha : source.commit } } });
-  api.rest.repos.compareCommitsWithBasehead = async (args) => ({ data:
-    releaseOnly && args.repo === "bicep-types-aws" && args.basehead === `${source.commit}...${controllerSha}`
-      ? { status: "behind", merge_base_commit: { sha: base } } : { status: "ahead" }
-  });
-  api.rest.git.getTree = async ({ tree_sha }) => ({ data: { truncated: false, tree: [
-    { path: "radius", type: "commit", mode: "160000", sha: tree_sha === base ? basePin : product }
-  ] } });
-
-  const verify = () => verifySource(api, source);
-  await verify();
-  for (const [object, key, bad, error] of [
-    [attestation.author, "login", "other-app[bot]", /release App/],
-    [signature, "verified", false, /release App/],
-    [attestation, "parents", [{ sha: product }, { sha: base }], /lock parent/],
-    [attestation, "files", [], /write only/],
-    [lock, "version", "v0.62.2", /lock does not match/],
-    [lock, "baseCommit", controllerSha, /lock does not match/],
-    [lock, "landedCommit", base, /lock does not match/],
-    [tagged, "parents", [{ sha: controllerSha }], /directly from the approved base/],
-    [tagged.commit.tree, "sha", base, /approved pin tree/],
-    [sibling.radiusPin, "productCommit", base, /pin intent/]
-  ]) {
-    const saved = object[key]; object[key] = bad;
-    await assert.rejects(verify, error);
-    object[key] = saved;
-  }
-  suffix = "\n"; // Same parsed plan; different Git blob.
-  await assert.rejects(verify, /lock does not match/);
-  suffix = "";
-  basePin = product;
-  await assert.rejects(verify, /No pin update was needed/);
-  releaseOnly = false; // Even an already-matching, main-ancestral base must have its approved lock.
-  sibling.sourceCommit = source.commit;
-  lock.baseCommit = source.commit;
-  lock.planBlob = gitBlob(JSON.stringify(plan));
-  await verify();
-  api.rest.git.getRef = async () => { throw new Error("Missing AWS lock"); };
-  await assert.rejects(verify, /Missing AWS lock/);
-  api.rest.pulls.list = () => [];
-  await assert.rejects(verify, /requires a merged Radius/);
 });
 
 test("cross-run recovery requires an original run and capture attempt", () => {
@@ -1092,6 +909,21 @@ test("generator CLI preserves legacy dashed arguments and default resource ident
       assert.ok(Object.keys(index.resources).every((name) => name.endsWith("@default")));
     }
   }
+});
+
+test("only a frozen source with no Radius gitlink history gets the legacy smoke", async () => {
+  const { api } = github();
+  api.rest.git.getTree = async () => ({ data: { truncated: false, tree: [] } });
+  api.rest.repos.listCommits = async (args) => {
+    assert.equal(args.sha, sha); assert.equal(args.path, "radius"); return { data: [] };
+  };
+  assert.equal(await frozenRadiusPin(api, sha), null);
+  api.rest.repos.listCommits = async () => ({ data: [{ sha }] });
+  await assert.rejects(frozenRadiusPin(api, sha), /removed/);
+  api.rest.git.getTree = async () => ({ data: { truncated: true, tree: [] } });
+  await assert.rejects(frozenRadiusPin(api, sha), /incomplete Git tree/);
+  api.rest.git.getTree = async () => ({ data: { truncated: false, tree: [{ path: "radius", type: "blob" }] } });
+  await assert.rejects(frozenRadiusPin(api, sha), /must be a gitlink/);
 });
 
 test("generator CLI packages the real pinned Radius MSK property; dropping the overlay fails the smoke", {

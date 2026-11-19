@@ -40,8 +40,8 @@ When invoking `dist/src/main.js` directly from the repository root, also pass
 `--radius "$PWD/radius"` so the generator uses this repository's pinned Radius
 schemas rather than resolving its package-relative default from the wrong directory.
 
-The publishing helper tests require Node, `yq` v4 (for the approved release
-plan) and Python 3 (for the legacy tag-version parser), without npm dependencies:
+The publishing helper tests require Node and Python 3 (for the retained legacy
+tag-version parser), without installing npm dependencies:
 
 ```bash
 node --test .github/scripts/publish-bicep.test.mjs .github/scripts/monitor-remote-workflow_test.mjs
