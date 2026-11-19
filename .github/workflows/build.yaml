@@ -113,6 +113,10 @@ jobs:
         working-directory: src/aws-type-generator
         run: npm run test:bicep
 
+      - name: Check the reports read the effective types
+        working-directory: src/aws-type-generator
+        run: npm run test:reports
+
       - name: Verify actual generator CLI version compatibility without AWS
         env:
           AWS_BICEP_TEST_GENERATOR: "true"
