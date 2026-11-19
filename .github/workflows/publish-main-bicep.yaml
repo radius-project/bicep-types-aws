@@ -145,9 +145,9 @@ jobs:
           ref: ${{ github.sha }}
           persist-credentials: false
 
-      - name: Install pinned OCI copy tool
+      - name: Install pinned Bicep and OCI tools
         run: |
-          bash .github/scripts/install-bicep-tools.sh "${RUNNER_TEMP}/bicep-tools" oras
+          bash .github/scripts/install-bicep-tools.sh "${RUNNER_TEMP}/bicep-tools"
           echo "${RUNNER_TEMP}/bicep-tools" >> "${GITHUB_PATH}"
           echo "DOCKER_CONFIG=${RUNNER_TEMP}/bicep-write-credentials" >> "${GITHUB_ENV}"
 
