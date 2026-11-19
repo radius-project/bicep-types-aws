@@ -286,7 +286,8 @@ function hasOwn(value: object, key: string): boolean {
 // delete or change a file the generator reads. writeRecords replaces the JSON
 // files directly in its directory, and the Radius schema directories are read
 // recursively, so an output can't be an AWS input directory, sit inside a Radius
-// schema directory, hold an extra properties file, or be the other output.
+// schema directory, hold an extra properties file or the target of a linked input
+// file, or be the other output.
 export function checkEffectiveOutputs(outputs: string[], awsInputs: string[], radius: RadiusPaths[]) {
     const resolved = outputs.map(canonicalPath)
     if (new Set(resolved).size !== resolved.length) {
@@ -313,7 +314,24 @@ export function checkEffectiveOutputs(outputs: string[], awsInputs: string[], ra
                 throw new Error(`${output} holds the Radius extra properties file ${extraProperties}, so it can't be an effective output`)
             }
         }
+        for (const file of linkedInputFiles(awsInputs, radius)) {
+            const target = fs.realpathSync(file)
+            if (path.dirname(target) === output) {
+                throw new Error(`${output} holds ${target}, which the input ${file} links to, so it can't be an effective output`)
+            }
+        }
     }
+}
+
+// linkedInputFiles lists the input files the generator reads that are symbolic
+// links: the JSON files in each AWS input directory and each extra properties
+// file. Reading follows the link, so writeRecords could delete the target. The
+// Radius schema directories are left out because findSchemaFiles skips links.
+function linkedInputFiles(awsInputs: string[], radius: RadiusPaths[]): string[] {
+    const files = awsInputs.filter(dir => fs.existsSync(dir)).flatMap(dir =>
+        fs.readdirSync(dir).filter(file => file.endsWith(".json")).map(file => path.resolve(dir, file)))
+    files.push(...radius.map(paths => path.resolve(paths.root, paths.extraProperties)))
+    return files.filter(file => fs.lstatSync(file, { throwIfNoEntry: false })?.isSymbolicLink() && fs.existsSync(file))
 }
 
 // canonicalPath resolves symbolic links, so two names for one directory compare equal.

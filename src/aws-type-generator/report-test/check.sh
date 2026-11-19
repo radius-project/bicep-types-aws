@@ -5,8 +5,9 @@
 # applied. Changes a copy of the Radius test fixtures in each way the report
 # flags, then checks the report lists every change. Needs Go, Python, and
 # `npm run build` first. Last, checks that the generator rejects a previous Radius
-# checkout with no Radius inputs, and effective outputs that reach a protected
-# directory through a symbolic link, without changing any file.
+# checkout with no Radius inputs, effective outputs that reach a protected
+# directory through a symbolic link, and effective outputs that hold the target of
+# a linked input file, without changing any file.
 
 set -euo pipefail
 
@@ -57,6 +58,16 @@ mkdir -p "${work}/empty" "${work}/out"
 ln -s "${work}/out" "${work}/out-link"
 ln -s "${work}/aws" "${work}/aws-link"
 ln -s "${work}/radius/pkg/aws/schemas" "${work}/schemas-link"
+# Inputs that are links to files in the effective output: the Radius extra
+# properties file, and an AWS type file.
+cp -R "${work}/radius" "${work}/radius-linked"
+extra="${work}/radius-linked/pkg/aws/extraproperties/extra_properties.json"
+mv "${extra}" "${work}/out/extra_properties.json"
+ln -s "${work}/out/extra_properties.json" "${extra}"
+cp -R "${work}/aws" "${work}/aws-linked"
+aws_file="AWS::EC2::PlacementGroup.json"
+mv "${work}/aws-linked/${aws_file}" "${work}/out/${aws_file}"
+ln -s "${work}/out/${aws_file}" "${work}/aws-linked/${aws_file}"
 
 snapshot() {
     (cd "${work}" && find . -type f -print0 | sort -z | xargs -0 shasum)
@@ -91,6 +102,10 @@ rejected "outputs linked to one directory" "must be different directories" \
 rejected "output linked to the AWS input" "is an input directory" --effective-output "${work}/aws-link"
 rejected "output inside a linked schema directory" "is inside the Radius schema directory" \
     --effective-output "${work}/schemas-link/native"
+rejected "output holding a linked extra properties file" "which the input ${extra} links to" \
+    --previous-input "${work}/aws" --previous-radius "${work}/radius-linked" --effective-output "${work}/out"
+rejected "output holding a linked AWS input file" "which the input ${work}/aws-linked/${aws_file} links to" \
+    --previous-input "${work}/aws-linked" --previous-radius "${work}/radius" --effective-output "${work}/out"
 
 if [[ "${failed}" -ne 0 ]]; then
     echo "${report}"

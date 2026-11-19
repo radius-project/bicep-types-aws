@@ -497,6 +497,35 @@ describe('checkEffectiveOutputs', () => {
             expect(() => checkEffectiveOutputs([output], [], [radius(radiusRoot)])).toThrow('is inside the Radius schema directory')
         })
 
+        test('rejects an output that holds the target of a linked extra properties file', () => {
+            const { out, radiusRoot } = setup()
+            const extra = path.join(radiusRoot, defaultRadiusPaths.extraProperties)
+            fs.mkdirSync(path.dirname(extra), { recursive: true })
+            fs.writeFileSync(path.join(out, 'extra.json'), '{}')
+            fs.symlinkSync(path.join(out, 'extra.json'), extra)
+            expect(() => checkEffectiveOutputs([out], [], [radius(radiusRoot)])).toThrow(`which the input ${extra} links to`)
+            expect(fs.readFileSync(path.join(out, 'extra.json'), 'utf8')).toBe('{}')
+        })
+
+        test('rejects an output that holds the target of a linked AWS input file', () => {
+            const { aws, out } = setup()
+            fs.writeFileSync(path.join(out, 'AWS-S3-Bucket.json'), '{}')
+            fs.symlinkSync(path.join(out, 'AWS-S3-Bucket.json'), path.join(aws, 'AWS-S3-Bucket.json'))
+            expect(() => checkEffectiveOutputs([out], [aws], [])).toThrow(`which the input ${path.join(aws, 'AWS-S3-Bucket.json')} links to`)
+            expect(fs.readFileSync(path.join(out, 'AWS-S3-Bucket.json'), 'utf8')).toBe('{}')
+        })
+
+        test('accepts linked input files whose targets are outside the outputs', () => {
+            const { root, aws, out, radiusRoot } = setup()
+            const extra = path.join(radiusRoot, defaultRadiusPaths.extraProperties)
+            fs.mkdirSync(path.dirname(extra), { recursive: true })
+            fs.writeFileSync(path.join(root, 'extra.json'), '{}')
+            fs.symlinkSync(path.join(root, 'extra.json'), extra)
+            fs.writeFileSync(path.join(root, 'bucket.json'), '{}')
+            fs.symlinkSync(path.join(root, 'bucket.json'), path.join(aws, 'AWS-S3-Bucket.json'))
+            expect(() => checkEffectiveOutputs([out], [aws], [radius(radiusRoot)])).not.toThrow()
+        })
+
         test('rejects an output when the Radius root is reached through a link', () => {
             const { radiusRoot, link } = setup()
             const output = path.join(radiusRoot, defaultRadiusPaths.nativeSchemas)
