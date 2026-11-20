@@ -1,11 +1,23 @@
 ## Radius Bicep AWS limitations
 
-### Non-idempotency
-If you see a warning describing an AWS resource as 'non-idempotent', this means that this resource type is assigned a primary identifier at deployment time and is currently not supported by Radius Bicep.
+### Identifiers AWS assigns
 
-We are currently building support for non-idempotent resources in Radius. Please like and comment on [this issue](https://github.com/radius-project/radius/issues/6227) if you are interested in the same.
+Some resource types, such as `AWS::EC2::VPC`, get their primary identifier from AWS when AWS creates them, so a template can't set it. Radius keeps a record of each AWS resource it deploys, keyed by the resource's `alias`, so every deploy of the same alias updates the same resource. A retried deploy finds a create that AWS already accepted, so it doesn't create a second resource.
 
-As a workaround, you can try using [Terraform Recipes](https://docs.radapp.io/guides/recipes/overview/) to deploy and manage those non-idempotent resource types.
+```bicep
+extension aws
+
+resource vpc 'AWS.EC2/VPC@default' = {
+  alias: 'app-vpc'
+  properties: {
+    CidrBlock: '10.0.0.0/16'
+  }
+}
+```
+
+To manage a resource that already exists, set the top-level `name` to its identifier. To only read it, use `existing`.
+
+This needs a Radius release after v0.62.0, or an edge build. If Radius loses track of a create that AWS accepted, such as when it restarts at that moment, the next deploy of the alias finds that resource. For a type served through AWS Cloud Control, Radius finds it by sending the same create request again, and Cloud Control keeps a request for 36 hours. If the next deploy comes after that, it can create a second resource.
 
 ### Read-only resource types
 
