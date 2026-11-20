@@ -6,37 +6,65 @@
 # Usage: check-radius-pin.sh [REF], where REF defaults to HEAD.
 set -euo pipefail
 
+repo=radius-project/radius
+url="https://github.com/${repo}"
+hint="Pin a commit from ${repo}. On a release branch, pin the commit the release ships (source.productCommit in its release plan)."
 ref="${1:-HEAD}"
-root="$(git rev-parse --show-toplevel)"
-url="$(git -C "$root" config -f .gitmodules submodule.radius.url)"
-repo="${url#https://github.com/}"
-repo="${repo%.git}"
 
-pin="$(git -C "$root" rev-parse --verify --quiet "${ref}:radius" || true)"
-if [[ -z "$pin" ]]; then
-  echo "::error::No radius submodule found at ${ref}." >&2
+fail() {
+  echo "::error::$*" >&2
   exit 1
-fi
+}
+
+commit="$(git rev-parse --verify --quiet --end-of-options "${ref}^{commit}")" ||
+  fail "Could not resolve ${ref} to a commit. Check the name, or fetch it first."
+
+entry="$(git ls-tree --full-tree "$commit" -- radius)"
+[[ "$entry" == "160000 commit "* ]] ||
+  fail "${ref} has no radius submodule. Expected a submodule entry at the radius path."
+pin="${entry#160000 commit }"
+pin="${pin%%$'\t'*}"
+
+# Read the mapping from the revision being checked, not the working tree.
+names=()
+while IFS= read -r -d '' item; do
+  [[ "${item#*$'\n'}" == radius ]] || continue
+  name="${item%%$'\n'*}"
+  name="${name#submodule.}"
+  names+=("${name%.path}")
+done < <(git config -z --blob "${commit}:.gitmodules" --get-regexp '^submodule\..*\.path$' 2>/dev/null || true)
+[[ ${#names[@]} -eq 1 ]] ||
+  fail "The .gitmodules file in ${ref} must map the radius path to exactly one submodule."
+mapped="$(git config --blob "${commit}:.gitmodules" "submodule.${names[0]}.url" 2>/dev/null || true)"
+[[ "$mapped" == "$url" || "$mapped" == "${url}.git" ]] ||
+  fail "The radius submodule in ${ref} must use ${url} as its URL in .gitmodules."
 
 scratch="$(mktemp -d)"
 trap 'rm -rf "$scratch"' EXIT
 git init --quiet "$scratch"
 
-# Fetch only the pinned commit object, without its trees or history.
-# Retry other failures, which are usually network errors.
+# Fetch only the pinned object, without its trees or history.
+# Retry failures other than a missing object, which are usually network errors.
+fetched=false
 for attempt in 1 2 3; do
   if output="$(git -C "$scratch" fetch --quiet --depth=1 --filter=tree:0 -- "$url" "$pin" 2>&1)"; then
-    echo "The radius submodule pins ${pin}, a commit in ${repo}."
-    exit 0
+    fetched=true
+    break
   fi
-  [[ "$output" == *"not our ref"* || "$attempt" == 3 ]] && break
-  sleep $((attempt * 5))
+  [[ "$output" == *"not our ref"* ]] && break
+  [[ "$attempt" == 3 ]] || sleep $((attempt * 5))
 done
 
-if [[ "$output" == *"not our ref"* ]]; then
-  echo "::error::The radius submodule pins ${pin:0:8}, which is not a commit in ${repo}. Pin a commit from ${repo}. On a release branch, pin the commit the release ships (source.productCommit in its release plan)." >&2
-else
+if [[ "$fetched" != true ]]; then
+  [[ "$output" == *"not our ref"* ]] &&
+    fail "The radius submodule pins ${pin:0:8}, which is not a commit in ${repo}. ${hint}"
   echo "$output" >&2
-  echo "::error::Could not check whether ${repo} has commit ${pin:0:8}, the radius submodule pin. See the git output above." >&2
+  fail "Could not check whether ${repo} has commit ${pin:0:8}, the radius submodule pin. See the git output above."
 fi
-exit 1
+
+# GitHub also serves tag and tree objects by ID, so check what was fetched.
+type="$(git -C "$scratch" cat-file -t "$pin")"
+[[ "$type" == commit ]] ||
+  fail "The radius submodule pins ${pin:0:8}, which is a ${type} in ${repo}, not a commit. ${hint}"
+
+echo "The radius submodule pins ${pin}, a commit in ${repo}."
