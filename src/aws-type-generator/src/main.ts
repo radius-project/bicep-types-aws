@@ -5,7 +5,7 @@ import { writeTypesJson } from "bicep-types";
 import { writeMarkdown } from "bicep-types";
 import { SchemaRecord } from "./schemarecord";
 import { convertSchemaRecordToTypes } from "./convert";
-import { applyRadius, defaultRadiusPaths, loadPreviousRadius, loadRadius, newClashes, RadiusPaths, renderClashReport } from "./radius";
+import { applyRadius, checkEffectiveOutputs, defaultRadiusPaths, loadPreviousRadius, loadRadius, newClashes, PreviousInputs, RadiusPaths, renderClashReport, writeRecords } from "./radius";
 import { logOut, ILogger, defaultLogger, findRecursive, removeStaleNamespaces } from './utils';
 import { writeFile, readFile } from 'fs/promises';
 import { TypeFile, buildIndex, readTypesJson, writeIndexJson, writeIndexMarkdown, TypeSettings } from 'bicep-types'; 
@@ -20,7 +20,9 @@ const parser = yargs(process.argv.slice(2)).options({
     radiusExtraProperties: { type: 'string', default: defaultRadiusPaths.extraProperties, description: 'extra read-only properties of each type, relative to --radius' },
     clashReport: { type: 'string', description: 'file to write a Markdown report to when AWS and Radius use the same type or property name' },
     previousInput: { type: 'string', description: 'previous AWS types. With --previous-radius, the clash report leaves out clashes both sides already had' },
-    previousRadius: { type: 'string', description: 'previous Radius checkout. With --previous-input, the clash report leaves out clashes both sides already had' }
+    previousRadius: { type: 'string', description: 'previous Radius checkout. With --previous-input, the clash report leaves out clashes both sides already had' },
+    effectiveOutput: { type: 'string', description: 'directory to write the type records to, with the schemas and extra properties Radius owns applied' },
+    previousEffectiveOutput: { type: 'string', description: 'like --effective-output, for --previous-input and --previous-radius' }
 }).argv;
 
 interface Args {
@@ -34,6 +36,8 @@ interface Args {
     clashReport?: string
     previousInput?: string
     previousRadius?: string
+    effectiveOutput?: string
+    previousEffectiveOutput?: string
 }
 
 async function main() {
@@ -43,6 +47,20 @@ async function main() {
         if ((argv.previousInput === undefined) !== (argv.previousRadius === undefined)) {
             throw new Error('use --previous-input and --previous-radius together')
         }
+        if (argv.previousEffectiveOutput && !argv.previousInput) {
+            throw new Error('--previous-effective-output needs --previous-input and --previous-radius')
+        }
+        const radiusPaths = (root: string): RadiusPaths => ({
+            root: path.resolve(root),
+            nativeSchemas: argv.radiusNativeSchemas,
+            handwrittenSchemas: argv.radiusHandwrittenSchemas,
+            extraProperties: argv.radiusExtraProperties,
+        })
+        checkEffectiveOutputs(
+            [argv.effectiveOutput, argv.previousEffectiveOutput].filter((d): d is string => d !== undefined),
+            [argv.input, argv.previousInput].filter((d): d is string => d !== undefined),
+            [argv.radius, argv.previousRadius].filter((d): d is string => d !== undefined).map(radiusPaths),
+        )
         argv.input = path.resolve(argv.input)
         argv.output = path.resolve(argv.output)
 
@@ -51,12 +69,6 @@ async function main() {
 
         const downloaded = readRecords(argv.input)
 
-        const radiusPaths = (root: string): RadiusPaths => ({
-            root: path.resolve(root),
-            nativeSchemas: argv.radiusNativeSchemas,
-            handwrittenSchemas: argv.radiusHandwrittenSchemas,
-            extraProperties: argv.radiusExtraProperties,
-        })
         console.info(`reading Radius schemas from ${path.resolve(argv.radius)}`)
         const applied = applyRadius(downloaded, loadRadius(radiusPaths(argv.radius)))
 
@@ -65,11 +77,20 @@ async function main() {
         if (applied.clashes.length > 0) {
             console.warn(`AWS and Radius use the same name for some types or properties:\n${renderClashReport(applied.clashes)}`)
         }
+        const previous: PreviousInputs | undefined = argv.previousInput && argv.previousRadius ? {
+            aws: readRecords(path.resolve(argv.previousInput)),
+            radius: loadPreviousRadius(radiusPaths(argv.previousRadius)),
+        } : undefined
+
+        if (argv.effectiveOutput) {
+            writeRecords(path.resolve(argv.effectiveOutput), applied.records)
+        }
+        if (argv.previousEffectiveOutput && previous) {
+            writeRecords(path.resolve(argv.previousEffectiveOutput), applyRadius(previous.aws, previous.radius).records)
+        }
+
         if (argv.clashReport) {
-            const clashes = argv.previousInput && argv.previousRadius ? newClashes(applied.clashes, {
-                aws: readRecords(path.resolve(argv.previousInput)),
-                radius: loadPreviousRadius(radiusPaths(argv.previousRadius)),
-            }) : applied.clashes
+            const clashes = previous ? newClashes(applied.clashes, previous) : applied.clashes
             const report = renderClashReport(clashes)
             const reportPath = path.resolve(argv.clashReport)
             if (report) {
