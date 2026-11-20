@@ -420,16 +420,44 @@ describe('renderClashReport', () => {
 })
 
 describe('writeRecords', () => {
-    test('writes each record as <type>.json and removes JSON files already there', () => {
+    const records = () => applyRadius([awsRecord('AWS::MSK::Cluster')], { ...emptyInputs(), extraProperties: { 'AWS::MSK::Cluster': { BrokerString: { type: 'string' } as any } } }).records
+
+    test('writes each record as <type>.json into a new directory', () => {
         const dir = path.join(tempDir(), 'effective')
-        writeJson(path.join(dir, 'AWS::IoTEvents::Input.json'), {})
+        writeRecords(dir, records())
+        expect(fs.readdirSync(dir)).toEqual(['AWS::MSK::Cluster.json'])
+        expect(JSON.parse(fs.readFileSync(path.join(dir, 'AWS::MSK::Cluster.json'), 'utf8'))).toEqual(records()[0])
+    })
+
+    test('writes into a directory that holds no JSON files and keeps the other files', () => {
+        const dir = path.join(tempDir(), 'effective')
         writeJson(path.join(dir, 'notes.txt'), 'keep')
-        const records = applyRadius([awsRecord('AWS::MSK::Cluster')], { ...emptyInputs(), extraProperties: { 'AWS::MSK::Cluster': { BrokerString: { type: 'string' } as any } } }).records
-
-        writeRecords(dir, records)
-
+        writeRecords(dir, records())
         expect(fs.readdirSync(dir).sort()).toEqual(['AWS::MSK::Cluster.json', 'notes.txt'])
-        expect(JSON.parse(fs.readFileSync(path.join(dir, 'AWS::MSK::Cluster.json'), 'utf8'))).toEqual(records[0])
+    })
+
+    test.each([
+        ['a JSON file', (dir: string) => writeJson(path.join(dir, 'AWS::IoTEvents::Input.json'), {})],
+        ['a dangling link named like a JSON file', (dir: string) => fs.symlinkSync(path.join(dir, 'missing'), path.join(dir, 'AWS::MSK::Cluster.json'))],
+        ['a directory named like a JSON file', (dir: string) => fs.mkdirSync(path.join(dir, 'x.json'))],
+    ])('refuses a directory that holds %s and changes nothing', (_, add) => {
+        const dir = path.join(tempDir(), 'effective')
+        fs.mkdirSync(dir)
+        add(dir)
+        const before = fs.readdirSync(dir).sort()
+        expect(() => writeRecords(dir, records())).toThrow('already has JSON files')
+        expect(fs.readdirSync(dir).sort()).toEqual(before)
+    })
+
+    test('refuses the second output when both names reach one directory only after the first write', () => {
+        const root = tempDir()
+        const dir = path.join(root, 'new')
+        const alias = path.join(root, 'alias')
+        fs.symlinkSync(dir, alias)
+        expect(() => checkEffectiveOutputs([dir, alias], [], [])).not.toThrow()
+        writeRecords(dir, records())
+        expect(() => writeRecords(alias, records())).toThrow('already has JSON files')
+        expect(JSON.parse(fs.readFileSync(path.join(dir, 'AWS::MSK::Cluster.json'), 'utf8'))).toEqual(records()[0])
     })
 })
 
@@ -495,6 +523,80 @@ describe('checkEffectiveOutputs', () => {
             const { radiusRoot, link } = setup()
             const output = path.join(link('alias', path.join(radiusRoot, 'pkg/aws/schemas')), 'native', 'new')
             expect(() => checkEffectiveOutputs([output], [], [radius(radiusRoot)])).toThrow('is inside the Radius schema directory')
+        })
+
+        test('rejects an output that holds the target of a linked extra properties file, as it holds JSON files', () => {
+            const { out, radiusRoot } = setup()
+            const extra = path.join(radiusRoot, defaultRadiusPaths.extraProperties)
+            fs.mkdirSync(path.dirname(extra), { recursive: true })
+            fs.writeFileSync(path.join(out, 'extra.json'), '{}')
+            fs.symlinkSync(path.join(out, 'extra.json'), extra)
+            expect(() => checkEffectiveOutputs([out], [], [radius(radiusRoot)])).toThrow('already has JSON files, such as extra.json')
+            expect(fs.readFileSync(path.join(out, 'extra.json'), 'utf8')).toBe('{}')
+        })
+
+        test('rejects an output that holds the target of a linked AWS input file', () => {
+            const { aws, out } = setup()
+            fs.writeFileSync(path.join(out, 'AWS-S3-Bucket.json'), '{}')
+            fs.symlinkSync(path.join(out, 'AWS-S3-Bucket.json'), path.join(aws, 'AWS-S3-Bucket.json'))
+            expect(() => checkEffectiveOutputs([out], [aws], [])).toThrow('already has JSON files, such as AWS-S3-Bucket.json')
+            expect(fs.readFileSync(path.join(out, 'AWS-S3-Bucket.json'), 'utf8')).toBe('{}')
+        })
+
+        test('rejects an output that holds a link in the middle of a linked input chain', () => {
+            const { root, aws, out } = setup()
+            fs.mkdirSync(path.join(root, 'safe'))
+            fs.writeFileSync(path.join(root, 'safe', 'source.json'), '{}')
+            fs.symlinkSync('../safe/source.json', path.join(out, 'relay.json'))
+            fs.symlinkSync('../out/relay.json', path.join(aws, 'AWS-S3-Bucket.json'))
+            expect(() => checkEffectiveOutputs([out], [aws], [])).toThrow('already has JSON files, such as relay.json')
+            expect(fs.readlinkSync(path.join(out, 'relay.json'))).toBe('../safe/source.json')
+            expect(fs.readFileSync(path.join(aws, 'AWS-S3-Bucket.json'), 'utf8')).toBe('{}')
+        })
+
+        test('rejects an output that links into a directory under a Radius schema directory', () => {
+            const { radiusRoot, link } = setup()
+            const docdb = path.join(radiusRoot, defaultRadiusPaths.nativeSchemas, 'docdb')
+            fs.mkdirSync(docdb)
+            expect(() => checkEffectiveOutputs([link('out-link', docdb)], [], [radius(radiusRoot)])).toThrow('is inside the Radius schema directory')
+        })
+
+        test('rejects an output reached by a relative link chain through a linked directory', () => {
+            const { root, aws } = setup()
+            fs.mkdirSync(path.join(root, 'safe', 'inner'), { recursive: true })
+            fs.mkdirSync(path.join(root, 'safe', 'out'))
+            fs.writeFileSync(path.join(root, 'safe', 'out', 'source.json'), '{}')
+            fs.symlinkSync('../out/source.json', path.join(root, 'safe', 'inner', 'relay.json'))
+            fs.symlinkSync('safe/inner', path.join(root, 'alias'))
+            fs.symlinkSync('../alias/relay.json', path.join(aws, 'AWS-S3-Bucket.json'))
+            expect(fs.readFileSync(path.join(aws, 'AWS-S3-Bucket.json'), 'utf8')).toBe('{}')
+            expect(() => checkEffectiveOutputs([path.join(root, 'safe', 'out')], [aws], [])).toThrow('already has JSON files, such as source.json')
+        })
+
+        const caseInsensitive = (() => {
+            const dir = tempDir()
+            return fs.existsSync(dir.toUpperCase()) && dir.toUpperCase() !== dir
+        })()
+        // Only runs on a case-insensitive filesystem, such as macOS's default.
+        ;(caseInsensitive ? test : test.skip)('rejects an output that names a directory with different letter case', () => {
+            const { aws, out } = setup()
+            fs.writeFileSync(path.join(out, 'extra.json'), '{}')
+            fs.symlinkSync(path.join(out, 'extra.json'), path.join(aws, 'AWS-S3-Bucket.json'))
+            const upper = path.join(path.dirname(out), 'OUT')
+            expect(() => checkEffectiveOutputs([upper], [aws], [])).toThrow('already has JSON files')
+            expect(() => checkEffectiveOutputs([path.join(path.dirname(aws), 'AWS')], [aws], [])).toThrow('is an input directory')
+            expect(fs.readFileSync(path.join(out, 'extra.json'), 'utf8')).toBe('{}')
+        })
+
+        test('accepts linked input files whose targets are outside the outputs', () => {
+            const { root, aws, out, radiusRoot } = setup()
+            const extra = path.join(radiusRoot, defaultRadiusPaths.extraProperties)
+            fs.mkdirSync(path.dirname(extra), { recursive: true })
+            fs.writeFileSync(path.join(root, 'extra.json'), '{}')
+            fs.symlinkSync(path.join(root, 'extra.json'), extra)
+            fs.writeFileSync(path.join(root, 'bucket.json'), '{}')
+            fs.symlinkSync(path.join(root, 'bucket.json'), path.join(aws, 'AWS-S3-Bucket.json'))
+            expect(() => checkEffectiveOutputs([out], [aws], [radius(radiusRoot)])).not.toThrow()
         })
 
         test('rejects an output when the Radius root is reached through a link', () => {
