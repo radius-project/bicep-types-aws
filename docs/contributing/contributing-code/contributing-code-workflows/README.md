@@ -7,6 +7,12 @@ generator tests. A separate read-only job exercises the publishing helper and
 native Bicep/ORAS fixtures using checked-in schemas/output and two local registries.
 It receives no AWS, Azure, App-key or package-write credentials.
 
+It runs on pull requests into `main` and `release/*`. Before checking out the
+`radius` submodule, both jobs run `.github/scripts/check-radius-pin.sh`, which fails
+with a clear message unless the commit's `.gitmodules` maps `radius` to
+`https://github.com/radius-project/radius` and the submodule pins a commit in that
+repository. Its tests run with `node --test .github/scripts/check-radius-pin.test.mjs`.
+
 The generator tests are in `src/aws-type-generator/src/*.test.ts`, and the downloader tests, including the breaking change check, are in `src/aws-type-downloader`. The build also compiles the templates in `src/aws-type-generator/bicep-test` with the Bicep CLI against types generated from the test fixtures. Run it locally with `npm run build && npm run test:bicep` in `src/aws-type-generator`, with `bicep` on your `PATH`. Last, `npm run test:reports` changes the Radius test fixtures and checks that the breaking-change report and the reference docs show the changes.
 
 ## `generate-types.yaml`
