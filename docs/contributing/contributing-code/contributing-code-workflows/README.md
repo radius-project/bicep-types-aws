@@ -278,6 +278,16 @@ For release snapshots, root `source.json` is
 Publishing and original-generation runs must each authenticate as default-main
 `repository_dispatch` runs of this workflow. Their controller SHAs are checked
 against protected main history independently of the frozen tag/source SHA.
+The full stable or dotted-RC tag must still resolve to the frozen source SHA.
+The producer first accepts source ancestry on main, without requiring a release
+branch. Only a successful comparison proving the source is not on main permits a
+second check against `release/X.Y`, derived from that validated version.
+Release-only backports must be ancestors of (or equal to) that channel's head;
+wrong-channel or unrelated sources are rejected. Missing branches, API failures
+and invalid comparisons fail closed. Neither current nor original capture
+controllers may use this release-branch fallback. The Radius collector separately
+enforces the exact source branch selected by the approved release plan; the
+producer accepts the allowed main/channel union, not the plan's branch choice.
 Actions artifact run metadata binds to the controller, not the tagged source.
 The collector verifies the raw artifact digest before parsing `source.json` and
 binding its source, controller and original generation to API evidence. Recovery
