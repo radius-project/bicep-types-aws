@@ -7,6 +7,12 @@ generator tests. A separate read-only job exercises the publishing helper and
 native Bicep/ORAS fixtures using checked-in schemas/output and two local registries.
 It receives no AWS, Azure, App-key or package-write credentials.
 
+It runs on pull requests into `main` and `release/*`. Before checking out the
+`radius` submodule, both jobs run `.github/scripts/check-radius-pin.sh`, which fails
+with a clear message unless the commit's `.gitmodules` maps `radius` to
+`https://github.com/radius-project/radius` and the submodule pins a commit in that
+repository. Its tests run with `node --test .github/scripts/check-radius-pin.test.mjs`.
+
 The generator tests are in `src/aws-type-generator/src/*.test.ts`, and the downloader tests, including the breaking change check, are in `src/aws-type-downloader`. The build also compiles the templates in `src/aws-type-generator/bicep-test` with the Bicep CLI against types generated from the test fixtures. Run it locally with `npm run build && npm run test:bicep` in `src/aws-type-generator`, with `bicep` on your `PATH`. Last, `npm run test:reports` changes the Radius test fixtures and checks that the breaking-change report and the reference docs show the changes.
 
 ## `generate-types.yaml`
@@ -111,7 +117,15 @@ A separate schema-input job runs only the controller's downloader with the
 existing `publish-bicep` environment's AWS credentials. A fresh, unprivileged job
 runs the frozen generator without environment secrets or package-write authority.
 The uploader checks out the controller commit, authenticates the original
-capture, and imports only the data-only OCI graph. The frozen source can never
+capture, checks `schemas/radius-commit` against the frozen gitlink for pin-aware
+sources, and imports only the data-only OCI graph. Before its first registry
+write, it wraps the exact verified types layer as a local Bicep extension and
+compiles a controller-owned template. For a pinned source, the template reads
+`AWS.MSK/ServerlessCluster@default`'s `BootstrapBrokerStringSaslIam`. Missing
+type warnings fail the check just like errors. A historical release whose Git
+history **never** contained `radius` instead compiles an S3 bucket template;
+deleting or replacing the gitlink does not qualify. The same check runs on
+recovered snapshots, without regenerating them. The frozen source can never
 choose commands, helpers or destinations in a privileged job.
 
 The fresh uploader uses this repository's `GITHUB_TOKEN` with `packages: write`.
@@ -241,8 +255,11 @@ an uncertain response. A run title is only a discovery hint, not source evidence
 Do not delete request intent or reconstruct missing generation to bypass an
 ambiguous outcome.
 
-The tag must resolve to the exact source SHA; Radius independently
-matches it to the controller-frozen AWS commit. Full-version tags follow a
+The tag must resolve to the exact source SHA. For a plan with `radiusPin`, the
+Radius controller must use the landed commit from the verified receipt for
+dispatch and collection, not the pre-pin base in `siblingRepositories[].sourceCommit`.
+Plans without `radiusPin` use the frozen sibling `sourceCommit` directly.
+Full-version tags follow a
 publish-once CI policy: identical retries verify content, conflicting digests fail,
 and no release path force-overwrites an existing version.
 

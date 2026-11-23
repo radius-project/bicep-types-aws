@@ -30,10 +30,18 @@ Radius serves some AWS types with its own handlers, and some types return extra 
 
 The generator reads every `.json` file under the schema directories, skips `*.metadata.json` files, and keys each schema on its `typeName`, not its file name. A schema directory that doesn't exist has no schemas. Paths are relative to `--radius`, which defaults to `../../radius`. `--clash-report <file>` writes the clashes as Markdown. With both `--previous-input <dir>` (earlier AWS types) and `--previous-radius <dir>` (an earlier Radius checkout), it writes only clashes where either side is new.
 
-The extension now depends on a Radius version, so the submodule pins a Radius commit:
+### Automated release pins
+
+With [post-approval pinning](https://github.com/radius-project/radius/pull/13803) enabled, Radius Prepare Release reads this repository without changing it. Review the frozen AWS base commit, Radius product commit and expected Git tree in the release plan before approving it.
+
+**After approval**, the Radius controller opens or reuses a pin-only PR on `release/X.Y` if needed. The required GitHub Actions **Build and test** check runs on the signed proposal. The controller verifies the landed commit and records it in a signed receipt before tagging. If the base already has the right pin, the receipt records the base. Resume the controller rather than copying a SHA or moving the tag by hand.
+
+Before enabling automated pins for a live channel, land the [release-branch CI change](https://github.com/radius-project/bicep-types-aws/pull/382), backport it and the packaged-overlay build test to each existing **pin-aware** release branch (including `release/0.63`), and require the **Build and test** context from GitHub Actions on those branches. New channels inherit the workflow from `main`. The CI membership check alone cannot tell whether a valid Radius commit is the one the plan selected.
+
+**Legacy channels only:** The manual release step below applies only before automated pinning is enabled for a channel. It is not a fallback for a pending or failed pin PR.
 
 - On `main`, the submodule pins a Radius `main` commit. Dependabot moves it forward.
-- On a release branch, the submodule must pin the Radius commit the release ships, `source.productCommit` in Radius's `.github/release-plans/vX.Y.Z.yaml`. Set it with `git -C radius fetch --depth 1 origin <commit> && git -C radius checkout <commit>`, then commit the `radius` change.
+- On a release branch, the submodule must pin the Radius commit the release ships, `source.productCommit` in Radius's `.github/release-plans/vX.Y.Z.yaml`. Set it with `git -C radius fetch --depth 1 origin <commit> && git -C radius checkout <commit>`, then commit the `radius` change. The `Build and test` check fails if `.gitmodules` points `radius` at another repository or the pin is not a commit in radius-project/radius. Run `bash .github/scripts/check-radius-pin.sh` to check it locally.
 
 `artifacts/radius-commit` is not the pin. It records the Radius commit the checked-in types were generated from, so the weekly refresh can tell which Radius schemas are new.
 
