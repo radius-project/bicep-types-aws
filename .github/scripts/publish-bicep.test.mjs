@@ -65,7 +65,7 @@ function github(s = source, overrides = {}) {
   const api = {
     rest: {
       repos: {
-        getBranch: async () => ({ data: { protected: state.protected, commit: { sha: state.mainSha } } }),
+        getBranch: async () => ({ data: { name: "main", protected: state.protected, commit: { sha: state.mainSha } } }),
         getCommit: async () => ({ data: { sha: state.tagSha } }),
         compareCommitsWithBasehead: async () => ({ data: { status: state.comparison } })
       },
@@ -197,10 +197,10 @@ function releaseHistory(s = source, overrides = {}) {
   api.rest.repos.getBranch = async ({ branch }) => {
     branches.push(branch);
     if (branch === "main")
-      return { data: { protected: state.protected, commit: { sha: state.mainSha } } };
+      return { data: { name: "main", protected: state.protected, commit: { sha: state.mainSha } } };
     assert.equal(branch, state.releaseBranch, "Only the version-matched channel may be queried");
     if (state.branchError) throw state.branchError;
-    return { data: { commit: { sha: state.releaseSha } } };
+    return { data: { name: branch, commit: { sha: state.releaseSha } } };
   };
   api.rest.repos.compareCommitsWithBasehead = async ({ basehead }) => {
     comparisons.push(basehead);
@@ -248,6 +248,40 @@ test("main release sources do not require a release branch and main publication 
   assert.equal(await verifySource(api, main), state.mainSha);
   assert.deepEqual(branches, ["main"]);
   assert.deepEqual(comparisons, []);
+});
+
+test("renamed release branches are rejected before comparing their tips", async () => {
+  for (const name of ["release/0.63", "renamed-release", undefined]) {
+    const { api, state, comparisons } = releaseHistory();
+    const getBranch = api.rest.repos.getBranch;
+    api.rest.repos.getBranch = async (args) => {
+      const response = await getBranch(args);
+      if (args.branch !== "main") response.data.name = name;
+      return response;
+    };
+    await assert.rejects(verifySource(api, source), /Release branch name must match/);
+    assert.deepEqual(comparisons, [
+      `${controllerSha}...${state.mainSha}`, `${sha}...${state.mainSha}`
+    ]);
+  }
+});
+
+test("both main lookups reject protected renamed branches before ancestry comparison", async () => {
+  for (const lookup of [1, 2]) {
+    for (const name of ["renamed-main", undefined]) {
+      const { api, state, comparisons, branches } = releaseHistory();
+      const getBranch = api.rest.repos.getBranch;
+      let mainLookups = 0;
+      api.rest.repos.getBranch = async (args) => {
+        const response = await getBranch(args);
+        if (args.branch === "main" && ++mainLookups === lookup) response.data.name = name;
+        return response;
+      };
+      await assert.rejects(verifySource(api, source), /Main branch name must match/);
+      assert.deepEqual(comparisons, lookup === 1 ? [] : [`${controllerSha}...${state.mainSha}`]);
+      assert.deepEqual(branches, Array(lookup).fill("main"));
+    }
+  }
 });
 
 test("unrelated or wrong-channel sources and malformed release versions fail closed", async () => {

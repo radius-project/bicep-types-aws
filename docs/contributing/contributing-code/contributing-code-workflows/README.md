@@ -271,7 +271,9 @@ branch. Only a successful comparison proving the source is not on main permits a
 second check against `release/X.Y`, derived from that validated version.
 Release-only backports must be ancestors of (or equal to) that channel's head;
 wrong-channel or unrelated sources are rejected. Missing branches, API failures
-and invalid comparisons fail closed. Neither current nor original capture
+and invalid comparisons fail closed. Every main and release branch response must
+match the requested name exactly; redirects to renamed branches are rejected
+before comparing their tips. Neither current nor original capture
 controllers may use this release-branch fallback. The Radius collector separately
 enforces the exact source branch selected by the approved release plan; the
 producer accepts the allowed main/channel union, not the plan's branch choice.

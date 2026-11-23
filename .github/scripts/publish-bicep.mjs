@@ -165,6 +165,7 @@ async function verifyMainAncestor(github, commit) {
   const { data: main } = await github.rest.repos.getBranch({
     ...repo, branch: "main", request: request()
   });
+  assert.equal(main.name, "main", "Main branch name must match");
   assert.equal(main.protected, true, "Protected main is required");
   assert.ok(await isAncestor(github, commit, main.commit.sha),
     "Controller/source commit must belong to trusted main history");
@@ -189,6 +190,7 @@ export async function verifySource(github, source) {
   const { data: main } = await github.rest.repos.getBranch({
     ...repo, branch: "main", request: request()
   });
+  assert.equal(main.name, "main", "Main branch name must match");
   assert.equal(main.protected, true, "Protected main is required");
   if (source.workflow === releaseWorkflow) {
     const version = source.ref.match(releasePattern);
@@ -202,6 +204,7 @@ export async function verifySource(github, source) {
       const { data: release } = await github.rest.repos.getBranch({
         ...repo, branch, request: request()
       });
+      assert.equal(release.name, branch, "Release branch name must match");
       assert.ok(await isAncestor(github, source.commit, release.commit.sha),
         `Release source must belong to main or ${branch} history`);
     }
