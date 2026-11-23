@@ -41,7 +41,7 @@ Before enabling automated pins for a live channel, land the [release-branch CI c
 **Legacy channels only:** The manual release step below applies only before automated pinning is enabled for a channel. It is not a fallback for a pending or failed pin PR.
 
 - On `main`, the submodule pins a Radius `main` commit. Dependabot moves it forward.
-- On a release branch, the submodule must pin the Radius commit the release ships, `source.productCommit` in Radius's `.github/release-plans/vX.Y.Z.yaml`. Set it with `git -C radius fetch --depth 1 origin <commit> && git -C radius checkout <commit>`, then commit the `radius` change.
+- On a release branch, the submodule must pin the Radius commit the release ships, `source.productCommit` in Radius's `.github/release-plans/vX.Y.Z.yaml`. Set it with `git -C radius fetch --depth 1 origin <commit> && git -C radius checkout <commit>`, then commit the `radius` change. The `Build and test` check fails if `.gitmodules` points `radius` at another repository or the pin is not a commit in radius-project/radius. Run `bash .github/scripts/check-radius-pin.sh` to check it locally.
 
 `artifacts/radius-commit` is not the pin. It records the Radius commit the checked-in types were generated from, so the weekly refresh can tell which Radius schemas are new.
 
