@@ -89,9 +89,14 @@ export function loadRadius(paths: RadiusPaths): RadiusInputs {
 
 // loadPreviousRadius reads the Radius inputs from an earlier Radius commit. Unlike
 // loadRadius, a missing extra properties file means there are none, because an older
-// commit may not have one.
+// commit may not have one. A directory with none of the inputs is not a Radius
+// checkout, and comparing with it would hide every Radius change, so it is an error.
 export function loadPreviousRadius(paths: RadiusPaths): RadiusInputs {
     const extraPropertiesPath = path.resolve(paths.root, paths.extraProperties)
+    const inputs = [paths.nativeSchemas, paths.handwrittenSchemas, paths.extraProperties].map(input => path.resolve(paths.root, input))
+    if (!inputs.some(input => fs.existsSync(input))) {
+        throw new Error(`${paths.root} has no Radius schemas or extra properties file, so it is not the previous Radius checkout`)
+    }
     return {
         native: readSchemas(paths.root, paths.nativeSchemas),
         handwritten: readSchemas(paths.root, paths.handwrittenSchemas),
@@ -271,6 +276,108 @@ export function newClashes(clashes: Clash[], previous: PreviousInputs): Clash[] 
 
 function hasOwn(value: object, key: string): boolean {
     return Object.prototype.hasOwnProperty.call(value, key)
+}
+
+// checkEffectiveOutputs throws if writing records to an output directory could
+// change a file the generator reads, before anything is written. writeRecords
+// only adds files and never deletes or replaces one, so an output must be new or
+// hold no JSON files. The Radius schema directories are read recursively, so an
+// output also can't be an AWS input directory, sit inside a Radius schema
+// directory, hold an extra properties file, or be the other output.
+export function checkEffectiveOutputs(outputs: string[], awsInputs: string[], radius: RadiusPaths[]) {
+    const keys = outputs.map(directoryKey)
+    if (new Set(keys).size !== keys.length) {
+        throw new Error("--effective-output and --previous-effective-output must be different directories")
+    }
+    for (const [i, target] of outputs.entries()) {
+        const output = path.resolve(target)
+        const key = keys[i]
+        for (const input of awsInputs) {
+            if (directoryKey(input) === key) {
+                throw new Error(`${output} is an input directory, so it can't also be an effective output`)
+            }
+        }
+        for (const paths of radius) {
+            for (const schemas of [paths.nativeSchemas, paths.handwrittenSchemas].map(dir => path.resolve(paths.root, dir))) {
+                if (isInside(output, schemas)) {
+                    throw new Error(`${output} is inside the Radius schema directory ${schemas}, so it can't be an effective output`)
+                }
+            }
+            const extraProperties = path.resolve(paths.root, paths.extraProperties)
+            if (directoryKey(path.dirname(extraProperties)) === key) {
+                throw new Error(`${output} holds the Radius extra properties file ${extraProperties}, so it can't be an effective output`)
+            }
+        }
+        const existing = jsonEntries(output)
+        if (existing.length > 0) {
+            throw new Error(`${output} already has JSON files, such as ${existing[0]}. Use a new or empty directory for each effective output`)
+        }
+    }
+}
+
+// jsonEntries lists the names ending in .json directly in a directory, of any kind:
+// files, links, and directories. A directory that doesn't exist has none.
+function jsonEntries(directory: string): string[] {
+    if (!fs.existsSync(directory)) {
+        return []
+    }
+    return fs.readdirSync(directory).filter(name => name.endsWith(".json")).sort()
+}
+
+// directoryKey identifies a directory by its device and inode, so two names for
+// one directory match even through symbolic links or a difference in letter case
+// on a case-insensitive filesystem. A path that doesn't exist yet is identified by
+// its nearest existing parent plus the rest of the path.
+function directoryKey(target: string): string {
+    const absolute = path.resolve(target)
+    let existing = absolute
+    while (!fs.existsSync(existing) && path.dirname(existing) !== existing) {
+        existing = path.dirname(existing)
+    }
+    const { dev, ino } = fs.statSync(existing)
+    return `${dev}:${ino}:${path.relative(existing, absolute)}`
+}
+
+// isInside reports whether dir is root or a directory under it. It walks dir's
+// real parents, after following links, and compares each with root by
+// directoryKey.
+function isInside(dir: string, root: string): boolean {
+    const rootKey = directoryKey(root)
+    for (let current = realPath(dir); ; current = path.dirname(current)) {
+        if (directoryKey(current) === rootKey) {
+            return true
+        }
+        if (path.dirname(current) === current) {
+            return false
+        }
+    }
+}
+
+// realPath resolves symbolic links. A path that doesn't exist yet resolves through
+// its nearest existing parent.
+function realPath(target: string): string {
+    const absolute = path.resolve(target)
+    let existing = absolute
+    while (!fs.existsSync(existing) && path.dirname(existing) !== existing) {
+        existing = path.dirname(existing)
+    }
+    return path.join(fs.realpathSync(existing), path.relative(existing, absolute))
+}
+
+// writeRecords writes each record to <directory>/<type>.json, in the same form as
+// the downloaded AWS types, so tools that read those, such as the breaking-change
+// report, can read these too. It never deletes or replaces a file: the directory
+// must be new or hold no JSON files, so a type that is gone can't linger, and
+// each file is created only if nothing has that name.
+export function writeRecords(directory: string, records: SchemaRecord[]) {
+    fs.mkdirSync(directory, { recursive: true })
+    const existing = jsonEntries(directory)
+    if (existing.length > 0) {
+        throw new Error(`${path.resolve(directory)} already has JSON files, such as ${existing[0]}. Use a new or empty directory for each effective output`)
+    }
+    for (const record of records) {
+        fs.writeFileSync(path.join(directory, `${record.type}.json`), JSON.stringify(record, null, 2) + "\n", { flag: "wx" })
+    }
 }
 
 function radiusRecord(schema: Schema): SchemaRecord {
